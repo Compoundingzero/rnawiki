@@ -16,9 +16,6 @@ import { CANONICAL_PHASE_ORDER } from '../../lib/rna-intelligence/layer3-protoco
  */
 const phaseRank = (phase) => CANONICAL_PHASE_ORDER.indexOf(phase)
 
-const STEP_RE =
-  /\{\s*id: '([^']+)',\s*stepNumber: (\d+),\s*phase: '([^']+)',\s*name: '((?:[^'\\]|\\.)*)',[\s\S]*?(?:dependsOnStepId: '([^']+)',)?[\s\S]*?\}/g
-
 let totalFixed = 0
 
 for (const file of process.argv.slice(2)) {

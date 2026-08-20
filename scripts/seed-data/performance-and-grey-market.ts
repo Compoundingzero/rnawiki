@@ -9538,4 +9538,4418 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 25. Modafinil
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'modafinil',
+    name: 'Modafinil',
+    tradeName: 'Provigil; Alertec, Modiodal and Modavigil outside the United States',
+    sponsor:
+      'Discovered by Lafon Laboratories, France. Provigil NDA 020717 approved 24 December 1998, originally Cephalon; numerous generics since 2012',
+    targetGene: 'SLC6A3',
+    targetProtein:
+      'Dopamine transporter (DAT) — a weak, atypical reuptake inhibitor, with downstream effects on noradrenaline, orexin, histamine, glutamate and GABA',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1998,
+    indication:
+      'Approved to improve wakefulness in adults with excessive sleepiness associated with narcolepsy, obstructive sleep apnoea or shift work disorder. It is not approved for cognitive enhancement, for fatigue, for depression, or in anyone under 17.',
+    patientFriendlyIndication:
+      'Prescribed for excessive sleepiness; taken off-label to think better',
+    anatomicalSite:
+      'Dopamine transporters in caudate, putamen and nucleus accumbens; orexin and histamine systems in the hypothalamus',
+    conditionContext: {
+      conditionExplainer:
+        'Excessive daytime sleepiness in narcolepsy comes from loss of orexin-producing neurons in the hypothalamus. In sleep apnoea it comes from fragmented sleep, and in shift work disorder from working against the circadian clock. Modafinil is approved for the sleepiness in all three and treats none of the causes.',
+      whyItMatters:
+        'This is the most widely used off-label cognitive enhancer in the world, and it is one of the few in that category with a real regulatory file, real controlled trials and a measured effect size. The measured effect size is small.',
+      whoTakesThis:
+        'On label: adults with narcolepsy, sleep apnoea on CPAP, and shift workers. Off label: students, doctors, programmers, military personnel and anyone buying it online for focus, in doses and durations no trial has studied.',
+      clinicalGoals:
+        'On label, improvement in objective and subjective sleepiness measures. The off-label goal — sustained cognitive performance in a rested healthy person — has been measured, and the pooled effect is a standardised mean difference of 0.12.',
+    },
+    oneSentenceVerdict:
+      'A Schedule IV wakefulness drug that occupies more than half of striatal dopamine transporters at a therapeutic dose, improves cognition in healthy rested adults by a pooled standardised mean difference of 0.12, and carries a labelled rate of rash requiring discontinuation of 0.8% in children with one possible Stevens-Johnson case.',
+    laymanHowItWorks:
+      'Modafinil blocks the pump that clears dopamine out of the synapse, which leaves more dopamine sitting between neurons. Brain imaging in healthy men showed it occupying about half the dopamine transporters in the striatum at an ordinary 200 to 400 mg dose, and dopamine rising by about a fifth in the nucleus accumbens. That is the same direction of effect as a stimulant, which is why it is a controlled substance, though it is much weaker and does not trigger dopamine release. It also raises orexin and histamine signalling, the systems that hold the brain in a waking state, which is why it produces wakefulness rather than agitation. It does not replace sleep; it postpones the experience of needing it.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 66,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC=C(C=C1)C(C2=CC=CC=C2)S(=O)CC(=O)N',
+      chemicalFormula: 'C15H15NO2S',
+      molecularWeight: '273.4 g/mol',
+      targetReceptorAffinity:
+        '2-[(diphenylmethyl)sulfinyl]acetamide, a racemic mixture of R- and S-enantiomers. A low-affinity, atypical dopamine transporter inhibitor: it blocks reuptake without causing transporter-mediated dopamine release, which distinguishes it from amphetamine. At 200 mg and 400 mg it occupied 47-54% of striatal dopamine transporters in positron emission tomography. Armodafinil is the R-enantiomer alone, with a longer half-life.',
+      structureSource: {
+        label:
+          'PubChem CID 4236 (modafinil) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4236',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mod-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, enantiomer ratio and the sulfone impurity',
+          description:
+            'Establish that a tablet is racemic modafinil and not armodafinil, and quantify modafinil sulfone, the inactive oxidised metabolite that is also the commonest process impurity. The sulfoxide sulfur is a stereocentre, so a chiral method is required; an achiral assay cannot tell a 50:50 racemate from a single enantiomer.',
+          reagentsAndBuffer:
+            'Certified modafinil, armodafinil and modafinil sulfone reference standards, chiral stationary-phase HPLC on amylose or cellulose carbamate with a hexane-alcohol mobile phase, reversed-phase C18 with diode-array detection at 225 nm, high-resolution accurate-mass ESI-MS, 1H NMR in DMSO-d6',
+        },
+        {
+          id: 'mod-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a tablet or an internet-purchased product',
+          description:
+            'Quantify against the 100 mg or 200 mg label. Modafinil is one of the most heavily traded prescription drugs on internet pharmacy channels, and the same extract should be screened for the substitutions that occur there — armodafinil, adrafinil, caffeine and unrelated stimulants.',
+          dependsOnStepId: 'mod-w1',
+          reagentsAndBuffer:
+            'Methanol extraction with sonication, 0.45 um PTFE filtration, reversed-phase gradient HPLC with UV quantification against a calibration series, LC-high-resolution mass spectrometry screening against a stimulant and eugeroic library',
+        },
+        {
+          id: 'mod-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and urine preparation with metabolite coverage',
+          description:
+            'Modafinil is cleared mainly by amide hydrolysis to modafinil acid and by oxidation to modafinil sulfone, and the acid dominates in urine. A method that measures only the parent underestimates exposure and cannot detect adrafinil use, which produces the same parent compound. Both metabolites belong in the extraction.',
+          dependsOnStepId: 'mod-w2',
+          reagentsAndBuffer:
+            'Protein precipitation with acetonitrile or liquid-liquid extraction into ethyl acetate, modafinil-d5 internal standard, separate acidic conditions for modafinil acid recovery, solid-phase extraction on a polymeric reversed-phase sorbent for urine',
+        },
+        {
+          id: 'mod-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Dopamine transporter uptake inhibition in a transfected line',
+          description:
+            'Measure what the imaging study implies. A DAT-expressing cell line with a fluorescent or radiolabelled substrate gives an IC50 for reuptake inhibition; running noradrenaline and serotonin transporters in parallel establishes selectivity, and adding a release assay distinguishes modafinil from amphetamine, which is the pharmacological difference that matters for abuse liability.',
+          dependsOnStepId: 'mod-w3',
+          reagentsAndBuffer:
+            'HEK293 cells stably expressing human DAT, NET or SERT, [3H]-dopamine or a fluorescent monoamine substrate, cocaine and GBR 12909 as reuptake-inhibitor comparators, amphetamine as a releaser comparator, superfusion release assay in parallel',
+        },
+        {
+          id: 'mod-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the occupancy and cognitive readouts',
+          description:
+            'Quantify modafinil, modafinil acid and modafinil sulfone by tandem mass spectrometry. The pharmacodynamic readouts that matter are transporter occupancy by positron emission tomography and cognitive test batteries chosen for a healthy population — the systematic review that examined this literature found that simple paradigms and complex paradigms give different answers, and that psychometric tests designed for ill populations are a poor fit for healthy ones.',
+          dependsOnStepId: 'mod-w4',
+          reagentsAndBuffer:
+            'C18 gradient with formic acid and acetonitrile, electrospray positive- and negative-ion multiple-reaction monitoring, deuterated internal standard; [11C]cocaine for dopamine transporter occupancy and [11C]raclopride for endogenous dopamine change on positron emission tomography',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mod-a1',
+        category: 'measured',
+        title: 'It blocks half the striatal dopamine transporters at a normal dose',
+        laymanSummary:
+          'Brain imaging in ten healthy men showed that 200 to 400 mg of modafinil occupied about half the dopamine transporters in the striatum and raised dopamine in the reward centre by about a fifth.',
+        technicalDetails:
+          'Volkow et al. used positron emission tomography with [11C]raclopride, sensitive to changes in endogenous dopamine, and [11C]cocaine, a dopamine transporter ligand, in 10 healthy male participants at Brookhaven National Laboratory over 2007-2008. Modafinil at therapeutic doses of 200 mg and 400 mg decreased [11C]raclopride binding potential by 6.1% in caudate (95% CI 1.5-10.8, P = .02), 6.7% in putamen (95% CI 3.2-10.3, P = .002) and 19.4% in nucleus accumbens (95% CI 5-35, P = .02), reflecting increased extracellular dopamine. It decreased [11C]cocaine binding potential by 53.8% in caudate (95% CI 43.9-63.6, P < .001), 47.2% in putamen (95% CI 39.1-55.4, P < .001) and 39.3% in nucleus accumbens (95% CI 30-49, P = .001), reflecting transporter occupancy. The authors concluded that because drugs raising dopamine in the nucleus accumbens have abuse potential, the results highlight a need for awareness of abuse and dependence in vulnerable populations.',
+        evidenceSource: 'Volkow ND et al., JAMA 2009;301:1148-1154',
+        doi: '10.1001/jama.2009.351',
+        measuredMetric:
+          'Change in [11C]raclopride and [11C]cocaine binding potential in caudate, putamen and nucleus accumbens after 200 and 400 mg',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mod-a2',
+        category: 'measured',
+        title: 'The pooled cognitive effect in healthy adults is 0.12',
+        laymanSummary:
+          'A meta-analysis of 14 modafinil studies in healthy rested adults found an overall effect size of 0.12 — small — driven by a single narrow domain, memory updating.',
+        technicalDetails:
+          'Roberts et al. ran three PRISMA-compliant meta-analyses of modafinil, methylphenidate and D-amphetamine against placebo in healthy non-sleep-deprived adults, with subgroup analysis by cognitive domain: executive functions, spatial working memory, recall, selective attention and sustained attention. For modafinil, 14 studies yielded 64 effect sizes and an overall standardised mean difference of 0.12 (p = .01), with the only significant domain being memory updating at SMD 0.28 (p = .03). Methylphenidate produced SMD 0.21 overall; D-amphetamine produced no effect at all. The authors conclude that effects are small, that the experiments do not reflect actual use in the wider population, and that the user perception of effectiveness is not supported by the evidence so far.',
+        evidenceSource: 'Roberts CA et al., Eur Neuropsychopharmacol 2020;38:40-62',
+        doi: '10.1016/j.euroneuro.2020.07.002',
+        measuredMetric:
+          'Standardised mean difference in cognitive performance against placebo, pooled across 14 modafinil studies and 64 effect sizes',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mod-a3',
+        category: 'inferred',
+        title: 'Whether it helps depends on which test you run',
+        laymanSummary:
+          'A systematic review found that simple cognitive tests showed inconsistent results — including some evidence that modafinil worsens creative thinking — while more complex tests showed more consistent benefit.',
+        technicalDetails:
+          'Battleday and Brem reviewed all primary English-language studies from January 1990 to December 2014 of modafinil in healthy non-sleep-deprived humans. With basic testing paradigms, most studies showed enhanced executive function, only half showed improvements in attention and in learning and memory, and a few reported impairments in divergent creative thinking. With more complex assessments, modafinil appeared to consistently enhance attention, executive function and learning. They found no preponderance of side effects or mood changes. Their central methodological point is that much of this literature relies on psychometric tests designed to detect deficits in ill populations rather than gains in healthy ones, which is why the same drug looks different depending on the battery. That is a statement about measurement, not a demonstration of benefit, and it cuts both ways.',
+        evidenceSource: 'Battleday RM, Brem AK, Eur Neuropsychopharmacol 2015;25:1865-1881',
+        doi: '10.1016/j.euroneuro.2015.07.028',
+        inferredClaim:
+          'That the review demonstrates cognitive enhancement, when its own conclusion is that the effect observed depends heavily on the test paradigm chosen',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mod-a4',
+        category: 'measured',
+        title: 'Serious rash: 0.8% discontinuation rate in the paediatric trials',
+        laymanSummary:
+          'In children given modafinil in trials, 13 of 1,585 stopped because of rash, including one possible case of Stevens-Johnson syndrome. None of 380 children on placebo did.',
+        technicalDetails:
+          'The Provigil label reports that in clinical trials the incidence of rash resulting in discontinuation was approximately 0.8% — 13 per 1,585 — in paediatric patients under 17, including one case of possible Stevens-Johnson syndrome and one apparent multi-organ hypersensitivity reaction, several associated with fever, vomiting or leukopenia. Median time to rash causing discontinuation was 13 days. No such cases occurred among 380 paediatric placebo recipients. Modafinil is not approved for use in paediatric patients for any indication. The label further states that rare cases of serious or life-threatening rash including SJS, toxic epidermal necrolysis and DRESS have been reported in adults and children in worldwide postmarketing experience, and that the reporting rate for TEN and SJS exceeds the background incidence, which is 1 to 2 cases per million person-years. No factor is known to predict who is at risk, and nearly all cases occurred within one to five weeks of starting.',
+        evidenceSource:
+          'PROVIGIL (modafinil) tablets prescribing information, NDA 020717, section 5.1 Serious Rash including Stevens-Johnson Syndrome',
+        measuredMetric:
+          'Incidence of rash resulting in discontinuation in paediatric trials, and reporting rate of SJS and TEN against background incidence',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mod-a5',
+        category: 'measured',
+        title: 'A Schedule IV drug with measured reinforcing properties',
+        laymanSummary:
+          'The label states modafinil produces euphoric effects typical of stimulants, is self-administered by monkeys previously trained on cocaine, and is a Schedule IV controlled substance.',
+        technicalDetails:
+          'The Provigil label, section 9, records that modafinil is a Schedule IV controlled substance; that in humans it produces psychoactive and euphoric effects and alterations in mood, perception, thinking and feeling typical of other central nervous system stimulants; that it binds the dopamine reuptake site and increases extracellular dopamine without increasing dopamine release; that it is reinforcing, as shown by self-administration in monkeys previously trained to self-administer cocaine; and that in some studies it was partially discriminated as stimulant-like. Its abuse potential at 200, 400 and 800 mg was assessed against methylphenidate at 45 and 90 mg in an inpatient study in individuals experienced with drugs of abuse. The manufacturer own document is more candid about the pharmacological family this drug belongs to than most of the writing about it.',
+        evidenceSource:
+          'PROVIGIL (modafinil) tablets prescribing information, NDA 020717, section 9 Drug Abuse and Dependence',
+        measuredMetric:
+          'Self-administration in cocaine-trained primates, stimulant discrimination, and controlled substance scheduling',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mod-a6',
+        category: 'conclusion_shift',
+        title: 'A pregnancy safety question that opened after twenty years on the market',
+        laymanSummary:
+          'Registry and national cohort studies published from 2020 onward examined malformation rates after modafinil exposure in early pregnancy, a question the original approval left open.',
+        technicalDetails:
+          'The US label still classifies modafinil as Pregnancy Category C and states that there are no adequate and well-controlled studies in pregnant women, that intrauterine growth restriction and spontaneous abortion have been reported in association with modafinil and armodafinil, and that developmental toxicity was observed in rats and rabbits at clinically relevant plasma exposures. Since 2020 a series of epidemiological studies have addressed the question directly: a Scandinavian registry analysis of births in Norway and Sweden, a cohort from the manufacturer own Provigil/Nuvigil pregnancy registry, a 14-year registry study of modafinil and armodafinil, and a French nationwide cohort. The direction of the field has been from an absence of data to an active safety question, which is the shape of a conclusion shift even where the individual studies disagree.',
+        evidenceSource:
+          'Cesta CE et al., JAMA 2020;324:895-897; Kaplan S et al., JAMA Intern Med 2021;181:275-277; Kaplan S et al., Neurol Clin Pract 2025;15:e200551; Kaplan S et al., Drug Saf 2026 (French nationwide cohort)',
+        doi: '10.1001/jama.2020.9840',
+        inferredClaim:
+          'That an absence of controlled pregnancy data on a long-marketed drug is the same as an absence of risk',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed orally, once daily',
+        laymanDesc:
+          'A tablet taken in the morning, or an hour before a night shift. It lasts most of a working day.',
+        molecularDetail:
+          'Well absorbed orally with a half-life supporting once-daily dosing at 200 mg. Cleared mainly by amide hydrolysis to modafinil acid and by oxidation to modafinil sulfone, both inactive. Armodafinil, the R-enantiomer, has a longer effective half-life and is a separate approved product.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into the brain',
+        laymanDesc:
+          'It is small and lipophilic enough to reach the brain from the bloodstream without help.',
+        molecularDetail:
+          'Passive diffusion across the blood-brain barrier; distribution to striatal, hypothalamic and cortical regions. The positron emission tomography work established that at clinically used doses it reaches concentrations sufficient to occupy roughly half of striatal dopamine transporters.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks the dopamine pump without forcing dopamine out',
+        laymanDesc:
+          'It jams the transporter that recycles dopamine, so dopamine lingers. It does not push dopamine out of the neuron the way amphetamine does.',
+        molecularDetail:
+          'Low-affinity, atypical inhibition of the dopamine transporter with 47-54% occupancy in caudate and putamen at 200-400 mg. Unlike amphetamine it does not reverse the transporter or trigger vesicular release, which is the pharmacological basis for its lower — but not absent — abuse liability. The label records that it is nonetheless reinforcing in cocaine-trained primates.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Wake-promoting networks are reinforced downstream',
+        laymanDesc:
+          'Raised dopamine and noradrenaline feed into the orexin and histamine systems, which are what hold the brain awake.',
+        molecularDetail:
+          'Increased cortical catecholamines with indirect upregulation of serotonin, glutamate, orexin and histamine and indirect reduction of GABA. Orexinergic and histaminergic tone in the tuberomammillary and lateral hypothalamic systems is what distinguishes a eugeroic effect from generalised stimulation, and is why the drug promotes wakefulness without the peripheral sympathetic load of amphetamine.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Reliable wakefulness, marginal cognition',
+        laymanDesc:
+          'It works well for the thing it is approved for. For making a rested person smarter, the pooled effect across trials is small.',
+        molecularDetail:
+          'Approved on objective and subjective sleepiness measures in narcolepsy, obstructive sleep apnoea and shift work disorder. In healthy non-sleep-deprived adults the pooled cognitive effect is a standardised mean difference of 0.12, significant but small, with memory updating the only domain reaching significance on its own.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Volkow 2009 positron emission tomography study in healthy men',
+        phase: 'Phase 1 mechanistic imaging, placebo-controlled within subject',
+        sampleSize: 10,
+        primaryEndpoint:
+          'Change in dopamine D2/D3 receptor and dopamine transporter availability after modafinil versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Nucleus accumbens [11C]raclopride binding potential down 19.4% (95% CI 5-35, P = .02); caudate dopamine transporter occupancy 53.8% (95% CI 43.9-63.6, P < .001)',
+        unreportedAdverseSignals:
+          'The authors flag abuse and dependence potential in vulnerable populations as the clinical implication, which was not the framing under which the drug was being prescribed at the time.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Roberts 2020 meta-analysis of modafinil in healthy non-sleep-deprived adults',
+        phase: 'Meta-analysis of 14 randomised placebo-controlled studies, 64 effect sizes',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Cognitive performance against placebo by domain: executive function, spatial working memory, recall, selective attention, sustained attention',
+        endpointMet: true,
+        statisticalPValue:
+          'Overall SMD 0.12 (p = .01); memory updating SMD 0.28 (p = .03); no other domain significant. Methylphenidate SMD 0.21 overall; D-amphetamine no effect',
+        unreportedAdverseSignals:
+          'The authors note that the experiments do not accurately reflect actual use in the wider population and that user perception of effectiveness is not supported by the evidence.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Battleday 2015 systematic review, 1990 to 2014',
+        phase: 'Systematic review of primary studies in healthy non-sleep-deprived humans',
+        sampleSize: 0,
+        primaryEndpoint: 'Cognitive effects of modafinil by testing paradigm complexity',
+        endpointMet: true,
+        statisticalPValue:
+          'Most basic-paradigm studies showed enhanced executive function; only half showed improved attention or learning and memory; a few reported impaired divergent creative thinking. Complex assessments showed more consistent enhancement',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Paediatric clinical trial programme, rash safety',
+        phase: 'Pooled paediatric clinical trials supporting the label safety statement',
+        sampleSize: 1585,
+        primaryEndpoint: 'Incidence of rash resulting in discontinuation',
+        endpointMet: false,
+        statisticalPValue:
+          '13 of 1,585 (approximately 0.8%) discontinued for rash, including one possible Stevens-Johnson syndrome and one apparent multi-organ hypersensitivity reaction; 0 of 380 placebo recipients. Median time to rash 13 days',
+        unreportedAdverseSignals:
+          'Modafinil is not approved for paediatric use in any indication, and no factor is known that predicts occurrence or severity of the rash.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Occupancy of 53.8% of caudate and 47.2% of putamen dopamine transporters at 200-400 mg, with a 19.4% fall in nucleus accumbens [11C]raclopride binding indicating raised extracellular dopamine',
+        'Pooled cognitive effect in healthy non-sleep-deprived adults of SMD 0.12 (p = .01), with memory updating the only significant domain at SMD 0.28',
+        'Rash requiring discontinuation in 13 of 1,585 paediatric trial participants against 0 of 380 on placebo, with SJS and TEN reporting rates exceeding the population background of 1-2 per million person-years',
+        'Self-administration in primates previously trained on cocaine, and partial stimulant discrimination, both recorded in the approved label',
+      ],
+      unsupportedInferences: [
+        'That an effect size of 0.12 in laboratory tasks corresponds to a meaningful advantage in real work, which the meta-analysts explicitly decline to conclude',
+        'That being non-amphetamine makes it free of abuse liability, when the label documents reinforcement in cocaine-trained primates and Schedule IV placement',
+        'That approval for sleepiness implies safety or benefit for cognitive enhancement in healthy adults, an indication no regulator has assessed',
+        'That two decades on the market without a controlled pregnancy study amounts to reassurance about pregnancy',
+      ],
+      whatFailedInitially: [
+        'Modafinil is not approved for use in anyone under 17 for any indication, and the paediatric rash signal is the reason the label says so twice',
+        'The user perception of substantial cognitive enhancement is, in the meta-analysts own words, not supported by the evidence so far',
+      ],
+      realWorldOutcome: [
+        'Approved 24 December 1998 as Provigil (NDA 020717), generic since 2012, and among the most commonly prescribed wakefulness agents worldwide',
+        'A Schedule IV controlled substance in the United States and prohibited in sport in competition under WADA class S6 as a stimulant',
+        'One of the most heavily traded prescription drugs on internet pharmacy channels, where a purchased tablet may contain armodafinil, adrafinil or neither',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 100 mg and 200 mg, once daily in the morning or one hour before a shift',
+      description:
+        'A simple immediate-release tablet. The approved regimens are once daily in the morning for narcolepsy and sleep apnoea, and one hour before the start of a shift for shift work disorder. Off-label use spans a wide dose range and indefinite duration, neither of which has been studied.',
+      safetyProfile:
+        'Labelled warnings: serious rash including Stevens-Johnson syndrome, toxic epidermal necrolysis and DRESS, with discontinuation at the first sign of rash; angioedema and anaphylaxis; multi-organ hypersensitivity; persistent sleepiness with advice to avoid driving; psychiatric symptoms with caution in a history of psychosis, depression or mania; and increased monitoring in known cardiovascular disease. It induces CYP3A4, which reduces the effectiveness of hormonal contraception. Schedule IV, with documented reinforcing properties. The pregnancy position is Category C on the US label, with a series of registry and national cohort studies published since 2020 examining malformation risk.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does modafinil make you smarter?',
+        a: 'By a small and narrow amount, in laboratory tasks. A PRISMA meta-analysis of 14 randomised studies in healthy non-sleep-deprived adults found an overall standardised mean difference of 0.12 against placebo, with memory updating the only domain reaching significance on its own at 0.28. Methylphenidate did somewhat better at 0.21 and D-amphetamine showed no effect at all. The authors state directly that there is a user perception these drugs are effective cognitive enhancers and that this is not supported by the evidence so far. A separate systematic review found the answer depends substantially on which test battery is used.',
+        auditNote:
+          'An effect size of 0.12 is real and small. Both halves of that sentence belong in any honest account of this drug.',
+      },
+      {
+        q: 'Is it addictive?',
+        a: 'It is a Schedule IV controlled substance with documented reinforcing properties, which is a narrower statement than either "safe" or "addictive". The label records that modafinil produces euphoric effects typical of CNS stimulants, is self-administered by monkeys previously trained to self-administer cocaine, and was assessed for abuse potential against methylphenidate in people experienced with drugs of abuse. Imaging in healthy men showed it raising dopamine in the nucleus accumbens by 19.4%, and the study authors flagged that as a reason for heightened awareness of abuse potential.',
+      },
+      {
+        q: 'How dangerous is the rash?',
+        a: 'Rare and unpredictable. In paediatric clinical trials, 13 of 1,585 participants discontinued because of rash — about 0.8% — including one possible Stevens-Johnson syndrome and one apparent multi-organ hypersensitivity reaction, against none of 380 on placebo. Median onset was 13 days. In worldwide postmarketing use, the reporting rate for Stevens-Johnson syndrome and toxic epidermal necrolysis exceeds the population background of one to two cases per million person-years. No factor is known that predicts who is at risk, which is why the label says to stop at the first sign of a rash rather than to watch it.',
+      },
+      {
+        q: 'Is buying it online the same drug?',
+        a: 'Sometimes. Modafinil is one of the most heavily traded prescription medicines on internet pharmacy channels, and purchased tablets have been found to contain armodafinil, adrafinil or nothing relevant. Adrafinil in particular converts to modafinil in the liver and would produce a positive modafinil result on a simple assay while behaving differently in dose and in hepatic load. A content assay that distinguishes the enantiomers is the only way to know which molecule is in a tablet.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Volkow ND et al. Effects of modafinil on dopamine and dopamine transporters in the male human brain: clinical implications. JAMA 2009;301:1148-1154',
+        identifier: '10.1001/jama.2009.351',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Roberts CA et al. How effective are pharmaceuticals for cognitive enhancement in healthy adults? A series of meta-analyses of cognitive performance during acute administration of modafinil, methylphenidate and D-amphetamine. Eur Neuropsychopharmacol 2020;38:40-62',
+        identifier: '10.1016/j.euroneuro.2020.07.002',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Battleday RM, Brem AK. Modafinil for cognitive neuroenhancement in healthy non-sleep-deprived subjects: a systematic review. Eur Neuropsychopharmacol 2015;25:1865-1881',
+        identifier: '10.1016/j.euroneuro.2015.07.028',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cesta CE et al. Incidence of malformations after early pregnancy exposure to modafinil in Sweden and Norway. JAMA 2020;324:895-897',
+        identifier: '10.1001/jama.2020.9840',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kaplan S et al. Pregnancy and fetal outcomes following exposure to modafinil and armodafinil during pregnancy. JAMA Intern Med 2021;181:275-277',
+        identifier: '10.1001/jamainternmed.2020.4009',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kaplan S et al. Pregnancy and fetal outcomes following prenatal exposure to modafinil and/or armodafinil: a 14-year registry study. Neurol Clin Pract 2025;15:e200551',
+        identifier: '10.1212/CPJ.0000000000200551',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dauvilliers Y et al. Pitolisant versus placebo or modafinil in patients with narcolepsy: a double-blind, randomised trial. Lancet Neurol 2013;12:1068-1075',
+        identifier: '10.1016/S1474-4422(13)70225-4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Inoue Y et al. Efficacy and safety of modafinil in patients with idiopathic hypersomnia without long sleep time: a multicenter, randomized, double-blind, placebo-controlled, parallel-group comparison study. Sleep Med 2021;80:315-321',
+        identifier: '10.1016/j.sleep.2021.01.018',
+        kind: 'doi',
+      },
+      {
+        label:
+          'PROVIGIL (modafinil) tablets prescribing information, NDA 020717 — indications, warnings and precautions, drug abuse and dependence, pregnancy',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020717',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4236 — modafinil structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4236',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 26. Adrafinil
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'adrafinil',
+    name: 'Adrafinil',
+    tradeName: 'CRL-40028; sold in the United States as a nootropic dietary supplement',
+    sponsor:
+      'Identified by L. Lafon Ltd, France, in 1974. No company holds a marketing authorisation for it in the United States and it appears nowhere in Drugs@FDA',
+    targetGene: 'SLC6A3',
+    targetProtein:
+      'Dopamine transporter, reached indirectly — adrafinil is a prodrug hydrolysed in the liver to modafinil',
+    modality: 'Small Molecule',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'None in the United States, where it is an unapproved drug sold in products labelled as dietary supplements. It was prescribed in France for narcolepsy from the late 1970s, before its own active metabolite was identified and registered in its place.',
+    patientFriendlyIndication:
+      'A prodrug of modafinil, sold as a supplement because it was never scheduled',
+    anatomicalSite:
+      'Hepatocytes, where it is converted; then dopamine transporters in the striatum',
+    conditionContext: {
+      conditionExplainer:
+        'Adrafinil has no pharmacology of its own that matters. It is a hydroxamic acid that the liver converts to modafinil and to modafinilic acid. Everything it does downstream is what modafinil does, at a delay and at a fraction of the yield.',
+      whyItMatters:
+        'This is the clearest example in the file of a legal boundary rather than a pharmacological one deciding what people take. Modafinil is a Schedule IV controlled substance in the United States. Adrafinil, which becomes modafinil inside the body, is not scheduled at all, and is therefore sold openly in capsules labelled as supplements.',
+      whoTakesThis:
+        'People wanting modafinil without a prescription. It is also the compound that gets a person a positive modafinil result on a doping test or a forensic hair analysis without modafinil ever having been bought.',
+      clinicalGoals:
+        'None defined by any regulator. There is no modern controlled trial of adrafinil for any endpoint in humans.',
+    },
+    oneSentenceVerdict:
+      'A prodrug that the liver turns into modafinil, prescribed in France from 1977 with what its own historians describe as inconsistent results, superseded by the metabolite it produces, and sold today in the United States as a dietary supplement because it was never scheduled.',
+    laymanHowItWorks:
+      'Adrafinil is modafinil with an extra oxygen and nitrogen on the end — a hydroxamic acid instead of an amide. Swallowed, it passes through the liver, which strips that group off and releases modafinil into the circulation. From there the drug is modafinil: it blocks the dopamine reuptake pump and promotes wakefulness. Two consequences follow from the extra step. The onset is slower and the amount of modafinil produced is lower and more variable than taking modafinil directly. And the liver has to do the conversion, which is why every serious discussion of chronic adrafinil use returns to hepatic load.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 20,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC=C(C=C1)C(C2=CC=CC=C2)S(=O)CC(=O)NO',
+      chemicalFormula: 'C15H15NO3S',
+      molecularWeight: '289.4 g/mol',
+      targetReceptorAffinity:
+        '2-[(diphenylmethyl)sulfinyl]-N-hydroxyacetamide. The hydroxamic acid analogue of modafinil, differing from it by a single oxygen. It has no meaningful activity of its own at the dopamine transporter; hepatic amidase activity converts it to modafinil and to modafinilic acid, and the pharmacology from that point is modafinil pharmacology. The sulfoxide sulfur is a stereocentre, so adrafinil is supplied as a racemate.',
+      structureSource: {
+        label:
+          'PubChem CID 3033226 (adrafinil) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3033226',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'adr-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity against modafinil and the newer unscheduled analogues',
+          description:
+            'Adrafinil sits in a family of unscheduled modafinil analogues that includes CRL-40,940 (flmodafinil) and CRL-40,941, all appearing in products sold as nootropic supplements. They are close in mass and behaviour, and a method built for modafinil alone will not separate them. This is also where the analyst learns that gas chromatography is the wrong tool: these compounds degrade in a hot GC injector to 1,1,2,2-tetraphenylethane, which is an artefact and not a component of the sample.',
+          reagentsAndBuffer:
+            'Certified adrafinil, modafinil, modafinic acid, CRL-40,940 and CRL-40,941 reference standards, liquid chromatography with high-resolution mass spectrometry rather than GC-MS, chiral HPLC on a cellulose tris(4-methylbenzoate) column for the enantiomers, 1H NMR in DMSO-d6',
+        },
+        {
+          id: 'adr-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a product sold as a dietary supplement',
+          description:
+            'Quantify adrafinil in a capsule labelled as a nootropic, and check whether modafinil itself or one of the fluorinated analogues is present alongside it. The validated method for this exists precisely because unscheduled modafinil analogues had been found in supplements during untargeted screening.',
+          dependsOnStepId: 'adr-w1',
+          reagentsAndBuffer:
+            'Methanol or acetonitrile extraction with sonication, 0.45 um PTFE filtration, validated LC-high-resolution mass spectrometry method quantitating modafinil, adrafinil, CRL-40,940, CRL-40,941 and N-methyl-4,4-difluoromodafinil against certified standards',
+        },
+        {
+          id: 'adr-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hair, plasma and urine preparation for the parent-and-metabolite pair',
+          description:
+            'The forensic question is almost never "is modafinil present" but "was modafinil taken, or adrafinil". Answering it requires measuring both compounds in the same specimen, and hair is the matrix where the distinction survives longest. A controlled self-administration established the reference pattern: after a single 200 mg oral dose, beard hair at ten days contained adrafinil at 0.8 ng/mg and modafinil at 0.5 ng/mg.',
+          dependsOnStepId: 'adr-w2',
+          reagentsAndBuffer:
+            'Hair decontamination in dichloromethane, pulverisation and incubation in pH 8.4 phosphate buffer, liquid-liquid or solid-phase extraction, deuterated modafinil internal standard; plasma protein precipitation with acetonitrile, and separate acidified conditions to recover modafinilic acid',
+        },
+        {
+          id: 'adr-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Hepatic conversion in human hepatocytes, then transporter uptake',
+          description:
+            'The pharmacologically decisive experiment is the conversion, not the target engagement. Incubate adrafinil with primary human hepatocytes or liver microsomes and measure how much modafinil appears and how fast, then take that medium onto a dopamine-transporter-expressing line. Doing it in that order is what shows the parent compound is inert and the metabolite is not.',
+          dependsOnStepId: 'adr-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes or pooled human liver microsomes with an NADPH regenerating system, adrafinil and modafinil reference standards, lactate dehydrogenase and ATP-content cytotoxicity readouts on the same plates; HEK293 cells expressing human DAT with [3H]-dopamine uptake for the downstream arm',
+        },
+        {
+          id: 'adr-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification of adrafinil, modafinil and modafinilic acid',
+          description:
+            'Quantify all three species against deuterated standards, and report the ratio rather than any single value. The ratio is the informative number: it distinguishes adrafinil intake from modafinil intake, and it is the only way to estimate how much active drug a given adrafinil dose actually delivered in a given person.',
+          dependsOnStepId: 'adr-w4',
+          reagentsAndBuffer:
+            'C18 gradient with 0.1% formic acid and acetonitrile, electrospray positive- and negative-ion multiple-reaction monitoring on a triple quadrupole, deuterated modafinil and modafinic acid internal standards, matrix-matched calibration in hair, plasma and urine separately',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'adr-a1',
+        category: 'conclusion_shift',
+        title: 'The drug was replaced by its own metabolite',
+        laymanSummary:
+          'Adrafinil was prescribed to narcoleptic patients in France from 1977. Studying how it was broken down revealed the active substance was modafinil, and modafinil was registered instead.',
+        technicalDetails:
+          'Billiard and Broughton set out the sequence. Adrafinil was identified by L. Lafon Ltd in 1974 and caused a significant dose-dependent increase in motor activity in mice without peripheral sympathomimetic effects. As early as 1977-78 Michel Jouvet prescribed adrafinil to narcoleptic patients, but — in the authors own words — without consistent results. Meanwhile the kinetics of adrafinil led to the identification of an active metabolite, modafinil. In 1983 Jouvet and Bastuji prescribed modafinil to narcoleptic and idiopathic hypersomnia patients and obtained a significant decrease in excessive daytime sleepiness and sleep attacks in a majority. Lafon was initially uninterested in developing it and was persuaded; modafinil was officially registered in France in 1992 and confirmed in North American multicentre trials. Adrafinil was not carried forward. The compound sold today as a nootropic is the version the field discarded, from a programme that discarded it for a documented reason.',
+        evidenceSource: 'Billiard M, Broughton R, Sleep Med 2018;49:69-72',
+        doi: '10.1016/j.sleep.2018.05.027',
+        inferredClaim:
+          'That adrafinil is a modern nootropic, when it is the abandoned parent compound whose clinical trial history is a record of inconsistent results',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'adr-a2',
+        category: 'measured',
+        title: 'One 200 mg dose puts both compounds in hair for at least ten days',
+        laymanSummary:
+          'A volunteer took a single 200 mg dose. Ten days later, beard hair contained measurable adrafinil and measurable modafinil.',
+        technicalDetails:
+          'Ameline et al. developed an LC-MS/MS method for adrafinil in hair after a laboratory was asked to test a hair strand from a woman found with vials of adrafinil and suspected of trafficking. In that authentic case modafinil was present at 6.8 to 13.9 ng/mg and adrafinil was not detected. To interpret it, the group ran a controlled self-administration: a single 200 mg oral dose of adrafinil in one volunteer, with beard hair collected ten days later, gave adrafinil at 0.8 ng/mg and modafinil at 0.5 ng/mg. The dual identification after one low dose established the reference pattern, and on that basis the authentic case was interpreted as modafinil abuse rather than adrafinil consumption. WADA prohibited both compounds in sport in 2004.',
+        evidenceSource: 'Ameline A et al., Forensic Sci Res 2020;5:322-326',
+        doi: '10.1080/20961790.2019.1704482',
+        measuredMetric:
+          'Adrafinil and modafinil concentrations in beard hair ten days after a single 200 mg oral dose',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'adr-a3',
+        category: 'measured',
+        title: 'Found in every supplement tested that claimed to contain it',
+        laymanSummary:
+          'A government food laboratory bought four products marketed as nootropics and labelled to contain adrafinil. All four contained it.',
+        technicalDetails:
+          'Bakota and Nandrea at the Kansas City Human and Animal Food Laboratory noted that preliminary non-targeted analyses had revealed adrafinil in several dietary supplements, and developed and validated an LC-high-resolution mass spectrometry method quantitating modafinil plus four unscheduled analogues: adrafinil, CRL-40,940, CRL-40,941 and N-methyl-4,4-difluoromodafinil. Applied to four products obtained by undercover purchase and marketed as nootropics or cognitive enhancers labelled to contain adrafinil, all four contained adrafinil. Their framing is the point: modafinil is Schedule IV in the United States while its analogues remain unapproved and unscheduled, and the lack of scheduling has made those analogues a popular target for recreational use and for inclusion in dietary supplements. This is one of the few product-content findings in this file where the label was accurate, and it is not reassuring — the label was accurate about containing an unapproved drug.',
+        evidenceSource: 'Bakota EL, Nandrea JM, J Diet Suppl 2025;22:329-344',
+        doi: '10.1080/19390211.2024.2417673',
+        measuredMetric:
+          'Presence of adrafinil in four undercover-purchased products marketed as dietary supplements',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'adr-a4',
+        category: 'inferred',
+        title: 'Every efficacy claim is borrowed from modafinil',
+        laymanSummary:
+          'There is no modern controlled trial of adrafinil for wakefulness, cognition or anything else. What is cited for it is the modafinil literature.',
+        technicalDetails:
+          'A search of the published literature returns analytical chemistry — chiral separation methods, hair and serum assays, thermal degradation artefacts, supplement screening — and historical accounts. It does not return randomised controlled trials of adrafinil in humans for any endpoint. The modern claims made for it are the modafinil claims: the pooled cognitive effect in healthy non-sleep-deprived adults of standardised mean difference 0.12, and the approved wakefulness indications. Those results were obtained with modafinil administered directly. Whether an oral adrafinil dose produces an equivalent modafinil exposure, in whom, and with what variability, is not established by any published human pharmacokinetic comparison.',
+        evidenceSource:
+          'Roberts CA et al., Eur Neuropsychopharmacol 2020;38:40-62 (the modafinil meta-analysis whose results are cited for adrafinil); absence of any randomised controlled trial of adrafinil in the indexed literature',
+        doi: '10.1016/j.euroneuro.2020.07.002',
+        inferredClaim:
+          'That the measured cognitive and wakefulness effects of modafinil transfer quantitatively to an oral dose of its prodrug',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'adr-a5',
+        category: 'measured',
+        title: 'It degrades in the instrument, which is how false results are made',
+        laymanSummary:
+          'Analysing these compounds by gas chromatography destroys them in the injector and produces a breakdown product that is not in the sample.',
+        technicalDetails:
+          'Dowling et al. investigated the thermal degradation of modafinil, modafinic acid, adrafinil, CRL-40,940 and CRL-40,941 in a gas chromatography injector and showed the formation of 1,1,2,2-tetraphenylethane and its tetrafluoro analogue. Their title — "Outsmarted by nootropics?" — describes the practical hazard: a laboratory that screens a nootropic product by GC-MS may report a compound that was never present and miss the ones that were. This is why the validated supplement method uses liquid chromatography with high-resolution mass spectrometry, and it is a general warning about analytical results quoted for grey-market products without a stated method.',
+        evidenceSource: 'Dowling G et al., Drug Test Anal 2017;9:518-528',
+        doi: '10.1002/dta.2142',
+        measuredMetric:
+          'Formation of 1,1,2,2-tetraphenylethane from modafinil, adrafinil and analogues in a hot GC injector',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'adr-a6',
+        category: 'measured',
+        title: 'Legal in the United States, banned in sport since 2004',
+        laymanSummary:
+          'Adrafinil is not a controlled substance in the United States and is not an approved drug there either. In sport it has been prohibited since 2004, and taking it produces a modafinil positive.',
+        technicalDetails:
+          'Adrafinil appears nowhere in the FDA Drugs@FDA database as an approved active ingredient and is not scheduled under the Controlled Substances Act, which is precisely why it is sold in products labelled as dietary supplements. WADA prohibited adrafinil and modafinil in sport in 2004; both fall under class S6, stimulants, prohibited in competition. Because hepatic conversion produces modafinil, an athlete taking adrafinil returns a modafinil finding, and distinguishing the two requires measuring the parent compound alongside the metabolite in the same specimen.',
+        evidenceSource:
+          'Absence of adrafinil from FDA Drugs@FDA as an approved active ingredient, August 2026; Ameline A et al., Forensic Sci Res 2020;5:322-326 for the 2004 WADA prohibition and the parent-metabolite discrimination',
+        measuredMetric:
+          'Regulatory status in the United States and the analytical basis for distinguishing adrafinil from modafinil use',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed as a capsule',
+        laymanDesc:
+          'It is taken by mouth, typically in capsules sold as a supplement, and the effect takes longer to arrive than modafinil.',
+        molecularDetail:
+          'Oral administration; the extra hepatic conversion step delays onset relative to modafinil taken directly. No published human pharmacokinetic comparison establishes the modafinil exposure produced by a given adrafinil dose.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The liver strips off the hydroxamic acid group',
+        laymanDesc:
+          'Enzymes in the liver remove one oxygen-nitrogen group, and what is left is modafinil.',
+        molecularDetail:
+          'Hepatic amidase activity hydrolyses the N-hydroxyacetamide to the acetamide, producing modafinil, with parallel conversion to modafinilic acid. This first-pass step is obligatory: the parent compound has no meaningful activity at the dopamine transporter, and the conversion efficiency is the single largest source of dose-response variability.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Modafinil reaches the brain and blocks the dopamine pump',
+        laymanDesc: 'From this point the drug is modafinil, and it does what modafinil does.',
+        molecularDetail:
+          'The released modafinil crosses the blood-brain barrier and inhibits dopamine reuptake at the dopamine transporter, with the downstream orexin and histamine effects that produce wakefulness. Nothing after this step is adrafinil pharmacology.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Wakefulness, at a lower and more variable yield',
+        laymanDesc:
+          'Less active drug arrives than if modafinil had been taken directly, and how much arrives varies between people.',
+        molecularDetail:
+          'The measurable output of an adrafinil dose is a modafinil plasma curve whose height and shape depend on individual hepatic amidase activity. In the hair study, a single 200 mg adrafinil dose produced detectable adrafinil at 0.8 ng/mg and modafinil at 0.5 ng/mg at ten days, which fixes the qualitative pattern but not the quantitative yield.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'An abandoned prodrug with an unscheduled status',
+        laymanDesc:
+          'The clinical programme dropped it in favour of the metabolite. What keeps it in circulation is that it is not a controlled substance.',
+        molecularDetail:
+          'Prescribed to narcoleptic patients from 1977-78 without consistent results, superseded by modafinil which was registered in France in 1992. Today it is unapproved and unscheduled in the United States, present in products sold as nootropic supplements, and prohibited in sport since 2004.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Jouvet 1977-78 clinical use in narcoleptic patients',
+        phase: 'Early clinical prescribing, France',
+        sampleSize: 0,
+        primaryEndpoint: 'Excessive daytime sleepiness and sleep attacks in narcolepsy',
+        endpointMet: false,
+        statisticalPValue:
+          'Described in the historical account as prescribed to narcoleptic patients but without consistent results; the programme subsequently identified modafinil as the active metabolite and developed that instead',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Ameline 2020 single-dose self-administration study for hair interpretation',
+        phase: 'Analytical self-administration, one volunteer, 200 mg oral',
+        sampleSize: 1,
+        primaryEndpoint:
+          'Detection of adrafinil and modafinil in beard hair collected ten days after a single dose',
+        endpointMet: true,
+        statisticalPValue:
+          'Adrafinil 0.8 ng/mg and modafinil 0.5 ng/mg at ten days after one 200 mg dose; the authentic forensic case by contrast showed modafinil at 6.8-13.9 ng/mg with no adrafinil',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Bakota 2025 supplement content survey',
+        phase: 'Analytical survey of undercover-purchased products',
+        sampleSize: 4,
+        primaryEndpoint:
+          'Presence and quantity of modafinil and four unscheduled analogues in products marketed as dietary supplements',
+        endpointMet: true,
+        statisticalPValue:
+          'Adrafinil identified in all four products labelled to contain it, by validated LC-high-resolution mass spectrometry',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Adrafinil is hydrolysed in the liver to modafinil, the identification of which is what ended adrafinil own development',
+        'A single 200 mg oral dose produced adrafinil at 0.8 ng/mg and modafinil at 0.5 ng/mg in beard hair ten days later',
+        'Adrafinil was present in all four undercover-purchased products marketed as dietary supplements and labelled to contain it',
+        'Modafinil, adrafinil and related analogues degrade in a hot GC injector to 1,1,2,2-tetraphenylethane, an artefact that is not in the sample',
+      ],
+      unsupportedInferences: [
+        'That the modafinil efficacy and cognitive literature quantifies what an adrafinil dose does — no human pharmacokinetic comparison establishes the conversion yield',
+        'That being unscheduled means being safer, when the only difference from a Schedule IV drug is one hepatic conversion step',
+        'That the compound has a modern evidence base; the indexed literature contains no randomised controlled trial of adrafinil for any endpoint',
+        'That a product labelled adrafinil contains only adrafinil, when three further unscheduled modafinil analogues circulate in the same market',
+      ],
+      whatFailedInitially: [
+        'Adrafinil was prescribed for narcolepsy from 1977-78 without consistent results and was not carried forward when its metabolite proved effective',
+        'No sponsor has developed adrafinil for any indication in the fifty years since it was identified',
+      ],
+      realWorldOutcome: [
+        'Unapproved and unscheduled in the United States, and therefore sold openly in capsules labelled as nootropic dietary supplements',
+        'Prohibited in sport since 2004 under WADA class S6, and detectable through the modafinil it produces',
+        'Its own metabolite, modafinil, was registered in France in 1992 and is now among the most prescribed wakefulness drugs in the world',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule sold as a dietary supplement; no approved dosage form exists',
+      description:
+        'Capsules sold as nootropic supplements, in doses set by vendors rather than by any regulator. Because the compound must be converted by the liver before it does anything, the delivered dose of active drug is a function of individual hepatic amidase activity and is not knowable from the label.',
+      safetyProfile:
+        'No modern human safety dataset exists for adrafinil itself. The pharmacology after conversion is modafinil pharmacology, and the modafinil label carries warnings for serious rash including Stevens-Johnson syndrome, angioedema and anaphylaxis, multi-organ hypersensitivity, psychiatric symptoms and cardiovascular caution. The additional consideration specific to adrafinil is that it imposes an obligatory hepatic conversion step that modafinil does not, and no published study has characterised what repeated dosing does to liver chemistry in humans.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is adrafinil just modafinil?',
+        a: 'After the liver has finished with it, effectively yes. Adrafinil is the hydroxamic acid analogue, differing by one oxygen, and hepatic hydrolysis releases modafinil. That is not a fringe interpretation — it is the historical fact that ended adrafinil own development. Studying adrafinil kinetics is how modafinil was identified in the first place, and modafinil was registered in France in 1992 while adrafinil was left behind.',
+        auditNote:
+          'The difference that matters is legal, not pharmacological: modafinil is Schedule IV in the United States and adrafinil is not scheduled at all.',
+      },
+      {
+        q: 'Why is it sold as a supplement if it becomes a controlled drug?',
+        a: 'Because scheduling attaches to named substances. Modafinil is listed; adrafinil is not, and neither are the newer analogues CRL-40,940 and CRL-40,941. A federal food laboratory made exactly this point when it developed a method to find them: the lack of scheduling has made these analogues a popular target for recreational use and for inclusion in dietary supplements. All four undercover-purchased products it tested contained the adrafinil their labels claimed. An accurate label on an unapproved drug is still an unapproved drug.',
+      },
+      {
+        q: 'Will it show up on a drug test?',
+        a: 'Yes, as modafinil. WADA prohibited both compounds in 2004 and hepatic conversion means adrafinil intake produces a modafinil finding. Distinguishing them requires measuring both in the same specimen. A controlled single-dose study established the pattern: 200 mg of adrafinil left adrafinil at 0.8 ng/mg and modafinil at 0.5 ng/mg in beard hair at ten days, whereas a forensic case showing modafinil at 6.8-13.9 ng/mg with no adrafinil at all was interpreted as modafinil use, not adrafinil use.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because it is not an approved medicine anywhere and there is no list price to cite. This site prints acquisition costs from published sources such as the CMS National Average Drug Acquisition Cost file. A supplement vendor asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Billiard M, Broughton R. Modafinil: its discovery, the early European and North American experience in the treatment of narcolepsy and idiopathic hypersomnia, and its subsequent use in other medical conditions. Sleep Med 2018;49:69-72',
+        identifier: '10.1016/j.sleep.2018.05.027',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ameline A et al. Identification of adrafinil and its main metabolite modafinil in human hair. Self-administration study and interpretation of an authentic case. Forensic Sci Res 2020;5:322-326',
+        identifier: '10.1080/20961790.2019.1704482',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bakota EL, Nandrea JM. Development and validation of an analytical method to identify and quantitate novel modafinil analogs in products marketed as dietary supplements. J Diet Suppl 2025;22:329-344',
+        identifier: '10.1080/19390211.2024.2417673',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dowling G et al. Outsmarted by nootropics? An investigation into the thermal degradation of modafinil, modafinic acid, adrafinil, CRL-40,940 and CRL-40,941 in the GC injector. Drug Test Anal 2017;9:518-528',
+        identifier: '10.1002/dta.2142',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sousa A, Dinis-Oliveira RJ. Pharmacokinetic and pharmacodynamic of the cognitive enhancer modafinil: relevant clinical and forensic aspects. Subst Abus 2020;41:155-173',
+        identifier: '10.1080/08897077.2019.1700584',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Roberts CA et al. How effective are pharmaceuticals for cognitive enhancement in healthy adults? Eur Neuropsychopharmacol 2020;38:40-62',
+        identifier: '10.1016/j.euroneuro.2020.07.002',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rao RN et al. Development of a validated LC method for enantiomeric separation and determination of adrafinil and its related substances on a Chiralcel OJ-H column. Biomed Chromatogr 2010;24:1228-1233',
+        identifier: '10.1002/bmc.1432',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 3033226 — adrafinil structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3033226',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 27. Piracetam
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'piracetam',
+    name: 'Piracetam',
+    tradeName: 'Nootropil; also Myocalm, Lucetam, Nootropyl and many national names',
+    sponsor:
+      'UCB Pharma, Belgium, where it was synthesised in 1964. Nootropil 800 mg and 1200 mg tablets are UK prescription-only medicines, now ADVANZ Pharma. Not approved by the FDA for any indication',
+    targetGene: 'None identified',
+    targetProtein:
+      'No confirmed molecular target. Proposed actions on membrane fluidity and on AMPA receptor modulation, neither established as the mechanism',
+    modality: 'Small Molecule',
+    approvalStatus: 'EMA Approved',
+    indication:
+      'Licensed in the United Kingdom and many European and other countries, by national marketing authorisations rather than a central EU one, for adjunctive treatment of cortical myoclonus. It has no FDA approval for anything, and the FDA does not accept it as a dietary supplement ingredient.',
+    patientFriendlyIndication:
+      'A prescription drug for a rare jerking movement disorder, sold in the US as a supplement',
+    anatomicalSite: 'Cortical neuronal membranes; the sensorimotor cortex in myoclonus',
+    conditionContext: {
+      conditionExplainer:
+        'Cortical myoclonus is a sudden involuntary jerk generated by an abnormal discharge in the sensorimotor cortex. It is disabling, often drug-resistant, and it is the one condition in which piracetam has a genuine, replicated, placebo-controlled effect.',
+      whyItMatters:
+        'Piracetam is the founding compound of the entire nootropic category — the word "nootropic" was coined for it. Sixty years on it has a licensed indication in a rare movement disorder, a Cochrane review that does not support its use in dementia, and a Cochrane review that raises a possible unfavourable signal in acute stroke.',
+      whoTakesThis:
+        'On prescription: patients with cortical myoclonus, usually alongside clonazepam, valproate or levetiracetam. Off prescription: people taking it as an over-the-counter cognitive supplement, which in the United States means taking an unapproved drug.',
+      clinicalGoals:
+        'In myoclonus, reduction in jerk severity and in functional disability, measured on stimulus sensitivity, motor, writing and global assessment scales. In the cognitive-supplement use, no goal has ever been defined by a regulator.',
+    },
+    oneSentenceVerdict:
+      'The original nootropic: in cortical myoclonus, 10 of 21 patients had to be rescued from the placebo phase of a crossover trial and none from the drug phase, while in dementia the pooled evidence shows a large effect on global impression of change and no benefit on any specific cognitive measure.',
+    laymanHowItWorks:
+      'Piracetam is a small cyclic molecule, a ring version of the neurotransmitter GABA, though it does not act on GABA receptors. Sixty years after its synthesis nobody has identified what it binds. The leading account is that it inserts itself into cell membranes and changes their physical properties, which alters how membrane proteins move and how neurons signal — a mechanism that is unusual precisely because it is physical rather than a lock-and-key fit. Whatever the mechanism, in cortical myoclonus it does something that placebo does not: in the trial that established it, half the patients could not tolerate the placebo phase and had to be taken off it.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 52,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CC(=O)N(C1)CC(=O)N',
+      chemicalFormula: 'C6H10N2O2',
+      molecularWeight: '142.16 g/mol',
+      targetReceptorAffinity:
+        '2-(2-oxopyrrolidin-1-yl)acetamide, the cyclic derivative of GABA and the parent of the entire racetam family. It has no meaningful affinity at GABA-A, GABA-B, benzodiazepine, glutamate or monoamine receptors. Proposed mechanisms are an interaction with the polar heads of membrane phospholipids that restores membrane fluidity, and positive allosteric modulation of AMPA receptors; neither is established as the therapeutic mechanism. It is highly water-soluble, essentially unmetabolised, and cleared unchanged by the kidney.',
+      structureSource: {
+        label:
+          'PubChem CID 4843 (piracetam) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4843',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'pir-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity against the rest of the racetam family',
+          description:
+            'Piracetam, aniracetam, oxiracetam, phenylpiracetam and omberacetam share the 2-oxopyrrolidine core and are sold interchangeably in the same supplement market. They differ substantially in mass and polarity, which makes them easy to separate once you look for all of them; the failure mode is a targeted assay that only looks for the one on the label.',
+          reagentsAndBuffer:
+            'Certified piracetam, aniracetam, oxiracetam, phenylpiracetam and omberacetam reference standards, reversed-phase C18 or HILIC chromatography for a very polar analyte, high-resolution accurate-mass ESI-MS, 1H and 13C NMR in D2O',
+        },
+        {
+          id: 'pir-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a tablet or a supplement capsule',
+          description:
+            'Quantify against label. This is the step that matters commercially, because piracetam doses in the licensed indication run to grams per day while supplement servings are set by vendors, and because the same capsule may carry racetams and other unapproved drugs that are not declared.',
+          dependsOnStepId: 'pir-w1',
+          reagentsAndBuffer:
+            'Aqueous or methanol-water extraction with sonication, 0.45 um filtration, HILIC or ion-pair reversed-phase HPLC with UV detection at 205 nm, non-targeted LC-quadrupole time-of-flight mass spectrometry screening for undeclared racetams, phenibut, vinpocetine and picamilon',
+        },
+        {
+          id: 'pir-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and urine preparation for an unmetabolised polar drug',
+          description:
+            'Piracetam is not metabolised to any meaningful extent and is excreted unchanged in urine, so sample preparation is about recovering a very hydrophilic molecule rather than about hunting metabolites. Protein precipitation is usually enough; the harder problem is chromatographic retention, which conventional reversed-phase barely provides.',
+          dependsOnStepId: 'pir-w2',
+          reagentsAndBuffer:
+            'Acetonitrile protein precipitation of plasma, piracetam-d6 or an isotopically labelled analogue as internal standard, HILIC chromatography on an amide or zwitterionic phase, aqueous dilution rather than extraction for urine',
+        },
+        {
+          id: 'pir-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Membrane fluidity and AMPA modulation in neuronal preparations',
+          description:
+            'Test the two candidate mechanisms in parallel, because after sixty years neither is settled. Fluorescence anisotropy in model membranes and in neuronal membrane preparations addresses the physical hypothesis; whole-cell recording of AMPA-mediated currents in the presence of piracetam addresses the allosteric one. A negative in both is an informative result for a compound this widely used.',
+          dependsOnStepId: 'pir-w3',
+          reagentsAndBuffer:
+            'DPH or TMA-DPH fluorescence anisotropy in liposomes and in synaptosomal membranes, cholesterol-loaded membranes as the aged-membrane model; HEK293 cells expressing GluA1/GluA2 or primary cortical neurons for whole-cell patch clamp with fast glutamate application, cyclothiazide and aniracetam as positive allosteric comparators',
+        },
+        {
+          id: 'pir-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the electrophysiological endpoint',
+          description:
+            'Quantify piracetam in plasma and cerebrospinal fluid by tandem mass spectrometry against the labelled standard, and read the endpoint that the licensed indication rests on: cortical myoclonus quantified by jerk-locked back-averaged electroencephalography and by somatosensory evoked potential amplitude, alongside the clinical rating scales.',
+          dependsOnStepId: 'pir-w4',
+          reagentsAndBuffer:
+            'HILIC or ion-pair C18 with formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring, isotopically labelled internal standard; surface electromyography with jerk-locked back-averaging, giant somatosensory evoked potentials, and standardised myoclonus rating scales for stimulus sensitivity, motor function, writing and disability',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'pir-a1',
+        category: 'measured',
+        title: 'Half the patients had to be rescued from the placebo arm',
+        laymanSummary:
+          'In a crossover trial in 21 patients with cortical myoclonus, ten had to be taken off the placebo phase because their jerking became intolerable. None had to be taken off the drug phase.',
+        technicalDetails:
+          'Brown et al. ran a placebo-controlled double-blind crossover trial of piracetam at 2.4 to 16.8 g daily in 21 patients with cortical myoclonus, all but one with electrophysiological confirmation. Patients received 14 days of piracetam then identical placebo, or the reverse; nineteen took it in addition to routine antimyoclonic treatment and two as monotherapy. Ten of the 21 had to be rescued from the placebo phase because of severe and intolerable exacerbation of myoclonus, and none required rescue from the piracetam phase. Considered together, there was significant improvement on motor, writing, functional disability, global assessment and visual analogue scales, with the total rating score improving by a median of 22%. Genton et al. reported dose-related responses over a wide individual range of 7 to 24 g daily, and improvement maintained for up to seven years in progressive myoclonus epilepsy at doses up to 45 g daily added to existing antiepileptic treatment.',
+        evidenceSource:
+          'Brown P et al., Mov Disord 1993;8:63-68; Genton P et al., Pharmacopsychiatry 1999;32(Suppl 1):49-53',
+        doi: '10.1002/mds.870080112',
+        measuredMetric:
+          'Rescue rate from placebo versus drug phase, and total myoclonus rating score change, in a double-blind crossover trial',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pir-a2',
+        category: 'conclusion_shift',
+        title: 'Large effect on the global impression, none on anything specific',
+        laymanSummary:
+          'A Cochrane review of piracetam in dementia found patients were more than three times as likely to be rated "improved" overall — and no benefit on any specific cognitive test.',
+        technicalDetails:
+          'Flicker and Grimley Evans reviewed piracetam for dementia or cognitive impairment. Many included studies were crossover designs whose first-phase data were unavailable or unextractable. Global Impression of Change was the only outcome with a substantial pooled evidence base, and it showed significant heterogeneity (chi-square 20.8, df 5). Using a fixed effects model the odds ratio for improvement on piracetam versus placebo was 3.55 (95% CI 2.45-5.16); with a random effects model, 3.47 (95% CI 1.29-9.30). Excluding a single-blind study gave 3.36 (95% CI 2.29-4.99) fixed and 2.89 (95% CI 1.01-8.24) random. Evidence of effects on cognition and other measures was inconclusive. The reviewers conclusion is unambiguous: the published literature does not support the use of piracetam in dementia or cognitive impairment, because although effects were found on global impression of change, no benefit was shown by any more specific measure.',
+        evidenceSource:
+          'Flicker L, Grimley Evans G. Piracetam for dementia or cognitive impairment. Cochrane Database Syst Rev 2001;(2):CD001011',
+        doi: '10.1002/14651858.CD001011',
+        inferredClaim:
+          'That a threefold odds ratio on a clinician global impression scale demonstrates cognitive benefit, when every specific cognitive measure in the same review was inconclusive',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pir-a3',
+        category: 'failed',
+        title: 'A possible unfavourable signal on early death in acute stroke',
+        laymanSummary:
+          'A Cochrane review of piracetam in acute stroke found a non-significant increase in death at one month, which may have been an artefact of sicker patients ending up in the treatment group.',
+        technicalDetails:
+          'Ricci et al. reviewed randomised trials of piracetam started within three days of stroke onset, including three trials with 1,002 patients, one contributing 93% of the data. Piracetam was associated with a statistically non-significant increase in death at one month — approximately a 31% increase, 95% confidence interval from an 81% increase to a 5% reduction. The trend was no longer apparent in the large trial after correction for imbalance in stroke severity. Limited data showed no difference in functional outcome, dependence, or the proportion dead or dependent, and adverse effects were not reported. The reviewers conclude there is some suggestion but no statistically significant result of an unfavourable effect on early death, possibly caused by baseline differences in stroke severity, and not enough evidence to assess the effect on dependence. A separate Cochrane review of piracetam for reducing painful sickle cell crises found the included trials too few and too poor to support routine use.',
+        evidenceSource:
+          'Ricci S et al. Piracetam for acute ischaemic stroke. Cochrane Database Syst Rev 2012;CD000419; Al Hajeri A, Fedorowicz Z. Piracetam for reducing the incidence of painful sickle cell disease crises. Cochrane Database Syst Rev 2016;CD006111',
+        doi: '10.1002/14651858.CD000419.pub3',
+        measuredMetric:
+          'Death at one month in piracetam versus control across three acute stroke trials totalling 1,002 patients',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pir-a4',
+        category: 'measured',
+        title: 'Racetam supplements contain drugs that are not on the label',
+        laymanSummary:
+          'Ten cognitive-enhancement supplements were bought and analysed. They contained five unapproved drugs between them, several undeclared, and three-quarters of the stated quantities were wrong.',
+        technicalDetails:
+          'Cohen et al. searched two supplement databases for products labelled as containing omberacetam, aniracetam, phenylpiracetam or oxiracetam — four drugs not approved for human use in the United States — bought ten of them online, and analysed them by non-targeted liquid chromatography-quadrupole time-of-flight mass spectrometry. Omberacetam and aniracetam were detected along with three further unapproved drugs: phenibut, vinpocetine and picamilon. At the recommended serving sizes, consumers could be exposed to a maximum of 40.6 +/- 0.4 mg of omberacetam against a typical pharmacological dose of 10 mg, 502 +/- 0.8 mg of aniracetam, 15.4 +/- 0.3 mg of phenibut, 4.3 +/- 0.1 mg of vinpocetine and 90.1 +/- 0.7 mg of picamilon. Several detected drugs were not declared on the label and several declared drugs were not detected. Of the products stating a quantity, 75% — 9 of 12 — were inaccurate. A single product could expose a consumer to as many as four unapproved drugs at up to four times a pharmaceutical dose.',
+        evidenceSource: 'Cohen PA et al., Neurol Clin Pract 2021;11:e303-e307',
+        doi: '10.1212/CPJ.0000000000000960',
+        measuredMetric:
+          'Identity, quantity and label accuracy of unapproved drugs in ten cognitive enhancement supplements',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pir-a5',
+        category: 'inferred',
+        title: 'Sixty years on, the mechanism is still a hypothesis',
+        laymanSummary:
+          'Piracetam has no confirmed molecular target. The two leading explanations — changing membrane properties and tuning glutamate receptors — remain proposals.',
+        technicalDetails:
+          'Piracetam does not bind GABA receptors despite being a cyclic GABA derivative, and has no established affinity at glutamate, monoamine or benzodiazepine sites. The two mechanisms most often cited are an interaction with the polar head groups of membrane phospholipids that restores fluidity in aged or damaged membranes, and positive allosteric modulation at AMPA receptors, the latter better characterised for aniracetam than for piracetam itself. Recent work continues to propose pathways — toll-like receptor 4-mediated neuroinflammation, AMPK/SIRT-1/Nrf-2 signalling — in rodent models of vascular dementia. These are hypotheses about a drug licensed since the 1970s, and a page that presents any of them as the mechanism is describing a research programme as if it were a finding.',
+        evidenceSource:
+          'Thangwong P et al., Inflammopharmacology 2026;34:3853-3872 (review of proposed TLR4 pathways); Al-Kuraishy HM et al., Behav Brain Res 2025;486:115551 (review of proposed mechanisms in vascular dementia)',
+        doi: '10.1016/j.bbr.2025.115551',
+        inferredClaim:
+          'That piracetam has an established mechanism of action, when after six decades the candidates remain unresolved and largely preclinical',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pir-a6',
+        category: 'measured',
+        title: 'Prescription medicine in Britain, unapproved drug in America',
+        laymanSummary:
+          'Nootropil is a prescription-only medicine in the United Kingdom. In the United States piracetam has no approval at all and is not a lawful supplement ingredient.',
+        technicalDetails:
+          'Nootropil 800 mg and 1200 mg film-coated tablets are listed in the UK electronic Medicines Compendium as prescription-only medicines from ADVANZ Pharma, with a Summary of Product Characteristics. Piracetam holds national marketing authorisations across many European and other countries, granted by national regulators rather than through a central European Medicines Agency procedure, and the licensed indication in the United Kingdom is adjunctive treatment of cortical myoclonus. In the United States it appears nowhere in Drugs@FDA as an approved active ingredient. Products sold there as piracetam supplements are, in the FDA framing used for this whole class, unapproved drugs rather than dietary supplements — which is precisely the framing the analysis of racetam supplements adopted.',
+        evidenceSource:
+          'UK electronic Medicines Compendium listings for Nootropil 800 mg and 1200 mg film-coated tablets (ADVANZ Pharma), prescription-only medicines; absence of piracetam from FDA Drugs@FDA as an approved active ingredient',
+        measuredMetric:
+          'Regulatory status of piracetam in the United Kingdom and the United States',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken by mouth in gram quantities',
+        laymanDesc:
+          'The licensed doses are grams per day, not milligrams — several orders of magnitude above a typical drug dose.',
+        molecularDetail:
+          'Highly water-soluble with essentially complete oral absorption. Licensed myoclonus doses run from 7 to 24 g daily with individual variation, and case series describe up to 45 g daily added to existing antiepileptic treatment. The gram-scale dosing is a direct consequence of having no high-affinity target.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Distributes into the brain and is not metabolised',
+        laymanDesc:
+          'It crosses into the brain and then leaves the body unchanged in urine, without being broken down.',
+        molecularDetail:
+          'Crosses the blood-brain barrier and distributes into cerebrospinal fluid. Piracetam undergoes essentially no metabolism and is cleared unchanged by renal excretion, which is why dose reduction is required in renal impairment and why it has almost no drug-drug interaction profile.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Acts on membranes rather than on a receptor',
+        laymanDesc:
+          'There is no lock this key fits. The leading account is that it changes the physical behaviour of the cell membrane itself.',
+        molecularDetail:
+          'The dominant hypothesis is an interaction with the polar head groups of membrane phospholipids that restores fluidity in aged or damaged membranes, altering the mobility and function of membrane-embedded proteins. A second hypothesis is positive allosteric modulation at AMPA receptors. Neither is established, and the absence of a target is why the effective dose is measured in grams.',
+        iconName: 'Layers',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Cortical excitability changes in myoclonus',
+        laymanDesc:
+          'In the condition it is licensed for, the abnormal cortical discharges that produce the jerks are reduced.',
+        molecularDetail:
+          'In cortical myoclonus the measurable effect is reduced stimulus sensitivity and reduced jerk severity, dose-related across a wide individual range. The electrophysiological correlates — giant somatosensory evoked potentials and jerk-locked back-averaged cortical discharges — are what confirm the cortical origin of the myoclonus being treated.',
+        iconName: 'Activity',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Real in myoclonus, not supported in dementia, unclear in stroke',
+        laymanDesc:
+          'It works for the rare movement disorder it is licensed for. The Cochrane reviews do not support it for dementia and raise a question in acute stroke.',
+        molecularDetail:
+          'Myoclonus: 10 of 21 patients rescued from placebo and none from drug, with a median 22% improvement in total rating score. Dementia: odds ratio 3.55 for global impression of change and no benefit on any specific measure, with reviewers concluding against use. Acute stroke: a non-significant 31% increase in one-month death, possibly attributable to baseline severity imbalance.',
+        iconName: 'Scale',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Brown 1993 double-blind crossover trial in cortical myoclonus',
+        phase: 'Randomised double-blind placebo-controlled crossover, 14 days per phase',
+        sampleSize: 21,
+        primaryEndpoint:
+          'Stimulus sensitivity, motor, writing, functional disability, global assessment and visual analogue scales',
+        endpointMet: true,
+        statisticalPValue:
+          'Significant improvement on motor, writing, functional disability, global assessment and visual analogue scores; total rating score improved by a median of 22%. 10 of 21 patients required rescue from the placebo phase and 0 from the piracetam phase',
+        unreportedAdverseSignals:
+          'Nineteen of 21 patients were taking other antimyoclonic drugs concurrently, so the result is an add-on effect rather than a monotherapy effect.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Flicker 2001 Cochrane review: piracetam for dementia or cognitive impairment',
+        phase: 'Systematic review and meta-analysis of randomised trials',
+        sampleSize: 0,
+        primaryEndpoint: 'Global impression of change, cognition and other clinical measures',
+        endpointMet: false,
+        statisticalPValue:
+          'Global impression of change odds ratio 3.55 (95% CI 2.45-5.16) fixed effects, 3.47 (95% CI 1.29-9.30) random effects, with significant heterogeneity (chi-square 20.8, df 5). Effects on cognition and other measures inconclusive',
+        unreportedAdverseSignals:
+          'Many included studies were crossover designs whose first-phase data were unavailable or could not be extracted, which is a systematic limitation on the whole pooled estimate.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Ricci 2012 Cochrane review: piracetam for acute ischaemic stroke',
+        phase: 'Systematic review of three randomised trials, treatment within three days of onset',
+        sampleSize: 1002,
+        primaryEndpoint: 'Death at one month, with functional outcome and dependence',
+        endpointMet: false,
+        statisticalPValue:
+          'Approximately 31% increase in death at one month, 95% CI from 81% increase to 5% reduction — not statistically significant. No difference in functional outcome or dependence',
+        unreportedAdverseSignals:
+          'Adverse effects were not reported in the included trials. One trial contributed 93% of the data, and the mortality trend disappeared after correction for stroke severity imbalance.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Cohen 2021 analysis of racetam-containing supplements',
+        phase: 'Analytical survey of products purchased online',
+        sampleSize: 10,
+        primaryEndpoint:
+          'Identity and quantity of unapproved drugs in supplements labelled as containing omberacetam, aniracetam, phenylpiracetam or oxiracetam',
+        endpointMet: true,
+        statisticalPValue:
+          'Five unapproved drugs detected across ten products; up to 40.6 mg omberacetam against a 10 mg typical dose; 9 of 12 declared quantities inaccurate; up to four unapproved drugs in a single product',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'In cortical myoclonus, 10 of 21 patients required rescue from the placebo phase of a double-blind crossover trial and none from the piracetam phase, with a median 22% improvement in total rating score',
+        'In dementia, a pooled odds ratio of 3.55 for improvement on global impression of change, with inconclusive evidence on every specific cognitive measure',
+        'In acute ischaemic stroke, a non-significant 31% increase in death at one month across 1,002 patients, attenuated after correction for stroke severity imbalance',
+        'In ten racetam supplements, five unapproved drugs were present, several undeclared, with 9 of 12 stated quantities inaccurate',
+      ],
+      unsupportedInferences: [
+        'That an effect on a clinician global impression scale in dementia constitutes cognitive benefit, when the same review found nothing on specific measures',
+        'That the myoclonus result generalises to cognition in healthy people; the myoclonus trials were add-on therapy in a rare cortical disorder at gram doses',
+        'That either proposed mechanism — membrane fluidity or AMPA modulation — is established, when both remain hypotheses after sixty years',
+        'That being a licensed medicine in Europe means the product bought as a supplement in the United States is that medicine',
+      ],
+      whatFailedInitially: [
+        'The Cochrane review of piracetam for dementia and cognitive impairment concluded that the published literature does not support its use',
+        'The Cochrane review of piracetam in acute stroke found a possible unfavourable early mortality signal and insufficient evidence on dependence',
+        'The Cochrane review of piracetam for painful sickle cell crises found the trials too few and too poor to support routine use',
+      ],
+      realWorldOutcome: [
+        'Nootropil 800 mg and 1200 mg are UK prescription-only medicines; piracetam holds national marketing authorisations across Europe for adjunctive treatment of cortical myoclonus',
+        'It appears nowhere in FDA Drugs@FDA, and products sold as piracetam supplements in the United States are unapproved drugs',
+        'It is the compound the word "nootropic" was coined for, and the founding member of a family whose later members are sold in the same capsules without appearing on the same labels',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet or oral solution, 800 mg and 1200 mg strengths; licensed myoclonus doses in grams per day',
+      description:
+        'Film-coated tablets and an oral solution. Because there is no high-affinity target, the effective dose is measured in grams: the myoclonus literature describes 7 to 24 g daily with wide individual variation and dose-related response, and up to 45 g daily in progressive myoclonus epilepsy added to existing treatment. Supplement servings sold in the United States are set by vendors and bear no relation to the licensed regimen.',
+      safetyProfile:
+        'Tolerability at high doses over long periods is described in the myoclonus literature as very good, without toxicity or serious adverse effects, with side effects occasional, mild and transient. Because piracetam is cleared unchanged by the kidney, dose reduction is required in renal impairment. The acute stroke review found a non-significant increase in one-month death that may have been a severity-imbalance artefact, and did not report adverse effects. The specific risk in the supplement market is not piracetam itself but the undeclared companion drugs found alongside it.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does piracetam improve cognition?',
+        a: 'In dementia and cognitive impairment, the Cochrane review says no. It found a large pooled effect on Global Impression of Change — odds ratio 3.55, 95% CI 2.45-5.16 — and inconclusive evidence on every specific cognitive measure, and concluded that the published literature does not support its use. A global impression scale is a clinician overall gestalt; when it moves and the specific instruments do not, the usual explanation is unblinding or expectation rather than cognition. There is no comparable body of evidence in healthy people at all.',
+        auditNote:
+          'This is a textbook case of a global rating separating from every objective measure in the same trials.',
+      },
+      {
+        q: 'What does it actually work for?',
+        a: 'Cortical myoclonus, and the evidence is unusually convincing for a drug of this vintage. In a double-blind crossover trial of 21 patients, ten had to be rescued from the placebo phase because of intolerable worsening and none from the piracetam phase, with a median 22% improvement in total rating score. Response is dose-related across a wide range, 7 to 24 g daily, and case series describe improvement maintained for up to seven years. It is licensed in the United Kingdom and elsewhere for exactly that, as an add-on to other antimyoclonic drugs.',
+      },
+      {
+        q: 'Is it legal to buy in the United States?',
+        a: 'It has no FDA approval for any indication and does not appear in Drugs@FDA. Products sold there as piracetam supplements are, on the FDA framing applied to this whole class, unapproved drugs rather than dietary supplements. The practical problem is bigger than the legal one: when ten racetam supplements were analysed, they contained five unapproved drugs between them, several not on the label, and three-quarters of the stated quantities were wrong.',
+      },
+      {
+        q: 'How does it work?',
+        a: 'Nobody knows. Piracetam is a cyclic derivative of GABA that does not act at GABA receptors, and no binding site has been established for it in sixty years. The two standing hypotheses are that it interacts with the polar head groups of membrane phospholipids and restores fluidity, and that it positively modulates AMPA receptors. Both remain proposals. The gram-scale dosing is itself evidence: a drug with a high-affinity receptor does not need four grams to work.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Brown P et al. Effectiveness of piracetam in cortical myoclonus. Mov Disord 1993;8:63-68',
+        identifier: '10.1002/mds.870080112',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Genton P et al. Piracetam in the treatment of cortical myoclonus. Pharmacopsychiatry 1999;32(Suppl 1):49-53',
+        identifier: '10.1055/s-2007-979237',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Flicker L, Grimley Evans G. Piracetam for dementia or cognitive impairment. Cochrane Database Syst Rev 2001;(2):CD001011',
+        identifier: '10.1002/14651858.CD001011',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ricci S et al. Piracetam for acute ischaemic stroke. Cochrane Database Syst Rev 2012;CD000419',
+        identifier: '10.1002/14651858.CD000419.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Al Hajeri A, Fedorowicz Z. Piracetam for reducing the incidence of painful sickle cell disease crises. Cochrane Database Syst Rev 2016;CD006111',
+        identifier: '10.1002/14651858.CD006111.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cohen PA et al. Five unapproved drugs found in cognitive enhancement supplements. Neurol Clin Pract 2021;11:e303-e307',
+        identifier: '10.1212/CPJ.0000000000000960',
+        kind: 'doi',
+      },
+      {
+        label:
+          'De Reuck J, Van Vleymen B. The clinical safety of high-dose piracetam — its use in the treatment of acute stroke. Pharmacopsychiatry 1999;32(Suppl 1):33-37',
+        identifier: '10.1055/s-2007-979234',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Al-Kuraishy HM et al. The mechanistic role of piracetam in the management of vascular dementia. Behav Brain Res 2025;486:115551',
+        identifier: '10.1016/j.bbr.2025.115551',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Alexandrova EG et al. Use of nootropics in Alzheimer disease: an analysis of regulatory positions and drug policies in the countries of the Commonwealth of Independent States. Int J Risk Saf Med 2026;37:257-264',
+        identifier: '10.1177/09246479251410817',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nootropil 1200 mg film-coated tablets, ADVANZ Pharma — UK prescription-only medicine, Summary of Product Characteristics on the electronic Medicines Compendium',
+        identifier: 'https://www.medicines.org.uk/emc/search?q=piracetam',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4843 — piracetam structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4843',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 28. Phenylpiracetam
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'phenylpiracetam',
+    name: 'Phenylpiracetam',
+    tradeName: 'Phenotropil, Actitropil; also called fonturacetam and carphedon',
+    sponsor:
+      'Developed in the Soviet Union and produced by JSC Olainfarm, Latvia, and Russian manufacturers. Registered as a prescription medicine in the Russian Federation; no marketing authorisation in the United States, the European Union or the United Kingdom',
+    targetGene: 'SLC6A3',
+    targetProtein:
+      'Dopamine transporter — the only significant molecular target identified for it in radioligand binding',
+    modality: 'Small Molecule',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Registered in the Russian Federation as a prescription nootropic for asthenia, cerebrovascular disease and post-stroke states. It has no marketing authorisation in the United States, the European Union or the United Kingdom, where it appears in products sold as dietary supplements and in bulk raw material seized from the illegal market.',
+    patientFriendlyIndication:
+      'A Russian prescription nootropic sold in the West as a supplement, banned in sport since 1998',
+    anatomicalSite:
+      'Dopamine transporters in the striatum; the 2-oxopyrrolidine core distributes widely in brain',
+    conditionContext: {
+      conditionExplainer:
+        'Phenylpiracetam is piracetam with a phenyl ring added at position 4 of the pyrrolidinone. That single addition makes the molecule far more lipophilic, adds a stereocentre, and — unlike piracetam — gives it a real molecular target.',
+      whyItMatters:
+        'It is the one racetam for which a specific binding site has been demonstrated, and the site is the dopamine transporter. That places it pharmacologically closer to a stimulant than to piracetam, which is consistent with its being the first nootropic ever added to a doping prohibited list.',
+      whoTakesThis:
+        'In Russia, patients prescribed it for asthenic and post-stroke states. Elsewhere, people buying it as a nootropic supplement, and athletes, for whom it has been prohibited since 1998.',
+      clinicalGoals:
+        'The Russian registered indications are clinical. Outside Russia there is no defined goal and no controlled trial in a healthy population.',
+    },
+    oneSentenceVerdict:
+      'The one racetam with a demonstrated molecular target — radioligand binding found the dopamine transporter to be the only significant one — registered as a prescription drug in Russia, prohibited in sport since 1998, and intercepted as bulk raw material by European medicines control laboratories.',
+    laymanHowItWorks:
+      'Adding a phenyl ring to piracetam changes it from a molecule with no known target into a dopamine reuptake inhibitor. Binding studies across a panel of receptors and transporters found the dopamine transporter to be the only significant hit. Blocking that transporter leaves more dopamine in the synapse, which is the same broad action as methylphenidate, though phenylpiracetam is much weaker. The two mirror-image forms of the molecule behave differently: one is the selective transporter blocker and reduces weight gain in obese animals without making them more active, while the other shows anti-inflammatory and neuroprotective effects in rodent models. The product sold as phenylpiracetam is the mixture of both.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 24,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1C(CN(C1=O)CC(=O)N)C2=CC=CC=C2',
+      chemicalFormula: 'C12H14N2O2',
+      molecularWeight: '218.25 g/mol',
+      targetReceptorAffinity:
+        '2-(2-oxo-4-phenylpyrrolidin-1-yl)acetamide. The phenyl at position 4 creates a stereocentre, so the marketed material is racemic. In radioligand binding assays across a receptor and transporter panel, the dopamine transporter was the only significant molecular target found for the R-enantiomer, with no activity at noradrenaline or serotonin sites. After 50 mg/kg the R-enantiomer reached brain tissue within 15 minutes, peaking at 28 micrograms per gram after intraperitoneal and 18 micrograms per gram after oral dosing in mice.',
+      structureSource: {
+        label:
+          'PubChem CID 132441 (phenylpiracetam) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/132441',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'php-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and enantiomer ratio',
+          description:
+            'Determine whether a sample is racemic phenylpiracetam or a single enantiomer, because the two behave differently: the S form is the selective dopamine transporter inhibitor and the R form carries the anti-inflammatory and neuroprotective activity in rodent models. Achiral chromatography cannot distinguish them, and a marketed product labelled only "phenylpiracetam" says nothing about which is present.',
+          reagentsAndBuffer:
+            'Certified racemic phenylpiracetam and, where available, single-enantiomer reference standards, chiral stationary-phase HPLC on amylose or cellulose carbamate, reversed-phase C18 with diode-array detection at 210 and 254 nm, high-resolution accurate-mass ESI-MS, 1H NMR in DMSO-d6',
+        },
+        {
+          id: 'php-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a supplement or a bulk raw material seizure',
+          description:
+            'Quantify against label and screen for the other unauthorised nootropics that travel with it. European medicines control laboratories intercepted phenylpiracetam, noopept and phenibut as large bulk quantities of raw material, which is a different analytical problem from a finished capsule and a different regulatory one.',
+          dependsOnStepId: 'php-w1',
+          reagentsAndBuffer:
+            'Methanol or acetonitrile extraction with sonication, 0.45 um filtration, gradient reversed-phase HPLC with UV quantification, non-targeted LC-high-resolution mass spectrometry screening against a nootropic and stimulant library including phenibut, noopept, aniracetam and meclofenoxate',
+        },
+        {
+          id: 'php-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma, urine and brain tissue preparation',
+          description:
+            'The compound is far more lipophilic than piracetam and reaches brain tissue within fifteen minutes of dosing in rodents, so brain-to-plasma ratio is a meaningful measurement here in a way it is not for the parent racetam. Doping control work uses urine, where carphedon has been a target analyte since 1998.',
+          dependsOnStepId: 'php-w2',
+          reagentsAndBuffer:
+            'Acetonitrile protein precipitation or liquid-liquid extraction into ethyl acetate, deuterated internal standard, brain tissue homogenisation in ice-cold buffer with subsequent extraction, solid-phase extraction on a polymeric reversed-phase sorbent for urine',
+        },
+        {
+          id: 'php-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Transporter and receptor binding panel',
+          description:
+            'This is the experiment that separates phenylpiracetam from the rest of its family. Run a broad radioligand binding panel across monoamine transporters and receptors rather than assaying a single presumed target, and then confirm functionally with a dopamine uptake assay. It is the panel design that makes "the only significant target was DAT" a meaningful statement rather than a tautology.',
+          dependsOnStepId: 'php-w3',
+          reagentsAndBuffer:
+            'Membrane preparations or cell lines expressing human DAT, NET and SERT with [3H]-WIN 35,428, [3H]-nisoxetine and [3H]-citalopram, a broad receptor binding panel run in parallel, functional [3H]-dopamine uptake in DAT-expressing HEK293 cells, methylphenidate and GBR 12909 as comparators',
+        },
+        {
+          id: 'php-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with locomotor and metabolic readouts',
+          description:
+            'Quantify both enantiomers by chiral tandem mass spectrometry and read the pharmacodynamic endpoints that discriminate this compound from a classical stimulant: open-field locomotor activity, which the S-enantiomer did not increase, alongside body weight, fat mass, plasma glucose and leptin, which it did reduce.',
+          dependsOnStepId: 'php-w4',
+          reagentsAndBuffer:
+            'Chiral or achiral C18 gradient with formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring, deuterated internal standard; open-field locomotor tracking, glucose tolerance testing, plasma leptin and glucose assays, body composition measurement',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'php-a1',
+        category: 'measured',
+        title: 'The dopamine transporter is the only target that came up',
+        laymanSummary:
+          'When phenylpiracetam was screened against a broad panel of brain receptors and transporters, the dopamine transporter was the only significant hit.',
+        technicalDetails:
+          'Zvejniece et al. reported that in radioligand binding assays, the dopamine transporter was the only significant molecular target found for R-phenylpiracetam. Pharmacokinetically, R-phenylpiracetam at 50 mg/kg reached brain tissue within 15 minutes of intraperitoneal or oral administration in mice, with maximal brain concentrations of 28 micrograms per gram after intraperitoneal and 18 micrograms per gram after oral dosing. A single intraperitoneal injection attenuated lipopolysaccharide-induced body temperature reduction and overexpression of TNF-alpha, IL-1beta and inducible nitric oxide synthase in brain, and seven-day oral pretreatment dose-dependently reduced carrageenan-induced paw oedema and the nociceptive response. This is the clearest target identification anywhere in the racetam family, and it places the compound in the same broad pharmacological class as methylphenidate rather than with piracetam, which has no identified target at all.',
+        evidenceSource: 'Zvejniece L et al., Inflammopharmacology 2020;28:1283-1292',
+        doi: '10.1007/s10787-020-00705-7',
+        measuredMetric:
+          'Radioligand binding panel result, brain concentration time course, and inflammatory gene expression in an endotoxaemia model',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'php-a2',
+        category: 'measured',
+        title: 'One enantiomer cuts weight gain without stimulating movement',
+        laymanSummary:
+          'In obese rats and mice, the S form reduced body weight gain, fat mass, blood glucose and leptin — and did not make the animals more active, which is unusual for a dopamine drug.',
+        technicalDetails:
+          'Zvejniece et al. treated Western-diet-fed mice for eight weeks and obese Zucker rats for twelve weeks with daily oral S-phenylpiracetam, an optical isomer of phenotropil previously shown to be a selective dopamine transporter inhibitor with no effect on noradrenaline or serotonin. Treatment significantly decreased body weight gain and fat mass increase in both species, reduced plasma glucose and leptin, and lowered hyperglycaemia in a glucose tolerance test. It did not influence locomotor activity in an open-field test in either species. The dissociation matters: anorectic effect without locomotor stimulation is the profile the authors propose could make selective dopamine transporter inhibitors useful in metabolic disease. It is also an animal result, in obesity models, for one enantiomer of a racemic product.',
+        evidenceSource: 'Zvejniece L et al., Pharmacol Biochem Behav 2017;160:21-29',
+        doi: '10.1016/j.pbb.2017.07.009',
+        measuredMetric:
+          'Body weight gain, fat mass, plasma glucose and leptin, glucose tolerance and open-field locomotor activity',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'php-a3',
+        category: 'measured',
+        title: 'The first nootropic ever banned in sport',
+        laymanSummary:
+          'Carphedon — phenylpiracetam — was added to the sports prohibited list in 1998, before any other compound in this category.',
+        technicalDetails:
+          'Jedrejko et al., reviewing unauthorised ingredients in nootropic dietary supplements twenty-five years later, record that the first nootropic prohibited in sport was fonturacetam, also called 4-phenylpiracetam or carphedon, in 1998. Their broader survey of 50 supplements marketed as cognitive enhancers or brain boosters found unauthorised food and supplement ingredients including huperzine A, yohimbine and dimethylaminoethanol; unapproved pharmaceuticals such as phenibut and emoxypine; previously registered drugs such as meclofenoxate and reserpine; EU-authorised pharmaceuticals such as piracetam and vinpocetine; and known doping agents such as methylhexaneamine. They note that several of these are legal supplement ingredients in the United States, producing substantial global variation in what counts as a lawful nootropic, and that nootropics are frequently stacked with prohibited stimulants and beta-2 agonists in pre-workout and thermogenic products.',
+        evidenceSource: 'Jedrejko K, Catlin O, Stewart T et al., Drug Test Anal 2023;15:803-839',
+        doi: '10.1002/dta.3529',
+        measuredMetric:
+          'Year of first prohibition in sport, and the composition of 50 surveyed nootropic dietary supplements',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'php-a4',
+        category: 'measured',
+        title: 'Intercepted as bulk raw material by twelve national laboratories',
+        laymanSummary:
+          'A European and Australian market surveillance study found phenylpiracetam among prescription-only Russian drugs being imported in bulk raw form, mostly from the illegal market.',
+        technicalDetails:
+          'Vanhee et al. report a market surveillance study organised by the General European Official Medicines Control Laboratory Network with Australia, covering January 2020 to September 2024. It documented 159 samples yielding 166 molecular identification entries and 34 distinct molecules. Most samples were sold as dietary supplements (49%) or as medicines (32%), and 69% were collected from the illegal market. Prescription drugs and drugs available only on prescription in Russia were found in pharmacological quantities, and three of them — noopept, phenylpiracetam and phenibut — were intercepted as large bulk quantities of raw material. The study also found unauthorised novel foods, prescription-level or higher amounts of melatonin, and clinically uncharacterised research molecules. Bulk raw material is a distinct finding from an adulterated capsule: it is the input to a manufacturing chain that has no manufacturer of record.',
+        evidenceSource: 'Vanhee C, Deconinck E, George M et al., J Xenobiot 2025;15:88',
+        doi: '10.3390/jox15030088',
+        measuredMetric:
+          'Number of samples, distinct molecules, market source and presentation across a four-year multinational surveillance programme',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'php-a5',
+        category: 'inferred',
+        title: 'The Russian clinical literature is not accessible to independent checking',
+        laymanSummary:
+          'The trials supporting its registered use are published in Russian journals, largely without English abstracts, and have not been replicated outside Russia.',
+        technicalDetails:
+          'Phenylpiracetam holds a Russian marketing authorisation and the studies underpinning it — in post-stroke rehabilitation, asthenia and cerebrovascular disease — appear predominantly in Zhurnal Nevrologii i Psikhiatrii imeni S.S. Korsakova and comparable Russian-language journals. A 2024 pharmacological review of fonturacetam published in that journal sets out the case for its clinical use. No randomised controlled trial of phenylpiracetam has been published in a peer-reviewed English-language journal, none has been registered on ClinicalTrials.gov, and no regulator outside the Commonwealth of Independent States has assessed the dossier. A 2026 analysis of nootropic regulatory positions across CIS countries treats this divergence as the substantive fact about the whole class. This page states that the clinical claims exist and that they have not been independently verified, which is the accurate position and not a dismissal.',
+        evidenceSource:
+          'Gromova OA, Torshin IY. Pharmacological effects of fonturacetam (Actitropil) and prospects for its clinical use. Zh Nevrol Psikhiatr Im S S Korsakova 2024;124:21-31; Alexandrova EG et al., Int J Risk Saf Med 2026;37:257-264',
+        doi: '10.17116/jnevro202412408121',
+        inferredClaim:
+          'That a Russian marketing authorisation for asthenia and post-stroke states establishes efficacy on evidence a reader outside Russia can examine',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'php-a6',
+        category: 'inferred',
+        title: 'No human trial of the thing it is actually taken for',
+        laymanSummary:
+          'People take phenylpiracetam for focus and stamina in healthy life. No controlled trial has measured either in a healthy person.',
+        technicalDetails:
+          'The registered indications are clinical conditions in patients. The claims made for it in the supplement market — sustained attention, physical endurance, cold tolerance, motivation — have no randomised placebo-controlled evidence in healthy volunteers in the indexed literature. What is measured is a rodent pharmacology: dopamine transporter binding, brain penetration within fifteen minutes, anti-inflammatory effects in an endotoxaemia model, and metabolic effects in obese animals without locomotor stimulation. Extending that to focus in a healthy adult is the same move this file catalogues throughout, and it should be labelled as such regardless of how plausible the mechanism is.',
+        evidenceSource:
+          'Absence of any registered or published randomised controlled trial of phenylpiracetam in healthy volunteers; Zvejniece L et al., Pharmacol Biochem Behav 2017;160:21-29 for the rodent pharmacology being extrapolated',
+        doi: '10.1016/j.pbb.2017.07.009',
+        inferredClaim:
+          'That dopamine transporter inhibition in rodents predicts improved attention or endurance in healthy humans, which no trial has tested',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken by mouth in milligrams, not grams',
+        laymanDesc:
+          'Unlike piracetam, which needs grams, this works at doses roughly a hundred times smaller — because it has a target.',
+        molecularDetail:
+          'The phenyl substitution raises lipophilicity sharply relative to piracetam, giving rapid oral absorption and brain penetration. In mice, 50 mg/kg of the R-enantiomer reached brain tissue within 15 minutes with peak brain concentrations of 18 micrograms per gram after oral dosing.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into the brain quickly',
+        laymanDesc:
+          'The added ring makes it fat-soluble enough to cross into the brain within minutes.',
+        molecularDetail:
+          'Passive diffusion across the blood-brain barrier, with a brain-to-plasma distribution that is the practical difference from piracetam. The 2-oxopyrrolidinone core is retained but the pharmacokinetic behaviour is that of a substituted aromatic small molecule.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds the dopamine transporter and nothing else notable',
+        laymanDesc:
+          'Screened against a wide panel of brain targets, only the dopamine recycling pump came up.',
+        molecularDetail:
+          'Radioligand binding identified the dopamine transporter as the only significant molecular target, with the S-enantiomer described as a selective DAT inhibitor without noradrenaline or serotonin activity. Blocking reuptake raises synaptic dopamine; the compound is not reported to trigger transporter-mediated release.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Dopamine signalling rises without an increase in movement',
+        laymanDesc:
+          'In animals, the expected metabolic and anti-inflammatory effects appear, but the animals do not become hyperactive.',
+        molecularDetail:
+          'S-phenylpiracetam reduced body weight gain, fat mass, plasma glucose and leptin in Western-diet mice and obese Zucker rats without influencing open-field locomotor activity. R-phenylpiracetam attenuated lipopolysaccharide-induced hypothermia and TNF-alpha, IL-1beta and iNOS overexpression in brain. Both are enantiomer-specific findings in rodents.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Registered in Russia, prohibited in sport, unverified elsewhere',
+        laymanDesc:
+          'It is a real prescription drug in one country, a banned substance in sport since 1998, and an unapproved ingredient everywhere else.',
+        molecularDetail:
+          'No randomised controlled trial in a healthy population exists in the indexed English-language literature, and none is registered. Its measurable footprint outside Russia is a doping prohibition dating to 1998 and its interception in bulk by twelve national medicines control laboratories.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Zvejniece 2017 metabolic study of S-phenylpiracetam',
+        phase: 'Preclinical, Western-diet mice for 8 weeks and obese Zucker rats for 12 weeks',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Body weight gain and fat mass, with plasma glucose, leptin, glucose tolerance and open-field locomotor activity',
+        endpointMet: true,
+        statisticalPValue:
+          'Significant decrease in body weight gain and fat mass in both species, with reduced plasma glucose and leptin and lower hyperglycaemia on glucose tolerance testing; no effect on locomotor activity in either species',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Zvejniece 2020 target identification and inflammation models',
+        phase:
+          'Preclinical, radioligand binding panel with mouse endotoxaemia and paw oedema models',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Molecular target identification, brain pharmacokinetics, and inflammatory gene expression and nociception',
+        endpointMet: true,
+        statisticalPValue:
+          'Dopamine transporter the only significant target in binding assays; brain concentrations of 28 ug/g intraperitoneal and 18 ug/g oral at 50 mg/kg within 15 minutes; attenuated LPS-induced hypothermia and TNF-alpha, IL-1beta and iNOS overexpression',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Vanhee 2025 multinational market surveillance study',
+        phase: 'Analytical surveillance, 12 official medicines control laboratories, 2020-2024',
+        sampleSize: 159,
+        primaryEndpoint:
+          'Identification of unauthorised nootropic molecules in samples from the legal and illegal market',
+        endpointMet: true,
+        statisticalPValue:
+          '166 molecular identification entries and 34 distinct molecules; 49% presented as dietary supplements and 32% as medicines; 69% collected from the illegal market; noopept, phenylpiracetam and phenibut intercepted as bulk raw material',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'The dopamine transporter was the only significant molecular target identified in radioligand binding assays',
+        'S-phenylpiracetam reduced body weight gain, fat mass, plasma glucose and leptin in two rodent obesity models without increasing locomotor activity',
+        'R-phenylpiracetam reached peak brain concentrations of 28 ug/g intraperitoneally and 18 ug/g orally within 15 minutes at 50 mg/kg in mice',
+        'It was intercepted as bulk raw material in a four-year surveillance study by twelve official medicines control laboratories, 69% of whose samples came from the illegal market',
+      ],
+      unsupportedInferences: [
+        'That rodent dopamine transporter pharmacology predicts improved attention, endurance or motivation in a healthy human, which no trial has tested',
+        'That a Russian marketing authorisation constitutes evidence a reader elsewhere can examine, when the supporting trials are unindexed in English and unregistered',
+        'That a product labelled phenylpiracetam contains a known enantiomer ratio, when the two enantiomers have different pharmacology and labels do not state it',
+        'That being a racetam makes it comparable to piracetam; it is a dopamine reuptake inhibitor and piracetam is not',
+      ],
+      whatFailedInitially: [
+        'No randomised controlled trial of phenylpiracetam has ever been registered on ClinicalTrials.gov or published in an indexed English-language journal',
+        'No regulator outside the Commonwealth of Independent States has assessed a dossier for it in the more than two decades since it was first prohibited in sport',
+      ],
+      realWorldOutcome: [
+        'A registered prescription medicine in the Russian Federation, sold there as Phenotropil and Actitropil, with no authorisation in the United States, the European Union or the United Kingdom',
+        'The first nootropic ever prohibited in sport, added to the prohibited list as carphedon in 1998',
+        'Present in the European and Australian illegal market both as finished supplements and as bulk raw material for manufacture',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 100 mg strength in the Russian registered product; capsules and bulk powder elsewhere',
+      description:
+        'A conventional oral tablet where it is a registered medicine. In the markets where it is not, it appears as capsules sold as a nootropic supplement and as bulk raw material — the surveillance study intercepted it in large bulk quantities alongside noopept and phenibut, which is the supply form for a product that will be repackaged by whoever buys it.',
+      safetyProfile:
+        'No controlled human safety dataset exists outside the Russian registration file, which is not accessible for independent assessment. The pharmacological class it belongs to — dopamine reuptake inhibitors — carries the expected concerns about sleep disruption, appetite suppression, cardiovascular stimulation and dependence, and the rodent data notably show metabolic effects without locomotor stimulation, which does not extend to a claim about human safety. The specific documented risk in the market where it is sold as a supplement is co-formulation with undeclared unapproved drugs, which the 50-supplement survey found routinely.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is phenylpiracetam a stimulant?',
+        a: 'Pharmacologically it is closer to one than to piracetam. When it was screened across a panel of brain receptors and transporters, the dopamine transporter was the only significant target found — the same class of action as methylphenidate, at much lower potency. That is also why it was the first nootropic added to a sports prohibited list, in 1998. The nuance is that in rodents the selective enantiomer reduced weight gain and improved glucose handling without increasing locomotor activity, which is not the usual stimulant profile.',
+      },
+      {
+        q: 'Is it a real medicine?',
+        a: 'In the Russian Federation, yes: it is a registered prescription drug marketed as Phenotropil and Actitropil for asthenia, cerebrovascular disease and post-stroke states. Nowhere else. It has no authorisation in the United States, the European Union or the United Kingdom, no registered clinical trial, and no randomised controlled trial published in an indexed English-language journal. The Russian clinical literature exists and is largely untranslated and unreplicated, which is a statement about what a reader can check rather than a verdict on the drug.',
+        auditNote:
+          'Naming the regulator matters. "Approved" and "approved in Russia and nowhere else" are different facts.',
+      },
+      {
+        q: 'What is actually in a capsule sold as phenylpiracetam?',
+        a: 'Often more than the label says. A survey of 50 nootropic supplements found unauthorised ingredients across the category — phenibut, emoxypine, meclofenoxate, huperzine A, yohimbine, methylhexaneamine — frequently stacked with prohibited stimulants in pre-workout products. A separate four-year surveillance study by twelve official medicines control laboratories found 34 distinct molecules across 159 samples, 69% from the illegal market, with phenylpiracetam itself intercepted as bulk raw material. A capsule from that supply chain has no manufacturer of record.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no approved product in any market this site prices from, and therefore no list price to cite. Acquisition costs here come from published sources such as the CMS National Average Drug Acquisition Cost file. A supplement vendor asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Zvejniece L et al. Neuroprotective and anti-inflammatory activity of DAT inhibitor R-phenylpiracetam in experimental models of inflammation in male mice. Inflammopharmacology 2020;28:1283-1292',
+        identifier: '10.1007/s10787-020-00705-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Zvejniece L et al. S-phenylpiracetam, a selective DAT inhibitor, reduces body weight gain without influencing locomotor activity. Pharmacol Biochem Behav 2017;160:21-29',
+        identifier: '10.1016/j.pbb.2017.07.009',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jedrejko K et al. Unauthorized ingredients in "nootropic" dietary supplements: a review of the history, pharmacology, prevalence, international regulations, and potential as doping agents. Drug Test Anal 2023;15:803-839',
+        identifier: '10.1002/dta.3529',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vanhee C et al. The occurrence of illicit smart drugs or nootropics in Europe and Australia and their associated dangers: results from a market surveillance study by 12 official medicines control laboratories. J Xenobiot 2025;15:88',
+        identifier: '10.3390/jox15030088',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gromova OA, Torshin IY. Pharmacological effects of fonturacetam (Actitropil) and prospects for its clinical use. Zh Nevrol Psikhiatr Im S S Korsakova 2024;124:21-31',
+        identifier: '10.17116/jnevro202412408121',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Alexandrova EG et al. Use of nootropics in Alzheimer disease: an analysis of regulatory positions and drug policies in the countries of the Commonwealth of Independent States. Int J Risk Saf Med 2026;37:257-264',
+        identifier: '10.1177/09246479251410817',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cohen PA et al. Five unapproved drugs found in cognitive enhancement supplements. Neurol Clin Pract 2021;11:e303-e307',
+        identifier: '10.1212/CPJ.0000000000000960',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 132441 — phenylpiracetam structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/132441',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 29. Noopept
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'noopept',
+    name: 'Noopept',
+    tradeName: 'Omberacetam; development code GVS-111',
+    sponsor:
+      'V. V. Zakusov State Research Institute of Pharmacology, Russian Academy of Medical Sciences, Moscow. Registered as a medicine in the Russian Federation; no marketing authorisation in the United States, the European Union or the United Kingdom',
+    targetGene: 'EGLN1',
+    targetProtein:
+      'Prolyl hydroxylase 2, proposed — the measured downstream effect is selective activation of hypoxia-inducible factor 1',
+    modality: 'Small Molecule',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Registered in the Russian Federation for cognitive impairment of vascular and post-traumatic origin and for asthenic states. It has no marketing authorisation elsewhere and appears in Western markets in products sold as dietary supplements and as bulk raw material.',
+    patientFriendlyIndication:
+      'A Russian nootropic, sold in the West as a supplement, at doses often four times the pharmacological one',
+    anatomicalSite:
+      'Hippocampal neurons and cortex, reached as the cyclic dipeptide metabolite rather than as the administered compound',
+    conditionContext: {
+      conditionExplainer:
+        'Noopept is a dipeptide built to be a peptide version of piracetam and turned out to be something else. It is not detectable in brain after dosing; what appears there is cyclo-prolylglycine, a cyclic dipeptide the brain already makes.',
+      whyItMatters:
+        'Two things make it unusual in this group. Its proposed mechanism is a specific and testable one — activation of hypoxia-inducible factor 1 through inhibition of a prolyl hydroxylase — and it was found in supplements at four times the pharmacological dose, which is a measured number rather than a worry.',
+      whoTakesThis:
+        'In Russia, patients prescribed it for post-traumatic and vascular cognitive impairment. Elsewhere, people taking capsules sold as nootropic supplements, in which the analysed content did not match the label three-quarters of the time.',
+      clinicalGoals:
+        'The Russian registered indications are clinical. Outside Russia no goal has been defined by any regulator and no controlled trial has been run in any population.',
+    },
+    oneSentenceVerdict:
+      'A dipeptide prodrug that is undetectable in brain after dosing while its endogenous cyclic metabolite rises 2.5-fold, whose proposed mechanism is selective activation of hypoxia-inducible factor 1, and which appeared in a supplement at 40.6 mg against a typical pharmacological dose of 10 mg.',
+    laymanHowItWorks:
+      'Noopept was designed as a two-amino-acid version of piracetam, on the theory that a peptide would be more potent. It is more potent — by roughly a thousandfold on a milligram basis — but not in the way intended. After a dose, the compound itself cannot be found in the brain at all. What rises there is cyclo-prolylglycine, a small ring-shaped dipeptide that the brain already produces on its own. So the drug is a delivery vehicle for a naturally occurring molecule. The best current account of what that molecule does is that it blocks an oxygen-sensing enzyme, which lets a transcription factor called HIF-1 survive and switch on the genes cells use to adapt to low oxygen.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 22,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCOC(=O)CNC(=O)[C@@H]1CCCN1C(=O)CC2=CC=CC=C2',
+      chemicalFormula: 'C17H22N2O4',
+      molecularWeight: '318.4 g/mol',
+      targetReceptorAffinity:
+        'Ethyl ester of N-phenylacetyl-L-prolylglycine. A prodrug: after 5 mg/kg intraperitoneally in rats it was undetectable in brain at one hour, while cyclo-prolylglycine — an endogenous cyclic dipeptide — rose 2.5-fold, and its formation from noopept was demonstrated in vitro with plasma and brain enzymes. At 10 micromolar, noopept selectively increased the DNA-binding activity of hypoxia-inducible factor 1 and of none of eight other transcription factors tested; piracetam at 1 millimolar affected none. Molecular docking places the L-isomer, but not the pharmacologically inactive D-isomer, in the active site of prolyl hydroxylase 2.',
+      structureSource: {
+        label:
+          'PubChem CID 180496 (omberacetam) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/180496',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'noo-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, and which stereoisomer',
+          description:
+            'The L-isomer is the active one and the D-isomer is described as pharmacologically ineffective while having identical mass. That makes chiral analysis the decisive identity test, not an optional refinement. Physicochemical and structural characterisation of the active pharmaceutical ingredient has been published and gives the reference data for solid-form identification.',
+          reagentsAndBuffer:
+            'Certified noopept reference standard, chiral HPLC on a polysaccharide-derived stationary phase, high-resolution accurate-mass ESI-MS with MS/MS fragmentation, 1H and 13C NMR, powder X-ray diffraction and differential scanning calorimetry for solid-form identity',
+        },
+        {
+          id: 'noo-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a supplement capsule',
+          description:
+            'Quantify against label and against the pharmacological dose, which for this compound is around 10 mg. This is the assay that found a single serving delivering 40.6 mg, and it is also the assay that found undeclared phenibut, vinpocetine and picamilon in the same category of product.',
+          dependsOnStepId: 'noo-w1',
+          reagentsAndBuffer:
+            'Methanol or acetonitrile extraction with sonication, 0.45 um filtration, non-targeted liquid chromatography-quadrupole time-of-flight mass spectrometry against a library including omberacetam, aniracetam, phenylpiracetam, oxiracetam, phenibut, vinpocetine and picamilon, with certified standards for quantification',
+        },
+        {
+          id: 'noo-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Brain and plasma preparation for the metabolite, not the parent',
+          description:
+            'A method that measures noopept in brain will report nothing, because noopept is not there. The analyte is cyclo-prolylglycine, which is endogenous, so the measurement is a ratio against a matched control rather than a presence-or-absence call. This is the single most important design point in the pharmacology of this compound.',
+          dependsOnStepId: 'noo-w2',
+          reagentsAndBuffer:
+            'Rapid brain dissection and freeze-clamping to stop enzymatic conversion, homogenisation in cold acidified methanol, cyclo-prolylglycine and prolylglycine reference standards, matched vehicle-treated control animals, HPLC with GC and GC-MS confirmation',
+        },
+        {
+          id: 'noo-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Transcription factor reporter panel',
+          description:
+            'Transfect cells with luciferase reporters for a panel of transcription factors and read them all in parallel. Running nine at once is what makes a positive on one of them interpretable: noopept moved HIF-1 and left CREB, NFAT, NF-kappaB, p53, STAT1, GAS, VDR and HSF1 alone, and piracetam moved none of them at a hundredfold higher concentration.',
+          dependsOnStepId: 'noo-w3',
+          reagentsAndBuffer:
+            'HEK293 cells transiently transfected with luciferase reporter constructs for CREB, NFAT, NF-kappaB, p53, STAT1, GAS, VDR, HSF1 and HIF-1, cobalt chloride as a HIF-1 stabilising positive control, piracetam at 1 mM as comparator, dual-luciferase normalisation',
+        },
+        {
+          id: 'noo-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the neuroprotection readout',
+          description:
+            'Quantify noopept and cyclo-prolylglycine by tandem mass spectrometry, and read the cellular endpoints the neuroprotection claim rests on: viability, reactive oxygen species, intracellular calcium, mitochondrial membrane potential, tau phosphorylation and neurite outgrowth in an amyloid-beta-injured neuronal line.',
+          dependsOnStepId: 'noo-w4',
+          reagentsAndBuffer:
+            'C18 or HILIC gradient with formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring, stable-isotope-labelled internal standards; PC12 or HT-22 cells with amyloid-beta 25-35 or glutamate challenge, MTT viability, DCF fluorescence for reactive oxygen species, Fura-2 for calcium, JC-1 for mitochondrial potential, phospho-Ser396 tau immunoblot',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'noo-a1',
+        category: 'conclusion_shift',
+        title: 'The drug is not in the brain; its endogenous metabolite is',
+        laymanSummary:
+          'An hour after dosing rats, noopept could not be detected in brain at all. What had risen was cyclo-prolylglycine, a cyclic dipeptide the brain makes naturally.',
+        technicalDetails:
+          'Gudasheva et al. studied the metabolism of GVS-111 in vivo. The compound itself was not found in rat brain one hour after 5 mg/kg intraperitoneally, down to the limit of detection by HPLC. Three substances corresponding to its possible metabolites — phenylacetic acid, prolylglycine and cyclo-prolylglycine — were found in treated rat brain and in controls by HPLC, gas chromatography and GC-MS, but only cyclo-prolylglycine rose after dosing, by 2.5-fold. Formation of cyclo-prolylglycine from GVS-111 was demonstrated in vitro in the presence of plasma and brain enzymes. The authors conclude the compound is a prodrug converting to cyclo-prolylglycine, which is identical to the endogenous cyclopeptide they propose produces the nootropic activity. That reframes the drug entirely: it is a way of raising a molecule the brain already makes.',
+        evidenceSource: 'Gudasheva TA et al., Eur J Drug Metab Pharmacokinet 1997;22:245-252',
+        doi: '10.1007/BF03189814',
+        inferredClaim:
+          'That the pharmacology of noopept is the pharmacology of noopept, when the administered compound is undetectable in brain and an endogenous metabolite is what rises',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'noo-a2',
+        category: 'measured',
+        title: 'It moved one transcription factor out of nine, and piracetam moved none',
+        laymanSummary:
+          'Tested against nine transcription factors, noopept activated only HIF-1, the master switch for adapting to low oxygen. Piracetam at a hundred times the concentration activated nothing.',
+        technicalDetails:
+          'Vakhitova et al. transfected HEK293 cells with luciferase reporter constructs for CREB, NFAT, NF-kappaB, p53, STAT1, GAS, VDR, HSF1 and HIF-1. Noopept at 10 micromolar increased the DNA-binding activity of HIF-1 only, leaving the other eight unaffected, and produced a further increase under cobalt-chloride-induced HIF-1 stabilisation, in a concentration-dependent manner. Piracetam at 1 millimolar — a hundredfold higher concentration — failed to affect any of the factors significantly. Molecular docking placed the L-isomer of noopept, and the L-isomer of its N-phenylacetylprolyl metabolite but not the pharmacologically ineffective D-isomer, in the active site of prolyl hydroxylase 2, the oxygen-sensing enzyme that marks HIF-1 alpha for degradation. The authors propose the HIF-positive effect as the primary mechanism. A separate group later confirmed HIF-1 activation independently.',
+        evidenceSource:
+          'Vakhitova YV et al., Acta Naturae 2016;8:82-89; Zainullina LF et al., Dokl Biochem Biophys 2020;494:256-260',
+        doi: '10.1134/S1607672920050129',
+        measuredMetric:
+          'DNA-binding activity of nine transcription factors in reporter-transfected cells, noopept 10 uM versus piracetam 1 mM',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'noo-a3',
+        category: 'measured',
+        title: 'A supplement serving delivered four times the pharmacological dose',
+        laymanSummary:
+          'One product tested delivered 40.6 mg of noopept per recommended serving. The typical pharmacological dose is 10 mg.',
+        technicalDetails:
+          'Cohen et al. bought ten products labelled as containing omberacetam, aniracetam, phenylpiracetam or oxiracetam and analysed them by non-targeted liquid chromatography-quadrupole time-of-flight mass spectrometry. Omberacetam and aniracetam were detected along with three further unapproved drugs — phenibut, vinpocetine and picamilon. At the recommended serving size, a consumer could be exposed to a maximum of 40.6 +/- 0.4 mg of omberacetam against a typical pharmacological dose of 10 mg, and to as many as four unapproved drugs from a single product. Several detected drugs were not declared on the label and several declared drugs were not detected; of products stating a quantity, 9 of 12 were inaccurate. The authors note that the health effects of consuming untested combinations of unapproved drugs at unpredictable dosages without clinician oversight are unknown.',
+        evidenceSource: 'Cohen PA et al., Neurol Clin Pract 2021;11:e303-e307',
+        doi: '10.1212/CPJ.0000000000000960',
+        measuredMetric:
+          'Quantity of omberacetam per recommended serving against the typical pharmacological dose, and label accuracy across ten products',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'noo-a4',
+        category: 'measured',
+        title: 'Imported into Europe as bulk raw material',
+        laymanSummary:
+          'A four-year surveillance study by twelve national medicines laboratories intercepted noopept as large bulk quantities of raw material, mostly from the illegal market.',
+        technicalDetails:
+          'Vanhee et al. document a market surveillance study by the General European Official Medicines Control Laboratory Network with Australia, running from January 2020 to September 2024. Across 159 samples and 166 molecular identification entries, 34 distinct molecules were found. Most samples were presented as dietary supplements (49%) or medicines (32%), and 69% came from the illegal market. Prescription drugs and drugs available only on prescription in Russia were found in pharmacological quantities, and noopept, phenylpiracetam and phenibut specifically were intercepted as large bulk quantities of raw material. The study also identified unauthorised novel foods, prescription-level melatonin and clinically uncharacterised research molecules, and concludes that consumption of some of the reported samples could have detrimental health effects.',
+        evidenceSource: 'Vanhee C et al., J Xenobiot 2025;15:88',
+        doi: '10.3390/jox15030088',
+        measuredMetric:
+          'Interception of noopept as bulk raw material within a 159-sample multinational surveillance dataset',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'noo-a5',
+        category: 'inferred',
+        title: 'The comparative clinical trial was run by the institute that developed it',
+        laymanSummary:
+          'The main human study compared noopept against piracetam in patients with mild cognitive impairment, and was conducted at the institute that invented noopept.',
+        technicalDetails:
+          'Neznamov and Teleshova published comparative studies of noopept and piracetam in patients with mild cognitive disorders in organic brain diseases of vascular and traumatic origin, from the Clinical Psychopharmacology Laboratory of the V. V. Zakusov State Research Institute of Pharmacology, Russian Academy of Medical Sciences — the institute where noopept was designed. The work appeared in Russian in Zhurnal Nevrologii i Psikhiatrii and in English translation in Neuroscience and Behavioral Physiology. It is not registered on any trial registry, has not been independently replicated, and there is no placebo-controlled trial of noopept published in an indexed English-language journal. A comparison against an active control that a Cochrane review found unsupported in cognitive impairment is also a weak comparator choice.',
+        evidenceSource:
+          'Neznamov GG, Teleshova ES, Neurosci Behav Physiol 2009;39:311-321 (English translation of Zh Nevrol Psikhiatr Im S S Korsakova 2008;108:33-42)',
+        doi: '10.1007/s11055-009-9128-4',
+        inferredClaim:
+          'That a developer-run comparison against piracetam establishes clinical efficacy, when the comparator itself lacks supported efficacy in the same indication',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'noo-a6',
+        category: 'failed',
+        title: 'A noopept paper was retracted three months after publication',
+        laymanSummary:
+          'A 2021 study on noopept and inflammatory pain was withdrawn by the journal within months, with no reason given in the retraction notice.',
+        technicalDetails:
+          'Taghizadeh et al. published "Noopept; a nootropic dipeptide, modulates persistent inflammation by effecting spinal microglia dependent brain derived neurotrophic factor and pro-BDNF expression throughout apoptotic process" in Heliyon on 12 February 2021. A retraction notice appeared in the same journal in May 2021, three months later. The notice states only that the article is retracted and gives no reason. This page records the retraction because the preclinical literature on this compound is thin enough that a single withdrawn paper is a material fraction of it, and because a reader searching the compound will find the original article indexed alongside the notice.',
+        evidenceSource:
+          'Retraction notice, Heliyon 2021;7:e06981, retracting Heliyon 2021;7:e06219',
+        doi: '10.1016/j.heliyon.2021.e06981',
+        measuredMetric:
+          'Retraction of a primary research article on noopept, three months after publication, no reason stated',
+        auditFlag: 'retracted',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken by mouth in milligram doses',
+        laymanDesc:
+          'The pharmacological dose is around 10 milligrams, roughly a thousandth of a piracetam dose.',
+        molecularDetail:
+          'Oral administration of the ethyl ester. The gap between this and piracetam gram dosing is the practical evidence that the two act by different mechanisms, whatever the family resemblance in the name.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Converted before it reaches the brain',
+        laymanDesc:
+          'Enzymes in blood and brain cut the molecule down; the drug itself never arrives in measurable amounts.',
+        molecularDetail:
+          'Plasma and brain enzymes convert noopept to cyclo-prolylglycine. One hour after 5 mg/kg in rats, noopept was undetectable in brain while cyclo-prolylglycine had risen 2.5-fold above the endogenous level present in controls.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks the oxygen sensor that destroys HIF-1',
+        laymanDesc:
+          'The proposed target is the enzyme that tags a low-oxygen response protein for destruction. Block it, and that protein survives.',
+        molecularDetail:
+          'Molecular docking places the L-isomer of noopept and of its N-phenylacetylprolyl metabolite in the active site of prolyl hydroxylase 2, the enzyme that hydroxylates HIF-1 alpha and marks it for degradation. The D-isomer, which is pharmacologically ineffective, does not dock. This is a proposed rather than a demonstrated binding event.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'HIF-1 switches on the low-oxygen gene programme',
+        laymanDesc:
+          'The rescued protein turns on the genes cells use to survive low oxygen, and nothing else in the panel moved.',
+        molecularDetail:
+          'Noopept at 10 micromolar raised HIF-1 DNA-binding activity selectively among nine transcription factors, with an additional concentration-dependent increase under cobalt-chloride-induced stabilisation. In neuronal cell models it reduced reactive oxygen species and intracellular calcium, raised mitochondrial membrane potential, attenuated tau phosphorylation at Ser396 and restored neurite outgrowth after amyloid-beta injury.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A specific mechanism, and no controlled human trial',
+        laymanDesc:
+          'The laboratory story is unusually specific. The human story is one developer-run comparison and a supplement market with unreliable doses.',
+        molecularDetail:
+          'The human evidence base consists of comparative studies against piracetam from the institute that developed the compound, unregistered and unreplicated. The measured Western footprint is a supplement in which one serving delivered four times the pharmacological dose, and bulk raw material intercepted at the border.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Neznamov 2009 comparative study of noopept against piracetam',
+        phase:
+          'Comparative clinical study in mild cognitive disorders of vascular and traumatic origin',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Cognitive and asthenic symptom measures against an active piracetam comparator',
+        endpointMet: true,
+        statisticalPValue:
+          'Reported as favourable in the source publication. The study is not registered on any trial registry, has no placebo arm, and was conducted at the institute that developed the compound',
+        unreportedAdverseSignals:
+          'The active comparator, piracetam, is itself unsupported for cognitive impairment by Cochrane review, which limits what a non-inferiority or superiority result against it can establish.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Gudasheva 1997 metabolism study in rats',
+        phase: 'Preclinical pharmacokinetics, 5 mg/kg intraperitoneal, one-hour brain sampling',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Brain concentrations of the parent compound and its three possible metabolites',
+        endpointMet: true,
+        statisticalPValue:
+          'Parent compound undetectable in brain at one hour; cyclo-prolylglycine increased 2.5-fold; phenylacetic acid and prolylglycine present in treated and control brain without a treatment-related rise',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Vakhitova 2016 transcription factor reporter panel',
+        phase: 'In vitro, HEK293 cells transiently transfected with nine luciferase reporters',
+        sampleSize: 0,
+        primaryEndpoint:
+          'DNA-binding activity of CREB, NFAT, NF-kappaB, p53, STAT1, GAS, VDR, HSF1 and HIF-1',
+        endpointMet: true,
+        statisticalPValue:
+          'Noopept 10 uM increased HIF-1 DNA-binding activity only, concentration-dependently, with a further increase under CoCl2 stabilisation; piracetam 1 mM affected none of the nine',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cohen 2021 supplement content analysis',
+        phase: 'Analytical survey of ten products purchased online',
+        sampleSize: 10,
+        primaryEndpoint:
+          'Identity and quantity of unapproved drugs including omberacetam in labelled nootropic supplements',
+        endpointMet: true,
+        statisticalPValue:
+          'Maximum 40.6 +/- 0.4 mg omberacetam per recommended serving against a typical pharmacological dose of 10 mg; five unapproved drugs detected across the ten products; 9 of 12 declared quantities inaccurate',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Noopept was undetectable in rat brain one hour after 5 mg/kg while cyclo-prolylglycine, an endogenous cyclic dipeptide, rose 2.5-fold',
+        'Noopept at 10 uM selectively raised HIF-1 DNA-binding activity among nine transcription factors; piracetam at 1 mM raised none',
+        'A single supplement serving delivered 40.6 mg of omberacetam against a typical pharmacological dose of 10 mg, and 9 of 12 stated quantities across the study were inaccurate',
+        'Noopept was intercepted as bulk raw material in a multinational medicines-control surveillance study in which 69% of samples came from the illegal market',
+      ],
+      unsupportedInferences: [
+        'That noopept is a more potent piracetam; the administered compound is not detectable in brain and its active species is an endogenous molecule',
+        'That prolyl hydroxylase 2 inhibition is demonstrated, when the binding evidence is molecular docking and the measured effect is downstream transcription factor activity',
+        'That a developer-run comparison against piracetam demonstrates clinical benefit',
+        'That cellular neuroprotection against amyloid-beta injury predicts a cognitive effect in a person, which no controlled trial has tested',
+      ],
+      whatFailedInitially: [
+        'No placebo-controlled trial of noopept has been published in an indexed English-language journal or registered on any trial registry',
+        'A 2021 primary research paper on noopept in inflammatory pain was retracted three months after publication with no reason given',
+      ],
+      realWorldOutcome: [
+        'Registered as a medicine in the Russian Federation for vascular and post-traumatic cognitive impairment; no authorisation in the United States, the European Union or the United Kingdom',
+        'Sold in Western markets in capsules labelled as dietary supplements, at serving sizes that in one analysis reached four times the pharmacological dose',
+        'Intercepted at European borders in bulk raw material form alongside phenylpiracetam and phenibut',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet in the Russian registered product; capsules and bulk powder elsewhere',
+      description:
+        'A conventional oral tablet where it is a registered medicine, at doses around 10 mg. In markets where it is not registered it is sold as capsules and as bulk powder; the analysed serving sizes bear no reliable relation to the labelled ones, and the same products carried undeclared phenibut, vinpocetine and picamilon.',
+      safetyProfile:
+        'No controlled human safety dataset exists outside the Russian registration file. Preclinical work reports that the compound does not stimulate cell proliferation and prevents DNA damage in a prediabetes model, which are reassuring findings in their own terms and are rodent findings. The specific documented hazard is the supplement supply: a product delivering four times the pharmacological dose, potentially alongside three other unapproved drugs, taken without clinician oversight, is a combination nobody has studied.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is noopept a stronger piracetam?',
+        a: 'It is far more potent by weight — milligrams rather than grams — but that is not the same claim. Noopept was designed as a dipeptide analogue of piracetam and turned out to work differently. It is undetectable in rat brain an hour after dosing, while the endogenous cyclic dipeptide cyclo-prolylglycine rises 2.5-fold, and its formation from noopept was shown in vitro with plasma and brain enzymes. And in a nine-factor transcription panel, noopept selectively activated HIF-1 at 10 micromolar while piracetam did nothing at a hundred times that concentration. Same family name, different pharmacology.',
+      },
+      {
+        q: 'What is the evidence in humans?',
+        a: 'A comparison against piracetam in patients with mild cognitive disorders of vascular and traumatic origin, published in Russian and in English translation, conducted at the V. V. Zakusov State Research Institute of Pharmacology — the institute that designed the compound. It is not registered on any trial registry, has no placebo arm, has not been independently replicated, and its active comparator is a drug that Cochrane found unsupported in the same indication. There is no placebo-controlled trial of noopept in an indexed English-language journal.',
+        auditNote:
+          'The point is not that Russian research is unreliable. It is that this particular evidence cannot be independently checked by a reader, and the page says so rather than rounding it up or down.',
+      },
+      {
+        q: 'How much is actually in a capsule?',
+        a: 'In the one published analysis, more than expected. Ten products labelled as containing omberacetam or related racetams were purchased and assayed; the maximum exposure at a recommended serving was 40.6 mg of omberacetam, against a typical pharmacological dose of 10 mg. Three other unapproved drugs — phenibut, vinpocetine and picamilon — turned up in the same set, several undeclared, and 9 of 12 stated quantities were wrong.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no approved product in any market this site prices from, and therefore no list price to cite. Acquisition costs here come from published sources. A supplement vendor asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Gudasheva TA et al. The major metabolite of dipeptide piracetam analogue GVS-111 in rat brain and its similarity to endogenous neuropeptide cyclo-L-prolylglycine. Eur J Drug Metab Pharmacokinet 1997;22:245-252',
+        identifier: '10.1007/BF03189814',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vakhitova YV et al. Molecular mechanism underlying the action of substituted Pro-Gly dipeptide noopept. Acta Naturae 2016;8:82-89',
+        identifier: '27099787',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Zainullina LF et al. Cognitive enhancer noopept activates transcription factor HIF-1. Dokl Biochem Biophys 2020;494:256-260',
+        identifier: '10.1134/S1607672920050129',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ostrovskaya RU et al. Neuroprotective effect of novel cognitive enhancer noopept on AD-related cellular model involves the attenuation of apoptosis and tau hyperphosphorylation. J Biomed Sci 2014;21:74',
+        identifier: '10.1186/s12929-014-0074-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Neznamov GG, Teleshova ES. Comparative studies of Noopept and piracetam in the treatment of patients with mild cognitive disorders in organic brain diseases of vascular and traumatic origin. Neurosci Behav Physiol 2009;39:311-321',
+        identifier: '10.1007/s11055-009-9128-4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cohen PA et al. Five unapproved drugs found in cognitive enhancement supplements. Neurol Clin Pract 2021;11:e303-e307',
+        identifier: '10.1212/CPJ.0000000000000960',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vanhee C et al. The occurrence of illicit smart drugs or nootropics in Europe and Australia and their associated dangers. J Xenobiot 2025;15:88',
+        identifier: '10.3390/jox15030088',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Araj SK et al. Physicochemical and structural analysis of N-phenylacetyl-L-prolylglycine ethyl ester (Noopept) — an active pharmaceutical ingredient with nootropic activity. J Pharm Biomed Anal 2025;252:116474',
+        identifier: '10.1016/j.jpba.2024.116474',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Retraction notice for "Noopept; a nootropic dipeptide, modulates persistent inflammation by effecting spinal microglia dependent BDNF and pro-BDNF expression throughout apoptotic process". Heliyon 2021;7:e06981',
+        identifier: '10.1016/j.heliyon.2021.e06981',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 180496 — omberacetam structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/180496',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 30. Semax
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'semax',
+    name: 'Semax',
+    tradeName: 'Semax; the peptide is written ACTH(4-7)PGP or Met-Glu-His-Phe-Pro-Gly-Pro',
+    sponsor:
+      'Institute of Molecular Genetics, Russian Academy of Sciences, with Moscow State University. Registered as a medicine in the Russian Federation; no marketing authorisation in the United States, the European Union or the United Kingdom',
+    targetGene: 'BDNF',
+    targetProtein:
+      'No receptor identified. The measured effect is broad transcriptional modulation, including of BDNF and of immune and neurosignalling gene programmes in ischaemic brain',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Registered in the Russian Federation for ischaemic stroke, transient ischaemic attack, optic nerve disorders and cognitive impairment. It holds no marketing authorisation anywhere else, and Belgian medicines control analysts state it has not completed any clinical trials to their knowledge.',
+    patientFriendlyIndication:
+      'A Russian stroke and nootropic peptide, sold elsewhere as a nasal spray research chemical',
+    anatomicalSite:
+      'Cortex, hippocampus and striatum; in the stroke models, the ischaemic penumbra surrounding the infarct',
+    conditionContext: {
+      conditionExplainer:
+        'Adrenocorticotropic hormone has a short internal fragment, residues 4 to 10, that carries behavioural and neurotrophic effects without the hormonal ones. Semax is residues 4 to 7 of that fragment with a proline-glycine-proline tail bolted on to stop peptidases destroying it.',
+      whyItMatters:
+        'Semax is the most extensively studied of the Russian nootropic peptides and the divergence between the two literatures is stark: a large, technically detailed rodent transcriptomics programme published in English, and a clinical evidence base published almost entirely in Russian, unregistered and unreplicated.',
+      whoTakesThis:
+        'In Russia, patients treated for ischaemic stroke and related conditions. Elsewhere, people using nasal sprays and reconstituted lyophilised powder bought online, and — as Belgian medicines controllers documented — whoever receives the suspicious preparations that turn up at customs.',
+      clinicalGoals:
+        'The Russian registered indications are clinical. Outside Russia there is no defined goal, no registered trial and no completed clinical trial that the analysts who looked could identify.',
+    },
+    oneSentenceVerdict:
+      'A seven-residue ACTH fragment with a substantial and technically strong rodent stroke transcriptomics literature in English, a clinical evidence base published almost entirely in Russian and unregistered anywhere, and a documented presence in unidentified preparations seized in Belgium.',
+    laymanHowItWorks:
+      'Semax is a piece of a hormone the body already makes. Adrenocorticotropic hormone controls the stress axis, but a short stretch in the middle of it — residues 4 to 10 — has effects on attention, memory and nerve survival that have nothing to do with cortisol. Semax takes four of those residues and adds a three-residue tail, proline-glycine-proline, which acts as armour: peptidases that would chew the peptide up in seconds cannot get past it. Given as a nasal spray, enough survives to reach the brain. What happens there is not a receptor being switched on. In rat stroke models it shifts the expression of hundreds of genes at once, including those for neurotrophic factors and for the inflammatory response, which is a description of an effect rather than of a mechanism.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 24,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: 'MEHFPGP',
+      chemicalFormula: 'C37H51N9O10S',
+      molecularWeight: '813.9 g/mol',
+      targetReceptorAffinity:
+        'Met-Glu-His-Phe-Pro-Gly-Pro: residues 4 to 7 of adrenocorticotropic hormone with a C-terminal Pro-Gly-Pro glyproline extension that confers resistance to aminopeptidase and carboxypeptidase cleavage and extends the half-life from seconds to minutes. It has no identified receptor and no hormonal ACTH activity. Its measured actions are transcriptional: in rat models of cerebral ischaemia it modulates the expression of large sets of immune, inflammatory and neurosignalling genes and raises brain-derived neurotrophic factor.',
+      structureSource: {
+        label: 'PubChem CID 9811102 (semax) — sequence, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9811102',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sem-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of a nasal spray or a lyophilised vial',
+          description:
+            'Confirm the sequence rather than the mass. Semax and Selank are sold by the same vendors, are close in size, and both carry the Pro-Gly-Pro tail, so a screening method built for one should be built for both. The Belgian medicines control laboratory that identified them in two unknown seized preparations developed a combined method for exactly this reason, validated against the European OMCL network recommendation on interpreting unknown-peptide screening results.',
+          reagentsAndBuffer:
+            'Certified semax and selank reference standards, high-resolution accurate-mass ESI-MS with MS/MS b and y ion sequencing, reversed-phase C18 HPLC with 0.1% trifluoroacetic acid and acetonitrile, hydrophilic-interaction chromatography as the orthogonal method for very polar peptides',
+        },
+        {
+          id: 'sem-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Peptide content, related substances and endotoxin',
+          description:
+            'Establish actual peptide content rather than the nominal figure, and screen for the deletion and epimerised sequences that solid-phase synthesis of a proline-rich peptide readily produces. Because one of the two sold presentations is a lyophilised powder for injection, endotoxin belongs in the assay; because the other is a nasal spray, so does preservative content and microbial limits.',
+          dependsOnStepId: 'sem-w1',
+          reagentsAndBuffer:
+            'Amino acid analysis after vapour-phase 6 M hydrochloric acid hydrolysis, reversed-phase HPLC with UV detection at 214 nm for related substances, ion chromatography for acetate and trifluoroacetate counterions, Karl Fischer for water, limulus amoebocyte lysate for endotoxin, microbial enumeration for the spray',
+        },
+        {
+          id: 'sem-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and brain preparation for a peptide with a half-life of minutes',
+          description:
+            'Even with the glyproline tail, semax is cleared fast, and the fragments generated by partial degradation are themselves reported to be active. Blood collection therefore requires peptidase inhibition on ice, and the analytical target should be the parent plus the expected truncations rather than the parent alone.',
+          dependsOnStepId: 'sem-w2',
+          reagentsAndBuffer:
+            'Blood into EDTA with aprotinin and a dipeptidyl peptidase inhibitor on ice, mixed-mode cation-exchange or hydrophilic-interaction solid-phase extraction, stable-isotope-labelled semax internal standard, low-binding polypropylene throughout, rapid brain freeze-clamping for tissue work',
+        },
+        {
+          id: 'sem-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Neuronal calcium and transcriptome response',
+          description:
+            'Because no receptor is known, the informative experiments read the cell response rather than target engagement. Calcium imaging in acutely isolated brain neurons gives a fast functional readout; RNA sequencing of cortex and subcortex after middle cerebral artery occlusion gives the systems-level one that the published programme rests on. Regional sampling matters: the published work compares regions with different degrees of ischaemic damage.',
+          dependsOnStepId: 'sem-w3',
+          reagentsAndBuffer:
+            'Acutely isolated rat brain neurons with Fura-2 or Fluo-4 calcium imaging; for transcriptomics, rat transient middle cerebral artery occlusion with separate sampling of ischaemic core, penumbra and contralateral cortex, RNA sequencing with quantitative PCR confirmation of selected immune and neurotrophic transcripts',
+        },
+        {
+          id: 'sem-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the protein and infarct readouts',
+          description:
+            'Quantify semax and its truncation products by tandem mass spectrometry, and read the endpoints the neuroprotection claim rests on: brain protein expression profile, infarct volume and neurological deficit scores in the same animals. Reporting transcript changes without infarct volume describes a signal and not an outcome.',
+          dependsOnStepId: 'sem-w4',
+          reagentsAndBuffer:
+            'C18 or biphenyl gradient with 0.1% formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring on the doubly charged precursor, stable-isotope internal standard; label-free quantitative proteomics of brain tissue, triphenyltetrazolium chloride staining for infarct volume, standardised neurological deficit scoring',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sem-a1',
+        category: 'measured',
+        title: 'It shifts hundreds of genes in ischaemic rat brain',
+        laymanSummary:
+          'In rat stroke models, semax changed the expression of large sets of immune, inflammatory and neurosignalling genes, and partly restored the pattern that ischaemia had disrupted.',
+        technicalDetails:
+          'A sustained programme from the Institute of Molecular Genetics has characterised the transcriptional response to semax after transient middle cerebral artery occlusion in rats. Published findings include regulation of immune response gene expression during ischaemic brain injury, suppression of mRNA transcripts encoding proinflammatory mediators after reversible ischaemia, transcriptome-level protective changes, confirmation at the brain protein expression level, compensation of the ischaemia-disrupted gene expression profile a day after experimental stroke, and identification of genes associated with the action of ACTH-like peptides in brain regions with differing degrees of ischaemic damage. The work is technically detailed, published in indexed English-language journals, and internally consistent across a decade. It is also entirely in rats, entirely from one institutional group, and describes transcriptional changes rather than a mechanism.',
+        evidenceSource:
+          'Filippenkov IB et al., Int J Mol Sci 2025;26:6256; Filippenkov IB et al., Biomedicines 2024;12:2830; Filippenkov IB et al., Genes 2020;11:681; Sudarkina OY et al., Int J Mol Sci 2021;22:6179; Medvedeva EV et al., Mol Genet Genomics 2017;292:635-653',
+        doi: '10.3390/ijms26136256',
+        measuredMetric:
+          'Differential gene and protein expression in rat cortex and subcortex after transient middle cerebral artery occlusion with and without semax',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sem-a2',
+        category: 'conclusion_shift',
+        title: 'Analysts who looked for the clinical trials could not find completed ones',
+        laymanSummary:
+          'A Belgian medicines control laboratory identified semax in two unknown seized preparations and stated that, to its knowledge, the peptide has not completed any clinical trials.',
+        technicalDetails:
+          'Vanhee et al. at Sciensano, the Belgian national public health institute, encountered two unknown suspicious preparations at the end of 2017 and 2018 and subjected them to a battery of analyses. Both contained what they describe as the assumedly cognitive-enhancing research peptides Selank and Semax, which, in their words, to their knowledge have not completed any clinical trials. An online search excluding the dark web showed these research peptides freely available either as lyophilised powder for injection or in nasal sprays. The finding prompted development of a combined LC-MS/MS method covering ten putative cognitive-enhancing polypeptides sold online, validated across matrices to ISO 17025 and complying with the European OMCL network recommendation on interpreting unknown-peptide screening results. That assessment is from a national control laboratory doing exactly the job of establishing what a compound is and whether it has been tested.',
+        evidenceSource: 'Vanhee C et al., Drug Test Anal 2020;12:371-381',
+        doi: '10.1002/dta.2717',
+        inferredClaim:
+          'That a Russian marketing authorisation implies a completed clinical trial programme that an outside analyst can find and read',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'sem-a3',
+        category: 'inferred',
+        title: 'The stroke efficacy claim rests on Russian-language reports',
+        laymanSummary:
+          'Semax is used in Russia for ischaemic stroke. The clinical reports supporting that are published in Russian journals and are not registered on any trial registry.',
+        technicalDetails:
+          'The clinical literature on semax in ischaemic stroke — including a 2018 report on its efficacy at different stages of ischaemic stroke in Zhurnal Nevrologii i Psikhiatrii imeni S.S. Korsakova — is published in Russian-language journals, generally without a registered protocol, without a published statistical analysis plan, and without independent replication outside the Commonwealth of Independent States. A 2026 analysis of nootropic regulatory positions across CIS countries treats this pattern as characteristic of the whole class. The transcriptomic case for semax in stroke is genuinely strong preclinically; the clinical case is not accessible for independent evaluation, and this page states the difference rather than collapsing it in either direction.',
+        evidenceSource:
+          'Gusev EI et al. The efficacy of semax in the treatment of patients at different stages of ischemic stroke. Zh Nevrol Psikhiatr Im S S Korsakova 2018;118:61-68; Alexandrova EG et al., Int J Risk Saf Med 2026;37:257-264',
+        doi: '10.17116/jnevro20181183261-68',
+        inferredClaim:
+          'That a rodent transcriptomic protective signal plus unregistered Russian clinical reports establishes efficacy in human stroke',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sem-a4',
+        category: 'measured',
+        title: 'A peptide made durable by three added residues',
+        laymanSummary:
+          'The active part is four amino acids from a hormone. The three-residue tail added to the end is what stops enzymes destroying it before it can act.',
+        technicalDetails:
+          'Semax is Met-Glu-His-Phe — residues 4 to 7 of adrenocorticotropic hormone — with a C-terminal Pro-Gly-Pro. The glyproline tail is not decorative: proline-flanked bonds resist both aminopeptidase and carboxypeptidase attack, and the same Pro-Gly-Pro strategy is used in Selank. Work on glyproline peptides in cerebral ischaemia has examined the tail on its own, finding it modulates inflammatory and neurosignalling gene responses, which raises the question of how much of the semax effect belongs to the ACTH fragment and how much to the tail. Independent work outside Russia has begun to appear, including a 2025 report that semax targets the mu opioid receptor gene Oprm1 to promote deubiquitination and functional recovery after spinal cord injury in female mice.',
+        evidenceSource:
+          'Stavchansky VV et al. Insight into glyproline peptides activity through the modulation of the inflammatory and neurosignaling genetic response. Genes 2022;13:2380; Liu R et al., Br J Pharmacol 2025;182:5489-5516',
+        doi: '10.1111/bph.70122',
+        measuredMetric:
+          'Contribution of the Pro-Gly-Pro extension to peptidase resistance and to the transcriptional response',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sem-a5',
+        category: 'inferred',
+        title: 'No receptor, no pharmacokinetics in humans, no dose rationale outside Russia',
+        laymanSummary:
+          'There is no identified binding site, no published human pharmacokinetic study, and no basis outside the Russian label for the doses used.',
+        technicalDetails:
+          'Semax has no identified receptor. Its documented actions are downstream: intracellular calcium dynamics in rat brain neurons, transcriptional modulation, and protein expression change. No human pharmacokinetic study of semax appears in the indexed literature, so intranasal bioavailability, brain penetration and half-life in a person are not established quantities. Products sold outside Russia specify concentrations chosen by vendors. For a peptide with a half-life measured in minutes and no receptor to titrate against, that is a dose with nothing behind it.',
+        evidenceSource:
+          'Kolbaev SN et al. The effect of peptide semax, an ACTH(4-10) analogue, on intracellular calcium dynamics in rat brain neurons. Bull Exp Biol Med 2025;179:416-420; absence of any published human pharmacokinetic study of semax in the indexed literature',
+        doi: '10.1007/s10517-025-06501-z',
+        inferredClaim:
+          'That a vendor-specified nasal spray concentration corresponds to a characterised human exposure',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sem-a6',
+        category: 'measured',
+        title: 'Sold as an injectable powder and a nasal spray, with no manufacturer of record',
+        laymanSummary:
+          'An online survey by the Belgian control laboratory found these research peptides freely available as lyophilised powder for injection and as nasal sprays.',
+        technicalDetails:
+          'The Sciensano investigation documented that nootropic research peptides of this type are freely available online, excluding the dark web, either as lyophilised powder for injection purposes or in nasal sprays. The laboratory developed and validated a screening method covering ten such polypeptides currently sold online, noting that controlling laboratories need to anticipate the rise of these molecules and be able to identify them. A separate four-year multinational surveillance study across twelve official medicines control laboratories found 34 distinct unauthorised nootropic molecules across 159 samples, 69% from the illegal market, with 49% presented as dietary supplements and 32% as medicines.',
+        evidenceSource:
+          'Vanhee C et al., Drug Test Anal 2020;12:371-381; Vanhee C et al., J Xenobiot 2025;15:88',
+        doi: '10.3390/jox15030088',
+        measuredMetric:
+          'Presentation and availability of research peptides in online and seized samples across two control-laboratory studies',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given as a nasal spray',
+        laymanDesc:
+          'The usual route is drops or spray into the nose, which puts the peptide close to the brain without an injection.',
+        molecularDetail:
+          'Intranasal administration is the route used in the Russian registered product and in most of the experimental work. Nasal delivery exploits olfactory and trigeminal pathways to reach brain tissue, which for a peptide with a plasma half-life of minutes is the practical reason the route was chosen.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The proline tail keeps it intact long enough to matter',
+        laymanDesc:
+          'Three extra amino acids on the end block the enzymes that would otherwise destroy it within seconds.',
+        molecularDetail:
+          'The C-terminal Pro-Gly-Pro resists aminopeptidase and carboxypeptidase cleavage, extending the half-life from seconds to minutes. The same tail is used in Selank, and glyproline peptides have measurable transcriptional activity on their own, which complicates attribution of the semax effect to the ACTH fragment alone.',
+        iconName: 'Shield',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'No receptor has been found',
+        laymanDesc:
+          'Unlike almost every other drug on this site, nobody has identified what semax binds to.',
+        molecularDetail:
+          'Semax has no ACTH hormonal activity and no identified receptor. Reported proximate effects include changes in intracellular calcium dynamics in acutely isolated rat brain neurons and, in a 2025 report from an independent group, action on the mu opioid receptor gene Oprm1 promoting deubiquitination after spinal cord injury in mice.',
+        iconName: 'HelpCircle',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Large-scale transcriptional change in injured brain',
+        laymanDesc:
+          'After an experimental stroke in rats, it shifts the activity of many genes at once, particularly immune and inflammatory ones.',
+        molecularDetail:
+          'In rat transient middle cerebral artery occlusion, semax suppresses transcripts encoding proinflammatory mediators, modulates immune response genes, and partly compensates the ischaemia-disrupted expression profile a day after stroke, with corresponding changes at the protein level. The response differs between brain regions according to the degree of ischaemic damage.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A strong preclinical case and an unverifiable clinical one',
+        laymanDesc:
+          'The rat evidence is detailed and published in English. The human evidence is in Russian, unregistered, and — according to the analysts who looked — not from completed trials.',
+        molecularDetail:
+          'No registered clinical trial of semax exists on any international registry. The Belgian national control laboratory that identified semax in seized preparations stated that to its knowledge the peptide has not completed any clinical trials. The Russian registration covers ischaemic stroke and related indications on evidence published in Russian-language journals.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Russian clinical reports in ischaemic stroke',
+        phase: 'Clinical reports published in Russian-language journals, unregistered',
+        sampleSize: 0,
+        primaryEndpoint: 'Neurological outcome at different stages of ischaemic stroke',
+        endpointMet: true,
+        statisticalPValue:
+          'Reported as favourable in the source publications. No protocol registration, no published statistical analysis plan, and no replication outside the Commonwealth of Independent States',
+        unreportedAdverseSignals:
+          'A Belgian national medicines control laboratory analysing seized semax preparations recorded that to its knowledge the peptide has not completed any clinical trials.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Rat transient middle cerebral artery occlusion transcriptomics programme',
+        phase: 'Preclinical, rat focal cerebral ischaemia, multiple studies 2017-2025',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Differential gene and protein expression in cortex and subcortex, by degree of ischaemic damage',
+        endpointMet: true,
+        statisticalPValue:
+          'Consistent suppression of proinflammatory transcripts and partial compensation of the ischaemia-disrupted expression profile at 24 hours, confirmed at the protein level',
+        unreportedAdverseSignals:
+          'The programme is almost entirely from one institutional group, and reports transcriptional and proteomic endpoints rather than infarct volume or functional recovery as the primary outcome.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Liu 2025 independent spinal cord injury study',
+        phase: 'Preclinical, female mice, spinal cord injury model',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Functional recovery, with Oprm1 deubiquitination as the proposed mechanism',
+        endpointMet: true,
+        statisticalPValue:
+          'Semax reported to target the mu opioid receptor gene Oprm1 to promote deubiquitination and functional recovery after spinal cord injury',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Semax modulates immune, inflammatory and neurosignalling gene expression in rat brain after transient middle cerebral artery occlusion, confirmed at the protein level',
+        'The Pro-Gly-Pro extension confers peptidase resistance, and glyproline peptides have transcriptional activity of their own',
+        'Semax was identified in two unknown suspicious preparations seized in Belgium and is freely available online as injectable powder and nasal spray',
+        'A national medicines control laboratory recorded that, to its knowledge, semax has not completed any clinical trials',
+      ],
+      unsupportedInferences: [
+        'That a rodent transcriptomic protective signal establishes clinical benefit in human stroke',
+        'That the Russian marketing authorisation rests on evidence a reader elsewhere can find and evaluate',
+        'That the whole effect belongs to the ACTH fragment, when the added Pro-Gly-Pro tail has activity of its own',
+        'That a vendor nasal spray concentration corresponds to a known human exposure, when no human pharmacokinetic study exists',
+      ],
+      whatFailedInitially: [
+        'No clinical trial of semax has been registered on any international trial registry',
+        'No receptor has been identified for the peptide in more than three decades of work',
+      ],
+      realWorldOutcome: [
+        'Registered as a medicine in the Russian Federation for ischaemic stroke and related indications; no authorisation in the United States, the European Union or the United Kingdom',
+        'Sold internationally as a nasal spray and as lyophilised powder for injection, with no manufacturer of record',
+        'Identified by the Belgian national public health institute in seized preparations, prompting development of a validated screening method for ten such peptides',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intranasal drops or spray in the Russian registered product; lyophilised powder for injection and nasal sprays elsewhere',
+      description:
+        'The registered route is intranasal, chosen because the peptide is cleared from plasma within minutes and nasal delivery provides a route to brain tissue that bypasses that. Outside Russia the same peptide is sold as a nasal spray and as a lyophilised powder for reconstitution and injection, a route the registered product does not use and for which no human data exist.',
+      safetyProfile:
+        'No controlled human safety dataset is available outside the Russian registration file. Semax has no ACTH hormonal activity, which removes the obvious concern about a corticotropin fragment. Beyond that, the absence of a receptor, of human pharmacokinetics and of registered trials means there is no basis for a safety statement in either direction, and this page does not offer one. The documented hazard is the supply chain: preparations of unknown origin and unknown content, identified as such by a national control laboratory.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is semax an approved medicine?',
+        a: 'In the Russian Federation, yes — it is registered for ischaemic stroke, transient ischaemic attack, optic nerve disorders and cognitive impairment. Nowhere else. It has no authorisation in the United States, the European Union or the United Kingdom, and no clinical trial of it is registered on any international registry. When the Belgian national public health institute identified semax in two unknown seized preparations, it recorded that to its knowledge the peptide has not completed any clinical trials.',
+        auditNote:
+          'That statement comes from a national medicines control laboratory, which is the body whose job it is to know.',
+      },
+      {
+        q: 'Is the science behind it real?',
+        a: 'The preclinical science is substantial and published in indexed English-language journals. A programme running from at least 2017 to 2025 has characterised what semax does to gene and protein expression in rat brain after experimental stroke: suppression of proinflammatory transcripts, modulation of immune response genes, and partial compensation of the expression profile that ischaemia disrupts, differing by how badly each brain region was damaged. It is rat work, mostly from one institute, and it measures transcription rather than outcome. An independent group in 2025 reported an effect on the mu opioid receptor gene in a mouse spinal cord injury model.',
+      },
+      {
+        q: 'What does it bind to?',
+        a: 'Nothing that has been identified. Semax has no ACTH hormonal activity and no known receptor after more than three decades. What has been measured are downstream effects: intracellular calcium dynamics in isolated rat brain neurons, and large-scale transcriptional change. That is unusual for a compound in clinical use anywhere, and it means there is no target against which a dose could be titrated.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no approved product in any market this site prices from, and therefore no list price to cite. Acquisition costs here come from published sources. A research-peptide vendor asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Vanhee C et al. The occurrence of putative cognitive enhancing research peptides in seized pharmaceutical preparations: an incentive for a validated screening method. Drug Test Anal 2020;12:371-381',
+        identifier: '10.1002/dta.2717',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Filippenkov IB et al. Genes that associated with action of ACTH-like peptides with neuroprotective potential in rat brain regions with different degrees of ischemic damage. Int J Mol Sci 2025;26:6256',
+        identifier: '10.3390/ijms26136256',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Filippenkov IB et al. ACTH-like peptides compensate rat brain gene expression profile disrupted by ischemia a day after experimental stroke. Biomedicines 2024;12:2830',
+        identifier: '10.3390/biomedicines12122830',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Filippenkov IB et al. Novel insights into the protective properties of ACTH(4-7)PGP (semax) peptide at the transcriptome level following cerebral ischaemia-reperfusion in rats. Genes 2020;11:681',
+        identifier: '10.3390/genes11060681',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sudarkina OY et al. Brain protein expression profile confirms the protective effect of the ACTH(4-7)PGP peptide (semax) in a rat model of cerebral ischemia-reperfusion. Int J Mol Sci 2021;22:6179',
+        identifier: '10.3390/ijms22126179',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stavchansky VV et al. Insight into glyproline peptides activity through the modulation of the inflammatory and neurosignaling genetic response. Genes 2022;13:2380',
+        identifier: '10.3390/genes13122380',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Liu R et al. Semax peptide targets the mu opioid receptor gene Oprm1 to promote deubiquitination and functional recovery after spinal cord injury in female mice. Br J Pharmacol 2025;182:5489-5516',
+        identifier: '10.1111/bph.70122',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kolbaev SN et al. The effect of peptide semax, an ACTH(4-10) analogue, on intracellular calcium dynamics in rat brain neurons. Bull Exp Biol Med 2025;179:416-420',
+        identifier: '10.1007/s10517-025-06501-z',
+        kind: 'doi',
+      },
+      {
+        label:
+          'The efficacy of semax in the treatment of patients at different stages of ischemic stroke. Zh Nevrol Psikhiatr Im S S Korsakova 2018;118:61-68',
+        identifier: '10.17116/jnevro20181183261-68',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vanhee C et al. The occurrence of illicit smart drugs or nootropics in Europe and Australia and their associated dangers. J Xenobiot 2025;15:88',
+        identifier: '10.3390/jox15030088',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 9811102 — semax sequence, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9811102',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 31. Selank
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'selank',
+    name: 'Selank',
+    tradeName: 'Selank; the peptide is written Thr-Lys-Pro-Arg-Pro-Gly-Pro',
+    sponsor:
+      'V. V. Zakusov State Research Institute of Pharmacology with the Institute of Molecular Genetics, Russian Academy of Sciences. Registered as a medicine in the Russian Federation; no marketing authorisation in the United States, the European Union or the United Kingdom',
+    targetGene: 'GABRA1',
+    targetProtein:
+      'GABA-A receptor complex — reported subtype-selective, concentration-dependent positive allosteric modulation of GABA binding, at a site distinct from the benzodiazepine site',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Registered in the Russian Federation as an anxiolytic for generalised anxiety disorder and neurasthenia. It holds no marketing authorisation anywhere else, and Belgian medicines control analysts state it has not completed any clinical trials to their knowledge.',
+    patientFriendlyIndication:
+      'A Russian anti-anxiety peptide, sold elsewhere as a nasal spray research chemical',
+    anatomicalSite: 'GABA-A receptors on frontal cortical and amygdalar neurons',
+    conditionContext: {
+      conditionExplainer:
+        'Tuftsin is a four-residue fragment released from an antibody heavy chain that stimulates immune cells. Selank is tuftsin with the same Pro-Gly-Pro tail used in Semax, and the claim attached to it is anxiolysis rather than immune stimulation.',
+      whyItMatters:
+        'If the reported mechanism is right, Selank is a peptide that modulates the GABA-A receptor from a site distinct from the benzodiazepine site — which would be pharmacologically interesting in its own right. The evidence for that comes from radioligand binding in one laboratory, and there is no completed clinical trial anywhere for the anxiolytic claim.',
+      whoTakesThis:
+        'In Russia, patients prescribed it for anxiety and neurasthenia. Elsewhere, people using nasal sprays and reconstituted powder bought online. It was also one of the two peptides a Belgian control laboratory found in unidentified seized preparations.',
+      clinicalGoals:
+        'The Russian registered indication is anxiolysis. Outside Russia there is no defined goal, and the only controlled human study identified is a 52-participant resting-state fMRI experiment measuring brain connectivity rather than symptoms.',
+    },
+    oneSentenceVerdict:
+      'A tuftsin analogue reported to modulate GABA binding allosterically at a site that is not the benzodiazepine site, registered as an anxiolytic in Russia, with one placebo-controlled human study in the indexed literature — a 52-person brain-imaging experiment that measured connectivity, not anxiety.',
+    laymanHowItWorks:
+      'Selank is built from tuftsin, a four-amino-acid fragment that the body cuts out of antibodies and uses to activate immune cells, with three extra residues on the end to stop enzymes destroying it. Despite that immune origin, what it is sold and registered for is anxiety. The proposed mechanism is that it sits on the GABA-A receptor — the same receptor benzodiazepines use — but at a different place on it, nudging the receptor to respond more strongly to GABA rather than switching it on directly. Consistent with that, in rat frontal cortex it changed the expression of 45 of 84 neurotransmission genes within an hour, and those changes correlated with what GABA itself did.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 20,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: 'TKPRPGP',
+      chemicalFormula: 'C33H57N11O9',
+      molecularWeight: '751.9 g/mol',
+      targetReceptorAffinity:
+        'Thr-Lys-Pro-Arg-Pro-Gly-Pro: the immunoactive tetrapeptide tuftsin with a C-terminal Pro-Gly-Pro extension conferring peptidase resistance. In radioligand binding on isolated brain-cell plasma membranes it affected [3H]GABA binding as a positive allosteric modulator, in a subtype-selective and concentration-dependent way. Its joint action with benzodiazepines was non-cumulative and differed from either alone, and it blocked the modulatory activity of diazepam and olanzapine, which the authors read as binding sites that are not the same but may partially overlap.',
+      structureSource: {
+        label: 'PubChem CID 11765600 (selank) — sequence, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11765600',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sel-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Sequence identity, and separating it from tuftsin and from Semax',
+          description:
+            'Confirm the full heptapeptide rather than the tuftsin core, and distinguish it from Semax, which carries the same Pro-Gly-Pro tail and is sold by the same vendors. The Belgian control laboratory that found both peptides in unknown seized preparations built a single method covering ten such polypeptides precisely because a targeted assay for one misses the other.',
+          reagentsAndBuffer:
+            'Certified selank, tuftsin and semax reference standards, high-resolution accurate-mass ESI-MS with MS/MS b and y ion sequencing, reversed-phase C18 HPLC with 0.1% trifluoroacetic acid, hydrophilic-interaction chromatography as the orthogonal method for a highly basic peptide',
+        },
+        {
+          id: 'sel-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Peptide content, related substances, endotoxin and microbial limits',
+          description:
+            'Determine actual peptide content rather than the label figure, and screen for the truncated and epimerised sequences that a proline-and-arginine-rich synthesis produces. The two sold presentations — nasal spray and lyophilised powder for injection — impose different tests: microbial limits and preservative content for the spray, endotoxin for the injectable.',
+          dependsOnStepId: 'sel-w1',
+          reagentsAndBuffer:
+            'Amino acid analysis after vapour-phase hydrolysis, reversed-phase HPLC with UV detection at 214 nm, ion chromatography for counterions, Karl Fischer for water, limulus amoebocyte lysate for endotoxin, microbial enumeration and preservative assay for the nasal formulation',
+        },
+        {
+          id: 'sel-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and brain membrane preparation',
+          description:
+            'Two preparations for two questions. Plasma work needs peptidase inhibition on ice because the peptide is cleared in minutes even with the glyproline tail. The binding work needs isolated brain-cell plasma membranes with protein quantification, because the reported mechanism is an allosteric effect measured on membranes rather than a cellular response.',
+          dependsOnStepId: 'sel-w2',
+          reagentsAndBuffer:
+            'Blood into EDTA with aprotinin on ice, mixed-mode cation-exchange solid-phase extraction, stable-isotope-labelled internal standard; separately, rat brain plasma membrane isolation by differential centrifugation with Lowry or BCA protein determination, HPLC-verified peptide purity before binding work',
+        },
+        {
+          id: 'sel-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'GABA-A radioligand binding and the neurotransmission gene panel',
+          description:
+            'Test the allosteric claim where it was made and then in a cellular system. Radioligand binding with labelled GABA on isolated membranes, run alone and jointly with diazepam and olanzapine, is the experiment that produced the non-cumulative interaction and the site-overlap inference. The expression panel then asks whether the same signature appears in a cell: 84 neurotransmission genes read after Selank and after GABA, compared.',
+          dependsOnStepId: 'sel-w3',
+          reagentsAndBuffer:
+            '[3H]-GABA on isolated brain-cell plasma membranes with diazepam and olanzapine as co-incubated modulators, muscimol and bicuculline as reference ligands; IMR-32 neuroblastoma cells or rat frontal cortex with a real-time PCR array of 84 neurotransmission genes including GABA receptor subunits, transporters, ion channels and dopamine and serotonin receptors',
+        },
+        {
+          id: 'sel-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the functional imaging endpoint',
+          description:
+            'Quantify selank and its truncation products by tandem mass spectrometry, and read the one human endpoint that has been measured under placebo control: resting-state functional connectivity between amygdala and prefrontal and temporal cortex, before and at fixed intervals after dosing.',
+          dependsOnStepId: 'sel-w4',
+          reagentsAndBuffer:
+            'C18 or HILIC gradient with 0.1% formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring, stable-isotope internal standard; resting-state functional magnetic resonance imaging with predefined amygdala and dorsolateral prefrontal cortex regions of interest, imaging before and at 5 and 20 minutes after dosing, with a placebo arm',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sel-a1',
+        category: 'measured',
+        title: 'It modulates GABA binding, and not at the benzodiazepine site',
+        laymanSummary:
+          'In binding experiments on brain cell membranes, Selank increased GABA binding as an allosteric modulator, and its interaction with diazepam was not additive — suggesting a different site on the same receptor.',
+        technicalDetails:
+          'Vyunova et al. used radioligand receptor analysis on isolated brain-cell plasma membranes, with HPLC verification of peptide purity. Selank affected [3H]GABA binding as a positive allosteric modulator. Its joint action with benzodiazepines regulated GABA binding in a way that was not cumulative and differed from either substance alone, and Selank blocked the modulatory activity of diazepam and of olanzapine. The authors conclude that the peptide binding site and the benzodiazepine site are apparently not the same but may partially overlap, and propose subtype-selective concentration-dependent allosteric modulation of GABA receptors as one anxiolytic mechanism. This is a specific, testable claim from a single laboratory, and it has not been independently reproduced.',
+        evidenceSource: 'Vyunova TV et al., Protein Pept Lett 2018;25:914-923',
+        doi: '10.2174/0929866525666180925144642',
+        measuredMetric:
+          '[3H]GABA binding on isolated brain-cell plasma membranes, alone and jointly with diazepam and olanzapine',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sel-a2',
+        category: 'measured',
+        title: 'It moved 45 of 84 neurotransmission genes, and so did GABA',
+        laymanSummary:
+          'One hour after dosing rats, Selank had changed the expression of 45 out of 84 neurotransmission genes in frontal cortex — and the pattern correlated with what plain GABA did.',
+        technicalDetails:
+          'Volkova et al. analysed 84 genes involved in neurotransmission — GABA receptor subunits, transporters, ion channels, dopamine and serotonin receptors — in rat frontal cortex one and three hours after Selank or GABA at 300 micrograms per kilogram, by real-time PCR. Forty-five genes changed significantly at one hour and 22 at three hours, with a positive correlation between the changes produced by Selank and by GABA at one hour. A companion study in IMR-32 neuroblastoma cells compared GABA, Selank and olanzapine on GABAergic neurotransmission gene expression. The authors read the correlation as support for allosteric modulation of the GABAergic system. The finding is also a reminder of what a transcriptional signature can and cannot establish: a correlation with GABA is consistent with the proposed mechanism and does not by itself demonstrate it.',
+        evidenceSource:
+          'Volkova A et al., Front Pharmacol 2016;7:31; Filatova E et al., Front Pharmacol 2017;8:89',
+        doi: '10.3389/fphar.2016.00031',
+        measuredMetric:
+          'Number of the 84 neurotransmission genes changing expression at 1 and 3 hours, and correlation with GABA',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sel-a3',
+        category: 'conclusion_shift',
+        title: 'Analysts who looked for the clinical trials could not find completed ones',
+        laymanSummary:
+          'A Belgian medicines control laboratory identified Selank in unknown seized preparations and stated that, to its knowledge, it has not completed any clinical trials.',
+        technicalDetails:
+          'Vanhee et al. at Sciensano encountered two unknown suspicious preparations at the end of 2017 and 2018 and identified Selank and Semax in them, describing both as assumedly cognitive-enhancing research peptides which, to their knowledge, have not completed any clinical trials. An online search excluding the dark web found these peptides freely available as lyophilised powder for injection or in nasal sprays. The laboratory developed and validated a combined LC-MS/MS method covering ten such polypeptides sold online, complying with the European OMCL network recommendation on interpreting unknown-peptide screening results and validated across matrices to ISO 17025. Selank holds a Russian marketing authorisation as an anxiolytic; the trials behind it are not identifiable from outside.',
+        evidenceSource: 'Vanhee C et al., Drug Test Anal 2020;12:371-381',
+        doi: '10.1002/dta.2717',
+        inferredClaim:
+          'That a Russian anxiolytic registration corresponds to a completed clinical trial programme an outside analyst can find',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'sel-a4',
+        category: 'measured',
+        title: 'The one placebo-controlled human study measured brain connectivity, not anxiety',
+        laymanSummary:
+          'Fifty-two healthy volunteers were scanned before and after Selank, Semax or placebo. The study measured how brain regions communicated, not whether anyone felt less anxious.',
+        technicalDetails:
+          'Panikratova et al. at the Mental Health Research Center, Moscow, assessed the effects of Selank and Semax on whole-brain resting-state functional connectivity in 52 healthy participants. Regions of interest were the amygdala, a key region for anxiety regulation, and the dorsolateral prefrontal cortex, key for executive function, in both hemispheres. Resting-state functional MRI was performed three times: before, and 5 and 20 minutes after injection of Semax, Selank or placebo. Between-group and between-condition differences were found in connectivity between the right amygdala and a region spanning fusiform, inferior and middle temporal and parahippocampal gyri in the right hemisphere, with post hoc analysis defining general and specific effects of the two peptides. This is a placebo-controlled human experiment and its endpoint is a connectivity measure in healthy people, not a symptom measure in patients.',
+        evidenceSource: 'Panikratova YR et al., Dokl Biol Sci 2020;490:9-11',
+        doi: '10.1134/S001249662001007X',
+        measuredMetric:
+          'Resting-state amygdala functional connectivity before and 5 and 20 minutes after Selank, Semax or placebo in 52 healthy participants',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sel-a5',
+        category: 'measured',
+        title: 'A consistent animal literature in stress, alcohol and withdrawal',
+        laymanSummary:
+          'Rodent studies report Selank reducing anxiety under chronic stress, protecting memory after alcohol, and easing morphine withdrawal signs.',
+        technicalDetails:
+          'Published rodent work includes enhancement of the anxiety-reducing effect of diazepam under unpredictable chronic mild stress, protection against ethanol-induced memory impairment with regulation of hippocampal BDNF, inhibition of ethanol-induced hyperlocomotion and behavioural sensitisation in DBA/2 mice, attenuation of aversive signs of morphine withdrawal, effects on behaviour in 6-hydroxydopamine-induced parkinsonism, and changes in colon microbiota, large intestine morphology and liver morphology under chronic restraint or foot-shock stress. The direction is consistent and the range of models is wide. It is also almost entirely from Russian institutions, in rodents, published largely in Bulletin of Experimental Biology and Medicine, and none of it is a human outcome.',
+        evidenceSource:
+          'Kasian A et al., Behav Neurol 2017;2017:5091027; Kolik LG et al., Bull Exp Biol Med 2019;167:641-644; Kolik LG et al., Bull Exp Biol Med 2016;162:56-59; Konstantinopolsky MA et al., Bull Exp Biol Med 2022;173:730-733',
+        doi: '10.1155/2017/5091027',
+        measuredMetric:
+          'Anxiety, memory, locomotor sensitisation and withdrawal endpoints across rodent stress, ethanol and morphine models',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sel-a6',
+        category: 'inferred',
+        title: 'A peptide with an immune origin sold for anxiety',
+        laymanSummary:
+          'The core of Selank is tuftsin, an immune-stimulating fragment of an antibody. Its reported effects include changes in cytokine levels, which the anxiolytic framing does not address.',
+        technicalDetails:
+          'Tuftsin, Thr-Lys-Pro-Arg, is released from the heavy chain of immunoglobulin G and stimulates phagocytosis and other macrophage functions. Selank retains that core. Reported effects include changes in the expression of chemokine and cytokine genes and their receptors in response to Selank and its fragments, and changes in cytokine levels under social stress. Whether the anxiolytic effect and the immune effect are the same phenomenon, related phenomena, or independent ones is unresolved. A drug marketed for anxiety whose active core is an immune-stimulating peptide, without a human immunological safety dataset, is an open question rather than a described profile.',
+        evidenceSource:
+          'Kolomin TA et al. Changes in expression of the genes for chemokines, cytokines, and their receptors in response to selank and its fragments. Genetika 2011;47:711-714; Siebert A et al. Tuftsin — properties and analogs. Curr Med Chem 2017;24:3711-3727',
+        doi: '10.2174/0929867324666170725140826',
+        inferredClaim:
+          'That the immune activity of the tuftsin core is irrelevant to a peptide taken chronically for anxiety, which no human study has examined',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given as a nasal spray',
+        laymanDesc:
+          'The route is drops or spray into the nose, which for a peptide cleared in minutes is how enough of it reaches the brain.',
+        molecularDetail:
+          'Intranasal administration in the Russian registered product and in most experimental work; a published comparison of intranasal and intraperitoneal routes in two mouse strains examined whether the pharmacological profile differs by route.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The proline tail resists peptidases',
+        laymanDesc:
+          'The three extra residues on the end block the enzymes that would otherwise cut the peptide apart immediately.',
+        molecularDetail:
+          'The same C-terminal Pro-Gly-Pro glyproline used in Semax. Tuftsin alone is cleaved within seconds; the extension raises the half-life to minutes, which is what makes a peripherally administered dose pharmacologically meaningful at all.',
+        iconName: 'Shield',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Modulates the GABA-A receptor from somewhere other than the benzodiazepine site',
+        laymanDesc:
+          'It appears to make the receptor respond more strongly to GABA, but from a different position than a benzodiazepine occupies.',
+        molecularDetail:
+          'Positive allosteric modulation of [3H]GABA binding on isolated brain-cell membranes, subtype-selective and concentration-dependent. Joint incubation with benzodiazepines produced a non-cumulative effect distinct from either alone, and Selank blocked the modulatory activity of diazepam and olanzapine, which the authors interpret as distinct but possibly partially overlapping sites.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Broad shifts in neurotransmission gene expression',
+        laymanDesc:
+          'An hour after a dose, more than half the neurotransmission genes tested had changed their activity in the frontal cortex.',
+        molecularDetail:
+          'Forty-five of 84 neurotransmission genes changed significantly in rat frontal cortex at one hour and 22 at three hours, with the Selank and GABA expression changes positively correlated at one hour. In an isolated human neuroblastoma line, GABA, Selank and olanzapine were compared on GABAergic neurotransmission gene expression.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A measured connectivity change; no measured anxiety outcome outside Russia',
+        laymanDesc:
+          'In 52 healthy volunteers, brain connectivity around the amygdala shifted against placebo. Whether it relieves anxiety in patients has not been shown in any accessible trial.',
+        molecularDetail:
+          'Placebo-controlled resting-state fMRI found differences in right amygdala connectivity with right temporal cortex after Selank. The anxiolytic indication rests on Russian clinical reports that are unregistered and, according to the Belgian national control laboratory, do not correspond to any completed clinical trial the laboratory could identify.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Panikratova 2020 resting-state fMRI study in healthy participants',
+        phase: 'Placebo-controlled human imaging study, three scans per participant',
+        sampleSize: 52,
+        primaryEndpoint:
+          'Whole-brain resting-state functional connectivity of amygdala and dorsolateral prefrontal cortex regions of interest',
+        endpointMet: true,
+        statisticalPValue:
+          'Between-group and between-condition differences in connectivity between right amygdala and right fusiform, inferior and middle temporal and parahippocampal gyri, with post hoc separation of general and Selank-specific effects',
+        unreportedAdverseSignals:
+          'The participants were healthy and the endpoint was a connectivity measure. The study establishes a central effect and says nothing about anxiety symptoms in patients.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Vyunova 2018 radioligand binding characterisation',
+        phase: 'In vitro, isolated brain-cell plasma membranes',
+        sampleSize: 0,
+        primaryEndpoint:
+          '[3H]GABA binding with and without Selank, alone and jointly with diazepam and olanzapine',
+        endpointMet: true,
+        statisticalPValue:
+          'Selank acted as a positive allosteric modulator of GABA binding; joint action with benzodiazepines was non-cumulative and distinct; Selank blocked the modulatory activity of diazepam and olanzapine',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Volkova 2016 neurotransmission gene expression study',
+        phase: 'Preclinical, rat frontal cortex, real-time PCR array at 1 and 3 hours',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Expression of 84 neurotransmission genes after Selank or GABA at 300 ug/kg',
+        endpointMet: true,
+        statisticalPValue:
+          '45 of 84 genes changed significantly at 1 hour and 22 at 3 hours, with a positive correlation between Selank-induced and GABA-induced changes at 1 hour',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Selank acts as a positive allosteric modulator of [3H]GABA binding on isolated brain-cell membranes, with a non-cumulative interaction with benzodiazepines',
+        '45 of 84 neurotransmission genes changed expression in rat frontal cortex one hour after dosing, correlating with the changes produced by GABA itself',
+        'In 52 healthy participants, placebo-controlled resting-state fMRI showed altered right amygdala connectivity after Selank',
+        'Selank was identified in unknown seized preparations in Belgium and is freely available online as injectable powder and nasal spray',
+      ],
+      unsupportedInferences: [
+        'That the reported GABA-A allosteric mechanism is established, when it rests on radioligand binding from a single laboratory without independent replication',
+        'That a resting-state connectivity change in healthy volunteers corresponds to anxiolysis in patients',
+        'That a Russian anxiolytic registration reflects a clinical trial programme a reader can locate and evaluate',
+        'That the immune activity of the tuftsin core is irrelevant to chronic use for anxiety, which no human study has addressed',
+      ],
+      whatFailedInitially: [
+        'No clinical trial of Selank has been registered on any international trial registry',
+        'A national medicines control laboratory analysing seized Selank preparations recorded that to its knowledge the peptide has not completed any clinical trials',
+      ],
+      realWorldOutcome: [
+        'Registered as an anxiolytic medicine in the Russian Federation; no authorisation in the United States, the European Union or the United Kingdom',
+        'Sold internationally as a nasal spray and as lyophilised powder for injection, with no manufacturer of record',
+        'One of the two peptides that prompted the Belgian national public health institute to build a validated screening method for research peptides',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intranasal drops or spray in the Russian registered product; lyophilised powder for injection and nasal sprays elsewhere',
+      description:
+        'The registered route is intranasal. Outside Russia the same peptide is sold as a nasal spray and as a lyophilised powder for reconstitution and injection. A published comparison of intranasal and intraperitoneal administration in two mouse strains examined whether the pharmacological profile differs by route, which is the kind of question that has not been asked in humans at all.',
+      safetyProfile:
+        'No controlled human safety dataset is available outside the Russian registration file. The one placebo-controlled human study reported connectivity outcomes in healthy volunteers, not safety endpoints. The open question specific to this peptide is immunological: its active core is tuftsin, an immunoglobulin-derived macrophage-activating peptide, and reported effects include changes in chemokine and cytokine gene expression. Nothing is known about what chronic administration of a tuftsin analogue does to immune function in a person.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is Selank a benzodiazepine?',
+        a: 'No, and the interesting claim about it is that it acts on the same receptor from a different place. Radioligand binding on brain-cell membranes found Selank behaving as a positive allosteric modulator of GABA binding, with a joint effect with benzodiazepines that was not additive and differed from either alone, and with Selank blocking the modulatory activity of diazepam and olanzapine. The authors read that as distinct but possibly partially overlapping sites. It is a specific and testable claim from one laboratory, and nobody outside it has reproduced the experiment.',
+      },
+      {
+        q: 'Has it been tested in people?',
+        a: 'Once, in a way a reader can check. Fifty-two healthy participants underwent resting-state functional MRI before and 5 and 20 minutes after injection of Selank, Semax or placebo, and connectivity between the right amygdala and right temporal cortex differed by group and condition. That is a real placebo-controlled human study measuring brain activity in healthy people. It is not an anxiety trial. When the Belgian national public health institute identified Selank in seized preparations, it recorded that to its knowledge the peptide has not completed any clinical trials.',
+        auditNote:
+          'A registered indication in one country and a completed, findable trial programme are different things, and this page keeps them apart.',
+      },
+      {
+        q: 'What about its immune effects?',
+        a: 'They are part of the compound and are not part of the sales pitch. The core of Selank is tuftsin, a four-residue fragment released from immunoglobulin G that activates macrophages. Published work reports Selank and its fragments changing the expression of chemokine and cytokine genes and their receptors, and changing cytokine levels under social stress. Whether that immune activity is separable from the anxiolytic effect, and what chronic dosing does to immune function in a person, has not been studied.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no approved product in any market this site prices from, and therefore no list price to cite. Acquisition costs here come from published sources. A research-peptide vendor asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Vyunova TV et al. Peptide-based anxiolytics: the molecular aspects of heptapeptide Selank biological activity. Protein Pept Lett 2018;25:914-923',
+        identifier: '10.2174/0929866525666180925144642',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Volkova A et al. Selank administration affects the expression of some genes involved in GABAergic neurotransmission. Front Pharmacol 2016;7:31',
+        identifier: '10.3389/fphar.2016.00031',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Filatova E et al. GABA, Selank, and olanzapine affect the expression of genes involved in GABAergic neurotransmission in IMR-32 cells. Front Pharmacol 2017;8:89',
+        identifier: '10.3389/fphar.2017.00089',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Panikratova YR et al. Functional connectomic approach to studying Selank and Semax effects. Dokl Biol Sci 2020;490:9-11',
+        identifier: '10.1134/S001249662001007X',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vanhee C et al. The occurrence of putative cognitive enhancing research peptides in seized pharmaceutical preparations. Drug Test Anal 2020;12:371-381',
+        identifier: '10.1002/dta.2717',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kasian A et al. Peptide Selank enhances the effect of diazepam in reducing anxiety in unpredictable chronic mild stress conditions in rats. Behav Neurol 2017;2017:5091027',
+        identifier: '10.1155/2017/5091027',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kolik LG et al. Selank, peptide analogue of tuftsin, protects against ethanol-induced memory impairment by regulating BDNF content in the hippocampus. Bull Exp Biol Med 2019;167:641-644',
+        identifier: '10.1007/s10517-019-04588-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Konstantinopolsky MA et al. Selank, a peptide analog of tuftsin, attenuates aversive signs of morphine withdrawal in rats. Bull Exp Biol Med 2022;173:730-733',
+        identifier: '10.1007/s10517-022-05624-x',
+        kind: 'doi',
+      },
+      {
+        label: 'Siebert A et al. Tuftsin — properties and analogs. Curr Med Chem 2017;24:3711-3727',
+        identifier: '10.2174/0929867324666170725140826',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 11765600 — selank sequence, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11765600',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 32. Bromantane
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'bromantane',
+    name: 'Bromantane',
+    tradeName: 'Ladasten; also written bromantan and, in the doping literature, bromontan',
+    sponsor:
+      'Developed in the Soviet Union and taken forward by the V. V. Zakusov State Research Institute of Pharmacology, Moscow. Registered as a medicine in the Russian Federation; no marketing authorisation in the United States, the European Union or the United Kingdom',
+    targetGene: 'TH',
+    targetProtein:
+      'No single receptor. The reported proximate action is enhanced dopamine synthesis and release, with induction of neurotrophin and mitogen-activated kinase signalling',
+    modality: 'Small Molecule',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Registered in the Russian Federation for asthenic disorders and neurasthenia. No marketing authorisation anywhere else. Prohibited in sport since it was identified in doping control samples in the 1990s.',
+    patientFriendlyIndication:
+      'A Russian anti-fatigue drug that became a doping case before most people had heard of it',
+    anatomicalSite: 'Dopaminergic terminals in the striatum; hypothalamus and hippocampus',
+    conditionContext: {
+      conditionExplainer:
+        'Asthenia is persistent fatigue and reduced capacity for effort that is not explained by another diagnosis. Soviet pharmacology built a category of drugs for it — actoprotectors, defined as agents that improve physical performance without raising oxygen consumption or heat production.',
+      whyItMatters:
+        'Bromantane is the compound that introduced most of the world to this category, and it did so through a doping scandal rather than a journal. It also has a documented biphasic dose-response: stimulating at low doses, suppressing at high ones, in the same animals on the same scale.',
+      whoTakesThis:
+        'In Russia, patients treated for asthenic states. Elsewhere, people buying it as a nootropic supplement, and — historically — athletes, which is how it entered the analytical literature.',
+      clinicalGoals:
+        'The Russian registered indication is asthenia. Outside Russia there is no defined goal and no registered trial of any kind.',
+    },
+    oneSentenceVerdict:
+      'An adamantane derivative that raises brain dopamine, stimulates behaviour at 30-300 mg/kg and suppresses it above 600 mg/kg in the same rat protocol, entered the medical literature through a 1997 Lancet report as a new doping agent, and is registered as a medicine only in Russia.',
+    laymanHowItWorks:
+      'Bromantane is a cage-shaped adamantane molecule with a bromophenyl group attached. It is not a classical stimulant: it does not force dopamine out of neurons the way amphetamine does. What it appears to do is increase the brain capacity to make and release dopamine, alongside switching on genes for nerve growth factors and the kinase cascades that carry their signals. The Soviet pharmacological category it belongs to — actoprotectors — was defined as drugs that improve physical performance without increasing oxygen use or heat production, which is a different design goal from a stimulant. A systematic rat study using a standard observational protocol found the effect reverses with dose: stimulating below 300 mg/kg and suppressing above 600.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 18,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1C2CC3CC1CC(C2)C3NC4=CC=C(C=C4)Br',
+      chemicalFormula: 'C16H20BrN',
+      molecularWeight: '306.24 g/mol',
+      targetReceptorAffinity:
+        'N-(2-adamantyl)-N-(4-bromophenyl)amine. No single high-affinity receptor has been identified. Reported actions include enhanced dopamine release and metabolism in the dorsal striatum, effects on the serotonergic system, and — at behaviourally active doses in rats — stimulation of central dopaminergic and suppression of muscarinic and nicotinic cholinergic function. Single treatment at 50 mg/kg altered ERK1/ERK2 phosphorylation and expression of BDNF and NGF genes in striatum, hypothalamus and hippocampus.',
+      structureSource: {
+        label:
+          'PubChem CID 4660557 (bromantane) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4660557',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bra-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of an adamantane derivative',
+          description:
+            'Confirm the adamantyl-bromophenylamine structure and distinguish it from the other adamantanes in circulation — amantadine, memantine, rimantadine and adapromine — which share the cage core and are separately pharmacologically active. The bromine gives an unmistakable isotope signature in mass spectrometry, which makes identification straightforward once the analyst thinks to look for it.',
+          reagentsAndBuffer:
+            'Certified bromantane reference standard, high-resolution accurate-mass ESI-MS with the 79Br/81Br isotope doublet, reversed-phase C18 HPLC with diode-array detection, amantadine and memantine as adamantane comparators, 1H and 13C NMR in CDCl3',
+        },
+        {
+          id: 'bra-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a tablet or a supplement capsule',
+          description:
+            'Quantify against label. The registered Russian tablet is 50 mg; capsules sold elsewhere carry vendor-chosen amounts. Given the documented biphasic dose-response in animals, a dose error here is not a matter of getting more or less of the same effect but potentially of getting the opposite one.',
+          dependsOnStepId: 'bra-w1',
+          reagentsAndBuffer:
+            'Methanol or acetonitrile extraction with sonication, 0.45 um filtration, reversed-phase gradient HPLC with UV quantification against a calibration series, LC-high-resolution mass spectrometry screening for co-formulated stimulants and other nootropics',
+        },
+        {
+          id: 'bra-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Urine and plasma preparation for doping control',
+          description:
+            'Bromantane is highly lipophilic and long-lived, which is what made it detectable in doping control samples in the first place and what makes the detection window long. Extraction under basic conditions into an organic solvent is the standard route for a lipophilic amine, and the brominated fragment is the confirmation ion.',
+          dependsOnStepId: 'bra-w2',
+          reagentsAndBuffer:
+            'Alkalinised urine or plasma, liquid-liquid extraction into n-pentane or tert-butyl methyl ether, deuterated adamantane-derivative internal standard, GC-MS with electron impact or LC-MS/MS on the brominated precursor',
+        },
+        {
+          id: 'bra-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Dopamine release and neurotrophin signalling in brain tissue',
+          description:
+            'Two readouts, because the compound is claimed to be both a dopaminergic agent and a neurotrophic one. Microdialysis or synaptosomal release in dorsal striatum measures the dopaminergic claim directly; immunoblotting for ERK1/ERK2 phosphorylation with BDNF and NGF transcript measurement in striatum, hypothalamus and hippocampus measures the other. Running both in the same animals is what would establish whether they are the same effect.',
+          dependsOnStepId: 'bra-w3',
+          reagentsAndBuffer:
+            'In vivo microdialysis of dorsal striatum with HPLC-electrochemical detection of dopamine, DOPAC and HVA, or synaptosomal preparations for release; phospho-ERK1/2 (Thr202/Tyr204) and total ERK immunoblotting, quantitative PCR for BDNF and NGF, with sidnocarb or amphetamine as a classical stimulant comparator',
+        },
+        {
+          id: 'bra-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with a dose-ranging behavioural protocol',
+          description:
+            'Quantify bromantane and read behaviour across a wide dose range using a standard multi-test observational protocol rather than a single dose. The published rat work found stimulation at 30-300 mg/kg and suppression above 600 mg/kg, mydriasis at every dose tested, and a fall in rectal temperature after virtually all doses. A single-dose design would have found any one of those and missed the shape.',
+          dependsOnStepId: 'bra-w4',
+          reagentsAndBuffer:
+            'C18 gradient with formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring on the brominated precursor, deuterated internal standard; Irwin multi-test observational battery across a logarithmic dose range, spontaneous motor activity recording, pain threshold and tactile sensitivity testing, rectal temperature and respiration monitoring',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bra-a1',
+        category: 'measured',
+        title: 'The dose-response reverses: stimulating low, suppressing high',
+        laymanSummary:
+          'In a systematic rat study, bromantane increased activity at 30 to 300 mg/kg and suppressed it above 600 mg/kg, with pupil dilation at every dose and a drop in body temperature after nearly all of them.',
+        technicalDetails:
+          'Iezhitsa et al. profiled bromantane in rats using S. Irwin multi-test observational protocol. At 30-300 mg/kg the drug stimulated behavioural activity; at 600-9,600 mg/kg it suppressed it. Spontaneous motor activity rose after 30-300 mg/kg, was unchanged at 600 mg/kg, and was inhibited above 600 mg/kg. At 300-600 mg/kg it reduced the pain sensitivity threshold, while above 600 mg/kg it raised the pain threshold and tactile sensitivity and the reaction to knock. Mydriasis occurred at every dose studied, blepharoptosis above 10 g/kg, and Kussmaul-like changes in respiration rate and depth above 5 g/kg; some animals showed regurgitation, diarrhoea and polyuria at high doses. Rectal temperature fell by 0.5 to 1 degree Celsius after virtually all doses. The authors attribute the behavioural effects at 30 and 600 mg/kg to stimulation of central dopamine and suppression of muscarinic and nicotinic cholinergic function, with the nicotinic effect more pronounced at the lower dose.',
+        evidenceSource: 'Iezhitsa IN et al., Bull Exp Biol Med 2002;133:380-383',
+        doi: '10.1023/a:1016206306875',
+        measuredMetric:
+          'Behavioural activity, spontaneous motor activity, pain threshold, pupil size, respiration and temperature across doses from 30 mg/kg to 9,600 mg/kg',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bra-a2',
+        category: 'conclusion_shift',
+        title: 'It entered the medical literature as a doping agent',
+        laymanSummary:
+          'The compound became internationally known when it turned up in athlete drug tests, and the first English-language report on it was a 1997 Lancet letter titled "Bromontan, a new doping agent".',
+        technicalDetails:
+          'Burnat et al. published "Bromontan, a new doping agent" in the Lancet in September 1997. For most laboratories outside the former Soviet Union this was the introduction to the compound: a substance appearing in doping control samples that the existing analytical methods had not been built to find, with a pharmacology described in journals most of those laboratories did not read. It has been prohibited in sport since that period. The sequence is worth stating plainly because it inverts the usual order: normally a drug is characterised, then approved, then abused, then added to a prohibited list. Here the prohibited-list entry and the analytical characterisation arrived in the West before any accessible account of what the drug does.',
+        evidenceSource: 'Burnat P et al., Lancet 1997;350:963-964',
+        doi: '10.1016/s0140-6736(05)63310-7',
+        inferredClaim:
+          'That a compound familiar from a prohibited list has a correspondingly familiar and accessible pharmacological dossier',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bra-a3',
+        category: 'measured',
+        title: 'It raises dopamine without behaving like a classical stimulant',
+        laymanSummary:
+          'Studies in rat brain report increased dopamine release and metabolism, but the compound was classed as an actoprotector rather than a stimulant — a category defined by improving performance without raising oxygen use or heat production.',
+        technicalDetails:
+          'Kudrin et al. and Grekhova et al. reported effects of bromantane on the dopaminergic and serotonergic systems of rat brain and on dopamine release and metabolism in the dorsal striatum, describing it as an immunostimulant with psychostimulating action. Morozov et al. compared bromantane with sidnocarb, a classical Soviet psychostimulant, on long-term operant conditioning and its autonomic correlates, and separately examined the mechanisms of its neurotropic action. Oliynyk and Oh, reviewing the actoprotector class in English, define these agents as preparations that enhance body stability against physical loads without increasing oxygen consumption or heat production, and treat bemitil and bromantane as the two main representatives. The distinction between raising dopamine and being a stimulant is a real pharmacological one and it rests, for this compound, on Russian-language primary work.',
+        evidenceSource:
+          'Kudrin VS et al., Eksp Klin Farmakol 1995;58:8-11; Grekhova TV et al., Biull Eksp Biol Med 1995;119:302-304; Oliynyk S, Oh S, Biomol Ther (Seoul) 2012;20:446-456',
+        doi: '10.4062/biomolther.2012.20.5.446',
+        measuredMetric:
+          'Dopamine release and metabolism in dorsal striatum, and operant conditioning against a classical psychostimulant comparator',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bra-a4',
+        category: 'measured',
+        title: 'A single dose changes neurotrophin and kinase signalling',
+        laymanSummary:
+          'One 50 mg/kg dose in rats altered the activity of a key signalling kinase and the expression of the genes for two nerve growth factors, across three brain regions.',
+        technicalDetails:
+          'Salimgareeva et al. at the Institute of Biochemistry and Genetics, Ufa, studied the effect of a single 50 mg/kg dose of ladasten on the content of the mitogen-activated cascade effector kinases ERK1 and ERK2, on phospho-ERK1/ERK2 activity at Thr202/Tyr204, and on expression of the genes for the neurotrophic factors BDNF and NGF in rat striatum, hypothalamus and hippocampus. Related work from the same group examined effects on cytokine markers of inflammation and behaviour in mice with experimental depression-like states, and on T lymphocyte subpopulation composition in C57BL/6 mice. Together these describe a compound acting on growth factor and immune signalling rather than purely on a neurotransmitter, which is consistent with the actoprotector framing and is not the same as demonstrating a clinical effect.',
+        evidenceSource:
+          'Salimgareeva MKh et al., Bull Exp Biol Med 2012;152:313-317; Vakhitova YV et al., Bull Exp Biol Med 2011;152:58-60',
+        doi: '10.1007/s10517-012-1516-z',
+        measuredMetric:
+          'ERK1/ERK2 content and Thr202/Tyr204 phosphorylation, and BDNF and NGF gene expression, in three rat brain regions after a single 50 mg/kg dose',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bra-a5',
+        category: 'inferred',
+        title: 'The clinical evidence is Russian, unregistered, and partly self-rated',
+        laymanSummary:
+          'The trials in neurasthenia are published in Russian, not registered anywhere, and one of them reports that patients rated the drug about as tolerable as placebo.',
+        technicalDetails:
+          'Reutova et al. studied self-evaluation of a single 15 mg dose of ladasten against placebo in patients diagnosed with neurasthenia, at the Zakusov Institute. Their reported finding is that the self-rated high tolerability of ladasten treatment is comparable with that of placebo, that no relationship was found between self-evaluated single-dose effects and patient personality features, and that correlations existed between self-estimations and pre-treatment psychopathological and psychophysiological parameters — while the self-evaluation of the placebo effect was related to personality features. A companion paper examined ladasten against placebo in neurasthenia patients grouped by EEG alpha rhythm type. Neither is registered on any trial registry, neither has been replicated outside Russia, and neither is available in English beyond an abstract.',
+        evidenceSource:
+          'Reutova MA et al., Eksp Klin Farmakol 2011;74:6-13 (PMID 22288153); Siuniakov SA et al., Eksp Klin Farmakol 2012;75:7-13 (PMID 22834121)',
+        inferredClaim:
+          'That Russian-language self-evaluation studies in neurasthenia establish clinical efficacy, when one of them reports tolerability comparable with placebo and neither is registered or replicated',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bra-a6',
+        category: 'inferred',
+        title: 'No human trial of the thing it is bought for',
+        laymanSummary:
+          'People take bromantane for energy, focus and heat tolerance. No controlled trial has measured any of those in a healthy person.',
+        technicalDetails:
+          'The registered indication is asthenia in patients. The claims made in the supplement market — physical stamina, mental energy, tolerance of heat and of altitude — have no randomised placebo-controlled evidence in healthy volunteers in the indexed literature and no registered trial anywhere. Related Russian work has examined pharmacological correction of adaptive reactions during short-term movement between latitudes, which is the nearest published approximation and is not a controlled efficacy trial. The rodent literature meanwhile documents effects on sexual behaviour and conception, on postnatal development of rat pups, on the cardiovascular and sympathetic-adrenal systems, and an acute toxicity profile — a body of safety pharmacology that exists precisely because these questions were asked in animals and not in people.',
+        evidenceSource:
+          'Kuzubova EA et al. The effect of bromantan on sexual behavior and conception in rats. Eksp Klin Farmakol 2004;67:34-37; bromantane acute toxicity and postnatal development studies, Eksp Klin Farmakol 1999-2000; absence of any registered human trial',
+        inferredClaim:
+          'That an actoprotector effect demonstrated in rodents and claimed in Russian clinical practice transfers to stamina or focus in a healthy adult',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken by mouth as a lipophilic cage molecule',
+        laymanDesc:
+          'The adamantane cage makes it very fat-soluble, so it is well absorbed and stays in the body a long time.',
+        molecularDetail:
+          'The registered Russian tablet is 50 mg. High lipophilicity from the adamantane core gives good oral absorption, wide tissue distribution and a long elimination phase, which is also what gives it a long detection window in doping control.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Distributes widely into brain tissue',
+        laymanDesc:
+          'It crosses into the brain readily and reaches several regions rather than concentrating in one.',
+        molecularDetail:
+          'Effects have been measured in striatum, hypothalamus and hippocampus after a single dose, consistent with wide central distribution rather than a regionally selective action.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'No receptor; dopamine synthesis and release go up',
+        laymanDesc:
+          'Nobody has found a binding site. What is reported is more dopamine being made and released, rather than dopamine being forced out of storage.',
+        molecularDetail:
+          'Reported enhancement of dopamine release and metabolism in dorsal striatum with effects on the serotonergic system, and — inferred from the behavioural profile in the Irwin protocol — stimulation of central dopaminergic and suppression of muscarinic and nicotinic cholinergic function. It is classed as an actoprotector rather than a psychostimulant, a category defined by improving performance without raising oxygen consumption or heat production.',
+        iconName: 'HelpCircle',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Growth factor and kinase signalling shift',
+        laymanDesc:
+          'A single dose changes the activity of a major signalling kinase and the expression of two nerve growth factor genes.',
+        molecularDetail:
+          'A single 50 mg/kg dose altered ERK1/ERK2 content and Thr202/Tyr204 phosphorylation and BDNF and NGF gene expression across striatum, hypothalamus and hippocampus. Related work reports effects on inflammatory cytokine markers and on T lymphocyte subpopulations, consistent with the description of the compound as an immunostimulant with psychostimulating action.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Biphasic in animals, registered in one country, unstudied in healthy people',
+        laymanDesc:
+          'The effect reverses direction with dose in rats. In people, the evidence is Russian, unregistered, and does not cover the use it is bought for.',
+        molecularDetail:
+          'Stimulation at 30-300 mg/kg and suppression above 600 mg/kg in the Irwin protocol, with mydriasis at every dose and hypothermia after nearly all. Human evidence consists of unregistered Russian studies in neurasthenia, one of which reports self-rated tolerability comparable with placebo. No registered trial of bromantane exists on any international registry.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Iezhitsa 2002 Irwin observational profile in rats',
+        phase: 'Preclinical safety pharmacology, single dose, 30 mg/kg to 9,600 mg/kg',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Behavioural activity, spontaneous motor activity, sensory thresholds, autonomic signs and temperature on the Irwin multi-test protocol',
+        endpointMet: true,
+        statisticalPValue:
+          'Stimulation at 30-300 mg/kg and suppression at 600-9,600 mg/kg; mydriasis at all doses; blepharoptosis above 10 g/kg; Kussmaul-like respiration above 5 g/kg; rectal temperature down 0.5-1 degree Celsius after virtually all doses',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Reutova 2011 single-dose self-evaluation study in neurasthenia',
+        phase: 'Clinical, single 15 mg dose versus placebo, published in Russian',
+        sampleSize: 0,
+        primaryEndpoint: 'Patient self-evaluation of drug effect and tolerability against placebo',
+        endpointMet: false,
+        statisticalPValue:
+          'Self-rated high tolerability of ladasten reported as comparable with that of placebo; no relationship found between self-evaluated single-dose effects and patient personality features',
+        unreportedAdverseSignals:
+          'Not registered on any trial registry, not replicated outside Russia, and available in English only as an abstract.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Salimgareeva 2012 neurotrophin and kinase signalling study',
+        phase: 'Preclinical, single 50 mg/kg dose in rats, three brain regions',
+        sampleSize: 0,
+        primaryEndpoint:
+          'ERK1/ERK2 content and phosphorylation and BDNF and NGF gene expression in striatum, hypothalamus and hippocampus',
+        endpointMet: true,
+        statisticalPValue:
+          'Reported changes in ERK1/ERK2 phosphorylation at Thr202/Tyr204 and in neurotrophin gene expression after a single dose',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Behavioural stimulation at 30-300 mg/kg reversing to suppression at 600-9,600 mg/kg in a standard rat observational protocol',
+        'Mydriasis at every dose tested and a fall in rectal temperature of 0.5-1 degree Celsius after virtually all doses',
+        'Altered ERK1/ERK2 phosphorylation and BDNF and NGF gene expression in three brain regions after a single 50 mg/kg dose',
+        'Identification in doping control samples, reported in the Lancet in 1997 as a new doping agent',
+      ],
+      unsupportedInferences: [
+        'That rodent actoprotector effects transfer to stamina, focus or heat tolerance in a healthy adult, which no trial has measured',
+        'That the Russian neurasthenia studies establish efficacy, when they are unregistered, unreplicated and in one case report tolerability comparable with placebo',
+        'That the absence of a stimulant classification means an absence of stimulant-like risk, when the behavioural profile is attributed to central dopaminergic stimulation',
+        'That a vendor-chosen capsule dose is safe, in a compound whose direction of effect reverses across the dose range in animals',
+      ],
+      whatFailedInitially: [
+        'No clinical trial of bromantane has been registered on any international registry',
+        'The compound reached the international literature through doping control rather than through publication of its pharmacology',
+      ],
+      realWorldOutcome: [
+        'Registered as a medicine in the Russian Federation for asthenic disorders; no authorisation in the United States, the European Union or the United Kingdom',
+        'Prohibited in sport, having been reported in the Lancet as a new doping agent in September 1997',
+        'Sold internationally as a nootropic supplement at vendor-determined doses, without a manufacturer of record',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 50 mg in the Russian registered product; capsules and powder elsewhere',
+      description:
+        'A conventional oral tablet where it is registered. Elsewhere it is sold as capsules and bulk powder at vendor-chosen doses. The lipophilic adamantane core gives wide distribution and slow elimination, which is why the detection window in doping control is long and why accumulation on repeated dosing is a real rather than theoretical consideration.',
+      safetyProfile:
+        'No controlled human safety dataset exists outside the Russian registration file. The animal safety pharmacology is unusually detailed for a compound in this file and includes acute toxicity studies, a two-month neurological status study, effects on the cardiovascular and sympathetic-adrenal systems, effects on sexual behaviour and conception, and effects on postnatal development of rat pups. The single most practically relevant finding is the biphasic dose-response: the direction of the behavioural effect reverses between 300 and 600 mg/kg in rats, which makes dose accuracy a safety question and not only an efficacy one.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is bromantane a stimulant?',
+        a: 'It raises dopamine and it is not classified as one. The Soviet pharmacological category it belongs to, actoprotectors, is defined as agents that enhance stability against physical loads without increasing oxygen consumption or heat production — a deliberately different design goal from a psychostimulant, and the reason bromantane was compared experimentally against sidnocarb rather than assumed equivalent to it. What is measured is increased dopamine release and metabolism in the dorsal striatum. What is inferred from the behavioural profile is stimulation of central dopaminergic and suppression of cholinergic function. No binding site has been identified.',
+      },
+      {
+        q: 'Why does the dose matter so much?',
+        a: 'Because in rats the effect reverses. Using a standard multi-test observational protocol, bromantane stimulated behavioural activity at 30 to 300 mg/kg and suppressed it at 600 mg/kg and above. Spontaneous motor activity rose below 300 mg/kg, was unchanged at 600, and was inhibited above it. Pain threshold went down at 300-600 mg/kg and up above 600. In a compound sold at vendor-determined doses with no manufacturer of record, a biphasic dose-response is a practical hazard rather than a curiosity.',
+        auditNote:
+          'These are rat doses and do not translate directly to a human milligram figure. The shape of the curve is the point, not the numbers.',
+      },
+      {
+        q: 'How did anyone outside Russia hear about it?',
+        a: 'Through doping control. The first English-language report in the medical literature was a letter in the Lancet in September 1997 titled "Bromontan, a new doping agent". For most laboratories that was the introduction: a compound appearing in athlete samples that existing methods were not designed to detect, with a pharmacology described in journals those laboratories did not read. It has been prohibited in sport since.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no approved product in any market this site prices from, and therefore no list price to cite. Acquisition costs here come from published sources. A supplement vendor asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Iezhitsa IN et al. Toxic effect of single treatment with bromantane on neurological status of experimental animals. Bull Exp Biol Med 2002;133:380-383',
+        identifier: '10.1023/a:1016206306875',
+        kind: 'doi',
+      },
+      {
+        label: 'Burnat P et al. Bromontan, a new doping agent. Lancet 1997;350:963-964',
+        identifier: '10.1016/s0140-6736(05)63310-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Oliynyk S, Oh S. The pharmacology of actoprotectors: practical application for improvement of mental and physical performance. Biomol Ther (Seoul) 2012;20:446-456',
+        identifier: '10.4062/biomolther.2012.20.5.446',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Salimgareeva MKh et al. Mechanisms of action of ladasten: activation of gene expression for neurotrophins and mitogen-activated kinases. Bull Exp Biol Med 2012;152:313-317',
+        identifier: '10.1007/s10517-012-1516-z',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vakhitova YV et al. Effect of ladasten on the content of cytokine markers of inflammation and behavior of mice with experimental depression-like state. Bull Exp Biol Med 2011;152:58-60',
+        identifier: '10.1007/s10517-011-1453-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kudrin VS et al. The effect of bromantane on the dopaminergic and serotoninergic systems of the rat brain. Eksp Klin Farmakol 1995;58:8-11',
+        identifier: '7580761',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Grekhova TV et al. The effect of bromantane, a new immunostimulant with psychostimulating action, on release and metabolism of dopamine in the dorsal striatum of freely moving rats. Biull Eksp Biol Med 1995;119:302-304',
+        identifier: '7795203',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Reutova MA et al. Self-evaluation of single test doses and objective indices of ladasten versus placebo efficacy in neurasthenic patients. Eksp Klin Farmakol 2011;74:6-13',
+        identifier: '22288153',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Kuzubova EA et al. The effect of bromantan on the sexual behavior and conception in rats. Eksp Klin Farmakol 2004;67:34-37',
+        identifier: '15341065',
+        kind: 'pmid',
+      },
+      {
+        label: 'PubChem CID 4660557 — bromantane structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4660557',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 33. Stenabolic (SR9009)
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'stenabolic',
+    name: 'Stenabolic (SR9009)',
+    tradeName: 'Sold as Stenabolic; the compound is SR9009, with the close analogue SR9011',
+    sponsor:
+      'Thomas Burris laboratory, Scripps Research Institute, Jupiter, Florida. It has never had a pharmaceutical sponsor, never entered a clinical trial, and holds no marketing authorisation anywhere',
+    targetGene: 'NR1D1',
+    targetProtein:
+      'REV-ERB alpha and REV-ERB beta nuclear receptors — the intended target, which the compound has been shown not to require',
+    modality: 'Small Molecule',
+    approvalStatus: 'Pre-clinical / Open Source',
+    indication:
+      'None. SR9009 has never been given to a human being in a registered clinical trial, has no approved indication anywhere, and is sold as a research chemical alongside SARMs.',
+    patientFriendlyIndication:
+      'Sold as "exercise in a pill" — never tested in a human, and it does not need its own target',
+    anatomicalSite:
+      'Nucleus of hepatocytes, skeletal myocytes and adipocytes, where REV-ERB acts as a transcriptional repressor',
+    conditionContext: {
+      conditionExplainer:
+        'REV-ERB alpha and beta are nuclear receptors that sit inside the circadian clock and switch off the genes they bind. They are also the link between the clock and metabolism: how much fat the liver makes, how many mitochondria a muscle fibre keeps.',
+      whyItMatters:
+        'SR9009 is the clearest case in this whole file of a compound whose famous result turned out not to depend on its famous mechanism. A 2019 study built mice lacking both REV-ERBs and found SR9009 still changed cell viability, metabolism and transcription in cells that had no target for it to act on.',
+      whoTakesThis:
+        'Nobody in a trial, because there has never been one. Outside trials, people buying it as an endurance and fat-loss compound, usually alongside SARMs — and, in the only chain-of-custody analysis of that market, people who bought something labelled as a SARM and received this instead.',
+      clinicalGoals:
+        'None. There is no human endpoint, no human dose and no human pharmacokinetic study for this compound.',
+    },
+    oneSentenceVerdict:
+      'The "exercise in a pill" compound: it improved running capacity and reduced fat mass in mice, has never been given to a human in any trial, is barely orally bioavailable, and was shown in 2019 to alter cell viability, metabolism and transcription in cells engineered to lack both of the receptors it was designed to act on.',
+    laymanHowItWorks:
+      'Every cell runs a clock, and REV-ERB is one of its gears. It is a nuclear receptor that switches genes off, including genes controlling how much fat the liver makes and how many mitochondria a muscle keeps. SR9009 was built to switch REV-ERB on harder. In mice this did impressive things: less fat mass, better cholesterol and blood sugar, more mitochondria in muscle, and longer running times — which is where "exercise in a pill" came from. Then a laboratory made mice with both REV-ERB genes deleted and gave their cells SR9009. The cells still responded. Whatever SR9009 is doing, at least some of it is not being done through the receptor the entire story is built on.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 14,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCOC(=O)N1CCC(C1)CN(CC2=CC=C(C=C2)Cl)CC3=CC=C(S3)[N+](=O)[O-]',
+      chemicalFormula: 'C20H24ClN3O4S',
+      molecularWeight: '437.9 g/mol',
+      targetReceptorAffinity:
+        'Ethyl 3-[[[(4-chlorophenyl)methyl][(5-nitro-2-thienyl)methyl]amino]methyl]pyrrolidine-1-carboxylate. Designed as a synthetic agonist of the REV-ERB nuclear receptors, which use haem as their natural ligand. Its close analogue SR9011 shares the same core with a pentylurea in place of the ethyl carbamate. SR9009 has poor oral bioavailability and a short half-life, which is why the mouse work used twice-daily intraperitoneal injection rather than oral dosing — and why an oral capsule is a delivery route the published pharmacology does not support.',
+      structureSource: {
+        label:
+          'PubChem CID 57394020 (SR9009) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/57394020',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sr9-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity against SR9011 and the nitrothiophene degradants',
+          description:
+            'Separate SR9009 from SR9011, which differ only in the group on the pyrrolidine nitrogen and are sold interchangeably. The nitrothiophene is photolabile and hydrolytically unstable, so a purity result is only meaningful with a stated storage and handling history; a batch that has degraded looks different from one that was made badly and both look wrong.',
+          reagentsAndBuffer:
+            'Certified SR9009 and SR9011 reference standards, reversed-phase C18 UHPLC with diode-array detection at 254 and 320 nm for the nitrothiophene chromophore, high-resolution accurate-mass ESI-MS with chlorine isotope confirmation, 1H NMR in CDCl3, amber glassware throughout',
+        },
+        {
+          id: 'sr9-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a product sold as a SARM or as stenabolic',
+          description:
+            'Quantify against label, and screen the same extract for the compounds it is sold alongside and mistaken for. In the only chain-of-custody analysis of internet SARM products, SR9009 was one of the unapproved drugs found in items that contained no SARM at all — so this assay answers "what is this" before it answers "how much".',
+          dependsOnStepId: 'sr9-w1',
+          reagentsAndBuffer:
+            'Methanol extraction with sonication, 0.45 um PTFE filtration, reversed-phase gradient HPLC with diode-array detection, LC-high-resolution mass spectrometry screening against a SARM, REV-ERB agonist and PPAR agonist library',
+        },
+        {
+          id: 'sr9-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and urine preparation with metabolite coverage',
+          description:
+            'SR9009 is extensively metabolised and its parent concentration is low, so a doping-control or exposure method has to target metabolites. Published anti-doping work has used fungal and liver-homogenate models to generate the metabolite panel before looking for it in a real sample, which is the standard approach when human excretion data do not exist because no human has been dosed in a study.',
+          dependsOnStepId: 'sr9-w2',
+          reagentsAndBuffer:
+            'Liver homogenate or Cunninghamella elegans fungal biotransformation to generate reference metabolites, protein precipitation or solid-phase extraction of plasma and urine, deuterated internal standard where available, LC-high-resolution mass spectrometry',
+        },
+        {
+          id: 'sr9-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'The decisive experiment: does it work without its receptor?',
+          description:
+            'Run the compound in cells that cannot respond to it through the intended pathway. Conditional double deletion of REV-ERB alpha and beta in hepatocytes and embryonic stem cells, then SR9009, then read viability, metabolic flux and transcription. This is the design that separates a target-mediated effect from an off-target one, and it is the design that had not been done for the first seven years of the compound existence.',
+          dependsOnStepId: 'sr9-w3',
+          reagentsAndBuffer:
+            'Conditional Nr1d1 and Nr1d2 floxed mouse hepatocytes and embryonic stem cells with Cre-mediated deletion, wild-type controls in parallel, cell viability assay, extracellular flux analysis for oxygen consumption and extracellular acidification, RNA sequencing with genotype-by-treatment analysis',
+        },
+        {
+          id: 'sr9-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the circadian and mitochondrial readouts',
+          description:
+            'Quantify SR9009 and its metabolites, and read the endpoints the reputation rests on: core clock gene expression in hypothalamus, metabolic gene expression in liver, muscle and adipose tissue, mitochondrial content in oxidative muscle, and running capacity. Reporting a mitochondrial or exercise result without the genotype control from the previous step no longer establishes what it used to.',
+          dependsOnStepId: 'sr9-w4',
+          reagentsAndBuffer:
+            'C18 gradient with formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring; quantitative PCR for Bmal1, Per2, Cry2 and Npas2, citrate synthase activity and mitochondrial DNA copy number for mitochondrial content, LKB1-AMPK-SIRT1-PGC-1alpha pathway immunoblotting, treadmill running-to-exhaustion protocol',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sr9-a1',
+        category: 'conclusion_shift',
+        title: 'It still works in cells that have no REV-ERB at all',
+        laymanSummary:
+          'Researchers deleted both REV-ERB genes and gave the resulting cells SR9009. The cells still changed their viability, their metabolism and their gene expression.',
+        technicalDetails:
+          'Dierickx et al. generated a mouse model for conditional genetic deletion of both REV-ERB alpha and REV-ERB beta, noting that the direct involvement of REV-ERBs in the reported effects of SR9009 had never been thoroughly assessed because no experiment had been performed in the complete absence of both proteins. In hepatocytes and embryonic stem cells lacking both receptors, SR9009 still decreased cell viability, rewired cellular metabolism and altered gene transcription. Their conclusion is stated flatly: the effects of SR9009 cannot be used solely as a surrogate for REV-ERB activity. Every mouse result attributed to REV-ERB agonism by this compound — the fat loss, the metabolic gene changes, the running capacity — is now a result whose mechanism is unestablished, and some of it may not be REV-ERB at all.',
+        evidenceSource: 'Dierickx P et al., Proc Natl Acad Sci U S A 2019;116:12147-12152',
+        doi: '10.1073/pnas.1904226116',
+        inferredClaim:
+          'That SR9009 effects demonstrate REV-ERB pharmacology, which the double-knockout experiment specifically refutes',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sr9-a2',
+        category: 'measured',
+        title: 'In obese mice it reduced fat mass and improved lipids and glucose',
+        laymanSummary:
+          'The original 2012 Nature paper showed a REV-ERB agonist shifting circadian and metabolic gene expression, raising energy expenditure, and reducing obesity in diet-induced obese mice.',
+        technicalDetails:
+          'Solt et al. described the identification of potent synthetic REV-ERB agonists with in vivo activity. Administration altered circadian behaviour and the circadian pattern of core clock gene expression in mouse hypothalamus, and altered the circadian expression of an array of metabolic genes in liver, skeletal muscle and adipose tissue, resulting in increased energy expenditure. Treatment of diet-induced obese mice with a REV-ERB agonist decreased obesity by reducing fat mass and markedly improving dyslipidaemia and hyperglycaemia. The authors proposed these ligands as potentially beneficial in sleep and metabolic disorders. The dosing route in this work was injection, not oral, and every subject was a mouse.',
+        evidenceSource: 'Solt LA et al., Nature 2012;485:62-68',
+        doi: '10.1038/nature11030',
+        measuredMetric:
+          'Fat mass, plasma lipids and glucose, energy expenditure and circadian gene expression in diet-induced obese mice',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sr9-a3',
+        category: 'measured',
+        title: 'Where "exercise in a pill" came from',
+        laymanSummary:
+          'A 2013 paper showed that REV-ERB alpha controls mitochondrial number in oxidative muscle and that activating it pharmacologically increased exercise capacity in mice.',
+        technicalDetails:
+          'Woldt et al. showed that Rev-erb-alpha is highly expressed in oxidative skeletal muscle, and that muscle deficiency of it reduced mitochondrial content and oxidative function while upregulating autophagy — impairing mitochondrial biogenesis and increasing clearance of the organelle, and compromising exercise capacity. At the molecular level, deficiency deactivated the Lkb1-Ampk-Sirt1-Ppargc-1alpha pathway; the effects were reproduced in isolated fibres and in muscle cells after Nr1d1 knockdown. Conversely, overexpression in vitro increased mitochondrial number and respiratory capacity, and muscle overexpression or pharmacological activation in vivo increased exercise capacity. This is the source of the endurance claim. It is a mouse study, its pharmacological arm used SR9009, and the 2019 knockout work means the pharmacological arm can no longer be read as proof that the effect was REV-ERB-mediated.',
+        evidenceSource: 'Woldt E et al., Nat Med 2013;19:1039-1046',
+        doi: '10.1038/nm.3213',
+        measuredMetric:
+          'Mitochondrial content and oxidative function in skeletal muscle, and exercise capacity, on genetic and pharmacological REV-ERB manipulation in mice',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sr9-a4',
+        category: 'measured',
+        title: 'It turned up in products sold as SARMs',
+        laymanSummary:
+          'When 44 internet products advertised as SARMs were bought and analysed, SR9009 was one of the unapproved drugs found in items that contained no SARM at all.',
+        technicalDetails:
+          'Van Wagoner et al. identified suppliers by web search, purchased 44 products sold as selective androgen receptor modulators, and analysed them under chain of custody using WADA-approved procedures. Only 23 of 44 (52%) contained a SARM. A further 17 (39%) contained a different unapproved drug — and the three named are ibutamoren, GW501516 and the REV-ERB agonist SR9009. No active compound at all was found in 4 (9%), substances not on the label were present in 11 (25%), and the measured amount matched the label in only 18 of 44 (41%). For SR9009 specifically, this means a proportion of the personal experience reports attached to it belong to people who thought they were taking something else, and a proportion of the reports attached to SARMs belong to people who were taking this.',
+        evidenceSource: 'Van Wagoner RM et al., JAMA 2017;318:2004-2010',
+        doi: '10.1001/jama.2017.17069',
+        measuredMetric:
+          'Proportion of internet SARM products containing a different unapproved drug, with SR9009 among those named',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sr9-a5',
+        category: 'failed',
+        title: 'Never given to a human being in a trial',
+        laymanSummary:
+          'There is no registered clinical trial of SR9009 anywhere, at any phase, in any country, fourteen years after the Nature paper.',
+        technicalDetails:
+          'SR9009 has no registered interventional study on any trial registry, no published human pharmacokinetic data, no phase 1, and no pharmaceutical sponsor. It is prohibited at all times in sport under WADA class S4.5 as a metabolic modulator. The practical reason it never advanced is documented in the chemistry rather than in a press release: SR9009 has poor oral bioavailability and a short half-life, which is why the defining mouse experiments used twice-daily intraperitoneal injection. A compound sold as an oral capsule, whose own animal literature could not use the oral route, is being taken in a way its pharmacology does not support even before the mechanism question is raised.',
+        evidenceSource:
+          'Absence of any registered interventional trial of SR9009 on ClinicalTrials.gov; Solt LA et al., Nature 2012;485:62-68 for the injection route used in the defining in vivo work',
+        doi: '10.1038/nature11030',
+        measuredMetric:
+          'Registered human clinical trials of SR9009: zero. Published human pharmacokinetic studies: zero',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sr9-a6',
+        category: 'measured',
+        title: 'The doping laboratories had to build the metabolite map from scratch',
+        laymanSummary:
+          'Because no human has been dosed in a study, anti-doping chemists generated SR9009 metabolites in liver homogenate and in a fungus in order to know what to look for.',
+        technicalDetails:
+          'Anti-doping analytical work on SR9009 has used liver homogenate and the fungus Cunninghamella elegans as biotransformation models to generate metabolic profiles by LC-high-resolution mass spectrometry, because human excretion data do not exist. That is the standard workaround when a prohibited compound has never been administered under study conditions, and it is a precise measure of how far outside the pharmaceutical system this compound sits: the analytical community has had to reconstruct its metabolism from surrogate systems in order to police it.',
+        evidenceSource:
+          'Palathinkal AB et al. LC-HRMS-based metabolic profiling of the REV-ERB agonist SR9009 in camel liver homogenate and Cunninghamella elegans for anti-doping purposes. Rapid Commun Mass Spectrom 2026;40:e70149',
+        doi: '10.1002/rcm.70149',
+        measuredMetric:
+          'Metabolite profile of SR9009 generated in liver homogenate and fungal biotransformation models for doping control',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected in the animal work; swallowed by everyone else',
+        laymanDesc:
+          'The mouse studies that made its reputation used twice-daily injections because it is poorly absorbed by mouth. It is sold as an oral capsule.',
+        molecularDetail:
+          'SR9009 has poor oral bioavailability and a short half-life. The in vivo circadian and metabolic work used intraperitoneal administration. No human pharmacokinetic study exists for any route, so the exposure produced by an oral capsule is unknown rather than merely low.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters the cell to reach a nuclear receptor',
+        laymanDesc:
+          'Its intended target sits on the DNA inside the nucleus, so the molecule has to get all the way in.',
+        molecularDetail:
+          'REV-ERB alpha and beta are nuclear receptors whose natural ligand is haem. They act as constitutive transcriptional repressors, recruiting the NCoR-HDAC3 corepressor complex to REV-ERB response elements in target promoters.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Designed to switch REV-ERB on — and not dependent on it',
+        laymanDesc:
+          'It was built to activate REV-ERB. In cells with both REV-ERB genes deleted, it still changed metabolism and gene expression.',
+        molecularDetail:
+          'SR9009 is a synthetic REV-ERB agonist. In hepatocytes and embryonic stem cells with conditional deletion of both Nr1d1 and Nr1d2, it decreased viability, rewired metabolism and altered transcription, establishing that its effects cannot be used solely as a surrogate for REV-ERB activity. The off-target mechanism has not been identified.',
+        iconName: 'AlertTriangle',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Clock and metabolic gene programmes shift',
+        laymanDesc:
+          'In mice, core clock genes and metabolic genes in liver, muscle and fat change their daily pattern, and energy expenditure rises.',
+        molecularDetail:
+          'Altered circadian behaviour and hypothalamic core clock gene expression, altered circadian expression of metabolic genes in liver, skeletal muscle and adipose tissue, increased energy expenditure, reduced fat mass, and improved dyslipidaemia and hyperglycaemia in diet-induced obese mice. In oxidative muscle, REV-ERB alpha activity controls mitochondrial biogenesis and autophagy through the LKB1-AMPK-SIRT1-PGC-1alpha pathway.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Impressive in mice, absent in humans, mechanism unresolved',
+        laymanDesc:
+          'Fourteen years after the Nature paper, no human has taken it in a trial and the mechanism behind the mouse results is an open question.',
+        molecularDetail:
+          'Zero registered clinical trials, zero human pharmacokinetic data, no sponsor, poor oral bioavailability, prohibited in sport as a metabolic modulator, and present in products sold as something else. The 2019 double-knockout result means the animal findings stand as observations while their attribution to REV-ERB does not.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Solt 2012 in vivo characterisation in mice',
+        phase: 'Preclinical, diet-induced obese and normal mice, intraperitoneal dosing',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Circadian behaviour, core clock and metabolic gene expression, energy expenditure, fat mass, plasma lipids and glucose',
+        endpointMet: true,
+        statisticalPValue:
+          'Altered circadian behaviour and hypothalamic clock gene expression; increased energy expenditure; decreased obesity with reduced fat mass and markedly improved dyslipidaemia and hyperglycaemia in diet-induced obese mice',
+        unreportedAdverseSignals:
+          'Dosing was by injection because of poor oral bioavailability, a limitation that the oral products sold today do not address.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Woldt 2013 skeletal muscle and exercise capacity study',
+        phase: 'Preclinical, genetic and pharmacological manipulation in mice and muscle cells',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Mitochondrial content and oxidative function in skeletal muscle, and exercise capacity',
+        endpointMet: true,
+        statisticalPValue:
+          'Rev-erb-alpha deficiency reduced mitochondrial content and oxidative function and compromised exercise capacity; overexpression or pharmacological activation increased mitochondrial number, respiratory capacity and exercise capacity',
+        unreportedAdverseSignals:
+          'The pharmacological arm used SR9009, whose effects were later shown to occur in the complete absence of both REV-ERB proteins.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Dierickx 2019 REV-ERB double-knockout experiment',
+        phase:
+          'Preclinical, conditional Nr1d1 and Nr1d2 deletion in hepatocytes and embryonic stem cells',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Cell viability, cellular metabolism and gene transcription in response to SR9009 with and without both REV-ERB proteins',
+        endpointMet: false,
+        statisticalPValue:
+          'SR9009 decreased cell viability, rewired cellular metabolism and altered gene transcription in cells lacking both REV-ERB alpha and beta; the authors conclude its effects cannot be used solely as a surrogate for REV-ERB activity',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Van Wagoner 2017 internet product content analysis',
+        phase: 'Analytical, chain-of-custody purchase and assay of 44 products sold as SARMs',
+        sampleSize: 44,
+        primaryEndpoint: 'Identity and quantity of active compounds against label',
+        endpointMet: true,
+        statisticalPValue:
+          '52% contained a SARM; 39% contained a different unapproved drug, among them SR9009; 25% contained a substance not on the label; 9% contained no active compound; 41% matched the labelled content',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'SR9009 decreased cell viability, rewired metabolism and altered transcription in hepatocytes and embryonic stem cells lacking both REV-ERB alpha and beta',
+        'A REV-ERB agonist reduced fat mass and improved dyslipidaemia and hyperglycaemia in diet-induced obese mice, with increased energy expenditure',
+        'REV-ERB alpha controls mitochondrial content and oxidative function in skeletal muscle through the LKB1-AMPK-SIRT1-PGC-1alpha pathway, and its activation increased exercise capacity in mice',
+        'SR9009 was found in internet products sold as SARMs, in the 39% of items that contained a different unapproved drug',
+      ],
+      unsupportedInferences: [
+        'That the SR9009 mouse results demonstrate REV-ERB pharmacology, which the double-knockout experiment refutes',
+        'That an oral capsule delivers the exposure achieved by twice-daily injection in mice, when the compound has poor oral bioavailability and no human pharmacokinetic data',
+        'That improved running capacity in mice predicts an endurance effect in a person, which no study has attempted',
+        'That fourteen years of preclinical interest implies a safety profile; there is no human safety data of any kind',
+      ],
+      whatFailedInitially: [
+        'No clinical trial of SR9009 has ever been registered, at any phase, in any country',
+        'The compound has no pharmaceutical sponsor and was never taken into development despite two high-profile journal papers',
+        'The mechanistic attribution underlying its entire reputation was overturned in 2019',
+      ],
+      realWorldOutcome: [
+        'Prohibited at all times in sport under WADA class S4.5 as a metabolic modulator, with detection methods built from surrogate biotransformation models because no human excretion data exist',
+        'Sold as a research chemical alongside SARMs, and found inside products sold as SARMs that contained no SARM',
+        'REV-ERB itself remains a serious drug target under active investigation; SR9009 is no longer a reliable tool for studying it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intraperitoneal injection in the animal literature; oral capsules and liquids sold as research chemicals',
+      description:
+        'The defining in vivo experiments used twice-daily intraperitoneal injection because SR9009 has poor oral bioavailability and a short half-life. What is sold is an oral capsule or dropper liquid. There is no human pharmacokinetic study for any route, so the relationship between a capsule and any published dose is unknown.',
+      safetyProfile:
+        'There is no human safety data of any kind, because no human has taken SR9009 in a study. The one safety-relevant laboratory observation comes from the experiment that undermined its mechanism: in cells lacking both REV-ERB receptors, SR9009 decreased cell viability. A compound that reduces cell viability through an unidentified off-target pathway, at unknown human exposure, taken orally in a form its own pharmacology does not support, has no characterised risk profile — which is a different statement from a favourable one.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is SR9009 really "exercise in a pill"?',
+        a: 'The phrase comes from a 2013 Nature Medicine paper showing that REV-ERB alpha controls mitochondrial number in oxidative muscle and that activating it — genetically or with SR9009 — increased exercise capacity in mice. The finding is real and the muscle biology behind it is solid. Three things sit between it and the phrase: every subject was a mouse, the dosing was by injection because the compound is barely absorbed orally, and in 2019 the pharmacological arm stopped being interpretable when SR9009 was shown to act in cells with both REV-ERB genes deleted.',
+        auditNote:
+          'The genetic arm of that paper still stands. It is the drug arm that no longer proves what it was taken to prove.',
+      },
+      {
+        q: 'What did the 2019 study actually show?',
+        a: 'That the drug does not need its target. Researchers made mice in which both REV-ERB alpha and REV-ERB beta could be deleted, took hepatocytes and embryonic stem cells with neither protein present, and gave them SR9009. The cells still lost viability, still rewired their metabolism and still changed their gene transcription. The authors state the consequence directly: the effects of SR9009 cannot be used solely as a surrogate for REV-ERB activity. That does not make the mouse results false. It makes their explanation unknown.',
+      },
+      {
+        q: 'Has anyone taken it in a trial?',
+        a: 'No. Fourteen years after the Nature paper there is no registered clinical trial of SR9009 anywhere, at any phase, no published human pharmacokinetic data and no sponsor. Anti-doping laboratories have had to generate its metabolites in liver homogenate and in a fungus in order to know what to look for in a sample, because no human excretion study exists to tell them.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no legal market and therefore no list price to cite. This site prints acquisition costs from published sources. A research-chemical asking price is not a published figure, and in this market it would in any case be a price for a product that, in the one chain-of-custody analysis available, frequently contained something other than its label.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Dierickx P et al. SR9009 has REV-ERB-independent effects on cell proliferation and metabolism. Proc Natl Acad Sci U S A 2019;116:12147-12152',
+        identifier: '10.1073/pnas.1904226116',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Solt LA et al. Regulation of circadian behaviour and metabolism by synthetic REV-ERB agonists. Nature 2012;485:62-68',
+        identifier: '10.1038/nature11030',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Woldt E et al. Rev-erb-alpha modulates skeletal muscle oxidative capacity by regulating mitochondrial biogenesis and autophagy. Nat Med 2013;19:1039-1046',
+        identifier: '10.1038/nm.3213',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Van Wagoner RM et al. Chemical composition and labeling of substances marketed as selective androgen receptor modulators and sold via the internet. JAMA 2017;318:2004-2010',
+        identifier: '10.1001/jama.2017.17069',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Banerjee S et al. Pharmacological targeting of the mammalian clock regulates sleep architecture and emotional behaviour. Nat Commun 2014;5:5759',
+        identifier: '10.1038/ncomms6759',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Amador A et al. Pharmacological targeting the REV-ERBs in sleep/wake regulation. PLoS One 2016;11:e0162452',
+        identifier: '10.1371/journal.pone.0162452',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Palathinkal AB et al. LC-HRMS-based metabolic profiling of the REV-ERB agonist SR9009 in camel liver homogenate and Cunninghamella elegans for anti-doping purposes. Rapid Commun Mass Spectrom 2026;40:e70149',
+        identifier: '10.1002/rcm.70149',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 57394020 — SR9009 structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/57394020',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 34. Methylene blue
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'methylene-blue',
+    name: 'Methylene blue',
+    tradeName:
+      'ProvayBlue (injection); methylthioninium chloride. The Alzheimer derivative is hydromethylthionine mesylate, formerly TRx0237 and LMTM',
+    sponsor:
+      'ProvayBlue, NDA 204630, Provepharm SAS, approved 8 April 2016. The tau-directed derivative is developed by TauRx Therapeutics, Aberdeen',
+    targetGene: 'CYB5R3',
+    targetProtein:
+      'An oxidation-reduction agent: it accepts electrons from NADPH via methaemoglobin reductase and donates them to methaemoglobin. It is also a potent monoamine oxidase A inhibitor.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2016,
+    indication:
+      'Approved for the treatment of acquired methaemoglobinaemia in adults and children. Every other use — septic shock, ifosfamide encephalopathy, surgical dye, cognitive enhancement — is off-label.',
+    patientFriendlyIndication:
+      'An antidote for a blood disorder, taken off-label in tiny doses as a nootropic',
+    anatomicalSite:
+      'Erythrocyte cytosol, where methaemoglobin is reduced; mitochondrial electron transport chain; monoamine oxidase A throughout',
+    conditionContext: {
+      conditionExplainer:
+        'Haemoglobin carries oxygen only while its iron is in the ferrous state. Oxidised to the ferric state it becomes methaemoglobin and carries nothing. Methylene blue is the electron shuttle that lets the cell reduce it back, which is why it is an antidote rather than a treatment.',
+      whyItMatters:
+        'The same redox chemistry that makes it an antidote is the basis of every claim made for it as a mitochondrial and cognitive enhancer. It is also a potent MAO-A inhibitor, which is why a dye used in operating theatres carries a serotonin syndrome warning with fatal cases reported.',
+      whoTakesThis:
+        'On label, patients with acquired methaemoglobinaemia, by slow intravenous injection. Off label, surgeons using it as a dye, intensivists in refractory vasoplegic shock, and people taking drops of aquarium-grade or reagent-grade dye for cognitive effect.',
+      clinicalGoals:
+        'On label, resolution of methaemoglobinaemia. In the Alzheimer programme, cognitive and functional decline. In the nootropic use, no goal defined by any regulator.',
+    },
+    oneSentenceVerdict:
+      'An approved antidote and potent MAO-A inhibitor whose 598-patient Alzheimer phase 3 failed to separate on both co-primary endpoints — because the low-dose arm intended as an inactive colourant turned out to have symptomatic activity of its own, which is the same claim the nootropic market makes for microdosing.',
+    laymanHowItWorks:
+      'Methylene blue is a dye that moves electrons. In a red blood cell it takes electrons from NADPH and hands them to oxidised haemoglobin, turning it back into something that can carry oxygen — which is why it is the antidote for methaemoglobinaemia. In a mitochondrion it can do something similar, accepting electrons and passing them further down the chain, and that is the entire basis of the mitochondrial and nootropic claims. It also blocks monoamine oxidase A, the enzyme that breaks down serotonin, potently enough that giving it to someone on an antidepressant has caused fatal serotonin syndrome. Its behaviour depends sharply on concentration: at low concentrations it donates electrons and at high ones it takes them, so more is not a stronger version of the same effect.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 56,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(C)C1=CC2=C(C=C1)N=C3C=CC(=[N+](C)C)C=C3S2.[Cl-]',
+      chemicalFormula: 'C16H18ClN3S',
+      molecularWeight: '319.9 g/mol',
+      targetReceptorAffinity:
+        'Methylthioninium chloride, a phenothiazine dye. It is not a receptor ligand but a redox couple: the oxidised methylthioninium form is reduced by NADPH-dependent methaemoglobin reductase to leucomethylthioninium, which then reduces ferric haem back to ferrous. The behaviour is concentration-dependent and biphasic — at low concentration it acts as an electron donor and at high concentration as an electron acceptor, which is why high doses can themselves cause methaemoglobinaemia. Separately, it is a potent reversible inhibitor of monoamine oxidase A.',
+      structureSource: {
+        label:
+          'PubChem CID 6099 (methylene blue) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6099',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mb-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Pharmaceutical grade against dye grade',
+          description:
+            'This is the decisive test for anything not bought as a medicine. Industrial and aquarium methylene blue is manufactured to a colour specification, not a pharmacopoeial one, and carries heavy metal and organic impurity limits appropriate to staining fish tanks. Pharmacopoeial methylene blue has defined limits for arsenic, lead, zinc and related thiazine dyes. The two look identical in a bottle and identical on a simple absorbance reading.',
+          reagentsAndBuffer:
+            'USP or Ph. Eur. methylene blue reference standard, inductively coupled plasma mass spectrometry for arsenic, lead, cadmium, mercury, zinc and chromium, reversed-phase HPLC with diode-array detection at 665 nm for related thiazine dyes including Azure A, Azure B and thionine, residual solvent GC headspace analysis',
+        },
+        {
+          id: 'mb-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay and the leuco form',
+          description:
+            'Quantify total methylthioninium and determine how much is present as the reduced leuco form, which is colourless and behaves differently. This matters for the Alzheimer derivative, which is supplied as the stabilised reduced form precisely because it is better absorbed than the oxidised dye — the difference between the two is a formulation strategy, not a technicality.',
+          dependsOnStepId: 'mb-w1',
+          reagentsAndBuffer:
+            'Spectrophotometric assay at 665 nm against a calibration series with and without oxidative pretreatment to convert leuco to oxidised form, reversed-phase HPLC with electrochemical and diode-array detection in series, ascorbate and ferricyanide as reducing and oxidising controls',
+        },
+        {
+          id: 'mb-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma preparation for a redox-labile analyte',
+          description:
+            'The analyte changes oxidation state in the tube. Blood must be handled to fix the redox state at collection — otherwise the ratio of oxidised to leuco form measured in the laboratory reflects sample handling rather than the patient. Protein binding is high, so free and total concentrations diverge.',
+          dependsOnStepId: 'mb-w2',
+          reagentsAndBuffer:
+            'Immediate acidification or addition of a defined oxidant at collection to fix redox state, protein precipitation with acidified acetonitrile, deuterated methylene blue internal standard, amber tubes and minimal light exposure, ultrafiltration for free fraction',
+        },
+        {
+          id: 'mb-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Mitochondrial electron transfer and MAO-A inhibition',
+          description:
+            'Two assays for the two things this molecule actually does. Extracellular flux analysis in intact cells measures whether it increases oxygen consumption as the mitochondrial claim requires, and the concentration-response should be run wide enough to catch the reversal at high concentration. A parallel MAO-A and MAO-B enzyme assay establishes the interaction risk that the approved label warns about, and it is the one a nootropic user is least likely to have considered.',
+          dependsOnStepId: 'mb-w3',
+          reagentsAndBuffer:
+            'Intact neurons or HepG2 cells on an extracellular flux analyser with oligomycin, FCCP and rotenone-antimycin injections, wide methylene blue concentration series; recombinant human MAO-A and MAO-B with kynuramine or Amplex Red substrate, clorgyline and selegiline as reference inhibitors',
+        },
+        {
+          id: 'mb-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with methaemoglobin and functional readouts',
+          description:
+            'Quantify methylene blue and its azure metabolites, and read the endpoint that matches the question being asked: co-oximetry for methaemoglobin fraction in the approved use, and functional imaging with a cognitive battery in the enhancement claim. Pulse oximetry is invalid in the presence of the dye, which the label states explicitly.',
+          dependsOnStepId: 'mb-w4',
+          reagentsAndBuffer:
+            'C18 gradient with formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring, deuterated internal standard, Azure A and Azure B reference standards; multi-wavelength co-oximetry for methaemoglobin fraction rather than pulse oximetry; blood-oxygen-level-dependent functional MRI with psychomotor vigilance and delayed match-to-sample tasks and a carbon dioxide cerebrovascular reactivity challenge',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mb-a1',
+        category: 'conclusion_shift',
+        title: 'The Alzheimer phase 3 failed because its placebo was not inert',
+        laymanSummary:
+          'A 598-patient trial compared two doses of a methylene blue derivative against a very low dose meant only to colour the urine so nobody could tell who was on drug. The low dose turned out to be active, and the trial could not separate its arms.',
+        technicalDetails:
+          'Wischik et al. reported the phase 3 of hydromethylthionine mesylate in 598 amyloid-beta-PET-positive participants — 44% with mild cognitive impairment due to Alzheimer disease and 56% with mild to moderate dementia — across 82 centres in Canada, the European Union, the United Kingdom and the United States. Active arms received 16 mg/day or 8 mg/day; the control arm received methylthioninium chloride 4 mg twice weekly, intended as an inactive urinary colourant to preserve blinding against the urine discolouration the drug causes. The result, in the authors own words: it was not possible to demonstrate significant differences on the co-primary clinical endpoints ADAS-cog11 and ADCS-ADL23 at 52 weeks due to symptomatic activity in the control arm. Differences in ADAS-cog13 in the mild cognitive impairment subgroup emerged only at 78 weeks (p = 0.0291) and 104 weeks (p = 0.0308) between early-start and delayed-start 16 mg/day, in a modified delayed-start design. Biomarkers moved: neurofilament light chain (p = 0.0291) and grey matter atrophy at 52 and 104 weeks, and pTau217 in mild cognitive impairment (p = 0.0165).',
+        evidenceSource: 'Wischik CM et al., J Prev Alzheimers Dis 2026;13:100480 (LUCIDITY)',
+        doi: '10.1016/j.tjpad.2026.100480',
+        inferredClaim:
+          'That 4 mg of methylthioninium twice weekly is pharmacologically inert — the assumption the trial control arm was built on, and which its own result contradicts',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mb-a2',
+        category: 'measured',
+        title: 'A low oral dose raised fMRI response and memory retrieval by 7%',
+        laymanSummary:
+          'In 26 healthy adults, a single low dose of methylene blue increased brain activity during attention and memory tasks and improved correct responses on memory retrieval by 7%.',
+        technicalDetails:
+          'Rodriguez et al. ran a prospective randomised double-blinded placebo-controlled trial in 26 subjects aged 22 to 62. Functional MRI was performed with a psychomotor vigilance task for sustained attention and delayed match-to-sample tasks for short-term memory, before and one hour after a single low oral dose of methylene blue or placebo, with a carbon dioxide challenge to measure cerebrovascular reactivity and a two-by-two repeated-measures analysis of variance for drug-by-time interaction, cluster-corrected at P < .05. Methylene blue increased response in bilateral insular cortex during the vigilance task (Z = 2.9-3.4, P = .01-.008) and in prefrontal, parietal and occipital cortex during the memory task (Z = 2.9-4.2, P = .03-.0003), and was associated with a 7% increase in correct responses during memory retrieval (P = .01). A companion paper reported modulation of functional connectivity. This is 26 people, a single dose, and one behavioural endpoint alongside the imaging.',
+        evidenceSource:
+          'Rodriguez P et al., Radiology 2016;281:516-526; Rodriguez P et al., Brain Imaging Behav 2017;11:640-648',
+        doi: '10.1148/radiol.2016152893',
+        measuredMetric:
+          'Blood-oxygen-level-dependent response during sustained attention and short-term memory tasks, and correct responses during memory retrieval, after a single low dose',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mb-a3',
+        category: 'measured',
+        title: 'Serotonin syndrome, with fatal cases, in the approved label',
+        laymanSummary:
+          'The prescribing information warns that methylene blue has caused serotonin syndrome in people taking antidepressants, and that some of those cases were fatal.',
+        technicalDetails:
+          'The ProvayBlue label, section 5.1, states that serotonin syndrome has been reported with methylene blue class products, most reports associated with concomitant serotonergic drugs — SSRIs, SNRIs and monoamine oxidase inhibitors — with opioids and dextromethorphan increasing the risk, and that some of the reported cases were fatal. The mechanism is that methylene blue is itself a potent monoamine oxidase A inhibitor, which is not obvious from a compound most people encounter as a surgical dye. The label further contraindicates it in glucose-6-phosphate dehydrogenase deficiency because of haemolytic anaemia risk, warns to discontinue and transfuse if haemolytic anaemia occurs, warns that pulse oximetry is invalid in its presence and other methods must be used, warns of hypersensitivity, and advises patients not to drive until neurological and visual symptoms resolve. A cross-sectional study found a substantial proportion of patients receiving perioperative methylene blue were also on serotonergic drugs.',
+        evidenceSource:
+          'ProvayBlue (methylene blue) injection prescribing information, NDA 204630, sections 4 and 5; McMillan E et al., Cureus 2025;17:e81090',
+        measuredMetric:
+          'Labelled contraindications and warnings, including fatal serotonin syndrome cases and G6PD contraindication',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mb-a4',
+        category: 'measured',
+        title: 'An approved antidote with one approved indication',
+        laymanSummary:
+          'The only FDA-approved use is treating acquired methaemoglobinaemia. Everything else it is used for is off-label.',
+        technicalDetails:
+          'ProvayBlue (methylene blue injection) was approved on 8 April 2016 under NDA 204630 for the treatment of paediatric and adult patients with acquired methaemoglobinaemia, described in the label as an oxidation-reduction agent. Methylene blue had been in medical use for well over a century before that approval, which was granted under the FDA unapproved drugs initiative to bring a long-marketed agent into the modern regulatory framework. The label instructs that alternative treatments be considered if methaemoglobinaemia has not resolved after two doses. Widely used off-label applications — vasoplegic and septic shock, ifosfamide-induced encephalopathy, surgical and lymphatic mapping dye, and cognitive enhancement — are outside that indication and outside the evidence the approval rests on.',
+        evidenceSource:
+          'ProvayBlue (methylene blue) injection prescribing information and Drugs@FDA record, NDA 204630, original approval 8 April 2016',
+        measuredMetric:
+          'Approved indication, approval date and application number for the only FDA-approved methylene blue product',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mb-a5',
+        category: 'inferred',
+        title: 'The nootropic dose has no source and no product',
+        laymanSummary:
+          'People take drops of methylene blue for cognition. The doses circulate as folklore, and the material is often manufactured to a dye specification rather than a drug one.',
+        technicalDetails:
+          'The only controlled human cognitive study of methylene blue is a single-dose imaging trial in 26 people. There is no dose-ranging study, no repeated-dose study, no study in any clinical cognitive population outside the tau programme, and no approved oral product. The material used is frequently sold as an aquarium or laboratory reagent, manufactured to a colour specification with impurity limits set for staining rather than for ingestion. Pharmacopoeial methylene blue carries limits for arsenic, lead, zinc and related thiazine dyes; dye-grade material need not. The redox behaviour is also biphasic — an electron donor at low concentration and an acceptor at high — so a dosing error does not produce more of the intended effect but can produce the opposite one, including methaemoglobinaemia caused by the drug used to treat it.',
+        evidenceSource:
+          'Rodriguez P et al., Radiology 2016;281:516-526 as the only controlled human cognitive study; ProvayBlue label for the approved product and route; absence of any approved oral methylene blue product in Drugs@FDA',
+        doi: '10.1148/radiol.2016152893',
+        inferredClaim:
+          'That a single-dose imaging result in 26 people establishes a safe and effective repeated oral dose of an unregulated dye',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mb-a6',
+        category: 'measured',
+        title: 'The tau programme did move biomarkers, and the field is watching',
+        laymanSummary:
+          'Even though the trial missed its main endpoints, brain atrophy, a marker of nerve damage and a tau blood marker all moved in the treated groups.',
+        technicalDetails:
+          'In the same phase 3, hydromethylthionine mesylate 16 mg/day produced a significant reduction in progression of neurodegeneration measured by plasma neurofilament light chain change at 52 weeks in the whole population (p = 0.0291), consistent with significant reductions in progression of grey matter atrophy at 52 and 104 weeks and a reduction in progression of tau pathology measured by plasma pTau217 in the mild cognitive impairment group (p = 0.0165). Headache (1.5%) and diarrhoea (1.2%) were the most frequent adverse effects. Earlier analyses had reported concentration-dependent activity on clinical decline and brain atrophy, and mechanistic work has reported that anticholinesterase and memantine co-treatment interferes with the compound activity — which is a specific and unusual interaction claim. The programme is run and largely authored by the sponsor, TauRx Therapeutics, and the conflict of interest disclosures on the phase 3 report are extensive.',
+        evidenceSource:
+          'Wischik CM et al., J Prev Alzheimers Dis 2026;13:100480; Shiells H et al., J Alzheimers Dis 2020;75:501-519; Kondak C et al., J Neurochem 2022;160:172-184',
+        doi: '10.3233/JAD-191173',
+        measuredMetric:
+          'Plasma neurofilament light chain, plasma pTau217 and MRI grey matter atrophy change at 52 and 104 weeks',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given by slow intravenous injection on label',
+        laymanDesc:
+          'The approved product is an injection given slowly into a vein, not a tablet or a drop.',
+        molecularDetail:
+          'ProvayBlue is a sterile solution for slow intravenous administration in acquired methaemoglobinaemia. There is no approved oral methylene blue product. The Alzheimer derivative is oral and is a stabilised reduced form, chosen because the leuco form is better absorbed than the oxidised dye.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters the red cell and the mitochondrion',
+        laymanDesc:
+          'It crosses membranes easily and reaches both the inside of red blood cells and the energy machinery of other cells.',
+        molecularDetail:
+          'The cationic dye crosses plasma and mitochondrial membranes and accumulates in mitochondria down the membrane potential gradient. That accumulation is the basis of the mitochondrial claims and also of its use as a vital stain.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Shuttles electrons, in whichever direction the concentration dictates',
+        laymanDesc:
+          'It picks up electrons from one carrier and hands them to another. At low concentration it gives; at high concentration it takes.',
+        molecularDetail:
+          'NADPH-dependent methaemoglobin reductase reduces methylthioninium to leucomethylthioninium, which reduces ferric haem back to ferrous — the antidote reaction. In mitochondria it can accept electrons from complex I and donate them to cytochrome c, bypassing part of the chain. The behaviour is concentration-dependent and reverses at high concentration, which is why excess methylene blue causes the condition it treats.',
+        iconName: 'Repeat',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'And blocks monoamine oxidase A at the same time',
+        laymanDesc:
+          'Independently of the electron chemistry, it shuts down the enzyme that breaks down serotonin.',
+        molecularDetail:
+          'Potent reversible inhibition of monoamine oxidase A. In a person taking a serotonergic antidepressant this produces serotonin syndrome, and the approved label records that some reported cases were fatal. This is the mechanism that makes an apparently innocuous dye a serious drug interaction, and it is unrelated to the redox activity that everything else about the compound is built on.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A reliable antidote, an equivocal drug, an unmeasured supplement',
+        laymanDesc:
+          'It works for the one thing it is approved for. In Alzheimer disease the phase 3 could not separate from a control that turned out to be active. As a nootropic there is one 26-person study.',
+        molecularDetail:
+          'Approved 2016 for acquired methaemoglobinaemia. The 598-patient tau phase 3 missed both co-primary endpoints at 52 weeks with the failure attributed to symptomatic activity in the low-dose control arm, while biomarkers of neurodegeneration and atrophy moved. The cognitive-enhancement evidence is a single-dose randomised imaging study in 26 healthy adults reporting a 7% improvement in memory retrieval.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'LUCIDITY — phase 3 of hydromethylthionine mesylate in Alzheimer disease',
+        phase: 'Phase 3, randomised, modified delayed-start, 82 centres, 104 weeks',
+        sampleSize: 598,
+        primaryEndpoint: 'Co-primary: ADAS-cog11 and ADCS-ADL23 at 52 weeks',
+        endpointMet: false,
+        statisticalPValue:
+          'No significant difference on either co-primary endpoint at 52 weeks, attributed by the investigators to symptomatic activity in the 4 mg twice-weekly control arm. ADAS-cog13 separation in the MCI subgroup at 78 weeks (p = 0.0291) and 104 weeks (p = 0.0308) between early and delayed start',
+        unreportedAdverseSignals:
+          'The control arm was methylthioninium chloride 4 mg twice weekly, chosen as an inactive urinary colourant. Its unexpected activity is the stated reason the trial could not demonstrate its primary result, and it is the same claim the nootropic market makes for low doses.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Rodriguez 2016 randomised imaging trial in healthy adults',
+        phase: 'Randomised double-blinded placebo-controlled, single low oral dose',
+        sampleSize: 26,
+        primaryEndpoint:
+          'Functional MRI response during psychomotor vigilance and delayed match-to-sample tasks, with cerebrovascular reactivity',
+        endpointMet: true,
+        statisticalPValue:
+          'Bilateral insular response during vigilance Z = 2.9-3.4 (P = .01-.008); prefrontal, parietal and occipital response during memory task Z = 2.9-4.2 (P = .03-.0003); 7% increase in correct responses during memory retrieval (P = .01)',
+        unreportedAdverseSignals:
+          'Twenty-six participants, a single dose, and an age range spanning 22 to 62 years. No repeated-dose or dose-ranging data exist.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'ProvayBlue registration programme in acquired methaemoglobinaemia',
+        phase: 'Regulatory submission supporting NDA 204630',
+        sampleSize: 0,
+        primaryEndpoint: 'Resolution of acquired methaemoglobinaemia',
+        endpointMet: true,
+        statisticalPValue:
+          'Approved 8 April 2016. The label instructs that alternative treatments be considered if there is no resolution after two doses',
+        unreportedAdverseSignals:
+          'Labelled risks include fatal serotonin syndrome with serotonergic co-medication, haemolytic anaemia requiring discontinuation and transfusion, contraindication in G6PD deficiency, and invalidation of pulse oximetry.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A 598-patient phase 3 of a methylene blue derivative missed both co-primary endpoints at 52 weeks, with the investigators attributing the failure to symptomatic activity in the low-dose control arm',
+        'Plasma neurofilament light chain, plasma pTau217 and MRI grey matter atrophy progression were reduced in the same trial',
+        'A single low oral dose increased fMRI response during attention and memory tasks and improved memory retrieval accuracy by 7% in 26 healthy adults',
+        'The approved label records serotonin syndrome including fatal cases, contraindication in G6PD deficiency, and invalidation of pulse oximetry',
+      ],
+      unsupportedInferences: [
+        'That a single-dose imaging study in 26 people establishes a repeated oral dose for cognitive enhancement',
+        'That dye-grade or aquarium-grade material is equivalent to pharmacopoeial methylene blue, when the impurity specifications are written for different purposes',
+        'That more is better, when the redox behaviour reverses at high concentration and excess causes the condition the drug treats',
+        'That a compound most people meet as a surgical dye has no serious interactions, when it is a potent MAO-A inhibitor with fatal serotonin syndrome cases on the label',
+      ],
+      whatFailedInitially: [
+        'The phase 3 in Alzheimer disease did not demonstrate its co-primary endpoints, and the stated reason was that the control arm was not inert',
+        'Every use other than acquired methaemoglobinaemia remains off-label after more than a century of medical use',
+      ],
+      realWorldOutcome: [
+        'ProvayBlue was approved on 8 April 2016 under NDA 204630 as the first FDA-approved methylene blue product, for acquired methaemoglobinaemia only',
+        'Development of the tau-directed derivative continues on the strength of biomarker and delayed-start subgroup results rather than a met primary endpoint',
+        'There is no approved oral methylene blue product anywhere, so every nootropic dose is taken from material manufactured to a non-pharmaceutical specification',
+      ],
+    },
+    deliverySystem: {
+      type: 'Slow intravenous injection (approved); oral stabilised leuco form in the Alzheimer programme; unregulated oral drops outside both',
+      description:
+        'The approved product is a sterile solution for slow intravenous administration. The Alzheimer derivative is an oral tablet of the stabilised reduced form, at 8 or 16 mg daily. What is taken as a nootropic is typically a dilute aqueous solution of dye-grade or reagent-grade methylene blue in drops, a presentation with no pharmacopoeial specification and no approved counterpart.',
+      safetyProfile:
+        'Labelled: contraindicated in severe hypersensitivity to thiazine dyes and in glucose-6-phosphate dehydrogenase deficiency because of haemolytic anaemia. Warnings for serotonin syndrome with serotonergic drugs and opioids, with some reported cases fatal; hypersensitivity; haemolytic anaemia requiring discontinuation and transfusion; interference with pulse oximetry so that other methods must be used to assess oxygen saturation; and neurological and visual symptoms affecting driving. In the oral Alzheimer programme at 8 to 16 mg daily the commonest adverse effects were headache at 1.5% and diarrhoea at 1.2%. Urine and other secretions turn blue-green, which is harmless and is the reason the phase 3 needed a colourant control at all.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why did the Alzheimer trial fail?',
+        a: 'Because the placebo was a drug. The 598-patient phase 3 compared hydromethylthionine mesylate at 16 and 8 mg/day against methylthioninium chloride 4 mg twice weekly, which was chosen not as a comparator but as an inactive urinary colourant — methylene blue turns urine blue-green, so a plain placebo would have unblinded the trial. The investigators report that it was not possible to demonstrate significant differences on the co-primary endpoints at 52 weeks due to symptomatic activity in the control arm. That is a striking finding in its own right: 4 mg twice weekly was supposed to do nothing and did something.',
+        auditNote:
+          'A microdose that was assumed inert and behaved otherwise is the most interesting single result on this page, and it cuts in both directions.',
+      },
+      {
+        q: 'Does it improve memory in healthy people?',
+        a: 'One randomised trial says a single low dose does, a little. Twenty-six adults aged 22 to 62 had functional MRI during attention and memory tasks before and one hour after low-dose methylene blue or placebo. Brain response increased in insular cortex during the vigilance task and in prefrontal, parietal and occipital cortex during the memory task, and correct responses during memory retrieval rose by 7% (P = .01). That is one dose in 26 people. There is no dose-ranging study, no repeated-dose study, and no approved oral product.',
+      },
+      {
+        q: 'What is the danger people miss?',
+        a: 'That it is a potent monoamine oxidase A inhibitor. The approved label warns that serotonin syndrome has been reported with methylene blue class products, mostly with concomitant SSRIs, SNRIs or MAO inhibitors, with opioids and dextromethorphan raising the risk, and that some reported cases were fatal. It is also contraindicated in glucose-6-phosphate dehydrogenase deficiency because of haemolytic anaemia. Neither of those is obvious from a compound most people first encounter as a dye.',
+      },
+      {
+        q: 'Is aquarium methylene blue the same chemical?',
+        a: 'The same molecule, to a different specification. Pharmacopoeial methylene blue has defined limits for arsenic, lead, zinc and related thiazine dyes such as Azure A and Azure B. Dye-grade and aquarium-grade material is manufactured to a colour specification, and its impurity limits are set for staining rather than for ingestion. There is no approved oral methylene blue product anywhere, so a nootropic dose necessarily comes from material whose purity was certified against the wrong question.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Wischik CM et al. Clinical, imaging and blood biomarker outcomes in a phase 3 clinical trial of tau aggregation inhibitor hydromethylthionine mesylate in mild cognitive impairment and mild to moderate dementia due to Alzheimer disease. J Prev Alzheimers Dis 2026;13:100480',
+        identifier: '10.1016/j.tjpad.2026.100480',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wischik CM et al. Oral tau aggregation inhibitor for Alzheimer disease: design, progress and basis for selection of the 16 mg/day dose in a phase 3 randomized clinical trial. J Prev Alzheimers Dis 2022;9:780-790',
+        identifier: '10.14283/jpad.2022.63',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rodriguez P et al. Multimodal randomized functional MR imaging of the effects of methylene blue in the human brain. Radiology 2016;281:516-526',
+        identifier: '10.1148/radiol.2016152893',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rodriguez P et al. Methylene blue modulates functional connectivity in the human brain. Brain Imaging Behav 2017;11:640-648',
+        identifier: '10.1007/s11682-016-9541-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Shiells H et al. Concentration-dependent activity of hydromethylthionine on clinical decline and brain atrophy in a randomized controlled trial in behavioral variant frontotemporal dementia. J Alzheimers Dis 2020;75:501-519',
+        identifier: '10.3233/JAD-191173',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kondak C et al. Hydromethylthionine enhancement of central cholinergic signalling is blocked by rivastigmine and memantine. J Neurochem 2022;160:172-184',
+        identifier: '10.1111/jnc.15553',
+        kind: 'doi',
+      },
+      {
+        label:
+          'McMillan E et al. Prevalence of serotonergic drug use in patients exposed to perioperative methylene blue: a cross-sectional study. Cureus 2025;17:e81090',
+        identifier: '10.7759/cureus.81090',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Brown O, Mou T. Methylene blue and serotonin syndrome: a caution against intravenous use. Urogynecology (Phila) 2026;32:90-93',
+        identifier: '10.1097/SPV.0000000000001785',
+        kind: 'doi',
+      },
+      {
+        label:
+          'PROVAYBLUE (methylene blue) injection prescribing information, NDA 204630, Provepharm — indications, contraindications and warnings',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=204630',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 6099 — methylene blue structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6099',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 35. Boron
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'boron',
+    name: 'Boron',
+    tradeName:
+      'Sold as boron citrate, boron glycinate, boron aspartate, calcium fructoborate and sodium borate; the absorbed species is boric acid',
+    sponsor:
+      'No sponsor. Boron is a trace element sold as a dietary supplement; it has no marketing authorisation as a medicine anywhere and no Recommended Dietary Allowance',
+    targetGene: 'None identified',
+    targetProtein:
+      'No identified receptor or enzyme target in humans. Boric acid forms reversible complexes with cis-diol groups on sugars, glycoproteins and NAD',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'None. Boron is not classified as an essential nutrient for humans, has no Recommended Dietary Allowance and no approved therapeutic indication. It is sold as a supplement, most often for testosterone, bone and joint claims.',
+    patientFriendlyIndication:
+      'A trace element sold to raise testosterone — whose critical animal toxicity is testicular',
+    anatomicalSite:
+      'No specific site. Boron is absorbed as boric acid, distributes in total body water and is excreted almost entirely by the kidney',
+    conditionContext: {
+      conditionExplainer:
+        'Boron is present in soil, drinking water and plant foods, and everyone takes some in every day. It has no known enzyme or receptor in humans, which is why it has never been classified as an essential nutrient despite decades of work looking for a function.',
+      whyItMatters:
+        'The testosterone claim that sells it comes from a single boron-depletion experiment in twelve postmenopausal women, and the toxicological endpoint that sets its safe limit in animals is testicular toxicity. Those two facts belong on the same page.',
+      whoTakesThis:
+        'Men taking it for testosterone, people taking it for osteoarthritis or bone density, and everyone else, involuntarily, from fruit, nuts, legumes and drinking water.',
+      clinicalGoals:
+        'None defined by any regulator. There is no deficiency state to correct, because no requirement has been established.',
+    },
+    oneSentenceVerdict:
+      'A trace element not classified as essential, with no Recommended Dietary Allowance, whose testosterone reputation rests on a repletion study in twelve boron-depleted postmenopausal women, and whose critical toxicity endpoint in two-year animal feeding studies is testicular.',
+    laymanHowItWorks:
+      'Boron in food and water is absorbed almost completely and circulates as boric acid, a small uncharged molecule that spreads through body water and leaves in urine within a day. It has no receptor and no enzyme of its own. What it does chemically is form loose, reversible bonds with pairs of adjacent hydroxyl groups — the arrangement found in sugars, in some glycoproteins, and in the vitamin-derived cofactors NAD and SAM. That is a real and specific chemistry, and it is also non-specific enough that it does not point at any particular biological job. Sixty years after people began looking, none has been agreed on.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 26,
+    molecularSchema: {
+      structureType: 'generic_formula',
+      chemicalFormula: 'B (element); the absorbed and circulating species is boric acid, BH3O3',
+      molecularWeight: '10.81 g/mol for boron; 61.84 g/mol for boric acid',
+      targetReceptorAffinity:
+        'Boron has no identified receptor or enzyme target in humans. All ingested forms — borates, boron citrate, boron glycinate, calcium fructoborate — are hydrolysed in the gastrointestinal tract and absorbed as boric acid, B(OH)3, which is a weak Lewis acid rather than a proton donor. Its only well-characterised biochemistry is reversible ester formation with cis-diol groups, which is why it interacts with ribose-containing molecules such as NAD and S-adenosylmethionine and with glycoproteins. In plants this chemistry has an essential structural role in the cell wall; in humans no equivalent function has been established.',
+      structureSource: {
+        label:
+          'PubChem CID 5462311 (boron, element) and CID 7628 (boric acid) — molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/7628',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bor-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Elemental identity and speciation of the supplement form',
+          description:
+            'Establish how much elemental boron a product actually delivers, which is not the number on the front of the bottle. A capsule labelled 3 mg boron as boron citrate contains far more citrate than boron, and labels vary in whether they state elemental boron or the salt. Speciation also matters for absorption claims, though all forms converge on boric acid after ingestion.',
+          reagentsAndBuffer:
+            'Certified boron reference standard solution, microwave-assisted nitric acid digestion of the capsule contents, inductively coupled plasma mass spectrometry with 10B and 11B isotope monitoring, boron-free quartz-free labware because borosilicate glass contaminates the sample',
+        },
+        {
+          id: 'bor-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay against label, with the heavy metal panel',
+          description:
+            'Quantify elemental boron against the stated amount and run the toxic element panel on the same digest. Mineral supplements are a recognised route of incidental heavy metal exposure, and the analysis costs nothing extra once the sample is digested.',
+          dependsOnStepId: 'bor-w1',
+          reagentsAndBuffer:
+            'Microwave digestion in nitric acid with hydrogen peroxide, inductively coupled plasma mass spectrometry with internal standardisation, simultaneous determination of arsenic, cadmium, lead and mercury, certified reference material of a comparable matrix for method validation',
+        },
+        {
+          id: 'bor-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Serum and 24-hour urine preparation',
+          description:
+            'Boron status is assessed by 24-hour urinary excretion rather than by a serum concentration, because absorption is near complete and clearance is renal and rapid, so urine reflects intake and serum reflects the last few hours. The dominant analytical hazard is contamination: borosilicate glass, some detergents and many laboratory plastics leach boron at concentrations that swamp the analyte.',
+          dependsOnStepId: 'bor-w2',
+          reagentsAndBuffer:
+            'Complete 24-hour urine collection into acid-washed polypropylene, creatinine determination for correction, serum collected into boron-free tubes, dilution in high-purity nitric acid, boron-free labware throughout with a full reagent-blank series',
+        },
+        {
+          id: 'bor-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Steroidogenic and osteoblast cell models',
+          description:
+            'Test the two claims where they can be tested. A steroidogenic cell line with boric acid across a physiological-to-supplemental concentration range measures whether it does anything to androgen output directly. An osteoblast model with mineralisation and alkaline phosphatase readouts addresses the bone claim. Both need scrupulous boron-free culture plastics, because standard consumables contribute boron of the same order as the treatment.',
+          dependsOnStepId: 'bor-w3',
+          reagentsAndBuffer:
+            'MA-10 or Leydig-derived steroidogenic cells with testosterone and progesterone immunoassay or LC-MS/MS readout, hCG-stimulated and basal conditions; MC3T3-E1 or human primary osteoblasts with alkaline phosphatase activity and alizarin red mineralisation; boron-verified culture medium and polypropylene labware with matched vehicle controls',
+        },
+        {
+          id: 'bor-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'ICP-MS quantification with the hormone and mineral panel',
+          description:
+            'Quantify boron by inductively coupled plasma mass spectrometry and read the endpoints the claims are made about, on the same subjects: total and free testosterone and oestradiol by isotope-dilution mass spectrometry rather than immunoassay, alongside calcium, magnesium, phosphorus and potassium in serum and urine, because the original human boron work found mineral excretion changes and hormone changes together.',
+          dependsOnStepId: 'bor-w4',
+          reagentsAndBuffer:
+            'ICP-MS with collision cell and 11B monitoring, isotope-dilution LC-MS/MS for testosterone and 17beta-oestradiol, sex hormone binding globulin immunoassay, serum and 24-hour urinary calcium, magnesium, phosphorus and potassium, creatinine correction throughout',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bor-a1',
+        category: 'conclusion_shift',
+        title: 'The testosterone finding came from repleting depleted postmenopausal women',
+        laymanSummary:
+          'The study behind the testosterone claim fed twelve postmenopausal women a boron-poor diet for four months and then added 3 mg a day. Their oestradiol and testosterone rose — from a deficiency, in women.',
+        technicalDetails:
+          'Nielsen describes the first nutritional boron study in humans: 12 postmenopausal women were fed a diet providing 0.25 mg boron per 2,000 kcal for 119 days, then the same diet with a 3 mg/day boron supplement for 48 days. Supplementation reduced total plasma calcium and urinary calcium and magnesium excretion, and elevated serum 17beta-oestradiol and testosterone. A second study in five men over 45, four postmenopausal women and five postmenopausal women on oestrogen therapy used a boron-low diet (0.23 mg/2,000 kcal) for 63 days followed by 3 mg/day for 49 days, but that diet was low in magnesium and marginally adequate in copper throughout, and the reported findings were higher erythrocyte superoxide dismutase, serum ceruloplasmin and plasma copper on repletion. A third study repeated the design with adequate magnesium and copper and reported effects centred on oestrogen therapy and copper status. The design in every case is depletion followed by repletion. That answers what happens when a boron-deficient person is given boron. It does not answer what happens when a boron-replete person takes more, which is what the supplement is sold for.',
+        evidenceSource: 'Nielsen FH, Environ Health Perspect 1994;102(Suppl 7):59-63',
+        doi: '10.1289/ehp.94102s759',
+        inferredClaim:
+          'That a rise in testosterone on repletion of an experimentally depleted postmenopausal woman predicts a rise in a boron-replete man taking a supplement',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bor-a2',
+        category: 'measured',
+        title: 'The critical animal toxicity endpoint is testicular',
+        laymanSummary:
+          'In two-year feeding studies, the effect that sets boron safe limits is damage to the testes — in a compound sold to raise testosterone.',
+        technicalDetails:
+          'Hasegawa et al. re-derived a tolerable daily intake for boron using chemical-specific uncertainty factors. No-observed-adverse-effect levels of 17.5 and 8.8 mg boron per kilogram per day for the critical effect of testicular toxicity were identified in two-year rat and dog feeding studies. The 95% lower confidence limit of the benchmark dose for a 5% reduction in fetal body weight was 44.9 mg/kg/day in mice and 10.3 mg/kg/day in rats. Applying measured interspecies differences in boron clearance and variability in glomerular filtration rate in pregnant women, overall uncertainty factors were 68 for rat testicular toxicity, 40 for dog testicular toxicity, 247 for mouse developmental toxicity and 78 for rat developmental toxicity, and the authors concluded that 0.13 mg boron per kilogram per day is the most appropriate tolerable daily intake, based on rat developmental toxicity. Testicular and developmental toxicity being the endpoints that define the safe boundary is a fact worth stating next to the marketing.',
+        evidenceSource: 'Hasegawa R et al., Regul Toxicol Pharmacol 2013;65:108-114',
+        doi: '10.1016/j.yrtph.2012.10.013',
+        measuredMetric:
+          'No-observed-adverse-effect levels for testicular toxicity in two-year rat and dog studies, and benchmark dose limits for fetal body weight reduction',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bor-a3',
+        category: 'measured',
+        title: 'Not an essential nutrient, and no recommended intake',
+        laymanSummary:
+          'Boron has never been classified as essential for humans, has no Recommended Dietary Allowance, and the European upper limit is 10 mg a day.',
+        technicalDetails:
+          'A 2026 review of boron in the diet and as a supplement states plainly that boron is not currently classified as an essential nutrient, while describing it as biologically important and surveying claimed effects on bone, cognition, mineral and hormonal metabolism, antioxidant defence, body weight and inflammation. The European Food Safety Authority tolerable upper intake level for boron is 10 mg per day. There is no Recommended Dietary Allowance and no Adequate Intake, because establishing either requires an identified requirement, and no requirement has been established. Everything about boron supplementation therefore sits on top of an intake with no defined target.',
+        evidenceSource:
+          'Kuru-Yasar R, Yarat A. The role of boron in the diet and as a dietary supplement. Handb Exp Pharmacol 2026; EFSA tolerable upper intake level of 10 mg/day as cited in Stubing F et al., Biol Trace Elem Res 2026',
+        doi: '10.1007/164_2026_811',
+        measuredMetric:
+          'Nutritional classification, existence of a Recommended Dietary Allowance, and the European tolerable upper intake level',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bor-a4',
+        category: 'measured',
+        title: 'Diet already supplies it, and how much depends on what you eat',
+        laymanSummary:
+          'Vegans excrete substantially more boron than omnivores, because plant foods are where boron comes from. Most people are getting it without a supplement.',
+        technicalDetails:
+          'Stubing et al. measured boron intake and 24-hour urinary excretion in long-term omnivores, lacto-ovo-vegetarians and vegans. Creatinine-corrected urinary boron excretion was highest in vegans at 1,559 micrograms per gram creatinine (interquartile range 1,151-2,057), then lacto-ovo-vegetarians at 1,235 (878-1,815), then omnivores at 919 (639-1,381). Boron intake correlated strongly with 24-hour urinary excretion in vegans (r = 0.79) and omnivores (r = 0.74), both p < 0.001, and less strongly in lacto-ovo-vegetarians (r = 0.43). Higher urinary boron excretion was associated with higher potassium excretion in all dietary patterns and with phosphorus excretion in vegans (r = 0.57, p < 0.001). Fruit, nuts, legumes, pulses and drinking water are the sources. The study is also a reminder that urinary excretion tracks intake closely, because absorption is near complete and clearance renal — which is why a supplement raises excretion rather than accumulating.',
+        evidenceSource: 'Stubing F et al., Biol Trace Elem Res 2026 (DRKS00035243)',
+        doi: '10.1007/s12011-026-05297-x',
+        measuredMetric:
+          'Creatinine-corrected 24-hour urinary boron excretion by dietary pattern, and correlation with measured intake',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bor-a5',
+        category: 'failed',
+        title: 'The systematic review of minerals in athletic performance found four boron studies',
+        laymanSummary:
+          'A review of 130 experiments on minerals and trace elements in exercise found only four on boron, and rated the evidence strong for only iron and magnesium.',
+        technicalDetails:
+          'Heffernan et al. systematically reviewed the role of minerals and trace elements in exercise and athletic performance across six databases and grey literature, following PRISMA and preregistered on PROSPERO. From 17,433 articles, 130 experiments from 128 studies were included: iron 29, magnesium 22, phosphate 17, sodium 15, chromium 12, calcium 11, zinc 9, selenium 5, multi-mineral 5, and boron 4. Only iron and magnesium included articles of sufficient quality to be assigned a strong rating. The authors conclude that there is little evidence to support mineral and trace element supplementation to improve physiological markers of athletic performance, with the possible exception of iron in particular biological situations and magnesium, and that more high-quality research is required before support can be given for the rest. Four studies is the entire evidence base a performance claim for boron can draw on, and none of it was rated strong.',
+        evidenceSource: 'Heffernan SM et al., Nutrients 2019;11:696 (PROSPERO CRD42018090502)',
+        doi: '10.3390/nu11030696',
+        measuredMetric:
+          'Number of included boron experiments and assigned evidence strength in a PRISMA systematic review of 130 experiments',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bor-a6',
+        category: 'inferred',
+        title: 'A real chemistry that does not identify a job',
+        laymanSummary:
+          'Boron genuinely binds to pairs of neighbouring hydroxyl groups, which are everywhere in biology. That is a mechanism looking for a function rather than a function with a mechanism.',
+        technicalDetails:
+          'Boric acid forms reversible esters with cis-diol groups, an interaction that is chemically well characterised and underlies boron essential structural role in the plant cell wall, its use in boronic-acid drug design, and its ability to interact with ribose-bearing cofactors including NAD and S-adenosylmethionine. In humans this chemistry has been used to propose roles in hormone metabolism, bone formation, inflammation and oxidative defence, and it is the reasoning behind the supplement claims. It has not produced an identified human enzyme, receptor, transporter or deficiency syndrome. The distance between "this molecule reacts with a common chemical group" and "this molecule has a physiological role in people" is exactly the distance this site exists to mark, and for boron it has not been closed in sixty years of looking.',
+        evidenceSource:
+          'Kuru-Yasar R, Yarat A, Handb Exp Pharmacol 2026, which describes boron as biologically important while stating it is not currently classified as an essential nutrient; Chatterjee S et al., Chem Commun 2021;57:13629-13640 on boron chemistry in biomedical science',
+        doi: '10.1039/d1cc05481c',
+        inferredClaim:
+          'That cis-diol binding chemistry establishes a physiological role for boron in humans, when no enzyme, receptor or deficiency syndrome has been identified',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed almost completely, whatever form it is in',
+        laymanDesc:
+          'Citrate, glycinate, borate — the gut converts all of them to the same thing and absorbs nearly all of it.',
+        molecularDetail:
+          'Ingested boron compounds are hydrolysed in the gastrointestinal tract and absorbed as boric acid with near-complete bioavailability. The differences between marketed forms are differences in the counterion, not in what reaches the bloodstream.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Distributes through body water',
+        laymanDesc:
+          'It is small and uncharged, so it spreads evenly through the water in the body rather than concentrating anywhere.',
+        molecularDetail:
+          'Boric acid is a small, uncharged, highly water-soluble molecule that distributes in total body water without a transporter and without significant tissue accumulation, other than modest concentration in bone.',
+        iconName: 'Droplet',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds pairs of adjacent hydroxyls, reversibly',
+        laymanDesc:
+          'Its one real chemical trick is latching onto two neighbouring OH groups — a pattern found in sugars and in several cofactors.',
+        molecularDetail:
+          'As a weak Lewis acid, boric acid forms reversible mono- and diester complexes with cis-diol groups on ribose, on glycoproteins and on cofactors including NAD and S-adenosylmethionine. No specific binding partner has been identified as the physiologically relevant one in humans.',
+        iconName: 'Link',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Effects appear on repletion of a depleted person, and only then',
+        laymanDesc:
+          'The measured human effects all come from studies where boron was first removed from the diet and then put back.',
+        molecularDetail:
+          'In depletion-repletion studies, 3 mg/day of boron reduced plasma calcium and urinary calcium and magnesium excretion and raised serum 17beta-oestradiol and testosterone in postmenopausal women, and raised erythrocyte superoxide dismutase, ceruloplasmin and plasma copper in a mixed group on a magnesium-low diet. No study has shown a comparable effect of supplementation in people whose intake was already ordinary.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Excreted in the urine within a day',
+        laymanDesc:
+          'It leaves in urine quickly, which is why urinary excretion tracks intake so closely and why a supplement mostly raises what you excrete.',
+        molecularDetail:
+          'Elimination is almost entirely renal and rapid, with 24-hour urinary excretion correlating with intake at r = 0.74-0.79 in omnivores and vegans. The European tolerable upper intake level is 10 mg/day, and the critical toxicological endpoints in animals are testicular and developmental toxicity.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Nielsen boron depletion-repletion study in postmenopausal women',
+        phase: 'Controlled metabolic ward feeding study, 119 days depletion then 48 days repletion',
+        sampleSize: 12,
+        primaryEndpoint:
+          'Plasma and urinary calcium and magnesium, and serum 17beta-oestradiol and testosterone',
+        endpointMet: true,
+        statisticalPValue:
+          'Repletion with 3 mg/day boron reduced total plasma calcium and urinary calcium and magnesium excretion and elevated serum 17beta-oestradiol and testosterone, after 119 days on 0.25 mg boron per 2,000 kcal',
+        unreportedAdverseSignals:
+          'Twelve postmenopausal women, no control group, and a design in which every participant was first made boron-deficient. Later studies in the same programme used diets low in magnesium and marginally adequate in copper, which confounds the mineral findings.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Heffernan 2019 systematic review of minerals in athletic performance',
+        phase: 'PRISMA systematic review, six databases and grey literature',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Effect of mineral and trace element supplementation on athletic performance',
+        endpointMet: false,
+        statisticalPValue:
+          'From 17,433 articles, 130 experiments were included, of which 4 concerned boron. Only iron and magnesium contained articles of sufficient quality to be rated strong. Little evidence was found to support supplementation for performance',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Hasegawa 2013 tolerable daily intake derivation',
+        phase:
+          'Regulatory toxicology, two-year rat and dog feeding studies and developmental studies',
+        sampleSize: 0,
+        primaryEndpoint:
+          'No-observed-adverse-effect levels for testicular toxicity and benchmark doses for fetal body weight reduction',
+        endpointMet: true,
+        statisticalPValue:
+          'NOAELs 17.5 mg B/kg/day (rat) and 8.8 mg B/kg/day (dog) for testicular toxicity; BMDL05 44.9 (mouse) and 10.3 (rat) mg B/kg/day for 5% fetal body weight reduction; derived tolerable daily intake 0.13 mg B/kg/day',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Stubing 2026 cross-sectional intake and excretion study',
+        phase: 'Cross-sectional, long-term omnivores, lacto-ovo-vegetarians and vegans',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Dietary boron intake and 24-hour urinary boron excretion by dietary pattern',
+        endpointMet: true,
+        statisticalPValue:
+          'Creatinine-corrected urinary boron 1,559 ug/g in vegans, 1,235 in lacto-ovo-vegetarians and 919 in omnivores; intake correlated with excretion at r = 0.79 in vegans and r = 0.74 in omnivores, both p < 0.001',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'In 12 postmenopausal women depleted to 0.25 mg boron per 2,000 kcal for 119 days, repletion with 3 mg/day raised serum 17beta-oestradiol and testosterone and reduced urinary calcium and magnesium',
+        'The critical endpoint setting boron safe limits in two-year animal feeding studies is testicular toxicity, with NOAELs of 17.5 mg/kg/day in rats and 8.8 mg/kg/day in dogs',
+        'Boron is not classified as an essential nutrient, has no Recommended Dietary Allowance, and the European tolerable upper intake level is 10 mg/day',
+        'A PRISMA systematic review of minerals in athletic performance found four boron experiments and rated none of them strong',
+      ],
+      unsupportedInferences: [
+        'That a testosterone rise on repletion of a depleted postmenopausal woman predicts anything in a boron-replete man',
+        'That cis-diol binding chemistry constitutes a physiological role, when no human enzyme, receptor or deficiency syndrome has been identified',
+        'That the marketed forms differ meaningfully, when all are absorbed as boric acid with near-complete bioavailability',
+        'That an element with no established requirement can be deficient in an ordinary diet, when urinary excretion tracks intake closely across omnivores, vegetarians and vegans',
+      ],
+      whatFailedInitially: [
+        'Sixty years of work has not established boron as an essential nutrient or identified a human function for it',
+        'No Recommended Dietary Allowance or Adequate Intake has ever been set, because no requirement has been demonstrated',
+        'The athletic performance literature contains four boron experiments and none of sufficient quality to be rated strong',
+      ],
+      realWorldOutcome: [
+        'Sold worldwide as a dietary supplement, most commonly at 3 to 10 mg elemental boron per day, with testosterone, bone and joint claims',
+        'European tolerable upper intake level 10 mg/day; the derived tolerable daily intake from animal toxicology is 0.13 mg per kilogram per day based on rat developmental toxicity',
+        'Ordinary diets supply it from fruit, nuts, legumes and drinking water, with vegans excreting roughly 70% more per gram of creatinine than omnivores',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule or tablet, typically 3 to 10 mg elemental boron as citrate, glycinate, aspartate or calcium fructoborate',
+      description:
+        'A simple oral supplement. The counterion varies between products and the absorbed species does not: all forms are hydrolysed and absorbed as boric acid with near-complete bioavailability, so claims of superior absorption for one salt over another have no mechanism behind them. Labels differ in whether the stated milligram figure is elemental boron or the whole salt, which is worth checking before comparing a dose to an upper limit.',
+      safetyProfile:
+        'The European tolerable upper intake level is 10 mg per day. Acute boric acid poisoning at far higher exposures causes vomiting, diarrhoea, a characteristic erythematous rash and, in severe cases, renal failure. The endpoints that set the regulatory limits are chronic: testicular toxicity in two-year rat and dog feeding studies, with no-observed-adverse-effect levels of 17.5 and 8.8 mg boron per kilogram per day respectively, and developmental toxicity with reduced fetal body weight in rodents. A re-derivation using chemical-specific uncertainty factors arrived at a tolerable daily intake of 0.13 mg per kilogram per day, based on rat developmental toxicity. Because clearance is renal, impaired kidney function raises exposure at any given intake.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does boron raise testosterone?',
+        a: 'The evidence for that comes from a specific and unusual situation. Twelve postmenopausal women were fed a diet providing 0.25 mg boron per 2,000 kcal for 119 days and then given 3 mg a day for 48 days; serum 17beta-oestradiol and testosterone rose, along with changes in calcium and magnesium excretion. That is a repletion experiment in deliberately depleted women. Nothing in it establishes what happens when a man with an ordinary diet takes a supplement, and no study has shown that. The systematic review of minerals in athletic performance found four boron experiments in total and rated none of them strong.',
+        auditNote:
+          'A depletion-repletion design answers "is this needed", not "does more help". The two questions get conflated constantly for this element.',
+      },
+      {
+        q: 'Is boron essential?',
+        a: 'Not for humans, on the current classification. A 2026 review states directly that boron is not currently classified as an essential nutrient while arguing it is biologically important. There is no Recommended Dietary Allowance and no Adequate Intake, because setting either requires a demonstrated requirement, and none has been demonstrated. In plants boron is genuinely essential — it cross-links pectin in the cell wall — and that fact does a great deal of unearned work in how the element is marketed to people.',
+      },
+      {
+        q: 'How much is too much?',
+        a: 'The European Food Safety Authority tolerable upper intake level is 10 mg per day. The animal toxicology behind limits of this kind is worth knowing: the critical chronic endpoint is testicular toxicity, with no-observed-adverse-effect levels of 17.5 mg per kilogram per day in a two-year rat study and 8.8 in dogs, alongside developmental toxicity with reduced fetal body weight. One re-derivation using chemical-specific uncertainty factors concluded that 0.13 mg per kilogram per day is the appropriate tolerable daily intake, based on the rat developmental data.',
+      },
+      {
+        q: 'Do the different forms matter?',
+        a: 'Not for absorption. Boron citrate, boron glycinate, boron aspartate and calcium fructoborate are all hydrolysed in the gut and absorbed as boric acid, with near-complete bioavailability from every form. What differs is the counterion and the price. The one label detail that does matter is whether the stated milligrams refer to elemental boron or to the whole salt, because that changes the dose by a large factor.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Nielsen FH. Biochemical and physiologic consequences of boron deprivation in humans. Environ Health Perspect 1994;102(Suppl 7):59-63',
+        identifier: '10.1289/ehp.94102s759',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hasegawa R et al. Safety assessment of boron by application of new uncertainty factors and their subdivision. Regul Toxicol Pharmacol 2013;65:108-114',
+        identifier: '10.1016/j.yrtph.2012.10.013',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kuru-Yasar R, Yarat A. The role of boron in the diet and as a dietary supplement. Handb Exp Pharmacol 2026',
+        identifier: '10.1007/164_2026_811',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stubing F et al. Boron intake and 24-hour urinary excretion in long-term omnivores, vegetarians and vegans: a cross-sectional study. Biol Trace Elem Res 2026',
+        identifier: '10.1007/s12011-026-05297-x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Heffernan SM et al. The role of mineral and trace element supplementation in exercise and athletic performance: a systematic review. Nutrients 2019;11:696',
+        identifier: '10.3390/nu11030696',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chatterjee S et al. The modern role of boron as a "magic element" in biomedical science: chemistry perspective. Chem Commun (Camb) 2021;57:13629-13640',
+        identifier: '10.1039/d1cc05481c',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Marone PA, Heimbach JT et al. Subchronic and genetic safety evaluation of a calcium fructoborate in rats. Food Chem Toxicol 2016;95:75-88',
+        identifier: '10.1016/j.fct.2016.06.021',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 7628 — boric acid, the absorbed species; formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/7628',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 5462311 — boron, elemental; formula and atomic weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5462311',
+        kind: 'url',
+      },
+    ],
+  },
 ]

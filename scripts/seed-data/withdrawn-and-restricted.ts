@@ -4212,7 +4212,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       whoTakesThis:
         'Nobody. Its active metabolite, fexofenadine, is available over the counter worldwide and is the same antihistamine without the cardiac liability.',
       clinicalGoals:
-        'Relief of allergic rhinitis and urticaria without sedation. It achieved that entirely, which is what makes the drug\'s replacement by its own metabolite such an unusually clean resolution.',
+        "Relief of allergic rhinitis and urticaria without sedation. It achieved that entirely, which is what makes the drug's replacement by its own metabolite such an unusually clean resolution.",
     },
     oneSentenceVerdict:
       'A non-sedating antihistamine that turned out to be a prodrug whose parent molecule blocks the hERG channel as potently as quinidine while its active metabolite does not block it at all — so the drug was withdrawn and the metabolite was licensed in its place as fexofenadine.',
@@ -4222,7 +4222,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     confidenceScore: 92,
     substitutes: {
       summary:
-        'The substitute is the drug\'s own active metabolite. Fexofenadine is terfenadine carboxylate, sold over the counter, with no cardiac potassium channel effect at clinically achievable concentrations. Loratadine, desloratadine and cetirizine were shown in the same comparative work to have no QT signal either.',
+        "The substitute is the drug's own active metabolite. Fexofenadine is terfenadine carboxylate, sold over the counter, with no cardiac potassium channel effect at clinically achievable concentrations. Loratadine, desloratadine and cetirizine were shown in the same comparative work to have no QT signal either.",
       conventionalRx: [
         {
           name: 'Fexofenadine',
@@ -4257,8 +4257,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CC(C)(C)C1=CC=C(C=C1)C(CCCN2CCC(CC2)C(C3=CC=CC=C3)(C4=CC=CC=C4)O)O',
+      smilesString: 'CC(C)(C)C1=CC=C(C=C1)C(CCCN2CCC(CC2)C(C3=CC=CC=C3)(C4=CC=CC=C4)O)O',
       chemicalFormula: 'C32H41NO2',
       molecularWeight: '471.7 g/mol',
       targetReceptorAffinity:
@@ -4318,11 +4317,12 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'ter-a1',
         category: 'measured',
-        title: 'Ketoconazole made all six volunteers accumulate the parent drug and prolong their QT',
+        title:
+          'Ketoconazole made all six volunteers accumulate the parent drug and prolong their QT',
         laymanSummary:
           'Six healthy people took terfenadine for a week, then added a common antifungal. All six began accumulating the unconverted drug and their ECGs changed. Only two could finish the study.',
         technicalDetails:
-          'Prospective cohort study with each subject as their own control: six healthy volunteers, four men and two women aged 24 to 35, taking no other medication, reached steady state on terfenadine 60 mg every 12 hours for seven days, then added ketoconazole 200 mg every 12 hours. All six had detectable levels of unmetabolised terfenadine after ketoconazole was added, associated with QT prolongation. Only two of the six could complete the full course of ketoconazole coadministration; four received a shortened course because of significant electrocardiographic repolarisation abnormalities. The area under the curve of the acid metabolite changed significantly. The authors\' conclusion was that the combination should be avoided.',
+          "Prospective cohort study with each subject as their own control: six healthy volunteers, four men and two women aged 24 to 35, taking no other medication, reached steady state on terfenadine 60 mg every 12 hours for seven days, then added ketoconazole 200 mg every 12 hours. All six had detectable levels of unmetabolised terfenadine after ketoconazole was added, associated with QT prolongation. Only two of the six could complete the full course of ketoconazole coadministration; four received a shortened course because of significant electrocardiographic repolarisation abnormalities. The area under the curve of the acid metabolite changed significantly. The authors' conclusion was that the combination should be avoided.",
         evidenceSource:
           'Honig PK, Wortham DC, Zamani K, Conner DP, Mullin JC, Cantilena LR. JAMA 1993;269:1513-1518',
         measuredMetric:
@@ -4334,7 +4334,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'The parent is as potent as quinidine; the metabolite does nothing to the channel',
         laymanSummary:
-          'Laboratory recordings showed the swallowed drug blocks the heart\'s potassium current as strongly as a classic anti-arrhythmic. The molecule it turns into does not block it at all, even at thirty times the concentration.',
+          "Laboratory recordings showed the swallowed drug blocks the heart's potassium current as strongly as a classic anti-arrhythmic. The molecule it turns into does not block it at all, even at thirty times the concentration.",
         technicalDetails:
           'Woosley and colleagues examined FDA Spontaneous Reporting System cases — 25 reports of torsades de pointes as of 1 April 1992 — and then tested the resulting hypothesis in isolated feline myocytes. Terfenadine proved equipotent with quinidine as a blocker of the delayed rectifier potassium current. Terfenadine carboxylate, the major metabolite, did not inhibit that current even at concentrations 30 times higher than the terfenadine concentration producing a half-maximal effect. Their conclusion was that torsades de pointes results from a quinidine-like action of the parent drug plus factors that impair its normally rapid metabolism.',
         evidenceSource:
@@ -4353,8 +4353,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'Roy, Dumaine and Brown expressed Kv1.5 and hERG heterologously in Xenopus oocytes to compare sensitivity. hERG was ten times more sensitive than Kv1.5 to terfenadine block, with apparent dissociation constants of 350 nmol/L and 2.7 micromol/L respectively — values that agree with terfenadine block of IKr and IKur currents measured in human atrial myocytes. They noted the clinical relevance directly: terfenadine concentrations in human plasma may reach the 100 nmol/L range. Terfenadine carboxylate blocked neither channel. Their closing proposal — that hERG is likely the primary target for the cardiotoxic effects of other related antihistamines — was borne out by astemizole.',
         evidenceSource: 'Roy M, Dumaine R, Brown AM. Circulation 1996;94:817-823',
         doi: '10.1161/01.CIR.94.4.817',
-        measuredMetric:
-          'Apparent dissociation constant for hERG and Kv1.5 block by terfenadine',
+        measuredMetric: 'Apparent dissociation constant for hERG and Kv1.5 block by terfenadine',
         auditFlag: 'verified',
       },
       {
@@ -4373,7 +4372,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'ter-a5',
         category: 'inferred',
-        title: 'Arrhythmia was assumed to be a class effect of non-sedating antihistamines. It is not',
+        title:
+          'Arrhythmia was assumed to be a class effect of non-sedating antihistamines. It is not',
         laymanSummary:
           'After terfenadine and astemizole, the whole class fell under suspicion. Comparative testing showed loratadine, cetirizine and fexofenadine have no such effect.',
         technicalDetails:
@@ -4388,11 +4388,12 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'ter-a6',
         category: 'inferred',
-        title: 'A drug with an enormous safety margin has none once the margin depends on an enzyme',
+        title:
+          'A drug with an enormous safety margin has none once the margin depends on an enzyme',
         laymanSummary:
           'Under normal conditions almost no unconverted drug reaches the bloodstream, so the safety margin looked huge. That margin was not a property of the dose — it was a property of one liver enzyme continuing to work.',
         technicalDetails:
-          'Terfenadine undergoes near-complete first-pass metabolism by CYP3A4, so parent drug concentrations in normal use are very low relative to the 350 nmol/L hERG dissociation constant. That apparent margin was the basis on which the drug was considered safe. It is conditional rather than intrinsic: it disappears whenever CYP3A4 is inhibited by an azole antifungal, a macrolide antibiotic, grapefruit juice, or by hepatic impairment, and it disappears in overdose. Honig\'s study demonstrated the collapse experimentally in six healthy volunteers. The generalisable point is that a safety margin created by metabolism is only as robust as the metabolism, and prodrugs whose parent carries the toxicity have no floor beneath them.',
+          "Terfenadine undergoes near-complete first-pass metabolism by CYP3A4, so parent drug concentrations in normal use are very low relative to the 350 nmol/L hERG dissociation constant. That apparent margin was the basis on which the drug was considered safe. It is conditional rather than intrinsic: it disappears whenever CYP3A4 is inhibited by an azole antifungal, a macrolide antibiotic, grapefruit juice, or by hepatic impairment, and it disappears in overdose. Honig's study demonstrated the collapse experimentally in six healthy volunteers. The generalisable point is that a safety margin created by metabolism is only as robust as the metabolism, and prodrugs whose parent carries the toxicity have no floor beneath them.",
         evidenceSource:
           'Honig PK et al., JAMA 1993;269:1513-1518; Woosley RL et al., JAMA 1993;269:1532-1536',
         inferredClaim:
@@ -4467,7 +4468,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Replicated',
       },
       {
-        trialId: 'FDA Spontaneous Reporting System analysis with myocyte electrophysiology (Woosley et al.)',
+        trialId:
+          'FDA Spontaneous Reporting System analysis with myocyte electrophysiology (Woosley et al.)',
         phase: 'Spontaneous report analysis with in vitro mechanistic testing',
         sampleSize: 25,
         primaryEndpoint:
@@ -4518,11 +4520,11 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How did a drug this dangerous get approved in 1985?',
-        a: 'Because under ordinary conditions it was not dangerous, and the conditions that made it dangerous were not being tested for. Terfenadine\'s first-pass metabolism is so nearly complete that parent drug is usually undetectable, so ordinary clinical studies saw no cardiac effect. The hERG channel had not been identified as the shared target of QT-prolonging drugs — that came in 1996, eleven years after approval — and there was no requirement to screen for it. What the 1985 dossier could not show is that the safety margin was conditional on one enzyme continuing to work, in patients who would go on to be prescribed antibiotics and antifungals by other doctors.',
+        a: "Because under ordinary conditions it was not dangerous, and the conditions that made it dangerous were not being tested for. Terfenadine's first-pass metabolism is so nearly complete that parent drug is usually undetectable, so ordinary clinical studies saw no cardiac effect. The hERG channel had not been identified as the shared target of QT-prolonging drugs — that came in 1996, eleven years after approval — and there was no requirement to screen for it. What the 1985 dossier could not show is that the safety margin was conditional on one enzyme continuing to work, in patients who would go on to be prescribed antibiotics and antifungals by other doctors.",
       },
       {
         q: 'Are all non-drowsy antihistamines a risk?',
-        a: 'No, and this was tested rather than assumed. Comparative work found that terfenadine and astemizole prolong the QT interval in animals and block cardiac potassium channels in vitro, while loratadine and cetirizine do neither, and desloratadine does not significantly inhibit cardiac potassium channels at clinically achievable levels. Human volunteer studies gave azelastine, cetirizine, fexofenadine and loratadine at several times the recommended dose, and with metabolic inhibitors present, and found no electrocardiographic effect. The reviewer\'s conclusion is explicit: the potential to cause ventricular arrhythmias is not a class effect.',
+        a: "No, and this was tested rather than assumed. Comparative work found that terfenadine and astemizole prolong the QT interval in animals and block cardiac potassium channels in vitro, while loratadine and cetirizine do neither, and desloratadine does not significantly inhibit cardiac potassium channels at clinically achievable levels. Human volunteer studies gave azelastine, cetirizine, fexofenadine and loratadine at several times the recommended dose, and with metabolic inhibitors present, and found no electrocardiographic effect. The reviewer's conclusion is explicit: the potential to cause ventricular arrhythmias is not a class effect.",
       },
       {
         q: 'Why does this page not show a price?',
@@ -4594,7 +4596,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Astemizole was the second non-sedating antihistamine after terfenadine and shared its fate for the same reason: it blocks the hERG cardiac potassium channel at nanomolar concentrations. What distinguishes it is its pharmacokinetics.',
       whyItMatters:
-        'Terfenadine\'s risk was created by an interaction lasting as long as the interacting drug did. Astemizole and its active metabolite have elimination half-lives measured in days to weeks, so an interaction or an overdose creates an exposure that persists long after the trigger has gone.',
+        "Terfenadine's risk was created by an interaction lasting as long as the interacting drug did. Astemizole and its active metabolite have elimination half-lives measured in days to weeks, so an interaction or an overdose creates an exposure that persists long after the trigger has gone.",
       whoTakesThis:
         'Nobody. Loratadine, cetirizine and fexofenadine replaced it and none of them carries a meaningful hERG signal.',
       clinicalGoals:
@@ -4647,7 +4649,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'C28H31FN4O',
       molecularWeight: '458.6 g/mol',
       targetReceptorAffinity:
-        'Potent H1 receptor antagonist. Its cardiac liability is hERG block at an estimated IC50 of about 480 nM in Xenopus oocytes — comparable to terfenadine\'s 330 nM in the same experiment, and roughly 300-fold more potent than loratadine. Applied intracellularly at 3 micromolar it produced complete block of hERG current. Its principal metabolite, desmethylastemizole, is pharmacologically active and long-lived.',
+        "Potent H1 receptor antagonist. Its cardiac liability is hERG block at an estimated IC50 of about 480 nM in Xenopus oocytes — comparable to terfenadine's 330 nM in the same experiment, and roughly 300-fold more potent than loratadine. Applied intracellularly at 3 micromolar it produced complete block of hERG current. Its principal metabolite, desmethylastemizole, is pharmacologically active and long-lived.",
       structureSource: {
         label: 'PubChem CID 2247 (astemizole) — canonical SMILES, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2247',
@@ -4707,7 +4709,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In one experiment testing four non-drowsy antihistamines on the same channel, astemizole and terfenadine blocked it at nanomolar concentrations, loratadine was three hundred times weaker, and cetirizine did nothing at all.',
         technicalDetails:
-          'Taglialatela and colleagues compared cetirizine with astemizole, terfenadine and loratadine on hERG channels expressed in Xenopus laevis oocytes. Estimated IC50 values were 330 nM for terfenadine and 480 nM for astemizole; loratadine was approximately 300-fold less potent at around 100 micromolar; cetirizine was completely devoid of inhibitory action up to 30 micromolar. In SH-SY5Y cells expressing native hERG current and in stably transfected HEK293 cells, 3 micromolar astemizole was highly effective while 3 micromolar cetirizine had no effect. Applied to the intracellular side of the membrane, 3 micromolar astemizole caused complete block and cetirizine again had none. The authors attributed cetirizine\'s exemption to its more polar and smaller substituent groups on the tertiary amine.',
+          "Taglialatela and colleagues compared cetirizine with astemizole, terfenadine and loratadine on hERG channels expressed in Xenopus laevis oocytes. Estimated IC50 values were 330 nM for terfenadine and 480 nM for astemizole; loratadine was approximately 300-fold less potent at around 100 micromolar; cetirizine was completely devoid of inhibitory action up to 30 micromolar. In SH-SY5Y cells expressing native hERG current and in stably transfected HEK293 cells, 3 micromolar astemizole was highly effective while 3 micromolar cetirizine had no effect. Applied to the intracellular side of the membrane, 3 micromolar astemizole caused complete block and cetirizine again had none. The authors attributed cetirizine's exemption to its more polar and smaller substituent groups on the tertiary amine.",
         evidenceSource: 'Taglialatela M et al., Mol Pharmacol 1998;54:113-121',
         doi: '10.1124/mol.54.1.113',
         measuredMetric:
@@ -4722,7 +4724,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'The case reports share a pattern: young patients, an overdose, and arrhythmia only in those whose ECG showed the repolarisation interval stretched past half a second.',
         technicalDetails:
           'Rao and colleagues described a case of astemizole-induced torsades de pointes ventricular tachycardia and reviewed the previous case reports. Across the series, all patients were young and dysrhythmias developed only in those with corrected QT intervals greater than 500 ms. Treatment comprised stopping astemizole, intravenous magnesium sulfate and isoproterenol, temporary cardiac pacing and, when necessary, direct current cardioversion. The authors add a practical warning that reads as a diagnostic trap: a cardiac cause of syncope or convulsions must not be overlooked in patients taking H1 antagonists, because those symptoms often precede hospitalisation or the detection of torsades.',
-        evidenceSource: 'Rao KA, Adlakha A, Verma-Ansil B, Meloy TD, Stanton MS. Mayo Clin Proc 1994;69:589-593',
+        evidenceSource:
+          'Rao KA, Adlakha A, Verma-Ansil B, Meloy TD, Stanton MS. Mayo Clin Proc 1994;69:589-593',
         doi: '10.1016/S0025-6196(12)62252-6',
         measuredMetric:
           'Corrected QT interval threshold above which dysrhythmias occurred in reported cases',
@@ -4731,7 +4734,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'ast-a3',
         category: 'measured',
-        title: 'Itraconazole raised total exposure nearly three-fold and lengthened the half-life to 3.6 days',
+        title:
+          'Itraconazole raised total exposure nearly three-fold and lengthened the half-life to 3.6 days',
         laymanSummary:
           'An antifungal did not raise the peak level much, but it nearly tripled the total drug exposure and stretched the elimination half-life from two days to more than three and a half.',
         technicalDetails:
@@ -4776,8 +4780,9 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A screen of nearly 2,700 approved and withdrawn drugs against the malaria parasite picked out astemizole. It and its main human metabolite killed drug-resistant parasites and worked in two mouse models.',
         technicalDetails:
-          'Chong and colleagues assembled a library of 2,687 existing drugs and screened it for inhibitors of Plasmodium falciparum. Astemizole and its principal human metabolite emerged as inhibitors of both chloroquine-sensitive and multidrug-resistant parasites, with efficacy in two mouse models of malaria. The finding is a real result and its ceiling should be stated with it: the hERG liability that ended the drug as an antihistamine does not disappear because the indication changed, and malaria is treated in settings where electrocardiographic monitoring is not available. The compound\'s value here has been mainly as a chemical starting point rather than as a candidate for redeployment.',
-        evidenceSource: 'Chong CR, Chen X, Shi L, Liu JO, Sullivan DJ Jr. Nat Chem Biol 2006;2:415-416',
+          "Chong and colleagues assembled a library of 2,687 existing drugs and screened it for inhibitors of Plasmodium falciparum. Astemizole and its principal human metabolite emerged as inhibitors of both chloroquine-sensitive and multidrug-resistant parasites, with efficacy in two mouse models of malaria. The finding is a real result and its ceiling should be stated with it: the hERG liability that ended the drug as an antihistamine does not disappear because the indication changed, and malaria is treated in settings where electrocardiographic monitoring is not available. The compound's value here has been mainly as a chemical starting point rather than as a candidate for redeployment.",
+        evidenceSource:
+          'Chong CR, Chen X, Shi L, Liu JO, Sullivan DJ Jr. Nat Chem Biol 2006;2:415-416',
         doi: '10.1038/nchembio806',
         measuredMetric:
           'Inhibition of chloroquine-sensitive and multidrug-resistant Plasmodium falciparum, and efficacy in two mouse models',
@@ -4809,7 +4814,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Blocks H1 — and blocks hERG from either side of the membrane',
         laymanDesc:
-          'It occupies histamine receptors and relieves symptoms. It also plugs the heart\'s potassium channel, and it can do that from inside the cell as well as outside.',
+          "It occupies histamine receptors and relieves symptoms. It also plugs the heart's potassium channel, and it can do that from inside the cell as well as outside.",
         molecularDetail:
           'H1 receptor antagonism at peripheral sites. Separately, hERG block with an estimated IC50 of about 480 nM extracellularly, and complete block at 3 micromolar applied to the intracellular face of the membrane in transfected HEK293 cells.',
         iconName: 'Lock',
@@ -4893,13 +4898,13 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Why was astemizole harder to manage than terfenadine?',
-        a: 'Pharmacokinetics. Terfenadine\'s risk appears when CYP3A4 is inhibited and recedes when the inhibitor stops, because terfenadine itself is cleared quickly. Astemizole has an elimination half-life of about two days on its own, 3.6 days with itraconazole present, and an active metabolite that is longer-lived still — the interaction study followed plasma concentrations for 504 hours after a single dose. So an accumulated exposure resolves over weeks. Stopping the drug does not promptly remove the hazard, and neither does stopping the interacting agent.',
+        a: "Pharmacokinetics. Terfenadine's risk appears when CYP3A4 is inhibited and recedes when the inhibitor stops, because terfenadine itself is cleared quickly. Astemizole has an elimination half-life of about two days on its own, 3.6 days with itraconazole present, and an active metabolite that is longer-lived still — the interaction study followed plasma concentrations for 504 hours after a single dose. So an accumulated exposure resolves over weeks. Stopping the drug does not promptly remove the hazard, and neither does stopping the interacting agent.",
         auditNote:
           'This is why the formal single-dose interaction study read as negative while the drug was still dangerous. The study measured 24 hours of a process that takes weeks.',
       },
       {
         q: 'Does this mean non-drowsy antihistamines are risky?',
-        a: 'No, and the experiment that settles it tested four of them on the same channel in the same laboratory. Astemizole gave an IC50 of about 480 nM and terfenadine 330 nM; loratadine was roughly 300-fold weaker at around 100 micromolar, and cetirizine showed no inhibition at all up to 30 micromolar. Since all four block histamine receptors effectively, the channel activity cannot come from the therapeutic pharmacology. The authors traced cetirizine\'s exemption to its more polar and smaller substituents on the tertiary amine. Loratadine, cetirizine and fexofenadine remain among the most widely used medicines in the world.',
+        a: "No, and the experiment that settles it tested four of them on the same channel in the same laboratory. Astemizole gave an IC50 of about 480 nM and terfenadine 330 nM; loratadine was roughly 300-fold weaker at around 100 micromolar, and cetirizine showed no inhibition at all up to 30 micromolar. Since all four block histamine receptors effectively, the channel activity cannot come from the therapeutic pharmacology. The authors traced cetirizine's exemption to its more polar and smaller substituents on the tertiary amine. Loratadine, cetirizine and fexofenadine remain among the most widely used medicines in the world.",
       },
       {
         q: 'Could astemizole be used for malaria?',
@@ -4974,7 +4979,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     indication:
       'Osteoarthritis, adult rheumatoid arthritis and primary dysmenorrhoea. Withdrawn from the United States market in April 2005 and listed by the FDA among drug products withdrawn for reasons of safety or effectiveness (81 FR 69668).',
     patientFriendlyIndication: 'An arthritis and period-pain tablet designed to spare the stomach',
-    anatomicalSite: 'Inflamed synovium and vascular endothelium; the skin is the second injury site',
+    anatomicalSite:
+      'Inflamed synovium and vascular endothelium; the skin is the second injury site',
     conditionContext: {
       conditionExplainer:
         'Valdecoxib is the third coxib and the one that carried two separate liabilities. It shares the prostacyclin-thromboxane imbalance of the class with rofecoxib, and it adds something the class does not share: a sulfonamide group.',
@@ -4999,7 +5005,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           name: 'Celecoxib',
           class: 'COX-2 selective NSAID, sulfonamide',
           howItCompares:
-            'Also a sulfonamide coxib, but with a Stevens-Johnson and toxic epidermal necrolysis reporting rate of 6 per million person-years in the first two years of marketing against valdecoxib\'s 49. It is the only coxib with a large prospective cardiovascular outcome trial.',
+            "Also a sulfonamide coxib, but with a Stevens-Johnson and toxic epidermal necrolysis reporting rate of 6 per million person-years in the first two years of marketing against valdecoxib's 49. It is the only coxib with a large prospective cardiovascular outcome trial.",
           typicalCost: 'Generic; not priced here',
           prosAndCons:
             'Pros: PRECISION cardiovascular data, much lower serious-skin-reaction reporting rate. Cons: still a sulfonamide, still a COX-2 inhibitor with the class prostacyclin effect.',
@@ -5104,9 +5110,9 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'Stevens-Johnson syndrome reported at 49 cases per million person-years',
         laymanSummary:
-          'The FDA compared four anti-inflammatory drugs. Valdecoxib produced severe skin reactions at about twenty-five times the background rate, eight to nine times celecoxib\'s rate, and meloxicam produced none.',
+          "The FDA compared four anti-inflammatory drugs. Valdecoxib produced severe skin reactions at about twenty-five times the background rate, eight to nine times celecoxib's rate, and meloxicam produced none.",
         technicalDetails:
-          'The FDA reviewed all United States Adverse Event Reporting System cases of Stevens-Johnson syndrome and toxic epidermal necrolysis for celecoxib, rofecoxib, valdecoxib and meloxicam since first marketing. Up to the end of March 2004 there were 63 cases with valdecoxib, 43 with celecoxib, 17 with rofecoxib — the non-sulfonamide coxib — and none with meloxicam. Reporting rates over the first two years of marketing were 49 cases per million person-years for valdecoxib, 6 for celecoxib and 3 for rofecoxib, against a background incidence of 1.9 cases per million population per year taken from the literature. The valdecoxib rate is 8 to 9 times that of celecoxib and approximately 25 times background. The authors\' conclusion names the chemistry: a strong association between these reactions and the sulfonamide COX-2 inhibitors, particularly valdecoxib.',
+          "The FDA reviewed all United States Adverse Event Reporting System cases of Stevens-Johnson syndrome and toxic epidermal necrolysis for celecoxib, rofecoxib, valdecoxib and meloxicam since first marketing. Up to the end of March 2004 there were 63 cases with valdecoxib, 43 with celecoxib, 17 with rofecoxib — the non-sulfonamide coxib — and none with meloxicam. Reporting rates over the first two years of marketing were 49 cases per million person-years for valdecoxib, 6 for celecoxib and 3 for rofecoxib, against a background incidence of 1.9 cases per million population per year taken from the literature. The valdecoxib rate is 8 to 9 times that of celecoxib and approximately 25 times background. The authors' conclusion names the chemistry: a strong association between these reactions and the sulfonamide COX-2 inhibitors, particularly valdecoxib.",
         evidenceSource: 'La Grenade L et al., Drug Saf 2005;28:917-924',
         doi: '10.2165/00002018-200528100-00008',
         measuredMetric:
@@ -5120,7 +5126,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Most withdrawn drugs have one problem. Valdecoxib had two unrelated ones: a class cardiovascular effect and a chemistry-specific skin reaction.',
         technicalDetails:
-          'The cardiovascular signal arises from COX-2 selectivity itself — suppressed endothelial prostacyclin with platelet thromboxane intact — and is shared with rofecoxib. The severe cutaneous reactions arise from the benzenesulfonamide group and are not shared with rofecoxib, which uses a methylsulfonyl group and had a reporting rate of 3 per million person-years against valdecoxib\'s 49. Two mechanistically independent liabilities in one molecule is unusual, and it is why the withdrawal in April 2005 was less contested than rofecoxib\'s. Valdecoxib appears in the FDA\'s codified withdrawn-for-safety list at 81 FR 69668 as "all drug products containing valdecoxib".',
+          "The cardiovascular signal arises from COX-2 selectivity itself — suppressed endothelial prostacyclin with platelet thromboxane intact — and is shared with rofecoxib. The severe cutaneous reactions arise from the benzenesulfonamide group and are not shared with rofecoxib, which uses a methylsulfonyl group and had a reporting rate of 3 per million person-years against valdecoxib's 49. Two mechanistically independent liabilities in one molecule is unusual, and it is why the withdrawal in April 2005 was less contested than rofecoxib's. Valdecoxib appears in the FDA's codified withdrawn-for-safety list at 81 FR 69668 as \"all drug products containing valdecoxib\".",
         evidenceSource:
           'Nussmeier NA et al., N Engl J Med 2005;352:1081-1091; La Grenade L et al., Drug Saf 2005;28:917-924; FDA final rule 81 FR 69668',
         doi: '10.2165/00002018-200528100-00008',
@@ -5143,7 +5149,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'val-a5',
         category: 'inferred',
-        title: 'Spontaneous reporting rates are not incidence, and the comparison is what carries the weight',
+        title:
+          'Spontaneous reporting rates are not incidence, and the comparison is what carries the weight',
         laymanSummary:
           'The 49-per-million figure counts reports, not cases, and reporting is influenced by publicity. What makes it convincing is that all four drugs were counted the same way at the same time.',
         technicalDetails:
@@ -5161,7 +5168,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Rofecoxib, which was withdrawn for heart risk, had the fewest severe skin reactions of the three coxibs — because it is the one without a sulfonamide group.',
         technicalDetails:
-          'In the same FDA dataset, rofecoxib — explicitly identified as the non-sulfonamide coxib — accounted for 17 Stevens-Johnson syndrome or toxic epidermal necrolysis cases and a first-two-years reporting rate of 3 per million person-years, against celecoxib\'s 6 and valdecoxib\'s 49. This is a clean structure-activity observation running across three drugs with the same therapeutic target: the cardiovascular liability tracks the pharmacology and is shared, while the cutaneous liability tracks the sulfonamide substituent and is not. Two drugs in the same class can fail for entirely different chemical reasons, and this dataset shows both at once.',
+          "In the same FDA dataset, rofecoxib — explicitly identified as the non-sulfonamide coxib — accounted for 17 Stevens-Johnson syndrome or toxic epidermal necrolysis cases and a first-two-years reporting rate of 3 per million person-years, against celecoxib's 6 and valdecoxib's 49. This is a clean structure-activity observation running across three drugs with the same therapeutic target: the cardiovascular liability tracks the pharmacology and is shared, while the cutaneous liability tracks the sulfonamide substituent and is not. Two drugs in the same class can fail for entirely different chemical reasons, and this dataset shows both at once.",
         evidenceSource: 'La Grenade L et al., Drug Saf 2005;28:917-924',
         doi: '10.2165/00002018-200528100-00008',
         measuredMetric:
@@ -5280,7 +5287,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Was valdecoxib withdrawn for the same reason as rofecoxib?',
-        a: 'Partly, and the difference is the interesting half. Both share the class cardiovascular liability that comes from suppressing endothelial prostacyclin while leaving platelet thromboxane intact, and valdecoxib\'s trial after coronary bypass surgery found cardiovascular events in 2.0% against 0.5% on placebo. Valdecoxib also carried a second, unrelated problem: it is a sulfonamide, and Stevens-Johnson syndrome and toxic epidermal necrolysis were reported at 49 cases per million person-years, about 25 times the background rate. Rofecoxib, which is not a sulfonamide, reported at 3 per million person-years. One class effect, one chemistry effect, in the same molecule.',
+        a: "Partly, and the difference is the interesting half. Both share the class cardiovascular liability that comes from suppressing endothelial prostacyclin while leaving platelet thromboxane intact, and valdecoxib's trial after coronary bypass surgery found cardiovascular events in 2.0% against 0.5% on placebo. Valdecoxib also carried a second, unrelated problem: it is a sulfonamide, and Stevens-Johnson syndrome and toxic epidermal necrolysis were reported at 49 cases per million person-years, about 25 times the background rate. Rofecoxib, which is not a sulfonamide, reported at 3 per million person-years. One class effect, one chemistry effect, in the same molecule.",
         auditNote:
           'The FDA analysis deliberately included meloxicam, a non-coxib that reached the market at a similar time, as a reference. It generated no such reports at all.',
       },
@@ -5354,24 +5361,24 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Withdrawn from Market',
     approvalYear: 1988,
     indication:
-      'Adjunctive treatment of Parkinson\'s disease with levodopa and carbidopa. Withdrawn from the United States market in March 2007 and listed by the FDA among drug products withdrawn for reasons of safety or effectiveness (81 FR 69668). It remains in veterinary use for equine pituitary pars intermedia dysfunction.',
-    patientFriendlyIndication: 'A Parkinson\'s disease tablet taken alongside levodopa',
+      "Adjunctive treatment of Parkinson's disease with levodopa and carbidopa. Withdrawn from the United States market in March 2007 and listed by the FDA among drug products withdrawn for reasons of safety or effectiveness (81 FR 69668). It remains in veterinary use for equine pituitary pars intermedia dysfunction.",
+    patientFriendlyIndication: "A Parkinson's disease tablet taken alongside levodopa",
     anatomicalSite:
       'Striatal dopamine receptors; the toxicity site is the 5-HT2B receptor on cardiac valve fibroblasts',
     conditionContext: {
       conditionExplainer:
-        'Pergolide is an ergot derivative, and ergot alkaloids have been known to cause fibrotic valve disease since the 1960s. Its dopamine agonism treated Parkinson\'s disease; its off-target agonism at the 5-HT2B receptor thickened heart valves.',
+        "Pergolide is an ergot derivative, and ergot alkaloids have been known to cause fibrotic valve disease since the 1960s. Its dopamine agonism treated Parkinson's disease; its off-target agonism at the 5-HT2B receptor thickened heart valves.",
       whyItMatters:
         'This is the second time on this page that 5-HT2B agonism destroyed a drug. Fenfluramine was withdrawn for it in 1997; pergolide was withdrawn for it in 2007, ten years later, in a different therapeutic class. The receptor does not care what the drug was for.',
       whoTakesThis:
         'No human patient in the United States. Pergolide remains widely used in veterinary medicine for equine pituitary pars intermedia dysfunction, where the risk calculus differs.',
       clinicalGoals:
-        'Reduce off time and motor fluctuations in Parkinson\'s disease alongside levodopa. The non-ergot dopamine agonists achieve the same goal, and in the key echocardiographic study produced no valvular regurgitation at all.',
+        "Reduce off time and motor fluctuations in Parkinson's disease alongside levodopa. The non-ergot dopamine agonists achieve the same goal, and in the key echocardiographic study produced no valvular regurgitation at all.",
     },
     oneSentenceVerdict:
       'An ergot-derived dopamine agonist withdrawn in 2007 after two independent studies published in the same journal issue found a 7.1-fold incidence-rate ratio for new valve regurgitation and clinically important regurgitation in 23.4% of treated patients against 5.6% of controls — while non-ergot agonists produced none.',
     laymanHowItWorks:
-      'Pergolide stimulates the dopamine receptors that Parkinson\'s disease depletes, which improves movement. It is built on an ergot skeleton, and ergot compounds also stimulate a serotonin receptor found on heart valve tissue. Stimulating that receptor tells valve cells to grow and stiffen, so the valve thickens and stops closing properly. The dopamine agonists that are not built on an ergot skeleton do the first thing and not the second.',
+      "Pergolide stimulates the dopamine receptors that Parkinson's disease depletes, which improves movement. It is built on an ergot skeleton, and ergot compounds also stimulate a serotonin receptor found on heart valve tissue. Stimulating that receptor tells valve cells to grow and stiffen, so the valve thickens and stops closing properly. The dopamine agonists that are not built on an ergot skeleton do the first thing and not the second.",
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 92,
     substitutes: {
@@ -5385,7 +5392,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
             'Same therapeutic role, no ergot skeleton, no 5-HT2B agonism. In the Zanettini echocardiographic study, patients on non-ergot agonists had 0% clinically important valve regurgitation against 23.4% on pergolide.',
           typicalCost: 'Generic; not priced here',
           prosAndCons:
-            'Pros: no valvular signal, effective in Parkinson\'s disease and restless legs syndrome. Cons: impulse control disorders, sudden onset of sleep, orthostatic hypotension.',
+            "Pros: no valvular signal, effective in Parkinson's disease and restless legs syndrome. Cons: impulse control disorders, sudden onset of sleep, orthostatic hypotension.",
         },
         {
           name: 'Ropinirole',
@@ -5415,7 +5422,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'C19H26N2S',
       molecularWeight: '314.5 g/mol',
       targetReceptorAffinity:
-        'An ergoline with agonist activity at dopamine D1 and D2 receptors, which is the therapeutic mechanism. The ergoline scaffold also confers agonism at the serotonin 5-HT2B receptor, the same receptor through which fenfluramine\'s metabolite norfenfluramine causes valve fibrosis. Non-ergot dopamine agonists lack this activity entirely.',
+        "An ergoline with agonist activity at dopamine D1 and D2 receptors, which is the therapeutic mechanism. The ergoline scaffold also confers agonism at the serotonin 5-HT2B receptor, the same receptor through which fenfluramine's metabolite norfenfluramine causes valve fibrosis. Non-ergot dopamine agonists lack this activity entirely.",
       structureSource: {
         label: 'PubChem CID 47811 (pergolide) — canonical SMILES, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/47811',
@@ -5484,7 +5491,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'Incidence-rate ratio 7.1 for new valve regurgitation in 11,417 patients',
         laymanSummary:
-          'In a UK primary care database covering over eleven thousand people on Parkinson\'s drugs, new valve leakage was seven times more likely in those currently taking pergolide.',
+          "In a UK primary care database covering over eleven thousand people on Parkinson's drugs, new valve leakage was seven times more likely in those currently taking pergolide.",
         technicalDetails:
           'Population-based cohort from the United Kingdom General Practice Research Database: 11,417 subjects aged 40 to 80 prescribed antiparkinsonian drugs between 1988 and 2005, with a nested case-control analysis matching each patient with newly diagnosed cardiac-valve regurgitation to up to 25 controls by age, sex and year of cohort entry. Of 31 case patients, 6 were currently exposed to pergolide, 6 to cabergoline, and 19 had not been exposed to any dopamine agonist in the previous year. The incidence-rate ratio was 7.1 for current pergolide use (95% CI 2.3 to 22.3) and 4.9 for cabergoline (95% CI 1.5 to 15.6). Current use of other dopamine agonists showed no increase.',
         evidenceSource: 'Schade R et al., N Engl J Med 2007;356:29-38',
@@ -5496,11 +5503,12 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'per-a2',
         category: 'measured',
-        title: 'Echocardiography: 23.4% clinically important regurgitation, against 0% on non-ergot agonists',
+        title:
+          'Echocardiography: 23.4% clinically important regurgitation, against 0% on non-ergot agonists',
         laymanSummary:
           'Scanning 155 patients directly, about a quarter of those on pergolide had moderate or severe valve leakage. Among those on the non-ergot alternatives, not one did.',
         technicalDetails:
-          'Echocardiographic prevalence study in 155 patients taking dopamine agonists for Parkinson\'s disease — pergolide 64, cabergoline 49, non-ergot agonists 42 — and 90 control subjects, with regurgitation graded by American Society of Echocardiography criteria. Clinically important regurgitation (moderate to severe, grade 3 to 4) in any valve occurred in 23.4% on pergolide and 28.6% on cabergoline, against 0% on non-ergot-derived agonists and 5.6% in controls. Relative risks in the pergolide group were 6.3 for mitral regurgitation (p=0.008), 4.2 for aortic (p=0.01) and 5.6 for tricuspid (p=0.16); in the cabergoline group 4.6 (p=0.09), 7.3 (p<0.001) and 5.5 (p=0.12).',
+          "Echocardiographic prevalence study in 155 patients taking dopamine agonists for Parkinson's disease — pergolide 64, cabergoline 49, non-ergot agonists 42 — and 90 control subjects, with regurgitation graded by American Society of Echocardiography criteria. Clinically important regurgitation (moderate to severe, grade 3 to 4) in any valve occurred in 23.4% on pergolide and 28.6% on cabergoline, against 0% on non-ergot-derived agonists and 5.6% in controls. Relative risks in the pergolide group were 6.3 for mitral regurgitation (p=0.008), 4.2 for aortic (p=0.01) and 5.6 for tricuspid (p=0.16); in the cabergoline group 4.6 (p=0.09), 7.3 (p<0.001) and 5.5 (p=0.12).",
         evidenceSource: 'Zanettini R et al., N Engl J Med 2007;356:39-46',
         doi: '10.1056/NEJMoa054830',
         measuredMetric:
@@ -5541,7 +5549,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Fenfluramine was withdrawn in 1997 for valve damage caused by a specific serotonin receptor. Pergolide was withdrawn in 2007 for valve damage caused by the same receptor.',
         technicalDetails:
-          'Fenfluramine\'s valvulopathy was traced to 5-HT2B agonism by its metabolite norfenfluramine, and the lesion was histopathologically identical to carcinoid and ergotamine valve disease. Pergolide is an ergoline and carries 5-HT2B agonism as a property of that scaffold. The non-ergot dopamine agonists do not, and produced 0% clinically important regurgitation in the echocardiographic study. So the pattern that was established for one indication in 1997 recurred in an entirely different indication a decade later, in a drug that had been marketed since 1988. The 5-HT2B counter-screen that the fenfluramine episode created is now applied to any candidate with serotonergic or ergoline chemistry, and it exists precisely because this failure repeats across classes.',
+          "Fenfluramine's valvulopathy was traced to 5-HT2B agonism by its metabolite norfenfluramine, and the lesion was histopathologically identical to carcinoid and ergotamine valve disease. Pergolide is an ergoline and carries 5-HT2B agonism as a property of that scaffold. The non-ergot dopamine agonists do not, and produced 0% clinically important regurgitation in the echocardiographic study. So the pattern that was established for one indication in 1997 recurred in an entirely different indication a decade later, in a drug that had been marketed since 1988. The 5-HT2B counter-screen that the fenfluramine episode created is now applied to any candidate with serotonergic or ergoline chemistry, and it exists precisely because this failure repeats across classes.",
         evidenceSource:
           'Zanettini R et al., N Engl J Med 2007;356:39-46; Connolly HM et al., N Engl J Med 1997;337:581-588',
         doi: '10.1056/NEJMoa054830',
@@ -5550,7 +5558,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'per-a6',
         category: 'inferred',
-        title: 'Fibrotic risk was assumed to belong to ergots generally, and clinically it does not divide that cleanly',
+        title:
+          'Fibrotic risk was assumed to belong to ergots generally, and clinically it does not divide that cleanly',
         laymanSummary:
           'Both ergot-derived agonists caused valve damage, but not identically — pergolide hit the mitral valve hardest and cabergoline the aortic. Grouping them as one risk loses information a patient might need.',
         technicalDetails:
@@ -5589,7 +5598,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         step: 2,
         title: 'Crosses into the brain and reaches the striatum',
         laymanDesc:
-          'It enters brain tissue and reaches the region whose dopamine-producing cells are dying in Parkinson\'s disease.',
+          "It enters brain tissue and reaches the region whose dopamine-producing cells are dying in Parkinson's disease.",
         molecularDetail:
           'Lipophilic ergoline with good central nervous system penetration, reaching postsynaptic dopamine receptors in the striatum. It also circulates to cardiac valve tissue, which has no barrier equivalent.',
         iconName: 'ArrowDownToLine',
@@ -5617,9 +5626,10 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         step: 5,
-        title: 'Parkinson symptoms controlled; a quarter of patients develop significant valve leak',
+        title:
+          'Parkinson symptoms controlled; a quarter of patients develop significant valve leak',
         laymanDesc:
-          'The drug worked for Parkinson\'s disease. On echocardiography, 23.4% of patients had moderate or severe valve leakage against 5.6% of controls and none on the non-ergot alternatives.',
+          "The drug worked for Parkinson's disease. On echocardiography, 23.4% of patients had moderate or severe valve leakage against 5.6% of controls and none on the non-ergot alternatives.",
         molecularDetail:
           'Measured endpoints: clinically important regurgitation in 23.4% on pergolide versus 5.6% of controls and 0% on non-ergot agonists; incidence-rate ratio 7.1 (95% CI 2.3 to 22.3) for newly diagnosed regurgitation in an 11,417-patient cohort.',
         iconName: 'Activity',
@@ -5671,7 +5681,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       ],
       realWorldOutcome: [
         'Non-ergot dopamine agonists — pramipexole, ropinirole, rotigotine — took the indication and carry no valvular signal',
-        'Cabergoline survived at the much lower doses used in hyperprolactinaemia, where cumulative exposure is a fraction of the Parkinson\'s dose, with echocardiographic monitoring recommended',
+        "Cabergoline survived at the much lower doses used in hyperprolactinaemia, where cumulative exposure is a fraction of the Parkinson's dose, with echocardiographic monitoring recommended",
         'Pergolide remains in veterinary use for equine pituitary pars intermedia dysfunction',
       ],
     },
@@ -5685,7 +5695,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'How did a drug marketed since 1988 take nineteen years to be withdrawn?',
-        a: 'Because the harm is silent until it is severe. Valve regurgitation develops slowly, produces no symptoms for years, and requires an echocardiogram to detect — and echocardiograms are not routinely performed on Parkinson\'s patients. The clinically diagnosed cases were few enough that the UK cohort of 11,417 patients yielded only 31 in total. What broke the case open was scanning patients who had no cardiac complaint, and finding that 23.4% of those on pergolide had moderate to severe regurgitation against 5.6% of controls. Once someone looked with the right instrument, the answer took one cross-sectional study.',
+        a: "Because the harm is silent until it is severe. Valve regurgitation develops slowly, produces no symptoms for years, and requires an echocardiogram to detect — and echocardiograms are not routinely performed on Parkinson's patients. The clinically diagnosed cases were few enough that the UK cohort of 11,417 patients yielded only 31 in total. What broke the case open was scanning patients who had no cardiac complaint, and finding that 23.4% of those on pergolide had moderate to severe regurgitation against 5.6% of controls. Once someone looked with the right instrument, the answer took one cross-sectional study.",
         auditNote:
           'The two 2007 papers appeared in the same journal issue with different designs in different countries. That agreement is what made the withdrawal quick once the evidence existed.',
       },
@@ -5695,7 +5705,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why is cabergoline still available if it was implicated too?',
-        a: 'Because dose and duration differ enormously between its indications. In Parkinson\'s disease, cabergoline was given daily at doses in the milligram range for years, and the echocardiographic study found 28.6% with clinically important regurgitation and a significant relationship between cumulative dose and severity. In hyperprolactinaemia it is given at a small fraction of that, often weekly, so cumulative exposure is far lower. Cabergoline remains licensed for hyperprolactinaemia with echocardiographic monitoring recommended, and is not used for Parkinson\'s disease in most countries. The withdrawal decision was about a dose regime, not the molecule alone.',
+        a: "Because dose and duration differ enormously between its indications. In Parkinson's disease, cabergoline was given daily at doses in the milligram range for years, and the echocardiographic study found 28.6% with clinically important regurgitation and a significant relationship between cumulative dose and severity. In hyperprolactinaemia it is given at a small fraction of that, often weekly, so cumulative exposure is far lower. Cabergoline remains licensed for hyperprolactinaemia with echocardiographic monitoring recommended, and is not used for Parkinson's disease in most countries. The withdrawal decision was about a dose regime, not the molecule alone.",
       },
       {
         q: 'Why does this page not show a price?',
@@ -5713,7 +5723,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Zanettini R, Antonini A, Gatto G, Gentile R, Tesei S, Pezzoli G. Valvular heart disease and the use of dopamine agonists for Parkinson\'s disease. N Engl J Med 2007;356:39-46',
+          "Zanettini R, Antonini A, Gatto G, Gentile R, Tesei S, Pezzoli G. Valvular heart disease and the use of dopamine agonists for Parkinson's disease. N Engl J Med 2007;356:39-46",
         identifier: '10.1056/NEJMoa054830',
         kind: 'doi',
       },
@@ -5780,7 +5790,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     confidenceScore: 62,
     substitutes: {
       summary:
-        'For irritable bowel syndrome with constipation the alternatives act on chloride secretion rather than motility: linaclotide, plecanatide and lubiprostone. None carries a cardiovascular ischaemic question, and none has tegaserod\'s prokinetic mechanism.',
+        "For irritable bowel syndrome with constipation the alternatives act on chloride secretion rather than motility: linaclotide, plecanatide and lubiprostone. None carries a cardiovascular ischaemic question, and none has tegaserod's prokinetic mechanism.",
       conventionalRx: [
         {
           name: 'Linaclotide',
@@ -5806,7 +5816,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Same target as linaclotide with a uroguanylin-like pH-dependent activity profile. Another secretory route to the same clinical goal.',
           typicalCost: '',
-          prosAndCons: 'Pros: no cardiovascular signal. Cons: diarrhoea, contraindicated under six.',
+          prosAndCons:
+            'Pros: no cardiovascular signal. Cons: diarrhoea, contraindicated under six.',
         },
       ],
       naturalFoods: [],
@@ -5889,7 +5900,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'Pooling every placebo-controlled trial, thirteen people on tegaserod had a cardiovascular ischaemic event and one person on placebo did. That is 0.11% against 0.014%.',
         technicalDetails:
           'The 2007 withdrawal rested on an internal adjudication of pooled placebo-controlled tegaserod data covering 18,645 patients — 11,614 on tegaserod and 7,031 on placebo. Twenty-four possible cardiovascular ischaemic events were identified internally, twenty on tegaserod and four on placebo. The first adjudication classified 14 of these (0.075% of the pooled population) as events: 13 on tegaserod (0.11%) and 1 on placebo (0.014%). Every one of the 14 patients had at least one cardiovascular risk factor and 11 had two or more. The absolute numbers are what make this a hard case: thirteen events is a small enough count that a single reclassification moves the ratio substantially.',
-        evidenceSource: 'Lacy BE, Brenner DM, Chey WD. Clin Gastroenterol Hepatol 2022;20:e682-e695',
+        evidenceSource:
+          'Lacy BE, Brenner DM, Chey WD. Clin Gastroenterol Hepatol 2022;20:e682-e695',
         doi: '10.1016/j.cgh.2021.05.040',
         measuredMetric:
           'Adjudicated cardiovascular ischaemic events in pooled placebo-controlled trials, tegaserod versus placebo',
@@ -5903,7 +5915,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'Independent committees re-reviewed the same patient records. Restricted to coronary and cerebrovascular events, the difference was 7 against 1, and the confidence interval ran from 0.52 to 34.74 — it crosses 1.',
         technicalDetails:
           'For the 2018 advisory committee an independent committee re-adjudicated the 24 possible events, and a second independent external adjudication followed. The second adjudication reviewed 390 events, of which 24 (0.13%) were classified as probable new or worsening cardiovascular events: 18 on tegaserod (0.16%) and 6 on placebo (0.09%). Restricting to coronary or cerebrovascular ischaemic events gave 7 on tegaserod (0.06%) against 1 on placebo (0.01%), an odds ratio of 4.24 with a 95% confidence interval of 0.52 to 34.74 and P = 0.273. Among women under 65 with no history of cardiovascular ischaemic events and at most one risk factor, there were no major adverse cardiovascular events at all. The dataset did not change between 2007 and 2018. The classification of the events, and the definition of the population, did.',
-        evidenceSource: 'Lacy BE, Brenner DM, Chey WD. Clin Gastroenterol Hepatol 2022;20:e682-e695',
+        evidenceSource:
+          'Lacy BE, Brenner DM, Chey WD. Clin Gastroenterol Hepatol 2022;20:e682-e695',
         doi: '10.1016/j.cgh.2021.05.040',
         measuredMetric:
           'Odds ratio 4.24 (95% CI 0.52 to 34.74, P = 0.273) for coronary or cerebrovascular ischaemic events on external re-adjudication',
@@ -5932,7 +5945,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'In the four trials pooled for the 2019 label, 44.1% of women rated themselves relieved on tegaserod against 36.5% on placebo. The odds ratio is 1.38.',
         technicalDetails:
           'A pooled analysis of four 12-week randomised placebo-controlled trials of tegaserod 6 mg twice daily. The indicated population — women under 65 with IBS-C and no history of cardiovascular ischaemic events — comprised 2,752 participants, 1,386 on tegaserod and 1,366 on placebo. The primary endpoint was subjective global assessment of symptom relief, with a responder rating themselves considerably or completely relieved at least half the time, or at least somewhat relieved all of the time, over the final four weeks. Clinical response during the last four weeks was 44.1% on tegaserod against 36.5% on placebo, pooled odds ratio 1.38 (95% CI 1.18 to 1.61, P < 0.001). In the overall female population the figures were 43.3% against 35.9%, odds ratio 1.37 (1.18 to 1.59). The effect size here is the other half of the benefit-risk arithmetic the adjudication argument was about.',
-        evidenceSource: 'Shah ED, Lacy BE, Chey WD, Chang L, Brenner DM. Am J Gastroenterol 2021;116:1601-1611',
+        evidenceSource:
+          'Shah ED, Lacy BE, Chey WD, Chang L, Brenner DM. Am J Gastroenterol 2021;116:1601-1611',
         doi: '10.14309/ajg.0000000000001313',
         measuredMetric:
           'Pooled 12-week subjective global assessment responder rate, tegaserod 6 mg twice daily versus placebo, in women under 65 without cardiovascular ischaemic history',
@@ -5967,7 +5981,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'The original NDA was withdrawn outright in 2022',
         laymanSummary:
-          'The 2019 return did not revive the old application. Novartis\'s original approval was formally withdrawn in December 2022, after the drug was already back on sale under new ownership.',
+          "The 2019 return did not revive the old application. Novartis's original approval was formally withdrawn in December 2022, after the drug was already back on sale under new ownership.",
         technicalDetails:
           'Zelnorm returned to the market in 2019 under a new sponsor arrangement, and the original application, NDA 021200, appears in Drugs@FDA with all listed Zelnorm products in Discontinued marketing status. The Federal Register notice of 8 December 2022 records the withdrawal of approval of 35 new drug applications by Teva Branded Pharmaceutical Products R and D and others. The administrative history and the commercial history of this drug diverge, which is why an approval-status field alone cannot describe it.',
         evidenceSource:
@@ -6028,7 +6042,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Pooled placebo-controlled tegaserod safety database (internal adjudication, 2007)',
+        trialId:
+          'Pooled placebo-controlled tegaserod safety database (internal adjudication, 2007)',
         phase: 'Pooled analysis of the placebo-controlled programme',
         sampleSize: 18645,
         primaryEndpoint:
@@ -6195,7 +6210,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     confidenceScore: 88,
     substitutes: {
       summary:
-        'By 2009 the biologic alternatives for severe plaque psoriasis were already better: the TNF inhibitors and ustekinumab, and since then the IL-17 and IL-23 antagonists, which reach PASI-75 rates two to three times efalizumab\'s.',
+        "By 2009 the biologic alternatives for severe plaque psoriasis were already better: the TNF inhibitors and ustekinumab, and since then the IL-17 and IL-23 antagonists, which reach PASI-75 rates two to three times efalizumab's.",
       conventionalRx: [
         {
           name: 'Ustekinumab',
@@ -6219,7 +6234,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           name: 'Secukinumab',
           class: 'Anti-IL-17A monoclonal antibody',
           howItCompares:
-            'A later generation with PASI-75 rates well above 70 per cent at 12 weeks, against efalizumab\'s 22 to 28 per cent. The efficacy gap is why efalizumab has no argument for return even setting the PML aside.',
+            "A later generation with PASI-75 rates well above 70 per cent at 12 weeks, against efalizumab's 22 to 28 per cent. The efficacy gap is why efalizumab has no argument for return even setting the PML aside.",
           typicalCost: '',
           prosAndCons:
             'Pros: high and rapid clearance rates. Cons: candidiasis, inflammatory bowel disease exacerbation.',
@@ -6257,7 +6272,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           phase: 'QC',
           name: 'CD11a binding affinity and epitope confirmation',
           description:
-            'Measure association and dissociation rates against recombinant human CD11a I-domain by surface plasmon resonance, and confirm the antibody does not cross-react with the beta-2 subunit or with alpha-4 integrin, which is a different drug\'s target.',
+            "Measure association and dissociation rates against recombinant human CD11a I-domain by surface plasmon resonance, and confirm the antibody does not cross-react with the beta-2 subunit or with alpha-4 integrin, which is a different drug's target.",
           dependsOnStepId: 'efa-w1',
           reagentsAndBuffer:
             'Recombinant human ITGAL I-domain on a CM5 sensor chip, HBS-EP running buffer, ELISA plates coated with alphaLbeta2, alphaMbeta2 and alpha4beta1 for selectivity, isotype-matched control antibody',
@@ -6318,7 +6333,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'The FDA searched its adverse-event database for brain infections reported with every psoriasis biologic. Efalizumab was the only one with cases in psoriasis patients. All of them died.',
         technicalDetails:
           'FDA Office of Surveillance and Epidemiology searched the Adverse Event Reporting System for post-marketing reports of progressive multifocal leukoencephalopathy associated with the biologics approved for psoriasis — adalimumab, alefacept, efalizumab, etanercept and infliximab — from approval to 30 January 2009. Twelve cases suggestive of PML were identified: adalimumab 1, efalizumab 4, etanercept 3, infliximab 4. Efalizumab was the only drug with cases occurring in the setting of psoriasis. All four efalizumab cases presented three years or more after treatment initiation, and all resulted in death. The cases attributed to the other agents occurred in conditions other than psoriasis and were confounded by concurrent immunosuppression or were not confirmed PML.',
-        evidenceSource: 'Kothary N, Diak IL, Brinker A, Bezabeh S, Avigan M, Dal Pan G. J Am Acad Dermatol 2011;65:546-551',
+        evidenceSource:
+          'Kothary N, Diak IL, Brinker A, Bezabeh S, Avigan M, Dal Pan G. J Am Acad Dermatol 2011;65:546-551',
         doi: '10.1016/j.jaad.2010.05.033',
         measuredMetric:
           'Confirmed PML cases by psoriasis biologic in the FDA Adverse Event Reporting System through 30 January 2009',
@@ -6331,7 +6347,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In one patient, researchers measured how well T cells could cross a vessel wall while on the drug, and again after it was removed. Migration recovered as the blocked protein reappeared.',
         technicalDetails:
-          'Two patients with severe psoriasis treated for three years or more developed fatal PML with JC virus identified in cerebrospinal fluid; both died two and six months after onset despite plasma exchange and signs of immune reconstitution, with PML confirmed neuropathologically. Serial studies in one patient showed that efalizumab treatment was associated with reduced transendothelial migration by peripheral T cells in vitro, and that as LFA-1 expression on peripheral T cells rose after plasma exchange, in vitro migration increased with it. That is a direct dose-response measurement of the proposed mechanism in the affected patient rather than an inference from the drug\'s target.',
+          "Two patients with severe psoriasis treated for three years or more developed fatal PML with JC virus identified in cerebrospinal fluid; both died two and six months after onset despite plasma exchange and signs of immune reconstitution, with PML confirmed neuropathologically. Serial studies in one patient showed that efalizumab treatment was associated with reduced transendothelial migration by peripheral T cells in vitro, and that as LFA-1 expression on peripheral T cells rose after plasma exchange, in vitro migration increased with it. That is a direct dose-response measurement of the proposed mechanism in the affected patient rather than an inference from the drug's target.",
         evidenceSource: 'Schwab N et al. Neurology 2012;78:458-467',
         doi: '10.1212/WNL.0b013e3182478d4b',
         measuredMetric:
@@ -6371,7 +6387,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The European Medicines Agency recommended suspension in February 2009. The United States withdrawal followed in the same year.',
         technicalDetails:
-          'The European Medicines Agency\'s Committee for Medicinal Products for Human Use recommended suspension of the Raptiva marketing authorisation on 19 February 2009, concluding that the benefits no longer outweighed the risks given the reports of PML. Genentech announced a phased voluntary withdrawal from the United States market, completed in 2009. The sequence matters for reading the record: the European suspension is a formal regulatory act with a published assessment, while the United States exit was a sponsor decision, so the two jurisdictions leave different kinds of document behind for the same event.',
+          "The European Medicines Agency's Committee for Medicinal Products for Human Use recommended suspension of the Raptiva marketing authorisation on 19 February 2009, concluding that the benefits no longer outweighed the risks given the reports of PML. Genentech announced a phased voluntary withdrawal from the United States market, completed in 2009. The sequence matters for reading the record: the European suspension is a formal regulatory act with a published assessment, while the United States exit was a sponsor decision, so the two jurisdictions leave different kinds of document behind for the same event.",
         evidenceSource:
           'European Medicines Agency, Raptiva (efalizumab): withdrawn medicine, marketing authorisation withdrawn 2009; Kothary N et al. J Am Acad Dermatol 2011;65:546-551',
         auditFlag: 'verified',
@@ -6407,7 +6423,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'In the bloodstream it coats a specific protein on the surface of T cells and pulls some of it off the surface entirely.',
         molecularDetail:
-          'Binds the alpha-L subunit of LFA-1 on circulating lymphocytes, producing both steric blockade and downmodulation of surface CD11a, which is why lymphocyte counts rise and functional recovery lags the drug\'s clearance.',
+          "Binds the alpha-L subunit of LFA-1 on circulating lymphocytes, producing both steric blockade and downmodulation of surface CD11a, which is why lymphocyte counts rise and functional recovery lags the drug's clearance.",
         iconName: 'Lock',
         visualStage: 'target_binding',
       },
@@ -6444,7 +6460,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Phase 3 placebo-controlled trial of efalizumab in plaque psoriasis (Lebwohl et al.)',
+        trialId:
+          'Phase 3 placebo-controlled trial of efalizumab in plaque psoriasis (Lebwohl et al.)',
         phase: 'Phase 3',
         sampleSize: 597,
         primaryEndpoint:
@@ -6570,7 +6587,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'FDA Approved',
     approvalYear: 2004,
     indication:
-      'Relapsing forms of multiple sclerosis, and moderate to severe Crohn\'s disease with evidence of inflammation in patients who have failed conventional therapy and TNF inhibitors. Voluntarily suspended in February 2005 after three cases of progressive multifocal leukoencephalopathy and returned in June 2006 under a mandatory monitoring programme.',
+      "Relapsing forms of multiple sclerosis, and moderate to severe Crohn's disease with evidence of inflammation in patients who have failed conventional therapy and TNF inhibitors. Voluntarily suspended in February 2005 after three cases of progressive multifocal leukoencephalopathy and returned in June 2006 under a mandatory monitoring programme.",
     patientFriendlyIndication:
       'A monthly infusion for relapsing multiple sclerosis, given under a mandatory monitoring programme',
     anatomicalSite:
@@ -6593,7 +6610,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     confidenceScore: 93,
     substitutes: {
       summary:
-        'The high-efficacy disease-modifying therapies that followed — the anti-CD20 antibodies and the S1P modulators — reach comparable relapse reduction without blocking lymphocyte entry to the central nervous system, which is why they do not carry natalizumab\'s PML profile.',
+        "The high-efficacy disease-modifying therapies that followed — the anti-CD20 antibodies and the S1P modulators — reach comparable relapse reduction without blocking lymphocyte entry to the central nervous system, which is why they do not carry natalizumab's PML profile.",
       conventionalRx: [
         {
           name: 'Ocrelizumab',
@@ -6631,7 +6648,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'Humanised IgG4 kappa monoclonal antibody',
       molecularWeight: 'Approximately 149 kDa',
       targetReceptorAffinity:
-        'Binds the alpha-4 subunit shared by two integrin heterodimers: alpha4beta1 (very late antigen 4), which binds VCAM-1 on inflamed brain endothelium, and alpha4beta7, which binds MAdCAM-1 on gut endothelium. One antibody therefore blocks lymphocyte entry into two different tissues, which is why the same molecule treats both multiple sclerosis and Crohn\'s disease. Efalizumab blocked the same functional step through a different integrin, CD11a.',
+        "Binds the alpha-4 subunit shared by two integrin heterodimers: alpha4beta1 (very late antigen 4), which binds VCAM-1 on inflamed brain endothelium, and alpha4beta7, which binds MAdCAM-1 on gut endothelium. One antibody therefore blocks lymphocyte entry into two different tissues, which is why the same molecule treats both multiple sclerosis and Crohn's disease. Efalizumab blocked the same functional step through a different integrin, CD11a.",
       structureSource: {
         label:
           'Polman CH et al. A randomized, placebo-controlled trial of natalizumab for relapsing multiple sclerosis. N Engl J Med 2006;354:899-910 — target and class description',
@@ -6712,11 +6729,11 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'nat-a2',
         category: 'failed',
-        title: 'Three PML cases, one of them in Crohn\'s disease, and the drug came off the market',
+        title: "Three PML cases, one of them in Crohn's disease, and the drug came off the market",
         laymanSummary:
-          'Within months of approval, three patients on natalizumab developed a rare fatal brain infection. Two had multiple sclerosis; one had Crohn\'s disease. The drug was suspended.',
+          "Within months of approval, three patients on natalizumab developed a rare fatal brain infection. Two had multiple sclerosis; one had Crohn's disease. The drug was suspended.",
         technicalDetails:
-          'Three cases of progressive multifocal leukoencephalopathy were reported in early 2005 and published together in the New England Journal of Medicine: two in patients receiving natalizumab with interferon beta-1a in the multiple sclerosis programme, and one in a patient treated for Crohn\'s disease. Natalizumab was voluntarily suspended from marketing and from all clinical trials in February 2005, four months after its accelerated approval in November 2004. The third case, in Crohn\'s disease, is the one that established this as a property of the drug rather than of combination therapy with interferon.',
+          "Three cases of progressive multifocal leukoencephalopathy were reported in early 2005 and published together in the New England Journal of Medicine: two in patients receiving natalizumab with interferon beta-1a in the multiple sclerosis programme, and one in a patient treated for Crohn's disease. Natalizumab was voluntarily suspended from marketing and from all clinical trials in February 2005, four months after its accelerated approval in November 2004. The third case, in Crohn's disease, is the one that established this as a property of the drug rather than of combination therapy with interferon.",
         evidenceSource:
           'Kleinschmidt-DeMasters BK, Tyler KL. N Engl J Med 2005;353:369-374; Langer-Gould A et al. N Engl J Med 2005;353:375-381; Van Assche G et al. N Engl J Med 2005;353:362-368',
         doi: '10.1056/NEJMoa051586',
@@ -6770,7 +6787,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The second pivotal trial added natalizumab to an existing interferon treatment. Two of the first three brain infections came out of that trial.',
         technicalDetails:
-          'SENTINEL (NCT00030966) randomised 1,171 patients who had relapsed despite interferon beta-1a to continue interferon with added natalizumab 300 mg (589 patients) or placebo (582) every four weeks for up to 116 weeks. Combination therapy reduced the relative risk of sustained disability progression by 24 per cent (hazard ratio 0.76, 95% CI 0.61 to 0.96, P = 0.02), with cumulative progression at two years of 23 per cent against 29 per cent, and lowered the annualised relapse rate from 0.75 to 0.34 (P < 0.001) with 0.9 against 5.4 new or enlarging T2 lesions (P < 0.001). Two cases of progressive multifocal leukoencephalopathy, one fatal, were diagnosed in natalizumab-treated patients in this trial. That initially suggested the harm might belong to the combination rather than to natalizumab itself; the Crohn\'s disease case, in a patient not receiving interferon, removed that explanation. Natalizumab is not used in combination with other disease-modifying therapies today, and the reason is this trial.',
+          "SENTINEL (NCT00030966) randomised 1,171 patients who had relapsed despite interferon beta-1a to continue interferon with added natalizumab 300 mg (589 patients) or placebo (582) every four weeks for up to 116 weeks. Combination therapy reduced the relative risk of sustained disability progression by 24 per cent (hazard ratio 0.76, 95% CI 0.61 to 0.96, P = 0.02), with cumulative progression at two years of 23 per cent against 29 per cent, and lowered the annualised relapse rate from 0.75 to 0.34 (P < 0.001) with 0.9 against 5.4 new or enlarging T2 lesions (P < 0.001). Two cases of progressive multifocal leukoencephalopathy, one fatal, were diagnosed in natalizumab-treated patients in this trial. That initially suggested the harm might belong to the combination rather than to natalizumab itself; the Crohn's disease case, in a patient not receiving interferon, removed that explanation. Natalizumab is not used in combination with other disease-modifying therapies today, and the reason is this trial.",
         evidenceSource:
           'Rudick RA et al., SENTINEL Investigators. N Engl J Med 2006;354:911-923; Kleinschmidt-DeMasters BK, Tyler KL. N Engl J Med 2005;353:369-374',
         doi: '10.1056/NEJMoa044396',
@@ -6783,7 +6800,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'conclusion_shift',
         title: 'A biosimilar was approved in 2023 for a drug that was withdrawn in 2005',
         laymanSummary:
-          'A second manufacturer\'s version of natalizumab was approved in 2023, on the basis that it is the same molecule rather than by repeating the trials.',
+          "A second manufacturer's version of natalizumab was approved in 2023, on the basis that it is the same molecule rather than by repeating the trials.",
         technicalDetails:
           'Natalizumab-sztn (Tyruko, BLA 761322, Sandoz) is listed in Drugs@FDA with prescription marketing status. A biosimilar approval is a statement that the molecule and its clinical behaviour are established well enough that similarity can substitute for a repeat efficacy programme. That a drug suspended for a fatal infection eighteen years earlier reached that point is a measure of how completely the monitoring programme converted an unmanageable risk into a quantified one. The biosimilar carries the identical PML risk and the identical programme obligations.',
         evidenceSource:
@@ -6872,7 +6889,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Pooled post-marketing and registry PML risk stratification (Bloomgren et al.)',
-        phase: 'Post-marketing epidemiology across clinical studies, spontaneous reports and a Swedish registry',
+        phase:
+          'Post-marketing epidemiology across clinical studies, spontaneous reports and a Swedish registry',
         sampleSize: 99571,
         primaryEndpoint:
           'PML incidence per 1000 treated patients by anti-JCV serostatus, prior immunosuppressant use and treatment duration',
@@ -6895,7 +6913,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That anti-JCV antibody negative status confers immunity — the estimate is 0.09 or fewer per 1000 with an interval to 0.48, and seroconversion occurs during treatment',
         'That the 2.1 per 1000 average describes any individual patient; the stratified estimates differ by more than a hundredfold',
-        'That the 2005 cases reflected combination with interferon — the Crohn\'s disease case, on natalizumab alone, removed that explanation',
+        "That the 2005 cases reflected combination with interferon — the Crohn's disease case, on natalizumab alone, removed that explanation",
       ],
       whatFailedInitially: [
         'Accelerated approval November 2004, voluntary suspension February 2005 after three PML cases, four months on the market',
@@ -6939,7 +6957,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     sources: [
       {
         label:
-          'Polman CH, O\'Connor PW, Havrdova E, et al. A randomized, placebo-controlled trial of natalizumab for relapsing multiple sclerosis. N Engl J Med 2006;354:899-910',
+          "Polman CH, O'Connor PW, Havrdova E, et al. A randomized, placebo-controlled trial of natalizumab for relapsing multiple sclerosis. N Engl J Med 2006;354:899-910",
         identifier: '10.1056/NEJMoa044397',
         kind: 'doi',
       },
@@ -6963,7 +6981,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Van Assche G, Van Ranst M, Sciot R, et al. Progressive multifocal leukoencephalopathy after natalizumab therapy for Crohn\'s disease. N Engl J Med 2005;353:362-368',
+          "Van Assche G, Van Ranst M, Sciot R, et al. Progressive multifocal leukoencephalopathy after natalizumab therapy for Crohn's disease. N Engl J Med 2005;353:362-368",
         identifier: '10.1056/NEJMoa051586',
         kind: 'doi',
       },
@@ -7011,14 +7029,14 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Withdrawn from Market',
     approvalYear: 2021,
     indication:
-      'Alzheimer\'s disease, granted accelerated approval in June 2021 on reduction of amyloid beta plaque as a surrogate endpoint. Biogen announced discontinuation of the product and of the confirmatory trial in January 2024.',
+      "Alzheimer's disease, granted accelerated approval in June 2021 on reduction of amyloid beta plaque as a surrogate endpoint. Biogen announced discontinuation of the product and of the confirmatory trial in January 2024.",
     patientFriendlyIndication:
-      'A monthly infusion for early Alzheimer\'s disease, approved on a brain-scan measurement rather than on symptoms',
+      "A monthly infusion for early Alzheimer's disease, approved on a brain-scan measurement rather than on symptoms",
     anatomicalSite:
       'Cerebral cortex and leptomeningeal vasculature; amyloid plaque in brain parenchyma and vessel walls',
     conditionContext: {
       conditionExplainer:
-        'Alzheimer\'s disease is accompanied by extracellular plaques of aggregated amyloid beta and intracellular tau tangles. Whether removing the plaques changes the disease is the question this drug was supposed to answer, and it is not the question its approval was based on.',
+        "Alzheimer's disease is accompanied by extracellular plaques of aggregated amyloid beta and intracellular tau tangles. Whether removing the plaques changes the disease is the question this drug was supposed to answer, and it is not the question its approval was based on.",
       whyItMatters:
         'This is the clearest case in the file of a surrogate endpoint standing in for a clinical one. Amyloid removal was measured, and measured well. Cognitive benefit was demonstrated in one trial and not in its identical twin, and the approval rested on the amyloid.',
       whoTakesThis:
@@ -7029,7 +7047,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'An anti-amyloid antibody approved on plaque clearance after two identically designed phase 3 trials disagreed — high-dose aducanumab slowed decline on the Clinical Dementia Rating Sum of Boxes by 22 per cent in EMERGE and by nothing at all in ENGAGE — and discontinued by its sponsor in January 2024 with the confirmatory trial unfinished.',
     laymanHowItWorks:
-      'Alzheimer\'s brains accumulate clumps of a protein called amyloid beta. Aducanumab is an antibody that grips those clumps, which flags them for immune cells in the brain to engulf and clear. Brain scans show the clumps do shrink, substantially and in proportion to dose and time. Whether that slows memory loss is the part that two large trials of the same drug answered differently.',
+      "Alzheimer's brains accumulate clumps of a protein called amyloid beta. Aducanumab is an antibody that grips those clumps, which flags them for immune cells in the brain to engulf and clear. Brain scans show the clumps do shrink, substantially and in proportion to dose and time. Whether that slows memory loss is the part that two large trials of the same drug answered differently.",
     auditConfidence: 'Inference Overreach Found',
     confidenceScore: 34,
     substitutes: {
@@ -7075,7 +7093,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         'A fully human IgG1 derived from B cells of cognitively healthy elderly donors, selecting for an antibody the human immune system had already made. It binds a linear epitope in the amyloid beta N-terminus and shows strong selectivity for aggregated forms — fibrils and oligomers — over monomer, which is the property intended to concentrate its effect on plaque rather than on circulating peptide.',
       structureSource: {
         label:
-          'Sevigny J et al. The antibody aducanumab reduces Abeta plaques in Alzheimer\'s disease. Nature 2016;537:50-56',
+          "Sevigny J et al. The antibody aducanumab reduces Abeta plaques in Alzheimer's disease. Nature 2016;537:50-56",
         identifier: '10.1038/nature19323',
         kind: 'doi',
       },
@@ -7143,7 +7161,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Brain scans showed the drug removes amyloid plaque in a dose- and time-dependent way. That part is not in dispute.',
         technicalDetails:
-          'The phase 1b PRIME study established dose- and time-dependent reduction of brain amyloid beta plaque on florbetapir PET in patients with prodromal or mild Alzheimer\'s disease, with the fully human antibody selected for selectivity toward aggregated over monomeric amyloid. In the later head-to-head TRAILBLAZER-ALZ 4 study, amyloid plaque clearance — defined as below 24.1 centiloids — was achieved by 1.6 per cent, 24.6 per cent and 43.1 per cent of aducanumab-treated participants at 6, 12 and 18 months. The surrogate endpoint behaves exactly as claimed. The question the approval turned on is what it predicts.',
+          "The phase 1b PRIME study established dose- and time-dependent reduction of brain amyloid beta plaque on florbetapir PET in patients with prodromal or mild Alzheimer's disease, with the fully human antibody selected for selectivity toward aggregated over monomeric amyloid. In the later head-to-head TRAILBLAZER-ALZ 4 study, amyloid plaque clearance — defined as below 24.1 centiloids — was achieved by 1.6 per cent, 24.6 per cent and 43.1 per cent of aducanumab-treated participants at 6, 12 and 18 months. The surrogate endpoint behaves exactly as claimed. The question the approval turned on is what it predicts.",
         evidenceSource:
           'Sevigny J et al. Nature 2016;537:50-56; Salloway S et al. Alzheimers Dement 2025;21:e70293',
         doi: '10.1038/nature19323',
@@ -7158,7 +7176,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Two trials of the same drug, run at the same time to the same protocol, were stopped early for futility in March 2019. Later analysis of more data made one of them positive and left the other negative.',
         technicalDetails:
-          'EMERGE (NCT02484547) and ENGAGE (NCT02477800) were two phase 3 randomised double-blind placebo-controlled parallel-group studies at 348 sites in 20 countries, enrolling patients aged 50 to 85 with mild cognitive impairment or mild Alzheimer\'s dementia and confirmed amyloid pathology, randomised 1:1:1 to low-dose aducanumab, high-dose aducanumab or placebo every four weeks. The randomised and dosed populations were 1,638 in EMERGE and 1,647 in ENGAGE. Both were terminated for futility in March 2019. On the larger dataset available afterwards, high-dose aducanumab in EMERGE showed significant treatment effects across primary and secondary endpoints, and high-dose aducanumab in ENGAGE did not. Low-dose results were consistent across both studies, non-significant, and intermediate to the EMERGE high-dose arm.',
+          "EMERGE (NCT02484547) and ENGAGE (NCT02477800) were two phase 3 randomised double-blind placebo-controlled parallel-group studies at 348 sites in 20 countries, enrolling patients aged 50 to 85 with mild cognitive impairment or mild Alzheimer's dementia and confirmed amyloid pathology, randomised 1:1:1 to low-dose aducanumab, high-dose aducanumab or placebo every four weeks. The randomised and dosed populations were 1,638 in EMERGE and 1,647 in ENGAGE. Both were terminated for futility in March 2019. On the larger dataset available afterwards, high-dose aducanumab in EMERGE showed significant treatment effects across primary and secondary endpoints, and high-dose aducanumab in ENGAGE did not. Low-dose results were consistent across both studies, non-significant, and intermediate to the EMERGE high-dose arm.",
         evidenceSource:
           'Budd Haeberlein S et al. J Prev Alzheimers Dis 2022;9:197-210; Mallinckrodt C et al. J Prev Alzheimers Dis 2023;10:171-177',
         doi: '10.14283/jpad.2022.30',
@@ -7169,7 +7187,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The reconciliation of the two trials is post hoc',
         laymanSummary:
-          'The sponsor\'s explanation for why one trial worked and the other did not was worked out after the results were known, by looking for differences that could account for the gap.',
+          "The sponsor's explanation for why one trial worked and the other did not was worked out after the results were known, by looking for differences that could account for the gap.",
         technicalDetails:
           'The published reconciliation examined four candidate explanations — baseline characteristics, amyloid-related imaging abnormalities, non-normality of the data, and dosing exposure — and concluded that ENGAGE high-dose outcomes were affected by an imbalance in a small number of patients with extremely rapid progression and by lower exposure to the 10 mg/kg target dose, factors that were confounded with each other and concentrated among early-enrolled patients. Baseline characteristics and ARIA were excluded as contributors. Every one of these analyses is post hoc, performed on unblinded data with the discordance already known. Post-hoc reconciliation is a legitimate way to generate a hypothesis for the next trial. It is not a replacement for the trial that would test it, and that trial was never completed.',
         evidenceSource: 'Mallinckrodt C et al. J Prev Alzheimers Dis 2023;10:171-177',
@@ -7183,9 +7201,9 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'conclusion_shift',
         title: 'Approved against the unified opposition of its own advisory committee',
         laymanSummary:
-          'The FDA\'s external expert committee did not support approval. The agency approved the drug anyway, on the amyloid measurement rather than on the cognitive results.',
+          "The FDA's external expert committee did not support approval. The agency approved the drug anyway, on the amyloid measurement rather than on the cognitive results.",
         technicalDetails:
-          'Accelerated approval was granted in June 2021 on reduction of amyloid beta plaque as a surrogate reasonably likely to predict clinical benefit, despite the unified opposition of the agency\'s advisory committee following the early termination of the two efficacy trials. Three members of the Peripheral and Central Nervous System Drugs Advisory Committee resigned afterwards. The published critique frames the central issue precisely: accelerating approval on a surrogate marker in the absence of proven efficacy creates a risk of adverse outcomes even in a devastating condition. The disagreement is not about whether amyloid fell. It is about whether a measurement that reliably tracks the drug\'s pharmacology reliably tracks the patient\'s future.',
+          "Accelerated approval was granted in June 2021 on reduction of amyloid beta plaque as a surrogate reasonably likely to predict clinical benefit, despite the unified opposition of the agency's advisory committee following the early termination of the two efficacy trials. Three members of the Peripheral and Central Nervous System Drugs Advisory Committee resigned afterwards. The published critique frames the central issue precisely: accelerating approval on a surrogate marker in the absence of proven efficacy creates a risk of adverse outcomes even in a devastating condition. The disagreement is not about whether amyloid fell. It is about whether a measurement that reliably tracks the drug's pharmacology reliably tracks the patient's future.",
         evidenceSource: 'Rizk JG, Lewin JC. BMJ Evid Based Med 2023;28:78-82',
         doi: '10.1136/bmjebm-2022-111914',
         auditFlag: 'contested',
@@ -7224,7 +7242,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A later trial showed a competitor cleared amyloid faster and more completely. It did not show that the competitor helped patients more.',
         technicalDetails:
-          'TRAILBLAZER-ALZ 4 (NCT05108922) randomised 148 participants with early symptomatic Alzheimer\'s disease 1:1 to donanemab or aducanumab per label, with amyloid plaque clearance below 24.1 centiloids as the endpoint. Donanemab cleared plaque in 37.9, 70.0 and 76.8 per cent at 6, 12 and 18 months against 1.6, 24.6 and 43.1 per cent for aducanumab (P < 0.001), with median time to clearance 359 versus 568 days. This is a clean comparison of two drugs on a biomarker. It contains no cognitive comparison and cannot be read as evidence that either drug helps patients more than the other — which is the same category error the aducanumab approval turned on, appearing again in the literature that followed it.',
+          "TRAILBLAZER-ALZ 4 (NCT05108922) randomised 148 participants with early symptomatic Alzheimer's disease 1:1 to donanemab or aducanumab per label, with amyloid plaque clearance below 24.1 centiloids as the endpoint. Donanemab cleared plaque in 37.9, 70.0 and 76.8 per cent at 6, 12 and 18 months against 1.6, 24.6 and 43.1 per cent for aducanumab (P < 0.001), with median time to clearance 359 versus 568 days. This is a clean comparison of two drugs on a biomarker. It contains no cognitive comparison and cannot be read as evidence that either drug helps patients more than the other — which is the same category error the aducanumab approval turned on, appearing again in the literature that followed it.",
         evidenceSource: 'Salloway S et al. Alzheimers Dement 2025;21:e70293',
         doi: '10.1002/alz.70293',
         inferredClaim:
@@ -7267,7 +7285,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         step: 4,
         title: 'Microglia clear the flagged plaque',
         laymanDesc:
-          'The brain\'s resident immune cells recognise the antibody coating and engulf the plaque. Vessel-wall involvement is what produces the swelling seen on scans.',
+          "The brain's resident immune cells recognise the antibody coating and engulf the plaque. Vessel-wall involvement is what produces the swelling seen on scans.",
         molecularDetail:
           'Fc-gamma receptor engagement on microglia drives phagocytosis of opsonised plaque. The same process at perivascular amyloid increases vessel permeability, producing ARIA-oedema, and vessel-wall fragility, producing ARIA-haemosiderin.',
         iconName: 'Cpu',
@@ -7290,7 +7308,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         phase: 'Phase 3 (EMERGE)',
         sampleSize: 1638,
         primaryEndpoint:
-          'Change from baseline in Clinical Dementia Rating Sum of Boxes at week 78 in early Alzheimer\'s disease',
+          "Change from baseline in Clinical Dementia Rating Sum of Boxes at week 78 in early Alzheimer's disease",
         endpointMet: true,
         statisticalPValue:
           'High-dose aducanumab showed significant treatment effects across primary and secondary endpoints; low dose non-significant and intermediate',
@@ -7303,7 +7321,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         phase: 'Phase 3 (ENGAGE)',
         sampleSize: 1647,
         primaryEndpoint:
-          'Change from baseline in Clinical Dementia Rating Sum of Boxes at week 78 in early Alzheimer\'s disease',
+          "Change from baseline in Clinical Dementia Rating Sum of Boxes at week 78 in early Alzheimer's disease",
         endpointMet: false,
         statisticalPValue:
           'High-dose aducanumab did not demonstrate a significant treatment effect; low-dose results consistent with EMERGE and non-significant',
@@ -7381,7 +7399,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     sources: [
       {
         label:
-          'Budd Haeberlein S et al. Two randomized phase 3 studies of aducanumab in early Alzheimer\'s disease. J Prev Alzheimers Dis 2022;9:197-210',
+          "Budd Haeberlein S et al. Two randomized phase 3 studies of aducanumab in early Alzheimer's disease. J Prev Alzheimers Dis 2022;9:197-210",
         identifier: '10.14283/jpad.2022.30',
         kind: 'doi',
       },
@@ -7393,19 +7411,19 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Sevigny J et al. The antibody aducanumab reduces Abeta plaques in Alzheimer\'s disease. Nature 2016;537:50-56',
+          "Sevigny J et al. The antibody aducanumab reduces Abeta plaques in Alzheimer's disease. Nature 2016;537:50-56",
         identifier: '10.1038/nature19323',
         kind: 'doi',
       },
       {
         label:
-          'Salloway S et al. TRAILBLAZER-ALZ 4: a phase 3 trial comparing donanemab with aducanumab on amyloid plaque clearance in early, symptomatic Alzheimer\'s disease. Alzheimers Dement 2025;21:e70293',
+          "Salloway S et al. TRAILBLAZER-ALZ 4: a phase 3 trial comparing donanemab with aducanumab on amyloid plaque clearance in early, symptomatic Alzheimer's disease. Alzheimers Dement 2025;21:e70293",
         identifier: '10.1002/alz.70293',
         kind: 'doi',
       },
       {
         label:
-          'Rizk JG, Lewin JC. FDA\'s dilemma with the aducanumab approval: public pressure and hope, surrogate markers and efficacy, and possible next steps. BMJ Evid Based Med 2023;28:78-82',
+          "Rizk JG, Lewin JC. FDA's dilemma with the aducanumab approval: public pressure and hope, surrogate markers and efficacy, and possible next steps. BMJ Evid Based Med 2023;28:78-82",
         identifier: '10.1136/bmjebm-2022-111914',
         kind: 'doi',
       },
@@ -7443,7 +7461,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Withdrawn from Market',
     approvalYear: 1957,
     indication:
-      'Mild to moderate pain, alone or combined with paracetamol or aspirin. Withdrawn from the United Kingdom market between 2005 and 2008 and from the United States market in November 2010 at the FDA\'s request.',
+      "Mild to moderate pain, alone or combined with paracetamol or aspirin. Withdrawn from the United Kingdom market between 2005 and 2008 and from the United States market in November 2010 at the FDA's request.",
     patientFriendlyIndication: 'A weak opioid painkiller for mild to moderate pain',
     anatomicalSite:
       'Central nervous system mu opioid receptors; the toxicity site is the cardiac conduction system',
@@ -7465,13 +7483,13 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     confidenceScore: 87,
     substitutes: {
       summary:
-        'The comparison that mattered was never against other opioids. It was against paracetamol and aspirin, which is where propoxyphene\'s analgesia sits, and which carry neither the sodium-channel metabolite nor the opioid liability.',
+        "The comparison that mattered was never against other opioids. It was against paracetamol and aspirin, which is where propoxyphene's analgesia sits, and which carry neither the sodium-channel metabolite nor the opioid liability.",
       conventionalRx: [
         {
           name: 'Paracetamol (acetaminophen)',
           class: 'Non-opioid analgesic and antipyretic',
           howItCompares:
-            'Reviews of the analgesic literature equate propoxyphene\'s effect with that of paracetamol or aspirin alone. Propoxyphene was most often prescribed combined with paracetamol, which makes the separation of the two contributions the central efficacy question.',
+            "Reviews of the analgesic literature equate propoxyphene's effect with that of paracetamol or aspirin alone. Propoxyphene was most often prescribed combined with paracetamol, which makes the separation of the two contributions the central efficacy question.",
           typicalCost: '',
           prosAndCons:
             'Pros: no cardiac conduction effect, no opioid liability. Cons: hepatotoxicity in overdose, a narrow margin in the malnourished or chronically alcohol-exposed.',
@@ -7538,7 +7556,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           phase: 'Cellular_Delivery',
           name: 'Isolated cardiac myocyte preparation for sodium current recording',
           description:
-            'Isolate atrial or ventricular myocytes and establish whole-cell patch clamp with a pulse-train protocol, which is the configuration that reveals use-dependent block. A single-pulse protocol underestimates this compound\'s effect by design, because the block accumulates only with repeated depolarisation.',
+            "Isolate atrial or ventricular myocytes and establish whole-cell patch clamp with a pulse-train protocol, which is the configuration that reveals use-dependent block. A single-pulse protocol underestimates this compound's effect by design, because the block accumulates only with repeated depolarisation.",
           reagentsAndBuffer:
             'Enzymatically dissociated rabbit atrial or guinea pig ventricular myocytes, Tyrode solution, low-sodium external and caesium-based internal pipette solutions, borosilicate patch pipettes, temperature-controlled bath',
         },
@@ -7548,7 +7566,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Use-dependent sodium current block and recovery kinetics',
           description:
-            'Measure steady-state block during pulse trains at varying interval, and fit the recovery time constant. The published values are the quantitative core of this drug\'s toxicology: propoxyphene block recovered with a time constant of 20.8 plus or minus 3.9 seconds against 2 to 3 seconds for lidocaine, and in the mixture the half-time fell to 1.6 plus or minus 0.9 seconds from 14.3 plus or minus 2.9 seconds.',
+            "Measure steady-state block during pulse trains at varying interval, and fit the recovery time constant. The published values are the quantitative core of this drug's toxicology: propoxyphene block recovered with a time constant of 20.8 plus or minus 3.9 seconds against 2 to 3 seconds for lidocaine, and in the mixture the half-time fell to 1.6 plus or minus 0.9 seconds from 14.3 plus or minus 2.9 seconds.",
           dependsOnStepId: 'pro-w3',
           reagentsAndBuffer:
             'Propoxyphene and norpropoxyphene at 60 micromolar, lidocaine at 80 micromolar as the competing fast-off blocker, pulse-train stimulation protocols with variable interpulse interval, double-exponential recovery fitting',
@@ -7575,7 +7593,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'In isolated heart cells, propoxyphene blocked the sodium channels that carry each heartbeat and released them roughly ten times more slowly than lidocaine, so the block builds up beat after beat.',
         technicalDetails:
           'Whole-cell recordings in rabbit atrial myocytes showed that propoxyphene at 60 micromolar produces use-dependent block of the inward sodium current during pulse-train stimulation, recovering with a time constant of 20.8 plus or minus 3.9 seconds. Lidocaine block recovers with a time constant of 2 to 3 seconds. During exposure to the mixture, recovery followed a double exponential with a half-time of 1.6 plus or minus 0.9 seconds against 14.3 plus or minus 2.9 seconds for propoxyphene alone, and less steady-state block accumulated at interpulse intervals above 0.95 seconds. Both drugs compete for a common receptor and lidocaine dissociates faster, which explains the clinically observed paradox of lidocaine reversing propoxyphene-induced QRS widening.',
-        evidenceSource: 'Whitcomb DC, Gilliam FR, Starmer CF, Grant AO. J Clin Invest 1989;84:1629-1636',
+        evidenceSource:
+          'Whitcomb DC, Gilliam FR, Starmer CF, Grant AO. J Clin Invest 1989;84:1629-1636',
         doi: '10.1172/JCI114340',
         measuredMetric:
           'Recovery time constant of use-dependent inward sodium current block in isolated atrial myocytes',
@@ -7613,9 +7632,9 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'The analgesia was never better than paracetamol or aspirin',
         laymanSummary:
-          'Reviews of the trial literature put propoxyphene\'s pain relief at about the level of plain paracetamol or aspirin, which is the reason the risk was never worth carrying.',
+          "Reviews of the trial literature put propoxyphene's pain relief at about the level of plain paracetamol or aspirin, which is the reason the risk was never worth carrying.",
         technicalDetails:
-          'A critical review of the analgesic literature concludes that propoxyphene\'s analgesia was equated with that of paracetamol or aspirin taken independently, and that its adverse effects — cardiotoxicity, seizures — outweighed the therapeutic benefit. It was most often prescribed in fixed combination with paracetamol or aspirin, which makes attributing the observed analgesia to the opioid component difficult and was itself part of the problem: a combination product can carry a weak opioid for decades on the strength of the non-opioid component\'s effect. The toxicity is attributed in part to norpropoxyphene, described as a non-opioid cardiotoxic metabolite.',
+          "A critical review of the analgesic literature concludes that propoxyphene's analgesia was equated with that of paracetamol or aspirin taken independently, and that its adverse effects — cardiotoxicity, seizures — outweighed the therapeutic benefit. It was most often prescribed in fixed combination with paracetamol or aspirin, which makes attributing the observed analgesia to the opioid component difficult and was itself part of the problem: a combination product can carry a weak opioid for decades on the strength of the non-opioid component's effect. The toxicity is attributed in part to norpropoxyphene, described as a non-opioid cardiotoxic metabolite.",
         evidenceSource: 'Barkin RL, Barkin SJ, Barkin DS. Am J Ther 2006;13:534-542',
         doi: '10.1097/01.mjt.0000253850.86480.fb',
         auditFlag: 'verified',
@@ -7627,7 +7646,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The cardiotoxic breakdown product hangs around much longer than the drug itself, so repeated dosing builds it up — particularly in older people.',
         technicalDetails:
-          'Norpropoxyphene has a substantially longer elimination half-life than propoxyphene and accumulates with repeated administration, which is why the review literature specifically advises against use in the elderly on pharmacokinetic and pharmacodynamic grounds. Propoxyphene is also a CYP2D6 inhibitor, generating a list of interacting drugs, and a documented interaction with metoprolol producing profound bradycardia has been reported. The clinical consequence of the metabolite\'s kinetics is that a plasma propoxyphene concentration, taken alone, understates the cardiac exposure — which is why a laboratory assay for this compound must report parent and metabolite separately.',
+          "Norpropoxyphene has a substantially longer elimination half-life than propoxyphene and accumulates with repeated administration, which is why the review literature specifically advises against use in the elderly on pharmacokinetic and pharmacodynamic grounds. Propoxyphene is also a CYP2D6 inhibitor, generating a list of interacting drugs, and a documented interaction with metoprolol producing profound bradycardia has been reported. The clinical consequence of the metabolite's kinetics is that a plasma propoxyphene concentration, taken alone, understates the cardiac exposure — which is why a laboratory assay for this compound must report parent and metabolite separately.",
         evidenceSource:
           'Barkin RL, Barkin SJ, Barkin DS. Am J Ther 2006;13:534-542; Whitcomb DC et al. J Clin Invest 1989;84:1629-1636',
         doi: '10.1097/01.mjt.0000253850.86480.fb',
@@ -7638,9 +7657,10 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'pro-a6',
         category: 'conclusion_shift',
-        title: 'Fifty-three years between introduction and withdrawal, and the case was public throughout',
+        title:
+          'Fifty-three years between introduction and withdrawal, and the case was public throughout',
         laymanSummary:
-          'The drug came to market in 1957 and left in 2010. The evidence about the metabolite\'s effect on heart cells was published in 1989.',
+          "The drug came to market in 1957 and left in 2010. The evidence about the metabolite's effect on heart cells was published in 1989.",
         technicalDetails:
           'Propoxyphene was introduced in the United States in 1957. The mechanism of its cardiac toxicity was characterised in isolated myocytes in 1989. A critical review calling for it to remain in antiquity appeared in 2006. The United Kingdom withdrew it in stages between 2005 and 2008. The United States withdrawal came in November 2010, and the formal withdrawal of eight new drug applications and forty-six abbreviated applications was published in the Federal Register in March 2014. Propoxyphene now appears in 21 CFR 216.24 as a drug product withdrawn for reasons of safety or effectiveness. The gap between the mechanism being known and the drug being removed is twenty-one years.',
         evidenceSource:
@@ -7659,7 +7679,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'Whitcomb DC et al. J Clin Invest 1989;84:1629-1636; Barkin RL et al. Am J Ther 2006;13:534-542',
         doi: '10.1172/JCI114340',
         inferredClaim:
-          'That propoxyphene\'s fatal toxicity is an opioid class effect shared with codeine and tramadol',
+          "That propoxyphene's fatal toxicity is an opioid class effect shared with codeine and tramadol",
         auditFlag: 'caution',
       },
     ],
@@ -7717,7 +7737,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Co-proxamol withdrawal, England and Wales, three-year analysis (Hawton et al. 2009)',
+        trialId:
+          'Co-proxamol withdrawal, England and Wales, three-year analysis (Hawton et al. 2009)',
         phase: 'Population-level interrupted time-series analysis, 1998-2007',
         sampleSize: 349,
         primaryEndpoint:
@@ -7730,7 +7751,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Replicated',
       },
       {
-        trialId: 'Co-proxamol withdrawal, England and Wales, six-year follow-up (Hawton et al. 2012)',
+        trialId:
+          'Co-proxamol withdrawal, England and Wales, six-year follow-up (Hawton et al. 2012)',
         phase: 'Population-level interrupted time-series analysis, 1998-2004 versus 2005-2010',
         sampleSize: 600,
         primaryEndpoint:
@@ -7786,7 +7808,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How good a painkiller was it?',
-        a: 'About as good as paracetamol or aspirin taken alone, on the review literature. Most prescriptions were for a fixed combination with paracetamol, so the analgesia patients experienced was substantially the paracetamol\'s. That combination structure is part of why the drug survived so long: the product worked, and the component carrying the cardiac risk was contributing little to why it worked.',
+        a: "About as good as paracetamol or aspirin taken alone, on the review literature. Most prescriptions were for a fixed combination with paracetamol, so the analgesia patients experienced was substantially the paracetamol's. That combination structure is part of why the drug survived so long: the product worked, and the component carrying the cardiac risk was contributing little to why it worked.",
       },
       {
         q: 'Why is there no price on this page?',
@@ -7834,7 +7856,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA: DARVON (propoxyphene hydrochloride), NDA 010997, Xanodyne — Discontinued',
+        label:
+          'Drugs@FDA: DARVON (propoxyphene hydrochloride), NDA 010997, Xanodyne — Discontinued',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=010997',
         kind: 'regulatory',
@@ -7852,7 +7875,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
   {
     slug: 'phenylpropanolamine',
     name: 'Phenylpropanolamine',
-    tradeName: 'Dexatrim, Acutrim (appetite suppressants); Triaminic, Dimetapp, Contac (decongestants)',
+    tradeName:
+      'Dexatrim, Acutrim (appetite suppressants); Triaminic, Dimetapp, Contac (decongestants)',
     sponsor:
       'Multiple over-the-counter manufacturers; there was no single sponsor, which is part of why the withdrawal took the form it did',
     targetGene: 'ADRA1A',
@@ -7880,7 +7904,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'An over-the-counter sympathomimetic removed from the United States market in 2000 on a single case-control study of 702 haemorrhagic stroke patients and 1,376 controls, which found an adjusted odds ratio of 16.58 for appetite-suppressant use in women — a figure whose 95 per cent confidence interval runs from 1.51 to 182.21.',
     laymanHowItWorks:
-      'Phenylpropanolamine narrows blood vessels by acting on the same receptors adrenaline uses, and by pushing the body\'s own noradrenaline out of nerve endings. In the nose that shrinks swollen tissue and clears the airway. Everywhere else it raises blood pressure. In a small number of people, the sudden pressure rise appears to be enough to rupture a vessel in the brain.',
+      "Phenylpropanolamine narrows blood vessels by acting on the same receptors adrenaline uses, and by pushing the body's own noradrenaline out of nerve endings. In the nose that shrinks swollen tissue and clears the airway. Everywhere else it raises blood pressure. In a small number of people, the sudden pressure rise appears to be enough to rupture a vessel in the brain.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 58,
     substitutes: {
@@ -7991,12 +8015,14 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'ppa-a1',
         category: 'measured',
-        title: 'Adjusted odds ratio 16.58 for appetite suppressants in women — interval 1.51 to 182.21',
+        title:
+          'Adjusted odds ratio 16.58 for appetite suppressants in women — interval 1.51 to 182.21',
         laymanSummary:
           'A case-control study of 702 stroke patients found women who had taken a phenylpropanolamine diet pill were far more likely to have had a brain haemorrhage. The estimate is very uncertain.',
         technicalDetails:
           'The Hemorrhagic Stroke Project recruited men and women aged 18 to 49 from 43 United States hospitals, requiring a subarachnoid or intracerebral haemorrhage within 30 days of enrolment and no previously diagnosed brain lesion, with two random-digit-dialled matched controls per patient: 702 patients and 1,376 controls. In women, the adjusted odds ratio for appetite suppressants containing phenylpropanolamine was 16.58 (95% CI 1.51 to 182.21, P = 0.02), and for first use of any phenylpropanolamine-containing product 3.13 (95% CI 0.86 to 11.46, P = 0.08). All first uses involved cough or cold remedies. For men and women combined the odds ratio for any phenylpropanolamine product was 1.49 (95% CI 0.84 to 2.64, P = 0.17), for cough and cold remedies 1.23 (95% CI 0.68 to 2.24, P = 0.49), and for appetite suppressants 15.92 (95% CI 1.38 to 184.13, P = 0.03). No men reported appetite suppressant use.',
-        evidenceSource: 'Kernan WN et al., Hemorrhagic Stroke Project. N Engl J Med 2000;343:1826-1832',
+        evidenceSource:
+          'Kernan WN et al., Hemorrhagic Stroke Project. N Engl J Med 2000;343:1826-1832',
         doi: '10.1056/NEJM200012213432501',
         measuredMetric:
           'Adjusted odds ratio for haemorrhagic stroke by phenylpropanolamine product type and sex',
@@ -8005,7 +8031,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'ppa-a2',
         category: 'inferred',
-        title: 'The interval spans two orders of magnitude, and the point estimate is what was quoted',
+        title:
+          'The interval spans two orders of magnitude, and the point estimate is what was quoted',
         laymanSummary:
           'An odds ratio of 16.58 sounds precise. The range of values compatible with the data runs from 1.5 to 182, which is a very different statement.',
         technicalDetails:
@@ -8062,14 +8089,14 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'Phenylpropanolamine remains a standard veterinary treatment for urinary incontinence in dogs, where the same vessel-and-sphincter tightening is exactly what is wanted.',
         technicalDetails:
           'Phenylpropanolamine is used in veterinary medicine for urethral sphincter mechanism incompetence in dogs, where alpha-adrenergic tone at the internal urethral sphincter is the therapeutic target. The 21 CFR 216.24 listing addresses human drug products. As with pergolide elsewhere in this file, the same molecule is unacceptable in one species and standard in another, because the alternatives, the life expectancy and the baseline stroke risk are all different. A withdrawal is a judgement about a specific benefit-risk trade in a specific population.',
-        evidenceSource:
-          '21 CFR 216.24 — human drug products containing phenylpropanolamine',
+        evidenceSource: '21 CFR 216.24 — human drug products containing phenylpropanolamine',
         auditFlag: 'verified',
       },
       {
         id: 'ppa-a7',
         category: 'failed',
-        title: 'Twenty-four years on the shelf, and the study that ended it was commissioned by industry',
+        title:
+          'Twenty-four years on the shelf, and the study that ended it was commissioned by industry',
         laymanSummary:
           'Case reports linking the drug to brain haemorrhage had accumulated for years. The definitive study was funded by the manufacturers themselves and took five years to run.',
         technicalDetails:
@@ -8104,9 +8131,9 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Two adrenergic actions at once',
         laymanDesc:
-          'It switches on the receptors that tighten blood vessels, and separately pushes the body\'s own adrenaline-like signal out of nerve endings.',
+          "It switches on the receptors that tighten blood vessels, and separately pushes the body's own adrenaline-like signal out of nerve endings.",
         molecularDetail:
-          'Direct alpha-1 adrenergic receptor agonism combined with indirect displacement of noradrenaline from sympathetic nerve terminals. The indirect component means the effect depends on the patient\'s own sympathetic stores and is not straightforwardly dose-proportional.',
+          "Direct alpha-1 adrenergic receptor agonism combined with indirect displacement of noradrenaline from sympathetic nerve terminals. The indirect component means the effect depends on the patient's own sympathetic stores and is not straightforwardly dose-proportional.",
         iconName: 'Lock',
         visualStage: 'target_binding',
       },
@@ -8146,7 +8173,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Unreplicated',
       },
       {
-        trialId: 'Hemorrhagic Stroke Project, aneurysmal subarachnoid haemorrhage analysis (Broderick et al.)',
+        trialId:
+          'Hemorrhagic Stroke Project, aneurysmal subarachnoid haemorrhage analysis (Broderick et al.)',
         phase: 'Case-control analysis within the same cohort, 44 hospitals',
         sampleSize: 930,
         primaryEndpoint:
@@ -8259,13 +8287,14 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     approvalYear: 1983,
     indication:
       'Duodenal and gastric ulcer, gastro-oesophageal reflux disease, erosive oesophagitis and pathological hypersecretory conditions; also sold over the counter for heartburn. All ranitidine products were requested off the United States market on 1 April 2020 because the molecule degrades to N-nitrosodimethylamine on storage.',
-    patientFriendlyIndication: 'A heartburn and ulcer tablet, sold on prescription and over the counter',
+    patientFriendlyIndication:
+      'A heartburn and ulcer tablet, sold on prescription and over the counter',
     anatomicalSite: 'Gastric parietal cell basolateral membrane in the stomach lining',
     conditionContext: {
       conditionExplainer:
         'Acid reflux and peptic ulcer are treated by reducing gastric acid secretion. The parietal cell secretes acid in response to histamine, gastrin and acetylcholine; blocking the histamine H2 receptor removes one of the three inputs.',
       whyItMatters:
-        'Nothing was ever found wrong with ranitidine\'s pharmacology. What went wrong is that the molecule contains both a nitro group and a dimethylamine, and under some solid-state conditions those two parts react to make a probable human carcinogen inside the tablet. This is a chemistry problem in the bottle, not a biology problem in the patient — and no other page in this file has that shape.',
+        "Nothing was ever found wrong with ranitidine's pharmacology. What went wrong is that the molecule contains both a nitro group and a dimethylamine, and under some solid-state conditions those two parts react to make a probable human carcinogen inside the tablet. This is a chemistry problem in the bottle, not a biology problem in the patient — and no other page in this file has that shape.",
       whoTakesThis:
         'Nobody in the United States. Patients moved to famotidine, which has no dimethylamine group, or to the proton pump inhibitors.',
       clinicalGoals:
@@ -8274,7 +8303,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'An H2 receptor antagonist withdrawn worldwide in 2020 not for anything it does in the body but because the molecule degrades in the container to N-nitrosodimethylamine, a degradation now shown to be driven by solid-state reactive species introduced during crystallisation, milling and grinding — with cryoground material degrading up to two orders of magnitude faster than unprocessed drug.',
     laymanHowItWorks:
-      'Stomach cells make acid when histamine docks on a receptor on their surface. Ranitidine blocks that receptor, so less acid is made and ulcers heal. The problem is the molecule\'s own shape: it carries a nitro group at one end and a dimethylamine at the other, and in the solid tablet those two parts can react with each other over time to produce NDMA, a compound classed as a probable human carcinogen. The drug that reaches the receptor was never the issue. The drug sitting in the bottle was.',
+      "Stomach cells make acid when histamine docks on a receptor on their surface. Ranitidine blocks that receptor, so less acid is made and ulcers heal. The problem is the molecule's own shape: it carries a nitro group at one end and a dimethylamine at the other, and in the solid tablet those two parts can react with each other over time to produce NDMA, a compound classed as a probable human carcinogen. The drug that reaches the receptor was never the issue. The drug sitting in the bottle was.",
     auditConfidence: 'High Confidence',
     confidenceScore: 79,
     substitutes: {
@@ -8400,7 +8429,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'Recrystallisation stops it, which confirms where the problem lives',
         laymanSummary:
-          'Recrystallising the drug — undoing the crystal damage — stops the NDMA forming. That is the clearest proof that the fault is in how the powder was made, not in the molecule\'s function.',
+          "Recrystallising the drug — undoing the crystal damage — stops the NDMA forming. That is the clearest proof that the fault is in how the powder was made, not in the molecule's function.",
         technicalDetails:
           'Subsequent work reports that recrystallisation of ranitidine hydrochloride can stop nitrosamine formation, and separate work reports mitigation by spray-drying co-precipitation. Both are interventions on the solid form rather than on the molecular structure. This is the decisive category evidence for the whole page: an intervention that changes nothing about what ranitidine does at the H2 receptor, and everything about whether it makes NDMA in the container, resolves the problem. It follows that the 2020 withdrawal was a judgement about a supply chain and its manufacturing controls rather than about a pharmacological hazard.',
         evidenceSource:
@@ -8531,7 +8560,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'National Health Insurance Service-National Sample Cohort, South Korea (Joung et al.)',
+        trialId:
+          'National Health Insurance Service-National Sample Cohort, South Korea (Joung et al.)',
         phase: 'Active-comparator new-user cohort study, 2002-2015',
         sampleSize: 25360,
         primaryEndpoint:
@@ -8650,7 +8680,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     approvalYear: 1999,
     indication:
       'Type 2 diabetes mellitus, as an adjunct to diet and exercise to improve glycaemic control. Placed under a restricted access programme in 2010 after a meta-analysis found an excess of myocardial infarction; the restrictions were removed in 2013 and the programme eliminated in 2015.',
-    patientFriendlyIndication: 'A tablet for type 2 diabetes that makes the body more sensitive to insulin',
+    patientFriendlyIndication:
+      'A tablet for type 2 diabetes that makes the body more sensitive to insulin',
     anatomicalSite:
       'Adipocyte nucleus, principally subcutaneous adipose tissue, with secondary effects in skeletal muscle and liver',
     conditionContext: {
@@ -8765,7 +8796,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Sodium retention and osteoblast-adipocyte lineage assays',
           description:
-            'Quantify epithelial sodium channel expression and amiloride-sensitive sodium transport in collecting duct cells, and separately measure the osteoblast-to-adipocyte lineage shift in mesenchymal stem cells. These two assays measure the harms that were never disputed at any point in this drug\'s regulatory history, while the myocardial infarction question was reversed twice.',
+            "Quantify epithelial sodium channel expression and amiloride-sensitive sodium transport in collecting duct cells, and separately measure the osteoblast-to-adipocyte lineage shift in mesenchymal stem cells. These two assays measure the harms that were never disputed at any point in this drug's regulatory history, while the myocardial infarction question was reversed twice.",
           dependsOnStepId: 'ros-w4',
           reagentsAndBuffer:
             'Renal collecting duct cell line with amiloride-sensitive short-circuit current measurement, quantitative PCR for ENaC subunits, human mesenchymal stem cells with alkaline phosphatase and Oil Red O dual staining, RUNX2 and PPARG expression readouts',
@@ -8780,7 +8811,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A 2007 analysis pooling 42 trials found people on rosiglitazone had about 43 per cent higher odds of a heart attack, and a borderline increase in cardiovascular death.',
         technicalDetails:
-          'Nissen and Wolski searched the published literature, the FDA website and the manufacturer\'s trial registry, including studies of more than 24 weeks with a randomised control group not receiving rosiglitazone and available outcome data. Of 116 potentially relevant studies, 42 met criteria. Mean subject age was about 56 and mean baseline glycated haemoglobin about 8.2 per cent. Combined by a fixed-effects model, the odds ratio for myocardial infarction was 1.43 (95% CI 1.03 to 1.98, P = 0.03) and for death from cardiovascular causes 1.64 (95% CI 0.98 to 2.74, P = 0.06). The authors state their own principal limitation: no access to original source data, so no time-to-event analysis was possible.',
+          "Nissen and Wolski searched the published literature, the FDA website and the manufacturer's trial registry, including studies of more than 24 weeks with a randomised control group not receiving rosiglitazone and available outcome data. Of 116 potentially relevant studies, 42 met criteria. Mean subject age was about 56 and mean baseline glycated haemoglobin about 8.2 per cent. Combined by a fixed-effects model, the odds ratio for myocardial infarction was 1.43 (95% CI 1.03 to 1.98, P = 0.03) and for death from cardiovascular causes 1.64 (95% CI 0.98 to 2.74, P = 0.06). The authors state their own principal limitation: no access to original source data, so no time-to-event analysis was possible.",
         evidenceSource: 'Nissen SE, Wolski K. N Engl J Med 2007;356:2457-2471',
         doi: '10.1056/NEJMoa072761',
         measuredMetric:
@@ -8822,7 +8853,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The 2010 access restrictions were lifted after the readjudication. But the readjudication agreed with the original result, which had already existed in 2009 when the restrictions were imposed.',
         technicalDetails:
-          'The sequence is: 2007 meta-analysis finds an odds ratio of 1.43 for myocardial infarction; 2009 RECORD reports a primary-endpoint hazard ratio of 0.99 and a readjudicated composite of 0.93; 2010 the FDA imposes a restricted access programme; 2013 the Duke readjudication returns 0.95 for the same composite and the restrictions are removed; 2015 the programme is eliminated entirely. The 2013 number is not new information about the drug — the readjudicators say so, noting only a modest number of additional person-years ascertained. What changed between 2010 and 2013 is confidence in the RECORD result rather than the RECORD result itself, because the trial\'s open-label design and sponsor adjudication were the objections, and an independent readjudication answered those objections without altering the estimate. That is a legitimate reason to change a regulatory position and it is not the same thing as new evidence.',
+          "The sequence is: 2007 meta-analysis finds an odds ratio of 1.43 for myocardial infarction; 2009 RECORD reports a primary-endpoint hazard ratio of 0.99 and a readjudicated composite of 0.93; 2010 the FDA imposes a restricted access programme; 2013 the Duke readjudication returns 0.95 for the same composite and the restrictions are removed; 2015 the programme is eliminated entirely. The 2013 number is not new information about the drug — the readjudicators say so, noting only a modest number of additional person-years ascertained. What changed between 2010 and 2013 is confidence in the RECORD result rather than the RECORD result itself, because the trial's open-label design and sponsor adjudication were the objections, and an independent readjudication answered those objections without altering the estimate. That is a legitimate reason to change a regulatory position and it is not the same thing as new evidence.",
         evidenceSource:
           'Mahaffey KW et al. Am Heart J 2013;166:240-249.e1; Home PD et al. Lancet 2009;373:2125-2135',
         doi: '10.1016/j.ahj.2013.05.004',
@@ -8853,7 +8884,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Home PD et al. Lancet 2009;373:2125-2135; Mahaffey KW et al. Am Heart J 2013;166:240-249.e1',
         doi: '10.1016/S0140-6736(09)60953-3',
-        inferredClaim: 'That RECORD refuted the myocardial infarction signal in the 2007 meta-analysis',
+        inferredClaim:
+          'That RECORD refuted the myocardial infarction signal in the 2007 meta-analysis',
         auditFlag: 'caution',
       },
       {
@@ -8924,7 +8956,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'Nissen and Wolski meta-analysis of 42 randomised trials',
-        phase: 'Meta-analysis of trials longer than 24 weeks with a randomised non-rosiglitazone control',
+        phase:
+          'Meta-analysis of trials longer than 24 weeks with a randomised non-rosiglitazone control',
         sampleSize: 42,
         primaryEndpoint:
           'Pooled odds ratio for myocardial infarction and for death from cardiovascular causes',
@@ -8995,13 +9028,13 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does rosiglitazone cause heart attacks or not?',
-        a: 'The evidence does not resolve it, and every party to the argument has been working from the same ambiguity. The meta-analysis gives an odds ratio of 1.43 with an interval from 1.03 to 1.98, which is significant but pooled from trials designed for glucose endpoints and without source data. RECORD gives a hazard ratio of 1.14 with an interval from 0.80 to 1.63, and the investigators themselves describe the myocardial infarction data as inconclusive. The readjudication gives 1.13 (0.80 to 1.59). Those intervals overlap heavily. The correct summary is that the question was never settled in either direction, and the regulatory position moved because confidence in the trial\'s conduct moved.',
+        a: "The evidence does not resolve it, and every party to the argument has been working from the same ambiguity. The meta-analysis gives an odds ratio of 1.43 with an interval from 1.03 to 1.98, which is significant but pooled from trials designed for glucose endpoints and without source data. RECORD gives a hazard ratio of 1.14 with an interval from 0.80 to 1.63, and the investigators themselves describe the myocardial infarction data as inconclusive. The readjudication gives 1.13 (0.80 to 1.59). Those intervals overlap heavily. The correct summary is that the question was never settled in either direction, and the regulatory position moved because confidence in the trial's conduct moved.",
         auditNote:
           'The readjudication added 328 person-years to 25,833 and returned a composite hazard ratio of 0.95 against 0.93. It tested the adjudication, not the drug.',
       },
       {
         q: 'If the numbers barely changed, why were the restrictions lifted?',
-        a: 'Because the objection to RECORD was never primarily about its numbers. It was open-label, and its cardiovascular endpoints were adjudicated under the sponsor\'s process, so its reassuring result could not be relied on. An independent readjudication using the original source documents, with additional records chased from investigators and new FDA endpoint definitions applied, addressed exactly that objection. It came back the same. That is a legitimate reason to change a regulatory position, and it is worth being precise that what changed was the credibility of an existing estimate rather than the estimate itself.',
+        a: "Because the objection to RECORD was never primarily about its numbers. It was open-label, and its cardiovascular endpoints were adjudicated under the sponsor's process, so its reassuring result could not be relied on. An independent readjudication using the original source documents, with additional records chased from investigators and new FDA endpoint definitions applied, addressed exactly that objection. It came back the same. That is a legitimate reason to change a regulatory position, and it is worth being precise that what changed was the credibility of an existing estimate rather than the estimate itself.",
       },
       {
         q: 'What was never in doubt?',
@@ -9087,13 +9120,13 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     confidenceScore: 55,
     substitutes: {
       summary:
-        'The GLP-1 receptor agonists replaced this entire category. Semaglutide and tirzepatide produce weight loss several times larger than lorcaserin\'s and carry cardiovascular outcome data showing benefit rather than absence of harm.',
+        "The GLP-1 receptor agonists replaced this entire category. Semaglutide and tirzepatide produce weight loss several times larger than lorcaserin's and carry cardiovascular outcome data showing benefit rather than absence of harm.",
       conventionalRx: [
         {
           name: 'Semaglutide (weight-management dose)',
           class: 'GLP-1 receptor agonist',
           howItCompares:
-            'Far larger weight loss than any 5-HT2C agonist achieved, with cardiovascular outcome evidence of benefit. Notably, lorcaserin\'s own mechanism turned out to involve brainstem GLP-1 neurons, so the two are less distant than they appear.',
+            "Far larger weight loss than any 5-HT2C agonist achieved, with cardiovascular outcome evidence of benefit. Notably, lorcaserin's own mechanism turned out to involve brainstem GLP-1 neurons, so the two are less distant than they appear.",
           typicalCost: '',
           prosAndCons:
             'Pros: large sustained weight loss, cardiovascular benefit. Cons: gastrointestinal effects, cost, weight regain on discontinuation.',
@@ -9126,7 +9159,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'C11H14ClN',
       molecularWeight: '195.69 g/mol',
       targetReceptorAffinity:
-        'A chlorinated benzazepine and a selective agonist at the serotonin 5-HT2C receptor, with reported selectivity of roughly 15-fold over 5-HT2A and around 100-fold over 5-HT2B at the receptors. That 5-HT2B margin is the entire design rationale: fenfluramine\'s metabolite norfenfluramine is a 5-HT2B agonist and caused valvular fibrosis, and lorcaserin was built to separate the appetite receptor from the valve receptor. Serial echocardiography in the phase 3 programme found no increase in valvulopathy, so the design objective was met.',
+        "A chlorinated benzazepine and a selective agonist at the serotonin 5-HT2C receptor, with reported selectivity of roughly 15-fold over 5-HT2A and around 100-fold over 5-HT2B at the receptors. That 5-HT2B margin is the entire design rationale: fenfluramine's metabolite norfenfluramine is a 5-HT2B agonist and caused valvular fibrosis, and lorcaserin was built to separate the appetite receptor from the valve receptor. Serial echocardiography in the phase 3 programme found no increase in valvulopathy, so the design objective was met.",
       structureSource: {
         label: 'PubChem CID 11658860 (lorcaserin) — canonical SMILES, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11658860',
@@ -9192,7 +9225,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'lor-a1',
         category: 'measured',
-        title: '38.7 per cent lost at least 5 per cent of body weight, against 17.4 per cent on placebo',
+        title:
+          '38.7 per cent lost at least 5 per cent of body weight, against 17.4 per cent on placebo',
         laymanSummary:
           'In a 12,000-patient trial, nearly four in ten people on lorcaserin lost at least a twentieth of their body weight at one year, against fewer than two in ten on placebo.',
         technicalDetails:
@@ -9225,7 +9259,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The FDA reviewed the long-term follow-up of the safety trial and found more cancers on lorcaserin than on placebo. The drug was withdrawn in February 2020.',
         technicalDetails:
-          'The FDA reported in February 2020 an increased risk of cancer with lorcaserin in the follow-up of CAMELLIA-TIMI 61 and requested withdrawal on 13 February 2020, with the agency\'s own review published as a perspective in the New England Journal of Medicine in September 2020. Cancer was not a prespecified endpoint of the trial. It was a safety trial for cardiovascular outcomes, designed and powered against a non-inferiority boundary of 1.4 for major adverse cardiovascular events, and it delivered a clean answer on that question. The finding that ended the drug came from the same dataset and was not what the dataset was assembled to examine, which places it in exactly the category — an unprespecified imbalance in a large trial — that is hardest to interpret in either direction.',
+          "The FDA reported in February 2020 an increased risk of cancer with lorcaserin in the follow-up of CAMELLIA-TIMI 61 and requested withdrawal on 13 February 2020, with the agency's own review published as a perspective in the New England Journal of Medicine in September 2020. Cancer was not a prespecified endpoint of the trial. It was a safety trial for cardiovascular outcomes, designed and powered against a non-inferiority boundary of 1.4 for major adverse cardiovascular events, and it delivered a clean answer on that question. The finding that ended the drug came from the same dataset and was not what the dataset was assembled to examine, which places it in exactly the category — an unprespecified imbalance in a large trial — that is hardest to interpret in either direction.",
         evidenceSource:
           'Sharretts J, Galescu O, Gomatam S, Andraca-Carrera E, Hampp C, Yanoff L. N Engl J Med 2020;383:1000-1002',
         doi: '10.1056/NEJMp2003873',
@@ -9242,8 +9276,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'de Andrade Mesquita L, Fagundes Piccoli G, Richter da Natividade G, Frison Spiazzi B, Colpani V, Gerchman F. Obes Rev 2021;22:e13170',
         doi: '10.1111/obr.13170',
-        inferredClaim:
-          'That the pooled trial data establish lorcaserin as carcinogenic in humans',
+        inferredClaim: 'That the pooled trial data establish lorcaserin as carcinogenic in humans',
         auditFlag: 'caution',
       },
       {
@@ -9264,7 +9297,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'lor-a6',
         category: 'conclusion_shift',
-        title: 'It was built to avoid fenfluramine\'s failure, and it succeeded at that',
+        title: "It was built to avoid fenfluramine's failure, and it succeeded at that",
         laymanSummary:
           'Lorcaserin was specifically engineered to avoid the receptor that made fenfluramine damage heart valves. Echocardiography in thousands of patients confirmed the design worked.',
         technicalDetails:
@@ -9280,7 +9313,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Approval was withdrawn in September 2020. Then in March 2021 the FDA formally determined the products were not withdrawn for reasons of safety or effectiveness — a technical finding that permits generic applications.',
         technicalDetails:
-          'The Federal Register of 17 September 2020 records Eisai\'s withdrawal of approval of the two new drug applications for BELVIQ and BELVIQ XR. The Federal Register of 4 March 2021 then records a determination that BELVIQ (lorcaserin hydrochloride) tablets 10 mg and BELVIQ XR were not withdrawn from sale for reasons of safety or effectiveness. That determination is a specific technical finding governing whether abbreviated new drug applications may reference the listed drug; it is not a statement that the cancer imbalance was disproved. A reader consulting the Federal Register and a reader consulting the 2020 safety communication reach opposite impressions, and both documents are accurate about what they address.',
+          "The Federal Register of 17 September 2020 records Eisai's withdrawal of approval of the two new drug applications for BELVIQ and BELVIQ XR. The Federal Register of 4 March 2021 then records a determination that BELVIQ (lorcaserin hydrochloride) tablets 10 mg and BELVIQ XR were not withdrawn from sale for reasons of safety or effectiveness. That determination is a specific technical finding governing whether abbreviated new drug applications may reference the listed drug; it is not a statement that the cancer imbalance was disproved. A reader consulting the Federal Register and a reader consulting the 2020 safety communication reach opposite impressions, and both documents are accurate about what they address.",
         evidenceSource:
           'Federal Register 17 September 2020, withdrawal of approval of two NDAs for BELVIQ and BELVIQ XR; Federal Register 4 March 2021, determination on withdrawal from sale',
         auditFlag: 'contested',
@@ -9365,7 +9398,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Replicated',
       },
       {
-        trialId: 'Systematic review and meta-analysis of cancer incidence (de Andrade Mesquita et al.)',
+        trialId:
+          'Systematic review and meta-analysis of cancer incidence (de Andrade Mesquita et al.)',
         phase: 'Systematic review and meta-analysis of randomised trials',
         sampleSize: 21299,
         primaryEndpoint:
@@ -9397,7 +9431,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       ],
       realWorldOutcome: [
         'The GLP-1 receptor agonists replaced the entire pharmacological weight-management category with far larger effects',
-        'Lorcaserin\'s own mechanism was later shown to involve brainstem GLP-1 neurons, connecting the two classes',
+        "Lorcaserin's own mechanism was later shown to involve brainstem GLP-1 neurons, connecting the two classes",
         'The 5-HT2C over 5-HT2B selectivity strategy that this drug validated remains sound; it was simply not sufficient',
       ],
     },
@@ -9417,7 +9451,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Was this the same problem as fenfluramine?',
-        a: 'No, and that is the point of the drug. Fenfluramine\'s valve damage came from 5-HT2B agonism by its metabolite. Lorcaserin was engineered for selectivity at 5-HT2C over 5-HT2B, and the registration programme tested that directly with serial echocardiography in 2,472 patients at one year and 1,127 at two years, finding no increase in valvulopathy. The design worked. It was removed for something entirely unrelated, found in a trial run to address a third question.',
+        a: "No, and that is the point of the drug. Fenfluramine's valve damage came from 5-HT2B agonism by its metabolite. Lorcaserin was engineered for selectivity at 5-HT2C over 5-HT2B, and the registration programme tested that directly with serial echocardiography in 2,472 patients at one year and 1,127 at two years, finding no increase in valvulopathy. The design worked. It was removed for something entirely unrelated, found in a trial run to address a third question.",
       },
       {
         q: 'Why does one federal document say it was not withdrawn for safety reasons?',
@@ -9445,7 +9479,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Sharretts J, Galescu O, Gomatam S, Andraca-Carrera E, Hampp C, Yanoff L. Cancer risk associated with lorcaserin — the FDA\'s review of the CAMELLIA-TIMI 61 trial. N Engl J Med 2020;383:1000-1002',
+          "Sharretts J, Galescu O, Gomatam S, Andraca-Carrera E, Hampp C, Yanoff L. Cancer risk associated with lorcaserin — the FDA's review of the CAMELLIA-TIMI 61 trial. N Engl J Med 2020;383:1000-1002",
         identifier: '10.1056/NEJMp2003873',
         kind: 'doi',
       },
@@ -9532,7 +9566,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
             'Different route, different molecule, and a different indicated population — women with a sonographically short cervix rather than women with a prior spontaneous preterm birth. Its evidence base was not affected by the Makena withdrawal.',
           typicalCost: '',
           prosAndCons:
-            'Pros: local delivery, no injection, retained in guidelines for short cervix. Cons: the population overlaps only partly with Makena\'s.',
+            "Pros: local delivery, no injection, retained in guidelines for short cervix. Cons: the population overlaps only partly with Makena's.",
         },
         {
           name: 'Cervical cerclage',
@@ -9558,8 +9592,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CCCCCC(=O)O[C@@]1(CC[C@@H]2[C@@]1(CC[C@H]3[C@H]2CCC4=CC(=O)CC[C@]34C)C)C(=O)C',
+      smilesString: 'CCCCCC(=O)O[C@@]1(CC[C@@H]2[C@@]1(CC[C@H]3[C@H]2CCC4=CC(=O)CC[C@]34C)C)C(=O)C',
       chemicalFormula: 'C27H40O4',
       molecularWeight: '428.6 g/mol',
       targetReceptorAffinity:
@@ -9686,7 +9719,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'hpc-a5',
         category: 'conclusion_shift',
-        title: 'Twelve years between accelerated approval and withdrawal, with a hearing in between',
+        title:
+          'Twelve years between accelerated approval and withdrawal, with a hearing in between',
         laymanSummary:
           'The confirmatory trial reported in 2019. The approval was not withdrawn until a formal decision in 2023, after the sponsor requested and received a public hearing.',
         technicalDetails:
@@ -9882,7 +9916,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'Federal Register, 17 August 2022 — proposal to withdraw approval of MAKENA; hearing',
+        label:
+          'Federal Register, 17 August 2022 — proposal to withdraw approval of MAKENA; hearing',
         identifier:
           'https://www.federalregister.gov/documents/2022/08/17/2022-17715/proposal-to-withdraw-approval-of-makena-hearing',
         kind: 'regulatory',
@@ -10096,7 +10131,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The European regulator looked at the same trials and retained bevacizumab with paclitaxel for breast cancer. Two regulators, one dataset, two answers.',
         technicalDetails:
-          'The European Medicines Agency retained bevacizumab in combination with paclitaxel for first-line metastatic breast cancer while removing the docetaxel combination, on the same body of evidence from which the FDA withdrew the indication entirely. Nothing separates the two decisions at the level of data. What separates them is how much weight a progression-free survival gain of several months carries against a toxicity profile in the absence of a survival signal, and that is a value judgement about what counts as benefit. Recording only one jurisdiction\'s answer would misrepresent the state of the evidence as more settled than it is.',
+          "The European Medicines Agency retained bevacizumab in combination with paclitaxel for first-line metastatic breast cancer while removing the docetaxel combination, on the same body of evidence from which the FDA withdrew the indication entirely. Nothing separates the two decisions at the level of data. What separates them is how much weight a progression-free survival gain of several months carries against a toxicity profile in the absence of a survival signal, and that is a value judgement about what counts as benefit. Recording only one jurisdiction's answer would misrepresent the state of the evidence as more settled than it is.",
         evidenceSource:
           'European Medicines Agency, Avastin (bevacizumab) European public assessment report; Federal Register, 27 February 2012',
         auditFlag: 'contested',
@@ -10120,10 +10155,11 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'Biosimilars were approved after the indication was withdrawn',
         laymanSummary:
-          'Several manufacturers now make copies of bevacizumab, approved for the indications it kept. The drug\'s standing was not damaged by the breast cancer decision.',
+          "Several manufacturers now make copies of bevacizumab, approved for the indications it kept. The drug's standing was not damaged by the breast cancer decision.",
         technicalDetails:
-          'Bevacizumab biosimilars including bevacizumab-awwb, bevacizumab-bvzr, bevacizumab-maly, bevacizumab-adcd, bevacizumab-nwgd, bevacizumab-tnjn and bevacizumab-vikg are recorded in Drugs@FDA, and the reference product BLA 125085 remains in Prescription marketing status. A biosimilar programme is a substantial commercial and regulatory commitment, and it is made against the indications the reference product holds. That several were undertaken after 2011 is a direct measure of how narrowly the withdrawal cut: it removed one claim from one label and left the molecule\'s standing in oncology intact.',
-        evidenceSource: 'Drugs@FDA BLA 125085 (AVASTIN, Genentech) — Prescription, with biosimilars',
+          "Bevacizumab biosimilars including bevacizumab-awwb, bevacizumab-bvzr, bevacizumab-maly, bevacizumab-adcd, bevacizumab-nwgd, bevacizumab-tnjn and bevacizumab-vikg are recorded in Drugs@FDA, and the reference product BLA 125085 remains in Prescription marketing status. A biosimilar programme is a substantial commercial and regulatory commitment, and it is made against the indications the reference product holds. That several were undertaken after 2011 is a direct measure of how narrowly the withdrawal cut: it removed one claim from one label and left the molecule's standing in oncology intact.",
+        evidenceSource:
+          'Drugs@FDA BLA 125085 (AVASTIN, Genentech) — Prescription, with biosimilars',
         auditFlag: 'verified',
       },
     ],
@@ -10202,12 +10238,13 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'Unstratified median progression-free survival 8.2 months placebo, 9.0 months at 7.5 mg/kg (hazard ratio 0.86, P = 0.12), 10.1 months at 15 mg/kg (0.77, P = 0.006)',
         unreportedAdverseSignals:
-          'The 7.5 mg/kg arm did not reach significance in the unstratified analysis. The gain at the effective dose is under two months, against E2100\'s near six.',
+          "The 7.5 mg/kg arm did not reach significance in the unstratified analysis. The gain at the effective dose is under two months, against E2100's near six.",
         independentReplicationStatus: 'Partially Replicated',
       },
       {
         trialId: 'RIBBON-1',
-        phase: 'Phase 3 randomised double-blind placebo-controlled trial with two independent cohorts',
+        phase:
+          'Phase 3 randomised double-blind placebo-controlled trial with two independent cohorts',
         sampleSize: 1237,
         primaryEndpoint:
           'Progression-free survival with capecitabine, taxane or anthracycline chemotherapy plus bevacizumab 15 mg/kg versus placebo',
@@ -10316,7 +10353,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'European Medicines Agency — Avastin (bevacizumab) European public assessment report',
+        label:
+          'European Medicines Agency — Avastin (bevacizumab) European public assessment report',
         identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/avastin',
         kind: 'regulatory',
       },
@@ -10455,10 +10493,10 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Amyloid metal-binding and plaque dissolution assay',
           description:
-            'Measure inhibition of zinc and copper binding to amyloid beta and the resulting dissolution of aggregates, plus plasma amyloid beta 42 as the biomarker used in the Alzheimer\'s pilot trial. Running this on the same page as the neurotoxicity assays is the point: the chelation that was proposed as a therapy and the chelation implicated in the epidemic are the same chemistry.',
+            "Measure inhibition of zinc and copper binding to amyloid beta and the resulting dissolution of aggregates, plus plasma amyloid beta 42 as the biomarker used in the Alzheimer's pilot trial. Running this on the same page as the neurotoxicity assays is the point: the chelation that was proposed as a therapy and the chelation implicated in the epidemic are the same chemistry.",
           dependsOnStepId: 'clq-w4',
           reagentsAndBuffer:
-            'Synthetic amyloid beta 1-42 with zinc and copper, thioflavin T aggregation assay, size-exclusion analysis of dissolved species, plasma amyloid beta 42 immunoassay, transgenic Alzheimer\'s model tissue for plaque quantification',
+            "Synthetic amyloid beta 1-42 with zinc and copper, thioflavin T aggregation assay, size-exclusion analysis of dissolved species, plasma amyloid beta 42 immunoassay, transgenic Alzheimer's model tissue for plaque quantification",
         },
       ],
     },
@@ -10499,7 +10537,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Recent work found that clioquinol destroys the active form of vitamin B1, which mitochondria need. Adding that vitamin back, or an antioxidant, prevents the nerve damage in animals.',
         technicalDetails:
-          'Metabolomic analysis identified thiamine pyrophosphate as the key metabolite affected by clioquinol. The drug promotes its inactivation through oxidative modification; extracellular flux analysis showed the resulting deficiency diminished mitochondrial oxidative phosphorylation with compensatory glycolysis, and electron microscopy showed mitochondrial damage in a thiamine-pyrophosphate-dependent manner. In an Alzheimer\'s disease murine model, clioquinol provoked oxidative stress, decreased cerebral thiamine pyrophosphate and induced neuronal injury; supplementing thiamine pyrophosphate or N-acetylcysteine mitigated the neurotoxicity. That a specific supplement reverses a specific toxicity is the strongest form of mechanistic evidence available short of a human trial.',
+          "Metabolomic analysis identified thiamine pyrophosphate as the key metabolite affected by clioquinol. The drug promotes its inactivation through oxidative modification; extracellular flux analysis showed the resulting deficiency diminished mitochondrial oxidative phosphorylation with compensatory glycolysis, and electron microscopy showed mitochondrial damage in a thiamine-pyrophosphate-dependent manner. In an Alzheimer's disease murine model, clioquinol provoked oxidative stress, decreased cerebral thiamine pyrophosphate and induced neuronal injury; supplementing thiamine pyrophosphate or N-acetylcysteine mitigated the neurotoxicity. That a specific supplement reverses a specific toxicity is the strongest form of mechanistic evidence available short of a human trial.",
         evidenceSource: 'Fan Z, Yan X, Zheng Q, et al. Redox Biol 2026;95:104258',
         doi: '10.1016/j.redox.2026.104258',
         measuredMetric:
@@ -10522,11 +10560,11 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'clq-a5',
         category: 'conclusion_shift',
-        title: 'The same molecule was later trialled in Alzheimer\'s disease',
+        title: "The same molecule was later trialled in Alzheimer's disease",
         laymanSummary:
-          'Thirty years after the ban, clioquinol was tested in a small Alzheimer\'s trial on the theory that its metal-gripping chemistry could break up amyloid plaques.',
+          "Thirty years after the ban, clioquinol was tested in a small Alzheimer's trial on the theory that its metal-gripping chemistry could break up amyloid plaques.",
         technicalDetails:
-          'A pilot phase 2 trial randomised 36 patients with moderately severe Alzheimer\'s disease to clioquinol or placebo, on the hypothesis that a metal-protein-attenuating compound inhibiting zinc and copper binding to amyloid beta would promote its dissolution. The treatment effect was significant in the more severely affected subgroup with baseline ADAS-cog of 25 or above, driven by substantial worsening in placebo patients against minimal deterioration on clioquinol. Plasma amyloid beta 42 fell on clioquinol and rose on placebo, and plasma zinc rose. The authors state the caveats of small sample size explicitly. That a compound withdrawn for neurotoxicity was reconsidered as a neuroprotective agent is not incoherent — the chelation is the same chemistry in both cases — but it does mean any efficacy signal has to be read against a well-documented mechanism of neuronal injury.',
+          "A pilot phase 2 trial randomised 36 patients with moderately severe Alzheimer's disease to clioquinol or placebo, on the hypothesis that a metal-protein-attenuating compound inhibiting zinc and copper binding to amyloid beta would promote its dissolution. The treatment effect was significant in the more severely affected subgroup with baseline ADAS-cog of 25 or above, driven by substantial worsening in placebo patients against minimal deterioration on clioquinol. Plasma amyloid beta 42 fell on clioquinol and rose on placebo, and plasma zinc rose. The authors state the caveats of small sample size explicitly. That a compound withdrawn for neurotoxicity was reconsidered as a neuroprotective agent is not incoherent — the chelation is the same chemistry in both cases — but it does mean any efficacy signal has to be read against a well-documented mechanism of neuronal injury.",
         evidenceSource: 'Ritchie CW, Bush AI, Mackinnon A, et al. Arch Neurol 2003;60:1685-1691',
         doi: '10.1001/archneur.60.12.1685',
         auditFlag: 'contested',
@@ -10536,12 +10574,12 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'A subgroup effect in 36 patients is a hypothesis, not a finding',
         laymanSummary:
-          'The Alzheimer\'s result came from part of a 36-person trial, and depended mostly on the placebo group getting worse rather than the treated group improving.',
+          "The Alzheimer's result came from part of a 36-person trial, and depended mostly on the placebo group getting worse rather than the treated group improving.",
         technicalDetails:
-          'The reported effect was confined to a subgroup defined by baseline severity within a randomised total of 36, and the authors attribute it to substantial worsening in placebo patients rather than to improvement on clioquinol. Both features — subgroup restriction and a control-arm-driven difference — mark a result as hypothesis-generating. The plasma amyloid beta 42 and zinc changes are genuine pharmacodynamic measurements showing the compound did what it was supposed to do biochemically. Whether that helps patients is the question the trial was too small to address, and the investigators say so. Reading this pilot as evidence that clioquinol treats Alzheimer\'s disease repeats, in miniature, the error that the aducanumab entry in this file records at scale.',
+          "The reported effect was confined to a subgroup defined by baseline severity within a randomised total of 36, and the authors attribute it to substantial worsening in placebo patients rather than to improvement on clioquinol. Both features — subgroup restriction and a control-arm-driven difference — mark a result as hypothesis-generating. The plasma amyloid beta 42 and zinc changes are genuine pharmacodynamic measurements showing the compound did what it was supposed to do biochemically. Whether that helps patients is the question the trial was too small to address, and the investigators say so. Reading this pilot as evidence that clioquinol treats Alzheimer's disease repeats, in miniature, the error that the aducanumab entry in this file records at scale.",
         evidenceSource: 'Ritchie CW et al. Arch Neurol 2003;60:1685-1691',
         doi: '10.1001/archneur.60.12.1685',
-        inferredClaim: 'That the pilot trial demonstrated clioquinol slows Alzheimer\'s disease',
+        inferredClaim: "That the pilot trial demonstrated clioquinol slows Alzheimer's disease",
         auditFlag: 'caution',
       },
       {
@@ -10612,11 +10650,11 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Pilot phase 2 trial of clioquinol in Alzheimer\'s disease (Ritchie et al.)',
+        trialId: "Pilot phase 2 trial of clioquinol in Alzheimer's disease (Ritchie et al.)",
         phase: 'Pilot phase 2 randomised trial',
         sampleSize: 36,
         primaryEndpoint:
-          'Cognitive change on the Alzheimer\'s Disease Assessment Scale cognitive subscale, with plasma amyloid beta 42 as a biomarker',
+          "Cognitive change on the Alzheimer's Disease Assessment Scale cognitive subscale, with plasma amyloid beta 42 as a biomarker",
         endpointMet: true,
         statisticalPValue:
           'Significant effect confined to the subgroup with baseline ADAS-cog of 25 or above, driven by worsening on placebo against minimal deterioration on clioquinol; plasma amyloid beta 42 fell on clioquinol and rose on placebo; plasma zinc rose',
@@ -10625,7 +10663,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Unreplicated',
       },
       {
-        trialId: 'Mechanistic characterisation in human neuroblastoma cells and an Alzheimer\'s model',
+        trialId:
+          "Mechanistic characterisation in human neuroblastoma cells and an Alzheimer's model",
         phase: 'Laboratory mechanistic investigation across cell and animal models',
         sampleSize: 1,
         primaryEndpoint:
@@ -10647,7 +10686,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       ],
       unsupportedInferences: [
         'That a drug acting in the intestinal lumen carries no systemic risk — the assumption that licensed decades of broad use',
-        'That the 36-patient Alzheimer\'s pilot demonstrated clinical benefit; the effect was subgroup-restricted and control-arm-driven',
+        "That the 36-patient Alzheimer's pilot demonstrated clinical benefit; the effect was subgroup-restricted and control-arm-driven",
         'That the delay to a molecular mechanism weakened the epidemiological case for causation',
       ],
       whatFailedInitially: [
@@ -10658,7 +10697,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       realWorldOutcome: [
         'Metronidazole with a genuinely non-absorbed luminal agent replaced it for amoebiasis; rehydration replaced it for diarrhoea',
         'Topical preparations persisted in some markets, on a route rather than molecule distinction',
-        'The compound returned as a research chelator, including a small Alzheimer\'s trial, on the same chemistry that caused the epidemic',
+        "The compound returned as a research chelator, including a small Alzheimer's trial, on the same chemistry that caused the epidemic",
       ],
     },
     deliverySystem: {
@@ -10680,7 +10719,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         a: 'Because it was believed to be an intestinal antiseptic that was not absorbed, so it was treated as essentially free of systemic risk and prescribed for ordinary abdominal symptoms and diarrhoea. That belief is what licensed the exposure. It also created a trap: the earliest symptoms of the poisoning are abdominal, and abdominal symptoms were the reason for taking the drug, so each early sign of harm produced more of the cause.',
       },
       {
-        q: 'Why would anyone test it in Alzheimer\'s disease afterwards?',
+        q: "Why would anyone test it in Alzheimer's disease afterwards?",
         a: 'Because the chemistry that harmed people is the chemistry proposed to help them. Clioquinol chelates zinc and copper, and those metals bind amyloid beta and stabilise its aggregates, so a chelator could in principle dissolve plaque. A 36-patient pilot found a subgroup difference and showed plasma amyloid beta 42 falling on treatment and rising on placebo. That is a real biochemical effect on a small sample; it is not evidence of clinical benefit, and the authors said so. Any development on this route has to be read against a documented mechanism of neuronal injury from the same compound.',
       },
       {
@@ -10692,7 +10731,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Tsubaki T, Honma Y, Hoshi M. Neurological syndrome associated with clioquinol. Lancet 1971;1:696-697',
+        label:
+          'Tsubaki T, Honma Y, Hoshi M. Neurological syndrome associated with clioquinol. Lancet 1971;1:696-697',
         identifier: '10.1016/s0140-6736(71)92699-7',
         kind: 'doi',
       },
@@ -10739,7 +10779,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       'Adjunctive treatment of hypertriglyceridaemia and of overweight in diabetes, in France and several other countries. Withdrawn in France in November 2009; it had never been approved in the United States or the United Kingdom.',
     patientFriendlyIndication:
       'A tablet marketed for blood fats and for weight in diabetes, widely prescribed in France',
-    anatomicalSite: 'Cardiac valve interstitial cells; 5-HT2B receptors on mitral and aortic leaflets',
+    anatomicalSite:
+      'Cardiac valve interstitial cells; 5-HT2B receptors on mitral and aortic leaflets',
     conditionContext: {
       conditionExplainer:
         'Benfluorex was licensed as a metabolic drug — for triglycerides and for overweight in diabetic patients. Much of its actual use was as an appetite suppressant, which is what its chemistry made it.',
@@ -10751,7 +10792,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         'Lowering triglycerides and assisting weight control in diabetes. The strength of evidence for those effects is a separate and much weaker matter than the strength of evidence for the harm.',
     },
     oneSentenceVerdict:
-      'A fenfluramine derivative sharing fenfluramine\'s valve-damaging metabolite, withdrawn in France in November 2009 — twelve years after fenfluramine — with a case-control odds ratio of 17.1 for unexplained mitral regurgitation and, in a cohort of 1,048,173 diabetic patients, an adjusted relative risk of 3.1 for hospitalisation with valvular insufficiency and 3.9 for valve replacement surgery.',
+      "A fenfluramine derivative sharing fenfluramine's valve-damaging metabolite, withdrawn in France in November 2009 — twelve years after fenfluramine — with a case-control odds ratio of 17.1 for unexplained mitral regurgitation and, in a cohort of 1,048,173 diabetic patients, an adjusted relative risk of 3.1 for hospitalisation with valvular insufficiency and 3.9 for valve replacement surgery.",
     laymanHowItWorks:
       'The body breaks benfluorex down into norfenfluramine, the same compound fenfluramine produces. Norfenfluramine switches on a serotonin receptor found on the cells inside heart valves, and those cells respond by multiplying and laying down fibrous tissue. The leaflets thicken, stiffen and stop closing properly, so blood leaks backwards. The appetite-suppressing effect and the valve damage come from the same metabolite.',
     auditConfidence: 'High Confidence',
@@ -10764,7 +10805,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           name: 'Fenofibrate',
           class: 'PPAR-alpha agonist (fibrate)',
           howItCompares:
-            'The standard agent for hypertriglyceridaemia, with an established mechanism and no serotonergic activity. This was the comparison benfluorex\'s lipid indication should always have been held to.',
+            "The standard agent for hypertriglyceridaemia, with an established mechanism and no serotonergic activity. This was the comparison benfluorex's lipid indication should always have been held to.",
           typicalCost: '',
           prosAndCons:
             'Pros: well-characterised triglyceride lowering, no valvular signal. Cons: myopathy risk with statins, transaminase elevation, creatinine rise.',
@@ -10773,7 +10814,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           name: 'Metformin',
           class: 'Biguanide',
           howItCompares:
-            'First-line in type 2 diabetes, weight-neutral to weight-reducing, and the drug benfluorex\'s diabetic-overweight positioning implicitly competed with.',
+            "First-line in type 2 diabetes, weight-neutral to weight-reducing, and the drug benfluorex's diabetic-overweight positioning implicitly competed with.",
           typicalCost: '',
           prosAndCons:
             'Pros: decades of use, inexpensive, no serotonergic activity. Cons: gastrointestinal intolerance, B12 depletion.',
@@ -10868,7 +10909,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'In a hospital case-control study, 19 of 27 patients with otherwise unexplained mitral valve leakage had taken benfluorex, against 3 of 54 controls.',
         technicalDetails:
           'A case-control study screened patients admitted to cardiology or cardiac surgery units at a French hospital between 1 January 2003 and 30 June 2009 with mitral insufficiency diagnostic codes. Patients with a primary cause — degenerative, rheumatic, infectious endocarditis, congenital, radiation-induced, connective tissue or vasculitic disease, trauma, tumour — or a secondary functional cause were classed as having explained regurgitation; the remainder were cases. Each case was matched to two controls by sex and nearest date of birth from the explained group, with drug exposure assessed blind to case status. Of 682 eligible patients, 27 cases and 54 matched controls were identified. Benfluorex use was reported in 19 of 27 cases against 3 of 54 controls, odds ratio 17.1 (95% CI 3.5 to 83), adjusted for body mass index, diabetes and dexfenfluramine use.',
-        evidenceSource: 'Frachon I, Etienne Y, Jobic Y, Le Gal G, Humbert M, Leroyer C. PLoS One 2010;5:e10128',
+        evidenceSource:
+          'Frachon I, Etienne Y, Jobic Y, Le Gal G, Humbert M, Leroyer C. PLoS One 2010;5:e10128',
         doi: '10.1371/journal.pone.0010128',
         measuredMetric:
           'Adjusted odds ratio for benfluorex exposure in unexplained versus explained mitral regurgitation',
@@ -10877,7 +10919,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'ben-a2',
         category: 'measured',
-        title: 'A million-patient national cohort: relative risk 3.1, and 3.9 for valve replacement',
+        title:
+          'A million-patient national cohort: relative risk 3.1, and 3.9 for valve replacement',
         laymanSummary:
           'Linking French national insurance and hospital records for over a million diabetic patients, those exposed to benfluorex were about three times as likely to be hospitalised with a leaking valve and about four times as likely to need valve replacement surgery.',
         technicalDetails:
@@ -10951,7 +10994,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Fenfluramine in 1997, pergolide in 2007, benfluorex in 2009. Three different drugs for three different conditions, one receptor.',
         technicalDetails:
-          'Fenfluramine was withdrawn for valvular disease via norfenfluramine at 5-HT2B. Pergolide was withdrawn in 2007 for valvular disease via ergoline 5-HT2B agonism, with clinically important regurgitation in 23.4 per cent of treated patients on echocardiography. Benfluorex was withdrawn in 2009 for valvular disease via the same metabolite as fenfluramine. The indications were obesity, Parkinson\'s disease and hypertriglyceridaemia — nothing in common. What they share is a receptor on valve interstitial cells that responds to agonism by proliferating. A 5-HT2B functional counter-screen costs almost nothing and answers the question directly, which is why it is now standard for any candidate with serotonergic or ergoline chemistry.',
+          "Fenfluramine was withdrawn for valvular disease via norfenfluramine at 5-HT2B. Pergolide was withdrawn in 2007 for valvular disease via ergoline 5-HT2B agonism, with clinically important regurgitation in 23.4 per cent of treated patients on echocardiography. Benfluorex was withdrawn in 2009 for valvular disease via the same metabolite as fenfluramine. The indications were obesity, Parkinson's disease and hypertriglyceridaemia — nothing in common. What they share is a receptor on valve interstitial cells that responds to agonism by proliferating. A 5-HT2B functional counter-screen costs almost nothing and answers the question directly, which is why it is now standard for any candidate with serotonergic or ergoline chemistry.",
         evidenceSource:
           'Frachon I et al. PLoS One 2010;5:e10128; Zanettini R et al. N Engl J Med 2007;356:39-46',
         doi: '10.1056/NEJMoa054830',
@@ -11013,7 +11056,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'SNIIRAM-PMSI linked national cohort study (Weill et al.)',
-        phase: 'National comparative cohort study using linked insurance and hospitalisation databases',
+        phase:
+          'National comparative cohort study using linked insurance and hospitalisation databases',
         sampleSize: 1048173,
         primaryEndpoint:
           'Hospitalisation in 2007 and 2008 for valvular insufficiency of any cause, mitral insufficiency, aortic insufficiency, or valve replacement with cardiopulmonary bypass, in diabetic patients exposed to benfluorex in 2006',
@@ -11070,7 +11114,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'How was it still on sale twelve years after fenfluramine was withdrawn?',
-        a: 'Because it was licensed and marketed as a metabolic drug rather than as an anorectic. Benfluorex is chemically a fenfluramine derivative and is metabolised to norfenfluramine, the same 5-HT2B agonist that caused fenfluramine\'s valve disease. But its indications were hypertriglyceridaemia and overweight in diabetes, so the 1997 withdrawals of the appetite suppressants did not automatically attach to it. The pharmacology was identical at the point that mattered. The regulatory category was not.',
+        a: "Because it was licensed and marketed as a metabolic drug rather than as an anorectic. Benfluorex is chemically a fenfluramine derivative and is metabolised to norfenfluramine, the same 5-HT2B agonist that caused fenfluramine's valve disease. But its indications were hypertriglyceridaemia and overweight in diabetes, so the 1997 withdrawals of the appetite suppressants did not automatically attach to it. The pharmacology was identical at the point that mattered. The regulatory category was not.",
         auditNote:
           'The case-control investigators adjusted for dexfenfluramine exposure as a covariate, which is a direct acknowledgement that the two drugs share a risk pathway.',
       },
@@ -11104,7 +11148,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Zanettini R, Antonini A, Gatto G, Gentile R, Tesei S, Pezzoli G. Valvular heart disease and the use of dopamine agonists for Parkinson\'s disease. N Engl J Med 2007;356:39-46 — the 5-HT2B comparator case',
+          "Zanettini R, Antonini A, Gatto G, Gentile R, Tesei S, Pezzoli G. Valvular heart disease and the use of dopamine agonists for Parkinson's disease. N Engl J Med 2007;356:39-46 — the 5-HT2B comparator case",
         identifier: '10.1056/NEJMoa054830',
         kind: 'doi',
       },
@@ -11153,7 +11197,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     confidenceScore: 86,
     substitutes: {
       summary:
-        'Succinylcholine remains the fastest agent, and high-dose rocuronium with sugammadex reversal now gives a non-depolarising route to rapid-sequence intubation with a rescue path — the combination that made rapacuronium\'s niche disappear.',
+        "Succinylcholine remains the fastest agent, and high-dose rocuronium with sugammadex reversal now gives a non-depolarising route to rapid-sequence intubation with a rescue path — the combination that made rapacuronium's niche disappear.",
       conventionalRx: [
         {
           name: 'Succinylcholine',
@@ -11168,7 +11212,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           name: 'Rocuronium with sugammadex',
           class: 'Aminosteroid non-depolarising blocker with a selective binding reversal agent',
           howItCompares:
-            'High-dose rocuronium approaches succinylcholine\'s onset, and sugammadex encapsulates it for near-immediate reversal. This pairing solved the problem rapacuronium was designed for, without a muscarinic liability.',
+            "High-dose rocuronium approaches succinylcholine's onset, and sugammadex encapsulates it for near-immediate reversal. This pairing solved the problem rapacuronium was designed for, without a muscarinic liability.",
           typicalCost: '',
           prosAndCons:
             'Pros: rapid onset with a true rescue reversal. Cons: sugammadex cost, hormonal contraceptive interaction, rare anaphylaxis.',
@@ -11195,7 +11239,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'A monoquaternary aminosteroid, a propionate analogue of vecuronium with an allyl group on the quaternary nitrogen. The therapeutic target is the nicotinic acetylcholine receptor at the neuromuscular junction. The decisive off-target property is muscarinic: half-maximal inhibitory concentrations of 5.10 plus or minus 1.5 micromolar at M2 and 77.9 plus or minus 11 micromolar at M3, a roughly fifteen-fold M2 preference within clinically achieved concentrations. It also acts as a positive allosteric modulator at M3, potentiating acetylcholine rather than merely failing to block it.',
       structureSource: {
-        label: 'PubChem CID 5311399 (rapacuronium) — canonical SMILES, formula and molecular weight',
+        label:
+          'PubChem CID 5311399 (rapacuronium) — canonical SMILES, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5311399',
         kind: 'url',
       },
@@ -11264,7 +11309,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
           'Rapacuronium blocks the nerve-ending brake about fifteen times more strongly than the receptor that constricts the airway — and it does so at the concentrations patients actually receive.',
         technicalDetails:
           'Competitive radioligand binding measured the affinities of rapacuronium, vecuronium, cisatracurium, methoctramine and 4-DAMP at M2 and M3 muscarinic receptors. Rapacuronium competitively displaced [3H]-quinuclidinyl benzilate from M2 but not from M3 within clinically relevant concentrations, with half-maximal inhibitory concentrations of 5.10 plus or minus 1.5 micromolar at M2 (n = 6) and 77.9 plus or minus 11 micromolar at M3 (n = 8). Cisatracurium and vecuronium displaced the ligand from both receptors, but only at concentrations above those achieved clinically for those relaxants. The proposed mechanism follows directly: blockade of prejunctional M2 receptors on parasympathetic nerves increases acetylcholine release, which then acts on unopposed M3 receptors in airway smooth muscle to produce constriction.',
-        evidenceSource: 'Jooste E, Klafter F, Hirshman CA, Emala CW. Anesthesiology 2003;98:906-911',
+        evidenceSource:
+          'Jooste E, Klafter F, Hirshman CA, Emala CW. Anesthesiology 2003;98:906-911',
         doi: '10.1097/00000542-200304000-00017',
         measuredMetric:
           'Half-maximal inhibitory concentration at M2 versus M3 muscarinic receptors, against clinically achieved concentrations',
@@ -11341,7 +11387,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         id: 'rap-a7',
         category: 'inferred',
-        title: 'It was not an allergic reaction, and calling it one would have hidden the mechanism',
+        title:
+          'It was not an allergic reaction, and calling it one would have hidden the mechanism',
         laymanSummary:
           'Bronchospasm under anaesthesia is usually treated as an allergic or histamine reaction. Here it was neither, and the studies ruled those out directly.',
         technicalDetails:
@@ -11408,7 +11455,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Competitive radioligand binding at M2 and M3 muscarinic receptors (Jooste et al.)',
+        trialId:
+          'Competitive radioligand binding at M2 and M3 muscarinic receptors (Jooste et al.)',
         phase: 'Mechanistic receptor pharmacology',
         sampleSize: 14,
         primaryEndpoint:
@@ -11505,7 +11553,8 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA: RAPLON (rapacuronium bromide), NDA 020984, Organon USA Inc — Discontinued',
+        label:
+          'Drugs@FDA: RAPLON (rapacuronium bromide), NDA 020984, Organon USA Inc — Discontinued',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020984',
         kind: 'regulatory',
@@ -11513,6 +11562,2083 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 5311399 — rapacuronium structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5311399',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 29. Alosetron — withdrawn after nine months, returned under a restricted programme
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'alosetron',
+    name: 'Alosetron',
+    tradeName: 'Lotronex',
+    sponsor: 'GlaxoSmithKline, later Prometheus and Sebela (NDA 021107)',
+    targetGene: 'HTR3A',
+    targetProtein: 'Serotonin 5-HT3 receptor, a ligand-gated cation channel',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2000,
+    indication:
+      'Severe diarrhoea-predominant irritable bowel syndrome in women who have chronic symptoms, have excluded anatomic or biochemical gastrointestinal abnormalities, and have failed conventional therapy. Withdrawn voluntarily in November 2000 and reintroduced in 2002 under a restricted prescribing programme, now a risk evaluation and mitigation strategy.',
+    patientFriendlyIndication:
+      'A tablet for severe diarrhoea-predominant irritable bowel syndrome in women, prescribed only under a special programme',
+    anatomicalSite:
+      'Enteric nervous system; 5-HT3 receptors on intrinsic and extrinsic afferent neurons of the gastrointestinal tract',
+    conditionContext: {
+      conditionExplainer:
+        'Diarrhoea-predominant irritable bowel syndrome combines urgency, frequent loose stools and abdominal pain with no structural lesion. In its severe form it can be genuinely disabling, and the treatment options are few.',
+      whyItMatters:
+        'Alosetron is the model that tegaserod and natalizumab followed: a drug withdrawn on a serious but rare harm, and returned once the prescribing population could be narrowed and the exposures counted. It was the first of them.',
+      whoTakesThis:
+        'Women with severe diarrhoea-predominant irritable bowel syndrome who have failed conventional therapy, prescribed by clinicians enrolled in the programme. It is not indicated in men or in constipation-predominant disease.',
+      clinicalGoals:
+        'Adequate relief of abdominal pain and discomfort and control of urgency and stool frequency, in patients for whom nothing else has worked.',
+    },
+    oneSentenceVerdict:
+      'A 5-HT3 antagonist withdrawn nine months after approval over ischaemic colitis and complications of constipation, and returned in 2002 under restricted prescribing once the harms were quantified — a post-adjudication rate of 1.1 cases of ischaemic colitis per 1,000 patient-years, all 19 trial cases reversible without long-term sequelae, against a relative risk of 1.60 for global symptom improvement.',
+    laymanHowItWorks:
+      'The gut uses serotonin to drive movement, secretion and the sensation of pain. Alosetron blocks one particular serotonin receptor on gut nerves, so transit slows, less fluid is secreted and the gut becomes less sensitive to stretch — which is exactly what someone with severe diarrhoea and cramping needs. The same slowing can go too far, producing severe constipation, and in rare cases the blood supply to a segment of colon becomes inadequate.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 81,
+    substitutes: {
+      summary:
+        "For diarrhoea-predominant irritable bowel syndrome the alternatives are loperamide for symptom control, rifaximin for a short antibiotic course, and eluxadoline. None has alosetron's effect size in severe disease, and none carries its restricted programme.",
+      conventionalRx: [
+        {
+          name: 'Loperamide',
+          class: 'Peripherally restricted mu opioid receptor agonist',
+          howItCompares:
+            "Slows transit through opioid receptors in the gut wall rather than through serotonin receptors. Controls stool frequency but does little for abdominal pain, which is where alosetron's advantage lies.",
+          typicalCost: '',
+          prosAndCons:
+            'Pros: inexpensive, available without prescription in many markets. Cons: no effect on pain, constipation, cardiac effects in overdose.',
+        },
+        {
+          name: 'Rifaximin',
+          class: 'Non-absorbed oral antibiotic',
+          howItCompares:
+            'A two-week course targeting the small intestinal microbiota, with durable benefit in some patients. A completely different hypothesis about what drives the syndrome.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: short course, minimal systemic absorption. Cons: benefit is not universal and may need repeating.',
+        },
+        {
+          name: 'Eluxadoline',
+          class: 'Mixed mu opioid agonist and delta opioid antagonist',
+          howItCompares:
+            'Approved specifically for diarrhoea-predominant irritable bowel syndrome in both sexes, unlike alosetron. Carries its own restriction — contraindicated without a gallbladder because of pancreatitis risk.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: licensed in men and women. Cons: pancreatitis and sphincter of Oddi spasm, contraindicated after cholecystectomy.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(N=CN1)CN2CCC3=C(C2=O)C4=CC=CC=C4N3C',
+      chemicalFormula: 'C17H18N4O',
+      molecularWeight: '294.35 g/mol',
+      targetReceptorAffinity:
+        "A tetrahydrocarbazolone with an imidazolylmethyl side chain, and a potent selective antagonist at the 5-HT3 receptor — a ligand-gated cation channel rather than a G protein-coupled receptor, which distinguishes this target from every other serotonin receptor on this page. Its structural relatives ondansetron and granisetron are antiemetics acting at the same channel centrally and peripherally, so the class is well characterised and alosetron's ischaemic colitis signal is not a class effect shared with them at antiemetic doses.",
+      structureSource: {
+        label: 'PubChem CID 2099 (alosetron) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2099',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'alo-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, N-methyl regiochemistry and hydrochloride salt',
+          description:
+            'Confirm the tetrahydrocarbazolone core, the position of both N-methyl groups and the imidazole attachment, and identify the hydrochloride dihydrate form. The two N-methyl positions are regiochemical identity attributes that a molecular mass measurement cannot distinguish.',
+          reagentsAndBuffer:
+            'Alosetron hydrochloride certified reference standard, reversed-phase HPLC with ultraviolet detection at 220 and 285 nm, proton and carbon NMR with NOE experiments in deuterated dimethyl sulfoxide, Karl Fischer titration for hydrate state, LC-MS at m/z 295',
+        },
+        {
+          id: 'alo-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Related substances and oxidative degradation profile',
+          description:
+            'Profile the hydroxylated and N-demethylated degradants of the carbazolone under acid, base, oxidative, thermal and photolytic stress. Alosetron is extensively metabolised by CYP1A2, so the oxidative degradants overlap with the metabolites and both belong on the same chromatographic method.',
+          dependsOnStepId: 'alo-w1',
+          reagentsAndBuffer:
+            'C18 column with acetonitrile and ammonium formate gradient, photodiode array detection, ICH stress conditions, synthesised 6-hydroxy and N-desmethyl metabolite standards where available',
+        },
+        {
+          id: 'alo-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Enteric neuron and colonic segment preparation',
+          description:
+            "Isolated colonic segments with the myenteric and submucosal plexuses intact, in organ baths, measuring transit, secretion and afferent nerve firing in response to distension. This preparation reproduces all three of the drug's intended effects — motility, secretion, sensation — and shows that they are inseparable.",
+          reagentsAndBuffer:
+            'Isolated human or guinea pig colonic segments, Krebs-Henseleit buffer gassed with 95% oxygen and 5% carbon dioxide at 37 degrees, Ussing chambers for short-circuit current as a secretion readout, extracellular afferent nerve recording during graded balloon distension',
+        },
+        {
+          id: 'alo-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: '5-HT3 channel binding and functional antagonism',
+          description:
+            'Radioligand displacement and whole-cell patch clamp at the recombinant human 5-HT3A and 5-HT3AB receptors, with ondansetron and granisetron as comparators. Because the target is an ion channel, an electrophysiological measure of channel block adds information that a binding constant alone does not.',
+          dependsOnStepId: 'alo-w3',
+          reagentsAndBuffer:
+            'Cells expressing human HTR3A and HTR3A/HTR3B, [3H]-granisetron radioligand, whole-cell patch clamp with rapid serotonin application, ondansetron and granisetron as class comparators',
+        },
+        {
+          id: 'alo-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Colonic blood flow and mucosal perfusion measurement',
+          description:
+            'Quantify colonic mucosal perfusion by laser Doppler flowmetry or contrast imaging under 5-HT3 blockade, with and without pharmacologically induced constipation. This is the assay directed at the harm rather than the benefit, and it addresses the open question of whether the ischaemic colitis is a vascular effect of the drug or a consequence of the constipation it produces.',
+          dependsOnStepId: 'alo-w4',
+          reagentsAndBuffer:
+            'Laser Doppler flowmetry or contrast-enhanced imaging of colonic mucosa, mesenteric arterial ring myography for direct vascular effect, pharmacologically slowed transit as a comparison condition, vehicle and ondansetron controls',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'alo-a1',
+        category: 'measured',
+        title: 'Ischaemic colitis in 0.15 per cent against 0.0 per cent on placebo',
+        laymanSummary:
+          'In pooled trials, ischaemic colitis occurred in about 1.5 patients per thousand on alosetron and in none on placebo. Every one of the 19 cases resolved without lasting damage.',
+        technicalDetails:
+          'A blinded expert adjudication reviewed clinical trial report forms and FDA MedWatch forms for every reported case of ischaemic colitis or serious complication of constipation, with the panel unaware of treatment assignment, rating diagnostic accuracy and likelihood of medication association against pre-specified criteria; cases inconsistent with the reported diagnosis or not possibly drug-associated were excluded from the incidence calculation. Pooled trial data showed ischaemic colitis in 0.15 per cent on alosetron against 0.0 per cent on placebo (P = 0.03), with no significant difference in serious complications of constipation. All 19 alosetron-treated patients with ischaemic colitis had reversible colitis without long-term sequelae.',
+        evidenceSource: 'Chang L et al. Am J Gastroenterol 2006;101:1069-1079',
+        doi: '10.1111/j.1572-0241.2006.00459.x',
+        measuredMetric:
+          'Adjudicated incidence of ischaemic colitis and serious complications of constipation, alosetron versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alo-a2',
+        category: 'measured',
+        title: '1.1 ischaemic colitis cases per 1,000 patient-years after adjudication',
+        laymanSummary:
+          'From post-marketing data, about one patient in a thousand treated for a year developed ischaemic colitis, and about two-thirds of one in a thousand had a serious complication of constipation.',
+        technicalDetails:
+          'Post-marketing surveillance data, subjected to the same blinded adjudication, gave a post-adjudication rate of 1.1 cases of ischaemic colitis per 1,000 patient-years of alosetron use and 0.66 serious complications of constipation per 1,000 patient-years. The authors conclude that the incidence of both is very low and rarely associated with long-term sequelae or serious morbidity. This is what a restricted-access programme buys: an exposure denominator that spontaneous reporting cannot supply, so a numerator of case reports becomes a rate that a patient and a clinician can weigh against a symptom burden.',
+        evidenceSource: 'Chang L et al. Am J Gastroenterol 2006;101:1069-1079',
+        doi: '10.1111/j.1572-0241.2006.00459.x',
+        measuredMetric:
+          'Post-adjudication rate of ischaemic colitis and serious complications of constipation per 1,000 patient-years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alo-a3',
+        category: 'measured',
+        title: 'Relative risk 1.60 for global symptom improvement across 4,170 patients',
+        laymanSummary:
+          'Pooling eight trials, patients on alosetron were about 60 per cent more likely to report global improvement and about 30 per cent more likely to get adequate relief of pain.',
+        technicalDetails:
+          'A meta-analysis of eight multicentre randomised placebo-controlled 12-week trials including 4,170 patients with irritable bowel syndrome (80 per cent female, all meeting Rome criteria, only 2.6 per cent constipation-predominant) found alosetron significantly more effective than placebo for global improvement in symptoms across the three trials reporting it, relative risk 1.60 (95% CI 1.44 to 1.76, P < 0.001). Across the six trials reporting adequate relief of pain and discomfort the relative risk was 1.31 (95% CI 1.20 to 1.43, P < 0.001), and by sex 1.34 (1.21 to 1.48) in women and 1.23 (1.02 to 1.47) in men. Tolerability differed from placebo, relative risk 1.19 (1.07 to 1.31, P < 0.001).',
+        evidenceSource:
+          'Efficacy and tolerability of alosetron for the treatment of irritable bowel syndrome in women and men: a meta-analysis. Clin Ther 2008;30:884-901',
+        doi: '10.1016/j.clinthera.2008.05.002',
+        measuredMetric:
+          'Pooled relative risk for global symptom improvement and for adequate relief of pain and discomfort',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alo-a4',
+        category: 'conclusion_shift',
+        title: 'Nine months on the market, then eighteen months off, then back with conditions',
+        laymanSummary:
+          'Approved February 2000, withdrawn November 2000, returned June 2002 with prescribing restricted to enrolled clinicians and a narrow patient group.',
+        technicalDetails:
+          'Alosetron was approved in February 2000 for irritable bowel syndrome in women, voluntarily withdrawn in November 2000 after reports of ischaemic colitis and serious complications of constipation, and reintroduced in 2002 under a restricted prescribing programme requiring prescriber enrolment, a patient-physician agreement and a narrowed indication: severe diarrhoea-predominant disease in women who have failed conventional therapy. Drugs@FDA records NDA 021107 for LOTRONEX in Prescription marketing status, with several generic applications also approved. What changed between 2000 and 2002 was not the drug or the risk but the size and definition of the exposed population, and the existence of a system that counts it.',
+        evidenceSource:
+          'Drugs@FDA NDA 021107 (LOTRONEX) — Prescription; Chang L et al. Am J Gastroenterol 2006;101:1069-1079',
+        doi: '10.1111/j.1572-0241.2006.00459.x',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alo-a5',
+        category: 'inferred',
+        title: 'Whether the ischaemia is a vascular effect or a constipation effect is unresolved',
+        laymanSummary:
+          'Nobody has established whether alosetron restricts blood flow to the colon directly, or whether the severe constipation it causes is what starves the tissue.',
+        technicalDetails:
+          'Two mechanisms are compatible with the data. Alosetron slows colonic transit, and severe constipation can raise intraluminal pressure enough to compromise mucosal perfusion — which would make ischaemic colitis a downstream consequence of the intended pharmacology rather than a separate action. Alternatively, 5-HT3 receptors are present on enteric neurons regulating vasomotor tone, so a direct effect on splanchnic perfusion is possible. The adjudicated analysis found ischaemic colitis significantly increased while serious complications of constipation were not significantly different between arms, which sits awkwardly with a purely constipation-mediated account. The two are not distinguished by the clinical data, and the distinction matters for whether the risk is dose-limitable.',
+        evidenceSource: 'Chang L et al. Am J Gastroenterol 2006;101:1069-1079',
+        doi: '10.1111/j.1572-0241.2006.00459.x',
+        inferredClaim:
+          'That alosetron-associated ischaemic colitis is caused by the constipation the drug produces',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'alo-a6',
+        category: 'inferred',
+        title: 'It works in men too, and the label does not cover them',
+        laymanSummary:
+          'The pooled trials show a significant benefit in men as well as women. The indication is restricted to women, which is a risk decision rather than an efficacy finding.',
+        technicalDetails:
+          'The meta-analysis reported adequate relief of pain and discomfort in both sexes: relative risk 1.34 (95% CI 1.21 to 1.48) in women and 1.23 (1.02 to 1.47) in men, both significant. The trials were 80 per cent female, so the male estimate is less precise, but it is not null. The restriction of the indication to women therefore reflects the composition of the safety data and the population in which the benefit-risk case was made, not a demonstrated absence of efficacy in men. Recording it as "alosetron does not work in men" would misstate the evidence; recording it as "the benefit-risk case was only made in women" is accurate.',
+        evidenceSource:
+          'Efficacy and tolerability of alosetron for the treatment of irritable bowel syndrome in women and men: a meta-analysis. Clin Ther 2008;30:884-901',
+        doi: '10.1016/j.clinthera.2008.05.002',
+        inferredClaim: 'That the women-only indication reflects a lack of efficacy in men',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'alo-a7',
+        category: 'conclusion_shift',
+        title: 'Blinded re-adjudication cut the case count before any rate was computed',
+        laymanSummary:
+          'An expert panel that did not know who was on the drug reviewed each reported case and discarded those that were not really ischaemic colitis or not plausibly drug-related.',
+        technicalDetails:
+          'The adjudication panel comprised experts in epidemiology and functional bowel disorders, reviewed the primary trial report forms and MedWatch forms for each case, was blinded to whether the patient received alosetron or placebo, and applied pre-specified criteria to rate both diagnostic accuracy and the plausibility of a drug association. Cases inconsistent with the reported diagnosis or not possibly drug-associated were removed before the incidence rates were computed. That procedure is what separates the resulting figure — 1.1 per 1,000 patient-years — from a raw count of spontaneous reports. It is the same instrument that reversed the tegaserod decision on the same page of this file, applied here in the same direction rather than the opposite one.',
+        evidenceSource: 'Chang L et al. Am J Gastroenterol 2006;101:1069-1079',
+        doi: '10.1111/j.1572-0241.2006.00459.x',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oral tablet, started at the lowest dose',
+        laymanDesc:
+          'Taken by mouth, beginning at a low dose and increased only if symptoms are not controlled and constipation has not developed.',
+        molecularDetail:
+          'Oral alosetron hydrochloride, initiated at 0.5 mg twice daily with escalation to 1 mg twice daily only after four weeks if tolerated. Extensively metabolised by CYP1A2, so fluvoxamine is contraindicated and ciprofloxacin requires caution.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the nerve networks of the gut wall',
+        laymanDesc:
+          'It reaches the nerve cells embedded in the wall of the intestine and the sensory fibres running from the gut to the spinal cord.',
+        molecularDetail:
+          'Distributes to enteric neurons of the myenteric and submucosal plexuses and to extrinsic vagal and spinal afferent terminals, where 5-HT3 receptors are expressed.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks the 5-HT3 ion channel',
+        laymanDesc:
+          'It plugs a serotonin-operated channel on those nerves, so the serotonin the gut releases can no longer excite them.',
+        molecularDetail:
+          'Selective antagonism at the 5-HT3 receptor, a ligand-gated cation channel. Blocking it prevents serotonin-evoked depolarisation of enteric and afferent neurons, rather than modulating a second-messenger cascade.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Transit slows, secretion falls, sensation dulls',
+        laymanDesc:
+          'The gut moves contents more slowly, secretes less fluid, and reports less discomfort from stretching — all three at once.',
+        molecularDetail:
+          'Reduced excitatory 5-HT3 signalling slows colonic transit, reduces intestinal secretion and raises the threshold for visceral afferent firing on distension. The three effects are inseparable properties of the same blockade, which is why constipation is not a side effect but the same effect taken further.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Symptom relief in most; ischaemic colitis in about one per thousand patient-years',
+        laymanDesc:
+          'Global symptoms improved in substantially more patients than on placebo. Ischaemic colitis occurred in roughly one patient per thousand treated for a year, and in the trials every case resolved.',
+        molecularDetail:
+          'Measured: relative risk 1.60 (95% CI 1.44 to 1.76) for global symptom improvement across 4,170 patients. Measured: ischaemic colitis 0.15 per cent versus 0.0 per cent in pooled trials (P = 0.03), post-adjudication rate 1.1 per 1,000 patient-years, all 19 trial cases reversible without long-term sequelae.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Meta-analysis of eight randomised placebo-controlled trials of alosetron',
+        phase: 'Meta-analysis of 12-week multicentre randomised placebo-controlled trials',
+        sampleSize: 4170,
+        primaryEndpoint:
+          'Global improvement in irritable bowel syndrome symptoms, and adequate relief of pain and discomfort',
+        endpointMet: true,
+        statisticalPValue:
+          'Global improvement relative risk 1.60 (95% CI 1.44 to 1.76), P < 0.001; adequate relief of pain and discomfort 1.31 (1.20 to 1.43), P < 0.001; women 1.34 (1.21 to 1.48), men 1.23 (1.02 to 1.47)',
+        unreportedAdverseSignals:
+          'The pooled population was 80 per cent female with only 2.6 per cent constipation-predominant disease, so the male and constipation-predominant estimates rest on small subsets. Tolerability differed from placebo, relative risk 1.19 (1.07 to 1.31).',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Blinded expert adjudication of ischaemic colitis and constipation complications',
+        phase:
+          'Systematic review with blinded case adjudication of trial and post-marketing reports',
+        sampleSize: 19,
+        primaryEndpoint:
+          'Adjudicated incidence of ischaemic colitis and serious complications of constipation in alosetron users, in trials and in post-marketing surveillance',
+        endpointMet: true,
+        statisticalPValue:
+          'Trials: ischaemic colitis 0.15 per cent versus 0.0 per cent, P = 0.03; no significant difference in serious complications of constipation. Post-marketing: 1.1 ischaemic colitis and 0.66 serious constipation complications per 1,000 patient-years',
+        unreportedAdverseSignals:
+          "Post-marketing rates depend on an exposure denominator derived from the restricted prescribing programme, and on the adjudication panel's exclusion criteria for cases judged inconsistent or not drug-associated.",
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Ischaemic colitis in 0.15 per cent of alosetron patients against 0.0 per cent on placebo in pooled trials (P = 0.03)',
+        'All 19 alosetron-treated trial patients with ischaemic colitis had reversible colitis without long-term sequelae',
+        'Post-adjudication post-marketing rates of 1.1 ischaemic colitis and 0.66 serious constipation complications per 1,000 patient-years',
+        'Global symptom improvement relative risk 1.60 (95% CI 1.44 to 1.76) across 4,170 patients in eight trials',
+      ],
+      unsupportedInferences: [
+        'That the ischaemic colitis is caused by the constipation; serious constipation complications were not significantly increased while ischaemic colitis was',
+        'That the women-only indication reflects absence of efficacy in men — the pooled male estimate is 1.23 (1.02 to 1.47) and significant',
+        'That spontaneous reports alone could have supported a rate; the denominator comes from the restricted prescribing programme',
+      ],
+      whatFailedInitially: [
+        'Approved February 2000 and voluntarily withdrawn in November 2000, nine months later',
+        'The original indication covered irritable bowel syndrome in women broadly; the reintroduced one covers severe diarrhoea-predominant disease after conventional therapy has failed',
+        'The mechanism of the ischaemic colitis remains unresolved between a direct vascular effect and a consequence of slowed transit',
+      ],
+      realWorldOutcome: [
+        'Reintroduced in 2002 under restricted prescribing with prescriber enrolment and a patient-physician agreement, now a risk evaluation and mitigation strategy',
+        'Generic alosetron applications have since been approved, and the reference product remains in Prescription status',
+        'It became the template for tegaserod and natalizumab: withdraw, quantify, narrow the population, return',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 0.5 mg twice daily with cautious escalation to 1 mg twice daily',
+      description:
+        'Oral alosetron hydrochloride, started at the lowest dose and escalated only after four weeks if symptoms are inadequately controlled and constipation has not occurred. Extensively metabolised by CYP1A2, making fluvoxamine a contraindication and requiring caution with other CYP1A2 inhibitors.',
+      safetyProfile:
+        "Constipation is the commonest adverse effect and is the same pharmacology as the therapeutic action taken further. The serious harms are ischaemic colitis — 0.15 per cent against 0.0 per cent on placebo in pooled trials, post-adjudication rate 1.1 per 1,000 patient-years, with all 19 trial cases reversible without long-term sequelae — and serious complications of constipation at 0.66 per 1,000 patient-years, which were not significantly increased over placebo in the trials. The drug is contraindicated in constipation, ischaemic colitis, Crohn's disease, ulcerative colitis, diverticulitis, adhesions and strictures, and must be stopped immediately if constipation or rectal bleeding occurs. Prescribing is restricted to enrolled clinicians.",
+    },
+    commonQuestions: [
+      {
+        q: 'How dangerous is it, in numbers?',
+        a: 'After blinded expert adjudication of every reported case, ischaemic colitis occurs at about 1.1 cases per 1,000 patient-years of use and serious complications of constipation at 0.66 per 1,000 patient-years. In the pooled trials ischaemic colitis occurred in 0.15 per cent of alosetron patients and none on placebo, and all 19 cases were reversible without long-term sequelae. The reviewers conclude the incidence of both is very low and rarely associated with serious morbidity. That is a specific and usable answer, and it exists only because the restricted programme provides a denominator.',
+        auditNote:
+          'The adjudication panel was blinded to treatment assignment and discarded cases that were not consistent with the reported diagnosis before any rate was calculated.',
+      },
+      {
+        q: 'Why can only certain doctors prescribe it?',
+        a: 'Because that is the mechanism by which it came back. Withdrawn in November 2000, it returned in 2002 under a programme requiring prescriber enrolment and a signed patient-physician agreement, with the indication narrowed to severe diarrhoea-predominant disease in women who have failed conventional therapy. Nothing about the molecule changed. What changed is that the people taking it are the people for whom the arithmetic works, and that the number of them is known.',
+      },
+      {
+        q: 'Is the ischaemic colitis caused by the constipation?',
+        a: 'It is not established. The intuitive account is that severely slowed transit raises intraluminal pressure and compromises mucosal blood supply, which would make ischaemic colitis a downstream consequence of the drug working too well. Against that, the adjudicated analysis found ischaemic colitis significantly increased over placebo while serious complications of constipation were not, which is not the pattern a purely constipation-mediated mechanism predicts. A direct effect on splanchnic perfusion through enteric 5-HT3 receptors remains possible. The distinction matters because one version is dose-limitable and the other may not be.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file does not carry a pricing block. Alosetron is currently marketed with generics available, and prices vary by product and payer.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Chang L, Chey WD, Harris L, Olden K, Surawicz C, Schoenfeld P. Incidence of ischemic colitis and serious complications of constipation among patients using alosetron: systematic review of clinical trials and post-marketing surveillance data. Am J Gastroenterol 2006;101:1069-1079',
+        identifier: '10.1111/j.1572-0241.2006.00459.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Efficacy and tolerability of alosetron for the treatment of irritable bowel syndrome in women and men: a meta-analysis of eight randomized, placebo-controlled, 12-week trials. Clin Ther 2008;30:884-901',
+        identifier: '10.1016/j.clinthera.2008.05.002',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: LOTRONEX (alosetron hydrochloride), NDA 021107 — Prescription',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021107',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2099 — alosetron structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2099',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 30. Isotretinoin — the drug kept, and a computer put between it and the patient
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'isotretinoin',
+    name: 'Isotretinoin',
+    tradeName: 'Accutane, Roaccutane, Absorica, Claravis, Amnesteem, Myorisan',
+    sponsor: 'Hoffmann-La Roche originally (NDA 018662); now a generic market',
+    targetGene: 'RARA, RARB and RARG',
+    targetProtein: 'Retinoic acid receptors alpha, beta and gamma, via isomerisation to tretinoin',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1982,
+    indication:
+      'Severe recalcitrant nodular acne unresponsive to conventional therapy including systemic antibiotics. Available only through the iPLEDGE risk evaluation and mitigation strategy, a mandatory computerised pregnancy-prevention programme.',
+    patientFriendlyIndication:
+      'A course of capsules for severe acne, available only through a registration programme because of birth defects',
+    anatomicalSite:
+      'Sebaceous glands of the skin; the teratogenic site is the cephalic neural crest of the developing embryo',
+    conditionContext: {
+      conditionExplainer:
+        'Severe nodular acne scars permanently and does not respond to antibiotics. Isotretinoin shrinks sebaceous glands and produces durable remission in a way nothing else does, which is why a drug this hazardous in pregnancy has never been withdrawn.',
+      whyItMatters:
+        'This is the counterexample to every withdrawal in this file. The harm is not rare, not disputed and not subtle — a relative risk of 25.6 for major malformations. The drug is still here, because the risk is entirely avoidable if one condition is met, and the system is built around enforcing that condition.',
+      whoTakesThis:
+        'Patients with severe recalcitrant nodular acne, registered in iPLEDGE, with those who can become pregnant subject to mandatory contraception and repeated pregnancy testing.',
+      clinicalGoals:
+        'Durable clearance of severe nodular acne over a course of several months, with zero pregnancies during exposure.',
+    },
+    oneSentenceVerdict:
+      'A vitamin A derivative that clears severe acne durably and carries a relative risk of 25.6 (95% CI 11.4 to 57.5) for a characteristic pattern of major malformations after fetal exposure — retained on the market for four decades behind escalating pregnancy-prevention systems, while the separate depression allegation has not survived meta-analysis.',
+    laymanHowItWorks:
+      'Isotretinoin converts inside cells into a form of vitamin A that binds receptors sitting directly on DNA, switching whole programmes of genes on and off. In skin this shrinks the oil glands, changes how skin cells mature and starves the bacteria that drive acne, which is why the improvement lasts after the course ends. In an embryo the same receptors direct how the face, heart, thymus and brain are built, so exposure during early pregnancy disrupts that construction in a specific and recognisable pattern.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 91,
+    substitutes: {
+      summary:
+        'Nothing matches isotretinoin for durable remission in severe nodular acne, which is the whole reason it is managed rather than removed. Oral antibiotics, hormonal therapy and topical retinoids control acne without curing it.',
+      conventionalRx: [
+        {
+          name: 'Doxycycline or lymecycline',
+          class: 'Tetracycline-class oral antibiotic',
+          howItCompares:
+            'The conventional therapy that must have failed before isotretinoin is indicated. Suppresses inflammatory acne while taken, without the durable remission, and is itself contraindicated in pregnancy.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: no registration programme, well established. Cons: relapse on stopping, photosensitivity, antimicrobial resistance.',
+        },
+        {
+          name: 'Combined oral contraceptive or spironolactone',
+          class: 'Hormonal anti-androgen therapy',
+          howItCompares:
+            'Reduces sebum through androgen suppression rather than through retinoid receptors. Effective in many women and, in the case of a contraceptive, simultaneously addresses the exposure risk that isotretinoin creates.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: useful in hormonally driven acne. Cons: thromboembolic risk with contraceptives, hyperkalaemia with spironolactone, no durable remission.',
+        },
+        {
+          name: 'Topical retinoids',
+          class: 'Tretinoin, adapalene, trifarotene',
+          howItCompares:
+            'The same receptor family applied to the skin surface, with systemic exposure low enough that the teratogenic calculus differs. Effective for comedonal and mild inflammatory acne, not for severe nodular disease.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: minimal systemic absorption, first-line for most acne. Cons: irritation, insufficient for severe nodular disease.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(C(CCC1)(C)C)/C=C/C(=C/C=C/C(=C\\C(=O)O)/C)/C',
+      chemicalFormula: 'C20H28O2',
+      molecularWeight: '300.4 g/mol',
+      targetReceptorAffinity:
+        '13-cis-retinoic acid, a geometric isomer of the endogenous ligand tretinoin (all-trans-retinoic acid). It binds retinoic acid receptors weakly itself and acts substantially through intracellular isomerisation to tretinoin and 4-oxo metabolites, which bind RAR-alpha, beta and gamma as nuclear transcription factors. That the active species is essentially an endogenous morphogen is why the teratogenic pattern is not a toxicity in the ordinary sense but a disruption of normal developmental signalling — and why no structural modification separates the acne effect from it.',
+      structureSource: {
+        label:
+          'PubChem CID 5282379 (isotretinoin) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5282379',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'iso-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Geometric isomer identity and separation from tretinoin',
+          description:
+            'Confirm the 13-cis configuration and quantify all-trans-retinoic acid and other geometric isomers. Retinoic acids isomerise readily under light and heat, so the assay must resolve the isomers rather than measure total retinoic acid, and all handling is under low actinic conditions.',
+          reagentsAndBuffer:
+            'Isotretinoin and tretinoin certified reference standards, isocratic reversed-phase HPLC optimised for isomer resolution with ultraviolet detection at 350 nm, low actinic glassware, amber vials, proton NMR in deuterated chloroform under nitrogen',
+        },
+        {
+          id: 'iso-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Oxidative degradation, photostability and formulation bioavailability',
+          description:
+            'Profile 4-oxo and epoxide oxidation products and characterise photodegradation under ICH conditions. Separately, distinguish conventional from lidose formulations, which differ in whether absorption depends on a fatty meal — a difference that changes real exposure and therefore both efficacy and risk.',
+          dependsOnStepId: 'iso-w1',
+          reagentsAndBuffer:
+            'C18 column with acetonitrile and acetic acid mobile phase, photodiode array detection, ICH Q1B photostability chamber, forced oxidative degradation, comparative dissolution in fed and fasted simulated intestinal media',
+        },
+        {
+          id: 'iso-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Sebocyte culture and sebum production assay',
+          description:
+            'Immortalised or primary human sebocytes treated with isotretinoin, measuring lipid synthesis, proliferation and apoptosis. This is the therapeutic mechanism in isolation, and it establishes that sebaceous gland involution is a transcriptional reprogramming rather than a cytotoxic effect.',
+          reagentsAndBuffer:
+            'SZ95 or primary human sebocytes, Nile Red or Oil Red O lipid quantification, tritiated acetate incorporation for lipid synthesis, caspase-3 apoptosis assay, all-trans-retinoic acid as comparator, low actinic handling',
+        },
+        {
+          id: 'iso-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Retinoic acid receptor binding and transactivation, isomer by isomer',
+          description:
+            'Competitive binding and transactivation reporter assays at RAR-alpha, beta and gamma and at the retinoid X receptors, comparing isotretinoin with tretinoin and the 4-oxo metabolites. Running the isomers separately is what shows that the parent is a prodrug in effect, and that the receptor-level activity responsible for acne clearance and for the embryopathy is the same activity.',
+          dependsOnStepId: 'iso-w3',
+          reagentsAndBuffer:
+            'Recombinant RAR-alpha, RAR-beta, RAR-gamma and RXR ligand-binding domains, tritiated all-trans-retinoic acid radioligand, GAL4-RAR chimeric luciferase reporter assays, 4-oxo-isotretinoin and tretinoin standards',
+        },
+        {
+          id: 'iso-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma retinoid quantification and pregnancy testing verification',
+          description:
+            'LC-MS/MS assay reporting isotretinoin, tretinoin and 4-oxo-isotretinoin separately in plasma, defining the washout interval on which the post-treatment contraception requirement rests. Alongside it, analytical verification of serum and urine human chorionic gonadotrophin assays, since the entire prevention programme depends on the sensitivity and integrity of that test.',
+          dependsOnStepId: 'iso-w4',
+          reagentsAndBuffer:
+            'Plasma with deuterated retinoid internal standards under low actinic conditions, LC-MS/MS with separate transitions for parent, isomer and 4-oxo metabolite, quantitative serum beta-hCG immunoassay with documented limit of detection and chain-of-custody sample collection',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'iso-a1',
+        category: 'measured',
+        title: 'Relative risk 25.6 for a characteristic pattern of major malformations',
+        laymanSummary:
+          'In the study that defined the syndrome, 21 of 154 exposed pregnancies produced infants with major malformations in a distinctive pattern affecting the face, heart, thymus and brain.',
+        technicalDetails:
+          'An investigation of 154 human pregnancies with fetal isotretinoin exposure recorded 95 elective abortions, 26 infants without major malformations, 12 spontaneous abortions and 21 malformed infants. A prospectively observed subset of 36 pregnancies produced 8 spontaneous abortions, 23 normal infants and 5 malformed infants. Exposure carried a relative risk of 25.6 (95% CI 11.4 to 57.5) for a group of selected major malformations. Among the 21 malformed infants the pattern involved microtia or anotia (15), micrognathia (6), cleft palate (3), conotruncal heart defects and aortic-arch abnormalities (8), thymic defects (7), retinal or optic-nerve abnormalities (4) and central nervous system malformations (18) — closely resembling animal retinoid teratogenesis, and consistent with a deleterious effect on cephalic neural-crest cell activity.',
+        evidenceSource: 'Lammer EJ, Chen DT, Hoar RM, et al. N Engl J Med 1985;313:837-841',
+        doi: '10.1056/NEJM198510033131401',
+        measuredMetric:
+          'Relative risk for selected major malformations after fetal isotretinoin exposure, with the malformation pattern by organ system',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iso-a2',
+        category: 'conclusion_shift',
+        title: 'Three prevention systems in twenty-four years, each because the last leaked',
+        laymanSummary:
+          'A voluntary programme was replaced by a stricter one, and that by a mandatory computerised registry. Each escalation happened because pregnancies kept occurring.',
+        technicalDetails:
+          'Isotretinoin was approved in 1982 and the embryopathy was characterised in 1985. A Pregnancy Prevention Program followed in the late 1980s, relying on physician and patient education and voluntary compliance. The System to Manage Accutane-Related Teratogenicity replaced it in 2001 with qualification stickers and registration. iPLEDGE replaced that in 2006 as a mandatory computerised system in which prescribers, patients, pharmacies and wholesalers must all be registered, pregnancy tests must be entered before a prescription can be dispensed, and a dispensing window closes automatically. Each replacement was prompted by continuing exposed pregnancies under the previous one. The escalation is itself the evidence: an entirely avoidable harm was not in fact being avoided by education alone.',
+        evidenceSource:
+          'Lammer EJ et al. N Engl J Med 1985;313:837-841; Drugs@FDA NDA 018662 (ACCUTANE) — Discontinued, with generic isotretinoin products in Prescription status under iPLEDGE',
+        doi: '10.1056/NEJM198510033131401',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iso-a3',
+        category: 'measured',
+        title: 'Patients circumvent the pregnancy testing, and the rate has been measured',
+        laymanSummary:
+          'A study set out to quantify how often patients deliberately get around the iPLEDGE pregnancy test. The number is not zero.',
+        technicalDetails:
+          'A study published in 2022 measured the rate at which patients deliberately circumvent iPLEDGE pregnancy testing. That such a measurement exists, and was undertaken by dermatologists rather than regulators, is the substance of the point: a control system whose critical input is a test the patient can arrange to have someone else take, or arrange around, has a failure mode that no amount of computerisation closes. Related work documents the counselling burden the programme places on dermatologists and the readability problems of its comprehension assessment. A risk-management programme is a socio-technical system, and its measured failure rate is a property of the whole system rather than of the drug.',
+        evidenceSource:
+          "Measuring the rate of patients' deliberate circumvention of iPledge pregnancy testing. J Am Acad Dermatol 2022;87:1129-1130",
+        doi: '10.1016/j.jaad.2022.02.001',
+        measuredMetric:
+          'Rate of deliberate circumvention of mandatory pregnancy testing within the iPLEDGE programme',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iso-a4',
+        category: 'conclusion_shift',
+        title: 'The depression allegation does not survive meta-analysis',
+        laymanSummary:
+          'Pooling 31 studies, depression scores fell rather than rose during isotretinoin treatment, and the prevalence of depression declined after it.',
+        technicalDetails:
+          'A systematic review and meta-analysis of literature through September 2016 included 31 studies meeting criteria of controlled or prospective non-controlled trials in 15 or more acne patients receiving isotretinoin. In the controlled studies, change in depression scores from baseline did not differ significantly between isotretinoin and alternative treatment (standardised mean difference -0.334, 95% CI -0.680 to 0.011). The prevalence of depression after isotretinoin treatment significantly declined (relative risk 0.588, 95% CI 0.382 to 0.904) and mean depression scores fell significantly from baseline (SMD -0.335, 95% CI -0.498 to -0.172). The authors conclude that isotretinoin does not appear to increase depression risk and that treating acne appears to ameliorate depressive symptoms. Limitations are stated: no randomised controlled trials were reviewed and inter-study variation was large.',
+        evidenceSource:
+          'Huang YC, Cheng YC. Isotretinoin treatment for acne and risk of depression: a systematic review and meta-analysis. J Am Acad Dermatol 2017;76:1068-1076.e9',
+        doi: '10.1016/j.jaad.2016.12.028',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iso-a5',
+        category: 'inferred',
+        title: 'A pooled null on depression does not settle individual susceptibility',
+        laymanSummary:
+          'The average patient does not get more depressed. That is compatible with a small number of people reacting badly, which a pooled average cannot detect.',
+        technicalDetails:
+          'The meta-analysis included no randomised controlled trials and reported large inter-study variation. It measures the average change in depression scores across populations, and a rare idiosyncratic reaction in a small subgroup would not shift that average detectably. Confounding runs the other way as well: severe acne is itself associated with depression, so treating it successfully should improve mood, and a treated cohort improving on average is consistent both with no drug effect and with a harmful effect in a minority masked by benefit in the majority. The defensible statement is that no population-level increase in depression has been demonstrated. That is materially different from a demonstration that no individual is affected, and the continuing case-report and cohort literature reflects that gap.',
+        evidenceSource:
+          'Huang YC, Cheng YC. J Am Acad Dermatol 2017;76:1068-1076.e9; Use of isotretinoin and risk of depression in patients with acne: a systematic review and meta-analysis. BMJ Open 2019;9:e021549',
+        doi: '10.1136/bmjopen-2018-021549',
+        inferredClaim:
+          'That a null pooled effect on depression scores demonstrates no individual can experience a psychiatric reaction',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'iso-a6',
+        category: 'measured',
+        title: 'The therapeutic effect and the teratogenic effect are one mechanism',
+        laymanSummary:
+          "The same receptors that shrink oil glands direct how an embryo's face, heart and brain are built. No version of the drug separates the two.",
+        technicalDetails:
+          'Isotretinoin acts through isomerisation to tretinoin and oxidation to 4-oxo metabolites, which bind retinoic acid receptors alpha, beta and gamma as ligand-activated transcription factors. In sebaceous glands this produces involution and durable remission. In the embryo the same receptors control cephalic neural-crest migration and patterning, and the malformation pattern observed — microtia, micrognathia, conotruncal cardiac defects, thymic defects, central nervous system malformations — maps precisely onto neural-crest-derived structures. The teratogenicity is not an off-target toxicity that a medicinal chemist could engineer away; it is the on-target pharmacology operating in a different tissue at a different time. That is why the answer has always been a control system rather than a better molecule.',
+        evidenceSource: 'Lammer EJ et al. N Engl J Med 1985;313:837-841',
+        doi: '10.1056/NEJM198510033131401',
+        measuredMetric:
+          'Malformation pattern by organ system, mapped to cephalic neural-crest derivatives',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iso-a7',
+        category: 'conclusion_shift',
+        title: 'Restriction is a third option, and this is what it costs',
+        laymanSummary:
+          'The drug was neither withdrawn nor left alone. It sits behind a national computer system that every prescriber, pharmacy and patient has to work through.',
+        technicalDetails:
+          'Every other entry in this file resolves to withdraw or not withdraw. Isotretinoin resolves to neither. It remains available because severe nodular acne scars permanently and nothing else produces durable remission, and because the harm is confined to one avoidable circumstance. The price is a permanent national infrastructure: registration of prescribers, patients, pharmacies and wholesalers, mandated contraception, repeated pregnancy testing with results entered before dispensing, and automatic dispensing windows. The published dermatology literature documents the counselling burden this places on clinicians, the readability problems of the comprehension assessment, and the deliberate circumvention that occurs anyway. Restriction is a real option and it is not a free one.',
+        evidenceSource:
+          'Contraceptive counseling for iPLEDGE and its burden on dermatologists. Arch Dermatol Res 2024;316:287',
+        doi: '10.1007/s00403-024-03070-5',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Oral capsules over a course of several months',
+        laymanDesc:
+          'Taken by mouth daily for four to six months, with the total dose calculated by body weight, and the prescription released only when the programme requirements are met.',
+        molecularDetail:
+          'Oral isotretinoin dosed by body weight to a cumulative target, typically over 16 to 24 weeks. Conventional formulations require a fatty meal for absorption; lidose formulations do not, and the difference materially changes exposure.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters cells and isomerises to the active retinoid',
+        laymanDesc:
+          'Inside cells it converts into the naturally occurring form of vitamin A acid, which is what actually does the work.',
+        molecularDetail:
+          'Highly lipophilic and extensively protein-bound. Intracellular isomerisation to all-trans-retinoic acid and oxidation to 4-oxo metabolites generate the species with meaningful retinoic acid receptor affinity; isotretinoin itself binds the receptors weakly.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds nuclear retinoic acid receptors on DNA',
+        laymanDesc:
+          'The active form docks onto receptors that sit directly on DNA and act as switches for large sets of genes.',
+        molecularDetail:
+          'Binds RAR-alpha, beta and gamma, which heterodimerise with retinoid X receptors and occupy retinoic acid response elements in target gene promoters, releasing corepressors and recruiting coactivators.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Sebaceous glands involute — and neural crest patterning is disrupted',
+        laymanDesc:
+          'In skin, oil glands shrink and the follicle stops blocking. In an embryo, the same switches misdirect how the face, heart and thymus are built.',
+        molecularDetail:
+          'In sebocytes, transcriptional reprogramming causes gland involution, reduced sebum, normalised follicular keratinisation and loss of the anaerobic niche for Cutibacterium acnes. In the embryo, the same receptors govern cephalic neural-crest migration and patterning, and disruption produces defects in craniofacial, conotruncal cardiac, thymic and central nervous system structures.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Durable acne remission; a 25.6-fold malformation risk if pregnancy occurs',
+        laymanDesc:
+          'Severe acne clears and often stays clear after the course ends. Exposure during pregnancy carries a twenty-five-fold risk of major malformations, which is why the programme exists.',
+        molecularDetail:
+          'Measured: durable remission of severe recalcitrant nodular acne, the reason no alternative displaced it in four decades. Measured: relative risk 25.6 (95% CI 11.4 to 57.5) for selected major malformations after fetal exposure, with 21 malformed infants among 154 exposed pregnancies.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Retinoic acid embryopathy investigation (Lammer et al.)',
+        phase: 'Multicentre case series with a prospectively observed subset',
+        sampleSize: 154,
+        primaryEndpoint:
+          'Pregnancy outcome and malformation pattern following fetal isotretinoin exposure',
+        endpointMet: true,
+        statisticalPValue:
+          'Relative risk 25.6 (95% CI 11.4 to 57.5) for selected major malformations; 21 malformed infants, 95 elective abortions, 12 spontaneous abortions, 26 unaffected infants',
+        unreportedAdverseSignals:
+          '95 of 154 pregnancies ended in elective abortion, so the observed malformation frequency in continued pregnancies cannot be read as a population risk. The prospective subset of 36 gives the less biased estimate: 5 malformed infants, 23 normal, 8 spontaneous abortions.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId:
+          'Systematic review and meta-analysis of isotretinoin and depression (Huang and Cheng)',
+        phase: 'Systematic review and meta-analysis of controlled and prospective studies',
+        sampleSize: 31,
+        primaryEndpoint:
+          'Change in depression scores and prevalence of depression during and after isotretinoin treatment for acne',
+        endpointMet: false,
+        statisticalPValue:
+          'Controlled studies: standardised mean difference -0.334 (95% CI -0.680 to 0.011), not significant; prevalence of depression after treatment relative risk 0.588 (0.382 to 0.904); mean depression scores fell, SMD -0.335 (-0.498 to -0.172)',
+        unreportedAdverseSignals:
+          'No randomised controlled trials were available for inclusion and inter-study variation was large. A pooled average cannot detect a rare idiosyncratic reaction.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Relative risk 25.6 (95% CI 11.4 to 57.5) for selected major malformations after fetal isotretinoin exposure',
+        'A characteristic malformation pattern: microtia or anotia in 15 of 21 malformed infants, central nervous system malformations in 18, conotruncal cardiac defects in 8, thymic defects in 7',
+        'Pooled depression score change not significantly different from comparator treatment (SMD -0.334, 95% CI -0.680 to 0.011) across 31 studies',
+        'Prevalence of depression declined after isotretinoin treatment, relative risk 0.588 (0.382 to 0.904)',
+      ],
+      unsupportedInferences: [
+        'That a null pooled depression effect excludes idiosyncratic psychiatric reactions in individuals; no randomised trials were available and variation was large',
+        'That a computerised prevention programme eliminates exposed pregnancies; deliberate circumvention of pregnancy testing has itself been measured',
+        'That the malformation frequency among continued pregnancies in the 1985 series is a population risk estimate; 95 of 154 pregnancies were electively terminated',
+      ],
+      whatFailedInitially: [
+        'Approved 1982, embryopathy characterised 1985, and three successive prevention systems were required between 1988 and 2006',
+        'Each system was replaced because exposed pregnancies continued to occur under it',
+        'The teratogenicity is the on-target pharmacology in a different tissue, so no structural modification of the molecule can remove it',
+      ],
+      realWorldOutcome: [
+        'The drug remains available through iPLEDGE, with prescribers, patients, pharmacies and wholesalers all registered and dispensing gated on entered pregnancy test results',
+        'Brand Accutane is discontinued and the market is generic, all supplied under the same programme',
+        'It is the standing counterexample in this file: a serious, well-documented harm managed by restriction rather than by withdrawal',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule, weight-based dosing over a 16 to 24 week course',
+      description:
+        'Oral isotretinoin dosed by body weight to a cumulative target over four to six months. Conventional formulations require a fatty meal for adequate absorption; lidose formulations do not. Dispensing is gated by the iPLEDGE system, which requires registration of prescriber, patient, pharmacy and wholesaler and entry of pregnancy test results within a defined window.',
+      safetyProfile:
+        'Teratogenicity dominates: relative risk 25.6 (95% CI 11.4 to 57.5) for selected major malformations after fetal exposure, in a characteristic craniofacial, conotruncal cardiac, thymic and central nervous system pattern. Two forms of contraception and repeated pregnancy testing are mandated for patients who can become pregnant, continuing for a defined period after the last dose. Other effects are cheilitis and xerosis in nearly all patients, hypertriglyceridaemia, transaminase elevation, night vision impairment, myalgia, and idiopathic intracranial hypertension particularly with concomitant tetracyclines. The depression association has not been supported at population level by meta-analysis, which is a statement about averages rather than about individuals.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why was this drug never withdrawn when the harm is so severe?',
+        a: 'Because the harm is entirely conditional on one avoidable circumstance, and because nothing replaces the benefit. Severe nodular acne scars permanently, and isotretinoin is the only treatment that produces durable remission rather than suppression while taken. Outside pregnancy the risk profile is manageable — dryness, lipids, transaminases, night vision. So the choice is not between an unsafe drug and a safe one; it is between removing the only effective treatment for a disfiguring disease and building a system that prevents one specific exposure. Four decades of regulatory effort have gone into the second option.',
+        auditNote:
+          'The teratogenicity is the on-target retinoic acid receptor pharmacology acting in the embryo. No chemical modification separates it from the acne effect.',
+      },
+      {
+        q: 'Does iPLEDGE actually work?',
+        a: 'Better than what preceded it, and not perfectly. Its predecessors — a voluntary Pregnancy Prevention Program from the late 1980s and the SMART system from 2001 — were each replaced because exposed pregnancies kept occurring. iPLEDGE gates dispensing on entered pregnancy test results within a defined window, which is a substantially harder system to pass through inattentively. The dermatology literature has separately measured the rate at which patients deliberately circumvent the pregnancy testing, documented the counselling burden on clinicians and criticised the readability of the comprehension assessment. A programme whose critical input is a test the patient controls has a floor it cannot go below.',
+      },
+      {
+        q: 'Does isotretinoin cause depression?',
+        a: 'At population level, the evidence does not show it. A meta-analysis of 31 studies found no significant difference in depression score change against comparator treatment, a decline in depression prevalence after treatment, and a significant fall in mean depression scores from baseline — with the authors noting that treating acne appears to improve mood. The limitations matter: no randomised controlled trials were available and between-study variation was large. So the accurate statement is that no population-level increase has been demonstrated, which does not exclude an idiosyncratic reaction in an individual, and a pooled average is structurally incapable of detecting one.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file does not carry a pricing block. Isotretinoin is currently marketed as a generic, and prices vary by product and payer.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Lammer EJ, Chen DT, Hoar RM, et al. Retinoic acid embryopathy. N Engl J Med 1985;313:837-841',
+        identifier: '10.1056/NEJM198510033131401',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Huang YC, Cheng YC. Isotretinoin treatment for acne and risk of depression: a systematic review and meta-analysis. J Am Acad Dermatol 2017;76:1068-1076.e9',
+        identifier: '10.1016/j.jaad.2016.12.028',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Use of isotretinoin and risk of depression in patients with acne: a systematic review and meta-analysis. BMJ Open 2019;9:e021549',
+        identifier: '10.1136/bmjopen-2018-021549',
+        kind: 'doi',
+      },
+      {
+        label:
+          "Measuring the rate of patients' deliberate circumvention of iPledge pregnancy testing. J Am Acad Dermatol 2022;87:1129-1130",
+        identifier: '10.1016/j.jaad.2022.02.001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Contraceptive counseling for iPLEDGE and its burden on dermatologists. Arch Dermatol Res 2024;316:287',
+        identifier: '10.1007/s00403-024-03070-5',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: ACCUTANE (isotretinoin), NDA 018662, Hoffmann-La Roche — Discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018662',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5282379 — isotretinoin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5282379',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 31. Clozapine — withdrawn in 1975, returned in 1990 under monitoring, de-restricted in 2025
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'clozapine',
+    name: 'Clozapine',
+    tradeName: 'Clozaril, FazaClo, Versacloz',
+    sponsor: 'Sandoz, later Novartis (NDA 019758); now a large generic market',
+    targetGene: 'DRD4 and HTR2A',
+    targetProtein:
+      'Dopamine D4 and D2 receptors, serotonin 5-HT2A receptors, with substantial muscarinic, histaminergic and alpha-adrenergic activity',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1989,
+    indication:
+      'Treatment-resistant schizophrenia, and reduction of the risk of recurrent suicidal behaviour in schizophrenia or schizoaffective disorder. Withdrawn in Finland in 1975 after agranulocytosis deaths, reintroduced in the United States in February 1990 under mandatory white-cell monitoring, and released from its risk evaluation and mitigation strategy in 2025.',
+    patientFriendlyIndication:
+      'The antipsychotic used when others have failed, and the only one shown to reduce suicide risk in schizophrenia',
+    anatomicalSite:
+      'Mesolimbic and mesocortical dopamine pathways; the toxicity site is the bone marrow granulocyte lineage',
+    conditionContext: {
+      conditionExplainer:
+        'About a third of people with schizophrenia do not respond adequately to standard antipsychotics. Clozapine is the only drug with an established effect in that group, and the only one approved for reducing recurrent suicidal behaviour.',
+      whyItMatters:
+        'This is the longest restriction story in medicine — fifty years from the Finnish deaths to the removal of the programme in 2025 — and the one where the cost of restriction is quantifiable in the same units as the harm it prevents.',
+      whoTakesThis:
+        'Patients with treatment-resistant schizophrenia and those at recurrent risk of suicidal behaviour in schizophrenia or schizoaffective disorder. Haematological monitoring is now recommended rather than enforced through a centralised database.',
+      clinicalGoals:
+        'Response in patients who have failed adequate trials of other antipsychotics, and reduction of suicidal behaviour, without a fatal neutropenic infection.',
+    },
+    oneSentenceVerdict:
+      'The only antipsychotic with demonstrated efficacy in treatment resistance — 30 per cent response against 4 per cent on chlorpromazine — withdrawn in 1975 after eight agranulocytosis deaths in Finland, returned in 1990 under mandatory weekly white-cell counts that brought the cumulative agranulocytosis incidence to 0.80 per cent at one year with two deaths among 11,555 patients, and released from its restriction programme in 2025 after an FDA meeting reported 0.03 per cent mortality from agranulocytosis.',
+    laymanHowItWorks:
+      'Clozapine blocks dopamine receptors, as all antipsychotics do, but weakly and briefly at the main one, while acting strongly on serotonin and several other receptor systems. That unusual combination is thought to explain why it works when others do not, and why it causes almost no movement side effects. Separately and unpredictably, in a small number of people it stops the bone marrow producing neutrophils, the white cells that fight bacterial infection, and without those cells an ordinary infection can kill.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 90,
+    substitutes: {
+      summary:
+        'There is no substitute in the indication. Clozapine remains the only drug approved for treatment-resistant schizophrenia and the only one approved for reducing recurrent suicidal behaviour, which is precisely why fifty years of restriction ended in de-restriction rather than withdrawal.',
+      conventionalRx: [
+        {
+          name: 'Olanzapine',
+          class: 'Second-generation antipsychotic',
+          howItCompares:
+            'The active comparator in the suicide-prevention trial, in which clozapine was more effective at reducing suicidality regardless of which risk factors were present. Shares metabolic liability without the agranulocytosis risk or the treatment-resistance indication.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: no mandatory monitoring, effective in non-resistant disease. Cons: weight gain, dyslipidaemia, no established efficacy in treatment resistance.',
+        },
+        {
+          name: 'Long-acting injectable antipsychotics',
+          class: 'Depot formulations of second-generation antipsychotics',
+          howItCompares:
+            'The alternative the post-REMS literature explicitly puts to prescribers unwilling to use clozapine, because they at least address non-adherence. They do not address treatment resistance.',
+          typicalCost: '',
+          prosAndCons:
+            "Pros: adherence, no haematological monitoring. Cons: no efficacy in the treatment-resistant population that defines clozapine's indication.",
+        },
+        {
+          name: 'Chlorpromazine',
+          class: 'First-generation antipsychotic',
+          howItCompares:
+            "The comparator in the trial that established clozapine: 4 per cent response against clozapine's 30 per cent in patients who had already failed at least three neuroleptics and a prospective haloperidol trial.",
+          typicalCost: '',
+          prosAndCons:
+            'Pros: inexpensive, long history. Cons: extrapyramidal symptoms, tardive dyskinesia, ineffective in the resistant population.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1CCN(CC1)C2=NC3=C(C=CC(=C3)Cl)NC4=CC=CC=C42',
+      chemicalFormula: 'C18H19ClN4',
+      molecularWeight: '326.8 g/mol',
+      targetReceptorAffinity:
+        'A dibenzodiazepine with an exceptionally broad receptor profile: higher affinity at dopamine D4 than D2, rapid dissociation from D2, potent 5-HT2A antagonism, and substantial muscarinic, histamine H1 and alpha-1 adrenergic activity. The low and transient D2 occupancy explains the near-absence of extrapyramidal symptoms and tardive dyskinesia, and the muscarinic profile explains both the hypersalivation and the anticholinergic constipation. No single-target account of why it works in treatment resistance has ever been established, which is one reason no successor has been designed.',
+      structureSource: {
+        label: 'PubChem CID 135398737 (clozapine) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135398737',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'clz-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the dibenzodiazepine and its chlorine position',
+          description:
+            'Confirm the tricyclic dibenzo[b,e][1,4]diazepine core, the position of the chlorine substituent and the N-methylpiperazine. Positional isomers of the chlorine are distinct compounds with different receptor profiles, and the chlorine isotope pattern in the mass spectrum is a useful confirmatory feature.',
+          reagentsAndBuffer:
+            'Clozapine certified reference standard, reversed-phase HPLC with ultraviolet detection at 254 nm, proton and carbon NMR in deuterated chloroform, LC-MS showing the chlorine isotope doublet at m/z 327 and 329',
+        },
+        {
+          id: 'clz-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Metabolite standards and the nitrenium ion question',
+          description:
+            'Prepare and quantify norclozapine and clozapine N-oxide, and characterise the reactive nitrenium ion formed by oxidation of the dibenzodiazepine ring. That reactive intermediate is the leading candidate mechanism for the agranulocytosis, so it belongs in the analytical scheme rather than only in the pharmacology discussion.',
+          dependsOnStepId: 'clz-w1',
+          reagentsAndBuffer:
+            'Norclozapine and clozapine N-oxide reference standards, human liver microsomes and myeloperoxidase-hydrogen peroxide systems for reactive metabolite generation, glutathione trapping with LC-MS/MS adduct detection',
+        },
+        {
+          id: 'clz-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Neutrophil and myeloid progenitor culture',
+          description:
+            'Expose human neutrophils and CD34-positive myeloid progenitors to clozapine and to bioactivated clozapine, measuring apoptosis and colony-forming capacity. This preparation tests whether the injury is to the circulating cell or to the progenitor, which determines whether monitoring can give useful warning and how quickly recovery should be expected.',
+          reagentsAndBuffer:
+            'Human peripheral blood neutrophils and CD34-positive bone marrow progenitors, methylcellulose colony-forming assay for granulocyte-macrophage progenitors, myeloperoxidase and hydrogen peroxide bioactivation system, annexin V apoptosis staining',
+        },
+        {
+          id: 'clz-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Broad receptor binding panel',
+          description:
+            'Radioligand binding across dopamine D1 to D4, serotonin 5-HT2A, 5-HT2C, 5-HT6 and 5-HT7, muscarinic M1 to M5, histamine H1 and alpha-1 and alpha-2 adrenergic receptors, with D2 dissociation kinetics measured explicitly. The kinetic measurement matters as much as the affinity: rapid D2 dissociation is central to the accepted account of why clozapine avoids extrapyramidal symptoms.',
+          dependsOnStepId: 'clz-w3',
+          reagentsAndBuffer:
+            'Membranes expressing the individual human receptors, subtype-selective radioligands, competition and dissociation kinetic protocols, olanzapine, risperidone and haloperidol as comparators',
+        },
+        {
+          id: 'clz-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Absolute neutrophil count, plasma level and HLA genotyping',
+          description:
+            'Automated differential white cell count reporting the absolute neutrophil count, plasma clozapine and norclozapine concentrations with their ratio, and HLA genotyping at the alleles associated with clozapine-induced agranulocytosis. This trio is the operational core of clozapine safety: one number that gates treatment, one that guides dosing across metabolic differences, and one that could in principle stratify risk in advance.',
+          dependsOnStepId: 'clz-w4',
+          reagentsAndBuffer:
+            'EDTA whole blood with automated five-part differential and manual confirmation of low counts, LC-MS/MS for clozapine and norclozapine with deuterated internal standards, HLA sequence-based typing at loci associated with clozapine-induced agranulocytosis',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'clz-a1',
+        category: 'measured',
+        title:
+          '30 per cent response against 4 per cent, in patients who had failed everything else',
+        laymanSummary:
+          'In 268 patients who had already failed at least three antipsychotics and then a further six-week trial, 30 per cent responded to clozapine and 4 per cent to chlorpromazine.',
+        technicalDetails:
+          "Patients meeting DSM-III criteria for schizophrenia who had failed to respond to at least three different neuroleptics underwent a prospective single-blind six-week trial of haloperidol at a mean 61 plus or minus 14 mg daily. Those still unimproved were randomised double-blind to clozapine up to 900 mg daily or chlorpromazine up to 1800 mg daily for six weeks; 268 patients entered the double-blind comparison. Against a priori criteria, 30 per cent of clozapine patients were responders against 4 per cent on chlorpromazine, with significantly greater improvement on the Brief Psychiatric Rating Scale, Clinical Global Impression Scale and Nurses' Observation Scale for Inpatient Evaluation, covering negative as well as positive symptoms. No agranulocytosis occurred during the short study, and the authors nonetheless recommended restricting use to selected treatment-resistant patients.",
+        evidenceSource:
+          'Kane J, Honigfeld G, Singer J, Meltzer H. Arch Gen Psychiatry 1988;45:789-796',
+        doi: '10.1001/archpsyc.1988.01800330013001',
+        measuredMetric:
+          'Responder rate against a priori criteria at six weeks, clozapine versus chlorpromazine, after prospective confirmation of treatment resistance',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clz-a2',
+        category: 'measured',
+        title: 'Agranulocytosis in 0.80 per cent at one year, two deaths in 11,555 patients',
+        laymanSummary:
+          'Under mandatory weekly blood counts, 73 of 11,555 patients developed agranulocytosis and two died. Most cases occurred in the first three months.',
+        technicalDetails:
+          'The Clozaril Patient Management System, which required a weekly white-cell count before each drug supply, was evaluated by survival analysis for February 1990 through April 1991 with data on 11,555 patients. Agranulocytosis developed in 73, with death from infectious complications in 2. Sixty-one of the 73 episodes occurred within three months of starting treatment. Cumulative incidence was 0.80 per cent (95% CI 0.61 to 0.99) at one year and 0.91 per cent (95% CI 0.62 to 1.20) at eighteen months. Risk rose with age and was higher in women. The authors conclude that agranulocytosis is a substantial hazard that can be reduced by monitoring the white-cell count, and that the front-loading of risk and the age gradient give guidance for how monitoring should be structured.',
+        evidenceSource:
+          'Alvir JM, Lieberman JA, Safferman AZ, Schwimmer JL, Schaaf JA. N Engl J Med 1993;329:162-167',
+        doi: '10.1056/NEJM199307153290303',
+        measuredMetric:
+          'Cumulative incidence of agranulocytosis at one year and eighteen months under weekly white-cell monitoring, with deaths',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clz-a3',
+        category: 'conclusion_shift',
+        title: 'Withdrawn in 1975, back in 1990, de-restricted in 2025',
+        laymanSummary:
+          'Eight deaths in Finland in 1975 took the drug off the market. It returned in 1990 only with weekly blood tests. In 2025 the enforcement system was removed and monitoring became a recommendation.',
+        technicalDetails:
+          'Clozapine was associated with eight agranulocytosis deaths in Finland in 1975 and withdrawn. It was approved in the United States in 1989 for treatment-resistant schizophrenia and became available in February 1990 only within the Clozaril Patient Management System, in which a weekly white-cell count was required for each drug supply, and in 2003 gained a suicide-prevention indication. On 19 November 2024 an FDA clozapine meeting reported approximately 140,000 annual prescriptions and 0.03 per cent mortality from agranulocytosis. The risk evaluation and mitigation strategy was subsequently eliminated, and in June 2025 the package insert removed the centralised database, with haematological monitoring becoming recommended rather than mandatory. Three regulatory positions in fifty years, on a molecule that has not changed.',
+        evidenceSource:
+          'Leung JG, Cotes RO. A call to action for starting clozapine: increasing clozapine use and safety in a post-REMS era. Focus (Am Psychiatr Publ) 2025;23:375-388',
+        doi: '10.1176/appi.focus.20250023',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clz-a4',
+        category: 'measured',
+        title: 'It reduces suicidality, and that was tested against an active comparator',
+        laymanSummary:
+          'In 980 patients at high risk of suicide followed for two years, clozapine reduced suicidal behaviour more than olanzapine, whichever risk factors a patient had.',
+        technicalDetails:
+          'A multicentre prospective study followed 980 patients with schizophrenia or schizoaffective disorder judged at high risk for suicide for two years after randomisation to clozapine or olanzapine. Ten baseline univariate predictors of subsequent suicide-related events were identified, including schizoaffective diagnosis, alcohol or substance use, smoking, lifetime suicide attempts, hospitalisations in the previous 36 months to prevent suicide, and baseline scores on the InterSePT scale for suicidal thinking, the Covi Anxiety Scale, the Calgary Depression Scale and Parkinsonism severity. Clozapine was in general more effective than olanzapine in decreasing suicidality risk regardless of which risk factors were present. This is an active-comparator trial against a modern antipsychotic, not a placebo comparison, which makes the result unusually strong for a suicide endpoint.',
+        evidenceSource:
+          'Potkin SG, Alphs L, Hsu C, Krishnan KR et al., InterSePT Study Group. Biol Psychiatry 2003;54:444-452',
+        doi: '10.1016/s0006-3223(03)00178-1',
+        measuredMetric:
+          'Suicide-related events over two years, clozapine versus olanzapine, in 980 high-risk patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clz-a5',
+        category: 'conclusion_shift',
+        title: 'The cost of the restriction was counted in the same units as the harm',
+        laymanSummary:
+          'Advocates argued that the monitoring requirements deterred prescribing so effectively that they cost more lives to suicide than agranulocytosis ever took.',
+        technicalDetails:
+          "The 2024 FDA meeting recorded approximately 140,000 annual prescriptions and 0.03 per cent mortality from agranulocytosis, and heard patient advocates argue that restrictions were costing lives. Published analysis in the psychiatric literature puts the arithmetic explicitly: suicide takes about 5 per cent of patients with schizophrenia, long-term clozapine may prevent a large fraction of those deaths, and on the authors' figures every additional 10,000 long-term clozapine prescriptions would save roughly 400 United States lives from suicide at a cost of roughly 3 deaths from agranulocytosis. Those are modelled estimates rather than measured outcomes and should be read as such. What is not modelled is the direction: a restriction has a body count of its own, in deaths from the untreated condition, and this is the case where somebody insisted on counting it.",
+        evidenceSource:
+          'de Leon J. Are the 8 Finnish deaths explained by agranulocytosis more important than the thousands of suicide deaths associated with clozapine underuse? J Clin Psychopharmacol 2026; Leung JG, Cotes RO. Focus (Am Psychiatr Publ) 2025;23:375-388',
+        doi: '10.1176/appi.focus.20250023',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'clz-a6',
+        category: 'inferred',
+        title: 'Agranulocytosis absorbed the attention that other clozapine harms needed',
+        laymanSummary:
+          'Focusing on the blood count meant other serious risks — myocarditis, pneumonia, severe constipation — got less structured attention than they warranted.',
+        technicalDetails:
+          "The published critique of the restriction era is that the regulatory focus on agranulocytosis came at the expense of other clozapine risks. The post-REMS review identifies the practical priorities as slower initial titration, differences in clozapine metabolism across genetic ancestry groups, awareness of inflammatory reactions, recognition of pneumonia-related mortality, and appropriate bowel care. Clozapine-induced gastrointestinal hypomotility can progress to ileus and death, and myocarditis typically presents in the first weeks. None of these is detected by a white-cell count. A monitoring programme built around one measurable hazard tends to define the drug's safety as that hazard, and the harms it does not measure become correspondingly invisible.",
+        evidenceSource: 'Leung JG, Cotes RO. Focus (Am Psychiatr Publ) 2025;23:375-388',
+        doi: '10.1176/appi.focus.20250023',
+        inferredClaim:
+          'That a white-cell monitoring programme constitutes comprehensive safety management for clozapine',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'clz-a7',
+        category: 'measured',
+        title: 'The risk is front-loaded, and the monitoring schedule reflects that',
+        laymanSummary:
+          'Sixty-one of the 73 agranulocytosis cases happened within three months of starting. Weekly testing forever was never what the data supported.',
+        technicalDetails:
+          'Of 73 agranulocytosis episodes among 11,555 patients, 61 occurred within three months of starting treatment, and the authors identified the reduced incidence after the first six months as a specific guide for future monitoring. Risk also increased with age and was higher in women. That structure — an early, sharply declining hazard with identifiable demographic gradients — is exactly what allows a monitoring schedule to be tapered rather than held constant, and it is the empirical basis for the tiered schedules that followed and for the later judgement that the requirements had become overly cautious. The 1993 analysis contained the argument for its own relaxation.',
+        evidenceSource: 'Alvir JM et al. N Engl J Med 1993;329:162-167',
+        doi: '10.1056/NEJM199307153290303',
+        measuredMetric:
+          'Timing distribution of agranulocytosis episodes and risk gradients by age and sex',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Oral tablets, titrated upward slowly over weeks',
+        laymanDesc:
+          'Taken by mouth, starting very low and increasing gradually, because rapid increases cause dangerous drops in blood pressure and sedation.',
+        molecularDetail:
+          'Oral clozapine titrated from 12.5 mg daily over weeks toward a target in the hundreds of milligrams, with orally disintegrating and suspension formulations available. Metabolised principally by CYP1A2, so smoking status and caffeine materially alter plasma levels.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into the brain and reaches limbic dopamine pathways',
+        laymanDesc:
+          'It enters the brain and reaches the circuits where dopamine signalling is disordered in schizophrenia.',
+        molecularDetail:
+          'Lipophilic with good central nervous system penetration, reaching mesolimbic and mesocortical dopamine pathways with preferential limbic over striatal action. Metabolised to norclozapine, which is itself pharmacologically active.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds many receptors, and lets go of D2 quickly',
+        laymanDesc:
+          'It touches an unusually wide set of receptors, and crucially it releases the main dopamine receptor fast rather than holding on to it.',
+        molecularDetail:
+          'Higher affinity at D4 than D2, with rapid D2 dissociation kinetics; potent 5-HT2A antagonism; substantial muscarinic, histamine H1 and alpha-1 adrenergic activity. No single-receptor account of the treatment-resistance efficacy has been established.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Psychosis improves without movement disorder — and marrow may fail',
+        laymanDesc:
+          'Symptoms improve where other drugs failed, and stiffness and tremor largely do not occur. Separately and unpredictably, neutrophil production can shut down.',
+        molecularDetail:
+          'Transient limbic D2 occupancy with 5-HT2A blockade produces antipsychotic effect with minimal nigrostriatal blockade, hence near-absence of extrapyramidal symptoms and tardive dyskinesia. Independently, oxidation of the dibenzodiazepine ring generates a reactive nitrenium ion implicated in neutrophil and myeloid progenitor injury.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Response in a third of resistant patients; agranulocytosis in about one in 125',
+        laymanDesc:
+          'Roughly a third of patients who had failed everything else responded, and suicidality fell. Under weekly monitoring, agranulocytosis occurred in about 0.8 per cent in the first year, with two deaths among 11,555 patients.',
+        molecularDetail:
+          'Measured: 30 per cent response against 4 per cent on chlorpromazine in prospectively confirmed treatment resistance. Measured: cumulative agranulocytosis 0.80 per cent (95% CI 0.61 to 0.99) at one year, 73 cases and 2 deaths in 11,555 patients, 61 cases within three months. Measured: greater reduction in suicidality than olanzapine over two years in 980 high-risk patients.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'Clozapine versus chlorpromazine in treatment-resistant schizophrenia (Kane et al.)',
+        phase:
+          'Multicentre double-blind randomised trial after prospective confirmation of resistance',
+        sampleSize: 268,
+        primaryEndpoint:
+          'Responder rate against a priori criteria at six weeks in patients failing at least three neuroleptics and a prospective haloperidol trial',
+        endpointMet: true,
+        statisticalPValue:
+          '30 per cent responders on clozapine against 4 per cent on chlorpromazine, with significantly greater improvement on BPRS, CGI and NOSIE covering negative as well as positive symptoms',
+        unreportedAdverseSignals:
+          'Six weeks was too short to observe agranulocytosis, and none occurred. The authors nonetheless recommended restricting use to selected treatment-resistant patients on the strength of the prior evidence.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Clozaril Patient Management System surveillance analysis (Alvir et al.)',
+        phase: 'Post-marketing surveillance with survival analysis, February 1990 to April 1991',
+        sampleSize: 11555,
+        primaryEndpoint:
+          'Incidence of agranulocytosis under mandatory weekly white-cell monitoring, and effects of age and sex',
+        endpointMet: true,
+        statisticalPValue:
+          '73 cases with 2 deaths; cumulative incidence 0.80 per cent (95% CI 0.61 to 0.99) at one year and 0.91 per cent (0.62 to 1.20) at eighteen months; 61 of 73 cases within three months; risk rising with age and higher in women',
+        unreportedAdverseSignals:
+          'The incidence is measured under weekly monitoring, so it describes the hazard as managed rather than the untreated natural rate. Other clozapine harms — myocarditis, gastrointestinal hypomotility, pneumonia — are outside this analysis entirely.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'InterSePT (clozapine versus olanzapine for suicidality)',
+        phase: 'Multicentre prospective randomised active-comparator trial, two years',
+        sampleSize: 980,
+        primaryEndpoint:
+          'Suicide-related events over two years in patients with schizophrenia or schizoaffective disorder at high risk of suicide',
+        endpointMet: true,
+        statisticalPValue:
+          'Clozapine more effective than olanzapine in decreasing suicidality risk, regardless of which of the ten identified baseline risk factors were present',
+        unreportedAdverseSignals:
+          'An open comparison against an active antipsychotic in a high-risk population; suicide-related events are a composite endpoint whose components differ in severity.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '30 per cent responder rate against 4 per cent on chlorpromazine in 268 prospectively confirmed treatment-resistant patients',
+        'Cumulative agranulocytosis 0.80 per cent (95% CI 0.61 to 0.99) at one year and 0.91 per cent (0.62 to 1.20) at eighteen months, 73 cases and 2 deaths in 11,555 patients',
+        '61 of 73 agranulocytosis episodes occurred within three months of starting, with risk rising with age and higher in women',
+        'Greater reduction in suicidality than olanzapine over two years in 980 high-risk patients',
+        'Approximately 140,000 annual prescriptions and 0.03 per cent mortality from agranulocytosis reported at the November 2024 FDA meeting',
+      ],
+      unsupportedInferences: [
+        'That white-cell monitoring constitutes comprehensive clozapine safety management — myocarditis, gastrointestinal hypomotility and pneumonia are not detected by it',
+        'That the modelled lives-saved figures from increased prescribing are measured outcomes; they are estimates built on assumed effect sizes',
+        'That the 0.80 per cent incidence describes the unmonitored hazard; it was measured under mandatory weekly counts',
+      ],
+      whatFailedInitially: [
+        'Withdrawn in 1975 after eight agranulocytosis deaths in Finland',
+        'Returned in February 1990 only within a system requiring a weekly white-cell count before each supply',
+        'Under-prescribing persisted throughout the restriction era, with non-evidence-based treatments routinely tried first',
+      ],
+      realWorldOutcome: [
+        'The risk evaluation and mitigation strategy was eliminated, and the June 2025 package insert removed the centralised database with monitoring becoming recommended',
+        'It remains the only drug approved for treatment-resistant schizophrenia and for reducing recurrent suicidal behaviour',
+        'The post-REMS literature reframes the priorities as titration, ancestry-related metabolic differences, inflammatory reactions, pneumonia mortality and bowel care',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, orally disintegrating tablet or oral suspension, titrated over weeks',
+      description:
+        'Oral clozapine started at 12.5 mg and titrated slowly upward over weeks to limit orthostatic hypotension, sedation and myocarditis risk. Metabolised principally by CYP1A2, so smoking cessation can raise plasma levels substantially, and metabolic rate differs across genetic ancestry groups.',
+      safetyProfile:
+        'Agranulocytosis is the historically defining harm: cumulative incidence 0.80 per cent at one year under weekly monitoring, with 73 cases and 2 deaths in 11,555 patients and 61 of those cases within three months. The 2024 FDA meeting reported 0.03 per cent mortality from agranulocytosis at approximately 140,000 annual prescriptions. Other serious harms receive less attention and warrant more: myocarditis and cardiomyopathy typically in the first weeks, gastrointestinal hypomotility progressing to ileus, seizures at higher doses, pneumonia-related mortality, orthostatic hypotension during titration, hypersalivation, and substantial metabolic effects. Haematological monitoring is now recommended rather than enforced through a centralised database.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why keep a drug that stops the bone marrow making white cells?',
+        a: 'Because it is the only drug that works in the population it treats, and because the harm is detectable before it becomes fatal. In the trial that established it, patients had failed at least three antipsychotics and then a further six-week haloperidol trial; 30 per cent responded to clozapine against 4 per cent to chlorpromazine. It is also the only antipsychotic shown to reduce recurrent suicidal behaviour, in a two-year trial against olanzapine. Against that, agranulocytosis occurred in 0.80 per cent at one year under weekly monitoring, with two deaths among 11,555 patients. A hazard that a blood test finds in time is manageable in a way that most of the harms in this file were not.',
+        auditNote:
+          '61 of the 73 agranulocytosis cases occurred within three months of starting, which is why monitoring is front-loaded rather than uniform.',
+      },
+      {
+        q: 'Why was the monitoring programme removed in 2025?',
+        a: 'Because the accumulated evidence indicated the requirements had become more restrictive than the measured hazard justified, and because the restriction itself had a cost. The November 2024 FDA meeting recorded about 140,000 annual prescriptions and 0.03 per cent mortality from agranulocytosis. Patient advocates argued at that meeting that the restrictions were deterring prescribing badly enough to cost lives from untreated illness. The programme was eliminated and the June 2025 package insert removed the centralised database, making haematological monitoring recommended rather than mandatory. The molecule is unchanged; the judgement about how much apparatus its risk warrants is what moved.',
+      },
+      {
+        q: 'Is agranulocytosis actually the main danger?',
+        a: "It is the most famous one and probably not the most consequential in practice. The post-REMS literature identifies the priorities as slower titration, ancestry-related differences in metabolism, inflammatory reactions, pneumonia-related mortality and bowel care. Myocarditis appears in the first weeks. Clozapine-induced gastrointestinal hypomotility can progress to ileus and death. None of those is picked up by a white-cell count. A safety programme built around one measurable hazard tends to make the drug's risk profile look like that hazard, and this is a good illustration of the distortion.",
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file does not carry a pricing block. Clozapine is currently marketed with an extensive generic market, and prices vary by product and payer.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Kane J, Honigfeld G, Singer J, Meltzer H. Clozapine for the treatment-resistant schizophrenic: a double-blind comparison with chlorpromazine. Arch Gen Psychiatry 1988;45:789-796',
+        identifier: '10.1001/archpsyc.1988.01800330013001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Alvir JM, Lieberman JA, Safferman AZ, Schwimmer JL, Schaaf JA. Clozapine-induced agranulocytosis: incidence and risk factors in the United States. N Engl J Med 1993;329:162-167',
+        identifier: '10.1056/NEJM199307153290303',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Potkin SG, Alphs L, Hsu C, Krishnan KR, et al., InterSePT Study Group. Predicting suicidal risk in schizophrenic and schizoaffective patients in a prospective two-year trial. Biol Psychiatry 2003;54:444-452',
+        identifier: '10.1016/s0006-3223(03)00178-1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Leung JG, Cotes RO. A call to action for starting clozapine: increasing clozapine use and safety in a post-REMS era. Focus (Am Psychiatr Publ) 2025;23:375-388',
+        identifier: '10.1176/appi.focus.20250023',
+        kind: 'doi',
+      },
+      {
+        label:
+          'de Leon J. Are the 8 Finnish deaths explained by agranulocytosis more important than the thousands of suicide deaths associated with clozapine underuse? J Clin Psychopharmacol 2026',
+        identifier: '10.1097/JCP.0000000000002218',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: CLOZARIL (clozapine), NDA 019758 — with an extensive generic market',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019758',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 135398737 — clozapine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135398737',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 32. Thioridazine — the antipsychotic that failed on the electrocardiogram
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'thioridazine',
+    name: 'Thioridazine',
+    tradeName: 'Mellaril, Mellaril-S',
+    sponsor: 'Sandoz, later Novartis (NDA 011808, NDA 017923); generics from Mylan and others',
+    targetGene: 'DRD2 and KCNH2',
+    targetProtein:
+      'Dopamine D2 receptor (therapeutic target); hERG potassium channel, the rapid delayed rectifier current (toxicity target)',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1962,
+    indication:
+      'Schizophrenia, restricted in July 2000 to patients who have failed adequate courses of other antipsychotics, with a boxed warning for dose-related QTc prolongation. Brand Mellaril was discontinued and the generic market has largely followed.',
+    patientFriendlyIndication:
+      'An older antipsychotic tablet, restricted and then effectively withdrawn over heart rhythm risk',
+    anatomicalSite:
+      'Mesolimbic dopamine pathways; the toxicity site is the ventricular myocyte repolarising current',
+    conditionContext: {
+      conditionExplainer:
+        'Thioridazine was a widely used first-generation antipsychotic, valued because it caused fewer extrapyramidal symptoms than haloperidol at equivalent antipsychotic effect. It was prescribed at very high doses and for long periods.',
+      whyItMatters:
+        'Sudden unexplained death in psychiatric patients was long treated as a feature of the illness or of institutional care. Measuring the electrocardiogram turned it into a drug effect with an odds ratio, a dose relationship and a genotype.',
+      whoTakesThis:
+        'Almost nobody. Drugs@FDA records Mellaril and most generic thioridazine products in Discontinued marketing status, and the surviving generic carries the restricted indication and boxed warning.',
+      clinicalGoals:
+        'Antipsychotic effect in patients who have failed other agents, without prolonging cardiac repolarisation into the range where torsades de pointes occurs.',
+    },
+    oneSentenceVerdict:
+      'A first-generation antipsychotic restricted in 2000 and effectively withdrawn after electrocardiographic measurement in 495 psychiatric patients gave an odds ratio of 5.4 (95% CI 2.0 to 13.7) for abnormal QTc, with a separate study finding QTc over 420 ms in 54 per cent of patients on monotherapy and correlating the prolongation with dose, plasma concentration and CYP2D6 hydroxylation capacity.',
+    laymanHowItWorks:
+      "Thioridazine treats psychosis by blocking dopamine receptors. It also blocks a potassium channel that heart muscle cells use to reset their electrical charge after each beat. With that channel blocked, resetting takes longer, the QT interval on an electrocardiogram lengthens, and the heart becomes vulnerable to a chaotic rhythm called torsades de pointes that can stop it. The effect grows with dose, with blood level, and with how slowly a person's liver clears the drug.",
+    auditConfidence: 'High Confidence',
+    confidenceScore: 85,
+    substitutes: {
+      summary:
+        'The second-generation antipsychotics displaced thioridazine entirely, and among the first-generation drugs haloperidol remains available. QT liability varies across both groups, so it is a drug-level property rather than a generation-level one.',
+      conventionalRx: [
+        {
+          name: 'Haloperidol',
+          class: 'First-generation butyrophenone antipsychotic',
+          howItCompares:
+            "The first-generation alternative. More extrapyramidal effect than thioridazine, which was thioridazine's original selling point, but without the same magnitude of QTc liability at usual oral doses.",
+          typicalCost: '',
+          prosAndCons:
+            'Pros: still available, extensive record, injectable forms. Cons: extrapyramidal symptoms, tardive dyskinesia, QT effect at high intravenous doses.',
+        },
+        {
+          name: 'Risperidone or olanzapine',
+          class: 'Second-generation antipsychotics',
+          howItCompares:
+            'Displaced the first-generation drugs in routine practice. Lower extrapyramidal burden and substantially less QTc effect than thioridazine, with metabolic liability instead.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: better tolerated neurologically, modest QT effect. Cons: weight gain, dyslipidaemia, hyperprolactinaemia with risperidone.',
+        },
+        {
+          name: 'Clozapine',
+          class: 'Dibenzodiazepine antipsychotic',
+          howItCompares:
+            "For patients who have failed other antipsychotics — the population thioridazine's restricted label now describes — clozapine is the drug with demonstrated efficacy, at the cost of a haematological rather than a cardiac risk.",
+          typicalCost: '',
+          prosAndCons:
+            'Pros: the only established option in treatment resistance. Cons: agranulocytosis, myocarditis, gastrointestinal hypomotility.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1CCCCC1CCN2C3=CC=CC=C3SC4=C2C=C(C=C4)SC',
+      chemicalFormula: 'C21H26N2S2',
+      molecularWeight: '370.6 g/mol',
+      targetReceptorAffinity:
+        'A piperidine phenothiazine with a methylthio substituent, blocking dopamine D2 receptors as its antipsychotic action, with strong anticholinergic and alpha-adrenergic activity. The decisive off-target property is potent blockade of the hERG potassium channel carrying the rapid delayed rectifier current, which lengthens ventricular repolarisation. Its metabolites mesoridazine and sulforidazine are themselves active, and mesoridazine was separately marketed, so plasma exposure to cardiac-active material exceeds the parent concentration.',
+      structureSource: {
+        label: 'PubChem CID 5452 (thioridazine) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5452',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'thi-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, phenothiazine substitution and stereochemistry',
+          description:
+            'Confirm the phenothiazine core, the 2-methylthio substituent and the N-methylpiperidinyl ethyl side chain, and characterise the stereocentre on the piperidine ring. Phenothiazines with different ring substituents differ markedly in hERG affinity, so the substitution pattern is a safety-relevant identity attribute.',
+          reagentsAndBuffer:
+            'Thioridazine hydrochloride certified reference standard, reversed-phase HPLC with ultraviolet detection at 264 nm, chiral separation, proton and carbon NMR in deuterated methanol, LC-MS at m/z 371',
+        },
+        {
+          id: 'thi-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Active metabolite standards and sulfoxidation products',
+          description:
+            'Quantify mesoridazine and sulforidazine, the ring- and side-chain sulfoxide metabolites, alongside the parent. Both are pharmacologically active and both contribute to cardiac effect, so an assay reporting only thioridazine understates the exposure that matters.',
+          dependsOnStepId: 'thi-w1',
+          reagentsAndBuffer:
+            'Mesoridazine and sulforidazine reference standards, C18 column with acetonitrile and phosphate buffer, photodiode array detection, human liver microsome incubations, forced oxidative degradation under light-protected conditions',
+        },
+        {
+          id: 'thi-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Ventricular myocyte and stem-cell-derived cardiomyocyte preparation',
+          description:
+            'Isolated ventricular myocytes or human induced pluripotent stem cell-derived cardiomyocytes on multielectrode arrays, measuring action potential duration and field potential duration with early afterdepolarisations as the proarrhythmic readout. This preparation reports the integrated repolarisation effect rather than a single current, which is what the electrocardiogram is measuring in patients.',
+          reagentsAndBuffer:
+            'Human induced pluripotent stem cell-derived cardiomyocytes on multielectrode arrays, or isolated guinea pig ventricular myocytes with sharp microelectrode recording, Tyrode solution at 37 degrees, dofetilide as positive control, mesoridazine alongside the parent',
+        },
+        {
+          id: 'thi-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'hERG patch clamp with a dopamine receptor comparison',
+          description:
+            "Whole-cell patch clamp of the hERG current in stably transfected cells, generating a half-maximal blocking concentration, expressed as a ratio against the D2 binding affinity. That ratio is the therapeutic index for this drug's specific failure mode, and it is the number that distinguishes thioridazine from phenothiazines that survived.",
+          dependsOnStepId: 'thi-w3',
+          reagentsAndBuffer:
+            'HEK293 cells stably expressing hERG, whole-cell voltage clamp with standard step protocols, membranes expressing human DRD2 with [3H]-spiperone for the comparison, dofetilide and cisapride as positive controls, haloperidol and chlorpromazine as comparators',
+        },
+        {
+          id: 'thi-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma concentration, CYP2D6 phenotype and QTc measurement',
+          description:
+            'HPLC quantification of thioridazine and its metabolites in plasma, paired with CYP2D6 phenotyping and digitised QTc measurement. This trio is exactly what the clinical study used, and it is what converts a channel-blocking constant into a per-patient risk: dose, level and metaboliser status each independently correlate with the interval.',
+          dependsOnStepId: 'thi-w4',
+          reagentsAndBuffer:
+            'Plasma with HPLC quantification of thioridazine, mesoridazine and sulforidazine, CYP2D6 phenotyping by debrisoquine metabolic ratio or sequence-based genotyping, twelve-lead electrocardiogram with validated digitiser measurement of QTc',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'thi-a1',
+        category: 'measured',
+        title: 'Odds ratio 5.4 for abnormal QTc in 495 psychiatric patients',
+        laymanSummary:
+          'Measuring electrocardiograms across 495 psychiatric patients and 101 healthy controls, thioridazine was one of the strongest predictors of a dangerously long QT interval.',
+        technicalDetails:
+          'Electrocardiograms from 101 healthy reference individuals and 495 psychiatric patients across inpatient and community settings were analysed with a validated digitiser technique, with logistic regression used to identify predictors. Abnormal QTc, defined from the healthy reference group as more than 456 ms, was present in 8 per cent of patients (40 of 495). Robust predictors were age over 65 (odds ratio 3.0, 95% CI 1.1 to 8.3), tricyclic antidepressants (4.4, 1.6 to 12.1), thioridazine (5.4, 2.0 to 13.7) and droperidol (6.7, 1.8 to 24.8), together with antipsychotic dose — high dose 5.3 (1.2 to 24.4) and very high dose 8.2 (1.5 to 43.6). Abnormal QT dispersion and T-wave abnormality were not associated with antipsychotic treatment but were associated with lithium. The authors conclude that antipsychotics prolong QTc in a dose-related manner with substantially higher risk for thioridazine and droperidol.',
+        evidenceSource:
+          'Reilly JG, Ayis SA, Ferrier IN, Jones SJ, Thomas SH. Lancet 2000;355:1048-1052',
+        doi: '10.1016/s0140-6736(00)02035-3',
+        measuredMetric:
+          'Odds ratio for QTc above 456 ms by psychotropic drug and by antipsychotic dose band',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'thi-a2',
+        category: 'measured',
+        title: 'QTc over 420 ms in 54 per cent on monotherapy, correlated with dose and level',
+        laymanSummary:
+          'In 65 patients taking only thioridazine, more than half had a prolonged QT interval, and the length tracked both the dose and the blood concentration.',
+        technicalDetails:
+          "Sixty-five Spanish psychiatric patients on thioridazine monotherapy were studied with plasma levels of thioridazine and its metabolites measured by high-performance liquid chromatography and CYP2D6 activity phenotyped with debrisoquine during treatment. Thirty-five patients (54 per cent) had a QTc interval over 420 ms. QTc lengthening correlated with plasma concentration (P < 0.05) and with daily dose (P < 0.05). It also correlated with CYP2D6 hydroxylation capacity as measured by the debrisoquine metabolic ratio (P < 0.05) and by the thioridazine to mesoridazine ratio (P < 0.05). The authors note that patients with impaired CYP2D6 activity, including impairment caused by thioridazine's own inhibition of the enzyme, may be at greater risk.",
+        evidenceSource:
+          'QTc interval lengthening is related to CYP2D6 hydroxylation capacity and plasma concentration of thioridazine in patients. J Psychopharmacol 2002;16:361-364',
+        doi: '10.1177/026988110201600411',
+        measuredMetric:
+          'Proportion with QTc over 420 ms, and its correlation with dose, plasma concentration and CYP2D6 metabolic ratio',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'thi-a3',
+        category: 'measured',
+        title: 'The drug inhibits the enzyme that clears it, so risk compounds',
+        laymanSummary:
+          'Thioridazine blocks the liver enzyme that breaks it down, so levels rise faster than the dose does — and higher levels mean a longer QT interval.',
+        technicalDetails:
+          'Thioridazine is metabolised principally by CYP2D6 and is itself a potent inhibitor of that enzyme. The clinical study measured this directly, finding QTc correlated with the debrisoquine metabolic ratio and with the thioridazine to mesoridazine ratio, and its authors identify enzyme inhibition by thioridazine itself as a route to increased risk. The consequences are compounding: plasma concentration rises non-linearly with dose, poor metabolisers by genotype start at higher exposure, and any co-prescribed CYP2D6 inhibitor — including several antidepressants routinely given alongside antipsychotics — shifts the whole distribution. A dose that is safe in one patient is not necessarily safe in another taking the same amount.',
+        evidenceSource:
+          'QTc interval lengthening is related to CYP2D6 hydroxylation capacity and plasma concentration of thioridazine in patients. J Psychopharmacol 2002;16:361-364',
+        doi: '10.1177/026988110201600411',
+        measuredMetric:
+          'Correlation of QTc with debrisoquine metabolic ratio and thioridazine to mesoridazine ratio',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'thi-a4',
+        category: 'conclusion_shift',
+        title: 'Sudden death in psychiatric patients was reclassified as a drug effect',
+        laymanSummary:
+          'Unexplained sudden deaths among psychiatric inpatients had been attributed to the illness or the setting. Measuring the electrocardiogram made them a drug problem with a number attached.',
+        technicalDetails:
+          "The Lancet study opens from the premise that sudden unexplained death in psychiatric patients may be due to drug-induced arrhythmia, with QTc lengthening as a predictive marker, and sets out to estimate its point prevalence. That framing is the shift. Before it, sudden death in this population was an epidemiological observation without an attributable mechanism, easily assigned to the illness, to physical restraint or to institutional care. Afterwards it was a measurable, dose-related, drug-specific effect on an interval that any electrocardiograph reports. Thioridazine's restriction in July 2000 to patients who had failed other antipsychotics, with a boxed warning for dose-related QTc prolongation, followed directly.",
+        evidenceSource: 'Reilly JG et al. Lancet 2000;355:1048-1052',
+        doi: '10.1016/s0140-6736(00)02035-3',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'thi-a5',
+        category: 'inferred',
+        title: 'QTc is a surrogate, and 8 per cent had an abnormal one without dying',
+        laymanSummary:
+          'A long QT interval predicts a dangerous rhythm; it is not the rhythm itself. Most patients with a prolonged interval never have an arrhythmia.',
+        technicalDetails:
+          'The Lancet study measured QTc above 456 ms in 8 per cent of psychiatric patients and explicitly frames the interval as a predictive marker for drug-induced arrhythmia rather than as the outcome. The monotherapy study found QTc above 420 ms in 54 per cent of patients without reporting arrhythmic events. Torsades de pointes is rare even where QTc prolongation is common, and the relationship between the interval and the event is probabilistic and steeply non-linear. Restricting thioridazine on a surrogate is defensible: the surrogate is mechanistically direct, dose-related, and measurable, and there are alternatives. It remains a decision made on an interval rather than on counted deaths, and stating it as "thioridazine causes fatal arrhythmias in 8 per cent of patients" would misrepresent it entirely.',
+        evidenceSource:
+          'Reilly JG et al. Lancet 2000;355:1048-1052; J Psychopharmacol 2002;16:361-364',
+        doi: '10.1016/s0140-6736(00)02035-3',
+        inferredClaim:
+          'That the proportion of patients with prolonged QTc is the proportion at risk of fatal arrhythmia',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'thi-a6',
+        category: 'measured',
+        title: 'The same study caught droperidol, with an even higher odds ratio',
+        laymanSummary:
+          'Droperidol scored 6.7 in the same analysis that gave thioridazine 5.4. Both drugs were restricted within about eighteen months of it.',
+        technicalDetails:
+          "In the same logistic regression, droperidol carried an odds ratio of 6.7 (95% CI 1.8 to 24.8) for abnormal QTc against thioridazine's 5.4 (2.0 to 13.7). Thioridazine was restricted with a boxed warning in July 2000 and droperidol received its own boxed warning in December 2001. The two drugs then diverged sharply in how the evidence was received: droperidol's warning was contested in the emergency medicine literature and the drug returned to wide use, while thioridazine's restriction was not seriously challenged and its market disappeared. The difference is not in the odds ratios, which overlap heavily. It is that droperidol had a distinctive clinical niche with no equivalent substitute, and thioridazine was one first-generation antipsychotic among several.",
+        evidenceSource: 'Reilly JG et al. Lancet 2000;355:1048-1052',
+        doi: '10.1016/s0140-6736(00)02035-3',
+        measuredMetric: 'Odds ratios for abnormal QTc: thioridazine 5.4, droperidol 6.7',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'thi-a7',
+        category: 'measured',
+        title: 'The market disappeared, without a formal withdrawal-for-safety listing',
+        laymanSummary:
+          'Mellaril and most generics are recorded as discontinued. Thioridazine does not appear on the federal list of drugs withdrawn for safety reasons.',
+        technicalDetails:
+          'Drugs@FDA records NDA 011808 (MELLARIL) and NDA 017923 (MELLARIL-S), Novartis, with products in Discontinued status, and most generic thioridazine applications are likewise discontinued, with at least one remaining in Prescription status. Thioridazine does not appear in 21 CFR 216.24, the codified list of drug products withdrawn or removed for reasons of safety or effectiveness, which carries rofecoxib, propoxyphene, rapacuronium, tegaserod and others. So the label restriction of July 2000 was followed by commercial abandonment rather than by regulatory removal. The distinction matters for the record: a drug can leave the market entirely on the strength of a warning that made it unsellable, without any document ever declaring it withdrawn.',
+        evidenceSource:
+          'Drugs@FDA NDA 011808 and NDA 017923 (MELLARIL, MELLARIL-S, Novartis) — Discontinued; 21 CFR 216.24, which does not list thioridazine',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Oral tablets or suspension, historically at high doses',
+        laymanDesc:
+          'Taken by mouth, often at high daily doses and for years at a time in chronic schizophrenia.',
+        molecularDetail:
+          'Oral thioridazine hydrochloride tablets or the Mellaril-S suspension. Dosing historically extended to several hundred milligrams daily, and the QTc effect is dose- and concentration-related across that range.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Metabolised by CYP2D6 into further active compounds',
+        laymanDesc:
+          'The liver converts it into two related compounds that are also active, using an enzyme the drug itself blocks.',
+        molecularDetail:
+          'CYP2D6-mediated oxidation to mesoridazine and sulforidazine, both pharmacologically active. Thioridazine inhibits CYP2D6, so its own clearance falls as concentration rises, and poor metabolisers reach higher exposures at the same dose.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks dopamine D2 receptors — and the hERG potassium channel',
+        laymanDesc:
+          'It occupies dopamine receptors in the brain, which treats psychosis, and separately plugs a potassium channel in heart muscle.',
+        molecularDetail:
+          'Dopamine D2 antagonism in mesolimbic pathways gives the antipsychotic effect, with anticholinergic and alpha-adrenergic activity accounting for much of the side-effect profile. Independently, potent blockade of the hERG channel reduces the rapid delayed rectifier potassium current.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Ventricular repolarisation slows and the QT interval lengthens',
+        laymanDesc:
+          'Heart muscle cells take longer to reset after each beat, which shows on an electrocardiogram as a longer QT interval.',
+        molecularDetail:
+          'Reduced repolarising current prolongs the ventricular action potential and the QT interval, with increased transmural dispersion of repolarisation and a substrate for early afterdepolarisations and re-entry — the mechanism of torsades de pointes.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Psychosis controlled; QTc prolonged in a majority on monotherapy',
+        laymanDesc:
+          'It was an effective antipsychotic with less stiffness and tremor than the alternatives. More than half of patients on it alone had a prolonged QT interval.',
+        molecularDetail:
+          'Measured: odds ratio 5.4 (95% CI 2.0 to 13.7) for QTc above 456 ms in 495 psychiatric patients. Measured: QTc above 420 ms in 54 per cent of 65 patients on monotherapy, correlated with dose, plasma concentration and CYP2D6 hydroxylation capacity.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'QTc prevalence study in psychiatric patients (Reilly et al.)',
+        phase:
+          'Cross-sectional prevalence study with healthy reference group and logistic regression',
+        sampleSize: 596,
+        primaryEndpoint:
+          'Point prevalence of QTc lengthening above 456 ms and its predictors among psychiatric inpatients and community patients',
+        endpointMet: true,
+        statisticalPValue:
+          'Abnormal QTc in 8 per cent (40 of 495); thioridazine odds ratio 5.4 (95% CI 2.0 to 13.7), droperidol 6.7 (1.8 to 24.8), tricyclics 4.4 (1.6 to 12.1), age over 65 3.0 (1.1 to 8.3), very high antipsychotic dose 8.2 (1.5 to 43.6)',
+        unreportedAdverseSignals:
+          'QTc is a predictive marker rather than an outcome; no arrhythmic events are counted. Confidence intervals are wide, with the droperidol interval running from 1.8 to 24.8.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Thioridazine monotherapy QTc and CYP2D6 phenotype study',
+        phase: 'Prospective observational study with plasma concentration and enzyme phenotyping',
+        sampleSize: 65,
+        primaryEndpoint:
+          'Relationship of QTc interval to thioridazine dose, plasma concentration and CYP2D6 hydroxylation capacity',
+        endpointMet: true,
+        statisticalPValue:
+          'QTc over 420 ms in 35 of 65 (54 per cent); correlation with plasma concentration P < 0.05, daily dose P < 0.05, debrisoquine metabolic ratio P < 0.05, and thioridazine to mesoridazine ratio P < 0.05',
+        unreportedAdverseSignals:
+          'A 420 ms threshold is substantially lower than the 456 ms used in the larger study, so the 54 per cent figure is not comparable to the 8 per cent prevalence there.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Thioridazine odds ratio 5.4 (95% CI 2.0 to 13.7) for QTc above 456 ms, against droperidol 6.7 and tricyclics 4.4, in 495 psychiatric patients',
+        'Abnormal QTc present in 8 per cent of psychiatric patients against a healthy reference threshold of 456 ms',
+        'QTc above 420 ms in 54 per cent of 65 patients on thioridazine monotherapy',
+        'QTc correlated with daily dose, plasma concentration, debrisoquine metabolic ratio and thioridazine to mesoridazine ratio, all P < 0.05',
+      ],
+      unsupportedInferences: [
+        'That the proportion with prolonged QTc is the proportion at risk of fatal arrhythmia; the interval is a predictive marker, not the event',
+        'That the 54 per cent and 8 per cent figures are comparable; they use thresholds of 420 ms and 456 ms respectively',
+        'That thioridazine is formally withdrawn for safety — it is commercially discontinued and does not appear in 21 CFR 216.24',
+      ],
+      whatFailedInitially: [
+        'Marketed from 1962 and restricted in July 2000 to patients who had failed adequate courses of other antipsychotics, with a boxed warning',
+        'The restriction rested on an electrocardiographic surrogate measured across a psychiatric population, not on counted arrhythmic deaths',
+        'Brand Mellaril and most generics are recorded in Drugs@FDA as Discontinued',
+      ],
+      realWorldOutcome: [
+        'The second-generation antipsychotics had already displaced it in routine practice by the time of the restriction',
+        'Systematic QT measurement became standard in antipsychotic development, and hERG screening a regulatory expectation',
+        'Droperidol, with a higher odds ratio in the same study, contested its warning successfully and returned; thioridazine did not',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet or suspension',
+      description:
+        'Oral thioridazine hydrochloride, historically at daily doses extending into the hundreds of milligrams. Metabolised by CYP2D6 to the active metabolites mesoridazine and sulforidazine, with the parent inhibiting the same enzyme so that plasma concentration rises disproportionately with dose.',
+      safetyProfile:
+        'Dose-related QTc prolongation is the reason for the restriction: odds ratio 5.4 (95% CI 2.0 to 13.7) for QTc above 456 ms in a psychiatric population, and QTc above 420 ms in 54 per cent of patients on monotherapy, correlated with dose, plasma concentration and CYP2D6 hydroxylation capacity. Torsades de pointes and sudden death are the feared consequences. Concurrent CYP2D6 inhibitors, genetic poor metaboliser status and electrolyte disturbance all raise exposure or susceptibility. Irreversible pigmentary retinopathy occurs at high cumulative doses and is a separate dose-limiting harm. Anticholinergic effects, orthostatic hypotension, sedation, sexual dysfunction and extrapyramidal symptoms apply as with other phenothiazines.',
+    },
+    commonQuestions: [
+      {
+        q: 'How was the risk actually established?',
+        a: "By measuring electrocardiograms rather than by counting deaths. In 495 psychiatric patients and 101 healthy controls, QTc above 456 ms was present in 8 per cent of patients, and logistic regression identified thioridazine as one of the strongest predictors with an odds ratio of 5.4. A separate study of 65 patients on thioridazine alone found QTc above 420 ms in 54 per cent, correlated with dose, with plasma concentration and with how fast the patient's CYP2D6 enzyme worked. Those are consistent, mechanistically coherent measurements of an interval that predicts arrhythmia. They are not a count of arrhythmias.",
+        auditNote:
+          'The two studies used different thresholds — 456 ms and 420 ms — so their headline percentages are not comparable.',
+      },
+      {
+        q: 'Why does the risk vary so much between patients on the same dose?',
+        a: 'Because plasma concentration does, and the QT effect tracks concentration rather than dose. Thioridazine is cleared by CYP2D6 and simultaneously inhibits it, so clearance falls as concentration rises. People who are genetically poor metabolisers start higher. Anything else that inhibits CYP2D6 — several antidepressants routinely co-prescribed in this population — pushes exposure higher again. The study measured this directly: QTc correlated with the debrisoquine metabolic ratio and with the thioridazine to mesoridazine ratio, not just with the milligrams prescribed.',
+      },
+      {
+        q: 'Is it formally withdrawn?',
+        a: 'Not in the regulatory sense. Thioridazine does not appear in 21 CFR 216.24, the codified list of products withdrawn or removed for reasons of safety or effectiveness. What happened was a July 2000 label restriction to patients who had failed other antipsychotics, plus a boxed warning for dose-related QTc prolongation, after which the brand and most generics were discontinued commercially. A restriction that makes a drug unsellable produces the same outcome as a withdrawal, and leaves a different paper trail.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because brand Mellaril and most generic thioridazine products are recorded as discontinued, and there is no meaningful current list price to cite.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Reilly JG, Ayis SA, Ferrier IN, Jones SJ, Thomas SH. QTc-interval abnormalities and psychotropic drug therapy in psychiatric patients. Lancet 2000;355:1048-1052',
+        identifier: '10.1016/s0140-6736(00)02035-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'QTc interval lengthening is related to CYP2D6 hydroxylation capacity and plasma concentration of thioridazine in patients. J Psychopharmacol 2002;16:361-364',
+        identifier: '10.1177/026988110201600411',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Llerena A et al. Factors affecting drug concentrations and QT interval during thioridazine therapy. Clin Pharmacol Ther 2007;82:555-565',
+        identifier: '10.1038/sj.clpt.6100195',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: MELLARIL (thioridazine hydrochloride), NDA 011808, Novartis — Discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=011808',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          '21 CFR 216.24 — Drug products withdrawn or removed from the market for reasons of safety or effectiveness; thioridazine does not appear on this list',
+        identifier: 'https://www.ecfr.gov/current/title-21/section-216.24',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5452 — thioridazine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5452',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 33. Droperidol — a black box the specialty that used the drug never accepted
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'droperidol',
+    name: 'Droperidol',
+    tradeName: 'Inapsine',
+    sponsor:
+      'Akorn and Taylor Pharmaceuticals originally (NDA 016796); now Hikma and American Regent generics',
+    targetGene: 'DRD2 and KCNH2',
+    targetProtein:
+      'Dopamine D2 receptor (therapeutic target); hERG potassium channel carrying the rapid delayed rectifier current (the alleged toxicity target)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1970,
+    indication:
+      'Reduction of the incidence of nausea and vomiting associated with surgical and diagnostic procedures, and in practice sedation of acute undifferentiated agitation and treatment of headache in emergency departments. A boxed warning for QT prolongation and torsades de pointes was added in December 2001.',
+    patientFriendlyIndication:
+      'An injected drug used for severe nausea, agitation and migraine, carrying a heart-rhythm warning that its main users dispute',
+    anatomicalSite:
+      'Chemoreceptor trigger zone and mesolimbic dopamine pathways; the alleged toxicity site is ventricular repolarisation',
+    conditionContext: {
+      conditionExplainer:
+        'Emergency departments need a drug that reliably sedates an acutely agitated undifferentiated patient within minutes, and that treats intractable nausea and headache. Droperidol did all three, which is why its restriction was felt as a clinical loss rather than a technicality.',
+      whyItMatters:
+        "This is the file's clearest case of a contested regulatory action. A boxed warning was added, use collapsed, the specialty that used the drug published evidence against the warning, supply lapsed for years, and the drug came back with the warning still on the label.",
+      whoTakesThis:
+        'Patients in emergency departments and operating theatres. Droperidol returned to wide United States availability in early 2019 after a six-year hiatus and is recorded in Drugs@FDA as Prescription under generic applications.',
+      clinicalGoals:
+        'Rapid control of nausea, agitation or headache, without prolonging cardiac repolarisation into an arrhythmogenic range.',
+    },
+    oneSentenceVerdict:
+      'A butyrophenone given a boxed warning in December 2001 for QT prolongation and torsades de pointes, which an evidence-based review found unconvincing for a causal relationship at therapeutic doses and which a later study of 16,546 emergency department doses put at one case of torsades de pointes — 0.006 per cent — with mean QTc rising from 424.3 to 427.6 milliseconds.',
+    laymanHowItWorks:
+      "Droperidol blocks dopamine receptors, which stops nausea at the brain's vomiting trigger zone and calms agitation. Like many drugs, it also has some effect on a potassium channel the heart uses to reset after each beat, which can lengthen the QT interval on an electrocardiogram. The question that has never been settled is whether the amount it does this at the doses actually used is enough to matter, and the evidence gathered since the warning suggests it mostly is not.",
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 60,
+    substitutes: {
+      summary:
+        'Ondansetron for nausea, haloperidol or midazolam or ketamine for acute agitation. Ondansetron and haloperidol both prolong QT themselves, which is one reason the droperidol warning was seen as inconsistent.',
+      conventionalRx: [
+        {
+          name: 'Ondansetron',
+          class: '5-HT3 receptor antagonist antiemetic',
+          howItCompares:
+            "The drug that absorbed most of droperidol's antiemetic use after 2001. It carries its own dose-related QT prolongation and a resulting restriction on single intravenous doses, which is the comparison the droperidol literature repeatedly makes.",
+          typicalCost: '',
+          prosAndCons:
+            'Pros: no boxed warning, effective antiemetic. Cons: its own QT effect, headache, constipation, no sedative action for agitation.',
+        },
+        {
+          name: 'Haloperidol',
+          class: 'Butyrophenone antipsychotic',
+          howItCompares:
+            'The closest pharmacological relative and the main substitute for acute agitation. It also prolongs QT, particularly intravenously, and carries warnings rather than a boxed warning for that indication.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: familiar, no boxed QT warning. Cons: slower onset than droperidol for agitation, extrapyramidal effects, its own QT liability.',
+        },
+        {
+          name: 'Midazolam or ketamine',
+          class: 'Benzodiazepine or dissociative anaesthetic',
+          howItCompares:
+            'Sedative alternatives for acute agitation with no QT effect at all. They trade a cardiac question for a respiratory one, and neither treats nausea or headache.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: no QT liability, rapid. Cons: respiratory depression with midazolam, emergence reactions and hypersalivation with ketamine.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CN(CC=C1N2C3=CC=CC=C3NC2=O)CCCC(=O)C4=CC=C(C=C4)F',
+      chemicalFormula: 'C22H22FN3O2',
+      molecularWeight: '379.4 g/mol',
+      targetReceptorAffinity:
+        'A butyrophenone, structurally close to haloperidol, with potent dopamine D2 antagonism and moderate alpha-1 adrenergic blockade. Like haloperidol and many other drugs it inhibits the hERG potassium channel in vitro. The contested question is not whether that inhibition exists but whether the free plasma concentration achieved at the antiemetic and sedative doses actually used approaches the blocking concentration — which is the same margin question that decided rapacuronium elsewhere in this file, asked here about a drug that was restricted rather than removed.',
+      structureSource: {
+        label: 'PubChem CID 3168 (droperidol) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3168',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dro-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the butyrophenone and its tetrahydropyridine',
+          description:
+            'Confirm the fluorophenyl butyrophenone chain, the benzimidazolone and the tetrahydropyridine ring, and distinguish droperidol from haloperidol and from the related benperidol and domperidone structures, which share the butyrophenone motif with different heterocycles.',
+          reagentsAndBuffer:
+            'Droperidol certified reference standard alongside haloperidol and benperidol, reversed-phase HPLC with ultraviolet detection at 245 nm, proton and fluorine-19 NMR in deuterated chloroform, LC-MS at m/z 380',
+        },
+        {
+          id: 'dro-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Injection formulation assay and particulate testing',
+          description:
+            'Assay the parenteral solution for droperidol content, pH and lactic acid buffer, with sub-visible particulate and sterility testing. This is an ampoule product given intravenously in unmonitored settings, so injectable release specifications rather than tablet dissolution are what govern the exposure a patient receives.',
+          dependsOnStepId: 'dro-w1',
+          reagentsAndBuffer:
+            'Injection solution with lactic acid buffer, C18 column with acetonitrile and phosphate gradient, USP sterility and bacterial endotoxin testing, light obscuration particulate counting, photostability under ICH conditions',
+        },
+        {
+          id: 'dro-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Cardiomyocyte repolarisation preparation at clinical concentrations',
+          description:
+            'Human induced pluripotent stem cell-derived cardiomyocytes or isolated ventricular myocytes exposed across the concentration range actually achieved by a 0.625 to 2.5 mg intravenous dose, measuring field potential duration and early afterdepolarisations. The concentration range is the entire point: an effect demonstrated at ten times clinical exposure does not establish a clinical hazard.',
+          reagentsAndBuffer:
+            'Human induced pluripotent stem cell-derived cardiomyocytes on multielectrode arrays, Tyrode solution at 37 degrees, droperidol at measured clinical free plasma concentrations, dofetilide as positive control, ondansetron and haloperidol as comparators at their own clinical concentrations',
+        },
+        {
+          id: 'dro-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'hERG half-blocking concentration against free plasma exposure',
+          description:
+            'Whole-cell hERG patch clamp to obtain a half-maximal blocking concentration, then express it as a safety margin over the free plasma concentration achieved clinically, with ondansetron and haloperidol measured on the same terms. Reporting the margin rather than the raw blocking constant is what makes the comparison between these three drugs meaningful, and it is precisely the comparison the boxed warning did not make.',
+          dependsOnStepId: 'dro-w3',
+          reagentsAndBuffer:
+            'HEK293 cells stably expressing hERG, whole-cell voltage clamp, plasma protein binding determination by equilibrium dialysis, validated LC-MS/MS for free and total droperidol, ondansetron and haloperidol as comparators',
+        },
+        {
+          id: 'dro-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'QT nomogram plotting and event ascertainment',
+          description:
+            'Measure the QT interval against heart rate and plot on the QT nomogram rather than relying on a rate-correction formula, and ascertain torsades de pointes events against a defined denominator of doses given. Bazett correction systematically overestimates QTc at high heart rates, which is exactly the state agitated and unwell patients are in when they receive this drug.',
+          dependsOnStepId: 'dro-w4',
+          reagentsAndBuffer:
+            'Twelve-lead electrocardiograms before and after dosing, QT and RR interval measurement with nomogram plotting alongside Bazett correction, electronic health record query for a complete dose denominator, cardiac arrest and arrhythmia event review',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dro-a1',
+        category: 'conclusion_shift',
+        title: 'The boxed warning came from surveillance reports, not the published literature',
+        laymanSummary:
+          'A formal review found that the evidence behind the 2001 warning came from spontaneous adverse-event reports rather than from studies, and did not establish that therapeutic doses cause fatal arrhythmias.',
+        technicalDetails:
+          "An evidence-based review examined the association between droperidol and QT prolongation or torsades de pointes, covering three clinical studies, one published abstract, seven case reports and available MedWatch post-marketing surveillance data. Applying evidence-based medicine criteria and Hill's criteria for causation, the authors concluded that the evidence is not convincing for a causal relationship between therapeutic droperidol administration and life-threatening cardiac events, and that the boxed warning appears to have originated from post-marketing surveillance data rather than from data reported in the peer-reviewed literature. They call for ongoing safety monitoring and more definitive study rather than dismissing the question.",
+        evidenceSource: 'Kao LW, Kirk MA, Evers SJ, Rosenfeld SH. Ann Emerg Med 2003;41:546-558',
+        doi: '10.1067/mem.2003.110',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'dro-a2',
+        category: 'measured',
+        title: 'One torsades case in 16,546 doses, and a 3.3 millisecond mean QTc change',
+        laymanSummary:
+          'Reviewing more than sixteen thousand doses given in an emergency department, one patient had the arrhythmia — and that patient had multiple other risk factors and tolerated a later re-challenge.',
+        technicalDetails:
+          'Patients receiving droperidol at an urban Level I trauma centre from 1997 to 2001 were identified by electronic health record query and reviewed for cardiac arrest, with electrocardiographic data recorded for both critically ill and non-critical patients. Among non-critical patients, 15,374 received 18,020 doses and 2,431 had an electrocardiogram; in the 170 with recordings before and after droperidol, mean QTc was 424.3 ms (95% CI 419.7 to 428.9) before and 427.6 ms (424.3 to 430.9) after. Among 1,172 critically ill patients, 396 had an electrocardiogram, and in the 114 with paired recordings mean QTc was 435.7 ms before and 435.8 ms after. Of 337 electrocardiograms suitable for the QT nomogram, 13 (3.8 per cent) were above the at-risk line: 3 of 136 (2.2 per cent) before and 10 of 202 (4.9 per cent) after. A single case of torsades de pointes occurred, in a patient with multiple risk factors, and did not recur on droperidol re-challenge — an incidence of 1 in 16,546, or 0.006 per cent (95% CI 0.00015 to 0.03367 per cent).',
+        evidenceSource:
+          'The incidence of QT prolongation and torsades des pointes in patients receiving droperidol in an urban emergency department. West J Emerg Med 2020;21:728-736',
+        doi: '10.5811/westjem.2020.4.47036',
+        measuredMetric:
+          'Incidence of torsades de pointes per dose, and mean QTc change before and after droperidol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dro-a3',
+        category: 'measured',
+        title: 'The independent prevalence study found droperidol the strongest QTc predictor',
+        laymanSummary:
+          'The same electrocardiographic survey that condemned thioridazine gave droperidol an even higher odds ratio for a prolonged QT interval.',
+        technicalDetails:
+          'In a cross-sectional study of 495 psychiatric patients and 101 healthy reference individuals, with QTc measured by validated digitiser technique and predictors identified by logistic regression, droperidol carried an odds ratio of 6.7 (95% CI 1.8 to 24.8) for QTc above 456 ms — the highest of the individual drugs examined, above thioridazine at 5.4 (2.0 to 13.7) and tricyclic antidepressants at 4.4 (1.6 to 12.1). This is independent evidence that droperidol does prolong QTc, and it is the strongest measurement supporting the warning. Its limitations are equally clear: the confidence interval runs from 1.8 to 24.8, QTc is a predictive marker rather than an event, and the population is psychiatric inpatients on chronic antipsychotic regimens rather than emergency patients receiving a single low intravenous dose.',
+        evidenceSource:
+          'Reilly JG, Ayis SA, Ferrier IN, Jones SJ, Thomas SH. Lancet 2000;355:1048-1052',
+        doi: '10.1016/s0140-6736(00)02035-3',
+        measuredMetric: 'Odds ratio 6.7 (95% CI 1.8 to 24.8) for QTc above 456 ms with droperidol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dro-a4',
+        category: 'inferred',
+        title: 'The dose used matters, and the two evidence bases are about different doses',
+        laymanSummary:
+          'The psychiatric evidence concerns patients on antipsychotic regimens; the emergency evidence concerns single small intravenous doses. Reading either as settling the other is the central error here.',
+        technicalDetails:
+          'Droperidol is used at antiemetic doses well under a milligram to a few milligrams intravenously in the emergency and perioperative settings, and was historically used at far higher doses as a neuroleptic. The prevalence study that produced the 6.7 odds ratio examined psychiatric patients in inpatient and community settings, where antipsychotic dose was itself a strong independent predictor — high dose 5.3 and very high dose 8.2. The emergency department series measured 18,020 doses in ordinary clinical use and found a mean QTc change of 3.3 ms and one arrhythmia in 16,546. Both are correct about their own population. A boxed warning that does not distinguish them treats a dose-dependent effect as though dose were irrelevant, which is what the emergency medicine literature has objected to for two decades.',
+        evidenceSource:
+          'Reilly JG et al. Lancet 2000;355:1048-1052; West J Emerg Med 2020;21:728-736',
+        doi: '10.5811/westjem.2020.4.47036',
+        inferredClaim:
+          'That QTc prolongation observed in psychiatric patients on antipsychotic doses predicts risk from single low-dose intravenous antiemetic administration',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dro-a5',
+        category: 'failed',
+        title: 'Use collapsed, supply lapsed for six years, and the drug came back anyway',
+        laymanSummary:
+          'After the warning, prescribing fell away and the drug became unavailable in the United States for six years. It returned in 2019, with the warning still on the label.',
+        technicalDetails:
+          'Following the December 2001 boxed warning, droperidol use declined sharply and United States supply lapsed. It became widely available again in early 2019 after a six-year hiatus, with the boxed warning unchanged. Drugs@FDA records the original NDA 016796 for INAPSINE as Discontinued, with generic droperidol applications from Hikma and American Regent in Prescription status. So a warning removed a drug from practice without removing it from the market, supply followed demand out and then back in, and the regulatory text that started the sequence was never revisited. That is a distinct failure mode from anything else in this file: not withdrawal, not restriction, but a label change that functioned as a de facto withdrawal for most of two decades.',
+        evidenceSource:
+          'West J Emerg Med 2020;21:728-736; Drugs@FDA NDA 016796 (INAPSINE) — Discontinued, with generic droperidol in Prescription status',
+        doi: '10.5811/westjem.2020.4.47036',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dro-a6',
+        category: 'inferred',
+        title: 'The substitutes prolong QT too, and carry no boxed warning',
+        laymanSummary:
+          'Ondansetron and haloperidol, the drugs that replaced droperidol, both lengthen the QT interval themselves. Neither has a boxed warning for it.',
+        technicalDetails:
+          "Ondansetron has a documented dose-related QT effect substantial enough that single intravenous doses were subsequently restricted, and haloperidol — droperidol's closest structural relative — prolongs QT particularly by the intravenous route. Neither carries a boxed warning for it. If the harm attributed to droperidol were a class or mechanism property at the doses used, the same action would be expected for its replacements. That it was not is not proof the warning was wrong: regulatory actions depend on the evidence presented at a particular time, and consistency across drugs is not itself an evidentiary standard. It is, however, why the emergency medicine literature reads the warning as disproportionate rather than as simply incorrect.",
+        evidenceSource:
+          'Kao LW et al. Ann Emerg Med 2003;41:546-558; Reilly JG et al. Lancet 2000;355:1048-1052',
+        doi: '10.1067/mem.2003.110',
+        inferredClaim:
+          'That the boxed warning reflects a QT risk unique to droperidol among the drugs used for the same indications',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dro-a7',
+        category: 'measured',
+        title: 'The measurement method changes the answer, and the nomogram was used',
+        laymanSummary:
+          'The standard formula for correcting QT for heart rate exaggerates the interval in patients with fast heart rates — exactly the patients who get this drug. The emergency study plotted the raw values instead.',
+        technicalDetails:
+          "Bazett's correction, which the study reports alongside its nomogram analysis, systematically overestimates the corrected interval at high heart rates. Agitated, febrile, intoxicated or hypovolaemic emergency patients are tachycardic before any drug is given, so a Bazett-corrected QTc in that population is biased upward by the patient's state rather than by the drug. The study addressed this by plotting QT against RR interval on the QT nomogram for the 337 electrocardiograms suitable for it, finding 13 (3.8 per cent) above the at-risk line — 3 of 136 before dosing and 10 of 202 after. Reporting the underlying measurement rather than only the corrected one is what makes a QT study interpretable in a tachycardic population, and it is a methodological point that applies to every QT claim on this page.",
+        evidenceSource: 'West J Emerg Med 2020;21:728-736',
+        doi: '10.5811/westjem.2020.4.47036',
+        measuredMetric:
+          'Proportion of electrocardiograms above the QT nomogram at-risk line, before and after droperidol',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A small intravenous or intramuscular dose',
+        laymanDesc:
+          'Injected, usually into a vein, at doses well under a milligram for nausea and a few milligrams for agitation.',
+        molecularDetail:
+          'Parenteral droperidol, typically 0.625 to 1.25 mg intravenously for postoperative nausea and 2.5 to 5 mg for acute agitation. Onset within minutes and duration of several hours, which is why it displaced slower alternatives in emergency use.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the chemoreceptor trigger zone and limbic pathways',
+        laymanDesc:
+          'It reaches the brain region that triggers vomiting and the circuits involved in agitation.',
+        molecularDetail:
+          'Distributes rapidly to the chemoreceptor trigger zone in the area postrema, which lies outside the blood-brain barrier, and to mesolimbic dopamine pathways. Hepatic metabolism with a terminal half-life of around two hours.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks dopamine D2 receptors, and inhibits hERG in vitro',
+        laymanDesc:
+          'It blocks dopamine receptors, which is how it works. In laboratory tests it also blocks a heart potassium channel, and how much that matters at real doses is the disputed question.',
+        molecularDetail:
+          'Potent D2 antagonism at the chemoreceptor trigger zone and in limbic pathways, with moderate alpha-1 adrenergic blockade producing hypotension. In vitro hERG inhibition is documented; the contested issue is the margin between the blocking concentration and the free plasma concentration at clinical doses.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Nausea and agitation resolve; the QT interval moves slightly',
+        laymanDesc:
+          'Vomiting stops and agitation settles within minutes. On average the QT interval lengthens by a few milliseconds.',
+        molecularDetail:
+          'D2 blockade at the area postrema suppresses emesis and limbic blockade produces sedation. Measured mean QTc change was 424.3 to 427.6 ms in non-critical patients and 435.7 to 435.8 ms in critically ill patients — 3.3 ms and essentially zero respectively.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Effective in minutes; one torsades case in 16,546 doses',
+        laymanDesc:
+          'It works quickly and reliably. Across more than sixteen thousand doses, one patient developed the arrhythmia the warning is about, and that patient had several other risk factors.',
+        molecularDetail:
+          'Measured: torsades de pointes in 1 of 16,546 doses, 0.006 per cent (95% CI 0.00015 to 0.03367 per cent), in a patient with multiple risk factors who tolerated re-challenge. Measured: odds ratio 6.7 (95% CI 1.8 to 24.8) for QTc above 456 ms in a psychiatric population on antipsychotic doses.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'Evidence-based review of droperidol, QT prolongation and sudden death (Kao et al.)',
+        phase: "Systematic evidence review applying evidence-based medicine and Hill's criteria",
+        sampleSize: 11,
+        primaryEndpoint:
+          'Strength of evidence for a causal association between therapeutic droperidol administration and life-threatening cardiac events',
+        endpointMet: false,
+        statisticalPValue:
+          'Three clinical studies, one abstract, seven case reports and MedWatch surveillance data reviewed; evidence judged not convincing for causation at therapeutic doses',
+        unreportedAdverseSignals:
+          'A review cannot generate evidence that does not exist. The authors explicitly call for ongoing safety monitoring and more definitive study rather than treating the question as closed.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Emergency department droperidol QT and torsades incidence study',
+        phase: 'Retrospective cohort with electronic health record dose denominator, 1997-2001',
+        sampleSize: 16546,
+        primaryEndpoint:
+          'Incidence of QT prolongation and torsades de pointes in emergency department patients receiving droperidol',
+        endpointMet: true,
+        statisticalPValue:
+          'Torsades de pointes 1 in 16,546 doses (0.006 per cent, 95% CI 0.00015 to 0.03367); mean QTc 424.3 to 427.6 ms in non-critical and 435.7 to 435.8 ms in critically ill paired recordings; 13 of 337 nomogram plots above the at-risk line',
+        unreportedAdverseSignals:
+          'Retrospective, single-centre, and electrocardiograms were available for only a minority of dosed patients, so paired comparisons rest on 170 and 114 patients respectively rather than on the full cohort.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'QTc prevalence study in psychiatric patients (Reilly et al.)',
+        phase: 'Cross-sectional prevalence study with healthy reference group',
+        sampleSize: 596,
+        primaryEndpoint:
+          'Predictors of QTc above 456 ms among psychiatric inpatients and community patients',
+        endpointMet: true,
+        statisticalPValue:
+          'Droperidol odds ratio 6.7 (95% CI 1.8 to 24.8), the highest individual drug estimate; thioridazine 5.4 (2.0 to 13.7); very high antipsychotic dose 8.2 (1.5 to 43.6)',
+        unreportedAdverseSignals:
+          'The population is psychiatric patients on antipsychotic regimens, not emergency patients receiving a single low intravenous dose, and the confidence interval spans an order of magnitude.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Torsades de pointes in 1 of 16,546 emergency department doses (0.006 per cent, 95% CI 0.00015 to 0.03367 per cent)',
+        'Mean QTc 424.3 ms before and 427.6 ms after droperidol in 170 non-critical patients; 435.7 to 435.8 ms in 114 critically ill patients',
+        '13 of 337 electrocardiograms (3.8 per cent) above the QT nomogram at-risk line — 3 of 136 before dosing and 10 of 202 after',
+        'Odds ratio 6.7 (95% CI 1.8 to 24.8) for QTc above 456 ms in psychiatric patients receiving droperidol',
+      ],
+      unsupportedInferences: [
+        'That QTc findings in psychiatric patients on antipsychotic doses predict risk from single low-dose intravenous antiemetic use',
+        'That the boxed warning reflects a demonstrated causal relationship at therapeutic doses; a formal review found the evidence unconvincing for causation',
+        'That the risk is unique to droperidol among its substitutes; ondansetron and haloperidol both prolong QT without a boxed warning',
+      ],
+      whatFailedInitially: [
+        'A boxed warning was added in December 2001 on evidence a subsequent review traced to post-marketing surveillance rather than the peer-reviewed literature',
+        'Use collapsed and United States supply lapsed for six years, functioning as a de facto withdrawal',
+        'The original application, NDA 016796 for INAPSINE, is recorded in Drugs@FDA as Discontinued',
+      ],
+      realWorldOutcome: [
+        'Droperidol returned to wide United States availability in early 2019, with the boxed warning unchanged',
+        'Generic droperidol applications from Hikma and American Regent are recorded as Prescription',
+        'The emergency medicine literature continues to argue the warning is overstated and that electrocardiographic monitoring is useful only in high-risk patients',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous or intramuscular injection',
+      description:
+        'Parenteral droperidol, typically 0.625 to 1.25 mg intravenously for postoperative nausea and vomiting and 2.5 to 5 mg for acute agitation, with onset within minutes and duration of several hours. Hepatically metabolised with a terminal half-life of around two hours.',
+      safetyProfile:
+        'The boxed warning added in December 2001 concerns QT prolongation and torsades de pointes. The measured effect at emergency-department doses is small — mean QTc rising from 424.3 to 427.6 ms in non-critical patients and unchanged in the critically ill — and the measured event rate is one case of torsades de pointes in 16,546 doses, in a patient with multiple risk factors who tolerated re-challenge. Independent electrocardiographic surveys in psychiatric populations on antipsychotic doses give droperidol an odds ratio of 6.7 for abnormal QTc, the highest of the drugs examined. Other effects are dose-related sedation, hypotension from alpha-1 blockade, akathisia and dystonic reactions. Caution is warranted in known long QT syndrome, electrolyte disturbance and concurrent QT-prolonging drugs.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is the boxed warning justified?',
+        a: "It is genuinely disputed, and the dispute is about evidence rather than about values. A formal review applying evidence-based medicine and Hill's criteria to three clinical studies, an abstract, seven case reports and the MedWatch data concluded that the evidence is not convincing for causation at therapeutic doses, and that the warning appears to have originated from post-marketing surveillance rather than from the published literature. A later study of 18,020 doses found one case of torsades de pointes in 16,546 and a mean QTc change of 3.3 milliseconds. On the other side, an independent psychiatric survey gave droperidol the highest odds ratio of any drug examined for abnormal QTc. Both bodies of evidence are real, and they concern different doses in different populations.",
+        auditNote:
+          "The 2020 study's authors state directly that their data suggest the warning is overstated and that electrocardiographic monitoring is useful only in high-risk patients.",
+      },
+      {
+        q: 'Why did the drug disappear and then come back?',
+        a: 'A boxed warning does not remove a drug from the market, but it can remove it from practice. After December 2001, use fell away sharply, and United States supply eventually lapsed entirely for six years. It returned to wide availability in early 2019 because the clinical demand had never gone away — droperidol does something for acute undifferentiated agitation, intractable nausea and headache that the substitutes do less well. The warning is still on the label. Nothing about the regulatory text was revisited; what changed was supply.',
+      },
+      {
+        q: 'Do the drugs that replaced it prolong QT as well?',
+        a: "Yes. Ondansetron, which absorbed much of droperidol's antiemetic use, has a dose-related QT effect substantial enough that single intravenous doses were later restricted. Haloperidol, droperidol's closest structural relative and the main substitute for agitation, prolongs QT particularly when given intravenously. Neither carries a boxed warning for it. That inconsistency is not evidence that droperidol is safe, and it is the main reason clinicians in the specialty that uses the drug read the warning as disproportionate rather than simply wrong.",
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file does not carry a pricing block. Droperidol is currently marketed as a generic injection, and prices vary by manufacturer and purchaser.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Kao LW, Kirk MA, Evers SJ, Rosenfeld SH. Droperidol, QT prolongation, and sudden death: what is the evidence? Ann Emerg Med 2003;41:546-558',
+        identifier: '10.1067/mem.2003.110',
+        kind: 'doi',
+      },
+      {
+        label:
+          'The incidence of QT prolongation and torsades des pointes in patients receiving droperidol in an urban emergency department. West J Emerg Med 2020;21:728-736',
+        identifier: '10.5811/westjem.2020.4.47036',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Reilly JG, Ayis SA, Ferrier IN, Jones SJ, Thomas SH. QTc-interval abnormalities and psychotropic drug therapy in psychiatric patients. Lancet 2000;355:1048-1052',
+        identifier: '10.1016/s0140-6736(00)02035-3',
+        kind: 'doi',
+      },
+      {
+        label: 'Emergency medicine updates: droperidol. Am J Emerg Med 2022;53:180-184',
+        identifier: '10.1016/j.ajem.2022.01.011',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: INAPSINE (droperidol), NDA 016796 — Discontinued; generic droperidol Prescription',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=016796',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3168 — droperidol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3168',
         kind: 'url',
       },
     ],

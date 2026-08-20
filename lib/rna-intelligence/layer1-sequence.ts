@@ -537,7 +537,13 @@ interface SideChainModification {
   residue: string
 }
 
-function validatePeptide(rawStructure: string, trimmed: string, offset: number): Layer1Result {
+/**
+ * `_offset` is unused since chain resolution moved ahead of the residue scan. Positions in this
+ * branch now index the residues after chain labels and separators have been removed, because a
+ * position pointing into the raw string would name a character that is no longer part of the
+ * sequence being read. Kept in the signature so every branch of Layer 1 takes the same arguments.
+ */
+function validatePeptide(rawStructure: string, trimmed: string, _offset: number): Layer1Result {
   const diagnostics: Diagnostic[] = []
   const illegalChars: string[] = []
   const nonStandardResidues: string[] = []

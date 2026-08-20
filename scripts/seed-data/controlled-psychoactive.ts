@@ -3615,7 +3615,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     name: 'Methamphetamine',
     tradeName: 'Desoxyn (methamphetamine hydrochloride tablets), plus generics',
     sponsor:
-      'Desoxyn, NDA 005378, original approval 31 December 1943; generic methamphetamine hydrochloride tablets from Mayne Pharma, Hikma and Dr. Reddy\'s',
+      "Desoxyn, NDA 005378, original approval 31 December 1943; generic methamphetamine hydrochloride tablets from Mayne Pharma, Hikma and Dr. Reddy's",
     targetGene: 'SLC6A3',
     targetProtein:
       'Dopamine transporter (DAT) and vesicular monoamine transporter 2 (VMAT2) — a substrate-type releaser at both, not a reuptake blocker',
@@ -3632,7 +3632,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Methamphetamine has been an approved prescription medicine in the United States since 1943 and remains one. The tablet and the street drug are the same molecule; what differs is dose, route, frequency and purity, and every one of those differences matters more than it does for most drugs.',
       whyItMatters:
-        'The gap between Desoxyn and the street drug is the clearest available demonstration that a molecule\'s risk profile is not a property of the molecule alone. A dopamine terminal exposed to a small oral dose once a day is in a different pharmacological situation from one exposed to a large smoked or injected dose repeatedly over days.',
+        "The gap between Desoxyn and the street drug is the clearest available demonstration that a molecule's risk profile is not a property of the molecule alone. A dopamine terminal exposed to a small oral dose once a day is in a different pharmacological situation from one exposed to a large smoked or injected dose repeatedly over days.",
       whoTakesThis:
         'Medically: children over six with ADHD, in practice rarely, because there are many alternatives and the prescribing burden is high. Otherwise: a large population using illicitly manufactured methamphetamine, which is now high-purity and cheap in North America.',
       clinicalGoals:
@@ -3719,7 +3719,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         id: 'met-a1',
         category: 'conclusion_shift',
-        title: 'Approved for children in 1943, and the label warns that misuse may cause sudden death',
+        title:
+          'Approved for children in 1943, and the label warns that misuse may cause sudden death',
         laymanSummary:
           'The same drug is a prescription treatment for childhood ADHD and carries a warning in capital letters that misusing it can kill you suddenly.',
         technicalDetails:
@@ -3752,7 +3753,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The best result any medicine has produced for methamphetamine use disorder: about 14 people in 100 responded, against 2.5 in 100 on placebo.',
         technicalDetails:
-          'Multisite, double-blind, two-stage, placebo-controlled trial with a sequential parallel comparison design in adults with moderate or severe methamphetamine use disorder, testing extended-release injectable naltrexone plus oral extended-release bupropion. 403 participants entered stage 1 and 225 stage 2. Response was defined as at least three methamphetamine-negative urine samples out of four at the end of a stage. Stage 1: 18 of 109 (16.5%) on naltrexone-bupropion versus 10 of 294 (3.4%) on placebo. Stage 2: 13 of 114 (11.4%) versus 2 of 111 (1.8%). Weighted average across both stages was 13.6% versus 2.5%, treatment effect 11.1 percentage points, Wald z=4.53, P<0.001. Adverse events included gastrointestinal disorders, tremor, malaise, hyperhidrosis and anorexia; serious adverse events in 8 of 223 (3.6%) receiving the combination. The authors\' own summary is the honest one: the response was low, and it was higher than placebo.',
+          "Multisite, double-blind, two-stage, placebo-controlled trial with a sequential parallel comparison design in adults with moderate or severe methamphetamine use disorder, testing extended-release injectable naltrexone plus oral extended-release bupropion. 403 participants entered stage 1 and 225 stage 2. Response was defined as at least three methamphetamine-negative urine samples out of four at the end of a stage. Stage 1: 18 of 109 (16.5%) on naltrexone-bupropion versus 10 of 294 (3.4%) on placebo. Stage 2: 13 of 114 (11.4%) versus 2 of 111 (1.8%). Weighted average across both stages was 13.6% versus 2.5%, treatment effect 11.1 percentage points, Wald z=4.53, P<0.001. Adverse events included gastrointestinal disorders, tremor, malaise, hyperhidrosis and anorexia; serious adverse events in 8 of 223 (3.6%) receiving the combination. The authors' own summary is the honest one: the response was low, and it was higher than placebo.",
         evidenceSource:
           'Trivedi MH et al. Bupropion and Naltrexone in Methamphetamine Use Disorder. N Engl J Med 2021;384:140-153 (ADAPT-2, NCT03078075)',
         doi: '10.1056/NEJMoa2020214',
@@ -3781,7 +3782,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Methamphetamine use disorder has no approved medication. The best-performing combination in a rigorous trial helped about one in seven people.',
         technicalDetails:
-          'Despite a large trial programme spanning bupropion alone, mirtazapine, modafinil, methylphenidate substitution, naltrexone alone and topiramate, no pharmacotherapy is approved for methamphetamine use disorder. ADAPT-2\'s naltrexone-bupropion combination produced the largest and most rigorously demonstrated effect to date, and it was a weighted response rate of 13.6% against 2.5%. The reason is structural rather than a failure of effort: substitution therapy works for opioids because a slower-onset agonist occupies the same receptor, and there is no equivalent for a releaser whose reinforcing effect depends on the magnitude and rate of dopamine efflux. Contingency management remains the intervention with the most consistent randomised evidence, and it is a behavioural programme rather than a drug.',
+          "Despite a large trial programme spanning bupropion alone, mirtazapine, modafinil, methylphenidate substitution, naltrexone alone and topiramate, no pharmacotherapy is approved for methamphetamine use disorder. ADAPT-2's naltrexone-bupropion combination produced the largest and most rigorously demonstrated effect to date, and it was a weighted response rate of 13.6% against 2.5%. The reason is structural rather than a failure of effort: substitution therapy works for opioids because a slower-onset agonist occupies the same receptor, and there is no equivalent for a releaser whose reinforcing effect depends on the magnitude and rate of dopamine efflux. Contingency management remains the intervention with the most consistent randomised evidence, and it is a behavioural programme rather than a drug.",
         evidenceSource:
           'Trivedi MH et al., N Engl J Med 2021;384:140-153; absence of any approved product for methamphetamine use disorder in Drugs@FDA',
         doi: '10.1056/NEJMoa2020214',
@@ -3792,7 +3793,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         id: 'met-a6',
         category: 'inferred',
-        title: 'The prescription dose and the street exposure are not comparable, and the label is written for one of them',
+        title:
+          'The prescription dose and the street exposure are not comparable, and the label is written for one of them',
         laymanSummary:
           'Everything documented about Desoxyn comes from small oral doses once a day. Everything documented about methamphetamine neurotoxicity comes from repeated large smoked or injected doses.',
         technicalDetails:
@@ -3849,7 +3851,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         step: 5,
         title: 'ADHD symptoms stabilise, or dependence and cardiovascular injury develop',
         laymanDesc:
-          'At therapeutic doses the label\'s endpoint is a stabilising effect on attention and impulsivity. At heavy exposure the outcomes are dependence, psychosis and heart damage.',
+          "At therapeutic doses the label's endpoint is a stabilising effect on attention and impulsivity. At heavy exposure the outcomes are dependence, psychosis and heart damage.",
         molecularDetail:
           'Labelled endpoint is stabilisation of distractibility, attention span, hyperactivity, emotional lability and impulsivity in children over 6. At heavy exposure: stimulant psychosis, methamphetamine-associated cardiomyopathy, and the transporter changes measured by PET. The label states that misuse may cause sudden death and serious cardiovascular adverse events.',
         iconName: 'Activity',
@@ -3929,7 +3931,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is there a medicine for methamphetamine addiction?',
-        a: 'Nothing is approved. The best result from a rigorous randomised trial is ADAPT-2, in which extended-release injectable naltrexone plus extended-release bupropion produced a weighted response rate of 13.6% against 2.5% on placebo across 403 and then 225 participants. That is a real, statistically robust effect and it helped about one person in seven. There is no substitution therapy analogous to methadone, because a releaser\'s reinforcing effect depends on the size and speed of dopamine efflux and no slow-onset partial version of that exists. Contingency management has the most consistent randomised evidence of anything in this area.',
+        a: "Nothing is approved. The best result from a rigorous randomised trial is ADAPT-2, in which extended-release injectable naltrexone plus extended-release bupropion produced a weighted response rate of 13.6% against 2.5% on placebo across 403 and then 225 participants. That is a real, statistically robust effect and it helped about one person in seven. There is no substitution therapy analogous to methadone, because a releaser's reinforcing effect depends on the size and speed of dopamine efflux and no slow-onset partial version of that exists. Contingency management has the most consistent randomised evidence of anything in this area.",
       },
       {
         q: 'Why does this page show no price?',
@@ -4023,7 +4025,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'A tryptamine that is inactive by mouth unless paired with an enzyme inhibitor, produces its entire effect in under half an hour, and has one 29-patient randomised trial in treatment-resistant depression with a day-seven effect size of 1.49.',
     laymanHowItWorks:
-      'DMT is structurally almost identical to serotonin, with two extra methyl groups. Those groups are what stop the body\'s ordinary handling of it and let it reach the same receptor psilocybin and LSD use. Swallowed on its own it is destroyed within minutes by an enzyme in the gut wall, which is why the Amazonian brew pairs it with a vine whose alkaloids switch that enzyme off. Injected or smoked it reaches the brain in seconds, peaks in about two minutes, and is essentially gone in thirty.',
+      "DMT is structurally almost identical to serotonin, with two extra methyl groups. Those groups are what stop the body's ordinary handling of it and let it reach the same receptor psilocybin and LSD use. Swallowed on its own it is destroyed within minutes by an enzyme in the gut wall, which is why the Amazonian brew pairs it with a vine whose alkaloids switch that enzyme off. Injected or smoked it reaches the brain in seconds, peaks in about two minutes, and is essentially gone in thirty.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 48,
     molecularSchema: {
@@ -4079,7 +4081,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           phase: 'Cellular_Delivery',
           name: 'Heterologous 5-HT2A and MAO-A preparations',
           description:
-            'Human HTR2A expressed in a cell line for receptor work, and recombinant human monoamine oxidase A for the metabolic work. Both halves are needed, because DMT\'s defining pharmacological property is the interaction between its receptor agonism and its rate of enzymatic destruction.',
+            "Human HTR2A expressed in a cell line for receptor work, and recombinant human monoamine oxidase A for the metabolic work. Both halves are needed, because DMT's defining pharmacological property is the interaction between its receptor agonism and its rate of enzymatic destruction.",
           dependsOnStepId: 'dmt-w2',
           reagentsAndBuffer:
             'HEK293 or CHO cells with human HTR2A, recombinant human MAO-A and MAO-B preparations, clorgyline and selegiline as isoform-selective reference inhibitors',
@@ -4090,7 +4092,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Receptor binding and MAO-A inhibition by the beta-carbolines, measured together',
           description:
-            'Competition binding gives DMT\'s 5-HT2A affinity; an MAO-A activity assay with harmine, harmaline and tetrahydroharmine gives the inhibition constants that explain why the brew works orally and pure DMT does not. Running both is what converts an ethnobotanical description into a pharmacological one.',
+            "Competition binding gives DMT's 5-HT2A affinity; an MAO-A activity assay with harmine, harmaline and tetrahydroharmine gives the inhibition constants that explain why the brew works orally and pure DMT does not. Running both is what converts an ethnobotanical description into a pharmacological one.",
           dependsOnStepId: 'dmt-w4',
           reagentsAndBuffer:
             '[3H]-ketanserin for 5-HT2A, Tris-HCl buffer with ascorbate; kynuramine or Amplex Red MAO-A activity assay with harmine, harmaline and tetrahydroharmine across a concentration series',
@@ -4105,7 +4107,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A single dose lowered depression scores more than placebo at one, two and seven days, with the gap widening over the week. Response at day seven was 64% against 27%.',
         technicalDetails:
-          'Parallel-arm, double-blind, randomised placebo-controlled trial in 29 patients with treatment-resistant depression; a single dose of ayahuasca or placebo, with MADRS and HAM-D measured at baseline and at 1, 2 and 7 days. MADRS was significantly lower in the ayahuasca group at day 1 and day 2 (p=0.04) and at day 7 (p<0.0001). Between-group effect sizes rose across the week: Cohen\'s d 0.84 at day 1, 0.84 at day 2 and 1.49 at day 7. Response rates were high in both arms early and significantly higher with ayahuasca at day 7, 64% versus 27% (p=0.04); remission was 36% versus 7% (p=0.054, a trend). The placebo was a brew designed to mimic taste and appearance. This is the first controlled trial of a psychedelic in treatment-resistant depression and it has 29 patients in it.',
+          "Parallel-arm, double-blind, randomised placebo-controlled trial in 29 patients with treatment-resistant depression; a single dose of ayahuasca or placebo, with MADRS and HAM-D measured at baseline and at 1, 2 and 7 days. MADRS was significantly lower in the ayahuasca group at day 1 and day 2 (p=0.04) and at day 7 (p<0.0001). Between-group effect sizes rose across the week: Cohen's d 0.84 at day 1, 0.84 at day 2 and 1.49 at day 7. Response rates were high in both arms early and significantly higher with ayahuasca at day 7, 64% versus 27% (p=0.04); remission was 36% versus 7% (p=0.054, a trend). The placebo was a brew designed to mimic taste and appearance. This is the first controlled trial of a psychedelic in treatment-resistant depression and it has 29 patients in it.",
         evidenceSource:
           'Palhano-Fontes F et al. Rapid antidepressant effects of the psychedelic ayahuasca in treatment-resistant depression: a randomized placebo-controlled trial. Psychol Med 2019;49:655-663 (NCT02914769)',
         doi: '10.1017/S0033291718001356',
@@ -4130,11 +4132,12 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         id: 'dmt-a3',
         category: 'failed',
-        title: 'The pineal gland claim: DMT did not move melatonin, and the pineal was never shown to make it',
+        title:
+          'The pineal gland claim: DMT did not move melatonin, and the pineal was never shown to make it',
         laymanSummary:
-          'The popular story that the pineal gland releases DMT has no supporting human data. In the one controlled study that measured it, DMT left melatonin — the pineal\'s actual product — completely unchanged.',
+          "The popular story that the pineal gland releases DMT has no supporting human data. In the one controlled study that measured it, DMT left melatonin — the pineal's actual product — completely unchanged.",
         technicalDetails:
-          'DMT is an endogenous compound: it has been detected in mammalian tissue and body fluids, and the enzyme INMT that could synthesise it is expressed in several tissues. The specific claim that the pineal gland synthesises and releases DMT, particularly at birth or death, is not supported by any human measurement. Strassman\'s own dose-response study, which is the source most often invoked for the pineal hypothesis, reported that melatonin levels were unaffected by DMT at any dose — melatonin being the pineal\'s characteristic secretory product and the obvious index of pineal involvement. Detecting a compound in tissue establishes its presence, not its physiological function, its concentration at a receptor, or its release from a particular organ. The endogenous-DMT literature and the pineal story are two different claims, and only the first has evidence.',
+          "DMT is an endogenous compound: it has been detected in mammalian tissue and body fluids, and the enzyme INMT that could synthesise it is expressed in several tissues. The specific claim that the pineal gland synthesises and releases DMT, particularly at birth or death, is not supported by any human measurement. Strassman's own dose-response study, which is the source most often invoked for the pineal hypothesis, reported that melatonin levels were unaffected by DMT at any dose — melatonin being the pineal's characteristic secretory product and the obvious index of pineal involvement. Detecting a compound in tissue establishes its presence, not its physiological function, its concentration at a receptor, or its release from a particular organ. The endogenous-DMT literature and the pineal story are two different claims, and only the first has evidence.",
         evidenceSource:
           'Strassman RJ, Qualls CR, Arch Gen Psychiatry 1994;51:85-97 — melatonin unaffected across all DMT doses',
         doi: '10.1001/archpsyc.1994.03950020009001',
@@ -4164,7 +4167,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In 2006 the US Supreme Court held that a small church could import and drink an ayahuasca tea containing DMT, because the government had not shown a compelling reason to stop it.',
         technicalDetails:
-          'In Gonzales v. O Centro Espírita Beneficente União do Vegetal, 546 U.S. 418 (2006), decided 21 February 2006, the Court affirmed a preliminary injunction permitting a religious sect to import and consume hoasca, a sacramental tea brewed from Amazonian plants containing DMT, a Schedule I substance. Chief Justice Roberts wrote for the Court. The decision turned on the Religious Freedom Restoration Act, which requires the government to demonstrate a compelling interest served by the least restrictive means when it substantially burdens religious exercise; the government had not made that showing on the record before the Court, notwithstanding the Controlled Substances Act\'s categorical Schedule I treatment. The case is an unusual and instructive shift: Schedule I status was not overturned, and an exemption from it was upheld anyway, on grounds that had nothing to do with the pharmacology.',
+          "In Gonzales v. O Centro Espírita Beneficente União do Vegetal, 546 U.S. 418 (2006), decided 21 February 2006, the Court affirmed a preliminary injunction permitting a religious sect to import and consume hoasca, a sacramental tea brewed from Amazonian plants containing DMT, a Schedule I substance. Chief Justice Roberts wrote for the Court. The decision turned on the Religious Freedom Restoration Act, which requires the government to demonstrate a compelling interest served by the least restrictive means when it substantially burdens religious exercise; the government had not made that showing on the record before the Court, notwithstanding the Controlled Substances Act's categorical Schedule I treatment. The case is an unusual and instructive shift: Schedule I status was not overturned, and an exemption from it was upheld anyway, on grounds that had nothing to do with the pharmacology.",
         evidenceSource:
           'Gonzales v. O Centro Espírita Beneficente União do Vegetal, 546 U.S. 418 (2006), No. 04-1084, opinion of the Court by Chief Justice Roberts',
         measuredMetric:
@@ -4178,10 +4181,12 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Injected DMT peaks in two minutes and is over in thirty. That is a fraction of a psilocybin session, and it is the main reason companies are developing it.',
         technicalDetails:
-          'Strassman\'s dose-response work established the human time course directly: peak plasma concentration and peak subjective effect within 2 minutes of intravenous administration, negligible by 30 minutes, with psychological effects almost completely resolved at that point. A psilocybin session runs six to eight hours and a supported LSD session eight to twelve. The clinical implication is a cost implication: monitored time is the dominant cost of psychedelic-assisted therapy, and a twenty-minute drug effect changes it by an order of magnitude. The unresolved question is whether the durable outcome depends on duration. No trial has compared a short-acting and a long-acting psychedelic head to head at matched intensity, so this is currently an economic argument with a pharmacological premise and no clinical evidence either way.',
-        evidenceSource: 'Strassman RJ et al., Arch Gen Psychiatry 1994;51:98-108, subjective effects time course',
+          "Strassman's dose-response work established the human time course directly: peak plasma concentration and peak subjective effect within 2 minutes of intravenous administration, negligible by 30 minutes, with psychological effects almost completely resolved at that point. A psilocybin session runs six to eight hours and a supported LSD session eight to twelve. The clinical implication is a cost implication: monitored time is the dominant cost of psychedelic-assisted therapy, and a twenty-minute drug effect changes it by an order of magnitude. The unresolved question is whether the durable outcome depends on duration. No trial has compared a short-acting and a long-acting psychedelic head to head at matched intensity, so this is currently an economic argument with a pharmacological premise and no clinical evidence either way.",
+        evidenceSource:
+          'Strassman RJ et al., Arch Gen Psychiatry 1994;51:98-108, subjective effects time course',
         doi: '10.1001/archpsyc.1994.03950020022002',
-        measuredMetric: 'Time to peak and time to resolution of subjective effects after intravenous DMT',
+        measuredMetric:
+          'Time to peak and time to resolution of subjective effects after intravenous DMT',
         auditFlag: 'verified',
       },
     ],
@@ -4245,7 +4250,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         primaryEndpoint: 'MADRS score change at 1, 2 and 7 days after a single dose',
         endpointMet: true,
         statisticalPValue:
-          'p=0.04 at days 1 and 2, p<0.0001 at day 7; between-group Cohen\'s d rose from 0.84 to 1.49 across the week',
+          "p=0.04 at days 1 and 2, p<0.0001 at day 7; between-group Cohen's d rose from 0.84 to 1.49 across the week",
         unreportedAdverseSignals:
           '29 patients in total. Vomiting is an expected and near-universal effect of the brew, which makes the placebo comparison difficult to maintain even with a taste-matched control.',
         independentReplicationStatus: 'Unreplicated',
@@ -4282,7 +4287,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         'The 0.1 mg/kg intravenous dose produced the least desirable subjective effects of any dose tested, which is not a linear dose-response',
       ],
       realWorldOutcome: [
-        'DMT remains Schedule I; the Supreme Court upheld a religious exemption for one church\'s sacramental use in 2006',
+        "DMT remains Schedule I; the Supreme Court upheld a religious exemption for one church's sacramental use in 2006",
         'Synthetic DMT is in early-phase clinical development on the basis of its very short duration, not a larger effect',
       ],
     },
@@ -4300,13 +4305,13 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is DMT released by the pineal gland when you die?',
-        a: 'There is no evidence for that. DMT is genuinely endogenous — it has been detected in mammalian tissue and the enzyme that could make it is expressed in several places. What has never been shown is that the pineal gland makes it, releases it, or does either at birth or at death. The study most often cited in support measured melatonin, the pineal\'s characteristic product, across four doses of intravenous DMT and found it unaffected at all of them. Finding a molecule in tissue tells you it is present. It does not tell you what organ made it, what concentration reaches a receptor, or whether it does anything.',
+        a: "There is no evidence for that. DMT is genuinely endogenous — it has been detected in mammalian tissue and the enzyme that could make it is expressed in several places. What has never been shown is that the pineal gland makes it, releases it, or does either at birth or at death. The study most often cited in support measured melatonin, the pineal's characteristic product, across four doses of intravenous DMT and found it unaffected at all of them. Finding a molecule in tissue tells you it is present. It does not tell you what organ made it, what concentration reaches a receptor, or whether it does anything.",
         auditNote:
           'The melatonin result is in the same paper the pineal hypothesis is usually attributed to. It is rarely quoted alongside it.',
       },
       {
         q: 'What did the one randomised trial actually find?',
-        a: 'In 29 patients with treatment-resistant depression, a single dose of ayahuasca lowered MADRS scores more than a taste-matched placebo at one, two and seven days, and the gap grew over the week — Cohen\'s d of 0.84 at day one and 1.49 at day seven. Response at day seven was 64% against 27%. Remission was 36% against 7%, which did not quite reach significance. It is a real, well-conducted, positive randomised trial and it has 29 patients in it, has not been replicated, and used one batch of a preparation that varies between batches.',
+        a: "In 29 patients with treatment-resistant depression, a single dose of ayahuasca lowered MADRS scores more than a taste-matched placebo at one, two and seven days, and the gap grew over the week — Cohen's d of 0.84 at day one and 1.49 at day seven. Response at day seven was 64% against 27%. Remission was 36% against 7%, which did not quite reach significance. It is a real, well-conducted, positive randomised trial and it has 29 patients in it, has not been replicated, and used one batch of a preparation that varies between batches.",
       },
       {
         q: 'Why is anyone developing a drug that lasts twenty minutes?',
@@ -4314,7 +4319,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How is a Schedule I drug legal for a church?',
-        a: 'Under the Religious Freedom Restoration Act rather than under drug law. In Gonzales v. O Centro Espírita Beneficente União do Vegetal, decided in February 2006, the Supreme Court affirmed an injunction allowing a small religious sect to import and drink a DMT-containing sacramental tea, on the ground that the government had not demonstrated a compelling interest pursued by the least restrictive means. The Schedule I listing was not disturbed. It is an exemption from enforcement, granted on constitutional and statutory grounds that have nothing to do with the drug\'s pharmacology.',
+        a: "Under the Religious Freedom Restoration Act rather than under drug law. In Gonzales v. O Centro Espírita Beneficente União do Vegetal, decided in February 2006, the Supreme Court affirmed an injunction allowing a small religious sect to import and drink a DMT-containing sacramental tea, on the ground that the government had not demonstrated a compelling interest pursued by the least restrictive means. The Schedule I listing was not disturbed. It is an exemption from enforcement, granted on constitutional and statutory grounds that have nothing to do with the drug's pharmacology.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -4405,7 +4410,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       molecularWeight:
         '211.26 g/mol (free base). Peyote and San Pedro contain mescaline together with a range of minor phenethylamine and tetrahydroisoquinoline alkaloids; the structure shown is the marker constituent, not the cactus',
       targetReceptorAffinity:
-        'Agonist at 5-HT2A with additional 5-HT2C and 5-HT1A activity. Its affinity at 5-HT2A is roughly three orders of magnitude lower than LSD\'s, which is the direct explanation for the difference in active dose. It is a 3,4,5-trimethoxy-substituted phenethylamine, the parent structure of the 2C series and of DOM and DOI.',
+        "Agonist at 5-HT2A with additional 5-HT2C and 5-HT1A activity. Its affinity at 5-HT2A is roughly three orders of magnitude lower than LSD's, which is the direct explanation for the difference in active dose. It is a 3,4,5-trimethoxy-substituted phenethylamine, the parent structure of the 2C series and of DOM and DOI.",
       structureSource: {
         label: 'PubChem CID 4076 (mescaline) — SMILES, molecular formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4076',
@@ -4450,7 +4455,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           phase: 'Cellular_Delivery',
           name: 'Heterologous 5-HT2A expression',
           description:
-            'Human HTR2A expressed in a cell line lacking the native receptor, so that mescaline\'s affinity can be measured directly rather than inferred from its behavioural potency.',
+            "Human HTR2A expressed in a cell line lacking the native receptor, so that mescaline's affinity can be measured directly rather than inferred from its behavioural potency.",
           dependsOnStepId: 'mes-w2',
           reagentsAndBuffer:
             'HEK293 or CHO cells with human HTR2A, lipid transfection reagent, DMEM with 10% fetal bovine serum and selection antibiotic',
@@ -4476,7 +4481,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'LSD, psilocybin and MDMA all have modern randomised trials. Mescaline has none. The evidence is 1950s literature and two online surveys.',
         technicalDetails:
-          'Of the four classic psychedelics, mescaline is the only one with no completed modern randomised controlled trial for any clinical indication. The mid-twentieth-century literature is substantial but predates modern trial standards, randomisation, blinded outcome assessment and adverse-event reporting. The contemporary evidence consists of retrospective self-report surveys. This absence has a mundane explanation — mescaline\'s ten-to-twelve-hour duration, its lack of a commercial sponsor, its low potency relative to the compounds attracting investment, and the ethical and supply constraints around peyote — and no scientific one. What it means for a reader is that this page contains no efficacy claim, because there is no efficacy measurement to report.',
+          "Of the four classic psychedelics, mescaline is the only one with no completed modern randomised controlled trial for any clinical indication. The mid-twentieth-century literature is substantial but predates modern trial standards, randomisation, blinded outcome assessment and adverse-event reporting. The contemporary evidence consists of retrospective self-report surveys. This absence has a mundane explanation — mescaline's ten-to-twelve-hour duration, its lack of a commercial sponsor, its low potency relative to the compounds attracting investment, and the ethical and supply constraints around peyote — and no scientific one. What it means for a reader is that this page contains no efficacy claim, because there is no efficacy measurement to report.",
         evidenceSource:
           'Cassels BK, Sáez-Briones P. Dark Classics in Chemical Neuroscience: Mescaline. ACS Chem Neurosci 2018;9:2448-2458',
         doi: '10.1021/acschemneuro.8b00215',
@@ -4491,7 +4496,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Two studies of the same 452-person online survey found most respondents said their depression or anxiety improved. Everyone in it had chosen to take mescaline and chose to answer.',
         technicalDetails:
-          'An anonymous online questionnaire of 452 adults reporting naturalistic mescaline use asked about self-reported mental health benefits. Among respondents reporting histories of depression, anxiety, PTSD, alcohol use disorder or drug use disorder, 68 to 86% reported subjective improvement following their most memorable mescaline experience. Those reporting improvement rated acute mystical-type, psychological-insight and ego-dissolution effects significantly higher than those who did not, with Cohen\'s d from 0.7 to 1.5. Between 35 and 50% rated the experience among the five most spiritually significant of their lives. A companion analysis of the same survey found most respondents used mescaline once a year or less, 74% for spiritual exploration or connection with nature, with 9% reporting craving, 1% legal problems, 1% psychological problems and none seeking medical attention. Every one of these numbers is retrospective self-report from a self-selected sample of people who chose to use the drug and chose to answer questions about it, with no control group and no verification of what was taken. The authors of both papers say so.',
+          "An anonymous online questionnaire of 452 adults reporting naturalistic mescaline use asked about self-reported mental health benefits. Among respondents reporting histories of depression, anxiety, PTSD, alcohol use disorder or drug use disorder, 68 to 86% reported subjective improvement following their most memorable mescaline experience. Those reporting improvement rated acute mystical-type, psychological-insight and ego-dissolution effects significantly higher than those who did not, with Cohen's d from 0.7 to 1.5. Between 35 and 50% rated the experience among the five most spiritually significant of their lives. A companion analysis of the same survey found most respondents used mescaline once a year or less, 74% for spiritual exploration or connection with nature, with 9% reporting craving, 1% legal problems, 1% psychological problems and none seeking medical attention. Every one of these numbers is retrospective self-report from a self-selected sample of people who chose to use the drug and chose to answer questions about it, with no control group and no verification of what was taken. The authors of both papers say so.",
         evidenceSource:
           'Agin-Liebes G et al., ACS Pharmacol Transl Sci 2021;4:543-552; Uthaug MV et al., J Psychopharmacol 2022;36:309-320',
         doi: '10.1021/acsptsci.1c00018',
@@ -4518,7 +4523,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'An active mescaline dose is measured in hundreds of milligrams; an active LSD dose in tens of micrograms. The difference comes straight from how tightly each binds the receptor.',
         technicalDetails:
-          'Mescaline is a 3,4,5-trimethoxyphenethylamine — the parent compound of the substituted-phenethylamine psychedelics including the 2C and DO series. Its affinity at 5-HT2A is roughly a thousand-fold lower than LSD\'s, which accounts directly for the difference in active dose without invoking any difference in mechanism. Duration is 10 to 12 hours, comparable to LSD and roughly double psilocybin. The practical consequence is that mescaline is not a plausible target for the microdosing and short-session formats being commercialised for other psychedelics, and that potency comparisons between psychedelics are meaningful only when normalised to receptor occupancy rather than to milligrams.',
+          "Mescaline is a 3,4,5-trimethoxyphenethylamine — the parent compound of the substituted-phenethylamine psychedelics including the 2C and DO series. Its affinity at 5-HT2A is roughly a thousand-fold lower than LSD's, which accounts directly for the difference in active dose without invoking any difference in mechanism. Duration is 10 to 12 hours, comparable to LSD and roughly double psilocybin. The practical consequence is that mescaline is not a plausible target for the microdosing and short-session formats being commercialised for other psychedelics, and that potency comparisons between psychedelics are meaningful only when normalised to receptor occupancy rather than to milligrams.",
         evidenceSource: 'Cassels BK, Sáez-Briones P. ACS Chem Neurosci 2018;9:2448-2458',
         doi: '10.1021/acschemneuro.8b00215',
         measuredMetric: '5-HT2A receptor affinity of mescaline relative to LSD',
@@ -4601,7 +4606,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           'Self-reported improvement in depression, anxiety, PTSD, alcohol use disorder and drug use disorder after the most memorable mescaline experience',
         endpointMet: true,
         statisticalPValue:
-          '68 to 86% of respondents with a relevant history reported subjective improvement; Cohen\'s d 0.7 to 1.5 for acute-effect ratings between improvers and non-improvers',
+          "68 to 86% of respondents with a relevant history reported subjective improvement; Cohen's d 0.7 to 1.5 for acute-effect ratings between improvers and non-improvers",
         unreportedAdverseSignals:
           'Self-selected sample, no control group, no verification of substance identity or dose, and recall of a single self-nominated "most memorable" experience. 9% reported craving; 1% reported psychological problems.',
         independentReplicationStatus: 'Unreplicated',
@@ -4699,7 +4704,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
   {
     slug: 'ibogaine',
     name: 'Ibogaine',
-    tradeName: 'No marketed product. Historically sold in France as Lambarène, a Tabernanthe extract tonic, until 1966',
+    tradeName:
+      'No marketed product. Historically sold in France as Lambarène, a Tabernanthe extract tonic, until 1966',
     sponsor:
       'No commercial sponsor holds an approved product. Development history runs through a NIDA-funded programme in the 1990s that was not carried to trial, DemeRx and its noribogaine work, private clinics in Mexico and New Zealand, and a Texas state consortium created by Senate Bill 2308 in June 2025',
     targetGene: 'CHRNA3 / CHRNB4',
@@ -4807,7 +4813,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Thirty people with opioid dependence took a single large dose at a Mexican clinic. Their withdrawal scores fell from 31 to 14 over about three days, and half of them reported no opioid use in the following month.',
         technicalDetails:
-          'Brown and Alper ran a prospective observational study of 30 subjects (25 male, 5 female) with DSM-IV opioid dependence who received a mean total dose of 1,540 ± 920 mg ibogaine hydrochloride. Subjects were using oxycodone (n=21, 250 ± 180 mg/day) and/or heroin (n=18, 1.3 ± 0.94 g/day) and averaged 3.1 ± 2.6 previous treatment episodes. Subjective Opioid Withdrawal Scale scores fell from 31.0 ± 11.6 pretreatment to 14.0 ± 9.8 at 76.5 ± 30 hours (t = 7.07, df = 26, p < 0.001). At one month, 15 of 30 (50%) reported no opioid use in the previous 30 days; Addiction Severity Index composite scores for drug use, legal and family/social status were improved at every timepoint out to 12 months (p < 0.001), with the drug-use effect maximal at one month and smaller thereafter. There was no control arm, no blinding and no randomisation: the comparison is against each subject\'s own baseline.',
+          "Brown and Alper ran a prospective observational study of 30 subjects (25 male, 5 female) with DSM-IV opioid dependence who received a mean total dose of 1,540 ± 920 mg ibogaine hydrochloride. Subjects were using oxycodone (n=21, 250 ± 180 mg/day) and/or heroin (n=18, 1.3 ± 0.94 g/day) and averaged 3.1 ± 2.6 previous treatment episodes. Subjective Opioid Withdrawal Scale scores fell from 31.0 ± 11.6 pretreatment to 14.0 ± 9.8 at 76.5 ± 30 hours (t = 7.07, df = 26, p < 0.001). At one month, 15 of 30 (50%) reported no opioid use in the previous 30 days; Addiction Severity Index composite scores for drug use, legal and family/social status were improved at every timepoint out to 12 months (p < 0.001), with the drug-use effect maximal at one month and smaller thereafter. There was no control arm, no blinding and no randomisation: the comparison is against each subject's own baseline.",
         evidenceSource: 'Brown TK, Alper K. Am J Drug Alcohol Abuse 2018;44:24-36',
         doi: '10.1080/00952990.2017.1320802',
         measuredMetric:
@@ -4865,7 +4871,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           'New Zealand allows ibogaine treatment by a registered provider, so researchers could follow patients for a year. Fourteen took part, eight completed every interview, drug-use scores fell and stayed down — and one of the fourteen died during treatment.',
         technicalDetails:
           'Noller, Frampton and Yazar-Klosinski measured Addiction Severity Index-Lite scores in 14 participants (50% female) over 12 months after a single legal ibogaine treatment by one of two New Zealand providers. Among the eight who completed all interviews, the ASI-Lite drug-use composite fell significantly from baseline to 12 months (Friedman test, p = 0.002) and BDI-II depression scores fell (p < 0.001). Subjective Opioid Withdrawal Scale scores fell acutely after treatment across all 14 (p = 0.015). One patient enrolled in the study died during treatment. That is one death in a prospective sample of 14, reported by the investigators in the same paper as the efficacy result, and it is the reason this record carries the fatality series alongside the outcome series rather than in a separate section.',
-        evidenceSource: 'Noller GE, Frampton CM, Yazar-Klosinski B. Am J Drug Alcohol Abuse 2018;44:37-46',
+        evidenceSource:
+          'Noller GE, Frampton CM, Yazar-Klosinski B. Am J Drug Alcohol Abuse 2018;44:37-46',
         doi: '10.1080/00952990.2017.1310218',
         measuredMetric:
           'ASI-Lite drug-use composite and BDI-II at 12 months (n=8 completers of 14 enrolled), with one on-treatment death',
@@ -4892,7 +4899,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The best-known explanation for why one dose has lasting effects is that ibogaine raises a nerve growth factor in a reward-circuit brain region. That was shown in rats drinking alcohol. It has not been demonstrated in a person.',
         technicalDetails:
-          'He et al. showed in rats that ibogaine reduces alcohol self-administration and that this depends on glial cell line-derived neurotrophic factor in the ventral tegmental area: ibogaine increased GDNF expression there, intra-VTA GDNF reproduced the reduction in drinking, and blocking GDNF signalling prevented ibogaine\'s effect. That is a well-constructed causal chain in a rodent alcohol model. It is routinely quoted as the mechanism for durable human anti-addictive effects across opioids, stimulants and nicotine, which the experiment does not address. No human study has measured GDNF, and the α3β4 nicotinic antagonism, NMDA block and κ-opioid agonism are alternative candidate mechanisms that have not been separated in people.',
+          "He et al. showed in rats that ibogaine reduces alcohol self-administration and that this depends on glial cell line-derived neurotrophic factor in the ventral tegmental area: ibogaine increased GDNF expression there, intra-VTA GDNF reproduced the reduction in drinking, and blocking GDNF signalling prevented ibogaine's effect. That is a well-constructed causal chain in a rodent alcohol model. It is routinely quoted as the mechanism for durable human anti-addictive effects across opioids, stimulants and nicotine, which the experiment does not address. No human study has measured GDNF, and the α3β4 nicotinic antagonism, NMDA block and κ-opioid agonism are alternative candidate mechanisms that have not been separated in people.",
         evidenceSource: 'He DY et al. J Neurosci 2005;25:619-628',
         doi: '10.1523/JNEUROSCI.3959-04.2005',
         inferredClaim:
@@ -4917,7 +4924,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The liver strips a methyl group off, producing noribogaine, which lingers for days. How fast this happens depends on a gene that varies between people.',
         molecularDetail:
-          'CYP2D6-mediated O-demethylation to noribogaine. Loss-of-function CYP2D6 variants raise and prolong parent-drug exposure, which matters because ibogaine is the more potent hERG blocker of the two. Noribogaine\'s long half-life is the pharmacokinetic basis for effects lasting beyond the acute session.',
+          "CYP2D6-mediated O-demethylation to noribogaine. Loss-of-function CYP2D6 variants raise and prolong parent-drug exposure, which matters because ibogaine is the more potent hERG blocker of the two. Noribogaine's long half-life is the pharmacokinetic basis for effects lasting beyond the acute session.",
         iconName: 'FlaskConical',
         visualStage: 'cellular_entry',
       },
@@ -4994,11 +5001,11 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       strictlyMeasured: [
         'A fall in SOWS from 31.0 to 14.0 at 76.5 hours after a single mean dose of 1,540 mg in 30 subjects, and 50% self-reported 30-day abstinence at one month',
         'Nineteen deaths within 1.5 to 76 hours of ingestion between 1990 and 2008, with cardiovascular comorbidity or co-ingestants explaining or contributing in 12 of 14 evaluable cases',
-        'hERG potassium-current block at low micromolar concentrations, state-dependent, mapped to Y652 and F656 in the channel\'s inner cavity',
+        "hERG potassium-current block at low micromolar concentrations, state-dependent, mapped to Y652 and F656 in the channel's inner cavity",
         'One on-treatment death among 14 prospectively enrolled New Zealand patients, reported by the investigators alongside their efficacy result',
       ],
       unsupportedInferences: [
-        'That effect sizes of d = 2.2 to 2.8 from an uncontrolled, unblinded, self-selected veteran cohort receiving multiple concurrent interventions estimate the drug\'s effect',
+        "That effect sizes of d = 2.2 to 2.8 from an uncontrolled, unblinded, self-selected veteran cohort receiving multiple concurrent interventions estimate the drug's effect",
         'That GDNF induction in the rat ventral tegmental area is the mechanism of durable human anti-addictive effects',
         'That the 19 catalogued deaths represent a rate — the number of exposures worldwide is unknown, so no incidence can be calculated in either direction',
         'That co-administered magnesium makes the cardiac risk acceptable; the claim rests on a proposed mitigation and an uncontrolled series with no comparator, not on a measured reduction in arrhythmia',
@@ -5032,7 +5039,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does magnesium make it safe?',
-        a: 'That is the premise of the Stanford MISTIC protocol, and it is a proposal supported by magnesium\'s general role in managing torsades de pointes — not a measured reduction in arrhythmia with ibogaine. The 30-veteran study reported no serious adverse events, but with no comparator arm, 30 participants and screening that excluded cardiac risk, it cannot distinguish an effective mitigation from a low event rate in a healthy sample.',
+        a: "That is the premise of the Stanford MISTIC protocol, and it is a proposal supported by magnesium's general role in managing torsades de pointes — not a measured reduction in arrhythmia with ibogaine. The 30-veteran study reported no serious adverse events, but with no comparator arm, 30 participants and screening that excluded cardiac risk, it cannot distinguish an effective mitigation from a low event rate in a healthy sample.",
       },
       {
         q: 'Why does this page show no price?',
@@ -5062,7 +5069,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Koenig X et al. Anti-addiction drug ibogaine inhibits voltage-gated ionic currents: a study to assess the drug\'s cardiac ion channel profile. Toxicol Appl Pharmacol 2013;273:259-268',
+          "Koenig X et al. Anti-addiction drug ibogaine inhibits voltage-gated ionic currents: a study to assess the drug's cardiac ion channel profile. Toxicol Appl Pharmacol 2013;273:259-268",
         identifier: '10.1016/j.taap.2013.05.012',
         kind: 'doi',
       },
@@ -5249,7 +5256,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         id: 'meo-a3',
         category: 'measured',
-        title: 'Dose-ranging in 22 healthy volunteers established the escalating single-day regimen',
+        title:
+          'Dose-ranging in 22 healthy volunteers established the escalating single-day regimen',
         laymanSummary:
           'A phase 1 gave 2, 6, 12 or 18 milligrams to healthy people. Higher doses produced stronger experiences, vital signs were unaffected, and stepping the dose up within one day produced the strongest effect of all.',
         technicalDetails:
@@ -5297,7 +5305,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The DEA put 5-MeO-DMT in Schedule I in December 2010. Thirteen years later a synthetic version of the same molecule was running placebo-controlled trials in depression under a name assigned by the WHO.',
         technicalDetails:
-          'DEA published the final rule placing 5-methoxy-N,N-dimethyltryptamine into Schedule I on 20 December 2010 (75 FR 79296), after proposed rules in August and October 2009. Schedule I requires a finding of no currently accepted medical use in the United States. GH Research began registered clinical trials of a vaporised synthetic formulation in 2020, completed a phase 1/2 in treatment-resistant depression in 2023 and a randomised placebo-controlled phase 2b in 2025, and the molecule now carries the international nonproprietary name mebufotenin. Two of the company\'s phase 2 trials, in postpartum depression (NCT05804708, n=10) and bipolar II disorder (NCT05839509, n=6), were terminated. The scheduling finding and the development programme coexist because they are made by different bodies against different standards.',
+          "DEA published the final rule placing 5-methoxy-N,N-dimethyltryptamine into Schedule I on 20 December 2010 (75 FR 79296), after proposed rules in August and October 2009. Schedule I requires a finding of no currently accepted medical use in the United States. GH Research began registered clinical trials of a vaporised synthetic formulation in 2020, completed a phase 1/2 in treatment-resistant depression in 2023 and a randomised placebo-controlled phase 2b in 2025, and the molecule now carries the international nonproprietary name mebufotenin. Two of the company's phase 2 trials, in postpartum depression (NCT05804708, n=10) and bipolar II disorder (NCT05839509, n=6), were terminated. The scheduling finding and the development programme coexist because they are made by different bodies against different standards.",
         evidenceSource:
           'DEA final rule 75 FR 79296 (20 December 2010); ClinicalTrials.gov NCT05800860, NCT05804708, NCT05839509',
         measuredMetric:
@@ -5344,7 +5352,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'It binds serotonin receptors, but with a different balance from LSD or psilocybin — pulling harder on the subtype that quietens neurons than on the one that excites them.',
         molecularDetail:
-          'Agonist at 5-HT1A with higher affinity than at 5-HT2A. 5-HT1A is Gi-coupled and inhibitory, 5-HT2A is Gq-coupled and excitatory; the inverted affinity ratio relative to the other classical psychedelics is the standard explanation for the qualitatively different, largely contentless experience, though no human study has separated the two receptors\' contributions with an antagonist.',
+          "Agonist at 5-HT1A with higher affinity than at 5-HT2A. 5-HT1A is Gi-coupled and inhibitory, 5-HT2A is Gq-coupled and excitatory; the inverted affinity ratio relative to the other classical psychedelics is the standard explanation for the qualitatively different, largely contentless experience, though no human study has separated the two receptors' contributions with an antagonist.",
         iconName: 'Lock',
         visualStage: 'target_binding',
       },
@@ -5418,7 +5426,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That the phase 2b effect size of -2.0 is pharmacological, when the placebo arm produced zero remissions and the drug reveals its allocation within seconds',
         'That retrospective self-ratings from ceremony attendees estimate an antidepressant effect size',
-        'That a 5-HT1A-weighted binding profile explains the qualitative difference from LSD or psilocybin — no human antagonist study has separated the receptors\' contributions',
+        "That a 5-HT1A-weighted binding profile explains the qualitative difference from LSD or psilocybin — no human antagonist study has separated the receptors' contributions",
         'That toad-derived material and the synthetic clinical formulation are the same exposure; the secretion also contains bufotenin and cardioactive bufadienolides in undefined proportions',
       ],
       whatFailedInitially: [
@@ -5530,7 +5538,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
   {
     slug: 'salvinorin-a',
     name: 'Salvinorin A (Salvia divinorum)',
-    tradeName: 'No product. Sold as dried leaf and as "fortified" leaf extracts of stated multiples',
+    tradeName:
+      'No product. Sold as dried leaf and as "fortified" leaf extracts of stated multiples',
     sponsor:
       'No sponsor and no development programme. The human studies were investigator-initiated at Johns Hopkins and Yale; the receptor characterisation came from the NIMH Psychoactive Drug Screening Program',
     targetGene: 'OPRK1',
@@ -5638,7 +5647,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Screened against fifty receptors, transporters and channels, salvinorin A hit exactly one: the kappa opioid receptor. It did nothing at the serotonin receptor that every classical psychedelic works through.',
         technicalDetails:
-          'Roth et al. found that salvinorin A potently and selectively inhibited [3H]-bremazocine binding to cloned κ-opioid receptors and had no significant activity against a battery of 50 receptors, transporters and ion channels. Functional studies confirmed potent agonism at cloned κ receptors in HEK293 cells and at native κ receptors in guinea-pig brain. The compound had no actions at 5-HT2A, the principal molecular target of the classical hallucinogens, and its profile was distinct from LSD across the same panel. It is, to the authors\' knowledge, the first naturally occurring non-nitrogenous opioid-receptor-subtype-selective agonist — an unusual claim in that it is a negative result across a wide panel, which is stronger evidence of selectivity than any single affinity number.',
+          "Roth et al. found that salvinorin A potently and selectively inhibited [3H]-bremazocine binding to cloned κ-opioid receptors and had no significant activity against a battery of 50 receptors, transporters and ion channels. Functional studies confirmed potent agonism at cloned κ receptors in HEK293 cells and at native κ receptors in guinea-pig brain. The compound had no actions at 5-HT2A, the principal molecular target of the classical hallucinogens, and its profile was distinct from LSD across the same panel. It is, to the authors' knowledge, the first naturally occurring non-nitrogenous opioid-receptor-subtype-selective agonist — an unusual claim in that it is a negative result across a wide panel, which is stronger evidence of selectivity than any single affinity number.",
         evidenceSource: 'Roth BL et al. Proc Natl Acad Sci USA 2002;99:11934-11939',
         doi: '10.1073/pnas.182234399',
         measuredMetric:
@@ -5648,7 +5657,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         id: 'sal-a2',
         category: 'measured',
-        title: 'Peaks at two minutes, gone by twenty, with no change in heart rate or blood pressure',
+        title:
+          'Peaks at two minutes, gone by twenty, with no change in heart rate or blood pressure',
         laymanSummary:
           'A placebo-controlled study gave sixteen ascending inhaled doses to four experienced volunteers. The effect was at maximum by the first measurement, two minutes in, and had faded by about twenty. Blood pressure and pulse did not move.',
         technicalDetails:
@@ -5720,9 +5730,9 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'The tool that made the κ receptor a psychiatric drug target',
         laymanSummary:
-          'Because salvinorin A showed that switching on the kappa receptor in a person produces dissociation and distorted perception, blocking that receptor became a plausible treatment idea. That is the compound\'s main scientific legacy.',
+          "Because salvinorin A showed that switching on the kappa receptor in a person produces dissociation and distorted perception, blocking that receptor became a plausible treatment idea. That is the compound's main scientific legacy.",
         technicalDetails:
-          'Roth et al. stated the implication directly in 2002: because salvinorin A is a κ-selective psychotomimetic, κ-selective antagonists may be therapeutic candidates for disorders manifesting perceptual distortion, and κ receptors evidently play a prominent role in modulating human perception. The human studies that followed supplied the objective correlates — cortisol and prolactin elevation, reduced EEG spectral power, dose-related dissociation and memory impairment — that a target-validation argument needs. This is a measured claim about what the compound demonstrated, not a claim that any κ-targeted drug works; the clinical results for κ antagonists in depression belong to those compounds\' own records, not to this one.',
+          "Roth et al. stated the implication directly in 2002: because salvinorin A is a κ-selective psychotomimetic, κ-selective antagonists may be therapeutic candidates for disorders manifesting perceptual distortion, and κ receptors evidently play a prominent role in modulating human perception. The human studies that followed supplied the objective correlates — cortisol and prolactin elevation, reduced EEG spectral power, dose-related dissociation and memory impairment — that a target-validation argument needs. This is a measured claim about what the compound demonstrated, not a claim that any κ-targeted drug works; the clinical results for κ antagonists in depression belong to those compounds' own records, not to this one.",
         evidenceSource:
           'Roth BL et al. Proc Natl Acad Sci USA 2002;99:11934-11939; Roth BL et al. Trends Pharmacol Sci 2003;24:107-109',
         doi: '10.1016/S0165-6147(03)00027-0',
@@ -5838,12 +5848,12 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         'That "most potent naturally occurring hallucinogen" is a measured ranking — it is a comparison of active doses by weight, not of a common endpoint',
       ],
       whatFailedInitially: [
-        'No therapeutic development of salvinorin A itself has been attempted; the compound\'s use is as a pharmacological tool',
+        "No therapeutic development of salvinorin A itself has been attempted; the compound's use is as a pharmacological tool",
         'The two active doses in the Yale crossover did not separate from each other, so that study produced a state description rather than a dose-response curve',
       ],
       realWorldOutcome: [
         'Not federally scheduled in the United States; controlled instead by roughly thirty individual states and by several other countries',
-        'The κ-opioid receptor became a psychiatric drug target on the strength of these human studies, which is the compound\'s durable contribution',
+        "The κ-opioid receptor became a psychiatric drug target on the strength of these human studies, which is the compound's durable contribution",
       ],
     },
     deliverySystem: {
@@ -6091,7 +6101,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Blood levels from 75 emergency-department patients showed only a moderate relationship between how much GHB was in the blood and how unconscious the person was. Some awake patients had levels similar to comatose ones.',
         technicalDetails:
-          'Abid et al. reviewed 75 GHB intoxication cases presenting to emergency departments in Hamburg and surrounding hospitals, with blood and urine concentrations by GC-MS. 72% were male. Mean blood GHB was 248 mg/L, range 21.5 to 1,418 mg/L. Among the 18 cases with detailed clinical information, the 10 comatose patients averaged 244 mg/L (range 136 to 403), higher than somnolent and awake patients but with substantial overlap. Seven of the 10 comatose patients (70%) had used one or more other substances, cocaine most often (n=5). Acidosis, hypotension and heart-rate effects were common. The authors describe the dose-effect relationship as moderate, with overlap between awake and comatose concentration ranges. That overlap is the clinically important finding: a blood concentration does not predict an individual\'s conscious level, because tolerance and co-ingestion shift the curve.',
+          "Abid et al. reviewed 75 GHB intoxication cases presenting to emergency departments in Hamburg and surrounding hospitals, with blood and urine concentrations by GC-MS. 72% were male. Mean blood GHB was 248 mg/L, range 21.5 to 1,418 mg/L. Among the 18 cases with detailed clinical information, the 10 comatose patients averaged 244 mg/L (range 136 to 403), higher than somnolent and awake patients but with substantial overlap. Seven of the 10 comatose patients (70%) had used one or more other substances, cocaine most often (n=5). Acidosis, hypotension and heart-rate effects were common. The authors describe the dose-effect relationship as moderate, with overlap between awake and comatose concentration ranges. That overlap is the clinically important finding: a blood concentration does not predict an individual's conscious level, because tolerance and co-ingestion shift the curve.",
         evidenceSource: 'Abid M et al. J Forensic Sci 2022;67:416-427',
         doi: '10.1111/1556-4029.14880',
         measuredMetric:
@@ -6238,7 +6248,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         trialId: 'Abid et al. 2022 emergency-department intoxication series (Hamburg)',
         phase: 'Retrospective clinical toxicology case series',
         sampleSize: 75,
-        primaryEndpoint: 'Relationship between blood GHB concentration and clinical conscious level',
+        primaryEndpoint:
+          'Relationship between blood GHB concentration and clinical conscious level',
         endpointMet: false,
         statisticalPValue:
           'Moderate dose-effect relationship only; comatose mean 244 mg/L (range 136-403) versus whole-series mean 248 mg/L (range 21.5-1418), with overlapping ranges between awake and comatose patients',
@@ -6256,7 +6267,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         'Listing of the identical chemical in Schedule I at 21 CFR 1308.11(e)(6) and in Schedule III at 1308.13(c)(6)',
       ],
       unsupportedInferences: [
-        'That a blood GHB concentration predicts an individual patient\'s conscious level — tolerance and co-ingestion shift the relationship and the ranges overlap',
+        "That a blood GHB concentration predicts an individual patient's conscious level — tolerance and co-ingestion shift the relationship and the ranges overlap",
         'That a result below the analytical decision threshold rules out exposure, or that a low postmortem result establishes it',
         'That the high-affinity GHB binding site is a drug target, which the knockout experiment specifically refutes',
         'That the safety record of the prescribed product transfers to the same molecule taken outside it — the dose is measured, the timing is fixed, the patient is in bed and no other depressant is present',
@@ -6273,7 +6284,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     deliverySystem: {
       type: 'Oral solution taken at bedtime, dispensed through a restricted distribution programme',
       description:
-        'The approved products are oral solutions taken in bed, historically as two doses per night separated by 2.5 to 4 hours, and since 2023 also as a single once-nightly dose. Distribution is through a restricted programme with a single central pharmacy rather than ordinary retail, which is a direct consequence of the abuse and diversion history rather than of the drug\'s handling requirements.',
+        "The approved products are oral solutions taken in bed, historically as two doses per night separated by 2.5 to 4 hours, and since 2023 also as a single once-nightly dose. Distribution is through a restricted programme with a single central pharmacy rather than ordinary retail, which is a direct consequence of the abuse and diversion history rather than of the drug's handling requirements.",
       safetyProfile:
         'In the pivotal narcolepsy trial the commonest adverse events were nausea, headache, dizziness and enuresis; in the idiopathic hypersomnia study, nausea 22%, headache 18%, dizziness 12%, anxiety 11% and vomiting 11% of 154, with no deaths. The dose-limiting hazard is central nervous system and respiratory depression, which is the same pharmacology that produces the therapeutic effect. Non-linear kinetics mean exposure rises faster than dose. Concurrent alcohol or other CNS depressants compound the effect, and in the emergency series 70% of comatose patients had taken something else. Physical dependence develops with regular heavy use, and severe withdrawal has required intubation, phenobarbital and multiple infusions. The sodium load of the original product is the reason a low-sodium version was developed for patients where that matters.',
     },
@@ -6331,7 +6342,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Dyer JE et al. Gamma-hydroxybutyrate withdrawal syndrome. Ann Emerg Med 2001;37:147-153',
+        label:
+          'Dyer JE et al. Gamma-hydroxybutyrate withdrawal syndrome. Ann Emerg Med 2001;37:147-153',
         identifier: '10.1067/mem.2001.112985',
         kind: 'doi',
       },
@@ -6358,11 +6370,13 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Drugs@FDA — Xyrem NDA 021196 approved 17 July 2002; Xywav NDA 212690 approved 21 July 2020; Lumryz NDA 214755 approved 1 May 2023',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021196',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021196',
         kind: 'regulatory',
       },
       {
-        label: 'PubChem CID 10413 — gamma-hydroxybutyric acid structure, formula and molecular weight',
+        label:
+          'PubChem CID 10413 — gamma-hydroxybutyric acid structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10413',
         kind: 'url',
       },
@@ -6405,7 +6419,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'A 7,112-patient randomised trial found no increase in death or cardiovascular complications from adding it to anaesthesia, overturning a smaller trial that had; and the same molecule, inhaled repeatedly from unrestricted cartridges, irreversibly oxidises vitamin B12 and produces a myeloneuropathy with posterior-column changes on MRI in 89% of reported adolescent cases.',
     laymanHowItWorks:
-      'Nitrous oxide blocks the NMDA receptor, the same target ketamine acts on, which is why it produces dissociation and analgesia and why it has been tested in depression. Its lasting harm has nothing to do with that receptor. The gas oxidises the cobalt atom at the centre of vitamin B12, and a B12 molecule that has been oxidised cannot serve the enzyme methionine synthase. Without that enzyme the body cannot make myelin properly, and the sheath on the sensory columns at the back of the spinal cord degenerates. That is a chemical reaction, not a dose-dependent toxicity in the usual sense: every exposure inactivates some B12, and repeated exposure outruns the body\'s ability to replace it.',
+      "Nitrous oxide blocks the NMDA receptor, the same target ketamine acts on, which is why it produces dissociation and analgesia and why it has been tested in depression. Its lasting harm has nothing to do with that receptor. The gas oxidises the cobalt atom at the centre of vitamin B12, and a B12 molecule that has been oxidised cannot serve the enzyme methionine synthase. Without that enzyme the body cannot make myelin properly, and the sheath on the sensory columns at the back of the spinal cord degenerates. That is a chemical reaction, not a dose-dependent toxicity in the usual sense: every exposure inactivates some B12, and repeated exposure outruns the body's ability to replace it.",
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 84,
     molecularSchema: {
@@ -6501,7 +6515,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Nitrous oxide oxidises the cobalt atom at the centre of vitamin B12. An oxidised B12 cannot run the enzyme that maintains myelin, so the sensory columns at the back of the spinal cord degenerate.',
         technicalDetails:
-          'Nitrous oxide irreversibly oxidises the cobalt centre of cob(I)alamin, inactivating methionine synthase, the enzyme that converts homocysteine to methionine using 5-methyltetrahydrofolate as the methyl donor. The consequences are measurable within a single long anaesthetic — plasma homocysteine rises — and cumulative with repeated exposure. Downstream, folate is trapped as 5-methyltetrahydrofolate, S-adenosylmethionine-dependent methylation of myelin basic protein falls, and subacute combined degeneration of the dorsal and lateral columns follows. ENIGMA\'s authors flagged the B12, folate and DNA-synthesis interference in 2007 while noting the clinical consequences were unclear; the recreational case series since have made them clear. This is a stoichiometric chemical reaction with a cofactor rather than a receptor interaction, which is why a single dental exposure is harmless and daily cartridge use is not.',
+          "Nitrous oxide irreversibly oxidises the cobalt centre of cob(I)alamin, inactivating methionine synthase, the enzyme that converts homocysteine to methionine using 5-methyltetrahydrofolate as the methyl donor. The consequences are measurable within a single long anaesthetic — plasma homocysteine rises — and cumulative with repeated exposure. Downstream, folate is trapped as 5-methyltetrahydrofolate, S-adenosylmethionine-dependent methylation of myelin basic protein falls, and subacute combined degeneration of the dorsal and lateral columns follows. ENIGMA's authors flagged the B12, folate and DNA-synthesis interference in 2007 while noting the clinical consequences were unclear; the recreational case series since have made them clear. This is a stoichiometric chemical reaction with a cofactor rather than a receptor interaction, which is why a single dental exposure is harmless and daily cartridge use is not.",
         evidenceSource:
           'Myles PS et al. Anesthesiology 2007;107:221-231, background; Lan SY et al. Brain Dev 2019;41:428-435',
         doi: '10.1016/j.braindev.2018.12.003',
@@ -6543,7 +6557,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The depression trials compared nitrous oxide with air. Anyone breathing nitrous oxide for an hour knows it, and so does the person watching.',
         technicalDetails:
-          'Both the 2015 proof-of-concept crossover and the 2021 phase 2 used air/oxygen as the comparator. Nitrous oxide at 25% or 50% produces immediate, unmistakable dissociation, euphoria and altered proprioception; the placebo produces nothing. That the treatment periods are separated by weeks and the outcome is measured at one and two weeks mitigates but does not remove the expectancy contribution, because the participant rates their own mood knowing which sessions were active. The trial\'s own most useful internal control is the null contrast between 25% and 50%: if intensity of the acute experience drove the antidepressant rating, the stronger dose should have scored better, and it did not. That comparison is the strongest argument against a purely expectancy account, and it is an argument rather than a measurement.',
+          "Both the 2015 proof-of-concept crossover and the 2021 phase 2 used air/oxygen as the comparator. Nitrous oxide at 25% or 50% produces immediate, unmistakable dissociation, euphoria and altered proprioception; the placebo produces nothing. That the treatment periods are separated by weeks and the outcome is measured at one and two weeks mitigates but does not remove the expectancy contribution, because the participant rates their own mood knowing which sessions were active. The trial's own most useful internal control is the null contrast between 25% and 50%: if intensity of the acute experience drove the antidepressant rating, the stronger dose should have scored better, and it did not. That comparison is the strongest argument against a purely expectancy account, and it is an argument rather than a measurement.",
         evidenceSource: 'Nagele P et al. Sci Transl Med 2021;13:eabe1376, trial design and results',
         doi: '10.1126/scitranslmed.abe1376',
         inferredClaim:
@@ -6640,7 +6654,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Composite of death, non-fatal myocardial infarction, stroke, pulmonary embolism or cardiac arrest within 30 days',
         endpointMet: true,
-        statisticalPValue: '283/3483 (8%) versus 296/3509 (8%), relative risk 0.96, 95% CI 0.83-1.12, p = 0.64',
+        statisticalPValue:
+          '283/3483 (8%) versus 296/3509 (8%), relative risk 0.96, 95% CI 0.83-1.12, p = 0.64',
         unreportedAdverseSignals:
           'Severe nausea and vomiting was significantly higher with nitrous oxide, 15% versus 11%, p < 0.0001. Attending anaesthetists knew the allocation; patients and outcome assessors did not.',
         independentReplicationStatus: 'Failed to Replicate',
@@ -6703,7 +6718,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'If it is safe enough for childbirth, why is repeated use dangerous?',
-        a: 'Because the harm is cumulative chemistry, not acute toxicity. Each exposure oxidises some vitamin B12 irreversibly; a labour or a dental procedure uses up an amount the body replaces without difficulty. Daily use over weeks outruns replacement, methionine synthase stays inactivated, and the myelin of the spinal cord\'s sensory columns degenerates. The gas itself is out of the body in minutes either way, which is precisely why people underestimate it.',
+        a: "Because the harm is cumulative chemistry, not acute toxicity. Each exposure oxidises some vitamin B12 irreversibly; a labour or a dental procedure uses up an amount the body replaces without difficulty. Daily use over weeks outruns replacement, methionine synthase stays inactivated, and the myelin of the spinal cord's sensory columns degenerates. The gas itself is out of the body in minutes either way, which is precisely why people underestimate it.",
         auditNote:
           'This is the clearest case on the site of a harm that is invisible to the usual dose-response intuition: the acute effect and the lasting effect run through completely different mechanisms.',
       },
@@ -6833,7 +6848,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'Sigma-1 receptor agonist and non-competitive NMDA-receptor antagonist, with inhibition of the serotonin and norepinephrine transporters and of nicotinic acetylcholine receptors. CYP2D6 O-demethylates it to dextrorphan, which is the more potent NMDA-channel blocker; CYP3A4 handles a minor N-demethylation route. The pharmacology a person experiences therefore depends on their CYP2D6 genotype and on anything inhibiting that enzyme.',
       structureSource: {
-        label: 'PubChem CID 5360696 (dextromethorphan) — SMILES, molecular formula and molecular weight',
+        label:
+          'PubChem CID 5360696 (dextromethorphan) — SMILES, molecular formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5360696',
         kind: 'url',
       },
@@ -6911,7 +6927,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         id: 'dxm-a2',
         category: 'measured',
-        title: 'The approved products work by deliberately blocking the drug\'s own clearance',
+        title: "The approved products work by deliberately blocking the drug's own clearance",
         laymanSummary:
           'Dextromethorphan is destroyed so fast by a liver enzyme that on its own it cannot reach useful brain concentrations. Both prescription products solve that by adding a second drug whose job is to block that enzyme.',
         technicalDetails:
@@ -6930,7 +6946,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'FDA researchers counted poison-centre calls for deliberate dextromethorphan abuse from 2000 to 2015. The rate tripled, peaked in 2006 among 14-to-17-year-olds, then dropped 56% over the next decade.',
         technicalDetails:
-          'Karami et al., working at FDA\'s Office of Surveillance and Epidemiology, analysed single-substance dextromethorphan intentional-abuse exposure calls in the National Poison Data System from 2000 to 2015. The annual rate tripled between 2000 and 2006 and then plateaued through 2015. The highest rate was among adolescents aged 14 to 17, averaging 1,761 calls per year, or 103.6 calls per million population. Within that group the rate fell 56.3% between 2006 and 2015, from 143.8 to 80.9 calls per million. The authors attribute the decline to public-health efforts to curtail OTC abuse and call for evaluation of state-level sales restrictions. This is exposure-call data, not incidence: it counts calls made, and a fall in calls is consistent with less abuse, with fewer calls per episode, or with both.',
+          "Karami et al., working at FDA's Office of Surveillance and Epidemiology, analysed single-substance dextromethorphan intentional-abuse exposure calls in the National Poison Data System from 2000 to 2015. The annual rate tripled between 2000 and 2006 and then plateaued through 2015. The highest rate was among adolescents aged 14 to 17, averaging 1,761 calls per year, or 103.6 calls per million population. Within that group the rate fell 56.3% between 2006 and 2015, from 143.8 to 80.9 calls per million. The authors attribute the decline to public-health efforts to curtail OTC abuse and call for evaluation of state-level sales restrictions. This is exposure-call data, not incidence: it counts calls made, and a fall in calls is consistent with less abuse, with fewer calls per episode, or with both.",
         evidenceSource: 'Karami S et al. Clin Toxicol 2018;56:656-663',
         doi: '10.1080/15563650.2017.1416124',
         measuredMetric:
@@ -6944,7 +6960,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Dextromethorphan appears in the FDA list of permitted over-the-counter cough suppressants and appears nowhere in the federal drug schedules — unlike codeine, which sits three lines above it in the same regulation.',
         technicalDetails:
-          '21 CFR 341.14(a) lists the permitted oral antitussive active ingredients: chlophedianol hydrochloride, codeine ingredients, dextromethorphan, dextromethorphan hydrobromide, diphenhydramine citrate and diphenhydramine hydrochloride. The codeine entry carries an explicit cross-reference to 21 CFR 1308.15(c), the Schedule V listing; the dextromethorphan entries carry no such reference, and dextromethorphan appears nowhere in 21 CFR part 1308. The contrast within a single paragraph of one regulation is the cleanest available statement of the drug\'s legal position: a permitted OTC ingredient, uncontrolled federally, whose abuse is managed through retail-level and state-level measures rather than through scheduling.',
+          "21 CFR 341.14(a) lists the permitted oral antitussive active ingredients: chlophedianol hydrochloride, codeine ingredients, dextromethorphan, dextromethorphan hydrobromide, diphenhydramine citrate and diphenhydramine hydrochloride. The codeine entry carries an explicit cross-reference to 21 CFR 1308.15(c), the Schedule V listing; the dextromethorphan entries carry no such reference, and dextromethorphan appears nowhere in 21 CFR part 1308. The contrast within a single paragraph of one regulation is the cleanest available statement of the drug's legal position: a permitted OTC ingredient, uncontrolled federally, whose abuse is managed through retail-level and state-level measures rather than through scheduling.",
         evidenceSource:
           '21 CFR 341.14(a)(3) and (a)(4), current eCFR text; 21 CFR part 1308, Schedules I-V',
         measuredMetric:
@@ -7019,7 +7035,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Quietens the cough reflex at ordinary doses',
-        laymanDesc: 'In the brainstem it raises the threshold for coughing. That is the whole approved OTC effect.',
+        laymanDesc:
+          'In the brainstem it raises the threshold for coughing. That is the whole approved OTC effect.',
         molecularDetail:
           'Central antitussive action at the medullary cough centre, distinct from the opioid antitussive mechanism of codeine, which is why the two sit in the same monograph paragraph with completely different scheduling.',
         iconName: 'Wind',
@@ -7100,7 +7117,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       description:
         'Over-the-counter delivery is a syrup or capsule, almost always combined with other actives. Prescription delivery is a fixed-dose tablet in which the second ingredient exists to raise dextromethorphan exposure: 10 mg quinidine in Nuedexta, 105 mg bupropion in Auvelity. The combination is the delivery system.',
       safetyProfile:
-        'At monograph doses the ingredient is well tolerated. The dose-related hazards are dissociation, agitation, tachycardia, hypertension and, at extreme exposures, respiratory depression. Serotonin toxicity is the documented interaction, through the drug\'s own serotonin-reuptake inhibition combined with monoamine oxidase inhibitors or serotonergic antidepressants; those same antidepressants may also inhibit CYP2D6 and raise the exposure at the same time. In abuse, the co-formulated ingredients are frequently the greater acute danger, paracetamol above all. CYP2D6 poor metabolisers, roughly a twelfth of people of European ancestry, reach substantially higher parent-drug concentrations from a standard dose. Bupropion carries its own seizure risk, which the combination product inherits.',
+        "At monograph doses the ingredient is well tolerated. The dose-related hazards are dissociation, agitation, tachycardia, hypertension and, at extreme exposures, respiratory depression. Serotonin toxicity is the documented interaction, through the drug's own serotonin-reuptake inhibition combined with monoamine oxidase inhibitors or serotonergic antidepressants; those same antidepressants may also inhibit CYP2D6 and raise the exposure at the same time. In abuse, the co-formulated ingredients are frequently the greater acute danger, paracetamol above all. CYP2D6 poor metabolisers, roughly a twelfth of people of European ancestry, reach substantially higher parent-drug concentrations from a standard dose. Bupropion carries its own seizure risk, which the combination product inherits.",
     },
     commonQuestions: [
       {
@@ -7146,24 +7163,26 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       {
         label:
           '21 CFR 341.14 — Over-the-counter antitussive active ingredients, listing dextromethorphan and dextromethorphan hydrobromide',
-        identifier: 'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-341/section-341.14',
+        identifier:
+          'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-341/section-341.14',
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA — Auvelity (dextromethorphan/bupropion), NDA 215430, approved 18 August 2022',
+        label:
+          'Drugs@FDA — Auvelity (dextromethorphan/bupropion), NDA 215430, approved 18 August 2022',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=215430',
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA — Nuedexta (dextromethorphan/quinidine), NDA 021879, approved 29 October 2010',
+        label:
+          'Drugs@FDA — Nuedexta (dextromethorphan/quinidine), NDA 021879, approved 29 October 2010',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021879',
         kind: 'regulatory',
       },
       {
-        label:
-          'PubChem CID 5360696 — dextromethorphan structure, formula and molecular weight',
+        label: 'PubChem CID 5360696 — dextromethorphan structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5360696',
         kind: 'url',
       },
@@ -7229,7 +7248,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           phase: 'QC',
           name: 'Quantify mitragynine and 7-hydroxymitragynine separately in the product',
           description:
-            'A total-alkaloid figure is useless here, because the two alkaloids that matter have opposite functional profiles at the same receptor. The measurement that decides both pharmacology and, from 2026, legal status is the percentage of 7-hydroxymitragynine — DEA\'s proposed threshold is 0.050% on a dry-weight basis for botanical material, or 0.050% or 1.00 mg per article for extracts and processed forms.',
+            "A total-alkaloid figure is useless here, because the two alkaloids that matter have opposite functional profiles at the same receptor. The measurement that decides both pharmacology and, from 2026, legal status is the percentage of 7-hydroxymitragynine — DEA's proposed threshold is 0.050% on a dry-weight basis for botanical material, or 0.050% or 1.00 mg per article for extracts and processed forms.",
           reagentsAndBuffer:
             'Mitragynine and 7-hydroxymitragynine certified reference standards, C18 reversed-phase column, ammonium formate/acetonitrile gradient, LC-MS/MS with separate MRM transitions for m/z 399 and m/z 415, dry-weight determination on the botanical material',
         },
@@ -7272,7 +7291,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'CYP3A4 metabolism and postmortem quantification',
           description:
-            'Human liver microsome incubations identify the enzymes converting mitragynine to 7-hydroxymitragynine and the other metabolites, which is what makes CYP3A4 inhibitors a plausible interaction. Postmortem casework then asks a different question with the same instrument: DEA\'s toxicology programme reports an average 7-hydroxymitragynine concentration of 463.23 ng/mL across 85 identified cases since 2019, of which 55 were fatal.',
+            "Human liver microsome incubations identify the enzymes converting mitragynine to 7-hydroxymitragynine and the other metabolites, which is what makes CYP3A4 inhibitors a plausible interaction. Postmortem casework then asks a different question with the same instrument: DEA's toxicology programme reports an average 7-hydroxymitragynine concentration of 463.23 ng/mL across 85 identified cases since 2019, of which 55 were fatal.",
           dependsOnStepId: 'krt-w2',
           reagentsAndBuffer:
             'Pooled human liver microsomes with NADPH regenerating system, selective CYP inhibitors and recombinant isoform panel, LC-MS/MS with deuterated internal standards, postmortem blood with sodium fluoride preservative',
@@ -7287,7 +7306,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In a laboratory assay of receptor activation, mitragynine blocked the µ-opioid receptor rather than switching it on. Its liver metabolite switched it on. In rats, only the metabolite produced pain relief.',
         technicalDetails:
-          'Obeng et al. compared mitragynine and 7-hydroxymitragynine at the human µ-opioid receptor. In [35S]GTPγS stimulation, mitragynine was an antagonist while 7-hydroxymitragynine was a partial agonist with Emax 41.3%. In rats trained to discriminate morphine, mitragynine produced a maximum of 72.3% morphine-lever responding and 7-hydroxymitragynine 99.7%; 7-hydroxymitragynine produced antinociception and mitragynine did not. Naltrexone antagonised all the effects of morphine and 7-hydroxymitragynine, and antagonised the discriminative-stimulus effects of mitragynine but not its rate-decreasing effects. On affinity, the paper\'s significance statement records 7-hydroxymitragynine as having roughly 9-fold higher µ-opioid affinity than mitragynine; the two Ki values quoted in the abstract, 77.9 and 709 nM, are presented in the order opposite to that statement, and a correction was published in J Pharmacol Exp Ther 2022;383:250. This record therefore reports the direction of the difference and the functional results, which are unambiguous, and assigns no Ki value to either compound.',
+          "Obeng et al. compared mitragynine and 7-hydroxymitragynine at the human µ-opioid receptor. In [35S]GTPγS stimulation, mitragynine was an antagonist while 7-hydroxymitragynine was a partial agonist with Emax 41.3%. In rats trained to discriminate morphine, mitragynine produced a maximum of 72.3% morphine-lever responding and 7-hydroxymitragynine 99.7%; 7-hydroxymitragynine produced antinociception and mitragynine did not. Naltrexone antagonised all the effects of morphine and 7-hydroxymitragynine, and antagonised the discriminative-stimulus effects of mitragynine but not its rate-decreasing effects. On affinity, the paper's significance statement records 7-hydroxymitragynine as having roughly 9-fold higher µ-opioid affinity than mitragynine; the two Ki values quoted in the abstract, 77.9 and 709 nM, are presented in the order opposite to that statement, and a correction was published in J Pharmacol Exp Ther 2022;383:250. This record therefore reports the direction of the difference and the functional results, which are unambiguous, and assigns no Ki value to either compound.",
         evidenceSource:
           'Obeng S et al. J Pharmacol Exp Ther 2021;376:410-427, with correction at J Pharmacol Exp Ther 2022;383:250',
         doi: '10.1124/jpet.120.000189',
@@ -7314,7 +7333,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         category: 'conclusion_shift',
         title: 'DEA moved to ban it in 2016, withdrew six weeks later, and is back in 2026',
         laymanSummary:
-          'In August 2016 the DEA announced it would place kratom\'s two main alkaloids in Schedule I. In October 2016 it withdrew the notice — an almost unheard-of reversal. In July 2026 it issued a new notice aimed only at concentrated 7-hydroxymitragynine.',
+          "In August 2016 the DEA announced it would place kratom's two main alkaloids in Schedule I. In October 2016 it withdrew the notice — an almost unheard-of reversal. In July 2026 it issued a new notice aimed only at concentrated 7-hydroxymitragynine.",
         technicalDetails:
           'DEA published a notice of intent to temporarily place mitragynine and 7-hydroxymitragynine into Schedule I on 31 August 2016 (81 FR 59929), then published a withdrawal of that notice on 13 October 2016 (81 FR 70652) following public and congressional response. On 6 July 2026 DEA issued a new notice of intent (91 FR 40917, docket DEA-1570) proposing temporary Schedule I placement of 7-hydroxymitragynine above a specified threshold: more than 0.050% of 7-hydroxymitragynine on a dry-weight basis in botanical Mitragyna speciosa, or more than 0.050% by weight or volume, or more than 1.00 mg per article, in synthetic material and in extracts, concentrates, edibles or pressed pills. HHS was notified by letter of 24 February 2026, and the temporary order was to publish on or after 5 August 2026. A parallel notice the same day (91 FR 40909) covers mitragynine pseudoindoxyl, MGM-15 and MGM-16. The shift recorded here is in the object of regulation: from the plant and its alkaloids in 2016 to a concentration of one metabolite in 2026.',
         evidenceSource:
@@ -7347,7 +7366,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           'Schimmel et al. analysed the Survey of Non-Medical Use of Prescription Drugs programme, a validated non-probability online survey, across the third quarter of 2018 and the first quarter of 2019, with 59,714 respondents aged 18 or over weighted to represent 252,063,800 US adults. Past-year kratom use was 0.8% (95% CI 0.7-0.9), representing 2,031,803 adults; lifetime use was 1.3% (95% CI 1.2-1.4), or 3,353,624 adults. Users were younger (mean 35 years, p < 0.001), more often male (61.0% versus 48.6%, p < 0.001), more often students (14.1% versus 7.5%) and health-care professionals (9.7% versus 4.5%), and less often degree holders (33.4% versus 42.6%). This is a non-probability internet panel weighted to the population, which is a weaker design than a household probability sample, and the estimate should be read with that limitation attached.',
         evidenceSource: 'Schimmel J et al. Addiction 2021;116:176-181',
         doi: '10.1111/add.15082',
-        measuredMetric: 'Weighted past-year and lifetime prevalence of kratom use in US adults, n=59,714',
+        measuredMetric:
+          'Weighted past-year and lifetime prevalence of kratom use in US adults, n=59,714',
         auditFlag: 'verified',
       },
       {
@@ -7357,7 +7377,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Kratom leaf has been chewed in Southeast Asia for a very long time with little recorded harm. That history says nothing about a sublingual tablet delivering hundreds of milligrams of the active metabolite.',
         technicalDetails:
-          'The most common argument for kratom\'s safety is its long history of use as chewed or brewed leaf in Thailand, Malaysia and Indonesia. Leaf contains mitragynine, which is not itself a µ-opioid agonist in the functional assays, plus trace 7-hydroxymitragynine, and delivers both slowly with self-limiting nausea. The products DEA surveyed in 2024 and 2025 deliver up to 700 mg of 7-hydroxymitragynine sublingually, bypassing both the leaf matrix and first-pass metabolism, and DEA states that synthetic and plant-derived 7-hydroxymitragynine are pharmacologically identical. Extrapolating a safety record from the first exposure to the second is a category error, and this record files it as an inference in the traditional-use direction while noting the same error is made in reverse when the postmortem series is used to characterise leaf.',
+          "The most common argument for kratom's safety is its long history of use as chewed or brewed leaf in Thailand, Malaysia and Indonesia. Leaf contains mitragynine, which is not itself a µ-opioid agonist in the functional assays, plus trace 7-hydroxymitragynine, and delivers both slowly with self-limiting nausea. The products DEA surveyed in 2024 and 2025 deliver up to 700 mg of 7-hydroxymitragynine sublingually, bypassing both the leaf matrix and first-pass metabolism, and DEA states that synthetic and plant-derived 7-hydroxymitragynine are pharmacologically identical. Extrapolating a safety record from the first exposure to the second is a category error, and this record files it as an inference in the traditional-use direction while noting the same error is made in reverse when the postmortem series is used to characterise leaf.",
         evidenceSource:
           'DEA notice of intent 91 FR 40917 (6 July 2026), comparison of botanical and concentrated articles',
         inferredClaim:
@@ -7407,7 +7427,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The parent alkaloid binds the receptor without switching it on. The metabolite switches it partly on — enough for analgesia, euphoria and respiratory depression.',
         molecularDetail:
-          'Partial agonism at µ with Emax 41.3% in [35S]GTPγS, against mitragynine\'s antagonist behaviour in the same assay. In rats 7-hydroxymitragynine fully substituted for morphine in drug discrimination and produced antinociception; mitragynine did neither reliably. Naltrexone reverses both.',
+          "Partial agonism at µ with Emax 41.3% in [35S]GTPγS, against mitragynine's antagonist behaviour in the same assay. In rats 7-hydroxymitragynine fully substituted for morphine in drug discrimination and produced antinociception; mitragynine did neither reliably. Naltrexone reverses both.",
         iconName: 'Lock',
         visualStage: 'target_binding',
       },
@@ -7443,7 +7463,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'Mitragynine an antagonist in [35S]GTPγS; 7-hydroxymitragynine a partial agonist, Emax 41.3%. Morphine-lever substitution 72.3% for mitragynine, 99.7% for 7-hydroxymitragynine',
         unreportedAdverseSignals:
-          'The Ki values in the abstract are presented in the order opposite to the paper\'s own significance statement, and a correction was published in 2022. No human data.',
+          "The Ki values in the abstract are presented in the order opposite to the paper's own significance statement, and a correction was published in 2022. No human data.",
         independentReplicationStatus: 'Partially Replicated',
       },
       {
@@ -7487,7 +7507,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         'That kratom treats opioid withdrawal — it is widely used for that and no controlled trial has tested it',
       ],
       whatFailedInitially: [
-        'DEA\'s 2016 attempt to place mitragynine and 7-hydroxymitragynine in Schedule I was withdrawn six weeks after it was announced',
+        "DEA's 2016 attempt to place mitragynine and 7-hydroxymitragynine in Schedule I was withdrawn six weeks after it was announced",
         'No randomised controlled trial of kratom or mitragynine has been completed for pain, for opioid withdrawal, or for anything else',
       ],
       realWorldOutcome: [
@@ -7507,11 +7527,11 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         q: 'Is kratom an opioid?',
         a: 'The plant is not, in the strict pharmacological sense, and its main alkaloid behaves as an antagonist rather than an agonist in the standard functional assay at the µ-opioid receptor. What acts as an opioid is 7-hydroxymitragynine, the metabolite the liver makes from mitragynine — a partial agonist that produced antinociception in rats and was reversed by naltrexone. So the honest answer is that kratom is a delivery system for an opioid metabolite, and the concentrated products now on sale skip that step and deliver the opioid directly.',
         auditNote:
-          'This distinction is why DEA\'s 2026 proposal targets a concentration of 7-hydroxymitragynine rather than the plant or mitragynine, which is a materially different regulatory object from the 2016 attempt.',
+          "This distinction is why DEA's 2026 proposal targets a concentration of 7-hydroxymitragynine rather than the plant or mitragynine, which is a materially different regulatory object from the 2016 attempt.",
       },
       {
         q: 'How many people have died from it?',
-        a: 'The largest systematic count is CDC\'s: across 27 states between July 2016 and December 2017, kratom was detected in 152 overdose deaths and was named a cause in 91, with fentanyl also a listed cause in about two thirds of the kratom-positive group and kratom the only detected substance in seven cases. DEA\'s toxicology programme separately reports 55 fatal 7-hydroxymitragynine cases since 2019. Neither number is a rate: nobody knows how many samples were tested for kratom, and nobody knows the exposed population precisely.',
+        a: "The largest systematic count is CDC's: across 27 states between July 2016 and December 2017, kratom was detected in 152 overdose deaths and was named a cause in 91, with fentanyl also a listed cause in about two thirds of the kratom-positive group and kratom the only detected substance in seven cases. DEA's toxicology programme separately reports 55 fatal 7-hydroxymitragynine cases since 2019. Neither number is a rate: nobody knows how many samples were tested for kratom, and nobody knows the exposed population precisely.",
       },
       {
         q: 'Why was it nearly banned in 2016 and then not?',
@@ -7575,8 +7595,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label:
-          'DEA withdrawal of notice of intent, 81 FR 70652, 13 October 2016',
+        label: 'DEA withdrawal of notice of intent, 81 FR 70652, 13 October 2016',
         identifier:
           'https://www.federalregister.gov/documents/2016/10/13/2016-24659/withdrawal-of-notice-of-intent-to-temporarily-place-mitragynine-and-7-hydroxymitragynine-into',
         kind: 'regulatory',
@@ -7594,7 +7613,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         kind: 'url',
       },
       {
-        label: 'PubChem CID 44301524 — 7-hydroxymitragynine structure, formula and molecular weight',
+        label:
+          'PubChem CID 44301524 — 7-hydroxymitragynine structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/44301524',
         kind: 'url',
       },
@@ -7759,7 +7779,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In New Jersey in 2023, a group of people became seriously ill after taking a tianeptine product. The cause was not only the tianeptine — the product also contained synthetic cannabinoids.',
         technicalDetails:
-          'CDC reported a cluster of severe illness linked to the tianeptine product Neptune\'s Fix in New Jersey between June and November 2023, in which synthetic cannabinoids were identified in the product alongside tianeptine. The episode demonstrates a failure mode specific to unregulated supplement-channel drugs: the labelled active ingredient is not the whole exposure, and clinicians treating an apparent tianeptine toxidrome were dealing with something else as well. It also demonstrates why the analytical workflow on this page includes an untargeted screen rather than a targeted tianeptine confirmation — a targeted assay would have returned a correct result and the wrong answer.',
+          "CDC reported a cluster of severe illness linked to the tianeptine product Neptune's Fix in New Jersey between June and November 2023, in which synthetic cannabinoids were identified in the product alongside tianeptine. The episode demonstrates a failure mode specific to unregulated supplement-channel drugs: the labelled active ingredient is not the whole exposure, and clinicians treating an apparent tianeptine toxidrome were dealing with something else as well. It also demonstrates why the analytical workflow on this page includes an untargeted screen rather than a targeted tianeptine confirmation — a targeted assay would have returned a correct result and the wrong answer.",
         evidenceSource: 'MMWR Morb Mortal Wkly Rep 2024;73:89-90',
         doi: '10.15585/mmwr.mm7304a5',
         measuredMetric:
@@ -7828,7 +7848,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The parent drug clears quickly; a metabolite called MC5 lasts longer and does the same thing at the same receptor.',
         molecularDetail:
-          'Beta-oxidation of the heptanoic acid side chain produces MC5, the principal metabolite, which has a longer half-life and reproduces tianeptine\'s behavioural effects in a µ-opioid-receptor-dependent manner in mice.',
+          "Beta-oxidation of the heptanoic acid side chain produces MC5, the principal metabolite, which has a longer half-life and reproduces tianeptine's behavioural effects in a µ-opioid-receptor-dependent manner in mice.",
         iconName: 'FlaskConical',
         visualStage: 'cellular_entry',
       },
@@ -7836,7 +7856,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Fully activates the µ-opioid receptor',
         laymanDesc:
-          'It switches on the morphine receptor completely, not partially. That is the finding that rewrote the drug\'s pharmacology in 2014.',
+          "It switches on the morphine receptor completely, not partially. That is the finding that rewrote the drug's pharmacology in 2014.",
         molecularDetail:
           'Full µ agonist, Ki 383 ± 183 nM and EC50 194 ± 70 nM for human G-protein activation. Full δ agonist at roughly 200-fold lower potency, inactive at κ. Antidepressant-like behavioural effects are abolished in µ-opioid receptor knockout mice.',
         iconName: 'Lock',
@@ -7893,7 +7913,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         trialId: 'Anand et al. 2026 systematic review of tianeptine misuse',
         phase: 'PRISMA 2020 systematic review',
         sampleSize: 1055,
-        primaryEndpoint: 'Clinical presentation and management of tianeptine misuse, toxicity and withdrawal',
+        primaryEndpoint:
+          'Clinical presentation and management of tianeptine misuse, toxicity and withdrawal',
         endpointMet: true,
         statisticalPValue:
           '53 publications included (48 case reports, 5 retrospective series); of 52 extractable individual cases, 26 (50%) withdrawal and 23 (44%) overdose',
@@ -7917,7 +7938,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         'That the serotonin-reuptake-enhancement mechanism described in the pre-2014 literature is a partial account rather than a superseded one',
       ],
       whatFailedInitially: [
-        'Three decades of pharmacological investigation failed to identify the drug\'s molecular target, because opioid receptors were not among those tested',
+        "Three decades of pharmacological investigation failed to identify the drug's molecular target, because opioid receptors were not among those tested",
         'A targeted tianeptine assay would have found tianeptine in the New Jersey cluster and missed the synthetic cannabinoids that were also present',
       ],
       realWorldOutcome: [
@@ -7975,7 +7996,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Notes from the Field: Cluster of Severe Illness from Neptune\'s Fix Tianeptine Linked to Synthetic Cannabinoids - New Jersey, June-November 2023. MMWR Morb Mortal Wkly Rep 2024;73:89-90',
+          "Notes from the Field: Cluster of Severe Illness from Neptune's Fix Tianeptine Linked to Synthetic Cannabinoids - New Jersey, June-November 2023. MMWR Morb Mortal Wkly Rep 2024;73:89-90",
         identifier: '10.15585/mmwr.mm7304a5',
         kind: 'doi',
       },
@@ -8137,7 +8158,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Phenibut is usually described as a GABA-B drug like baclofen. In a direct binding comparison, the active enantiomer bound the calcium-channel subunit that gabapentin targets about four times more tightly than it bound GABA-B.',
         technicalDetails:
-          'Zvejniece et al. measured binding affinity for the α2-δ subunit of the voltage-dependent calcium channel using radiolabelled gabapentin in rat brain membranes: Ki was 23 µM for R-phenibut, 39 µM for S-phenibut, 156 µM for baclofen and 0.05 µM for gabapentin. R-phenibut\'s α2-δ affinity was about four times higher than its affinity for GABA-B. In the formalin-induced paw-licking test, pre-treatment with R-phenibut dose-dependently reduced the nociceptive response in both phases, and that effect was not blocked by the GABA-B-selective antagonist CGP35348 — attributing it to α2-δ rather than to GABA-B. Both enantiomers alleviated mechanical and thermal allodynia after chronic constriction injury of the sciatic nerve. R-phenibut did not affect pentylenetetrazole-induced seizures at doses up to 100 mg/kg. Note the absolute numbers: phenibut is a micromolar ligand at both targets while gabapentin is nanomolar at α2-δ, which is why phenibut is dosed in hundreds of milligrams.',
+          "Zvejniece et al. measured binding affinity for the α2-δ subunit of the voltage-dependent calcium channel using radiolabelled gabapentin in rat brain membranes: Ki was 23 µM for R-phenibut, 39 µM for S-phenibut, 156 µM for baclofen and 0.05 µM for gabapentin. R-phenibut's α2-δ affinity was about four times higher than its affinity for GABA-B. In the formalin-induced paw-licking test, pre-treatment with R-phenibut dose-dependently reduced the nociceptive response in both phases, and that effect was not blocked by the GABA-B-selective antagonist CGP35348 — attributing it to α2-δ rather than to GABA-B. Both enantiomers alleviated mechanical and thermal allodynia after chronic constriction injury of the sciatic nerve. R-phenibut did not affect pentylenetetrazole-induced seizures at doses up to 100 mg/kg. Note the absolute numbers: phenibut is a micromolar ligand at both targets while gabapentin is nanomolar at α2-δ, which is why phenibut is dosed in hundreds of milligrams.",
         evidenceSource: 'Zvejniece L et al. Pharmacol Biochem Behav 2015;137:23-29',
         doi: '10.1016/j.pbb.2015.07.014',
         measuredMetric:
@@ -8181,7 +8202,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           'Phenibut cases appear to jump sharply from 2015. That is the year poison centres were first able to record "phenibut" as a term, so part of the increase is the counting, not the drug.',
         technicalDetails:
           'The MMWR analysis states that the number of cases increased sharply over 2009-2019, particularly since 2015, when regional poison centres became able to use "phenibut" as a relevant term to capture exposures. A surveillance series whose case-ascertainment method changes mid-period cannot separate a real increase from an improvement in detection, and the authors say so. The independent Minnesota series shows the same shape — 48 of 56 calls in the final five years — which is consistent with a genuine rise, but that series covers the same period and is subject to the same coding change. The honest statement is that phenibut exposures rose over the decade and that the size of the rise is not measurable from these data.',
-        evidenceSource: 'Graves JM et al. MMWR Morb Mortal Wkly Rep 2020;69:1227-1228, methods note',
+        evidenceSource:
+          'Graves JM et al. MMWR Morb Mortal Wkly Rep 2020;69:1227-1228, methods note',
         doi: '10.15585/mmwr.mm6935a5',
         inferredClaim:
           'That the post-2015 rise in reported phenibut exposures measures a rise in phenibut use rather than a change in how exposures were coded',
@@ -8272,7 +8294,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         trialId: 'Cohen et al. 2022 supplement content analysis before and after FDA warnings',
         phase: 'Analytical product survey',
         sampleSize: 4,
-        primaryEndpoint: 'Phenibut content per serving in supplements on sale before and after FDA warnings',
+        primaryEndpoint:
+          'Phenibut content per serving in supplements on sale before and after FDA warnings',
         endpointMet: true,
         statisticalPValue:
           'Before: 2 of 4 contained phenibut at 484 mg and 487 mg per serving. After: 4 of 4 contained it, 21 mg to 1,164 mg per serving, up to 450% of a 250 mg Russian pharmaceutical tablet',
@@ -8284,7 +8307,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         trialId: 'McCabe et al. 2019 Minnesota Poison Control System review, 2000-2018',
         phase: 'Regional poison-centre case series',
         sampleSize: 56,
-        primaryEndpoint: 'Incidence, reasons for use and clinical effects of phenibut exposure calls',
+        primaryEndpoint:
+          'Incidence, reasons for use and clinical effects of phenibut exposure calls',
         endpointMet: true,
         statisticalPValue:
           '48 of 56 calls (85.7%) in the final five years; CNS effects in over 50%; 11 of 56 (19.6%) intubated; no deaths',
@@ -8371,7 +8395,8 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Lapin I. Phenibut (beta-phenyl-GABA): a tranquilizer and nootropic drug. CNS Drug Rev 2001;7:471-481',
+        label:
+          'Lapin I. Phenibut (beta-phenyl-GABA): a tranquilizer and nootropic drug. CNS Drug Rev 2001;7:471-481',
         identifier: '10.1111/j.1527-3458.2001.tb00211.x',
         kind: 'doi',
       },
@@ -8484,7 +8509,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Dose reconstruction in the paediatric ingestion cases',
           description:
-            'The most clinically useful quantification on this page is a milligram-per-kilogram figure. Garay et al. reconstructed ingested dose in 232 single-substance cases in children under six and found a median of 6.7 mg/kg, with a dose-response relationship for central nervous system depression severity. The reconstruction depends on the product\'s labelled content, which the first two steps of this workflow exist to check.',
+            "The most clinically useful quantification on this page is a milligram-per-kilogram figure. Garay et al. reconstructed ingested dose in 232 single-substance cases in children under six and found a median of 6.7 mg/kg, with a dose-response relationship for central nervous system depression severity. The reconstruction depends on the product's labelled content, which the first two steps of this workflow exist to check.",
           dependsOnStepId: 'd8-w2',
           reagentsAndBuffer:
             'Product content verified analytically rather than from the label, documented body weight, structured clinical outcome coding, receiver-operating-characteristic analysis against severe and prolonged toxicity',
@@ -8555,7 +8580,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Cannabis contains almost no delta-8. Commercial delta-8 is made by treating hemp-derived CBD with acid, which rearranges it — a reaction that also produces other cannabinoids and leaves residues behind.',
         technicalDetails:
-          'Delta-8-THC occurs in Cannabis at concentrations far too low to extract commercially. The material sold is produced by acid-catalysed isomerisation of cannabidiol, which is abundant in hemp and inexpensive. The reaction yields delta-8 as the intended product alongside delta-9-THC, other positional isomers such as delta-10 and iso-THC, and further by-products, and can leave residual acid, solvent and catalyst in the finished article. Nothing in the process is subject to pharmaceutical manufacturing standards, and the finished products in the poison-centre series include gummies and vape cartridges sold in general retail. DEA\'s position in the 2020 interim final rule that synthetically derived tetrahydrocannabinols remain Schedule I turns precisely on this manufacturing route; the Ninth Circuit\'s reading of the statute does not.',
+          "Delta-8-THC occurs in Cannabis at concentrations far too low to extract commercially. The material sold is produced by acid-catalysed isomerisation of cannabidiol, which is abundant in hemp and inexpensive. The reaction yields delta-8 as the intended product alongside delta-9-THC, other positional isomers such as delta-10 and iso-THC, and further by-products, and can leave residual acid, solvent and catalyst in the finished article. Nothing in the process is subject to pharmaceutical manufacturing standards, and the finished products in the poison-centre series include gummies and vape cartridges sold in general retail. DEA's position in the 2020 interim final rule that synthetically derived tetrahydrocannabinols remain Schedule I turns precisely on this manufacturing route; the Ninth Circuit's reading of the statute does not.",
         evidenceSource:
           'DEA interim final rule 85 FR 51639 (21 August 2020), discussion of synthetically derived tetrahydrocannabinols; 21 CFR 1308.11(d)(31)',
         measuredMetric:
@@ -8696,10 +8721,10 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         'That lower CB1 potency per milligram makes a delta-8 product milder or safer than a delta-9 product',
         'That legality implies any safety or manufacturing standard — the material is produced by an uncontrolled chemical conversion of CBD',
         'That the 1995 antiemetic result supports therapeutic use today; it is eight open-label patients, unreplicated for thirty years',
-        'That a product\'s label describes its contents, when the isomers share a formula and a mass and separation quality decides the answer',
+        "That a product's label describes its contents, when the isomers share a formula and a mass and separation quality decides the answer",
       ],
       whatFailedInitially: [
-        'DEA\'s 2020 interim final rule asserted that synthetically derived tetrahydrocannabinols remain Schedule I, and a federal appellate court read the same statute the other way in 2022',
+        "DEA's 2020 interim final rule asserted that synthetically derived tetrahydrocannabinols remain Schedule I, and a federal appellate court read the same statute the other way in 2022",
         'The 2018 Farm Bill defined hemp by delta-9 content alone, which created the market this record describes',
       ],
       realWorldOutcome: [
@@ -8739,7 +8764,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     sources: [
       {
         label:
-          'Burgess A et al. Delta-8 tetrahydrocannabinol, delta-10 tetrahydrocannabinol, and tetrahydrocannabinol-O acetate exposures reported to America\'s Poison Centers. Clin Toxicol 2024;62:256-266',
+          "Burgess A et al. Delta-8 tetrahydrocannabinol, delta-10 tetrahydrocannabinol, and tetrahydrocannabinol-O acetate exposures reported to America's Poison Centers. Clin Toxicol 2024;62:256-266",
         identifier: '10.1080/15563650.2024.2340115',
         kind: 'doi',
       },
@@ -8785,6 +8810,3896 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/638026',
         kind: 'url',
       },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 23. Synthetic cannabinoids — JWH-018 and the K2 / Spice class
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'jwh-018',
+    name: 'JWH-018 and the Synthetic Cannabinoid Class (K2 / Spice)',
+    tradeName:
+      'Sold as herbal incense under hundreds of brand names — Spice, K2, AK-47 24 Karat Gold, Scooby Snax — never under a chemical name',
+    sponsor:
+      'None. JWH-018 was synthesised in an academic laboratory as a receptor probe by John W. Huffman at Clemson University; the products are made by unidentified manufacturers',
+    targetGene: 'CNR1',
+    targetProtein:
+      'Cannabinoid CB1 receptor — full agonists, unlike delta-9-THC which is a partial agonist. JWH-018 inhibits excitatory transmission in hippocampal neurons with an IC50 of 14.9 nM',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No medical indication for any member of the class. Five synthetic cannabinoids including JWH-018 were placed temporarily in Schedule I by DEA final rule effective 1 March 2011, and the class now occupies many entries in 21 CFR 1308.11(d)',
+    patientFriendlyIndication:
+      'Nothing. These are laboratory research chemicals sprayed onto plant matter and sold as incense, and the compounds in them change faster than the law can list them',
+    anatomicalSite:
+      'CB1 receptors on presynaptic terminals in the hippocampus and elsewhere in the central nervous system; the receptor is internalised within minutes of exposure',
+    conditionContext: {
+      conditionExplainer:
+        'There is no condition. The class exists because a compound designed to probe the cannabinoid receptor in a laboratory turned out to be orally and inhalationally active, and because every scheduling action produces a new analogue.',
+      whyItMatters:
+        'These compounds are not "synthetic cannabis". Delta-9-THC is a partial agonist at CB1 with a ceiling; JWH-018 and its successors are full agonists with none. That single pharmacological difference explains the seizures, the mass-casualty intoxications and the deaths that cannabis itself does not produce.',
+      whoTakesThis:
+        'People choosing a compound that a urine drug screen does not detect, and people buying the cheapest available intoxicant. The 2016 New York mass intoxication involved 33 people in one neighbourhood on one day.',
+      clinicalGoals: 'None. No compound in this class has ever been developed for human use.',
+    },
+    oneSentenceVerdict:
+      'A class built from academic receptor probes: full CB1 agonists where THC is only partial, potent at low nanomolar concentrations, responsible for a 33-person mass intoxication in New York in 2016 and — when the plant matter was adulterated with rat poison — 34 patients with superwarfarin coagulopathy in one Illinois hospital in 2018, one of whom died of intracranial haemorrhage.',
+    laymanHowItWorks:
+      'JWH-018 and its relatives bind the same receptor as THC but switch it on completely rather than partially. THC has a built-in ceiling: past a point, more of it does not produce more receptor activation. These compounds have no such ceiling, so the dose-response curve keeps climbing into seizures, agitated delirium and unresponsiveness. They are sprayed from solution onto inert plant matter, which distributes them unevenly, so two pinches from the same packet are not the same dose. And because they are structurally unlike THC, cannabis urine screens do not detect them.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 72,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCCCCN1C=C(C2=CC=CC=C21)C(=O)C3=CC=CC4=CC=CC=C43',
+      chemicalFormula: 'C24H23NO',
+      molecularWeight:
+        '341.4 g/mol for JWH-018. The class spans naphthoylindoles, indazole carboxamides and others with no shared scaffold — AMB-FUBINACA, found at 16.0 ± 3.9 mg per gram in the New York product, is chemically unrelated to JWH-018',
+      targetReceptorAffinity:
+        'JWH-018 is a potent full CB1 agonist. In cultured autaptic hippocampal neurons it inhibited excitatory postsynaptic currents with IC50 14.9 nM in a CB1-dependent manner; it increased ERK1/2 MAPK phosphorylation with EC50 4.4 nM, and induced rapid CB1 receptor internalisation with EC50 2.8 nM and a half-time of 17.3 minutes. Delta-9-THC, by contrast, is a partial agonist at the same receptor — the difference that determines the toxicity of the whole class.',
+      structureSource: {
+        label: 'PubChem CID 10382701 (JWH-018) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10382701',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sc-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identify the compound without knowing what to look for',
+          description:
+            'A targeted assay is useless against this class, because the compound in a given packet may not have existed when the assay was validated. Identification runs on high-resolution accurate-mass acquisition with library matching and, where the library fails, structural elucidation from fragmentation and nuclear magnetic resonance. The New York outbreak compound was identified this way from the product and the patients in parallel.',
+          reagentsAndBuffer:
+            'Liquid chromatography-quadrupole time-of-flight mass spectrometry, continually updated synthetic cannabinoid spectral libraries, reference standards where obtainable, NMR for structural elucidation of unlibraried compounds',
+        },
+        {
+          id: 'sc-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Measure content and its variation across the same packet',
+          description:
+            'The compound is applied in solution to inert plant matter and dried, which distributes it unevenly. Assaying a single homogenised sample gives a mean and conceals the variance, which is what a user actually encounters. In the New York product AMB-FUBINACA was present at 16.0 ± 3.9 mg per gram — the standard deviation is a quarter of the mean and is the most informative part of that measurement.',
+          dependsOnStepId: 'sc-w1',
+          reagentsAndBuffer:
+            'Replicate sub-sampling from separate regions of the same packet, solvent extraction with sonication, quantification against a certified reference standard where available, mean and standard deviation reported per gram of plant material',
+        },
+        {
+          id: 'sc-w3',
+          stepNumber: 3,
+          phase: 'QC',
+          name: 'Screen for adulterants that are not cannabinoids at all',
+          description:
+            'The Illinois 2018 outbreak was not caused by a cannabinoid. Long-acting anticoagulant rodenticides had been added to the product, and patients presented with bleeding rather than intoxication. Anticoagulant testing confirmed brodifacoum in 15 of 15 patients tested, difenacoum in 5 and bromadiolone in 2. A cannabinoid-only screen would have found the cannabinoid and missed the cause of death.',
+          dependsOnStepId: 'sc-w1',
+          reagentsAndBuffer:
+            'Anticoagulant poisoning panel covering brodifacoum, difenacoum, bromadiolone and warfarin, LC-MS/MS on serum, prothrombin time and INR alongside, untargeted screening for non-cannabinoid actives',
+        },
+        {
+          id: 'sc-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Culture autaptic hippocampal neurons for functional CB1 work',
+          description:
+            'The finding that separates this class from cannabis was made in neurons, not in a receptor-overexpressing cell line. Cultured autaptic hippocampal neurons form synapses onto themselves, so a single cell provides both the presynaptic and the postsynaptic side and CB1-mediated inhibition of excitatory transmission can be measured directly.',
+          dependsOnStepId: 'sc-w2',
+          reagentsAndBuffer:
+            'Autaptic hippocampal neuron cultures on microislands, HEK293 cells stably expressing CB1 for the internalisation and ERK arms, CB1-knockout or rimonabant-treated controls to establish receptor dependence',
+        },
+        {
+          id: 'sc-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Quantify efficacy against delta-9-THC as the reference partial agonist',
+          description:
+            'Potency alone does not describe the hazard; efficacy does. Measuring inhibition of excitatory postsynaptic currents, ERK1/2 phosphorylation and receptor internalisation for the test compound and for delta-9-THC in the same preparation is what establishes that one has a ceiling and the other does not.',
+          dependsOnStepId: 'sc-w4',
+          reagentsAndBuffer:
+            'Whole-cell voltage clamp for excitatory postsynaptic current amplitude, phospho-ERK1/2 immunoassay, fluorescently tagged CB1 for internalisation time course, delta-9-THC and CP55,940 as reference agonists, rimonabant as antagonist control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sc-a1',
+        category: 'measured',
+        title: 'Full agonists where THC is partial — the whole difference in one property',
+        laymanSummary:
+          'THC only partly switches on the cannabinoid receptor, and past a point more of it does nothing extra. JWH-018 switches the receptor on completely, at nanomolar concentrations, with no such ceiling.',
+        technicalDetails:
+          'Atwood et al. measured JWH-018 in cultured autaptic hippocampal neurons and in HEK293 cells stably expressing CB1. It inhibited excitatory postsynaptic currents with IC50 14.9 nM in a concentration- and CB1-dependent manner, increased ERK1/2 MAPK phosphorylation with EC50 4.4 nM, and induced rapid and robust CB1 receptor internalisation with EC50 2.8 nM and a half-time of 17.3 minutes. The authors conclude that the subjective effects of "Spice" are due to CB1 activation by JWH-018. The point that matters clinically is the one implicit in "efficacious": delta-9-THC is a partial agonist with a ceiling on receptor activation, and these compounds are full agonists without one. That is why a class of drugs marketed as cannabis substitutes produces seizures, agitated delirium and death, which cannabis does not.',
+        evidenceSource: 'Atwood BK et al. Br J Pharmacol 2010;160:585-593',
+        doi: '10.1111/j.1476-5381.2009.00582.x',
+        measuredMetric:
+          'IC50 for inhibition of excitatory postsynaptic currents, EC50 for ERK1/2 phosphorylation and for CB1 internalisation, in neurons',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sc-a2',
+        category: 'measured',
+        title: 'Thirty-three people intoxicated in one neighbourhood on one day',
+        laymanSummary:
+          'On 12 July 2016, 33 people in one New York City neighbourhood were incapacitated by a herbal incense product. Testing found an ultrapotent synthetic cannabinoid in the product and its metabolite in every patient sampled.',
+        technicalDetails:
+          'Adams et al. investigated the mass intoxication of 33 people in one New York City neighbourhood on 12 July 2016, of whom 18 were transported to hospital. Serum, whole blood and urine from 8 of those patients, and a sample of the implicated product "AK-47 24 Karat Gold", were analysed by liquid chromatography-quadrupole time-of-flight mass spectrometry. AMB-FUBINACA was identified in the product at a mean of 16.0 ± 3.9 mg per gram. Its de-esterified acid metabolite was present in the serum or whole blood of all eight patients at 77 to 636 ng/mL. The authors describe AMB-FUBINACA as an example of the emerging class of "ultrapotent" synthetic cannabinoids and attribute the depressant, "zombielike" presentation to its potency. The identification depended on collaboration between a clinical toxicology laboratory, clinicians and law enforcement, because no routine test would have found it.',
+        evidenceSource: 'Adams AJ et al. N Engl J Med 2017;376:235-242',
+        doi: '10.1056/NEJMoa1610300',
+        measuredMetric:
+          'AMB-FUBINACA concentration in the product and its acid metabolite in patient blood across 8 of 33 affected persons',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sc-a3',
+        category: 'measured',
+        title: 'Thirty-four patients bleeding from rat poison in the packet',
+        laymanSummary:
+          'In spring 2018, more than 150 people in Illinois presented with unexplained bleeding. The synthetic cannabinoid products had been adulterated with brodifacoum, a long-acting rat poison. One patient died of a brain haemorrhage.',
+        technicalDetails:
+          'Kelkar et al. reported 34 patients with synthetic cannabinoid-associated coagulopathy across 45 hospitalisations at one Peoria medical centre between 28 March and 21 April 2018, part of a statewide outbreak of more than 150 patients. Confirmatory anticoagulant testing was performed in 15 of the 34 and superwarfarin poisoning was confirmed in all 15: brodifacoum in 15 (100%), difenacoum in 5 (33%), bromadiolone in 2 (13%) and warfarin in 1 (7%). Presenting features included gross haematuria in 19 (56%) and abdominal pain in 16 (47%), with renal abnormalities on CT in 12. All 34 received oral vitamin K1 and 23 (68%) also received it intravenously; 19 (56%) received fresh frozen plasma and 5 (15%) red-cell transfusion. One patient died from complications of spontaneous intracranial haemorrhage. The authors note that the specific synthetic cannabinoid compounds involved are not known — the adulterant was identified and the drug was not.',
+        evidenceSource: 'Kelkar AH et al. N Engl J Med 2018;379:1216-1223',
+        doi: '10.1056/NEJMoa1807652',
+        measuredMetric:
+          'Confirmed superwarfarin poisoning, presenting features, treatment and outcome across 34 patients in 45 hospitalisations',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sc-a4',
+        category: 'measured',
+        title: 'Acute kidney injury in previously healthy young people',
+        laymanSummary:
+          'In 2012, health departments across several states reported clusters of sudden kidney failure in teenagers and young adults after smoking synthetic cannabinoid products.',
+        technicalDetails:
+          'CDC reported acute kidney injury associated with synthetic cannabinoid use across multiple states in 2012, in patients who were predominantly young and previously healthy and who presented with nausea, vomiting, flank or abdominal pain and a rise in creatinine after smoking a synthetic cannabinoid product. The mechanism was not established and no single compound was identified across the clusters. The episode belongs in this record for what it demonstrates about the class rather than about any molecule: a toxicity that had no precedent in the cannabinoid literature, appearing simultaneously in several states, in products whose composition nobody could state.',
+        evidenceSource:
+          'Acute kidney injury associated with synthetic cannabinoid use — multiple states, 2012. MMWR Morb Mortal Wkly Rep 2013;62:93-98',
+        measuredMetric:
+          'Clusters of acute kidney injury temporally associated with synthetic cannabinoid use across multiple states',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sc-a5',
+        category: 'conclusion_shift',
+        title: 'Scheduling a compound produces the next compound',
+        laymanSummary:
+          'DEA placed the first five synthetic cannabinoids in Schedule I in 2011. Manufacturers responded by changing the molecule, and the class now runs to dozens of entries in the regulation.',
+        technicalDetails:
+          'DEA published a notice of intent to temporarily place five synthetic cannabinoids — including JWH-018 — into Schedule I on 24 November 2010 (75 FR 71635), and the temporary scheduling final order took effect on 1 March 2011 (76 FR 11075). The class has since expanded to occupy dozens of entries in 21 CFR 1308.11(d), and the compounds encountered have moved through structurally unrelated families: naphthoylindoles such as JWH-018, then indazole carboxamides such as AMB-FUBINACA, which shares no scaffold with the first generation. The regulatory lesson recorded here is structural: listing a named compound creates a selection pressure for a compound not on the list, and the replacement is typically more potent because potency reduces the mass that must be shipped. The 2016 New York outbreak compound is the demonstration.',
+        evidenceSource:
+          'DEA notice of intent 75 FR 71635 (24 November 2010); DEA final order 76 FR 11075 (1 March 2011); 21 CFR 1308.11(d), current eCFR text',
+        measuredMetric:
+          'Sequence of scheduling actions against the chemical families of the compounds subsequently encountered',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'sc-a6',
+        category: 'inferred',
+        title: '"Synthetic cannabis" is a marketing name, not a pharmacological one',
+        laymanSummary:
+          'These products are sold as legal cannabis substitutes. They act on the same receptor, but with a different efficacy profile, and none of what is known about cannabis safety transfers.',
+        technicalDetails:
+          'The class shares a receptor with delta-9-THC and nothing else — not chemical scaffold, not efficacy at that receptor, not dose range, not metabolism, and not the composition of the product. The inference that the safety record of cannabis says anything about these compounds fails on the efficacy difference alone: a full agonist at a receptor where the reference drug is partial has a different maximum, and the clinical series show what that maximum looks like. The inference also fails at the product level, since a given packet contains an unknown compound at an uneven concentration, sometimes with a non-cannabinoid adulterant. This record files it as inferred because the phrase "synthetic cannabis" carries the inference invisibly.',
+        evidenceSource:
+          'Atwood BK et al. Br J Pharmacol 2010;160:585-593; Adams AJ et al. N Engl J Med 2017;376:235-242',
+        doi: '10.1111/j.1476-5381.2009.00582.x',
+        inferredClaim:
+          'That compounds sharing the CB1 receptor with delta-9-THC share its effect profile or its safety record',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sc-a7',
+        category: 'measured',
+        title: 'Routine cannabis screens do not detect them',
+        laymanSummary:
+          'A urine test for cannabis looks for THC metabolites. These compounds are chemically unrelated, so they do not show up — which is a substantial part of why they are used.',
+        technicalDetails:
+          'Immunoassay screens for cannabis target delta-9-THC-carboxylic acid. Synthetic cannabinoids are structurally unrelated to THC and are not detected by those assays, and their metabolites require compound-specific methods. In the New York investigation the identification required liquid chromatography-quadrupole time-of-flight mass spectrometry run against both the product and the patient samples, and in the Illinois outbreak the specific cannabinoids were never identified at all. The consequence for the record is that no clinical or forensic series in this class can state which compound it is describing without a dedicated analytical effort, and most do not — which is why prevalence and mortality for this class are systematically undercounted.',
+        evidenceSource:
+          'Adams AJ et al. N Engl J Med 2017;376:235-242, analytical methods; Kelkar AH et al. N Engl J Med 2018;379:1216-1223, stated inability to identify the compounds',
+        doi: '10.1056/NEJMoa1610300',
+        measuredMetric:
+          'Requirement for compound-specific high-resolution mass spectrometry rather than cannabinoid immunoassay',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Sprayed onto plant matter and smoked',
+        laymanDesc:
+          'The compound is dissolved, sprayed over inert dried leaves and dried. The leaves do nothing; they are a carrier.',
+        molecularDetail:
+          'Solution application to inert plant material, then drying. Distribution is uneven — in the New York product AMB-FUBINACA measured 16.0 ± 3.9 mg per gram, a standard deviation of nearly a quarter of the mean across the same product. Two portions from one packet are not the same dose.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed through the lungs within seconds',
+        laymanDesc:
+          'Inhalation puts the compound into arterial blood immediately, with no chance to stop once the effect proves stronger than expected.',
+        molecularDetail:
+          'Pulmonary absorption with rapid central distribution. Because the compounds are potent at low nanomolar concentrations, the milligram quantities present on plant material are far above what is needed for maximal receptor occupancy.',
+        iconName: 'Wind',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Fully activates CB1 with no ceiling',
+        laymanDesc:
+          'Unlike THC, which only partly activates the receptor, these compounds switch it on completely — and keep going as the dose rises.',
+        molecularDetail:
+          "JWH-018 inhibits excitatory postsynaptic currents with IC50 14.9 nM, phosphorylates ERK1/2 with EC50 4.4 nM and internalises CB1 with EC50 2.8 nM and t½ 17.3 minutes. Full agonism at a receptor where delta-9-THC is partial is the mechanistic basis for the whole class's toxicity.",
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The receptor is pulled off the cell surface within minutes',
+        laymanDesc:
+          'Sustained full activation makes the cell withdraw its receptors, which is the likely basis of the rapid tolerance users describe.',
+        molecularDetail:
+          'Rapid and robust CB1 internalisation with a half-time of 17.3 minutes at nanomolar concentrations. Receptor removal on this timescale is a plausible substrate for the fast tolerance and escalating use reported in this class, though no human study has demonstrated the link.',
+        iconName: 'Timer',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Seizures, agitated delirium, unresponsiveness — or bleeding',
+        laymanDesc:
+          'The clinical picture ranges from a cannabis-like effect to complete unresponsiveness. And when the product has been adulterated, the presentation may not be intoxication at all.',
+        molecularDetail:
+          'Mass intoxication of 33 people in one neighbourhood, with the acid metabolite at 77 to 636 ng/mL in the eight patients tested. Separately, 34 patients with brodifacoum coagulopathy in one Illinois hospital: gross haematuria in 56%, intravenous vitamin K1 in 68%, fresh frozen plasma in 56%, one death from intracranial haemorrhage.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Atwood et al. 2010 CB1 receptor pharmacology of JWH-018',
+        phase: 'In vitro neuronal and cell-based pharmacology',
+        sampleSize: 0,
+        primaryEndpoint:
+          'CB1-mediated inhibition of excitatory transmission, ERK1/2 activation and receptor internalisation',
+        endpointMet: true,
+        statisticalPValue:
+          'IC50 14.9 nM for excitatory postsynaptic current inhibition; EC50 4.4 nM for ERK1/2 phosphorylation; EC50 2.8 nM and t½ 17.3 min for CB1 internalisation',
+        unreportedAdverseSignals:
+          'In vitro only. The clinical significance of full versus partial agonism at CB1 is inferred from these data plus the clinical series, not measured in a controlled human study — no such study exists or could be run.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Adams et al. 2017 New York mass intoxication investigation',
+        phase: 'Outbreak investigation with analytical confirmation',
+        sampleSize: 33,
+        primaryEndpoint:
+          'Identification of the causative compound in the product and in patient samples',
+        endpointMet: true,
+        statisticalPValue:
+          'AMB-FUBINACA at 16.0 ± 3.9 mg/g in the product; de-esterified acid metabolite at 77-636 ng/mL in all 8 patients tested',
+        unreportedAdverseSignals:
+          'Only 8 of the 33 affected persons were sampled, and only 18 were transported to hospital, so the concentration range describes a subset. No dose-response could be established.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Kelkar et al. 2018 Illinois coagulopathy case series',
+        phase: 'Hospital case series within a statewide outbreak',
+        sampleSize: 34,
+        primaryEndpoint:
+          'Confirmation and clinical course of synthetic cannabinoid-associated coagulopathy',
+        endpointMet: true,
+        statisticalPValue:
+          'Superwarfarin confirmed in 15 of 15 tested: brodifacoum 100%, difenacoum 33%, bromadiolone 13%, warfarin 7%. One death from intracranial haemorrhage',
+        unreportedAdverseSignals:
+          'Confirmatory testing was at physician discretion and performed in only 15 of 34 patients. The specific synthetic cannabinoid compounds involved were never identified.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'JWH-018 as a potent full CB1 agonist: IC50 14.9 nM in neurons, EC50 4.4 nM for ERK1/2, EC50 2.8 nM for receptor internalisation with t½ 17.3 minutes',
+        'AMB-FUBINACA at 16.0 ± 3.9 mg per gram in the product implicated in a 33-person New York mass intoxication, with its acid metabolite at 77-636 ng/mL in all eight patients tested',
+        'Superwarfarin poisoning confirmed in 15 of 15 tested patients from a 34-patient Illinois coagulopathy series, with one death from intracranial haemorrhage',
+        'Temporary Schedule I placement of five synthetic cannabinoids including JWH-018 effective 1 March 2011',
+      ],
+      unsupportedInferences: [
+        'That these compounds resemble cannabis in effect or safety because they share the CB1 receptor',
+        'That a scheduling action removes a compound class from the market; the observed response has been structural replacement',
+        'That published case counts describe the burden of this class, when most series cannot identify the compound involved and routine screens do not detect it',
+        'That rapid CB1 internalisation explains the tolerance users describe — that link is plausible and undemonstrated in humans',
+      ],
+      whatFailedInitially: [
+        'Compound-by-compound scheduling was followed by structurally unrelated replacements, from naphthoylindoles to indazole carboxamides',
+        'In the Illinois outbreak, the causative synthetic cannabinoids were never identified — only the rodenticide adulterant was',
+      ],
+      realWorldOutcome: [
+        'Dozens of compounds in this class now appear individually in 21 CFR 1308.11(d), and new analogues continue to be encountered',
+        'The products remain undetectable by routine cannabinoid immunoassay, which is a substantial part of the demand for them',
+      ],
+    },
+    deliverySystem: {
+      type: 'Solution sprayed onto inert plant material, smoked; also sold as liquids for vaping',
+      description:
+        'The plant matter is a carrier with no pharmacology of its own. Application by spraying gives an uneven distribution across the packet, so dose per portion varies substantially even when the mean content is known — the New York product measured 16.0 ± 3.9 mg per gram. Products carry brand names rather than chemical names, and the compound inside a given brand changes over time.',
+      safetyProfile:
+        'Documented presentations include agitated delirium, seizures, profound central nervous system depression and unresponsiveness, tachycardia and hypertension, acute kidney injury in previously healthy young people, and death. The class-defining hazard is full CB1 agonism without the ceiling that limits delta-9-THC, combined with a product that cannot be dosed. Adulteration is a separate and independent hazard: the 2018 Illinois outbreak involved long-acting anticoagulant rodenticides, presenting as bleeding rather than intoxication and requiring prolonged vitamin K1 replacement. No routine cannabinoid screen detects these compounds, so a clinical suspicion has to come from the history.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why is this more dangerous than cannabis if it works on the same receptor?',
+        a: 'Because of how completely it works on it. Delta-9-THC is a partial agonist: past a certain concentration, more of it does not activate the receptor further, which puts a ceiling on the effect. JWH-018 and its successors are full agonists with no such ceiling, active at single-digit to low double-digit nanomolar concentrations. The dose-response curve keeps climbing into seizures and unresponsiveness. Add a product that cannot be dosed evenly and a compound the user cannot identify, and the clinical series follow.',
+        auditNote:
+          'The partial-versus-full agonist distinction is the single most load-bearing fact on this page and is measured directly in the Atwood neuronal recordings.',
+      },
+      {
+        q: 'What is actually in the packet?',
+        a: 'Usually nobody knows, including the seller. The plant material is inert carrier; the active compound is whatever the manufacturer last used, applied unevenly by spraying. In the 2016 New York outbreak the compound had to be identified from scratch by high-resolution mass spectrometry on the product and the patients together. In the 2018 Illinois outbreak the cannabinoids were never identified at all — only the rat poison that had been added to them.',
+      },
+      {
+        q: 'Why do new versions keep appearing?',
+        a: 'Because each scheduling action names specific compounds, and a compound not on the list is not on the list. After the first five were scheduled in March 2011, the encountered compounds moved through entirely different chemical families — naphthoylindoles, then indazole carboxamides that share no scaffold with the originals. The replacements tend to be more potent, because higher potency means less mass to ship for the same number of doses.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no legal market and no published price. These products are sold under brand names by unidentified manufacturers, and any figure would be a survey estimate of what people report paying rather than a documented price.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Atwood BK, Huffman J, Straiker A, Mackie K. JWH018, a common constituent of "Spice" herbal blends, is a potent and efficacious cannabinoid CB receptor agonist. Br J Pharmacol 2010;160:585-593',
+        identifier: '10.1111/j.1476-5381.2009.00582.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Adams AJ et al. "Zombie" Outbreak Caused by the Synthetic Cannabinoid AMB-FUBINACA in New York. N Engl J Med 2017;376:235-242',
+        identifier: '10.1056/NEJMoa1610300',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kelkar AH et al. An Outbreak of Synthetic Cannabinoid-Associated Coagulopathy in Illinois. N Engl J Med 2018;379:1216-1223',
+        identifier: '10.1056/NEJMoa1807652',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Acute kidney injury associated with synthetic cannabinoid use — multiple states, 2012. MMWR Morb Mortal Wkly Rep 2013;62:93-98',
+        identifier: '23407124',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'DEA notice of intent: Temporary Placement of Five Synthetic Cannabinoids Into Schedule I, 75 FR 71635, 24 November 2010',
+        identifier:
+          'https://www.federalregister.gov/documents/2010/11/24/2010-29600/schedules-of-controlled-substances-temporary-placement-of-five-synthetic-cannabinoids-into-schedule',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'DEA final order: Temporary Placement of Five Synthetic Cannabinoids Into Schedule I, 76 FR 11075, 1 March 2011',
+        identifier:
+          'https://www.federalregister.gov/documents/2011/03/01/2011-4428/schedules-of-controlled-substances-temporary-placement-of-five-synthetic-cannabinoids-into-schedule',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 10382701 — JWH-018 structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10382701',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 24. Nitazenes — isotonitazene and the 2-benzylbenzimidazole class
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'isotonitazene',
+    name: 'Nitazenes (Isotonitazene and the 2-Benzylbenzimidazole Opioids)',
+    tradeName:
+      'None. Never marketed as a medicine anywhere. Sold in the illicit supply as counterfeit tablets, in heroin substitutes and as powder',
+    sponsor:
+      'Invented in the research laboratories of CIBA in Switzerland in the late 1950s as candidate analgesics. No sponsor developed any member of the class for human use',
+    targetGene: 'OPRM1',
+    targetProtein:
+      'µ-opioid receptor — selective agonists. Every nitazene tested in the 2024 fifteen-compound panel bound µ with nanomolar affinity, and the functional potency of several matched or exceeded fentanyl',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No medical indication. Isotonitazene was placed temporarily in Schedule I by DEA final order published 20 August 2020, and several further nitazenes have been scheduled since; new analogues continue to appear ahead of the listings',
+    patientFriendlyIndication:
+      'Nothing. These are 1950s analgesic candidates that were never developed, resurfacing sixty years later in the illicit drug supply because they are easy to make and are not on the lists',
+    anatomicalSite:
+      'µ-opioid receptors in the brainstem respiratory centres — the site that determines whether an opioid overdose is fatal',
+    conditionContext: {
+      conditionExplainer:
+        'There is no condition. The nitazenes matter because of what is in the drug supply, not because of what they treat. A person buying what they believe is heroin or an oxycodone tablet may receive one of these instead.',
+      whyItMatters:
+        'These are the compounds now appearing where fentanyl analogues used to. Several are as potent as fentanyl or more so, they were not in any routine toxicology panel until recently, and the fatal blood concentrations are in the low nanograms per millilitre.',
+      whoTakesThis:
+        'Almost nobody knowingly. In the first US forensic series of 18 isotonitazene-positive cases, nine had previously tested negative for any opioid — the compound was invisible to the panel being used.',
+      clinicalGoals:
+        'None therapeutic. Clinically the goal is recognition: including these compounds in toxicology panels so that a death or a non-fatal overdose can be attributed correctly.',
+    },
+    oneSentenceVerdict:
+      'A class of analgesic candidates abandoned by CIBA in the late 1950s, now the fastest-moving part of the illicit opioid supply: all fifteen tested in a 2024 panel bound the µ-opioid receptor with nanomolar affinity, several matching or exceeding fentanyl, with isotonitazene implicated in at least 200 deaths across Europe and North America and fatal blood concentrations as low as 0.4 ng/mL.',
+    laymanHowItWorks:
+      'Nitazenes are selective agonists at the µ-opioid receptor — the same target as morphine and fentanyl — but built on an entirely different chemical scaffold, a benzimidazole rather than a piperidine or a morphinan. That structural difference is the whole reason they are in the drug supply: it puts them outside compound-specific drug laws and outside the mass-spectrometry libraries forensic laboratories were using. The pharmacology is otherwise ordinary opioid pharmacology, including the respiratory depression that kills, and naloxone reverses it. The problem is quantity: doses that matter are measured in micrograms, so the margin between a dose and a lethal dose is a matter of weighing accuracy.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 70,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCN(CC)CCN1C2=C(C=C(C=C2)[N+](=O)[O-])N=C1CC3=CC=C(C=C3)OC(C)C',
+      chemicalFormula: 'C23H30N4O3',
+      molecularWeight:
+        '410.5 g/mol for isotonitazene. The class shares a 2-benzylbenzimidazole core; metonitazene is C21H26N4O3 at 382.5 g/mol, and analogues differ at the benzyl ether, the nitro group and the amine side chain',
+      targetReceptorAffinity:
+        "Selective µ-opioid receptor agonists. In a 2024 panel of 15 structurally diverse nitazenes, µ affinity was measured by [3H]DAMGO competition binding in rat brain tissue and activation by a β-arrestin 2 recruitment assay: all bound with nanomolar affinity, and the functional potency of several was comparable to or exceeded that of fentanyl. The most potent across all functional assays was α'-methyl etonitazene.",
+      structureSource: {
+        label:
+          'PubChem CID 145721979 (isotonitazene) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/145721979',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'nit-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Detect a compound the panel was not built for',
+          description:
+            'The defining analytical fact about this class is invisibility. In the first US isotonitazene case series, nine of 18 positive cases had previously tested negative for any opioid. Detection requires high-resolution accurate-mass acquisition with continuously updated libraries, and reference standards for compounds that may have been synthesised months earlier.',
+          reagentsAndBuffer:
+            'Liquid chromatography quadrupole time-of-flight mass spectrometry for untargeted screening, certified nitazene reference standards as they become available, non-targeted acquisition with retrospective data reprocessing as new compounds are characterised',
+        },
+        {
+          id: 'nit-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify at low nanograms per millilitre, and identify the metabolites',
+          description:
+            'Fatal concentrations here are in single-digit nanograms per millilitre, so a method validated for heroin-era concentrations will report a false negative. Metabolite identification matters as much as parent quantification: in the isotonitazene work, N- and O-dealkylation products were the most useful urinary biomarkers while 5-amino-isotonitazene appeared in most blood samples.',
+          dependsOnStepId: 'nit-w1',
+          reagentsAndBuffer:
+            'LC-MS/MS with standard addition for quantification in blood, urine and vitreous fluid, LC-QTOF-MS for metabolite discovery, lower limit of quantification validated below 0.5 ng/mL, deuterated internal standards where obtainable',
+        },
+        {
+          id: 'nit-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Prepare µ-opioid receptor binding and activation systems',
+          description:
+            'Risk assessment for a compound with no clinical data has to be built from receptor pharmacology. Rat brain tissue provides native µ receptors for competition binding, and a cell line expressing the receptor with a β-arrestin 2 recruitment readout provides the activation arm — the pairing used to characterise fifteen nitazenes at once in 2024.',
+          dependsOnStepId: 'nit-w1',
+          reagentsAndBuffer:
+            'Rat brain membrane preparation for radioligand binding, HEK293 or CHO cells stably expressing µ-opioid receptor with β-arrestin 2 recruitment reporter, hydromorphone and fentanyl as reference agonists',
+        },
+        {
+          id: 'nit-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Rank potency and efficacy against fentanyl in the same assay',
+          description:
+            'The number that matters for a public-health warning is a ratio to a known reference, not an absolute EC50. Running each new nitazene alongside fentanyl in a single binding and a single activation assay is what allows the statement that several match or exceed fentanyl to be made as a measurement rather than an impression.',
+          dependsOnStepId: 'nit-w3',
+          reagentsAndBuffer:
+            '[3H]DAMGO for competition binding, naloxone for non-specific binding, β-arrestin 2 recruitment with luminescence readout, fentanyl and hydromorphone run on every plate as reference compounds, potency and efficacy both reported',
+        },
+        {
+          id: 'nit-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Correlate casework concentrations with the pharmacology',
+          description:
+            'The two halves have to be joined: a receptor potency ranking is only useful next to the blood concentrations found in real deaths. In the isotonitazene series the average blood concentration was 2.2 ± 2.1 ng/mL with a range of 0.4 to 9.5, and the lowest concentration in a death investigation, 0.4 ng/mL, occurred in two cases with no other opioid present.',
+          dependsOnStepId: 'nit-w2',
+          reagentsAndBuffer:
+            'Postmortem blood with sodium fluoride preservative, paired urine and vitreous where available, structured recording of co-detected substances, standard addition quantification with matrix-matched calibration',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'nit-a1',
+        category: 'measured',
+        title: 'All fifteen tested bound µ at nanomolar affinity; several matched or beat fentanyl',
+        laymanSummary:
+          'Researchers synthesised fifteen nitazenes that had not yet appeared on the market and tested them. Every one bound the opioid receptor tightly, and several were as potent as fentanyl or more so.',
+        technicalDetails:
+          "Vandeputte et al. synthesised and characterised 15 structurally diverse nitazenes chosen as compounds that might be predicted to emerge. µ-opioid receptor affinity was measured by [3H]DAMGO competition binding in rat brain tissue, and activation by a cell-based β-arrestin 2 recruitment assay. All 15 bound µ with nanomolar affinities, and the functional potency of several was comparable to or exceeded that of fentanyl. Seven, including etonitazene, were also evaluated in male C57BL/6J mice after subcutaneous administration, showing dose-dependent antinociception, locomotor and body-temperature effects. Structure-activity findings included high opioid-like activity for methionitazene, iso-butonitazene, sec-butonitazene and two etonitazene analogues; the most potent across all functional assays was α'-methyl etonitazene. The design is the point: this is pre-emptive characterisation of compounds before they reach the market, which is the only way risk assessment can run ahead of a class that replaces itself.",
+        evidenceSource: 'Vandeputte MM et al. Pharmacol Res 2024;210:107503',
+        doi: '10.1016/j.phrs.2024.107503',
+        measuredMetric:
+          'µ-opioid receptor binding affinity and β-arrestin 2 recruitment potency for 15 nitazenes against fentanyl, with in vivo effects for 7 in mice',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nit-a2',
+        category: 'measured',
+        title: 'Fatal at 0.4 ng/mL, and invisible to the panel in half the cases',
+        laymanSummary:
+          'In the first US forensic series, eighteen deaths involved isotonitazene at an average blood level of 2.2 nanograms per millilitre. Nine of those eighteen had already been reported as negative for any opioid.',
+        technicalDetails:
+          'Krotulski et al. confirmed and quantified isotonitazene in blood, urine and vitreous fluid by LC-MS/MS with standard addition, and identified metabolites by LC-QTOF-MS. Eighteen cases were confirmed positive, nine of which had previously been negative for any opioid on the testing then in use. Average blood concentration was 2.2 ± 2.1 ng/mL (median 1.75, range 0.4 to 9.5); average urine concentration 2.4 ± 1.4 ng/mL (median 2.7, range 0.6 to 4.0). The lowest blood concentration, 0.4 ng/mL, occurred in two cases with no other opioid present, in death investigations. Four metabolites were detected in vivo: N- and O-dealkylation products were the most prominent urinary biomarkers and 5-amino-isotonitazene appeared in most blood samples. The authors conclude that toxicologists, medical examiners and coroners should add isotonitazene to testing procedures — which is to say that until they did, these deaths were being recorded as something else.',
+        evidenceSource: 'Krotulski AJ et al. J Anal Toxicol 2020;44:521-530',
+        doi: '10.1093/jat/bkaa016',
+        measuredMetric:
+          'Isotonitazene concentrations in blood, urine and vitreous across 18 forensic cases, with metabolite identification',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nit-a3',
+        category: 'conclusion_shift',
+        title: 'Abandoned in the 1950s, back in the drug supply sixty years later',
+        laymanSummary:
+          'CIBA invented these compounds as painkillers in the late 1950s and never developed any of them. They reappeared around 2019, unscheduled and easy to make, and one of them has been linked to at least 200 deaths.',
+        technicalDetails:
+          "Ujváry et al., writing with the European Monitoring Centre for Drugs and Drug Addiction, describe etonitazene and related 2-benzylbenzimidazoles as potent analgesics invented in CIBA's research laboratories in the late 1950s. Their structure is unrelated to poppy-derived and other synthetic analgesics, but they are selective µ-opioid agonists with morphine-like pharmacotoxicological properties in animals and humans. None was developed into a medicine; etonitazene and some derivatives were instead used as receptor probes and in animal addiction-behaviour studies. Several unscheduled members of this synthetically accessible class emerged on the illicit market from around 2019, and isotonitazene has been implicated in at least 200 fatalities in Europe and North America. The record here is the reversal: compounds that failed to become medicines, preserved in the pharmacology literature as research tools, becoming a public-health problem because that literature is a synthesis manual for anyone looking for an unlisted opioid.",
+        evidenceSource: 'Ujváry I et al. ACS Chem Neurosci 2021;12:1072-1092',
+        doi: '10.1021/acschemneuro.1c00037',
+        measuredMetric:
+          'Historical development record against current illicit-market presence and attributed fatality count',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nit-a4',
+        category: 'measured',
+        title: 'Scheduled compound by compound, replaced compound by compound',
+        laymanSummary:
+          'DEA placed isotonitazene in Schedule I in August 2020. Metonitazene and others followed. Each listing has been followed by a different analogue appearing in casework.',
+        technicalDetails:
+          'DEA published a notice of intent to temporarily place isotonitazene in Schedule I on 18 June 2020 (85 FR 36819), with the temporary scheduling final order published 20 August 2020 (85 FR 51342). Isotonitazene, metonitazene and butonitazene now appear by name in 21 CFR part 1308. Forensic laboratories documented metonitazene in US casework in 2021 and N-pyrrolidino etonitazene (etonitazepyne) in 2022, each characterised pharmacologically and in case series after it had already appeared. The 2024 pre-emptive panel of 15 unlisted nitazenes was designed explicitly to get ahead of that cycle. This is the same replacement dynamic recorded on the synthetic cannabinoid page, with a sharper consequence: the substitutions here are opioids, and the relevant endpoint is respiratory arrest.',
+        evidenceSource:
+          'DEA notice of intent 85 FR 36819 (18 June 2020) and final order 85 FR 51342 (20 August 2020); 21 CFR part 1308, current eCFR text; Vandeputte MM et al. Arch Toxicol 2022;96:1845-1863',
+        measuredMetric:
+          'Scheduling dates against the dates of first forensic appearance for successive class members',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'nit-a5',
+        category: 'measured',
+        title: 'Ordinary opioid pharmacology on an unfamiliar scaffold',
+        laymanSummary:
+          'Chemically these look nothing like morphine or fentanyl. Pharmacologically they behave the same way: selective at the µ receptor, morphine-like in animals and people, and reversible with naloxone.',
+        technicalDetails:
+          'The 2-benzylbenzimidazole core is structurally unrelated to the morphinan, phenylpiperidine and anilidopiperidine scaffolds of the established opioids, which is why the class evaded both scheduling and detection. The pharmacology is nonetheless conventional: selective µ-opioid receptor agonism with morphine-like pharmacotoxicological properties in animals and humans, dose-dependent antinociception, locomotor change and hypothermia in mice, and β-arrestin 2 recruitment at the same receptor. The practical consequence is that opioid overdose management applies: naloxone is a competitive µ antagonist and does not care about the scaffold. The caution that follows from potency is about duration and dose rather than mechanism — a highly potent agonist may outlast a single naloxone dose.',
+        evidenceSource:
+          'Ujváry I et al. ACS Chem Neurosci 2021;12:1072-1092; Vandeputte MM et al. Pharmacol Res 2024;210:107503',
+        doi: '10.1021/acschemneuro.1c00037',
+        measuredMetric:
+          'Receptor selectivity and in vivo opioid-like effect profile across the 2-benzylbenzimidazole class',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nit-a6',
+        category: 'inferred',
+        title: 'Potency multiples relative to fentanyl are not a single number',
+        laymanSummary:
+          'Statements like "twenty times stronger than fentanyl" appear constantly. The published measurements give potency in specific assays, and the ranking changes between assays and between species.',
+        technicalDetails:
+          'The measured statement in the 2024 panel is that all 15 compounds bound µ with nanomolar affinity and that several had functional potency comparable to or exceeding fentanyl, in a β-arrestin 2 recruitment assay with fentanyl as the on-plate reference. That is an assay-specific ratio. It is not equivalent to a ratio of analgesic potency in humans, a ratio of respiratory-depressant potency, or a ratio of lethal dose, and the numbers do not transfer between those quantities or between in vitro and in vivo systems. Widely repeated multipliers usually originate in single animal analgesia assays from the 1950s and 1960s literature. The defensible public-health statement is that active doses are in the microgram range and that several class members are at least as potent as fentanyl — which is sufficient, and which this record states instead of a multiplier.',
+        evidenceSource:
+          'Vandeputte MM et al. Pharmacol Res 2024;210:107503, assay design and reference compounds',
+        doi: '10.1016/j.phrs.2024.107503',
+        inferredClaim:
+          "That a single potency multiple relative to fentanyl describes a nitazene's analgesic, respiratory-depressant and lethal potency alike",
+        auditFlag: 'caution',
+      },
+      {
+        id: 'nit-a7',
+        category: 'measured',
+        title: 'The class arrives inside other drugs',
+        laymanSummary:
+          'People are not seeking nitazenes. They appear in counterfeit tablets, in powders sold as heroin, and alongside other synthetic opioids — which is why the first sign of their arrival is usually a rise in deaths.',
+        technicalDetails:
+          'The forensic literature documents these compounds in casework rather than in seizures of material sold under its own name: isotonitazene appearing in cases previously negative for any opioid, metonitazene assessed in United States forensic toxicology casework in 2021, N-pyrrolidino etonitazene characterised alongside a case series in 2022. Nine of the 18 isotonitazene cases had been reported negative for opioids before the targeted method existed, which is the clearest available measure of how a compound of this class enters a population: undetected, inside a product sold as something else. This is filed as measured because it is a property of the case series, and it is the reason surveillance for this class depends on non-targeted acquisition and retrospective reprocessing rather than on adding one more analyte to a panel.',
+        evidenceSource:
+          'Krotulski AJ et al. J Anal Toxicol 2020;44:521-530; Vandeputte MM et al. Arch Toxicol 2022;96:1845-1863',
+        doi: '10.1007/s00204-022-03276-4',
+        measuredMetric:
+          'Proportion of forensic cases positive for a nitazene that had previously been reported negative for any opioid',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Arrives inside something else',
+        laymanDesc:
+          'Rarely sold under its own name. It turns up in counterfeit pills, in powder sold as heroin, and mixed with other synthetic opioids.',
+        molecularDetail:
+          'Microgram-range active doses mean a fraction of a milligram distributed unevenly through a tablet or a powder. Nine of 18 cases in the first US isotonitazene series had previously been reported negative for any opioid, which describes the distribution route as well as the analytical gap.',
+        iconName: 'Package',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed and distributed to the brain',
+        laymanDesc:
+          'Lipophilic and small; it reaches the brain quickly by any route the user takes.',
+        molecularDetail:
+          'Rapid central distribution consistent with a lipophilic small molecule. Metabolism proceeds by N- and O-dealkylation and by nitro reduction, giving 5-amino-isotonitazene, which was found in most blood samples in the first case series.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Selectively activates the µ-opioid receptor',
+        laymanDesc:
+          'The same receptor as morphine and fentanyl, reached by a completely different molecular shape.',
+        molecularDetail:
+          'Selective µ agonism with nanomolar binding affinity across all 15 compounds in the 2024 panel, with β-arrestin 2 recruitment potency comparable to or exceeding fentanyl for several. The 2-benzylbenzimidazole scaffold shares no structural relationship with morphinans or anilidopiperidines.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Respiratory drive falls',
+        laymanDesc:
+          'The brainstem stops responding to rising carbon dioxide, and breathing slows and then stops. This is how every opioid overdose kills.',
+        molecularDetail:
+          'µ-receptor-mediated depression of brainstem respiratory centres, the standard opioid mechanism. In mice, subcutaneous administration produced dose-dependent antinociception, locomotor change and hypothermia — the conventional opioid profile.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Reversible with naloxone, at concentrations of a few nanograms',
+        laymanDesc:
+          "Naloxone works, because it competes at the same receptor regardless of the drug's chemical family. The complication is that a very potent agonist may outlast one dose.",
+        molecularDetail:
+          'Competitive µ antagonism by naloxone applies to this class as to any other µ agonist. Fatal blood concentrations in the first isotonitazene series averaged 2.2 ± 2.1 ng/mL, with two deaths at 0.4 ng/mL and no other opioid present — the concentration scale on which reversal has to work.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Vandeputte et al. 2024 pre-emptive characterisation of 15 nitazenes',
+        phase: 'In vitro pharmacology with in vivo mouse evaluation',
+        sampleSize: 15,
+        primaryEndpoint:
+          'µ-opioid receptor binding affinity and activation potency for 15 nitazenes, with in vivo effects for 7',
+        endpointMet: true,
+        statisticalPValue:
+          "All 15 bound µ with nanomolar affinity; functional potency of several comparable to or exceeding fentanyl; α'-methyl etonitazene most potent across all functional assays",
+        unreportedAdverseSignals:
+          'β-arrestin 2 recruitment is one measure of receptor activation and does not by itself predict respiratory-depressant potency in humans. Mouse data are subcutaneous and do not establish a human dose.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Krotulski et al. 2020 isotonitazene forensic case series',
+        phase: 'Forensic toxicology casework analysis',
+        sampleSize: 18,
+        primaryEndpoint:
+          'Confirmation, quantitation and metabolite identification of isotonitazene in authentic casework',
+        endpointMet: true,
+        statisticalPValue:
+          'Blood 2.2 ± 2.1 ng/mL (median 1.75, range 0.4-9.5); urine 2.4 ± 1.4 ng/mL; 9 of 18 previously negative for any opioid; 4 metabolites identified',
+        unreportedAdverseSignals:
+          'Case ascertainment depended on a method that did not exist beforehand, so the series describes what became visible rather than what occurred. Postmortem redistribution is not accounted for.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Vandeputte et al. 2022 N-pyrrolidino etonitazene evaluation and case series',
+        phase: 'Pharmacological evaluation with forensic case series',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Pharmacological characterisation of etonitazepyne alongside authentic forensic cases',
+        endpointMet: true,
+        statisticalPValue:
+          'Characterised as a potent µ-opioid agonist of the 2-benzylbenzimidazole class, reported after the compound had already appeared in casework',
+        unreportedAdverseSignals:
+          'The pattern the paper documents is the finding: pharmacological characterisation followed market appearance rather than preceding it.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Nanomolar µ-opioid binding affinity for all 15 nitazenes in a 2024 panel, with functional potency of several comparable to or exceeding fentanyl',
+        'Isotonitazene blood concentrations averaging 2.2 ± 2.1 ng/mL across 18 forensic cases, with two deaths at 0.4 ng/mL and no other opioid present',
+        'Nine of 18 isotonitazene-positive cases previously reported negative for any opioid on the testing then in use',
+        'Temporary Schedule I placement of isotonitazene by DEA final order published 20 August 2020',
+        'At least 200 fatalities in Europe and North America attributed to isotonitazene as of the 2021 EMCDDA-authored review',
+      ],
+      unsupportedInferences: [
+        'That a single "times stronger than fentanyl" multiplier describes analgesic, respiratory-depressant and lethal potency alike',
+        "That scheduling a named nitazene reduces the class's presence in the supply; the observed response has been substitution",
+        'That published case counts measure the burden of the class, when detection depends on a laboratory having already characterised the specific compound',
+        'That the 1950s and 1960s animal analgesia literature provides human-equivalent potency figures',
+      ],
+      whatFailedInitially: [
+        'None of the 2-benzylbenzimidazoles was ever developed into a medicine despite being invented as analgesic candidates',
+        'Compound-specific scheduling has been followed each time by a structurally adjacent analogue appearing in casework before it was listed',
+      ],
+      realWorldOutcome: [
+        'Isotonitazene, metonitazene and butonitazene now appear by name in 21 CFR part 1308, and further analogues continue to be characterised',
+        'Forensic laboratories have moved to non-targeted acquisition with retrospective reprocessing, because a targeted panel cannot keep pace with the class',
+      ],
+    },
+    deliverySystem: {
+      type: 'Illicit powder, counterfeit tablets, and adulteration of other opioid products',
+      description:
+        'There is no medical delivery system, because no member of this class has ever been a medicine. In practice the compound reaches a person inside something sold as heroin or as a pharmaceutical tablet, at microgram quantities distributed through a product nobody has assayed. The first indication of arrival in a population has repeatedly been a change in the toxicology rather than a change in the market.',
+      safetyProfile:
+        'The hazard is opioid respiratory depression at concentrations of a few nanograms per millilitre in blood. In the first US forensic series, average blood isotonitazene was 2.2 ng/mL and two fatal cases had 0.4 ng/mL with no other opioid detected. Because the compounds are selective µ agonists, naloxone reverses them; the practical concern is that a highly potent agonist may outlast a single dose, so repeated dosing or an infusion may be needed. Routine opioid immunoassays do not detect them and standard confirmation panels did not until the specific compounds were added, so a negative toxicology result does not exclude a nitazene. Co-detection with other synthetic opioids and with benzodiazepine-type compounds is common in casework.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does naloxone work?',
+        a: 'Yes. Naloxone is a competitive antagonist at the µ-opioid receptor and these are selective µ agonists, so the reversal mechanism is unaffected by the unfamiliar chemical scaffold. The practical caution is about potency and duration rather than mechanism: a very potent agonist can outlast a single naloxone dose, so re-sedation after an initial response is a recognised risk and repeated doses or an infusion may be required.',
+        auditNote:
+          'This is a mechanistic inference from receptor pharmacology rather than a result from a controlled reversal study in humans, which does not exist for this class.',
+      },
+      {
+        q: 'How much stronger than fentanyl are they?',
+        a: 'The honest answer is that it depends which measurement you mean. In the 2024 fifteen-compound panel, all bound the µ receptor with nanomolar affinity and several had functional potency in a β-arrestin recruitment assay comparable to or exceeding fentanyl. That is one assay in one system. It is not the same as a ratio of respiratory-depressant potency or of lethal dose in people, and the multipliers repeated in media coverage generally trace back to animal analgesia experiments from the 1950s and 1960s. What is solid is that active doses are in the microgram range.',
+      },
+      {
+        q: 'Why did these appear now if they were invented in the 1950s?',
+        a: 'Because they were unlisted and undetected. CIBA invented them as analgesic candidates and abandoned them; the pharmacology literature kept them alive as receptor probes, which also documented how to make them. When compound-specific controls closed off the fentanyl analogues, a class with a completely different scaffold, an accessible synthesis and no entry in any schedule was an obvious substitution. Isotonitazene appeared around 2019 and had been implicated in at least 200 deaths by the time of the 2021 review.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no legal market, no approved product and no published price. These compounds are almost never sold under their own name, so even a street price would describe a different product.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Vandeputte MM et al. Characterization of novel nitazene recreational drugs: Insights into their risk potential from in vitro µ-opioid receptor assays and in vivo behavioral studies in mice. Pharmacol Res 2024;210:107503',
+        identifier: '10.1016/j.phrs.2024.107503',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Krotulski AJ et al. Isotonitazene Quantitation and Metabolite Discovery in Authentic Forensic Casework. J Anal Toxicol 2020;44:521-530',
+        identifier: '10.1093/jat/bkaa016',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ujváry I et al. DARK Classics in Chemical Neuroscience: Etonitazene and Related Benzimidazoles. ACS Chem Neurosci 2021;12:1072-1092',
+        identifier: '10.1021/acschemneuro.1c00037',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vandeputte MM et al. Pharmacological evaluation and forensic case series of N-pyrrolidino etonitazene (etonitazepyne), a newly emerging 2-benzylbenzimidazole nitazene synthetic opioid. Arch Toxicol 2022;96:1845-1863',
+        identifier: '10.1007/s00204-022-03276-4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Krotulski AJ et al. Metonitazene in the United States - Forensic toxicology assessment of a potent new synthetic opioid using liquid chromatography mass spectrometry. Drug Test Anal 2021;13:1697-1711',
+        identifier: '10.1002/dta.3115',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DEA final order: Temporary Placement of Isotonitazene in Schedule I, 85 FR 51342, 20 August 2020',
+        identifier:
+          'https://www.federalregister.gov/documents/2020/08/20/2020-17951/schedules-of-controlled-substances-temporary-placement-of-isotonitazene-in-schedule-i',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 145721979 — isotonitazene structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/145721979',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 25. Xylazine
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'xylazine',
+    name: 'Xylazine',
+    tradeName:
+      'Rompun, AnaSed, Sedazine and other veterinary products. In the illicit supply it is known as "tranq" and appears as an adulterant rather than a named product',
+    sponsor:
+      'Bayer developed it in the 1960s; multiple manufacturers hold veterinary approvals. No human application has ever been submitted in the United States',
+    targetGene: 'ADRA2A',
+    targetProtein:
+      'Alpha-2 adrenergic receptor agonist — the same receptor class as clonidine and dexmedetomidine. It has no activity at opioid receptors, which is why naloxone does not reverse it',
+    modality: 'Small Molecule',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Approved for veterinary use as a sedative, analgesic and muscle relaxant. Not approved for humans anywhere, and not scheduled under the Controlled Substances Act — xylazine appears nowhere in 21 CFR part 1308',
+    patientFriendlyIndication:
+      'Nothing, in people. It is a large-animal tranquilliser that has been added to the illicit fentanyl supply across the United States, and it is the reason some overdoses do not respond fully to naloxone',
+    anatomicalSite:
+      'Presynaptic alpha-2 adrenoceptors in the brainstem and spinal cord, reducing sympathetic outflow — producing sedation, bradycardia and hypotension by a mechanism entirely separate from any opioid',
+    conditionContext: {
+      conditionExplainer:
+        'There is no human indication. Xylazine matters because of what it is doing to opioid overdose: it deepens sedation, lowers blood pressure and heart rate, and is not touched by the antidote that reverses the opioid.',
+      whyItMatters:
+        'Between January 2019 and June 2022 the monthly share of illicitly-manufactured-fentanyl deaths with xylazine detected rose 276%, from 2.9% to 10.9%. Anyone responding to an overdose in the United States now has to assume a second sedative may be present that naloxone will not reverse.',
+      whoTakesThis:
+        'Almost nobody deliberately, at first. People who inject drugs in Philadelphia described it to ethnographers as a sought-after adulterant that lengthens the short duration of a fentanyl injection, so a deliberate demand has developed downstream of an involuntary exposure.',
+      clinicalGoals:
+        'None therapeutic. Clinically the goal is recognition and supportive care: respiratory and cardiovascular support, since there is no antidote.',
+    },
+    oneSentenceVerdict:
+      'A veterinary alpha-2 agonist with no human approval and no place in any federal drug schedule, present in 25.8% of Philadelphia overdose deaths by 2020 and in 98.4% of cases alongside illicitly manufactured fentanyl — and naloxone does not reverse it, because it is not an opioid.',
+    laymanHowItWorks:
+      'Xylazine works on the alpha-2 adrenergic receptor, the same target as clonidine, which is a blood-pressure drug. Activating it turns down sympathetic nervous system output: sedation, slow heart rate, low blood pressure. None of that involves an opioid receptor, so naloxone — which works by competing with opioids at their receptor — has nothing to compete with. In an overdose where both fentanyl and xylazine are present, naloxone restores breathing driven by the opioid and leaves the xylazine sedation untouched. That is the whole clinical story, and it is why supportive care rather than an antidote is the recommendation.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 69,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(C(=CC=C1)C)NC2=NCCCS2',
+      chemicalFormula: 'C12H16N2S',
+      molecularWeight:
+        '220.34 g/mol. Doses reported in the human case literature span 40 mg to 4,300 mg, with no established toxic dose',
+      targetReceptorAffinity:
+        'Alpha-2 adrenergic receptor agonist, in the same pharmacological class as clonidine and dexmedetomidine. No opioid receptor activity: naloxone is a competitive antagonist at the µ-opioid receptor and has no mechanism of action against an alpha-2 agonist. Alpha-2 antagonists such as atipamezole and yohimbine reverse xylazine in veterinary practice; neither is approved for this use in humans.',
+      structureSource: {
+        label: 'PubChem CID 5707 (xylazine) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5707',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'xyl-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Add xylazine to the panel — it is not there by default',
+          description:
+            'The central finding of the surveillance literature is a testing gap. Many jurisdictions do not routinely test for xylazine, it is not comprehensively tracked nationally, and whether it is listed as a cause of death varies by jurisdiction. A prevalence figure from a region that does not test is not a low prevalence; it is an absent measurement.',
+          reagentsAndBuffer:
+            'Xylazine certified reference standard with a deuterated internal standard, LC-MS/MS or GC-MS confirmation added explicitly to the postmortem and clinical panel, documentation of whether the jurisdiction tests at all when reporting a prevalence',
+        },
+        {
+          id: 'xyl-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify xylazine alongside the opioid in the same sample',
+          description:
+            'The question in any case is never xylazine alone. Illicitly manufactured fentanyls were present in 98.4% of xylazine-positive overdose deaths in the national series, along with cocaine in 45.4%, benzodiazepines in 28.4%, heroin in 23.3% and alcohol in 19.7%. A xylazine concentration reported without the co-detected substances cannot support any attribution.',
+          dependsOnStepId: 'xyl-w1',
+          reagentsAndBuffer:
+            'Multi-analyte LC-MS/MS panel covering fentanyl and analogues, xylazine, cocaine, benzodiazepine-type compounds and ethanol, matrix-matched calibration in postmortem blood, structured recording of every co-detected substance',
+        },
+        {
+          id: 'xyl-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express alpha-2 adrenoceptor subtypes for receptor confirmation',
+          description:
+            'The mechanistic claim doing all the clinical work here is negative: xylazine has no opioid receptor activity. Establishing that requires expressing alpha-2A, alpha-2B and alpha-2C adrenoceptors and, in parallel, µ, κ and δ opioid receptors, and showing activity at the first set and none at the second in the same system.',
+          dependsOnStepId: 'xyl-w1',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells with ADRA2A, ADRA2B and ADRA2C constructs, parallel OPRM1, OPRK1 and OPRD1 lines as the negative arm, lipid transfection, clonidine and dexmedetomidine as reference alpha-2 agonists',
+        },
+        {
+          id: 'xyl-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Confirm alpha-2 agonism and the absence of opioid activity',
+          description:
+            'Binding and functional readouts at the alpha-2 subtypes give the pharmacology; the same compound run against the opioid receptors gives the result that determines emergency management. Atipamezole and yohimbine as alpha-2 antagonists, and naloxone as an opioid antagonist, provide the two reversal comparisons that separate the mechanisms.',
+          dependsOnStepId: 'xyl-w3',
+          reagentsAndBuffer:
+            '[3H]-RX821002 or [3H]-rauwolscine for alpha-2 binding, cAMP inhibition assay for Gi coupling, [3H]-DAMGO for the µ-opioid counter-screen, atipamezole and yohimbine as alpha-2 antagonists, naloxone as opioid antagonist control',
+        },
+        {
+          id: 'xyl-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Relate concentration to clinical picture across the case literature',
+          description:
+            'The systematic review found reported doses spanning 40 mg to 4,300 mg with no established toxic dose, and no antidote and no evidence-based treatment recommendations. Any attempt to build a concentration-effect relationship has to contend with near-universal co-exposure to fentanyl, which is itself a respiratory depressant — the assay can produce a number that the study design cannot attribute.',
+          dependsOnStepId: 'xyl-w2',
+          reagentsAndBuffer:
+            'Quantitative xylazine measurement in blood with documented sampling time, paired opioid quantification, structured clinical coding of sedation depth, heart rate, blood pressure and naloxone response',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'xyl-a1',
+        category: 'measured',
+        title: 'From 2.9% to 10.9% of fentanyl deaths in three and a half years',
+        laymanSummary:
+          'CDC tracked overdose deaths involving illicitly made fentanyl across 21 jurisdictions. The monthly share with xylazine also detected rose 276%, from under 3% to nearly 11%.',
+        technicalDetails:
+          "Kariisa et al. used CDC's State Unintentional Drug Overdose Reporting System to describe illicitly-manufactured-fentanyl-involved overdose deaths with and without detected xylazine from January 2019 to June 2022. Across 21 jurisdictions — 20 states and the District of Columbia — the monthly percentage of IMF-involved deaths with xylazine detected rose 276%, from 2.9% to 10.9%. Across 32 jurisdictions for January 2021 to June 2022, xylazine was detected in a higher percentage of jurisdictions in the Northeast Census region, and whether detected xylazine was listed as a cause of death varied across jurisdictions. In 2022, provisional data recorded 107,081 drug overdose deaths in the United States, more than two thirds involving synthetic opioids other than methadone. The authors call for expanded postmortem and drug-product testing to clarify prevalence, and for overdose response messages to emphasise respiratory and cardiovascular support because there is no antidote.",
+        evidenceSource: 'Kariisa M et al. MMWR Morb Mortal Wkly Rep 2023;72:721-727',
+        doi: '10.15585/mmwr.mm7226a4',
+        measuredMetric:
+          'Monthly percentage of IMF-involved overdose deaths with xylazine detected, 21 jurisdictions, January 2019-June 2022',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'xyl-a2',
+        category: 'measured',
+        title: 'Almost always with fentanyl: 98.4% co-detection',
+        laymanSummary:
+          'Across ten jurisdictions spanning all four US regions, xylazine rose from 0.36% of overdose deaths in 2015 to 6.7% in 2020. Illicit fentanyl was present in 98.4% of the xylazine cases.',
+        technicalDetails:
+          'Friedman et al. combined ethnographic observation in Philadelphia with a systematic search for records of xylazine-present overdose mortality across the United States. In 10 jurisdictions representing all four Census regions, xylazine rose from 0.36% of overdose deaths in 2015 to 6.7% in 2020. Prevalence was highest in Philadelphia at 25.8% of deaths, then Maryland at 19.3% and Connecticut at 10.2%. Illicitly manufactured fentanyls were present in 98.4% of xylazine-present overdose deaths, alongside cocaine in 45.4%, benzodiazepines in 28.4%, heroin in 23.3% and alcohol in 19.7%. People who inject drugs in Philadelphia described xylazine as a sought-after adulterant that lengthens the short duration of a fentanyl injection, and linked it to increased soft-tissue infection and to naloxone-resistant overdose. The authors note that many jurisdictions do not routinely test for xylazine and that it is not comprehensively tracked nationally — so these figures are floors, not estimates.',
+        evidenceSource: 'Friedman J et al. Drug Alcohol Depend 2022;233:109380',
+        doi: '10.1016/j.drugalcdep.2022.109380',
+        measuredMetric:
+          'Percentage of overdose deaths with xylazine present by jurisdiction and year, with co-detected substance frequencies',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'xyl-a3',
+        category: 'measured',
+        title: 'Naloxone does not reverse it, because there is nothing for it to compete with',
+        laymanSummary:
+          'Xylazine acts on the adrenaline system, not the opioid system. Naloxone works by displacing opioids from their receptor, so it has no effect on xylazine sedation at all.',
+        technicalDetails:
+          'Xylazine is an alpha-2 adrenergic receptor agonist with no opioid receptor activity. Naloxone is a competitive antagonist at the µ-opioid receptor and reverses opioid effects by displacing the agonist; it has no mechanism of action against an alpha-2 agonist. CDC describes xylazine as "a nonopioid sedative not approved for human use and with no known antidote", and states that limited studies show it can cause central nervous system depression, respiratory depression, bradycardia and hypotension in humans. The clinical implication CDC draws is specific: overdose response messaging must emphasise respiratory and cardiovascular support to address the sedative effects, in addition to naloxone for the opioid component. The corollary matters as much: naloxone should still be given, because the opioid component is almost always present and is reversible — a partial response is not a reason to withhold it.',
+        evidenceSource:
+          'Kariisa M et al. MMWR Morb Mortal Wkly Rep 2023;72:721-727; Owusu-Antwi P et al. Am J Addict 2025;34:589-602',
+        doi: '10.15585/mmwr.mm7226a4',
+        measuredMetric:
+          'Receptor class of xylazine against the mechanism of naloxone, with the clinical management recommendation that follows',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'xyl-a4',
+        category: 'measured',
+        title: 'Systematic review: no antidote, no toxic dose, no evidence-based treatment',
+        laymanSummary:
+          'A review of every human study from 1957 to 2024 found 34 papers. Reported doses ranged from 40 mg to 4,300 mg, no toxic dose has ever been established, and there is no antidote or evidence-based treatment guidance.',
+        technicalDetails:
+          "Owusu-Antwi et al. searched the literature from 1957 to 2024 under PRISMA guidance with JBI critical appraisal, including 34 studies on management of xylazine intoxication, withdrawal, overdose and dependence in humans. Misuse was commonest among men aged 19 to 45 and was more likely to occur with other substances than alone. Reported doses ranged from 40 mg to 4,300 mg, with no established toxic dosing. Supportive care described in the literature included naloxone, alpha-2 agonists and GABAergic medications. The review's conclusion is a null one and is the most important sentence in it: there is no antidote and no evidence-based treatment recommendation. Sixty-seven years of literature on a compound now present in a tenth of American fentanyl deaths amounts to 34 papers, none of them a controlled trial.",
+        evidenceSource: 'Owusu-Antwi P et al. Am J Addict 2025;34:589-602',
+        doi: '10.1111/ajad.70051',
+        measuredMetric:
+          'Number of included human studies, reported dose range, and availability of an antidote or evidence-based treatment',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'xyl-a5',
+        category: 'conclusion_shift',
+        title: 'A veterinary drug in the human drug supply, and in no drug schedule',
+        laymanSummary:
+          'Xylazine is an approved animal medicine that appears nowhere in the federal drug schedules. It became a major feature of the US overdose crisis without ever being a controlled substance.',
+        technicalDetails:
+          'Xylazine holds veterinary approvals as a sedative, analgesic and muscle relaxant, has never had a human application submitted in the United States, and appears in no schedule of 21 CFR part 1308. Its arrival in the illicit supply therefore happened entirely outside the framework built to track and control such arrivals: it is not a novel psychoactive substance requiring analogue analysis, not a diverted prescription medicine, and not a scheduled drug whose movement can be monitored through the registrant system. Long noted in the Puerto Rico street opioid supply and later Philadelphia, it spread nationally between 2015 and 2020 while, as Friedman et al. put it, many jurisdictions did not routinely test for it and it was not comprehensively tracked nationally. The record here is a category failure rather than a scientific one: a substance with no human indication became a leading adulterant because nothing in the regulatory architecture was pointed at it.',
+        evidenceSource:
+          '21 CFR part 1308, current eCFR text; Friedman J et al. Drug Alcohol Depend 2022;233:109380',
+        doi: '10.1016/j.drugalcdep.2022.109380',
+        measuredMetric:
+          'Regulatory status of xylazine against its measured prevalence in overdose deaths',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'xyl-a6',
+        category: 'measured',
+        title: 'Severe skin ulceration, at sites unrelated to injection',
+        laymanSummary:
+          'Chronic xylazine exposure is associated with deep, slow-healing skin ulcers, including on parts of the body where the person did not inject.',
+        technicalDetails:
+          'CDC states that chronic use might lead to severe withdrawal symptoms as well as skin ulcerations, and the Philadelphia ethnographic work links xylazine to increased risk of soft-tissue infection. The wounds described in the clinical literature are necrotic ulcers that may appear at sites distant from injection, which distinguishes them from ordinary injection-site abscess and points to a systemic rather than a local mechanism; peripheral vasoconstriction from alpha-2 agonism is the usual proposed explanation and has not been demonstrated as the cause. This record files the association as measured — the ulcers are documented and their link to xylazine exposure is consistent across sources — while noting that the mechanism is not established and that people with this exposure also have multiple other risks for poor wound healing.',
+        evidenceSource:
+          'Kariisa M et al. MMWR Morb Mortal Wkly Rep 2023;72:721-727; Friedman J et al. Drug Alcohol Depend 2022;233:109380',
+        doi: '10.15585/mmwr.mm7226a4',
+        measuredMetric:
+          'Documented association between chronic xylazine exposure and severe skin ulceration and soft-tissue infection',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'xyl-a7',
+        category: 'inferred',
+        title: 'Prevalence figures measure testing, not exposure',
+        laymanSummary:
+          'Xylazine looks commonest in the Northeast. That may partly be because the Northeast tests for it most, and many jurisdictions do not test at all.',
+        technicalDetails:
+          'Both major surveillance sources state the limitation directly. Friedman et al. note that many jurisdictions do not routinely test for xylazine and that it is not comprehensively tracked nationally. Kariisa et al. report that xylazine was detected in a higher percentage of jurisdictions in the Northeast and that whether detected xylazine was listed as a cause of death varied across jurisdictions, and call for expanded postmortem and illicit-drug-product testing to clarify prevalence. A geographic gradient in a substance that is only found where it is looked for is therefore uninterpretable as a gradient in exposure, and every published percentage in this record should be read as a floor. This is the same inference problem as the kratom postmortem series, and it applies wherever detection depends on a jurisdiction having chosen to add an analyte.',
+        evidenceSource:
+          'Friedman J et al. Drug Alcohol Depend 2022;233:109380; Kariisa M et al. MMWR Morb Mortal Wkly Rep 2023;72:721-727',
+        doi: '10.15585/mmwr.mm7226a4',
+        inferredClaim:
+          'That measured regional and temporal differences in xylazine detection describe differences in exposure rather than differences in testing practice',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Added to the fentanyl, usually before the buyer sees it',
+        laymanDesc:
+          'It arrives mixed into powder sold as fentanyl or heroin. Some people now seek it out, because it makes a short fentanyl effect last longer.',
+        molecularDetail:
+          'Present in 98.4% of xylazine-positive overdose deaths alongside illicitly manufactured fentanyls. Philadelphia ethnography records a demand that developed after the exposure did: users describe it as lengthening the short duration of a fentanyl injection.',
+        iconName: 'Package',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed and distributed rapidly',
+        laymanDesc:
+          'Injected or inhaled with the opioid, it reaches the brain on the same timescale.',
+        molecularDetail:
+          'Small lipophilic molecule, 220.34 g/mol, with rapid central distribution. Reported human doses span 40 mg to 4,300 mg with no established toxic dose, so exposure cannot be characterised from the amount taken.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Activates alpha-2 adrenergic receptors',
+        laymanDesc:
+          'The same receptor clonidine works on. Activating it reduces sympathetic nervous system output — sedation, slow pulse, low blood pressure.',
+        molecularDetail:
+          'Alpha-2 adrenoceptor agonism, in the same pharmacological class as clonidine and dexmedetomidine, producing central nervous system depression, respiratory depression, bradycardia and hypotension in humans. No opioid receptor activity whatsoever.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The sedation outlasts the naloxone',
+        laymanDesc:
+          'Naloxone reverses the fentanyl and does nothing to the xylazine. The person may resume breathing and stay deeply sedated.',
+        molecularDetail:
+          'Naloxone is a competitive µ-opioid antagonist and has no mechanism against an alpha-2 agonist. CDC therefore recommends respiratory and cardiovascular support alongside naloxone. Alpha-2 antagonists reverse xylazine in animals; none is approved for this indication in people.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And with repeated exposure, ulcers and withdrawal',
+        laymanDesc:
+          'Chronic use is associated with deep skin ulcers, sometimes at sites where the person never injected, and with a severe withdrawal syndrome.',
+        molecularDetail:
+          'Severe withdrawal symptoms and skin ulcerations are both documented with chronic use. The wound mechanism is unestablished; peripheral vasoconstriction from alpha-2 agonism is the usual proposal. There is no antidote and no evidence-based treatment recommendation for any of it.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Kariisa et al. 2023 SUDORS analysis, January 2019-June 2022',
+        phase: 'National surveillance analysis',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Monthly percentage of illicitly-manufactured-fentanyl-involved overdose deaths with xylazine detected',
+        endpointMet: true,
+        statisticalPValue:
+          'Increase of 276%, from 2.9% to 10.9%, across 21 jurisdictions over the study period',
+        unreportedAdverseSignals:
+          'Detection depends on the jurisdiction testing for xylazine, and whether a detected result was listed as a cause of death varied between jurisdictions. The regional gradient partly reflects testing practice.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Friedman et al. 2022 mixed-methods national assessment',
+        phase: 'Sequential mixed-methods surveillance and ethnography',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Trend and geographic distribution of xylazine-present overdose mortality across the United States',
+        endpointMet: true,
+        statisticalPValue:
+          'Rose from 0.36% of deaths in 2015 to 6.7% in 2020 across 10 jurisdictions; Philadelphia 25.8%, Maryland 19.3%, Connecticut 10.2%; IMF co-present in 98.4%',
+        unreportedAdverseSignals:
+          'Many jurisdictions do not routinely test for xylazine and it is not comprehensively tracked nationally, so all percentages are floors. The ethnographic component is qualitative and not quantifiable.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Owusu-Antwi et al. 2025 systematic review of human xylazine management',
+        phase: 'PRISMA systematic review, 1957-2024',
+        sampleSize: 34,
+        primaryEndpoint:
+          'Management of xylazine toxicity, overdose, dependence and withdrawal in humans',
+        endpointMet: false,
+        statisticalPValue:
+          'Doses 40 mg to 4,300 mg with no established toxic dosing; no antidote and no evidence-based treatment recommendations identified',
+        unreportedAdverseSignals:
+          'Sixty-seven years of literature yielded 34 studies and no controlled trial. Misuse was almost always alongside other substances, so effects cannot be attributed to xylazine alone.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A 276% rise in the monthly share of illicit-fentanyl-involved overdose deaths with xylazine detected, from 2.9% to 10.9%, across 21 jurisdictions',
+        'Xylazine present in 25.8% of Philadelphia overdose deaths in 2020, with illicitly manufactured fentanyls co-present in 98.4% of xylazine-positive deaths nationally',
+        'Alpha-2 adrenergic agonism with no opioid receptor activity, and therefore no naloxone reversal of the xylazine component',
+        'Thirty-four human studies across 67 years, reported doses from 40 mg to 4,300 mg, no established toxic dose, no antidote, no evidence-based treatment recommendation',
+        'Absence of xylazine from every schedule in 21 CFR part 1308',
+      ],
+      unsupportedInferences: [
+        'That regional differences in detected xylazine describe differences in exposure rather than in testing practice',
+        'That naloxone should be withheld or reduced because it will not reverse xylazine — the opioid component is almost always present and is reversible',
+        'That alpha-2-mediated vasoconstriction is the established cause of the ulcers; it is the leading proposal and has not been demonstrated',
+        'That a xylazine concentration in a death investigation attributes causation, when fentanyl is co-present in nearly every case',
+      ],
+      whatFailedInitially: [
+        'Xylazine entered and spread through the US illicit supply without triggering any control mechanism, because it is a veterinary product rather than a scheduled or novel psychoactive substance',
+        'No controlled human study of xylazine exists, and the systematic review searching from 1957 found none',
+      ],
+      realWorldOutcome: [
+        'Xylazine-adulterated fentanyl is now a recognised national feature of the US overdose crisis, and CDC has called for expanded postmortem and drug-product testing',
+        'Overdose response guidance now includes respiratory and cardiovascular support alongside naloxone, because the sedative component has no antidote',
+      ],
+    },
+    deliverySystem: {
+      type: 'Injected or inhaled as an adulterant within illicit opioid powder',
+      description:
+        'There is no human delivery system, because there is no human product. Xylazine reaches people mixed into powder sold as fentanyl or heroin, at concentrations nobody has measured before use. The veterinary product is an injectable solution intended for large animals, and its diversion route into the illicit supply is not through the prescription system, because none exists for it in humans.',
+      safetyProfile:
+        'Documented effects in humans are central nervous system depression, respiratory depression, bradycardia and hypotension. There is no antidote: naloxone reverses the opioid component and leaves the xylazine sedation, so management is respiratory and cardiovascular support. Chronic exposure is associated with severe skin ulceration, including at sites distant from injection, and with a severe withdrawal syndrome for which no evidence-based regimen exists. Reported doses in the human literature span two orders of magnitude with no established toxic threshold. Because it is almost always co-present with illicitly manufactured fentanyl, and frequently with cocaine, benzodiazepine-type compounds and alcohol, no clinical presentation in this literature is attributable to xylazine alone.',
+    },
+    commonQuestions: [
+      {
+        q: 'Should I still use naloxone if xylazine might be present?',
+        a: "Yes. Naloxone will not reverse the xylazine, because xylazine acts on alpha-2 adrenergic receptors and naloxone works only at opioid receptors. But illicit fentanyl was co-present in 98.4% of xylazine-positive overdose deaths, and that part is reversible. CDC's guidance is to give naloxone and add respiratory and cardiovascular support, because the person may resume breathing and remain deeply sedated. A partial response is expected, not a sign that naloxone was the wrong choice.",
+        auditNote:
+          'This is the single most consequential practical statement on the page, and it follows directly from the receptor pharmacology rather than from any trial.',
+      },
+      {
+        q: 'How is a veterinary drug not a controlled substance?',
+        a: 'Because the schedules control substances by their potential for abuse as assessed through a specific administrative process, and no such process was ever run for xylazine. It appears nowhere in 21 CFR part 1308. It is also not a novel psychoactive substance in the analogue sense, and not a diverted human prescription drug — so none of the mechanisms built to detect a new drug arriving in the supply were pointed at it. It spread nationally between 2015 and 2020 while many jurisdictions were not testing for it at all.',
+      },
+      {
+        q: 'Why would anyone want it in their drugs?',
+        a: 'Initially nobody chose it. Ethnographic work in Philadelphia found that people who inject drugs came to describe xylazine as a sought-after adulterant because it lengthens the very short duration of a fentanyl injection — a demand that developed downstream of an exposure they had not chosen. The same people linked it to increased soft-tissue infection and to overdoses that naloxone did not fully reverse.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'The veterinary product has a price and the illicit adulterant does not, and neither is a per-dose figure this record could source or make meaningful. Xylazine is not sold to people as a product at all; it arrives inside something else.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Kariisa M et al. Illicitly Manufactured Fentanyl-Involved Overdose Deaths with Detected Xylazine - United States, January 2019-June 2022. MMWR Morb Mortal Wkly Rep 2023;72:721-727',
+        identifier: '10.15585/mmwr.mm7226a4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Friedman J et al. Xylazine spreads across the US: A growing component of the increasingly synthetic and polysubstance overdose crisis. Drug Alcohol Depend 2022;233:109380',
+        identifier: '10.1016/j.drugalcdep.2022.109380',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Owusu-Antwi P et al. Management of xylazine toxicity, overdose, dependence, and withdrawal: A systematic review. Am J Addict 2025;34:589-602',
+        identifier: '10.1111/ajad.70051',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Notes from the Field: Xylazine Detection and Involvement in Drug Overdose Deaths - United States, 2019. MMWR Morb Mortal Wkly Rep 2021;70:1300-1302',
+        identifier: '10.15585/mmwr.mm7037a4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Detecting Xylazine: Prevalence, Pharmacokinetics, and Analytical Considerations. Clin Lab Med 2025;45:283-294',
+        identifier: '10.1016/j.cll.2025.01.011',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 5707 — xylazine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5707',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 26. Fentanyl
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'fentanyl',
+    name: 'Fentanyl',
+    tradeName:
+      'Sublimaze (injection, NDA 016619, 1968); Duragesic (transdermal patch, NDA 019813, 1990); Actiq (oral transmucosal lozenge, NDA 020747, 1998); Fentora, Subsys, Abstral, Lazanda',
+    sponsor:
+      'Synthesised by Paul Janssen at Janssen Pharmaceutica in 1960. Janssen holds Duragesic; multiple manufacturers hold the injection and transmucosal products. The illicit supply has no sponsor',
+    targetGene: 'OPRM1',
+    targetProtein:
+      'µ-opioid receptor — a potent, highly lipophilic agonist, roughly 100 times the potency of morphine by weight, with additional α-adrenergic and cholinergic effects that produce chest-wall rigidity',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1968,
+    indication:
+      'Surgical anaesthesia and analgesia (injection); severe chronic pain requiring around-the-clock opioid treatment (transdermal); breakthrough cancer pain in opioid-tolerant patients (transmucosal products). Schedule II. Illicitly manufactured fentanyl is a separate supply with no relationship to any of these products',
+    patientFriendlyIndication:
+      'A hospital anaesthetic and a patch for severe chronic pain. Separately, illicitly manufactured fentanyl is the drug involved in most American overdose deaths, and it is increasingly pressed into counterfeit pills',
+    anatomicalSite:
+      'µ-opioid receptors in the brainstem respiratory centres and the spinal dorsal horn; the rigidity syndrome involves brainstem noradrenergic and cholinergic pathways as well',
+    conditionContext: {
+      conditionExplainer:
+        'Clinically, fentanyl is used where an opioid with fast onset, short duration and cardiovascular stability is needed — surgical anaesthesia — and where a stable transdermal opioid is needed for chronic severe pain.',
+      whyItMatters:
+        'This record exists because the approved product and the illicit supply are routinely discussed as though they were one thing. They share a molecule and almost nothing else: not the dose, not the route, not the manufacturing, not the setting, and not the mortality.',
+      whoTakesThis:
+        'Surgical patients under anaesthesia, patients with severe chronic or cancer pain, and — in the illicit supply — people who mostly did not choose it, with counterfeit-pill deaths concentrated in the under-35 age group.',
+      clinicalGoals:
+        'Analgesia and anaesthesia with a predictable, titratable exposure. In the illicit supply there is no dose and therefore no goal.',
+    },
+    oneSentenceVerdict:
+      "The same molecule underpins one of anaesthesia's most controllable analgesics and the deadliest drug in the American supply — and the difference is entirely dose control, because at anaesthetic concentrations fentanyl also produces a chest-wall rigidity that develops within an extremely narrow dosing range and that naloxone does not reliably reverse.",
+    laymanHowItWorks:
+      'Fentanyl is a µ-opioid agonist about a hundred times more potent than morphine by weight, and far more fat-soluble, so it crosses into the brain within seconds. In an operating theatre that speed is the point: the anaesthetist titrates it against effect with an airway already secured. Outside that setting the same properties are what kill. Doses that matter are measured in micrograms, so an uneven mixture is a lethal one, and the effect arrives before anyone can intervene. There is a second mechanism as well: fentanyl produces rigidity of the diaphragm, chest wall and upper airway within a very narrow dose range, by pathways that are not purely opioid — which is part of why naloxone works less reliably here than against heroin.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 80,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCC(=O)N(C1CCN(CC1)CCC2=CC=CC=C2)C3=CC=CC=C3',
+      chemicalFormula: 'C22H28N2O',
+      molecularWeight:
+        '336.5 g/mol. Clinical doses are micrograms — a transdermal patch delivers tens of micrograms per hour — while illicit powder is handled in grams with no assurance of mixing',
+      targetReceptorAffinity:
+        "Potent µ-opioid receptor agonist, roughly 100-fold morphine's potency by weight, and markedly more lipophilic, which gives rapid blood-brain equilibration and a fast onset. The anilidopiperidine scaffold is the template for a large family of analogues. Alongside µ agonism, α-adrenergic and cholinergic mechanisms are implicated in the rigidity of the diaphragm, chest wall and upper airway that anaesthetists named wooden chest syndrome.",
+      structureSource: {
+        label: 'PubChem CID 3345 (fentanyl) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3345',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fen-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identify fentanyl and separate it from its analogues',
+          description:
+            'The anilidopiperidine scaffold supports dozens of analogues — acetylfentanyl, carfentanil, furanylfentanyl and others — with different potencies and different scheduling. An immunoassay that reports "fentanyl positive" identifies a family, not a compound, and cross-reactivity varies between analogues, so a negative screen does not exclude one.',
+          reagentsAndBuffer:
+            'Fentanyl and analogue certified reference standards including norfentanyl, acetylfentanyl and carfentanil, LC-MS/MS with compound-specific MRM transitions, high-resolution accurate-mass acquisition for unlibraried analogues',
+        },
+        {
+          id: 'fen-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Assay content and distribution within a seized product',
+          description:
+            'The measurement that predicts harm in the illicit supply is not the mean concentration of a batch but its variance. Counterfeit tablets are pressed from a powder blend, and blending failure produces tablets from the same batch with widely different fentanyl content. Assaying multiple individual tablets from one seizure, rather than a homogenised composite, is what makes that visible.',
+          dependsOnStepId: 'fen-w1',
+          reagentsAndBuffer:
+            'Individual unit-dose extraction rather than composite homogenisation, quantification against a certified standard, minimum ten units per seizure with mean and range reported, tablet weight and press-mark documentation',
+        },
+        {
+          id: 'fen-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express µ-opioid and adrenergic receptors for the rigidity question',
+          description:
+            'The clinically distinctive part of fentanyl toxicity is not the opioid part. Establishing whether rigidity is opioid-mediated requires a system in which µ-opioid receptors and α-adrenergic and cholinergic receptors can be probed separately with the same compound, since the therapeutic question is whether an opioid antagonist can be expected to reverse it.',
+          dependsOnStepId: 'fen-w1',
+          reagentsAndBuffer:
+            'Cell lines expressing OPRM1, ADRA1 and ADRA2 subtypes and muscarinic receptors, lipid transfection, morphine and DAMGO as opioid reference agonists, naloxone and α-adrenergic antagonists as the two reversal arms',
+        },
+        {
+          id: 'fen-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Quantify µ potency and the non-opioid receptor interactions',
+          description:
+            'Binding and functional assays give the µ potency that justifies the 100-fold morphine comparison. Running the same compound against adrenergic and cholinergic targets gives the pharmacological basis for the review finding that naloxone may be ineffective against the centrally mediated noradrenergic and cholinergic effects that manifest as rigidity and airway closure.',
+          dependsOnStepId: 'fen-w3',
+          reagentsAndBuffer:
+            '[3H]-DAMGO competition binding, [35S]GTPγS or β-arrestin recruitment for µ activation, adrenergic and muscarinic radioligand counter-screens, morphine as the potency reference on every plate',
+        },
+        {
+          id: 'fen-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Quantify fentanyl and norfentanyl in clinical and postmortem samples',
+          description:
+            'Therapeutic and fatal concentrations overlap substantially, particularly in tolerant patients, so a fentanyl concentration alone rarely settles a cause of death. Quantifying the norfentanyl metabolite alongside the parent, and recording every co-detected substance, is what allows an attribution — and in the SUDORS data a stimulant was co-involved in roughly four of ten fentanyl deaths.',
+          dependsOnStepId: 'fen-w2',
+          reagentsAndBuffer:
+            'LC-MS/MS with deuterated fentanyl and norfentanyl internal standards, postmortem blood with sodium fluoride preservative, documented sampling site, full analogue and co-substance panel run on the same specimen',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fen-a1',
+        category: 'measured',
+        title: 'Two thirds of a hundred thousand deaths a year',
+        laymanSummary:
+          'In the twelve months to April 2021, US overdose deaths passed 100,000 for the first time, and 64% involved synthetic opioids other than methadone — mainly illicitly manufactured fentanyl.',
+        technicalDetails:
+          "O'Donnell et al. reported that during May 2020 to April 2021 the estimated number of US drug overdose deaths exceeded 100,000 over a 12-month period for the first time, with 64.0% involving synthetic opioids other than methadone, mainly illicitly manufactured fentanyls. Using CDC's State Unintentional Drug Overdose Reporting System for July 2019 to December 2020, IMF-involved deaths rose sharply in midwestern (33.1%), southern (64.7%) and western (93.9%) jurisdictions. Approximately four in ten IMF-involved deaths also involved a stimulant. 56.1% of decedents had no pulse when first responders arrived. Injection was the most frequently reported single route at 24.5%, but 27.1% had evidence of snorting, smoking or ingestion without injection — a distribution that matters because harm-reduction services designed around injection reach only part of the affected population.",
+        evidenceSource: "O'Donnell J et al. MMWR Morb Mortal Wkly Rep 2021;70:1740-1746",
+        doi: '10.15585/mmwr.mm7050e3',
+        measuredMetric:
+          'Regional increases in IMF-involved overdose deaths, stimulant co-involvement, route of use and pulse status on first-responder arrival',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fen-a2',
+        category: 'measured',
+        title: 'Wooden chest: rigidity within an extremely narrow dose range',
+        laymanSummary:
+          'Anaesthetists learned in the 1970s that fentanyl can lock the diaphragm, chest wall and upper airway rigid within a very small dose window. That effect is not purely opioid, and naloxone does not reliably reverse it.',
+        technicalDetails:
+          'Torralva and Janowsky review the human clinical pharmacology and animal data on fentanyl-induced wooden chest syndrome: profound rigidity of the diaphragm, chest wall and upper airway developing within an extremely narrow dosing range, almost routinely fatal without expert airway management, and familiar to anaesthesiologists since fentanyl entered US practice in the early 1970s but largely unknown outside anaesthesia. They argue that the mechanism involves α-adrenergic and cholinergic receptor-mediated mechanical failure of the respiratory and cardiovascular systems, and that naloxone may therefore be ineffective against these centrally mediated components. They contrast this with morphine and heroin, which produce at most mild abdominal rigidity at high doses and a slower onset of respiratory depression. The clinical consequence is that fentanyl overdose is not simply a faster version of heroin overdose, and that reversal strategies designed around opioid receptor antagonism address only part of it.',
+        evidenceSource: 'Torralva R, Janowsky A. J Pharmacol Exp Ther 2019;371:453-475',
+        doi: '10.1124/jpet.119.258566',
+        measuredMetric:
+          'Clinical and preclinical characterisation of fentanyl-induced chest-wall and airway rigidity and its receptor mechanisms',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fen-a3',
+        category: 'failed',
+        title: 'A REMS that did not stop half the prescriptions going to the wrong patients',
+        laymanSummary:
+          "Transmucosal fentanyl products are approved only for breakthrough cancer pain in patients already tolerant to opioids. FDA's own data showed between 34.6% and 55.4% of patients prescribed them were not opioid-tolerant — and the programme was not substantially changed.",
+        technicalDetails:
+          'Rollman et al. analysed 4,877 pages of FDA documents obtained by Freedom of Information Act request, covering six annual REMS assessment reports from 2012 to 2017 for transmucosal immediate-release fentanyls. Twelve months in, 7.9% of pharmacists, 11.6% of prescribers and 2.6% of patients incorrectly reported that TIRFs can be prescribed to opioid-nontolerant patients, and similar misunderstanding persisted in later reports. At 60 months, product-specific claims analyses showed between 34.6% and 55.4% of patients prescribed TIRFs were opioid-nontolerant — the single contraindication the programme existed to prevent. At 48 months, 34.2% of prescribers reported prescribing TIRFs for opioid-tolerant patients with chronic non-cancer pain; at 60 months, 18.4% of prescribers and 47.7% of patients erroneously believed TIRFs were approved for that. Over the 60 months examined, few substantive changes were made to the REMS, and although a noncompliance plan existed, there was no report of any prescriber being disenrolled for inappropriate prescribing.',
+        evidenceSource: 'Rollman JE et al. JAMA 2019;321:676-685',
+        doi: '10.1001/jama.2019.0235',
+        measuredMetric:
+          'Proportion of TIRF-prescribed patients who were opioid-nontolerant, and prescriber and patient knowledge, across 60 months of REMS assessments',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fen-a4',
+        category: 'measured',
+        title: 'Counterfeit pills: deaths doubled, and tripled in the West',
+        laymanSummary:
+          'Overdose deaths with evidence of counterfeit pill use more than doubled between 2019 and 2021, and more than tripled in western states. The people dying were much younger than in other overdose deaths.',
+        technicalDetails:
+          "O'Donnell et al. analysed SUDORS data for July 2019 to December 2021 across 29 states and DC. The quarterly percentage of overdose deaths with evidence of counterfeit pill use more than doubled, from 2.0% in July-September 2019 to 4.7% in October-December 2021, and more than tripled in western jurisdictions, from 4.7% to 14.7%. Illicitly manufactured fentanyls were the only drugs involved in 41.4% of deaths with evidence of counterfeit pill use, against 19.5% of deaths without — meaning counterfeit-pill deaths were far more often single-substance fentanyl deaths. Decedents with counterfeit pill evidence were younger (57.1% versus 28.1% aged under 35), more often Hispanic or Latino (18.7% versus 9.4%), and more often had a history of prescription drug misuse (27.0% versus 9.4%). Smoking was the commonest non-ingestion route at 39.5%. A counterfeit tablet is the delivery mechanism by which fentanyl reaches people who believe they are taking a pharmaceutical.",
+        evidenceSource: "O'Donnell J et al. MMWR Morb Mortal Wkly Rep 2023;72:949-956",
+        doi: '10.15585/mmwr.mm7235a3',
+        measuredMetric:
+          'Quarterly percentage of overdose deaths with evidence of counterfeit pill use, with decedent characteristics and drug involvement',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fen-a5',
+        category: 'conclusion_shift',
+        title: 'The approved product and the illicit supply are not the same thing',
+        laymanSummary:
+          'Fentanyl has been an approved anaesthetic since 1968 and a pain patch since 1990. The fentanyl in the overdose data is manufactured illicitly and does not come from those products.',
+        technicalDetails:
+          'Sublimaze was approved on 19 February 1968 (NDA 016619), Duragesic on 7 August 1990 (NDA 019813) and Actiq on 4 November 1998 (NDA 020747). CDC\'s surveillance terminology is deliberate: "illicitly manufactured fentanyls", covering fentanyl and illicit fentanyl analogues, introduced primarily as adulterants in or replacements for white powder heroin east of the Mississippi and now widespread, increasingly pressed into counterfeit pills resembling oxycodone or alprazolam, and expanding into western markets. That is a separate manufacturing and distribution system from the pharmaceutical one, and conflating them produces two errors in opposite directions: it implies that restricting prescriptions addresses the overdose crisis, and it implies that a hospital anaesthetic carries the mortality of the street supply. This record separates them because the surveillance literature does.',
+        evidenceSource:
+          "Drugs@FDA NDA 016619, NDA 019813, NDA 020747; O'Donnell J et al. MMWR 2021;70:1740-1746",
+        doi: '10.15585/mmwr.mm7050e3',
+        measuredMetric:
+          "Approval dates of the pharmaceutical products against CDC's definition and tracking of illicitly manufactured fentanyls",
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fen-a6',
+        category: 'measured',
+        title: 'Four in ten deaths also involve a stimulant',
+        laymanSummary:
+          'Fentanyl deaths are usually not fentanyl-only. About 40% also involve a stimulant such as methamphetamine or cocaine, which changes both the risk and the treatment.',
+        technicalDetails:
+          "Approximately four in ten illicitly-manufactured-fentanyl-involved deaths also involved a stimulant in the 2019-2020 SUDORS analysis. That co-involvement matters for three reasons the surveillance authors state: it raises overdose risk, it complicates treatment for substance use disorder, and it means that interventions built solely around opioid pharmacology address part of the exposure. It also interacts with the xylazine finding on this site — xylazine was co-present with illicitly manufactured fentanyls in 98.4% of xylazine-positive deaths — so a single fatal exposure now routinely involves an opioid, a sedative with no antidote and often a stimulant, none of which the others' antidotes address.",
+        evidenceSource: "O'Donnell J et al. MMWR Morb Mortal Wkly Rep 2021;70:1740-1746",
+        doi: '10.15585/mmwr.mm7050e3',
+        measuredMetric: 'Proportion of IMF-involved overdose deaths with a co-involved stimulant',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fen-a7',
+        category: 'inferred',
+        title: 'Potency comparisons describe weight, not risk per dose',
+        laymanSummary:
+          '"A hundred times stronger than morphine" is a statement about milligrams, not about how dangerous a given dose is. A titrated anaesthetic dose and an unmeasured street dose of the same drug are not comparable exposures.',
+        technicalDetails:
+          'The 100-fold morphine potency ratio is a per-weight comparison and is well established. The inference commonly drawn from it — that fentanyl is intrinsically a hundred times more dangerous — does not follow, because risk depends on dose control rather than on potency. Fentanyl is used millions of times a year in operating theatres precisely because it is titratable, with the airway already secured and the dose measured in micrograms. What makes the illicit supply lethal is that potency and absent dose control appear together: a drug active in micrograms, blended into a powder or pressed into a tablet by a process with no quality control, produces variance the user cannot detect. The measured finding underneath is the one from the counterfeit-pill analysis, where fentanyl was the only drug involved in 41.4% of those deaths.',
+        evidenceSource:
+          "O'Donnell J et al. MMWR Morb Mortal Wkly Rep 2023;72:949-956; Torralva R, Janowsky A. J Pharmacol Exp Ther 2019;371:453-475",
+        doi: '10.15585/mmwr.mm7235a3',
+        inferredClaim:
+          'That a per-weight potency ratio to morphine describes the per-dose risk of a fentanyl exposure independently of how the dose was measured',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given in micrograms — or in an unmeasured amount',
+        laymanDesc:
+          'In hospital, a syringe or a patch delivering tens of micrograms an hour. Illicitly, a fraction of a milligram somewhere in a powder or a pressed tablet.',
+        molecularDetail:
+          'Intravenous, transdermal or transmucosal administration in the approved products, all at microgram dosing. In the illicit supply, blended powder or counterfeit tablets with no assay and no assurance of homogeneity — the variance between tablets from one batch is the determinant of outcome.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the brain within seconds',
+        laymanDesc:
+          'It is far more fat-soluble than morphine, so it crosses into the brain almost immediately rather than over many minutes.',
+        molecularDetail:
+          'High lipophilicity gives rapid blood-brain equilibration and fast onset, the property that made it valuable in anaesthesia. Metabolised by CYP3A4 to norfentanyl, the analytical marker used alongside the parent compound in casework.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Activates the µ-opioid receptor',
+        laymanDesc:
+          'The same receptor as morphine, at roughly a hundredth of the weight for the same effect.',
+        molecularDetail:
+          'Potent µ-opioid agonism on an anilidopiperidine scaffold, giving analgesia with hemodynamic stability — the combination that revolutionised surgical anaesthesia in the 1970s and the reason the drug remains in routine use.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'And, within a narrow dose range, locks the chest rigid',
+        laymanDesc:
+          'The diaphragm, chest wall and upper airway can become rigid. This is a separate effect from ordinary opioid respiratory depression and it comes on very fast.',
+        molecularDetail:
+          'Wooden chest syndrome, involving α-adrenergic and cholinergic mechanisms as well as opioid ones, producing mechanical failure of respiration and airway closure. Almost routinely fatal without expert airway management, and distinct from the slower respiratory depression of morphine-derived alkaloids.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Naloxone reverses the opioid part',
+        laymanDesc:
+          'Naloxone works on the opioid receptor and should always be given. It may not address the rigidity, which is why airway management matters.',
+        molecularDetail:
+          'Competitive µ-opioid antagonism reverses the opioid component. The review literature argues naloxone may be ineffective against the centrally mediated noradrenergic and cholinergic effects manifesting as rigidity and airway closure — one reason 56.1% of IMF decedents had no pulse when first responders arrived.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Rollman et al. 2019 FDA TIRF REMS document analysis',
+        phase: 'Qualitative analysis of regulatory documents, 2012-2017',
+        sampleSize: 4877,
+        primaryEndpoint:
+          'Whether the TIRF REMS prevented prescribing to opioid-nontolerant patients and for non-approved indications',
+        endpointMet: false,
+        statisticalPValue:
+          'At 60 months, 34.6% to 55.4% of TIRF-prescribed patients were opioid-nontolerant; 34.2% of prescribers reported prescribing for chronic non-cancer pain at 48 months',
+        unreportedAdverseSignals:
+          'No prescriber was reported as disenrolled for inappropriate prescribing despite a noncompliance plan, and few substantive changes were made to the programme over the 60 months examined.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: "O'Donnell et al. 2021 SUDORS analysis of IMF-involved deaths",
+        phase: 'National surveillance analysis, July 2019-December 2020',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Trends in and characteristics of overdose deaths involving illicitly manufactured fentanyls',
+        endpointMet: true,
+        statisticalPValue:
+          'IMF-involved deaths rose 33.1% in midwestern, 64.7% in southern and 93.9% in western jurisdictions; stimulant co-involvement in approximately 4 in 10',
+        unreportedAdverseSignals:
+          '56.1% of decedents had no pulse when first responders arrived, which places a hard ceiling on what any reversal agent can achieve at the population level.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: "O'Donnell et al. 2023 counterfeit pill analysis",
+        phase: 'National surveillance analysis, July 2019-December 2021',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Trends in and characteristics of overdose deaths with evidence of counterfeit pill use',
+        endpointMet: true,
+        statisticalPValue:
+          'Quarterly percentage rose from 2.0% to 4.7% nationally and from 4.7% to 14.7% in western jurisdictions; IMFs the only drugs involved in 41.4% of such deaths',
+        unreportedAdverseSignals:
+          'Evidence of counterfeit pill use depends on scene investigation and is likely undercounted. Decedents were substantially younger than in other overdose deaths, 57.1% under 35.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'US overdose deaths exceeding 100,000 over 12 months for the first time to April 2021, with 64.0% involving synthetic opioids other than methadone',
+        'Regional increases in IMF-involved deaths of 33.1% (Midwest), 64.7% (South) and 93.9% (West) over July 2019 to December 2020, with a stimulant co-involved in about four in ten',
+        'Counterfeit-pill-associated overdose deaths rising from 2.0% to 4.7% of deaths nationally and 4.7% to 14.7% in the West, with fentanyl the only drug involved in 41.4% of them',
+        'Between 34.6% and 55.4% of patients prescribed transmucosal fentanyl products being opioid-nontolerant at 60 months of REMS operation',
+        'Chest-wall and airway rigidity within an extremely narrow dosing range, with α-adrenergic and cholinergic mechanisms implicated',
+      ],
+      unsupportedInferences: [
+        'That the 100-fold morphine potency ratio describes per-dose risk independently of dose control',
+        'That restricting fentanyl prescribing addresses a mortality driven by an illicitly manufactured supply',
+        'That naloxone addresses the whole of a fentanyl overdose; the rigidity component is argued to be non-opioid',
+        'That a postmortem fentanyl concentration establishes cause of death in a tolerant person, where therapeutic and fatal ranges overlap',
+      ],
+      whatFailedInitially: [
+        'The TIRF REMS failed on its central measure across 60 months, with no prescriber reported disenrolled and few substantive programme changes',
+        'Harm-reduction services built around injection reach only part of the population: 27.1% of IMF decedents had evidence of snorting, smoking or ingestion without injection',
+      ],
+      realWorldOutcome: [
+        'Fentanyl remains in routine anaesthetic and palliative use under Schedule II, with approved products dating to 1968',
+        'Illicitly manufactured fentanyl remains the dominant substance in US overdose mortality, increasingly delivered in counterfeit pills to a younger population',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous, transdermal patch, transmucosal lozenge or spray — and, illicitly, powder and counterfeit tablets',
+      description:
+        'Every approved delivery system exists to control the rate of exposure: an intravenous bolus titrated by an anaesthetist with the airway secured, a transdermal patch releasing tens of micrograms an hour, a transmucosal unit for breakthrough pain in an already tolerant patient. The illicit delivery system has no rate control at all. Counterfeit tablets pressed to resemble oxycodone or alprazolam are the fastest-growing route, and they deliver fentanyl to people who believe they are taking a pharmaceutical.',
+      safetyProfile:
+        'Respiratory depression is the dose-limiting effect and the mechanism of death. Wooden chest syndrome — rigidity of diaphragm, chest wall and upper airway within a very narrow dose range — is a distinct and faster mechanism, involves non-opioid pathways, and is almost routinely fatal without expert airway management. Naloxone reverses the opioid component and should always be given; it may not address the rigidity. Transdermal patches carry additional hazards from heat exposure, from damaged or chewed patches, and from residual drug after removal. In the illicit supply the dominant hazard is dose variance, compounded by frequent co-presence of stimulants and of xylazine, which has no antidote. In the SUDORS series 56.1% of decedents had no pulse when first responders arrived.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is the fentanyl in overdose deaths coming from prescriptions?',
+        a: 'Overwhelmingly no. CDC tracks these deaths under the term "illicitly manufactured fentanyls" precisely to make the distinction: a separate manufacturing and distribution system, introduced first as an adulterant in or replacement for white powder heroin and now increasingly pressed into counterfeit pills. The pharmaceutical products — an injection approved in 1968, a patch in 1990, transmucosal units from 1998 — are a different supply chain. Conflating the two produces errors in both directions.',
+        auditNote:
+          "The separation is CDC's own terminology in the surveillance literature, not an editorial framing added here.",
+      },
+      {
+        q: 'Why does naloxone sometimes not seem to work?',
+        a: 'Two reasons, and only one of them is about dose. Fentanyl is potent and short-acting, so re-sedation after an initial response is possible and repeated dosing may be needed. The second reason is mechanistic: fentanyl produces rigidity of the diaphragm, chest wall and upper airway through α-adrenergic and cholinergic pathways as well as opioid ones, and an opioid antagonist has no action against those. The practical implication is airway management alongside naloxone, not less naloxone.',
+      },
+      {
+        q: 'How can a drug this dangerous be used in surgery millions of times a year?',
+        a: 'Because in that setting every variable that makes it dangerous has been removed. The dose is measured in micrograms and titrated against effect; the airway is already secured or immediately securable; the patient is monitored continuously; and an anaesthetist trained in the rigidity syndrome is present. Potency is not the hazard — potency combined with an unmeasured dose is. That is the entire difference between the two halves of this page.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'The approved products carry list prices, but this file does not publish a per-dose cost of production it cannot verify against a citable source, and it applies that rule uniformly across this group. The illicit supply has no published price at all.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          "O'Donnell J et al. Trends in and Characteristics of Drug Overdose Deaths Involving Illicitly Manufactured Fentanyls - United States, 2019-2020. MMWR Morb Mortal Wkly Rep 2021;70:1740-1746",
+        identifier: '10.15585/mmwr.mm7050e3',
+        kind: 'doi',
+      },
+      {
+        label:
+          "O'Donnell J et al. Drug Overdose Deaths with Evidence of Counterfeit Pill Use - United States, July 2019-December 2021. MMWR Morb Mortal Wkly Rep 2023;72:949-956",
+        identifier: '10.15585/mmwr.mm7235a3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rollman JE et al. Assessment of the FDA Risk Evaluation and Mitigation Strategy for Transmucosal Immediate-Release Fentanyl Products. JAMA 2019;321:676-685',
+        identifier: '10.1001/jama.2019.0235',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Torralva R, Janowsky A. Noradrenergic Mechanisms in Fentanyl-Mediated Rapid Death Explain Failure of Naloxone in the Opioid Crisis. J Pharmacol Exp Ther 2019;371:453-475',
+        identifier: '10.1124/jpet.119.258566',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kariisa M et al. Illicitly Manufactured Fentanyl-Involved Overdose Deaths with Detected Xylazine - United States, January 2019-June 2022. MMWR Morb Mortal Wkly Rep 2023;72:721-727',
+        identifier: '10.15585/mmwr.mm7226a4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA — Sublimaze NDA 016619 approved 19 February 1968; Duragesic NDA 019813 approved 7 August 1990; Actiq NDA 020747 approved 4 November 1998',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019813',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3345 — fentanyl structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3345',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 27. PCP (phencyclidine)
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'phencyclidine',
+    name: 'PCP (Phencyclidine)',
+    tradeName:
+      'Sernyl — marketed by Parke-Davis as a human anaesthetic from the late 1950s and withdrawn from human use in the mid-1960s; Sernylan, the veterinary formulation, was withdrawn in 1978',
+    sponsor: 'Parke-Davis developed and marketed it. No sponsor holds any product today',
+    targetGene: 'GRIN1',
+    targetProtein:
+      'NMDA glutamate receptor — a non-competitive open-channel blocker binding a site inside the pore, with additional activity at dopamine transporters and sigma receptors',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved human indication since the 1960s. Phencyclidine is listed in Schedule II at 21 CFR 1308.12(e)(4) under DEA code 7471; its close analogues PCE, PCPy and TCP are in Schedule I',
+    patientFriendlyIndication:
+      'Nothing. It was an anaesthetic that worked but left patients delirious for hours afterwards, and it became the drug that taught psychiatry what schizophrenia might be a disorder of',
+    anatomicalSite:
+      'The pore of the NMDA receptor channel, throughout the cortex and limbic system — the drug binds inside the open channel rather than at the neurotransmitter site',
+    conditionContext: {
+      conditionExplainer:
+        'PCP has no current indication. Its scientific importance is as a model: the state it produces in healthy people includes both the positive and the negative features of schizophrenia, which amphetamine psychosis does not.',
+      whyItMatters:
+        'Every current attempt to treat schizophrenia through the glutamate system traces back to this compound. The observation that blocking one receptor reproduces a psychiatric syndrome, including its cognitive and negative symptoms, is one of the strongest mechanistic arguments in psychiatry.',
+      whoTakesThis:
+        'Surgical patients between the late 1950s and the mid-1960s, and recreational users since. There is no lawful medical use.',
+      clinicalGoals:
+        'None current. Its original goal, anaesthesia with cardiovascular stability, was achieved and then abandoned because of the emergence reactions.',
+    },
+    oneSentenceVerdict:
+      'An anaesthetic that worked and was abandoned because of what patients experienced on waking, and which then became the most informative model of schizophrenia in pharmacology — psychotomimetic at submicromolar serum concentrations through selective non-competitive blockade of the NMDA receptor.',
+    laymanHowItWorks:
+      'PCP sits inside the pore of the NMDA receptor, a channel that normally opens when glutamate arrives and lets signals through. With the pore plugged, that whole signalling system is quietened. In a person that produces dissociation — a sense of separation from the body and the surroundings — along with hallucinations, thought disorder, emotional flattening and cognitive impairment. That combination is what makes it a model of schizophrenia rather than merely an intoxicant: amphetamine produces the hallucinations and paranoia, but not the withdrawal, the thought disorder or the cognitive deficits.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 74,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CCC(CC1)(C2=CC=CC=C2)N3CCCCC3',
+      chemicalFormula: 'C17H25N',
+      molecularWeight:
+        '243.4 g/mol. Psychotomimetic effects occur at submicromolar serum concentrations, which is the figure that anchors the receptor argument',
+      targetReceptorAffinity:
+        'Non-competitive NMDA-receptor antagonist binding a site within the open channel — the "PCP receptor" identified before the channel itself was cloned. Javitt and Zukin established that psychotomimetic effects occur at submicromolar serum concentrations, the same range at which the drug selectively occupies that site, and that other NMDA antagonists including ketamine produce PCP-like effects in proportion to their potency there. Additional dopamine-transporter and sigma-receptor activity occurs at higher concentrations.',
+      structureSource: {
+        label: 'PubChem CID 6468 (phencyclidine) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6468',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'pcp-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm identity against the arylcyclohexylamine analogues',
+          description:
+            'PCP sits at the head of a family — PCE, PCPy, TCP, 3-MeO-PCP, and others — which share the arylcyclohexylamine skeleton, differ in scheduling, and are not distinguished by immunoassay. Confirmation against certified standards is required, and cross-reactivity of PCP immunoassays with the analogues is variable in both directions.',
+          reagentsAndBuffer:
+            'Phencyclidine certified reference standard plus PCE, PCPy, TCP and 3-MeO-PCP standards, GC-MS or LC-MS/MS with compound-specific transitions, PCP immunoassay run in parallel to document its cross-reactivity',
+        },
+        {
+          id: 'pcp-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify serum and CSF concentrations against the effect range',
+          description:
+            "The specific number that carries the schizophrenia model is the serum concentration at which psychotomimetic effects appear. Javitt and Zukin assembled 25 papers reporting clinical dose and serum and CSF levels precisely to establish that this range is submicromolar — which is what allowed the effects to be attributed to one binding site rather than to the drug's other actions.",
+          dependsOnStepId: 'pcp-w1',
+          reagentsAndBuffer:
+            'Deuterated phencyclidine internal standard, LC-MS/MS validated into the low nanogram-per-millilitre range, paired serum and cerebrospinal fluid sampling where available, documented time from administration',
+        },
+        {
+          id: 'pcp-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Prepare neurons expressing NMDA receptors for channel recording',
+          description:
+            'PCP binds inside the open channel, so its block is use-dependent: the channel has to be activated before the drug can enter. Demonstrating that requires a preparation in which NMDA receptors can be opened on demand with agonist while current is recorded — central mammalian neurones, in the original Anis and Lodge work, or a defined recombinant system.',
+          dependsOnStepId: 'pcp-w1',
+          reagentsAndBuffer:
+            'Cultured central neurones or HEK293 cells co-expressing GRIN1 with GRIN2A or GRIN2B, magnesium-free external solution to relieve the physiological block, glutamate and glycine for channel activation, lipid transfection',
+        },
+        {
+          id: 'pcp-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Demonstrate selective, use-dependent NMDA block',
+          description:
+            'The 1983 result that founded this whole field was a selectivity demonstration: ketamine and phencyclidine reduced excitation of central mammalian neurones by N-methyl-aspartate specifically, leaving responses to other excitatory amino acids comparatively intact. Reproducing that requires recording responses to NMDA and to non-NMDA agonists in the same cell before and during drug application.',
+          dependsOnStepId: 'pcp-w3',
+          reagentsAndBuffer:
+            'Iontophoretic or bath application of N-methyl-aspartate, quisqualate and kainate as the comparison agonists, whole-cell or extracellular recording, ketamine and MK-801 as reference channel blockers, [3H]-MK-801 or [3H]-TCP for the binding arm',
+        },
+        {
+          id: 'pcp-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Correlate binding potency with behavioural potency across the class',
+          description:
+            'The strongest form of the argument is a rank-order correlation: across a series of NMDA antagonists, potency at the PCP binding site should predict potency in producing PCP-like effects. Javitt and Zukin reported exactly that relationship, and it is what converts an association between one drug and one receptor into a mechanism for a class.',
+          dependsOnStepId: 'pcp-w4',
+          reagentsAndBuffer:
+            'Series of NMDA channel blockers spanning a potency range, [3H]-TCP or [3H]-MK-801 competition binding, matched behavioural or clinical potency estimates, rank-order correlation with confidence interval reported',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'pcp-a1',
+        category: 'measured',
+        title: 'Psychotomimetic at submicromolar serum concentrations — at its NMDA site',
+        laymanSummary:
+          'Researchers pulled together every study reporting the dose and blood level at which PCP produces its psychiatric effects. Those concentrations are the same ones at which it selectively plugs the NMDA receptor channel and nothing else.',
+        technicalDetails:
+          'Javitt and Zukin identified 25 papers describing the clinical dose and the serum and cerebrospinal fluid concentrations at which PCP produces psychotomimetic effects, and compared that range with the concentrations at which PCP interacts with each of its molecular targets. Psychotomimetic effects occur at submicromolar serum concentrations, and at those concentrations PCP interacts selectively with a specific binding site — the PCP receptor — associated with the NMDA-type excitatory amino acid receptor, producing non-competitive inhibition of NMDA-mediated neurotransmission. Other NMDA antagonists including ketamine induce PCP-like neurobehavioural effects in proportion to their potency at that site. The design is what makes this a mechanistic claim rather than a correlation: a drug with several known targets, whose behavioural effects appear only in the concentration range of one of them, and whose effects are reproduced by unrelated compounds ranked by their potency at that same target.',
+        evidenceSource: 'Javitt DC, Zukin SR. Am J Psychiatry 1991;148:1301-1308',
+        doi: '10.1176/ajp.148.10.1301',
+        measuredMetric:
+          "Serum and CSF concentrations producing psychotomimetic effects, against the concentration ranges of PCP's molecular interactions, across 25 papers",
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pcp-a2',
+        category: 'measured',
+        title: 'It reproduces negative symptoms, which amphetamine does not',
+        laymanSummary:
+          'The amphetamine model of schizophrenia produces hallucinations and paranoia. PCP produces those plus emotional withdrawal, slowed movement, disordered thought and the cognitive deficits — the parts that are hardest to treat.',
+        technicalDetails:
+          'Javitt and Zukin set out the comparison directly: PCP-induced psychosis incorporates both positive symptoms (hallucinations, paranoia) and negative symptoms (emotional withdrawal, motor retardation), and uniquely also reproduces the formal thought disorder and the neuropsychological deficits associated with schizophrenia. Amphetamine psychosis reproduces the positive symptoms alone. Since the negative and cognitive domains are the ones that respond least to dopamine-blocking antipsychotics and account for most of the long-term disability, a model that produces them is more informative about pathophysiology than one that does not. This finding is the reason the NMDA hypofunction hypothesis displaced the pure dopamine hypothesis as the dominant mechanistic account, and it is the origin of every glutamatergic drug programme in schizophrenia since.',
+        evidenceSource: 'Javitt DC, Zukin SR. Am J Psychiatry 1991;148:1301-1308',
+        doi: '10.1176/ajp.148.10.1301',
+        measuredMetric:
+          'Symptom domains reproduced by PCP against those reproduced by amphetamine, compared with the schizophrenia syndrome',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pcp-a3',
+        category: 'measured',
+        title: 'The selectivity experiment, 1983',
+        laymanSummary:
+          "Anis and Lodge showed that ketamine and PCP specifically reduced neurons' responses to one excitatory chemical — N-methyl-aspartate — while leaving responses to others comparatively intact. That is where dissociative anaesthesia and NMDA came together.",
+        technicalDetails:
+          "Anis, Berry, Burton and Lodge demonstrated that the dissociative anaesthetics ketamine and phencyclidine selectively reduce excitation of central mammalian neurones by N-methyl-aspartate, as opposed to by other excitatory amino acids. The design is a within-cell selectivity comparison: responses to several agonists recorded in the same neurone before and during drug application, so the reduction cannot be attributed to a general fall in excitability. This identified the receptor system through which the dissociative anaesthetics act, four years before the NMDA receptor was cloned and a decade before ketamine's antidepressant effects were reported. Every record on this site that concerns an NMDA antagonist — ketamine, nitrous oxide, dextromethorphan — rests on this experiment.",
+        evidenceSource: 'Anis NA, Berry SC, Burton NR, Lodge D. Br J Pharmacol 1983;79:565-575',
+        doi: '10.1111/j.1476-5381.1983.tb11031.x',
+        measuredMetric:
+          'Selective reduction of N-methyl-aspartate-evoked excitation relative to other excitatory amino acids in central mammalian neurones',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pcp-a4',
+        category: 'conclusion_shift',
+        title: 'An anaesthetic abandoned for what happened on waking',
+        laymanSummary:
+          'Parke-Davis marketed PCP as Sernyl in the late 1950s. It produced excellent anaesthesia with a stable heart and blood pressure — and then patients woke agitated, delirious and hallucinating, and it was withdrawn.',
+        technicalDetails:
+          'Sernyl was introduced as a human anaesthetic in the late 1950s and withdrawn from human use in the mid-1960s because of postoperative emergence reactions: agitation, delirium and hallucinosis on waking. The veterinary formulation Sernylan continued until 1978. The drug was not withdrawn for failing at anaesthesia; it succeeded at it, which is why ketamine, a shorter-acting congener with a milder emergence profile, was developed and remains in use worldwide. The scheduling reflects that history: phencyclidine sits in Schedule II at 21 CFR 1308.12(e)(4) under DEA code 7471, a category that formally admits accepted medical use, while its analogues PCE, PCPy and TCP — which were never medicines — are in Schedule I. Luby and colleagues had already published the observation that made the withdrawal inevitable and the science valuable, in 1959, under the title "Study of a new schizophrenomimetic drug: Sernyl".',
+        evidenceSource:
+          'Luby ED et al. AMA Arch Neurol Psychiatry 1959;81:363-369; 21 CFR 1308.12(e)(4) and 1308.11(d)(32)-(35), current eCFR text',
+        doi: '10.1001/archneurpsyc.1959.02340150095011',
+        measuredMetric:
+          'Withdrawal from human anaesthetic use against retention in Schedule II, with analogues placed in Schedule I',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pcp-a5',
+        category: 'measured',
+        title: 'The 1959 paper called it schizophrenomimetic in its title',
+        laymanSummary:
+          'The first careful study of Sernyl in people did not describe an anaesthetic with a side effect. It described a drug that produced a state resembling schizophrenia, and said so in the title.',
+        technicalDetails:
+          'Luby, Cohen, Rosenbaum, Gottlieb and Kelley published "Study of a new schizophrenomimetic drug: Sernyl" in 1959, within a year or two of the compound\'s introduction into human anaesthesia. The framing is the finding: the investigators recognised immediately that what the drug produced was not a nonspecific confusional state but something with the structure of a psychiatric syndrome. That recognition preceded the identification of the NMDA receptor by nearly a quarter of a century and preceded the receptor pharmacology by thirty years, which makes it an unusual case of a careful clinical description surviving intact through a complete change in the underlying mechanistic account.',
+        evidenceSource:
+          'Luby ED, Cohen BD, Rosenbaum G, Gottlieb JS, Kelley R. AMA Arch Neurol Psychiatry 1959;81:363-369',
+        doi: '10.1001/archneurpsyc.1959.02340150095011',
+        measuredMetric:
+          'Clinical characterisation of the PCP state as a schizophrenia-like syndrome, published 1959',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pcp-a6',
+        category: 'inferred',
+        title: 'A drug model of a syndrome is not the syndrome',
+        laymanSummary:
+          "PCP reproduces schizophrenia's symptoms convincingly. That does not establish that schizophrenia is caused by an NMDA problem — it establishes that one route to that symptom picture runs through NMDA.",
+        technicalDetails:
+          'Javitt and Zukin state their own conclusion carefully: the findings "suggest that endogenous dysfunction of NMDA receptor-mediated neurotransmission might contribute to the pathogenesis of schizophrenia". A pharmacological model demonstrates sufficiency — that blocking this receptor produces this state — and says nothing directly about necessity, about whether the receptor is dysfunctional in patients, or about whether the same final symptom picture could be reached by other routes. Three decades of glutamatergic drug development in schizophrenia has produced no approved treatment acting on this target, which is the practical form of the gap. This record files the inference as caution not because the model is weak, but because it is strong enough to be over-read.',
+        evidenceSource: 'Javitt DC, Zukin SR. Am J Psychiatry 1991;148:1301-1308, conclusions',
+        doi: '10.1176/ajp.148.10.1301',
+        inferredClaim:
+          'That reproducing a syndrome by blocking a receptor establishes that the syndrome is caused by dysfunction of that receptor',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pcp-a7',
+        category: 'measured',
+        title: 'Schedule II for the parent, Schedule I for the analogues',
+        laymanSummary:
+          'PCP is in Schedule II, the category that admits an accepted medical use, because it once had one. Its close chemical relatives, which never did, are in Schedule I.',
+        technicalDetails:
+          'Phencyclidine appears at 21 CFR 1308.12(e)(4) under DEA code 7471, in Schedule II — the same schedule as morphine and cocaine, defined by high abuse potential together with a currently accepted medical use. Its analogues appear in Schedule I at 1308.11(d): the ethylamine analogue PCE (7455), the pyrrolidine analogue PCPy (7458), the thiophene analogue TCP (7470) and TCPy (7473). The distinction between the two schedules here is historical rather than pharmacological: the parent compound was once a marketed anaesthetic and the analogues never were, and the schedules record that difference in provenance. The same logic appears on the GHB record, where an approved product and an identical unapproved substance occupy different schedules.',
+        evidenceSource:
+          '21 CFR 1308.12(e)(4) and 21 CFR 1308.11(d)(32) through (35), current eCFR text',
+        measuredMetric:
+          'Schedule assignment of phencyclidine against its ethylamine, pyrrolidine and thiophene analogues',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken by any route, and lingering',
+        laymanDesc:
+          'Swallowed, smoked on plant matter or injected. Effects last hours, and the drug is stored in fat and released slowly afterwards.',
+        molecularDetail:
+          'Lipophilic weak base, so it accumulates in adipose tissue and is trapped in acidic gastric fluid, both of which prolong the exposure. Psychotomimetic effects appear at submicromolar serum concentrations, so a small amount produces a long effect.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters the brain and finds the open channel',
+        laymanDesc:
+          'It can only get to its target when the channel is already open, so it acts on circuits that are already active.',
+        molecularDetail:
+          'Use-dependent open-channel block: the drug binds a site within the pore of the NMDA receptor, which is accessible only when the channel has been opened by glutamate and glycine. This is the origin of the term "PCP receptor", named before the channel itself was identified.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks NMDA-mediated signalling selectively',
+        laymanDesc:
+          'Responses to one excitatory chemical fall while responses to others are comparatively spared. That selectivity is what identified the target.',
+        molecularDetail:
+          'Non-competitive inhibition of NMDA-receptor-mediated neurotransmission, demonstrated by Anis and Lodge as selective reduction of N-methyl-aspartate-evoked excitation relative to other excitatory amino acids in the same central mammalian neurones.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'A syndrome appears with the shape of schizophrenia',
+        laymanDesc:
+          'Hallucinations and paranoia, but also emotional flattening, slowed movement, disordered thought and cognitive impairment — the whole picture, not half of it.',
+        molecularDetail:
+          'PCP-induced psychosis incorporates positive and negative symptoms plus formal thought disorder and neuropsychological deficits. Other NMDA antagonists produce PCP-like effects in proportion to their potency at the same binding site, which is the rank-order evidence for the mechanism.',
+        iconName: 'Brain',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And, clinically, agitation that can be dangerous',
+        laymanDesc:
+          'The intoxicated state includes agitation, insensitivity to pain and disturbed temperature control, which is what makes an emergency presentation hazardous.',
+        molecularDetail:
+          "Sympathomimetic and anaesthetic features coexist: hypertension, tachycardia, nystagmus, analgesia and disturbed thermoregulation. The postoperative emergence reactions that ended Sernyl's use as an anaesthetic are the same phenomenon in a controlled setting.",
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Luby et al. 1959 clinical study of Sernyl',
+        phase: 'Early human clinical investigation',
+        sampleSize: 0,
+        primaryEndpoint: 'Characterisation of the psychological state produced by Sernyl in humans',
+        endpointMet: true,
+        statisticalPValue:
+          'Descriptive: the state was characterised as schizophrenomimetic, and reported as such in the paper title',
+        unreportedAdverseSignals:
+          'A 1959 investigation with the consent and design standards of its period. Its value is the clinical description, which has survived a complete replacement of the underlying mechanistic account.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Anis et al. 1983 selectivity experiment in central mammalian neurones',
+        phase: 'Preclinical electrophysiology',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Whether ketamine and phencyclidine selectively reduce N-methyl-aspartate-evoked excitation',
+        endpointMet: true,
+        statisticalPValue:
+          'Selective reduction of N-methyl-aspartate responses relative to other excitatory amino acids in the same neurones',
+        unreportedAdverseSignals:
+          'Animal electrophysiology; the extrapolation to the human psychotomimetic state was made later, by the concentration-matching argument rather than in this experiment.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Javitt & Zukin 1991 concentration-matching review',
+        phase: 'Systematic review of clinical dose and concentration data',
+        sampleSize: 25,
+        primaryEndpoint:
+          'Whether the concentrations producing psychotomimetic effects match those at which PCP occupies its NMDA-associated binding site',
+        endpointMet: true,
+        statisticalPValue:
+          'Psychotomimetic effects at submicromolar serum concentrations, matching selective occupancy of the PCP binding site; other NMDA antagonists producing PCP-like effects in proportion to potency there',
+        unreportedAdverseSignals:
+          'A review of 25 heterogeneous papers rather than a prospective study. The concentration-effect matching is an argument from consistency across studies, not a within-study dose-response.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Psychotomimetic effects at submicromolar serum concentrations, matching the range of selective occupancy of the NMDA-associated PCP binding site',
+        'Selective reduction of N-methyl-aspartate-evoked excitation relative to other excitatory amino acids in central mammalian neurones',
+        'Reproduction of positive symptoms, negative symptoms, formal thought disorder and neuropsychological deficits — the full schizophrenia symptom structure',
+        'PCP-like effects produced by other NMDA antagonists in proportion to their potency at the same binding site',
+        'Schedule II placement of phencyclidine at 21 CFR 1308.12(e)(4) with its analogues in Schedule I',
+      ],
+      unsupportedInferences: [
+        "That reproducing schizophrenia's symptoms by blocking NMDA establishes NMDA dysfunction as the cause of schizophrenia",
+        'That a PCP immunoassay result identifies phencyclidine rather than one of its arylcyclohexylamine analogues',
+        'That Schedule II placement reflects a current medical use; it reflects a use abandoned in the 1960s',
+        "That the model's strength predicts therapeutic success — no glutamatergic drug acting at this target has been approved for schizophrenia",
+      ],
+      whatFailedInitially: [
+        'Sernyl succeeded as an anaesthetic and was withdrawn from human use because of postoperative emergence reactions, not because of failure of effect',
+        'Three decades of drug development on the NMDA hypofunction hypothesis has produced no approved schizophrenia treatment acting at this receptor',
+      ],
+      realWorldOutcome: [
+        'The compound has no medical use, while ketamine — its shorter-acting congener, developed to avoid the emergence reactions — is on the WHO Model List of Essential Medicines',
+        'The NMDA hypofunction account of schizophrenia, which this drug created, remains the principal alternative to the dopamine hypothesis',
+      ],
+    },
+    deliverySystem: {
+      type: 'Historically an intravenous anaesthetic; now taken orally, smoked on plant material, or insufflated',
+      description:
+        'As Sernyl it was given intravenously by an anaesthetist. There is no current medical delivery system. Illicit use is oral, or as a liquid applied to tobacco or cannabis and smoked, which gives poor dose control over a drug whose effects appear at submicromolar serum concentrations and last for hours.',
+      safetyProfile:
+        'The intoxicated state combines dissociation and analgesia with sympathetic stimulation: hypertension, tachycardia, nystagmus, and disturbed thermoregulation. Agitation with insensitivity to pain is the feature that makes emergency management hazardous, and rhabdomyolysis and hyperthermia are recognised complications of prolonged struggle in that state. Lipophilicity and gastric ion trapping prolong the exposure well beyond that of a comparable dose of ketamine. The postoperative emergence reactions that ended its anaesthetic use — agitation, delirium and hallucinosis on waking — are the same phenomenon under controlled conditions and are the reason a shorter-acting congener replaced it.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why is PCP in Schedule II if it has no medical use?',
+        a: 'Because it had one. Schedule II is defined by high abuse potential together with a currently accepted medical use, and phencyclidine sits there at 21 CFR 1308.12(e)(4) as a legacy of its years as the anaesthetic Sernyl. Its close analogues — PCE, PCPy, TCP — were never medicines and are in Schedule I. The two schedules record a difference in history rather than in pharmacology, which is the same pattern the GHB record on this site describes in a sharper form.',
+      },
+      {
+        q: 'How is it related to ketamine?',
+        a: 'Directly. Ketamine was developed as a shorter-acting congener of PCP specifically to keep the anaesthesia and lose the emergence reactions, and the 1983 experiment that identified the mechanism tested both compounds together and found the same selective NMDA effect. Ketamine is now on the WHO Model List of Essential Medicines and PCP has no medical use, and the difference between those two outcomes is duration of action and severity of emergence phenomena rather than mechanism.',
+        auditNote:
+          'Both compounds appear on this site; the ketamine record covers the anaesthetic and antidepressant evidence, and this one covers the model of psychosis.',
+      },
+      {
+        q: 'Does this mean schizophrenia is an NMDA disorder?',
+        a: 'It means blocking NMDA receptors in a healthy person produces something that looks remarkably like schizophrenia, including the negative and cognitive symptoms that amphetamine psychosis does not reproduce. That demonstrates one route to the syndrome; it does not demonstrate that the syndrome arises that way in patients. Javitt and Zukin phrased their own conclusion as "might contribute to the pathogenesis", and three decades later no drug acting at this receptor has been approved for schizophrenia.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There has been no marketed product since the 1970s and there is no legal supply, so there is no list price. Research-grade material is sold to registered laboratories at prices that describe a reference standard rather than a dose.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label:
+          'Javitt DC, Zukin SR. Recent advances in the phencyclidine model of schizophrenia. Am J Psychiatry 1991;148:1301-1308',
+        identifier: '10.1176/ajp.148.10.1301',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Anis NA, Berry SC, Burton NR, Lodge D. The dissociative anaesthetics, ketamine and phencyclidine, selectively reduce excitation of central mammalian neurones by N-methyl-aspartate. Br J Pharmacol 1983;79:565-575',
+        identifier: '10.1111/j.1476-5381.1983.tb11031.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Luby ED, Cohen BD, Rosenbaum G, Gottlieb JS, Kelley R. Study of a new schizophrenomimetic drug: Sernyl. AMA Arch Neurol Psychiatry 1959;81:363-369',
+        identifier: '10.1001/archneurpsyc.1959.02340150095011',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 1308.12 — Schedule II, including paragraph (e)(4), phencyclidine, DEA code 7471',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-II/part-1308/section-1308.12',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 6468 — phencyclidine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6468',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 28. 2C-B
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: '2c-b',
+    name: '2C-B (4-Bromo-2,5-dimethoxyphenethylamine)',
+    tradeName:
+      'Sold briefly in Europe in the early 1990s as Nexus, Erox and Performax before scheduling; no approved product',
+    sponsor:
+      'First synthesised by Alexander Shulgin in 1974. No sponsor and no development programme; the recent human work is investigator-initiated at Maastricht University',
+    targetGene: 'HTR2A',
+    targetProtein:
+      'Serotonin 5-HT2A receptor — a partial agonist, with binding across the 5-HT2C and 5-HT1A receptors and measurable interaction with monoamine transporters',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication. Placed temporarily in Schedule I by DEA rule of 6 January 1994 and permanently on 2 June 1995. It appears at 21 CFR 1308.11(d)(3) under DEA code 7392, listed with its trade names 2C-B and Nexus',
+    patientFriendlyIndication:
+      "Nothing. It is a Schedule I phenethylamine that has just become the subject of controlled brain-imaging research because its effects differ from psilocybin's in ways researchers want to understand",
+    anatomicalSite:
+      'Cortical and subcortical 5-HT2A receptors; the 2026 imaging study mapped its effects across transmodal cortex and subcortical-cortical connections',
+    conditionContext: {
+      conditionExplainer:
+        'There is no indication. 2C-B is included here because it is the phenethylamine that recreational users report as producing less dysphoria than psilocybin, and because that report has now been tested under controlled conditions.',
+      whyItMatters:
+        'The psychedelic research field has concentrated almost entirely on tryptamines — psilocybin, LSD, DMT. 2C-B is a phenethylamine with a different receptor profile, and the first controlled comparison against psilocybin was published in 2026.',
+      whoTakesThis:
+        'Recreational users, among whom it is widely used, and 22 healthy volunteers in the Maastricht crossover imaging study.',
+      clinicalGoals:
+        'None established. The research goal is characterisation: whether a different receptor profile produces a different subjective and neural signature at a matched dose.',
+    },
+    oneSentenceVerdict:
+      'A Shulgin phenethylamine scheduled in 1994 and largely unstudied for thirty years, which in 2026 became the subject of a 22-person double-blind crossover 7-tesla imaging study against matched-dose psilocybin — the first controlled evidence for the long-standing user report that it produces less dysphoria.',
+    laymanHowItWorks:
+      '2C-B is a partial agonist at the 5-HT2A serotonin receptor, the receptor LSD and psilocin act through. Partial rather than full matters: it activates the receptor less completely, which is the usual explanation for the milder and more manageable effect that users describe. It also binds other serotonin receptors and interacts with monoamine transporters more than the classical tryptamines do, and the 2026 imaging work found that the spatial pattern of its brain effects tracked those extra interactions rather than 5-HT2A alone.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 54,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'COC1=CC(=C(C=C1CCN)OC)Br',
+      chemicalFormula: 'C10H14BrNO2',
+      molecularWeight:
+        '260.13 g/mol. The controlled imaging study used 20 mg of 2C-B against 15 mg of psilocybin as a matched dose',
+      targetReceptorAffinity:
+        "Partial agonist at 5-HT2A, the target of the classical hallucinogens, with binding across 5-HT2C and 5-HT1A and measurable monoamine-transporter interaction. In the 2026 imaging study, PET density modelling showed the spatial distribution of the drug's neural effects aligned with documented differences in monoaminergic transporter and serotonergic receptor binding beyond 5-HT2A — evidence that its non-5-HT2A pharmacology shapes what it does.",
+      structureSource: {
+        label: 'PubChem CID 98527 (2C-B) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/98527',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: '2cb-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Distinguish 2C-B from the rest of the 2C series and from the NBOMes',
+          description:
+            'The 2C family differs only in the 4-position substituent — bromine in 2C-B, chlorine in 2C-C, a methyl in 2C-D, an alkylthio group in the 2C-T compounds. The NBOMe derivatives add an N-2-methoxybenzyl group and are far more potent, so a tablet sold as 2C-B that is in fact 25B-NBOMe delivers a very different exposure. Identification against reference standards for the whole series is the point of this step.',
+          reagentsAndBuffer:
+            '2C-B, 2C-C, 2C-D, 2C-I, 2C-E and 25B-NBOMe certified reference standards, C18 or biphenyl column with a shallow gradient, LC-MS/MS with compound-specific transitions, bromine isotope pattern used to confirm the halogen',
+        },
+        {
+          id: '2cb-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify content per unit against the clinical dose range',
+          description:
+            'The controlled study used 20 mg. The active range for this compound spans roughly an order of magnitude in reported use, so unit content is the variable that determines whether an exposure resembles the studied one. Powder sold loose and tablets pressed without control are not comparable to a weighed clinical dose.',
+          dependsOnStepId: '2cb-w1',
+          reagentsAndBuffer:
+            'Individual unit extraction rather than composite, calibration against a certified 2C-B standard, deuterated internal standard, multiple units per batch with mean and range reported',
+        },
+        {
+          id: '2cb-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express serotonin receptors and monoamine transporters in parallel',
+          description:
+            'The interesting pharmacological claim about 2C-B is not what it does at 5-HT2A but what it does elsewhere. Establishing that requires separate systems for 5-HT2A, 5-HT2C and 5-HT1A alongside the serotonin, dopamine and norepinephrine transporters, so the profile can be reported as a set of ratios rather than a single affinity.',
+          dependsOnStepId: '2cb-w1',
+          reagentsAndBuffer:
+            'HEK293 cells with human HTR2A, HTR2C and HTR1A constructs, separate SERT, DAT and NET transporter-expressing lines, lipid transfection, LSD and psilocin as reference comparators',
+        },
+        {
+          id: '2cb-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Build the receptor interaction profile against LSD and the other 2C drugs',
+          description:
+            'This is the assay design Rickli and colleagues used across the 2C and NBOMe series: binding affinities for a set of related compounds measured in one laboratory against the same reference ligands, so that structure-activity relationships across the family are read from a single consistent dataset rather than assembled from incompatible published numbers.',
+          dependsOnStepId: '2cb-w3',
+          reagentsAndBuffer:
+            '[3H]-ketanserin at 5-HT2A, [3H]-mesulergine at 5-HT2C, [3H]-8-OH-DPAT at 5-HT1A, transporter uptake-inhibition assays, LSD run as the reference compound across every target',
+        },
+        {
+          id: '2cb-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Map neural effects and compare them to receptor density',
+          description:
+            "The 2026 study's most informative analysis was not the imaging itself but the comparison: it modelled whether the spatial pattern of connectivity change matched published PET maps of receptor and transporter density. That is how a whole-brain imaging result is tied back to a molecular target rather than merely described.",
+          dependsOnStepId: '2cb-w2',
+          reagentsAndBuffer:
+            '7-tesla resting-state functional MRI, within-subjects double-blind placebo-controlled crossover design, static, global and dynamic connectivity measures plus brain-complexity estimation, published PET receptor and transporter density atlases for spatial modelling',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: '2cb-a1',
+        category: 'measured',
+        title: 'First controlled comparison against psilocybin, at matched doses',
+        laymanSummary:
+          'Twenty-two healthy volunteers received 20 mg of 2C-B, 15 mg of psilocybin and placebo on separate occasions in a blinded crossover, with 7-tesla brain imaging each time. Both drugs reorganised brain connectivity, and they did it differently.',
+        technicalDetails:
+          'Mallaroni et al. used 7-tesla resting-state functional MRI in 22 healthy volunteers in a within-subjects, double-blind, placebo-controlled crossover comparing 20 mg 2C-B, 15 mg psilocybin and placebo. Against placebo, both compounds selectively reduced intranetwork static functional connectivity while broadly increasing between-network and subcortical-cortical connectivity. Against psilocybin, 2C-B produced less pronounced reductions in between-network dynamic connectivity but elevated transmodal static connectivity. The two produced spatially divergent increases in global connectivity and similar increases in brain complexity. PET density modelling showed the spatial distribution of neural effects aligned with documented differences in monoaminergic transporter and serotonergic receptor binding beyond 5-HT2A. Behavioural markers of psychedelic effect corresponded to decoupling of the transmodal axis of functional brain organisation. This is the first controlled human neuroimaging characterisation of a compound scheduled in 1994.',
+        evidenceSource: 'Mallaroni P et al. Mol Psychiatry 2026;31:3295-3307',
+        doi: '10.1038/s41380-026-03447-0',
+        measuredMetric:
+          'Static, global and dynamic functional connectivity and brain complexity under 20 mg 2C-B, 15 mg psilocybin and placebo, n=22 crossover',
+        auditFlag: 'verified',
+      },
+      {
+        id: '2cb-a2',
+        category: 'measured',
+        title: 'The neural pattern tracks pharmacology beyond 5-HT2A',
+        laymanSummary:
+          'The researchers checked whether the brain regions each drug affected matched maps of where different receptors and transporters sit. The pattern followed differences beyond the 5-HT2A receptor alone.',
+        technicalDetails:
+          "The 2026 study modelled the spatial distribution of each drug's neural effects against published PET density maps. The alignment followed documented differences in monoaminergic transporter and serotonergic receptor binding affinity beyond 5-HT2A — meaning the divergence between 2C-B and psilocybin in where they act corresponds to their divergence in what they bind, and not only to the receptor they share. This matters for the field beyond this compound: psychedelic neuroimaging results are routinely attributed to 5-HT2A alone, and this analysis is a direct test of whether that attribution is complete for a given drug. For 2C-B it is not. It also supplies a mechanism for the widely reported subjective difference, without establishing it.",
+        evidenceSource:
+          'Mallaroni P et al. Mol Psychiatry 2026;31:3295-3307, PET density modelling analysis',
+        doi: '10.1038/s41380-026-03447-0',
+        measuredMetric:
+          'Spatial correspondence between drug-induced connectivity change and PET-derived receptor and transporter density maps',
+        auditFlag: 'verified',
+      },
+      {
+        id: '2cb-a3',
+        category: 'measured',
+        title: 'A single-laboratory binding profile across the whole 2C and NBOMe family',
+        laymanSummary:
+          'One group measured 2C-B alongside its chemical relatives and the far more potent NBOMe versions, all against the same reference compounds, so the differences between them can actually be compared.',
+        technicalDetails:
+          'Rickli et al. characterised the receptor binding profiles of a series of N-2-methoxybenzyl (NBOMe) drugs against their 2,5-dimethoxyphenethylamine analogues — including 2C-B, 2C-C, 2C-D and others — and against LSD, in one laboratory using consistent radioligands. The design matters more than any single number in it: affinities for related compounds published by different groups using different ligands and preparations are not comparable, and structure-activity claims assembled from such numbers are unreliable. A single-laboratory series against a common reference is what allows a statement such as "the NBOMe derivatives are substantially more potent at 5-HT2A than their 2C parents" to be made as a measurement. That specific difference is the practical reason a tablet mis-sold as 2C-B is dangerous.',
+        evidenceSource: 'Rickli A et al. Neuropharmacology 2015;99:546-553',
+        doi: '10.1016/j.neuropharm.2015.08.034',
+        measuredMetric:
+          'Comparative binding affinities of 2C drugs, their NBOMe derivatives and LSD across serotonin receptors, measured in one laboratory',
+        auditFlag: 'verified',
+      },
+      {
+        id: '2cb-a4',
+        category: 'conclusion_shift',
+        title: 'Sold legally in Europe, then scheduled, then studied thirty years later',
+        laymanSummary:
+          '2C-B was on sale in European shops as Nexus and Erox in the early 1990s. The DEA scheduled it in 1994 and permanently in 1995, and the first controlled human imaging study appeared in 2026.',
+        technicalDetails:
+          "DEA published a temporary Schedule I placement of 4-bromo-2,5-dimethoxyphenethylamine on 6 January 1994 (59 FR 671), extended it in December 1994, and finalised permanent Schedule I placement on 2 June 1995 (60 FR 28718). The compound appears at 21 CFR 1308.11(d)(3) under DEA code 7392, listed with the trade names 2C-B and Nexus — the regulation itself records that it had a commercial identity. Between the 1995 scheduling and 2026 there was no controlled human study of the drug's central effects. The pattern is the same one the LSD and psilocybin records describe, with a longer gap: a substance moves from open commerce to Schedule I in eighteen months, and the science that would have informed either decision arrives three decades afterwards.",
+        evidenceSource:
+          'DEA rule 59 FR 671 (6 January 1994); DEA rule 60 FR 28718 (2 June 1995); 21 CFR 1308.11(d)(3)',
+        measuredMetric:
+          'Interval between commercial availability, scheduling actions and the first controlled human study',
+        auditFlag: 'contested',
+      },
+      {
+        id: '2cb-a5',
+        category: 'inferred',
+        title: '"Less dysphoric than psilocybin" is a user report the study was designed around',
+        laymanSummary:
+          'The premise of the 2026 study — that 2C-B causes less distress and impairment than psilocybin — comes from what recreational users report, not from a head-to-head measurement of distress.',
+        technicalDetails:
+          'The paper introduces 2C-B as "reported to produce less dysphoria and subjective impairment than the psychedelic tryptamine psilocybin". That is the motivation for the comparison, and the study measured brain organisation rather than a validated dysphoria endpoint powered for a between-drug difference. It found neural differences, including less pronounced reduction in between-network dynamic connectivity under 2C-B, which is consistent with the report — and consistency is not confirmation. Twenty-two participants in a crossover can detect large neural differences and cannot establish a comparative tolerability claim. The dose matching also carries an assumption: 20 mg 2C-B against 15 mg psilocybin is a judgement about equivalence, and if the doses are not in fact matched for effect intensity, some of the difference is a dose difference.',
+        evidenceSource:
+          'Mallaroni P et al. Mol Psychiatry 2026;31:3295-3307, introduction and design',
+        doi: '10.1038/s41380-026-03447-0',
+        inferredClaim:
+          'That 2C-B produces less dysphoria and subjective impairment than psilocybin at equivalent doses',
+        auditFlag: 'caution',
+      },
+      {
+        id: '2cb-a6',
+        category: 'measured',
+        title: 'The dangerous confusion is with the NBOMe derivatives',
+        laymanSummary:
+          'Adding one chemical group to 2C-B produces 25B-NBOMe, which is far more potent. Material sold as 2C-B has repeatedly turned out to be that instead.',
+        technicalDetails:
+          "The N-2-methoxybenzyl derivatives — 25B-NBOMe, 25I-NBOMe, 25C-NBOMe — are formed by adding a single substituent to the amine of the corresponding 2C compound, and they bind 5-HT2A far more tightly, which was the central finding of the Rickli comparison. Active doses drop by roughly two orders of magnitude as a result, so a quantity appropriate for 2C-B is a large overdose of the NBOMe analogue. Because the compounds are visually indistinguishable as powder and are not separated by any presumptive test, the substitution is not detectable without instrumental analysis. This is filed as measured because the potency difference is a laboratory result rather than an inference, and because it is the specific fact that makes the identification step of this page's workflow load-bearing rather than routine.",
+        evidenceSource: 'Rickli A et al. Neuropharmacology 2015;99:546-553',
+        doi: '10.1016/j.neuropharm.2015.08.034',
+        measuredMetric:
+          'Comparative 5-HT2A binding affinity of the NBOMe derivatives against their 2C parent compounds',
+        auditFlag: 'verified',
+      },
+      {
+        id: '2cb-a7',
+        category: 'measured',
+        title: 'A phenethylamine, not a tryptamine — and the field has studied only tryptamines',
+        laymanSummary:
+          'Nearly all modern psychedelic research uses psilocybin, LSD or DMT, which are tryptamines. 2C-B belongs to the other chemical family, and until 2026 nobody had imaged what it does.',
+        technicalDetails:
+          'The classical psychedelics in current clinical development are tryptamines and ergolines: psilocybin, LSD, DMT, 5-MeO-DMT. 2C-B is a substituted phenethylamine, structurally closer to mescaline and to the amphetamines, with a receptor profile that includes greater monoamine-transporter interaction. The 2026 authors position it explicitly as a "next-generation" candidate whose distinct pharmacodynamics might suit different populations, and note that its neural correlates had remained unexplored despite its popularity. The measured content of this record is the gap itself: a widely used compound, scheduled for three decades, with one controlled human central-effects study.',
+        evidenceSource: 'Mallaroni P et al. Mol Psychiatry 2026;31:3295-3307',
+        doi: '10.1038/s41380-026-03447-0',
+        measuredMetric:
+          'Number of controlled human neuroimaging studies of 2C-B, against those of the tryptamine psychedelics',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken by mouth, in tens of milligrams',
+        laymanDesc:
+          'The controlled study used 20 mg. Recreational doses reported span a wide range, which is the main source of variability in what people experience.',
+        molecularDetail:
+          'Oral administration of 20 mg in the crossover imaging study, matched against 15 mg oral psilocybin. Onset over roughly an hour with a duration shorter than LSD, and a steep dose-response that is the usual explanation for the reported variability between doses.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into the brain',
+        laymanDesc:
+          'A small substituted phenethylamine, structurally related to mescaline, that reaches cortical tissue readily.',
+        molecularDetail:
+          'Substituted phenethylamine with a 4-bromo substituent that raises lipophilicity and 5-HT2A affinity relative to the unsubstituted parent. Structurally closer to mescaline and to the amphetamines than to the tryptamine psychedelics.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Partially activates 5-HT2A, and binds more besides',
+        laymanDesc:
+          'It switches on the classic psychedelic receptor incompletely, and unlike psilocybin it also interacts appreciably with monoamine transporters.',
+        molecularDetail:
+          'Partial agonism at 5-HT2A with additional 5-HT2C and 5-HT1A binding and measurable monoamine-transporter interaction. PET density modelling in the 2026 study showed the spatial pattern of its neural effects aligned with these differences beyond 5-HT2A.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Brain networks decouple',
+        laymanDesc:
+          'Connections within networks weaken and connections between networks strengthen — the same broad signature as psilocybin, with differences in the detail.',
+        molecularDetail:
+          'Selective reduction of intranetwork static connectivity with broad increases in between-network and subcortical-cortical connectivity, shared with psilocybin. Against psilocybin, 2C-B showed less pronounced reduction in between-network dynamic connectivity and elevated transmodal static connectivity, with spatially divergent global connectivity increases and similar brain-complexity increases.',
+        iconName: 'Network',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A psychedelic state, reportedly gentler',
+        laymanDesc:
+          'Users describe less anxiety and less impairment than with psilocybin. The imaging is consistent with that, and the study was not designed to test it.',
+        molecularDetail:
+          'Behavioural markers of psychedelic effect corresponded to decoupling of the transmodal axis of functional brain organisation. The comparative dysphoria claim remains a user report that motivated the study rather than an endpoint it measured.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Mallaroni et al. 2026 2C-B versus psilocybin 7T imaging crossover (Maastricht)',
+        phase: 'Within-subjects, double-blind, placebo-controlled crossover',
+        sampleSize: 22,
+        primaryEndpoint:
+          'Acute effects on static, global and dynamic functional connectivity and brain complexity at 7 tesla',
+        endpointMet: true,
+        statisticalPValue:
+          'Both drugs reduced intranetwork static connectivity and increased between-network and subcortical-cortical connectivity versus placebo; 2C-B showed less pronounced between-network dynamic connectivity reduction and elevated transmodal static connectivity versus psilocybin',
+        unreportedAdverseSignals:
+          'The dose match of 20 mg 2C-B to 15 mg psilocybin is a judgement, not a measured equipotency, so part of any between-drug difference may be a dose difference. Neither compound can be blinded against placebo in participants who feel the effect.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Rickli et al. 2015 receptor interaction profiles of 2C and NBOMe drugs',
+        phase: 'In vitro binding characterisation',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Comparative receptor binding profiles of NBOMe drugs, their 2C analogues and LSD',
+        endpointMet: true,
+        statisticalPValue:
+          'NBOMe derivatives bound 5-HT2A substantially more tightly than their 2C parent compounds in a single-laboratory comparison against common reference ligands',
+        unreportedAdverseSignals:
+          'Binding affinity is not efficacy, and neither predicts a human active dose directly. The value of the study is the internal comparability of the series rather than any absolute number.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Reduction of intranetwork static connectivity and increase of between-network and subcortical-cortical connectivity under both 20 mg 2C-B and 15 mg psilocybin, against placebo, in 22 volunteers',
+        'Divergence between 2C-B and psilocybin in dynamic and transmodal connectivity, with spatial patterns matching PET-derived receptor and transporter density differences beyond 5-HT2A',
+        'Substantially higher 5-HT2A binding affinity for the NBOMe derivatives than for their 2C parent compounds, measured in one laboratory against common ligands',
+        'Temporary Schedule I placement on 6 January 1994 and permanent placement on 2 June 1995, with the compound listed at 21 CFR 1308.11(d)(3) under its trade names',
+      ],
+      unsupportedInferences: [
+        'That 2C-B produces less dysphoria and impairment than psilocybin at equivalent doses — the premise of the study rather than a finding of it',
+        'That 20 mg 2C-B and 15 mg psilocybin are equipotent; the match is a judgement and any difference in effect may partly be a dose difference',
+        'That connectivity changes measured under 7-tesla imaging correspond to any therapeutic property; no clinical trial of 2C-B exists',
+        'That a substance sold as 2C-B is 2C-B; the NBOMe derivatives are visually identical and roughly two orders of magnitude more potent',
+      ],
+      whatFailedInitially: [
+        'The compound was scheduled in 1994 and 1995 and then attracted no controlled human central-effects research for three decades',
+        'The commercial products sold in Europe as Nexus and Erox were withdrawn without any published clinical characterisation',
+      ],
+      realWorldOutcome: [
+        'Schedule I in the United States since 1995, with no lawful medical route',
+        'Now positioned in the research literature as a candidate "next-generation" psychedelic with a receptor profile distinct from the tryptamines',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, capsule or powder',
+      description:
+        'Administration in the controlled study was a weighed 20 mg oral dose in a monitored imaging session. Outside it the compound is sold as pressed tablets or loose powder, both of which are indistinguishable by appearance from the far more potent NBOMe derivatives, and neither of which carries verified content.',
+      safetyProfile:
+        'The controlled crossover in 22 healthy volunteers reported no findings that prevented completion of the study, and this record does not have a published adverse-event breakdown to quote from it. The identified acute risks in the general literature are those of a 5-HT2A partial agonist — anxiety, nausea, tachycardia, hypertension and vasoconstriction from the phenethylamine structure — and the dominant product-level risk is substitution by an NBOMe derivative at a dose appropriate for 2C-B. Because no controlled study of repeated administration exists, nothing on this page speaks to effects beyond a single supervised dose.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it milder than psilocybin?',
+        a: 'That is what users have said for thirty years, and it is why the 2026 study was run — but the study measured brain connectivity, not a comparative tolerability endpoint. It did find neural differences consistent with the report, including a less pronounced reduction in between-network dynamic connectivity. With 22 participants and a dose match that is a judgement rather than a measured equipotency, that is consistency rather than confirmation.',
+        auditNote:
+          "The comparative claim is filed as inferred on this page precisely because it is the study's stated premise rather than its result.",
+      },
+      {
+        q: 'How is it different from LSD or psilocybin?',
+        a: 'Chemically it belongs to a different family: a substituted phenethylamine, closer to mescaline and the amphetamines, where LSD and psilocybin are tryptamines and ergolines. Pharmacologically it is a partial agonist at the shared 5-HT2A receptor, and it binds other serotonin receptors and monoamine transporters more than the tryptamines do. The 2026 imaging study found that its neural effects spatially tracked those extra interactions rather than 5-HT2A alone, which is the most concrete evidence available that the difference is real and not just anecdotal.',
+      },
+      {
+        q: 'What is the danger with NBOMe compounds?',
+        a: 'They are made by adding a single group to a 2C molecule, they look identical as powder, and they bind the 5-HT2A receptor far more tightly — so a quantity that would be an ordinary dose of 2C-B is a large overdose of an NBOMe analogue. No presumptive or visual test separates them; only instrumental analysis does. This is the single most consequential product-level fact about the compound and it is why the analytical workflow on this page starts with the whole family rather than the one molecule.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'It is Schedule I with no legal market and therefore no list price, and this file does not print street prices, which are survey estimates rather than published figures.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Mallaroni P et al. Spatiotemporal mapping of brain organisation following the administration of 2C-B and psilocybin. Mol Psychiatry 2026;31:3295-3307',
+        identifier: '10.1038/s41380-026-03447-0',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rickli A et al. Receptor interaction profiles of novel N-2-methoxybenzyl (NBOMe) derivatives of 2,5-dimethoxy-substituted phenethylamines (2C drugs). Neuropharmacology 2015;99:546-553',
+        identifier: '10.1016/j.neuropharm.2015.08.034',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Luethi D et al. Monoamine receptor interaction profiles of 4-aryl-substituted 2,5-dimethoxyphenethylamines (2C-BI derivatives). Eur J Pharmacol 2019;855:103-111',
+        identifier: '10.1016/j.ejphar.2019.05.014',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DEA rule: Temporary Placement of 4-Bromo-2,5-dimethoxyphenethylamine Into Schedule I, 59 FR 671, 6 January 1994',
+        identifier:
+          'https://www.federalregister.gov/documents/1994/01/06/94-234/schedules-of-controlled-substances-temporary-placement-of-4--bromo-25-dimethoxyphenethylamine-into',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'DEA rule: Placement of 4-Bromo-2,5-Dimethoxyphenethylamine Into Schedule I, 60 FR 28718, 2 June 1995',
+        identifier:
+          'https://www.federalregister.gov/documents/1995/06/02/95-13454/schedules-of-controlled-substances-placement-of-4-bromo-25--dimethoxyphenethylamine-into-schedule-i',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 98527 — 2C-B structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/98527',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 29. Mephedrone
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'mephedrone',
+    name: 'Mephedrone (4-Methylmethcathinone)',
+    tradeName:
+      'Sold openly in the United Kingdom in 2009 and 2010 as "plant food" and "bath salts", labelled not for human consumption. No approved product',
+    sponsor:
+      'None. First described in the chemical literature in 1929 and rediscovered as a recreational drug in the late 2000s',
+    targetGene: 'SLC6A3 / SLC6A4',
+    targetProtein:
+      'Dopamine, serotonin and norepinephrine transporters — a non-selective substrate-type releaser, comparable to MDMA in potency and selectivity rather than a reuptake blocker like cocaine',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication. Placed temporarily in Schedule I by DEA final order of 21 October 2011 alongside two other synthetic cathinones, and made permanent by the Synthetic Drug Abuse Prevention Act of 2012. It appears at 21 CFR 1308.11(d)(36) as "4-methylmethcathinone (Mephedrone)" under DEA code 1248',
+    patientFriendlyIndication:
+      'Nothing. It was sold legally across the UK for about eighteen months, banned in 2010, and is now the best-studied of the synthetic cathinones',
+    anatomicalSite:
+      'Monoamine transporters on dopaminergic and serotonergic terminals, principally in the nucleus accumbens where the microdialysis measurements were made',
+    conditionContext: {
+      conditionExplainer:
+        'There is no indication. Mephedrone matters as the compound that made "legal highs" a mass phenomenon, and as the synthetic cathinone whose pharmacology has been characterised most completely.',
+      whyItMatters:
+        "It is the clean test case for a specific question: does a stimulant that releases both dopamine and serotonin, like MDMA, carry MDMA's serotonergic neurotoxicity? The controlled animal comparison says no — and says something more interesting about why.",
+      whoTakesThis:
+        'In 2009 and 2010, a very large number of people in the UK who could buy it in shops. Since scheduling, use has continued in specific settings including chemsex.',
+      clinicalGoals: 'None. No therapeutic use has ever been proposed.',
+    },
+    oneSentenceVerdict:
+      'A cathinone that releases dopamine and serotonin with a profile comparable to MDMA in potency and selectivity, and which in the head-to-head animal comparison caused hyperthermia but no long-term amine depletion where MDMA caused persistent cortical and striatal serotonin loss — a dissociation between hyperthermia and neurotoxicity that the field had assumed did not exist.',
+    laymanHowItWorks:
+      'Mephedrone is taken into nerve terminals by the same transporters that normally recover dopamine and serotonin, and once inside it runs them backwards, pumping the transmitters out. That is the MDMA mechanism, not the cocaine mechanism — cocaine simply blocks the transporters. In rats it raises both dopamine and serotonin in the reward circuitry, with the serotonin effect larger. What it does not do, in the direct comparison with MDMA, is destroy serotonin terminals: three doses produced the same hyperthermia and no lasting change in brain amines, where MDMA produced lasting depletion.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 67,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=CC=C(C=C1)C(=O)C(C)NC',
+      chemicalFormula: 'C11H15NO',
+      molecularWeight:
+        '177.24 g/mol. The rat comparison used intravenous doses of 0.3 and 1.0 mg/kg for microdialysis and repeated subcutaneous doses of 3.0 and 10.0 mg/kg for the neurotoxicity arm',
+      targetReceptorAffinity:
+        'Non-selective substrate at the plasma-membrane dopamine, serotonin and norepinephrine transporters — similar to MDMA in potency and selectivity in rat brain synaptosome release assays. Being a substrate rather than a blocker means the drug is transported into the terminal and reverses the transporter, which is a different mechanism from cocaine and produces a different time course.',
+      structureSource: {
+        label: 'PubChem CID 45266826 (mephedrone) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/45266826',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mep-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identify the cathinone among its positional isomers',
+          description:
+            '4-methylmethcathinone has isomers at the 2- and 3-positions that share a formula and a mass and are separately scheduled in some jurisdictions. Chromatographic resolution against reference standards for each isomer, plus the other common cathinones, is what turns a mass match into an identification.',
+          reagentsAndBuffer:
+            'Mephedrone (4-MMC) certified reference standard with 2-MMC and 3-MMC isomer standards, methylone, MDPV and other cathinone standards, C18 or biphenyl column with a shallow gradient, LC-MS/MS with compound-specific transitions',
+        },
+        {
+          id: 'mep-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify content in the presented material',
+          description:
+            'The material sold in 2009 and 2010 was labelled as plant food and not for human consumption, so the label carried no dose information by design. Quantifying content per gram, and per capsule where relevant, is the only route to a milligram figure for a case series, and it also detects the substitution that occurred repeatedly after scheduling.',
+          dependsOnStepId: 'mep-w1',
+          reagentsAndBuffer:
+            'Calibration against a certified mephedrone standard, deuterated internal standard, methanolic extraction with sonication, replicate sub-sampling with mean and range reported',
+        },
+        {
+          id: 'mep-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Prepare synaptosomes and implant microdialysis probes',
+          description:
+            'The mechanism question needs two preparations that answer different halves of it. Rat brain synaptosomes measure whether the drug is a substrate or a blocker at each transporter in isolation. Microdialysis probes in the nucleus accumbens of a living animal measure whether that translates into extracellular transmitter release where it matters behaviourally.',
+          dependsOnStepId: 'mep-w1',
+          reagentsAndBuffer:
+            'Rat brain synaptosome preparation by differential centrifugation, stereotaxically implanted nucleus accumbens microdialysis probes, artificial cerebrospinal fluid perfusate, MDMA and methamphetamine as reference compounds',
+        },
+        {
+          id: 'mep-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Release assays and in vivo dialysate quantification',
+          description:
+            'Synaptosomal release assays give the substrate profile and its selectivity across the three transporters; HPLC quantification of dialysate gives the dose-related rise in extracellular dopamine and serotonin. Running MDMA and methamphetamine on the same protocols is what allows the conclusion that mephedrone resembles the first and not the second.',
+          dependsOnStepId: 'mep-w3',
+          reagentsAndBuffer:
+            'Tritiated monoamine substrates for release assay, HPLC with electrochemical detection for dialysate dopamine and 5-HT, intravenous dosing at 0.3 and 1.0 mg/kg, simultaneous locomotor activity recording',
+        },
+        {
+          id: 'mep-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Post-mortem tissue amine measurement after repeated dosing',
+          description:
+            'The neurotoxicity question is answered by measuring tissue amine content after the drug has been cleared, not during exposure. Repeated subcutaneous dosing with continuous core temperature recording, followed by cortical and striatal amine quantification, is the design that produced the dissociation between hyperthermia and terminal loss.',
+          dependsOnStepId: 'mep-w4',
+          reagentsAndBuffer:
+            'Three subcutaneous doses at 3.0 and 10.0 mg/kg mephedrone against 2.5 and 7.5 mg/kg MDMA, continuous core temperature telemetry, cortical and striatal dissection with HPLC quantification of dopamine, 5-HT and metabolites at a defined post-treatment interval',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mep-a1',
+        category: 'measured',
+        title: 'Hyperthermia without neurotoxicity — MDMA gave both',
+        laymanSummary:
+          'Repeated doses of mephedrone raised body temperature in rats but left brain serotonin and dopamine unchanged afterwards. MDMA raised temperature and destroyed serotonin terminals.',
+        technicalDetails:
+          "Baumann et al. gave three subcutaneous doses of mephedrone or methylone at 3.0 and 10.0 mg/kg, and three doses of MDMA at 2.5 and 7.5 mg/kg. Both cathinones caused hyperthermia but produced no long-term change in cortical or striatal amines; MDMA caused robust hyperthermia and persistent depletion of cortical and striatal serotonin. This matters because hyperthermia had been treated as the proximate driver of MDMA's serotonergic damage, and here two drugs that produce it did not produce the damage. The dissociation identifies hyperthermia as insufficient on its own, which redirects the question toward what MDMA does that these compounds do not. It also means the specific neurotoxicity finding recorded on the MDMA page does not transfer to this compound, and this record does not carry it across.",
+        evidenceSource: 'Baumann MH et al. Neuropsychopharmacology 2012;37:1192-1203',
+        doi: '10.1038/npp.2011.304',
+        measuredMetric:
+          'Core temperature and post-treatment cortical and striatal amine content after repeated dosing with mephedrone, methylone and MDMA',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mep-a2',
+        category: 'measured',
+        title: 'A transporter substrate, like MDMA, not a blocker like cocaine',
+        laymanSummary:
+          "In rat brain preparations, mephedrone was taken up by the transporters and made them run backwards, releasing dopamine and serotonin. That is MDMA's mechanism, not cocaine's.",
+        technicalDetails:
+          'In vitro release assays using rat brain synaptosomes showed mephedrone and methylone to be non-selective substrates for the plasma-membrane monoamine transporters, similar to MDMA in both potency and selectivity. In vivo microdialysis in the rat nucleus accumbens showed that intravenous mephedrone at 0.3 and 1.0 mg/kg produced dose-related increases in extracellular dopamine and serotonin, with the serotonin effect larger. Both cathinones were weak motor stimulants compared with methamphetamine. The substrate-versus-blocker distinction is not a technicality: a substrate is carried into the terminal and reverses the transporter, giving a different time course, a different dependence on transporter expression, and a different interaction profile from a reuptake inhibitor.',
+        evidenceSource: 'Baumann MH et al. Neuropsychopharmacology 2012;37:1192-1203',
+        doi: '10.1038/npp.2011.304',
+        measuredMetric:
+          'Synaptosomal release potency and selectivity across DAT, SERT and NET, and dose-related extracellular dopamine and 5-HT in nucleus accumbens microdialysis',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mep-a3',
+        category: 'measured',
+        title: 'Fifteen emergency presentations: agitation, tachycardia, seizures in one in five',
+        laymanSummary:
+          'A London emergency department described fifteen patients who had taken mephedrone. Half were agitated, two in five had a fast heart rate, and one in five had a seizure. All were discharged without lasting harm.',
+        technicalDetails:
+          "Wood, Greene and Dargan described 15 patients presenting to a London emergency department after self-reported mephedrone use, at a point when only two single case reports existed. Significant features were agitation in 53.3%, tachycardia in 40%, systolic hypertension in 20% and seizures in 20%. Twenty per cent required benzodiazepines, predominantly for agitation. All patients were discharged with no sequelae. Notably, the widely repeated user report of cool or blue peripheries was not observed in any patient in the series — a specific instance of a circulating claim failing a clinical check. The authors concluded that the pattern resembled that of 1-benzylpiperazine, which had recently been controlled, and called for assessment of mephedrone's legal status; the UK ban followed within months.",
+        evidenceSource: 'Wood DM, Greene SL, Dargan PI. Emerg Med J 2011;28:280-282',
+        doi: '10.1136/emj.2010.092288',
+        measuredMetric:
+          'Frequency of agitation, tachycardia, hypertension and seizure across 15 emergency presentations with self-reported mephedrone use',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mep-a4',
+        category: 'conclusion_shift',
+        title: 'Sold in shops, banned in eighteen months, and the pharmacology came afterwards',
+        laymanSummary:
+          'Mephedrone was on sale across the UK through 2009 and early 2010 and was banned in April 2010. The study establishing how it actually works was published in December 2011.',
+        technicalDetails:
+          'Mephedrone was sold openly in the United Kingdom through 2009 and into 2010, labelled as plant food or bath salts and not for human consumption, before being controlled under the Misuse of Drugs Act in April 2010. In the United States, DEA published a notice of intent on 8 September 2011 (76 FR 55616) and a final order temporarily placing three synthetic cathinones including mephedrone in Schedule I on 21 October 2011 (76 FR 65371), with permanent control following under the Synthetic Drug Abuse Prevention Act of 2012. It now appears at 21 CFR 1308.11(d)(36) under DEA code 1248. The Baumann characterisation of its transporter mechanism appeared online in December 2011 and in print in 2012 — after both control decisions. The 15-patient emergency series that prompted the UK assessment had itself been published only months before the ban. This is the ordinary sequence for a novel psychoactive substance and it is worth recording as such: control precedes characterisation, and the characterisation, when it arrives, sometimes contradicts what was assumed.',
+        evidenceSource:
+          'DEA notice of intent 76 FR 55616 (8 September 2011) and final order 76 FR 65371 (21 October 2011); Baumann MH et al. Neuropsychopharmacology 2012;37:1192-1203',
+        doi: '10.1038/npp.2011.304',
+        measuredMetric:
+          'Dates of legal control against the publication date of the mechanistic characterisation',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'mep-a5',
+        category: 'measured',
+        title: 'A user report that did not survive clinical examination',
+        laymanSummary:
+          'Users widely described cold, blue hands and feet after taking mephedrone. In fifteen consecutive emergency presentations, no clinician observed it in a single patient.',
+        technicalDetails:
+          "Wood et al. specifically looked for the peripheral vasoconstriction — cool or blue peripheries — that user reports had associated with mephedrone, and recorded that it was not seen in any of the 15 patients. This is a small negative finding and it is worth its place because of what it illustrates: a circulating description of a drug's effects, repeated widely enough to be treated as established, checked against consecutive clinical observation and not confirmed. The same case series positively confirmed agitation, tachycardia, hypertension and seizure at measurable rates. A source that gets four features right and one wrong is not unreliable; it is simply not a measurement, and this record separates the two.",
+        evidenceSource: 'Wood DM, Greene SL, Dargan PI. Emerg Med J 2011;28:280-282',
+        doi: '10.1136/emj.2010.092288',
+        measuredMetric:
+          'Presence of cool or blue peripheries across 15 consecutive emergency presentations',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mep-a6',
+        category: 'inferred',
+        title: 'Absence of neurotoxicity in rats is not evidence of safety in people',
+        laymanSummary:
+          'Mephedrone did not deplete brain serotonin in the rat comparison. That is a real and specific finding, and it does not establish that repeated human use is harmless.',
+        technicalDetails:
+          'The Baumann finding is narrow and precise: three doses at 3.0 and 10.0 mg/kg subcutaneously produced no long-term change in cortical or striatal amines in rats. The authors state directly that determining the consequences of repeated drug exposure warrants further study, and that the hypothesis about dopaminergic contribution to addictive potential awaits confirmation. Extrapolating from that to human safety fails on dose, on route, on schedule of use, and on species — human use patterns involve repeated redosing over a session in a way the three-dose protocol does not model. Subsequent work has found that mephedrone can augment the neurotoxicity of other stimulants and that outcomes vary with ambient temperature, so even the rodent result is conditional.',
+        evidenceSource: 'Baumann MH et al. Neuropsychopharmacology 2012;37:1192-1203, discussion',
+        doi: '10.1038/npp.2011.304',
+        inferredClaim:
+          'That the absence of long-term amine depletion after three doses in rats indicates that repeated human use does not damage monoaminergic terminals',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mep-a7',
+        category: 'measured',
+        title: 'A weak motor stimulant despite strong dopamine release',
+        laymanSummary:
+          'Mephedrone raised dopamine substantially in the reward circuitry but produced much less movement stimulation than methamphetamine — the two do not track each other.',
+        technicalDetails:
+          'In the same series of experiments, both mephedrone and methylone were weak motor stimulants compared with methamphetamine, despite producing dose-related increases in extracellular dopamine in the nucleus accumbens. The dissociation is informative for the same reason the hyperthermia one is: locomotor stimulation is routinely used as a behavioural proxy for dopaminergic activity in stimulant pharmacology, and here the proxy and the measurement disagree. The likely explanation is the concurrent serotonin release, which is larger than the dopamine effect and which opposes locomotor activation — the same interaction that distinguishes MDMA from methamphetamine behaviourally. It is a reminder that a behavioural readout is a model of a neurochemical event, not the event.',
+        evidenceSource: 'Baumann MH et al. Neuropsychopharmacology 2012;37:1192-1203',
+        doi: '10.1038/npp.2011.304',
+        measuredMetric:
+          'Locomotor activity against extracellular dopamine and 5-HT for mephedrone, methylone and methamphetamine',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed or insufflated',
+        laymanDesc:
+          'Taken as powder or in capsules. The short duration is what drives the repeated redosing characteristic of this drug.',
+        molecularDetail:
+          'Oral or intranasal administration of the hydrochloride salt. In the rat work, intravenous doses of 0.3 and 1.0 mg/kg were used for microdialysis and repeated subcutaneous doses of 3.0 and 10.0 mg/kg for the neurotoxicity arm.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Carried into nerve terminals by the transporters',
+        laymanDesc:
+          'It does not sit outside blocking the transporter — it is taken through it, into the cell.',
+        molecularDetail:
+          'Substrate-type interaction at the plasma-membrane dopamine, serotonin and norepinephrine transporters, non-selective and comparable to MDMA in potency and selectivity, as opposed to the blocker mechanism of cocaine.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Reverses the transporters and releases transmitter',
+        laymanDesc:
+          'Once inside, it makes the transporters run backwards, pushing dopamine and serotonin out into the synapse.',
+        molecularDetail:
+          'Transporter-mediated efflux producing dose-related increases in extracellular dopamine and 5-HT in the nucleus accumbens, with the serotonin effect larger than the dopamine effect at both doses tested.',
+        iconName: 'Network',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Stimulation, agitation and hyperthermia',
+        laymanDesc:
+          'Clinically the picture is agitation, fast heart rate, raised blood pressure and, in a fifth of one emergency series, seizures.',
+        molecularDetail:
+          'Agitation 53.3%, tachycardia 40%, systolic hypertension 20% and seizures 20% across 15 emergency presentations; benzodiazepines required in 20%. Repeated dosing produced hyperthermia in rats at both dose levels tested.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'But no lasting amine depletion in the animal comparison',
+        laymanDesc:
+          'After the drug had cleared, brain serotonin and dopamine were unchanged — unlike after MDMA, which left persistent depletion.',
+        molecularDetail:
+          'No long-term change in cortical or striatal amines after three subcutaneous doses at 3.0 and 10.0 mg/kg, against robust persistent cortical and striatal 5-HT depletion after MDMA at 2.5 and 7.5 mg/kg in the same protocol. The dissociation from hyperthermia is the finding.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Baumann et al. 2012 comparative pharmacology of mephedrone and methylone (NIDA)',
+        phase: 'Preclinical in vitro and rat in vivo',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Transporter substrate profile, extracellular monoamine release, and long-term tissue amine content after repeated dosing',
+        endpointMet: true,
+        statisticalPValue:
+          'Non-selective transporter substrates comparable to MDMA; dose-related dopamine and 5-HT increase with 5-HT larger; hyperthermia without long-term amine change, against persistent 5-HT depletion with MDMA',
+        unreportedAdverseSignals:
+          'Three-dose subcutaneous protocol in rats does not model human session redosing. The authors state that consequences of repeated exposure warrant further study and that the addictive-potential hypothesis awaits confirmation.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Wood et al. 2011 London emergency department case series',
+        phase: 'Clinical case series',
+        sampleSize: 15,
+        primaryEndpoint: 'Pattern of clinical toxicity following self-reported mephedrone use',
+        endpointMet: true,
+        statisticalPValue:
+          'Agitation 53.3%, tachycardia 40%, systolic hypertension 20%, seizures 20%; benzodiazepines in 20%; all discharged without sequelae',
+        unreportedAdverseSignals:
+          'Exposure was self-reported and not analytically confirmed, so co-ingestion and misidentification cannot be excluded. The widely reported cool or blue peripheries were not observed in any patient.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Non-selective substrate activity at dopamine, serotonin and norepinephrine transporters, comparable to MDMA in potency and selectivity in rat brain synaptosomes',
+        'Dose-related increases in extracellular dopamine and serotonin in rat nucleus accumbens at 0.3 and 1.0 mg/kg intravenously, with the serotonin effect larger',
+        'Hyperthermia after repeated dosing with no long-term cortical or striatal amine change, against persistent 5-HT depletion with MDMA in the same protocol',
+        'Agitation in 53.3%, tachycardia in 40% and seizures in 20% of 15 emergency presentations, all discharged without sequelae',
+        'Temporary Schedule I placement effective 21 October 2011 and listing at 21 CFR 1308.11(d)(36) under DEA code 1248',
+      ],
+      unsupportedInferences: [
+        'That absence of amine depletion after three rat doses indicates that repeated human use is free of monoaminergic harm',
+        'That dopamine release establishes addictive potential — the authors state that hypothesis awaits confirmation',
+        'That user-reported effects such as cool or blue peripheries are established; consecutive clinical observation did not find them',
+        'That locomotor activity in rodents indexes dopaminergic effect for this compound; it did not',
+      ],
+      whatFailedInitially: [
+        "Both the UK ban and the US temporary scheduling preceded publication of the study establishing the drug's mechanism of action",
+        'The behavioural proxy normally used for dopaminergic stimulant activity disagreed with the direct neurochemical measurement for this compound',
+      ],
+      realWorldOutcome: [
+        'Schedule I in the United States and a controlled drug in the United Kingdom since April 2010, with no lawful use anywhere',
+        'It remains the most thoroughly characterised of the synthetic cathinones, and the reference compound against which later ones are compared',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral or intranasal powder and capsules',
+      description:
+        'Sold as loose powder or in capsules, originally in high-street and online shops labelled as plant food or bath salts and not for human consumption — a labelling convention that exempted the product from consumer-safety requirements while leaving it purchasable. The short duration of effect drives repeated redosing within a session, which is the pattern no animal protocol in the literature models.',
+      safetyProfile:
+        'The measured acute picture, from a 15-patient consecutive emergency series, is agitation in about half, tachycardia in two fifths, systolic hypertension in a fifth and seizures in a fifth, with a fifth requiring benzodiazepines and all patients discharged without sequelae. Hyperthermia is reproducible in animals at doses that do not deplete brain amines. Because the drug is a non-selective monoamine releaser, combination with serotonergic drugs carries the same interaction concern as MDMA. No controlled human study of repeated dosing exists, and the rodent neurotoxicity result is specific to the three-dose protocol tested.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it neurotoxic like MDMA?',
+        a: "In the direct animal comparison, no. Three subcutaneous doses produced the same hyperthermia as MDMA and left cortical and striatal amines unchanged, where MDMA produced persistent serotonin depletion. That is a specific, well-designed result and it is genuinely surprising, because hyperthermia had been treated as the driver of MDMA's serotonergic damage. What it does not establish is human safety: the protocol was three doses in rats, human use involves repeated redosing over a session, and later work shows the outcome varies with ambient temperature and with co-used stimulants.",
+        auditNote:
+          'The dissociation between hyperthermia and neurotoxicity is the most scientifically interesting finding on this page and the one most likely to be over-read as reassurance.',
+      },
+      {
+        q: 'Is it more like cocaine or more like MDMA?',
+        a: "More like MDMA, and the distinction is mechanical. Cocaine blocks monoamine transporters from outside; mephedrone is carried through them into the terminal and makes them run backwards, releasing transmitter. In rat synaptosomes its potency and selectivity across the three transporters were comparable to MDMA's, and in living animals it raised serotonin more than dopamine — which is also why it was a much weaker motor stimulant than methamphetamine despite substantial dopamine release.",
+      },
+      {
+        q: 'How was it legal to sell?',
+        a: 'By being new. It was not listed in the UK Misuse of Drugs Act, and the products were labelled as plant food or bath salts "not for human consumption", which kept them outside food and medicines regulation as well. It was sold that way through 2009 and into 2010 and controlled in April 2010. The study that established how the drug actually works was published in December 2011 — after the ban, and after the US temporary scheduling too.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'It had a retail price for about eighteen months and has had none since, and this file does not print street prices, which are survey estimates rather than published figures.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Baumann MH et al. The designer methcathinone analogs, mephedrone and methylone, are substrates for monoamine transporters in brain tissue. Neuropsychopharmacology 2012;37:1192-1203',
+        identifier: '10.1038/npp.2011.304',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wood DM, Greene SL, Dargan PI. Clinical pattern of toxicity associated with the novel synthetic cathinone mephedrone. Emerg Med J 2011;28:280-282',
+        identifier: '10.1136/emj.2010.092288',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cosbey SH et al. Mephedrone (methylmethcathinone) in toxicology casework: a Northern Ireland perspective. J Anal Toxicol 2013;37:74-82',
+        identifier: '10.1093/jat/bks094',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Angoa-Pérez M, Kuhn DM. The pharmacology and neurotoxicology of synthetic cathinones. Adv Pharmacol 2024;99:61-82',
+        identifier: '10.1016/bs.apha.2023.12.001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DEA final order: Temporary Placement of Three Synthetic Cathinones Into Schedule I, 76 FR 65371, 21 October 2011',
+        identifier:
+          'https://www.federalregister.gov/documents/2011/10/21/2011-27282/schedules-of-controlled-substances-temporary-placement-of-three-synthetic-cathinones-into-schedule-i',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 45266826 — mephedrone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/45266826',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 30. Psilocin
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'psilocin',
+    name: 'Psilocin (4-Hydroxy-N,N-dimethyltryptamine)',
+    tradeName:
+      'No product. It is the active metabolite of psilocybin, which is the compound formulated in every clinical trial',
+    sponsor:
+      'No sponsor develops psilocin itself. The human occupancy and pharmacokinetic work was investigator-initiated at Copenhagen University Hospital and the University of Wisconsin-Madison',
+    targetGene: 'HTR2A',
+    targetProtein:
+      'Serotonin 5-HT2A receptor — the agonist that actually produces the psychedelic effect. Psilocybin has essentially no activity at this receptor and works only by being converted into psilocin',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication. Listed in Schedule I at 21 CFR 1308.11(d)(30) under the spelling "Psilocyn", DEA code 7438, immediately after psilocybin at code 7437',
+    patientFriendlyIndication:
+      'Nothing. It is the molecule that psilocybin turns into in the body, and it is the one that does the work — every psilocybin trial result on this site is really a psilocin result',
+    anatomicalSite:
+      'Cortical 5-HT2A receptors, where positron emission tomography measured occupancy of up to 72% after a single oral psilocybin dose',
+    conditionContext: {
+      conditionExplainer:
+        'Psilocin has no indication of its own because no product contains it. It is included as a separate record because the entire psilocybin literature rests on a prodrug relationship that is rarely stated: psilocybin is a delivery vehicle and psilocin is the drug.',
+      whyItMatters:
+        'The single most direct piece of evidence that psychedelic effects are 5-HT2A effects comes from psilocin: a PET study measured receptor occupancy, plasma psilocin and subjective intensity in the same people at the same time, and all three tracked together.',
+      whoTakesThis:
+        'Nobody takes psilocin directly in clinical research; participants take psilocybin. Mushrooms deliver both, plus baeocystin and other congeners.',
+      clinicalGoals:
+        'None for psilocin itself. Its measured properties define the exposure that every psilocybin trial is actually delivering.',
+    },
+    oneSentenceVerdict:
+      'The molecule that does the work: psilocybin is a phosphate ester with essentially no 5-HT2A activity of its own, and in eight volunteers scanned by PET, plasma psilocin, cerebral 5-HT2A occupancy up to 72%, and subjective intensity all tracked one another through a single-site binding model.',
+    laymanHowItWorks:
+      'Psilocybin carries a phosphate group that makes it stable in the mushroom and inactive at the receptor. In the body, phosphatase enzymes strip that group off, leaving psilocin — the same molecule as DMT with a hydroxyl added at the 4 position. Psilocin is what binds the 5-HT2A serotonin receptor. The conversion is so complete that in a controlled pharmacokinetic study no psilocybin at all could be found in plasma or urine after an oral dose. The phosphate is also why mushrooms keep: psilocin oxidises readily and turns blue, which is the bruising seen on picked mushrooms.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 78,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(C)CCC1=CNC2=C1C(=CC=C2)O',
+      chemicalFormula: 'C12H16N2O',
+      molecularWeight:
+        '204.27 g/mol. Psilocybin is 284.25 g/mol — the difference is the phosphate group removed during activation, so a milligram of psilocybin delivers about 0.72 mg of psilocin',
+      targetReceptorAffinity:
+        'Agonist at the 5-HT2A serotonin receptor, with 5-HT1A and 5-HT2C activity. Psilocybin itself is not appreciably active at 5-HT2A; it is a prodrug. In eight healthy volunteers given 3 to 30 mg oral psilocybin, plasma psilocin and cerebral 5-HT2A occupancy conformed to a single-site binding model, with occupancy reaching 72%, and both were closely associated with subjective intensity.',
+      structureSource: {
+        label: 'PubChem CID 4980 (psilocin) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4980',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'psn-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Quantify psilocin and psilocybin separately, and stabilise the sample',
+          description:
+            'Psilocin oxidises readily — the blue bruising on a picked mushroom is the visible form of the same reaction — so a sample that is not stabilised loses analyte between collection and analysis. Measuring psilocybin and psilocin as separate analytes is what established that essentially all the psilocybin is converted before it reaches the circulation.',
+          reagentsAndBuffer:
+            'Psilocin and psilocybin certified reference standards with deuterated internal standards, ascorbic acid or sodium metabisulfite as antioxidant in collection tubes, protection from light, validated LC-MS/MS for both analytes in plasma and urine',
+        },
+        {
+          id: 'psn-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Account for the glucuronide conjugate',
+          description:
+            'Most circulating psilocin is conjugated. The Wisconsin pharmacokinetic work found an extended elimination phase in some subjects consistent with hydrolysis of the psilocin glucuronide, so a method that measures only free psilocin describes a fraction of the exposure and misreads the terminal half-life.',
+          dependsOnStepId: 'psn-w1',
+          reagentsAndBuffer:
+            'β-glucuronidase hydrolysis arm run alongside an unhydrolysed arm, psilocin-O-glucuronide reference standard where available, sampling extended to at least 24 hours, paired plasma and urine collection',
+        },
+        {
+          id: 'psn-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express 5-HT2A for the binding comparison between prodrug and metabolite',
+          description:
+            'The prodrug claim needs a direct test: psilocybin and psilocin assayed at the same receptor in the same system, showing that the phosphate ester does not bind appreciably while the free phenol does. Human HTR2A is expressed in cells that do not carry it natively so the comparison is attributable to that receptor.',
+          dependsOnStepId: 'psn-w1',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells with human HTR2A expression plasmid, parallel HTR1A and HTR2C lines, lipid transfection, serotonin and LSD as reference agonists, psilocybin and psilocin tested side by side',
+        },
+        {
+          id: 'psn-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Binding and functional assays plus the PET occupancy protocol',
+          description:
+            'In vitro, competition binding and a Gq-coupled functional readout give affinity and efficacy for each compound. In humans, the equivalent measurement is receptor occupancy by positron emission tomography with a 5-HT2A agonist radioligand, scanned at baseline and again after dosing, with plasma sampled during the scan so occupancy and concentration are paired in the same person at the same moment.',
+          dependsOnStepId: 'psn-w3',
+          reagentsAndBuffer:
+            '[3H]-ketanserin for in vitro 5-HT2A binding, IP-One or calcium mobilisation for function, [11C]Cimbi-36 agonist radioligand for human PET, baseline scan plus one or two post-dose scans on the same day, simultaneous plasma sampling and subjective intensity rating',
+        },
+        {
+          id: 'psn-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Fit occupancy, concentration and subjective intensity to one model',
+          description:
+            'The result that makes this record worth its place is the fit itself. Plasma psilocin and 5-HT2A occupancy conformed to a single-site binding model, and subjective intensity correlated with both. Three quantities of completely different kinds — a concentration, an imaging measure and a self-report — falling on one curve is the strongest available human evidence that this receptor mediates the effect.',
+          dependsOnStepId: 'psn-w4',
+          reagentsAndBuffer:
+            'Non-linear regression of occupancy against plasma concentration, subjective intensity ratings collected during each scan, questionnaire measures collected at session end, dose range spanning 3 to 30 mg to populate the curve',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'psn-a1',
+        category: 'measured',
+        title: 'Occupancy, plasma level and subjective intensity all on one curve',
+        laymanSummary:
+          'Eight volunteers were scanned before and after taking psilocybin. How much of the 5-HT2A receptor was occupied, how much psilocin was in their blood, and how intense the experience felt all rose together and fitted a single binding model.',
+        technicalDetails:
+          'Madsen et al. scanned eight healthy volunteers with the 5-HT2A agonist radioligand [11C]Cimbi-36 — one baseline scan and one or two further scans on the same day after a single oral dose of psilocybin between 3 and 30 mg. Occupancy was calculated as the percentage change in cerebral 5-HT2A binding from baseline, and subjective psychedelic intensity and plasma psilocin were measured during the scans. Psilocybin intake produced dose-related 5-HT2A occupancies up to 72%; plasma psilocin levels and occupancy conformed to a single-site binding model; and subjective intensity correlated with both occupancy and psilocin level as well as with questionnaire scores. The authors note that psilocin time-concentration curves varied between individuals but that psilocin levels remained closely associated with the psychedelic experience — which is the practically important finding for dosing in trials. A correction to the paper was published in the same volume.',
+        evidenceSource:
+          'Madsen MK et al. Neuropsychopharmacology 2019;44:1328-1334, with correction at 44:1336-1337',
+        doi: '10.1038/s41386-019-0324-9',
+        measuredMetric:
+          'Cerebral 5-HT2A occupancy by [11C]Cimbi-36 PET, plasma psilocin concentration and subjective intensity, measured concurrently in 8 volunteers across 3-30 mg',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psn-a2',
+        category: 'measured',
+        title: 'No psilocybin reaches the circulation at all',
+        laymanSummary:
+          'In a controlled pharmacokinetic study, psilocybin could not be detected in plasma or urine after an oral dose. Conversion to psilocin is complete before absorption is finished.',
+        technicalDetails:
+          'Brown et al. gave sequential escalating oral doses of psilocybin at 0.3, 0.45 and 0.6 mg/kg to 12 healthy adults at roughly monthly intervals in a controlled setting, with 24-hour monitoring and blood and urine sampling assayed by validated LC-MS/MS for both psilocybin and psilocin. No psilocybin was found in plasma or urine. Psilocin pharmacokinetics were linear across the twofold dose range, with an elimination half-life of 3 hours (SD 1.1). Renal clearance of intact psilocin accounted for less than 2% of total clearance, and an extended elimination phase in some subjects suggested hydrolysis of the psilocin glucuronide. Variation in psilocin clearance was not predicted by body weight — a finding with direct consequences, since it undercuts the rationale for weight-based dosing. Simulation suggested a fixed 25 mg oral dose approximates the exposure of 0.3 mg/kg, which is the basis for the fixed doses used in current trials.',
+        evidenceSource: 'Brown RT et al. Clin Pharmacokinet 2017;56:1543-1554',
+        doi: '10.1007/s40262-017-0540-6',
+        measuredMetric:
+          'Plasma and urine psilocybin and psilocin concentrations, elimination half-life, renal clearance fraction and dose-linearity across 0.3-0.6 mg/kg, n=12',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psn-a3',
+        category: 'measured',
+        title: 'Weight-based dosing is not supported by the clearance data',
+        laymanSummary:
+          'Psilocybin trials have often dosed by body weight. The pharmacokinetic study found that body weight did not predict how fast psilocin was cleared.',
+        technicalDetails:
+          'Brown et al. report that variation in psilocin clearance was not predicted by body weight, and that simulation of fixed doses using the fitted pharmacokinetic parameters suggested an oral dose of 25 mg would approximate the exposure of a 0.3 mg/kg dose. That is a direct empirical argument against milligram-per-kilogram dosing for this compound: if weight does not explain clearance variation, weight-based dosing adds a scaling step without reducing exposure variability. Current clinical programmes use fixed doses, and this study is the pharmacokinetic basis for that choice. The finding also means that historical trials using mg/kg dosing and modern trials using fixed doses are more comparable than the different units suggest, provided the conversion is applied.',
+        evidenceSource: 'Brown RT et al. Clin Pharmacokinet 2017;56:1543-1554',
+        doi: '10.1007/s40262-017-0540-6',
+        measuredMetric:
+          'Relationship between body weight and psilocin clearance, and simulated fixed-dose equivalence to weight-based dosing',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psn-a4',
+        category: 'measured',
+        title: 'The prodrug relationship, and what the phosphate is for',
+        laymanSummary:
+          'Psilocybin is psilocin with a phosphate group attached. The phosphate makes the molecule stable and inactive; enzymes in the body remove it, and only then does the drug work.',
+        technicalDetails:
+          "Psilocybin is the 4-phosphoryloxy ester of psilocin, dephosphorylated in vivo by alkaline phosphatase and non-specific esterases to yield the free 4-hydroxy compound. The ester is not appreciably active at 5-HT2A, which is why the Madsen occupancy study correlates effects with plasma psilocin rather than with the administered compound. The phosphate serves the fungus rather than the pharmacologist: psilocin's free 4-hydroxy group oxidises readily, and the blue discoloration of bruised or picked Psilocybe mushrooms is that oxidation made visible, so the phosphate ester is the storage form. Psilocin is further metabolised by glucuronidation and by monoamine oxidase to 4-hydroxyindole-3-acetic acid, which was the analyte measured alongside psilocin in the earliest human pharmacokinetic work.",
+        evidenceSource:
+          'Dinis-Oliveira RJ. Metabolism of psilocybin and psilocin: clinical and forensic toxicological relevance. Drug Metab Rev 2017;49:84-91; Hasler F et al. Pharm Acta Helv 1997;72:175-184',
+        doi: '10.1080/03602532.2016.1278228',
+        measuredMetric:
+          'Dephosphorylation of psilocybin to psilocin and the subsequent glucuronidation and oxidative metabolic routes',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psn-a5',
+        category: 'measured',
+        title: 'Scheduled under a spelling almost nobody uses',
+        laymanSummary:
+          'The federal drug schedule lists it as "Psilocyn", not psilocin, at code 7438 — immediately after psilocybin at 7437. Searching the regulation for the ordinary spelling returns nothing.',
+        technicalDetails:
+          'The current text of 21 CFR 1308.11(d) lists, in sequence, "(29) Psilocybin 7437" and "(30) Psilocyn 7438". The archaic spelling is a genuine practical trap: a search of the regulation for "psilocin" returns no match, which can lead a reader to conclude the metabolite is unscheduled when in fact it is Schedule I in its own right and has been since the Controlled Substances Act. Both compounds are separately listed, so possession of either is separately covered — a point that matters for the semi-synthetic prodrugs such as 4-acetoxy-DMT that hydrolyse to psilocin, and for the mushroom material itself, which contains both.',
+        evidenceSource: '21 CFR 1308.11(d)(29) and (d)(30), current eCFR text',
+        measuredMetric:
+          'Listing of psilocybin and psilocin as separate Schedule I entries under DEA codes 7437 and 7438',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psn-a6',
+        category: 'inferred',
+        title: 'Occupancy correlating with intensity does not make occupancy the whole mechanism',
+        laymanSummary:
+          'Receptor occupancy tracks how intense the experience feels. That establishes 5-HT2A as necessary and central; it does not establish that everything downstream is explained by it.',
+        technicalDetails:
+          'Madsen et al. conclude that their findings "strongly support that stimulation of 5-HT2AR is a key determinant for the psychedelic experience", and the phrasing is careful. Eight participants, a correlation between three concurrently measured quantities, and a single-site binding fit establish that 5-HT2A occupancy is closely tied to acute subjective intensity. They do not establish that the therapeutic effects reported weeks later in depression trials are a function of that occupancy, nor that psilocin\'s 5-HT1A and 5-HT2C activity contributes nothing, nor that two people at the same occupancy have the same experience. The acute-intensity relationship is measured; the extension to durable clinical outcome is the inference, and it is the one the field most often makes silently.',
+        evidenceSource: 'Madsen MK et al. Neuropsychopharmacology 2019;44:1328-1334, conclusions',
+        doi: '10.1038/s41386-019-0324-9',
+        inferredClaim:
+          'That 5-HT2A occupancy explains the durable clinical effects reported in psilocybin depression trials, rather than only the acute subjective intensity it was measured against',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'psn-a7',
+        category: 'measured',
+        title: 'A three-hour half-life behind a six-hour session',
+        laymanSummary:
+          'Psilocin is cleared with a half-life of about three hours, which is why a psilocybin session lasts most of a working day rather than most of a night.',
+        technicalDetails:
+          'The elimination half-life of psilocin was 3 hours with a standard deviation of 1.1 in the Wisconsin study, and an extended elimination phase appeared in some subjects consistent with hydrolysis of the glucuronide conjugate. That figure fixes the practical shape of a clinical session: a monitored period of six to eight hours covers roughly two to three half-lives, which is the pharmacokinetic justification for the session length used across the psilocybin trial literature. Renal clearance of intact psilocin was under 2% of the total, which the authors note means no dose reduction is indicated for mild to moderate renal impairment — a specific, checkable clinical statement derived from a pharmacokinetic parameter rather than from a safety study.',
+        evidenceSource: 'Brown RT et al. Clin Pharmacokinet 2017;56:1543-1554',
+        doi: '10.1007/s40262-017-0540-6',
+        measuredMetric:
+          'Psilocin elimination half-life, extended elimination phase and renal clearance fraction across 12 healthy adults',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Arrives as psilocybin, not as itself',
+        laymanDesc:
+          'Every clinical dose and every mushroom delivers the phosphate form. Psilocin as such is not what anyone swallows.',
+        molecularDetail:
+          'Oral psilocybin, 3 to 30 mg in the PET occupancy study and 0.3 to 0.6 mg/kg in the pharmacokinetic study. Mushroom material additionally contains baeocystin and norbaeocystin, whose contribution has not been characterised in humans.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The phosphate is stripped off before absorption completes',
+        laymanDesc:
+          'Enzymes remove the phosphate group so completely that no psilocybin at all can be found in blood or urine afterwards.',
+        molecularDetail:
+          'Dephosphorylation by alkaline phosphatase and non-specific esterases in the gut wall and liver. In 12 healthy adults given up to 0.6 mg/kg, no psilocybin was detected in plasma or urine by validated LC-MS/MS.',
+        iconName: 'FlaskConical',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Psilocin occupies the 5-HT2A receptor',
+        laymanDesc:
+          'The free molecule crosses into the brain and binds the serotonin receptor that every classical psychedelic uses.',
+        molecularDetail:
+          'Agonist at 5-HT2A with additional 5-HT1A and 5-HT2C activity. PET with [11C]Cimbi-36 measured dose-related cerebral occupancy up to 72%, with plasma psilocin and occupancy fitting a single-site binding model.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Subjective intensity tracks the occupancy',
+        laymanDesc:
+          'How intense the experience is rises with how much of the receptor is occupied and how much psilocin is in the blood, in the same people at the same time.',
+        molecularDetail:
+          'Subjective psychedelic intensity correlated with both 5-HT2A occupancy and plasma psilocin, and with questionnaire scores. Time-concentration curves varied between individuals while the concentration-effect association held, which is why plasma level rather than administered dose is the better predictor.',
+        iconName: 'Activity',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Cleared in hours, by conjugation rather than by the kidney',
+        laymanDesc:
+          'A three-hour half-life, mostly cleared by attaching a sugar group in the liver, with under 2% leaving unchanged in urine.',
+        molecularDetail:
+          'Elimination half-life 3 hours (SD 1.1), predominantly glucuronidation with a further oxidative route via monoamine oxidase to 4-hydroxyindole-3-acetic acid. Renal clearance of intact psilocin under 2% of total; clearance variation not predicted by body weight.',
+        iconName: 'Timer',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Madsen et al. 2019 [11C]Cimbi-36 PET occupancy study (Copenhagen)',
+        phase: 'Human PET occupancy study',
+        sampleSize: 8,
+        primaryEndpoint:
+          'Relationship between cerebral 5-HT2A occupancy, plasma psilocin and subjective psychedelic intensity',
+        endpointMet: true,
+        statisticalPValue:
+          'Dose-related occupancy up to 72%; plasma psilocin and occupancy conformed to a single-site binding model; subjective intensity correlated with both',
+        unreportedAdverseSignals:
+          'Eight participants across a 3-30 mg dose range, so each dose level is represented by very few scans. A correction to the published paper appeared in the same volume.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Brown et al. 2017 escalating-dose pharmacokinetic study (Wisconsin)',
+        phase: 'Open-label pharmacokinetic study',
+        sampleSize: 12,
+        primaryEndpoint:
+          'Pharmacokinetics and safety of psilocin after escalating oral psilocybin at 0.3, 0.45 and 0.6 mg/kg',
+        endpointMet: true,
+        statisticalPValue:
+          'Linear psilocin pharmacokinetics across the twofold dose range; elimination half-life 3 h (SD 1.1); renal clearance of intact psilocin under 2% of total; no psilocybin detected in plasma or urine',
+        unreportedAdverseSignals:
+          'Open-label with no control arm and 12 participants. Doses of 0.6 mg/kg exceed likely therapeutic doses; no serious physical or psychological events occurred, which is a safety observation in a small prepared sample rather than a safety estimate.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Cerebral 5-HT2A occupancy up to 72% after a single oral psilocybin dose, fitting a single-site binding model against plasma psilocin',
+        'Correlation of subjective psychedelic intensity with both receptor occupancy and plasma psilocin in the same individuals at the same time',
+        'Complete absence of psilocybin from plasma and urine after oral dosing, with psilocin the only circulating active species',
+        'Psilocin elimination half-life of 3 hours (SD 1.1), linear kinetics across a twofold dose range, and renal clearance of intact drug under 2%',
+        'Clearance variation not predicted by body weight, with a simulated fixed 25 mg dose approximating a 0.3 mg/kg exposure',
+      ],
+      unsupportedInferences: [
+        'That 5-HT2A occupancy explains durable clinical outcomes in depression trials, rather than the acute intensity it was measured against',
+        "That psilocin's 5-HT1A and 5-HT2C activity contributes nothing to the experience — no human study has isolated them",
+        'That mushroom material delivers a psilocin exposure equivalent to a weighed psilocybin dose; content varies and other congeners are present',
+        'That the metabolite is unscheduled because the regulation does not contain the word "psilocin"; it is listed as "Psilocyn"',
+      ],
+      whatFailedInitially: [
+        'Weight-based dosing, used through much of the psilocybin trial literature, is not supported by the clearance data and has been superseded by fixed dosing',
+        'Assays measuring only free psilocin misdescribe the exposure and the terminal half-life, because the glucuronide conjugate hydrolyses back',
+      ],
+      realWorldOutcome: [
+        'Fixed 25 mg oral psilocybin doses in current clinical programmes derive directly from the pharmacokinetic simulation in this record',
+        'Psilocin remains separately listed in Schedule I under the spelling "Psilocyn" at DEA code 7438',
+      ],
+    },
+    deliverySystem: {
+      type: 'Delivered as psilocybin — oral capsule in trials, or mushroom material outside them',
+      description:
+        "There is no psilocin product. The delivery system is the prodrug: a phosphate ester stable enough to formulate and to survive in dried fungal tissue, converted to the active compound by the recipient's own phosphatases. That design is the mushroom's, not a pharmacologist's, and it happens to solve the formulation problem that psilocin's oxidative instability would otherwise create.",
+      safetyProfile:
+        "In the escalating-dose pharmacokinetic study, no serious physical or psychological events occurred at doses up to 0.6 mg/kg — above the likely therapeutic range — in 12 prepared volunteers receiving 6 to 8 hours of preparatory counselling and 24 hours of monitoring. Renal clearance of intact psilocin under 2% of total supports no dose reduction in mild to moderate renal impairment. The acute effects and their duration follow the 3-hour half-life. Everything else on this record's safety profile belongs to the psilocybin page, because psilocin has never been administered to humans as such in a controlled study.",
+    },
+    commonQuestions: [
+      {
+        q: 'If psilocin is the active drug, why do trials use psilocybin?',
+        a: 'Because psilocin is unstable and psilocybin is not. The free 4-hydroxy group oxidises readily — that is the blue bruising on a picked mushroom — while the phosphate ester is stable enough to formulate, store and dose accurately. Conversion in the body is complete: in a controlled study using validated assays, no psilocybin at all could be found in plasma or urine after an oral dose. So the prodrug is a formulation solution, and every psilocybin result is a psilocin result.',
+        auditNote:
+          'This is why the psilocybin record on this site and this one describe the same exposure from two ends, and why the occupancy study correlates effects with plasma psilocin rather than with the dose administered.',
+      },
+      {
+        q: 'How strong is the evidence that 5-HT2A is the receptor?',
+        a: 'For the acute experience it is about as strong as human pharmacology gets. Eight volunteers were scanned by PET with a 5-HT2A agonist radioligand at baseline and after dosing; receptor occupancy, plasma psilocin concentration and how intense the experience felt were measured in the same people at the same moments, and all three fitted a single-site binding relationship with occupancy reaching 72%. What that does not settle is whether the same receptor accounts for the effects reported weeks later in depression trials.',
+      },
+      {
+        q: 'Why do doses in trials differ so much between studies?',
+        a: 'Largely because of a unit change with a real basis. Earlier work dosed by body weight, in milligrams per kilogram; the pharmacokinetic study found that body weight did not predict psilocin clearance, so weight-based dosing adds a scaling step without reducing variability. Simulation from the same data suggested a fixed 25 mg oral dose approximates a 0.3 mg/kg exposure, and current trials use fixed doses on that basis.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no product containing psilocin and no legal market, so there is no list price. Synthetic psilocybin for trials is manufactured to GMP by sponsors who do not disclose its cost.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label:
+          'Madsen MK et al. Psychedelic effects of psilocybin correlate with serotonin 2A receptor occupancy and plasma psilocin levels. Neuropsychopharmacology 2019;44:1328-1334',
+        identifier: '10.1038/s41386-019-0324-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Correction: Psychedelic effects of psilocybin correlate with serotonin 2A receptor occupancy and plasma psilocin levels. Neuropsychopharmacology 2019;44:1336-1337',
+        identifier: '10.1038/s41386-019-0360-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Brown RT et al. Pharmacokinetics of Escalating Doses of Oral Psilocybin in Healthy Adults. Clin Pharmacokinet 2017;56:1543-1554',
+        identifier: '10.1007/s40262-017-0540-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dinis-Oliveira RJ. Metabolism of psilocybin and psilocin: clinical and forensic toxicological relevance. Drug Metab Rev 2017;49:84-91',
+        identifier: '10.1080/03602532.2016.1278228',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hasler F et al. Determination of psilocin and 4-hydroxyindole-3-acetic acid in plasma by HPLC-ECD and pharmacokinetic profiles of oral and intravenous psilocybin in man. Pharm Acta Helv 1997;72:175-184',
+        identifier: '10.1016/s0031-6865(97)00014-9',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 4980 — psilocin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4980',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 31. LSA / morning glory and Hawaiian baby woodrose seeds
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'morning-glory',
+    name: 'LSA (Ergine) — Morning Glory and Hawaiian Baby Woodrose Seeds',
+    tradeName:
+      'No product. The seeds are sold as garden seed under cultivar names such as Heavenly Blue and Pearly Gates, and as Argyreia nervosa seed',
+    sponsor:
+      'None. Albert Hofmann isolated the alkaloids from ololiuqui seeds in 1960; the fungal source was identified between 2011 and 2025',
+    targetGene: 'HTR2A',
+    targetProtein:
+      'Serotonin 5-HT2A receptor — an ergoline agonist with far lower potency than LSD, alongside the vascular alpha-adrenergic and serotonergic activity characteristic of the ergot alkaloids',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'No approved medical indication. Lysergic acid amide is not listed in any schedule of 21 CFR part 1308 and is not a List I chemical under 21 CFR 1310.02, which names ergonovine and ergotamine but not ergine. The seeds are sold as ornamental garden seed',
+    patientFriendlyIndication:
+      'Nothing. These are garden seeds containing an ergot alkaloid, sold in every seed rack, and the compound in them is not federally controlled',
+    anatomicalSite:
+      'Cortical 5-HT2A receptors for the psychoactive effect, and vascular smooth muscle for the vasoconstriction that ergot alkaloids share',
+    conditionContext: {
+      conditionExplainer:
+        'There is no indication. This record exists because a psychoactive ergoline sold in garden centres, in seeds whose alkaloid content varies several-fold, is a fact readers have very few reliable places to check.',
+      whyItMatters:
+        'Two things make it worth a page. The alkaloids are not made by the plant at all — a symbiotic fungus makes them, and the species responsible for the common ornamental morning glory was only isolated and named in 2025. And a controlled driving study using these seeds had to be stopped when three of four participants had severe adverse effects.',
+      whoTakesThis:
+        'People who buy garden seed for the purpose. There is no medical population and no clinical programme.',
+      clinicalGoals: 'None. No therapeutic use has been proposed for ergine.',
+    },
+    oneSentenceVerdict:
+      'A federally uncontrolled ergoline sold in garden centres, whose alkaloids are made not by the plant but by a symbiotic fungus first named in 2025 — and a controlled study of four people given equal weight-adjusted seed doses was terminated when three developed cardiovascular dysregulation or a psychosis-like state.',
+    laymanHowItWorks:
+      'Ergine is lysergic acid amide, structurally the parent of LSD with a plain amide where LSD has two ethyl groups. It activates the same 5-HT2A serotonin receptor, far more weakly, and it is markedly more sedating. Like every ergot alkaloid it also constricts blood vessels, which is where the nausea, the cold extremities and the cardiovascular effects come from. The seeds do not make it: a fungus that lives on the plant does, and how much any given seed contains depends on that fungal association rather than on the cultivar name printed on the packet.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 46,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1C[C@@H](C=C2[C@H]1CC3=CNC4=CC=CC2=C34)C(=O)N',
+      chemicalFormula: 'C16H17N3O',
+      molecularWeight:
+        '267.33 g/mol. LSD is 323.4 g/mol — the difference is the two ethyl groups on the amide nitrogen, and it is the difference between micrograms and milligrams of active dose',
+      targetReceptorAffinity:
+        'Ergoline agonist at 5-HT2A with far lower potency than lysergic acid diethylamide, and with the vascular alpha-adrenergic and serotonergic activity common to the ergot alkaloids. Seeds contain ergine together with isoergine, ergometrine and other clavine alkaloids in proportions that vary with the fungal symbiont, so no seed preparation delivers a single compound.',
+      structureSource: {
+        label: 'PubChem CID 442072 (ergine) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/442072',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lsa-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Separate ergine from isoergine and the other ergolines',
+          description:
+            'Ergine and isoergine are epimers at C-8 that interconvert in solution and share a mass; ergometrine and the clavines are also present. A total-ergoline number describes the extract and not the exposure, and epimerisation during sample preparation will shift the ratio if the extraction is not controlled for pH and light.',
+          reagentsAndBuffer:
+            'Ergine and isoergine certified reference standards plus ergometrine, chromatographic separation with a shallow gradient, pH-controlled extraction with protection from light, LC-MS/MS with fluorescence detection characteristic of the ergoline ring',
+        },
+        {
+          id: 'lsa-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify alkaloid content per seed and its variation between lots',
+          description:
+            'This is the measurement that explains the clinical literature. Alkaloid content varies several-fold between species, cultivars and seed lots because it depends on the fungal symbiont rather than on the plant genotype. Kremer et al. identified fluctuating alkaloid content in seeds as one of the reasons equal weight-adjusted doses produced very different reactions.',
+          dependsOnStepId: 'lsa-w1',
+          reagentsAndBuffer:
+            'Individual seed and per-lot extraction with gravimetric seed-mass recording, methanolic extraction with sonication, calibration across the expected range, replicate lots from separate suppliers analysed in parallel',
+        },
+        {
+          id: 'lsa-w3',
+          stepNumber: 3,
+          phase: 'QC',
+          name: 'Detect and quantify the fungal symbiont in plant tissue',
+          description:
+            'Since the fungus makes the alkaloids, the alkaloid content of a seed is a downstream readout of a biological association. Hazel and Panaccione observed hyphae in evacuated seed coats of Ipomoea tricolor, cultured the organism, sequenced its genome and used quantitative PCR to localise it — most abundant in hypocotyls, present in stems, cotyledons and leaves, and undetected in roots even though the roots contained abundant alkaloid.',
+          dependsOnStepId: 'lsa-w1',
+          reagentsAndBuffer:
+            'Microscopic examination of evacuated seed coats, transfer to malt extract agar for culture, Illumina genome sequencing, multi-gene phylogenetic analysis, quantitative PCR with tissue-specific sampling of hypocotyl, stem, cotyledon, leaf and root',
+        },
+        {
+          id: 'lsa-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Express 5-HT2A and vascular receptors for a potency comparison against LSD',
+          description:
+            'The claim that carries this whole record is a potency ratio: ergine is an LSD analogue that is far weaker. Establishing that requires both compounds assayed at 5-HT2A in the same system, and the vascular alpha-adrenergic and 5-HT2A receptor arms measured separately, because the cardiovascular adverse effects and the psychoactive effects arise at different sites.',
+          dependsOnStepId: 'lsa-w1',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells with human HTR2A, plus alpha-1 adrenergic and 5-HT2A vascular smooth-muscle preparations, lipid transfection, LSD run as the reference ergoline on every plate',
+        },
+        {
+          id: 'lsa-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Quantify plasma alkaloids alongside the clinical observation',
+          description:
+            'The Frankfurt study gave equal body-weight-normalised doses and observed reactions that differed markedly in both type and intensity, with three of four subjects severely affected. Pairing plasma alkaloid quantification with structured cardiovascular and psychiatric observation is what would separate a pharmacokinetic explanation for that variability from a pharmacodynamic one, and it has not been done at scale.',
+          dependsOnStepId: 'lsa-w2',
+          reagentsAndBuffer:
+            'LC-MS/MS for ergine and isoergine in plasma with deuterated internal standard, serial sampling over at least 9 hours, continuous blood pressure and heart-rate monitoring, structured psychiatric assessment',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lsa-a1',
+        category: 'failed',
+        title: 'A four-person study stopped when three were severely affected',
+        laymanSummary:
+          'Researchers set out to measure how Hawaiian baby woodrose seeds affect driving. They gave four people equal doses adjusted for body weight, and had to abandon the study: two had cardiovascular problems and one a psychosis-like state.',
+        technicalDetails:
+          'Kremer, Paulke, Wunder and Toennes designed a study to assess how driving ability is affected by Argyreia nervosa seeds, which contain lysergic acid amide. The study could not be continued because of severe adverse effects in three of four subjects: cardiovascular dysregulation in two and a psychosis-like state in one. All participants recovered completely within nine hours of ingestion. Despite body-normalised doses, the reactions differed markedly between individuals in both type and intensity. The authors attribute part of that to fluctuating alkaloid content in the seeds and note that multi-drug intoxications make use of this legal high "far more dangerous than commonly believed". A terminated four-person study is not an incidence estimate; what it establishes is that under controlled conditions, with weighed doses and medical supervision, three quarters of a small sample had effects severe enough to stop the protocol.',
+        evidenceSource: 'Kremer C, Paulke A, Wunder C, Toennes SW. Forensic Sci Int 2012;214:e6-e8',
+        doi: '10.1016/j.forsciint.2011.06.025',
+        measuredMetric:
+          'Adverse events after equal body-weight-normalised doses of Argyreia nervosa seeds, n=4, leading to termination of the protocol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lsa-a2',
+        category: 'conclusion_shift',
+        title: 'The plant does not make the drug — a fungus does',
+        laymanSummary:
+          'For decades the ergot alkaloids in morning glory seeds were taken to be plant products, and they were the famous exception to the rule that ergolines come from fungi. They are not an exception. A symbiotic fungus makes them, and the one living on the common ornamental morning glory was only isolated and named in 2025.',
+        technicalDetails:
+          'Ergot alkaloids are produced exclusively by fungi, and their presence in morning glories (Convolvulaceae) is associated with a symbiotic clavicipitaceous fungus. The genus Periglandula was erected for two epibiotic morning-glory symbiont species; biochemical and limited sequence data indicated that Ipomoea tricolor — the commonly cultivated Mexican morning glory of Heavenly Blue and Pearly Gates seed packets — contained a Periglandula species, but no sign of the fungus had ever been detected. Hazel and Panaccione observed fungal hyphae in evacuated seed coats of I. tricolor, transferred them onto malt extract agar to obtain cultures, sequenced the genome with Illumina technology, and showed by multi-gene phylogenetics that the symbiont was distinct from both described Periglandula species. Quantitative PCR localised the fungus most abundantly in hypocotyls, with lesser amounts in stems, cotyledons and leaves, and none detectable in roots — although ergot alkaloids were abundant in all tissues including roots. They named it Periglandula clandestina. The historical claim that ololiuqui proved higher plants could make ergolines is therefore withdrawn: the fungus was simply not visible.',
+        evidenceSource: 'Hazel CM, Panaccione DG. Mycologia 2025;117:602-614',
+        doi: '10.1080/00275514.2025.2483634',
+        measuredMetric:
+          'Isolation, genome sequencing, phylogenetic placement and tissue-level quantification of the alkaloid-producing symbiont of Ipomoea tricolor',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lsa-a3',
+        category: 'measured',
+        title: 'Not scheduled, and not a List I chemical either',
+        laymanSummary:
+          'Lysergic acid amide appears in no US drug schedule. It is also absent from the list of controlled chemicals that includes the two ergot compounds used to make LSD.',
+        technicalDetails:
+          'Lysergic acid amide does not appear in any schedule of 21 CFR part 1308. It also does not appear in the List I chemicals at 21 CFR 1310.02, which does name "Ergonovine and its salts" (DEA code 8675, threshold 10 grams) and "Ergotamine and its salts" (8676, threshold 20 grams) — the two ergot alkaloids controlled as LSD precursors. The distinction is worth stating precisely: the compounds regulated as chemicals are those useful for synthesising LSD, and ergine is not among them, so a psychoactive ergoline sits outside both regimes. The seeds themselves are ordinary agricultural commodities. As with salvinorin A, several US states control the seeds or the compound independently, which produces the same state-line patchwork.',
+        evidenceSource:
+          '21 CFR part 1308, current eCFR text; 21 CFR 1310.02, List I chemicals, entries (5) and (6)',
+        measuredMetric:
+          'Absence of lysergic acid amide from the federal drug schedules and from the List I chemical registry',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lsa-a4',
+        category: 'measured',
+        title: 'Equal doses, unequal responses',
+        laymanSummary:
+          'Every participant in the Frankfurt study got the same dose adjusted for their body weight, and their reactions differed enormously in both kind and severity.',
+        technicalDetails:
+          'The Kremer study is titled for its central observation: "Variable adverse effects in subjects after ingestion of equal doses of Argyreia nervosa seeds". Despite body-normalised dosing, the reactions differed markedly between individuals in type as well as intensity — one subject developed a psychosis-like state while two developed cardiovascular dysregulation. Two explanations are available and the study cannot separate them. Fluctuating alkaloid content between seeds means "equal doses" by seed mass are not equal doses by alkaloid, which the authors identify. Alternatively or additionally, individual pharmacodynamic differences may be large for this class. The practical consequence is the same either way: a dose established in one person does not transfer, and there is no route by which a user could establish one.',
+        evidenceSource:
+          'Kremer C et al. Forensic Sci Int 2012;214:e6-e8, title finding and discussion',
+        doi: '10.1016/j.forsciint.2011.06.025',
+        measuredMetric:
+          'Between-subject variation in adverse-effect type and intensity at equal body-weight-normalised seed doses',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lsa-a5',
+        category: 'measured',
+        title: 'The fungus is in the shoot, but the alkaloid is everywhere',
+        laymanSummary:
+          'Quantitative testing found the symbiotic fungus concentrated in the seedling stem and absent from the roots — yet the roots were full of ergot alkaloids.',
+        technicalDetails:
+          'Quantitative PCR in the 2025 study found Periglandula clandestina most abundant in hypocotyls of Ipomoea tricolor, with lesser quantities in stems, cotyledons and leaves, and no detection in roots — while ergot alkaloids were abundant in all tissues including roots. That mismatch is informative rather than contradictory: it implies the alkaloids are transported through the plant from where the fungus sits, so alkaloid content in any given tissue reflects both fungal colonisation and plant transport. For the practical question of what is in a seed, it means the alkaloid load is set by a two-organism system, which is why content varies between lots of the same cultivar in a way that a plant-genetics explanation cannot account for.',
+        evidenceSource: 'Hazel CM, Panaccione DG. Mycologia 2025;117:602-614, qPCR tissue analysis',
+        doi: '10.1080/00275514.2025.2483634',
+        measuredMetric:
+          'Fungal abundance by qPCR against ergot alkaloid content across hypocotyl, stem, cotyledon, leaf and root tissue',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lsa-a6',
+        category: 'inferred',
+        title: '"LSD\'s natural precursor" is a chemical statement, not a pharmacological one',
+        laymanSummary:
+          'Ergine is the parent structure of LSD, which makes it sound like a natural version of the same drug. Its potency is orders of magnitude lower and its effect profile is dominated by sedation and vasoconstriction.',
+        technicalDetails:
+          "Ergine is lysergic acid amide and LSD is lysergic acid diethylamide: the two ethyl substituents are the entire structural difference, and they account for a difference in active dose of roughly three orders of magnitude. Ergine's reported effect profile is dominated by sedation, nausea and vasoconstriction rather than by the perceptual changes characteristic of LSD, and the seeds deliver isoergine and other ergolines alongside it. The inference that it is therefore a milder or natural equivalent does not follow: the clinical series records cardiovascular dysregulation and a psychosis-like state at doses obtainable from a seed packet, and the vascular effects belong to the ergot alkaloid class rather than to the psychedelic one. This record files the equivalence claim as inferred because the structural relationship is real and the pharmacological transfer is not.",
+        evidenceSource:
+          'Kremer C et al. Forensic Sci Int 2012;214:e6-e8; PubChem CID 442072 and CID 5761 structural comparison',
+        doi: '10.1016/j.forsciint.2011.06.025',
+        inferredClaim:
+          'That structural parenthood to LSD makes ergine a natural equivalent with a comparable effect profile',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lsa-a7',
+        category: 'measured',
+        title: 'The seeds are an agricultural commodity, sold without any content standard',
+        laymanSummary:
+          'Morning glory and Hawaiian baby woodrose seeds are sold as garden seed. Nothing in that market measures or declares alkaloid content, because nothing requires it to.',
+        technicalDetails:
+          'Ipomoea tricolor and Argyreia nervosa seeds are sold as ornamental garden seed under cultivar names, subject to agricultural seed regulation covering germination and purity rather than to any pharmaceutical or food standard. No alkaloid content is declared, measured or bounded, and the content depends on a fungal symbiosis that varies between growing conditions and lots. Some suppliers apply seed treatments intended to deter ingestion, which introduces a further undeclared exposure. This is filed as measured because it is a checkable property of the regulatory framework, and because it is the structural reason the Kremer study could not deliver equal doses even when it tried to.',
+        evidenceSource:
+          'Kremer C et al. Forensic Sci Int 2012;214:e6-e8, on fluctuating seed alkaloid content; Hazel CM, Panaccione DG. Mycologia 2025;117:602-614, on the symbiont-dependent origin of that content',
+        doi: '10.1016/j.forsciint.2011.06.025',
+        measuredMetric:
+          'Absence of any alkaloid content standard in the market through which the seeds are sold',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Eaten as seeds, whole or ground',
+        laymanDesc:
+          'Garden seed from a packet. How much active compound is in any given handful is not knowable from the packet.',
+        molecularDetail:
+          'Oral ingestion of Ipomoea tricolor or Argyreia nervosa seed, delivering ergine with isoergine, ergometrine and clavine alkaloids in variable proportions. Body-weight-normalised dosing in the one controlled study still produced markedly different responses.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed, with nausea arriving first',
+        laymanDesc:
+          'Gastrointestinal upset is the earliest and most reliable effect, and it comes from the ergot chemistry rather than from anything psychedelic.',
+        molecularDetail:
+          'Ergoline alkaloids act at gastrointestinal and vascular serotonin and adrenergic receptors, producing nausea and vomiting that typically precede central effects. Onset over about an hour, with recovery within nine hours in all four subjects of the controlled series.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Weakly activates the 5-HT2A receptor',
+        laymanDesc:
+          'The same receptor LSD uses, engaged far less potently, and with more sedation than perceptual change.',
+        molecularDetail:
+          'Ergoline agonism at 5-HT2A with potency far below lysergic acid diethylamide — the structural difference is two ethyl groups on the amide nitrogen, and the difference in active dose is roughly three orders of magnitude.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'And constricts blood vessels',
+        laymanDesc:
+          'Every ergot alkaloid narrows blood vessels. That is where the cold hands, the raised blood pressure and the cardiovascular problems come from.',
+        molecularDetail:
+          'Alpha-adrenergic and 5-HT2A-mediated vascular smooth-muscle constriction, the class effect shared with ergotamine and ergometrine. Two of four subjects in the controlled series developed cardiovascular dysregulation.',
+        iconName: 'HeartPulse',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'With responses that differ unpredictably between people',
+        laymanDesc:
+          'Given the same dose, one person may be sedated and another may develop a psychosis-like state. Both happened in a four-person study.',
+        molecularDetail:
+          'Severe adverse effects in three of four subjects at equal body-weight-normalised doses: cardiovascular dysregulation in two and a psychosis-like state in one, with complete recovery within nine hours. Fluctuating seed alkaloid content is one identified contributor and cannot be separated from individual pharmacodynamic variation.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Kremer et al. 2012 Argyreia nervosa driving-ability study (Frankfurt)',
+        phase: 'Controlled human study, terminated',
+        sampleSize: 4,
+        primaryEndpoint: 'Effect of Argyreia nervosa seed ingestion on driving ability',
+        endpointMet: false,
+        statisticalPValue:
+          'Not reached — the protocol was terminated after severe adverse effects in 3 of 4 subjects: cardiovascular dysregulation in 2 and a psychosis-like state in 1',
+        unreportedAdverseSignals:
+          'All subjects recovered completely within 9 hours. Body-normalised doses produced markedly different reactions in type and intensity, which the authors attribute partly to fluctuating seed alkaloid content.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Hazel & Panaccione 2025 isolation of Periglandula clandestina',
+        phase: 'Mycological isolation, genome sequencing and phylogenetic analysis',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Isolation, description and tissue localisation of the alkaloid-producing symbiont of Ipomoea tricolor',
+        endpointMet: true,
+        statisticalPValue:
+          'Multi-gene phylogenetics placed the symbiont as distinct from both described Periglandula species; qPCR localised it to hypocotyls, stems, cotyledons and leaves but not roots',
+        unreportedAdverseSignals:
+          'Alkaloids were abundant in root tissue where the fungus was undetectable, so alkaloid distribution reflects transport as well as colonisation and cannot be read directly as fungal presence.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Termination of a controlled four-person study after severe adverse effects in three subjects, with complete recovery within nine hours',
+        'Markedly different reactions in type and intensity at equal body-weight-normalised seed doses',
+        'Isolation, genome sequencing and phylogenetic placement of Periglandula clandestina as the alkaloid-producing symbiont of Ipomoea tricolor',
+        'Fungal abundance concentrated in hypocotyls with no detection in roots, against abundant ergot alkaloid in all tissues including roots',
+        'Absence of lysergic acid amide from the federal drug schedules and from the List I chemicals that do name ergonovine and ergotamine',
+      ],
+      unsupportedInferences: [
+        'That structural parenthood to LSD makes ergine a natural equivalent with a comparable effect profile',
+        'That a dose established by one person transfers to another, when equal weight-adjusted doses produced qualitatively different outcomes in a supervised study',
+        'That cultivar name predicts alkaloid content, when content depends on a fungal symbiosis rather than on plant genotype',
+        'That legal availability implies a characterised or bounded exposure; the seeds are sold under agricultural rather than pharmaceutical standards',
+      ],
+      whatFailedInitially: [
+        'The Frankfurt driving study could not be completed and produced no data on its intended endpoint',
+        'The long-standing account that morning glories were the higher-plant exception to fungal-only ergoline production has been withdrawn',
+      ],
+      realWorldOutcome: [
+        'The seeds remain on sale as ordinary garden seed, with control enacted at state level rather than federally',
+        'The symbiont of the most commonly cultivated ornamental morning glory was described for the first time in 2025',
+      ],
+    },
+    deliverySystem: {
+      type: 'Whole or ground seed, eaten',
+      description:
+        'The delivery system is an agricultural seed sold for ornamental planting, containing an alkaloid load set by a fungal symbiosis and declared nowhere. Some commercial seed carries treatments applied to deter ingestion, which adds a second undeclared exposure. There is no preparation, formulation or standard of any kind between the packet and the person.',
+      safetyProfile:
+        'In the only controlled human study, three of four subjects given equal body-weight-normalised doses had severe adverse effects — cardiovascular dysregulation in two and a psychosis-like state in one — and the protocol was terminated; all recovered fully within nine hours. Nausea and vomiting are the most consistent effects and arrive before central ones. Vasoconstriction is a class property of the ergot alkaloids and is the mechanism behind the cardiovascular findings, which places people with vascular disease at particular risk. Seed alkaloid content fluctuates, so an exposure cannot be estimated from seed mass, and the authors of the controlled study concluded that multi-drug intoxications make this legal high far more dangerous than commonly believed.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it legal?',
+        a: 'Federally in the United States, lysergic acid amide is not in any drug schedule and is not a List I chemical either — the List I entries cover ergonovine and ergotamine, the ergot alkaloids useful for making LSD, and not ergine. The seeds are sold as ordinary garden seed under agricultural regulation. Several states control the seeds or the compound independently, so the practical answer changes at the state line, exactly as it does for salvinorin A.',
+      },
+      {
+        q: 'Is it just a weaker, natural LSD?',
+        a: "No, and the structural relationship is what makes that sound plausible. Ergine is lysergic acid amide and LSD is lysergic acid diethylamide, so they differ by two ethyl groups and by roughly three orders of magnitude in active dose. But ergine's reported profile is dominated by sedation, nausea and vasoconstriction rather than perceptual change, and the vasoconstriction belongs to the ergot alkaloid class rather than to the psychedelic one. In the one controlled study, two of four subjects developed cardiovascular dysregulation.",
+        auditNote:
+          'The seeds also deliver isoergine, ergometrine and clavine alkaloids alongside ergine, so no seed preparation is an ergine exposure in isolation.',
+      },
+      {
+        q: 'Do the plants make the drug?',
+        a: 'No — and this was settled only recently. Ergot alkaloids are produced exclusively by fungi, and morning glories carry them because a symbiotic fungus of the genus Periglandula lives on them. For the common ornamental morning glory Ipomoea tricolor, the responsible organism had never been seen despite biochemical evidence that it existed; it was finally isolated, cultured, sequenced and named Periglandula clandestina in 2025. The old textbook claim that these plants proved higher plants could make ergolines was simply an artefact of not finding the fungus.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'The seeds carry retail prices as garden seed, but a price per packet says nothing about a dose, because alkaloid content is not declared, not standardised, and depends on a fungal association rather than on the cultivar. This file does not print numbers that cannot be tied to what they purport to measure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Kremer C, Paulke A, Wunder C, Toennes SW. Variable adverse effects in subjects after ingestion of equal doses of Argyreia nervosa seeds. Forensic Sci Int 2012;214:e6-e8',
+        identifier: '10.1016/j.forsciint.2011.06.025',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hazel CM, Panaccione DG. A new species of Periglandula symbiotic with the morning glory Ipomoea tricolor. Mycologia 2025;117:602-614',
+        identifier: '10.1080/00275514.2025.2483634',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Beaulieu WT et al. Phylogenetic and chemotypic diversity of Periglandula species in eight new morning glory hosts (Convolvulaceae). Mycologia 2015;107:667-678',
+        identifier: '10.3852/14-239',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 1310.02 — List I chemicals, including ergonovine (8675) and ergotamine (8676) and excluding lysergic acid amide',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-II/part-1310/section-1310.02',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 442072 — ergine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/442072',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 32. Muscimol and ibotenic acid (Amanita muscaria)
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'muscimol',
+    name: 'Muscimol and Ibotenic Acid (Amanita muscaria)',
+    tradeName:
+      'No approved product. Sold in the United States since about 2022 as Amanita muscaria gummies, capsules, chocolates and extracts marketed as legal or nootropic mushrooms',
+    sponsor:
+      'None. Muscimol was isolated from Amanita muscaria in the 1960s and became a standard GABA-A pharmacological tool; no company has developed it for human use',
+    targetGene: 'GABRA1 / GRIN1',
+    targetProtein:
+      'Muscimol is a potent orthosteric GABA-A receptor agonist. Ibotenic acid, the compound actually present in the fresh mushroom, is a glutamate-receptor agonist and excitotoxin that decarboxylates to muscimol',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'No approved medical indication. Neither muscimol nor ibotenic acid appears in any schedule of 21 CFR part 1308, which is why the products are sold openly; Louisiana controls Amanita muscaria under state law',
+    patientFriendlyIndication:
+      'Nothing. It is the fly agaric mushroom, sold as gummies and chocolate in American smoke shops, and in one Portland analysis the products claiming to contain it did not contain it',
+    anatomicalSite:
+      'GABA-A receptors throughout the central nervous system for muscimol; ionotropic glutamate receptors for ibotenic acid, which is why it is used to make excitotoxic lesions in animal research',
+    conditionContext: {
+      conditionExplainer:
+        'There is no indication. This record covers a mushroom whose two active compounds do opposite things — one excites neurons and one inhibits them — and a retail market built on the second while the material actually contains more of the first.',
+      whyItMatters:
+        'Muscimol is the reference GABA-A agonist in pharmacology. Ibotenic acid is the reagent neuroscientists use specifically to kill neurons in a defined brain region. Both are in the same mushroom, and drying converts some of the second into the first, which is why preparation determines what a person is exposed to.',
+      whoTakesThis:
+        'People buying products from smoke shops, and — in the 2024 CDC outbreak — 180 people across 34 states who ate mushroom-containing chocolate bars.',
+      clinicalGoals: 'None. No therapeutic use of either compound has been developed.',
+    },
+    oneSentenceVerdict:
+      'A mushroom containing an excitotoxin and its inhibitory decarboxylation product, neither of them federally scheduled, sold as gummies that in a Portland analysis contained neither compound — the two products labelled Amanita muscaria contained psilocin and tryptamine derivatives instead.',
+    laymanHowItWorks:
+      'Fresh fly agaric contains mostly ibotenic acid, which activates glutamate receptors — the excitatory ones — so strongly that neuroscientists use it deliberately to destroy neurons in laboratory animals. Drying or heating removes a carboxyl group and turns some of it into muscimol, which does the opposite: it activates the GABA-A receptor, the main inhibitory switch in the brain, at the same site as the neurotransmitter itself. So the effect a person gets depends on how the mushroom was prepared and how far that conversion went, and both compounds are always present in some ratio. The reported experience — sedation, confusion, twitching, sometimes delirium — reflects that mixture rather than either compound alone.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 43,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=C(ONC1=O)CN',
+      chemicalFormula: 'C4H6N2O2',
+      molecularWeight:
+        '114.10 g/mol for muscimol. Ibotenic acid is C5H6N2O4 at 158.11 g/mol — the difference is the carboxyl group lost on drying or heating',
+      targetReceptorAffinity:
+        'Muscimol is a potent agonist at the orthosteric GABA site of the GABA-A receptor, and is the standard reference agonist for that receptor in pharmacology. Ibotenic acid is an agonist at ionotropic glutamate receptors including NMDA, and is used as an excitotoxin to produce selective neuronal lesions in animal neuroscience. In two authenticated Amanita muscaria samples analysed by LC-QToF-MS, ibotenic acid was 0.03-0.04%, muscimol 0.01-0.02% and muscarine 0.01-0.02% by weight.',
+      structureSource: {
+        label:
+          'PubChem CID 4266 (muscimol) and CID 1233 (ibotenic acid) — SMILES, formulae and molecular weights',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4266',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mus-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Quantify ibotenic acid, muscimol and muscarine as three separate analytes',
+          description:
+            'The ratio between the excitotoxin and its inhibitory decarboxylation product is the exposure, and a total-alkaloid figure conceals it entirely. A validated method quantifies ibotenic acid, muscimol and muscarine together, which also settles the persistent claim that muscarine is the relevant compound in this mushroom — in authenticated material it is present at the same order as muscimol and far below any muscarinic toxidrome threshold.',
+          reagentsAndBuffer:
+            'Ibotenic acid, muscimol and muscarine certified reference standards, LC-QToF-MS with validated linearity, precision and recovery for all analytes, isotope-dilution quantification, authenticated Amanita muscaria reference material analysed alongside',
+        },
+        {
+          id: 'mus-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Screen the finished product for what is actually in it',
+          description:
+            'This is the step that produced the most consequential result on this page. Correia et al. screened commercial gummies for psilocybin, psilocin and their analogues as well as for the purported Amanita derivatives, and found that the two products claiming Amanita muscaria content contained neither ibotenic acid nor muscimol, but did contain psilocin and tryptamine derivatives. A targeted Amanita assay alone would have returned two clean negatives and missed the entire finding.',
+          dependsOnStepId: 'mus-w1',
+          reagentsAndBuffer:
+            'Liquid chromatography quadrupole time-of-flight mass spectrometry with broad psychoactive-compound screening, tryptamine and kavalactone libraries, cannabinoid panel, homogenisation of the whole gummy before extraction, isotope-dilution quantification of everything identified',
+        },
+        {
+          id: 'mus-w3',
+          stepNumber: 3,
+          phase: 'QC',
+          name: 'Measure the decarboxylation as a function of preparation',
+          description:
+            'Ibotenic acid converts to muscimol on drying and heating, so the same mushroom yields different exposures depending on preparation. Quantifying both compounds in matched fresh, air-dried and heated samples of the same material is what turns a widely repeated claim about traditional preparation into a measurement.',
+          dependsOnStepId: 'mus-w1',
+          reagentsAndBuffer:
+            'Matched subsamples of one collection processed fresh, air-dried and heat-treated at controlled temperatures and durations, gravimetric moisture correction, paired ibotenic acid and muscimol quantification, conversion expressed as a molar ratio',
+        },
+        {
+          id: 'mus-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Express GABA-A and ionotropic glutamate receptors separately',
+          description:
+            'The two compounds act at opposite ends of the excitatory-inhibitory balance, so they need separate systems. GABA-A subunit combinations are expressed for muscimol and NMDA and non-NMDA glutamate receptors for ibotenic acid, which is the only way to report the pharmacology of the mushroom as two profiles rather than one average.',
+          dependsOnStepId: 'mus-w1',
+          reagentsAndBuffer:
+            'HEK293 cells or Xenopus oocytes expressing defined GABA-A subunit combinations, separate GRIN1/GRIN2 NMDA-receptor system, lipid transfection or cRNA injection, GABA and glutamate as reference agonists',
+        },
+        {
+          id: 'mus-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Measure agonist potency at each receptor, and excitotoxicity for ibotenic acid',
+          description:
+            "Muscimol's potency at the orthosteric GABA site is what makes it the standard reference agonist, and it is measured by displacement and by current activation. Ibotenic acid needs a second endpoint that muscimol does not: neuronal viability after exposure, because its defining property in the research literature is that it kills the cells it excites.",
+          dependsOnStepId: 'mus-w4',
+          reagentsAndBuffer:
+            '[3H]-muscimol binding at GABA-A with bicuculline as antagonist control, whole-cell or two-electrode voltage clamp for chloride current, [3H]-glutamate binding and MK-801-sensitive current for ibotenic acid, neuronal viability assay after defined exposure',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mus-a1',
+        category: 'measured',
+        title: 'The products labelled Amanita muscaria contained no Amanita compounds',
+        laymanSummary:
+          'Eight mushroom gummies were bought from seven Portland shops and analysed. The two that claimed to contain Amanita muscaria contained neither of its active compounds — they contained psilocin instead.',
+        technicalDetails:
+          'Correia et al. procured eight gummy products from seven smoke and vape shops in Portland, homogenised them and analysed them by liquid chromatography quadrupole time-of-flight mass spectrometry with isotope-dilution quantification, screening for psilocybin, psilocin and their analogues as well as for purported Amanita muscaria derivatives. Neither ibotenic acid nor muscimol was detected in the two products claiming to contain Amanita muscaria extracts; those products contained psilocin and tryptamine derivatives. One product labelled psilocybin-free tested positive for psilocybin. Another marketed as nootropic contained undisclosed delta-9-THC. Overall, seven of the eight products contained psilocin and six contained 4-acetoxy-N,N-dimethyltryptamine; kavalactones and other tryptamine congeners were also present. The authors conclude that labelling was inaccurate and inconsistent, and that users are likely to experience psychoactive symptoms at the concentrations found. The finding inverts the premise of the market: the legal-mushroom product was delivering a Schedule I tryptamine.',
+        evidenceSource: 'Correia MS, Gonzaga MJ, Temple C, Gerona RR. Clin Toxicol 2025;63:261-266',
+        doi: '10.1080/15563650.2025.2450240',
+        measuredMetric:
+          'Presence and quantity of ibotenic acid, muscimol, psilocin, psilocybin, tryptamine congeners and THC across 8 commercial gummy products',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mus-a2',
+        category: 'measured',
+        title: '180 poisonings, 73 hospitalised, 29 intubated, two deaths',
+        laymanSummary:
+          'CDC investigated an outbreak linked to microdosing chocolate bars sold as mushroom products. A hundred and eighty people across 34 states were poisoned, thirty-eight went to intensive care, and two died.',
+        technicalDetails:
+          'CDC and FDA investigated poisonings associated with Diamond Shruumz microdosing chocolate bars and other mushroom-containing chocolate products between January and October 2024. A case was defined as an illness with moderate or major clinical effects in a person who had eaten such a product. 180 cases were reported across 34 states: 73 hospitalisations, including 38 intensive care admissions, 29 endotracheal intubations, and two deaths. Compared with other mushroom-containing chocolate products, eating Diamond Shruumz bars carried higher odds of hospitalisation (OR 3.29, 95% CI 1.51-7.40), ICU admission (OR 6.30, 95% CI 2.17-22.6), seizures (OR 8.45, 95% CI 3.00-27.9) and intubation (OR 8.04, 95% CI 2.24-44.2), with dose-trend relationships for hospitalisation, ICU admission and intubation (p-trend 0.023, 0.004 and <0.001). Testing identified muscimol, psilocin — a Schedule I substance — kavalactones and other substances in some but not all tested products. CDC attributes the risk to variability in ingredient composition and the absence of standardised regulatory oversight for sampling and testing finished products.',
+        evidenceSource: 'Rumph JT et al. MMWR Morb Mortal Wkly Rep 2026;75:179-184',
+        doi: '10.15585/mmwr.mm7513a2',
+        measuredMetric:
+          'Case count, hospitalisation, ICU admission, intubation and death across 180 poisonings in 34 states, with odds ratios by product',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mus-a3',
+        category: 'measured',
+        title: 'Ibotenic acid outweighs muscimol in authenticated mushroom material',
+        laymanSummary:
+          'In two verified Amanita muscaria samples, the excitotoxic compound was present at roughly twice the level of the sedating one — and muscarine, the compound the mushroom is named for, was at the same low level as muscimol.',
+        technicalDetails:
+          'Katragunta et al. developed and validated an LC-QToF-MS method for five characteristic compounds — ibotenic acid, muscimol, muscarine, psilocin and psilocybin — with satisfactory linearity, precision and recovery for all five. In two authenticated Amanita muscaria samples, ibotenic acid was 0.03-0.04%, muscimol 0.01-0.02% and muscarine 0.01-0.02% by weight; in five Psilocybe samples, psilocin was 0.001-1.6% and psilocybin 9.9-19.3%. Twenty-seven commercial products across gummies, chocolates and other formulations were compared against the authenticated material. Two things follow. First, the mushroom as collected carries more of the excitotoxin than of the GABA-A agonist, so an unprocessed exposure is weighted toward ibotenic acid. Second, muscarine — the compound named after this mushroom and long blamed for its effects — is present at the same trace order as muscimol, far below what a muscarinic toxidrome would require.',
+        evidenceSource: 'Katragunta K et al. Int J Med Mushrooms 2025;27:29-39',
+        doi: '10.1615/IntJMedMushrooms.2024056373',
+        measuredMetric:
+          'Percentage by weight of ibotenic acid, muscimol and muscarine in authenticated Amanita muscaria, against psilocin and psilocybin in Psilocybe species',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mus-a4',
+        category: 'conclusion_shift',
+        title: 'Named for muscarine, and muscarine is not what it does',
+        laymanSummary:
+          'Muscarine was isolated from fly agaric in the nineteenth century and gave its name to a whole receptor system. The mushroom contains almost none of it, and its effects come from two entirely different compounds.',
+        technicalDetails:
+          'Muscarine takes its name from Amanita muscaria, and the muscarinic acetylcholine receptors take their name from muscarine — one of the foundational naming chains in pharmacology. The mushroom nonetheless contains muscarine only in trace amounts: 0.01-0.02% by weight in authenticated samples, the same order as muscimol and far below the level required to produce a cholinergic toxidrome. The compounds responsible for its effects, ibotenic acid and muscimol, were not identified until the 1960s. The practical consequence is clinical: an Amanita muscaria exposure does not produce the muscarinic picture of salivation, lacrimation and bradycardia that the name implies, and atropine is not the treatment. The naming survives because receptor nomenclature is fixed by history rather than revised by later chemistry, which is exactly the kind of durable error this record exists to note.',
+        evidenceSource:
+          'Katragunta K et al. Int J Med Mushrooms 2025;27:29-39, quantification of muscarine in authenticated Amanita muscaria',
+        doi: '10.1615/IntJMedMushrooms.2024056373',
+        measuredMetric:
+          'Muscarine content of authenticated Amanita muscaria against the receptor system named after it',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mus-a5',
+        category: 'measured',
+        title: 'One mushroom, two compounds, opposite directions',
+        laymanSummary:
+          'Ibotenic acid switches neurons on so hard that researchers use it to kill them on purpose. Muscimol switches them off. Drying the mushroom converts some of the first into the second.',
+        technicalDetails:
+          'Ibotenic acid is an agonist at ionotropic glutamate receptors including NMDA, and its standard use in neuroscience is as an excitotoxin for producing selective neuronal lesions in defined brain regions — a reagent chosen precisely because it destroys cell bodies while sparing fibres of passage. Muscimol is a potent agonist at the orthosteric GABA site of the GABA-A receptor and is the reference agonist for that receptor, used in radioligand form as [3H]-muscimol. The two therefore act at opposite ends of the excitatory-inhibitory balance. Ibotenic acid decarboxylates to muscimol on drying and heating, so preparation shifts the mixture toward the inhibitory compound. This is the pharmacological basis for the whole record: the exposure from this mushroom is a ratio, not a compound, and the ratio is set by how the material was handled.',
+        evidenceSource:
+          'Katragunta K et al. Int J Med Mushrooms 2025;27:29-39; PubChem CID 4266 and CID 1233 structural relationship',
+        doi: '10.1615/IntJMedMushrooms.2024056373',
+        measuredMetric:
+          'Receptor targets and quantified content of ibotenic acid and muscimol in the same material',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mus-a6',
+        category: 'measured',
+        title: 'Not scheduled — which is the entire commercial premise',
+        laymanSummary:
+          'Neither muscimol nor ibotenic acid appears in any federal drug schedule. That is why Amanita products can be sold in shops where psilocybin products cannot.',
+        technicalDetails:
+          'Neither muscimol nor ibotenic acid nor Amanita muscaria appears in any schedule of 21 CFR part 1308. Psilocybin and psilocin do, at DEA codes 7437 and 7438. The entire retail proposition of the Amanita product category rests on that difference, and it is the reason the Portland finding is so damaging: products sold on the basis of containing an uncontrolled compound were found to contain a Schedule I one instead, and one product explicitly labelled psilocybin-free tested positive for psilocybin. Louisiana controls Amanita muscaria under state law, producing the same patchwork seen with salvinorin A, kratom and tianeptine — federal silence filled unevenly by states.',
+        evidenceSource:
+          '21 CFR part 1308, current eCFR text; Correia MS et al. Clin Toxicol 2025;63:261-266',
+        doi: '10.1080/15563650.2025.2450240',
+        measuredMetric:
+          'Absence of muscimol and ibotenic acid from the federal schedules against the presence of psilocin in products sold on that basis',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mus-a7',
+        category: 'inferred',
+        title: 'Traditional preparation is invoked as a safety practice without being measured',
+        laymanSummary:
+          'The idea that drying or parboiling the mushroom makes it safer by converting ibotenic acid to muscimol is repeated everywhere. The conversion is real chemistry; how complete it is under any given method has not been established.',
+        technicalDetails:
+          "Decarboxylation of ibotenic acid to muscimol on drying and heating is well established as a reaction. What is not established is the yield under the conditions people actually use: air-drying time, temperature, parboiling with or without discarding the water, and how much ibotenic acid remains. Authenticated samples still show ibotenic acid at roughly twice the muscimol content, which indicates the conversion is incomplete in ordinary dried material. The inference commonly drawn — that a preparation method converts the excitotoxin away and leaves a GABA-A agonist — treats a partial reaction as a complete one, and no published study reports the conversion as a function of a defined protocol. That is why this page's analytical workflow contains a step that would answer it, and it is why the claim is filed here as an inference rather than as a finding.",
+        evidenceSource:
+          'Katragunta K et al. Int J Med Mushrooms 2025;27:29-39, ibotenic acid and muscimol content in authenticated dried material',
+        doi: '10.1615/IntJMedMushrooms.2024056373',
+        inferredClaim:
+          'That drying or parboiling converts ibotenic acid to muscimol completely enough to change the character of the exposure',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Eaten as mushroom, gummy or chocolate',
+        laymanDesc:
+          'Dried caps, or a commercial product whose contents may bear no relationship to its label.',
+        molecularDetail:
+          'Oral ingestion. Authenticated dried Amanita muscaria contains ibotenic acid at 0.03-0.04% and muscimol at 0.01-0.02% by weight. Commercial products vary without bound: in one Portland series, the two products labelled Amanita contained neither compound.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Both compounds cross into the brain',
+        laymanDesc:
+          'Ibotenic acid and muscimol are small, water-soluble and both centrally active, so the exposure is always a mixture.',
+        molecularDetail:
+          'Ibotenic acid is additionally decarboxylated to muscimol in vivo as well as during drying, so the ratio reaching the brain is shifted further toward the inhibitory compound than the material assay suggests. Neither compound has published human pharmacokinetics from a controlled study.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: "Muscimol opens the brain's main inhibitory channel",
+        laymanDesc:
+          'It binds the GABA-A receptor at the same place the natural neurotransmitter does, and it is the standard reference compound for doing so.',
+        molecularDetail:
+          'Potent orthosteric agonism at the GABA-A receptor, producing chloride influx and neuronal inhibition. Muscimol is the reference GABA-A agonist in pharmacology and is used in tritiated form as a binding ligand for that receptor.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Ibotenic acid does the opposite, and damages what it excites',
+        laymanDesc:
+          'It activates glutamate receptors so powerfully that neuroscientists use it deliberately to destroy neurons in a chosen brain region.',
+        molecularDetail:
+          'Agonism at ionotropic glutamate receptors including NMDA, with excitotoxicity as the defining property that makes it a standard lesioning reagent — it destroys cell bodies while sparing fibres of passage. Its presence at roughly twice the muscimol content in authenticated material is the reason the mushroom is not simply a sedative.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A mixed picture — and, in the 2024 outbreak, intensive care',
+        laymanDesc:
+          'Reported effects run from sedation and confusion to twitching, agitation and delirium. In the CDC outbreak, 38 of 180 people needed intensive care and two died.',
+        molecularDetail:
+          'The clinical picture reflects simultaneous GABA-A agonism and glutamatergic excitation rather than either alone. In the 2024 mushroom-chocolate outbreak, 73 of 180 cases were hospitalised, 38 required ICU admission, 29 required intubation and two died, with seizures strongly associated with the implicated product (OR 8.45, 95% CI 3.00-27.9).',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Correia et al. 2025 Portland gummy product analysis',
+        phase: 'Analytical product survey',
+        sampleSize: 8,
+        primaryEndpoint:
+          'Accuracy of labelling and quantification of psychoactive content in commercial mushroom gummies',
+        endpointMet: true,
+        statisticalPValue:
+          'Neither ibotenic acid nor muscimol detected in the 2 products claiming Amanita muscaria content; 7 of 8 products contained psilocin, 6 contained 4-AcO-DMT, 1 labelled psilocybin-free contained psilocybin, 1 contained undisclosed delta-9-THC',
+        unreportedAdverseSignals:
+          'Eight products from seven shops in one city is a small and geographically narrow sample, and the products were purchased at one point in time in a market whose formulations change.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'CDC/FDA 2024 mushroom-chocolate poisoning outbreak investigation',
+        phase: 'National outbreak investigation',
+        sampleSize: 180,
+        primaryEndpoint:
+          'Characterisation of poisonings associated with mushroom-containing chocolate products',
+        endpointMet: true,
+        statisticalPValue:
+          '73 hospitalisations, 38 ICU admissions, 29 intubations, 2 deaths. Versus other mushroom chocolates: hospitalisation OR 3.29 (1.51-7.40), ICU OR 6.30 (2.17-22.6), seizures OR 8.45 (3.00-27.9), intubation OR 8.04 (2.24-44.2)',
+        unreportedAdverseSignals:
+          'Testing identified muscimol, psilocin, kavalactones and other substances in some but not all tested products, so the exposure differed between cases and no single compound can be assigned responsibility.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Katragunta et al. 2025 LC-QToF-MS quantification of mushroom mycochemicals',
+        phase: 'Analytical method development and product survey',
+        sampleSize: 27,
+        primaryEndpoint:
+          'Validated quantification of ibotenic acid, muscimol, muscarine, psilocin and psilocybin in authenticated mushrooms and consumer products',
+        endpointMet: true,
+        statisticalPValue:
+          'Authenticated Amanita muscaria: ibotenic acid 0.03-0.04%, muscimol 0.01-0.02%, muscarine 0.01-0.02%. Psilocybe species: psilocin 0.001-1.6%, psilocybin 9.9-19.3%',
+        unreportedAdverseSignals:
+          'Only two authenticated Amanita muscaria samples anchor the reference range, so the natural variation in the mushroom itself is not characterised by this study.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Neither ibotenic acid nor muscimol detected in the two Portland gummy products claiming to contain Amanita muscaria; both contained psilocin and tryptamine derivatives',
+        '180 poisoning cases in 34 states with 73 hospitalisations, 38 ICU admissions, 29 intubations and two deaths from mushroom-containing chocolate products',
+        'Ibotenic acid at 0.03-0.04%, muscimol at 0.01-0.02% and muscarine at 0.01-0.02% by weight in authenticated Amanita muscaria',
+        'Muscimol as a potent orthosteric GABA-A agonist and ibotenic acid as a glutamate-receptor excitotoxin used for selective neuronal lesioning',
+        'Absence of muscimol, ibotenic acid and Amanita muscaria from every schedule in 21 CFR part 1308',
+      ],
+      unsupportedInferences: [
+        'That drying or parboiling converts ibotenic acid to muscimol completely enough to change the character of the exposure',
+        'That the mushroom acts through muscarine, the compound it is named for, which is present only at trace levels',
+        'That a product labelled Amanita muscaria contains it, or that a product labelled psilocybin-free is free of psilocybin',
+        'That legal availability implies a characterised exposure; CDC identifies the absence of standardised testing of finished products as a driver of the outbreak',
+      ],
+      whatFailedInitially: [
+        'Product labelling in this category was found inaccurate and inconsistent across almost every product tested in the Portland series',
+        'Diamond Shruumz products were recalled after 180 poisonings, having been sold as microdosing confectionery with no standardised composition',
+      ],
+      realWorldOutcome: [
+        'Amanita products remain federally unscheduled and on sale, with Louisiana controlling the mushroom under state law',
+        'CDC advises consumers of the poisoning risk from mushroom-containing microdosing chocolate products, citing ingredient variability and the absence of regulatory oversight of finished-product testing',
+      ],
+    },
+    deliverySystem: {
+      type: 'Dried mushroom, or commercial gummies, capsules and chocolate bars',
+      description:
+        'Traditional preparation is dried or heated cap material, which partially decarboxylates ibotenic acid to muscimol. The commercial delivery system is confectionery — gummies and chocolate bars sectioned into servings — manufactured without any standardised sampling or testing of the finished product, which CDC identifies as a driver of the 2024 outbreak. In the Portland analysis, the delivery system frequently did not contain the compound it was named for.',
+      safetyProfile:
+        "The reported clinical picture is mixed and reflects simultaneous GABA-A agonism and glutamatergic excitation: sedation, confusion, ataxia, myoclonic twitching, agitation and delirium. It is not a muscarinic toxidrome and atropine is not the treatment, despite the mushroom's name. In the 2024 mushroom-chocolate outbreak, 73 of 180 cases were hospitalised, 38 required intensive care, 29 required intubation and two died, with seizures strongly associated with the implicated product. Because ibotenic acid is an excitotoxin used deliberately for neuronal lesioning in research, the fresh material carries a hazard the dried material carries less of, though how much less has not been quantified for any defined preparation. Product-level risk dominates: content is not standardised, labels were inaccurate in nearly every product tested, and undisclosed psilocin, psilocybin, tryptamine congeners and THC have all been found.",
+    },
+    commonQuestions: [
+      {
+        q: 'Is Amanita muscaria legal?',
+        a: 'Federally in the United States, yes — neither muscimol nor ibotenic acid nor the mushroom appears in any schedule of 21 CFR part 1308, which is precisely why the product category exists. Louisiana controls it under state law. But the legal status describes the compounds the products claim to contain, and in the Portland analysis the two products claiming Amanita content actually contained psilocin, which is Schedule I. Legality of the label is not legality of the contents.',
+        auditNote:
+          'One product in that series was explicitly labelled psilocybin-free and tested positive for psilocybin.',
+      },
+      {
+        q: 'Does it work through muscarine?',
+        a: 'No, and this is one of the more durable errors in pharmacology. Muscarine was isolated from this mushroom in the nineteenth century and gave its name to the muscarinic acetylcholine receptors, but the mushroom contains it only at trace levels — 0.01 to 0.02% by weight in authenticated samples, the same order as muscimol and far below what a cholinergic toxidrome requires. The effects come from ibotenic acid and muscimol, identified only in the 1960s. Clinically this matters: an Amanita exposure does not present as muscarinic poisoning and atropine is not the treatment.',
+      },
+      {
+        q: 'Does drying make it safer?',
+        a: 'Drying does convert ibotenic acid into muscimol — that reaction is real chemistry, and it shifts the mixture from an excitotoxic compound toward an inhibitory one. What has not been established is how complete the conversion is under any particular method. Authenticated dried material still contains roughly twice as much ibotenic acid as muscimol, which indicates the conversion is partial. The widely repeated claim treats a partial reaction as a complete one, and this page files it as an inference for that reason.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'The products carry retail prices, but a price says nothing about what is in the package: in the one published product analysis, the items labelled Amanita muscaria contained none of it. A cost per serving of an unverified and mislabelled composition is not a figure this file will print.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Correia MS, Gonzaga MJ, Temple C, Gerona RR. Quantitative analysis of recreational psychoactive mushroom gummies in Portland, Oregon. Clin Toxicol 2025;63:261-266',
+        identifier: '10.1080/15563650.2025.2450240',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rumph JT et al. Severe Illness Associated with Eating Mushroom-Containing Chocolate Products - United States, January-October 2024. MMWR Morb Mortal Wkly Rep 2026;75:179-184',
+        identifier: '10.15585/mmwr.mm7513a2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Katragunta K et al. Quantitative LC-QToF-MS Analysis of Mycochemicals in Amanita muscaria, Psilocybe spp. (Agaricomycetes), and Consumer Products. Int J Med Mushrooms 2025;27:29-39',
+        identifier: '10.1615/IntJMedMushrooms.2024056373',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 4266 — muscimol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4266',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 1233 — ibotenic acid structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/1233',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
     ],
   },
 ]
