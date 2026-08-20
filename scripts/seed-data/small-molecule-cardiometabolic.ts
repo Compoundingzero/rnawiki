@@ -10493,4 +10493,1874 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       NADAC_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 10. Dapagliflozin — the SGLT2 inhibitor whose diabetes outcome trial missed, whose heart failure
+  //     and kidney trials did not, and whose post-infarction trial changed its endpoint mid-flight.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'dapagliflozin',
+    name: 'Dapagliflozin',
+    tradeName: 'Farxiga (Forxiga outside the United States)',
+    sponsor: 'Bristol-Myers Squibb with AstraZeneca (originator); now AstraZeneca',
+    targetGene: 'SLC5A2',
+    targetProtein: 'Sodium-glucose cotransporter 2 (SGLT2)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2014,
+    indication:
+      'Reduction of cardiovascular death, hospitalisation for heart failure and urgent heart failure visits in adults with heart failure; reduction of sustained eGFR decline, end-stage kidney disease, cardiovascular death and hospitalisation for heart failure in adults with chronic kidney disease at risk of progression; reduction of hospitalisation for heart failure in type 2 diabetes with cardiovascular risk factors; and improvement of glycaemic control in type 2 diabetes',
+    patientFriendlyIndication:
+      'Heart failure, chronic kidney disease, and type 2 diabetes with heart or kidney risk',
+    anatomicalSite: 'Brush border of the renal proximal convoluted tubule, segment S1 and S2',
+    conditionContext: {
+      conditionExplainer:
+        'The kidney filters roughly 180 grams of glucose out of the blood daily and reclaims almost all of it through one transporter in the first stretch of the tubule. Blocking that transporter makes the kidney discard sugar in urine, along with sodium and water. The blood glucose fall is a consequence; the sodium and water loss, and the pressure change it produces inside the kidney filter, are what the heart failure and kidney trials appear to be measuring.',
+      whyItMatters:
+        'Dapagliflozin makes the class story precise, because its trials disagree in an informative way. Its diabetes cardiovascular outcome trial did not reduce heart attacks and strokes. Its heart failure trials, in people mostly without diabetes, reduced deaths. Its kidney trial was stopped early for efficacy and reduced all-cause mortality. Its post-infarction trial had to change its primary endpoint mid-trial because events were not accruing.',
+      whoTakesThis:
+        'People with heart failure across the ejection fraction range, people with chronic kidney disease at risk of progression, and people with type 2 diabetes and cardiovascular risk. On the WHO Model List of Essential Medicines.',
+      clinicalGoals:
+        'Reduce worsening heart failure and cardiovascular death, and slow kidney function decline. In DAPA-CKD it also reduced death from any cause; in DECLARE and DELIVER it did not.',
+    },
+    oneSentenceVerdict:
+      'An SGLT2 inhibitor that missed the major-adverse-cardiovascular-event endpoint in 17,160 patients with type 2 diabetes (8.8% against 9.4%, p=0.17) and then reduced all-cause death in 4,744 heart failure patients and 4,304 chronic kidney disease patients, most of the latter without diabetes at all — a pattern that says the drug is not an anti-atherosclerotic and is something else.',
+    laymanHowItWorks:
+      'The drug blocks the transporter your kidney uses to reclaim sugar from the fluid it has just filtered. Around 70 grams of glucose a day leaves in the urine, and sodium and water go with it. The load on the heart falls, the pressure inside each kidney filter falls, and over years fewer people are admitted with heart failure and fewer kidneys fail. The blood sugar effect is real, modest, and not the reason most people are now given it.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 89,
+    substitutes: {
+      summary:
+        'Dapagliflozin has no United States generic and costs about US$12 per tablet at pharmacy acquisition cost, close to empagliflozin at US$11.19. The two have near-identical outcome portfolios in heart failure and kidney disease and have never been compared head to head. The cheap comparators — metformin, a loop diuretic, an ACE inhibitor — do different jobs, and none of them carries this evidence in non-diabetic kidney disease.',
+      conventionalRx: [
+        {
+          name: 'Empagliflozin (Jardiance)',
+          class: 'SGLT2 inhibitor',
+          howItCompares:
+            'Its diabetes trial, EMPA-REG OUTCOME, met its primary cardiovascular endpoint and reduced all-cause death by 32%; DECLARE-TIMI 58 did not reduce major adverse cardiovascular events. The two trials enrolled different populations — DECLARE included 10,186 participants without established atherosclerotic disease — so the difference may be population rather than molecule. No head-to-head trial exists.',
+          typicalCost:
+            'US$11.18 per 10 mg JARDIANCE tablet against US$12.08 per 10 mg FARXIGA tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: essentially the same class evidence in heart failure and kidney disease. Cons: nothing distinguishes them on a randomised comparison, because none has been run.',
+        },
+        {
+          name: 'Finerenone (Kerendia)',
+          class: 'Non-steroidal mineralocorticoid receptor antagonist',
+          howItCompares:
+            'Also reduces kidney disease progression and cardiovascular events in type 2 diabetes with chronic kidney disease, by an unrelated mechanism, and the two are increasingly used together rather than as alternatives.',
+          typicalCost: 'Brand-only, in the same order of magnitude per tablet',
+          prosAndCons:
+            'Pros: additive mechanism, no genital infection risk. Cons: hyperkalaemia, and its kidney evidence is in diabetic kidney disease specifically.',
+        },
+        {
+          name: 'A loop diuretic such as furosemide',
+          class: 'Loop diuretic',
+          howItCompares:
+            'Removes fluid far more powerfully and far more quickly, which is what makes it indispensable in acute decompensation. It has no randomised evidence of reducing mortality or slowing kidney decline; dapagliflozin has both.',
+          typicalCost: 'A few cents per tablet at United States pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: rapid symptom relief, negligible cost. Cons: electrolyte disturbance, no outcome trial, and it activates the renin-angiotensin system rather than settling it.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ketoacidosis can occur with a normal glucose reading',
+          action:
+            'If you develop nausea, vomiting, abdominal pain, unusual tiredness or breathlessness, say that you take an SGLT2 inhibitor even if your glucose meter is normal.',
+          patientImpact:
+            'In DECLARE-TIMI 58, diabetic ketoacidosis occurred in 0.3% on dapagliflozin against 0.1% on placebo (p=0.02) across 17,160 patients. The drug lowers glucose while shifting metabolism toward ketone production, so the usual glucose-based screen can miss it.',
+          clinicalPrecaution:
+            'Risk rises with fasting, dehydration, acute illness and surgery. This is a labelled warning.',
+        },
+        {
+          name: 'Genital infection is the commonest reason for stopping',
+          action: 'Report genital itching, soreness or discharge, particularly in the first months.',
+          patientImpact:
+            'In DECLARE-TIMI 58, genital infections that led to discontinuation or were classed as serious occurred in 0.9% on dapagliflozin against 0.1% on placebo (p<0.001). Milder cases were much more common than that.',
+          clinicalPrecaution:
+            'Fournier gangrene, a necrotising infection of the perineum, is a rare labelled warning and a surgical emergency rather than a tolerability issue.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CCOC1=CC=C(C=C1)CC2=C(C=CC(=C2)[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O)Cl',
+      chemicalFormula: 'C21H25ClO6',
+      molecularWeight: '408.9 g/mol; dispensed as dapagliflozin propanediol monohydrate',
+      targetReceptorAffinity:
+        'A C-aryl glucoside with roughly 1,200-fold selectivity for SGLT2 over SGLT1, lower than empagliflozin and still far above the margin needed to leave intestinal glucose absorption intact. As with the rest of the class, the carbon-carbon glycosidic bond is what makes the molecule resistant to the glucosidases that destroyed the natural product phlorizin.',
+      structureSource: {
+        label:
+          'PubChem CID 9887712 (dapagliflozin) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9887712',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dap-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Regiochemical control of the chloro-ethoxybenzyl aryl halide',
+          description:
+            'Assay 5-bromo-2-chloro-4-prime-ethoxydiphenylmethane for positional isomers and residual bromide, and the persilylated gluconolactone for anomeric purity. The chlorine and the ethoxy group sit on different rings and a transposition produces a compound with an identical molecular formula and much reduced transporter affinity, which mass spectrometry alone will not catch.',
+          reagentsAndBuffer:
+            '5-bromo-2-chloro-4-prime-ethoxydiphenylmethane reference standard, 2,3,4,6-tetra-O-trimethylsilyl-D-gluconolactone, gas chromatography for isomeric purity, nuclear magnetic resonance for anomeric configuration, Karl Fischer titration',
+        },
+        {
+          id: 'dap-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Aryl lithium addition and stereoselective reduction to the beta-C-glycoside',
+          description:
+            'Perform halogen-metal exchange at low temperature, add the aryl lithium to the protected gluconolactone to give the anomeric lactol, convert it to the methyl acetal and reduce with a silane under Lewis acid catalysis. The reduction is what sets the beta configuration and converts a hydrolysable acetal into a carbon-carbon bond, which is the single change that turned an undevelopable natural product scaffold into an oral drug class.',
+          dependsOnStepId: 'dap-w1',
+          reagentsAndBuffer:
+            'n-butyllithium in tetrahydrofuran/toluene at minus 78 degrees Celsius under argon, methanesulfonic acid in methanol, triethylsilane with boron trifluoride diethyl etherate in acetonitrile/dichloromethane',
+        },
+        {
+          id: 'dap-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Propanediol co-crystal formation for a stable solid',
+          description:
+            'Deprotect, then crystallise as the (S)-propane-1,2-diol monohydrate. This step is why the marketed product is not the free tetraol: dapagliflozin itself is a low-melting, poorly crystalline solid that does not make a robust tablet, and the propanediol co-crystal is a formulation solution encoded into the drug substance rather than into the excipients.',
+          dependsOnStepId: 'dap-w2',
+          reagentsAndBuffer:
+            '(S)-propane-1,2-diol with water in ethyl acetate or isopropyl acetate, controlled cooling crystallisation, X-ray powder diffraction and differential scanning calorimetry for form confirmation, reversed-phase HPLC against the alpha-anomer reference impurity',
+        },
+        {
+          id: 'dap-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Apical dosing of a polarised SGLT2-expressing tubular monolayer',
+          description:
+            'Apply the compound to the apical face of cells expressing human SLC5A2 grown on permeable supports. Sidedness is the point again: in vivo the drug is filtered and secreted into the tubular lumen and meets the transporter from the urine side, so an assay that dosed from the blood side would be measuring geometry the kidney never presents.',
+          dependsOnStepId: 'dap-w3',
+          reagentsAndBuffer:
+            'LLC-PK1 or HEK293 cells stably expressing human SLC5A2 on Transwell inserts, sodium-containing and choline-substituted uptake buffers at pH 7.4, phlorizin as reference inhibitor, transepithelial electrical resistance monitoring',
+        },
+        {
+          id: 'dap-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Selectivity ratio and urinary glucose excretion confirmation',
+          description:
+            'Measure sodium-dependent uptake of a non-metabolisable glucose analogue in SGLT2- and SGLT1-expressing cells to establish the selectivity ratio, then confirm target engagement in vivo by 24-hour urinary glucose excretion. The in vitro number predicts gastrointestinal tolerability; only the urinary measurement demonstrates the transporter was blocked in a working kidney.',
+          dependsOnStepId: 'dap-w4',
+          reagentsAndBuffer:
+            'CHO or HEK293 cells expressing human SLC5A2 or SLC5A1, carbon-14-labelled alpha-methyl-D-glucopyranoside, phlorizin positive control, hexokinase-glucose-6-phosphate dehydrogenase enzymatic assay for urinary glucose quantification',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dap-a1',
+        category: 'conclusion_shift',
+        title: 'DECLARE-TIMI 58: the atherosclerotic endpoint missed and the heart failure one hit',
+        laymanSummary:
+          'In more than seventeen thousand people with type 2 diabetes, the drug did not reduce heart attacks, strokes or cardiovascular deaths. It did reduce hospitalisation for heart failure, and it slowed kidney decline.',
+        technicalDetails:
+          'DECLARE-TIMI 58 evaluated 17,160 patients with type 2 diabetes who had or were at risk for atherosclerotic cardiovascular disease, including 10,186 without established atherosclerotic disease, over a median 4.2 years. Dapagliflozin met the prespecified non-inferiority criterion for the major adverse cardiovascular event safety outcome. On the two primary efficacy analyses, it did not reduce MACE (8.8% against 9.4%; hazard ratio 0.93, 95% CI 0.84 to 1.03, p=0.17) but did reduce cardiovascular death or hospitalisation for heart failure (4.9% against 5.8%; hazard ratio 0.83, 0.73 to 0.95, p=0.005). That composite reflected hospitalisation for heart failure (hazard ratio 0.73, 0.61 to 0.88); cardiovascular death alone showed no difference (0.98, 0.82 to 1.17). A renal event occurred in 4.3% against 5.6% (0.76, 0.67 to 0.87). Death from any cause was 6.2% against 6.6% (0.93, 0.82 to 1.04) — not a demonstrated difference.',
+        evidenceSource:
+          'Wiviott SD et al., DECLARE-TIMI 58, N Engl J Med 2019;380:347-357 (NCT01730534)',
+        doi: '10.1056/NEJMoa1812389',
+        measuredMetric:
+          'Major adverse cardiovascular events and the composite of cardiovascular death or heart failure hospitalisation over a median 4.2 years',
+        inferredClaim:
+          'That SGLT2 inhibition prevents heart attacks and strokes — the MACE hazard ratio was 0.93 with a confidence interval crossing 1',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dap-a2',
+        category: 'measured',
+        title: 'DAPA-HF: fewer deaths in heart failure, with or without diabetes',
+        laymanSummary:
+          'Nearly five thousand people with a weakened heart, over half of them without diabetes, were randomised. Worsening heart failure and cardiovascular death fell by a quarter, and deaths from any cause fell too.',
+        technicalDetails:
+          'DAPA-HF randomised 4,744 patients with NYHA class II-IV heart failure and ejection fraction of 40% or less to dapagliflozin 10 mg daily or placebo on top of recommended therapy. Over a median 18.2 months the primary composite of worsening heart failure — hospitalisation or an urgent visit requiring intravenous therapy — or cardiovascular death occurred in 386 of 2,373 (16.3%) against 502 of 2,371 (21.2%): hazard ratio 0.74 (95% CI 0.65 to 0.85), p<0.001. First worsening heart failure event 10.0% against 13.7% (0.70, 0.59 to 0.83). Cardiovascular death 9.6% against 11.5% (0.82, 0.69 to 0.98). Death from any cause 11.6% against 13.9% (0.83, 0.71 to 0.97). Findings in patients with diabetes were similar to those without. Adverse events relating to volume depletion, renal dysfunction and hypoglycaemia did not differ between groups.',
+        evidenceSource: 'McMurray JJV et al., DAPA-HF, N Engl J Med 2019;381:1995-2008 (NCT03036124)',
+        doi: '10.1056/NEJMoa1911303',
+        measuredMetric:
+          'Worsening heart failure or cardiovascular death, and death from any cause, over a median 18.2 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dap-a3',
+        category: 'measured',
+        title: 'DAPA-CKD: stopped early for efficacy, with a number needed to treat of 19',
+        laymanSummary:
+          'A trial in chronic kidney disease was halted early by its monitoring committee because the benefit was so clear. Nineteen people needed treating over about two and a half years to prevent one kidney or cardiovascular event.',
+        technicalDetails:
+          'DAPA-CKD randomised 4,304 participants with eGFR 25 to 75 mL/min/1.73 m2 and urinary albumin-to-creatinine ratio 200 to 5,000 mg/g to dapagliflozin 10 mg daily or placebo. The independent data monitoring committee recommended stopping for efficacy. Over a median 2.4 years the primary composite of sustained eGFR decline of at least 50%, end-stage kidney disease, or death from renal or cardiovascular causes occurred in 197 of 2,152 (9.2%) against 312 of 2,152 (14.5%): hazard ratio 0.61 (95% CI 0.51 to 0.72), p<0.001, number needed to treat 19 (15 to 27). The pure kidney composite gave 0.56 (0.45 to 0.68, p<0.001) and the cardiovascular death or heart failure hospitalisation composite 0.71 (0.55 to 0.92, p=0.009). Death from any cause occurred in 101 (4.7%) against 146 (6.8%): hazard ratio 0.69 (0.53 to 0.88), p=0.004. Effects were similar with and without type 2 diabetes.',
+        evidenceSource:
+          'Heerspink HJL et al., DAPA-CKD, N Engl J Med 2020;383:1436-1446 (NCT03036150)',
+        doi: '10.1056/NEJMoa2024816',
+        measuredMetric:
+          'Sustained 50% eGFR decline, end-stage kidney disease, or renal or cardiovascular death, and all-cause mortality, over a median 2.4 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dap-a4',
+        category: 'measured',
+        title: 'DELIVER: benefit above an ejection fraction of 40%, without a mortality difference',
+        laymanSummary:
+          'In six thousand people with heart failure and a normal or near-normal pumping fraction, the combined endpoint fell. Cardiovascular deaths alone did not significantly differ.',
+        technicalDetails:
+          'DELIVER randomised 6,263 patients with heart failure and left ventricular ejection fraction above 40% to dapagliflozin 10 mg daily or matching placebo on top of usual therapy. Over a median 2.3 years the primary composite of worsening heart failure — unplanned hospitalisation or an urgent visit — or cardiovascular death occurred in 512 of 3,131 (16.4%) against 610 of 3,132 (19.5%): hazard ratio 0.82 (95% CI 0.73 to 0.92), p<0.001. Worsening heart failure occurred in 11.8% against 14.5% (0.79, 0.69 to 0.91). Cardiovascular death occurred in 7.4% against 8.3%: hazard ratio 0.88 (0.74 to 1.05) — an interval that includes no effect. Results were similar in those with ejection fraction of 60% or more and below 60%, and in those with and without diabetes. Adverse event incidence was similar between groups.',
+        evidenceSource: 'Solomon SD et al., DELIVER, N Engl J Med 2022;387:1089-1098 (NCT03619213)',
+        doi: '10.1056/NEJMoa2206286',
+        measuredMetric:
+          'Worsening heart failure or cardiovascular death over a median 2.3 years, ejection fraction above 40%',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dap-a5',
+        category: 'inferred',
+        title: 'DAPA-MI changed its primary endpoint mid-trial, and the change decided the result',
+        laymanSummary:
+          'A trial after heart attack could not accumulate enough hard events, so during the trial the analysis was switched to a scoring method that also counts weight loss and new diabetes diagnoses. On that measure it won; on death and heart failure hospitalisation it did not move.',
+        technicalDetails:
+          'DAPA-MI was a registry-based randomised double-blind trial in patients without prior diabetes or chronic heart failure presenting with acute myocardial infarction and impaired left ventricular systolic function; 2,019 received dapagliflozin and 1,998 placebo. The primary outcome was a hierarchical composite analysed by win ratio comprising death, heart failure hospitalisation, non-fatal infarction, atrial fibrillation or flutter, new type 2 diabetes, NYHA class at last visit and a body-weight decrease of 5% or more. The win ratio was 1.34 (95% CI 1.20 to 1.50), p<0.001. The paper states directly that this outcome was adopted in a change of analysis during trial performance because of low event accrual, and that the result was mainly driven by the added cardiometabolic outcomes. The conventional composite of cardiovascular death or heart failure hospitalisation occurred in 50 of 2,019 (2.5%) against 52 of 1,998 (2.6%): hazard ratio 0.95 (0.64 to 1.40). Other cardiovascular event differences did not reach nominal significance.',
+        evidenceSource:
+          'James S et al., DAPA-MI, NEJM Evid 2024;3(2) (NCT04564742)',
+        doi: '10.1056/EVIDoa2300286',
+        measuredMetric:
+          'Hierarchical win-ratio composite, and separately the composite of cardiovascular death or heart failure hospitalisation',
+        inferredClaim:
+          'That dapagliflozin improves cardiovascular outcomes after myocardial infarction — the winning endpoint was redefined mid-trial and was driven by weight change and new diabetes diagnoses, not by death or heart failure',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'dap-a6',
+        category: 'measured',
+        title: 'The harms are small, specific and randomised',
+        laymanSummary:
+          'Across seventeen thousand patients the two things that happened more often on dapagliflozin were ketoacidosis and genital infections severe enough to stop the drug. Both were uncommon and both were clearly attributable.',
+        technicalDetails:
+          'In DECLARE-TIMI 58, diabetic ketoacidosis occurred in 0.3% on dapagliflozin against 0.1% on placebo (p=0.02), and genital infections that led to discontinuation of the regimen or were considered serious adverse events occurred in 0.9% against 0.1% (p<0.001). In DAPA-HF, adverse events relating to volume depletion, renal dysfunction and hypoglycaemia did not differ between groups, and in DELIVER overall adverse event incidence was similar. The pattern across trials is consistent: the class carries two mechanism-specific risks of low absolute frequency, and does not carry the general tolerability burden that its diuretic and renin-angiotensin comparators do.',
+        evidenceSource:
+          'Wiviott SD et al., N Engl J Med 2019;380:347-357; McMurray JJV et al., N Engl J Med 2019;381:1995-2008',
+        doi: '10.1056/NEJMoa1812389',
+        measuredMetric:
+          'Rates of diabetic ketoacidosis and of serious or discontinuation-causing genital infection in 17,160 randomised patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dap-a7',
+        category: 'inferred',
+        title: 'A mortality benefit exists in two trials and not in the other two',
+        laymanSummary:
+          'The class is often described as reducing deaths. For this drug, deaths fell significantly in the heart failure trial and the kidney trial, and did not in the diabetes trial or the preserved-ejection-fraction trial.',
+        technicalDetails:
+          'All-cause mortality by trial: DAPA-HF 11.6% against 13.9%, hazard ratio 0.83 (95% CI 0.71 to 0.97) — significant. DAPA-CKD 4.7% against 6.8%, hazard ratio 0.69 (0.53 to 0.88), p=0.004 — significant. DECLARE-TIMI 58 6.2% against 6.6%, hazard ratio 0.93 (0.82 to 1.04) — not significant. DELIVER did not show a significant difference in cardiovascular death (hazard ratio 0.88, 0.74 to 1.05). The populations differ in baseline risk and follow-up duration, which is a sufficient explanation and not a demonstrated one. A summary that says "dapagliflozin reduces mortality" without naming the population is reporting two trials and omitting two.',
+        evidenceSource:
+          'McMurray JJV et al., N Engl J Med 2019;381:1995-2008; Heerspink HJL et al., N Engl J Med 2020;383:1436-1446; Wiviott SD et al., N Engl J Med 2019;380:347-357; Solomon SD et al., N Engl J Med 2022;387:1089-1098',
+        doi: '10.1056/NEJMoa2024816',
+        inferredClaim:
+          'That dapagliflozin reduces all-cause mortality generally — it did so in heart failure with reduced ejection fraction and in chronic kidney disease, and not in the other two large trials',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed rapidly, cleared by glucuronidation rather than by cytochromes',
+        laymanDesc:
+          'The tablet is well absorbed and the body disposes of it by attaching a sugar-derived tag, not by the liver enzyme system that most drug interactions run through.',
+        molecularDetail:
+          'Oral bioavailability is about 78%, with peak plasma concentration within two hours and a terminal half-life of roughly 12.9 hours. Clearance is dominated by UGT1A9-mediated glucuronidation to the inactive dapagliflozin 3-O-glucuronide, with minimal cytochrome P450 involvement — which is why the interaction list is short.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Filtered and secreted into the tubule to reach its target from the urine side',
+        laymanDesc:
+          'The transporter it blocks faces the fluid that has just been filtered out of the blood, so the drug has to get into that fluid to work.',
+        molecularDetail:
+          'SGLT2 is expressed on the apical brush border of proximal tubule segments S1 and S2, where it reabsorbs roughly 90% of filtered glucose. Access is luminal. SGLT1, in segment S3 and throughout the small intestine, reclaims the remainder, which is why maximal SGLT2 inhibition still leaves some glucose reabsorption intact.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A glucose mimic that cannot be cut apart occupies the transporter',
+        laymanDesc:
+          'The drug carries a sugar ring joined to the rest of the molecule by a bond the body cannot break, so it sits in the transporter instead of being digested out of it.',
+        molecularDetail:
+          'Dapagliflozin is a C-aryl glucoside: the carbon-carbon glycosidic linkage resists beta-glucosidase hydrolysis, the flaw that made phlorizin undevelopable. Selectivity for SGLT2 over SGLT1 is roughly 1,200-fold, sufficient to leave intestinal glucose absorption unaffected.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Glucose, sodium and water leave together, and the kidney filter resets its pressure',
+        laymanDesc:
+          'Unreclaimed sugar drags water out with it and leaves sodium behind in the tubule. A sensor further along reads that extra sodium and tightens the vessel feeding the filter, lowering the pressure across it.',
+        molecularDetail:
+          'Urinary glucose excretion rises to roughly 70 grams daily with accompanying osmotic diuresis and natriuresis. Increased sodium chloride delivery to the macula densa restores tubuloglomerular feedback, constricting the afferent arteriole and reducing intraglomerular hypertension — the leading explanation for the initial eGFR dip and for the long-term slowing of decline.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Heart failure events and kidney decline fall; heart attacks do not',
+        laymanDesc:
+          'Across four large trials the consistent findings are fewer heart failure admissions and slower kidney deterioration. Heart attacks and strokes were not reduced.',
+        molecularDetail:
+          'In DECLARE-TIMI 58 the MACE hazard ratio was 0.93 (p=0.17) while heart failure hospitalisation fell to 0.73 and the renal composite to 0.76. In DAPA-CKD the primary composite hazard ratio was 0.61 with a number needed to treat of 19, and all-cause mortality 0.69. In DAPA-HF all-cause mortality was 0.83.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'DECLARE-TIMI 58 (NCT01730534)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 4.2 years',
+        sampleSize: 17160,
+        primaryEndpoint:
+          'Co-primary efficacy: major adverse cardiovascular events, and cardiovascular death or hospitalisation for heart failure',
+        endpointMet: false,
+        statisticalPValue:
+          'MACE HR 0.93 (95% CI 0.84-1.03), P = 0.17 — missed; the heart failure composite met at HR 0.83, P = 0.005',
+        unreportedAdverseSignals:
+          'Diabetic ketoacidosis 0.3% against 0.1% (p=0.02); serious or discontinuation-causing genital infection 0.9% against 0.1% (p<0.001). All-cause death 6.2% against 6.6%, not significant.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'DAPA-HF (NCT03036124)',
+        phase: 'Randomised double-blind placebo-controlled phase 3 trial, median 18.2 months',
+        sampleSize: 4744,
+        primaryEndpoint:
+          'Worsening heart failure or cardiovascular death, ejection fraction ≤40%',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.74 (95% CI 0.65-0.85), P < 0.001',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'DAPA-CKD (NCT03036150)',
+        phase: 'Randomised double-blind placebo-controlled trial, stopped early for efficacy, median 2.4 years',
+        sampleSize: 4304,
+        primaryEndpoint:
+          'Sustained eGFR decline of at least 50%, end-stage kidney disease, or death from renal or cardiovascular causes',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.61 (95% CI 0.51-0.72), P < 0.001; number needed to treat 19',
+        unreportedAdverseSignals:
+          'Stopping early for efficacy inflates measured effect sizes and truncates long-term safety observation.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'DELIVER (NCT03619213)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 2.3 years',
+        sampleSize: 6263,
+        primaryEndpoint:
+          'Worsening heart failure or cardiovascular death, ejection fraction above 40%',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.82 (95% CI 0.73-0.92), P < 0.001',
+        unreportedAdverseSignals:
+          'Cardiovascular death alone gave HR 0.88 (0.74-1.05), an interval including no effect. The composite was carried by worsening heart failure.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'DAPA-MI (NCT04564742)',
+        phase: 'Registry-based randomised double-blind trial, approximately 1 year',
+        sampleSize: 4017,
+        primaryEndpoint:
+          'Hierarchical composite of death, heart failure hospitalisation, non-fatal infarction, atrial fibrillation, new type 2 diabetes, NYHA class and 5% body-weight decrease, by win ratio',
+        endpointMet: true,
+        statisticalPValue: 'Win ratio 1.34 (95% CI 1.20-1.50), P < 0.001',
+        unreportedAdverseSignals:
+          'The win-ratio endpoint was adopted in a change of analysis during the trial because of low event accrual, and the result was driven mainly by the added cardiometabolic components. Cardiovascular death or heart failure hospitalisation was 2.5% against 2.6%, HR 0.95.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Major adverse cardiovascular events 8.8% against 9.4% in 17,160 patients with type 2 diabetes — a hazard ratio of 0.93 that includes no effect',
+        'Worsening heart failure or cardiovascular death 16.3% against 21.2% in 4,744 patients with reduced ejection fraction, with all-cause death 11.6% against 13.9%',
+        'Kidney progression or renal or cardiovascular death 9.2% against 14.5% in 4,304 patients with chronic kidney disease, number needed to treat 19',
+        'Diabetic ketoacidosis 0.3% against 0.1% and serious genital infection 0.9% against 0.1% in 17,160 randomised patients',
+      ],
+      unsupportedInferences: [
+        'That SGLT2 inhibition prevents heart attacks and strokes — DECLARE-TIMI 58 tested exactly that and gave p=0.17',
+        'That dapagliflozin improves outcomes after myocardial infarction — DAPA-MI won on a mid-trial redefined composite driven by weight and new diabetes diagnoses, while cardiovascular death and heart failure hospitalisation were 2.5% against 2.6%',
+        'That the drug reduces mortality generally — it did in DAPA-HF and DAPA-CKD, and did not in DECLARE-TIMI 58 or on cardiovascular death in DELIVER',
+        'That dapagliflozin and empagliflozin are interchangeable on outcomes — no head-to-head trial has been run',
+      ],
+      whatFailedInitially: [
+        'DECLARE-TIMI 58 missed the major adverse cardiovascular event co-primary endpoint in 17,160 patients',
+        'DAPA-MI could not accumulate enough hard events to test its original endpoint and switched analysis method mid-trial',
+        'Cardiovascular death alone was not significantly reduced in DECLARE-TIMI 58 or in DELIVER',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines, and a foundational heart failure and chronic kidney disease therapy independent of diabetes',
+        'US$12.08 per 10 mg FARXIGA tablet at United States pharmacy acquisition cost; no generic listing exists in the CMS NADAC file',
+        'DAPA-CKD extended the indication into chronic kidney disease in people without diabetes, which is where most chronic kidney disease is',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, and fixed combinations with metformin and with saxagliptin',
+      description:
+        'Once daily, with or without food. Cleared by glucuronidation rather than by cytochrome P450, giving a short interaction list. Its glucose-lowering effect depends on filtered glucose load and diminishes as kidney function falls, while its heart failure and renal benefits were demonstrated down to an eGFR of 25.',
+      safetyProfile:
+        'Genital mycotic infection is the commonest adverse effect and the commonest reason for discontinuation. Diabetic ketoacidosis occurred in 0.3% against 0.1% on placebo in DECLARE-TIMI 58 and can present with normal blood glucose. Fournier gangrene is a rare labelled warning. Volume depletion and hypotension occur, particularly alongside loop diuretics. An expected initial dip in eGFR occurs on starting and reflects the intended haemodynamic change rather than injury.',
+    },
+    commonQuestions: [
+      {
+        q: 'I do not have diabetes. Why am I on a diabetes drug?',
+        a: 'Because the trials that matter most for you deliberately enrolled people who do not. DAPA-HF randomised 4,744 patients with a weakened heart and reported that findings in patients with diabetes were similar to those without; the primary endpoint fell from 21.2% to 16.3% and deaths from any cause from 13.9% to 11.6%. DAPA-CKD randomised 4,304 people with chronic kidney disease, again with and without diabetes, and was stopped early because the benefit was so clear — nineteen people treated for about two and a half years to prevent one kidney or cardiovascular event. Your blood sugar will fall a little if it is high and barely at all if it is normal, because the drug can only discard glucose the kidney has filtered.',
+      },
+      {
+        q: 'Did this drug fail its diabetes trial?',
+        a: 'It missed one of its two primary efficacy endpoints, which is worth stating precisely. DECLARE-TIMI 58 followed 17,160 people with type 2 diabetes for a median of 4.2 years. Major adverse cardiovascular events — cardiovascular death, heart attack, ischaemic stroke — occurred in 8.8% on dapagliflozin against 9.4% on placebo, hazard ratio 0.93, p=0.17. That is a miss. The other primary endpoint, cardiovascular death or hospitalisation for heart failure, did fall: 4.9% against 5.8%, p=0.005, and the fall came from heart failure admissions, not from cardiovascular deaths. Read together, the trial says the drug is not preventing plaque events and is doing something else.',
+        auditNote:
+          'This is the cleanest single piece of evidence on the site that the SGLT2 class is not an anti-atherosclerotic therapy.',
+      },
+      {
+        q: 'What happened in the trial after heart attack?',
+        a: 'DAPA-MI is worth understanding because of how its endpoint was chosen. The trial enrolled 4,017 patients without prior diabetes or heart failure after a heart attack with impaired pumping function. Hard events did not accumulate as expected, so during the trial the analysis was changed to a win ratio on a hierarchical list that includes death and heart failure hospitalisation but also new diabetes diagnoses, symptom class and a 5% body-weight decrease. On that measure dapagliflozin won, 1.34, p<0.001, and the paper states plainly that the result was mainly driven by the added cardiometabolic outcomes. On the conventional measure of cardiovascular death or heart failure hospitalisation, the numbers were 2.5% against 2.6%. Both facts come from the same paper.',
+      },
+      {
+        q: 'Does it reduce the risk of dying?',
+        a: 'In two of its four large trials, yes, and this is a place where the population matters more than the drug. Deaths from any cause fell significantly in DAPA-HF (11.6% against 13.9%) and in DAPA-CKD (4.7% against 6.8%, p=0.004). They did not fall significantly in DECLARE-TIMI 58 (6.2% against 6.6%), and cardiovascular death alone was not significantly reduced in DELIVER (hazard ratio 0.88, interval 0.74 to 1.05). The likely reason is baseline risk: the heart failure and kidney disease populations had far more deaths to prevent. That is a reasonable explanation and it has not been demonstrated, which is why a statement that this drug reduces mortality should always name the population.',
+      },
+      {
+        q: 'What is the difference between this and empagliflozin?',
+        a: 'Nothing that a randomised trial has established, because none has compared them. Both are C-aryl glucoside SGLT2 inhibitors, both have positive trials in heart failure with reduced ejection fraction, in heart failure above 40%, and in chronic kidney disease. The one visible difference is in their diabetes trials: EMPA-REG OUTCOME met its cardiovascular primary endpoint and reduced all-cause death by 32%, while DECLARE-TIMI 58 missed on major adverse cardiovascular events. The populations were not the same — DECLARE enrolled 10,186 people without established atherosclerotic disease, a much lower-risk group — so the difference may be who was studied rather than what was given. Anyone asserting one is superior is comparing across trials.',
+      },
+      {
+        q: 'Why is there no manufacturing cost on this page?',
+        a: 'Because no verified per-dose synthesis cost for dapagliflozin could be cited. The price shown is pharmacy acquisition cost from the CMS NADAC file effective 19 August 2026: US$12.08 for a 10 mg FARXIGA tablet, with no generic entry, against US$11.18 for the equivalent JARDIANCE tablet. The synthesis involves a low-temperature organolithium addition to a protected sugar and a stereoselective reduction, then crystallisation as a propanediol co-crystal because the free compound does not form a usable solid — a considerably longer route than the cheap drugs on this site. That is a description of process complexity, not a cost figure, and this page does not convert one into the other.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Wiviott SD et al. Dapagliflozin and cardiovascular outcomes in type 2 diabetes (DECLARE-TIMI 58). N Engl J Med 2019;380:347-357',
+        identifier: '10.1056/NEJMoa1812389',
+        kind: 'doi',
+      },
+      {
+        label:
+          'McMurray JJV et al. Dapagliflozin in patients with heart failure and reduced ejection fraction (DAPA-HF). N Engl J Med 2019;381:1995-2008',
+        identifier: '10.1056/NEJMoa1911303',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Heerspink HJL et al. Dapagliflozin in patients with chronic kidney disease (DAPA-CKD). N Engl J Med 2020;383:1436-1446',
+        identifier: '10.1056/NEJMoa2024816',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Solomon SD et al. Dapagliflozin in heart failure with mildly reduced or preserved ejection fraction (DELIVER). N Engl J Med 2022;387:1089-1098',
+        identifier: '10.1056/NEJMoa2206286',
+        kind: 'doi',
+      },
+      {
+        label:
+          'James S et al. Dapagliflozin in myocardial infarction without diabetes or heart failure (DAPA-MI). NEJM Evid 2024;3(2)',
+        identifier: '10.1056/EVIDoa2300286',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: FARXIGA (dapagliflozin), NDA 202293, original approval 8 January 2014',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=202293',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 9887712 — dapagliflozin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9887712',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 11. Sitagliptin — cardiovascular safety demonstrated across 14,671 patients, cardiovascular
+  //     benefit never demonstrated at all, and the weakest glycaemic durability of four add-ons.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'sitagliptin',
+    name: 'Sitagliptin',
+    tradeName: 'Januvia',
+    sponsor: 'Merck Sharp & Dohme',
+    targetGene: 'DPP4',
+    targetProtein: 'Dipeptidyl peptidase-4 (CD26)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2006,
+    indication:
+      'Adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus',
+    patientFriendlyIndication: 'Type 2 diabetes',
+    anatomicalSite:
+      'Endothelial cell surface and plasma, principally in the splanchnic circulation draining the gut',
+    conditionContext: {
+      conditionExplainer:
+        'When food reaches the gut, intestinal cells release hormones called incretins that tell the pancreas to release insulin — but only while glucose is high. Those hormones are destroyed within minutes by an enzyme sitting on blood vessel surfaces. Blocking that enzyme leaves the incretins circulating longer, so the insulin response to a meal is larger and lasts longer.',
+      whyItMatters:
+        'Because the effect is glucose-dependent, this class barely causes hypoglycaemia, which made it enormously popular. What it has never done, in a trial designed to look, is reduce a cardiovascular event. TECOS was the trial that looked, and its finding of exactly no difference is the honest headline for this page.',
+      whoTakesThis:
+        'Widely used as a second-line addition to metformin in type 2 diabetes, particularly where hypoglycaemia or weight gain is a concern. Generic sitagliptin entered the United States market in 2026.',
+      clinicalGoals:
+        'Lower HbA1c. TECOS measured cardiovascular events and found no difference; GRADE measured glycaemic durability and ranked sitagliptin last of four.',
+    },
+    oneSentenceVerdict:
+      'A well-tolerated glucose-lowering drug that produced a hazard ratio of 0.98 for major cardiovascular events across 14,671 patients with established cardiovascular disease — a demonstration of safety that is routinely and incorrectly read as a demonstration of benefit — and that ranked last of four add-ons for glycaemic durability in 5,047 participants followed a mean of five years.',
+    laymanHowItWorks:
+      'Your gut releases hormones after a meal that tell the pancreas to make insulin, and an enzyme in your bloodstream chops those hormones up within a couple of minutes. Sitagliptin blocks that enzyme, so the hormones last longer and the pancreas responds more. Because those hormones only act while blood sugar is high, the drug almost never pushes sugar too low.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 82,
+    substitutes: {
+      summary:
+        'Generic sitagliptin now costs about US$3.77 per tablet in the United States against US$10.55 for branded JANUVIA. Its realistic alternatives all have something it does not: metformin has a randomised mortality result, the SGLT2 inhibitors have heart failure and kidney outcome trials, and the GLP-1 agonists have cardiovascular outcome trials and substantial weight loss. What sitagliptin has is tolerability.',
+      conventionalRx: [
+        {
+          name: 'Empagliflozin (Jardiance)',
+          class: 'SGLT2 inhibitor',
+          howItCompares:
+            'Reduced cardiovascular death and all-cause mortality in 7,020 patients with established cardiovascular disease. Sitagliptin, tested in a comparable population of 14,671, produced a hazard ratio of 0.98 with no reduction in any endpoint.',
+          typicalCost:
+            'US$11.19 per 10 mg JARDIANCE tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cardiovascular, heart failure and kidney outcome evidence. Cons: genital infections, euglycaemic ketoacidosis, and roughly three times the acquisition cost of generic sitagliptin.',
+        },
+        {
+          name: 'Liraglutide or another GLP-1 receptor agonist',
+          class: 'GLP-1 receptor agonist, injected',
+          howItCompares:
+            'Acts on the same incretin axis from the other end — supplying a degradation-resistant analogue of the hormone rather than preserving the native one — and achieves far larger effects. In GRADE, liraglutide and insulin glargine were significantly better than sitagliptin at maintaining target HbA1c, and liraglutide produced the most weight loss.',
+          typicalCost: 'Brand-priced injectables, a multiple of oral generic therapy',
+          prosAndCons:
+            'Pros: greater glycaemic durability, weight loss, cardiovascular outcome evidence. Cons: injection, gastrointestinal side effects, cost.',
+        },
+        {
+          name: 'Glimepiride (generic sulfonylurea)',
+          class: 'Sulfonylurea insulin secretagogue',
+          howItCompares:
+            'Cheaper and, in GRADE, better than sitagliptin at maintaining target HbA1c (30.4 against 38.1 per 100 participant-years reaching the primary metabolic endpoint). It causes hypoglycaemia where sitagliptin largely does not: severe hypoglycaemia occurred in 2.2% on glimepiride against 0.7% on sitagliptin.',
+          typicalCost:
+            'US$0.030 per 2 mg tablet at pharmacy acquisition cost (CMS NADAC, effective 17 December 2025)',
+          prosAndCons:
+            'Pros: cheapest option, better durability than sitagliptin in GRADE. Cons: three times the severe hypoglycaemia rate, and weight gain.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report severe or persistent joint pain',
+          action:
+            'Severe and disabling arthralgia is a labelled effect of the DPP-4 inhibitor class and resolves on stopping.',
+          patientImpact:
+            'The FDA added a warning for severe joint pain to the labels of the DPP-4 inhibitors after post-marketing reports. Onset can be a day to years after starting, and symptoms resolve within about a month of discontinuation.',
+          clinicalPrecaution:
+            'Because onset can be delayed by years, the connection to the drug is easily missed. This page states the label warning and does not give stopping advice.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CN2C(=NN=C2C(F)(F)F)CN1C(=O)C[C@@H](CC3=CC(=C(C=C3F)F)F)N',
+      chemicalFormula: 'C16H15F6N5O',
+      molecularWeight: '407.31 g/mol (free base); dispensed as sitagliptin phosphate monohydrate',
+      targetReceptorAffinity:
+        'A competitive, reversible, highly selective inhibitor of dipeptidyl peptidase-4 with nanomolar potency and more than 2,600-fold selectivity over the related peptidases DPP-8 and DPP-9. That selectivity was a design requirement rather than a bonus: DPP-8 and DPP-9 inhibition produced toxicity in preclinical species, and the beta-amino amide scaffold with its triazolopiperazine was chosen to avoid them.',
+      structureSource: {
+        label:
+          'PubChem CID 4369359 (sitagliptin) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4369359',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sit-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of the trifluorophenyl acid and the triazolopiperazine',
+          description:
+            'Assay 2,4,5-trifluorophenylacetic acid for positional isomers and the trifluoromethyl-triazolopiperazine hydrochloride for water and residual solvent. The 2,4,5-trifluoro substitution pattern is what fills the S1 pocket of the enzyme, and an isomeric impurity is a compound with the same formula and much lower affinity that no mass assay will separate.',
+          reagentsAndBuffer:
+            '2,4,5-trifluorophenylacetic acid reference standard, 3-(trifluoromethyl)-5,6,7,8-tetrahydro-1,2,4-triazolo[4,3-a]pyrazine hydrochloride, gas chromatography for isomeric purity, Karl Fischer titration, ion chromatography for chloride',
+        },
+        {
+          id: 'sit-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Asymmetric hydrogenation of the enamine to set the (R)-amine',
+          description:
+            'Couple the acid to the triazolopiperazine, form the unprotected dehydro-enamine, and hydrogenate it asymmetrically over a rhodium-ferrocenyl phosphine catalyst. This step is the one the process is famous for: the original route ran through a protected intermediate with a rhodium hydrogenation and a separate resolution, and replacing it with direct hydrogenation of an unprotected enamine cut the step count and the waste dramatically. It also means the stereocentre is set catalytically, so catalyst loading and enantiomeric excess are the critical process parameters.',
+          dependsOnStepId: 'sit-w1',
+          reagentsAndBuffer:
+            'Ammonium acetate in methanol for enamine formation, rhodium precursor with a chiral ferrocenyl bisphosphine ligand under hydrogen pressure, methanol with ammonium chloride, chiral HPLC for enantiomeric excess',
+        },
+        {
+          id: 'sit-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Rhodium removal and phosphate monohydrate crystallisation',
+          description:
+            'Scavenge residual rhodium to the elemental impurity limit, then form and crystallise the phosphate monohydrate salt. Metal removal is a release specification with a numerical limit and is the reason a catalytic route needs a dedicated purification step that a stoichiometric one would not.',
+          dependsOnStepId: 'sit-w2',
+          reagentsAndBuffer:
+            'Activated carbon and thiol-functionalised silica scavenger, phosphoric acid in isopropanol/water, controlled cooling crystallisation, inductively coupled plasma mass spectrometry for residual rhodium, X-ray powder diffraction for form confirmation',
+        },
+        {
+          id: 'sit-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Engagement of membrane-anchored DPP-4 on endothelial cells',
+          description:
+            'Confirm inhibition of DPP-4 presented as a type-II membrane ectoenzyme on human endothelial cells, not merely of the soluble form in plasma. The distinction matters because the physiologically relevant degradation of GLP-1 happens within a few centimetres of its release, on endothelium in the capillaries draining the gut, before the hormone has reached the systemic circulation at all.',
+          dependsOnStepId: 'sit-w3',
+          reagentsAndBuffer:
+            'Human umbilical vein endothelial cells or Caco-2 monolayers expressing native DPP-4, Gly-Pro-aminomethylcoumarin fluorogenic substrate, 50 mM Tris-HCl at pH 7.8 with 0.1% bovine serum albumin, sitagliptin-free vehicle control',
+        },
+        {
+          id: 'sit-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'DPP-4 inhibition with a DPP-8 and DPP-9 counter-screen, plus intact GLP-1 readout',
+          description:
+            'Measure inhibition of DPP-4 alongside the closely related DPP-8 and DPP-9, and separately quantify intact versus cleaved GLP-1 in plasma. The counter-screen is not optional for this class: inhibiting DPP-8 and DPP-9 produced toxicity in preclinical species, so the selectivity ratio is a safety measurement, and intact GLP-1 is the only readout showing the enzyme block translated into preserved hormone.',
+          dependsOnStepId: 'sit-w4',
+          reagentsAndBuffer:
+            'Recombinant human DPP-4, DPP-8 and DPP-9, Gly-Pro-aminomethylcoumarin substrate, dipeptidyl peptidase assay buffer at pH 7.8, sandwich immunoassays specific for intact GLP-1 (7-36 amide) and for total GLP-1, dipeptidyl peptidase inhibitor cocktail in blood collection tubes',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sit-a1',
+        category: 'measured',
+        title: 'TECOS: cardiovascular safety demonstrated, with a hazard ratio of 0.98',
+        laymanSummary:
+          'Nearly fifteen thousand people with type 2 diabetes and established heart disease took sitagliptin or placebo on top of usual care for three years. The number of cardiovascular events was the same in both groups.',
+        technicalDetails:
+          'TECOS randomised 14,671 patients with type 2 diabetes and established cardiovascular disease to add sitagliptin or placebo to existing therapy, with open-label adjustment of other glucose-lowering drugs to reach individually appropriate targets in both arms. Over a median 3.0 years the difference in glycated haemoglobin was small (least-squares mean difference -0.29 percentage points, 95% CI -0.32 to -0.27). The primary composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or hospitalisation for unstable angina occurred in 839 patients on sitagliptin (11.4%, 4.06 per 100 person-years) and 851 on placebo (11.6%, 4.17 per 100 person-years): hazard ratio 0.98 (95% CI 0.88 to 1.09), meeting the prespecified non-inferiority margin of 1.3 at p<0.001. Hospitalisation for heart failure did not differ (hazard ratio 1.00, 0.83 to 1.20, p=0.98). Acute pancreatitis (p=0.07) and pancreatic cancer (p=0.32) did not differ significantly.',
+        evidenceSource: 'Green JB et al., TECOS, N Engl J Med 2015;373:232-242 (NCT00790205)',
+        doi: '10.1056/NEJMoa1501352',
+        measuredMetric:
+          'Composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or hospitalisation for unstable angina over a median 3.0 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sit-a2',
+        category: 'inferred',
+        title: 'A non-inferiority trial cannot show benefit, and TECOS is often cited as though it did',
+        laymanSummary:
+          'TECOS was designed to prove the drug does not cause harm, using a statistical test that can only rule harm out. Its result is genuinely reassuring and is not evidence that the drug helps the heart.',
+        technicalDetails:
+          'TECOS used a relative risk of 1.3 as the marginal upper boundary for non-inferiority. The observed hazard ratio was 0.98 with a confidence interval from 0.88 to 1.09 — an interval centred on no effect and comfortably excluding the 1.3 harm boundary. That is a demonstration that sitagliptin does not increase major adverse cardiovascular events. It is not a demonstration of reduction, and the interval rules out any benefit larger than 12% relative. The trial was mandated by the regulatory framework created after the rosiglitazone controversy, whose purpose was safety exclusion. Contrast the design outcome with EMPA-REG OUTCOME, run under the same mandate, which crossed into superiority with p=0.04 and a 32% reduction in all-cause death.',
+        evidenceSource:
+          'Green JB et al., TECOS, N Engl J Med 2015;373:232-242; Zinman B et al., EMPA-REG OUTCOME, N Engl J Med 2015;373:2117-2128',
+        doi: '10.1056/NEJMoa1504720',
+        inferredClaim:
+          'That TECOS showed sitagliptin protects the heart — the trial was powered and analysed to exclude harm, and its confidence interval excludes any benefit greater than 12% relative',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sit-a3',
+        category: 'failed',
+        title: 'GRADE: last of four add-ons for keeping blood sugar at target',
+        laymanSummary:
+          'Five thousand people already on metformin were randomised to one of four additional drugs and followed for five years. Sitagliptin was the least durable: more people on it drifted above target, and did so sooner.',
+        technicalDetails:
+          'GRADE randomised 5,047 participants with type 2 diabetes of less than 10 years duration on metformin with HbA1c 6.8 to 8.5% to insulin glargine U-100, glimepiride, liraglutide or sitagliptin, and followed them a mean of 5.0 years. The cumulative incidence of the primary metabolic outcome — a confirmed HbA1c of 7.0% or higher — differed significantly across groups (p<0.001 for a global test). Rates per 100 participant-years were 26.5 for glargine, 26.1 for liraglutide, 30.4 for glimepiride and 38.1 for sitagliptin. The secondary outcome, confirmed HbA1c above 7.5%, paralleled it. Among participants with higher baseline HbA1c the advantage of the other three over sitagliptin appeared greater still. Severe hypoglycaemia was rare and most frequent on glimepiride (2.2%) against glargine (1.3%), liraglutide (1.0%) and sitagliptin (0.7%).',
+        evidenceSource:
+          'GRADE Study Research Group, N Engl J Med 2022;387:1063-1074 (NCT01794143)',
+        doi: '10.1056/NEJMoa2200433',
+        measuredMetric:
+          'Cumulative incidence of confirmed HbA1c of 7.0% or higher over a mean 5.0 years, per 100 participant-years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sit-a4',
+        category: 'measured',
+        title: 'The class heart failure signal belongs to saxagliptin, and TECOS did not reproduce it',
+        laymanSummary:
+          'A trial of a related drug found more heart failure hospitalisations, which raised a question about the whole class. The sitagliptin trial specifically checked and found no difference at all.',
+        technicalDetails:
+          'SAVOR-TIMI 53 randomised 16,492 patients with type 2 diabetes to saxagliptin or placebo for a median 2.1 years. The primary composite of cardiovascular death, myocardial infarction or ischaemic stroke occurred in 7.3% against 7.2%: hazard ratio 1.00 (95% CI 0.89 to 1.12), p=0.99 for superiority and p<0.001 for non-inferiority. But hospitalisation for heart failure occurred in 3.5% against 2.8%: hazard ratio 1.27 (1.07 to 1.51), p=0.007. In TECOS the corresponding hazard ratio for sitagliptin was 1.00 (0.83 to 1.20), p=0.98, in a larger population followed longer. The two results together make the signal drug-specific rather than class-wide on the available evidence, which is what the sitagliptin label reflects.',
+        evidenceSource:
+          'Scirica BM et al., SAVOR-TIMI 53, N Engl J Med 2013;369:1317-1326 (NCT01107886); Green JB et al., TECOS, N Engl J Med 2015;373:232-242',
+        doi: '10.1056/NEJMoa1307684',
+        measuredMetric:
+          'Hospitalisation for heart failure, saxagliptin versus placebo and sitagliptin versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sit-a5',
+        category: 'inferred',
+        title: 'The pancreatitis and pancreatic cancer question was underpowered, not answered',
+        laymanSummary:
+          'A long-running concern about this class is inflammation or cancer of the pancreas. TECOS found no significant difference, and the events were too rare for the trial to settle the question.',
+        technicalDetails:
+          'TECOS reported no significant between-group difference in acute pancreatitis (p=0.07) or pancreatic cancer (p=0.32) across 14,671 patients over a median 3.0 years. Both are low-frequency events, and a p-value of 0.07 for pancreatitis is a numerical imbalance that did not reach significance rather than a demonstration of equivalence — the trial was powered for a cardiovascular composite, not for these. A three-year median follow-up is also short relative to the latency usually assumed for a solid tumour. The accurate summary is that no signal was detected in a study with limited power to detect one.',
+        evidenceSource: 'Green JB et al., TECOS, N Engl J Med 2015;373:232-242',
+        doi: '10.1056/NEJMoa1501352',
+        inferredClaim:
+          'That TECOS excluded a pancreatitis or pancreatic cancer risk — it detected no significant difference in events too rare, and follow-up too short, for exclusion',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sit-a6',
+        category: 'measured',
+        title: 'The glucose-dependence claim is real: 0.7% severe hypoglycaemia over five years',
+        laymanSummary:
+          'Because the hormones this drug preserves only work when blood sugar is high, it hardly ever pushes sugar too low. In a five-year randomised comparison that was its clearest advantage.',
+        technicalDetails:
+          'In GRADE, severe hypoglycaemia over a mean 5.0 years occurred in 0.7% of participants on sitagliptin, the lowest of the four arms, against 1.0% on liraglutide, 1.3% on insulin glargine and 2.2% on glimepiride — the difference from glimepiride being statistically significant. The mechanistic basis is that GLP-1 and GIP stimulate insulin secretion in a glucose-dependent manner and suppress glucagon only when glucose is elevated, so preserving them does not drive insulin release at normal glucose. This is the trade that defines the drug: the lowest hypoglycaemia rate of the four, and the weakest glycaemic durability of the four.',
+        evidenceSource:
+          'GRADE Study Research Group, N Engl J Med 2022;387:1063-1074 (NCT01794143)',
+        doi: '10.1056/NEJMoa2200433',
+        measuredMetric:
+          'Proportion of participants with severe hypoglycaemia over a mean 5.0 years, by treatment arm',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed almost completely and excreted almost unchanged',
+        laymanDesc:
+          'Nearly nine tenths of the tablet is absorbed, and the body barely alters it before the kidney gets rid of it.',
+        molecularDetail:
+          'Absolute oral bioavailability is about 87%, unaffected by food. Roughly 79% of a dose is excreted unchanged in urine, with minimal CYP3A4 and CYP2C8 metabolism, and renal elimination involves active tubular secretion by OAT3 and P-glycoprotein. The terminal half-life is about 12.4 hours, supporting once-daily dosing.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It meets its target on the surface of blood vessels, not inside a cell',
+        laymanDesc:
+          'The enzyme it blocks is anchored to the outside of cells lining blood vessels, with its business end facing the bloodstream. Nothing has to enter a cell.',
+        molecularDetail:
+          'DPP-4 is a type-II transmembrane serine exopeptidase, also known as CD26, expressed on endothelium, epithelium and lymphocytes, with a soluble circulating form as well. The physiologically decisive site is capillary endothelium in the splanchnic bed, where more than half of secreted GLP-1 is degraded before it reaches the systemic circulation.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A trifluorinated ring fills the pocket that normally grips the hormone',
+        laymanDesc:
+          'The drug slots into the enzyme\'s active site in the place where the end of the incretin hormone would sit, and holds there without being cut.',
+        molecularDetail:
+          'The 2,4,5-trifluorophenyl group occupies the S1 hydrophobic pocket, the primary amine of the beta-amino amide engages the S2 glutamate pair, and the trifluoromethyl-triazolopiperazine fills the adjacent lipophilic region. Inhibition is competitive and reversible, with more than 2,600-fold selectivity over DPP-8 and DPP-9 — the related peptidases whose inhibition was toxic in preclinical species.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Incretin hormones survive longer, and only act while glucose is high',
+        laymanDesc:
+          'Protected from destruction, the meal hormones circulate two to three times longer and keep telling the pancreas to release insulin — but only for as long as blood sugar stays up.',
+        molecularDetail:
+          'Intact GLP-1(7-36 amide) and GIP concentrations rise roughly two- to threefold. GLP-1 acts on beta-cell GLP-1 receptors to amplify glucose-stimulated insulin secretion through cyclic AMP and protein kinase A, and suppresses alpha-cell glucagon release. Both effects are glucose-dependent, which is why the drug produces almost no hypoglycaemia on its own.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'HbA1c falls by a fraction of a point, and nothing else measurably changes',
+        laymanDesc:
+          'Blood sugar comes down modestly. In the trial that counted heart attacks, strokes and deaths across fifteen thousand people, there was no difference at all.',
+        molecularDetail:
+          'In TECOS the on-treatment difference in glycated haemoglobin was -0.29 percentage points (95% CI -0.32 to -0.27) and the primary cardiovascular composite hazard ratio was 0.98 (0.88 to 1.09). In GRADE the drug had the highest rate of drifting above an HbA1c of 7.0% of the four arms, at 38.1 per 100 participant-years.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'TECOS (NCT00790205)',
+        phase: 'Randomised double-blind placebo-controlled cardiovascular safety trial, median 3.0 years',
+        sampleSize: 14671,
+        primaryEndpoint:
+          'Composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or hospitalisation for unstable angina',
+        endpointMet: true,
+        statisticalPValue:
+          'HR 0.98 (95% CI 0.88-1.09); P < 0.001 for non-inferiority against a 1.3 margin. Not a superiority result.',
+        unreportedAdverseSignals:
+          'Acute pancreatitis gave p=0.07, a numerical imbalance that did not reach significance in a trial not powered for it.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'GRADE (NCT01794143)',
+        phase: 'Randomised comparative-effectiveness trial, mean 5.0 years',
+        sampleSize: 5047,
+        primaryEndpoint:
+          'Confirmed glycated haemoglobin of 7.0% or higher on four add-ons to metformin',
+        endpointMet: false,
+        statisticalPValue:
+          'P < 0.001 for a global test across groups; sitagliptin worst at 38.1 per 100 participant-years against 26.1 for liraglutide',
+        unreportedAdverseSignals:
+          'Sitagliptin had the lowest severe hypoglycaemia rate of the four arms, at 0.7%. The trial measured glycaemia, not cardiovascular events.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'SAVOR-TIMI 53 (saxagliptin, NCT01107886)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 2.1 years',
+        sampleSize: 16492,
+        primaryEndpoint:
+          'Composite of cardiovascular death, myocardial infarction or ischaemic stroke on saxagliptin',
+        endpointMet: true,
+        statisticalPValue:
+          'HR 1.00 (95% CI 0.89-1.12); P = 0.99 for superiority, P < 0.001 for non-inferiority',
+        unreportedAdverseSignals:
+          'Hospitalisation for heart failure was 3.5% against 2.8%, HR 1.27 (1.07-1.51), p=0.007 — the class signal that TECOS then failed to reproduce for sitagliptin.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A cardiovascular composite hazard ratio of 0.98 (0.88 to 1.09) in 14,671 patients over a median 3.0 years',
+        'A glycated haemoglobin difference of -0.29 percentage points against placebo in the same trial',
+        'The highest rate of drifting above target HbA1c of four add-ons in 5,047 participants: 38.1 per 100 participant-years against 26.1 for liraglutide',
+        'The lowest severe hypoglycaemia rate of four add-ons over five years: 0.7% against 2.2% for glimepiride',
+      ],
+      unsupportedInferences: [
+        'That TECOS showed sitagliptin protects the heart — the design tested non-inferiority and the interval excludes any benefit above 12% relative',
+        'That TECOS excluded pancreatitis and pancreatic cancer risk — events were too rare and follow-up too short for exclusion',
+        'That the saxagliptin heart failure signal applies to sitagliptin — TECOS gave a hazard ratio of 1.00 in a larger, longer study',
+        'That a smaller HbA1c reduction is unimportant because the drug is well tolerated — GRADE measured durability over five years and ranked it last of four',
+      ],
+      whatFailedInitially: [
+        'GRADE: last of four add-ons on the primary metabolic endpoint, with the gap widening at higher baseline HbA1c',
+        'No cardiovascular benefit has ever been demonstrated for this drug, in the largest trial designed to look for one',
+        'SAVOR-TIMI 53 raised a heart failure signal for the class that led to labelling changes for two of its members',
+      ],
+      realWorldOutcome: [
+        'One of the most widely prescribed second-line diabetes drugs of the past two decades, now available as a United States generic',
+        'US$3.77 per 100 mg generic sitagliptin phosphate tablet at pharmacy acquisition cost (CMS NADAC, effective 5 August 2026) against US$10.55 for branded JANUVIA at 17 December 2025',
+        'The FDA added a severe joint pain warning to the DPP-4 inhibitor class labels after post-marketing reports of disabling arthralgia resolving on withdrawal',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, and fixed combinations with metformin and with SGLT2 inhibitors',
+      description:
+        'Once daily, with or without food. Almost entirely renally cleared as unchanged drug, so exposure rises as kidney function falls and the label is written around estimated GFR. Its interaction profile is unusually clean because cytochrome metabolism is minimal.',
+      safetyProfile:
+        'Very well tolerated: in TECOS there were no significant differences from placebo in any adverse event category examined, including heart failure hospitalisation. The class carries labelled warnings for acute pancreatitis, severe and disabling joint pain, and bullous pemphigoid. Hypoglycaemia is uncommon on its own but occurs when combined with a sulfonylurea or insulin. Dose depends on kidney function because clearance is renal.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does this drug protect my heart?',
+        a: 'No trial has shown that it does, and the largest one designed to look found no difference. TECOS randomised 14,671 people with type 2 diabetes and established cardiovascular disease to sitagliptin or placebo on top of usual care for a median of three years. Cardiovascular deaths, heart attacks, strokes and admissions for unstable angina occurred in 11.4% on the drug and 11.6% on placebo: hazard ratio 0.98, confidence interval 0.88 to 1.09. That interval is centred on no effect. TECOS was designed as a non-inferiority trial — its statistical job was to rule out harm above a 30% relative increase, and it did that convincingly. Ruling out harm and demonstrating benefit are different results, and only the first one is available here.',
+        auditNote:
+          'The distinction between a met non-inferiority endpoint and a demonstrated benefit is the single most common misreading of cardiovascular safety trials, and this drug is where it happens most.',
+      },
+      {
+        q: 'Why do I hear this is a weak drug?',
+        a: 'Because a five-year randomised comparison put it last. GRADE assigned 5,047 people already taking metformin to one of four additions — insulin glargine, glimepiride, liraglutide or sitagliptin — and followed them a mean of five years. The rate of drifting back above an HbA1c of 7.0% was 26.1 per 100 participant-years on liraglutide, 26.5 on glargine, 30.4 on glimepiride and 38.1 on sitagliptin. The gap was larger still in people who started with higher HbA1c. What sitagliptin won on was hypoglycaemia: 0.7% had a severe episode against 2.2% on glimepiride. That is the trade the drug represents, stated numerically.',
+      },
+      {
+        q: 'Does it cause heart failure?',
+        a: 'The evidence says no for this drug, though the question came from a real finding about a related one. SAVOR-TIMI 53 tested saxagliptin in 16,492 patients and found heart failure hospitalisation in 3.5% against 2.8% on placebo, hazard ratio 1.27, p=0.007 — a genuine, statistically significant excess that changed labelling. TECOS then measured the same endpoint for sitagliptin in 14,671 patients over a longer median follow-up and found a hazard ratio of exactly 1.00, confidence interval 0.83 to 1.20, p=0.98. On the available randomised evidence the signal is saxagliptin-specific rather than class-wide.',
+      },
+      {
+        q: 'What about pancreatitis?',
+        a: 'The honest answer is that nobody has excluded it. TECOS reported no significant difference in acute pancreatitis, with a p-value of 0.07, and none in pancreatic cancer, at p=0.32. A p-value of 0.07 is a numerical imbalance that did not reach the conventional threshold, in a trial powered for a cardiovascular composite rather than for a rare pancreatic event. Three years of median follow-up is also short for a solid tumour. So the accurate statement is that no signal was detected in a study with limited ability to detect one, which is different from a clean bill of health. Acute pancreatitis remains a labelled warning for the class.',
+      },
+      {
+        q: 'Why does it not cause low blood sugar?',
+        a: 'Because of what it preserves rather than what it adds. The incretin hormones GLP-1 and GIP amplify insulin release and suppress glucagon only while blood glucose is elevated; at normal glucose they are essentially silent. Sitagliptin does not push the pancreas, it stops the enzyme that destroys those hormones, so the pancreas is prompted more strongly during a meal and not at all between meals. In GRADE, severe hypoglycaemia over five years occurred in 0.7% of participants on sitagliptin, the lowest of the four arms. That safety comes with the corresponding cost: nothing forces the glucose down when the incretin signal itself is weak, which is why durability was the worst of the four.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for sitagliptin could be cited. The prices shown are pharmacy acquisition costs: US$3.77 per 100 mg generic tablet in the CMS NADAC file effective 5 August 2026, against US$10.55 for the branded JANUVIA tablet in the 17 December 2025 file. The synthesis is genuinely interesting from a process point of view — the route was redesigned around an asymmetric hydrogenation of an unprotected enamine, replacing a longer sequence with a resolution step — and that redesign is documented as a major reduction in waste and step count. It is still not a cost figure, and this page does not turn one into the other.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Green JB et al. Effect of sitagliptin on cardiovascular outcomes in type 2 diabetes (TECOS). N Engl J Med 2015;373:232-242',
+        identifier: '10.1056/NEJMoa1501352',
+        kind: 'doi',
+      },
+      {
+        label:
+          'GRADE Study Research Group. Glycemia reduction in type 2 diabetes — glycemic outcomes. N Engl J Med 2022;387:1063-1074',
+        identifier: '10.1056/NEJMoa2200433',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Scirica BM et al. Saxagliptin and cardiovascular outcomes in patients with type 2 diabetes mellitus (SAVOR-TIMI 53). N Engl J Med 2013;369:1317-1326',
+        identifier: '10.1056/NEJMoa1307684',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Zinman B et al. Empagliflozin, cardiovascular outcomes, and mortality in type 2 diabetes (EMPA-REG OUTCOME). N Engl J Med 2015;373:2117-2128',
+        identifier: '10.1056/NEJMoa1504720',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: JANUVIA (sitagliptin phosphate), NDA 021995, original approval 16 October 2006',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021995',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4369359 — sitagliptin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4369359',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 12. Warfarin — a rat poison with a 64% stroke reduction, and the drug on which the promise of
+  //     genotype-guided dosing was tested three times and did not survive intact.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'warfarin',
+    name: 'Warfarin',
+    tradeName: 'Coumadin / Jantoven',
+    sponsor:
+      'Wisconsin Alumni Research Foundation (originator, 1948); Bristol-Myers Squibb marketed Coumadin. Long off-patent.',
+    targetGene: 'VKORC1',
+    targetProtein: 'Vitamin K epoxide reductase complex subunit 1',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1954,
+    indication:
+      'Prophylaxis and treatment of venous thrombosis and pulmonary embolism; prophylaxis and treatment of thromboembolic complications of atrial fibrillation and cardiac valve replacement; and reduction of death, recurrent infarction and thromboembolic events after myocardial infarction',
+    patientFriendlyIndication:
+      'Preventing and treating blood clots, including stroke from an irregular heartbeat and clots on a mechanical heart valve',
+    anatomicalSite: 'Hepatocyte endoplasmic reticulum (liver)',
+    conditionContext: {
+      conditionExplainer:
+        'Several clotting factors cannot work until an enzyme adds an extra carboxyl group to them, and that enzyme needs vitamin K in its reduced form to do the job. Each time it works, the vitamin K is oxidised and must be recycled by a second enzyme. Warfarin blocks the recycler, so the supply of usable vitamin K runs down and the clotting factors are released in a form that cannot bind calcium and cannot assemble a clot.',
+      whyItMatters:
+        'Warfarin is the drug on which the entire promise of pharmacogenomics was to be demonstrated. Its dose varies more than tenfold between people, much of that variation is explained by two common gene variants, and a genotype test is cheap. Three randomised trials tested whether genotype-guided dosing beat the alternative, and the answer depended entirely on what the alternative was.',
+      whoTakesThis:
+        'Anyone needing anticoagulation where the direct oral anticoagulants are not indicated — mechanical heart valves and moderate-to-severe mitral stenosis in particular — plus a large existing population stable on it. On the WHO Model List of Essential Medicines.',
+      clinicalGoals:
+        'Prevent stroke and systemic embolism while keeping the international normalised ratio inside a target range. Time in therapeutic range is the surrogate; stroke and major bleeding are the outcomes.',
+    },
+    oneSentenceVerdict:
+      'A vitamin K antagonist that reduces stroke in atrial fibrillation by 64% across 6 randomised trials, and the subject of a genuine reversal: genotype-guided dosing beat a fixed loading regimen in EU-PACT and did not beat a clinical algorithm in COAG, where among Black participants it performed worse.',
+    laymanHowItWorks:
+      'Your liver builds clotting factors that only become functional after a finishing step requiring vitamin K, and the vitamin has to be recycled after each use. Warfarin blocks the recycling enzyme, so the liver runs short and starts releasing clotting factors that do not work. It takes days for the existing working factors to wash out, which is why the drug is slow to start and slow to stop.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 86,
+    substitutes: {
+      summary:
+        'Warfarin costs about nine cents a tablet in the United States, against US$5.52 for an apixaban tablet. In non-valvular atrial fibrillation the direct oral anticoagulants have beaten it on stroke, on bleeding and on death, and are the default. Warfarin remains the only option for mechanical heart valves, where a direct oral anticoagulant was tested and did worse, and for moderate-to-severe mitral stenosis, where INVICTUS found rivaroxaban worse than a vitamin K antagonist on death.',
+      conventionalRx: [
+        {
+          name: 'Apixaban (Eliquis)',
+          class: 'Direct factor Xa inhibitor',
+          howItCompares:
+            'In ARISTOTLE, 18,201 patients with atrial fibrillation were randomised to apixaban or warfarin targeted to an INR of 2.0 to 3.0. Stroke or systemic embolism occurred at 1.27% per year against 1.60% (hazard ratio 0.79, p=0.01 for superiority), major bleeding at 2.13% against 3.09% (0.69, p<0.001) and death from any cause at 3.52% against 3.94% (0.89, p=0.047). Haemorrhagic stroke was less than half as frequent.',
+          typicalCost:
+            'US$5.52 per 5 mg ELIQUIS tablet against US$0.089 per 5 mg warfarin sodium tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: fewer strokes, less bleeding, fewer deaths, no INR monitoring, no dietary vitamin K interaction. Cons: roughly sixty times the acquisition cost, and it is not an option for mechanical valves.',
+        },
+        {
+          name: 'Rivaroxaban (Xarelto)',
+          class: 'Direct factor Xa inhibitor',
+          howItCompares:
+            'Non-inferior to warfarin for stroke prevention in non-valvular atrial fibrillation in ROCKET AF. In rheumatic heart disease with atrial fibrillation, INVICTUS randomised 4,565 patients and found rivaroxaban worse than a vitamin K antagonist, which is the clearest demonstration that "warfarin is obsolete" is population-specific rather than general.',
+          typicalCost: 'Brand-priced, in the same order as apixaban',
+          prosAndCons:
+            'Pros: once daily, no monitoring. Cons: lost to warfarin in rheumatic valve disease, and more gastrointestinal bleeding than warfarin in its own atrial fibrillation trial.',
+        },
+        {
+          name: 'Aspirin',
+          class: 'Antiplatelet',
+          howItCompares:
+            'In the pooled randomised evidence in atrial fibrillation, antiplatelet agents reduced stroke by 22% (95% CI 6% to 35%) against control, while adjusted-dose warfarin reduced it by 64% (49% to 74%). Directly compared across 12 trials and 12,963 participants, warfarin was 39% better than antiplatelet therapy.',
+          typicalCost: 'Pennies per tablet',
+          prosAndCons:
+            'Pros: no monitoring, minimal cost. Cons: roughly a third of the stroke protection, which is why it is no longer recommended as an alternative to anticoagulation in atrial fibrillation.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Vitamin K-rich vegetables — consistency, not avoidance',
+          activeCompound: 'Phylloquinone (vitamin K1)',
+          biologicalMechanism:
+            'Warfarin competes with the vitamin K cycle, so dietary vitamin K directly opposes it. The dose is titrated against whatever intake a person habitually has, which means a stable intake produces a stable INR and a variable intake produces a variable one regardless of the amount.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here. The clinically relevant fact is that changing intake destabilises the INR, in either direction.',
+          monthlyCost: 'No additional cost',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Tell every prescriber and pharmacist about the warfarin, every time',
+          action:
+            'Warfarin interacts with a very large number of drugs, foods and supplements, in both directions.',
+          patientImpact:
+            'The drug is a racemate cleared by two different enzymes, is highly protein-bound, has a narrow therapeutic index, and acts on a pathway that dietary intake feeds directly. Antibiotics, antifungals, amiodarone, non-steroidal anti-inflammatories and St John\'s wort all change either its level or its effect.',
+          clinicalPrecaution:
+            'Bleeding risk is the boxed warning on the US label. A change in any co-medication is a reason to check the INR sooner, not a reason to adjust the dose without one.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(=O)CC(C1=CC=CC=C1)C2=C(C3=CC=CC=C3OC2=O)O',
+      chemicalFormula: 'C19H16O4',
+      molecularWeight:
+        '308.3 g/mol; dispensed as warfarin sodium, and as the racemate — this SMILES is the unspecified-stereocentre form PubChem returns for the name, which is what is in the tablet',
+      targetReceptorAffinity:
+        'Inhibits vitamin K epoxide reductase, the enzyme encoded by VKORC1. The marketed drug is a racemate and the two enantiomers are not equivalent: (S)-warfarin is roughly three to five times more potent and is cleared by CYP2C9, while (R)-warfarin is cleared mainly by CYP1A2 and CYP3A4. That asymmetry is why CYP2C9 loss-of-function alleles matter so much more than total clearance would suggest, and why an interaction affecting only one enzyme can shift the effect disproportionately.',
+      structureSource: {
+        label:
+          'PubChem CID 54678486 (warfarin) — canonical SMILES, molecular formula and molecular weight for the racemate',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/54678486',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'war-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of 4-hydroxycoumarin and benzalacetone',
+          description:
+            'Assay 4-hydroxycoumarin for the 7-hydroxy isomer and benzylideneacetone for geometric purity and for residual benzaldehyde. The 4-hydroxy position is the one that tautomerises and chelates in the enzyme, and the isomeric coumarin gives a compound of identical mass with no anticoagulant activity.',
+          reagentsAndBuffer:
+            '4-hydroxycoumarin reference standard, (E)-4-phenyl-3-buten-2-one, HPLC with UV detection at 305 nm, melting point determination, Karl Fischer titration',
+        },
+        {
+          id: 'war-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Michael addition of 4-hydroxycoumarin to benzylideneacetone',
+          description:
+            'Add the coumarin enol across the conjugated ketone. This is the reaction Karl Link\'s laboratory ran in 1948 and it is still the route: one bond, two commodity inputs, no protecting groups. It creates the single stereocentre with no facial control, which is why warfarin has always been sold and dosed as a racemate despite the enantiomers differing several-fold in potency and being cleared by different enzymes.',
+          dependsOnStepId: 'war-w1',
+          reagentsAndBuffer:
+            'Pyridine or piperidine as base in water or ethanol at reflux, or a solvent-free melt; nitrogen atmosphere; thin-layer chromatography monitoring',
+        },
+        {
+          id: 'war-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation and clathrate sodium salt formation',
+          description:
+            'Recrystallise the free acid, then form the sodium salt as the isopropanol clathrate that constitutes the marketed drug substance. The clathrate exists because plain warfarin sodium is hygroscopic and poorly handled; the crystalline solvate is stable and is why tablet content uniformity is achievable at a strength measured in single milligrams.',
+          dependsOnStepId: 'war-w2',
+          reagentsAndBuffer:
+            'Sodium hydroxide in isopropanol/water, controlled cooling crystallisation, X-ray powder diffraction to confirm the clathrate form, HPLC against the dehydro-warfarin and 4-hydroxycoumarin reference impurities',
+        },
+        {
+          id: 'war-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Enantiomer-resolved clearance in CYP2C9-genotyped hepatocytes',
+          description:
+            'Incubate with primary human hepatocytes from donors carrying CYP2C9*1, *2 and *3 alleles, and quantify (R)- and (S)-warfarin separately. Resolving the enantiomers is the whole purpose: total warfarin concentration hides the pharmacologically decisive change, because a CYP2C9 poor metaboliser accumulates the potent (S)-enantiomer while the (R)-enantiomer is cleared normally.',
+          dependsOnStepId: 'war-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes from CYP2C9-genotyped donors, recombinant CYP2C9 and CYP1A2 microsomes, NADPH regenerating system, sulfaphenazole as a selective CYP2C9 inhibitor, chiral LC-MS/MS resolving (R)- and (S)-warfarin',
+        },
+        {
+          id: 'war-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Vitamin K epoxide reductase inhibition and carboxylation readout',
+          description:
+            'Measure inhibition of vitamin K epoxide reductase in microsomes across VKORC1 promoter genotypes, and separately measure gamma-carboxylation of a prothrombin-derived substrate. Both are needed because the enzyme assay shows binding while the carboxylation assay shows the functional consequence, and the clinical dose is titrated on the international normalised ratio, which is a downstream measure of the second and not the first.',
+          dependsOnStepId: 'war-w4',
+          reagentsAndBuffer:
+            'Rat or recombinant human VKOR microsomal preparation, vitamin K1 2,3-epoxide substrate, dithiothreitol as the artificial reductant, HPLC with fluorescence detection for vitamin K quinone, gamma-glutamyl carboxylase assay with the FLEEL pentapeptide substrate and carbon-14 bicarbonate',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'war-a1',
+        category: 'measured',
+        title: 'A 64% stroke reduction in atrial fibrillation, across 6 randomised trials',
+        laymanSummary:
+          'Pooling every randomised trial in atrial fibrillation, adjusted-dose warfarin cut strokes by about two thirds against control, and by about 40% against aspirin and similar drugs.',
+        technicalDetails:
+          'Hart and colleagues pooled 29 randomised trials with 28,044 participants, mean age 71 and mean follow-up 1.5 years, in non-valvular atrial fibrillation. Against control, adjusted-dose warfarin across 6 trials and 2,900 participants reduced stroke by 64% (95% CI 49% to 74%), and antiplatelet agents across 8 trials and 4,876 participants reduced it by 22% (6% to 35%). Directly compared across 12 trials and 12,963 participants, adjusted-dose warfarin was 39% better than antiplatelet therapy (22% to 52%). Absolute increases in major extracranial haemorrhage were 0.3% per year or less, and were smaller than the absolute reductions in stroke.',
+        evidenceSource: 'Hart RG et al., Ann Intern Med 2007;146:857-867',
+        doi: '10.7326/0003-4819-146-12-200706190-00007',
+        measuredMetric:
+          'Relative reduction in stroke against control and against antiplatelet therapy, pooled across randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'war-a2',
+        category: 'conclusion_shift',
+        title: 'COAG: genotype-guided dosing did not beat a clinical algorithm, and was worse in Black patients',
+        laymanSummary:
+          'The flagship American trial of pharmacogenomic warfarin dosing found no advantage at all over dosing that used clinical information alone. In Black participants, the genotype-guided arm did worse.',
+        technicalDetails:
+          'COAG randomly assigned 1,015 patients to warfarin doses over the first 5 days determined by an algorithm including both clinical variables and genotype, or by one using clinical variables only. Patients and clinicians were unaware of the dose for the first 4 weeks. The primary outcome, percentage of time the INR was in the therapeutic range from day 4 or 5 through day 28, was 45.2% in the genotype-guided group against 45.4% in the clinically guided group: adjusted mean difference -0.2 (95% CI -3.4 to 3.1), p=0.91. There was no difference among patients for whom the two algorithms predicted doses differing by 1 mg per day or more. There was a significant interaction between dosing strategy and race (p=0.003): among Black patients, time in therapeutic range was lower in the genotype-guided group. Rates of the combined outcome of INR of 4 or more, major bleeding or thromboembolism did not differ.',
+        evidenceSource: 'Kimmel SE et al., COAG, N Engl J Med 2013;369:2283-2293 (NCT00839657)',
+        doi: '10.1056/NEJMoa1310669',
+        measuredMetric:
+          'Percentage of time in the therapeutic INR range from day 4 or 5 through day 28',
+        inferredClaim:
+          'That knowing VKORC1 and CYP2C9 genotype improves warfarin initiation — it did not improve on a clinical algorithm, and the race interaction ran against it',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'war-a3',
+        category: 'measured',
+        title: 'EU-PACT: the same idea worked, against a fixed loading dose instead',
+        laymanSummary:
+          'A European trial published in the same issue found genotype-guided dosing clearly better. Its comparison group was a fixed three-day loading regimen rather than a clinical algorithm, and that difference is the whole explanation.',
+        technicalDetails:
+          'EU-PACT recruited 455 patients with atrial fibrillation or venous thromboembolism, randomising 227 to genotype-guided dosing using point-of-care testing for CYP2C9*2, CYP2C9*3 and VKORC1 -1639G>A for the first 5 days, and 228 to a control group receiving a 3-day loading-dose regimen. After initiation all patients were managed by routine practice. Mean time in the therapeutic INR range of 2.0 to 3.0 over the first 12 weeks was 67.4% in the genotype-guided group against 60.3% in the control group: adjusted difference 7.0 percentage points (95% CI 3.3 to 10.6). Read alongside COAG, the pair establishes that genotype-guided dosing beats a fixed loading regimen and does not beat a clinical algorithm — so the value of the genotype depends entirely on what it is being compared with.',
+        evidenceSource:
+          'Pirmohamed M et al., EU-PACT, N Engl J Med 2013;369:2294-2303 (NCT01119300)',
+        doi: '10.1056/NEJMoa1311386',
+        measuredMetric:
+          'Percentage of time in the therapeutic INR range of 2.0 to 3.0 during the first 12 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'war-a4',
+        category: 'measured',
+        title: 'GIFT: a clinical benefit, in a narrow surgical population, driven by INR excursions',
+        laymanSummary:
+          'A third trial, in older patients starting warfarin after hip or knee replacement, did find fewer adverse events with genotype-guided dosing. Most of the difference was in over-anticoagulation rather than in bleeding or clots.',
+        technicalDetails:
+          'GIFT randomised 1,650 patients aged 65 or older starting warfarin for elective hip or knee arthroplasty at 6 United States centres, genotyping VKORC1 -1639G>A, CYP2C9*2, CYP2C9*3 and CYP4F2 V433M, in a 2-by-2 factorial design also randomising to an INR target of 1.8 or 2.5. Of 1,597 who received warfarin and completed, 87 of 808 (10.8%) in the genotype-guided group and 116 of 789 (14.7%) in the clinically guided group met at least one component of the composite of major bleeding, INR of 4 or greater, venous thromboembolism or death: absolute difference 3.9 percentage points (95% CI 0.7 to 7.2), p=0.02, relative rate 0.73 (0.56 to 0.95). Component counts were 2 against 8 for major bleeding (relative rate 0.24, 0.05 to 1.15), 56 against 77 for INR of 4 or greater (0.71, 0.51 to 0.99), 33 against 38 for venous thromboembolism (0.85, 0.54 to 1.34), and no deaths. The composite was driven by the INR component; the population was 91.0% white, which matters given the COAG race interaction.',
+        evidenceSource: 'Gage BF et al., GIFT, JAMA 2017;318:1115-1124 (NCT01006733)',
+        doi: '10.1001/jama.2017.11469',
+        measuredMetric:
+          'Composite of major bleeding, INR of 4 or greater, venous thromboembolism or death after arthroplasty',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'war-a5',
+        category: 'inferred',
+        title: 'Time in therapeutic range is the surrogate, and it is not the outcome',
+        laymanSummary:
+          'Two of the three pharmacogenomic trials measured how long the blood test stayed in range, not how many people bled or had a stroke. Those are different things, and the trials were not large enough to measure the second.',
+        technicalDetails:
+          'COAG and EU-PACT both used percentage of time in the therapeutic INR range as their primary outcome. That measure correlates with clinical events across populations but is not itself an event, and neither trial — at 1,015 and 455 patients respectively over weeks — had the size to detect a difference in stroke or major bleeding. COAG did report that the combined outcome of INR of 4 or more, major bleeding or thromboembolism did not differ. GIFT used a clinical composite, and 133 of the 203 events it counted were INR excursions of 4 or greater rather than bleeds or clots, with major bleeding at 2 against 8 events on a confidence interval spanning 0.05 to 1.15. The consistent picture across all three is a surrogate that sometimes moves and clinical events that have never been shown to.',
+        evidenceSource:
+          'Kimmel SE et al., N Engl J Med 2013;369:2283-2293; Pirmohamed M et al., N Engl J Med 2013;369:2294-2303; Gage BF et al., JAMA 2017;318:1115-1124',
+        doi: '10.1001/jama.2017.11469',
+        inferredClaim:
+          'That improving time in therapeutic INR range with a genotype test prevents strokes and bleeds — none of the three trials was sized to measure that, and the one clinical composite was driven by laboratory excursions',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'war-a6',
+        category: 'failed',
+        title: 'Warfarin lost to apixaban on stroke, on bleeding and on death simultaneously',
+        laymanSummary:
+          'In more than eighteen thousand patients with atrial fibrillation, a newer anticoagulant produced fewer strokes, less major bleeding and fewer deaths than well-managed warfarin, all at once.',
+        technicalDetails:
+          'ARISTOTLE randomised 18,201 patients with atrial fibrillation and at least one additional stroke risk factor to apixaban 5 mg twice daily or warfarin targeted to an INR of 2.0 to 3.0, median follow-up 1.8 years. Stroke or systemic embolism occurred at 1.27% per year against 1.60% (hazard ratio 0.79, 95% CI 0.66 to 0.95; p<0.001 for non-inferiority, p=0.01 for superiority). Major bleeding was 2.13% against 3.09% per year (0.69, 0.60 to 0.80, p<0.001) and death from any cause 3.52% against 3.94% (0.89, 0.80 to 0.99, p=0.047). The difference was concentrated in haemorrhagic stroke, 0.24% against 0.47% per year (0.51, 0.35 to 0.75, p<0.001); ischaemic or uncertain-type stroke was 0.97% against 1.05% (0.92, 0.74 to 1.13, p=0.42) and not significantly different. So the superiority came from bleeding into the brain, not from better clot prevention.',
+        evidenceSource: 'Granger CB et al., ARISTOTLE, N Engl J Med 2011;365:981-992 (NCT00412984)',
+        doi: '10.1056/NEJMoa1107039',
+        measuredMetric:
+          'Stroke or systemic embolism, major bleeding and all-cause death per year, apixaban versus warfarin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'war-a7',
+        category: 'measured',
+        title: 'Where warfarin still wins: a factor Xa inhibitor lost to it in rheumatic valve disease',
+        laymanSummary:
+          'The idea that warfarin has been superseded is population-specific. In rheumatic heart disease with atrial fibrillation, a trial of over four thousand patients found more deaths on rivaroxaban than on a vitamin K antagonist.',
+        technicalDetails:
+          'INVICTUS randomised 4,565 patients with rheumatic heart disease and atrial fibrillation to rivaroxaban or a dose-adjusted vitamin K antagonist. The trial found the vitamin K antagonist superior, with the difference driven by death. Mechanical prosthetic heart valves are the other setting where a direct oral anticoagulant was tested against warfarin and performed worse, and the direct oral anticoagulants carry a labelled contraindication there. Warfarin remains on the WHO Model List of Essential Medicines, and at about nine cents a tablet against US$5.52 for apixaban it is also the only anticoagulant most of the world can afford at scale.',
+        evidenceSource:
+          'Connolly SJ et al., INVICTUS, N Engl J Med 2022;387:978-988 (NCT02832544)',
+        doi: '10.1056/NEJMoa2209051',
+        measuredMetric:
+          'Composite of stroke, systemic embolism, myocardial infarction or death, rivaroxaban versus vitamin K antagonist in rheumatic heart disease',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed completely, bound almost entirely to albumin',
+        laymanDesc:
+          'All of the tablet is absorbed and almost all of it travels stuck to a blood protein. Only the free fraction does anything, which is why other protein-bound drugs can shift its effect.',
+        molecularDetail:
+          'Oral bioavailability is essentially complete, with peak concentration within 4 hours. Roughly 99% is bound to plasma albumin, and only the unbound fraction reaches the hepatocyte. The elimination half-life is about 40 hours for the racemate, but the pharmacodynamic delay is set by the half-lives of the clotting factors rather than by the drug.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It enters the liver cell, where the vitamin K cycle runs',
+        laymanDesc:
+          'The whole target pathway sits inside liver cells, in the membrane system where clotting factors are assembled before being released into the blood.',
+        molecularDetail:
+          'Warfarin enters hepatocytes and reaches the endoplasmic reticulum membrane, where vitamin K epoxide reductase, gamma-glutamyl carboxylase and the nascent vitamin K-dependent proteins are co-localised. The two enantiomers are handled by different cytochromes once inside: (S)-warfarin by CYP2C9 and (R)-warfarin mainly by CYP1A2 and CYP3A4.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the enzyme that recycles vitamin K',
+        laymanDesc:
+          'Vitamin K is consumed each time a clotting factor is finished and has to be regenerated. Warfarin jams the regenerating enzyme, so the usable supply runs down.',
+        molecularDetail:
+          'Warfarin inhibits vitamin K epoxide reductase, encoded by VKORC1, which reduces vitamin K 2,3-epoxide back to the quinone and then the hydroquinone. The common VKORC1 -1639G>A promoter variant reduces enzyme expression and is the single largest genetic determinant of dose requirement; CYP2C9 variants are the second, acting on clearance of the more potent enantiomer.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Clotting factors are released in a form that cannot assemble',
+        laymanDesc:
+          'Without recycled vitamin K, the finishing step is skipped and the factors leave the liver unable to grip the calcium they need to build a clot on a membrane surface.',
+        molecularDetail:
+          'Gamma-glutamyl carboxylase can no longer carboxylate glutamate residues on factors II, VII, IX and X and on proteins C and S. Under-carboxylated factors cannot chelate calcium and therefore cannot bind to phospholipid membranes to assemble the tenase and prothrombinase complexes. Because protein C has a much shorter half-life than factor II, the earliest effect is a transient procoagulant state — the reason for bridging at initiation and the mechanism of warfarin-induced skin necrosis.',
+        iconName: 'Split',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Clotting slows over days, measured by the INR, and strokes fall by two thirds',
+        laymanDesc:
+          'Nothing happens for a day or two while the already-working factors circulate. Once they wash out, the blood clots more slowly, and in atrial fibrillation the stroke rate falls by around two thirds.',
+        molecularDetail:
+          'Full effect requires clearance of the pre-existing carboxylated factors, with factor II having a half-life of roughly 60 hours, so 5 to 7 days are needed. Effect is monitored as the international normalised ratio, a standardised prothrombin time. Across 6 randomised trials in atrial fibrillation, adjusted-dose warfarin reduced stroke by 64% (95% CI 49% to 74%).',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'COAG (NCT00839657)',
+        phase: 'Randomised blinded trial of dosing strategy, 4 weeks',
+        sampleSize: 1015,
+        primaryEndpoint:
+          'Percentage of time in the therapeutic INR range from day 4 or 5 through day 28, genotype-guided versus clinically guided',
+        endpointMet: false,
+        statisticalPValue:
+          '45.2% against 45.4%; adjusted mean difference -0.2 (95% CI -3.4 to 3.1), P = 0.91',
+        unreportedAdverseSignals:
+          'A significant interaction with race (p=0.003): among Black patients, time in therapeutic range was lower in the genotype-guided group.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'EU-PACT warfarin trial (NCT01119300)',
+        phase: 'Multicentre randomised controlled trial, 12 weeks',
+        sampleSize: 455,
+        primaryEndpoint:
+          'Percentage of time in the therapeutic INR range of 2.0 to 3.0 during the first 12 weeks',
+        endpointMet: true,
+        statisticalPValue: '67.4% against 60.3%; adjusted difference 7.0 points (95% CI 3.3 to 10.6)',
+        unreportedAdverseSignals:
+          'The control group received a fixed 3-day loading regimen, not a clinical algorithm. The comparator, not the genotype, is what separates this result from COAG.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'GIFT (NCT01006733)',
+        phase: 'Randomised 2-by-2 factorial trial in elective arthroplasty',
+        sampleSize: 1650,
+        primaryEndpoint:
+          'Composite of major bleeding, INR of 4 or greater, venous thromboembolism or death',
+        endpointMet: true,
+        statisticalPValue:
+          '10.8% against 14.7%; absolute difference 3.9 points (95% CI 0.7-7.2), P = 0.02',
+        unreportedAdverseSignals:
+          'The composite was driven by the INR component (56 against 77 events); major bleeding was 2 against 8 with an interval spanning 0.05 to 1.15, and there were no deaths. The population was 91.0% white.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'ARISTOTLE (apixaban versus warfarin, NCT00412984)',
+        phase: 'Randomised double-blind active-controlled trial, median 1.8 years',
+        sampleSize: 18201,
+        primaryEndpoint: 'Ischaemic or haemorrhagic stroke or systemic embolism',
+        endpointMet: false,
+        statisticalPValue:
+          'Warfarin 1.60% per year against apixaban 1.27%; HR 0.79 (95% CI 0.66-0.95), P = 0.01 for superiority of apixaban',
+        unreportedAdverseSignals:
+          'Ischaemic or uncertain-type stroke did not differ significantly (HR 0.92, p=0.42). The advantage came from haemorrhagic stroke, 0.24% against 0.47% per year.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A 64% reduction in stroke against control across 6 randomised trials in atrial fibrillation, and 39% better than antiplatelet therapy across 12 trials',
+        'No improvement in time in therapeutic INR range from genotype-guided over clinically guided dosing: 45.2% against 45.4%, p=0.91',
+        'A 7.0 percentage-point improvement in time in range from genotype-guided over fixed-loading-dose initiation in 455 patients',
+        'A 3.9 percentage-point absolute reduction in a composite dominated by INR excursions in 1,650 arthroplasty patients',
+      ],
+      unsupportedInferences: [
+        'That genotype-guided warfarin dosing improves clinical outcomes — no trial has been sized to measure stroke or major bleeding, and the one clinical composite was driven by laboratory excursions',
+        'That EU-PACT and COAG conflict — they used different comparators, and the genotype only helped where the alternative was a fixed loading dose',
+        'That the GIFT result generalises across ancestries — the population was 91.0% white and COAG found the genotype-guided strategy performed worse in Black patients',
+        'That warfarin has been superseded generally — it remains superior in rheumatic valve disease and is the only option for mechanical valves',
+      ],
+      whatFailedInitially: [
+        'COAG: the flagship pharmacogenomic trial found an adjusted mean difference of -0.2 percentage points, p=0.91, and a race interaction running against the genotype arm',
+        'Warfarin lost to apixaban simultaneously on stroke, major bleeding and all-cause death in 18,201 patients',
+        'Aspirin, the alternative widely used for decades in atrial fibrillation, delivered 22% stroke reduction against warfarin\'s 64%',
+      ],
+      realWorldOutcome: [
+        'Still on the WHO Model List of Essential Medicines, and the only anticoagulant licensed for mechanical heart valves',
+        'US$0.089 per 5 mg tablet at United States pharmacy acquisition cost against US$5.52 for a 5 mg apixaban tablet on the same day',
+        'The FDA added pharmacogenomic information to the warfarin label in 2007, before COAG reported; the three trials since have not established a clinical benefit from acting on it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet in nine strengths, colour-coded by strength, plus an intravenous formulation',
+      description:
+        'Once daily, with dose titrated against the international normalised ratio measured at intervals from days to weeks. The unusually large number of tablet strengths exists because the daily requirement varies more than tenfold between individuals and is adjusted in small increments.',
+      safetyProfile:
+        'The US label carries a boxed warning for bleeding risk. The narrow therapeutic index, tenfold inter-individual dose variability, direct dietary antagonism by vitamin K, and a very long interaction list make it one of the most monitoring-intensive drugs in common use. Warfarin-induced skin necrosis at initiation reflects the shorter half-life of protein C relative to factor II. It is teratogenic and contraindicated in pregnancy. Reversal is with vitamin K, and urgently with prothrombin complex concentrate.',
+    },
+    commonQuestions: [
+      {
+        q: 'Should I get a genetic test before starting warfarin?',
+        a: 'The evidence does not support it as routine, and the reason is instructive. Two randomised trials published in the same issue in 2013 appeared to disagree. EU-PACT found genotype-guided dosing improved time in the target INR range by 7.0 percentage points — but its comparison group received a fixed three-day loading regimen. COAG compared genotype-guided dosing against an algorithm using clinical information alone and found 45.2% against 45.4%, a difference of -0.2 percentage points with p=0.91. The genotype adds nothing once age, weight, other drugs and clinical judgement are already being used. COAG also found the genotype-guided strategy performed worse among Black participants, with a significant interaction at p=0.003 — a reminder that algorithms trained mostly on European-ancestry data can transfer badly.',
+        auditNote:
+          'This is the clearest reversal on this page and it is not that pharmacogenomics failed. It is that the trials measured against different baselines, and only one baseline was the standard of care.',
+      },
+      {
+        q: 'Should I switch to one of the newer anticoagulants?',
+        a: 'For most people with atrial fibrillation, the randomised evidence favours it. ARISTOTLE compared apixaban with well-managed warfarin in 18,201 patients: strokes 1.27% against 1.60% per year, major bleeding 2.13% against 3.09%, deaths 3.52% against 3.94% — apixaban better on all three simultaneously, which is unusual. Worth noting where the advantage came from: bleeding into the brain, 0.24% against 0.47% per year, while ischaemic strokes did not significantly differ. But there are settings where warfarin is not replaceable. Mechanical heart valves are one, where a direct oral anticoagulant tested against warfarin did worse. Rheumatic mitral valve disease is another: INVICTUS randomised 4,565 patients and found the vitamin K antagonist superior to rivaroxaban.',
+      },
+      {
+        q: 'Do I have to avoid green vegetables?',
+        a: 'No — you have to be consistent. Warfarin works by depleting usable vitamin K, so dietary vitamin K directly opposes it. But your dose was chosen to balance whatever your usual intake is. A person who eats a large salad every day and a person who eats none can both be perfectly stable on warfarin, at different doses. What destabilises the INR is change: starting a diet, stopping one, a week of holiday eating. The instruction that follows from the mechanism is to keep intake steady, not to keep it low.',
+      },
+      {
+        q: 'Why does it take days to start working?',
+        a: 'Because the drug does not touch the clotting factors already in your blood. It blocks the recycling of vitamin K, which stops the liver finishing new factors — but the working ones already in circulation have to be cleared first, and factor II has a half-life of about 60 hours. Full effect takes five to seven days. The same reasoning explains a subtlety at the start: protein C, which is anticoagulant, has a much shorter half-life than factor II, so the very first effect of warfarin is a brief tilt toward clotting rather than away from it. That is why anticoagulation is bridged at initiation, and it is the mechanism of the rare skin necrosis that can occur in the first days.',
+      },
+      {
+        q: 'Why is warfarin still used at all if apixaban is better?',
+        a: 'Three reasons, all of them concrete. It is the only anticoagulant with evidence for mechanical heart valves, where the direct oral anticoagulants are contraindicated. It beat rivaroxaban in rheumatic heart disease with atrial fibrillation in a 4,565-patient trial, which matters enormously in the parts of the world where rheumatic valve disease is common. And it costs about nine cents a tablet against US$5.52 for apixaban at United States acquisition cost — a sixtyfold difference that determines what is available at national scale in most of the world. It remains on the WHO Model List of Essential Medicines for those reasons.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for warfarin could be cited. The price shown is pharmacy acquisition cost from the CMS NADAC file effective 19 August 2026: about 8.9 cents for a 5 mg tablet. The chemistry is a single Michael addition of 4-hydroxycoumarin to benzylideneacetone, the reaction Karl Link published in 1948, which is about as short as a drug synthesis gets and is consistent with a very low price. Consistency is not a measurement, so no cost figure appears.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Hart RG, Pearce LA, Aguilar MI. Meta-analysis: antithrombotic therapy to prevent stroke in patients who have nonvalvular atrial fibrillation. Ann Intern Med 2007;146:857-867',
+        identifier: '10.7326/0003-4819-146-12-200706190-00007',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kimmel SE et al. A pharmacogenetic versus a clinical algorithm for warfarin dosing (COAG). N Engl J Med 2013;369:2283-2293',
+        identifier: '10.1056/NEJMoa1310669',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pirmohamed M et al. A randomized trial of genotype-guided dosing of warfarin (EU-PACT). N Engl J Med 2013;369:2294-2303',
+        identifier: '10.1056/NEJMoa1311386',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gage BF et al. Effect of genotype-guided warfarin dosing on clinical events and anticoagulation control among patients undergoing hip or knee arthroplasty (GIFT). JAMA 2017;318:1115-1124',
+        identifier: '10.1001/jama.2017.11469',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Granger CB et al. Apixaban versus warfarin in patients with atrial fibrillation (ARISTOTLE). N Engl J Med 2011;365:981-992',
+        identifier: '10.1056/NEJMoa1107039',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Connolly SJ et al. Rivaroxaban in rheumatic heart disease-associated atrial fibrillation (INVICTUS). N Engl J Med 2022;387:978-988',
+        identifier: '10.1056/NEJMoa2209051',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: COUMADIN (warfarin sodium), NDA 009218, original approval 8 June 1954',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=009218',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 54678486 — warfarin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/54678486',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 13. Ezetimibe — a drug that failed two surrogate trials, spent seven years under suspicion, and
+  //     was rescued by an event trial whose absolute benefit was 2.0 percentage points.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ezetimibe',
+    name: 'Ezetimibe',
+    tradeName: 'Zetia (Ezetrol outside the United States)',
+    sponsor: 'Schering-Plough with Merck; now Organon. Generic since 2016.',
+    targetGene: 'NPC1L1',
+    targetProtein: 'Niemann-Pick C1-Like 1 sterol transporter',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2002,
+    indication:
+      'Reduction of elevated LDL cholesterol in primary hyperlipidaemia, alone or with a statin; adjunct to other lipid-lowering therapy in homozygous familial hypercholesterolaemia; and treatment of homozygous sitosterolaemia',
+    patientFriendlyIndication: 'High cholesterol, usually alongside a statin',
+    anatomicalSite: 'Brush border of the jejunal enterocyte',
+    conditionContext: {
+      conditionExplainer:
+        'Cholesterol reaching the bloodstream comes from two sources: what the liver makes and what the gut absorbs, and the gut handles both dietary cholesterol and the much larger amount the body itself secretes in bile and then reclaims. Statins block manufacture. Ezetimibe blocks the reclamation, by inhibiting a specific transporter on the intestinal lining.',
+      whyItMatters:
+        'This drug is the cleanest natural experiment in the LDL hypothesis. It lowers LDL by a mechanism that has nothing to do with the statin pathway and none of the statin\'s proposed side effects. If lowering LDL is what prevents events, ezetimibe should prevent events in proportion to how much LDL it removes. IMPROVE-IT tested exactly that, and the answer is on this page along with the two trials that came before it and failed.',
+      whoTakesThis:
+        'People who need further LDL reduction on a statin, people who cannot tolerate a statin dose high enough to reach target, and people with familial hypercholesterolaemia. It is on the WHO Model List of Essential Medicines.',
+      clinicalGoals:
+        'Lower LDL cholesterol by roughly 15 to 20% on top of a statin, and — as measured in IMPROVE-IT — reduce a composite of cardiovascular death, infarction, unstable angina, revascularisation and stroke.',
+    },
+    oneSentenceVerdict:
+      'The drug that tested whether the benefit follows the LDL number rather than the statin: after missing its endpoint in a 720-patient carotid ultrasound trial and a 1,873-patient aortic stenosis trial, it lowered the primary composite from 34.7% to 32.7% in 18,144 patients over seven years — a real, replicated, small effect that arrived exactly where the LDL hypothesis predicted it.',
+    laymanHowItWorks:
+      'Most of the cholesterol your gut absorbs is not from food; it is cholesterol your own liver put into bile and is reclaiming. Ezetimibe blocks the specific doorway on intestinal lining cells that lets cholesterol back in. Less returns to the liver, the liver responds by pulling more LDL out of the blood, and the blood number falls by around a fifth.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 85,
+    substitutes: {
+      summary:
+        'Generic ezetimibe costs about seven cents a tablet in the United States. It is almost never a substitute for a statin — in every outcome trial on this page it was added to one — so its real comparators are the other add-ons: bempedoic acid, which has its own outcome trial in statin-intolerant patients, and the PCSK9 antibodies, which lower LDL far more and cost thousands of times as much per unit.',
+      conventionalRx: [
+        {
+          name: 'Atorvastatin or rosuvastatin',
+          class: 'HMG-CoA reductase inhibitor',
+          howItCompares:
+            'Lowers LDL far more per tablet and has much larger event trials. Ezetimibe was added to simvastatin in IMPROVE-IT rather than compared with it, so the two are complements rather than alternatives except where a statin cannot be tolerated at all.',
+          typicalCost:
+            'US$0.023 per 10 mg generic atorvastatin tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: larger LDL reduction, larger evidence base. Cons: muscle symptom reports, a class diabetes signal, and CYP3A4 interactions for atorvastatin.',
+        },
+        {
+          name: 'Bempedoic acid (Nexletol)',
+          class: 'ATP-citrate lyase inhibitor',
+          howItCompares:
+            'Acts upstream of the statin target in the same synthetic pathway, and is a prodrug activated only in liver, which is why it does not produce muscle symptoms. It has its own outcome trial in statin-intolerant patients, CLEAR Outcomes, where ezetimibe does not.',
+          typicalCost:
+            'US$13.81 per 180 mg NEXLETOL tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: outcome evidence specifically in people who cannot take statins. Cons: raises uric acid and gout risk, tendon rupture signal, and roughly two hundred times the acquisition cost of generic ezetimibe.',
+        },
+        {
+          name: 'Evolocumab (Repatha)',
+          class: 'PCSK9-directed monoclonal antibody, injected',
+          howItCompares:
+            'Produces a much larger LDL reduction than ezetimibe and has outcome evidence in FOURIER. Both are add-ons to a statin; the choice between them is mostly a question of how far LDL still has to fall and what can be afforded.',
+          typicalCost:
+            'US$281.97 per mL of the 140 mg/mL autoinjector at pharmacy acquisition cost (CMS NADAC, REPATHA SURECLICK, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: much larger LDL reduction. Cons: injection, and an acquisition cost roughly four thousand times per unit that of generic ezetimibe.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Plant sterols and stanols',
+          activeCompound: 'Beta-sitosterol, campesterol and their saturated stanol forms',
+          biologicalMechanism:
+            'Compete with cholesterol for space in the intestinal micelles that present it to the NPC1L1 transporter — acting on the same absorption step ezetimibe blocks, but by crowding rather than by inhibition. The relationship is close enough that ezetimibe is also the treatment for sitosterolaemia, the rare disease of excessive plant sterol absorption.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here. Randomised feeding studies report LDL reductions of a few percent with cholesterol as the endpoint; no plant sterol product has an event trial.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Soluble fibre (psyllium, oat beta-glucan)',
+          activeCompound: 'Viscous soluble fibre',
+          biologicalMechanism:
+            'Binds bile acids in the gut lumen so they are excreted rather than reabsorbed, forcing the liver to convert cholesterol into replacement bile acids. This targets the bile acid loop rather than the cholesterol transporter, so the two mechanisms are additive in principle.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here. Effect sizes in randomised trials are a few percent on LDL, against roughly 15 to 20% for ezetimibe added to a statin.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C1=CC(=CC=C1[C@@H]2[C@H](C(=O)N2C3=CC=C(C=C3)F)CC[C@@H](C4=CC=C(C=C4)F)O)O',
+      chemicalFormula: 'C24H21F2NO3',
+      molecularWeight: '409.4 g/mol',
+      targetReceptorAffinity:
+        'Inhibits the NPC1L1 sterol transporter on the enterocyte brush border. The clinically active species is not the parent: ezetimibe is glucuronidated in the intestinal wall to ezetimibe-glucuronide, which is at least as potent, is secreted into bile and returns to the intestinal lumen, so enterohepatic recirculation keeps the drug at its own site of action for days. The 2-azetidinone beta-lactam ring is the scaffold; it was found in a cholesterol absorption screen rather than designed against a known target, and NPC1L1 was identified as the target years after the drug worked.',
+      structureSource: {
+        label:
+          'PubChem CID 150311 (ezetimibe) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/150311',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'eze-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Chiral control of the fluorophenyl building blocks',
+          description:
+            'Assay the (S)-configured hydroxy side-chain precursor and the 4-fluoroaniline-derived imine component for enantiomeric excess and isomeric purity. Ezetimibe has three stereocentres and the wrong configuration at any one of them changes potency by orders of magnitude, which is why the enantioselective steps are controlled at incoming material as well as in process.',
+          reagentsAndBuffer:
+            '(S)-4-fluorophenyl hydroxy side-chain reference standard, 4-fluoroaniline, 4-benzyloxybenzaldehyde, chiral HPLC on a polysaccharide stationary phase, Karl Fischer titration',
+        },
+        {
+          id: 'eze-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Asymmetric Staudinger-type cyclisation to the beta-lactam',
+          description:
+            'Form the azetidinone ring by cyclisation of the acid-derived ketene equivalent onto the imine under chiral control, setting the two ring stereocentres in one operation. The four-membered lactam is the pharmacophore and it is strained: too strong a base or too much water at any later step opens it, and the ring-opened amino acid is the specified degradant.',
+          dependsOnStepId: 'eze-w1',
+          reagentsAndBuffer:
+            'Titanium tetrachloride with a chiral amino alcohol auxiliary, diisopropylethylamine in dichloromethane at low temperature under nitrogen, then the (S)-side-chain aldol partner; thin-layer chromatography against the trans-lactam diastereomer',
+        },
+        {
+          id: 'eze-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Debenzylation and crystallisation with beta-lactam integrity control',
+          description:
+            'Remove the benzyl protecting group from the phenol by hydrogenolysis and crystallise the free drug. The release assay is written around the beta-lactam: the ring-opened hydrolysis product and the trans-diastereomer are both specified impurities, and both are invisible to a mass-only check because one has the same formula and the other differs by a water molecule.',
+          dependsOnStepId: 'eze-w2',
+          reagentsAndBuffer:
+            'Palladium on carbon under hydrogen in ethanol, ethyl acetate/heptane recrystallisation, reversed-phase HPLC against the ring-opened amino acid and trans-diastereomer reference impurities, infrared confirmation of the beta-lactam carbonyl stretch',
+        },
+        {
+          id: 'eze-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Glucuronidation and apical presentation to NPC1L1 on an enterocyte monolayer',
+          description:
+            'Apply the compound apically to differentiated Caco-2 monolayers expressing NPC1L1 and measure both parent and the glucuronide. This step is separated out because the drug activates itself where it acts: intestinal UGT enzymes convert ezetimibe to ezetimibe-glucuronide, which is at least as potent at the transporter, is excreted in bile and returns to the lumen — a recirculating loop that no plasma measurement captures.',
+          dependsOnStepId: 'eze-w3',
+          reagentsAndBuffer:
+            'Caco-2 cells differentiated on Transwell inserts, recombinant UGT1A1 and UGT1A3 microsomes with uridine diphosphate glucuronic acid, alamethicin for microsomal pore formation, LC-MS/MS quantification of ezetimibe and ezetimibe-glucuronide',
+        },
+        {
+          id: 'eze-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Micellar cholesterol uptake and NPC1L1 dependence readout',
+          description:
+            'Measure uptake of labelled cholesterol presented in taurocholate micelles into the monolayer, with and without drug, and confirm the effect disappears in NPC1L1-knockdown cells. The knockdown arm is what turns a cholesterol-uptake number into a statement about the target: the compound was found in a phenotypic absorption screen and its target was identified only afterwards, so target dependence has to be demonstrated rather than assumed.',
+          dependsOnStepId: 'eze-w4',
+          reagentsAndBuffer:
+            'Carbon-14-labelled cholesterol in sodium taurocholate/oleic acid mixed micelles, Caco-2 cells with and without NPC1L1 short hairpin RNA knockdown, Hanks balanced salt solution, liquid scintillation counting, sitosterol as a competing sterol control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'eze-a1',
+        category: 'measured',
+        title: 'IMPROVE-IT: 32.7% against 34.7% over seven years in 18,144 patients',
+        laymanSummary:
+          'Adding ezetimibe to a statin after a heart attack lowered cholesterol further and prevented events. The absolute difference over seven years was two people in a hundred.',
+        technicalDetails:
+          'IMPROVE-IT randomised 18,144 patients hospitalised for an acute coronary syndrome within the preceding 10 days, with LDL cholesterol of 50 to 100 mg/dL on lipid-lowering therapy or 50 to 125 mg/dL if not, to simvastatin 40 mg plus ezetimibe 10 mg or simvastatin 40 mg plus placebo, median follow-up 6 years. Median time-weighted average LDL during the study was 53.7 mg/dL on the combination against 69.5 mg/dL on simvastatin alone (p<0.001). The Kaplan-Meier event rate at 7 years for the primary composite of cardiovascular death, non-fatal myocardial infarction, unstable angina requiring rehospitalisation, coronary revascularisation at 30 days or later, or non-fatal stroke was 32.7% against 34.7%: absolute risk difference 2.0 percentage points, hazard ratio 0.936 (95% CI 0.89 to 0.99), p=0.016. Prespecified muscle, gallbladder and hepatic adverse effects and cancer were similar between groups.',
+        evidenceSource: 'Cannon CP et al., IMPROVE-IT, N Engl J Med 2015;372:2387-2397 (NCT00202878)',
+        doi: '10.1056/NEJMoa1410489',
+        measuredMetric:
+          'Kaplan-Meier rate at 7 years of a five-component cardiovascular composite, and time-weighted average LDL cholesterol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eze-a2',
+        category: 'conclusion_shift',
+        title: 'Why a 2-point difference mattered: it separated the LDL number from the statin',
+        laymanSummary:
+          'For years it was argued that statins work through something other than cholesterol. Ezetimibe lowers cholesterol by an unrelated mechanism, and when it lowered events by roughly the amount the cholesterol hypothesis predicted, that argument became much harder to make.',
+        technicalDetails:
+          'The Cholesterol Treatment Trialists established across 26 randomised trials and 170,000 participants that each 1.0 mmol/L reduction in LDL cholesterol reduces the annual rate of major vascular events by just over a fifth. In IMPROVE-IT the LDL difference was 15.8 mg/dL, roughly 0.41 mmol/L, and the observed relative reduction in the primary composite was 6.4% — close to what that dose-response predicts for a difference that size over that follow-up. The mechanistic point is that ezetimibe achieves the LDL reduction by inhibiting an intestinal sterol transporter, sharing nothing with HMG-CoA reductase inhibition and none of the isoprenoid-depletion biochemistry invoked to explain statin pleiotropy. IMPROVE-IT is therefore evidence about the LDL number rather than about the drug class, and it also demonstrated benefit at achieved LDL levels below any target then in guidelines.',
+        evidenceSource:
+          'Cannon CP et al., N Engl J Med 2015;372:2387-2397; Cholesterol Treatment Trialists Collaboration, Lancet 2010;376:1670-1681',
+        doi: '10.1016/S0140-6736(10)61350-5',
+        measuredMetric:
+          'Observed relative risk reduction against the LDL dose-response established across 26 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eze-a3',
+        category: 'failed',
+        title: 'ENHANCE: LDL fell 16.5% further and the artery wall got slightly thicker',
+        laymanSummary:
+          'A trial in familial hypercholesterolaemia measured the thickness of artery walls by ultrasound over two years. Cholesterol fell much further on ezetimibe. The artery walls thickened marginally more, not less.',
+        technicalDetails:
+          'ENHANCE randomised 720 patients with familial hypercholesterolaemia to simvastatin 80 mg with placebo or with ezetimibe 10 mg for 24 months, measuring carotid and femoral intima-media thickness by B-mode ultrasound. The primary outcome, mean change in carotid-artery intima-media thickness, was 0.0058 plus or minus 0.0037 mm on simvastatin alone and 0.0111 plus or minus 0.0038 mm on the combination: p=0.29, numerically in the wrong direction. No secondary intima-media thickness measure differed significantly. End-of-study LDL was 192.7 mg/dL on simvastatin alone against 141.3 mg/dL on the combination, a 16.5% between-group difference, p<0.01, with greater reductions in triglycerides and C-reactive protein as well. Safety profiles were similar. The trial produced years of controversy about whether ezetimibe lowered a number without doing anything.',
+        evidenceSource:
+          'Kastelein JJP et al., ENHANCE, N Engl J Med 2008;358:1431-1443 (NCT00552097)',
+        doi: '10.1056/NEJMoa0800742',
+        measuredMetric: 'Change in mean carotid-artery intima-media thickness over 24 months',
+        inferredClaim:
+          'That carotid intima-media thickness is a valid stand-in for cardiovascular events — it moved the wrong way here while the drug went on to reduce events in IMPROVE-IT',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eze-a4',
+        category: 'failed',
+        title: 'SEAS: no effect on aortic stenosis, and more cancer',
+        laymanSummary:
+          'A second trial tested whether lowering cholesterol slowed a narrowing heart valve. It did not. It did reduce ischaemic events, and it recorded more cancers, which took years to resolve.',
+        technicalDetails:
+          'SEAS randomised 1,873 patients with mild-to-moderate asymptomatic aortic stenosis to simvastatin 40 mg plus ezetimibe 10 mg or placebo, median follow-up 52.2 months. The primary composite of major cardiovascular events including cardiovascular death, aortic-valve replacement, non-fatal infarction, hospitalisation for unstable angina, heart failure, bypass grafting, percutaneous intervention and non-haemorrhagic stroke occurred in 333 patients (35.3%) against 355 (38.2%): hazard ratio 0.96 (95% CI 0.83 to 1.12), p=0.59. Aortic-valve replacement occurred in 28.3% against 29.9% (1.00, 0.84 to 1.18, p=0.97). Ischaemic cardiovascular events were fewer on treatment, 148 against 187 (0.78, 0.63 to 0.97, p=0.02), mainly through less bypass grafting. Cancer occurred more frequently on treatment: 105 against 70, p=0.01.',
+        evidenceSource: 'Rossebø AB et al., SEAS, N Engl J Med 2008;359:1343-1356 (NCT00092677)',
+        doi: '10.1056/NEJMoa0804602',
+        measuredMetric:
+          'Composite of aortic-valve and ischaemic events over a median 52.2 months, and cancer incidence',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eze-a5',
+        category: 'measured',
+        title: 'SHARP: a 17% reduction in atherosclerotic events in chronic kidney disease',
+        laymanSummary:
+          'In more than nine thousand people with advanced kidney disease, simvastatin plus ezetimibe reduced heart attacks, strokes and revascularisations by about a sixth over five years.',
+        technicalDetails:
+          'SHARP randomised 4,650 patients to simvastatin 20 mg plus ezetimibe 10 mg daily and 4,620 to matching placebo in advanced chronic kidney disease, including patients on dialysis. Allocation produced an average LDL difference of 0.85 mmol/L over a median 4.9 years with about two-thirds compliance, and a 17% proportional reduction in first major atherosclerotic event: 526 (11.3%) against 619 (13.4%), rate ratio 0.83 (95% CI 0.74 to 0.94), log-rank p=0.0021. Non-fatal infarction or coronary death was non-significantly lower (213 against 230; 0.92, 0.76 to 1.11, p=0.37); non-haemorrhagic stroke fell significantly (131 against 174; 0.75, 0.60 to 0.94, p=0.01) as did arterial revascularisation (284 against 352; 0.79, 0.68 to 0.93, p=0.0036). Excess myopathy was two per 10,000 patient-years (9 against 5 cases). There was no excess of hepatitis, gallstones or cancer (438 against 439, p=0.89) — which retired the SEAS cancer signal.',
+        evidenceSource: 'Baigent C et al., SHARP, Lancet 2011;377:2181-2192 (NCT00125593)',
+        doi: '10.1016/S0140-6736(11)60739-3',
+        measuredMetric:
+          'First major atherosclerotic event over a median 4.9 years, and cancer incidence, in 9,270 patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eze-a6',
+        category: 'inferred',
+        title: 'The absolute benefit is small, and relative framing routinely obscures how small',
+        laymanSummary:
+          'The relative reduction sounds modest and the absolute one is smaller still: two events prevented per hundred people over seven years, in a group who had all just had a heart attack.',
+        technicalDetails:
+          'IMPROVE-IT reported an absolute risk difference of 2.0 percentage points at 7 years, corresponding to a number needed to treat of about 50 over that period, in a secondary-prevention population within 10 days of an acute coronary syndrome — approximately the highest-risk group in which the drug is used. The hazard ratio of 0.936 with a confidence interval reaching 0.99 means the trial only just excluded no effect, in 18,144 patients over six years. The result is real, statistically sound and replicated in direction by SHARP. It is also a modest effect, and the two facts belong together: a page that reports "ezetimibe reduces cardiovascular events" without the 2.0 percentage points has not told the reader what the drug does.',
+        evidenceSource: 'Cannon CP et al., IMPROVE-IT, N Engl J Med 2015;372:2387-2397',
+        doi: '10.1056/NEJMoa1410489',
+        inferredClaim:
+          'That a statistically significant composite reduction implies a clinically large benefit — the absolute difference was 2.0 percentage points over 7 years in the highest-risk population studied',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, and immediately converted into something that stays in the gut',
+        laymanDesc:
+          'The intestinal wall attaches a sugar group to the drug as it passes through. That modified form is at least as active and keeps being recycled back into the gut, so the drug stays where it works.',
+        molecularDetail:
+          'Ezetimibe undergoes extensive first-pass glucuronidation in the intestinal wall and liver to ezetimibe-glucuronide, which is equipotent or more potent at NPC1L1. The glucuronide is secreted into bile and delivered back to the intestinal lumen, producing enterohepatic recirculation and a half-life of roughly 22 hours with sustained delivery to the site of action.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the brush border of the jejunum from the luminal side',
+        laymanDesc:
+          'The transporter it blocks sits on the surface of the cells lining the small intestine, facing the gut contents. The drug meets it from inside the gut, not from the blood.',
+        molecularDetail:
+          'NPC1L1 is a 13-transmembrane sterol-sensing protein localised to the apical brush border of jejunal enterocytes, and in humans also to the hepatocyte canalicular membrane. It mediates clathrin-AP2-dependent internalisation of cholesterol from micelles. The hepatic localisation is why the drug also reduces biliary cholesterol reuptake, and it is a species difference from the mouse.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A strained four-membered ring blocks the sterol doorway',
+        laymanDesc:
+          'The drug binds the transporter and stops it internalising cholesterol. The scaffold was discovered by watching for reduced cholesterol absorption, not by designing against a known target — the target was identified afterwards.',
+        molecularDetail:
+          'The 2-azetidinone beta-lactam scaffold binds NPC1L1 and prevents sterol internalisation. Ezetimibe emerged from a phenotypic acyl-CoA cholesterol acyltransferase programme at Schering-Plough and was optimised on cholesterol absorption in vivo; NPC1L1 was identified as its molecular target in 2004, two years after approval. The same transporter explains why ezetimibe treats sitosterolaemia, a disease of unrestrained plant sterol absorption.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Less cholesterol returns to the liver, so the liver clears more LDL',
+        laymanDesc:
+          'Deprived of the cholesterol it was reclaiming from the gut, the liver puts out more LDL collection receptors and pulls particles from the blood.',
+        molecularDetail:
+          'Reduced delivery of intestinal cholesterol to the liver in chylomicron remnants depletes the hepatic sterol pool, releasing SREBP-2 and upregulating LDLR transcription. Surface LDL receptor density rises and circulating LDL clearance increases. Because this happens downstream of a different lever than statins use, the two are additive: the statin blocks synthesis, the compensatory rise in absorption is blocked by ezetimibe.',
+        iconName: 'Repeat',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'LDL falls by around a fifth, and events fall by about the predicted amount',
+        laymanDesc:
+          'Adding it to a statin lowers cholesterol by roughly another fifth. In the trial that counted events, that produced two fewer events per hundred people over seven years.',
+        molecularDetail:
+          'In IMPROVE-IT the time-weighted average LDL was 53.7 mg/dL on combination against 69.5 mg/dL on simvastatin alone, and the 7-year primary event rate was 32.7% against 34.7% (hazard ratio 0.936, p=0.016). In SHARP an LDL difference of 0.85 mmol/L produced a 17% proportional reduction in major atherosclerotic events.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'IMPROVE-IT (NCT00202878)',
+        phase: 'Randomised double-blind active-controlled trial, median 6 years',
+        sampleSize: 18144,
+        primaryEndpoint:
+          'Composite of cardiovascular death, non-fatal myocardial infarction, unstable angina requiring rehospitalisation, coronary revascularisation at ≥30 days, or non-fatal stroke',
+        endpointMet: true,
+        statisticalPValue:
+          'HR 0.936 (95% CI 0.89-0.99), P = 0.016; absolute risk difference 2.0 percentage points at 7 years',
+        unreportedAdverseSignals:
+          'The confidence interval reaches 0.99 in 18,144 patients over six years — the trial only just excluded no effect.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ENHANCE (NCT00552097)',
+        phase: 'Randomised double-blind imaging trial, 24 months',
+        sampleSize: 720,
+        primaryEndpoint: 'Change in mean carotid-artery intima-media thickness',
+        endpointMet: false,
+        statisticalPValue:
+          '0.0111 mm on combination against 0.0058 mm on simvastatin alone, P = 0.29 — numerically the wrong direction',
+        unreportedAdverseSignals:
+          'LDL fell 16.5% further on the combination (p<0.01), with greater reductions in triglycerides and C-reactive protein. The surrogate did not follow the lipid change.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'SEAS (NCT00092677)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 52.2 months',
+        sampleSize: 1873,
+        primaryEndpoint:
+          'Composite of aortic-valve events and ischaemic cardiovascular events in asymptomatic aortic stenosis',
+        endpointMet: false,
+        statisticalPValue: 'HR 0.96 (95% CI 0.83-1.12), P = 0.59',
+        unreportedAdverseSignals:
+          'Cancer occurred in 105 against 70 patients, p=0.01 — a signal that SHARP, with 9,270 patients, subsequently did not reproduce (438 against 439, p=0.89).',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'SHARP (NCT00125593, ISRCTN54137607)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 4.9 years',
+        sampleSize: 9270,
+        primaryEndpoint:
+          'First major atherosclerotic event in advanced chronic kidney disease including dialysis',
+        endpointMet: true,
+        statisticalPValue: 'Rate ratio 0.83 (95% CI 0.74-0.94), log-rank P = 0.0021',
+        unreportedAdverseSignals:
+          'Non-fatal infarction or coronary death alone was not significant (RR 0.92, p=0.37); the composite was carried by stroke and revascularisation. Compliance was about two thirds.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A 7-year event rate of 32.7% against 34.7% in 18,144 patients, an absolute difference of 2.0 percentage points',
+        'A time-weighted average LDL of 53.7 mg/dL against 69.5 mg/dL in the same trial',
+        'A 17% proportional reduction in major atherosclerotic events across 9,270 patients with advanced chronic kidney disease',
+        'No difference in carotid intima-media thickness in 720 patients with familial hypercholesterolaemia despite a 16.5% greater LDL reduction',
+      ],
+      unsupportedInferences: [
+        'That carotid intima-media thickness predicts event benefit — ENHANCE moved the wrong way and the drug went on to reduce events',
+        'That the SEAS cancer imbalance was a drug effect — SHARP found 438 cancers against 439 in a larger and longer study',
+        'That a significant composite reduction implies a large benefit — the absolute difference was 2.0 percentage points over 7 years in the highest-risk population studied',
+        'That ezetimibe can replace a statin — every outcome trial on this page added it to one',
+      ],
+      whatFailedInitially: [
+        'ENHANCE: the primary imaging endpoint was numerically worse on the combination, p=0.29, despite a much larger LDL reduction',
+        'SEAS: no effect on aortic-valve events (HR 1.00) and no effect on the composite (HR 0.96), with a cancer imbalance that took a larger trial to retire',
+        'IMPROVE-IT itself only just excluded no effect, with a confidence interval reaching 0.99 after six years and 18,144 patients',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines, and generic in the United States since 2016',
+        'US$0.067 per 10 mg tablet at United States pharmacy acquisition cost, effective 19 August 2026',
+        'IMPROVE-IT is the trial most often cited for the proposition that lower LDL is better regardless of how it is achieved, and it is also the trial that demonstrated benefit below any LDL target then in guidelines',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, and fixed combinations with simvastatin, atorvastatin and rosuvastatin',
+      description:
+        'Once daily, with or without food. The drug glucuronidates in the intestinal wall and recirculates through bile back to the gut lumen, which keeps it at its own site of action and gives an effective half-life of about 22 hours despite low systemic exposure.',
+      safetyProfile:
+        'Unusually clean. In IMPROVE-IT, rates of prespecified muscle, gallbladder and hepatic adverse effects and of cancer were similar to statin monotherapy across 18,144 patients over six years. In SHARP the excess of myopathy on simvastatin plus ezetimibe was two per 10,000 patient-years, with no excess of hepatitis, gallstones or cancer. The SEAS cancer imbalance was not reproduced in the larger SHARP population. Bile acid sequestrants reduce its absorption if taken together.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is a 2% difference worth taking a tablet for?',
+        a: 'That is the right question and the honest answer depends on your risk. IMPROVE-IT enrolled 18,144 people within ten days of an acute coronary syndrome — about the highest-risk group there is — and over seven years 34.7% of those on a statin alone had a cardiovascular event against 32.7% of those on the statin plus ezetimibe. That is two events prevented per hundred people over seven years, a number needed to treat of about fifty. It is a real, statistically sound benefit at essentially no cost in side effects and about seven cents a tablet. It is also small, and it will be smaller still in someone at lower baseline risk, because relative reductions applied to smaller absolute risks give smaller absolute gains.',
+        auditNote:
+          'The relative hazard ratio of 0.936 and the absolute difference of 2.0 percentage points describe the same result. Which one a page leads with changes how large the drug sounds.',
+      },
+      {
+        q: 'Did this drug not fail its trials?',
+        a: 'Two of them, and the sequence is the interesting part. ENHANCE, in 2008, measured artery wall thickness by ultrasound in 720 people with familial hypercholesterolaemia: LDL fell 16.5% further on ezetimibe and the carotid wall thickened marginally more rather than less, p=0.29. SEAS, the same year, found no effect on aortic-valve events in 1,873 patients and recorded more cancers. Those two results produced years of argument that ezetimibe was lowering a number without doing anything. Then IMPROVE-IT counted actual events in 18,144 patients over six years and found a real reduction, and SHARP found a 17% reduction in 9,270 patients with kidney disease and no cancer excess at all. The lesson is about surrogates: a change in artery wall thickness is not a heart attack.',
+      },
+      {
+        q: 'Why is this drug important beyond what it does for me?',
+        a: 'Because it tested an idea rather than just treating a condition. For years the argument ran that statins prevent heart attacks through anti-inflammatory or plaque-stabilising actions rather than through cholesterol as such. Ezetimibe lowers LDL by blocking a transporter in the intestine — nothing to do with the statin pathway, none of the isoprenoid biochemistry invoked to explain those extra effects. When it reduced events by roughly the amount the established LDL dose-response predicted for the size of LDL reduction it produced, that made "the benefit is not really about LDL" a much harder position to hold. IMPROVE-IT also showed benefit at achieved LDL levels below any target guidelines then recommended.',
+      },
+      {
+        q: 'Should I take this instead of a statin?',
+        a: 'Not on the evidence here, because no trial on this page tested that. In IMPROVE-IT, SEAS, ENHANCE and SHARP, ezetimibe was always given on top of a statin, never in place of one. It lowers LDL by roughly 15 to 20%, where a moderate statin dose lowers it by 30 to 50%. Where it does become the main option is if a statin genuinely cannot be tolerated at any dose — and there, the drug with a dedicated outcome trial in statin-intolerant patients is bempedoic acid, not ezetimibe.',
+      },
+      {
+        q: 'Does it cause cancer?',
+        a: 'The evidence says no, and it took a bigger trial to settle it. SEAS reported 105 cancers on simvastatin plus ezetimibe against 70 on placebo, p=0.01, in 1,873 patients — a genuinely alarming imbalance at the time. SHARP then followed 9,270 patients for a median of 4.9 years on the same combination and found 438 cancers against 439, p=0.89. IMPROVE-IT, with 18,144 patients over six years, reported cancer rates similar between groups. Three studies, the two larger ones both null, is about as clean a resolution as a safety signal gets.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for ezetimibe could be cited. The price shown is pharmacy acquisition cost from the CMS NADAC file effective 19 August 2026: about 6.7 cents for a 10 mg generic tablet. The synthesis is a stereocontrolled beta-lactam construction with three stereocentres and a protecting-group removal — more involved than the cheapest drugs on this site and far less so than the SGLT2 inhibitors. That is a description of the route, not a cost, and this page does not convert one into the other.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Cannon CP et al. Ezetimibe added to statin therapy after acute coronary syndromes (IMPROVE-IT). N Engl J Med 2015;372:2387-2397',
+        identifier: '10.1056/NEJMoa1410489',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kastelein JJP et al. Simvastatin with or without ezetimibe in familial hypercholesterolemia (ENHANCE). N Engl J Med 2008;358:1431-1443',
+        identifier: '10.1056/NEJMoa0800742',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rossebø AB et al. Intensive lipid lowering with simvastatin and ezetimibe in aortic stenosis (SEAS). N Engl J Med 2008;359:1343-1356',
+        identifier: '10.1056/NEJMoa0804602',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Baigent C et al. The effects of lowering LDL cholesterol with simvastatin plus ezetimibe in patients with chronic kidney disease (SHARP). Lancet 2011;377:2181-2192',
+        identifier: '10.1016/S0140-6736(11)60739-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cholesterol Treatment Trialists Collaboration. Efficacy and safety of more intensive lowering of LDL cholesterol. Lancet 2010;376:1670-1681',
+        identifier: '10.1016/S0140-6736(10)61350-5',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: ZETIA (ezetimibe), NDA 021445, original approval 25 October 2002',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021445',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 150311 — ezetimibe structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/150311',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
 ]
