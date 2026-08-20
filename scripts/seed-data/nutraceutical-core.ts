@@ -81,7 +81,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The identical molecule, used medically rather than recreationally, in children whose enzymes cannot make creatine and whose brains are therefore depleted of it. That clinical use is the strongest evidence that creatine crosses into the brain at all — and it says nothing about whether adding more to an already-replete adult brain does anything.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: addresses a genuine deficiency with a measurable brain creatine readout on MR spectroscopy. Cons: entirely irrelevant to the healthy adult who is the market for the tub.',
         },
@@ -95,7 +95,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. Harris et al. (1992) recorded the conversion directly: a single 5 g dose of creatine monohydrate corresponds to the creatine content of about 1.1 kg of fresh uncooked steak.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'A vegetarian or vegan diet, as the negative case',
@@ -103,8 +103,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'People who eat no meat start with a lower muscle total creatine content, and Harris et al. found the rise on supplementation was greatest in exactly those subjects who began lowest. That is a repletion effect, not a supraphysiological one, and it is why response varies so much between individuals.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -599,7 +599,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'These skip one or both activation steps and are used where the kidney cannot perform the final hydroxylation, principally chronic kidney disease. They are far more potent, carry a real hypercalcaemia risk and require monitoring. They are also not what is in a supplement bottle, and results with them do not transfer to cholecalciferol.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: work when the kidney cannot activate cholecalciferol. Cons: narrow therapeutic window, hypercalcaemia, prescription-only for good reason.',
         },
@@ -609,7 +609,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'These have what vitamin D lacks: randomised fracture-outcome data in the populations they are given to. VITAL tested vitamin D3 for exactly that endpoint in 25,871 adults and found a hazard ratio of 0.98 for total fractures and 1.01 for hip fractures. Vitamin D repletion remains a prerequisite for these drugs to work, which is a supporting role, not a substitute one.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: fracture reduction demonstrated in randomised trials. Cons: rare atypical femoral fracture and osteonecrosis of the jaw, and they do nothing for deficiency itself.',
         },
@@ -621,8 +621,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Identical molecule by the identical pathway, with the difference that cutaneous synthesis is self-limiting — continued exposure photodegrades previtamin D3 to inert lumisterol and tachysterol, so the skin cannot overproduce. Latitude, season, skin pigmentation, age and sunscreen all reduce the yield, and above roughly 35 degrees latitude winter sunlight carries too little UVB to make any.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Not stated here — this page gives no exposure guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
         {
           name: 'Oily fish, cod liver oil, egg yolk, fortified milk and cereal',
@@ -630,8 +630,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Dietary vitamin D is absorbed with fat into chylomicrons and enters the same hepatic 25-hydroxylation step. Food fortification, introduced in the 1930s specifically against rickets, is the intervention that actually ended the disease as a mass phenomenon in industrialised countries.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -1142,7 +1142,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same fatty acid at four times the supplement amount, in a form containing no DHA. It is the only omega-3 preparation with a positive cardiovascular outcome trial, and that trial\'s comparator was pharmaceutical grade mineral oil rather than an inert placebo. It is a different product from a fish oil capsule and its result should not be read onto one.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: a randomised 25% relative risk reduction in a prespecified composite. Cons: significantly more hospitalisation for atrial fibrillation or flutter (3.1% versus 2.1%, P = 0.004) and a comparator that is still argued about.',
         },
@@ -1152,7 +1152,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Every patient in REDUCE-IT and STRENGTH was already on a statin, so omega-3 was being tested as an addition, not an alternative. LDL-lowering therapy has repeated, independent, placebo-controlled outcome trials; omega-3 has one positive trial with a contested comparator and several clearly null ones.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: the largest and most consistently replicated cardiovascular evidence base in medicine. Cons: muscle symptoms in a minority; no effect on triglycerides comparable to 4 g of EPA.',
         },
@@ -1162,7 +1162,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Reach the same nuclear receptor as EPA and DHA and lower triglycerides more, which makes them the natural test of whether triglyceride lowering per se prevents events. Their outcome record on top of a statin has been largely negative, which is itself evidence against a purely triglyceride-mediated explanation for REDUCE-IT.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: large triglyceride reductions. Cons: myopathy risk with statins, raised creatinine, and no convincing add-on outcome benefit.',
         },
@@ -1176,7 +1176,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here as advice. For scale, the GISSI-Prevenzione trial used 1 g/day of n-3 ethyl esters, and VITAL and ASCEND both used 1 g/day capsules.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Algal oil',
@@ -1184,8 +1184,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'The original source of the marine omega-3s — fish accumulate them from algae rather than synthesising them. Algal oil raises the erythrocyte omega-3 content by the same route without the marine food chain, and therefore without the oxidation and contaminant profile of a fish-derived oil.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
         {
           name: 'Alpha-linolenic acid from flaxseed, chia and walnuts',
@@ -1193,8 +1193,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'The plant omega-3 is not a substitute for the marine ones in any practical sense. Conversion of ALA to EPA is limited and conversion onward to DHA is very low in adults, so ALA intake barely moves the erythrocyte EPA and DHA content that all of the cardiovascular literature is indexed to.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -1677,7 +1677,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'This is the one setting where magnesium is unambiguously a drug that saves lives, and it is given by infusion under monitoring in an obstetric or coronary care unit. It is not evidence for a capsule. The same programme that established magnesium in eclampsia failed twice in myocardial infarction.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: large, replicated mortality and morbidity benefit in its own indication. Cons: entirely irrelevant to an oral supplement, and routinely cited as though it were not.',
         },
@@ -1687,7 +1687,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Firoz and Graber measured fractional absorption of magnesium oxide at about 4 percent against significantly higher and mutually equivalent absorption from magnesium chloride, lactate and aspartate. That study is the source of most "oxide is poorly absorbed" marketing. It did not test glycinate.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: cheapest form, and its poor absorption is exactly why it works as a laxative. Cons: the 4 percent figure is one small urinary-excretion study in normal volunteers, and it is being used to sell a form it never compared against.',
         },
@@ -1701,7 +1701,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the trials pooled by Zhang et al. used a median supplemental dose of 368 mg per day, which is roughly the whole daily reference intake for an adult.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Hard tap water and mineral water',
@@ -1709,8 +1709,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Magnesium in water is already dissociated and needs no digestion, and in populations drinking hard water it is a non-trivial share of total intake. It is also the reason intake surveys that count only food underestimate what people actually get.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -2183,7 +2183,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same salt, prescribed precisely because it induces intestinal metallothionein and stops copper being absorbed. The mechanism regulators approved as the therapeutic action is identical to the mechanism that makes high-dose zinc supplementation dangerous in a person with normal copper handling.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: a clean, approved, mechanistically transparent use. Cons: it is also the clearest possible warning label for the supplement, and it is almost never presented as one.',
         },
@@ -2193,7 +2193,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'This is the strongest efficacy evidence zinc has anywhere. In children over six months, 33 trials in 10,841 children found diarrhoea shortened by about eleven hours, and in malnourished children by about a day, graded high certainty.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: large, replicated, and in the population where baseline zinc deficiency is common. Cons: in children under six months the same review found no effect, and the trials were run mostly in Asian settings at high risk of deficiency, so it is a repletion result rather than a general antiviral one.',
         },
@@ -2207,7 +2207,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the Cochrane cold-treatment trials used zinc gluconate lozenges at 45 to 276 mg per day, which is many times any dietary intake.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Legumes and whole grains, as the phytate problem',
@@ -2215,8 +2215,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Phytate forms insoluble complexes with zinc in the intestinal lumen, which is why populations eating unleavened high-phytate staples have measurably higher rates of zinc deficiency despite adequate total zinc intake. Soaking, sprouting and leavening degrade phytate and raise absorption.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -2702,7 +2702,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Complete and rapid cure of a disease that is otherwise fatal, established well before controlled trials existed. It is the strongest possible evidence that vitamin C is essential, and it says nothing whatever about the effect of extra vitamin C in someone who is not deficient.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: unambiguous, mechanistically understood, fast. Cons: routinely used as rhetorical cover for claims about replete adults, which is the central error this file exists to name.',
         },
@@ -2712,7 +2712,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Between 2017 and 2022 this went from a widely adopted ICU protocol to a randomised finding of harm. LOVIT found death or persistent organ dysfunction at day 28 in 44.5% on vitamin C against 38.5% on placebo, risk ratio 1.21 (95% CI 1.04 to 1.40, P = 0.01).',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: none demonstrated. Cons: a randomised signal of harm, from a trial designed to look for benefit.',
         },
@@ -2726,7 +2726,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the Cochrane review excluded any trial using less than 0.2 g per day, and its adult duration effect came from regimens at or above that.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Vitamin C taken with a plant-source iron meal',
@@ -2734,8 +2734,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Ascorbate reduces dietary Fe(III) to Fe(II) and forms a soluble chelate that survives the alkaline duodenum, substantially increasing non-haem iron absorption. This is one of the few supplemental vitamin C effects that is mechanistically direct, measurable, and useful in ordinary people.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -3208,7 +3208,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The regulated version of the same molecule, assessed by the EMA and authorised in 2007 for short-term monotherapy in primary insomnia in patients aged 55 or over. Across three trials in 681 patients, 32% on Circadin (86 of 265) reported significant symptom improvement at three weeks against 19% on placebo (51 of 272).',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: known content, known release profile, a defined indication and an age restriction. Cons: a 13-percentage-point responder difference is modest, and the authorisation is deliberately narrow in a way the US supplement market simply is not.',
         },
@@ -3218,7 +3218,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin\'s and, unlike melatonin, persist after treatment stops.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: durable, no pharmacology, no content-variability problem. Cons: requires weeks of effort and access to a clinician or a structured programme, which is why a gummy wins on convenience every time.',
         },
@@ -3232,7 +3232,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. The mechanistic point is that this is the same signal the supplement imitates, delivered by the system that knows the right dose.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Morning bright light, for the opposite direction',
@@ -3240,8 +3240,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Light in the early biological morning advances circadian phase, which is the intervention that pairs with evening melatonin for delayed sleep-wake phase disorder. The phase-response curves for light and for melatonin run in roughly opposite directions, which is why the two are used together and why timing errors make either one useless or counterproductive.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no timing or intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -3690,7 +3690,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same molecule as a licensed drug, given to very-low-birth-weight infants. In the 2,006-infant CAP trial it reduced bronchopulmonary dysplasia and, at 18 to 21 months corrected age, reduced death or neurodevelopmental disability from 46.2% to 40.2% and cerebral palsy from 7.3% to 4.4%.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: a genuine randomised benefit on hard neurological outcomes in a real disease, from a substance most people meet as a beverage. Cons: it tells you nothing about the coffee you drank this morning, and it is regularly cited as if it did.',
         },
@@ -3700,7 +3700,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Sleep clears accumulated adenosine; caffeine occupies the receptor while the adenosine keeps accumulating. That difference is why caffeine reliably improves performance on a rested athlete and cannot substitute for sleep across days. It is also why 400 mg six hours before bed measurably reduces total sleep time.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: removes the underlying signal rather than blocking it, with no tolerance and no withdrawal. Cons: cannot be bought, which is precisely why the caffeine market exists.',
         },
@@ -3714,7 +3714,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: Goncalves\'s time-trial study used 6 mg per kilogram of body mass, and Drake\'s sleep study used a fixed 400 mg.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Tea',
@@ -3722,8 +3722,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tea delivers less caffeine per serving alongside L-theanine, an amino acid that crosses the blood-brain barrier and is frequently combined with caffeine in supplement products on the claim that it smooths the stimulant effect. The receptor pharmacology of the caffeine is unchanged.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -4207,7 +4207,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same starting material cut into peptides small enough to avoid triggering cow\'s milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: solves a defined clinical problem. Cons: the word "hydrolysate" on a sports tub borrows credibility from this use, and hydrolysing whey for an adult buys speed of digestion, not a different biology.',
         },
@@ -4221,7 +4221,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: Moore et al. found 20 g of whole egg protein maximally stimulated muscle protein synthesis after resistance exercise, and 40 g did not do more.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Soy protein isolate, as the tested comparator',
@@ -4229,8 +4229,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tang et al. measured it directly. After resistance exercise, muscle protein synthesis on whey was about 31% greater than on soy and about 122% greater than on casein, with soy sitting between the two — an ordering that tracks digestion speed and leucine delivery rather than any unique property of dairy.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -4691,7 +4691,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Retinoids act directly on the fibroblast, increasing procollagen I expression in skin that can be biopsied to show it. Their photoageing evidence base is decades old, replicated, and measured on the tissue itself rather than on a hydration probe.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: mechanism demonstrated in human skin biopsies, not inferred from a serum marker. Cons: irritation, photosensitivity, and prescription-only in most jurisdictions.',
         },
@@ -4705,7 +4705,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: Shaw et al. used 5 or 15 g of vitamin-C-enriched gelatin one hour before exercise.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Gelatin, which is the same material one processing step earlier',
@@ -4713,8 +4713,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Gelatin is collagen that has been heat-denatured; hydrolysed collagen peptides are gelatin cut further by proteases. The difference is solubility in cold liquid and speed of digestion, not amino acid content. The tendon and ligament literature, including Shaw\'s work, used gelatin.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -5176,7 +5176,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Statins reduce LDL by a far larger margin and are supported by cardiovascular outcome trials with hard endpoints. Psyllium\'s pooled LDL reduction is 0.33 mmol/L, and its authorised claim is explicitly conditional on a diet low in saturated fat and cholesterol.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros of psyllium: no systemic absorption and a genuine additive effect on top of diet. Cons: the effect size is a fraction of a drug\'s, and no trial has tested psyllium against a cardiovascular endpoint.',
         },
@@ -5186,7 +5186,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Directly compared in 170 patients with chronic idiopathic constipation. Psyllium increased stool water content by 2.33% against docusate\'s 0.01% (P = 0.007), stool water weight 84.0 against 71.4 g per bowel movement (P = 0.04), total weekly stool output 359.9 against 271.9 g (P = 0.005), and bowel movements 3.5 against 2.9 per week in week two (P = 0.02).',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: this is a rare case of a supplement beating an over-the-counter drug in a randomised double-blind head-to-head. Cons: docusate is itself weakly evidenced, so the comparator was not a high bar.',
         },
@@ -5200,7 +5200,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. The regulation itself specifies the daily amounts associated with reduced coronary heart disease risk.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Wheat bran, as the fibre that does not do this',
@@ -5208,8 +5208,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Coarse insoluble particles produce a laxative effect by mechanically irritating the gut mucosa and stimulating water and mucus secretion — a completely different mechanism from a water-holding gel. In the IBS meta-analysis, bran showed no significant benefit (RR 0.90, 95% CI 0.79 to 1.03) while soluble fibre did.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -5585,7 +5585,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'McRorie and McKeown place inulin and fructooligosaccharides explicitly among the non-viscous soluble fibres that do not lower cholesterol or improve glycaemic control, in contrast to the gel-forming group of beta-glucan, psyllium and raw guar gum that do. Psyllium also holds an FDA-authorised heart disease claim; inulin does not.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros of psyllium: viscosity-dependent lipid and glucose effects, far less gas because it is barely fermented. Cons: it does not feed bifidobacteria, which is the one thing inulin genuinely does.',
         },
@@ -5599,7 +5599,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here as advice. For scale only: Bonnema et al. tested 5 and 10 g challenges and found up to 10 g/day of native inulin and up to 5 g/day of oligofructose well tolerated in healthy young adults.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -6061,7 +6061,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same molecule, absorbed in quantity through open prostatic venous sinuses during resection, produces the recognised complication known as TUR syndrome: dilutional hyponatraemia with visual disturbance, confusion and, in severe cases, seizures, with glycine\'s ammonia metabolite implicated in the encephalopathy.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: it establishes beyond doubt that glycine is pharmacologically active when enough of it reaches the circulation. Cons for the supplement narrative: it also establishes that "it is just an amino acid" is not a safety argument, only a dose argument.',
         },
@@ -6071,7 +6071,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Addresses the conditioned arousal and time-in-bed behaviours maintaining chronic insomnia, with effects on sleep latency and efficiency several times larger than anything reported for glycine, and which persist after treatment ends.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: durable, no pharmacology. Cons: requires weeks of structured effort, which is why a powder wins on convenience.',
         },
@@ -6085,7 +6085,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here as advice. For scale only: the sleep trials used 3 g before bedtime, which is a larger single dose than most whole-food sources supply at once.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'A warm bath or shower before bed, as the mechanism-matching comparator',
@@ -6093,8 +6093,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Passive body heating raises skin blood flow and accelerates core temperature decline afterwards, which is precisely the physiology Bannai and Kawai proposed for glycine. If the mechanism is thermoregulatory rather than neurochemical, then a non-pharmacological intervention producing the same heat loss is the honest comparator.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no timing guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -6511,7 +6511,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The two settings where taurine\'s necessity is established rather than argued. Cats lack cysteine sulphinic acid decarboxylase and cannot synthesise it; human neonates have limited synthetic capacity. Both are fortification decisions made because deficiency produced disease.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: an unambiguous, mechanistically explained requirement with a documented disease when unmet. Cons: it is regularly cited as though it demonstrated something about a healthy adult, which it does not.',
         },
@@ -6525,7 +6525,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the meta-analysed endurance trials used 1 to 6 g per day, and a typical energy drink contains around 1 g.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Cysteine-containing protein, as the synthetic precursor',
@@ -6533,8 +6533,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Cysteine dioxygenase and cysteine sulphinic acid decarboxylase convert cysteine to hypotaurine and then taurine. Adults with adequate sulphur amino acid intake synthesise taurine continuously, which is the reason no recommended intake exists and the reason the deficiency framing in the longevity marketing needs evidence it has not produced.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -6975,7 +6975,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Buffers the blood rather than the muscle cell, raising the gradient for proton efflux, and its performance window overlaps beta-alanine\'s one-to-four-minute range. The two act on opposite sides of the sarcolemma and are frequently studied together for that reason.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: acts acutely rather than requiring weeks of loading. Cons: gastrointestinal distress is common and severe enough to be performance-limiting in its own right.',
         },
@@ -6989,7 +6989,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here as advice. For scale only: the biopsy study used 3.2 and 6.4 g/day of beta-alanine for four weeks, and the ISSN position stand describes 4 to 6 g daily for at least two to four weeks.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'A vegetarian diet, as the low-carnosine case',
@@ -6997,8 +6997,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Plant foods contain essentially no carnosine or free beta-alanine, so vegetarians start with lower muscle carnosine. This produces the same responder pattern seen with creatine: the largest gains occur in those who began lowest, which is a repletion effect rather than a supraphysiological one.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -7419,7 +7419,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Schwedhelm et al. compared them head to head over a week in 20 volunteers. Citrulline dose-dependently increased both the area under the curve and the peak plasma L-arginine concentration more effectively than L-arginine itself did (P < 0.01), because arginine is extensively eliminated presystemically by intestinal arginase.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros of citrulline: it actually raises the analyte, which arginine largely fails to do. Cons: raising the analyte was never the point, and in that same trial no treatment improved flow-mediated vasodilation over baseline.',
         },
@@ -7433,7 +7433,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here as advice. For scale only: the pharmacokinetic study used up to 3 g twice daily, and the pooled performance trials used 6 to 8 g of citrulline malate 40 to 60 minutes before exercise.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Beetroot juice, as the alternative route to nitric oxide',
@@ -7441,8 +7441,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'The nitrate-nitrite-nitric oxide pathway bypasses nitric oxide synthase entirely and does not depend on arginine availability. It is the honest comparator for anything sold on a nitric oxide rationale, and it has a considerably larger and older performance literature.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -7845,7 +7845,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'In selenium-poor regions of China, selenium supplementation essentially eliminated an endemic and often fatal cardiomyopathy of children and young women. This is one of the clearest public-health nutrition successes on record.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: unambiguous, mechanistically explained, and it worked. Cons: it says nothing about supplementing a person whose selenoproteins are already saturated, which is what the two large trials tested and answered.',
         },
@@ -7859,7 +7859,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the recommended dietary allowance referenced in the poisoning investigation is 55 micrograms per day, and the trials used 200 micrograms per day.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Seafood, organ meat and cereals grown on selenium-replete soil',
@@ -7867,8 +7867,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Dietary selenium content tracks soil selenium, which is why deficiency is geographic rather than dietary in the usual sense. Selenomethionine is incorporated non-specifically in place of methionine and forms a tissue reservoir; selenite and selenate are not stored this way, which is why the chemical form changes the pharmacokinetics substantially.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -8298,7 +8298,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Q-SYMBIO added CoQ10 to standard therapy rather than replacing it, and its hazard ratio of 0.50 for major adverse cardiovascular events is an adjunctive effect on top of that background. No trial has tested CoQ10 against or instead of guideline therapy, and none should.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: an adjunctive mortality signal from a two-year randomised trial is unusual for a supplement and this page records it as such. Cons: 420 patients is small for a mortality endpoint, and the result has not been reproduced at scale.',
         },
@@ -8308,7 +8308,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The randomised test of CoQ10 in confirmed statin myalgia found no benefit on pain, strength or aerobic capacity, and marginally more subjects reported pain on CoQ10 than on placebo. Reducing dose, changing agent or alternate-day dosing address the exposure that is actually causing the symptom.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: targets the cause rather than a proposed downstream deficiency. Cons: requires a clinician, and lowering the dose lowers the lipid effect.',
         },
@@ -8322,7 +8322,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Supportive',
           dailyUsage:
             'Not stated here as advice. For scale only: Q-SYMBIO used 100 mg three times daily, and the Parkinson trial used 1,200 and 2,400 mg per day — an order of magnitude apart.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -8754,7 +8754,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Both have larger randomised evidence bases and regulatory approvals for this indication in most jurisdictions. Lipoic acid\'s five-week trial produced a 51% symptom reduction against 32% on placebo, which is a real difference on a subjective scale over a short period.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros of lipoic acid: better tolerated than the standard agents in short-term use. Cons: the four-year trial recorded serious adverse events in 38.1% on treatment against 28.0% on placebo, so the tolerability advantage does not obviously persist.',
         },
@@ -8764,7 +8764,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Diabetic polyneuropathy is driven by hyperglycaemia, and improving glycaemic control is the only intervention with evidence of slowing the underlying nerve damage rather than modifying the symptom.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: addresses the mechanism. Cons: hard to achieve, and does not relieve established symptoms quickly, which is exactly the gap symptomatic agents fill.',
         },
@@ -8778,7 +8778,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Supportive',
           dailyUsage:
             'Not stated here as advice. For scale only: the trials used 600 to 1,800 mg per day, which is orders of magnitude above any dietary intake.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -9207,7 +9207,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The evidence base belongs to the combination — vitamins C and E, zinc, copper and lutein/zeaxanthin — tested in a defined high-risk population. A standalone lutein capsule has not been shown to do what the formulation does, and the original AREDS benefit came largely from the antioxidant-plus-zinc combination.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: an actual randomised evidence base in a defined population. Cons: that population is people already at high risk, and the formulation is regularly bought by people who are not in it.',
         },
@@ -9217,7 +9217,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'For wet macular degeneration, anti-VEGF therapy preserves and often restores vision, with an evidence base incomparably stronger than any supplement. Carotenoids address risk of progression, not established neovascular disease.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: transformative for the disease it treats. Cons: entirely different indication, and no supplement substitutes for it.',
         },
@@ -9231,7 +9231,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here as advice. For scale only: AREDS2 used 10 mg of lutein and 2 mg of zeaxanthin daily.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Egg yolk',
@@ -9239,8 +9239,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Egg yolk contains less lutein per gram than kale but delivers it in a phospholipid matrix that raises absorption substantially, which is one of the clearest food-matrix effects in carotenoid nutrition.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -9665,7 +9665,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Folic acid is a genuine prescription medicine for megaloblastic anaemia, and folinic acid (leucovorin) rescues normal cells after high-dose methotrexate. Methotrexate works precisely by blocking dihydrofolate reductase, which is the strongest possible demonstration that folate metabolism is a real and consequential drug target.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: unambiguous clinical uses with defined mechanisms. Cons: the same interaction means folate supplements can interfere with methotrexate therapy, which matters for anyone taking it for rheumatoid arthritis or psoriasis.',
         },
@@ -9675,7 +9675,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Folate and B12 meet at a single reaction, and folate can normalise the anaemia of B12 deficiency without touching its neurological damage. In older Americans with low B12 status, serum folate above 59 nmol/L was associated with anaemia (odds ratio 3.1) and cognitive impairment (odds ratio 2.6) compared with lower folate.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: checking B12 before supplementing folate is cheap and prevents a specific, documented harm. Cons: it is almost never done before someone starts a multivitamin.',
         },
@@ -9689,7 +9689,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the fortification programme and the prevention trials are built around 400 micrograms of folic acid daily.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Fortified grain products, in countries that mandate them',
@@ -9697,8 +9697,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'The US Food and Drug Administration authorised the addition of folic acid to enriched grain products in March 1996, with compliance mandatory by January 1998. This is population-level supplementation that reaches people who never buy a supplement, which is exactly why it worked — the target behaviour, taking a tablet before you know you are pregnant, is nearly impossible to achieve individually.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -10145,7 +10145,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Vitamin K1 is genuinely a medicine: it reverses warfarin anticoagulation and, given at birth, prevents vitamin K deficiency bleeding of the newborn — a condition that is fatal or disabling and essentially eliminated by a single injection. That is the vitamin K claim with hard outcome evidence, and it belongs to K1 rather than to MK-7.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: unambiguous, life-saving, and mechanistically transparent. Cons: it is routinely invoked to lend authority to MK-7 supplement claims that rest on different proteins and different endpoints.',
         },
@@ -10155,7 +10155,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'These reduce fractures in randomised trials with fracture as the endpoint. The MK-7 bone trial measured bone mineral density and content over three years and reported reduced age-related decline; it was not powered for fractures.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: fracture endpoints, which is what patients care about. Cons: real adverse effects, which is part of why a supplement alternative is attractive and why the standard of evidence for one should not be lower.',
         },
@@ -10169,7 +10169,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here as advice. For scale only: the three-year trials used 180 micrograms of MK-7 daily and the aortic valve trial used 720 micrograms.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Green leafy vegetables, for vitamin K1',
@@ -10177,8 +10177,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'K1 is the dominant dietary vitamin K and fully covers the hepatic clotting requirement, which is why frank vitamin K deficiency is rare in adults. The K2 supplement case is not about deficiency of the vitamin but about the carboxylation status of two extrahepatic proteins.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -10617,7 +10617,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'A 65 or 130 mg tablet — roughly a thousand times the daily nutritional requirement — saturates the sodium-iodide symporter so that radioactive iodine cannot be taken up by the thyroid. It is a genuine approved drug with a genuine indication, and it demonstrates that iodine at pharmacological dose does something entirely different from iodine at nutritional dose.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: effective, cheap and life-protecting in its narrow indication. Cons: it is regularly cited as evidence that high-dose iodine is safe, when its mechanism is precisely to shut the thyroid\'s iodine handling down.',
         },
@@ -10627,7 +10627,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'If the thyroid is failing for any reason other than iodine deficiency — and in iodine-replete countries the commonest cause is autoimmune thyroiditis — supplying more iodine does not help and, on the Chinese cohort data, may make autoimmune thyroiditis more likely.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: replaces the hormone directly, with a measurable endpoint. Cons: a "thyroid support" supplement bought by someone with early autoimmune thyroiditis addresses neither the cause nor the hormone.',
         },
@@ -10641,7 +10641,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the American Thyroid Association recommends 150 micrograms daily in preconception, pregnancy and lactation, and the emergency blockade tablet is 65 or 130 mg.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Dairy, eggs and marine fish',
@@ -10649,8 +10649,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Milk is a major iodine source in several countries substantially because of iodine-containing sanitisers used in milking, which makes national dietary iodine supply partly an artefact of agricultural practice and vulnerable to changes in it.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [

@@ -79,7 +79,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Biguanide',
           howItCompares:
             'Acts on the same complex I / AMPK axis in the hepatocyte and was the active comparator in the 2008 Yin trial, where the two produced a similar fall in glucose over three months in 36 newly diagnosed patients. Metformin also has randomised mortality data; berberine does not.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: decades of outcome evidence, regulated manufacture, known dose. Cons: gastrointestinal upset early on, and long-term use can lower vitamin B12.',
         },
@@ -88,7 +88,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'HMG-CoA reductase inhibitor',
           howItCompares:
             'Lowers LDL cholesterol far more than berberine and by a completely different mechanism — blocking cholesterol synthesis rather than stabilising the LDL receptor messenger RNA, which is the route Kong et al. described for berberine in 2004.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: cardiovascular outcome trials exist. Cons: muscle symptoms in a minority, and no effect on glucose.',
         },
@@ -102,7 +102,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. Trials pooled by Lan et al. (J Ethnopharmacol 2015) used standardised berberine hydrochloride, not whole herb, so a herb intake cannot be read off them.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Viscous soluble fibre (oats, barley, psyllium)',
@@ -110,8 +110,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Slows gastric emptying and traps bile acids, blunting the post-meal glucose rise and forcing the liver to spend cholesterol making replacement bile acids. A smaller effect than berberine on both readings, from a much better-characterised mechanism.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -502,7 +502,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Non-steroidal anti-inflammatory drug',
           howItCompares:
             'Kuptniratsaikul et al. randomised 367 patients with primary knee osteoarthritis to Curcuma domestica extract or ibuprofen for four weeks and reported non-inferiority on the WOMAC pain subscale, with fewer gastrointestinal adverse events in the extract arm.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: fast, cheap, thoroughly characterised. Cons: gastrointestinal and renal risk with chronic use, which is exactly the reason people look for an alternative.',
         },
@@ -511,7 +511,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Glucocorticoid',
           howItCompares:
             'Acts directly at the joint rather than depending on absorption, which sidesteps the entire curcumin bioavailability problem. Short-lived effect and repeated injection carries its own cartilage concerns.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: no absorption question, rapid relief. Cons: temporary, invasive, and not a long-term strategy.',
         },
@@ -523,8 +523,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'The same curcuminoids at food concentration. The important point is arithmetic: a standardised 95% extract capsule contains an order of magnitude more curcuminoid than a culinary portion of the spice, so trial results on the extract do not transfer to the kitchen.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
         {
           name: 'Black pepper (Piper nigrum) alongside turmeric',
@@ -534,7 +534,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'The Shoba 1998 human arm co-administered 20 mg piperine with 2 g curcumin, which is the origin of the pairing now standard in supplements',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -933,7 +933,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Selective serotonin reuptake inhibitor',
           howItCompares:
             'Approved for generalised anxiety disorder on the strength of large randomised trials with clinician-rated endpoints. No trial has randomised ashwagandha against an SSRI, so the comparison is between different evidence classes rather than between two treatments.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: regulatory review, clinician-rated endpoints, known interaction profile. Cons: sexual and gastrointestinal side effects, discontinuation symptoms.',
         },
@@ -942,7 +942,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Structured psychological therapy',
           howItCompares:
             'Has the largest randomised evidence base of anything in this comparison and no hepatotoxicity signal. It costs time rather than money and is the only option here that changes behaviour rather than a blood measurement.',
-          typicalCost: 'Not priced here — no published cost figure is cited on this page',
+          typicalCost: '',
           prosAndCons: 'Pros: durable effect, no drug interaction. Cons: access, waiting lists, effort.',
         },
       ],
@@ -953,8 +953,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Acute exercise raises cortisol and chronic training lowers resting cortisol reactivity, alongside effects on sleep architecture that ashwagandha trials do not attempt to control for.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Not stated here — this page gives no prescriptive guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
         {
           name: 'Consistent sleep timing',
@@ -962,8 +962,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Cortisol follows a circadian rhythm with a morning peak. Irregular sleep timing flattens and shifts that curve, and morning serum cortisol — the endpoint most ashwagandha trials use — is directly sensitive to it.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Not stated here — this page gives no prescriptive guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -1327,7 +1327,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Selective serotonin reuptake inhibitor',
           howItCompares:
             'Directly compared in Mao et al. 2015. Sertraline produced a larger fall in the Hamilton Depression Rating Scale (-8.2, 95% CI -12.7 to -3.6) than rhodiola (-5.1, 95% CI -8.8 to -1.3) or placebo (-4.6, 95% CI -8.6 to -0.6), with no significant difference between groups, and adverse events in 63.2% of the sertraline arm against 30.0% on rhodiola and 16.7% on placebo (P = 0.012).',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: larger effect, regulatory approval, decades of use. Cons: twice the adverse event rate of rhodiola in the one trial that measured both.',
         },
@@ -1336,7 +1336,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Adenosine receptor antagonist',
           howItCompares:
             'The best-characterised acute anti-fatigue compound in existence, with dose-response data rhodiola does not have. It is also the substance most rhodiola trial participants were already using, which very few of those trials controlled for.',
-          typicalCost: 'Not priced here — no published cost figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: reliable, immediate, thoroughly studied. Cons: tolerance, sleep disruption, and it does nothing for the underlying sleep debt.',
         },
@@ -1348,8 +1348,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Most rhodiola trials enrol people whose fatigue is caused by sleep restriction — night-duty physicians, students in exam periods, cadets. Sleep is the intervention with the effect size everything else in this comparison is measured against.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Not stated here — this page gives no prescriptive guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -1719,7 +1719,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Structured behavioural therapy',
           howItCompares:
             'First-line for chronic insomnia in every major guideline, with durable effects that outlast treatment. L-theanine\'s sleep evidence is a four-week crossover trial in 30 people using a self-report questionnaire.',
-          typicalCost: 'Not priced here — no published cost figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: durable, no pharmacology, guideline-recommended. Cons: requires several weeks of structured effort and access to a therapist or programme.',
         },
@@ -1731,8 +1731,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Delivers theanine and caffeine together, which is the pairing the combination trials test. The EFSA opinion that rejected the L-theanine claims was specifically about L-theanine from Camellia sinensis, which is to say about this.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -2088,7 +2088,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Non-pharmacological',
           howItCompares:
             'Directly compared, unintentionally. In Gliemann et al., eight weeks of high-intensity training raised maximal oxygen uptake 45% more in the placebo group than in the resveratrol group, and lowered mean arterial pressure in the placebo group only.',
-          typicalCost: 'Not priced here — no published cost figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: the outcome resveratrol was supposed to produce, produced. Cons: requires doing it.',
         },
@@ -2097,7 +2097,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'HMG-CoA reductase inhibitor',
           howItCompares:
             'The lipid endpoint resveratrol was marketed against. Statins have cardiovascular outcome trials; resveratrol was shown in Gliemann et al. to abolish exercise-induced improvements in LDL, the total-to-HDL cholesterol ratio and triglycerides.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: outcome evidence. Cons: muscle symptoms in a minority.',
         },
@@ -2111,7 +2111,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Supportive',
           dailyUsage:
             'Dietary intake in the InCHIANTI cohort produced a mean log total urinary metabolite concentration of 7.08 nmol/g creatinine, which was not associated with any outcome measured',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -2523,7 +2523,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Antihypertensive',
           howItCompares:
             'Produces roughly 8 to 10 mmHg systolic reduction at standard dose, against the 3.04 mmHg pooled estimate for quercetin, and has cardiovascular outcome trials that quercetin has never attempted.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: larger effect, outcome data, regulatory review. Cons: class-specific side effects.',
         },
@@ -2532,7 +2532,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Second-generation H1 antihistamine',
           howItCompares:
             'Blocks the histamine receptor directly rather than attempting to stabilise the mast cell that releases it, and is approved for allergic rhinitis on randomised evidence. No trial has compared quercetin with an antihistamine.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons: 'Pros: approved, predictable, cheap. Cons: mild sedation in some people.',
         },
       ],
@@ -2545,7 +2545,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Supportive',
           dailyUsage:
             'The blood pressure meta-analysis found the effect was possibly limited to, or greater at, doses above 500 mg/day, which is far above ordinary dietary intake',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -2930,7 +2930,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Selective serotonin reuptake inhibitor',
           howItCompares:
             'Directly compared in Noorbala et al. 2005: 40 outpatients with DSM-IV major depression randomised to saffron 30 mg/day or fluoxetine 20 mg/day for six weeks, with saffron found similar to fluoxetine (F = 0.13, df = 1, P = 0.71) and no significant difference in side effects. An equivalence claim from 40 patients over six weeks is not an equivalence demonstration.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: regulatory approval, decades of use, known interaction profile. Cons: sexual side effects, discontinuation symptoms.',
         },
@@ -2944,7 +2944,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Supportive',
           dailyUsage:
             'The Noorbala fluoxetine comparison used 30 mg/day of a hydro-alcoholic stigma extract, which is a laboratory-standardised preparation rather than a cooking quantity',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -3315,7 +3315,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Selective serotonin reuptake inhibitor',
           howItCompares:
             'Across 12 comparisons in the Cochrane review, the response rate ratio for hypericum against SSRIs was 1.00 (95% CI 0.90 to 1.11) — statistically indistinguishable — with fewer adverse effects reported for hypericum. SSRIs do not induce CYP3A4, and combining an SSRI with St John\'s wort risks serotonin syndrome.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: no enzyme induction, prescriber oversight, known dose. Cons: more adverse effects in the pooled comparison.',
         },
@@ -3324,7 +3324,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Non-selective monoamine reuptake inhibitor',
           howItCompares:
             'Response rate ratio 1.02 (95% CI 0.90 to 1.15) across five comparisons, again indistinguishable from hypericum, with a considerably heavier side-effect burden.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: long clinical record, useful in some pain syndromes. Cons: anticholinergic effects, cardiac toxicity in overdose.',
         },
@@ -3721,7 +3721,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Structured behavioural therapy',
           howItCompares:
             'Recommended as first-line treatment for chronic insomnia, with effects that persist after treatment ends. Valerian has not been compared with it in any trial.',
-          typicalCost: 'Not priced here — no published cost figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: durable, no pharmacology, guideline-recommended. Cons: requires several weeks of structured effort.',
         },
@@ -3730,7 +3730,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Non-benzodiazepine GABA-A receptor agonist',
           howItCompares:
             'Acts at the receptor valerian is proposed to act at, with unambiguous polysomnographic effects — which is precisely the contrast: when sleep is measured objectively, the drug shows up and valerian does not.',
-          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: measurable effect on sleep latency. Cons: dependence, next-day impairment, complex sleep behaviours.',
         },

@@ -112,7 +112,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Structured psychological treatment',
           howItCompares:
             'Comparable effect to antidepressants in moderate depression in head-to-head trials, with lower relapse after treatment stops and no pharmacological withdrawal.',
-          typicalCost: 'Not priced here — cost depends entirely on health system and country',
+          typicalCost: '',
           prosAndCons:
             'Pros: durable, no drug interactions, nothing to taper. Cons: requires a trained therapist and 12 to 20 sessions, and trials cannot be blinded.',
         },
@@ -952,7 +952,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Partial agonist at the alpha-4 beta-2 nicotinic receptor',
           howItCompares:
             'Beat bupropion directly in EAGLES (odds ratio 1.75, 95% CI 1.52 to 2.01) and in the Cochrane comparison (RR 0.71 favouring varenicline, 6 studies, 6,286 participants).',
-          typicalCost: 'Not priced here — no verifiable current acquisition cost quoted for this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: the most effective single agent for smoking cessation. Cons: nausea in a quarter of users; its own neuropsychiatric boxed warning was removed in 2016 on the strength of EAGLES.',
         },
@@ -961,7 +961,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Nicotinic receptor agonist replacement',
           howItCompares:
             'No difference from bupropion on quit rates in the Cochrane comparison (RR 0.99, 95% CI 0.91 to 1.09; 10 studies, 8,230 participants), and available without prescription.',
-          typicalCost: 'Not priced here — over-the-counter pricing varies widely by country and format',
+          typicalCost: '',
           prosAndCons:
             'Pros: equal efficacy to bupropion, no seizure risk, no prescription needed. Cons: requires adherence to a schedule, and local irritation is common.',
         },
@@ -1386,7 +1386,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Tricyclic antidepressant used at low dose for neuropathic pain',
           howItCompares:
             'Long-standing first-line option in neuropathic pain with comparable effect sizes and a completely different adverse-effect profile.',
-          typicalCost: 'Not priced here — no current acquisition cost verified for this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: cheap, once nightly, helps sleep. Cons: anticholinergic effects, cardiac conduction concerns in older patients.',
         },
@@ -1395,7 +1395,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Local sodium channel blocker',
           howItCompares:
             'Acts only where it is applied, so it avoids the dizziness and somnolence that cause most gabapentin withdrawals. Useful specifically in localised postherpetic neuralgia.',
-          typicalCost: 'Not priced here — no current acquisition cost verified for this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: negligible systemic exposure. Cons: only works for well-localised pain, and the patch is expensive in some markets.',
         },
@@ -1839,7 +1839,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Serotonin-norepinephrine reuptake inhibitor',
           howItCompares:
             'Approved for diabetic peripheral neuropathic pain and fibromyalgia, with a different adverse-effect profile — nausea and sweating rather than dizziness and oedema.',
-          typicalCost: 'Not priced here — no current acquisition cost verified for this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: no controlled-substance status, treats comorbid depression. Cons: discontinuation syndrome, hepatic precautions.',
         },
@@ -1848,7 +1848,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Tricyclic antidepressant at analgesic dose',
           howItCompares:
             'Decades of use in neuropathic pain at doses far below antidepressant doses. Comparable effect estimates in most indirect comparisons.',
-          typicalCost: 'Not priced here — no current acquisition cost verified for this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: cheap, once nightly, helps sleep. Cons: anticholinergic burden and cardiac conduction effects, especially in older patients.',
         },
@@ -2262,7 +2262,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Atypical antipsychotic used for antidepressant augmentation',
           howItCompares:
             'Beaten by esketamine on remission at week 8 in ESCAPE-TRD (27.1% versus 17.6%, P=0.003) in 676 patients with treatment-resistant depression.',
-          typicalCost: 'Not priced here — no current acquisition cost verified for this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: oral, generic, no clinic visit. Cons: sedation, weight gain, metabolic effects, and it lost the head-to-head comparison.',
         },
@@ -2271,7 +2271,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'NMDA receptor antagonist',
           howItCompares:
             'The same pharmacological class as a generic drug at a fraction of the cost, used off-label for depression for two decades. It has never been through the registration programme esketamine went through, so its evidence base is broader and shallower.',
-          typicalCost: 'Not priced here — off-label clinic pricing is not a published list price',
+          typicalCost: '',
           prosAndCons:
             'Pros: generic, decades of anaesthetic safety data. Cons: no approved depression indication, no REMS framework, and clinic practice varies enormously.',
         },
@@ -2280,7 +2280,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Neurostimulation',
           howItCompares:
             'Still the treatment with the largest effect size in severe treatment-resistant depression, and the comparator esketamine has not been tested against in a large randomised trial.',
-          typicalCost: 'Not priced here — procedure cost varies by health system',
+          typicalCost: '',
           prosAndCons:
             'Pros: the largest effect size available. Cons: general anaesthesia, cognitive side effects, and considerable stigma.',
         },
@@ -2723,7 +2723,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Glutamatergic modulator for alcohol use disorder',
           howItCompares:
             'Number needed to treat 12 to prevent return to any drinking, against 20 for oral naltrexone in the same review; the two showed no statistically significant difference when compared head to head.',
-          typicalCost: 'Not priced here — no current acquisition cost verified for this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: no hepatic concerns, safe in liver disease. Cons: three-times-daily dosing, and it showed no effect in the COMBINE trial.',
         },
@@ -2742,7 +2742,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Anticonvulsant',
           howItCompares:
             'Moderate evidence of an association with reduced heavy drinking days (weighted mean difference -9.0%, 95% CI -15.3 to -2.7) in the same systematic review, without an approved indication.',
-          typicalCost: 'Not priced here — no current acquisition cost verified for this page',
+          typicalCost: '',
           prosAndCons:
             'Pros: real effect size, cheap generic. Cons: off-label, cognitive side effects, requires titration.',
         },
@@ -3173,7 +3173,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           class: 'Full mu-opioid agonist',
           howItCompares:
             'Better at retaining patients in treatment than flexible-dose buprenorphine (RR 0.83 favouring methadone, 95% CI 0.72 to 0.95; 5 studies, 788 participants), with no difference in suppression of illicit use among those retained.',
-          typicalCost: 'Not priced here — dispensed through licensed programmes rather than retail pharmacy',
+          typicalCost: '',
           prosAndCons:
             'Pros: highest retention, decades of mortality evidence. Cons: full agonist with no respiratory ceiling, and in most countries it requires daily supervised dosing at a licensed clinic.',
         },

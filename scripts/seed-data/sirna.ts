@@ -117,7 +117,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             '1.5 to 2.4 g of plant stanols daily, the intake range reviewed in Lipids in Health and Disease (2012), which reported LDL-C reductions of 7 to 10% and no further gain above roughly 2.5 g/day',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Psyllium husk (Plantago ovata)',
@@ -127,7 +127,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'The doses pooled in a 2025 dose-response meta-analysis of 41 randomised trials (Genes & Nutrition), which found a statistically significant reduction in LDL cholesterol',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -1795,7 +1795,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           class: 'siRNA against LDHA',
           howItCompares:
             'Silences the last enzyme in the pathway rather than an earlier one, and is also approved for PH1 only. The two have never been compared head to head.',
-          typicalCost: 'Not priced here — no published figure to cite',
+          typicalCost: '',
           prosAndCons:
             'Pros: acts at the terminal step, which in theory applies to more PH subtypes. Cons: the PH2 subgroup in its own pivotal trial showed no consistent effect.',
         },
@@ -2559,7 +2559,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           class: 'Bispecific antibody bridging factor IXa and factor X',
           howItCompares:
             'Substitutes for the missing factor VIII function rather than removing a brake, and works with or without inhibitors — but only in haemophilia A. Subcutaneous, weekly to monthly.',
-          typicalCost: 'Not priced here — no published figure to cite',
+          typicalCost: '',
           prosAndCons:
             'Pros: established prophylaxis standard in haemophilia A, no antithrombin monitoring. Cons: does not cover haemophilia B.',
         },
@@ -2568,7 +2568,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           class: 'Recombinant or plasma-derived clotting factor replacement',
           howItCompares:
             'Replaces exactly what is missing. This was the on-demand comparator arm in both fitusiran phase 3 trials, where the annualised bleeding rate was 31.0 in haemophilia without inhibitors.',
-          typicalCost: 'Not priced here — no published figure to cite',
+          typicalCost: '',
           prosAndCons:
             'Pros: direct correction, decades of experience, no rebalancing risk. Cons: frequent intravenous dosing, and useless once inhibitors develop.',
         },
@@ -2577,7 +2577,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           class: 'Haemostatic agents for inhibitor patients',
           howItCompares:
             'The on-demand comparator in ATLAS-INH, where the annualised bleeding rate was 18.1. Used to treat bleeds rather than to prevent them.',
-          typicalCost: 'Not priced here — no published figure to cite',
+          typicalCost: '',
           prosAndCons:
             'Pros: work in the presence of inhibitors. Cons: on-demand rather than preventive, and combining them with antithrombin lowering is precisely the situation the QFITLIA label warns about.',
         },
@@ -2965,7 +2965,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           class: 'Extracorporeal removal of apoB-containing lipoproteins',
           howItCompares:
             'Physically removes lipoprotein(a) from the circulation rather than stopping its synthesis. Used in specialist centres for severe refractory cases.',
-          typicalCost: 'Not priced here — no published figure to cite',
+          typicalCost: '',
           prosAndCons:
             'Pros: acts immediately and does not depend on a genetic pathway. Cons: repeated sessions, vascular access, and availability limited to a small number of centres.',
         },

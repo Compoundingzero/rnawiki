@@ -605,7 +605,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Macrolide',
           howItCompares:
             'Same ribosomal target and same class-level QT concern, with substantially more cytochrome P450 3A4 interaction than azithromycin.',
-          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          typicalCost: '',
           prosAndCons:
             'Pros: useful in Helicobacter pylori regimens. Cons: heavier drug-interaction burden.',
         },
@@ -1077,7 +1077,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Antimalarial combination',
           howItCompares:
             'An alternative for malaria chemoprophylaxis with a shorter post-travel course, without the photosensitivity of a tetracycline.',
-          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          typicalCost: '',
           prosAndCons:
             'Pros: stops one week after leaving the malaria area rather than four. Cons: considerably more expensive.',
         },
@@ -2328,7 +2328,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Fluorinated pyrimidine antimetabolite',
           howItCompares:
             'In ACTA, flucytosine as the partner drug with amphotericin B gave 31.1% ten-week mortality against 45.0% with fluconazole as the partner, hazard ratio 0.62 (95% CI 0.45 to 0.84; P=0.002). This is a direct randomised comparison of fluconazole against the alternative in the setting that matters most.',
-          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          typicalCost: '',
           prosAndCons:
             'Pros: substantially lower mortality as a partner drug. Cons: requires haematological monitoring, and access in the countries with the highest burden has historically been the limiting factor.',
         },
@@ -2754,7 +2754,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Behavioural, non-pharmacological',
           howItCompares:
             'In the Corey transmission trial both partners were counselled on safer sex and offered condoms at every visit, so the 75% relative reduction in symptomatic transmission was measured on top of that, not instead of it.',
-          typicalCost: 'Not priced here',
+          typicalCost: '',
           prosAndCons:
             'Pros: no drug, no cost, and it is the baseline the drug effect was measured against. Cons: does not cover all skin contact, and it depends on both partners.',
         },
@@ -3189,7 +3189,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Neuraminidase inhibitor, inhaled',
           howItCompares:
             'In the same Cochrane review of clinical study reports, zanamivir shortened symptoms in adults by 0.60 days against 16.8 hours for oseltamivir, and caused fewer systemic adverse effects because so little is absorbed.',
-          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          typicalCost: '',
           prosAndCons:
             'Pros: lower systemic exposure and lower toxicity. Cons: inhaled powder, unsuitable in asthma and chronic obstructive pulmonary disease.',
         },
@@ -3198,7 +3198,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Cap-dependent endonuclease inhibitor',
           howItCompares:
             'A single oral dose targeting a different viral enzyme, with faster viral clearance than oseltamivir in head-to-head trials. Resistance-conferring substitutions emerge readily during treatment.',
-          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          typicalCost: '',
           prosAndCons:
             'Pros: one dose. Cons: treatment-emergent resistance is common, and the complication evidence is no stronger than for oseltamivir.',
         },
@@ -3207,7 +3207,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Prophylactic vaccine',
           howItCompares:
             'Prevention rather than treatment, and the intervention with the largest body of outcome evidence in influenza. Oseltamivir prophylaxis reduced symptomatic influenza with a number needed to treat of 33 in individuals and 7 in households, but only for the duration of dosing.',
-          typicalCost: 'Not priced here',
+          typicalCost: '',
           prosAndCons:
             'Pros: seasonal protection, no daily dosing, established programme evidence. Cons: effectiveness varies with strain match each year.',
         },
@@ -3645,7 +3645,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Nucleotide analogue RNA polymerase inhibitor',
           howItCompares:
             'In PINETREE, a three-day intravenous course cut COVID-19 hospitalisation or death from 5.3% to 0.7% in 562 high-risk outpatients, hazard ratio 0.13. No ritonavir, so no CYP3A4 interaction problem, but it requires three intravenous infusions.',
-          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          typicalCost: '',
           prosAndCons:
             'Pros: no drug-interaction burden, usable where ritonavir is contraindicated. Cons: three infusions on three consecutive days.',
         },
@@ -3654,7 +3654,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           class: 'Mutagenic nucleoside analogue',
           howItCompares:
             'Reduced hospitalisation or death from 9.7% to 6.8% in unvaccinated adults in MOVe-OUT, and produced no reduction at all in 25,054 largely vaccinated UK adults in PANORAMIC.',
-          typicalCost: 'Not priced here — not listed in the CMS NADAC file at the time of writing',
+          typicalCost: '',
           prosAndCons:
             'Pros: no drug interactions. Cons: the vaccinated-population trial was null, and a mutational signature attributable to the drug has been identified in global SARS-CoV-2 sequence databases.',
         },

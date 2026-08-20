@@ -146,7 +146,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. The randomised trials of berberine in type 2 diabetes are small, short and almost all conducted in China; none has reported a cardiovascular or mortality endpoint.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -639,7 +639,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'This is the one setting where magnesium is unambiguously a drug that saves lives, and it is given by infusion under monitoring in an obstetric or coronary care unit. It is not evidence for a capsule. The same programme that established magnesium in eclampsia failed twice in myocardial infarction.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: large, replicated mortality and morbidity benefit in its own indication. Cons: entirely irrelevant to an oral supplement, and routinely cited as though it were not.',
         },
@@ -649,7 +649,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Firoz and Graber measured fractional absorption of magnesium oxide at about 4 percent against significantly higher and mutually equivalent absorption from magnesium chloride, lactate and aspartate. That study is the source of most "oxide is poorly absorbed" marketing. It did not test glycinate.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: cheapest form, and its poor absorption is exactly why it works as a laxative. Cons: the 4 percent figure is one small urinary-excretion study in normal volunteers, and it is being used to sell a form it never compared against.',
         },
@@ -663,7 +663,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the trials pooled by Zhang et al. used a median supplemental dose of 368 mg per day, which is roughly the whole daily reference intake for an adult.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Hard tap water and mineral water',
@@ -671,8 +671,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Magnesium in water is already dissociated and needs no digestion, and in populations drinking hard water it is a non-trivial share of total intake. It is also the reason intake surveys that count only food underestimate what people actually get.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -1145,7 +1145,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same salt, prescribed precisely because it induces intestinal metallothionein and stops copper being absorbed. The mechanism regulators approved as the therapeutic action is identical to the mechanism that makes high-dose zinc supplementation dangerous in a person with normal copper handling.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: a clean, approved, mechanistically transparent use. Cons: it is also the clearest possible warning label for the supplement, and it is almost never presented as one.',
         },
@@ -1155,7 +1155,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'This is the strongest efficacy evidence zinc has anywhere. In children over six months, 33 trials in 10,841 children found diarrhoea shortened by about eleven hours, and in malnourished children by about a day, graded high certainty.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: large, replicated, and in the population where baseline zinc deficiency is common. Cons: in children under six months the same review found no effect, and the trials were run mostly in Asian settings at high risk of deficiency, so it is a repletion result rather than a general antiviral one.',
         },
@@ -1169,7 +1169,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the Cochrane cold-treatment trials used zinc gluconate lozenges at 45 to 276 mg per day, which is many times any dietary intake.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Legumes and whole grains, as the phytate problem',
@@ -1177,8 +1177,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Phytate forms insoluble complexes with zinc in the intestinal lumen, which is why populations eating unleavened high-phytate staples have measurably higher rates of zinc deficiency despite adequate total zinc intake. Soaking, sprouting and leavening degrade phytate and raise absorption.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -1697,7 +1697,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. The relevant fact is that monacolin content varies between products by more than an order of magnitude and is not declared, so the reader cannot know the exposure.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Soluble fibre (oats, barley, psyllium)',
@@ -1707,7 +1707,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. The measured LDL reductions from soluble fibre in randomised feeding studies are a few percent, against roughly 40 to 50% for atorvastatin at its higher strengths.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -2229,7 +2229,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Complete and rapid cure of a disease that is otherwise fatal, established well before controlled trials existed. It is the strongest possible evidence that vitamin C is essential, and it says nothing whatever about the effect of extra vitamin C in someone who is not deficient.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: unambiguous, mechanistically understood, fast. Cons: routinely used as rhetorical cover for claims about replete adults, which is the central error this file exists to name.',
         },
@@ -2239,7 +2239,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Between 2017 and 2022 this went from a widely adopted ICU protocol to a randomised finding of harm. LOVIT found death or persistent organ dysfunction at day 28 in 44.5% on vitamin C against 38.5% on placebo, risk ratio 1.21 (95% CI 1.04 to 1.40, P = 0.01).',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: none demonstrated. Cons: a randomised signal of harm, from a trial designed to look for benefit.',
         },
@@ -2253,7 +2253,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the Cochrane review excluded any trial using less than 0.2 g per day, and its adult duration effect came from regimens at or above that.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Vitamin C taken with a plant-source iron meal',
@@ -2261,8 +2261,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Ascorbate reduces dietary Fe(III) to Fe(II) and forms a soluble chelate that survives the alkaline duodenum, substantially increasing non-haem iron absorption. This is one of the few supplemental vitamin C effects that is mechanistically direct, measurable, and useful in ordinary people.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -3211,7 +3211,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. The randomised evidence for dietary nitrate uses blood pressure as its endpoint over weeks, not cardiovascular events over years.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -3661,7 +3661,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The regulated version of the same molecule, assessed by the EMA and authorised in 2007 for short-term monotherapy in primary insomnia in patients aged 55 or over. Across three trials in 681 patients, 32% on Circadin (86 of 265) reported significant symptom improvement at three weeks against 19% on placebo (51 of 272).',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: known content, known release profile, a defined indication and an age restriction. Cons: a 13-percentage-point responder difference is modest, and the authorisation is deliberately narrow in a way the US supplement market simply is not.',
         },
@@ -3671,7 +3671,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin\'s and, unlike melatonin, persist after treatment stops.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: durable, no pharmacology, no content-variability problem. Cons: requires weeks of effort and access to a clinician or a structured programme, which is why a gummy wins on convenience every time.',
         },
@@ -3685,7 +3685,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. The mechanistic point is that this is the same signal the supplement imitates, delivered by the system that knows the right dose.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Morning bright light, for the opposite direction',
@@ -3693,8 +3693,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Light in the early biological morning advances circadian phase, which is the intervention that pairs with evening melatonin for delayed sleep-wake phase disorder. The phase-response curves for light and for melatonin run in roughly opposite directions, which is why the two are used together and why timing errors make either one useless or counterproductive.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no timing or intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -4175,7 +4175,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. The relevant point for a reader on losartan is direction, not quantity: potassium accumulates more readily on this drug, and salt substitutes are usually potassium chloride.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -4599,7 +4599,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same molecule as a licensed drug, given to very-low-birth-weight infants. In the 2,006-infant CAP trial it reduced bronchopulmonary dysplasia and, at 18 to 21 months corrected age, reduced death or neurodevelopmental disability from 46.2% to 40.2% and cerebral palsy from 7.3% to 4.4%.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: a genuine randomised benefit on hard neurological outcomes in a real disease, from a substance most people meet as a beverage. Cons: it tells you nothing about the coffee you drank this morning, and it is regularly cited as if it did.',
         },
@@ -4609,7 +4609,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Sleep clears accumulated adenosine; caffeine occupies the receptor while the adenosine keeps accumulating. That difference is why caffeine reliably improves performance on a rested athlete and cannot substitute for sleep across days. It is also why 400 mg six hours before bed measurably reduces total sleep time.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: removes the underlying signal rather than blocking it, with no tolerance and no withdrawal. Cons: cannot be bought, which is precisely why the caffeine market exists.',
         },
@@ -4623,7 +4623,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: Goncalves\'s time-trial study used 6 mg per kilogram of body mass, and Drake\'s sleep study used a fixed 400 mg.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Tea',
@@ -4631,8 +4631,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tea delivers less caffeine per serving alongside L-theanine, an amino acid that crosses the blood-brain barrier and is frequently combined with caffeine in supplement products on the claim that it smooths the stimulant effect. The receptor pharmacology of the caffeine is unchanged.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -5589,7 +5589,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same starting material cut into peptides small enough to avoid triggering cow\'s milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: solves a defined clinical problem. Cons: the word "hydrolysate" on a sports tub borrows credibility from this use, and hydrolysing whey for an adult buys speed of digestion, not a different biology.',
         },
@@ -5603,7 +5603,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: Moore et al. found 20 g of whole egg protein maximally stimulated muscle protein synthesis after resistance exercise, and 40 g did not do more.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Soy protein isolate, as the tested comparator',
@@ -5611,8 +5611,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tang et al. measured it directly. After resistance exercise, muscle protein synthesis on whey was about 31% greater than on soy and about 122% greater than on casein, with soy sitting between the two — an ordering that tracks digestion speed and leucine delivery rather than any unique property of dairy.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -6104,7 +6104,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. Randomised trials of sterol-enriched foods report LDL reductions of a few percent, with cholesterol as the endpoint, not events.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -6563,7 +6563,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'This is the one setting where magnesium is unambiguously a drug that saves lives, and it is given by infusion under monitoring in an obstetric or coronary care unit. It is not evidence for a capsule. The same programme that established magnesium in eclampsia failed twice in myocardial infarction.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: large, replicated mortality and morbidity benefit in its own indication. Cons: entirely irrelevant to an oral supplement, and routinely cited as though it were not.',
         },
@@ -6573,7 +6573,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Firoz and Graber measured fractional absorption of magnesium oxide at about 4 percent against significantly higher and mutually equivalent absorption from magnesium chloride, lactate and aspartate. That study is the source of most "oxide is poorly absorbed" marketing. It did not test glycinate.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: cheapest form, and its poor absorption is exactly why it works as a laxative. Cons: the 4 percent figure is one small urinary-excretion study in normal volunteers, and it is being used to sell a form it never compared against.',
         },
@@ -6587,7 +6587,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the trials pooled by Zhang et al. used a median supplemental dose of 368 mg per day, which is roughly the whole daily reference intake for an adult.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Hard tap water and mineral water',
@@ -6595,8 +6595,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Magnesium in water is already dissociated and needs no digestion, and in populations drinking hard water it is a non-trivial share of total intake. It is also the reason intake surveys that count only food underestimate what people actually get.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -7069,7 +7069,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same salt, prescribed precisely because it induces intestinal metallothionein and stops copper being absorbed. The mechanism regulators approved as the therapeutic action is identical to the mechanism that makes high-dose zinc supplementation dangerous in a person with normal copper handling.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: a clean, approved, mechanistically transparent use. Cons: it is also the clearest possible warning label for the supplement, and it is almost never presented as one.',
         },
@@ -7079,7 +7079,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'This is the strongest efficacy evidence zinc has anywhere. In children over six months, 33 trials in 10,841 children found diarrhoea shortened by about eleven hours, and in malnourished children by about a day, graded high certainty.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: large, replicated, and in the population where baseline zinc deficiency is common. Cons: in children under six months the same review found no effect, and the trials were run mostly in Asian settings at high risk of deficiency, so it is a repletion result rather than a general antiviral one.',
         },
@@ -7093,7 +7093,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the Cochrane cold-treatment trials used zinc gluconate lozenges at 45 to 276 mg per day, which is many times any dietary intake.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Legumes and whole grains, as the phytate problem',
@@ -7101,8 +7101,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Phytate forms insoluble complexes with zinc in the intestinal lumen, which is why populations eating unleavened high-phytate staples have measurably higher rates of zinc deficiency despite adequate total zinc intake. Soaking, sprouting and leavening degrade phytate and raise absorption.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -7588,7 +7588,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Complete and rapid cure of a disease that is otherwise fatal, established well before controlled trials existed. It is the strongest possible evidence that vitamin C is essential, and it says nothing whatever about the effect of extra vitamin C in someone who is not deficient.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: unambiguous, mechanistically understood, fast. Cons: routinely used as rhetorical cover for claims about replete adults, which is the central error this file exists to name.',
         },
@@ -7598,7 +7598,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Between 2017 and 2022 this went from a widely adopted ICU protocol to a randomised finding of harm. LOVIT found death or persistent organ dysfunction at day 28 in 44.5% on vitamin C against 38.5% on placebo, risk ratio 1.21 (95% CI 1.04 to 1.40, P = 0.01).',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: none demonstrated. Cons: a randomised signal of harm, from a trial designed to look for benefit.',
         },
@@ -7612,7 +7612,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: the Cochrane review excluded any trial using less than 0.2 g per day, and its adult duration effect came from regimens at or above that.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Vitamin C taken with a plant-source iron meal',
@@ -7620,8 +7620,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Ascorbate reduces dietary Fe(III) to Fe(II) and forms a soluble chelate that survives the alkaline duodenum, substantially increasing non-haem iron absorption. This is one of the few supplemental vitamin C effects that is mechanistically direct, measurable, and useful in ordinary people.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -8094,7 +8094,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The regulated version of the same molecule, assessed by the EMA and authorised in 2007 for short-term monotherapy in primary insomnia in patients aged 55 or over. Across three trials in 681 patients, 32% on Circadin (86 of 265) reported significant symptom improvement at three weeks against 19% on placebo (51 of 272).',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: known content, known release profile, a defined indication and an age restriction. Cons: a 13-percentage-point responder difference is modest, and the authorisation is deliberately narrow in a way the US supplement market simply is not.',
         },
@@ -8104,7 +8104,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin\'s and, unlike melatonin, persist after treatment stops.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: durable, no pharmacology, no content-variability problem. Cons: requires weeks of effort and access to a clinician or a structured programme, which is why a gummy wins on convenience every time.',
         },
@@ -8118,7 +8118,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. The mechanistic point is that this is the same signal the supplement imitates, delivered by the system that knows the right dose.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Morning bright light, for the opposite direction',
@@ -8126,8 +8126,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Light in the early biological morning advances circadian phase, which is the intervention that pairs with evening melatonin for delayed sleep-wake phase disorder. The phase-response curves for light and for melatonin run in roughly opposite directions, which is why the two are used together and why timing errors make either one useless or counterproductive.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no timing or intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -8576,7 +8576,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same molecule as a licensed drug, given to very-low-birth-weight infants. In the 2,006-infant CAP trial it reduced bronchopulmonary dysplasia and, at 18 to 21 months corrected age, reduced death or neurodevelopmental disability from 46.2% to 40.2% and cerebral palsy from 7.3% to 4.4%.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: a genuine randomised benefit on hard neurological outcomes in a real disease, from a substance most people meet as a beverage. Cons: it tells you nothing about the coffee you drank this morning, and it is regularly cited as if it did.',
         },
@@ -8586,7 +8586,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Sleep clears accumulated adenosine; caffeine occupies the receptor while the adenosine keeps accumulating. That difference is why caffeine reliably improves performance on a rested athlete and cannot substitute for sleep across days. It is also why 400 mg six hours before bed measurably reduces total sleep time.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: removes the underlying signal rather than blocking it, with no tolerance and no withdrawal. Cons: cannot be bought, which is precisely why the caffeine market exists.',
         },
@@ -8600,7 +8600,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: Goncalves\'s time-trial study used 6 mg per kilogram of body mass, and Drake\'s sleep study used a fixed 400 mg.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Tea',
@@ -8608,8 +8608,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tea delivers less caffeine per serving alongside L-theanine, an amino acid that crosses the blood-brain barrier and is frequently combined with caffeine in supplement products on the claim that it smooths the stimulant effect. The receptor pharmacology of the caffeine is unchanged.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -9093,7 +9093,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The same starting material cut into peptides small enough to avoid triggering cow\'s milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.',
           typicalCost:
-            'Not priced here — no published cost-of-production figure is cited on this page',
+            '',
           prosAndCons:
             'Pros: solves a defined clinical problem. Cons: the word "hydrolysate" on a sports tub borrows credibility from this use, and hydrolysing whey for an adult buys speed of digestion, not a different biology.',
         },
@@ -9107,7 +9107,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. For scale only: Moore et al. found 20 g of whole egg protein maximally stimulated muscle protein synthesis after resistance exercise, and 40 g did not do more.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Soy protein isolate, as the tested comparator',
@@ -9115,8 +9115,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tang et al. measured it directly. After resistance exercise, muscle protein synthesis on whey was about 31% greater than on soy and about 122% greater than on casein, with soy sitting between the two — an ordering that tracks digestion speed and leucine delivery rather than any unique property of dairy.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: 'Not stated here — this page gives no intake guidance',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          dailyUsage: '',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -9607,7 +9607,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here. The relevant distinction is between iodine deficiency, where iodine is the treatment, and autoimmune hypothyroidism, where it is not.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [
@@ -11990,7 +11990,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. Randomised feeding studies report LDL reductions of a few percent with cholesterol as the endpoint; no plant sterol product has an event trial.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
         {
           name: 'Soluble fibre (psyllium, oat beta-glucan)',
@@ -12000,7 +12000,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here. Effect sizes in randomised trials are a few percent on LDL, against roughly 15 to 20% for ezetimibe added to a statin.',
-          monthlyCost: 'Not priced here — no published cost figure to cite',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [],
@@ -13401,7 +13401,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here, and specifically discouraged. This entry exists to record that the plant is dangerous, not to suggest a preparation.',
-          monthlyCost: 'Not priced here',
+          monthlyCost: '',
         },
       ],
       homeRemedies: [

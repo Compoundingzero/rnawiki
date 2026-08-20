@@ -95,7 +95,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'Cell therapy from a donor rather than from the patient',
           howItCompares:
             'The established curative option, and the one Casgevy is designed to replace for the roughly three quarters of patients with no matched sibling. It uses the same myeloablative conditioning but adds graft-versus-host disease and lifelong immunosuppression risk.',
-          typicalCost: 'Not priced here — no citable single figure covers transplant plus aftercare',
+          typicalCost: '',
           prosAndCons:
             'Pros: decades of follow-up, genuinely curative in successful cases. Cons: donor availability, graft-versus-host disease, rejection.',
         },
@@ -104,7 +104,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'Supportive haematology',
           howItCompares:
             'The standard of care in transfusion-dependent beta-thalassemia and in stroke prevention for sickle cell disease. It manages the disease indefinitely rather than changing it, and iron overload becomes the second illness.',
-          typicalCost: 'Not priced here — no citable single figure',
+          typicalCost: '',
           prosAndCons:
             'Pros: available everywhere, reversible, no conditioning chemotherapy. Cons: alloimmunisation, iron overload, and a life organised around appointments.',
         },
@@ -537,7 +537,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'Donor cell therapy',
           howItCompares:
             'The pre-existing curative option for the minority with a matched sibling donor. Same conditioning burden, plus graft-versus-host disease, minus the insertional-oncogenesis question.',
-          typicalCost: 'Not priced here — no citable single figure',
+          typicalCost: '',
           prosAndCons:
             'Pros: decades of outcome data. Cons: donor availability, graft-versus-host disease, rejection.',
         },
@@ -905,7 +905,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'Antisense oligonucleotide, intrathecal',
           howItCompares:
             'Redirects splicing of the back-up SMN2 gene so it makes full-length protein. Given by lumbar puncture, with loading doses and then maintenance every four months, indefinitely. It was the first approved SMA therapy and has the longest treated-patient follow-up.',
-          typicalCost: 'Not priced here — no citable single figure applied consistently across markets',
+          typicalCost: '',
           prosAndCons:
             'Pros: reversible, dose-adjustable, longest clinical experience, no liver toxicity signal. Cons: repeated lumbar punctures for life, and spinal access becomes difficult after scoliosis surgery.',
         },
@@ -914,7 +914,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'Oral small-molecule SMN2 splicing modifier',
           howItCompares:
             'Same splicing target as nusinersen, taken as a daily liquid by mouth, distributing systemically rather than only into the central nervous system. Continuous dosing, no procedure.',
-          typicalCost: 'Not priced here — no citable single figure',
+          typicalCost: '',
           prosAndCons:
             'Pros: oral, no procedure, systemic exposure. Cons: daily lifelong adherence, and no head-to-head trial against gene therapy.',
         },
@@ -923,7 +923,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'The same vector and transgene, delivered into cerebrospinal fluid at a fixed dose',
           howItCompares:
             'A separate product approved on 24 November 2025 for patients aged 2 and older, reaching the population the intravenous version cannot. Fixed dosing avoids the enormous vector loads a weight-based intravenous dose would require in an older child.',
-          typicalCost: 'Not priced here — no citable figure confirmed at the time of writing',
+          typicalCost: '',
           prosAndCons:
             'Pros: opens gene therapy to older patients. Cons: the pivotal effect was small — a 1.88-point HFMSE difference against sham.',
         },
@@ -1350,7 +1350,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'Non-pharmacological rehabilitation',
           howItCompares:
             'Targets the same outcome the pivotal endpoint measured — independent navigation in low light — by training and equipment rather than by biology. It is complementary, not competing, and it is available to patients this therapy cannot help.',
-          typicalCost: 'Not priced here — varies by health system',
+          typicalCost: '',
           prosAndCons:
             'Pros: no surgical risk, benefits everyone regardless of genotype. Cons: does not change the underlying degeneration.',
         },
@@ -1732,7 +1732,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'The standard of care and the trial\'s own comparator. In the HOPE-B lead-in period it produced an annualised bleeding rate of 4.19; gene therapy reduced that to 1.51. Extended half-life products have stretched dosing intervals from twice weekly toward weekly or longer.',
           typicalCost:
-            'Not priced here — no citable single figure. The trial measured usage instead: a mean 248,825 IU per participant per year before treatment',
+            '',
           prosAndCons:
             'Pros: reversible, dose-adjustable, decades of experience, no AAV antibody constraint. Cons: intravenous access for life, and breakthrough bleeds between doses.',
         },
@@ -1741,7 +1741,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'Subcutaneous anti-tissue factor pathway inhibitor antibody',
           howItCompares:
             'Rebalances coagulation rather than replacing the missing factor, and is given subcutaneously rather than intravenously. It covers patients with inhibitors, which factor replacement struggles with.',
-          typicalCost: 'Not priced here — no citable single figure',
+          typicalCost: '',
           prosAndCons:
             'Pros: subcutaneous, works regardless of the specific factor deficiency. Cons: thrombotic risk requires monitoring, and it does not restore factor IX activity as a measurable number.',
         },
