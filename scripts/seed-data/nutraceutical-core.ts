@@ -9616,5 +9616,486 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Folate — the one entry in this file whose supplement claim is unambiguously proven, at 72%
+  // prevention of a devastating birth defect. It also has a randomised harm signal in the colon and
+  // a documented interaction that can hide vitamin B12 deficiency until nerve damage is permanent.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'folate',
+    name: 'Folate',
+    tradeName:
+      'Sold as folic acid (synthetic) or as L-5-methyltetrahydrofolate, marketed as methylfolate or under names such as Metafolin and Quatrefolic',
+    sponsor:
+      'No single sponsor — vitamin B9. Folic acid is the fully oxidised synthetic form used in fortification and in every landmark trial; folate is the collective term for the naturally occurring reduced forms.',
+    targetGene: 'MTHFR',
+    targetProtein:
+      'The one-carbon transfer enzymes. Dihydrofolate reductase reduces folic acid to the usable tetrahydrofolate; methylenetetrahydrofolate reductase (MTHFR) produces 5-methyltetrahydrofolate, the circulating form and the methyl donor for the methionine synthase reaction that requires vitamin B12. Thymidylate synthase uses folate to make the thymidine that DNA needs — which is why folate deficiency stops cell division and why folate antagonists are chemotherapy.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a prenatal supplement and for general health, methylation and homocysteine. Folic acid supplementation before and around conception is one of the few interventions in this entire file with unambiguous randomised proof of a large clinical benefit: prevention of neural tube defects. Folic acid is also a prescription medicine for megaloblastic anaemia and is mandated in enriched grain products in the United States.',
+    patientFriendlyIndication:
+      'Taken before and during early pregnancy to prevent spina bifida, and in multivitamins generally',
+    conditionContext: {
+      conditionExplainer:
+        'The neural tube — which becomes the brain and spinal cord — closes within the first four weeks after conception, usually before a woman knows she is pregnant. If it fails to close, the result is anencephaly or spina bifida. Folate is required to make thymidine for DNA synthesis, and the closing neural tube is among the fastest-dividing tissues in the embryo.',
+      whyItMatters:
+        'This is the clearest example in this file of a supplement claim that is completely true. It is also, for exactly that reason, the best place to be precise about what proof looks like: a randomised double-blind trial at 33 centres in seven countries, a 72% reduction in a severe birth defect, and a national fortification programme afterwards that produced a measurable population-level fall. Everything else in this file is compared against this standard.',
+      whoTakesThis:
+        'Women planning or capable of pregnancy, everyone in a country with mandatory grain fortification whether they know it or not, patients on methotrexate or other folate antagonists, and a large general market taking it for methylation and homocysteine.',
+      clinicalGoals:
+        'Trials measured neural tube defect occurrence in completed pregnancies, national birth prevalence of spina bifida and anencephaly, incidence of colorectal adenomas and advanced lesions, and the association of high serum folate with anaemia and cognitive impairment in vitamin B12 deficiency.',
+    },
+    oneSentenceVerdict:
+      'Periconceptional folic acid cut neural tube defects by 72% in a randomised double-blind trial (relative risk 0.28, 95% CI 0.12 to 0.71) and US fortification produced a 19% national fall in birth prevalence — while a 1,021-patient randomised trial found more advanced colorectal adenomas on folic acid at second follow-up (RR 1.67, P = .05) and high serum folate is associated with worse anaemia and cognition in people who are B12-deficient.',
+    laymanHowItWorks:
+      'Folate is the delivery van for single carbon atoms inside the cell. Its most important cargo is the one used to build thymidine, one of the four letters of DNA, so a cell that runs out of folate cannot copy its genome and stops dividing. In an embryo whose neural tube is closing, that failure produces spina bifida or anencephaly. Folate also hands a methyl group to vitamin B12 in a reaction that recycles homocysteine — which is why enough folate can keep the blood picture of B12 deficiency looking normal while the nerve damage that B12 deficiency causes carries on unseen.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 86,
+    anatomicalSite:
+      'Absorbed in the proximal jejunum by the proton-coupled folate transporter; acts in the cytosol and mitochondria of every dividing cell',
+    substitutes: {
+      summary:
+        'For neural tube defect prevention there is no substitute and the evidence is definitive. For someone with a genuine vitamin B12 deficiency, folate is worse than no substitute — it corrects the blood test while the neurological damage continues. For the general methylation market, food folate and fortified grain already supply most of what anyone gets.',
+      conventionalRx: [
+        {
+          name: 'Folic acid as prescription therapy and as a chemotherapy rescue',
+          class: 'Prescription vitamin; folinic acid as leucovorin rescue',
+          howItCompares:
+            'Folic acid is a genuine prescription medicine for megaloblastic anaemia, and folinic acid (leucovorin) rescues normal cells after high-dose methotrexate. Methotrexate works precisely by blocking dihydrofolate reductase, which is the strongest possible demonstration that folate metabolism is a real and consequential drug target.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: unambiguous clinical uses with defined mechanisms. Cons: the same interaction means folate supplements can interfere with methotrexate therapy, which matters for anyone taking it for rheumatoid arthritis or psoriasis.',
+        },
+        {
+          name: 'Vitamin B12, the partner that must be checked first',
+          class: 'Cobalamin, essential cofactor for methionine synthase',
+          howItCompares:
+            'Folate and B12 meet at a single reaction, and folate can normalise the anaemia of B12 deficiency without touching its neurological damage. In older Americans with low B12 status, serum folate above 59 nmol/L was associated with anaemia (odds ratio 3.1) and cognitive impairment (odds ratio 2.6) compared with lower folate.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: checking B12 before supplementing folate is cheap and prevents a specific, documented harm. Cons: it is almost never done before someone starts a multivitamin.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Dark leafy greens, legumes, liver and citrus',
+          activeCompound: 'Natural food folates, mostly polyglutamated reduced forms',
+          biologicalMechanism:
+            'Food folate must be deconjugated from its polyglutamate tail before absorption and is roughly half as bioavailable as synthetic folic acid, which is why fortification uses folic acid and why dietary folate equivalents exist as a unit. Folate is also heat-labile and leaches into cooking water, so preparation changes the delivered amount substantially.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the fortification programme and the prevention trials are built around 400 micrograms of folic acid daily.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Fortified grain products, in countries that mandate them',
+          activeCompound: 'Synthetic folic acid added to enriched flour, bread, pasta and rice',
+          biologicalMechanism:
+            'The US Food and Drug Administration authorised the addition of folic acid to enriched grain products in March 1996, with compliance mandatory by January 1998. This is population-level supplementation that reaches people who never buy a supplement, which is exactly why it worked — the target behaviour, taking a tablet before you know you are pregnant, is nearly impossible to achieve individually.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Check B12 before taking high-dose folate, especially over 50',
+          action:
+            'Folate corrects the enlarged red cells of B12 deficiency without correcting the deficiency. The blood test that would have raised the alarm goes quiet.',
+          patientImpact:
+            'In seniors with low B12 status, serum folate above the 80th percentile was associated with anaemia (odds ratio 3.1, 95% CI 1.5 to 6.6) and cognitive impairment (odds ratio 2.6, 95% CI 1.1 to 6.1) compared with lower folate. In people with normal B12 status, high folate was associated with protection against cognitive impairment.',
+          clinicalPrecaution:
+            'The direction of the folate effect reverses depending on B12 status, which is why the interaction, not folate itself, is the thing to know.',
+        },
+        {
+          name: 'Methylfolate is a different molecule, not an upgrade',
+          action:
+            'L-5-methyltetrahydrofolate is the circulating form and bypasses the MTHFR step. Every landmark trial in this record used folic acid, not methylfolate.',
+          patientImpact:
+            'The 72% neural tube defect reduction, the 19% national fall after fortification, and the colorectal adenoma signal were all generated with synthetic folic acid.',
+          clinicalPrecaution:
+            'A product that skips the enzyme the marketing is about also skips the entire evidence base built on the compound it replaced.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC(=CC=C1C(=O)N[C@@H](CCC(=O)O)C(=O)O)NCC2=CN=C3C(=N2)C(=O)NC(=N3)N',
+      chemicalFormula: 'C19H19N7O6',
+      molecularWeight:
+        '441.4 g/mol. This is folic acid, the fully oxidised synthetic form used in fortification and in every trial cited here. L-5-methyltetrahydrofolate, sold as methylfolate, is a different molecule at C20H25N7O6 and 459.5 g/mol — reduced, methylated, and carrying none of this evidence base.',
+      structureSource: {
+        label: 'PubChem CID 135398658 — Folic acid, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135398658',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fol-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Vitamer speciation and stability under light and oxygen',
+          description:
+            'Folate is not one compound. Folic acid, dihydrofolate, tetrahydrofolate and 5-methyltetrahydrofolate have different stabilities and different biology, and the reduced forms oxidise rapidly in air and light. A total-folate microbiological assay reports them together and will pass a product whose active vitamer has degraded to something inert.',
+          reagentsAndBuffer:
+            'LC-MS/MS speciation of folic acid, dihydrofolate, tetrahydrofolate, 5-methyltetrahydrofolate and 5-formyltetrahydrofolate against authenticated standards; ascorbate-containing extraction buffer with dithiothreitol to prevent oxidation during preparation; amber glassware and nitrogen headspace; Lactobacillus rhamnosus microbiological assay for total folate as the orthogonal check',
+        },
+        {
+          id: 'fol-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the labelled folic acid tracer and the unmetabolised-folate standard',
+          description:
+            'A specific question needs a specific tracer: how much administered folic acid escapes reduction and appears in blood unmetabolised. Dihydrofolate reductase in the human liver has limited capacity, and unmetabolised folic acid in plasma has been the central concern about high-dose supplementation and fortification since it was first detected.',
+          dependsOnStepId: 'fol-w1',
+          reagentsAndBuffer:
+            '13C5-folic acid tracer; 13C5-5-methyltetrahydrofolate as the metabolite standard; sterile preparation for an intravenous reference arm; isotopic enrichment confirmed by LC-MS/MS; documented handling under reduced light',
+        },
+        {
+          id: 'fol-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and red cell folate extraction with immediate antioxidant protection',
+          description:
+            'Red cell folate reflects status over the preceding months while plasma folate reflects yesterday, and the two answer different questions. Both are destroyed by oxidation during handling, so ascorbate protection at the point of collection is not optional. This is where many published folate measurements go wrong.',
+          dependsOnStepId: 'fol-w2',
+          reagentsAndBuffer:
+            'Whole blood haemolysed immediately in 1% ascorbic acid for red cell folate; plasma separated within 30 minutes with ascorbate added; conjugase treatment to deconjugate polyglutamates; parallel serum vitamin B12 and methylmalonic acid measurement on the same draw, because folate cannot be interpreted without B12 status',
+        },
+        {
+          id: 'fol-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Thymidylate synthesis and the methionine synthase junction',
+          description:
+            'Test both arms of folate metabolism in the same system, because they fail differently. Thymidylate synthesis failure stops DNA replication and produces the megaloblastic picture. The methionine synthase arm requires vitamin B12, and it is here that adequate folate masks B12 deficiency — the folate keeps one-carbon flux going for DNA while the B12-dependent reaction, which nerves depend on, stays blocked.',
+          dependsOnStepId: 'fol-w3',
+          reagentsAndBuffer:
+            'Human lymphoblast or neural progenitor cultures in folate-defined medium; deoxyuridine suppression test for thymidylate synthesis; methotrexate as the dihydrofolate reductase inhibitor control; vitamin B12-depleted medium with nitrous-oxide-inactivated methionine synthase as the deficiency model; homocysteine and methylmalonic acid quantified in the medium',
+        },
+        {
+          id: 'fol-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Hard clinical endpoints, with B12 status as a prespecified stratifier',
+          description:
+            'Report the clinical outcome and stratify by vitamin B12 status, because the folate literature contains a documented effect reversal across that stratum. In seniors with normal B12, high folate was associated with protection against cognitive impairment; in those with low B12, with a 2.6-fold higher odds of it. Any folate study that does not measure B12 cannot distinguish those two populations.',
+          dependsOnStepId: 'fol-w4',
+          reagentsAndBuffer:
+            'Prospectively registered clinical endpoint with masked adjudication; serum B12 and methylmalonic acid at baseline and follow-up as prespecified stratification variables; red cell folate to document exposure; for oncology endpoints, colonoscopic surveillance with centralised histopathology',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fol-a1',
+        category: 'measured',
+        title: 'A 72% reduction in neural tube defects, randomised and double-blind',
+        laymanSummary:
+          'A trial across seven countries gave folic acid to women who had already had a pregnancy affected by spina bifida or anencephaly. It cut the recurrence by nearly three quarters.',
+        technicalDetails:
+          'The Medical Research Council Vitamin Study was a randomised double-blind factorial trial at 33 centres in seven countries, allocating 1,817 women at high risk because of a previous affected pregnancy to folic acid, a mixture of seven other vitamins, both, or neither. Of 1,195 women with a completed pregnancy in which neural tube defect status was known, 27 had a defect: 6 in the folic acid groups and 21 in the other groups — a 72% protective effect, relative risk 0.28 (95% CI 0.12 to 0.71). The other vitamins showed no significant effect (relative risk 0.80, 95% CI 0.32 to 1.72), which is the internal control that makes the folate result specific rather than a general prenatal-vitamin effect. The authors noted no demonstrable harm from folic acid, while stating that the study\'s ability to detect rare or slight adverse effects was limited. Czeizel and Dudas subsequently showed the same effect for first occurrence rather than recurrence in a separate randomised trial. This is the reference standard against which every other claim in this file is judged, and it is worth stating exactly what it took: a randomised, double-blind, multinational trial with an active-comparator arm and a hard, unambiguous clinical endpoint.',
+        evidenceSource: 'MRC Vitamin Study Research Group. Lancet 1991;338:131-137',
+        doi: '10.1016/0140-6736(91)90133-A',
+        measuredMetric:
+          'Occurrence of neural tube defects in completed pregnancies among women with a previously affected pregnancy',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fol-a2',
+        category: 'measured',
+        title: 'National fortification produced a 19% fall in birth prevalence',
+        laymanSummary:
+          'After the United States required folic acid in enriched grain products, neural tube defects at birth fell by nineteen percent nationally.',
+        technicalDetails:
+          'Honein and colleagues analysed birth certificate data for live births in 45 US states and Washington DC between January 1990 and December 1999. Comparing the pre-fortification window of October 1995 to December 1996 against the post-mandatory-fortification window of October 1998 to December 1999, birth prevalence of neural tube defects fell from 37.8 to 30.5 per 100,000 live births — a 19% decline, prevalence ratio 0.81 (95% CI 0.75 to 0.87). Among women who received only third-trimester or no prenatal care, prevalence fell from 53.4 to 46.5 per 100,000 (prevalence ratio 0.87, 95% CI 0.64 to 1.18). The context that makes this a public health argument rather than a supplement argument is in the paper\'s first paragraph: before fortification only an estimated 29% of US reproductive-aged women were taking 400 micrograms of folic acid daily. The behaviour the trial required — supplementation before conception, in the weeks before a pregnancy is usually detected — could not be achieved by advice, and fortification achieved it by removing the decision.',
+        evidenceSource: 'Honein MA, Paulozzi LJ, Mathews TJ, Erickson JD, Wong LY. JAMA 2001;285:2981-2986',
+        doi: '10.1001/jama.285.23.2981',
+        measuredMetric:
+          'National birth prevalence of spina bifida and anencephaly per 100,000 live births, before and after mandatory fortification',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fol-a3',
+        category: 'failed',
+        title: 'Folic acid did not prevent colorectal adenomas, and advanced lesions rose',
+        laymanSummary:
+          'A trial gave 1 mg of folic acid daily to a thousand people with a history of colon polyps, expecting fewer polyps. At the second follow-up, advanced lesions were more common on folic acid.',
+        technicalDetails:
+          'Cole and colleagues randomised 1,021 men and women with a recent history of colorectal adenomas and no previous invasive large intestine carcinoma to 1 mg per day of folic acid or placebo, in a phase 3 double-blind trial at 9 centres between 1994 and 2004, with two colonoscopic surveillance cycles. In the first three years, at least one adenoma occurred in 44.1% on folic acid against 42.4% on placebo (RR 1.04, 95% CI 0.90 to 1.20, P = .58), and at least one advanced lesion in 11.4% against 8.6% (RR 1.32, 95% CI 0.90 to 1.92, P = .15). At the second follow-up, in 607 participants, at least one adenoma occurred in 41.9% against 37.2% (RR 1.13, 95% CI 0.93 to 1.37, P = .23) and at least one advanced lesion in 11.6% against 6.9% (RR 1.67, 95% CI 1.00 to 2.80, P = .05). Folic acid was associated with higher risks of having three or more adenomas and of non-colorectal cancers. The authors concluded that folic acid at 1 mg per day does not reduce colorectal adenoma risk and that further research is needed into whether it might increase colorectal neoplasia. The mechanistic reading is coherent and uncomfortable: folate is required for DNA synthesis, so supplying more of it to a tissue that already contains dysplastic clones may accelerate what is already growing.',
+        evidenceSource: 'Cole BF et al. JAMA 2007;297:2351-2359',
+        doi: '10.1001/jama.297.21.2351',
+        measuredMetric:
+          'Occurrence of at least one colorectal adenoma and of at least one advanced lesion across two colonoscopic surveillance cycles',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fol-a4',
+        category: 'inferred',
+        title: 'High folate reverses direction depending on vitamin B12 status',
+        laymanSummary:
+          'In older people with enough vitamin B12, high folate was associated with better cognition. In those short of B12, the same high folate was associated with anaemia and worse cognition.',
+        technicalDetails:
+          'Morris and colleagues examined 1,459 senior participants in the 1999-2002 US National Health and Nutrition Examination Survey, defining low B12 status as serum B12 below 148 pmol/L or serum methylmalonic acid above 210 nmol/L. After adjustment, low versus normal B12 status was associated with anaemia (odds ratio 2.7, 95% CI 1.7 to 4.2), macrocytosis (1.8, 95% CI 1.01 to 3.3) and cognitive impairment (2.5, 95% CI 1.6 to 3.8). Within the low-B12 group, serum folate above 59 nmol/L compared with at or below that level was associated with anaemia (odds ratio 3.1, 95% CI 1.5 to 6.6) and cognitive impairment (2.6, 95% CI 1.1 to 6.1). In the normal-B12 group the odds ratios for high folate were below 1.0, significantly so for cognitive impairment (0.4, 95% CI 0.2 to 0.9), with a significant interaction, P less than 0.05. The authors note the historic origin of the concern — reports of folic acid treatment of pernicious anaemia delaying diagnosis or worsening outcomes — and that experimental investigation of it would be unethical. This is observational and cannot establish causation. It is also a direction-reversing interaction with a fully specified biochemical mechanism, and it is the reason B12 status should be known before high-dose folate is taken.',
+        evidenceSource: 'Morris MS, Jacques PF, Rosenberg IH, Selhub J. Am J Clin Nutr 2007;85:193-200',
+        doi: '10.1093/ajcn/85.1.193',
+        inferredClaim:
+          'That folate supplementation is uniformly beneficial, when its association with anaemia and cognition reverses direction across vitamin B12 status',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fol-a5',
+        category: 'conclusion_shift',
+        title: 'From an individual supplement to a population intervention, because advice failed',
+        laymanSummary:
+          'The trial proved that a tablet works. The problem was that the tablet has to be taken before you know you are pregnant, and only 29 percent of women were taking one. So the vitamin was put in the flour instead.',
+        technicalDetails:
+          'The MRC trial proved efficacy in 1991. Six years later the intervention had barely moved: before fortification, an estimated 29% of US reproductive-aged women were taking 400 micrograms of folic acid daily, and the neural tube closes within four weeks of conception, before most pregnancies are recognised. The FDA authorised folic acid in enriched grain products in March 1996 with mandatory compliance by January 1998, and national birth prevalence of neural tube defects fell 19%. This is a shift in the unit of intervention rather than in the science, and it carries a lesson that runs against most of this file: the folate case succeeded not because a supplement worked but because a public health system stopped relying on individuals to take one. It also created the exposure that produced the colorectal and vitamin B12 concerns, since fortification supplements the entire population including men, older adults and people with undiagnosed B12 deficiency, none of whom stand to gain anything from it.',
+        evidenceSource: 'Honein MA, Paulozzi LJ, Mathews TJ, Erickson JD, Wong LY. JAMA 2001;285:2981-2986',
+        doi: '10.1001/jama.285.23.2981',
+        inferredClaim:
+          'That a proven individual supplement benefit translates into individual behaviour, when the required behaviour precedes knowledge of the pregnancy',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fol-a6',
+        category: 'inferred',
+        title: 'Methylfolate carries none of the evidence built on folic acid',
+        laymanSummary:
+          'The premium "methylfolate" form is a different molecule from the folic acid used in every landmark trial and in fortification. Its marketing rests on a gene variant rather than on outcome data.',
+        technicalDetails:
+          'Folic acid (C19H19N7O6, 441.4 g/mol) is fully oxidised and must be reduced by dihydrofolate reductase before use. L-5-methyltetrahydrofolate (C20H25N7O6, 459.5 g/mol) is the circulating reduced form and enters the pool downstream of methylenetetrahydrofolate reductase. The case for it rests on the MTHFR C677T polymorphism, which reduces enzyme activity and is common. What does not follow is a clinical claim: every result in this record — the 72% neural tube defect reduction, the 19% national fall after fortification, the colorectal adenoma signal, the B12 interaction data — was generated with folic acid, in populations containing the usual proportion of C677T carriers, and the benefit was observed anyway. There is a genuine open scientific question about unmetabolised folic acid in plasma at high intakes, and methylfolate does bypass it. That is a hypothesis about a mechanism, not a demonstrated clinical advantage, and it is being sold as the latter.',
+        evidenceSource: 'MRC Vitamin Study Research Group. Lancet 1991;338:131-137',
+        doi: '10.1016/0140-6736(91)90133-A',
+        inferredClaim:
+          'That L-5-methyltetrahydrofolate is clinically superior to folic acid, particularly in MTHFR C677T carriers, when no outcome trial has compared them',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed, then reduced — and folic acid needs an extra step',
+        laymanDesc:
+          'Natural folate from food arrives ready to use. Synthetic folic acid has to be chemically reduced by a liver enzyme first, and that enzyme has limited capacity.',
+        molecularDetail:
+          'Food folates are polyglutamated and must be deconjugated before uptake by the proton-coupled folate transporter in the proximal jejunum, giving roughly half the bioavailability of synthetic folic acid. Folic acid itself is fully oxidised and requires two successive reductions by dihydrofolate reductase, whose human hepatic capacity is limited — which is why unmetabolised folic acid appears in plasma at high intakes.',
+        iconName: 'ArrowDown',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It becomes the vehicle for single carbon atoms',
+        laymanDesc:
+          'Once reduced, folate acts as a carrier that picks up and drops off single carbon atoms — the raw material for building DNA bases and for methylation.',
+        molecularDetail:
+          'Tetrahydrofolate accepts one-carbon units at the N5 and N10 positions in several oxidation states — methyl, methylene, formyl — feeding purine synthesis, thymidylate synthesis and the methionine cycle. MTHFR commits one-carbon units irreversibly to the methyl form, which is why the enzyme sits at the branch point between DNA synthesis and methylation.',
+        iconName: 'Combine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Without it, DNA cannot be copied and cells stop dividing',
+        laymanDesc:
+          'One of DNA\'s four letters can only be made with folate. A cell short of folate cannot replicate its genome — which is exactly why some chemotherapy drugs work by blocking folate.',
+        molecularDetail:
+          'Thymidylate synthase converts dUMP to dTMP using 5,10-methylenetetrahydrofolate. Deficiency causes uracil misincorporation and megaloblastic arrest. Methotrexate inhibits dihydrofolate reductase and 5-fluorouracil inhibits thymidylate synthase — folate antagonism is a working chemotherapy strategy, which is the strongest possible evidence that this pathway matters and the mechanistic backdrop to the colorectal adenoma finding.',
+        iconName: 'Dna',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'And here it meets vitamin B12, at a single reaction',
+        laymanDesc:
+          'Folate hands its methyl group to vitamin B12 in one specific reaction. If B12 is missing, the folate piles up in a form the cell cannot use, and the blood picture looks fixed while nerves keep being damaged.',
+        molecularDetail:
+          'Methionine synthase requires vitamin B12 to transfer the methyl group from 5-methyltetrahydrofolate to homocysteine. Without B12, folate is trapped as 5-methyltetrahydrofolate — the methyl-folate trap — and supplemental folate bypasses the resulting megaloblastic anaemia without addressing the B12-dependent methylation that peripheral nerve and spinal cord require. Morris et al. measured the population consequence: with low B12, high serum folate carried an anaemia odds ratio of 3.1 and cognitive impairment odds ratio of 2.6.',
+        iconName: 'GitMerge',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The proven outcome is a birth defect prevented',
+        laymanDesc:
+          'In the closing neural tube — one of the fastest-dividing tissues in the embryo — adequate folate is the difference between a normal spinal cord and spina bifida.',
+        molecularDetail:
+          'Relative risk 0.28 (95% CI 0.12 to 0.71) for neural tube defect recurrence in the MRC trial, against 0.80 (95% CI 0.32 to 1.72) for the seven-vitamin comparator arm. National birth prevalence fell from 37.8 to 30.5 per 100,000 live births after mandatory US fortification, prevalence ratio 0.81 (95% CI 0.75 to 0.87).',
+        iconName: 'Baby',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MRC Vitamin Study — periconceptional folic acid and neural tube defects',
+        phase: 'Randomised double-blind factorial, 33 centres in seven countries',
+        sampleSize: 1817,
+        primaryEndpoint: 'Occurrence of neural tube defect in a completed pregnancy',
+        endpointMet: true,
+        statisticalPValue:
+          'Relative risk 0.28 (95% CI 0.12 to 0.71), a 72% protective effect; other vitamins relative risk 0.80 (95% CI 0.32 to 1.72)',
+        unreportedAdverseSignals:
+          'The authors stated that no harm was demonstrable but that the study\'s power to detect rare or slight adverse effects was limited — a caveat that later trials in other indications went on to fill in.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Czeizel 1992 — periconceptional multivitamin and first occurrence of neural tube defects',
+        phase: 'Randomised controlled trial',
+        sampleSize: 4753,
+        primaryEndpoint:
+          'First occurrence of neural tube defect after periconceptional vitamin supplementation',
+        endpointMet: true,
+        statisticalPValue:
+          'Six neural tube defects in the trace-element group against none in the vitamin group, P = 0.029; congenital malformations 22.9 versus 13.3 per 1000, P = 0.02',
+        unreportedAdverseSignals:
+          'The intervention was a 12-vitamin, 4-mineral, 3-trace-element tablet containing 0.8 mg folic acid, so it does not isolate the folate effect the way the MRC factorial design did. Cleft lip with or without cleft palate was not reduced. Pregnancy was confirmed in 4,753 women but outcome was known in 4,156.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Honein 2001 — impact of US folic acid fortification on neural tube defects',
+        phase: 'National population surveillance before and after mandatory fortification',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Birth certificate prevalence of spina bifida and anencephaly per 100,000 live births',
+        endpointMet: true,
+        statisticalPValue:
+          '37.8 to 30.5 per 100,000 live births, a 19% decline, prevalence ratio 0.81 (95% CI 0.75 to 0.87)',
+        unreportedAdverseSignals:
+          'Based on birth certificate reports, which undercount neural tube defects and do not capture terminations. Sample size is recorded as zero because this was population surveillance rather than an enrolled trial.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT00272324 — folic acid for the prevention of colorectal adenomas',
+        phase: 'Phase 3 randomised double-blind placebo-controlled two-factor',
+        sampleSize: 1021,
+        primaryEndpoint: 'Occurrence of at least one colorectal adenoma',
+        endpointMet: false,
+        statisticalPValue:
+          'First cycle: adenoma 44.1% versus 42.4%, RR 1.04 (95% CI 0.90 to 1.20), P = .58. Second cycle: advanced lesion 11.6% versus 6.9%, RR 1.67 (95% CI 1.00 to 2.80), P = .05',
+        unreportedAdverseSignals:
+          'Folic acid was associated with higher risks of having three or more adenomas and of non-colorectal cancers. Only 59.5% of participants underwent the second surveillance cycle, so the advanced-lesion signal comes from a reduced sample.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Morris 2007 — folate and vitamin B12 status in NHANES 1999-2002',
+        phase: 'Cross-sectional analysis of a national survey',
+        sampleSize: 1459,
+        primaryEndpoint:
+          'Association of serum folate with anaemia, macrocytosis and cognitive impairment, stratified by vitamin B12 status',
+        endpointMet: true,
+        statisticalPValue:
+          'Low B12 with high folate: anaemia OR 3.1 (95% CI 1.5 to 6.6), cognitive impairment OR 2.6 (95% CI 1.1 to 6.1). Normal B12 with high folate: cognitive impairment OR 0.4 (95% CI 0.2 to 0.9); interaction P < 0.05',
+        unreportedAdverseSignals:
+          'Cross-sectional and observational, so causation cannot be established. The authors note that experimental investigation of this question would be unethical, which means the observational data are all there will ever be.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Periconceptional folic acid reduced neural tube defect recurrence by 72%, relative risk 0.28 (95% CI 0.12 to 0.71)',
+        'A seven-vitamin comparator arm in the same trial showed no significant effect, isolating folate as the active component',
+        'US mandatory fortification was followed by a 19% fall in neural tube defect birth prevalence nationally',
+        'Folic acid 1 mg/day did not reduce colorectal adenoma risk, and advanced lesions were more common at second surveillance, RR 1.67, P = .05',
+        'In seniors with low vitamin B12, high serum folate was associated with anaemia (OR 3.1) and cognitive impairment (OR 2.6)',
+      ],
+      unsupportedInferences: [
+        'That folate is uniformly beneficial, when its cognitive association reverses direction across vitamin B12 status',
+        'That methylfolate is clinically superior to folic acid, which no outcome trial has tested',
+        'That a proven benefit in early pregnancy justifies high-dose folate for adults generally',
+      ],
+      whatFailedInitially: [
+        'Folic acid for colorectal adenoma prevention, where the direction of the advanced-lesion result favoured placebo',
+        'Advice-based supplementation, which reached only about 29% of US reproductive-aged women before fortification',
+      ],
+      realWorldOutcome: [
+        'This is the strongest supplement result in this file and the benchmark the rest of it is measured against',
+        'It succeeded as a population fortification programme, not as an individual purchasing decision',
+        'The same fortification exposes people with no possible benefit, which is where the colorectal and B12 concerns come from',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet or capsule as folic acid or L-5-methyltetrahydrofolate; also mandated in enriched grain products',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, available as a prescription medicine for megaloblastic anaemia, and added by regulation to enriched grain products since mandatory compliance in January 1998. Folic acid and L-5-methyltetrahydrofolate are different molecules with different entry points into folate metabolism; all the landmark evidence was generated with folic acid. Reduced folate vitamers oxidise readily in light and air, so product stability differs between the two forms. Because fortification, prenatal supplements and multivitamins all deliver folic acid, total intake in a supplement user is easy to underestimate.',
+      safetyProfile:
+        'Direct toxicity is very low and folic acid is among the best-tolerated substances in this file. The meaningful risks are interactions and context. High folate intake corrects the megaloblastic anaemia of vitamin B12 deficiency without correcting the neurological damage, which can delay diagnosis until deficits are irreversible — and in seniors with low B12 status, high serum folate was associated with a 3.1-fold odds of anaemia and 2.6-fold odds of cognitive impairment. In people with existing colorectal adenomas, 1 mg per day was associated with more advanced lesions at second surveillance and with more non-colorectal cancers. Folate supplements antagonise methotrexate, which is prescribed for rheumatoid arthritis, psoriasis and cancer, and folic acid can mask laboratory monitoring of that therapy.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is the folic acid claim actually proven?',
+        a: 'Yes, and it is the only entry in this file where that sentence can be written without qualification. A randomised double-blind trial at 33 centres in seven countries found a 72 percent reduction in neural tube defects — relative risk 0.28, confidence interval 0.12 to 0.71 — with an active comparator arm of seven other vitamins that showed nothing. A national fortification programme then produced a 19 percent fall in birth prevalence across the United States. Everything else on this site is judged against that.',
+      },
+      {
+        q: 'Why is folic acid added to bread rather than just recommended?',
+        a: 'Because the recommendation did not work, for a structural reason. The neural tube closes within about four weeks of conception, usually before a pregnancy is recognised, so the supplement has to be taken before anyone knows it is needed. Before fortification only about 29 percent of US reproductive-aged women were taking 400 micrograms daily. Fortification removed the decision, and the defect rate fell. That is a public health success rather than a supplement success, and the distinction matters.',
+      },
+      {
+        q: 'Should I be worried about the cancer finding?',
+        a: 'It deserves to be known and not overstated. A phase 3 trial gave 1 mg of folic acid daily to 1,021 people with a history of colorectal adenomas. It did not prevent adenomas, and at the second colonoscopy cycle advanced lesions occurred in 11.6 percent on folic acid against 6.9 percent on placebo, relative risk 1.67, P = .05, with higher risks of three or more adenomas and of non-colorectal cancers. The mechanism is uncomfortable but coherent: folate is needed for DNA synthesis, so supplying more of it to a tissue already containing dysplastic clones may support what is already growing.',
+        auditNote:
+          'The trial authors called for further research into whether folic acid might increase colorectal neoplasia.',
+      },
+      {
+        q: 'Can folate hide a vitamin B12 problem?',
+        a: 'Yes, and this is the interaction most worth understanding. Folate and B12 meet at one reaction. Adequate folate keeps red cell production going, so the enlarged red cells that would have prompted a B12 test never appear — while the B12-dependent chemistry that peripheral nerves and spinal cord depend on stays blocked. In older Americans with low B12 status, high serum folate was associated with 3.1-fold odds of anaemia and 2.6-fold odds of cognitive impairment. In those with normal B12, high folate was associated with less cognitive impairment. The direction reverses across the interaction.',
+      },
+      {
+        q: 'Is methylfolate better than folic acid?',
+        a: 'There is no outcome evidence that it is. Methylfolate is a different molecule that enters folate metabolism downstream of the MTHFR enzyme, and it is sold on the basis of the common C677T variant that reduces that enzyme\'s activity. But every result on this page — the 72 percent reduction, the national fall after fortification, the colorectal signal, the B12 interaction data — was generated with folic acid, in populations containing the usual share of C677T carriers, and the benefit appeared anyway. There is a real open question about unmetabolised folic acid at high intakes, and methylfolate does bypass it. That is a mechanism, not a demonstrated advantage.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'MRC Vitamin Study Research Group. Prevention of neural tube defects: results of the Medical Research Council Vitamin Study. Lancet 1991;338:131-137',
+        identifier: '10.1016/0140-6736(91)90133-A',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Czeizel AE, Dudas I. Prevention of the first occurrence of neural-tube defects by periconceptional vitamin supplementation. N Engl J Med 1992;327:1832-1835',
+        identifier: '10.1056/NEJM199212243272602',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Honein MA, Paulozzi LJ, Mathews TJ, Erickson JD, Wong LY. Impact of folic acid fortification of the US food supply on the occurrence of neural tube defects. JAMA 2001;285:2981-2986',
+        identifier: '10.1001/jama.285.23.2981',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Morris MS, Jacques PF, Rosenberg IH, Selhub J. Folate and vitamin B-12 status in relation to anemia, macrocytosis, and cognitive impairment in older Americans in the age of folic acid fortification. Am J Clin Nutr 2007;85:193-200',
+        identifier: '10.1093/ajcn/85.1.193',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cole BF et al. Folic acid for the prevention of colorectal adenomas: a randomized clinical trial. JAMA 2007;297:2351-2359',
+        identifier: '10.1001/jama.297.21.2351',
+        kind: 'doi',
+      },
+      {
+        label: 'Aspirin/Folate Polyp Prevention Study trial registration',
+        identifier: 'NCT00272324',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 135398658 — Folic acid',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135398658',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 135398561 — Levomefolic acid (L-5-methyltetrahydrofolate)',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135398561',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
