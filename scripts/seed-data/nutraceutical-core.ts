@@ -10097,5 +10097,476 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Vitamin K2 MK-7 — a biomarker that moves dramatically, two positive three-year trials using the
+  // same branded ingredient, and three randomised imaging trials in the populations that matter
+  // finding nothing, including 365 men followed for two years with CT scoring of their aortic valves.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'vitamin-k2-mk7',
+    name: 'Vitamin K2 MK-7',
+    tradeName: 'Menaquinone-7; the dominant branded ingredient in the trial literature is MenaQ7',
+    sponsor:
+      'No single sponsor — a long-chain menaquinone produced by bacterial fermentation, typically from Bacillus subtilis natto. NattoPharma\'s MenaQ7 is the ingredient used in the principal three-year trials.',
+    targetGene: 'GGCX',
+    targetProtein:
+      'Gamma-glutamyl carboxylase (GGCX), which uses reduced vitamin K to convert glutamate residues to gamma-carboxyglutamate in the vitamin K-dependent proteins. Two matter here: osteocalcin, which binds calcium into bone matrix, and matrix Gla protein, which inhibits calcification in arterial wall. Both are inactive until carboxylated, and how much remains uncarboxylated is the biomarker the whole field runs on.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for bone density and for keeping calcium "out of arteries and in bones", usually alongside vitamin D. Not approved by the FDA for any indication. EFSA has accepted a health claim for vitamin K in maintaining normal bone. Vitamin K1 is separately a genuine medicine, used to reverse warfarin and to prevent haemorrhagic disease of the newborn.',
+    patientFriendlyIndication:
+      'Taken with vitamin D for bone density and to keep calcium out of the arteries',
+    conditionContext: {
+      conditionExplainer:
+        'Several proteins in the body are built with a chemical hook that only works after vitamin K adds a second carboxyl group to them. Osteocalcin uses that hook to bind calcium into bone. Matrix Gla protein uses it to stop calcium crystallising in artery walls. Without vitamin K, both proteins are made but remain inactive.',
+      whyItMatters:
+        'This is the cleanest surrogate-versus-outcome case in the file. Supplementing MK-7 cuts circulating inactive matrix Gla protein by around half, which is dramatic, unambiguous and easy to measure. When that biomarker change was tested against actual calcification on imaging, in three separate randomised trials in three different populations, nothing followed.',
+      whoTakesThis:
+        'People taking vitamin D or calcium who have been told K2 directs the calcium, postmenopausal women concerned about bone density, and people with coronary or valvular calcification found incidentally on a scan.',
+      clinicalGoals:
+        'Trials measured circulating dephosphorylated-uncarboxylated matrix Gla protein, the uncarboxylated to carboxylated osteocalcin ratio, bone mineral density and content by DXA, carotid-femoral pulse wave velocity, aortic valve calcium score on CT, and arterial calcification by CT and 18F-sodium-fluoride PET.',
+    },
+    oneSentenceVerdict:
+      'MK-7 halves circulating inactive matrix Gla protein and, in two three-year trials using the same branded ingredient, reduced bone loss and arterial stiffness in postmenopausal women — but in 365 men with aortic valve calcification followed for two years the difference in calcium score progression was 17 arbitrary units (P = 0.64), and two other randomised imaging trials in diabetes and coronary disease also found nothing.',
+    laymanHowItWorks:
+      'A handful of proteins in your body are made with a chemical clamp that only closes after vitamin K modifies them. One of those proteins locks calcium into bone; another patrols artery walls and stops calcium crystallising there. If vitamin K is short, both proteins are still made but sit around uncarboxylated and useless, and you can measure exactly how much of the inactive form is circulating. Supplementing MK-7 activates them, and the inactive fraction drops by about half — which is a real and impressive biochemical result. The question the trials asked next is whether activating those proteins changes the calcium in anybody\'s arteries, and the imaging says no.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 40,
+    anatomicalSite:
+      'Hepatocyte endoplasmic reticulum for the clotting factors; osteoblasts for osteocalcin; vascular smooth muscle cells of the arterial media for matrix Gla protein',
+    substitutes: {
+      summary:
+        'For bone, the interventions with fracture-endpoint evidence are bisphosphonates and denosumab, and neither has a K2 competitor. For vascular calcification there is currently no intervention with imaging or outcome evidence, including this one. Vitamin K1 from green vegetables covers the clotting requirement completely.',
+      conventionalRx: [
+        {
+          name: 'Vitamin K1 (phylloquinone) as a medicine',
+          class: 'Prescription antidote and neonatal prophylaxis',
+          howItCompares:
+            'Vitamin K1 is genuinely a medicine: it reverses warfarin anticoagulation and, given at birth, prevents vitamin K deficiency bleeding of the newborn — a condition that is fatal or disabling and essentially eliminated by a single injection. That is the vitamin K claim with hard outcome evidence, and it belongs to K1 rather than to MK-7.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: unambiguous, life-saving, and mechanistically transparent. Cons: it is routinely invoked to lend authority to MK-7 supplement claims that rest on different proteins and different endpoints.',
+        },
+        {
+          name: 'Bisphosphonates and denosumab for bone',
+          class: 'Antiresorptive osteoporosis therapy',
+          howItCompares:
+            'These reduce fractures in randomised trials with fracture as the endpoint. The MK-7 bone trial measured bone mineral density and content over three years and reported reduced age-related decline; it was not powered for fractures.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: fracture endpoints, which is what patients care about. Cons: real adverse effects, which is part of why a supplement alternative is attractive and why the standard of evidence for one should not be lower.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Natto',
+          activeCompound: 'Menaquinone-7, produced by Bacillus subtilis during fermentation',
+          biologicalMechanism:
+            'Fermented soybeans are by a wide margin the richest dietary source of MK-7, and the bacterial fermentation used to manufacture the supplement is the same process. The long isoprenoid tail gives MK-7 a half-life of days rather than the hours of vitamin K1, which is the genuine pharmacological argument for this form.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the three-year trials used 180 micrograms of MK-7 daily and the aortic valve trial used 720 micrograms.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Green leafy vegetables, for vitamin K1',
+          activeCompound: 'Phylloquinone',
+          biologicalMechanism:
+            'K1 is the dominant dietary vitamin K and fully covers the hepatic clotting requirement, which is why frank vitamin K deficiency is rare in adults. The K2 supplement case is not about deficiency of the vitamin but about the carboxylation status of two extrahepatic proteins.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'If you take warfarin, this is a genuine interaction',
+          action:
+            'Vitamin K in any form directly antagonises warfarin, which works by blocking vitamin K recycling. MK-7\'s long half-life makes the interaction more persistent than K1\'s.',
+          patientImpact:
+            'Starting or stopping a K2 supplement can shift the INR substantially, and the effect will not clear quickly.',
+          clinicalPrecaution:
+            'This is the one unambiguous, mechanistically certain risk on this page, and it applies to a large population taking a common anticoagulant.',
+        },
+        {
+          name: 'Ask whether the endpoint was a blood marker or a scan',
+          action:
+            'Distinguish dephosphorylated-uncarboxylated matrix Gla protein, which MK-7 moves reliably, from calcification measured by CT or PET, which it has not.',
+          patientImpact:
+            'MK-7 decreased circulating dp-ucMGP by 50% against placebo in the arterial stiffness trial. In 365 men with aortic valve calcification, the difference in calcium score progression over two years was 17 arbitrary units, P = 0.64.',
+          clinicalPrecaution:
+            'A supplement that reliably corrects a biomarker and reliably fails to change the imaging is the defining pattern here.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC1=C(C(=O)C2=CC=CC=C2C1=O)C/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CCC=C(C)C',
+      chemicalFormula: 'C46H64O2',
+      molecularWeight:
+        '649.0 g/mol. The naphthoquinone head is shared with all vitamin K forms; what differs is the tail. MK-7 carries seven isoprene units against MK-4\'s four and phylloquinone\'s single phytyl chain, which is why its plasma half-life is measured in days rather than hours and why MK-4 trial evidence does not transfer to it.',
+      structureSource: {
+        label: 'PubChem CID 5287554 — Menaquinone-7, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5287554',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'k2-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Menaquinone chain length and cis-trans isomer determination',
+          description:
+            'A label saying "vitamin K2" can mean MK-4, MK-7 or a mixture, and these have half-lives differing by more than an order of magnitude and separate trial literatures. Separately, synthetic MK-7 can contain the cis isomer, which is biologically inactive, while fermentation-derived material is all-trans. Neither is disclosed on a label and neither is detected by a total vitamin K assay.',
+          reagentsAndBuffer:
+            'Reversed-phase HPLC with post-column zinc reduction and fluorescence detection, resolving MK-4 through MK-9 and phylloquinone against authenticated standards; C30 column for cis and all-trans MK-7 separation; light-protected amber glassware throughout, since menaquinones are photolabile',
+        },
+        {
+          id: 'k2-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the deuterated MK-7 tracer',
+          description:
+            'MK-7\'s multi-day half-life means steady state takes weeks and plasma sampling in a short study measures accumulation rather than exposure. A labelled tracer separates administered MK-7 from the dietary and gut-bacterial background and is what makes a real pharmacokinetic statement possible.',
+          dependsOnStepId: 'k2-w1',
+          reagentsAndBuffer:
+            'Deuterated MK-7 internal standard; deuterated phylloquinone for the parallel K1 arm; formulation in a defined lipid matrix, since menaquinone absorption is strongly fat-dependent; isotopic purity confirmed by LC-MS/MS',
+        },
+        {
+          id: 'k2-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Separation of the carboxylated and uncarboxylated protein species',
+          description:
+            'The entire field runs on the ratio of inactive to active forms of two proteins, and those forms differ only by carboxyl groups on glutamate residues. Distinguishing dephosphorylated-uncarboxylated matrix Gla protein from its carboxylated counterpart, and uncarboxylated from carboxylated osteocalcin, requires conformation-specific immunoassays and careful sample handling — the numbers are not interchangeable between assay platforms.',
+          dependsOnStepId: 'k2-w2',
+          reagentsAndBuffer:
+            'Conformation-specific sandwich immunoassays for dp-ucMGP and for total and carboxylated MGP; hydroxyapatite-binding separation for carboxylated versus uncarboxylated osteocalcin; EDTA plasma with protease inhibitors; single assay platform and lot maintained across all timepoints in a study',
+        },
+        {
+          id: 'k2-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Carboxylation of matrix Gla protein in vascular smooth muscle',
+          description:
+            'Test the mechanism where it is claimed to act. Vascular smooth muscle cells calcify under high phosphate, and matrix Gla protein is the local inhibitor. Establish whether MK-7 at achievable tissue concentrations increases local MGP carboxylation and reduces mineralisation — and whether it can reverse existing mineral rather than only slow new deposition, which is the question the human imaging trials implicitly asked.',
+          dependsOnStepId: 'k2-w3',
+          reagentsAndBuffer:
+            'Primary human aortic smooth muscle cells in calcifying medium at elevated inorganic phosphate; MK-7 across a concentration range spanning achievable plasma levels; warfarin as the gamma-glutamyl carboxylase inhibitor control; MGP knockdown as the specificity control; alizarin red and calcium content quantification; pre-established mineral deposits in a separate arm to test reversal',
+        },
+        {
+          id: 'k2-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Imaging endpoint reported alongside the biomarker, never instead of it',
+          description:
+            'This is the whole lesson of the field as a method. Report CT calcium score change and dp-ucMGP change from the same participants. The aortic valve trial did exactly this and produced the definitive result: dp-ucMGP was a listed secondary outcome, the calcium score was the primary, and the primary showed a difference of 17 arbitrary units with P = 0.64.',
+          dependsOnStepId: 'k2-w4',
+          reagentsAndBuffer:
+            'Cardiac non-contrast computed tomography with Agatston scoring by blinded readers; echocardiographic aortic valve area and peak jet velocity; 18F-sodium-fluoride PET target-to-background ratio for active mineralisation; dp-ucMGP at each visit to document compliance and biological engagement; prespecified primary endpoint registered before enrolment',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'k2-a1',
+        category: 'failed',
+        title: '365 men, two years, aortic valve calcium: a difference of 17 arbitrary units',
+        laymanSummary:
+          'The largest randomised trial of MK-7 gave it with vitamin D to 365 men with calcified aortic valves for two years and measured the calcium on CT scans. There was no difference.',
+        technicalDetails:
+          'A randomised, double-blind, multicentre trial randomised 365 community-dwelling men with an aortic valve calcification score above 300 arbitrary units on non-contrast cardiac CT to 720 micrograms of MK-7 plus 25 micrograms of vitamin D daily, or matching placebo, for 24 months. Mean age was 71.0 years. The primary outcome, change in aortic valve calcification score, increased by 275 AU (95% CI 225 to 326) in the intervention group and 292 AU (95% CI 246 to 338) in placebo, a mean difference of 17 AU (95% CI -86 to 53, P = 0.64). Change in aortic valve area was 0.02 cm2 (95% CI -0.09 to 0.12, P = 0.78) and in peak aortic jet velocity 0.04 m/s (95% CI -0.11 to 0.02, P = 0.21). Progression of aortic and coronary artery calcification did not differ significantly between groups. This is the exact population, the exact mechanism and the exact endpoint the product is sold on, at a dose four times that of the bone trials, and the confidence interval on the primary result excludes any clinically meaningful effect.',
+        evidenceSource: 'Diederichsen ACP et al. Circulation 2022;145:1387-1397',
+        doi: '10.1161/CIRCULATIONAHA.121.057008',
+        measuredMetric:
+          'Change in aortic valve calcification score on non-contrast cardiac CT over 24 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'k2-a2',
+        category: 'measured',
+        title: 'The biomarker moves dramatically — inactive matrix Gla protein falls by half',
+        laymanSummary:
+          'MK-7 reliably activates the protein that stops calcium depositing in artery walls, cutting the circulating inactive form by about fifty percent.',
+        technicalDetails:
+          'In the three-year arterial stiffness trial, MK-7 at 180 micrograms daily decreased circulating dephosphorylated-uncarboxylated matrix Gla protein by 50% compared with placebo. At baseline, dp-ucMGP was associated with carotid intima-media thickness, arterial diameter, carotid-femoral pulse wave velocity and with composite scores for acute phase markers and endothelial dysfunction. This is a genuine, large, reproducible biochemical effect: the supplement unambiguously does what it says at the level of protein carboxylation, and compliance can be verified from it. The vascular calcification trial in type 2 diabetes used dp-ucMGP measurement for exactly that purpose. The audit point is not that this biomarker is fake. It is that it moves by 50% while the imaging endpoints move by nothing, which is as clean a dissociation between a surrogate and an outcome as this file contains.',
+        evidenceSource: 'Knapen MHJ et al. Thromb Haemost 2015;113:1135-1144',
+        doi: '10.1160/TH14-08-0675',
+        measuredMetric:
+          'Percentage change in circulating dephosphorylated-uncarboxylated matrix Gla protein versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'k2-a3',
+        category: 'measured',
+        title: 'Three years of MK-7 reduced age-related bone loss in postmenopausal women',
+        laymanSummary:
+          'In 244 healthy postmenopausal women, three years of MK-7 slowed the normal age-related decline in bone density and strength at the spine and hip.',
+        technicalDetails:
+          'Knapen and colleagues randomised 244 healthy postmenopausal women to placebo or 180 micrograms of MK-7 daily for three years, measuring bone mineral density of lumbar spine, total hip and femoral neck by DXA, calculating femoral neck bone strength indices, assessing vertebral fractures by DXA, and tracking vitamin K status through the uncarboxylated to carboxylated osteocalcin ratio at baseline and years 1, 2 and 3. MK-7 significantly improved vitamin K status and decreased the age-related decline in bone mineral content and bone mineral density at the lumbar spine and femoral neck, but not at total hip. The authors note that EFSA had accepted a health claim for vitamin K in maintenance of normal bone. Three years is a genuinely long trial and the endpoint is objective. Two qualifications: the outcome is bone density rather than fracture, and this trial and the arterial stiffness trial come from the same group using the same branded ingredient in the same cohort, so they are not independent replications of each other.',
+        evidenceSource: 'Knapen MHJ et al. Osteoporos Int 2013;24:2499-2507',
+        doi: '10.1007/s00198-013-2325-6',
+        measuredMetric:
+          'Bone mineral density and content at lumbar spine, total hip and femoral neck over three years by DXA',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'k2-a4',
+        category: 'failed',
+        title: 'In type 2 diabetes, PET calcification tended the wrong way',
+        laymanSummary:
+          'A randomised trial used a sensitive scan to look for active calcification in people with diabetes and heart disease. After six months of MK-7 the signal had, if anything, increased.',
+        technicalDetails:
+          'Zwakenberg and colleagues randomised 68 men and women with type 2 diabetes and known cardiovascular disease to 360 micrograms per day of MK-7 or placebo for six months, with 33 and 27 completing follow-up respectively. Femoral arterial calcification was measured by 18F-sodium-fluoride PET as target-to-background ratio, a technique sensitive to active mineralisation rather than established mineral, with CT calcification mass as a secondary outcome, and dp-ucMGP measured to confirm compliance. After six months, target-to-background ratio tended to increase in the MK-7 group compared with placebo (0.25, 95% CI -0.02 to 0.51, P = 0.06), and log-transformed CT calcification mass did not decrease. A non-significant trend in the wrong direction in a small trial is not evidence of harm and should not be read as one. It is, however, the second independent randomised imaging study to find no benefit, and the compliance biomarker confirms the supplement was being taken and was working biochemically.',
+        evidenceSource: 'Zwakenberg SR et al. Am J Clin Nutr 2019;110:883-890',
+        doi: '10.1093/ajcn/nqz147',
+        measuredMetric:
+          'Femoral arterial 18F-sodium-fluoride PET target-to-background ratio and CT calcification mass at six months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'k2-a5',
+        category: 'conclusion_shift',
+        title: 'The Rotterdam observation that started it, and what randomisation did to it',
+        laymanSummary:
+          'A large population study found people eating more vitamin K2 had less coronary heart disease. Every randomised trial that has since tested it against imaging has found nothing.',
+        technicalDetails:
+          'Geleijnse and colleagues reported in the Rotterdam Study that dietary menaquinone intake was associated with reduced risk of coronary heart disease, and that observation is the origin of the entire K2 supplement category and of the "directs calcium away from arteries" framing. The subsequent randomised record runs the other way. In 365 men with aortic valve calcification over 24 months, the difference in calcium score progression was 17 AU (P = 0.64). In 68 people with type 2 diabetes and cardiovascular disease over six months, PET target-to-background ratio tended to increase on MK-7 (P = 0.06). This is the standard shape of a nutritional epidemiology finding: dietary menaquinone intake in a free-living population tracks fermented and animal food consumption, socioeconomic position and dozens of other correlates, and the compound itself carries only some of the association. The mechanism connecting matrix Gla protein to arterial calcification is real and was never the weak link; the inference that supplementing a replete population would move calcification was.',
+        evidenceSource:
+          'Geleijnse JM et al. J Nutr 2004;134:3100-3105; Diederichsen ACP et al. Circulation 2022;145:1387-1397',
+        doi: '10.1093/jn/134.11.3100',
+        inferredClaim:
+          'That an observational association between dietary menaquinone intake and coronary heart disease establishes a benefit of MK-7 supplementation on arterial calcification',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'k2-a6',
+        category: 'inferred',
+        title: 'MK-4 and MK-7 are different drugs, and so are their trial literatures',
+        laymanSummary:
+          'Vitamin K2 comes in forms with different tail lengths. They have half-lives differing more than tenfold and separate bodies of evidence, and labels often just say "K2".',
+        technicalDetails:
+          'MK-4 carries four isoprene units and is cleared within hours; MK-7 carries seven and has a plasma half-life measured in days, which is why 180 micrograms daily of MK-7 achieves what milligram doses of MK-4 were used for. The Japanese bone literature that supplies much of vitamin K2\'s reputation used MK-4 at 45 mg per day — a dose 250 times the MK-7 trials, in a different population, with a different molecule. The Knapen group explicitly framed their MK-7 work as an extension of earlier high-dose K1 and MK-4 studies "because of the longer half-life and greater potency of the long-chain MK-7," which is an honest statement that these are separate agents. A product labelled only "vitamin K2" may contain either, and neither form\'s evidence transfers to the other. Synthetic MK-7 can also contain the biologically inactive cis isomer, which fermentation-derived material does not.',
+        evidenceSource: 'Knapen MHJ et al. Osteoporos Int 2013;24:2499-2507',
+        doi: '10.1007/s00198-013-2325-6',
+        inferredClaim:
+          'That "vitamin K2" is a single agent whose trial evidence applies regardless of chain length or dose',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed with fat, and MK-7 stays around for days',
+        laymanDesc:
+          'Vitamin K needs dietary fat to be absorbed. The long-tailed MK-7 form then lingers in the blood for days, where the short forms are gone in hours.',
+        molecularDetail:
+          'Menaquinones are absorbed into chylomicrons and require dietary lipid. MK-7\'s seven-isoprene tail gives it strong lipoprotein binding and a plasma half-life measured in days, against hours for MK-4 and phylloquinone. This is the genuine pharmacological argument for the form, and it means steady state takes weeks, so short trials measure accumulation rather than a stable exposure.',
+        iconName: 'Clock',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It powers an enzyme that adds a calcium-binding hook to proteins',
+        laymanDesc:
+          'Reduced vitamin K lets one enzyme add an extra chemical group to certain proteins, turning a plain amino acid into one that grips calcium.',
+        molecularDetail:
+          'Gamma-glutamyl carboxylase uses reduced vitamin K as cofactor to convert glutamate to gamma-carboxyglutamate, and vitamin K epoxide reductase regenerates the reduced form. Warfarin inhibits that recycling step, which is why vitamin K antagonises warfarin and why the interaction is certain rather than theoretical.',
+        iconName: 'Wrench',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'Two proteins matter outside the liver: one for bone, one for arteries',
+        laymanDesc:
+          'Osteocalcin locks calcium into bone. Matrix Gla protein sits in artery walls and stops calcium crystallising there. Both need the vitamin K modification to work.',
+        molecularDetail:
+          'Osteocalcin is secreted by osteoblasts and its carboxylated form binds hydroxyapatite. Matrix Gla protein is expressed by vascular smooth muscle cells and is a potent local calcification inhibitor — MGP-null mice die within weeks of massive arterial calcification, which is the strongest evidence that this pathway matters and is the mechanistic backbone of every K2 claim.',
+        iconName: 'Bone',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'The inactive fraction falls by half, and that is easy to measure',
+        laymanDesc:
+          'Supplementing MK-7 activates these proteins, and the amount of the inactive form circulating in blood drops by around fifty percent. This is real and reproducible.',
+        molecularDetail:
+          'MK-7 at 180 micrograms daily decreased dephosphorylated-uncarboxylated matrix Gla protein by 50% against placebo over three years, and improved the uncarboxylated to carboxylated osteocalcin ratio. The biomarker response is large enough to serve as a compliance measure, which is exactly how the diabetes calcification trial used it.',
+        iconName: 'TrendingDown',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And the scans do not change',
+        laymanDesc:
+          'Despite fully activating the anti-calcification protein, imaging of actual arterial and valve calcium found no difference across three randomised trials.',
+        molecularDetail:
+          'Aortic valve calcification score difference 17 AU (95% CI -86 to 53, P = 0.64) over 24 months in 365 men; aortic valve area difference 0.02 cm2 (P = 0.78); femoral 18F-NaF PET target-to-background ratio tending upward on MK-7 (0.25, 95% CI -0.02 to 0.51, P = 0.06) in diabetes. The most likely explanation is that established mineral does not regress, and matrix Gla protein carboxylation prevents rather than reverses.',
+        iconName: 'ScanLine',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Diederichsen 2022 — vitamin K2 and D in aortic valve calcification',
+        phase: 'Randomised double-blind multicentre, 24 months',
+        sampleSize: 365,
+        primaryEndpoint: 'Change in aortic valve calcification score on non-contrast cardiac CT',
+        endpointMet: false,
+        statisticalPValue:
+          'Mean difference 17 AU (95% CI -86 to 53), P = 0.64; aortic valve area difference 0.02 cm2, P = 0.78; peak jet velocity 0.04 m/s, P = 0.21',
+        unreportedAdverseSignals:
+          'The dose was 720 micrograms of MK-7, four times that used in the positive bone and stiffness trials, given with vitamin D, in exactly the population the product targets. Aortic and coronary artery calcification progression also did not differ.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Knapen 2013 — three-year MK-7 and bone health in postmenopausal women',
+        phase: 'Randomised placebo-controlled, 3 years',
+        sampleSize: 244,
+        primaryEndpoint:
+          'Bone mineral density and content at lumbar spine, total hip and femoral neck by DXA',
+        endpointMet: true,
+        statisticalPValue:
+          'Significantly decreased age-related decline in bone mineral content and density at lumbar spine and femoral neck; not at total hip',
+        unreportedAdverseSignals:
+          'The endpoint is bone density rather than fracture, and the trial was not powered for fractures. It used a branded MK-7 ingredient and shares its cohort and investigators with the arterial stiffness trial, so the two are not independent.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Knapen 2015 — three-year MK-7 and arterial stiffness in postmenopausal women',
+        phase: 'Randomised double-blind placebo-controlled, 3 years',
+        sampleSize: 244,
+        primaryEndpoint: 'Carotid-femoral pulse wave velocity and local carotid stiffness indices',
+        endpointMet: true,
+        statisticalPValue:
+          'Carotid-femoral pulse wave velocity and Stiffness Index beta significantly decreased in the total group; dp-ucMGP decreased 50% versus placebo',
+        unreportedAdverseSignals:
+          'The larger improvements in distension, compliance, distensibility and local carotid pulse wave velocity were confined to women with a baseline Stiffness Index above the median, which is a subgroup finding. Acute phase and endothelial dysfunction markers were unaffected.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Zwakenberg 2019 — MK-7 and vascular calcification in type 2 diabetes',
+        phase: 'Randomised double-blind placebo-controlled, 6 months',
+        sampleSize: 68,
+        primaryEndpoint:
+          'Femoral arterial calcification by 18F-sodium-fluoride PET target-to-background ratio',
+        endpointMet: false,
+        statisticalPValue:
+          'Target-to-background ratio tended to increase on MK-7 versus placebo, 0.25 (95% CI -0.02 to 0.51), P = 0.06; CT calcification mass did not decrease',
+        unreportedAdverseSignals:
+          'Only 33 of 35 in the MK-7 group and 27 of 33 on placebo completed follow-up. The trend is in the opposite direction to the hypothesis and does not reach significance, so it is uninformative about harm and informative about absence of benefit.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Geleijnse 2004 — dietary menaquinone intake and coronary heart disease (Rotterdam Study)',
+        phase: 'Prospective population cohort',
+        sampleSize: 0,
+        primaryEndpoint: 'Incident coronary heart disease by dietary menaquinone intake',
+        endpointMet: true,
+        statisticalPValue:
+          'Higher dietary menaquinone intake associated with reduced risk of coronary heart disease',
+        unreportedAdverseSignals:
+          'Observational. Dietary menaquinone intake in a free-living population tracks fermented and animal food consumption and many correlated factors. Sample size recorded as zero because this was a cohort analysis rather than an enrolled trial. This is the observation the whole supplement category was built on.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'MK-7 decreased circulating dephosphorylated-uncarboxylated matrix Gla protein by 50% against placebo',
+        'Three years of 180 micrograms daily reduced age-related bone mineral density decline at lumbar spine and femoral neck',
+        'In 365 men over 24 months, aortic valve calcification progression differed by 17 AU, P = 0.64',
+        'In type 2 diabetes, 18F-NaF PET calcification tended to increase on MK-7, P = 0.06',
+      ],
+      unsupportedInferences: [
+        'That correcting matrix Gla protein carboxylation reduces arterial or valvular calcification, which three imaging trials tested and none supported',
+        'That the Rotterdam dietary association transfers to supplementation in a replete population',
+        'That bone mineral density results imply fracture reduction, which no MK-7 trial has been powered to test',
+        'That "vitamin K2" names a single agent, when MK-4 and MK-7 differ more than tenfold in half-life and have separate literatures',
+      ],
+      whatFailedInitially: [
+        'The vascular calcification hypothesis, in three randomised imaging trials across aortic valve, coronary and femoral disease',
+        'The transfer of high-dose MK-4 Japanese bone data to low-dose MK-7 products sold as the same thing',
+      ],
+      realWorldOutcome: [
+        'The biochemistry is genuine, large and reproducible — this supplement demonstrably does what it says at the protein level',
+        'Everything downstream of the biomarker has failed when measured by imaging',
+        'The one certain clinical effect is the warfarin interaction, which is real, persistent and not what anyone buys it for',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule or softgel, usually as fermentation-derived all-trans MK-7 in an oil base, frequently combined with vitamin D3',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. A label reading "vitamin K2" may contain MK-4, MK-7 or a blend, and these differ by more than an order of magnitude in half-life with entirely separate trial literatures. Synthetic MK-7 can contain the biologically inactive cis isomer, which fermentation-derived material does not, and neither the isomer content nor the chain length is typically disclosed. Absorption is strongly fat-dependent, and MK-7\'s multi-day half-life means several weeks are needed to reach steady state.',
+      safetyProfile:
+        'Generally well tolerated with no established toxicity at supplemental doses, and no signal of harm in trials running to three years at 180 micrograms or two years at 720 micrograms. The one certain and clinically important effect is the warfarin interaction: vitamin K in any form directly opposes warfarin\'s mechanism, and MK-7\'s long half-life makes the interference more persistent and slower to clear than with vitamin K1. Anyone on warfarin who starts or stops a K2 supplement should expect their INR to move. There is no comparable interaction with direct oral anticoagulants, which do not act on vitamin K recycling.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does K2 keep calcium out of my arteries?',
+        a: 'On the imaging evidence, no. The largest test randomised 365 men with calcified aortic valves to 720 micrograms of MK-7 with vitamin D or placebo for two years and measured the calcium directly on CT. Scores rose by 275 arbitrary units on treatment and 292 on placebo — a difference of 17, with a P value of 0.64. Valve area and jet velocity did not differ either, and neither did coronary or aortic calcification. Two other randomised imaging trials, in type 2 diabetes and coronary disease, also found nothing.',
+      },
+      {
+        q: 'But I have read that it activates the protein that blocks calcification.',
+        a: 'It does, and that part is not in dispute. Supplementing MK-7 cuts circulating inactive matrix Gla protein by about half, reliably enough that trials use it to check whether participants are taking their capsules. This is one of the clearest cases in this whole file of a biomarker that moves impressively while the outcome it is supposed to predict does not move at all. The most plausible explanation is that carboxylated matrix Gla protein prevents new mineral deposition rather than removing established calcium.',
+        auditNote:
+          'A 50% biomarker change alongside a 17 arbitrary unit imaging difference is the definition of a surrogate failing.',
+      },
+      {
+        q: 'What about the bone evidence?',
+        a: 'That is the stronger half of this record. In 244 healthy postmenopausal women, three years of 180 micrograms of MK-7 daily reduced the age-related decline in bone mineral density and content at the lumbar spine and femoral neck, though not at the total hip. Three years is a long trial and DXA is an objective endpoint. Two things to hold alongside it: the endpoint is density rather than fracture, and this trial shares its cohort, investigators and branded ingredient with the arterial stiffness trial, so they do not independently confirm each other.',
+      },
+      {
+        q: 'Is MK-4 the same thing as MK-7?',
+        a: 'No, and treating them as interchangeable is the commonest error in this category. MK-4 is cleared within hours and MK-7 persists for days, which is why MK-7 works at 180 micrograms while the Japanese bone trials used MK-4 at 45 milligrams — a 250-fold difference. A product labelled only "vitamin K2" may contain either. Neither form\'s evidence transfers to the other, and the chain length is often not stated.',
+      },
+      {
+        q: 'Is it safe to take with my blood thinner?',
+        a: 'Not without medical supervision, and this is the one certain clinical effect on this page. Warfarin works by blocking the recycling of vitamin K, so any vitamin K supplement directly opposes it — and MK-7\'s long half-life makes the interference more persistent and slower to clear than vitamin K1\'s. Starting or stopping a K2 supplement can shift the INR substantially. Direct oral anticoagulants such as apixaban and rivaroxaban do not work through vitamin K and are not affected in the same way.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Geleijnse JM et al. Dietary intake of menaquinone is associated with a reduced risk of coronary heart disease: the Rotterdam Study. J Nutr 2004;134:3100-3105',
+        identifier: '10.1093/jn/134.11.3100',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Knapen MHJ, Drummen NE, Smit E, Vermeer C, Theuwissen E. Three-year low-dose menaquinone-7 supplementation helps decrease bone loss in healthy postmenopausal women. Osteoporos Int 2013;24:2499-2507',
+        identifier: '10.1007/s00198-013-2325-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Knapen MHJ et al. Menaquinone-7 supplementation improves arterial stiffness in healthy postmenopausal women: a double-blind randomised clinical trial. Thromb Haemost 2015;113:1135-1144',
+        identifier: '10.1160/TH14-08-0675',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Zwakenberg SR et al. The effect of menaquinone-7 supplementation on vascular calcification in patients with diabetes: a randomized, double-blind, placebo-controlled trial. Am J Clin Nutr 2019;110:883-890',
+        identifier: '10.1093/ajcn/nqz147',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Diederichsen ACP et al. Vitamin K2 and D in patients with aortic valve calcification: a randomized double-blinded clinical trial. Circulation 2022;145:1387-1397',
+        identifier: '10.1161/CIRCULATIONAHA.121.057008',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 5287554 — Menaquinone-7',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5287554',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
