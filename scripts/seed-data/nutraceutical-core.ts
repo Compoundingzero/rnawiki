@@ -9158,5 +9158,463 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Lutein and zeaxanthin — the carotenoids that replaced beta-carotene after ATBC and CARET found
+  // it raised lung cancer. AREDS2's primary analysis was null; ten-year follow-up found a small
+  // benefit, and confirmed beta-carotene nearly doubled lung cancer risk.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'lutein-zeaxanthin',
+    name: 'Lutein and zeaxanthin',
+    tradeName:
+      'Sold as marigold-derived lutein esters, often with meso-zeaxanthin; branded ingredients include FloraGLO and Lutemax',
+    sponsor:
+      'No single sponsor — xanthophyll carotenoids extracted chiefly from marigold (Tagetes erecta) petals. AREDS2 was conducted by the National Eye Institute.',
+    targetGene: 'StARD3',
+    targetProtein:
+      'Lutein and zeaxanthin have no enzyme or receptor target. They are structural pigments concentrated in the macula by two specific binding proteins — StARD3 for lutein and GSTP1 for zeaxanthin — where they filter short-wavelength light and quench singlet oxygen in the photoreceptor layer.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for eye health, macular degeneration and blue-light protection, and included in the current AREDS2 formulation. Not approved by the FDA or EMA for any indication. The AREDS2 formulation is a specific combination whose evidence does not transfer to a standalone lutein capsule.',
+    patientFriendlyIndication:
+      'Taken for eye health, especially by people worried about macular degeneration or screen time',
+    conditionContext: {
+      conditionExplainer:
+        'The macula, the small central region of the retina responsible for sharp vision, is stained yellow by two carotenoids the body cannot make. They sit in front of the photoreceptors, absorbing blue light before it reaches them and quenching the reactive oxygen the light produces. That pigment thins with age, and macular degeneration is the leading cause of central vision loss in older adults.',
+      whyItMatters:
+        'These two molecules exist in the supplement aisle largely because of a disaster. The original AREDS formulation contained beta-carotene, and two large randomised trials had by then shown beta-carotene increased lung cancer in smokers. AREDS2 was designed partly to find a replacement, and lutein and zeaxanthin were it. That history — a nutrient replaced because it was killing people — is the most important thing about this record.',
+      whoTakesThis:
+        'Older adults with intermediate age-related macular degeneration on the AREDS2 formulation, and a much larger population buying standalone lutein for screen fatigue and general eye health.',
+      clinicalGoals:
+        'Trials measured progression to advanced age-related macular degeneration by photographic grading, visual acuity loss, macular pigment optical density, and — in the trials that shaped the formulation — lung cancer incidence and all-cause mortality.',
+    },
+    oneSentenceVerdict:
+      'AREDS2\'s primary analysis found no significant reduction in progression to advanced macular degeneration from adding lutein and zeaxanthin (hazard ratio 0.90, 98.7% CI 0.76 to 1.07, P = .12), and their real justification is negative rather than positive: they replaced beta-carotene, which raised lung cancer 18% in ATBC, 28% in CARET, and nearly doubled the ten-year odds in AREDS2 itself.',
+    laymanHowItWorks:
+      'Two yellow pigments from plants collect in the exact centre of your retina and nowhere else in the body at that concentration. They act as a built-in filter, soaking up the blue light that does the most photochemical damage before it reaches the light-sensing cells, and mopping up the reactive oxygen that light produces. You cannot make them, so the only source is diet. That much is well established. Whether swallowing more of them meaningfully slows macular degeneration is a separate question, and the large randomised trial that asked it did not find a significant answer.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 50,
+    anatomicalSite:
+      'The macula lutea of the retina, where lutein, zeaxanthin and meso-zeaxanthin are concentrated in the Henle fibre layer in front of the photoreceptors',
+    substitutes: {
+      summary:
+        'For the specific population AREDS studied — people with intermediate macular degeneration or advanced disease in one eye — the comparator is the AREDS2 formulation as a whole, not lutein alone. For everyone else, the honest comparator is a diet containing green leafy vegetables and egg yolk, plus not smoking, which dominates every other modifiable risk factor for this disease.',
+      conventionalRx: [
+        {
+          name: 'The complete AREDS2 formulation',
+          class: 'Multi-component supplement with trial evidence as a combination',
+          howItCompares:
+            'The evidence base belongs to the combination — vitamins C and E, zinc, copper and lutein/zeaxanthin — tested in a defined high-risk population. A standalone lutein capsule has not been shown to do what the formulation does, and the original AREDS benefit came largely from the antioxidant-plus-zinc combination.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: an actual randomised evidence base in a defined population. Cons: that population is people already at high risk, and the formulation is regularly bought by people who are not in it.',
+        },
+        {
+          name: 'Anti-VEGF injection for neovascular AMD',
+          class: 'Intravitreal biologic therapy',
+          howItCompares:
+            'For wet macular degeneration, anti-VEGF therapy preserves and often restores vision, with an evidence base incomparably stronger than any supplement. Carotenoids address risk of progression, not established neovascular disease.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: transformative for the disease it treats. Cons: entirely different indication, and no supplement substitutes for it.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Kale, spinach and other dark leafy greens',
+          activeCompound: 'Lutein, at higher concentration than any other common food',
+          biologicalMechanism:
+            'Lutein and zeaxanthin are the same molecules in food and in a capsule, and humans cannot synthesise either. Absorption is lipid-dependent, which is why carotenoid uptake from greens rises substantially when eaten with fat.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here as advice. For scale only: AREDS2 used 10 mg of lutein and 2 mg of zeaxanthin daily.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Egg yolk',
+          activeCompound: 'Lutein and zeaxanthin in a highly bioavailable lipid matrix',
+          biologicalMechanism:
+            'Egg yolk contains less lutein per gram than kale but delivers it in a phospholipid matrix that raises absorption substantially, which is one of the clearest food-matrix effects in carotenoid nutrition.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Read the AREDS2 primary result before the headline',
+          action:
+            'Check whether a lutein claim rests on the AREDS2 primary analysis or on a secondary or long-term follow-up analysis.',
+          patientImpact:
+            'The primary analysis found no statistically significant reduction in progression to advanced AMD: hazard ratio 0.90 (98.7% CI 0.76 to 1.07, P = .12) for lutein plus zeaxanthin. The ten-year follow-up found a hazard ratio of 0.91 (95% CI 0.84 to 0.99, P = .02) — small, and from an epidemiologic follow-up rather than the randomised primary endpoint.',
+          clinicalPrecaution:
+            'Both numbers are honest. Only the first is the randomised primary result the trial was designed around.',
+        },
+        {
+          name: 'If you have ever smoked, the beta-carotene history matters directly',
+          action:
+            'Check any eye supplement for beta-carotene, because older AREDS-style formulations contain it.',
+          patientImpact:
+            'At ten years in AREDS2, the odds ratio of having lung cancer was 1.82 (95% CI 1.06 to 3.12, P = .02) for those randomised to beta-carotene, against 1.15 (95% CI 0.79 to 1.66, P = .46) for lutein/zeaxanthin. In the trial itself, more lung cancers occurred in the beta-carotene group, 23 (2.0%) against 11 (0.9%), mostly in former smokers.',
+          clinicalPrecaution:
+            'The risk was concentrated in current and former smokers in every trial that found it.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC1=C(C(C[C@@H](C1)O)(C)C)/C=C/C(=C/C=C/C(=C/C=C/C=C(\\C)/C=C/C=C(\\C)/C=C/[C@H]2C(=C[C@@H](CC2(C)C)O)C)/C)/C',
+      chemicalFormula: 'C40H56O2',
+      molecularWeight:
+        '568.9 g/mol. This is lutein. Zeaxanthin is its constitutional isomer with the identical formula and mass, differing only in the position of one double bond in a terminal ring — which is enough to make them bind different carrier proteins in the retina, StARD3 for lutein and GSTP1 for zeaxanthin.',
+      structureSource: {
+        label: 'PubChem CID 5281243 — Lutein, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281243',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lz-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Isomer separation, free versus esterified lutein, and beta-carotene screen',
+          description:
+            'Three quality questions decide what an eye supplement actually contains, and a total-carotenoid assay answers none of them. Lutein and zeaxanthin are constitutional isomers with identical mass. Marigold-derived lutein is supplied as diesters that must be saponified, and free and esterified forms are absorbed differently. And meso-zeaxanthin, present in many products, is not a significant dietary carotenoid and was not in the AREDS2 formulation.',
+          reagentsAndBuffer:
+            'Reversed-phase HPLC with photodiode array detection at 450 nm using a C30 stationary phase capable of resolving lutein, zeaxanthin, meso-zeaxanthin and beta-carotene; chiral column for the meso-zeaxanthin determination; saponification step with quantification before and after to determine ester content; authenticated single-compound standards',
+        },
+        {
+          id: 'lz-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the 13C-labelled carotenoid tracer',
+          description:
+            'Serum lutein reflects recent intake and correlates only loosely with macular pigment, so a supplementation study that reports serum concentration has not measured what matters. A labelled tracer permits absorption and macular accumulation to be tracked separately from the existing dietary pool.',
+          dependsOnStepId: 'lz-w1',
+          reagentsAndBuffer:
+            'Uniformly 13C-labelled lutein from plants grown on 13CO2; formulation in a defined lipid matrix to control the absorption variable; isotopic enrichment confirmed by LC-MS; light- and oxygen-protected handling throughout, since carotenoids are rapidly photodegraded',
+        },
+        {
+          id: 'lz-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Lipoprotein fractionation of serum carotenoids',
+          description:
+            'Lutein and zeaxanthin circulate on HDL and LDL, so serum carotenoid concentrations covary with lipoprotein concentrations. Reporting serum lutein without normalising to lipid conflates carotenoid status with lipid status, which matters in an older population commonly taking statins.',
+          dependsOnStepId: 'lz-w2',
+          reagentsAndBuffer:
+            'Density gradient ultracentrifugation separating HDL, LDL and VLDL; carotenoid quantification per fraction by HPLC; normalisation to total cholesterol and triglyceride; ambient light excluded during all handling',
+        },
+        {
+          id: 'lz-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Selective macular uptake through the carotenoid binding proteins',
+          description:
+            'Test the step that makes these two molecules special. The retina concentrates lutein and zeaxanthin specifically and excludes beta-carotene and lycopene, and it does so through dedicated binding proteins. If a product\'s carotenoid does not bind those proteins, raising its serum concentration cannot raise macular pigment.',
+          dependsOnStepId: 'lz-w3',
+          reagentsAndBuffer:
+            'Recombinant StARD3 and GSTP1 with fluorescence-quenching binding assays against lutein, zeaxanthin, meso-zeaxanthin, beta-carotene and lycopene; retinal pigment epithelium cell line uptake assay; SCARB1 knockdown as the transport control; competition assays with mixed carotenoids at physiological ratios',
+        },
+        {
+          id: 'lz-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Macular pigment optical density alongside a photographic progression endpoint',
+          description:
+            'Report the pigment measurement and the disease endpoint together, because the whole controversy in this field is that the first moves reliably and the second does not. AREDS2 measured photographic progression to advanced AMD as its primary endpoint and found hazard ratio 0.90 with P = .12; a study reporting only macular pigment optical density would have declared success.',
+          dependsOnStepId: 'lz-w4',
+          reagentsAndBuffer:
+            'Heterochromatic flicker photometry and dual-wavelength autofluorescence for macular pigment optical density; standardised stereoscopic fundus photography with centralised masked grading for progression to advanced AMD; best-corrected visual acuity on ETDRS charts; prespecified primary endpoint with a single analysis plan',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lz-a1',
+        category: 'failed',
+        title: 'AREDS2 primary analysis: no significant reduction in progression to advanced AMD',
+        laymanSummary:
+          'The large trial designed to test whether adding lutein and zeaxanthin helps macular degeneration found no statistically significant benefit in its main analysis.',
+        technicalDetails:
+          'AREDS2 tested the addition of lutein 10 mg plus zeaxanthin 2 mg, DHA plus EPA, or both, to the original AREDS formulation, with median follow-up of five years and 1,940 study eyes in 1,608 participants progressing to advanced age-related macular degeneration. Kaplan-Meier probabilities of progression by five years were 31% for placebo, 29% for lutein plus zeaxanthin, 31% for DHA plus EPA and 30% for both. Primary comparisons against placebo showed no statistically significant reduction: hazard ratio 0.90 (98.7% CI 0.76 to 1.07, P = .12) for lutein plus zeaxanthin, 0.97 (98.7% CI 0.82 to 1.16, P = .70) for DHA plus EPA, and 0.89 (98.7% CI 0.75 to 1.06, P = .10) for the combination. There was no apparent effect of beta-carotene elimination or of lower-dose zinc. The authors\' conclusion states it plainly: addition of lutein plus zeaxanthin, DHA plus EPA, or both, in primary analyses did not further reduce the risk of progression. The recommendation to use lutein and zeaxanthin in the revised formulation was made not because they worked better but because of the lung cancer risk of the ingredient they replaced.',
+        evidenceSource: 'Age-Related Eye Disease Study 2 (AREDS2) Research Group. JAMA 2013;309:2005-2015',
+        doi: '10.1001/jama.2013.4997',
+        measuredMetric:
+          'Kaplan-Meier probability of progression to advanced AMD at five years, by photographic grading',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lz-a2',
+        category: 'failed',
+        title: 'ATBC: beta-carotene raised lung cancer 18% and total mortality 8% in 29,133 smokers',
+        laymanSummary:
+          'A trial of nearly thirty thousand male smokers gave beta-carotene expecting fewer lung cancers. There were more, and more deaths.',
+        technicalDetails:
+          'The Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study randomised 29,133 male smokers aged 50 to 69 in southwestern Finland to alpha-tocopherol, beta-carotene, both, or placebo. Among 876 new lung cancers diagnosed during the trial, alpha-tocopherol produced no reduction in incidence (change -2%, 95% CI -14 to 12%). Beta-carotene produced an 18% higher incidence of lung cancer (95% CI 3 to 36%). Total mortality was 8% higher among those receiving beta-carotene (95% CI 1 to 16%), driven by more deaths from lung cancer and ischaemic heart disease. Alpha-tocopherol was associated with more deaths from haemorrhagic stroke. The trial was built on epidemiologic evidence that diets high in carotenoid-rich fruits and vegetables and high serum beta-carotene were associated with lower lung cancer risk. It is the canonical demonstration that isolating a nutrient from the food it was observed in, and giving it at supplemental dose, can reverse the direction of the association entirely.',
+        evidenceSource: 'The Alpha-Tocopherol, Beta Carotene Cancer Prevention Study Group. N Engl J Med 1994;330:1029-1035',
+        doi: '10.1056/NEJM199404143301501',
+        measuredMetric: 'Lung cancer incidence and total mortality over the trial period in male smokers',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lz-a3',
+        category: 'failed',
+        title: 'CARET: stopped 21 months early for a 28% increase in lung cancer',
+        laymanSummary:
+          'A second trial gave beta-carotene and vitamin A to smokers and asbestos-exposed workers. It was halted early because more people in the treated group were getting lung cancer and dying.',
+        technicalDetails:
+          'The Beta-Carotene and Retinol Efficacy Trial randomised 18,314 smokers, former smokers and asbestos-exposed workers to 30 mg per day of beta-carotene plus 25,000 IU per day of retinyl palmitate, or placebo. Over 73,135 person-years with a mean 4.0 years of follow-up, 388 new lung cancers were diagnosed. The active-treatment group had a relative risk of lung cancer of 1.28 (95% CI 1.04 to 1.57, P = 0.02). Relative risk of death from any cause was 1.17 (95% CI 1.03 to 1.33), from lung cancer 1.46 (95% CI 1.07 to 2.00), and from cardiovascular disease 1.26 (95% CI 0.99 to 1.61). The randomised trial was stopped 21 months earlier than planned on the basis of those findings. Two independent large trials, in overlapping high-risk populations, finding the same direction of harm is as close to settled as prevention research gets — and it is the reason the eye supplement in your cupboard contains lutein rather than beta-carotene.',
+        evidenceSource: 'Omenn GS et al. N Engl J Med 1996;334:1150-1155',
+        doi: '10.1056/NEJM199605023341802',
+        measuredMetric:
+          'Relative risk of lung cancer, death from lung cancer, and all-cause mortality over a mean 4.0 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lz-a4',
+        category: 'measured',
+        title: 'AREDS2 at ten years: beta-carotene nearly doubled lung cancer odds',
+        laymanSummary:
+          'Following the AREDS2 participants for ten years, those originally assigned beta-carotene had almost twice the odds of lung cancer. Lutein and zeaxanthin showed no such signal.',
+        technicalDetails:
+          'The ten-year epidemiologic follow-up of the AREDS2 cohort included 3,882 participants of mean baseline age 72.0 years and 6,351 eyes. The odds ratio of having lung cancer at ten years was 1.82 (95% CI 1.06 to 3.12, P = .02) for those randomly assigned to beta-carotene, against 1.15 (95% CI 0.79 to 1.66, P = .46) for lutein/zeaxanthin. Within the trial itself, more lung cancers had been noted in the beta-carotene group, 23 (2.0%) against 11 (0.9%), nominal P = .04, mostly in former smokers. The authors concluded that lutein/zeaxanthin was an appropriate replacement for beta-carotene and that beta-carotene usage nearly doubled the risk of lung cancer. This is the audit that defines the record: the case for lutein and zeaxanthin in eye supplements is overwhelmingly a case against the thing they replaced.',
+        evidenceSource: 'Chew EY et al. JAMA Ophthalmol 2022;140:692-698',
+        doi: '10.1001/jamaophthalmol.2022.1640',
+        measuredMetric:
+          'Ten-year odds ratio of lung cancer by original randomised assignment in the AREDS2 cohort',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lz-a5',
+        category: 'inferred',
+        title: 'The ten-year AMD benefit is real, small, and not the randomised primary endpoint',
+        laymanSummary:
+          'Following participants for ten years found a nine percent lower rate of progression to late macular degeneration with lutein and zeaxanthin. It comes from a follow-up analysis, not the trial\'s main result.',
+        technicalDetails:
+          'In the ten-year AREDS2 follow-up, the hazard ratio for progression to late AMD comparing lutein/zeaxanthin with no lutein/zeaxanthin was 0.91 (95% CI 0.84 to 0.99, P = .02), while omega-3 fatty acids gave 1.01 (95% CI 0.93 to 1.09, P = .91). Restricting the lutein/zeaxanthin main-effects analysis to those randomised to beta-carotene gave a hazard ratio of 0.80 (95% CI 0.68 to 0.92, P = .002), and a direct comparison of lutein/zeaxanthin against beta-carotene gave 0.85 (95% CI 0.73 to 0.98, P = .02). The last two are the informative ones and they change the interpretation: the apparent lutein benefit is largest and clearest precisely where the comparator is beta-carotene, which is consistent with beta-carotene competitively interfering with lutein absorption rather than with lutein having a large independent effect. The authors describe this as a long-term epidemiologic follow-up study, not a randomised primary result, and its confidence interval reaches 0.99.',
+        evidenceSource: 'Chew EY et al. JAMA Ophthalmol 2022;140:692-698',
+        doi: '10.1001/jamaophthalmol.2022.1640',
+        measuredMetric:
+          'Ten-year hazard ratio for progression to late AMD, overall and restricted to the beta-carotene stratum',
+        inferredClaim:
+          'That the ten-year follow-up establishes an independent protective effect of lutein and zeaxanthin, when the effect is concentrated where beta-carotene was the comparator',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lz-a6',
+        category: 'inferred',
+        title: 'Raising macular pigment is not the same as preventing disease',
+        laymanSummary:
+          'Supplementing lutein reliably increases the yellow pigment in the retina, which is easy to measure. Whether that translates into less vision loss is what AREDS2 tested, and it did not reach significance.',
+        technicalDetails:
+          'Lutein and zeaxanthin are taken up selectively into the macula by dedicated binding proteins — StARD3 for lutein and GSTP1 for zeaxanthin — and supplementation raises macular pigment optical density reliably and dose-dependently. That surrogate is the basis of most consumer marketing in this category and of the blue-light protection claim. The problem is the step to a clinical outcome. AREDS2 measured photographic progression to advanced AMD in 1,608 participants who progressed, and found hazard ratio 0.90 with P = .12 against a prespecified 98.7% confidence interval. A trial reporting only macular pigment optical density would have declared unambiguous success. The gap between a surrogate that moves and an endpoint that does not is the standing lesson of this entire file, and this is one of its cleanest instances because the surrogate is so directly and physically related to the proposed mechanism.',
+        evidenceSource: 'Age-Related Eye Disease Study 2 (AREDS2) Research Group. JAMA 2013;309:2005-2015',
+        doi: '10.1001/jama.2013.4997',
+        inferredClaim:
+          'That increasing macular pigment optical density demonstrates protection against macular degeneration or against blue-light damage',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'The body cannot make them, so diet is the only source',
+        laymanDesc:
+          'Lutein and zeaxanthin are plant pigments. Humans have no pathway to synthesise either, so every molecule in your retina came from something you ate.',
+        molecularDetail:
+          'Both are xanthophyll carotenoids with the formula C40H56O2, differing only in the position of one double bond in a terminal ionone ring. Neither is a vitamin precursor — unlike beta-carotene, they are not cleaved to retinal, which is part of why they lack beta-carotene\'s toxicity profile at supplemental dose.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorption is lipid-dependent and competitive',
+        laymanDesc:
+          'They need dietary fat to be absorbed, and other carotenoids compete with them for the same absorption route — which matters because beta-carotene was in the same pill.',
+        molecularDetail:
+          'Xanthophylls are incorporated into mixed micelles and taken up partly through SR-B1, then transported on HDL and LDL. Carotenoids compete for micellar incorporation and transport, which is the most plausible explanation for why the ten-year lutein effect was strongest precisely in participants who had also been randomised to beta-carotene.',
+        iconName: 'Droplet',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Two specific proteins concentrate them in the macula alone',
+        laymanDesc:
+          'The retina does not just accumulate whatever carotenoid is around. Two dedicated carrier proteins pick out lutein and zeaxanthin specifically and pack them into the centre of the macula.',
+        molecularDetail:
+          'StARD3 binds lutein and GSTP1 binds zeaxanthin, concentrating them in the Henle fibre layer at levels far above any other tissue, while beta-carotene and lycopene are essentially excluded from the macula. This selectivity is the strongest argument that these particular molecules have a specific retinal function, and it is genuine.',
+        iconName: 'Focus',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'They filter blue light and quench singlet oxygen',
+        laymanDesc:
+          'Sitting in front of the photoreceptors, the pigment absorbs the shortest-wavelength visible light before it can do photochemical damage, and neutralises the reactive oxygen that light generates.',
+        molecularDetail:
+          'The conjugated polyene chain absorbs maximally around 450 nm, in front of the photoreceptor outer segments, and quenches singlet oxygen efficiently. Macular pigment optical density rises reliably and dose-dependently with supplementation — a surrogate that moves cleanly, which is precisely what makes the null clinical endpoint informative rather than ambiguous.',
+        iconName: 'Sun',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And the disease endpoint did not follow',
+        laymanDesc:
+          'Despite all of that, adding lutein and zeaxanthin did not significantly reduce progression to advanced macular degeneration in the trial designed to find out.',
+        molecularDetail:
+          'AREDS2 primary analysis: hazard ratio 0.90 (98.7% CI 0.76 to 1.07, P = .12), with five-year progression probabilities of 29% against 31% on placebo. Ten-year follow-up gave 0.91 (95% CI 0.84 to 0.99, P = .02), rising to 0.80 when restricted to those also randomised to beta-carotene.',
+        iconName: 'Eye',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'AREDS2 — lutein/zeaxanthin and omega-3 added to the AREDS formulation',
+        phase: 'Randomised double-masked placebo-controlled multicentre, median 5 years',
+        sampleSize: 4203,
+        primaryEndpoint: 'Progression to advanced age-related macular degeneration by photographic grading',
+        endpointMet: false,
+        statisticalPValue:
+          'Lutein + zeaxanthin HR 0.90 (98.7% CI 0.76 to 1.07), P = .12; DHA + EPA HR 0.97, P = .70; both HR 0.89, P = .10',
+        unreportedAdverseSignals:
+          'More lung cancers in the beta-carotene group, 23 (2.0%) versus 11 (0.9%), nominal P = .04, mostly in former smokers. No apparent effect of beta-carotene elimination or lower-dose zinc on AMD progression.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'AREDS2 Report 28 — ten-year outcomes',
+        phase: 'Long-term epidemiologic follow-up of a randomised cohort',
+        sampleSize: 3882,
+        primaryEndpoint: 'Ten-year risk of lung cancer and of progression to late AMD',
+        endpointMet: true,
+        statisticalPValue:
+          'Lung cancer OR 1.82 (95% CI 1.06 to 3.12, P = .02) for beta-carotene, 1.15 (95% CI 0.79 to 1.66, P = .46) for lutein/zeaxanthin; late AMD HR 0.91 (95% CI 0.84 to 0.99, P = .02) for lutein/zeaxanthin',
+        unreportedAdverseSignals:
+          'This is an epidemiologic follow-up rather than the randomised primary endpoint. The AMD hazard ratio strengthened to 0.80 when restricted to participants also randomised to beta-carotene, consistent with absorption competition rather than a large independent effect.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'ATBC — alpha-tocopherol and beta-carotene in male smokers',
+        phase: 'Randomised double-blind placebo-controlled primary prevention',
+        sampleSize: 29133,
+        primaryEndpoint: 'Incidence of lung cancer',
+        endpointMet: false,
+        statisticalPValue:
+          'Beta-carotene: lung cancer incidence 18% higher (95% CI 3 to 36%); total mortality 8% higher (95% CI 1 to 16%); alpha-tocopherol: incidence change -2% (95% CI -14 to 12%)',
+        unreportedAdverseSignals:
+          'More deaths from haemorrhagic stroke on alpha-tocopherol. Excess beta-carotene mortality was driven by lung cancer and ischaemic heart disease. The trial was designed on epidemiologic evidence pointing the opposite way.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'CARET — beta-carotene and retinol in smokers and asbestos-exposed workers',
+        phase: 'Multicentre randomised double-blind placebo-controlled primary prevention',
+        sampleSize: 18314,
+        primaryEndpoint: 'Incidence of lung cancer',
+        endpointMet: false,
+        statisticalPValue:
+          'Relative risk of lung cancer 1.28 (95% CI 1.04 to 1.57, P = 0.02); death from any cause RR 1.17 (95% CI 1.03 to 1.33); death from lung cancer RR 1.46 (95% CI 1.07 to 2.00)',
+        unreportedAdverseSignals:
+          'The trial was stopped 21 months earlier than planned because of these findings. Death from cardiovascular disease was also numerically increased, RR 1.26 (95% CI 0.99 to 1.61).',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Adding lutein and zeaxanthin to the AREDS formulation did not significantly reduce progression to advanced AMD, HR 0.90, P = .12',
+        'Beta-carotene increased lung cancer incidence 18% in 29,133 male smokers and total mortality by 8%',
+        'Beta-carotene plus retinol gave a lung cancer relative risk of 1.28 in 18,314 high-risk participants, stopping that trial 21 months early',
+        'At ten years in AREDS2, beta-carotene assignment gave a lung cancer odds ratio of 1.82; lutein/zeaxanthin gave 1.15',
+        'Ten-year progression to late AMD had a hazard ratio of 0.91 for lutein/zeaxanthin, strengthening to 0.80 within the beta-carotene stratum',
+      ],
+      unsupportedInferences: [
+        'That lutein and zeaxanthin were adopted because they outperformed beta-carotene, when the primary comparison was null',
+        'That raising macular pigment optical density demonstrates protection against vision loss or blue light',
+        'That the AREDS2 formulation\'s evidence transfers to a standalone lutein capsule',
+        'That an epidemiologic ten-year follow-up hazard ratio of 0.91 is equivalent to a randomised primary result',
+      ],
+      whatFailedInitially: [
+        'Beta-carotene as a cancer preventive, which increased lung cancer and mortality in two independent large trials',
+        'The AREDS2 primary hypothesis that adding lutein and zeaxanthin would further reduce AMD progression',
+      ],
+      realWorldOutcome: [
+        'The retinal selectivity of these two molecules is real and specific, and their safety record is far better than beta-carotene\'s',
+        'Their place in eye supplements is a negative one: they are what beta-carotene was replaced with, not what beat it',
+        'Anyone who has ever smoked should check an older eye supplement for beta-carotene before taking it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral softgel or tablet, usually as saponified marigold lutein with zeaxanthin, often inside a multi-ingredient eye formula',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. Marigold-derived lutein is supplied as diesters requiring saponification, and free and esterified forms are absorbed differently, so a stated milligram figure may not correspond to the free-lutein dose used in AREDS2 (10 mg lutein plus 2 mg zeaxanthin). Many products add meso-zeaxanthin, which is not a significant dietary carotenoid and was not part of the AREDS2 formulation. Carotenoids degrade under light and oxygen, so packaging and storage materially affect content. Absorption requires dietary fat and is subject to competition from other carotenoids taken at the same time.',
+      safetyProfile:
+        'Well tolerated, with carotenodermia — a harmless yellowing of the skin at very high intakes — the main reported effect, and no signal of the toxicity that beta-carotene showed. In the ten-year AREDS2 follow-up, the lung cancer odds ratio for lutein/zeaxanthin was 1.15 (95% CI 0.79 to 1.66, P = .46), that is, no detectable increase. The safety issue in this category belongs to the ingredient these replaced: beta-carotene raised lung cancer incidence in ATBC, raised it again in CARET severely enough to stop that trial early, and nearly doubled ten-year lung cancer odds in AREDS2, with risk concentrated in current and former smokers. Older AREDS-formula eye supplements still on shelves may contain it.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does lutein prevent macular degeneration?',
+        a: 'The trial designed to answer that says not significantly. AREDS2 added lutein and zeaxanthin to the existing AREDS formulation and followed participants for a median five years, and the primary analysis found a hazard ratio of 0.90 with a P value of .12 — five-year progression of 29 percent against 31 percent on placebo. A ten-year follow-up analysis later found a hazard ratio of 0.91 with a confidence interval reaching 0.99. That is a small effect from a non-randomised follow-up, and it is not the same thing as the trial\'s primary result.',
+      },
+      {
+        q: 'Then why are they in every eye supplement?',
+        a: 'Because of what they replaced. The original AREDS formula contained beta-carotene, and by then two large randomised trials had found beta-carotene increased lung cancer — 18 percent in 29,133 Finnish male smokers, and a relative risk of 1.28 in 18,314 smokers and asbestos-exposed workers, severe enough that the second trial was stopped 21 months early. AREDS2 confirmed it: at ten years, beta-carotene assignment nearly doubled the odds of lung cancer. Lutein and zeaxanthin are the safe substitute, not the superior one.',
+        auditNote:
+          'The AREDS2 investigators\' own conclusion was that lutein/zeaxanthin was "an appropriate replacement" for beta-carotene.',
+      },
+      {
+        q: 'Does it protect against blue light from screens?',
+        a: 'Macular pigment does absorb blue light, and supplementation reliably raises macular pigment density — that part is genuine and easy to measure. What has not been shown is that this produces any clinical benefit. The one large trial with a hard endpoint measured progression to advanced macular degeneration and did not reach significance. A supplement that reliably moves a surrogate and does not move the disease is the recurring shape in this whole file, and the screen-fatigue claim rests entirely on the surrogate.',
+      },
+      {
+        q: 'Should I take the AREDS2 formula?',
+        a: 'That depends entirely on whether you are in the population it was studied in — people with intermediate age-related macular degeneration, or advanced disease in one eye. The evidence belongs to the whole formulation tested in that group, and the original AREDS benefit came largely from the antioxidant-plus-zinc combination rather than the carotenoid. A standalone lutein capsule taken by someone with healthy eyes has not been shown to do anything, and is a different product from the one in the trial.',
+      },
+      {
+        q: 'I used to smoke. Does any of this matter to me?',
+        a: 'Directly, and it is the most actionable thing on this page. The beta-carotene harm was concentrated in current and former smokers in every trial that found it, including AREDS2, where the excess lung cancers were mostly in former smokers. Older AREDS-formula eye supplements containing beta-carotene are still sold. Checking the ingredient list of an eye supplement for beta-carotene is worth more than any decision about how much lutein to take.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'The Alpha-Tocopherol, Beta Carotene Cancer Prevention Study Group. The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers. N Engl J Med 1994;330:1029-1035',
+        identifier: '10.1056/NEJM199404143301501',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Omenn GS et al. Effects of a combination of beta carotene and vitamin A on lung cancer and cardiovascular disease. N Engl J Med 1996;334:1150-1155',
+        identifier: '10.1056/NEJM199605023341802',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Age-Related Eye Disease Study 2 (AREDS2) Research Group. Lutein + zeaxanthin and omega-3 fatty acids for age-related macular degeneration: the AREDS2 randomized clinical trial. JAMA 2013;309:2005-2015',
+        identifier: '10.1001/jama.2013.4997',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chew EY et al. Long-term outcomes of adding lutein/zeaxanthin and omega-3 fatty acids to the AREDS supplements on age-related macular degeneration progression: AREDS2 report 28. JAMA Ophthalmol 2022;140:692-698',
+        identifier: '10.1001/jamaophthalmol.2022.1640',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 5281243 — Lutein',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281243',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 5280899 — Zeaxanthin',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280899',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
