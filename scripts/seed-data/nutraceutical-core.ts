@@ -7371,5 +7371,430 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Citrulline malate — one 2010 trial reported 53% more repetitions and built a category; the 2021
+  // meta-analysis of eight trials found three extra reps. The pharmacokinetics are excellent and
+  // the pharmacodynamic endpoint they were meant to move did not move.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'citrulline-malate',
+    name: 'Citrulline malate',
+    tradeName: 'Sold as citrulline malate 2:1 or 1:1, and as plain L-citrulline',
+    sponsor:
+      'No single sponsor — L-citrulline, a non-proteinogenic amino acid first isolated from watermelon, combined as a salt with malic acid and sold by many manufacturers.',
+    targetGene: 'NOS3',
+    targetProtein:
+      'Endothelial nitric oxide synthase (NOS3), which converts L-arginine to nitric oxide and L-citrulline. Supplemental citrulline is not itself a substrate: it is recycled to arginine by argininosuccinate synthase and argininosuccinate lyase in the kidney, and it works by raising systemic arginine availability more reliably than arginine itself does.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a pre-workout ergogenic aid for "pump", repetitions to failure and reduced muscle soreness. Not approved by the FDA or EMA for any indication. L-citrulline is separately used clinically in some urea cycle disorders, which is a different molecule doing a different job.',
+    patientFriendlyIndication:
+      'Taken before lifting for more repetitions, a better pump and less soreness afterwards',
+    conditionContext: {
+      conditionExplainer:
+        'Nitric oxide relaxes blood vessels, and the enzyme that makes it uses arginine. Supplementing arginine directly mostly fails, because an enzyme in the gut wall destroys much of it before it reaches the bloodstream. Citrulline slips past that enzyme and is converted to arginine in the kidney, which is why it raises blood arginine better than arginine does.',
+      whyItMatters:
+        'The pharmacokinetic story here is genuinely elegant and well demonstrated. What happened next is the recurring failure in this file: a single 2010 trial reported an implausibly large performance effect, the category was built on it, and when eight trials were eventually pooled the effect turned out to be about three extra repetitions.',
+      whoTakesThis:
+        'Resistance-training lifters, almost always inside a multi-ingredient pre-workout formula alongside caffeine, beta-alanine and creatine.',
+      clinicalGoals:
+        'Studies measured plasma arginine area under the curve and peak concentration, the arginine to asymmetric dimethylarginine ratio, urinary nitrate and cyclic GMP excretion, flow-mediated vasodilation, repetitions to failure, and self-reported muscle soreness at 24 and 48 hours.',
+    },
+    oneSentenceVerdict:
+      'Citrulline raises plasma arginine more effectively than arginine itself does and increases urinary nitrate and cyclic GMP, yet in that same trial no treatment improved flow-mediated vasodilation over baseline; and the performance claim, built on a 2010 study reporting 52.92% more repetitions in a final set, came out at about three extra repetitions with an effect size of 0.196 when eight trials in 137 people were pooled.',
+    laymanHowItWorks:
+      'Your blood vessels widen when cells lining them make nitric oxide, and the raw material for that is the amino acid arginine. Eating arginine barely helps, because an enzyme in the gut wall breaks most of it down before it gets into the blood. Citrulline avoids that enzyme entirely, gets absorbed intact, and is converted into arginine by the kidneys — so paradoxically, taking citrulline raises your arginine more than taking arginine does. Whether the extra arginine actually opens blood vessels enough to change anything you can feel or measure is a separate question, and the answer so far is less impressive than the chemistry.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 44,
+    anatomicalSite:
+      'Absorbed intact in the small intestine, converted to arginine in the renal proximal tubule, acting at vascular endothelium and in skeletal muscle',
+    substitutes: {
+      summary:
+        'Against L-arginine, citrulline wins decisively on pharmacokinetics and that is well established. Against dietary nitrate from beetroot, which reaches nitric oxide by an entirely separate nitrate-nitrite pathway that bypasses the enzyme altogether, the comparison is genuinely open and the beetroot literature is larger.',
+      conventionalRx: [
+        {
+          name: 'L-arginine, the ingredient citrulline replaced',
+          class: 'Nitric oxide precursor, directly',
+          howItCompares:
+            'Schwedhelm et al. compared them head to head over a week in 20 volunteers. Citrulline dose-dependently increased both the area under the curve and the peak plasma L-arginine concentration more effectively than L-arginine itself did (P < 0.01), because arginine is extensively eliminated presystemically by intestinal arginase.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros of citrulline: it actually raises the analyte, which arginine largely fails to do. Cons: raising the analyte was never the point, and in that same trial no treatment improved flow-mediated vasodilation over baseline.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Watermelon',
+          activeCompound: 'L-citrulline, from which the amino acid takes its name',
+          biologicalMechanism:
+            'Citrulline was first isolated from watermelon (Citrullus lanatus) and remains its richest dietary source, concentrated in the rind. The molecule is identical to the supplemental form and follows the same absorption and renal conversion route.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the pharmacokinetic study used up to 3 g twice daily, and the pooled performance trials used 6 to 8 g of citrulline malate 40 to 60 minutes before exercise.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Beetroot juice, as the alternative route to nitric oxide',
+          activeCompound: 'Inorganic nitrate, reduced to nitrite by oral bacteria then to nitric oxide',
+          biologicalMechanism:
+            'The nitrate-nitrite-nitric oxide pathway bypasses nitric oxide synthase entirely and does not depend on arginine availability. It is the honest comparator for anything sold on a nitric oxide rationale, and it has a considerably larger and older performance literature.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Work out how much citrulline you are actually getting',
+          action:
+            'Citrulline malate is a salt, and the ratio is the whole label. A 2:1 product is two parts citrulline to one part malate; a 1:1 product is half citrulline by mass.',
+          patientImpact:
+            'Eight grams of a 2:1 product supplies roughly 5.3 g of citrulline; eight grams of a 1:1 product supplies about 4 g. Products frequently do not state the ratio, and blends listing "citrulline malate" inside a proprietary formula state neither the ratio nor the amount.',
+          clinicalPrecaution:
+            'The malate half is not inert marketing filler in principle — it is a tricarboxylic acid cycle intermediate — but no trial has separated its contribution from citrulline\'s.',
+        },
+        {
+          name: 'Treat a single spectacular trial as a hypothesis',
+          action:
+            'When one study reports an effect several times larger than everything after it, the later pooled estimate is the number to use.',
+          patientImpact:
+            'The 2010 trial reported 52.92% more repetitions in its final set. The 2021 meta-analysis of eight trials in 137 participants found an increase of 3 +/- 5 repetitions, 6.4 +/- 7.9%, with a small standardised mean difference of 0.196.',
+          clinicalPrecaution:
+            'Both results can be honestly reported. Only one of them should be used to decide anything.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C(C[C@@H](C(=O)O)N)CNC(=O)N',
+      chemicalFormula: 'C6H13N3O3',
+      molecularWeight:
+        '175.19 g/mol for L-citrulline. Citrulline malate is a salt of this with malic acid (C4H6O5, 134.09 g/mol), so the citrulline content depends entirely on the ratio: about 66% by mass in a 2:1 product and about 57% in a 1:1 product before counting the counter-ion stoichiometry.',
+      structureSource: {
+        label: 'PubChem CID 9750 — L-Citrulline, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9750',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cit-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Citrulline-to-malate ratio determination and free arginine screen',
+          description:
+            'The single most important quality question in this category is the ratio, and it is the one least often answered on a label. Determine citrulline and malate independently rather than assaying "citrulline malate" as a unit, and screen for free arginine, which is cheaper and would confound any pharmacokinetic comparison the product is sold on.',
+          reagentsAndBuffer:
+            'HPLC with pre-column derivatisation for L-citrulline against a reference standard; ion-exclusion chromatography or enzymatic malate dehydrogenase assay for malate; L-arginine and L-ornithine reference standards for the screen; loss on drying to correct the ratio to a dry basis',
+        },
+        {
+          id: 'cit-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of labelled citrulline and the ADMA internal standard',
+          description:
+            'The pharmacodynamic quantity that matters is not arginine alone but the ratio of arginine to asymmetric dimethylarginine, the endogenous inhibitor of nitric oxide synthase. Quantifying that ratio reliably needs a labelled ADMA standard, because ADMA circulates at concentrations three orders of magnitude below arginine.',
+          dependsOnStepId: 'cit-w1',
+          reagentsAndBuffer:
+            '13C6-L-citrulline and 13C6-L-arginine tracers; d7-ADMA internal standard; symmetric dimethylarginine standard to confirm chromatographic separation from ADMA; sterile preparation for the oral arm',
+        },
+        {
+          id: 'cit-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and timed urine preparation for nitrate and cyclic GMP',
+          description:
+            'Urinary nitrate is exquisitely sensitive to dietary nitrate, so a nitric oxide readout is worthless without dietary control — a participant who ate a green salad will out-signal the intervention. Schwedhelm et al. measured urinary nitrate and cyclic GMP as their downstream endpoints, and the handling is what makes those numbers mean anything.',
+          dependsOnStepId: 'cit-w2',
+          reagentsAndBuffer:
+            'Three-day low-nitrate diet before each sampling period; complete timed urine collection with creatinine normalisation; solid-phase extraction of plasma amino acids; ozone chemiluminescence or Griess assay for nitrate and nitrite; enzyme immunoassay for cyclic GMP',
+        },
+        {
+          id: 'cit-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Endothelial nitric oxide output against the arginine paradox',
+          description:
+            'Test the step the whole category assumes. Intracellular arginine in endothelial cells is already far above the Km of nitric oxide synthase, which is why raising plasma arginine need not raise nitric oxide output at all — the so-called arginine paradox. Measure nitric oxide production directly across a range of extracellular arginine concentrations, with and without ADMA.',
+          dependsOnStepId: 'cit-w3',
+          reagentsAndBuffer:
+            'Human umbilical vein or coronary artery endothelial cells; extracellular L-arginine from 10 to 1000 micromolar; ADMA at physiological and elevated concentrations; L-NAME as the nitric oxide synthase inhibitor; DAF-FM diacetate fluorescent nitric oxide probe; ozone chemiluminescence of medium nitrite',
+        },
+        {
+          id: 'cit-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Repetitions to failure with a prespecified, adequately powered design',
+          description:
+            'Report repetitions to failure as a prespecified between-group difference with the citrulline dose stated in grams of citrulline rather than grams of salt. The pooled estimate is 3 +/- 5 repetitions across a session, which means an individual trial needs far more than the 41 subjects of the original study to detect it reliably, and single-set post hoc comparisons will generate spurious large percentages.',
+          dependsOnStepId: 'cit-w4',
+          reagentsAndBuffer:
+            'Standardised resistance protocol at approximately 70% of one-repetition maximum across 5 sets per exercise; taste- and appearance-matched placebo, which is difficult because citrulline malate is distinctly sour; prespecified total-repetition endpoint rather than per-set analysis; flow-mediated dilation and blood flow measured in the same session',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cit-a1',
+        category: 'measured',
+        title: 'Citrulline raises plasma arginine better than arginine does',
+        laymanSummary:
+          'In a head-to-head trial, taking citrulline increased blood arginine more effectively than taking arginine itself, because arginine is destroyed in the gut wall before absorption.',
+        technicalDetails:
+          'Schwedhelm and colleagues ran a double-blind, randomised, placebo-controlled crossover in 20 healthy volunteers across six dosing regimens of placebo, citrulline and arginine, with pharmacokinetics calculated after a week of oral supplementation. L-citrulline dose-dependently increased the area under the curve and the peak plasma L-arginine concentration more effectively than L-arginine did (P < 0.01). The highest dose, 3 g twice daily, raised the trough plasma arginine and improved the arginine to asymmetric dimethylarginine ratio from 186 +/- 8 at baseline to 278 +/- 14 (P < 0.01, 95% CI 66 to 121). Urinary nitrate rose from 92 +/- 10 to 125 +/- 15 micromol per mmol creatinine (P = 0.01) and cyclic GMP from 38 +/- 3.3 to 50 +/- 6.7 nmol per mmol creatinine (P = 0.04). The reason is presystemic: oral arginine is extensively eliminated by intestinal arginase, while citrulline is readily absorbed and converted to arginine downstream. This is a clean, well-designed pharmacokinetic result and it is the strongest thing in this dossier.',
+        evidenceSource: 'Schwedhelm E et al. Br J Clin Pharmacol 2008;65:51-59',
+        doi: '10.1111/j.1365-2125.2007.02990.x',
+        measuredMetric:
+          'Plasma L-arginine AUC and Cmax, arginine to ADMA ratio, urinary nitrate and cyclic GMP excretion',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cit-a2',
+        category: 'failed',
+        title: 'In the same trial, blood vessel function did not improve at all',
+        laymanSummary:
+          'The trial that proved citrulline raises arginine also measured whether blood vessels actually widened more. They did not — not on any treatment.',
+        technicalDetails:
+          'Schwedhelm et al. measured flow-mediated vasodilation as a pharmacodynamic endpoint alongside their pharmacokinetic measures, and reported plainly that no treatment improved flow-mediated dilation over baseline. A pooled analysis of all the flow-mediated dilation data did reveal a correlation between the increase in the arginine to ADMA ratio and improvement, which is a post hoc correlational finding rather than a treatment effect. This is the load-bearing negative result for the entire nitric oxide supplement category and it is almost never quoted. The likely explanation is the arginine paradox: intracellular arginine in endothelial cells already sits far above the Km of nitric oxide synthase, so raising plasma arginine has limited capacity to raise nitric oxide output in a healthy endothelium. Raising the substrate concentration for an enzyme that is not substrate-limited is a chemistry result, not a physiology result.',
+        evidenceSource: 'Schwedhelm E et al. Br J Clin Pharmacol 2008;65:51-59',
+        doi: '10.1111/j.1365-2125.2007.02990.x',
+        measuredMetric: 'Flow-mediated vasodilation after one week of citrulline or arginine supplementation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cit-a3',
+        category: 'conclusion_shift',
+        title: '52.92% more repetitions in 2010, three extra repetitions in 2021',
+        laymanSummary:
+          'The study that created this product category reported nearly 53 percent more repetitions in the final set. Pooling eight trials eleven years later gave about three extra repetitions across a whole session.',
+        technicalDetails:
+          'Perez-Guisado and Jakeman studied 41 men in a randomised, double-blind, two-period crossover, comparing 8 g of citrulline malate against placebo across 16 sets of a pectoral session, testing repetitions to fatigue at 80% of one-repetition maximum. The number of repetitions increased significantly from the third evaluated set onward (P < 0.0001), and the increase correlated with set number, reaching 52.92% more repetitions and a 100% response rate in the final set, with a 40% decrease in muscle soreness at 24 and 48 hours. Varvik and colleagues then meta-analysed eight double-blind placebo-controlled studies in 137 participants — 101 strength-trained men, 26 women and 9 untrained men — across 14 single-joint and multi-joint exercises averaging 51 +/- 23 total repetitions over 5 +/- 3 sets at about 70% of one-repetition maximum. Supplementing 6 to 8 g of citrulline malate 40 to 60 minutes before exercise increased repetitions by 3 +/- 5, or 6.4 +/- 7.9%, against placebo (P = .022), with a small standardised mean difference of 0.196. Both numbers are real. A 53% gain in a single final set, reported as a within-session trend, is exactly the shape a small study produces when a per-set analysis is run without prespecification.',
+        evidenceSource:
+          'Perez-Guisado J, Jakeman PM. J Strength Cond Res 2010;24:1215-1222; Varvik FT, Bjornsen T, Gonzalez AM. Int J Sport Nutr Exerc Metab 2021;31:350-358',
+        doi: '10.1123/ijsnem.2020-0295',
+        measuredMetric:
+          'Repetitions to voluntary muscular failure with citrulline malate versus placebo',
+        inferredClaim:
+          'That citrulline malate produces a large increase in training volume, on the basis of a per-set result from a single 41-subject trial',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cit-a4',
+        category: 'inferred',
+        title: 'Nobody has tested what the malate is for',
+        laymanSummary:
+          'The product is a salt of citrulline and malic acid, and the trials were run on the salt. No study has compared it against plain citrulline, so the malate half is untested.',
+        technicalDetails:
+          'The performance literature is conducted almost entirely on citrulline malate rather than on L-citrulline, while the pharmacokinetic literature that supplies the mechanism was conducted on L-citrulline alone. Malate is a tricarboxylic acid cycle intermediate and a plausible contributor to aerobic energy provision in principle, which is the stated rationale for the combination. No adequately powered trial has compared citrulline malate against an equimolar dose of L-citrulline, which means the malate contribution is entirely unmeasured and the mechanism attributed to the product comes from studies of only half of it. Compounding this, the citrulline-to-malate ratio determines how much citrulline a stated dose contains — roughly 5.3 g of citrulline in 8 g of a 2:1 product against about 4 g in a 1:1 product — and the ratio is frequently absent from labels and always absent from proprietary blends.',
+        evidenceSource:
+          'Varvik FT, Bjornsen T, Gonzalez AM. Int J Sport Nutr Exerc Metab 2021;31:350-358',
+        doi: '10.1123/ijsnem.2020-0295',
+        inferredClaim:
+          'That malate contributes to the effect of citrulline malate, and that a stated gram dose of the salt corresponds to a known citrulline dose',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cit-a5',
+        category: 'inferred',
+        title: 'The soreness claim rests on one unblinded-by-taste self-report',
+        laymanSummary:
+          'The 40 percent reduction in muscle soreness comes from the same 2010 trial, measured by asking people how sore they felt, with a distinctly sour supplement against placebo.',
+        technicalDetails:
+          'Perez-Guisado and Jakeman reported a significant 40% decrease in muscle soreness at 24 and 48 hours after the training session with citrulline malate, with a response rate above 90%. Muscle soreness measured by self-report is among the most expectation-sensitive endpoints available, and citrulline malate has a strong, distinctive sour taste that makes genuine blinding difficult against a conventional placebo. The trial reported stomach discomfort in 14.63% of subjects, which is itself an unblinding cue. The 2021 meta-analysis pooled repetitions to failure and did not pool soreness, so the delayed-onset muscle soreness claim that appears on a very large number of product labels still rests substantially on this single crossover.',
+        evidenceSource: 'Perez-Guisado J, Jakeman PM. J Strength Cond Res 2010;24:1215-1222',
+        doi: '10.1519/JSC.0b013e3181cb28e0',
+        inferredClaim:
+          'That citrulline malate reduces delayed-onset muscle soreness by 40 percent, from one self-reported endpoint in a hard-to-blind trial',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cit-a6',
+        category: 'measured',
+        title: 'The lower-body effect was a tendency, not a finding',
+        laymanSummary:
+          'When the pooled analysis split upper body from lower body, the lower body result was only a trend rather than a clear effect.',
+        technicalDetails:
+          'Varvik and colleagues ran two prespecified subanalyses of their eight-study, 137-participant dataset. The overall result was an increase of 3 +/- 5 repetitions, 6.4 +/- 7.9%, with a standardised mean difference of 0.196 (P = .022). The lower-body subanalysis produced an 8.1 +/- 8.4% improvement that the authors describe as a tendency toward an effect rather than a demonstrated one. Subgroup analyses of a small pooled dataset are underpowered by construction, and the honest reading is that the total-repetition effect is modest, that its distribution across exercise types is not resolved, and that the participant base is 101 strength-trained men, 26 women and 9 untrained men — a sample from which claims about untrained lifters or about women cannot responsibly be drawn.',
+        evidenceSource: 'Varvik FT, Bjornsen T, Gonzalez AM. Int J Sport Nutr Exerc Metab 2021;31:350-358',
+        doi: '10.1123/ijsnem.2020-0295',
+        measuredMetric:
+          'Standardised mean difference in repetitions to failure, overall and in upper-body and lower-body subanalyses',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'It slips past the enzyme that destroys arginine',
+        laymanDesc:
+          'Swallowed arginine is largely broken down by an enzyme in the gut wall before it reaches the blood. Citrulline is not a target for that enzyme and is absorbed intact.',
+        molecularDetail:
+          'Oral L-arginine undergoes extensive presystemic elimination by intestinal arginase. L-citrulline is not an arginase substrate and is absorbed intact through neutral amino acid transporters, which is the entire pharmacokinetic advantage and the reason the ingredient displaced arginine in this market.',
+        iconName: 'DoorOpen',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The kidney converts it into arginine',
+        laymanDesc:
+          'Citrulline is turned into arginine in the kidney, so blood arginine ends up higher after taking citrulline than after taking arginine directly.',
+        molecularDetail:
+          'Argininosuccinate synthase and argininosuccinate lyase in the renal proximal tubule convert citrulline to arginine and release it systemically. Schwedhelm et al. measured citrulline dose-dependently increasing plasma arginine AUC and Cmax more effectively than arginine itself (P < 0.01), with 3 g twice daily raising the arginine to ADMA ratio from 186 +/- 8 to 278 +/- 14.',
+        iconName: 'Recycle',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Arginine is the substrate for nitric oxide synthase',
+        laymanDesc:
+          'Cells lining blood vessels use arginine to make nitric oxide, the signal that tells vessels to relax and widen.',
+        molecularDetail:
+          'Endothelial nitric oxide synthase converts L-arginine and oxygen to nitric oxide and L-citrulline, regenerating the precursor. Its endogenous competitive inhibitor is asymmetric dimethylarginine, which is why the arginine to ADMA ratio rather than arginine alone is the meaningful pharmacodynamic quantity.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'And here the chain breaks: the enzyme was never short of substrate',
+        laymanDesc:
+          'Downstream markers of nitric oxide production did rise. But actual measured blood vessel widening did not improve on any treatment, in the same trial.',
+        molecularDetail:
+          'Urinary nitrate rose from 92 +/- 10 to 125 +/- 15 micromol/mmol creatinine (P = 0.01) and cyclic GMP from 38 +/- 3.3 to 50 +/- 6.7 nmol/mmol creatinine (P = 0.04), yet no treatment improved flow-mediated vasodilation over baseline. The arginine paradox supplies the explanation: intracellular endothelial arginine already greatly exceeds the Km of nitric oxide synthase, so the enzyme is not substrate-limited in healthy endothelium.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The measured outcome is about three extra repetitions',
+        laymanDesc:
+          'Across eight pooled trials, taking it before a session produced roughly three more repetitions in total than placebo did.',
+        molecularDetail:
+          'Varvik et al. found an increase of 3 +/- 5 repetitions, 6.4 +/- 7.9%, over an average of 51 +/- 23 total repetitions across 5 +/- 3 sets per exercise at about 70% of one-repetition maximum, with a standardised mean difference of 0.196 (P = .022) across 137 participants. The lower-body subanalysis was a tendency rather than a finding.',
+        iconName: 'TrendingUp',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Schwedhelm 2008 — oral citrulline versus arginine pharmacokinetics and pharmacodynamics',
+        phase: 'Double-blind randomised placebo-controlled crossover, six dosing regimens',
+        sampleSize: 20,
+        primaryEndpoint:
+          'Plasma L-arginine pharmacokinetics and downstream nitric oxide pharmacodynamic markers',
+        endpointMet: true,
+        statisticalPValue:
+          'Citrulline increased plasma arginine AUC and Cmax more than arginine, P < 0.01; arginine/ADMA ratio 186 +/- 8 to 278 +/- 14, P < 0.01; urinary nitrate P = 0.01; cyclic GMP P = 0.04',
+        unreportedAdverseSignals:
+          'No treatment improved flow-mediated vasodilation over baseline — the functional endpoint the biochemistry was meant to move. The correlation between arginine/ADMA increase and dilation came from a pooled post hoc analysis.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Perez-Guisado 2010 — citrulline malate and bench press repetitions to fatigue',
+        phase: 'Randomised double-blind two-period crossover',
+        sampleSize: 41,
+        primaryEndpoint: 'Repetitions to fatigue at 80% of one-repetition maximum across 8 sets',
+        endpointMet: true,
+        statisticalPValue:
+          'Significant increase from the third evaluated set onward, P < 0.0001; 52.92% more repetitions in the final set; 40% decrease in muscle soreness at 24 and 48 hours',
+        unreportedAdverseSignals:
+          'Stomach discomfort in 14.63% of subjects, which is an unblinding cue for a distinctly sour supplement. The headline effect is a per-set result that grew with set number rather than a prespecified total-repetition endpoint.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Varvik 2021 meta-analysis of citrulline malate and repetitions to failure',
+        phase: 'Meta-analysis of 8 double-blind placebo-controlled studies',
+        sampleSize: 137,
+        primaryEndpoint: 'Total repetitions to voluntary muscular failure versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Increase of 3 +/- 5 repetitions, 6.4 +/- 7.9% (P = .022), standardised mean difference 0.196; lower-body subanalysis 8.1 +/- 8.4%, described as a tendency',
+        unreportedAdverseSignals:
+          'The participant base was 101 strength-trained men, 26 women and 9 untrained men, so conclusions about untrained lifters or about women rest on very small numbers. No included study compared citrulline malate against equimolar plain citrulline.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Citrulline raised plasma arginine AUC and Cmax more effectively than arginine itself, dose-dependently, P < 0.01',
+        'It raised the arginine to ADMA ratio from 186 +/- 8 to 278 +/- 14, and raised urinary nitrate and cyclic GMP',
+        'No treatment improved flow-mediated vasodilation over baseline in that same trial',
+        'Pooled across eight trials in 137 people, it increased repetitions to failure by 3 +/- 5, or 6.4 +/- 7.9%',
+      ],
+      unsupportedInferences: [
+        'That raising plasma arginine raises nitric oxide output, when the enzyme is not substrate-limited in healthy endothelium',
+        'That the 52.92% final-set result from a 41-subject trial describes what the supplement does',
+        'That malate contributes anything, which no trial has separated from citrulline',
+        'That a stated gram dose of citrulline malate corresponds to a known citrulline dose without the ratio',
+      ],
+      whatFailedInitially: [
+        'L-arginine supplementation itself, defeated by intestinal arginase before absorption',
+        'Flow-mediated vasodilation, the functional endpoint that the pharmacokinetic success was supposed to deliver',
+      ],
+      realWorldOutcome: [
+        'The pharmacokinetic case for citrulline over arginine is genuinely strong and well demonstrated',
+        'The performance effect is real and small — roughly three additional repetitions in a session',
+        'Almost all of it is sold inside pre-workout blends alongside caffeine, which has a far larger evidence base for the same perceived outcome',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral powder or capsule, as citrulline malate 2:1 or 1:1, or as plain L-citrulline',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy or safety before sale. The citrulline-to-malate ratio determines the actual citrulline dose and is often undisclosed, which means two products labelled with the same gram figure can differ by around a third in the ingredient with the evidence. Citrulline malate is strongly sour, which makes placebo matching difficult and is a plausible source of unblinding in the trial literature. It is overwhelmingly consumed inside multi-ingredient pre-workout formulas, where any subjective effect is unattributable.',
+      safetyProfile:
+        'Gastrointestinal discomfort is the main reported effect and appeared in 14.63% of subjects in the original crossover, plausibly driven by the malate load and the acidity rather than by citrulline itself. Citrulline is well tolerated at the doses studied and has no established toxicity in healthy adults. Because it raises nitric oxide signalling, theoretical interaction with nitrates and phosphodiesterase-5 inhibitors is worth noting even though it has not been demonstrated. Long-term safety data beyond short trial durations do not exist.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is citrulline better than arginine?',
+        a: 'For raising blood arginine, unambiguously yes, and this is the best-established fact on the page. In a head-to-head crossover in 20 volunteers, citrulline raised both the peak and the total exposure of plasma arginine more effectively than arginine did, because oral arginine is largely destroyed by an enzyme in the intestinal wall before it reaches the circulation. Citrulline avoids that enzyme and is converted to arginine by the kidney afterwards.',
+      },
+      {
+        q: 'So does that mean my blood vessels open up more?',
+        a: 'That is the part the same trial answered, and it answered no. Alongside the pharmacokinetics, the investigators measured flow-mediated vasodilation and reported that no treatment improved it over baseline. Downstream markers — urinary nitrate and cyclic GMP — did rise. The likely reason the function did not follow is that the enzyme making nitric oxide already has far more arginine available inside the cell than it needs, so adding substrate to a non-substrate-limited enzyme changes the chemistry without changing the physiology.',
+        auditNote:
+          'This negative result is the load-bearing one for the whole nitric oxide supplement category, and it is almost never quoted.',
+      },
+      {
+        q: 'What about the study showing 53 percent more reps?',
+        a: 'It exists, it was double-blind and randomised, and it is not the number to use. In 41 men, citrulline malate increased repetitions from the third evaluated set onward, and the 52.92 percent figure comes from the final set, having grown with set number. When eight trials in 137 participants were pooled in 2021, the effect was an increase of 3 ± 5 repetitions across an entire session, about 6.4 percent, with a small effect size of 0.196. Both results are honestly reported; only the pooled one should decide anything.',
+      },
+      {
+        q: 'Does the malate part do anything?',
+        a: 'Nobody knows, because nobody has tested it. Malate is a tricarboxylic acid cycle intermediate, which is the stated rationale for the combination, but no adequately powered trial has compared citrulline malate against an equal amount of plain citrulline. The awkward consequence is that the mechanism cited for the product comes from pharmacokinetic studies of citrulline alone, while the performance trials were run on a salt whose other half is unstudied.',
+      },
+      {
+        q: 'How do I know how much citrulline I am actually taking?',
+        a: 'Check the ratio, and be prepared not to find it. A 2:1 citrulline malate is roughly two-thirds citrulline by mass, so 8 grams supplies about 5.3 grams; a 1:1 product supplies about 4 grams for the same label figure. Many products state neither the ratio nor, inside a proprietary blend, the amount. Two tubs with identical numbers on the front can differ by about a third in the ingredient the evidence is about.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Schwedhelm E et al. Pharmacokinetic and pharmacodynamic properties of oral L-citrulline and L-arginine: impact on nitric oxide metabolism. Br J Clin Pharmacol 2008;65:51-59',
+        identifier: '10.1111/j.1365-2125.2007.02990.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Perez-Guisado J, Jakeman PM. Citrulline malate enhances athletic anaerobic performance and relieves muscle soreness. J Strength Cond Res 2010;24:1215-1222',
+        identifier: '10.1519/JSC.0b013e3181cb28e0',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Varvik FT, Bjornsen T, Gonzalez AM. Acute effect of citrulline malate on repetition performance during strength training: a systematic review and meta-analysis. Int J Sport Nutr Exerc Metab 2021;31:350-358',
+        identifier: '10.1123/ijsnem.2020-0295',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 9750 — L-Citrulline',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9750',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
