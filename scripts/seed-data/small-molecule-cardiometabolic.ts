@@ -12363,4 +12363,1418 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       NADAC_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 14. Clopidogrel — a prodrug whose activation varies by genotype, and where two randomised
+  //     trials of acting on that variation both failed to change outcomes.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'clopidogrel',
+    name: 'Clopidogrel',
+    tradeName: 'Plavix',
+    sponsor: 'Sanofi with Bristol-Myers Squibb; generic in the United States since 2012',
+    targetGene: 'P2RY12',
+    targetProtein: 'P2Y12 purinergic receptor on the platelet surface',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1997,
+    indication:
+      'Reduction of the rate of myocardial infarction and stroke in acute coronary syndrome, and in recent myocardial infarction, recent stroke or established peripheral arterial disease',
+    patientFriendlyIndication:
+      'Preventing clots after a heart attack, a stent, a stroke, or in blocked leg arteries',
+    anatomicalSite: 'Platelet surface membrane, after activation in the liver',
+    conditionContext: {
+      conditionExplainer:
+        'When a plaque ruptures, platelets stick to the exposed surface and release ADP, which recruits more platelets by acting on a receptor called P2Y12. That amplification loop is what turns a small injury into an occluding clot. Clopidogrel disables the receptor permanently on every platelet it reaches.',
+      whyItMatters:
+        'Clopidogrel is a prodrug and needs two oxidation steps in the liver, mostly by CYP2C19, before it can do anything. Roughly a quarter to a third of people carry a reduced-function CYP2C19 allele and generate less active drug, and this is measurable in a blood test of platelet function. The obvious next step — test, then change the drug — has been tried twice in randomised trials, and this page reports what happened.',
+      whoTakesThis:
+        'People after coronary stenting, after acute coronary syndrome, after ischaemic stroke and with peripheral arterial disease. It is on the WHO Model List of Essential Medicines and generic almost everywhere.',
+      clinicalGoals:
+        'Prevent stent thrombosis, recurrent infarction and ischaemic stroke, at an accepted cost in bleeding. In CURE the absolute event reduction was 2.1 percentage points against an absolute major bleeding increase of 1.0.',
+    },
+    oneSentenceVerdict:
+      'An irreversible P2Y12 blocker with a 2.1 percentage-point absolute event reduction added to aspirin in 12,562 acute coronary syndrome patients, offset by a 1.0 point increase in major bleeding — and the drug on which both platelet-function-guided and genotype-guided dosing were tested in randomised trials and neither changed outcomes.',
+    laymanHowItWorks:
+      'Platelets recruit each other using a chemical signal that lands on a specific receptor. Clopidogrel arrives as an inactive molecule, is converted by liver enzymes into a reactive form, and that form permanently welds itself to the receptor. The platelet can never respond to that signal again, so the effect lasts the platelet\'s whole ten-day life and only fades as new platelets are made.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 85,
+    substitutes: {
+      summary:
+        'Generic clopidogrel costs under five cents a tablet. Its alternatives, ticagrelor and prasugrel, are more potent, do not depend on CYP2C19 activation, and cause more bleeding. The randomised evidence on choosing between them by genotype is on this page and it is not supportive. Aspirin alone is the cheaper comparator and, in the head-to-head CAPRIE trial, was slightly worse.',
+      conventionalRx: [
+        {
+          name: 'Ticagrelor (Brilinta)',
+          class: 'Reversible P2Y12 antagonist',
+          howItCompares:
+            'Binds the receptor reversibly and at a separate site, needs no metabolic activation, and therefore does not depend on CYP2C19. It was the drug substituted for clopidogrel in loss-of-function carriers in TAILOR-PCI, where the genotype-guided strategy did not reach its primary endpoint (hazard ratio 0.66, p=0.06).',
+          typicalCost: 'Brand-priced, a large multiple of generic clopidogrel',
+          prosAndCons:
+            'Pros: faster, more consistent inhibition, no activation step. Cons: more bleeding, twice-daily dosing, and dyspnoea in a meaningful minority.',
+        },
+        {
+          name: 'Aspirin alone',
+          class: 'Irreversible cyclo-oxygenase-1 inhibitor',
+          howItCompares:
+            'In CAPRIE, 19,185 patients with atherosclerotic vascular disease were randomised to clopidogrel 75 mg or aspirin 325 mg for a mean 1.91 years. Annual risk of ischaemic stroke, myocardial infarction or vascular death was 5.32% against 5.83%: a relative reduction of 8.7% (95% CI 0.3 to 16.5), p=0.043. That is a statistically significant result whose lower confidence bound is 0.3%.',
+          typicalCost: 'Pennies per tablet',
+          prosAndCons:
+            'Pros: cheapest, longest record. Cons: marginally more events than clopidogrel in the only large head-to-head trial, and more gastrointestinal bleeding.',
+        },
+        {
+          name: 'Aspirin plus clopidogrel long-term in stable patients',
+          class: 'Dual antiplatelet therapy as a strategy',
+          howItCompares:
+            'CHARISMA tested exactly this in 15,603 patients over a median 28 months and missed: 6.8% against 7.3%, relative risk 0.93 (0.83 to 1.05), p=0.22. In the multiple-risk-factor subgroup without established disease, cardiovascular death was higher on clopidogrel: 3.9% against 2.2%, p=0.01.',
+          typicalCost: 'Two generics',
+          prosAndCons:
+            'Pros: benefit suggested in the established-atherothrombosis subgroup (relative risk 0.88, p=0.046). Cons: the trial missed overall, and the primary-prevention subgroup showed a signal of harm.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Check whether your acid-reducing drug is omeprazole',
+          action:
+            'Some proton pump inhibitors inhibit CYP2C19, the enzyme that activates clopidogrel.',
+          patientImpact:
+            'Omeprazole and esomeprazole are the strongest CYP2C19 inhibitors of the class, and the US clopidogrel label warns against concomitant use on the basis of reduced active metabolite formation and reduced platelet inhibition. Pantoprazole inhibits the enzyme much less.',
+          clinicalPrecaution:
+            'The label warning rests on pharmacokinetic and platelet-function data. Randomised outcome evidence for the interaction is weak, which is a reason for choosing a different proton pump inhibitor rather than for stopping acid suppression that is needed.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'COC(=O)[C@H](C1=CC=CC=C1Cl)N2CCC3=C(C2)C=CS3',
+      chemicalFormula: 'C16H16ClNO2S',
+      molecularWeight: '321.8 g/mol; dispensed as clopidogrel bisulfate',
+      targetReceptorAffinity:
+        'Clopidogrel itself has no activity at P2Y12. About 85% of an absorbed dose is hydrolysed by carboxylesterase-1 to an inactive acid; the remaining 15% undergoes two sequential cytochrome oxidations, largely CYP2C19, to a thiol-containing active metabolite that forms a disulphide bond with cysteine residues on the receptor. That bond is covalent and irreversible, so the affinity that matters is not a dissociation constant but a rate of platelet turnover: the receptor is disabled for the platelet\'s remaining life.',
+      structureSource: {
+        label:
+          'PubChem CID 60606 (clopidogrel) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/60606',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'clo-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Chiral and isomeric control of the chlorophenylglycine ester',
+          description:
+            'Assay the methyl 2-chlorophenylglycinate for enantiomeric excess and the tetrahydrothienopyridine for regiochemistry. Only the (S)-enantiomer is active; the (R)-enantiomer is inactive and, in the original development work, was the more toxic of the two, which is why the marketed drug is a single enantiomer where its predecessor ticlopidine was not an issue of stereochemistry at all.',
+          reagentsAndBuffer:
+            'Methyl (S)-2-chlorophenylglycinate reference standard, 4,5,6,7-tetrahydrothieno[3,2-c]pyridine hydrochloride, chiral HPLC on a polysaccharide phase, Karl Fischer titration, ion chromatography for chloride',
+        },
+        {
+          id: 'clo-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'N-alkylation to join the thienopyridine to the chiral ester',
+          description:
+            'Couple the thienopyridine nitrogen to the benzylic carbon of the chlorophenylglycinate under base, preserving the stereocentre. Racemisation at that benzylic position is the process risk: it sits alpha to both an ester and an aryl ring, so base strength, temperature and residence time are the parameters controlled, and enantiomeric excess is checked on the isolated intermediate rather than only on the final product.',
+          dependsOnStepId: 'clo-w1',
+          reagentsAndBuffer:
+            'Potassium carbonate or triethylamine in dimethylformamide or acetonitrile under nitrogen, controlled temperature below 40 degrees Celsius, chiral HPLC in-process monitoring',
+        },
+        {
+          id: 'clo-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Bisulfate salt formation and polymorph control',
+          description:
+            'Form the hydrogen sulfate salt and crystallise the correct polymorph. Clopidogrel bisulfate has multiple crystal forms with different solubility, and form selection was the subject of extensive patent litigation because dissolution rate affects the extent of absorption for a drug that is already only fractionally converted to its active metabolite.',
+          dependsOnStepId: 'clo-w2',
+          reagentsAndBuffer:
+            'Sulfuric acid in acetone or ethyl acetate, seeded controlled cooling crystallisation, X-ray powder diffraction and differential scanning calorimetry for polymorph identity, reversed-phase HPLC against the (R)-enantiomer and the hydrolysed acid impurity',
+        },
+        {
+          id: 'clo-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'CYP2C19-dependent two-step activation in genotyped hepatocytes',
+          description:
+            'Incubate with hepatocytes from donors carrying CYP2C19*1, *2, *3 and *17 alleles and quantify the thiol active metabolite as a stable derivative. Two facts make this step decisive rather than routine: only about 15% of absorbed drug enters the activation route at all, the rest being hydrolysed to an inactive acid, and the active metabolite is a reactive thiol with a half-life of minutes that must be trapped chemically before it can be measured.',
+          dependsOnStepId: 'clo-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes from CYP2C19-genotyped donors, recombinant CYP2C19 and CYP3A4 microsomes, NADPH regenerating system, 2-bromo-3-methoxyacetophenone as the thiol derivatising agent, LC-MS/MS quantification of the derivatised active metabolite',
+        },
+        {
+          id: 'clo-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'ADP-induced platelet aggregation and P2Y12 reaction unit readout',
+          description:
+            'Measure inhibition of ADP-induced aggregation in platelet-rich plasma and, in parallel, run the point-of-care assay used clinically. Running both matters here because the clinical trials of tailoring therapy were built on the point-of-care number: GRAVITAS moved that number by 22 absolute percentage points and changed no clinical outcome, so the relationship between the laboratory readout and the endpoint is the thing under test.',
+          dependsOnStepId: 'clo-w4',
+          reagentsAndBuffer:
+            'Citrated platelet-rich plasma, adenosine diphosphate 5 and 20 micromolar, light transmission aggregometry, VerifyNow P2Y12 cartridge for the point-of-care reaction unit measurement, vasodilator-stimulated phosphoprotein phosphorylation flow cytometry as the receptor-specific confirmation',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'clo-a1',
+        category: 'measured',
+        title: 'CURE: 2.1 percentage points fewer events, 1.0 point more major bleeding',
+        laymanSummary:
+          'Adding clopidogrel to aspirin after an acute coronary syndrome prevented about two events per hundred patients and caused about one extra major bleed per hundred.',
+        technicalDetails:
+          'CURE randomised 12,562 patients presenting within 24 hours of an acute coronary syndrome without ST-segment elevation to clopidogrel 300 mg then 75 mg daily (n=6,259) or placebo (n=6,303), both on aspirin, for 3 to 12 months. The first primary composite of cardiovascular death, non-fatal myocardial infarction or stroke occurred in 9.3% against 11.4%: relative risk 0.80 (95% CI 0.72 to 0.90), p<0.001, an absolute difference of 2.1 percentage points. The second primary outcome adding refractory ischaemia was 16.5% against 18.8% (0.86, 0.79 to 0.94, p<0.001). In-hospital refractory or severe ischaemia, heart failure and revascularisation were also lower. Major bleeding was higher on clopidogrel: 3.7% against 2.7%, relative risk 1.38, p=0.001. Life-threatening bleeding (2.2% against 1.8%, p=0.13) and haemorrhagic stroke (0.1% against 0.1%) did not differ significantly.',
+        evidenceSource: 'Yusuf S et al., CURE, N Engl J Med 2001;345:494-502',
+        doi: '10.1056/NEJMoa010746',
+        measuredMetric:
+          'Composite of cardiovascular death, non-fatal myocardial infarction or stroke, and major bleeding, over 3 to 12 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a2',
+        category: 'measured',
+        title: 'CAPRIE: better than aspirin by 8.7% relative, with a lower bound of 0.3%',
+        laymanSummary:
+          'The trial that established the drug compared it directly with aspirin in more than nineteen thousand patients. Clopidogrel won, narrowly, and the statistical margin was thin.',
+        technicalDetails:
+          'CAPRIE randomised 19,185 patients with atherosclerotic vascular disease manifest as recent ischaemic stroke, recent myocardial infarction or symptomatic peripheral arterial disease, with more than 6,300 in each subgroup, to clopidogrel 75 mg or aspirin 325 mg once daily, mean follow-up 1.91 years. There were 1,960 first events. Annual risk of ischaemic stroke, myocardial infarction or vascular death was 5.32% on clopidogrel against 5.83% on aspirin: a relative risk reduction of 8.7% (95% CI 0.3 to 16.5), p=0.043. The on-treatment analysis gave 9.4%. Severe adverse events were comparable: rash 0.26% against 0.10%, diarrhoea 0.23% against 0.11%, upper gastrointestinal discomfort 0.97% against 1.22%, intracranial haemorrhage 0.33% against 0.47%, gastrointestinal haemorrhage 0.52% against 0.72%. A confidence interval whose lower bound is 0.3% is compatible with a benefit close to nothing.',
+        evidenceSource: 'CAPRIE Steering Committee, Lancet 1996;348:1329-1339',
+        doi: '10.1016/S0140-6736(96)09457-3',
+        measuredMetric:
+          'Annual risk of ischaemic stroke, myocardial infarction or vascular death, clopidogrel versus aspirin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a3',
+        category: 'failed',
+        title: 'CHARISMA: missed overall, and higher cardiovascular death in primary prevention',
+        laymanSummary:
+          'Extending dual antiplatelet therapy to a broad high-risk population did not reduce events. In the subgroup who had risk factors but no established disease, more people died of cardiovascular causes on clopidogrel.',
+        technicalDetails:
+          'CHARISMA randomised 15,603 patients with clinically evident cardiovascular disease or multiple risk factors to clopidogrel 75 mg plus low-dose aspirin or placebo plus aspirin, median follow-up 28 months. The primary composite of myocardial infarction, stroke or cardiovascular death occurred in 6.8% against 7.3%: relative risk 0.93 (95% CI 0.83 to 1.05), p=0.22. The principal secondary endpoint including hospitalisation for ischaemic events was 16.7% against 17.9% (0.92, 0.86 to 0.995, p=0.04) and severe bleeding 1.7% against 1.3% (1.25, 0.97 to 1.61, p=0.09). In the multiple-risk-factor subgroup without established disease the primary rate was 6.6% on clopidogrel against 5.5% on placebo (1.2, 0.91 to 1.59, p=0.20), and cardiovascular death was higher on clopidogrel: 3.9% against 2.2%, p=0.01. In the established-atherothrombosis subgroup the rate was 6.9% against 7.9% (0.88, 0.77 to 0.998, p=0.046).',
+        evidenceSource: 'Bhatt DL et al., CHARISMA, N Engl J Med 2006;354:1706-1717 (NCT00050817)',
+        doi: '10.1056/NEJMoa060989',
+        measuredMetric:
+          'Composite of myocardial infarction, stroke or cardiovascular death over a median 28 months, and subgroup cardiovascular death',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a4',
+        category: 'conclusion_shift',
+        title: 'GRAVITAS: the platelet test moved 22 points and the outcome moved zero',
+        laymanSummary:
+          'Patients whose platelets were still reactive on standard-dose clopidogrel were randomised to a double dose. The laboratory measurement improved substantially. The event rate was identical to the second decimal place.',
+        technicalDetails:
+          'GRAVITAS randomised 2,214 patients found to have high on-treatment platelet reactivity 12 to 24 hours after percutaneous intervention with drug-eluting stents, at 83 North American centres, to high-dose clopidogrel (600 mg load then 150 mg daily) or standard dose (no additional load, 75 mg daily) for 6 months. At 6 months the primary endpoint of cardiovascular death, non-fatal myocardial infarction or stent thrombosis occurred in 25 of 1,109 (2.3%) on high dose against 25 of 1,105 (2.3%): hazard ratio 1.01 (95% CI 0.58 to 1.76), p=0.97. Severe or moderate bleeding was not increased (1.4% against 2.3%; 0.59, 0.31 to 1.11, p=0.10). The pharmacodynamic endpoint moved decisively: high-dose clopidogrel produced a 22 absolute percentage-point reduction in persistently high on-treatment reactivity at 30 days (40% against 62%, p<0.001). A large surrogate change with an identical clinical result is the cleanest possible demonstration that the surrogate was not the mechanism of risk.',
+        evidenceSource: 'Price MJ et al., GRAVITAS, JAMA 2011;305:1097-1105 (NCT00645918)',
+        doi: '10.1001/jama.2011.290',
+        measuredMetric:
+          'Six-month cardiovascular death, non-fatal infarction or stent thrombosis, alongside 30-day platelet reactivity',
+        inferredClaim:
+          'That high on-treatment platelet reactivity is a modifiable cause of events — correcting it in 22% of patients changed the event rate not at all',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a5',
+        category: 'failed',
+        title: 'TAILOR-PCI: genotype-guided drug selection missed its endpoint at p=0.06',
+        laymanSummary:
+          'More than five thousand patients were randomised to point-of-care genotyping with a switch to a different drug for those carrying reduced-function variants, or to standard clopidogrel. The difference did not reach significance.',
+        technicalDetails:
+          'TAILOR-PCI randomised 5,302 patients undergoing percutaneous coronary intervention (median age 62, 25% women, 82% acute coronary syndrome) to genotype-guided therapy with point-of-care CYP2C19 testing, prescribing ticagrelor to loss-of-function carriers and clopidogrel to non-carriers, or to conventional clopidogrel with genotyping deferred 12 months. Among 1,849 loss-of-function carriers, the 12-month primary composite of cardiovascular death, myocardial infarction, stroke, stent thrombosis and severe recurrent ischaemia occurred in 35 of 903 (4.0%) on the genotype-guided strategy against 54 of 946 (5.9%) on conventional therapy: hazard ratio 0.66 (95% CI 0.43 to 1.02), p=0.06. The trial was powered at 85% to detect a hazard ratio of 0.50. None of the 11 prespecified secondary endpoints differed significantly, including major or minor bleeding (1.9% against 1.6%; 1.22, 0.60 to 2.51, p=0.58). Across all randomised patients the primary endpoint occurred in 4.4% against 5.3% (0.84, 0.65 to 1.07, p=0.16).',
+        evidenceSource: 'Pereira NL et al., TAILOR-PCI, JAMA 2020;324:761-771 (NCT01742117)',
+        doi: '10.1001/jama.2020.12443',
+        measuredMetric:
+          'Twelve-month composite of cardiovascular death, infarction, stroke, stent thrombosis and severe recurrent ischaemia in CYP2C19 loss-of-function carriers',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a6',
+        category: 'inferred',
+        title: 'The genotype is real, the pharmacology is real, and the clinical payoff is not established',
+        laymanSummary:
+          'CYP2C19 variants genuinely reduce how much active drug is made, and that is measurable. Two randomised trials designed to turn that knowledge into fewer events did not succeed.',
+        technicalDetails:
+          'The pharmacology is not in dispute: roughly 15% of absorbed clopidogrel is converted to the active thiol metabolite, largely by CYP2C19, and reduced-function alleles lower both metabolite formation and measured platelet inhibition. Two randomised strategies were built on that. GRAVITAS corrected the platelet phenotype directly, achieving a 22 percentage-point absolute improvement in on-treatment reactivity, and produced a hazard ratio of 1.01. TAILOR-PCI acted on the genotype by switching carriers to ticagrelor and produced 0.66 with p=0.06, against a trial powered to detect 0.50. Neither established a clinical benefit. The consistent reading is that reduced metabolite formation is a real biochemical fact that has not been shown to be a modifiable cause of events at the population level, which is a different conclusion from either "genotyping works" or "the genotype does not matter".',
+        evidenceSource:
+          'Price MJ et al., JAMA 2011;305:1097-1105; Pereira NL et al., JAMA 2020;324:761-771',
+        doi: '10.1001/jama.2020.12443',
+        inferredClaim:
+          'That testing CYP2C19 genotype or platelet reactivity and acting on the result reduces cardiovascular events — tested twice in randomised trials, and neither reached its endpoint',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed well, and then mostly thrown away',
+        laymanDesc:
+          'Most of the tablet that gets absorbed is immediately broken down into a useless form. Only about one part in seven ever goes down the route that makes the active drug.',
+        molecularDetail:
+          'Absorption is at least 50%, and roughly 85% of absorbed drug is hydrolysed by hepatic carboxylesterase-1 to an inactive carboxylic acid. The remaining 15% is available for oxidative activation. This is why the loading dose exists and why the drug takes days to reach steady-state effect without one.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Two liver oxidations, mostly by one variable enzyme, make the active form',
+        laymanDesc:
+          'The liver has to modify the molecule twice to produce the reactive species that works. The main enzyme doing this varies widely between people for genetic reasons.',
+        molecularDetail:
+          'Clopidogrel is oxidised to 2-oxo-clopidogrel and then to the thiol active metabolite, with CYP2C19 contributing substantially to both steps alongside CYP1A2, CYP2B6 and CYP3A4. CYP2C19*2 and *3 are loss-of-function alleles present in roughly a quarter to a third of people depending on ancestry, and *17 is a gain-of-function allele. The active metabolite has a half-life of minutes.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A reactive thiol welds itself onto the platelet receptor',
+        laymanDesc:
+          'The active form makes a permanent chemical bond with the receptor. That platelet is finished for the rest of its life; there is no undoing it.',
+        molecularDetail:
+          'The thiol metabolite forms a disulphide bridge with extracellular cysteine residues, principally Cys17 and Cys270, on the P2Y12 receptor. The bond is covalent and irreversible, so recovery requires production of new platelets rather than clearance of drug — which is why effect persists for days after the last dose and why surgery requires several days of withdrawal.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The ADP amplification loop is cut',
+        laymanDesc:
+          'Platelets can no longer recruit each other with their main chemical signal, so a small clot does not snowball into an occluding one.',
+        molecularDetail:
+          'Blocking P2Y12 removes Gi-mediated inhibition of adenylate cyclase, so cyclic AMP stays high and VASP remains phosphorylated. Glycoprotein IIb/IIIa activation, dense granule release and the sustained phase of aggregation are all suppressed. Aspirin blocks a parallel amplification loop through thromboxane A2, which is why the two are additive and why their bleeding risks are additive too.',
+        iconName: 'Split',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Two fewer events per hundred, one more major bleed per hundred',
+        laymanDesc:
+          'Added to aspirin after an acute coronary syndrome, it prevented about two cardiovascular events per hundred people and caused about one extra major bleed per hundred.',
+        molecularDetail:
+          'In CURE the primary composite was 9.3% against 11.4% (relative risk 0.80, p<0.001) with major bleeding 3.7% against 2.7% (relative risk 1.38, p=0.001). Life-threatening bleeding and haemorrhagic stroke did not differ significantly. In CAPRIE, against aspirin alone, the annual event rate was 5.32% against 5.83%.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'CURE',
+        phase: 'Randomised double-blind placebo-controlled trial, 3 to 12 months',
+        sampleSize: 12562,
+        primaryEndpoint:
+          'Composite of cardiovascular death, non-fatal myocardial infarction or stroke, added to aspirin',
+        endpointMet: true,
+        statisticalPValue: 'RR 0.80 (95% CI 0.72-0.90), P < 0.001; absolute difference 2.1 points',
+        unreportedAdverseSignals:
+          'Major bleeding rose from 2.7% to 3.7% (RR 1.38, p=0.001), an absolute increase of 1.0 point against an absolute event reduction of 2.1.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'CAPRIE',
+        phase: 'Randomised blinded active-controlled trial, mean 1.91 years',
+        sampleSize: 19185,
+        primaryEndpoint:
+          'Composite of ischaemic stroke, myocardial infarction or vascular death, clopidogrel versus aspirin',
+        endpointMet: true,
+        statisticalPValue: 'Relative risk reduction 8.7% (95% CI 0.3-16.5), P = 0.043',
+        unreportedAdverseSignals:
+          'The lower bound of the confidence interval is 0.3%, so the trial is compatible with a benefit close to zero.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'CHARISMA (NCT00050817)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 28 months',
+        sampleSize: 15603,
+        primaryEndpoint:
+          'Composite of myocardial infarction, stroke or cardiovascular death on clopidogrel plus aspirin',
+        endpointMet: false,
+        statisticalPValue: 'RR 0.93 (95% CI 0.83-1.05), P = 0.22',
+        unreportedAdverseSignals:
+          'In the multiple-risk-factor subgroup without established disease, cardiovascular death was 3.9% on clopidogrel against 2.2% on placebo, p=0.01.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'GRAVITAS (NCT00645918)',
+        phase: 'Randomised double-blind active-control trial, 6 months',
+        sampleSize: 2214,
+        primaryEndpoint:
+          'Cardiovascular death, non-fatal myocardial infarction or stent thrombosis with high-dose versus standard-dose clopidogrel in high platelet reactivity',
+        endpointMet: false,
+        statisticalPValue: '2.3% against 2.3%; HR 1.01 (95% CI 0.58-1.76), P = 0.97',
+        unreportedAdverseSignals:
+          'The pharmacodynamic endpoint moved 22 absolute percentage points (p<0.001) while the clinical endpoint did not move at all.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'TAILOR-PCI (NCT01742117)',
+        phase: 'Randomised open-label strategy trial, 12 months',
+        sampleSize: 5302,
+        primaryEndpoint:
+          'Composite of cardiovascular death, myocardial infarction, stroke, stent thrombosis and severe recurrent ischaemia in CYP2C19 loss-of-function carriers',
+        endpointMet: false,
+        statisticalPValue: 'HR 0.66 (95% CI 0.43-1.02), P = 0.06',
+        unreportedAdverseSignals:
+          'The trial was powered at 85% to detect a hazard ratio of 0.50, a large effect. None of 11 prespecified secondary endpoints differed significantly.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A 2.1 percentage-point absolute reduction in cardiovascular events and a 1.0 point absolute increase in major bleeding in 12,562 patients',
+        'An annual event rate of 5.32% against 5.83% on aspirin in 19,185 patients, relative reduction 8.7% with a lower bound of 0.3%',
+        'An identical 2.3% event rate on double-dose and standard-dose clopidogrel in 2,214 patients with high platelet reactivity',
+        'A 22 absolute percentage-point improvement in on-treatment platelet reactivity in the same trial',
+      ],
+      unsupportedInferences: [
+        'That correcting high on-treatment platelet reactivity prevents events — GRAVITAS corrected it and produced a hazard ratio of 1.01',
+        'That CYP2C19 genotype-guided drug selection improves outcomes — TAILOR-PCI gave 0.66 with p=0.06 against a trial powered for 0.50',
+        'That dual antiplatelet therapy benefits people with risk factors but no established disease — CHARISMA found higher cardiovascular death in that subgroup',
+        'That the CAPRIE advantage over aspirin is substantial — its confidence interval runs from 0.3% to 16.5%',
+      ],
+      whatFailedInitially: [
+        'CHARISMA missed its primary endpoint and showed a mortality signal against clopidogrel in primary prevention',
+        'GRAVITAS moved the surrogate 22 percentage points and the clinical endpoint not at all',
+        'TAILOR-PCI, the definitive test of pharmacogenomic antiplatelet selection, did not reach significance',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines, generic in the United States since 2012',
+        'US$0.047 per 75 mg tablet at United States pharmacy acquisition cost, effective 19 August 2026',
+        'The FDA added a boxed warning about diminished effectiveness in CYP2C19 poor metabolisers in 2010, three years before COAG-style randomised strategy trials reported on the closely analogous warfarin question, and a decade before TAILOR-PCI reported on this one',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, and a fixed combination with aspirin',
+      description:
+        'Once daily, usually preceded by a loading dose because only a small fraction of each dose becomes active drug and steady-state platelet inhibition otherwise takes several days. Food does not meaningfully affect it. Effect persists for days after stopping because the receptor block is irreversible and recovery requires new platelets.',
+      safetyProfile:
+        'The US label carries a boxed warning about diminished antiplatelet effect in CYP2C19 poor metabolisers. Bleeding is the principal risk and rises when combined with aspirin: major bleeding 3.7% against 2.7% in CURE. Thrombotic thrombocytopenic purpura is rare and can occur within the first two weeks. Omeprazole and esomeprazole inhibit CYP2C19 and are specifically discouraged in the label. Elective surgery generally requires withdrawal several days in advance because the effect cannot be reversed pharmacologically.',
+    },
+    commonQuestions: [
+      {
+        q: 'Should I be tested to see if this drug works for me?',
+        a: 'Two randomised trials tested exactly that idea and neither succeeded. GRAVITAS took 2,214 patients whose platelets were still reactive on standard clopidogrel and doubled the dose. The laboratory measurement improved substantially — 22 fewer percentage points with persistently high reactivity — and the event rate was 2.3% in both arms, hazard ratio 1.01, p=0.97. TAILOR-PCI took the genetic route instead, genotyping 5,302 patients at the point of care and switching carriers of reduced-function CYP2C19 variants to ticagrelor: 4.0% against 5.9%, hazard ratio 0.66, p=0.06 — pointing the right way and not reaching significance, in a trial powered to detect a much larger effect. The biochemistry behind the test is real. Turning it into fewer events has not been demonstrated.',
+        auditNote:
+          'This is the antiplatelet counterpart of the warfarin genotyping story on this site: a genuine pharmacogenetic effect that two randomised strategy trials could not convert into a clinical benefit.',
+      },
+      {
+        q: 'Is clopidogrel better than aspirin?',
+        a: 'Marginally, in the only large head-to-head comparison, and the margin is worth seeing. CAPRIE randomised 19,185 patients with atherosclerotic disease to clopidogrel or aspirin for a mean of nearly two years. Annual risk of ischaemic stroke, heart attack or vascular death was 5.32% against 5.83% — a relative reduction of 8.7% with a confidence interval running from 0.3% to 16.5% and a p-value of 0.043. That is a statistically significant result whose lower bound is close to no difference at all. Safety was comparable, with slightly less gastrointestinal and intracranial bleeding on clopidogrel and slightly more rash and diarrhoea.',
+      },
+      {
+        q: 'Why do I have to stop this before surgery?',
+        a: 'Because the effect cannot be switched off. The active metabolite forms a permanent chemical bond with the receptor on every platelet it reaches, so those platelets stay disabled for the rest of their roughly ten-day lifespan. There is no antidote that reverses the bond; recovery depends entirely on the bone marrow producing new platelets. That is why several days of withdrawal are needed before elective surgery, and why the drug is still working days after the last tablet. The same property is why a missed dose matters less than it would for a reversible drug.',
+      },
+      {
+        q: 'My doctor changed my stomach tablet. Why?',
+        a: 'Probably because omeprazole and esomeprazole inhibit CYP2C19, the enzyme that converts clopidogrel into its active form. Since only about 15% of absorbed clopidogrel goes down that activation route in the first place, an inhibitor of the enzyme reduces active metabolite formation and measurably reduces platelet inhibition, and the US label specifically discourages the combination. Worth being precise about the evidence: that warning rests on pharmacokinetic and platelet-function measurements rather than on randomised outcome data, and the outcome evidence for the interaction is weak. It is a reason to prefer a different acid-reducing drug, such as pantoprazole, rather than to go without acid suppression you need.',
+      },
+      {
+        q: 'If some clopidogrel is good, is more better?',
+        a: 'GRAVITAS answered that directly and the answer was no. Patients with high platelet reactivity after stenting were randomised to a 600 mg reload and 150 mg daily, or to standard 75 mg daily, for six months. The double dose worked pharmacologically — 40% still had high reactivity at 30 days against 62% on standard dose — and produced exactly 25 primary events in each arm, 2.3% against 2.3%. That is one of the clearest demonstrations in cardiology that a surrogate can be corrected without changing anything that matters, and it is the reason platelet function testing is not part of routine care.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for clopidogrel could be cited. The price shown is pharmacy acquisition cost from the CMS NADAC file effective 19 August 2026: about 4.7 cents for a 75 mg tablet. The synthesis is a single alkylation joining two commercial fragments followed by salt formation, with the difficulty concentrated in preserving stereochemistry and selecting the right crystal form of the bisulfate salt — the latter having been the subject of substantial patent litigation. That is process history, not a cost figure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'CAPRIE Steering Committee. A randomised, blinded, trial of clopidogrel versus aspirin in patients at risk of ischaemic events (CAPRIE). Lancet 1996;348:1329-1339',
+        identifier: '10.1016/S0140-6736(96)09457-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Yusuf S et al. Effects of clopidogrel in addition to aspirin in patients with acute coronary syndromes without ST-segment elevation (CURE). N Engl J Med 2001;345:494-502',
+        identifier: '10.1056/NEJMoa010746',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bhatt DL et al. Clopidogrel and aspirin versus aspirin alone for the prevention of atherothrombotic events (CHARISMA). N Engl J Med 2006;354:1706-1717',
+        identifier: '10.1056/NEJMoa060989',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Price MJ et al. Standard- vs high-dose clopidogrel based on platelet function testing after percutaneous coronary intervention (GRAVITAS). JAMA 2011;305:1097-1105',
+        identifier: '10.1001/jama.2011.290',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pereira NL et al. Effect of genotype-guided oral P2Y12 inhibitor selection vs conventional clopidogrel therapy on ischemic outcomes after percutaneous coronary intervention (TAILOR-PCI). JAMA 2020;324:761-771',
+        identifier: '10.1001/jama.2020.12443',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: PLAVIX (clopidogrel bisulfate), NDA 020839, original approval 17 November 1997',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020839',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 60606 — clopidogrel structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/60606',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 15. Apixaban — the one anticoagulant that beat warfarin on stroke, bleeding and death at once,
+  //     and that failed in two other settings where the same reasoning predicted it would work.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'apixaban',
+    name: 'Apixaban',
+    tradeName: 'Eliquis',
+    sponsor: 'Bristol-Myers Squibb with Pfizer',
+    targetGene: 'F10',
+    targetProtein: 'Activated coagulation factor X (factor Xa)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2012,
+    indication:
+      'Reduction of stroke and systemic embolism risk in non-valvular atrial fibrillation; treatment of deep vein thrombosis and pulmonary embolism and reduction of recurrence risk; and prophylaxis of deep vein thrombosis after hip or knee replacement',
+    patientFriendlyIndication:
+      'Preventing stroke in an irregular heartbeat, and treating and preventing blood clots in the legs and lungs',
+    anatomicalSite: 'Circulating plasma and the prothrombinase complex on activated platelet membranes',
+    conditionContext: {
+      conditionExplainer:
+        'Clotting works as a cascade in which each step activates far more of the next, and factor Xa sits at the point where the two initiating branches converge. One molecule of factor Xa in the prothrombinase complex generates roughly a thousand molecules of thrombin, so blocking it is a leverage point: the cascade is throttled before the amplification rather than after.',
+      whyItMatters:
+        'Apixaban is the only anticoagulant that beat warfarin simultaneously on stroke, on major bleeding and on death from any cause in a single trial. That is a rare result. Its counterweight is on this page too: adding it on top of antiplatelet therapy after an acute coronary syndrome tripled major bleeding without reducing ischaemic events, and the trial was stopped early for that reason.',
+      whoTakesThis:
+        'Very widely used for stroke prevention in non-valvular atrial fibrillation and for venous thromboembolism. It is not an option for mechanical heart valves or moderate-to-severe mitral stenosis.',
+      clinicalGoals:
+        'Prevent stroke and systemic embolism, and treat and prevent venous thromboembolism, with less bleeding than the alternative and without laboratory monitoring.',
+    },
+    oneSentenceVerdict:
+      'A direct factor Xa inhibitor that reduced stroke, major bleeding and all-cause death against warfarin in 18,201 patients simultaneously — a result no other anticoagulant has produced — while in 7,392 patients after acute coronary syndrome it raised major bleeding 2.6-fold with a hazard ratio of 0.95 for ischaemic events, and that trial was stopped early.',
+    laymanHowItWorks:
+      'Clotting is a chain reaction where each step makes much more of the next. Apixaban blocks one enzyme near the point where the chain converges and multiplies, so far less thrombin is produced and clots form much more slowly. Unlike warfarin it acts directly on the enzyme rather than on how the liver builds it, so it works within hours and needs no blood test to guide the dose.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 90,
+    substitutes: {
+      summary:
+        'Apixaban costs about US$5.52 per tablet in the United States against about nine cents for warfarin — roughly sixty times the acquisition cost for a drug that prevented about three extra strokes and about ten fewer major bleeds per thousand patient-years in ARISTOTLE. Rivaroxaban is the closest alternative and its atrial fibrillation trial showed non-inferiority rather than superiority. Aspirin is not an adequate alternative and ARTESIA quantifies why.',
+      conventionalRx: [
+        {
+          name: 'Warfarin',
+          class: 'Vitamin K antagonist',
+          howItCompares:
+            'In ARISTOTLE, stroke or systemic embolism occurred at 1.60% per year on warfarin against 1.27% on apixaban, major bleeding at 3.09% against 2.13%, and death from any cause at 3.94% against 3.52%. The advantage was concentrated in haemorrhagic stroke (0.47% against 0.24% per year); ischaemic stroke did not significantly differ. Warfarin remains the only option for mechanical valves.',
+          typicalCost:
+            'US$0.089 per 5 mg warfarin sodium tablet against US$5.52 per 5 mg ELIQUIS tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros for warfarin: sixtyfold cheaper, reversible, and the only choice for mechanical valves and rheumatic mitral stenosis. Cons: INR monitoring, dietary interaction, and it lost on all three endpoints in ARISTOTLE.',
+        },
+        {
+          name: 'Rivaroxaban (Xarelto)',
+          class: 'Direct factor Xa inhibitor',
+          howItCompares:
+            'Once daily rather than twice, and its atrial fibrillation trial demonstrated non-inferiority to warfarin rather than superiority. It has been directly compared with apixaban only in observational data, never in a randomised trial.',
+          typicalCost: 'Brand-priced, in the same range as apixaban',
+          prosAndCons:
+            'Pros: once-daily dosing, and a distinct indication in COMPASS for stable atherosclerotic disease at a low dose alongside aspirin. Cons: more gastrointestinal bleeding than warfarin in its own trial, and it lost to a vitamin K antagonist in rheumatic heart disease.',
+        },
+        {
+          name: 'Aspirin',
+          class: 'Antiplatelet',
+          howItCompares:
+            'In AVERROES, 5,599 patients unsuitable for a vitamin K antagonist were randomised to apixaban or aspirin. The trial was stopped early: stroke or systemic embolism occurred at 1.6% per year against 3.7%, hazard ratio 0.45 (95% CI 0.32 to 0.62), p<0.001, with major bleeding of 1.4% against 1.2% per year and no significant difference (p=0.57).',
+          typicalCost: 'Pennies per tablet',
+          prosAndCons:
+            'Pros: minimal cost. Cons: less than half the stroke protection for essentially the same major bleeding rate, which is why aspirin is no longer an accepted alternative to anticoagulation in atrial fibrillation.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'There is no INR to check, and that cuts both ways',
+          action:
+            'Take it consistently twice daily. Nothing routinely measures whether you are taking it.',
+          patientImpact:
+            'Apixaban has a half-life of about 12 hours and no monitoring test in routine use, so a missed dose leaves a person effectively unprotected within a day and nobody will notice. Warfarin, for all its inconvenience, has a monitoring system that detects non-adherence.',
+          clinicalPrecaution:
+            'A specific reversal agent, andexanet alfa, exists for factor Xa inhibitors and prothrombin complex concentrate is also used. Reversal is not a reason to be casual about adherence.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'COC1=CC=C(C=C1)N2C3=C(CCN(C3=O)C4=CC=C(C=C4)N5CCCCC5=O)C(=N2)C(=O)N',
+      chemicalFormula: 'C25H25N5O4',
+      molecularWeight: '459.5 g/mol',
+      targetReceptorAffinity:
+        'A direct, reversible, competitive inhibitor of the active site of factor Xa, both free in plasma and assembled into the prothrombinase complex, with sub-nanomolar affinity and high selectivity over thrombin and the other coagulation serine proteases. It also inhibits prothrombinase-bound and clot-associated factor Xa, which the indirect inhibitors that work through antithrombin do not — the pharmacological difference between this class and heparin.',
+      structureSource: {
+        label:
+          'PubChem CID 10182969 (apixaban) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10182969',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'api-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of the methoxyphenyl hydrazone and the valerolactam aniline',
+          description:
+            'Assay the chloro-hydrazone bearing the 4-methoxyphenyl group and the 1-(4-aminophenyl)piperidin-2-one for regiochemical purity and residual metals. Both aryl substituents are the parts that occupy the S1 and S4 pockets of factor Xa, and both are para-substituted; a meta isomer produces a compound of identical mass with far lower affinity.',
+          reagentsAndBuffer:
+            '4-methoxyphenylhydrazine-derived chlorohydrazone reference standard, 1-(4-aminophenyl)piperidin-2-one, HPLC with UV detection, inductively coupled plasma mass spectrometry for residual palladium and copper, Karl Fischer titration',
+        },
+        {
+          id: 'api-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Cycloaddition and lactamisation to the bicyclic pyrazolo-pyridinone core',
+          description:
+            'Generate the nitrile imine from the chlorohydrazone under base and trap it with the dihydropyridinone dipolarophile, then close the second ring onto the valerolactam aniline. The fused bicycle is planar and rigid, which is the design point: it holds the two aryl arms at a fixed angle matching the distance between the S1 and S4 subsites, so unlike a flexible chain it pays no entropic penalty on binding.',
+          dependsOnStepId: 'api-w1',
+          reagentsAndBuffer:
+            'Triethylamine or diisopropylethylamine in toluene or dimethylformamide under nitrogen, the morpholino-dihydropyridinone dipolarophile, controlled addition with temperature held below 60 degrees Celsius',
+        },
+        {
+          id: 'api-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Ester to primary carboxamide conversion and particle size control',
+          description:
+            'Convert the ester to the primary carboxamide with ammonia and crystallise, then control particle size. Particle size is a release specification rather than a nicety: apixaban has low aqueous solubility and its absorption becomes dissolution-limited at higher strengths, so the milled size distribution is part of what makes a fixed dose behave predictably without monitoring.',
+          dependsOnStepId: 'api-w2',
+          reagentsAndBuffer:
+            'Ammonia in methanol or formamide with sodium methoxide, ethanol/water recrystallisation, laser diffraction particle size analysis, X-ray powder diffraction for form confirmation, reversed-phase HPLC against the carboxylic acid hydrolysis impurity',
+        },
+        {
+          id: 'api-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'CYP3A4 and P-glycoprotein handling in hepatocyte and transporter systems',
+          description:
+            'Measure metabolic clearance in primary human hepatocytes and efflux in P-glycoprotein and BCRP-transfected monolayers. Apixaban is a substrate of both CYP3A4 and P-glycoprotein, which is why combined strong inhibitors or inducers of both change exposure enough to appear in the label — a much shorter interaction list than warfarin, but not an empty one.',
+          dependsOnStepId: 'api-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes, recombinant CYP3A4 and CYP3A5 microsomes with NADPH regenerating system, MDCK-II or Caco-2 monolayers overexpressing ABCB1 and ABCG2, ketoconazole and elacridar as inhibitor controls, LC-MS/MS quantification',
+        },
+        {
+          id: 'api-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Anti-factor Xa activity and thrombin generation readout',
+          description:
+            'Measure inhibition of purified factor Xa amidolytic activity by chromogenic assay, and separately measure thrombin generation in platelet-poor plasma. Both are needed because the chromogenic assay reports inhibition of free enzyme against a small synthetic substrate, while thrombin generation reports what happens to the amplification step in a physiological mixture — and the whole rationale for targeting factor Xa is the roughly thousandfold amplification that only the second assay can see.',
+          dependsOnStepId: 'api-w4',
+          reagentsAndBuffer:
+            'Purified human factor Xa, chromogenic substrate S-2765 or equivalent, 20 mM Tris-HCl with 200 mM sodium chloride and 0.1% bovine serum albumin at pH 7.4, calibrated automated thrombogram with tissue factor and phospholipid trigger in platelet-poor plasma, apixaban calibrator plasma for the anti-Xa standard curve',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'api-a1',
+        category: 'measured',
+        title: 'ARISTOTLE: better than warfarin on stroke, bleeding and death simultaneously',
+        laymanSummary:
+          'Eighteen thousand patients with atrial fibrillation were randomised to apixaban or well-managed warfarin. Apixaban produced fewer strokes, less major bleeding and fewer deaths — all three at once, which is unusual.',
+        technicalDetails:
+          'ARISTOTLE randomised 18,201 patients with atrial fibrillation and at least one additional stroke risk factor to apixaban 5 mg twice daily or warfarin targeted to an INR of 2.0 to 3.0, median follow-up 1.8 years, designed as a non-inferiority trial with prespecified superiority testing. Stroke or systemic embolism occurred at 1.27% per year against 1.60%: hazard ratio 0.79 (95% CI 0.66 to 0.95), p<0.001 for non-inferiority and p=0.01 for superiority. Major bleeding was 2.13% against 3.09% per year (0.69, 0.60 to 0.80, p<0.001). Death from any cause was 3.52% against 3.94% (0.89, 0.80 to 0.99, p=0.047). Haemorrhagic stroke was 0.24% against 0.47% per year (0.51, 0.35 to 0.75, p<0.001), while ischaemic or uncertain-type stroke was 0.97% against 1.05% (0.92, 0.74 to 1.13, p=0.42).',
+        evidenceSource: 'Granger CB et al., ARISTOTLE, N Engl J Med 2011;365:981-992 (NCT00412984)',
+        doi: '10.1056/NEJMoa1107039',
+        measuredMetric:
+          'Annual rates of stroke or systemic embolism, major bleeding and all-cause death, apixaban versus warfarin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'api-a2',
+        category: 'inferred',
+        title: 'The superiority came from bleeding into the brain, not from preventing clots better',
+        laymanSummary:
+          'Break the stroke result apart and the difference is almost entirely haemorrhagic stroke. Ischaemic strokes — the kind caused by a clot — were not significantly reduced.',
+        technicalDetails:
+          'In ARISTOTLE, haemorrhagic stroke occurred at 0.24% per year on apixaban against 0.47% on warfarin, hazard ratio 0.51 (95% CI 0.35 to 0.75), p<0.001 — a halving. Ischaemic or uncertain-type stroke occurred at 0.97% against 1.05%, hazard ratio 0.92 (0.74 to 1.13), p=0.42, which does not exclude no effect. Since the primary endpoint pooled both, the headline superiority is driven by the haemorrhagic component. Mechanistically that is coherent: both drugs prevent thromboembolic stroke, and apixaban causes less intracranial bleeding, so an endpoint that counts both kinds of stroke together favours the drug that bleeds less. It matters for interpretation because "apixaban prevents more strokes" and "apixaban causes fewer brain bleeds" are different statements and only the second is clearly demonstrated.',
+        evidenceSource: 'Granger CB et al., ARISTOTLE, N Engl J Med 2011;365:981-992',
+        doi: '10.1056/NEJMoa1107039',
+        inferredClaim:
+          'That apixaban prevents thromboembolic stroke more effectively than warfarin — the ischaemic stroke hazard ratio was 0.92 with p=0.42, and the composite was carried by haemorrhagic stroke',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'api-a3',
+        category: 'failed',
+        title: 'APPRAISE-2: stopped early for bleeding with no ischaemic benefit at all',
+        laymanSummary:
+          'Adding apixaban on top of antiplatelet drugs after an acute coronary syndrome tripled major bleeding and prevented nothing. The trial was halted after 7,392 patients.',
+        technicalDetails:
+          'APPRAISE-2 randomised patients with a recent acute coronary syndrome and at least two additional risk factors to apixaban 5 mg twice daily or placebo on top of standard antiplatelet therapy. The trial was terminated prematurely after 7,392 patients because of increased major bleeding without a counterbalancing reduction in ischaemic events. At a median 241 days the primary outcome of cardiovascular death, myocardial infarction or ischaemic stroke occurred in 279 of 3,705 (7.5%, 13.2 per 100 patient-years) on apixaban against 293 of 3,687 (7.9%, 14.0 per 100 patient-years): hazard ratio 0.95 (95% CI 0.80 to 1.11), p=0.51. TIMI major bleeding occurred in 46 of 3,673 (1.3%, 2.4 per 100 patient-years) against 18 of 3,642 (0.5%, 0.9 per 100 patient-years): hazard ratio 2.59 (1.50 to 4.46), p=0.001, with more intracranial and fatal bleeding on apixaban.',
+        evidenceSource:
+          'Alexander JH et al., APPRAISE-2, N Engl J Med 2011;365:699-708 (NCT00831441)',
+        doi: '10.1056/NEJMoa1105819',
+        measuredMetric:
+          'Cardiovascular death, myocardial infarction or ischaemic stroke, and TIMI major bleeding, at a median 241 days',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'api-a4',
+        category: 'failed',
+        title: 'ADOPT: extended prophylaxis in medical inpatients was not superior and bled more',
+        laymanSummary:
+          'Thirty days of apixaban after a medical hospital admission was tested against a shorter course of an injected drug. It prevented no more clots and caused more major bleeding.',
+        technicalDetails:
+          'ADOPT randomised 6,528 acutely ill medical inpatients with heart failure, respiratory failure or another qualifying disorder plus a venous thromboembolism risk factor and an expected stay of at least 3 days, to apixaban 2.5 mg twice daily orally for 30 days or enoxaparin 40 mg subcutaneously once daily for 6 to 14 days. Of 4,495 evaluable for the primary efficacy outcome, the 30-day composite of venous-thromboembolism-related death, pulmonary embolism, symptomatic deep-vein thrombosis or asymptomatic proximal-leg thrombosis on systematic ultrasonography occurred in 2.71% (60 patients) on apixaban against 3.06% (70 patients) on enoxaparin: relative risk 0.87 (95% CI 0.62 to 1.23), p=0.44. Major bleeding by day 30 occurred in 0.47% (15 of 3,184) against 0.19% (6 of 3,217): relative risk 2.58 (1.02 to 7.24), p=0.04.',
+        evidenceSource: 'Goldhaber SZ et al., ADOPT, N Engl J Med 2011;365:2167-2177 (NCT00457002)',
+        doi: '10.1056/NEJMoa1110899',
+        measuredMetric:
+          'Thirty-day composite venous thromboembolism outcome and major bleeding, extended apixaban versus short-course enoxaparin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'api-a5',
+        category: 'measured',
+        title: 'AMPLIFY: same efficacy as warfarin in venous thromboembolism with a third of the bleeding',
+        laymanSummary:
+          'For treating clots in the legs and lungs, a fixed-dose oral regimen matched injections plus warfarin for effectiveness and caused about a third as much major bleeding.',
+        technicalDetails:
+          'AMPLIFY randomised 5,395 patients with acute venous thromboembolism to apixaban 10 mg twice daily for 7 days then 5 mg twice daily for 6 months, or to conventional therapy with subcutaneous enoxaparin followed by warfarin. Recurrent symptomatic venous thromboembolism or related death occurred in 59 of 2,609 (2.3%) against 71 of 2,635 (2.7%): relative risk 0.84 (95% CI 0.60 to 1.18), risk difference -0.4 percentage points (-1.3 to 0.4), meeting non-inferiority at p<0.001 for both prespecified margins. Major bleeding occurred in 0.6% against 1.8%: relative risk 0.31 (0.17 to 0.55), p<0.001 for superiority. Major plus clinically relevant non-major bleeding was 4.3% against 9.7%: relative risk 0.44 (0.36 to 0.55), p<0.001. Other adverse events were similar.',
+        evidenceSource: 'Agnelli G et al., AMPLIFY, N Engl J Med 2013;369:799-808 (NCT00643201)',
+        doi: '10.1056/NEJMoa1302507',
+        measuredMetric:
+          'Recurrent venous thromboembolism or related death, and major bleeding, over 6 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'api-a6',
+        category: 'measured',
+        title: 'ARTESIA: in subclinical atrial fibrillation, fewer strokes and more bleeds',
+        laymanSummary:
+          'Brief episodes of irregular heartbeat picked up by an implanted device present a genuine trade. Anticoagulating them prevented about five strokes per thousand patient-years and caused about eight extra major bleeds.',
+        technicalDetails:
+          'ARTESIA randomised 4,012 patients with device-detected subclinical atrial fibrillation lasting 6 minutes to 24 hours, mean age 76.8 years, mean CHA2DS2-VASc 3.9, 36.1% women, to apixaban 5 mg twice daily (2.5 mg where indicated) or aspirin 81 mg daily in a double-blind double-dummy design. After a mean 3.5 years, stroke or systemic embolism occurred in 55 patients on apixaban (0.78% per patient-year) against 86 on aspirin (1.24%): hazard ratio 0.63 (95% CI 0.45 to 0.88), p=0.007. In the on-treatment population, major bleeding was 1.71% per patient-year against 0.94%: hazard ratio 1.80 (1.26 to 2.57), p=0.001. Fatal bleeding occurred in 5 patients on apixaban and 8 on aspirin. The absolute stroke reduction is smaller than the absolute bleeding increase, and which matters more depends on the relative severity attached to each.',
+        evidenceSource: 'Healey JS et al., ARTESIA, N Engl J Med 2024;390:107-117 (NCT01938248)',
+        doi: '10.1056/NEJMoa2310234',
+        measuredMetric:
+          'Stroke or systemic embolism and major bleeding per patient-year over a mean 3.5 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'api-a7',
+        category: 'measured',
+        title: 'AVERROES: against aspirin the trade is one-sided, and the trial was stopped early',
+        laymanSummary:
+          'In people who could not take warfarin, apixaban cut strokes by more than half against aspirin without a significant increase in major bleeding. The monitoring board stopped the trial.',
+        technicalDetails:
+          'AVERROES randomised 5,599 patients with atrial fibrillation at increased stroke risk for whom vitamin K antagonist therapy was unsuitable to apixaban 5 mg twice daily or aspirin 81 to 324 mg daily; 40% had previously used a vitamin K antagonist. The data and safety monitoring board recommended early termination for clear benefit. Over a mean 1.1 years, stroke or systemic embolism occurred in 51 patients on apixaban (1.6% per year) against 113 on aspirin (3.7% per year): hazard ratio 0.45 (95% CI 0.32 to 0.62), p<0.001. Death was 3.5% against 4.4% per year (0.79, 0.62 to 1.02, p=0.07). Major bleeding was 1.4% against 1.2% per year (1.13, 0.74 to 1.75, p=0.57), with 11 intracranial bleeds on apixaban and 13 on aspirin. First cardiovascular hospitalisation fell from 15.9% to 12.6% per year (p<0.001).',
+        evidenceSource: 'Connolly SJ et al., AVERROES, N Engl J Med 2011;364:806-817 (NCT00496769)',
+        doi: '10.1056/NEJMoa1007432',
+        measuredMetric:
+          'Stroke or systemic embolism per year, and major bleeding, apixaban versus aspirin',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed within hours and cleared by several routes at once',
+        laymanDesc:
+          'The tablet works within a few hours. The body removes it by a mixture of liver metabolism, gut excretion and kidney clearance, so no single route dominates.',
+        molecularDetail:
+          'Oral bioavailability is about 50%, with peak concentration at 3 to 4 hours and a half-life around 12 hours. Elimination is multi-route: roughly 27% renal, with CYP3A4-mediated metabolism, biliary and direct intestinal excretion accounting for the remainder. Because no single pathway carries the whole load, renal impairment affects apixaban less than the other factor Xa inhibitors.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It works in the plasma, not inside any cell',
+        laymanDesc:
+          'Its target floats in the blood and assembles on the surface of activated platelets. Nothing has to be transported into a cell.',
+        molecularDetail:
+          'Factor Xa circulates free and assembles with factor Va, calcium and anionic phospholipid on activated platelet membranes to form the prothrombinase complex. Apixaban inhibits both free and complex-bound factor Xa, and factor Xa within a formed clot — the pharmacological gap that heparins, which act indirectly through antithrombin, cannot reach.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A rigid bicycle spans two pockets of the enzyme at once',
+        laymanDesc:
+          'The molecule is stiff and holds two arms exactly the right distance apart to fill two neighbouring grooves in the enzyme, which is why it binds so tightly.',
+        molecularDetail:
+          'The fused pyrazolo-pyridinone core is planar and conformationally locked, positioning the 4-methoxyphenyl group in the S1 pocket and the phenyl-valerolactam in the S4 aryl-binding box. Unusually for a factor Xa inhibitor, the S1 group is neutral rather than a basic amidine, which is what gives the molecule oral bioavailability where the earlier amidine-containing inhibitors had none.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Thrombin generation collapses at the amplification step',
+        laymanDesc:
+          'Because each blocked enzyme would have produced about a thousand molecules of the next one, blocking it here has an outsized effect on how much clotting protein gets made.',
+        molecularDetail:
+          'One molecule of factor Xa in the prothrombinase complex generates on the order of a thousand thrombin molecules, so inhibition at this node throttles the cascade before amplification. Thrombin generation falls, and with it fibrin formation, thrombin-mediated platelet activation and factor XIII-mediated clot stabilisation. Platelet function itself is untouched, which is why apixaban and antiplatelet drugs have additive bleeding risk — the mechanism behind APPRAISE-2.',
+        iconName: 'Split',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Fewer strokes and fewer brain bleeds than warfarin, and more bleeding than aspirin',
+        laymanDesc:
+          'Against warfarin the drug wins on strokes, bleeding and deaths at once. Against aspirin it prevents far more strokes at the cost of more bleeding. Added on top of antiplatelet drugs, it bleeds without helping.',
+        molecularDetail:
+          'In ARISTOTLE, stroke or systemic embolism 1.27% against 1.60% per year, major bleeding 2.13% against 3.09%, death 3.52% against 3.94%. In ARTESIA, stroke 0.78% against 1.24% per patient-year with major bleeding 1.71% against 0.94%. In APPRAISE-2, ischaemic hazard ratio 0.95 with TIMI major bleeding hazard ratio 2.59.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ARISTOTLE (NCT00412984)',
+        phase: 'Randomised double-blind active-controlled trial, median 1.8 years',
+        sampleSize: 18201,
+        primaryEndpoint: 'Ischaemic or haemorrhagic stroke or systemic embolism',
+        endpointMet: true,
+        statisticalPValue:
+          'HR 0.79 (95% CI 0.66-0.95), P < 0.001 for non-inferiority and P = 0.01 for superiority',
+        unreportedAdverseSignals:
+          'Ischaemic or uncertain-type stroke was not significantly reduced (HR 0.92, p=0.42). The composite advantage came from haemorrhagic stroke.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'AVERROES (NCT00496769)',
+        phase: 'Randomised double-blind active-controlled trial, stopped early, mean 1.1 years',
+        sampleSize: 5599,
+        primaryEndpoint:
+          'Stroke or systemic embolism, apixaban versus aspirin, in patients unsuitable for a vitamin K antagonist',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.45 (95% CI 0.32-0.62), P < 0.001',
+        unreportedAdverseSignals:
+          'Death from any cause was 3.5% against 4.4% per year but did not reach significance (p=0.07). Early stopping inflates measured effect size.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'AMPLIFY (NCT00643201)',
+        phase: 'Randomised double-blind active-controlled trial, 6 months',
+        sampleSize: 5395,
+        primaryEndpoint:
+          'Recurrent symptomatic venous thromboembolism or venous-thromboembolism-related death',
+        endpointMet: true,
+        statisticalPValue:
+          'RR 0.84 (95% CI 0.60-1.18); non-inferiority met at P < 0.001. Major bleeding RR 0.31 (0.17-0.55), P < 0.001 for superiority.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'APPRAISE-2 (NCT00831441)',
+        phase: 'Randomised double-blind placebo-controlled trial, terminated early, median 241 days',
+        sampleSize: 7392,
+        primaryEndpoint:
+          'Cardiovascular death, myocardial infarction or ischaemic stroke added to antiplatelet therapy after acute coronary syndrome',
+        endpointMet: false,
+        statisticalPValue: 'HR 0.95 (95% CI 0.80-1.11), P = 0.51',
+        unreportedAdverseSignals:
+          'TIMI major bleeding HR 2.59 (1.50-4.46), p=0.001, with more intracranial and fatal bleeding. The trial was stopped for harm without benefit.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'ADOPT (NCT00457002)',
+        phase: 'Randomised double-blind double-dummy active-controlled trial, 30 days',
+        sampleSize: 6528,
+        primaryEndpoint:
+          'Thirty-day composite of venous-thromboembolism-related death, pulmonary embolism, symptomatic deep-vein thrombosis or asymptomatic proximal-leg thrombosis',
+        endpointMet: false,
+        statisticalPValue: 'RR 0.87 (95% CI 0.62-1.23), P = 0.44',
+        unreportedAdverseSignals:
+          'Major bleeding 0.47% against 0.19%, RR 2.58 (1.02-7.24), p=0.04. No efficacy gain and more bleeding.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'ARTESIA (NCT01938248)',
+        phase: 'Randomised double-blind double-dummy active-controlled trial, mean 3.5 years',
+        sampleSize: 4012,
+        primaryEndpoint:
+          'Stroke or systemic embolism in device-detected subclinical atrial fibrillation of 6 minutes to 24 hours',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.63 (95% CI 0.45-0.88), P = 0.007',
+        unreportedAdverseSignals:
+          'Major bleeding 1.71% against 0.94% per patient-year, HR 1.80 (1.26-2.57), p=0.001 — an absolute bleeding increase larger than the absolute stroke reduction.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Stroke or systemic embolism 1.27% against 1.60% per year, major bleeding 2.13% against 3.09%, and death 3.52% against 3.94%, all against warfarin in 18,201 patients',
+        'Haemorrhagic stroke halved (0.24% against 0.47% per year) while ischaemic stroke was not significantly different',
+        'Major bleeding 0.6% against 1.8% in 5,395 patients treated for venous thromboembolism, with equivalent efficacy',
+        'TIMI major bleeding 2.59 times higher with no ischaemic benefit when added to antiplatelet therapy in 7,392 patients',
+      ],
+      unsupportedInferences: [
+        'That apixaban prevents thromboembolic stroke better than warfarin — ischaemic stroke gave a hazard ratio of 0.92 with p=0.42',
+        'That a drug superior to warfarin in atrial fibrillation will help in adjacent settings — APPRAISE-2 and ADOPT both failed, one of them stopped early for harm',
+        'That anticoagulating device-detected brief atrial fibrillation is straightforwardly beneficial — ARTESIA prevented about 5 strokes and caused about 8 major bleeds per 1,000 patient-years',
+        'That apixaban is superior to rivaroxaban — no randomised head-to-head trial exists',
+      ],
+      whatFailedInitially: [
+        'APPRAISE-2 was terminated after 7,392 patients for increased major bleeding without a counterbalancing ischaemic reduction',
+        'ADOPT found extended apixaban prophylaxis no more effective than short-course enoxaparin and more likely to cause major bleeding',
+        'The ischaemic stroke component of ARISTOTLE, the endpoint the drug was designed to change, did not reach significance',
+      ],
+      realWorldOutcome: [
+        'Among the highest-revenue prescription products in the world, and the default anticoagulant for non-valvular atrial fibrillation in most guidelines',
+        'US$5.52 per 5 mg ELIQUIS tablet at United States pharmacy acquisition cost against US$0.089 per 5 mg warfarin tablet on the same date',
+        'A specific reversal agent, andexanet alfa, was approved for factor Xa inhibitors — the objection that these drugs had no antidote no longer holds',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, twice daily, in two strengths',
+      description:
+        'Twice daily with or without food. No routine coagulation monitoring is used, which removes the burden of the INR clinic and also removes the mechanism that would detect a patient who has stopped taking it. Absorption is dissolution-limited at higher strengths, which is why particle size is a manufacturing specification.',
+      safetyProfile:
+        'The US label carries two boxed warnings: increased risk of thrombotic events including stroke on premature discontinuation, and spinal or epidural haematoma with neuraxial anaesthesia or spinal puncture. Bleeding is the principal risk and is additive with antiplatelet drugs, as APPRAISE-2 demonstrated. Combined strong CYP3A4 and P-glycoprotein inhibitors or inducers change exposure. It is contraindicated in mechanical heart valves.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is apixaban really better than warfarin?',
+        a: 'On the randomised evidence, yes, and unusually clearly. ARISTOTLE randomised 18,201 people with atrial fibrillation to apixaban or warfarin managed to a proper INR target, and apixaban came out ahead on three separate endpoints at once: strokes 1.27% against 1.60% per year, major bleeding 2.13% against 3.09%, deaths 3.52% against 3.94%. Winning on efficacy and safety and mortality in the same trial is rare. Worth understanding where the win came from: haemorrhagic stroke was halved, 0.24% against 0.47% per year, while ischaemic stroke — the clot kind — was 0.97% against 1.05% and not significantly different. So the drug is not better at stopping clots; it is much less likely to cause bleeding into the brain, and the stroke endpoint counted both.',
+        auditNote:
+          'Decomposing the primary endpoint changes what the trial is evidence for. Both statements are true and only one is usually reported.',
+      },
+      {
+        q: 'Is it safe to skip a dose?',
+        a: 'Less safe than with warfarin, and for a specific reason. Apixaban has a half-life of about 12 hours, so a missed twice-daily dose leaves you meaningfully less protected within a day, and there is no blood test in routine use that would reveal it. Warfarin, for all its inconvenience, takes days to wear off and has a monitoring system that detects non-adherence. The convenience of not needing an INR clinic is real, and the cost of that convenience is that nothing checks whether the drug is being taken. The US label carries a boxed warning about increased thrombotic risk on premature discontinuation.',
+      },
+      {
+        q: 'Why can I not take this with a mechanical heart valve?',
+        a: 'Because it was tested there and did worse. Mechanical valve surfaces activate coagulation by a route in which contact activation and factor XII play a much larger part than in atrial fibrillation, and the direct oral anticoagulants do not cover that route as a vitamin K antagonist does. A trial of a direct oral anticoagulant against warfarin in mechanical valve patients was stopped for excess thromboembolism and bleeding, and the class now carries a contraindication. The same pattern shows up in rheumatic mitral stenosis, where INVICTUS found a vitamin K antagonist superior to rivaroxaban in 4,565 patients.',
+      },
+      {
+        q: 'My device found a few minutes of irregular heartbeat. Should I anticoagulate?',
+        a: 'ARTESIA measured exactly that trade in 4,012 people with device-detected atrial fibrillation lasting between 6 minutes and 24 hours, and it is genuinely a trade rather than a clear win. Over a mean of 3.5 years, strokes or systemic embolism occurred at 0.78% per patient-year on apixaban against 1.24% on aspirin — about 5 fewer per thousand patient-years. Major bleeding occurred at 1.71% per patient-year against 0.94% — about 8 more per thousand. Whether that is worth it depends on how you weigh a stroke against a major bleed, which is not a question a trial can answer for you, and on your individual stroke risk.',
+      },
+      {
+        q: 'Can it be reversed if I bleed?',
+        a: 'Yes. Andexanet alfa is a specific reversal agent for factor Xa inhibitors, and prothrombin complex concentrate is also used. The original objection to this class — that unlike warfarin there was no antidote — was true when the drugs launched and is no longer. Worth keeping in perspective alongside the bleeding rates themselves: in ARISTOTLE major bleeding was lower on apixaban than on warfarin (2.13% against 3.09% per year) and intracranial bleeding, the kind least amenable to any reversal, was less than half as common.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for apixaban could be cited. The price shown is pharmacy acquisition cost from the CMS NADAC file effective 19 August 2026: US$5.52 for a 5 mg ELIQUIS tablet, with no generic listing, against about 8.9 cents for a 5 mg warfarin tablet. The synthesis involves a dipolar cycloaddition to build a fused bicycle, a lactam coupling and an amide conversion, with particle size controlled at release because absorption is dissolution-limited. That is a more involved route than warfarin\'s single Michael addition, and it is a description of chemistry, not a cost figure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Granger CB et al. Apixaban versus warfarin in patients with atrial fibrillation (ARISTOTLE). N Engl J Med 2011;365:981-992',
+        identifier: '10.1056/NEJMoa1107039',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Connolly SJ et al. Apixaban in patients with atrial fibrillation (AVERROES). N Engl J Med 2011;364:806-817',
+        identifier: '10.1056/NEJMoa1007432',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Agnelli G et al. Oral apixaban for the treatment of acute venous thromboembolism (AMPLIFY). N Engl J Med 2013;369:799-808',
+        identifier: '10.1056/NEJMoa1302507',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Alexander JH et al. Apixaban with antiplatelet therapy after acute coronary syndrome (APPRAISE-2). N Engl J Med 2011;365:699-708',
+        identifier: '10.1056/NEJMoa1105819',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Goldhaber SZ et al. Apixaban versus enoxaparin for thromboprophylaxis in medically ill patients (ADOPT). N Engl J Med 2011;365:2167-2177',
+        identifier: '10.1056/NEJMoa1110899',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Healey JS et al. Apixaban for stroke prevention in subclinical atrial fibrillation (ARTESIA). N Engl J Med 2024;390:107-117',
+        identifier: '10.1056/NEJMoa2310234',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: ELIQUIS (apixaban), NDA 202155, original approval 28 December 2012',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=202155',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 10182969 — apixaban structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10182969',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 16. Colchicine — two positive cardiovascular trials, a new indication, and then the largest
+  //     trial of all returning a hazard ratio of 0.99 with the inflammation marker still falling.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'colchicine',
+    name: 'Colchicine',
+    tradeName: 'Colcrys / Mitigare / Lodoco',
+    sponsor:
+      'A plant alkaloid in medical use for centuries; Takeda (Colcrys), Hikma (Mitigare) and Agepha Pharma (Lodoco, the 0.5 mg cardiovascular product) hold United States approvals',
+    targetGene: 'TUBB',
+    targetProtein: 'Beta-tubulin, at the tubulin dimer interface',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2009,
+    indication:
+      'Prophylaxis and treatment of gout flares; treatment of familial Mediterranean fever; and, for the 0.5 mg product approved in 2023, reduction of myocardial infarction, stroke, coronary revascularisation and cardiovascular death in adults with established atherosclerotic disease or multiple risk factors',
+    patientFriendlyIndication:
+      'Gout attacks, familial Mediterranean fever, and — for one specific product — reducing heart attack and stroke risk in established artery disease',
+    anatomicalSite: 'Neutrophil and monocyte cytoskeleton',
+    conditionContext: {
+      conditionExplainer:
+        'Atherosclerotic plaque is inflamed tissue, and much of what makes it rupture is white cell activity inside it. Colchicine binds tubulin and prevents microtubules from assembling, which cripples the cell movements that inflammation depends on: neutrophil crawling, adhesion molecule display and assembly of the NLRP3 inflammasome that produces interleukin-1 beta.',
+      whyItMatters:
+        'This is the cheapest available test of the inflammation hypothesis in atherosclerosis. Two randomised trials found substantial benefit and a product was approved on them in 2023. The largest trial, reported in 2025 with 7,062 patients and three years of follow-up, found a hazard ratio of 0.99 — while confirming that the drug did lower C-reactive protein. Both results are on this page.',
+      whoTakesThis:
+        'People with gout, people with familial Mediterranean fever, people with recurrent pericarditis, and — following the 2023 approval — some people with established coronary disease.',
+      clinicalGoals:
+        'In gout, abort or prevent flares. In cardiovascular disease, reduce ischaemic events; whether it does so is the open question this page documents.',
+    },
+    oneSentenceVerdict:
+      'A two-thousand-year-old plant alkaloid that reduced ischaemic events by 23% in 4,745 patients after myocardial infarction and by 31% in 5,522 with chronic coronary disease, earned a cardiovascular indication in 2023, and then produced a hazard ratio of 0.99 in 7,062 patients followed for three years while still lowering C-reactive protein by 1.28 mg/L.',
+    laymanHowItWorks:
+      'White blood cells crawl, grip and reorganise themselves using internal scaffolding made of protein tubes. Colchicine binds the building block of those tubes so they cannot assemble. The cells cannot move properly, cannot stick to vessel walls as readily, and cannot assemble the machine that makes one of the main inflammatory signals. That is why it works in gout, and it is the reason it was tried in artery disease.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    substitutes: {
+      summary:
+        'Generic colchicine tablets are inexpensive, though the United States saw a well-documented price rise after an unapproved-drug product was granted exclusivity in 2009. For gout its alternatives are non-steroidal anti-inflammatories and corticosteroids for flares, and allopurinol for prevention. For the cardiovascular indication its position is genuinely unsettled after the 2025 trial, and a statin remains the far better-evidenced anti-atherosclerotic drug.',
+      conventionalRx: [
+        {
+          name: 'Allopurinol',
+          class: 'Xanthine oxidase inhibitor',
+          howItCompares:
+            'Prevents gout by lowering urate production rather than by suppressing the inflammatory response to crystals already deposited. The two treat different halves of the same disease and are commonly used together during the period when urate-lowering itself can precipitate flares.',
+          typicalCost: 'A low-cost generic',
+          prosAndCons:
+            'Pros: addresses the cause rather than the flare, cheap. Cons: rare severe hypersensitivity, strongly associated with HLA-B*58:01, and it does not treat an attack in progress.',
+        },
+        {
+          name: 'Atorvastatin or rosuvastatin',
+          class: 'HMG-CoA reductase inhibitor',
+          howItCompares:
+            'Lowers both LDL cholesterol and C-reactive protein, and has outcome evidence across 26 randomised trials and 170,000 participants. Where colchicine is being considered for cardiovascular risk it is as an addition to a statin, not instead of one.',
+          typicalCost:
+            'US$0.023 per 10 mg generic atorvastatin tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: far larger and more consistent outcome evidence base. Cons: it lowers inflammation and LDL together, so it cannot itself test the inflammation hypothesis.',
+        },
+        {
+          name: 'A non-steroidal anti-inflammatory or a corticosteroid',
+          class: 'Alternative gout flare therapies',
+          howItCompares:
+            'Comparable at aborting an acute flare, with different limiting toxicities: gastrointestinal and renal for the anti-inflammatories, glycaemic and other systemic effects for steroids, and diarrhoea for colchicine.',
+          typicalCost: 'All low-cost generics',
+          prosAndCons:
+            'Pros: effective, familiar. Cons: each has a different set of patients it cannot be given to, which is usually what decides the choice.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Autumn crocus (Colchicum autumnale) — the source, and a lethal one',
+          activeCompound: 'Colchicine itself',
+          biologicalMechanism:
+            'The drug is a plant alkaloid extracted from Colchicum autumnale and Gloriosa superba. Consuming the plant is not a gentler route to the same effect: it delivers an uncontrolled dose of a compound whose therapeutic and fatal amounts are close together, and colchicine poisoning is a recognised and frequently fatal presentation.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here, and specifically discouraged. This entry exists to record that the plant is dangerous, not to suggest a preparation.',
+          monthlyCost: 'Not priced here',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Check for interacting drugs before every new prescription',
+          action:
+            'Colchicine is a substrate of both CYP3A4 and P-glycoprotein, and inhibitors of either raise its concentration substantially.',
+          patientImpact:
+            'Clarithromycin, ketoconazole, ciclosporin, verapamil, diltiazem and ritonavir all raise colchicine exposure. Because the margin between a therapeutic and a toxic concentration is narrow, and toxicity presents as multi-organ failure rather than as a gradual worsening, this is one of the more consequential interaction lists in general practice.',
+          clinicalPrecaution:
+            'Risk is highest in renal or hepatic impairment, where clearance is already reduced. There is no antidote to colchicine overdose.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(=O)N[C@H]1CCC2=CC(=C(C(=C2C3=CC=C(C(=O)C=C13)OC)OC)OC)OC',
+      chemicalFormula: 'C22H25NO6',
+      molecularWeight: '399.4 g/mol',
+      targetReceptorAffinity:
+        'Binds at the interface between the alpha and beta subunits of the tubulin dimer, at a site distinct from those used by the vinca alkaloids and the taxanes. Binding is slow and effectively irreversible on a physiological timescale, and the bound dimer can still add to a growing microtubule end but poisons further elongation — so a very small number of drug-bound dimers suppresses assembly out of all proportion to occupancy. That substoichiometric poisoning is why the drug works at concentrations far below tubulin concentration.',
+      structureSource: {
+        label:
+          'PubChem CID 6167 (colchicine) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6167',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'col-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and related-alkaloid control of the plant extract',
+          description:
+            'Assay the Colchicum autumnale or Gloriosa superba extract for colchicine content and for the closely related alkaloids colchicoside, demecolcine and 3-demethylcolchicine. This is a botanical starting material rather than a synthetic intermediate, so batch-to-batch alkaloid ratios vary with plant source and season, and the related alkaloids differ in potency while co-eluting closely.',
+          reagentsAndBuffer:
+            'Colchicine USP reference standard, colchicoside and demecolcine reference impurities, reversed-phase HPLC with UV detection at 350 nm, thin-layer chromatography for identity, loss-on-drying determination',
+        },
+        {
+          id: 'col-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Extraction and selective recovery of the tropolone alkaloid',
+          description:
+            'Extract with acidified aqueous alcohol, partition into chlorinated solvent at controlled pH and recover the free alkaloid. The tropolone ring is a seven-membered aromatic system with unusual acid-base behaviour, and it is also light-sensitive, so pH windows and exclusion of light are the two parameters that determine both yield and impurity profile rather than temperature or time.',
+          dependsOnStepId: 'col-w1',
+          reagentsAndBuffer:
+            'Ethanol or methanol with dilute acetic acid, dichloromethane or ethyl acetate partition, sodium carbonate for pH adjustment, amber glassware throughout, nitrogen blanket',
+        },
+        {
+          id: 'col-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Chromatographic purification and crystallisation with impurity limits',
+          description:
+            'Purify by column chromatography and crystallise. The specification is unusually consequential for a natural product: colchicine has a narrow margin between therapeutic and lethal exposure, and the related alkaloids present in the extract are pharmacologically active, so the impurity limits are dose-safety limits rather than quality metrics.',
+          dependsOnStepId: 'col-w2',
+          reagentsAndBuffer:
+            'Silica or reversed-phase preparative chromatography, ethyl acetate/heptane or aqueous ethanol recrystallisation, reversed-phase HPLC against colchicoside, demecolcine and 3-demethylcolchicine standards, differential scanning calorimetry',
+        },
+        {
+          id: 'col-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Neutrophil uptake against P-glycoprotein efflux',
+          description:
+            'Measure accumulation in isolated human neutrophils and monocytes, with and without a P-glycoprotein inhibitor. Cell-type selectivity here is a transport phenomenon rather than a target phenomenon: colchicine binds tubulin in every cell, but neutrophils express comparatively little P-glycoprotein and so concentrate the drug, which is why an anti-tubulin agent behaves as a selective anti-inflammatory at low dose.',
+          dependsOnStepId: 'col-w3',
+          reagentsAndBuffer:
+            'Freshly isolated human neutrophils and monocytes on density gradient, Hanks balanced salt solution with calcium and magnesium, verapamil or elacridar as P-glycoprotein inhibitor, tritiated colchicine or LC-MS/MS quantification',
+        },
+        {
+          id: 'col-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Tubulin polymerisation and interleukin-1 beta release readout',
+          description:
+            'Measure inhibition of tubulin polymerisation turbidimetrically, and in parallel measure NLRP3-driven interleukin-1 beta release from primed monocytes. Both are needed because the cardiovascular hypothesis runs through the second: the trials were built on the idea that inflammasome suppression reduces plaque events, and the polymerisation assay alone shows only that the drug reached its molecular target.',
+          dependsOnStepId: 'col-w4',
+          reagentsAndBuffer:
+            'Purified bovine or porcine brain tubulin with GTP in PIPES buffer at pH 6.9, turbidity followed at 350 nm, THP-1 monocytes or human monocytes primed with lipopolysaccharide and stimulated with ATP or monosodium urate crystals, interleukin-1 beta ELISA, high-sensitivity C-reactive protein assay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'col-a1',
+        category: 'measured',
+        title: 'COLCOT: a 23% reduction in ischaemic events after myocardial infarction',
+        laymanSummary:
+          'Nearly five thousand patients started colchicine within a month of a heart attack. Over about two years they had fewer cardiovascular events, driven by fewer strokes and fewer urgent revascularisations.',
+        technicalDetails:
+          'COLCOT randomised 4,745 patients within 30 days of myocardial infarction to colchicine 0.5 mg once daily (n=2,366) or placebo (n=2,379), median follow-up 22.6 months. The primary composite of cardiovascular death, resuscitated cardiac arrest, myocardial infarction, stroke or urgent hospitalisation for angina leading to revascularisation occurred in 5.5% against 7.1%: hazard ratio 0.77 (95% CI 0.61 to 0.96), p=0.02. Component hazard ratios were 0.84 (0.46 to 1.52) for cardiovascular death, 0.83 (0.25 to 2.73) for resuscitated arrest, 0.91 (0.68 to 1.21) for myocardial infarction, 0.26 (0.10 to 0.70) for stroke and 0.50 (0.31 to 0.81) for urgent revascularisation. Diarrhoea was 9.7% against 8.9% (p=0.35). Pneumonia as a serious adverse event was 0.9% against 0.4% (p=0.03).',
+        evidenceSource: 'Tardif J-C et al., COLCOT, N Engl J Med 2019;381:2497-2505 (NCT02551094)',
+        doi: '10.1056/NEJMoa1912388',
+        measuredMetric:
+          'Composite of cardiovascular death, resuscitated arrest, infarction, stroke or urgent revascularisation over a median 22.6 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'col-a2',
+        category: 'measured',
+        title: 'LoDoCo2: a 31% reduction in chronic coronary disease, with more non-cardiovascular deaths',
+        laymanSummary:
+          'In more than five thousand patients with stable coronary disease, colchicine reduced cardiovascular events substantially. Deaths from causes other than the heart were higher in the colchicine group.',
+        technicalDetails:
+          'LoDoCo2 randomised 5,522 patients with chronic coronary disease to colchicine 0.5 mg daily (n=2,762) or placebo (n=2,760), median follow-up 28.6 months. The primary composite of cardiovascular death, spontaneous non-procedural myocardial infarction, ischaemic stroke or ischaemia-driven revascularisation occurred in 187 (6.8%) against 264 (9.6%) — 2.5 against 3.6 events per 100 person-years, hazard ratio 0.69 (95% CI 0.57 to 0.83), p<0.001. The key secondary composite of cardiovascular death, spontaneous infarction or ischaemic stroke was 4.2% against 5.7% (0.72, 0.57 to 0.92, p=0.007). But death from non-cardiovascular causes was higher on colchicine: 0.7 against 0.5 events per 100 person-years, hazard ratio 1.51 (0.99 to 2.31) — an interval that just includes 1 and a signal the paper reports without explanation.',
+        evidenceSource:
+          'Nidorf SM et al., LoDoCo2, N Engl J Med 2020;383:1838-1847 (ACTRN12614000093684)',
+        doi: '10.1056/NEJMoa2021372',
+        measuredMetric:
+          'Composite of cardiovascular death, spontaneous infarction, ischaemic stroke or ischaemia-driven revascularisation, and non-cardiovascular death',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'col-a3',
+        category: 'conclusion_shift',
+        title: 'CLEAR SYNERGY: 7,062 patients, three years, hazard ratio 0.99',
+        laymanSummary:
+          'The largest and longest trial of colchicine after a heart attack found no difference at all, in more patients and over more time than the two positive trials combined for that setting.',
+        technicalDetails:
+          'CLEAR SYNERGY (OASIS 9) randomised 7,062 patients with myocardial infarction at 104 centres in 14 countries in a 2-by-2 factorial design of colchicine or placebo and spironolactone or placebo; the colchicine comparison is reported here. Over a median 3 years the primary composite of cardiovascular death, recurrent myocardial infarction, stroke or unplanned ischaemia-driven revascularisation occurred in 322 of 3,528 (9.1%) on colchicine against 327 of 3,534 (9.3%) on placebo: hazard ratio 0.99 (95% CI 0.85 to 1.16), p=0.93. The individual components appeared similar. The drug did what it was supposed to do biochemically: the adjusted least-squares mean difference in C-reactive protein at 3 months was -1.28 mg/L (95% CI -1.81 to -0.75). Diarrhoea was more common on colchicine (10.2% against 6.6%, p<0.001) and serious infections did not differ. Vital status was unknown for 45 patients (0.6%).',
+        evidenceSource:
+          'Jolly SS et al., CLEAR SYNERGY (OASIS 9), N Engl J Med 2025;392:633-642 (NCT03048825)',
+        doi: '10.1056/NEJMoa2405922',
+        measuredMetric:
+          'Composite of cardiovascular death, recurrent infarction, stroke or unplanned revascularisation over a median 3 years, and C-reactive protein at 3 months',
+        inferredClaim:
+          'That lowering C-reactive protein with colchicine reduces cardiovascular events — the marker fell by 1.28 mg/L and the event rate did not move',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'col-a4',
+        category: 'failed',
+        title: 'CONVINCE: in stroke patients the primary analysis missed at p=0.12',
+        laymanSummary:
+          'A trial in more than three thousand patients after a non-cardioembolic stroke found fewer recurrent events on colchicine, but not enough to be statistically convincing, and it ended early for funding reasons.',
+        technicalDetails:
+          'CONVINCE randomised 3,154 patients between December 2016 and November 2022, with 3,144 in the intention-to-treat analysis after 10 withdrew consent: 1,569 to colchicine plus usual care and 1,575 to usual care alone. The trial finished before the planned 367 outcomes had accrued because of budget constraints attributable to the COVID-19 pandemic. A primary endpoint — first fatal or non-fatal recurrent ischaemic stroke, myocardial infarction, cardiac arrest or hospitalisation for unstable angina — occurred in 153 of 1,569 (9.8%) against 185 of 1,575 (11.7%): incidence 3.32 against 3.92 per 100 person-years, hazard ratio 0.84 (95% CI 0.68 to 1.05), p=0.12 against a prespecified significance threshold of 0.048. C-reactive protein was lower on colchicine at 28 days and at 1, 2 and 3 years (p<0.05 at all timepoints). Serious adverse event rates were similar.',
+        evidenceSource: 'Kelly P et al., CONVINCE, Lancet 2024;404:125-133 (NCT02898610)',
+        doi: '10.1016/S0140-6736(24)00968-1',
+        measuredMetric:
+          'Composite of recurrent ischaemic stroke, myocardial infarction, cardiac arrest or hospitalisation for unstable angina',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'col-a5',
+        category: 'inferred',
+        title: 'C-reactive protein fell in every trial, including the ones that found nothing',
+        laymanSummary:
+          'Across all four cardiovascular trials the inflammation marker went down. In two the events went down with it and in two they did not, which means the marker is not telling you what the drug is doing to outcomes.',
+        technicalDetails:
+          'CLEAR SYNERGY measured an adjusted least-squares mean C-reactive protein difference of -1.28 mg/L at 3 months alongside a hazard ratio of 0.99, p=0.93. CONVINCE found significantly lower C-reactive protein at 28 days and at 1, 2 and 3 years alongside a hazard ratio of 0.84 that missed its 0.048 threshold. COLCOT and LoDoCo2 found clear event reductions. Target engagement was therefore demonstrated in all four, and it separated from outcome in two of them. That is the same structure as the statin inflammation story on the rosuvastatin page and the platelet reactivity story on the clopidogrel page: a biomarker that responds reliably to the drug and does not track the endpoint. A summary that reports the C-reactive protein reduction as evidence of cardiovascular benefit is using the one measurement all four trials agree on to settle the question the four trials disagree about.',
+        evidenceSource:
+          'Jolly SS et al., N Engl J Med 2025;392:633-642; Kelly P et al., Lancet 2024;404:125-133',
+        doi: '10.1056/NEJMoa2405922',
+        inferredClaim:
+          'That a colchicine-induced fall in C-reactive protein indicates cardiovascular benefit — the marker fell in all four trials and events fell in two',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'col-a6',
+        category: 'measured',
+        title: 'The harm signals are small, real and inconsistent across trials',
+        laymanSummary:
+          'Diarrhoea is common and dose-related. COLCOT recorded more pneumonia and LoDoCo2 more deaths from non-cardiovascular causes; the largest trial found neither.',
+        technicalDetails:
+          'COLCOT: diarrhoea 9.7% against 8.9% (p=0.35), pneumonia as a serious adverse event 0.9% against 0.4% (p=0.03). LoDoCo2: death from non-cardiovascular causes 0.7 against 0.5 events per 100 person-years, hazard ratio 1.51 (95% CI 0.99 to 2.31). CLEAR SYNERGY: diarrhoea 10.2% against 6.6% (p<0.001), with no difference in serious infections. CONVINCE: serious adverse event rates similar. The gastrointestinal effect is consistent and mechanistically expected from an antimitotic acting on rapidly dividing gut epithelium. The pneumonia and non-cardiovascular mortality signals appeared in one trial each and were not reproduced in the largest, which is what an uncommon chance imbalance looks like — and is also what a real low-frequency effect looks like in trials not powered for it.',
+        evidenceSource:
+          'Tardif J-C et al., N Engl J Med 2019;381:2497-2505; Nidorf SM et al., N Engl J Med 2020;383:1838-1847; Jolly SS et al., N Engl J Med 2025;392:633-642',
+        doi: '10.1056/NEJMoa2021372',
+        measuredMetric:
+          'Rates of diarrhoea, pneumonia and non-cardiovascular death across three randomised trials',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed variably, and pumped back out by the same protein that limits many drugs',
+        laymanDesc:
+          'Roughly half of a dose reaches the bloodstream. A pump in the gut wall actively pushes some of it back, and drugs that block that pump raise colchicine levels sharply.',
+        molecularDetail:
+          'Oral bioavailability is roughly 45%, limited by P-glycoprotein-mediated intestinal efflux and CYP3A4 metabolism. Elimination is partly biliary with enterohepatic recirculation and partly renal. The narrow margin between therapeutic and toxic exposure means that inhibitors of CYP3A4 or P-glycoprotein — clarithromycin, ketoconazole, ciclosporin, verapamil, ritonavir — are a genuine hazard rather than a caution.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It concentrates in white cells because they cannot pump it out',
+        laymanDesc:
+          'Colchicine binds a protein present in every cell, yet acts mainly on inflammatory cells. The reason is that neutrophils have little of the pump that other cells use to expel it.',
+        molecularDetail:
+          'Neutrophils express comparatively low levels of P-glycoprotein and therefore accumulate colchicine to concentrations several-fold above plasma, while most other tissues efflux it. This transport asymmetry, rather than any target selectivity, is why an antimitotic agent behaves as a selective anti-inflammatory at doses far below those that affect dividing tissue generally.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It poisons the tips of growing microtubules, not every tubulin molecule',
+        laymanDesc:
+          'The drug does not need to bind most of the building blocks. A few poisoned ones incorporated at the growing tip are enough to stop the whole structure extending.',
+        molecularDetail:
+          'Colchicine binds at the alpha-beta tubulin dimer interface, at a site distinct from the vinca and taxane sites, in a slow and effectively irreversible fashion. The bound dimer can still add to a microtubule plus end but blocks further elongation, so substoichiometric occupancy suppresses assembly — the reason therapeutic concentrations are orders of magnitude below tubulin concentration.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Inflammatory cells lose their scaffolding and their signalling machine',
+        laymanDesc:
+          'Without microtubules, white cells cannot crawl toward a target, cannot display their sticky surface molecules properly, and cannot assemble the complex that produces a key inflammatory alarm signal.',
+        molecularDetail:
+          'Microtubule disruption impairs neutrophil chemotaxis, adhesion and E-selectin and L-selectin display, and blocks assembly of the NLRP3 inflammasome, reducing caspase-1 activation and interleukin-1 beta release. In gout this prevents the response to monosodium urate crystals. In atherosclerosis it was the proposed route to fewer plaque events, and C-reactive protein — an interleukin-6-driven hepatic acute phase protein downstream of interleukin-1 beta — is the readout used to confirm the effect.',
+        iconName: 'Split',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Gout flares abort reliably; cardiovascular events do so inconsistently',
+        laymanDesc:
+          'In gout the effect is clear and long established. In artery disease two trials found substantial benefit, the largest trial found none, and the inflammation marker fell in all of them.',
+        molecularDetail:
+          'COLCOT: primary composite 5.5% against 7.1%, hazard ratio 0.77, p=0.02. LoDoCo2: 6.8% against 9.6%, hazard ratio 0.69, p<0.001. CLEAR SYNERGY: 9.1% against 9.3%, hazard ratio 0.99, p=0.93, with a C-reactive protein difference of -1.28 mg/L. CONVINCE: hazard ratio 0.84, p=0.12 against a 0.048 threshold, with C-reactive protein lower at every timepoint.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'COLCOT (NCT02551094)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 22.6 months',
+        sampleSize: 4745,
+        primaryEndpoint:
+          'Composite of cardiovascular death, resuscitated cardiac arrest, myocardial infarction, stroke or urgent hospitalisation for angina leading to revascularisation',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.77 (95% CI 0.61-0.96), P = 0.02',
+        unreportedAdverseSignals:
+          'The composite was driven by stroke (HR 0.26) and urgent revascularisation (HR 0.50); myocardial infarction gave 0.91 and cardiovascular death 0.84, neither significant. Pneumonia as a serious adverse event was 0.9% against 0.4% (p=0.03).',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'LoDoCo2 (ACTRN12614000093684)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 28.6 months',
+        sampleSize: 5522,
+        primaryEndpoint:
+          'Composite of cardiovascular death, spontaneous myocardial infarction, ischaemic stroke or ischaemia-driven coronary revascularisation',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.69 (95% CI 0.57-0.83), P < 0.001',
+        unreportedAdverseSignals:
+          'Death from non-cardiovascular causes was higher on colchicine: 0.7 against 0.5 per 100 person-years, HR 1.51 (0.99-2.31), reported without explanation.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'CLEAR SYNERGY / OASIS 9 colchicine comparison (NCT03048825)',
+        phase: 'Randomised double-blind placebo-controlled 2-by-2 factorial trial, median 3 years',
+        sampleSize: 7062,
+        primaryEndpoint:
+          'Composite of cardiovascular death, recurrent myocardial infarction, stroke or unplanned ischaemia-driven coronary revascularisation',
+        endpointMet: false,
+        statisticalPValue: 'HR 0.99 (95% CI 0.85-1.16), P = 0.93',
+        unreportedAdverseSignals:
+          'C-reactive protein fell by 1.28 mg/L at 3 months, confirming target engagement while the endpoint did not move. Diarrhoea 10.2% against 6.6% (p<0.001). Vital status unknown for 45 patients (0.6%).',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'CONVINCE (NCT02898610)',
+        phase: 'Randomised open-label trial with blinded endpoint assessment, terminated early',
+        sampleSize: 3154,
+        primaryEndpoint:
+          'First fatal or non-fatal recurrent ischaemic stroke, myocardial infarction, cardiac arrest or hospitalisation for unstable angina',
+        endpointMet: false,
+        statisticalPValue:
+          'HR 0.84 (95% CI 0.68-1.05), P = 0.12 against a prespecified threshold of 0.048',
+        unreportedAdverseSignals:
+          'The trial ended before the planned 367 outcomes accrued because of pandemic-related budget constraints, so it is underpowered rather than negative in the usual sense.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A primary composite of 5.5% against 7.1% in 4,745 patients within 30 days of myocardial infarction',
+        'A primary composite of 6.8% against 9.6% in 5,522 patients with chronic coronary disease',
+        'A primary composite of 9.1% against 9.3% in 7,062 patients after myocardial infarction, followed a median 3 years',
+        'A C-reactive protein reduction of 1.28 mg/L at 3 months in that same null trial',
+      ],
+      unsupportedInferences: [
+        'That lowering C-reactive protein with colchicine indicates cardiovascular benefit — the marker fell in all four trials and events fell in two',
+        'That the COLCOT result establishes benefit after myocardial infarction — CLEAR SYNERGY tested the same question in more patients over more time and found a hazard ratio of 0.99',
+        'That the LoDoCo2 non-cardiovascular mortality signal is a chance finding — its interval was 0.99 to 2.31 and the largest trial did not reproduce it, which does not settle it',
+        'That COLCOT demonstrated fewer heart attacks — the myocardial infarction hazard ratio was 0.91 and the composite was carried by stroke and revascularisation',
+      ],
+      whatFailedInitially: [
+        'CLEAR SYNERGY: the largest and longest trial in the setting where COLCOT was positive, returning 0.99 with p=0.93',
+        'CONVINCE: missed its prespecified significance threshold at p=0.12, having ended early for pandemic-related budget reasons',
+        'The individual components of COLCOT: myocardial infarction (0.91) and cardiovascular death (0.84) were both non-significant',
+      ],
+      realWorldOutcome: [
+        'A 0.5 mg colchicine product received United States approval for cardiovascular risk reduction in June 2023, on the evidence available before CLEAR SYNERGY reported in 2025',
+        'The drug is centuries old and was marketed in the United States for decades without an approved application until the 2009 approval under the Unapproved Drugs Initiative',
+        'It remains inexpensive, on the WHO Model List of Essential Medicines, and first-line for gout flares and familial Mediterranean fever regardless of the cardiovascular question',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet and capsule, plus an oral solution; the cardiovascular product is a 0.5 mg tablet',
+      description:
+        'Once or twice daily depending on indication. Bioavailability is limited by intestinal P-glycoprotein efflux and first-pass CYP3A4 metabolism, and both routes are inhibited by common drugs, which is why the interaction list is the dominant safety consideration rather than the dose itself.',
+      safetyProfile:
+        'Diarrhoea is the commonest effect and is dose-related: 10.2% against 6.6% on placebo in CLEAR SYNERGY. Fatal toxicity occurs in overdose and in the setting of interacting drugs or renal impairment, presents as multi-organ failure, and has no antidote. Myopathy and rhabdomyolysis occur, particularly with statins or ciclosporin. Bone marrow suppression occurs with prolonged high exposure. COLCOT reported more pneumonia as a serious adverse event and LoDoCo2 more non-cardiovascular death; neither was reproduced in the larger CLEAR SYNERGY.',
+    },
+    commonQuestions: [
+      {
+        q: 'Should I take colchicine to reduce my heart risk?',
+        a: 'The evidence changed in 2025 and this page reports both halves of it. COLCOT, in 4,745 patients within a month of a heart attack, found the composite endpoint at 5.5% against 7.1%, hazard ratio 0.77. LoDoCo2, in 5,522 patients with stable coronary disease, found 6.8% against 9.6%, hazard ratio 0.69. On that basis a 0.5 mg product received a United States cardiovascular indication in June 2023. Then CLEAR SYNERGY randomised 7,062 patients after myocardial infarction — more than COLCOT — and followed them a median of three years, longer than either earlier trial, and found 9.1% against 9.3%, hazard ratio 0.99, p=0.93. The drug did lower C-reactive protein in that trial. The honest position is that this is now genuinely unsettled, and it is not a question this page can resolve for you.',
+        auditNote:
+          'A drug approved on two positive trials and then given a null result in a larger, longer trial is the clearest live example on this site of evidence still moving.',
+      },
+      {
+        q: 'If it lowers inflammation, why did the big trial show nothing?',
+        a: 'That is exactly the finding that makes CLEAR SYNERGY informative rather than merely negative. The drug reached its target: C-reactive protein was 1.28 mg/L lower at three months, a clear and statistically solid difference. The event rate was 9.1% against 9.3%. CONVINCE found the same pattern in stroke patients — C-reactive protein lower at every measured timepoint, hazard ratio 0.84 with p=0.12. So target engagement is not in doubt, and the link from that engagement to fewer events is. This is the same structure as two other stories on this site: rosuvastatin lowered C-reactive protein in heart failure and dialysis trials that found nothing, and doubling clopidogrel corrected platelet reactivity without changing outcomes. Biomarkers that move reliably are not the same as biomarkers that matter.',
+      },
+      {
+        q: 'What did COLCOT actually reduce?',
+        a: 'Strokes and urgent revascularisations, mostly. The composite fell from 7.1% to 5.5%, but breaking it apart gives hazard ratios of 0.26 for stroke and 0.50 for urgent hospitalisation for angina leading to revascularisation, against 0.91 for myocardial infarction and 0.84 for cardiovascular death — neither of the last two significant, and the arrest component had a confidence interval running from 0.25 to 2.73. A stroke hazard ratio of 0.26 in a coronary trial is a striking number on a small count. Reading the composite as "fewer heart attacks" is not what the component analysis shows.',
+      },
+      {
+        q: 'Is it dangerous?',
+        a: 'At therapeutic doses in a person with normal kidneys and no interacting drugs, the commonest problem is diarrhoea, at about 10% against 7% on placebo. The serious risk is exposure, not dose: colchicine has a narrow margin between therapeutic and lethal concentrations, it is cleared through CYP3A4 and P-glycoprotein, and common drugs including clarithromycin, ketoconazole, ciclosporin, verapamil and ritonavir inhibit one or both. Renal or hepatic impairment compounds this. Colchicine poisoning presents as multi-organ failure and there is no antidote. That is why the interaction check matters more here than for most drugs on this site, and why eating the plant it comes from is a recognised cause of death.',
+      },
+      {
+        q: 'Why is a plant extract from antiquity only recently FDA-approved?',
+        a: 'Because it predated the modern approval framework and was simply never put through it. Colchicine was marketed in the United States for decades as an unapproved drug, and its first formal approval came in 2009 under the FDA Unapproved Drugs Initiative — which then granted the approved product a period of exclusivity, with a substantial price increase and the removal of the unapproved competitors. It is the same regulatory pattern documented on the levothyroxine page: an old, effective, widely used product finally required to produce a file, with consequences for price that had nothing to do with the science.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose production cost for colchicine could be cited. It is worth saying what the production actually is: colchicine is extracted from autumn crocus or gloriosa lily rather than synthesised, so its cost structure is agricultural and extractive rather than chemical, and its critical quality control is separation from the closely related alkaloids that co-occur in the plant and are themselves pharmacologically active. That is a description of the process, not a figure, and this page does not invent one.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Tardif J-C et al. Efficacy and safety of low-dose colchicine after myocardial infarction (COLCOT). N Engl J Med 2019;381:2497-2505',
+        identifier: '10.1056/NEJMoa1912388',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nidorf SM et al. Colchicine in patients with chronic coronary disease (LoDoCo2). N Engl J Med 2020;383:1838-1847',
+        identifier: '10.1056/NEJMoa2021372',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jolly SS et al. Colchicine in acute myocardial infarction (CLEAR SYNERGY / OASIS 9). N Engl J Med 2025;392:633-642',
+        identifier: '10.1056/NEJMoa2405922',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kelly P et al. Long-term colchicine for the prevention of vascular recurrent events in non-cardioembolic stroke (CONVINCE). Lancet 2024;404:125-133',
+        identifier: '10.1016/S0140-6736(24)00968-1',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: COLCRYS (colchicine), NDA 022352, original approval 29 July 2009',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=022352',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: LODOCO (colchicine 0.5 mg), NDA 215727, original approval 16 June 2023 — the cardiovascular indication',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=215727',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 6167 — colchicine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6167',
+        kind: 'url',
+      },
+    ],
+  },
 ]
