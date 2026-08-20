@@ -148,6 +148,7 @@ function mergeSupplements(
       marketingCategories: {},
       unii: new Set(),
       productCount: 0,
+      ndcProductCodes: new Set(),
       sources: new Set(['NIH Dietary Supplement Label Database']),
     })
     looseIndex.set(loose(candidate), candidate)

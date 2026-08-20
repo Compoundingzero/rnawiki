@@ -26,6 +26,12 @@ export interface AggregatedSubstance {
   unii: Set<string>
   /** How many distinct products list this moiety — a real popularity signal. */
   productCount: number
+  /**
+   * The 9-digit NDC product codes this moiety appears in. CMS publishes drug prices keyed on the
+   * 11-digit package NDC, whose first nine digits are this code, so carrying it lets the price
+   * join run on an identifier instead of on a drug name.
+   */
+  ndcProductCodes: Set<string>
   sources: Set<string>
   label?: LabelText
 }
@@ -59,6 +65,7 @@ interface DrugsFdaRecord {
 }
 
 interface NdcRecord {
+  product_ndc?: string
   brand_name?: string
   generic_name?: string
   labeler_name?: string
@@ -113,6 +120,7 @@ function emptySubstance(moiety: string): AggregatedSubstance {
     marketingCategories: {},
     unii: new Set(),
     productCount: 0,
+    ndcProductCodes: new Set(),
     sources: new Set(),
   }
 }
@@ -242,6 +250,7 @@ export function aggregateOpenFda(): Map<string, AggregatedSubstance> {
       bumpMap(entry.dosageForms, record.dosage_form)
       for (const route of record.route ?? []) bumpMap(entry.routes, route)
       for (const unii of record.openfda?.unii ?? []) entry.unii.add(unii)
+      if (record.product_ndc) entry.ndcProductCodes.add(record.product_ndc)
 
       if (record.brand_name) {
         entry.brands.push({ name: record.brand_name.trim(), singleIngredient, count: 1 })

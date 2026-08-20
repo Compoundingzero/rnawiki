@@ -21,7 +21,8 @@
     "gate": "npm run typecheck && npm run lint && npm run test:unit && npm run test:integration && npm run build",
     "ingest:download": "tsx scripts/ingest/download.ts",
     "ingest:structures": "tsx scripts/ingest/build-structures.ts",
-    "ingest": "tsx scripts/ingest/run.ts"
+    "ingest": "tsx scripts/ingest/run.ts",
+    "enrich": "tsx scripts/enrich/run.ts"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
