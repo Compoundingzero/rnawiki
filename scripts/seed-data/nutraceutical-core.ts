@@ -6927,5 +6927,449 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Beta-alanine — a supplement whose mechanism was measured in muscle biopsies, whose effect is
+  // real and confined to a two-minute window, whose pooled effect size is 0.18, and whose one
+  // reported side effect is the tingling people mistake for the product working.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'beta-alanine',
+    name: 'Beta-alanine',
+    tradeName: 'Branded as CarnoSyn; also sold as sustained-release beta-alanine',
+    sponsor:
+      'No single sponsor — a non-proteinogenic beta-amino acid. Natural Alternatives International holds the CarnoSyn patents and appears in much of the trial literature.',
+    targetGene: 'CARNS1',
+    targetProtein:
+      'Carnosine synthase 1 (CARNS1), which joins beta-alanine to histidine to form carnosine. Beta-alanine is the rate-limiting substrate: muscle histidine is abundant, muscle beta-alanine is not, so how much carnosine a muscle holds is set by how much beta-alanine reaches it. Carnosine then acts as an intracellular proton buffer.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as an ergogenic aid for high-intensity exercise, and as a near-universal ingredient in pre-workout formulas. Not approved by the FDA or EMA for any indication.',
+    patientFriendlyIndication:
+      'Taken before training for high-intensity work, and for the tingling in pre-workout drinks',
+    conditionContext: {
+      conditionExplainer:
+        'Hard exercise lasting a minute or two floods the muscle cell with protons, and falling intracellular pH is one of the things that makes the muscle stop. Carnosine is a dipeptide that soaks up those protons. How much of it a muscle contains is limited by the supply of one of its two building blocks.',
+      whyItMatters:
+        'This is one of the few supplements where the mechanism was demonstrated directly in human muscle biopsies before the performance claims were made, and where the performance data then landed exactly where the mechanism predicted — in efforts lasting roughly one to four minutes and nowhere else. It is also the compound responsible for the tingling in pre-workout drinks, which is a side effect that a great many consumers have been trained to read as evidence of efficacy.',
+      whoTakesThis:
+        'Athletes in events lasting one to four minutes — middle-distance running, rowing, swimming, combat sports — and a much larger population taking it inside multi-ingredient pre-workout formulas without knowing it is there.',
+      clinicalGoals:
+        'Trials measured muscle carnosine concentration by biopsy and by magnetic resonance spectroscopy, time to exhaustion, total work done, and performance in open-end-point tasks and time trials stratified by duration.',
+    },
+    oneSentenceVerdict:
+      'Four weeks of supplementation raises muscle carnosine by 40 to 65 percent on biopsy, and the performance benefit appears exactly where the buffering mechanism predicts — improved in exercise of 60 to 240 seconds, absent below 60 seconds — with a pooled effect size across 40 studies and 1,461 participants of 0.18, and paraesthesia as the only reported side effect.',
+    laymanHowItWorks:
+      'Muscle contains a small molecule called carnosine that mops up the acid produced during hard efforts. Carnosine is made from two building blocks, and only one of them is in short supply: beta-alanine. Take beta-alanine for a few weeks and muscle carnosine rises measurably, so the muscle can absorb more acid before it stops working. That extra buffering only matters in efforts long enough to build up serious acidity but short enough that acidity is the limiting factor — which turns out to be roughly one to four minutes. Below a minute the muscle runs out of immediate fuel first; well beyond four minutes something else limits you.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 72,
+    anatomicalSite:
+      'Skeletal muscle cytosol, with the highest carnosine concentrations in type II fast-twitch fibres',
+    substitutes: {
+      summary:
+        'For raising muscle carnosine, beta-alanine has no substitute at practical intakes: dietary carnosine from meat is hydrolysed in the circulation by serum carnosinase before reaching muscle. For the performance goal itself, sodium bicarbonate buffers extracellularly by a different route over a similar duration window.',
+      conventionalRx: [
+        {
+          name: 'Sodium bicarbonate',
+          class: 'Extracellular buffering agent',
+          howItCompares:
+            'Buffers the blood rather than the muscle cell, raising the gradient for proton efflux, and its performance window overlaps beta-alanine\'s one-to-four-minute range. The two act on opposite sides of the sarcolemma and are frequently studied together for that reason.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: acts acutely rather than requiring weeks of loading. Cons: gastrointestinal distress is common and severe enough to be performance-limiting in its own right.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Beef, pork and poultry, as the natural carnosine source',
+          activeCompound: 'Carnosine and anserine, the histidine-containing dipeptides',
+          biologicalMechanism:
+            'Harris et al. tested this directly. Beta-alanine appeared in plasma after histidine dipeptides given in chicken broth, but carnosine itself was not detected in plasma, with only traces in urine — because serum carnosinase hydrolyses circulating carnosine almost immediately. Dietary carnosine therefore reaches muscle as its component amino acids, not as carnosine.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the biopsy study used 3.2 and 6.4 g/day of beta-alanine for four weeks, and the ISSN position stand describes 4 to 6 g daily for at least two to four weeks.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'A vegetarian diet, as the low-carnosine case',
+          activeCompound: 'Near-absent dietary beta-alanine and carnosine',
+          biologicalMechanism:
+            'Plant foods contain essentially no carnosine or free beta-alanine, so vegetarians start with lower muscle carnosine. This produces the same responder pattern seen with creatine: the largest gains occur in those who began lowest, which is a repletion effect rather than a supraphysiological one.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'The tingling is a side effect, not a signal',
+          action:
+            'Paraesthesia after a pre-workout drink is beta-alanine acting on sensory neurons, and it has no relationship to how much carnosine your muscle is accumulating.',
+          patientImpact:
+            'The ISSN position stand records paraesthesia as the only reported side effect and states it can be attenuated by using divided lower doses of 1.6 g or a sustained-release formula — both of which reduce the tingling while leaving the carnosine loading intact.',
+          clinicalPrecaution:
+            'A formulation optimised to produce a sensation is optimised for the wrong endpoint, and a great many pre-workout products are.',
+        },
+        {
+          name: 'Check the event duration before expecting anything',
+          action:
+            'Match the exercise to the mechanism. Beta-alanine buffers protons, so it can only help where proton accumulation is what stops you.',
+          patientImpact:
+            'In the pooled analysis, exercise lasting 60 to 240 seconds improved (P = 0.001) and exercise over 240 seconds improved (P = 0.046), while exercise lasting under 60 seconds showed no benefit at all (P = 0.312).',
+          clinicalPrecaution:
+            'A single maximal lift, a short sprint or a one-rep effort falls in the window where the meta-analysis found nothing.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C(CN)C(=O)O',
+      chemicalFormula: 'C3H7NO2',
+      molecularWeight:
+        '89.09 g/mol. The amino group sits on the beta carbon rather than the alpha carbon, which is why beta-alanine cannot be incorporated into any protein and is instead a dedicated substrate for carnosine synthesis.',
+      structureSource: {
+        label: 'PubChem CID 239 — Beta-alanine, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/239',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ba-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Beta versus alpha isomer discrimination and pre-workout co-ingredient panel',
+          description:
+            'Alpha-alanine is a cheap proteinogenic amino acid that shares beta-alanine\'s formula and molecular weight and is invisible to a total-amino-acid assay. It is also biologically useless for carnosine synthesis. Because beta-alanine is overwhelmingly sold inside multi-ingredient pre-workout blends, the co-ingredient panel matters as much as the identity test.',
+          reagentsAndBuffer:
+            'HPLC with pre-column derivatisation resolving beta-alanine from L-alanine against both reference standards; 1H NMR for unambiguous isomer confirmation; LC-MS/MS screen for undeclared stimulants in blended products; total caffeine quantification including from botanical sources',
+        },
+        {
+          id: 'ba-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the labelled tracer and carnosine standard',
+          description:
+            'Muscle already contains carnosine, so measuring newly synthesised carnosine against the existing pool requires a labelled precursor. A pure carnosine standard is separately needed because the quantification is of a dipeptide, not of the amino acid administered.',
+          dependsOnStepId: 'ba-w1',
+          reagentsAndBuffer:
+            '13C3-beta-alanine tracer; synthetic L-carnosine and L-anserine reference standards; isotopic purity confirmation by LC-MS/MS; deuterated carnosine as internal standard for the biopsy assay',
+        },
+        {
+          id: 'ba-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Muscle biopsy extraction with fibre-type separation',
+          description:
+            'Carnosine is concentrated in type II fibres, so a whole-muscle number averages across a heterogeneous tissue and can hide both the effect and the between-subject variation. Separating fibre types converts a mean into a mechanism, and is what distinguishes a biopsy study from a scan.',
+          dependsOnStepId: 'ba-w2',
+          reagentsAndBuffer:
+            'Freeze-dried vastus lateralis biopsy dissected free of blood and connective tissue; single-fibre isolation with myosin heavy chain typing by SDS-PAGE; perchloric acid extraction with potassium hydrogen carbonate neutralisation; HPLC quantification of carnosine and anserine',
+        },
+        {
+          id: 'ba-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Carnosine synthase saturation and the transporter bottleneck',
+          description:
+            'Establish which step limits loading. Beta-alanine enters muscle through the same transporter as taurine, and carnosine synthase has its own kinetics; whether the ceiling is transport or synthesis determines whether divided dosing helps for pharmacological reasons or only for tolerability. This is also the step at which the beta-alanine and taurine interaction becomes visible.',
+          dependsOnStepId: 'ba-w3',
+          reagentsAndBuffer:
+            'Differentiated human myotubes; 13C3-beta-alanine at graded concentrations; taurine as a competitive substrate for the shared SLC6A6 transporter; recombinant CARNS1 kinetic assay with beta-alanine and L-histidine; intracellular carnosine quantified by LC-MS/MS; parallel intracellular taurine measurement',
+        },
+        {
+          id: 'ba-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Duration-stratified performance testing, prespecified',
+          description:
+            'Report performance stratified by effort duration as a prespecified analysis rather than a post hoc one, because the mechanism makes a specific prediction that the pooled data confirm: benefit in 60 to 240 seconds, none under 60. A trial that pools all durations dilutes a real effect into an unimpressive average, which is how a 0.18 overall effect size coexists with a clear mechanism.',
+          dependsOnStepId: 'ba-w4',
+          reagentsAndBuffer:
+            'Cycle ergometer time-to-exhaustion and open-end-point time trials at prespecified durations under 60 s, 60 to 240 s and over 240 s; muscle carnosine by 1H magnetic resonance spectroscopy at each timepoint; matched placebo with a capsaicin-free tingle-mimicking control to blind paraesthesia; blood lactate and pH',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ba-a1',
+        category: 'measured',
+        title: 'Muscle carnosine rose 42 to 66 percent, measured directly in biopsies',
+        laymanSummary:
+          'Four weeks of beta-alanine raised the amount of carnosine in muscle by between forty and sixty-six percent, measured in muscle taken from the leg.',
+        technicalDetails:
+          'Harris and colleagues established both the pharmacokinetics and the pharmacodynamics in one paper. Plasma beta-alanine peaked at 47 +/- 13, 374 +/- 68 and 833 +/- 43 micromolar after 10, 20 and 40 mg per kg body weight respectively, and at 428 +/- 66 micromolar after histidine dipeptides in chicken broth equivalent to 40 mg/kg, returning to baseline by two hours, with under 5% lost in urine. Dietary supplementation for four weeks with 3.2 g/day or 6.4 g/day of beta-alanine, given as multiple 400 or 800 mg doses, or with isomolar L-carnosine, produced significant increases in muscle carnosine estimated at 42.1%, 64.2% and 65.8% respectively. Two details in that paper are load-bearing for the whole category. Carnosine was not detected in plasma after the chicken broth, with only traces in urine, which establishes that dietary carnosine is hydrolysed before reaching muscle and that beta-alanine is the deliverable form. And plasma taurine rose with beta-alanine ingestion, the first sign of the transporter competition between the two.',
+        evidenceSource: 'Harris RC et al. Amino Acids 2006;30:279-289',
+        doi: '10.1007/s00726-006-0299-9',
+        measuredMetric:
+          'Plasma beta-alanine concentration after graded doses, and percentage increase in vastus lateralis carnosine after four weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ba-a2',
+        category: 'measured',
+        title: 'The benefit sits exactly where the mechanism says it should: 60 to 240 seconds',
+        laymanSummary:
+          'Pooling fifteen studies, beta-alanine improved efforts lasting one to four minutes and did nothing at all for efforts under a minute — precisely what a proton buffer should do.',
+        technicalDetails:
+          'Hobson and colleagues meta-analysed 15 published manuscripts reporting 57 measures within 23 exercise tests across 18 supplementation regimes in 360 participants (174 beta-alanine, 186 placebo). Beta-alanine improved exercise outcomes more than placebo (P = 0.002), with median effect sizes of 0.374 (IQR 0.140 to 0.747) against 0.108 (IQR -0.019 to 0.487). Splitting by duration produced the finding that matters: exercise lasting 60 to 240 seconds improved (P = 0.001), exercise over 240 seconds improved (P = 0.046), and exercise lasting under 60 seconds showed nothing (P = 0.312). The improvement was in exercise capacity (P = 0.013) rather than exercise performance (P = 0.204). The median effect was a 2.85% improvement (range -0.37 to 10.49%) at a median cumulative dose of 179 g of beta-alanine. A supplement whose benefit appears only in the duration window where its proposed mechanism is rate-limiting is doing something more convincing than a supplement that helps a little at everything.',
+        evidenceSource: 'Hobson RM, Saunders B, Ball G, Harris RC, Sale C. Amino Acids 2012;43:25-37',
+        doi: '10.1007/s00726-011-1200-z',
+        measuredMetric:
+          'Median effect size for exercise outcomes stratified by effort duration, and percentage improvement per cumulative dose',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ba-a3',
+        category: 'inferred',
+        title: 'The larger meta-analysis put the overall effect size at 0.18',
+        laymanSummary:
+          'A bigger pooled analysis of forty studies in 1,461 people found an overall effect size of 0.18 — real, statistically clear, and small.',
+        technicalDetails:
+          'Saunders and colleagues used a three-level mixed effects model across 40 individual studies employing 65 different exercise protocols and totalling 70 exercise measures in 1,461 participants, restricted to double-blind placebo-controlled studies of chronic supplementation, with crossover designs excluded because muscle carnosine washout takes months. The significant overall effect size was 0.18 (95% CI 0.08 to 0.28), and meta-regression confirmed that exercise duration significantly moderated the effect (P = 0.004). An effect size of 0.18 is small by any convention. What makes it interpretable rather than dismissible is the duration moderation: pooling across all exercise types averages a real effect in a narrow window together with no effect everywhere else, which necessarily produces a small number. Reported as a headline without the moderation, 0.18 understates what beta-alanine does for a 1,500-metre runner and overstates what it does for a powerlifter.',
+        evidenceSource: 'Saunders B et al. Br J Sports Med 2017;51:658-669',
+        doi: '10.1136/bjsports-2016-096396',
+        measuredMetric:
+          'Overall pooled effect size for exercise capacity and performance, with exercise duration as a meta-regression moderator',
+        inferredClaim:
+          'That a pooled effect size of 0.18 across all exercise types describes what beta-alanine does in the window where it works',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ba-a4',
+        category: 'inferred',
+        title: 'The tingling is the only reported side effect, and it can be engineered away',
+        laymanSummary:
+          'The pins-and-needles feeling from a pre-workout drink is beta-alanine, and it is a side effect. Splitting the dose or using a slow-release form removes it without removing the benefit.',
+        technicalDetails:
+          'The ISSN position stand states that the only reported side effect of beta-alanine is paraesthesia, and that it can be attenuated by using divided lower doses of 1.6 g or a sustained-release formula. The mechanism is peripheral: beta-alanine activates MrgprD receptors on cutaneous sensory neurons, producing a transient tingling wholly unrelated to muscle carnosine loading. The audit point is a commercial one. Paraesthesia is dose-rate dependent and eliminable, and the formulations that eliminate it load carnosine just as well. That a large share of the pre-workout market instead delivers beta-alanine as a single bolus, at a dose calibrated to produce a strong sensation, is a formulation decision aimed at perceived efficacy rather than measured efficacy. Consumers who report that a product "isn\'t working" because it no longer tingles are describing habituation of a sensory nerve.',
+        evidenceSource: 'Trexler ET et al. J Int Soc Sports Nutr 2015;12:30',
+        doi: '10.1186/s12970-015-0090-y',
+        inferredClaim:
+          'That paraesthesia indicates the supplement is working, when it is a peripheral sensory effect independent of muscle carnosine accumulation',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ba-a5',
+        category: 'measured',
+        title: 'Dietary carnosine cannot reach muscle, which is why the substrate is sold instead',
+        laymanSummary:
+          'Eating carnosine directly does not work: an enzyme in the blood destroys it before it arrives. That is the reason the supplement is the building block rather than the finished molecule.',
+        technicalDetails:
+          'In the Harris study, histidine dipeptides given in chicken broth at an amount equivalent to 40 mg/kg of beta-alanine produced a plasma beta-alanine peak of 428 +/- 66 micromolar, but carnosine itself was not detected in plasma, with only traces of carnosine and anserine found in urine. Serum carnosinase hydrolyses circulating carnosine rapidly, so ingested carnosine is delivered to muscle as beta-alanine and histidine. Consistent with this, isomolar L-carnosine supplementation for four weeks raised muscle carnosine by 65.8%, essentially the same as 6.4 g/day of beta-alanine at 64.2% — the same result by a more expensive route. This is a rare case where a supplement category correctly identified the rate-limiting substrate rather than selling the end product, and it is worth crediting.',
+        evidenceSource: 'Harris RC et al. Amino Acids 2006;30:279-289',
+        doi: '10.1007/s00726-006-0299-9',
+        measuredMetric:
+          'Plasma carnosine after dipeptide ingestion, and muscle carnosine increase after isomolar L-carnosine versus beta-alanine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ba-a6',
+        category: 'inferred',
+        title: 'It lowers muscle taurine, and the two are sold in the same tub',
+        laymanSummary:
+          'Beta-alanine and taurine compete for the same door into the muscle cell. Chronic beta-alanine use lowers muscle taurine, and both are common pre-workout ingredients.',
+        technicalDetails:
+          'Beta-alanine and taurine are both substrates for the sodium- and chloride-dependent transporter SLC6A6, and Harris et al. observed that plasma taurine increased with beta-alanine ingestion without a corresponding rise in urinary loss — consistent with displacement from tissue. Rodent work has since shown substantial muscle taurine depletion under chronic beta-alanine loading. Whether this matters clinically in humans is genuinely unresolved, and no human trial has been designed to answer it. What is not unresolved is that the interaction is real, mechanistically specific, and that beta-alanine and taurine appear together in a large fraction of multi-ingredient pre-workout formulas with no acknowledgement of it on any label.',
+        evidenceSource: 'Harris RC et al. Amino Acids 2006;30:279-289',
+        doi: '10.1007/s00726-006-0299-9',
+        inferredClaim:
+          'That beta-alanine and taurine are complementary ingredients, when they compete for the same transporter and beta-alanine lowers tissue taurine',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed quickly, cleared within two hours',
+        laymanDesc:
+          'Beta-alanine appears in the blood fast and is gone again within a couple of hours, with almost none lost in urine. That short window is why the dose is split across the day.',
+        molecularDetail:
+          'Harris et al. measured plasma peaks of 47 +/- 13, 374 +/- 68 and 833 +/- 43 micromolar after 10, 20 and 40 mg/kg, with concentrations back at baseline by two hours and urinary loss under 5%. The steep, short plasma curve is what makes divided dosing sensible on pharmacokinetic grounds as well as for tolerability.',
+        iconName: 'ArrowDown',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It enters muscle through a transporter it shares with taurine',
+        laymanDesc:
+          'Muscle takes beta-alanine in through a specific door — the same door taurine uses, which is why the two get in each other\'s way.',
+        molecularDetail:
+          'SLC6A6, the sodium- and chloride-dependent taurine transporter, also carries beta-alanine. Harris et al. observed plasma taurine rising on beta-alanine ingestion without increased urinary loss. Uptake, not synthesis, is the more likely rate-limiting step in loading, which is why muscle carnosine accumulates over weeks rather than days.',
+        iconName: 'DoorOpen',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Carnosine synthase joins it to histidine',
+        laymanDesc:
+          'Inside the muscle cell an enzyme links beta-alanine to histidine, making carnosine. Histidine is plentiful; beta-alanine is the part that runs out.',
+        molecularDetail:
+          'CARNS1 ligates beta-alanine and L-histidine in an ATP-dependent reaction. Intramuscular histidine is not limiting under normal conditions, which is why supplying beta-alanine alone raises carnosine and why supplying histidine alone does not. Carnosine is concentrated in type II fast-twitch fibres, matching the exercise durations in which the benefit appears.',
+        iconName: 'Combine',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Carnosine soaks up protons inside the cell',
+        laymanDesc:
+          'During hard efforts the muscle fills with acid. Carnosine absorbs it, so the cell can keep contracting for longer before pH stops it.',
+        molecularDetail:
+          'The imidazole ring of carnosine has a pKa close to intracellular pH during high-intensity exercise, which is what makes it an effective physicochemical buffer in exactly the range that matters. This is an intracellular mechanism, distinct from sodium bicarbonate\'s extracellular buffering, and the two are additive in principle.',
+        iconName: 'Shield',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The result is more work in a one-to-four-minute effort, and nothing shorter',
+        laymanDesc:
+          'The benefit appears in efforts long enough for acid to build up and short enough for acid to be what stops you. Below a minute there is nothing.',
+        molecularDetail:
+          'Hobson et al. found improvement at 60 to 240 seconds (P = 0.001) and over 240 seconds (P = 0.046), with no benefit under 60 seconds (P = 0.312), and a median 2.85% improvement. Saunders et al. put the pooled effect size at 0.18 (95% CI 0.08 to 0.28) across all durations, with duration a significant moderator (P = 0.004).',
+        iconName: 'Timer',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Harris 2006 — beta-alanine pharmacokinetics and muscle carnosine loading',
+        phase: 'Human pharmacokinetic and four-week supplementation study with muscle biopsy',
+        sampleSize: 20,
+        primaryEndpoint:
+          'Plasma beta-alanine after graded doses, and change in vastus lateralis carnosine after four weeks',
+        endpointMet: true,
+        statisticalPValue:
+          'Significant muscle carnosine increases of 42.1%, 64.2% and 65.8% on 3.2 g/day beta-alanine, 6.4 g/day beta-alanine and isomolar L-carnosine',
+        unreportedAdverseSignals:
+          'Plasma taurine increased with beta-alanine ingestion without a corresponding urinary rise, the first signal of transporter competition. No placebo arm for the biopsy component.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Hobson 2012 meta-analysis of beta-alanine and exercise performance',
+        phase: 'Meta-analysis of 15 published manuscripts',
+        sampleSize: 360,
+        primaryEndpoint: 'Effect of beta-alanine on exercise outcomes, stratified by effort duration',
+        endpointMet: true,
+        statisticalPValue:
+          'Overall P = 0.002; 60-240 s P = 0.001; over 240 s P = 0.046; under 60 s P = 0.312; median improvement 2.85%',
+        unreportedAdverseSignals:
+          'The improvement was in exercise capacity (P = 0.013) rather than exercise performance (P = 0.204) — a distinction between time-to-exhaustion tasks and competitive-style time trials that matters to an athlete.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Saunders 2017 meta-analysis of beta-alanine supplementation',
+        phase: 'Three-level mixed effects meta-analysis of 40 double-blind placebo-controlled studies',
+        sampleSize: 1461,
+        primaryEndpoint: 'Effect of chronic beta-alanine supplementation on exercise capacity and performance',
+        endpointMet: true,
+        statisticalPValue:
+          'Overall effect size 0.18 (95% CI 0.08 to 0.28); exercise duration a significant moderator (P = 0.004)',
+        unreportedAdverseSignals:
+          'Crossover designs were excluded because muscle carnosine washout is very long, which removes the most statistically efficient design from the evidence base and inflates the sample sizes needed.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'ISSN position stand on beta-alanine',
+        phase: 'Society position stand and critical review',
+        sampleSize: 1,
+        primaryEndpoint:
+          'Consensus conclusions on muscle carnosine augmentation, performance window and safety',
+        endpointMet: true,
+        statisticalPValue:
+          'Four weeks at 4-6 g daily significantly augments muscle carnosine; performance improvement most pronounced in open-end-point tasks and time trials of 1 to 4 minutes',
+        unreportedAdverseSignals:
+          'The stand explicitly notes that more research is needed on strength, on endurance beyond 25 minutes, and on health-related benefits of carnosine. Several authors have industry relationships within this field.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Four weeks of beta-alanine raised muscle carnosine by 42.1% at 3.2 g/day and 64.2% at 6.4 g/day, measured by biopsy',
+        'Exercise lasting 60 to 240 seconds improved (P = 0.001); exercise under 60 seconds did not (P = 0.312)',
+        'The pooled effect size across 40 studies and 1,461 participants was 0.18, with duration a significant moderator',
+        'Ingested carnosine was not detectable in plasma, establishing that dietary carnosine is hydrolysed before reaching muscle',
+        'Paraesthesia is the only reported side effect and is attenuated by divided 1.6 g doses or sustained-release formulation',
+      ],
+      unsupportedInferences: [
+        'That the tingling indicates efficacy, when it is a peripheral sensory effect unrelated to carnosine loading',
+        'That beta-alanine helps maximal short efforts or single heavy lifts, where the meta-analysis found nothing',
+        'That an overall effect size of 0.18 describes the benefit inside the window where the mechanism operates',
+        'That beta-alanine and taurine are complementary, when they compete for the same transporter',
+      ],
+      whatFailedInitially: [
+        'Supplementing carnosine itself, which serum carnosinase destroys before it reaches muscle',
+        'Beta-alanine for efforts under 60 seconds, where proton accumulation is not the limiting factor',
+      ],
+      realWorldOutcome: [
+        'This is one of the few supplements where the mechanism was measured in human muscle before the performance claims were made',
+        'The effect is genuine, narrow, and about 3% in the events where it applies',
+        'The dominant commercial format delivers it as a single tingling bolus, which optimises sensation rather than loading',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral powder, capsule or sustained-release tablet; usually inside a multi-ingredient pre-workout blend',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy or safety before sale. Beta-alanine is almost never sold alone at consumer scale — it is a near-universal component of pre-workout formulas alongside caffeine, citrulline and creatine, which makes any consumer attribution of effect impossible and means the tingling is often the only ingredient a user can perceive. Divided 1.6 g doses and sustained-release formulations produce equivalent carnosine loading with markedly less paraesthesia. Alpha-alanine has the same molecular formula and molecular weight, is far cheaper, and is biologically useless here, which makes isomer-resolving analysis the meaningful identity test.',
+      safetyProfile:
+        'Paraesthesia — tingling of the face, neck and hands beginning within about 20 minutes of a bolus dose and resolving within an hour — is the only side effect reported in the position stand literature, and it is dose-rate dependent rather than dose dependent. Chronic supplementation lowers muscle taurine through competition at the shared SLC6A6 transporter; the clinical significance of this in humans has not been established and no trial has been designed to test it. Safety data beyond a few months of supplementation are limited, and carnosine washout from muscle takes many weeks, which means any long-term effect would accumulate slowly and clear slowly.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does the tingling mean it is working?',
+        a: 'No. Paraesthesia comes from beta-alanine activating sensory nerve receptors in the skin and has no relationship to how much carnosine your muscle is accumulating. The ISSN position stand records it as the only reported side effect and notes it can be removed entirely by splitting the dose into 1.6 g portions or using a sustained-release formula — both of which load carnosine just as effectively. If a formulation is calibrated to produce a strong tingle, it is optimised for a sensation rather than an outcome.',
+      },
+      {
+        q: 'What is it actually good for?',
+        a: 'Efforts lasting roughly one to four minutes, and essentially nothing else. Pooled across fifteen studies, exercise of 60 to 240 seconds improved with P = 0.001 and exercise under 60 seconds showed nothing at all with P = 0.312. That pattern is exactly what a proton buffer should produce, which is what makes the result credible. A middle-distance runner, a rower or a combat athlete is in the window. A powerlifter is not.',
+        auditNote:
+          'The median improvement in that window was 2.85 percent, which at that level of competition is substantial.',
+      },
+      {
+        q: 'Why not just take carnosine, or eat more meat?',
+        a: 'Because it does not reach muscle. When histidine dipeptides were given in chicken broth, beta-alanine appeared in plasma but carnosine itself was not detectable, with only traces in urine — serum carnosinase hydrolyses circulating carnosine almost immediately. Interestingly, taking L-carnosine as a supplement does still work, raising muscle carnosine by 65.8 percent, because it is broken down to beta-alanine first. It is the same result by a more expensive route.',
+      },
+      {
+        q: 'The meta-analysis says the effect size is only 0.18. Is it worth taking?',
+        a: 'That number is real and it is misleading on its own. The 0.18 comes from pooling every exercise type together, including all the durations where beta-alanine cannot work, and the same analysis found that duration significantly moderates the effect. Averaging a genuine benefit in a narrow window with no benefit everywhere else necessarily produces a small overall number. For a two-minute event it understates what beta-alanine does; for a single maximal lift it overstates it.',
+      },
+      {
+        q: 'How long does it take?',
+        a: 'Weeks, not days, and that is a property of the loading rather than of the dose. Muscle carnosine accumulated over four weeks at 3.2 to 6.4 grams daily in the biopsy study, and the position stand describes at least two to four weeks of daily supplementation before performance effects appear. Washout is correspondingly slow — long enough that meta-analysts exclude crossover trials because muscle carnosine does not return to baseline within a practical washout period.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label:
+          'Harris RC et al. The absorption of orally supplied beta-alanine and its effect on muscle carnosine synthesis in human vastus lateralis. Amino Acids 2006;30:279-289',
+        identifier: '10.1007/s00726-006-0299-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hobson RM, Saunders B, Ball G, Harris RC, Sale C. Effects of beta-alanine supplementation on exercise performance: a meta-analysis. Amino Acids 2012;43:25-37',
+        identifier: '10.1007/s00726-011-1200-z',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Trexler ET et al. International Society of Sports Nutrition position stand: beta-alanine. J Int Soc Sports Nutr 2015;12:30',
+        identifier: '10.1186/s12970-015-0090-y',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Saunders B et al. Beta-alanine supplementation to improve exercise capacity and performance: a systematic review and meta-analysis. Br J Sports Med 2017;51:658-669',
+        identifier: '10.1136/bjsports-2016-096396',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 239 — Beta-alanine',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/239',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
