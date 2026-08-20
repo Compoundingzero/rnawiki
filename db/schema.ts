@@ -61,6 +61,8 @@ export const approvalStatusEnum = pgEnum('approval_status', [
   'Non-FDA / Dietary Supplement',
   'Accelerated Approval',
   'Pre-clinical / Open Source',
+  'Controlled / No Approved Use',
+  'Withdrawn from Market',
 ])
 
 export const auditConfidenceEnum = pgEnum('audit_confidence', [

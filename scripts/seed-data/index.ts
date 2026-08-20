@@ -21,6 +21,9 @@ import { SMALL_MOLECULE_NEURO_DOSSIERS } from './small-molecule-neuro'
 import { SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS } from './small-molecule-infectious-onc'
 import { NUTRACEUTICAL_CORE_DOSSIERS } from './nutraceutical-core'
 import { NUTRACEUTICAL_BOTANICAL_DOSSIERS } from './nutraceutical-botanical'
+import { WITHDRAWN_AND_RESTRICTED_DOSSIERS } from './withdrawn-and-restricted'
+import { PERFORMANCE_AND_GREY_MARKET_DOSSIERS } from './performance-and-grey-market'
+import { CONTROLLED_PSYCHOACTIVE_DOSSIERS } from './controlled-psychoactive'
 
 export const ALL_SEED_DOSSIERS: SeedDossier[] = [
   ...SIRNA_DOSSIERS,
@@ -35,6 +38,9 @@ export const ALL_SEED_DOSSIERS: SeedDossier[] = [
   ...SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS,
   ...NUTRACEUTICAL_CORE_DOSSIERS,
   ...NUTRACEUTICAL_BOTANICAL_DOSSIERS,
+  ...WITHDRAWN_AND_RESTRICTED_DOSSIERS,
+  ...PERFORMANCE_AND_GREY_MARKET_DOSSIERS,
+  ...CONTROLLED_PSYCHOACTIVE_DOSSIERS,
 ]
 
 /**

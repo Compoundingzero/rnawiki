@@ -39,6 +39,19 @@ export type ApprovalStatus =
   | 'Non-FDA / Dietary Supplement'
   | 'Accelerated Approval'
   | 'Pre-clinical / Open Source'
+  /**
+   * Scheduled by a drug authority with no approved medical use in the United States: LSD,
+   * psilocybin, heroin, MDMA outside its trials. The reference's eight statuses were written for a
+   * six-drug demo and had nowhere honest to put these, and 'Off-Label / Compounded' would have
+   * implied a prescribing route that does not exist. A drug reference that omits the scheduled
+   * substances omits the ones readers have the fewest reliable places to look up.
+   */
+  | 'Controlled / No Approved Use'
+  /**
+   * Approved once and pulled: rofecoxib, sibutramine, cerivastatin. These are the clearest
+   * conclusion_shift records in medicine and describing them as approved would be false.
+   */
+  | 'Withdrawn from Market'
 
 export const APPROVAL_STATUSES: ApprovalStatus[] = [
   'FDA Approved',
@@ -49,6 +62,8 @@ export const APPROVAL_STATUSES: ApprovalStatus[] = [
   'Non-FDA / Dietary Supplement',
   'Accelerated Approval',
   'Pre-clinical / Open Source',
+  'Controlled / No Approved Use',
+  'Withdrawn from Market',
 ]
 
 export type AuditConfidence =

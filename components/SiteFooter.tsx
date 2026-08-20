@@ -26,6 +26,7 @@ import { GuideLink } from '@/components/GuideLink'
 const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: '/browse', label: 'Browse all medicines' },
   { href: '/review-queue', label: 'Review queue' },
+  { href: '/how-editing-works', label: 'How editing works' },
   { href: '/methodology', label: 'How verification works' },
 ]
 
