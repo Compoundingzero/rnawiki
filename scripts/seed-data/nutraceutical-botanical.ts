@@ -2046,4 +2046,1994 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Resveratrol — two separate problems that are routinely conflated: a research-misconduct case
+  // and, quite independently of it, a body of null human trials.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'resveratrol',
+    name: 'Resveratrol',
+    sponsor: 'No single sponsor — a stilbenoid from grape skin, Japanese knotweed and peanuts',
+    targetGene: 'SIRT1',
+    targetProtein:
+      'NAD-dependent protein deacetylase sirtuin-1, proposed as the target in 2003 and shown in 2010 not to be directly activated by resveratrol in the absence of a fluorophore-tagged substrate',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement for cardiovascular and longevity support. No approved indication anywhere, and no successful phase 3 programme in any disease.',
+    patientFriendlyIndication: 'Marketed for longevity and heart health, approved for neither',
+    conditionContext: {
+      conditionExplainer:
+        'Resveratrol became famous as the proposed explanation for the "French paradox" — the observation that French populations had lower cardiovascular mortality than their saturated fat intake predicted — and then as a calorie-restriction mimetic said to work through the sirtuin enzymes.',
+      whyItMatters:
+        'Two distinct things went wrong with resveratrol, and reporting almost always merges them. One was a research-misconduct case at the University of Connecticut. The other, entirely separate, was that carefully conducted independent human trials kept returning null. Merging them lets the field dismiss the null trials as fallout from the fraud, which they are not.',
+      whoTakesThis:
+        'Adults taking it for longevity, cardiovascular or metabolic reasons, usually on the strength of animal and cell literature rather than human trials.',
+      clinicalGoals:
+        'Human trials have measured insulin sensitivity by clamp, blood pressure, lipids, inflammatory markers, mitochondrial function and training response. The consistent finding across the best-controlled of them is no benefit, and in one case harm.',
+    },
+    oneSentenceVerdict:
+      'A compound whose proposed target was shown not to be directly engaged, whose most enthusiastic laboratory produced 145 counts of data fabrication, and whose independent human trials — separately and on their own merits — repeatedly found nothing, including one that found resveratrol blunted the benefits of exercise.',
+    laymanHowItWorks:
+      'The original story was that resveratrol switches on an enzyme called SIRT1 that mimics the effects of eating less, and that this explains longer life in yeast, worms and mice. That story has two holes. In 2010 a pharmaceutical group showed the SIRT1 activation was an artefact of the fluorescent tag used in the assay: with a normal substrate, resveratrol does not activate the enzyme. And in humans, oral resveratrol is absorbed and then almost entirely conjugated within minutes, so the blood carries the deactivated form.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 20,
+    anatomicalSite: 'Intestinal epithelium and liver, where it is conjugated before reaching tissue',
+    substitutes: {
+      summary:
+        'Everything resveratrol was proposed to do — improve insulin sensitivity, lower blood pressure, improve cardiovascular fitness — is done more reliably by exercise, which is also the one intervention resveratrol was shown to interfere with.',
+      conventionalRx: [
+        {
+          name: 'High-intensity exercise training',
+          class: 'Non-pharmacological',
+          howItCompares:
+            'Directly compared, unintentionally. In Gliemann et al., eight weeks of high-intensity training raised maximal oxygen uptake 45% more in the placebo group than in the resveratrol group, and lowered mean arterial pressure in the placebo group only.',
+          typicalCost: 'Not priced here — no published cost figure is cited on this page',
+          prosAndCons:
+            'Pros: the outcome resveratrol was supposed to produce, produced. Cons: requires doing it.',
+        },
+        {
+          name: 'Statins',
+          class: 'HMG-CoA reductase inhibitor',
+          howItCompares:
+            'The lipid endpoint resveratrol was marketed against. Statins have cardiovascular outcome trials; resveratrol was shown in Gliemann et al. to abolish exercise-induced improvements in LDL, the total-to-HDL cholesterol ratio and triglycerides.',
+          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: outcome evidence. Cons: muscle symptoms in a minority.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Red wine, grapes and peanuts',
+          activeCompound: 'trans-Resveratrol at food concentration',
+          biologicalMechanism:
+            'The dietary source, and the origin of the whole hypothesis. Semba et al. measured 24-hour urinary resveratrol metabolites in 783 community-dwelling adults over 65 in the Chianti region and found no association with inflammation, cancer, cardiovascular disease or all-cause mortality over nine years.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'Dietary intake in the InCHIANTI cohort produced a mean log total urinary metabolite concentration of 7.08 nmol/g creatinine, which was not associated with any outcome measured',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Keep the fraud and the null trials separate',
+          action:
+            'When reading about resveratrol, check whether a claim traces to the retracted University of Connecticut work or to an independent trial.',
+          patientImpact:
+            'The misconduct case explains why part of the preclinical literature is unreliable. It does not explain why Yoshino, Poulsen and Gliemann found nothing — those were independent groups running clean trials, and their results stand on their own.',
+          clinicalPrecaution:
+            'Resveratrol inhibits CYP3A4 and CYP2C9 and has antiplatelet activity, so interaction with anticoagulants and with drugs cleared by those enzymes is plausible.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC(=CC=C1/C=C/C2=CC(=CC(=C2)O)O)O',
+      chemicalFormula: 'C14H12O3',
+      molecularWeight: '228.24 g/mol (trans-resveratrol, PubChem CID 445154)',
+      structureSource: {
+        label: 'PubChem CID 445154 — trans-Resveratrol, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445154',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'res-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'trans versus cis isomer verification of incoming material',
+          description:
+            'Confirm the material is the trans isomer and quantify cis content. The isomerisation is light-driven and fast, and the cis form has different activity, so a product that has sat in a clear bottle is not the substance the trials used.',
+          reagentsAndBuffer:
+            'trans- and cis-resveratrol reference standards; C18 HPLC with detection at 306 nm for trans and 285 nm for cis; amber glassware throughout; UV exposure control sample',
+        },
+        {
+          id: 'res-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Extraction from Polygonum cuspidatum root',
+          description:
+            'Extract Japanese knotweed root, which is the commercial source for almost all supplement resveratrol rather than grapes. Emodin, an anthraquinone laxative present in the same root, is the impurity that has to be cleared and is not always declared.',
+          dependsOnStepId: 'res-w1',
+          reagentsAndBuffer:
+            'Aqueous ethanol extraction under nitrogen and low light; emodin reference standard; rotary evaporation below 40 degrees C',
+        },
+        {
+          id: 'res-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation and emodin clearance',
+          description:
+            'Recrystallise to greater than 98% trans-resveratrol and confirm emodin below specification, since residual emodin produces a gastrointestinal effect that is easily mistaken for a resveratrol effect.',
+          dependsOnStepId: 'res-w2',
+          reagentsAndBuffer:
+            'Ethanol / water recrystallisation; preparative C18 HPLC; LC-MS/MS quantification of emodin down to 10 ppm',
+        },
+        {
+          id: 'res-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Conjugation-competent hepatocyte model rather than a cell line',
+          description:
+            'Use primary human hepatocytes rather than a transformed line, because the central pharmacokinetic fact about resveratrol is near-complete first-pass glucuronidation and sulfation, and most immortalised lines have lost that capacity. A cell-line result at 50 micromolar free resveratrol describes a state no human plasma reaches.',
+          dependsOnStepId: 'res-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes; UGT and SULT cofactors UDPGA and PAPS; LC-MS/MS quantification of free, glucuronidated and sulfated resveratrol',
+        },
+        {
+          id: 'res-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'SIRT1 deacetylation assay with a native, untagged substrate',
+          description:
+            'Run the SIRT1 activity assay against a native peptide substrate rather than a fluorophore-conjugated one. This is the specific control that overturned the original finding: Pacholec et al. showed the apparent activation depends on the covalently attached fluorophore and disappears with a native substrate.',
+          dependsOnStepId: 'res-w4',
+          reagentsAndBuffer:
+            'Recombinant human SIRT1; native acetylated p53 peptide substrate; matched Fluor-de-Lys tagged substrate as the artefact-positive control; NAD+ cofactor; mass-spectrometric detection of deacetylated product',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'res-a1',
+        category: 'conclusion_shift',
+        title: 'The SIRT1 activation was an artefact of the assay substrate',
+        laymanSummary:
+          'The enzyme resveratrol was famous for switching on turned out not to be switched on by it — the effect only appeared when the test used a fluorescent tag.',
+        technicalDetails:
+          'Pacholec et al. tested resveratrol and the synthetic SIRT1 activators SRT1720, SRT2183 and SRT1460 against SIRT1 and found that apparent activation required a fluorophore-containing peptide substrate. With native peptide substrates the activation disappeared, and the compounds showed extensive off-target activity instead. This is a mechanistic correction rather than a misconduct finding, published by an independent pharmaceutical group, and it is the single most consequential paper in the resveratrol literature.',
+        evidenceSource: 'Pacholec M et al. J Biol Chem 2010;285:8340-8351',
+        doi: '10.1074/jbc.M109.088682',
+        inferredClaim:
+          'That resveratrol is a direct SIRT1 activator and therefore a calorie-restriction mimetic',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'res-a2',
+        category: 'conclusion_shift',
+        title: 'A separate matter: 145 counts of data fabrication at the University of Connecticut',
+        laymanSummary:
+          'A leading resveratrol researcher was found to have fabricated and falsified data 145 times, and eleven journals were formally notified.',
+        technicalDetails:
+          'A three-year investigation by the University of Connecticut Health Center, prompted by an anonymous allegation in 2008 and covering more than seven years of laboratory activity, concluded that Dipak K. Das, professor of surgery and director of the Cardiovascular Research Center, was guilty of 145 counts of fabrication and falsification of data. The report ran to approximately 60,000 pages. Letters of notification were sent to 11 scientific journals; the Health Center froze externally funded research in the laboratory and declined US$890,000 in federal grants. Retraction notices followed, including in the Journal of Cellular and Molecular Medicine. This affected a specific body of cardioprotection work and did not produce the SIRT1 correction, which was independent, nor the null clinical trials, which were run by other groups.',
+        evidenceSource:
+          'University of Connecticut Health Center statement, 11 January 2012; retraction notice, J Cell Mol Med 2012;16:2548',
+        doi: '10.1111/j.1582-4934.2012.01620.x',
+        auditFlag: 'retracted',
+      },
+      {
+        id: 'res-a3',
+        category: 'failed',
+        title: 'Poulsen 2013: high-dose resveratrol did nothing in obese men',
+        laymanSummary:
+          'Four weeks of high-dose resveratrol in obese men changed nothing measurable, including the primary endpoint.',
+        technicalDetails:
+          'Randomised, placebo-controlled, double-blinded, parallel-group trial in 24 obese but otherwise healthy men, with insulin sensitivity by hyperinsulinaemic euglycaemic clamp as the primary outcome. Insulin sensitivity deteriorated insignificantly in both groups. Endogenous glucose production and glucose turnover and oxidation rates were unchanged. There was no effect on blood pressure, resting energy expenditure, lipid oxidation, ectopic or visceral fat content, or inflammatory and metabolic biomarkers. The authors wrote that the lack of effect disagrees with persuasive rodent data and raises doubt about the justification of resveratrol as a human nutritional supplement in metabolic disorders.',
+        evidenceSource: 'Poulsen MM et al. Diabetes 2013;62:1186-1195',
+        doi: '10.2337/db12-0975',
+        measuredMetric: 'Insulin sensitivity by hyperinsulinaemic euglycaemic clamp over four weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'res-a4',
+        category: 'failed',
+        title: 'Yoshino 2012: no metabolic improvement in nonobese women either',
+        laymanSummary:
+          'A carefully controlled trial in healthy-weight postmenopausal women found no metabolic benefit, and measured the supposed molecular targets directly to show they had not moved either.',
+        technicalDetails:
+          'Forty-five lean and overweight postmenopausal women were randomised to placebo, resveratrol 75 mg/day, or calorie restriction for 12 weeks. Plasma resveratrol rose, and nothing else did: no change in body composition, resting metabolic rate, plasma lipids or inflammatory markers, and no increase in liver, skeletal muscle or adipose tissue insulin sensitivity on a two-stage hyperinsulinaemic euglycaemic clamp with labelled tracers. The paper also measured the putative molecular targets directly — AMPK, SIRT1, NAMPT and PPARGC1A — in muscle and adipose tissue, and none was affected. Together with Poulsen 2013 this closes both ends of the metabolic hypothesis.',
+        evidenceSource: 'Yoshino J et al. Cell Metab 2012;16:658-664',
+        doi: '10.1016/j.cmet.2012.09.015',
+        measuredMetric:
+          'Tissue-specific insulin sensitivity by clamp, and muscle and adipose expression of AMPK, SIRT1, NAMPT and PPARGC1A',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'res-a5',
+        category: 'failed',
+        title: 'Gliemann 2013: resveratrol blunted the benefits of exercise training',
+        laymanSummary:
+          'Older men who took resveratrol while training got less out of the training than men who took placebo.',
+        technicalDetails:
+          'Twenty-seven healthy physically inactive men aged around 65 were randomised to 250 mg trans-resveratrol daily or placebo alongside eight weeks of high-intensity exercise training. Training raised maximal oxygen uptake 45% more in the placebo group than in the resveratrol group (P < 0.05), and mean arterial pressure fell in the placebo group only (-4.8 +/- 1.7 mmHg, P < 0.05). Resveratrol also abolished the exercise-induced improvements in LDL, the total-to-HDL cholesterol ratio and triglycerides (P < 0.05). Interstitial prostacyclin was lower and muscle thromboxane synthase higher in the resveratrol group. SIRT1 protein levels were unaffected. A supplement that reverses an established benefit is a stronger finding than one that produces none.',
+        evidenceSource: 'Gliemann L et al. J Physiol 2013;591:5047-5059',
+        doi: '10.1113/jphysiol.2013.258061',
+        measuredMetric:
+          'Training-induced change in maximal oxygen uptake, mean arterial pressure and blood lipids over eight weeks',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'res-a6',
+        category: 'inferred',
+        title: 'Dietary resveratrol exposure predicted nothing over nine years',
+        laymanSummary:
+          'Measuring how much resveratrol 783 older Italians were actually getting from their diet showed no link to inflammation, disease or death.',
+        technicalDetails:
+          'The InCHIANTI prospective cohort followed 783 community-dwelling men and women aged 65 or older in two Chianti villages from 1998 to 2009, using 24-hour urinary resveratrol metabolites as the exposure. Over nine years 268 participants, 34.3%, died. Mortality across quartiles of urinary resveratrol was 34.4%, 31.6%, 33.5% and 37.4% (P = 0.67), with a hazard ratio of 0.80 (95% CI 0.54 to 1.17) for the lowest against the highest quartile. Resveratrol levels were not associated with CRP, IL-6, IL-1 beta, TNF, or prevalent or incident cardiovascular disease or cancer. This is the French-paradox hypothesis tested where it was born, with a direct biochemical exposure measure rather than a food questionnaire.',
+        evidenceSource: 'Semba RD et al. JAMA Intern Med 2014;174:1077-1084',
+        doi: '10.1001/jamainternmed.2014.1582',
+        inferredClaim:
+          'That dietary resveratrol exposure explains the cardiovascular mortality pattern the French paradox described',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed well, and then almost entirely deactivated',
+        laymanDesc:
+          'Resveratrol crosses the gut wall easily and is then tagged for disposal within minutes, so very little free compound reaches the bloodstream.',
+        molecularDetail:
+          'Oral absorption is roughly 70%, but first-pass glucuronidation and sulfation in enterocytes and hepatocytes are so extensive that free trans-resveratrol in plasma is typically in the low nanomolar range while conjugates are in the micromolar range. Almost every cell experiment uses free resveratrol at 10 to 100 micromolar.',
+        iconName: 'Filter',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The conjugates circulate; whether they are active is unresolved',
+        laymanDesc:
+          'What actually travels around the body is the tagged version, and nobody has established that it does anything.',
+        molecularDetail:
+          'Resveratrol-3-O-glucuronide and resveratrol-3-O-sulfate are the dominant circulating species. A partial deconjugation hypothesis at target tissue exists and has not been demonstrated at the concentrations an oral dose produces.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The proposed target is not directly engaged',
+        laymanDesc:
+          'The enzyme the whole story was built on is not activated by resveratrol when the test is run properly.',
+        molecularDetail:
+          'Pacholec et al. showed the apparent SIRT1 activation required a fluorophore-conjugated peptide substrate and vanished with native substrates. Gliemann et al. separately measured SIRT1 protein in trained older men and found it unaffected by resveratrol supplementation.',
+        iconName: 'Network',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Indirect routes remain plausible and unproven in humans',
+        laymanDesc:
+          'Other explanations exist — mild mitochondrial stress, effects on an energy-sensing enzyme — but none has been shown to happen in a person.',
+        molecularDetail:
+          'Proposed indirect mechanisms include AMPK activation downstream of phosphodiesterase inhibition and mild mitochondrial complex I inhibition. Each is reported at concentrations well above measured human free plasma levels.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And in the best human trials, nothing happens — or worse',
+        laymanDesc:
+          'The trials that controlled everything properly found no benefit, and one found resveratrol cancelled out the benefits of exercise.',
+        molecularDetail:
+          'Poulsen 2013 and Yoshino 2012 found no metabolic effect in obese men and in nonobese women respectively. Gliemann 2013 found a 45% smaller training-induced rise in maximal oxygen uptake in the resveratrol arm, and abolition of the exercise-induced lipid improvements.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Poulsen 2013 (high-dose resveratrol in obese men)',
+        phase: 'Randomised, double-blind, placebo-controlled, parallel group',
+        sampleSize: 24,
+        primaryEndpoint: 'Insulin sensitivity by hyperinsulinaemic euglycaemic clamp after four weeks',
+        endpointMet: false,
+        statisticalPValue: 'No significant difference; insulin sensitivity deteriorated insignificantly in both arms',
+        unreportedAdverseSignals:
+          'No effect on any secondary endpoint either: blood pressure, resting energy expenditure, lipid oxidation, ectopic or visceral fat, inflammatory or metabolic biomarkers.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Yoshino 2012 (75 mg/day for 12 weeks, nonobese postmenopausal women)',
+        phase: 'Randomised, double-blind, placebo-controlled',
+        sampleSize: 45,
+        primaryEndpoint:
+          'Insulin sensitivity by two-stage hyperinsulinaemic euglycaemic clamp with labelled tracer infusion, after 12 weeks',
+        endpointMet: false,
+        statisticalPValue: 'No significant improvement in any measure of metabolic function',
+        unreportedAdverseSignals:
+          'Forty-five women randomised across three arms of 15 — placebo, resveratrol 75 mg/day, and calorie restriction — so the resveratrol comparison itself rests on 15 against 14 completers. Resveratrol did not affect AMPK, SIRT1, NAMPT or PPARGC1A in muscle or adipose tissue.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Gliemann 2013 (resveratrol with high-intensity training in aged men)',
+        phase: 'Randomised, double-blind, placebo-controlled',
+        sampleSize: 27,
+        primaryEndpoint: 'Training-induced change in cardiovascular health parameters over eight weeks',
+        endpointMet: false,
+        statisticalPValue:
+          'P < 0.05 in favour of placebo for maximal oxygen uptake, mean arterial pressure and blood lipids',
+        unreportedAdverseSignals:
+          'This trial did not merely fail to show benefit — the resveratrol arm did worse than placebo on the training response, which is a harm signal in a healthy population.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Semba 2014 (InCHIANTI prospective cohort, urinary resveratrol metabolites)',
+        phase: 'Prospective observational cohort, nine years',
+        sampleSize: 783,
+        primaryEndpoint: 'All-cause mortality by quartile of 24-hour urinary resveratrol metabolites',
+        endpointMet: false,
+        statisticalPValue: 'P = 0.67 across quartiles; HR 0.80 (95% CI 0.54 to 1.17) lowest versus highest',
+        unreportedAdverseSignals:
+          'Observational, so confounding cannot be excluded — but the exposure measure is biochemical rather than a dietary questionnaire, which is stronger than most nutritional epidemiology.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'SIRT1 activation by resveratrol requires a fluorophore-conjugated substrate and disappears with native peptide substrates',
+        'No effect on clamp-measured insulin sensitivity or any secondary metabolic endpoint in 24 obese men over four weeks, and none in 45 postmenopausal women over 12 weeks',
+        'A 45% smaller training-induced rise in maximal oxygen uptake in the resveratrol arm than in placebo, in 27 aged men',
+        'No association between 24-hour urinary resveratrol metabolites and inflammation, cancer, cardiovascular disease or nine-year mortality in 783 older adults',
+        '145 counts of fabrication and falsification of data adjudicated by the University of Connecticut Health Center, with 11 journals notified',
+      ],
+      unsupportedInferences: [
+        'That resveratrol is a direct SIRT1 activator or a calorie-restriction mimetic in humans',
+        'That lifespan extension in yeast, worms and mice predicts anything about human healthspan',
+        'That the French paradox is explained by dietary resveratrol — tested directly in Chianti and not supported',
+        'That the null human trials are collateral damage from the misconduct case; they were run by independent groups and stand on their own',
+      ],
+      whatFailedInitially: [
+        'The metabolic hypothesis failed in both directions: no effect in obese insulin-resistant men, no effect in lean metabolically healthy women',
+        'The exercise-adjunct hypothesis failed in the opposite direction from expected, with resveratrol blunting training benefits',
+        'The mechanistic foundation failed when the assay artefact was identified in 2010',
+      ],
+      realWorldOutcome: [
+        'Resveratrol remains one of the best-selling longevity supplements despite having no positive independent human efficacy trial of consequence',
+        'The pharmacokinetic problem is unresolved: what circulates after an oral dose is almost entirely the conjugated form',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule of trans-resveratrol, usually extracted from Polygonum cuspidatum',
+      description:
+        'Sold as a dietary supplement with no premarket efficacy review. Almost all commercial resveratrol comes from Japanese knotweed root rather than grapes; emodin, a laxative anthraquinone from the same root, is the impurity to watch and is not always specified. trans-Resveratrol isomerises to the cis form on light exposure.',
+      safetyProfile:
+        'High doses produce gastrointestinal effects including nausea and diarrhoea, some of which may be residual emodin rather than resveratrol. Resveratrol inhibits CYP3A4 and CYP2C9 and has antiplatelet activity, giving a plausible interaction with anticoagulants. The one signal from a controlled trial is the blunting of exercise training adaptations in older men.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was the resveratrol research all fraudulent?',
+        a: 'No, and this is the distinction that matters most on this page. One laboratory — Dipak Das at the University of Connecticut — was found to have committed 145 counts of data fabrication and falsification, affecting a specific body of cardioprotection work, with 11 journals notified. That is real and serious. It is also separate from the two other things that went wrong: the 2010 finding that the SIRT1 activation was an assay artefact, published by an independent pharmaceutical group, and the string of null human trials run by independent academic groups in Denmark, the United States and elsewhere. If the fraud had never happened, the null trials would still be null.',
+        auditNote:
+          'Conflating the misconduct with the null results lets both sides misread the field. This page keeps them apart deliberately.',
+      },
+      {
+        q: 'Does resveratrol extend lifespan?',
+        a: 'It has extended lifespan in yeast, nematodes and some mouse studies. In humans there is no lifespan evidence of any kind, and the nearest available test — a nine-year prospective cohort in the Chianti region using urinary resveratrol metabolites as the exposure measure — found no association with mortality, inflammation, cancer or cardiovascular disease across 783 older adults.',
+      },
+      {
+        q: 'Why do cell studies show so much when human trials show nothing?',
+        a: 'Because the concentrations are not comparable. Cell experiments typically use free trans-resveratrol at 10 to 100 micromolar. In a person, oral resveratrol is absorbed well and then almost completely glucuronidated and sulfated on first pass, leaving free resveratrol in plasma at low nanomolar concentrations — roughly a thousand-fold lower. A result at a concentration nothing in the body reaches is a chemistry result, not a pharmacology one.',
+      },
+      {
+        q: 'Is there a reason not to take it?',
+        a: 'One controlled trial found active harm rather than absence of benefit. In 27 physically inactive men around 65 undergoing eight weeks of high-intensity training, the resveratrol arm gained 45% less maximal oxygen uptake than placebo, showed no fall in mean arterial pressure, and lost the exercise-induced improvements in LDL, the cholesterol ratio and triglycerides. A plausible reading is that the antioxidant activity interferes with the oxidative signalling exercise uses to drive adaptation. It is one trial in 27 people, and it points the wrong way.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Pacholec M et al. SRT1720, SRT2183, SRT1460, and resveratrol are not direct activators of SIRT1. J Biol Chem 2010;285:8340-8351',
+        identifier: '10.1074/jbc.M109.088682',
+        kind: 'doi',
+      },
+      {
+        label:
+          'University of Connecticut Health Center. Scientific Journals Notified Following Research Misconduct Investigation, 11 January 2012',
+        identifier:
+          'https://today.uconn.edu/2012/01/scientific-journals-notified-following-research-misconduct-investigation/',
+        kind: 'url',
+      },
+      {
+        label:
+          'Retracted: Differential proteomic profiling to study the mechanism of cardiac pharmacological preconditioning by resveratrol. J Cell Mol Med 2012;16:2548',
+        identifier: '10.1111/j.1582-4934.2012.01620.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Poulsen MM et al. High-dose resveratrol supplementation in obese men: an investigator-initiated, randomized, placebo-controlled clinical trial. Diabetes 2013;62:1186-1195',
+        identifier: '10.2337/db12-0975',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Yoshino J et al. Resveratrol supplementation does not improve metabolic function in nonobese women with normal glucose tolerance. Cell Metab 2012;16:658-664',
+        identifier: '10.1016/j.cmet.2012.09.015',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gliemann L et al. Resveratrol blunts the positive effects of exercise training on cardiovascular health in aged men. J Physiol 2013;591:5047-5059',
+        identifier: '10.1113/jphysiol.2013.258061',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Semba RD et al. Resveratrol levels and all-cause mortality in older community-dwelling adults. JAMA Intern Med 2014;174:1077-1084',
+        identifier: '10.1001/jamainternmed.2014.1582',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 445154 — trans-Resveratrol',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445154',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Quercetin — a small blood pressure effect, and a senolytic story that has now had its first
+  // properly randomised test.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'quercetin',
+    name: 'Quercetin',
+    sponsor: 'No single sponsor — a flavonol from onions, capers, apples and tea',
+    targetGene: 'BCL2L1',
+    targetProtein:
+      'BCL-xL and related anti-apoptotic proteins, in the senolytic context. Quercetin is also a broad, weak inhibitor of many kinases and a documented pan-assay interference compound.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement for allergy, immunity, blood pressure and, increasingly, as a senolytic. It is also the quercetin half of the dasatinib-plus-quercetin combination under investigation in clinical trials, which is a prescription oncology drug plus a supplement.',
+    patientFriendlyIndication: 'Marketed for allergy and immunity; investigated as a senescent-cell killer',
+    conditionContext: {
+      conditionExplainer:
+        'Quercetin is the most abundant flavonol in the ordinary diet. Two very different claims attach to it. The consumer claim is about allergy, immunity and blood pressure. The research claim is that in combination with the leukaemia drug dasatinib it selectively kills senescent cells — worn-out cells that accumulate with age and secrete inflammatory signals.',
+      whyItMatters:
+        'The senolytic story is one of the most closely watched ideas in ageing biology, and quercetin is inside it. Following what that research has and has not shown is a good test of whether a supplement page can report a live scientific programme honestly.',
+      whoTakesThis:
+        'Adults taking it for seasonal allergy or immune support, and separately a small number of trial participants receiving it alongside dasatinib under supervision.',
+      clinicalGoals:
+        'Trials have measured blood pressure, endurance capacity, senescent cell burden in fat and skin biopsies, and — in the first randomised senolytic trial — bone turnover markers.',
+    },
+    oneSentenceVerdict:
+      'A dietary flavonol with a small measured blood pressure reduction, a trivial-to-small effect on endurance, real evidence that it clears senescent cells from human fat tissue when combined with a prescription leukaemia drug, and a first randomised senolytic trial whose primary endpoint it missed.',
+    laymanHowItWorks:
+      'Two stories. As a supplement, quercetin is a broad weak inhibitor of a great many enzymes and a stabiliser of the cells that release histamine, which is where the allergy claim comes from. As a senolytic, it is used with dasatinib to disable the survival proteins that keep senescent cells alive when they should have died, so that those cells self-destruct. The senolytic use is a combination with a prescription drug, in supervised trials, and is not what is in a bottle on a shelf.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 34,
+    anatomicalSite: 'Adipose tissue and vascular endothelium, in the trials that measured tissue directly',
+    substitutes: {
+      summary:
+        'For blood pressure, every approved antihypertensive class produces several times the 3 mmHg systolic reduction quercetin achieved, with outcome trials behind it. For allergy, second-generation antihistamines have regulatory approval and quercetin does not.',
+      conventionalRx: [
+        {
+          name: 'Any first-line antihypertensive (ACE inhibitor, ARB, thiazide, calcium channel blocker)',
+          class: 'Antihypertensive',
+          howItCompares:
+            'Produces roughly 8 to 10 mmHg systolic reduction at standard dose, against the 3.04 mmHg pooled estimate for quercetin, and has cardiovascular outcome trials that quercetin has never attempted.',
+          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: larger effect, outcome data, regulatory review. Cons: class-specific side effects.',
+        },
+        {
+          name: 'Cetirizine or loratadine',
+          class: 'Second-generation H1 antihistamine',
+          howItCompares:
+            'Blocks the histamine receptor directly rather than attempting to stabilise the mast cell that releases it, and is approved for allergic rhinitis on randomised evidence. No trial has compared quercetin with an antihistamine.',
+          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons: 'Pros: approved, predictable, cheap. Cons: mild sedation in some people.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Onions, capers, apples and tea',
+          activeCompound: 'Quercetin glycosides, principally quercetin-4-glucoside and rutin',
+          biologicalMechanism:
+            'The dietary form is glycosylated and is deglycosylated before absorption, giving a different pharmacokinetic profile from the aglycone in supplements. Ordinary dietary intake is roughly one to two orders of magnitude below the amounts used in the blood pressure trials.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'The blood pressure meta-analysis found the effect was possibly limited to, or greater at, doses above 500 mg/day, which is far above ordinary dietary intake',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Do not read the senolytic trials as supplement evidence',
+          action:
+            'Check whether a senolytic result used quercetin alone or dasatinib plus quercetin. Every published human senolytic study used the combination.',
+          patientImpact:
+            'Dasatinib is a prescription tyrosine kinase inhibitor with serious toxicities including pleural effusion and myelosuppression. The senescent-cell clearance measured in these studies is attributed to the combination, and quercetin alone has not been shown to do it in humans.',
+          clinicalPrecaution:
+            'Quercetin inhibits CYP3A4 and P-glycoprotein and can raise the blood level of co-administered drugs, which is one reason the combination is given under supervision.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC(=C(C=C1C2=C(C(=O)C3=C(C=C(C=C3O2)O)O)O)O)O',
+      chemicalFormula: 'C15H10O7',
+      molecularWeight: '302.23 g/mol (PubChem CID 5280343)',
+      structureSource: {
+        label: 'PubChem CID 5280343 — Quercetin, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280343',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'que-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Aglycone versus glycoside specification of incoming material',
+          description:
+            'Establish whether the material is quercetin aglycone, rutin, isoquercitrin or a phytosome complex. These are absorbed differently and are not interchangeable, and the senolytic trials used a defined phytosome preparation rather than plain aglycone.',
+          reagentsAndBuffer:
+            'Quercetin dihydrate, rutin and isoquercitrin reference standards; C18 HPLC with 0.1% formic acid and acetonitrile; detection at 370 nm; Karl Fischer for hydrate water content',
+        },
+        {
+          id: 'que-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Extraction from Sophora japonica bud and enzymatic deglycosylation',
+          description:
+            'Extract rutin from Japanese pagoda tree bud, the commercial source, then hydrolyse enzymatically to the aglycone. Acid hydrolysis is cheaper and degrades the B-ring catechol, so the route is a specification rather than a detail.',
+          dependsOnStepId: 'que-w1',
+          reagentsAndBuffer:
+            'Aqueous ethanol extraction; naringinase or rhamnosidase for enzymatic hydrolysis at pH 4.5 and 50 degrees C; nitrogen sparging to protect the catechol from oxidation',
+        },
+        {
+          id: 'que-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation and oxidation-product clearance',
+          description:
+            'Recrystallise and quantify quinone oxidation products, since the same catechol that gives quercetin its antioxidant chemistry makes it oxidise in air and in aqueous buffer, generating reactive species that produce false positives downstream.',
+          dependsOnStepId: 'que-w2',
+          reagentsAndBuffer:
+            'Ethanol / water recrystallisation under nitrogen; LC-MS for quercetin quinone and dimer products; ascorbate as a stabiliser control',
+        },
+        {
+          id: 'que-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Senescent versus proliferating primary cell exposure',
+          description:
+            'Expose matched senescent and proliferating human preadipocytes to the compound alone and to the dasatinib combination, so that selectivity for the senescent state is measured rather than assumed. General cytotoxicity is not senolysis.',
+          dependsOnStepId: 'que-w3',
+          reagentsAndBuffer:
+            'Primary human preadipocytes with irradiation-induced senescence; matched proliferating controls; dasatinib as combination partner; detergent counter-screen for colloidal aggregation',
+        },
+        {
+          id: 'que-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'p16INK4A, p21CIP1 and SA-beta-galactosidase quantification',
+          description:
+            'Quantify the senescence markers the human trials used, so that an in vitro result is expressed in the same units as the clinical biopsy data rather than in a proprietary viability index.',
+          dependsOnStepId: 'que-w4',
+          reagentsAndBuffer:
+            'p16INK4A and p21CIP1 RT-qPCR and immunostaining; senescence-associated beta-galactosidase histochemistry at pH 6.0; multiplex immunoassay for SASP factors including IL-6 and MMP-9',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'que-a1',
+        category: 'measured',
+        title: 'Pooled blood pressure reduction of 3.04 mmHg systolic across seven trials',
+        laymanSummary:
+          'Adding up the randomised trials, quercetin lowered blood pressure by about 3 points systolic and 2.6 diastolic.',
+        technicalDetails:
+          'Serban et al. pooled seven placebo-controlled randomised trials comprising nine treatment arms and 587 patients. Systolic BP fell by a weighted mean difference of -3.04 mmHg (95% CI -5.75 to -0.33, P = 0.028) and diastolic by -2.63 mmHg (95% CI -3.26 to -2.01, P < 0.001). Subgroup analysis suggested the effect was limited to, or greater at, doses above 500 mg/day. The authors themselves called for further work on whether the effect is clinically relevant.',
+        evidenceSource: 'Serban MC et al. J Am Heart Assoc 2016;5:e002713',
+        doi: '10.1161/JAHA.115.002713',
+        measuredMetric: 'Weighted mean difference in systolic and diastolic blood pressure versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'que-a2',
+        category: 'measured',
+        title: 'Dasatinib plus quercetin measurably cleared senescent cells from human fat',
+        laymanSummary:
+          'Nine patients with diabetic kidney disease took the combination for three days, and biopsies eleven days later showed fewer worn-out cells in their fat tissue.',
+        technicalDetails:
+          'Hickson et al. ran an open-label phase 1 pilot in nine subjects with diabetic kidney disease, mean age 68.7, giving three days of oral dasatinib 100 mg plus quercetin 1000 mg. Adipose tissue, skin biopsies and blood were collected before and 11 days after. Adipose senescent cell burden fell, with decreases in p16INK4A- and p21CIP1-expressing cells, cells with senescence-associated beta-galactosidase activity, and adipocyte progenitors with limited replicative potential. This was the first peer-reviewed demonstration that senolytics reduce senescent cells in humans. It is nine people, open-label, with no control group, and it is the combination rather than quercetin alone.',
+        evidenceSource: 'Hickson LJ et al. EBioMedicine 2019;47:446-456',
+        doi: '10.1016/j.ebiom.2019.08.069',
+        measuredMetric: 'p16INK4A, p21CIP1 and SA-beta-galactosidase positive cell counts in adipose biopsy',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'que-a3',
+        category: 'failed',
+        title: 'The first randomised senolytic trial missed its primary endpoint',
+        laymanSummary:
+          'When the combination was finally tested properly against a control in 60 postmenopausal women, the main bone measurement did not move.',
+        technicalDetails:
+          'Khosla and colleagues ran a phase 2 randomised controlled trial of intermittent dasatinib plus quercetin in 60 postmenopausal women. The primary endpoint, percentage change at 20 weeks in the bone resorption marker CTx, did not differ between groups: median -4.1% (IQR -13.2 to 2.6) on D+Q against -7.7% (IQR -20.1 to 14.3) on control, P = 0.611. The bone formation marker P1NP rose significantly against control at 2 weeks (+16%, P = 0.020) and 4 weeks (+16%, P = 0.024) but not at 20 weeks. No serious adverse events occurred. In exploratory analysis restricted to women in the highest tertile of T cell p16 mRNA, D+Q increased P1NP by 34% and reduced CTx by 11% at two weeks and raised radius bone mineral density by 2.7% at 20 weeks. The authors were explicit that the overall group showed no reduction in bone resorption and that the senescent-cell-burden hypothesis needs its own test.',
+        evidenceSource: 'Khosla S et al. Nat Med 2024;30:2605-2612',
+        doi: '10.1038/s41591-024-03096-2',
+        measuredMetric: 'Percentage change in serum CTx at 20 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'que-a4',
+        category: 'inferred',
+        title: 'The endurance-performance claim is a 2% improvement, called trivial to small',
+        laymanSummary:
+          'Pooling eleven trials, quercetin improved endurance by about 2%, which the authors themselves described as between trivial and small.',
+        technicalDetails:
+          'Kressler et al. pooled eleven studies with data on 254 human subjects, median treatment duration 11 days at a median 1,000 mg/day. The combined effect size for VO2max and endurance performance favoured quercetin (ES = 0.15, P = 0.021, 95% CI 0.02 to 0.27) but the magnitude was described as between trivial and small, equating to approximately a 2% improvement over placebo. Meta-regression against fitness level and against achieved plasma quercetin concentration was not significant, meaning the effect does not scale with exposure — which is what a real pharmacological effect usually does.',
+        evidenceSource: 'Kressler J, Millard-Stafford M, Warren GL. Med Sci Sports Exerc 2011;43:2396-2404',
+        doi: '10.1249/MSS.0b013e31822495a7',
+        inferredClaim:
+          'That quercetin is an ergogenic aid of practical significance for endurance athletes',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'que-a5',
+        category: 'inferred',
+        title: 'The senolytic evidence is for a combination containing a prescription cancer drug',
+        laymanSummary:
+          'Every human senolytic study used quercetin together with dasatinib, a leukaemia drug. None tested quercetin on its own.',
+        technicalDetails:
+          'The first-in-human senolytic study, an open-label two-centre trial in 14 patients with idiopathic pulmonary fibrosis, gave dasatinib 100 mg/day plus quercetin 1250 mg/day for three days a week over three weeks, with retention and completion as its primary endpoints. The diabetic kidney disease pilot and the randomised bone trial both used the same combination. Dasatinib is a BCR-ABL tyrosine kinase inhibitor with recognised toxicities. Reading these results as evidence for the supplement on a shelf attributes the effect of a two-drug combination to one of its components, and to the one whose contribution has never been isolated.',
+        evidenceSource: 'Justice JN et al. EBioMedicine 2019;40:554-563',
+        doi: '10.1016/j.ebiom.2018.12.052',
+        inferredClaim:
+          'That quercetin taken alone as a supplement clears senescent cells in humans',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed as an aglycone after the sugar is removed',
+        laymanDesc:
+          'Dietary quercetin arrives with a sugar attached, which has to come off before the body can absorb it.',
+        molecularDetail:
+          'Quercetin glycosides are hydrolysed by lactase phlorizin hydrolase at the brush border or by cytosolic beta-glucosidase after transport. Supplement aglycone bypasses this and is absorbed less efficiently in water, which is why phytosome and phospholipid complexes are used in the trials.',
+        iconName: 'ArrowDown',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Conjugated on first pass, like most flavonoids',
+        laymanDesc:
+          'The liver tags most of it immediately, so what circulates is largely the modified form.',
+        molecularDetail:
+          'Extensive glucuronidation, sulfation and methylation give quercetin-3-glucuronide and isorhamnetin conjugates as the dominant plasma species. Whether these are active, or are deconjugated at inflamed tissue, remains unresolved.',
+        iconName: 'Filter',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It binds many proteins weakly, which is both the mechanism and the problem',
+        laymanDesc:
+          'Quercetin touches a great many enzymes loosely rather than one strongly, and some of those interactions are artefacts of how the tests are run.',
+        molecularDetail:
+          'Reported activities include PI3K, Src-family and other kinase inhibition, mast cell stabilisation, and inhibition of anti-apoptotic BCL-2 family proteins including BCL-xL, which is the senolytic-relevant one. Quercetin is also a documented pan-assay interference compound: it is redox-active, aggregates and quenches fluorescence.',
+        iconName: 'Network',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'In the senolytic combination, worn-out cells lose their survival signal',
+        laymanDesc:
+          'Together with dasatinib, quercetin disables the proteins that keep senescent cells from dying, so they self-destruct.',
+        molecularDetail:
+          'The senescent cell anti-apoptotic pathway network keeps senescent cells alive despite pro-apoptotic signalling. Dasatinib targets ephrin-dependent survival in one senescent cell type and quercetin targets BCL-xL and PI3K-dependent survival in another, which is the stated rationale for pairing them rather than using either alone.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Senescent cells fall in biopsy; the clinical endpoint has not followed',
+        laymanDesc:
+          'Fat biopsies show fewer worn-out cells. The first properly controlled trial of what that does to bone found nothing on its main measure.',
+        molecularDetail:
+          'Hickson et al. measured the biological effect directly in nine patients. Khosla et al. then tested whether it produces a clinical effect: CTx at 20 weeks did not differ between arms (P = 0.611). The mechanism is real and its clinical consequence is unproven, which is precisely the boundary this page exists to mark.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Khosla 2024 (intermittent dasatinib plus quercetin, postmenopausal women)',
+        phase: 'Phase 2 randomised controlled trial',
+        sampleSize: 60,
+        primaryEndpoint: 'Percentage change in the bone resorption marker CTx at 20 weeks',
+        endpointMet: false,
+        statisticalPValue: 'P = 0.611',
+        unreportedAdverseSignals:
+          'No serious adverse events. The positive findings were exploratory and restricted to the highest tertile of T cell p16 mRNA, which is a subgroup analysis and is presented as hypothesis-generating by the authors.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Hickson 2019 (dasatinib plus quercetin, diabetic kidney disease)',
+        phase: 'Open-label phase 1 pilot',
+        sampleSize: 9,
+        primaryEndpoint: 'Change in adipose tissue senescent cell burden 11 days after treatment',
+        endpointMet: true,
+        statisticalPValue: 'Significant reductions in p16INK4A, p21CIP1 and SA-beta-gal positive cells',
+        unreportedAdverseSignals:
+          'Nine participants, open-label, no control group, three days of treatment. This is a mechanism demonstration and was designed as one.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Justice 2019 (dasatinib plus quercetin, idiopathic pulmonary fibrosis)',
+        phase: 'Two-centre open-label first-in-human',
+        sampleSize: 14,
+        primaryEndpoint: 'Retention rate and completion rate for planned clinical assessments',
+        endpointMet: true,
+        statisticalPValue:
+          'Not applicable — the primary endpoints were feasibility measures, not efficacy',
+        unreportedAdverseSignals:
+          'One serious adverse event was reported. Non-serious events were primarily mild to moderate and predominantly respiratory. Retention was 100%.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Serban 2016 pooled analysis (seven placebo-controlled trials, nine arms)',
+        phase: 'Systematic review and meta-analysis',
+        sampleSize: 587,
+        primaryEndpoint: 'Weighted mean difference in systolic and diastolic blood pressure',
+        endpointMet: true,
+        statisticalPValue: 'P = 0.028 systolic, P < 0.001 diastolic',
+        unreportedAdverseSignals:
+          'The authors flagged that clinical relevance of a 3 mmHg systolic reduction remains to be established, and that the effect appeared confined to doses above 500 mg/day.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Systolic blood pressure -3.04 mmHg and diastolic -2.63 mmHg against placebo across 587 patients in seven trials',
+        'Reduced p16INK4A, p21CIP1 and SA-beta-galactosidase positive cells in human adipose tissue 11 days after three days of dasatinib plus quercetin',
+        'Endurance and VO2max effect size 0.15, approximately 2%, across 254 subjects — described by the authors as between trivial and small',
+      ],
+      unsupportedInferences: [
+        'That quercetin taken alone clears senescent cells in humans — every human study used the dasatinib combination',
+        'That a 3 mmHg systolic reduction is clinically meaningful; the meta-analysis authors asked for that question to be tested and it has not been',
+        'That reduced senescent cell burden in a biopsy translates into a clinical benefit; the first randomised test of that missed its primary endpoint',
+      ],
+      whatFailedInitially: [
+        'The phase 2 randomised senolytic trial in 60 postmenopausal women missed its primary bone resorption endpoint (P = 0.611)',
+        'The endurance effect does not scale with achieved plasma concentration, which is not how a pharmacological effect normally behaves',
+      ],
+      realWorldOutcome: [
+        'The senolytic programme is genuine, ongoing and among the more interesting things in ageing biology — and it is a supervised two-drug combination, not a supplement regimen',
+        'Quercetin inhibits CYP3A4 and P-glycoprotein, so the interaction risk is real for anyone taking prescription medicine',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule of quercetin aglycone, dihydrate or phytosome complex',
+      description:
+        'Sold as a dietary supplement with no premarket efficacy review. Formulation matters more than the label suggests: plain aglycone, rutin and phospholipid phytosome complexes differ substantially in absorption, and the senolytic trials used a defined phytosome preparation. In those trials it is co-administered with dasatinib, a prescription-only tyrosine kinase inhibitor.',
+      safetyProfile:
+        'Generally well tolerated at supplement amounts, with headache and gastrointestinal upset reported. High intravenous doses have caused renal toxicity in early oncology studies. Quercetin inhibits CYP3A4 and P-glycoprotein, raising exposure to co-administered substrates. In the senolytic trials the safety profile is dominated by dasatinib rather than by quercetin.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is quercetin a senolytic I can buy?',
+        a: 'Not on the evidence available. Every published human senolytic study used dasatinib plus quercetin together, and the rationale for pairing them is explicitly that they target different survival pathways in different senescent cell types. No human study has tested quercetin alone. Dasatinib is a prescription tyrosine kinase inhibitor given under supervision. Attributing the combination result to the supplement half is the central inference error on this page.',
+        auditNote:
+          'This is the clearest case in this file of trial evidence for one thing being used to sell a different thing.',
+      },
+      {
+        q: 'Did the senolytic trials work?',
+        a: 'Partly, and the split is informative. The biology worked: three days of the combination measurably reduced senescent cell markers in human fat biopsies. The clinical test has not yet worked: the first phase 2 randomised trial, in 60 postmenopausal women, found no difference in the bone resorption marker CTx at 20 weeks (P = 0.611). Exploratory analysis suggested benefit in women with the highest senescent cell burden, which is a hypothesis for the next trial rather than a result from this one.',
+      },
+      {
+        q: 'Does quercetin lower blood pressure?',
+        a: 'By about 3 mmHg systolic and 2.6 diastolic in the pooled randomised evidence, apparently only at doses above 500 mg/day. That is statistically solid and clinically modest — a standard antihypertensive produces roughly three times as much, with cardiovascular outcome trials behind it. The meta-analysis authors specifically asked whether the effect is clinically relevant, and nobody has answered.',
+      },
+      {
+        q: 'Will it help my endurance training?',
+        a: 'By around 2%, pooled across eleven studies in 254 people, which the authors of that meta-analysis themselves classified as between trivial and small. One detail is worth more than the effect size: the benefit did not correlate with achieved plasma quercetin concentration. A genuine pharmacological effect normally scales with exposure, and this one does not.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Serban MC et al. Effects of Quercetin on Blood Pressure: A Systematic Review and Meta-Analysis of Randomized Controlled Trials. J Am Heart Assoc 2016;5:e002713',
+        identifier: '10.1161/JAHA.115.002713',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hickson LJ et al. Senolytics decrease senescent cells in humans: Preliminary report from a clinical trial of Dasatinib plus Quercetin in individuals with diabetic kidney disease. EBioMedicine 2019;47:446-456',
+        identifier: '10.1016/j.ebiom.2019.08.069',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Justice JN et al. Senolytics in idiopathic pulmonary fibrosis: Results from a first-in-human, open-label, pilot study. EBioMedicine 2019;40:554-563',
+        identifier: '10.1016/j.ebiom.2018.12.052',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Khosla S et al. Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women: a phase 2 randomized controlled trial. Nat Med 2024;30:2605-2612',
+        identifier: '10.1038/s41591-024-03096-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kressler J, Millard-Stafford M, Warren GL. Quercetin and endurance exercise capacity: a systematic review and meta-analysis. Med Sci Sports Exerc 2011;43:2396-2404',
+        identifier: '10.1249/MSS.0b013e31822495a7',
+        kind: 'doi',
+      },
+      {
+        label: 'Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans',
+        identifier: 'NCT04313634',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 5280343 — Quercetin',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280343',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Saffron extract — a large pooled effect on self-report scales, nothing on clinician-rated
+  // ones, documented publication bias, and the most adulterated spice in the world.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'saffron-extract',
+    name: 'Saffron extract',
+    tradeName: 'Sold as affron, Safr\'Inside and other standardised Crocus sativus stigma extracts',
+    sponsor: 'No single sponsor — stigma extract of Crocus sativus',
+    targetGene: 'SLC6A4',
+    targetProtein:
+      'Serotonin transporter, proposed from animal work. No human target-engagement study exists; the crocins and safranal are the standardisation markers rather than confirmed active moieties.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement for low mood, anxiety and eye health. Not approved as an antidepressant in any jurisdiction.',
+    patientFriendlyIndication: 'Marketed for mood and anxiety',
+    conditionContext: {
+      conditionExplainer:
+        'Saffron is the dried stigma of the Crocus sativus flower, harvested by hand, and by weight the most expensive agricultural product in the world. It has been used for low mood in Persian traditional medicine, and since 2005 a series of Iranian randomised trials has compared standardised extracts against antidepressants.',
+      whyItMatters:
+        'The pooled effect sizes for saffron in depression are among the largest for any supplement anywhere. So are the warning signs attached to them: publication bias detected by the reviewers themselves, geographic concentration of the trials, and a complete split between what self-report and clinician-rated scales show.',
+      whoTakesThis:
+        'Adults with low mood or mild anxiety, often as an alternative to an antidepressant they do not want to take.',
+      clinicalGoals:
+        'Trials have measured the Beck Depression Inventory, the Beck Anxiety Inventory, the Hamilton Depression Rating Scale and the Hamilton Anxiety Rating Scale. Which of those a trial used turns out to determine the answer.',
+    },
+    oneSentenceVerdict:
+      'Thirty-four randomised trials show saffron improving self-reported depression and anxiety scores with moderate GRADE certainty — and no significant effect on any clinician-rated scale, which is exactly the pattern an expectation effect produces.',
+    laymanHowItWorks:
+      'Saffron stigma contains crocins, which give the colour, picrocrocin, which gives the taste, and safranal, which gives the smell. Animal work suggests the crocins interfere with serotonin reuptake, which would put saffron loosely in the same family as an SSRI. Nothing has confirmed that in a person. What the trials show is that people taking saffron rate themselves as less depressed and less anxious, and that when a trained clinician does the rating instead, the difference disappears.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 44,
+    anatomicalSite: 'Central nervous system, proposed rather than demonstrated',
+    substitutes: {
+      summary:
+        'The only head-to-head trials compared saffron with fluoxetine in mild-to-moderate depression and found no significant difference — in 40 patients, at a single Tehran centre, over six weeks. That is a starting point, not a conclusion.',
+      conventionalRx: [
+        {
+          name: 'Fluoxetine',
+          class: 'Selective serotonin reuptake inhibitor',
+          howItCompares:
+            'Directly compared in Noorbala et al. 2005: 40 outpatients with DSM-IV major depression randomised to saffron 30 mg/day or fluoxetine 20 mg/day for six weeks, with saffron found similar to fluoxetine (F = 0.13, df = 1, P = 0.71) and no significant difference in side effects. An equivalence claim from 40 patients over six weeks is not an equivalence demonstration.',
+          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: regulatory approval, decades of use, known interaction profile. Cons: sexual side effects, discontinuation symptoms.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Culinary saffron',
+          activeCompound: 'Crocins, picrocrocin and safranal',
+          biologicalMechanism:
+            'The same stigma material used in cooking. The trials used standardised extracts, and the pooled evidence is on those; culinary use has not been tested for mood.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'The Noorbala fluoxetine comparison used 30 mg/day of a hydro-alcoholic stigma extract, which is a laboratory-standardised preparation rather than a cooking quantity',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Ask which scale a saffron trial used',
+          action:
+            'Check whether the reported outcome came from a self-report inventory such as the BDI, or from a clinician-administered scale such as the HDRS.',
+          patientImpact:
+            'The 2026 GRADE-assessed meta-analysis found significant effects on the BDI and BAI and no significant effect on the HDRS, HARS or POMS. Which instrument a trial chose predicted its result.',
+          clinicalPrecaution:
+            'Saffron is the most adulterated spice in commerce. If it is being taken for a reason, the identity of the material matters.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C/C(=C\\C=C\\C=C(\\C=C\\C=C(\\C(=O)O[C@@H]1O[C@@H]([C@H]([C@@H]([C@H]1O)O)O)CO[C@@H]2O[C@@H]([C@H]([C@@H]([C@H]2O)O)O)CO)/C)/C)/C=C/C=C(/C(=O)O[C@@H]3O[C@@H]([C@H]([C@@H]([C@H]3O)O)O)CO[C@@H]4O[C@@H]([C@H]([C@@H]([C@H]4O)O)O)CO)\\C',
+      chemicalFormula: 'C44H64O24',
+      molecularWeight: '977.0 g/mol (crocin, PubChem CID 5281233)',
+      structureSource: {
+        label: 'PubChem CID 5281233 — Crocin, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281233',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'saf-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Multi-method adulteration screen on incoming stigma',
+          description:
+            'Screen for adulteration before anything else. Saffron is the most adulterated spice in commerce, and a 2019 Food Chemistry study applying multiple tests to market samples both found new adulterant materials and reported that first-grade saffron is rare in the market. Morphology alone does not detect a powdered bulking agent.',
+          reagentsAndBuffer:
+            'ISO 3632 spectrophotometric determination of crocin, picrocrocin and safranal; DNA barcoding for Crocus sativus and for safflower and gardenia adulterants; HPTLC; real-time PCR for Carthamus tinctorius',
+        },
+        {
+          id: 'saf-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Hydro-alcoholic extraction of the dried stigma',
+          description:
+            'Extract the dried stigma into aqueous ethanol at controlled temperature. Crocins are light- and heat-labile carotenoid glycosides and lose colour value quickly, so the extraction and drying conditions are part of the product specification.',
+          dependsOnStepId: 'saf-w1',
+          reagentsAndBuffer:
+            'Aqueous ethanol; extraction below 45 degrees C in the dark; nitrogen headspace; spray drying onto a defined carrier',
+        },
+        {
+          id: 'saf-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Standardisation to a stated crocin and safranal content',
+          description:
+            'Quantify crocins and safranal separately and standardise to a stated content, because the commercial extracts used in trials are specified this way and a differently standardised extract is a different intervention.',
+          dependsOnStepId: 'saf-w2',
+          reagentsAndBuffer:
+            'C18 HPLC with water / acetonitrile gradient; detection at 440 nm for crocins and 310 nm for safranal; crocin and safranal reference standards; LC-MS confirmation',
+        },
+        {
+          id: 'saf-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Blood-brain barrier transit of crocin and its aglycone',
+          description:
+            'Measure whether crocin, a large diglycosylated carotenoid, or its aglycone crocetin crosses an in vitro blood-brain barrier model. Crocin is close to a kilodalton and heavily glycosylated, which makes central access the least plausible step in the proposed mechanism and therefore the one worth measuring.',
+          dependsOnStepId: 'saf-w3',
+          reagentsAndBuffer:
+            'hCMEC/D3 monolayer on Transwell inserts; transendothelial electrical resistance monitoring; LC-MS/MS quantification of crocin and crocetin in the basolateral compartment',
+        },
+        {
+          id: 'saf-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Serotonin transporter uptake inhibition with a potency cut-off',
+          description:
+            'Run SERT uptake inhibition as a concentration-response and report the IC50 against the concentration measured in the permeability step. The proposed mechanism is SSRI-like; whether the compound reaches an SSRI-like concentration at the transporter is the question.',
+          dependsOnStepId: 'saf-w4',
+          reagentsAndBuffer:
+            'HEK293 cells expressing human SERT; tritiated serotonin uptake; fluoxetine reference inhibitor; crocin, crocetin and safranal test articles',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'saf-a1',
+        category: 'measured',
+        title: 'Thirty-four trials: self-reported depression and anxiety scores improved',
+        laymanSummary:
+          'Across 34 randomised trials in 1,769 people, saffron improved the questionnaires people fill in about themselves.',
+        technicalDetails:
+          'A 2026 GRADE-assessed systematic review and meta-analysis pooled 34 randomised controlled trials comprising 1,769 participants, with interventions of at least four weeks and saffron as the sole difference between arms. Beck Depression Inventory scores fell by a weighted mean difference of -4.39 (95% CI -6.64 to -2.15, P < 0.001, I2 = 92.3%, 14 trials, 817 participants) and Beck Anxiety Inventory scores by -5.06 (95% CI -8.44 to -1.68, P = 0.003, I2 = 94.8%, six trials, 339 participants). Certainty of evidence was rated moderate. The heterogeneity above 90% on both estimates is very high.',
+        evidenceSource:
+          'Effect of saffron on depression, anxiety and mood disorder: a GRADE assessed systematic review and meta-analysis of 34 randomized controlled trials. Nutr Neurosci 2026;29:816-837',
+        doi: '10.1080/1028415X.2025.2602153',
+        measuredMetric: 'Weighted mean difference in Beck Depression Inventory and Beck Anxiety Inventory',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'saf-a2',
+        category: 'failed',
+        title: 'No significant effect on any clinician-rated scale in the same analysis',
+        laymanSummary:
+          'When a trained clinician did the rating instead of the participant, the effect vanished.',
+        technicalDetails:
+          'The same 2026 meta-analysis found no significant effects for the Hamilton Depression Rating Scale, the Hamilton Anxiety Rating Scale or the Profile of Mood States. The authors wrote that the lack of clinician-rated effects underscores the need for high-quality trials. This split is diagnostic rather than incidental: self-report instruments are the ones most sensitive to expectation, and an intervention that moves them while leaving trained-observer scales unmoved is behaving the way a strong placebo behaves.',
+        evidenceSource:
+          'Effect of saffron on depression, anxiety and mood disorder: a GRADE assessed systematic review and meta-analysis of 34 randomized controlled trials. Nutr Neurosci 2026;29:816-837',
+        doi: '10.1080/1028415X.2025.2602153',
+        measuredMetric:
+          'Hamilton Depression Rating Scale, Hamilton Anxiety Rating Scale and Profile of Mood States',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'saf-a3',
+        category: 'inferred',
+        title: 'The earlier meta-analysis found publication bias and a lack of regional diversity',
+        laymanSummary:
+          'A 2019 review reported very large effects and then said the pattern of results suggested negative trials were missing, and that nearly all the trials came from one place.',
+        technicalDetails:
+          'Marx et al. pooled 23 studies and reported a large positive effect size for saffron against placebo for depressive symptoms (Hedges g = 0.99, P < 0.001) and anxiety symptoms (g = 0.95, P = 0.006), and a large effect as an adjunct to antidepressants (g = 1.23, P = 0.028). Egger\'s regression test found evidence of publication bias. The authors concluded that further trials are required because of that bias and the lack of regional diversity. An effect size approaching 1.0 for any depression intervention is larger than most approved antidepressants achieve against placebo, which is itself a reason for caution rather than enthusiasm.',
+        evidenceSource: 'Marx W et al. Nutr Rev 2019;77:557-571',
+        doi: '10.1093/nutrit/nuz023',
+        inferredClaim:
+          'That a pooled effect size near 1.0 reflects the true effect, when the same analysis detected publication bias',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'saf-a4',
+        category: 'measured',
+        title: 'Noorbala 2005: no significant difference from fluoxetine in 40 outpatients',
+        laymanSummary:
+          'The first head-to-head trial found saffron and fluoxetine performing similarly in 40 people with mild-to-moderate depression over six weeks.',
+        technicalDetails:
+          'Forty adult outpatients meeting DSM-IV criteria for major depression, mild to moderate, were randomised in a double-blind single-centre six-week trial at Roozbeh Hospital, Tehran, to saffron stigma hydro-alcoholic extract 30 mg/day or fluoxetine 20 mg/day. Saffron was found effective similarly to fluoxetine (F = 0.13, df = 1, P = 0.71), with no significant difference in observed side effects. The authors themselves concluded that a large-scale trial is justified. Twenty patients per arm without a placebo group cannot establish equivalence: a trial this size lacks the power to detect a difference that matters, and finding no difference is the expected outcome regardless.',
+        evidenceSource: 'Noorbala AA et al. J Ethnopharmacol 2005;97:281-284',
+        doi: '10.1016/j.jep.2004.11.004',
+        measuredMetric: 'Hamilton Depression Rating Scale over six weeks against fluoxetine',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'saf-a5',
+        category: 'inferred',
+        title: 'First-grade saffron is rare in the market, and new adulterants keep appearing',
+        laymanSummary:
+          'Testing market samples found widespread adulteration and identified adulterant materials nobody had catalogued before.',
+        technicalDetails:
+          'A 2019 Food Chemistry study applied multiple analytical tests to commercial saffron samples, found new adulterant materials, and reported that first-grade saffron is rare in the market. Documented adulterants include safflower, gardenia, turmeric, marigold, dyed plant fibres and synthetic colourants. For a spice this is a commercial fraud problem. For a supplement taken for depression it is an identity problem: a product that is not what it says cannot be connected to the trial evidence at all.',
+        evidenceSource:
+          'Multiple tests on saffron find new adulterant materials and reveal that Ist grade saffron is rare in the market. Food Chem 2019;272:635-642',
+        doi: '10.1016/j.foodchem.2018.08.089',
+        inferredClaim:
+          'That a commercial saffron supplement contains the material the trials tested',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A standardised stigma extract, with three marker families',
+        laymanDesc:
+          'The capsule contains an extract of the flower\'s stigma, standardised on the compounds that give saffron its colour, taste and smell.',
+        molecularDetail:
+          'Crocins are diglycosylated crocetin esters responsible for colour; picrocrocin is the bitter glycoside; safranal is the volatile aroma compound derived from picrocrocin. Standardisation is on crocin and safranal, not on a demonstrated active moiety.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crocin is cleaved to crocetin before absorption',
+        laymanDesc:
+          'The large coloured molecule is too big to absorb intact, so the gut removes its sugars first.',
+        molecularDetail:
+          'Crocin is hydrolysed in the intestinal lumen and at the brush border to crocetin, which is far smaller and lipophilic enough to be absorbed. What circulates is therefore crocetin and its conjugates, not the crocin the product is standardised on.',
+        iconName: 'Filter',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A proposed serotonergic action that has not been shown in a person',
+        laymanDesc:
+          'The favoured explanation is a mild SSRI-like effect. No human study has demonstrated it.',
+        molecularDetail:
+          'Animal work reports serotonin reuptake inhibition and NMDA antagonism for crocin and safranal. No human target-engagement study, receptor occupancy measurement or central pharmacokinetic study exists for either.',
+        iconName: 'Network',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Self-rated scores fall substantially',
+        laymanDesc:
+          'People report feeling meaningfully better, and the pooled effect is large.',
+        molecularDetail:
+          'BDI -4.39 and BAI -5.06 against placebo across 34 trials, with GRADE certainty rated moderate and heterogeneity above 90% on both estimates.',
+        iconName: 'Activity',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Clinician-rated scores do not move',
+        laymanDesc:
+          'The trained observer does not see what the participant reports, which is the finding that needs explaining.',
+        molecularDetail:
+          'HDRS, HARS and POMS all showed no significant effect in the same analysis. The divergence between self-report and observer-rated instruments is the most informative single fact in the saffron literature, and it is the one the marketing never mentions.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Nutr Neurosci 2026 GRADE meta-analysis (34 randomised trials)',
+        phase: 'Systematic review and meta-analysis',
+        sampleSize: 1769,
+        primaryEndpoint:
+          'Pooled effect on BDI, BAI, HDRS, HARS and POMS in adults over interventions of at least four weeks',
+        endpointMet: false,
+        statisticalPValue:
+          'BDI P < 0.001 and BAI P = 0.003; HDRS, HARS and POMS not significant',
+        unreportedAdverseSignals:
+          'Recorded as endpoint not met because the clinician-rated scales showed no effect. Heterogeneity was 92.3% for BDI and 94.8% for BAI, which is very high.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Marx 2019 meta-analysis (23 studies)',
+        phase: 'Systematic review and meta-analysis',
+        sampleSize: 0,
+        primaryEndpoint: 'Pooled effect size for depressive and anxiety symptoms versus placebo and versus pharmacotherapy',
+        endpointMet: true,
+        statisticalPValue: 'g = 0.99 P < 0.001 depression; g = 0.95 P = 0.006 anxiety',
+        unreportedAdverseSignals:
+          'Egger\'s regression test found evidence of publication bias, and the authors flagged lack of regional diversity. Sample size recorded as 0 because the review reports study counts rather than a single pooled total.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Noorbala 2005 (saffron versus fluoxetine, mild to moderate depression)',
+        phase: 'Double-blind randomised active-controlled',
+        sampleSize: 40,
+        primaryEndpoint: 'Depression score over six weeks compared with fluoxetine 20 mg/day',
+        endpointMet: true,
+        statisticalPValue: 'F = 0.13, df = 1, P = 0.71 — no significant difference between arms',
+        unreportedAdverseSignals:
+          'Single centre, 20 per arm, six weeks, no placebo group. A non-significant difference at this sample size is what an underpowered trial produces whether or not a difference exists.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Beck Depression Inventory -4.39 and Beck Anxiety Inventory -5.06 against placebo across 34 randomised trials in 1,769 participants, GRADE certainty moderate',
+        'No significant effect on the Hamilton Depression Rating Scale, Hamilton Anxiety Rating Scale or Profile of Mood States in the same analysis',
+        'Evidence of publication bias by Egger\'s regression test in the 2019 pooled analysis',
+        'New adulterant materials identified in market saffron, with first-grade material reported as rare',
+      ],
+      unsupportedInferences: [
+        'That saffron is equivalent to fluoxetine, on the strength of a 40-patient six-week single-centre trial with no placebo arm',
+        'That a pooled effect size near 1.0 is the true effect when the same analysis detected publication bias',
+        'That improvement on a self-report inventory establishes an antidepressant effect when the observer-rated scales in the same dataset show nothing',
+      ],
+      whatFailedInitially: [
+        'Every clinician-rated outcome in the largest and most recent meta-analysis',
+        'Regional diversity: the trial base remains geographically concentrated fifteen years after the first review said so',
+      ],
+      realWorldOutcome: [
+        'Saffron is among the best-tolerated interventions in this file, with side-effect rates comparable to placebo in the fluoxetine comparison',
+        'Product identity is a live problem for a spice this valuable, and it undermines any attempt to connect a purchase to the trial literature',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule or tablet of standardised stigma extract',
+      description:
+        'Sold as a dietary supplement with no premarket efficacy review. Commercial extracts are standardised to a stated crocin or safranal content and are branded, and the trials are extract-specific. Given documented adulteration in the raw spice market, a certificate of analysis on the finished extract is the only thing connecting a product to the evidence.',
+      safetyProfile:
+        'Well tolerated in trials at the amounts studied, with side-effect rates not significantly different from fluoxetine in the head-to-head comparison. High doses of saffron are toxic and abortifacient in the traditional literature, and the amounts in extracts are far below that range. No serious safety signal has emerged from the randomised trials.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is saffron really as good as an antidepressant?',
+        a: 'The claim comes from one 40-patient trial at a single Tehran hospital over six weeks with no placebo group, which found no significant difference from fluoxetine (P = 0.71). That is not a demonstration of equivalence — a trial with 20 people per arm cannot detect a difference that matters, so finding none is expected. The authors themselves wrote that a large-scale trial is justified, and it has not been run.',
+        auditNote:
+          'Absence of a detected difference in an underpowered trial is the most common way equivalence gets claimed without being shown.',
+      },
+      {
+        q: 'Why do the self-report and clinician scales disagree?',
+        a: 'That is the most important question on this page and it has no settled answer. The 2026 meta-analysis found significant improvement on the Beck inventories, which participants complete themselves, and no significant effect on the Hamilton scales and Profile of Mood States, which a trained rater administers. Self-report instruments are the ones most sensitive to expectation. An intervention that moves them and not the observer-rated ones is behaving the way a strong placebo behaves, and saffron — expensive, exotic, distinctively coloured and smelled — is unusually well equipped to produce one.',
+      },
+      {
+        q: 'What does "evidence of publication bias" mean here?',
+        a: 'Marx et al. ran Egger\'s regression test on their pooled data and found the pattern that appears when small negative trials are missing from the literature: small studies showing large effects, without the corresponding small studies showing nothing. That inflates the pooled estimate. It is why an effect size of 0.99 for a depression intervention — larger than most approved antidepressants achieve against placebo — should read as a warning rather than a result.',
+      },
+      {
+        q: 'Does it matter that saffron is adulterated?',
+        a: 'For a supplement taken for a reason, yes, more than for a spice. A 2019 study applying multiple analytical methods to market samples found new adulterant materials and reported that first-grade saffron is rare. Documented substitutes include safflower, gardenia, turmeric and dyed plant fibre. A product that is not Crocus sativus stigma cannot be connected to the trials, whatever the label says, so an independent certificate of analysis is the only thing that links a purchase to the evidence.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Effect of saffron on depression, anxiety and mood disorder: a GRADE assessed systematic review and meta-analysis of 34 randomized controlled trials. Nutr Neurosci 2026;29:816-837',
+        identifier: '10.1080/1028415X.2025.2602153',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Marx W et al. Effect of saffron supplementation on symptoms of depression and anxiety: a systematic review and meta-analysis. Nutr Rev 2019;77:557-571',
+        identifier: '10.1093/nutrit/nuz023',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Noorbala AA et al. Hydro-alcoholic extract of Crocus sativus L. versus fluoxetine in the treatment of mild to moderate depression: a double-blind, randomized pilot trial. J Ethnopharmacol 2005;97:281-284',
+        identifier: '10.1016/j.jep.2004.11.004',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Multiple tests on saffron find new adulterant materials and reveal that Ist grade saffron is rare in the market. Food Chem 2019;272:635-642',
+        identifier: '10.1016/j.foodchem.2018.08.089',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 5281233 — Crocin',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281233',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // St John's wort — the one botanical in this file with genuine replicated antidepressant
+  // efficacy, and the one whose drug interactions have caused organ rejection.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'st-johns-wort',
+    name: "St John's wort",
+    tradeName: 'Sold as standardised Hypericum perforatum extracts including LI-160, WS 5570 and Ze 117',
+    sponsor: 'No single sponsor — flowering aerial parts of Hypericum perforatum',
+    targetGene: 'NR1I2',
+    targetProtein:
+      'Pregnane X receptor. Activation of PXR by hyperforin induces CYP3A4 and P-glycoprotein, which is the mechanism behind the interactions and is far better established than the antidepressant mechanism.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold in the United States as a dietary supplement. Licensed as a prescription medicine for mild to moderate depression in Germany and available as a registered traditional herbal medicinal product elsewhere in Europe.',
+    patientFriendlyIndication: 'Mild to moderate depression — with serious interactions',
+    conditionContext: {
+      conditionExplainer:
+        'Hypericum perforatum is a yellow-flowered perennial whose extracts have been used for low mood for centuries. It is the most rigorously tested botanical antidepressant in existence: 29 randomised double-blind trials in 5,489 patients were pooled by Cochrane in 2008.',
+      whyItMatters:
+        'Two facts about this plant are both true and are almost never presented together. It works for mild to moderate depression, about as well as a standard antidepressant, with fewer side effects. And it induces the enzyme that clears roughly half of all prescription drugs, which has caused transplant rejection, contraceptive failure and loss of HIV viral suppression.',
+      whoTakesThis:
+        'Adults with mild to moderate depressive symptoms, very often self-medicating and very often without telling a doctor — which is exactly the circumstance in which the interaction risk becomes dangerous.',
+      clinicalGoals:
+        'Trials have measured response rate on the Hamilton Depression Rating Scale against placebo and against tricyclics and SSRIs. Interaction studies have measured plasma concentrations of specific co-administered drugs.',
+    },
+    oneSentenceVerdict:
+      "Twenty-nine randomised trials in 5,489 patients show hypericum extracts superior to placebo and similarly effective to standard antidepressants with fewer side effects — while the same plant induces CYP3A4 strongly enough to have caused acute heart transplant rejection, and failed twice in severe major depression in US trials where sertraline also failed.",
+    laymanHowItWorks:
+      "St John's wort contains hyperforin, hypericin and several flavonoids. Hyperforin inhibits the reuptake of serotonin, noradrenaline and dopamine, which is a plausible antidepressant mechanism. Hyperforin also binds a receptor in the liver called PXR, which switches on the body's main drug-clearing enzyme, CYP3A4, and the transport pump P-glycoprotein. That second effect is the reason a plant sold beside vitamins can cause a transplanted heart to be rejected.",
+    auditConfidence: 'High Confidence',
+    confidenceScore: 71,
+    anatomicalSite:
+      'Central synapses for the antidepressant effect; hepatocyte and enterocyte nuclei for the PXR-mediated interaction',
+    substitutes: {
+      summary:
+        'Standard antidepressants match hypericum on efficacy in the pooled trials and lose on side effects — but they do not induce CYP3A4, which for anyone on another medicine is the decisive difference.',
+      conventionalRx: [
+        {
+          name: 'SSRIs (sertraline, fluoxetine, escitalopram)',
+          class: 'Selective serotonin reuptake inhibitor',
+          howItCompares:
+            'Across 12 comparisons in the Cochrane review, the response rate ratio for hypericum against SSRIs was 1.00 (95% CI 0.90 to 1.11) — statistically indistinguishable — with fewer adverse effects reported for hypericum. SSRIs do not induce CYP3A4, and combining an SSRI with St John\'s wort risks serotonin syndrome.',
+          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: no enzyme induction, prescriber oversight, known dose. Cons: more adverse effects in the pooled comparison.',
+        },
+        {
+          name: 'Tricyclic and tetracyclic antidepressants',
+          class: 'Non-selective monoamine reuptake inhibitor',
+          howItCompares:
+            'Response rate ratio 1.02 (95% CI 0.90 to 1.15) across five comparisons, again indistinguishable from hypericum, with a considerably heavier side-effect burden.',
+          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: long clinical record, useful in some pain syndromes. Cons: anticholinergic effects, cardiac toxicity in overdose.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Tell the prescriber, every time',
+          action:
+            'Disclose St John\'s wort to any prescriber, pharmacist or surgeon, and treat it as a drug rather than as a supplement.',
+          patientImpact:
+            'Markowitz et al. measured a 1.4-fold increase in the clearance of an intravenous CYP3A4 probe and a 2.5-fold reduction in oral bioavailability after 14 days. Half of all prescription drugs go through CYP3A4.',
+          clinicalPrecaution:
+            'Documented consequences include acute heart transplant rejection from loss of ciclosporin levels, breakthrough bleeding and contraceptive failure, and an 81% fall in indinavir exposure in HIV treatment.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(C)C(=O)[C@]12C(=O)C(=C([C@](C1=O)(C[C@@H]([C@@]2(C)CCC=C(C)C)CC=C(C)C)CC=C(C)C)O)CC=C(C)C',
+      chemicalFormula: 'C35H52O4',
+      molecularWeight: '536.8 g/mol (hyperforin, PubChem CID 441298)',
+      structureSource: {
+        label: 'PubChem CID 441298 — Hyperforin, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441298',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sjw-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Hyperforin and hypericin content on the incoming herb',
+          description:
+            'Quantify hyperforin and hypericin separately before extraction, because they behave differently and matter for different reasons: hyperforin drives both the reuptake inhibition and the CYP3A4 induction, hypericin is the traditional standardisation marker and the phototoxicity risk. Low-hyperforin extracts have been developed specifically to reduce interaction risk, and knowing which one is in hand is the whole point of this step.',
+          reagentsAndBuffer:
+            'Hyperforin dicyclohexylammonium salt and hypericin reference standards; C18 HPLC with detection at 590 nm for hypericin and 275 nm for hyperforin; amber glassware and cold chain, since hyperforin oxidises rapidly',
+        },
+        {
+          id: 'sjw-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Ethanolic or methanolic extraction of flowering aerial parts',
+          description:
+            'Extract the flowering tops under inert atmosphere. Extraction solvent determines the hyperforin content of the finished product more than any other variable, which is why the licensed European extracts are named and specified rather than generic.',
+          dependsOnStepId: 'sjw-w1',
+          reagentsAndBuffer:
+            '60 to 80% aqueous ethanol or methanol; nitrogen blanket throughout; ascorbate as an antioxidant; vacuum concentration below 45 degrees C',
+        },
+        {
+          id: 'sjw-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Standardisation and hyperforin stability specification',
+          description:
+            'Standardise to stated hyperforin and hypericin content and set a stability specification, since hyperforin degrades on air exposure and a product tested at manufacture may not be the product taken months later.',
+          dependsOnStepId: 'sjw-w2',
+          reagentsAndBuffer:
+            'Spray drying onto silicon dioxide; accelerated stability at 40 degrees C and 75% relative humidity; oxidised hyperforin degradant profiling by LC-MS',
+        },
+        {
+          id: 'sjw-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'PXR reporter and CYP3A4 induction in human hepatocytes',
+          description:
+            'Measure PXR activation and CYP3A4 induction in primary human hepatocytes as a release specification, not as a research question. This is the assay that predicts the clinically documented interactions, and a low-hyperforin extract claim is only meaningful if this readout supports it.',
+          dependsOnStepId: 'sjw-w3',
+          reagentsAndBuffer:
+            'Primary human hepatocytes in sandwich culture; PXR-luciferase reporter in HepG2; rifampicin as positive control; CYP3A4 mRNA by RT-qPCR and midazolam 1-hydroxylation as the activity readout',
+        },
+        {
+          id: 'sjw-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Monoamine reuptake inhibition panel',
+          description:
+            'Quantify serotonin, noradrenaline and dopamine reuptake inhibition for the extract and for purified hyperforin, so the efficacy-side pharmacology is measured in the same units as the interaction-side risk.',
+          dependsOnStepId: 'sjw-w4',
+          reagentsAndBuffer:
+            'HEK293 cells expressing human SERT, NET and DAT; tritiated substrate uptake; imipramine and fluoxetine reference inhibitors',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sjw-a1',
+        category: 'measured',
+        title: 'Cochrane 2008: superior to placebo and equivalent to standard antidepressants',
+        laymanSummary:
+          "Twenty-nine randomised trials in nearly 5,500 patients found St John's wort better than placebo and about as good as prescription antidepressants, with fewer side effects.",
+        technicalDetails:
+          'Linde et al. included 29 randomised double-blind trials comprising 5,489 patients, with 18 placebo comparisons and 17 comparisons against synthetic antidepressants. Placebo-controlled results were markedly heterogeneous: in nine larger trials the combined response rate ratio was 1.28 (95% CI 1.10 to 1.49), and in nine smaller trials 1.87 (95% CI 1.22 to 2.87). Comparisons against standard antidepressants were statistically homogeneous, with response rate ratios of 1.02 (95% CI 0.90 to 1.15) against tricyclics and tetracyclics across five trials and 1.00 (95% CI 0.90 to 1.11) against SSRIs across 12 trials. Fewer patients dropped out for adverse effects on hypericum. The authors flagged that country of origin and trial precision were associated with effect size, which complicates interpretation.',
+        evidenceSource: "Linde K et al. Cochrane Database Syst Rev 2008;(4):CD000448",
+        doi: '10.1002/14651858.CD000448.pub3',
+        measuredMetric: 'Response rate ratio against placebo and against standard antidepressants',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sjw-a2',
+        category: 'failed',
+        title: 'Two US trials in more severe depression found nothing — and neither did sertraline',
+        laymanSummary:
+          "In two large American trials in properly diagnosed major depression, St John's wort did not beat placebo. In one of them, the antidepressant used as a comparator did not either.",
+        technicalDetails:
+          "Shelton et al. randomised 200 outpatients with major depression and a baseline HAM-D of at least 20 across 11 US academic centres to hypericum extract or placebo for eight weeks, and found no significant treatment effect on HAM-D, HAM-A, CGI-S or CGI-I. The Hypericum Depression Trial Study Group then randomised 340 outpatients across 12 centres to hypericum, placebo or sertraline as an active comparator for eight weeks: neither hypericum nor sertraline separated from placebo on the two primary outcomes. HAM-D change was -9.20 for placebo, -8.68 for hypericum (P = 0.59) and -10.53 for sertraline (P = 0.18). Full response occurred in 31.9% on placebo, 23.9% on hypericum and 24.8% on sertraline. The authors noted the failure of the active comparator raises the question of assay sensitivity, while adding that the complete absence of any trend toward efficacy for hypericum is noteworthy.",
+        evidenceSource:
+          'Shelton RC et al. JAMA 2001;285:1978-1986; Hypericum Depression Trial Study Group. JAMA 2002;287:1807-1814',
+        doi: '10.1001/jama.287.14.1807',
+        measuredMetric: 'Change in Hamilton Depression Rating Scale over eight weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sjw-a3',
+        category: 'measured',
+        title: 'Acute heart transplant rejection caused by St John\'s wort',
+        laymanSummary:
+          "Two heart transplant patients began rejecting their transplants after starting St John's wort, because it stripped out the drug protecting the graft.",
+        technicalDetails:
+          "Ruschitzka et al. reported acute heart transplant rejection in two patients who had started St John's wort while on stable ciclosporin. Ciclosporin trough concentrations fell to subtherapeutic levels through CYP3A4 and P-glycoprotein induction, rejection followed, and levels and graft function recovered on stopping the herb and increasing the dose. This is the case report that converted a theoretical interaction into a clinical one, and it is why the plant is contraindicated in transplant medicine.",
+        evidenceSource: "Ruschitzka F et al. Lancet 2000;355:548-549",
+        doi: '10.1016/S0140-6736(99)05467-7',
+        measuredMetric: 'Ciclosporin trough concentration and endomyocardial biopsy rejection grade',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sjw-a4',
+        category: 'measured',
+        title: 'CYP3A4 induction measured directly: 1.4-fold clearance, 2.5-fold bioavailability loss',
+        laymanSummary:
+          "Fourteen days of St John's wort measurably sped up the body's main drug-clearing enzyme and more than halved how much of an oral test drug got into the blood.",
+        technicalDetails:
+          "Markowitz et al. gave healthy volunteers St John's wort for 14 days and measured the pharmacokinetics of intravenous and oral alprazolam and midazolam as CYP3A4 probes. Systemic clearance increased and oral bioavailability fell substantially, consistent with induction of intestinal and hepatic CYP3A4. CYP3A4 is responsible for the metabolism of roughly half of all marketed drugs, so this is not one interaction but a class of them.",
+        evidenceSource: 'Markowitz JS et al. JAMA 2003;290:1500-1504',
+        doi: '10.1001/jama.290.11.1500',
+        measuredMetric: 'Systemic clearance and oral bioavailability of CYP3A4 probe substrates',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sjw-a5',
+        category: 'measured',
+        title: 'Oral contraceptive failure and HIV treatment failure, both documented',
+        laymanSummary:
+          "The same enzyme induction breaks hormonal contraception and strips out HIV drugs.",
+        technicalDetails:
+          "Hall et al. studied the interaction between St John's wort and a low-dose oral contraceptive in healthy women and found increased contraceptive steroid clearance with breakthrough bleeding, a recognised marker of reduced contraceptive reliability. Piscitelli et al. separately measured an 81% reduction in indinavir area under the curve in healthy volunteers, an exposure loss large enough to permit viral rebound and resistance. These are not incidental findings: they are the two interactions most likely to be encountered by someone who buys the product without telling anyone.",
+        evidenceSource:
+          "Hall SD et al. Clin Pharmacol Ther 2003;74:525-535; Piscitelli SC et al. Lancet 2000;355:547-548",
+        doi: '10.1016/j.clpt.2003.08.009',
+        measuredMetric:
+          'Contraceptive steroid clearance and breakthrough bleeding; indinavir area under the concentration-time curve',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sjw-a6',
+        category: 'conclusion_shift',
+        title: 'Effect size tracked country of origin, which the Cochrane authors flagged themselves',
+        laymanSummary:
+          'The trials showing the biggest benefits were disproportionately from one part of the world, and the reviewers said so.',
+        technicalDetails:
+          'Linde et al. reported marked heterogeneity among placebo-controlled trials, with smaller trials showing response rate ratios nearly twice those of larger ones (1.87 versus 1.28), and stated that the association of country of origin and precision with effect size complicates interpretation. German-speaking countries, where hypericum is a licensed prescription medicine, contributed a large share of the positive trials, while the two large US trials found nothing. That geographic pattern is the honest reason the pooled estimate sits where it does rather than higher.',
+        evidenceSource: "Linde K et al. Cochrane Database Syst Rev 2008;(4):CD000448",
+        doi: '10.1002/14651858.CD000448.pub3',
+        inferredClaim:
+          'That the pooled response rate ratio applies uniformly across populations and severities',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A multi-component extract, with hyperforin doing most of the work',
+        laymanDesc:
+          'The extract contains several active families, and one of them is responsible for both the benefit and the danger.',
+        molecularDetail:
+          'Hyperforin is a prenylated phloroglucinol; hypericin is a naphthodianthrone; the extract also contains flavonoids including rutin and quercetin. Hyperforin content varies with solvent and degrades on air exposure, which is why the licensed European extracts are individually named and specified.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed, and it reaches both brain and liver',
+        laymanDesc:
+          'It gets into the bloodstream well enough to act on the brain — and on the liver, which is where the trouble starts.',
+        molecularDetail:
+          'Hyperforin is absorbed with a plasma half-life of around nine hours and reaches concentrations consistent with its in vitro reuptake inhibition. The same systemic exposure delivers it to hepatocytes and enterocytes, where the induction occurs.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'At the synapse it blocks reuptake of three transmitters at once',
+        laymanDesc:
+          'It keeps serotonin, noradrenaline and dopamine in the synapse for longer, which is broadly what antidepressants do.',
+        molecularDetail:
+          'Hyperforin inhibits synaptosomal reuptake of serotonin, noradrenaline and dopamine, and also GABA and glutamate, apparently by dissipating the sodium gradient the transporters depend on rather than by binding them directly. That non-selective mechanism differs from every prescription antidepressant class.',
+        iconName: 'Network',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'At the liver it switches on the main drug-clearing enzyme',
+        laymanDesc:
+          'In the liver, the same compound activates a genetic switch that ramps up the machinery for destroying medicines.',
+        molecularDetail:
+          'Hyperforin is a potent pregnane X receptor agonist. Activated PXR transcriptionally induces CYP3A4 and the efflux transporter P-glycoprotein in liver and intestine, increasing both first-pass metabolism and systemic clearance of their substrates.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Depression improves; co-administered drugs stop working',
+        laymanDesc:
+          "The mood effect is real. So is the failure of whatever else the person is taking.",
+        molecularDetail:
+          'Response rate ratio 1.28 against placebo in larger trials and 1.00 against SSRIs. In parallel: ciclosporin loss causing transplant rejection, an 81% fall in indinavir exposure, and contraceptive steroid clearance sufficient to cause breakthrough bleeding.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Linde 2008 Cochrane review (29 randomised double-blind trials)',
+        phase: 'Systematic review and meta-analysis',
+        sampleSize: 5489,
+        primaryEndpoint:
+          'Response rate on depression scales versus placebo and versus standard antidepressants',
+        endpointMet: true,
+        statisticalPValue:
+          'RR 1.28 (95% CI 1.10 to 1.49) versus placebo in larger trials; RR 1.00 (0.90 to 1.11) versus SSRIs',
+        unreportedAdverseSignals:
+          'Marked heterogeneity in the placebo comparisons, with smaller trials showing far larger effects, and an association between country of origin and effect size that the authors said complicates interpretation.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Hypericum Depression Trial Study Group 2002 (hypericum, sertraline, placebo)',
+        phase: 'Randomised, double-blind, placebo-controlled with active comparator',
+        sampleSize: 340,
+        primaryEndpoint: 'Change in HAM-D total score from baseline to eight weeks, and full response rate',
+        endpointMet: false,
+        statisticalPValue: 'P = 0.59 for hypericum versus placebo; P = 0.18 for sertraline versus placebo',
+        unreportedAdverseSignals:
+          'The active comparator also failed, which raises assay sensitivity as an explanation. The authors noted that the complete absence of any trend toward efficacy for hypericum is nevertheless noteworthy.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Shelton 2001 (hypericum versus placebo, major depression, 11 US centres)',
+        phase: 'Randomised, double-blind, placebo-controlled',
+        sampleSize: 200,
+        primaryEndpoint: 'Rate of change on the Hamilton Depression Rating Scale over eight weeks',
+        endpointMet: false,
+        statisticalPValue: 'P = 0.16 for treatment effect on HAM-D',
+        unreportedAdverseSignals:
+          'Remission was significantly more frequent on hypericum (14.3% versus 4.9%, P = 0.02) but at very low absolute rates. Headache was more common on hypericum, 41% versus 25%.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Response rate ratio 1.28 (95% CI 1.10 to 1.49) against placebo across nine larger trials',
+        'Response rate ratio 1.00 (95% CI 0.90 to 1.11) against SSRIs across 12 trials, with fewer withdrawals for adverse effects',
+        'Acute heart transplant rejection in two patients after starting the herb on stable ciclosporin',
+        'An 81% reduction in indinavir exposure, and increased contraceptive steroid clearance with breakthrough bleeding',
+        'Direct measurement of CYP3A4 induction using intravenous and oral probe substrates over 14 days',
+      ],
+      unsupportedInferences: [
+        'That efficacy in mild to moderate depression extends to severe major depression — two large US trials found nothing there',
+        'That a botanical sold beside vitamins carries a supplement-level interaction risk',
+        'That the pooled effect applies uniformly, when effect size tracked country of origin and trial precision',
+      ],
+      whatFailedInitially: [
+        'Shelton 2001 in 200 US outpatients with major depression: no significant treatment effect on any primary or secondary scale',
+        'The Hypericum Depression Trial Study Group in 340 patients: neither hypericum nor sertraline separated from placebo',
+      ],
+      realWorldOutcome: [
+        'This is the strongest efficacy evidence for any botanical in this file, and it is confined to mild to moderate depression',
+        'It is also the most dangerous substance here for anyone taking another medicine, and it is bought without a prescription',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet or capsule of standardised Hypericum perforatum extract',
+      description:
+        'Sold as a dietary supplement in the United States and licensed as a prescription antidepressant for mild to moderate depression in Germany. Extracts differ substantially in hyperforin content depending on solvent, and low-hyperforin preparations exist specifically to reduce interaction risk. Trial evidence attaches to named extracts, not to the plant generically.',
+      safetyProfile:
+        'Direct adverse effects are mild and fewer than with standard antidepressants; headache was the only event more frequent than placebo in Shelton 2001, at 41% versus 25%. Photosensitivity is associated with hypericin. The dominant risk is pharmacokinetic: CYP3A4 and P-glycoprotein induction reduces exposure to ciclosporin, tacrolimus, oral contraceptives, warfarin, protease inhibitors, some anticonvulsants, statins and many oncology drugs. Combining it with an SSRI risks serotonin syndrome.',
+    },
+    commonQuestions: [
+      {
+        q: "Does St John's wort actually treat depression?",
+        a: 'For mild to moderate depression, yes, and the evidence is better than for anything else in this file: 29 randomised double-blind trials in 5,489 patients, superior to placebo (RR 1.28 in the larger trials) and indistinguishable from SSRIs and tricyclics, with fewer patients stopping because of side effects. Two important limits: the two large US trials in more severely depressed patients found nothing, and effect size tracked country of origin closely enough that the Cochrane authors said so in their conclusions.',
+      },
+      {
+        q: 'How dangerous are the interactions really?',
+        a: 'Two heart transplant patients rejected their grafts. Indinavir exposure fell 81% in healthy volunteers, enough to permit HIV viral rebound and resistance. Oral contraceptive steroid clearance rose with breakthrough bleeding. Direct probe studies confirm CYP3A4 induction after 14 days. Since CYP3A4 clears roughly half of all marketed drugs, this is not a list of interactions to memorise — it is a reason to treat the plant as a prescription drug and disclose it to every prescriber.',
+        auditNote:
+          'The risk is amplified by how it is bought: over the counter, often without telling a doctor, precisely because it is perceived as natural.',
+      },
+      {
+        q: 'Why did the American trials fail when the European ones worked?',
+        a: 'Nobody has settled it, and both trials that failed are informative in different ways. Shelton 2001 enrolled 200 patients with HAM-D of at least 20 and found no effect. The 2002 trial enrolled 340 and found neither hypericum nor sertraline separated from placebo, which points to assay sensitivity — a trial that cannot detect a known-effective drug cannot rule out a new one. But those trials also enrolled more severely depressed patients than the European mild-to-moderate trials, and the Cochrane review found effect size associated with country of origin. Severity and geography are both live explanations.',
+      },
+      {
+        q: 'Is a low-hyperforin extract safer?',
+        a: 'That is the design intent, since hyperforin is the pregnane X receptor agonist driving CYP3A4 induction, and low-hyperforin preparations show less induction in the laboratory. The complication is that hyperforin is also the component most associated with the reuptake inhibition, so reducing it may reduce both the risk and the effect. The trials in the Cochrane review used specific named extracts with specific hyperforin contents, and a claim about one does not transfer to another.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: "Linde K et al. St John's wort for major depression. Cochrane Database Syst Rev 2008;(4):CD000448",
+        identifier: '10.1002/14651858.CD000448.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hypericum Depression Trial Study Group. Effect of Hypericum perforatum (St John\'s wort) in major depressive disorder: a randomized controlled trial. JAMA 2002;287:1807-1814',
+        identifier: '10.1001/jama.287.14.1807',
+        kind: 'doi',
+      },
+      {
+        label:
+          "Shelton RC et al. Effectiveness of St John's wort in major depression: a randomized controlled trial. JAMA 2001;285:1978-1986",
+        identifier: '10.1001/jama.285.15.1978',
+        kind: 'doi',
+      },
+      {
+        label: "Ruschitzka F et al. Acute heart transplant rejection due to Saint John's wort. Lancet 2000;355:548-549",
+        identifier: '10.1016/S0140-6736(99)05467-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          "Markowitz JS et al. Effect of St John's wort on drug metabolism by induction of cytochrome P450 3A4 enzyme. JAMA 2003;290:1500-1504",
+        identifier: '10.1001/jama.290.11.1500',
+        kind: 'doi',
+      },
+      {
+        label: "Hall SD et al. The interaction between St John's wort and an oral contraceptive. Clin Pharmacol Ther 2003;74:525-535",
+        identifier: '10.1016/j.clpt.2003.08.009',
+        kind: 'doi',
+      },
+      {
+        label: "Piscitelli SC et al. Indinavir concentrations and St John's wort. Lancet 2000;355:547-548",
+        identifier: '10.1016/S0140-6736(99)05712-8',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 441298 — Hyperforin',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441298',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Valerian root — safe, and in the most rigorous trials, not effective.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'valerian-root',
+    name: 'Valerian root',
+    sponsor: 'No single sponsor — root and rhizome of Valeriana officinalis',
+    targetGene: 'GABRA1',
+    targetProtein:
+      'GABA-A receptor, proposed. Valerenic acid modulates the beta-3 subunit in vitro; whether the modulation occurs at concentrations an oral dose produces has not been established.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement for sleep and mild anxiety. Registered in parts of Europe as a traditional herbal medicinal product, a status granted on documented traditional use rather than on efficacy trials.',
+    patientFriendlyIndication: 'Marketed as a sleep aid',
+    conditionContext: {
+      conditionExplainer:
+        'Insomnia affects roughly a third of adults at some point and drives absenteeism, health care use and social disability. Valerian root has been the leading herbal sleep aid in Europe and North America for decades, which makes the size and consistency of its trial base worth examining closely.',
+      whyItMatters:
+        'Valerian is the clearest example in this file of a pattern that recurs across supplement research: an early literature of small, methodologically weak, positive studies, and then, as trials got better, the effect disappearing. The transition is documented well enough here to be readable.',
+      whoTakesThis:
+        'Adults with sleep-onset difficulty or non-restorative sleep, usually self-directed and often as an alternative to a prescription hypnotic.',
+      clinicalGoals:
+        'Trials have measured self-reported sleep quality, sleep latency, wake after sleep onset, sleep efficiency, and in the better studies polysomnography and actigraphy.',
+    },
+    oneSentenceVerdict:
+      'Sixteen trials in 1,093 patients produced a relative risk of improved sleep of 1.8 with documented publication bias, and a review of 37 studies concluded that none of the most recent and most methodologically rigorous ones found any effect on sleep at all.',
+    laymanHowItWorks:
+      'Valerian root contains valerenic acid and a family of unstable compounds called valepotriates. The proposed mechanism is that valerenic acid nudges the GABA-A receptor — the same receptor benzodiazepines act on, though far more weakly — toward inhibition. In practice, when trials measured sleep with electrodes rather than questionnaires, the difference from placebo did not appear, and in one crossover trial in older women, time awake after falling asleep actually increased.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 24,
+    anatomicalSite: 'Central nervous system, proposed at the GABA-A receptor',
+    substitutes: {
+      summary:
+        'For chronic insomnia, cognitive behavioural therapy is first-line in every major guideline and has durable effects. Among the things people take instead, valerian has the best safety record and the weakest efficacy evidence.',
+      conventionalRx: [
+        {
+          name: 'Cognitive behavioural therapy for insomnia',
+          class: 'Structured behavioural therapy',
+          howItCompares:
+            'Recommended as first-line treatment for chronic insomnia, with effects that persist after treatment ends. Valerian has not been compared with it in any trial.',
+          typicalCost: 'Not priced here — no published cost figure is cited on this page',
+          prosAndCons:
+            'Pros: durable, no pharmacology, guideline-recommended. Cons: requires several weeks of structured effort.',
+        },
+        {
+          name: 'Z-drugs (zolpidem, zopiclone)',
+          class: 'Non-benzodiazepine GABA-A receptor agonist',
+          howItCompares:
+            'Acts at the receptor valerian is proposed to act at, with unambiguous polysomnographic effects — which is precisely the contrast: when sleep is measured objectively, the drug shows up and valerian does not.',
+          typicalCost: 'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: measurable effect on sleep latency. Cons: dependence, next-day impairment, complex sleep behaviours.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Notice which trials used electrodes',
+          action:
+            'When reading a valerian study, check whether sleep was measured by questionnaire or by polysomnography and actigraphy.',
+          patientImpact:
+            'Taibi et al. measured both in the same 16 women and found no significant difference from placebo on any measure — self-reported or objective — while time awake after sleep onset rose 17.7 minutes against baseline on valerian.',
+          clinicalPrecaution:
+            'Valerian is genuinely safe, with rare adverse events across 37 studies. The cost of taking it is the sleep problem going untreated while it is tried.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@@H]1CC[C@H](C2=C(CC[C@H]12)C)/C=C(\\C)/C(=O)O',
+      chemicalFormula: 'C15H22O2',
+      molecularWeight: '234.33 g/mol (valerenic acid, PubChem CID 6440940)',
+      structureSource: {
+        label: 'PubChem CID 6440940 — Valerenic acid, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6440940',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'val-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Species confirmation and valerenic acid assay',
+          description:
+            'Confirm Valeriana officinalis rather than V. edulis or Indian valerian, and assay valerenic acid. The species differ markedly in valepotriate content, and the trial literature is on V. officinalis, so a species substitution silently disconnects a product from every study cited here.',
+          reagentsAndBuffer:
+            'Valerenic acid and acetoxyvalerenic acid reference standards; C18 HPLC with detection at 225 nm; DNA barcoding of the ITS region; valepotriate profiling by LC-MS',
+        },
+        {
+          id: 'val-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Aqueous-ethanolic extraction of dried root and rhizome',
+          description:
+            'Extract dried root and rhizome. Valepotriates are epoxide-containing iridoids that decompose on drying, heating and storage into baldrinals, so the extraction conditions determine what is in the finished product far more than the raw material does.',
+          dependsOnStepId: 'val-w1',
+          reagentsAndBuffer:
+            '70% aqueous ethanol; extraction at ambient temperature; concentration below 40 degrees C; nitrogen headspace',
+        },
+        {
+          id: 'val-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Standardisation with a valepotriate degradation specification',
+          description:
+            'Standardise to a stated valerenic acid content and set a limit for baldrinal and homobaldrinal, the decomposition products of the valepotriates, which are alkylating and are the reason valepotriate-rich preparations are avoided.',
+          dependsOnStepId: 'val-w2',
+          reagentsAndBuffer:
+            'Preparative HPLC; LC-MS quantification of baldrinal and homobaldrinal; accelerated stability at 40 degrees C and 75% relative humidity',
+        },
+        {
+          id: 'val-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'GABA-A beta-3 subunit expression system with a potency cut-off',
+          description:
+            'Express recombinant GABA-A receptors containing the beta-3 subunit valerenic acid is reported to modulate, and record the concentration-response. The point of this step is to establish the EC50 so it can be compared with achievable plasma concentration rather than quoted on its own.',
+          dependsOnStepId: 'val-w3',
+          reagentsAndBuffer:
+            'Xenopus oocytes or HEK293 cells expressing alpha-1 beta-3 gamma-2 GABA-A receptors; two-electrode voltage clamp; GABA EC20 baseline; diazepam and loreclezole reference modulators',
+        },
+        {
+          id: 'val-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Rodent polysomnography rather than a sedation proxy',
+          description:
+            'Score sleep architecture by EEG in a rodent model rather than inferring sedation from open-field activity. The human literature failed specifically at the point where objective sleep measurement replaced self-report, so a preclinical programme that skips objective measurement repeats the error one level down.',
+          dependsOnStepId: 'val-w4',
+          reagentsAndBuffer:
+            'Implanted EEG and EMG telemetry; automated sleep stage scoring; zolpidem positive control; vehicle-matched crossover design',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'val-a1',
+        category: 'measured',
+        title: 'Bent 2006: relative risk of improved sleep 1.8, with publication bias in the same estimate',
+        laymanSummary:
+          'A meta-analysis found people were more likely to report improved sleep on valerian, and found in the same breath that negative studies appeared to be missing.',
+        technicalDetails:
+          'Bent et al. identified 16 eligible randomised placebo-controlled trials examining 1,093 patients. Six studies reported a dichotomous sleep-quality outcome, improved or not, and pooling those gave a relative risk of improved sleep of 1.8 (95% CI 1.2 to 2.9). The authors stated directly that there was evidence of publication bias in this summary measure, that most studies had significant methodological problems, and that valerian doses, preparations and treatment lengths varied considerably. Their conclusion was that valerian might improve sleep quality without producing side effects, and that future studies should use standardised preparations and standard measures.',
+        evidenceSource: 'Bent S et al. Am J Med 2006;119:1005-1012',
+        doi: '10.1016/j.amjmed.2006.02.026',
+        measuredMetric: 'Relative risk of a dichotomous improved-sleep outcome across six trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'val-a2',
+        category: 'conclusion_shift',
+        title: 'Taibi 2007: the most rigorous studies were the ones that found nothing',
+        laymanSummary:
+          'A wider review of 37 studies found that as trial quality improved, the effect disappeared, and that the newest and best studies found no effect at all.',
+        technicalDetails:
+          'Taibi et al. screened 592 articles and reviewed 37 separate studies — 29 controlled trials assessed for efficacy and safety, plus eight open-label trials for safety only. Most studies found no significant difference between valerian and placebo, in healthy individuals or in people with general sleep disturbance or insomnia. The authors wrote that none of the most recent studies, which were also the most methodologically rigorous, found significant effects of valerian on sleep, and concluded that while valerian is a safe herb associated with only rare adverse events, the evidence does not support its clinical efficacy as a sleep aid for insomnia. The paper\'s title states the finding plainly: safe but not effective.',
+        evidenceSource: 'Taibi DM et al. Sleep Med Rev 2007;11:209-230',
+        doi: '10.1016/j.smrv.2007.03.002',
+        inferredClaim:
+          'That the pooled positive estimate from the earlier literature reflects a real hypnotic effect rather than the quality gradient in the trials producing it',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'val-a3',
+        category: 'failed',
+        title: 'Taibi 2009: no effect on any sleep measure, and wake time increased',
+        laymanSummary:
+          'In a crossover trial that measured sleep with electrodes as well as questionnaires, valerian did nothing — and time spent awake in the night went up.',
+        technicalDetails:
+          'Sixteen older women with insomnia, mean age 69.4, took 300 mg of concentrated valerian extract or placebo 30 minutes before bed for two weeks in a phase 2 randomised double-blind crossover trial. Sleep was assessed in the laboratory by self-report and polysomnography over nine laboratory nights, and at home by sleep logs and actigraphy. There were no statistically significant differences between valerian and placebo after a single dose or after two weeks on any measure of sleep latency, wake after sleep onset, sleep efficiency or self-rated sleep quality. Against baseline, wake after sleep onset increased significantly after two weeks of valerian (+17.7 +/- 25.6 minutes, P = 0.02) but not after placebo (+6.8 +/- 26.4 minutes, not significant). Side effects were minor and did not differ from placebo. The authors concluded the findings add to the evidence that does not support valerian in clinical management of insomnia.',
+        evidenceSource: 'Taibi DM et al. Sleep Med 2009;10:319-328',
+        doi: '10.1016/j.sleep.2008.02.001',
+        measuredMetric:
+          'Polysomnographic sleep latency, wake after sleep onset and sleep efficiency, plus actigraphy and self-report',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a4',
+        category: 'inferred',
+        title: 'The preparations in the trials were not comparable to each other',
+        laymanSummary:
+          'The studies used different doses, different extracts and different treatment lengths, so pooling them assumes a consistency the products do not have.',
+        technicalDetails:
+          'Bent et al. noted that valerian doses, preparations and length of treatment varied considerably across the 16 included trials. This is not incidental for valerian specifically: valepotriates decompose during drying and storage into baldrinals, so two extracts of the same root at the same nominal strength can differ chemically depending on how they were processed and how long they sat. A pooled estimate across heterogeneous preparations attributes to an ingredient what may belong to a particular preparation, or to none of them.',
+        evidenceSource: 'Bent S et al. Am J Med 2006;119:1005-1012',
+        doi: '10.1016/j.amjmed.2006.02.026',
+        inferredClaim:
+          'That valerian is a single intervention whose trials can be meaningfully pooled',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A chemically unstable root extract',
+        laymanDesc:
+          'The root contains compounds that break down during drying and storage, so what is in the capsule depends on how it was made.',
+        molecularDetail:
+          'Valerenic acid is a sesquiterpenoid and is comparatively stable. The valepotriates are epoxide-containing iridoid esters that decompose on drying, heat and storage into baldrinal and homobaldrinal. This instability is why nominally identical products are not chemically identical.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed, with poorly characterised human pharmacokinetics',
+        laymanDesc:
+          'Valerenic acid enters the bloodstream, but how much reaches the brain has not been well established.',
+        molecularDetail:
+          'Human pharmacokinetic data for valerenic acid are sparse, with plasma concentrations reported in the low nanogram-per-millilitre range after typical extract doses. No study has related a measured plasma or brain concentration to the in vitro receptor potency.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A proposed GABA-A action at the same receptor as benzodiazepines',
+        laymanDesc:
+          'Valerenic acid nudges the brain\'s main calming receptor, at a different site from sleeping pills and far more weakly.',
+        molecularDetail:
+          'Valerenic acid is a positive allosteric modulator of GABA-A receptors containing the beta-2 or beta-3 subunit, acting at the loreclezole site rather than the benzodiazepine site. The reported potency sits well above the plasma concentrations an oral extract produces.',
+        iconName: 'Network',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Subjective sleep quality improves in the weaker studies',
+        laymanDesc:
+          'When people are asked how they slept, more of them say better on valerian.',
+        molecularDetail:
+          'Relative risk of improved sleep 1.8 (95% CI 1.2 to 2.9) across six trials reporting a dichotomous outcome — with publication bias detected in that same summary measure by the authors who computed it.',
+        iconName: 'Activity',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Objective sleep does not change, and may get slightly worse',
+        laymanDesc:
+          'Measured with electrodes, nothing improves, and in one trial time awake during the night went up.',
+        molecularDetail:
+          'Taibi 2009 found no significant difference on polysomnographic sleep latency, wake after sleep onset or sleep efficiency, with wake after sleep onset rising 17.7 minutes from baseline on valerian (P = 0.02) and not on placebo. Taibi 2007 found that none of the most rigorous studies detected any effect.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Taibi 2009 (300 mg valerian extract, older women with insomnia)',
+        phase: 'Phase 2 randomised, double-blind, crossover',
+        sampleSize: 16,
+        primaryEndpoint:
+          'Polysomnographic and self-reported sleep latency, wake after sleep onset, sleep efficiency and sleep quality',
+        endpointMet: false,
+        statisticalPValue:
+          'No significant difference from placebo on any measure; wake after sleep onset increased from baseline on valerian, P = 0.02',
+        unreportedAdverseSignals:
+          'Side effects were minor and did not differ from placebo. The increase in wake after sleep onset was a within-arm comparison against baseline rather than against placebo, so it is a signal rather than a demonstrated harm.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Bent 2006 meta-analysis (16 randomised placebo-controlled trials)',
+        phase: 'Systematic review and meta-analysis',
+        sampleSize: 1093,
+        primaryEndpoint: 'Improvement in sleep quality versus placebo',
+        endpointMet: true,
+        statisticalPValue: 'RR 1.8 (95% CI 1.2 to 2.9) for a dichotomous improved-sleep outcome across six trials',
+        unreportedAdverseSignals:
+          'The authors reported evidence of publication bias in this summary measure, and that most included studies had significant methodological problems with considerable variation in dose, preparation and treatment length.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Taibi 2007 systematic review (37 studies, 29 controlled trials)',
+        phase: 'Systematic review',
+        sampleSize: 0,
+        primaryEndpoint: 'Efficacy of valerian as a sleep aid, stratified by preparation and population',
+        endpointMet: false,
+        statisticalPValue: 'Not applicable — narrative synthesis with standardised quality criteria',
+        unreportedAdverseSignals:
+          'Sample size recorded as 0 because the review reports study counts rather than a pooled total. None of the most recent and most methodologically rigorous studies found any significant effect on sleep.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Relative risk of improved sleep 1.8 (95% CI 1.2 to 2.9) across six trials with a dichotomous outcome, with publication bias detected in the same estimate',
+        'No significant difference from placebo on polysomnographic sleep latency, wake after sleep onset, sleep efficiency or self-rated quality in a crossover trial with nine laboratory nights per participant',
+        'Wake after sleep onset increased 17.7 minutes from baseline after two weeks of nightly valerian (P = 0.02), and did not on placebo',
+        'Rare adverse events across 37 studies including eight open-label safety trials',
+      ],
+      unsupportedInferences: [
+        'That the pooled relative risk of 1.8 represents a hypnotic effect, when publication bias was detected in that estimate and the most rigorous trials found nothing',
+        'That an in vitro GABA-A modulation at concentrations far above achievable plasma levels explains a clinical effect',
+        'That trials of chemically divergent preparations can be pooled as though testing one intervention',
+      ],
+      whatFailedInitially: [
+        'Every objective sleep measure in the trial that used polysomnography and actigraphy alongside self-report',
+        'The most recent and most methodologically rigorous studies in the 37-study review, without exception',
+      ],
+      realWorldOutcome: [
+        'Valerian has one of the best safety records of anything in this file: rare adverse events, no dependence, no next-day impairment',
+        'The cost of using it is the untreated insomnia during the trial period, and insomnia has an effective first-line treatment that is not a pill',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule, tablet or tincture of root and rhizome extract',
+      description:
+        'Sold as a dietary supplement in the United States and registered as a traditional herbal medicinal product in parts of Europe, a status based on documented long-standing use rather than on trial evidence. Preparations vary widely in extraction solvent, valerenic acid content and valepotriate degradation state, and the trial literature reflects that variation rather than controlling for it.',
+      safetyProfile:
+        'Consistently safe across 37 reviewed studies with only rare adverse events, and side effects not different from placebo in the crossover trial. Reported effects are headache, dizziness and gastrointestinal upset. Valepotriate decomposition products are alkylating in vitro, which is why modern preparations are specified on valerenic acid rather than valepotriates. No dependence or withdrawal syndrome has been described.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does valerian help you sleep?',
+        a: 'The best evidence says no. The often-quoted positive figure — a relative risk of improved sleep of 1.8 — comes from six trials reporting a yes-or-no sleep-quality question, and the authors who calculated it reported publication bias in that same estimate. A larger review covering 37 studies found that most showed no difference from placebo and that none of the most recent, most rigorous studies found any effect. When one trial measured sleep with polysomnography and actigraphy as well as questionnaires, nothing differed from placebo on any measure.',
+        auditNote:
+          'The title of the 2007 review states the position the field arrived at: safe but not effective.',
+      },
+      {
+        q: 'Why did the early studies look positive?',
+        a: 'Three reasons, all documented rather than speculated. Most of the early trials had significant methodological problems, by the reviewers\' own assessment. Publication bias was detected statistically in the pooled estimate, meaning small negative trials appear to be missing. And the outcome that produced the positive result was a self-reported yes-or-no question about sleep quality, which is the measure most sensitive to expectation. As trials adopted objective measurement, the effect went away.',
+      },
+      {
+        q: 'Is it safe?',
+        a: 'Yes, and unusually so. Across 37 studies including eight open-label safety trials, adverse events were rare, and in the crossover trial side effects did not differ from placebo. There is no dependence, no withdrawal and no next-day impairment of the kind associated with hypnotics. The real cost of valerian is not toxicity; it is the weeks of untreated insomnia while it is being tried.',
+      },
+      {
+        q: 'Why do products differ so much?',
+        a: 'Because the chemistry is unstable. The valepotriates decompose during drying, heating and storage into baldrinal and homobaldrinal, so two products from the same species at the same nominal strength can be chemically different depending on processing and shelf time. Bent et al. specifically noted that doses, preparations and treatment lengths varied considerably across the trials, which means the pooled evidence describes a category rather than a product.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Bent S et al. Valerian for sleep: a systematic review and meta-analysis. Am J Med 2006;119:1005-1012',
+        identifier: '10.1016/j.amjmed.2006.02.026',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Taibi DM et al. A systematic review of valerian as a sleep aid: safe but not effective. Sleep Med Rev 2007;11:209-230',
+        identifier: '10.1016/j.smrv.2007.03.002',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Taibi DM et al. A randomized clinical trial of valerian fails to improve self-reported, polysomnographic, and actigraphic sleep in older women with insomnia. Sleep Med 2009;10:319-328',
+        identifier: '10.1016/j.sleep.2008.02.001',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 6440940 — Valerenic acid',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6440940',
+        kind: 'url',
+      },
+    ],
+  },
 ]

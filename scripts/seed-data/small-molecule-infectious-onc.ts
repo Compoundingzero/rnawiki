@@ -1867,4 +1867,2170 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Metronidazole — a 1963 drug carrying a famous warning that has never been demonstrated in a
+  // controlled human experiment, and a first-line status it lost to a randomised comparison.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'metronidazole',
+    name: 'Metronidazole',
+    tradeName: 'Flagyl / MetroGel',
+    sponsor: 'Rhone-Poulenc (originator); marketed in the US by Pfizer and manufactured generically',
+    targetGene:
+      'No host or microbial gene is bound directly; activation depends on microbial pyruvate:ferredoxin oxidoreductase and ferredoxin (nifJ, fdx)',
+    targetProtein:
+      'Microbial DNA, damaged by nitroradical anions generated after reduction by anaerobic electron-transport proteins',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1963,
+    indication:
+      'Trichomoniasis, amoebiasis, giardiasis, bacterial vaginosis, and serious infections caused by susceptible anaerobic bacteria, including intra-abdominal, gynaecological, skin, bone and joint, central nervous system and bloodstream infection',
+    patientFriendlyIndication:
+      'Infections caused by parasites and by bacteria that grow without oxygen, including bacterial vaginosis and trichomoniasis',
+    conditionContext: {
+      conditionExplainer:
+        'Metronidazole is inert as swallowed. It only becomes a drug inside organisms that run their metabolism without oxygen, because only those have the low-potential electron carriers able to donate an electron to its nitro group. That single electron turns it into a reactive radical that shreds nearby DNA.',
+      whyItMatters:
+        'That activation requirement is the whole safety margin. Human cells and aerobic bacteria cannot reduce the nitro group efficiently, so the drug passes through them without effect. It is one of the cleanest examples in pharmacology of selectivity by activation rather than by binding.',
+      whoTakesThis:
+        'People with trichomoniasis, bacterial vaginosis, amoebic or giardial infection, and patients with serious anaerobic bacterial infection, usually in combination with an agent covering aerobes.',
+      clinicalGoals:
+        'Eradicate an anaerobic or protozoal infection, confirmed where possible by test of cure rather than by symptom resolution alone.',
+    },
+    oneSentenceVerdict:
+      'A nitroimidazole prodrug activated only inside anaerobes and protozoa, where a seven-day course cured trichomoniasis in 89% of 312 women against 81% for the single dose, and which lost its first-line place in Clostridioides difficile infection to a head-to-head randomised comparison.',
+    laymanHowItWorks:
+      'The tablet you swallow is not yet a drug. It only becomes one inside microbes that live without oxygen, because only they have the machinery to hand it a spare electron. That electron turns the molecule into something violently reactive that tears the microbe DNA apart within its own cell. Your own cells, and bacteria that use oxygen, cannot perform that first step, so the drug drifts through them unchanged.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 78,
+    anatomicalSite:
+      'Cytoplasm of anaerobic bacteria and protozoa; vaginal, intestinal and abscess environments',
+    substitutes: {
+      summary:
+        'Tinidazole and secnidazole are the same chemistry with longer half-lives. For Clostridioides difficile infection the substitute is not another nitroimidazole but oral vancomycin or fidaxomicin, and that substitution was made on the strength of a randomised comparison rather than on preference.',
+      conventionalRx: [
+        {
+          name: 'Tinidazole',
+          class: 'Nitroimidazole',
+          howItCompares:
+            'Identical activation chemistry with a longer half-life, allowing shorter courses for trichomoniasis and giardiasis. It carries the same rodent carcinogenicity labelling.',
+          typicalCost:
+            'US$2.199 per 500 mg tablet at pharmacy acquisition cost (CMS NADAC, effective 19 Aug 2026), roughly twenty times metronidazole per tablet',
+          prosAndCons:
+            'Pros: shorter course, often better tolerated. Cons: substantially more expensive for the same mechanism.',
+        },
+        {
+          name: 'Oral vancomycin',
+          class: 'Glycopeptide, not absorbed from the gut',
+          howItCompares:
+            'For Clostridioides difficile infection, vancomycin achieved clinical success in 81.1% of 259 patients against 72.7% of 278 on metronidazole in a pooled analysis of two randomised trials (P=0.02). Guidelines moved accordingly.',
+          typicalCost:
+            'US$1.412 per 125 mg capsule at pharmacy acquisition cost (CMS NADAC, effective 19 Aug 2026)',
+          prosAndCons:
+            'Pros: better cure rate and, in a large propensity-matched cohort, lower 30-day mortality in severe disease. Cons: far more expensive, and it does not treat any infection outside the gut lumen.',
+        },
+        {
+          name: 'Clindamycin',
+          class: 'Lincosamide',
+          howItCompares:
+            'An alternative anaerobic agent for bacterial vaginosis and for some soft-tissue infections. It does not cover protozoa.',
+          typicalCost:
+            'US$0.168 per 300 mg capsule at pharmacy acquisition cost (CMS NADAC, effective 19 Aug 2026)',
+          prosAndCons:
+            'Pros: topical and oral options, useful in nitroimidazole intolerance. Cons: among the antibiotics most strongly associated with Clostridioides difficile infection.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask for a test of cure rather than relying on symptoms',
+          action:
+            'For trichomoniasis, ask whether a repeat nucleic acid test is planned about four weeks after treatment.',
+          patientImpact:
+            'In the Kissinger trial the difference between the single dose and the seven-day course was invisible symptomatically and showed up only on test of cure: 19% versus 11% still infected at four weeks.',
+          clinicalPrecaution:
+            'Testing decisions belong to the clinician. Partner treatment is part of the same conversation.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=NC=C(N1CCO)[N+](=O)[O-]',
+      chemicalFormula: 'C6H9N3O3',
+      molecularWeight: '171.15 g/mol (PubChem CID 4173)',
+      targetReceptorAffinity:
+        'No binding constant applies: metronidazole is a prodrug whose activity depends on single-electron reduction of the 5-nitro group by low-redox-potential microbial electron carriers',
+      structureSource: {
+        label: 'PubChem CID 4173 — Metronidazole, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4173',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'met-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Control of 2-methylimidazole and the nitration feed',
+          description:
+            'Confirm identity and purity of 2-methyl-5-nitroimidazole, and in particular the 4-nitro versus 5-nitro regiochemistry, because the two isomers are separated by a single ring position and only one of them is a drug.',
+          reagentsAndBuffer:
+            '2-methylimidazole reference standard, 1H NMR in deuterated dimethyl sulfoxide, reversed-phase HPLC with ultraviolet detection at 320 nm, melting point determination',
+        },
+        {
+          id: 'met-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Nitration and N-hydroxyethylation',
+          description:
+            'Nitrate 2-methylimidazole under mixed-acid conditions to install the 5-nitro group, then alkylate the ring nitrogen with ethylene oxide or 2-chloroethanol to give the hydroxyethyl side chain that defines metronidazole.',
+          dependsOnStepId: 'met-w1',
+          reagentsAndBuffer:
+            'Concentrated nitric acid and sulfuric acid at controlled temperature; ethylene oxide in acetic acid, or 2-chloroethanol with sodium carbonate in an aprotic solvent; sodium hydroxide for neutralisation',
+        },
+        {
+          id: 'met-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation and control of the nitro-regioisomer',
+          description:
+            'Recrystallise from water or aqueous ethanol and set the specification for the 4-nitro regioisomer and for residual alkylating agents. Ethylene oxide and 2-chloroethanol are both genotoxic, so residual-solvent and reagent limits are the critical quality attribute of this step.',
+          dependsOnStepId: 'met-w2',
+          reagentsAndBuffer:
+            'Water or aqueous ethanol, activated carbon, headspace gas chromatography with mass-selective detection for residual ethylene oxide and 2-chloroethanol',
+        },
+        {
+          id: 'met-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Assay and anaerobic susceptibility testing',
+          description:
+            'Quantify content and related substances against the pharmacopoeial standard, then confirm activity by agar dilution under strict anaerobic conditions, because the drug shows no activity at all in an aerobic assay and an aerobic plate would read as complete failure.',
+          dependsOnStepId: 'met-w3',
+          reagentsAndBuffer:
+            'C18 column with aqueous buffer and methanol, USP metronidazole reference standard, Brucella agar supplemented with haemin, vitamin K1 and laked sheep blood, anaerobic chamber, Bacteroides fragilis ATCC 25285 quality-control strain',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'met-a1',
+        category: 'measured',
+        title: 'Trichomoniasis: seven days beat the single dose, 89% versus 81% cured',
+        laymanSummary:
+          'A randomised trial found that a week of twice-daily tablets left fewer women still infected than the traditional single large dose.',
+        technicalDetails:
+          'Multicentre open-label randomised trial at three US sexual health clinics, 623 HIV-uninfected non-pregnant women with Trichomonas vaginalis. At test of cure four weeks after treatment, 34 of 312 (11%) in the seven-day arm and 58 of 311 (19%) in the single-dose arm remained positive, relative risk 0.55 (95% CI 0.34 to 0.70; P<0.0001). Bacterial vaginosis status did not significantly modify the effect (P=0.17). Self-reported adherence was 96% and 99%. The trial stopped early for funding reasons at 623 of a planned 1,664.',
+        evidenceSource: 'Kissinger P et al., Lancet Infect Dis 2018;18:1251-1259',
+        doi: '10.1016/S1473-3099(18)30423-7',
+        measuredMetric:
+          'Trichomonas vaginalis positivity by nucleic acid amplification or culture at four-week test of cure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'met-a2',
+        category: 'conclusion_shift',
+        title:
+          'Metronidazole lost first-line status in Clostridioides difficile infection to a randomised comparison',
+        laymanSummary:
+          'For decades metronidazole was the standard first treatment for C. difficile. A head-to-head trial found vancomycin cured more patients, and guidelines changed.',
+        technicalDetails:
+          'Two multinational randomised controlled trials, pooled, allocated patients 2:1:1 to tolevamer, vancomycin 125 mg every 6 hours for 10 days, or metronidazole 375 mg every 6 hours for 10 days. Clinical success was 44.2% for tolevamer (n=534), 72.7% for metronidazole (n=278) and 81.1% for vancomycin (n=259); metronidazole was inferior to vancomycin (P=0.02). In severe disease the gap was 66.3% versus 78.5% (P=0.059). A separate propensity-matched cohort of 10,137 US veterans found no difference in recurrence but lower 30-day all-cause mortality with vancomycin overall (adjusted relative risk 0.86, 95% CI 0.74 to 0.98) and in severe disease (0.79, 95% CI 0.65 to 0.97).',
+        evidenceSource:
+          'Johnson S et al., Clin Infect Dis 2014;59:345-354 (NCT00106509, NCT00196794); Stevens VW et al., JAMA Intern Med 2017;177:546-553',
+        doi: '10.1093/cid/ciu313',
+        measuredMetric:
+          'Clinical success at day 10, and 30-day all-cause mortality in the matched cohort',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'met-a3',
+        category: 'inferred',
+        title:
+          'The alcohol warning is one of the best-known claims in medicine and has never been demonstrated',
+        laymanSummary:
+          'Everyone is told not to drink on metronidazole. When a controlled human study looked for the reaction, it did not happen.',
+        technicalDetails:
+          'A systematic review of reports published between 1969 and 1982 found six case reports involving eight patients and concluded that none provided evidence that could justify the presumed disulfiram-like interaction; four of the eight cases were serious and one involved a death, but in every report the interaction was assumed rather than demonstrated. A subsequent double-blind study gave 12 healthy male volunteers metronidazole or placebo for 5 days followed by ethanol 0.4 g/kg, and sampled blood acetaldehyde and ethanol every 20 minutes for 4 hours alongside blood pressure, heart rate and skin temperature. Metronidazole did not raise blood acetaldehyde and produced no objective or subjective disulfiram-like effect. The authors were explicit that a reaction in some subgroup by another mechanism is not excluded.',
+        evidenceSource:
+          'Williams CS, Woodcock KR. Ann Pharmacother 2000;34:255-257; Visapaa JP et al., Ann Pharmacother 2002;36:971-974',
+        doi: '10.1345/aph.1A066',
+        inferredClaim:
+          'That metronidazole inhibits aldehyde dehydrogenase and produces a disulfiram-like reaction with alcohol',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'met-a4',
+        category: 'measured',
+        title: 'Carcinogenic in rodents, and labelled as such since the 1970s',
+        laymanSummary:
+          'Metronidazole causes tumours in mice and rats at doses used lifelong, and the label says so. Human data have not shown the same, but the warning has never been withdrawn.',
+        technicalDetails:
+          'The US prescribing information carries a warning that metronidazole has been shown to be carcinogenic in mice and rats and that unnecessary use should be avoided, and directs that it be reserved for the conditions described in the indications. The mechanism is consistent with the drug reduction chemistry: the same nitroradical that damages microbial DNA is mutagenic in bacterial assays. Epidemiological studies in humans have not established a corresponding risk, which is why the drug remains in wide use with the warning intact rather than being withdrawn.',
+        evidenceSource:
+          'FLAGYL (metronidazole) capsules, US prescribing information, warnings section',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'met-a5',
+        category: 'inferred',
+        title: 'Selectivity is by activation, not by binding, which limits what resistance can mean',
+        laymanSummary:
+          'The drug has no receptor and no binding site. It works by being switched on inside anaerobes, so resistance means failing to switch it on.',
+        technicalDetails:
+          'Metronidazole is reduced by low-redox-potential electron carriers, principally ferredoxin reduced by pyruvate:ferredoxin oxidoreductase, that exist only in anaerobic and microaerophilic organisms. Resistance in Trichomonas vaginalis, Helicobacter pylori and Bacteroides arises from downregulated or mutated nitroreductases and from efflux, not from an altered drug target, because there is no drug target in the usual sense. Any claim that metronidazole has a specific molecular receptor should be treated as a category error.',
+        evidenceSource:
+          'FLAGYL (metronidazole) capsules, US prescribing information, clinical pharmacology section',
+        inferredClaim:
+          'That metronidazole acts on a defined protein target, and that resistance therefore reflects target-site mutation',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed and absorbed almost completely, then distributed everywhere',
+        laymanDesc:
+          'Metronidazole gets into essentially every body compartment, including abscesses, bone and the fluid around the brain.',
+        molecularDetail:
+          'Oral bioavailability approaches 100%. The molecule is small and only weakly protein-bound, so it distributes into cerebrospinal fluid, bile, saliva, breast milk and abscess cavities. Elimination is mainly hepatic, with hydroxy and acetic acid metabolites excreted in urine.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Diffuses into every cell it meets, and does nothing in most of them',
+        laymanDesc:
+          'It passes into human cells and aerobic bacteria alike, and simply leaves again unchanged.',
+        molecularDetail:
+          'Entry is by passive diffusion, so uptake is not selective. Selectivity appears only at the next step, because human cells and aerobes lack electron carriers with a redox potential low enough to reduce the 5-nitro group.',
+        iconName: 'ArrowDown',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Anaerobic electron carriers hand it a single electron',
+        laymanDesc:
+          'Inside an organism that lives without oxygen, the drug is handed an electron and becomes a highly reactive radical.',
+        molecularDetail:
+          'Pyruvate:ferredoxin oxidoreductase reduces ferredoxin, which transfers a single electron to the nitro group to give a nitroradical anion. Maintaining the concentration gradient that keeps drug flowing inward is itself a consequence of this reduction, since the activated species no longer diffuses back out.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The radical fragments and shreds nearby DNA',
+        laymanDesc:
+          'The reactive species attacks whatever is close by, and what is close by is the microbe own genetic material.',
+        molecularDetail:
+          'Short-lived nitroso and hydroxylamine intermediates and radical fragments cause strand breakage and helix destabilisation in microbial DNA. Killing is concentration-dependent and rapid, and it happens only where the reduction occurred.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The anaerobe or protozoan dies, aerobic flora is largely spared',
+        laymanDesc:
+          'The oxygen-avoiding organisms are killed while the ones that use oxygen carry on.',
+        molecularDetail:
+          'The narrow activation requirement means aerobic gut and skin flora are relatively unaffected, which is why metronidazole is usually combined with a separate agent when aerobic cover is needed. The same chemistry that gives that selectivity is what underlies the rodent carcinogenicity labelling.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Kissinger trichomoniasis trial',
+        phase: 'Multicentre randomised open-label',
+        sampleSize: 623,
+        primaryEndpoint:
+          'Trichomonas vaginalis infection at test of cure four weeks after treatment completion',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.0001 (relative risk 0.55, 95% CI 0.34 to 0.70)',
+        unreportedAdverseSignals:
+          'The trial stopped early at 623 of a planned 1,664 participants because of funding limitations, not because of a data-driven stopping rule.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Tolevamer comparator trials (NCT00106509 and NCT00196794), pooled',
+        phase: 'Two multinational randomised controlled trials',
+        sampleSize: 1118,
+        primaryEndpoint:
+          'Clinical success, defined as resolution of diarrhoea and absence of severe abdominal discomfort for more than 2 consecutive days including day 10',
+        endpointMet: false,
+        statisticalPValue: 'P = 0.02 for metronidazole inferior to vancomycin (72.7% versus 81.1%)',
+        unreportedAdverseSignals:
+          'In severe disease the difference was 66.3% versus 78.5% and did not reach significance (P=0.059), so the severe-disease conclusion rests partly on the later observational cohort.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Visapaa metronidazole and ethanol volunteer study',
+        phase: 'Double-blind human volunteer study',
+        sampleSize: 12,
+        primaryEndpoint:
+          'Blood acetaldehyde concentration and objective signs of a disulfiram-like reaction after ethanol 0.4 g/kg',
+        endpointMet: false,
+        statisticalPValue:
+          'No rise in blood acetaldehyde and no objective or subjective reaction were observed',
+        unreportedAdverseSignals:
+          'Twelve healthy young men is a small and narrow sample; the authors explicitly did not exclude a reaction in some subgroup or by another mechanism.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '11% versus 19% persistent Trichomonas vaginalis infection at four-week test of cure for the seven-day course against the single dose, in 623 randomised women',
+        'Clinical success of 72.7% with metronidazole against 81.1% with vancomycin for Clostridioides difficile infection in a pooled randomised comparison (P=0.02)',
+        'No rise in blood acetaldehyde and no objective or subjective reaction when 12 volunteers took metronidazole for 5 days and then ethanol',
+      ],
+      unsupportedInferences: [
+        'That metronidazole inhibits aldehyde dehydrogenase and produces a disulfiram-like reaction with alcohol — six case reports, none demonstrating the mechanism, and one controlled study that looked for it and did not find it',
+        'That metronidazole acts on a molecular target, when its selectivity comes from being reduced inside anaerobes rather than from binding anything',
+      ],
+      whatFailedInitially: [
+        'Metronidazole was inferior to vancomycin in the pooled randomised comparison for Clostridioides difficile infection, and lost its first-line position accordingly',
+        'The single 2 g dose for trichomoniasis, standard for decades, left almost twice as many women infected at test of cure as the seven-day course',
+      ],
+      realWorldOutcome: [
+        'Metronidazole remains the least expensive option in this record at US$0.101 per 500 mg tablet in the US acquisition-cost dataset, against US$2.199 for a tinidazole tablet and US$1.412 for a vancomycin capsule',
+        'The rodent carcinogenicity warning has been on the label since the 1970s and continues to shape the instruction to avoid unnecessary use',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet and capsule, intravenous infusion, vaginal gel and topical gel, cream and lotion',
+      description:
+        'Given by mouth two or three times daily, or intravenously in serious infection. Because oral bioavailability approaches 100%, the intravenous route offers no pharmacokinetic advantage in a patient who can swallow. Topical and vaginal formulations deliver the same molecule to a local site with much lower systemic exposure.',
+      safetyProfile:
+        'The label warns of carcinogenicity in mice and rats and directs that unnecessary use be avoided. Peripheral neuropathy and central nervous system effects, including rare encephalopathy and cerebellar syndromes, are documented with prolonged or high-dose use. A metallic taste and nausea are common. The alcohol interaction is on the label and is discussed on this page as a contested claim rather than a demonstrated one, which is a statement about the evidence and not advice to disregard the label.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is the alcohol warning real?',
+        a: 'The warning is real; the reaction it describes has never been demonstrated. A 2000 review of the published reports found six case reports involving eight patients, none of which provided evidence for the presumed mechanism. A 2002 double-blind study gave 12 volunteers metronidazole for five days and then a measured dose of ethanol, sampling blood acetaldehyde every 20 minutes for four hours, and found no rise and no reaction. Twelve healthy young men is a small study, and the authors said plainly that a reaction in some subgroup by another mechanism is not excluded. This page reports what has and has not been measured; it does not tell anyone to disregard a label instruction.',
+        auditNote:
+          'This is the clearest example in this file of a claim that is universally repeated, appears on the official label, and rests on case reports that the one controlled experiment failed to confirm.',
+      },
+      {
+        q: 'Why is metronidazole no longer first choice for C. difficile?',
+        a: 'Because it was compared directly with vancomycin and lost. In a pooled analysis of two multinational randomised trials, clinical success was 72.7% on metronidazole and 81.1% on vancomycin (P=0.02). A separate propensity-matched cohort of 10,137 US veterans found the same recurrence rate but lower 30-day mortality with vancomycin, especially in severe disease. Neither result says metronidazole does not work; both say something else works better.',
+      },
+      {
+        q: 'Does it upset the gut like other antibiotics?',
+        a: 'Less than most, because of how narrow its activation is. Metronidazole only becomes active inside organisms that live without oxygen, so aerobic gut flora is comparatively spared. That is also why it is usually combined with another agent when aerobic bacteria need covering, and why it has no activity at all against most common respiratory or urinary pathogens.',
+      },
+      {
+        q: 'Should the rodent cancer warning worry me?',
+        a: 'It is on the label and it is the reason the label says to avoid unnecessary use. The finding is in mice and rats given the drug over a lifetime, and the chemistry is consistent: the same reactive species that damages microbial DNA is mutagenic in bacterial test systems. Human epidemiology has not established a corresponding risk. The practical consequence is that this is a drug to take for a defined infection and a defined course rather than repeatedly for uncertain indications.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Kissinger P et al. Single-dose versus 7-day-dose metronidazole for the treatment of trichomoniasis in women. Lancet Infect Dis 2018;18:1251-1259',
+        identifier: '10.1016/S1473-3099(18)30423-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Johnson S et al. Vancomycin, Metronidazole, or Tolevamer for Clostridium difficile Infection. Clin Infect Dis 2014;59:345-354',
+        identifier: '10.1093/cid/ciu313',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stevens VW et al. Comparative Effectiveness of Vancomycin and Metronidazole for the Prevention of Recurrence and Death in Patients With Clostridium difficile Infection. JAMA Intern Med 2017;177:546-553',
+        identifier: '10.1001/jamainternmed.2016.9045',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Williams CS, Woodcock KR. Do Ethanol and Metronidazole Interact to Produce a Disulfiram-Like Reaction? Ann Pharmacother 2000;34:255-257',
+        identifier: '10.1345/aph.19118',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Visapaa JP et al. Lack of Disulfiram-Like Reaction with Metronidazole and Ethanol. Ann Pharmacother 2002;36:971-974',
+        identifier: '10.1345/aph.1A066',
+        kind: 'doi',
+      },
+      {
+        label: 'FLAGYL (metronidazole) capsules, US prescribing information — DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a2883ca1-5a9a-4259-9d80-46ab67274384',
+        kind: 'regulatory',
+      },
+      {
+        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 4173 — Metronidazole',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4173',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Fluconazole — a drug whose single-dose convenience is genuine, whose monotherapy in the disease
+  // that kills most people who need an antifungal is measurably inferior, and whose pregnancy
+  // signal came from registries rather than trials.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'fluconazole',
+    name: 'Fluconazole',
+    tradeName: 'Diflucan',
+    sponsor: 'Pfizer (originally Pfizer Central Research, Sandwich, UK)',
+    targetGene: 'ERG11, the fungal gene encoding lanosterol 14-alpha-demethylase (CYP51)',
+    targetProtein: 'Fungal lanosterol 14-alpha-demethylase (Erg11p)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1990,
+    indication:
+      'Vaginal, oropharyngeal and oesophageal candidiasis, other candidal infections including candidaemia and peritonitis, cryptococcal meningitis, and prophylaxis in patients undergoing bone marrow transplantation',
+    patientFriendlyIndication:
+      'Thrush and other yeast infections, and fungal meningitis in people with advanced HIV',
+    conditionContext: {
+      conditionExplainer:
+        'A fungal cell membrane needs ergosterol the way an animal cell membrane needs cholesterol. Fluconazole blocks one enzyme in the ergosterol assembly line, so the membrane is built from the wrong sterols and stops working properly.',
+      whyItMatters:
+        'Cryptococcal meningitis still causes over 100,000 deaths a year in people with HIV, and fluconazole is the drug most widely available where that disease is most common. What the trials show is that fluconazole is essential as part of a regimen and inadequate on its own.',
+      whoTakesThis:
+        'Women with vulvovaginal candidiasis, people with oral or oesophageal thrush, patients with candidaemia, and adults with cryptococcal meningitis as part of a combination and consolidation regimen.',
+      clinicalGoals:
+        'Clear a susceptible fungal infection, and in cryptococcal meningitis reduce ten-week mortality as part of a combination rather than alone.',
+    },
+    oneSentenceVerdict:
+      'A triazole that stalls fungal membrane synthesis at one enzyme, effective and convenient in candidiasis, measurably inferior to flucytosine as the partner drug in cryptococcal meningitis (45.0% versus 31.1% ten-week mortality), and associated in Danish registry data with tetralogy of Fallot and with spontaneous abortion in pregnancy.',
+    laymanHowItWorks:
+      'Fungal cells build their outer membrane out of a fat called ergosterol, which they have to manufacture themselves. Fluconazole jams one specific enzyme on that production line. The half-finished sterols that pile up cannot do the job, so the membrane becomes leaky and disordered and the fungus stops growing. Human cells build cholesterol using a related enzyme, which is why the dose matters and why the drug interacts with so many others.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 80,
+    anatomicalSite: 'Fungal endoplasmic reticulum, where ergosterol is synthesised',
+    substitutes: {
+      summary:
+        'Topical azoles treat vaginal candidiasis without systemic exposure and are the preferred option in pregnancy. For serious infection the substitutes are not other azoles but amphotericin B and flucytosine, and the randomised evidence says the combination beats fluconazole alone.',
+      conventionalRx: [
+        {
+          name: 'Clotrimazole (topical or vaginal)',
+          class: 'Imidazole antifungal',
+          howItCompares:
+            'Same class of mechanism applied locally, with negligible systemic absorption. Guidelines prefer intravaginal azoles over oral fluconazole in pregnancy for exactly that reason.',
+          typicalCost:
+            'US$0.089 per gram of 1% vaginal cream at pharmacy acquisition cost (CMS NADAC, effective 19 Aug 2026)',
+          prosAndCons:
+            'Pros: no systemic exposure, no drug interactions, usable in pregnancy. Cons: several days of application rather than one tablet.',
+        },
+        {
+          name: 'Flucytosine',
+          class: 'Fluorinated pyrimidine antimetabolite',
+          howItCompares:
+            'In ACTA, flucytosine as the partner drug with amphotericin B gave 31.1% ten-week mortality against 45.0% with fluconazole as the partner, hazard ratio 0.62 (95% CI 0.45 to 0.84; P=0.002). This is a direct randomised comparison of fluconazole against the alternative in the setting that matters most.',
+          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          prosAndCons:
+            'Pros: substantially lower mortality as a partner drug. Cons: requires haematological monitoring, and access in the countries with the highest burden has historically been the limiting factor.',
+        },
+        {
+          name: 'Itraconazole',
+          class: 'Triazole antifungal',
+          howItCompares:
+            'Broader mould activity than fluconazole but erratic absorption and heavier interaction burden. Not interchangeable for cryptococcal disease.',
+          typicalCost:
+            'US$0.903 per 100 mg capsule at pharmacy acquisition cost (CMS NADAC, effective 19 Aug 2026)',
+          prosAndCons:
+            'Pros: covers organisms fluconazole misses. Cons: absorption depends on gastric acidity and formulation, and it has a negative inotropic warning.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask about pregnancy status before an oral dose',
+          action:
+            'If pregnancy is possible, say so before accepting an oral azole for a vaginal yeast infection.',
+          patientImpact:
+            'Danish registry data associated first-trimester oral fluconazole with tetralogy of Fallot (adjusted prevalence odds ratio 3.16, 95% CI 1.49 to 6.71) and, in a separate analysis, with spontaneous abortion (hazard ratio 1.48, 95% CI 1.23 to 1.77). Intravaginal azoles avoid systemic exposure entirely.',
+          clinicalPrecaution:
+            'These are observational associations from national registers, not randomised results, and the decision belongs to the prescriber.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC(=C(C=C1F)F)C(CN2C=NC=N2)(CN3C=NC=N3)O',
+      chemicalFormula: 'C13H12F2N6O',
+      molecularWeight: '306.27 g/mol (PubChem CID 3365)',
+      targetReceptorAffinity:
+        'Coordinates the haem iron of fungal lanosterol 14-alpha-demethylase through a triazole nitrogen; potency is reported clinically as a minimum inhibitory concentration against the isolate',
+      structureSource: {
+        label: 'PubChem CID 3365 — Fluconazole, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3365',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'flu-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Control of 2,4-difluoroacetophenone and 1,2,4-triazole',
+          description:
+            'Confirm identity and purity of the difluorinated ketone and of 1,2,4-triazole, and in particular that the triazole is the 1,2,4 isomer rather than 1,2,3. Fluconazole carries two triazole rings, so an isomeric impurity in the feed is doubled in the product.',
+          reagentsAndBuffer:
+            "2,4-difluoroacetophenone, 1,2,4-triazole reference standard, gas chromatography with mass-selective detection, 19F and 1H NMR, Karl Fischer titration",
+        },
+        {
+          id: 'flu-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Double triazole alkylation onto the tertiary carbinol',
+          description:
+            'Convert the aryl ketone to an epoxide or halomethyl ketone, open it with the sodium salt of 1,2,4-triazole, and repeat so that both triazole rings sit on the carbon bearing the tertiary hydroxyl. The tertiary alcohol is what gives fluconazole its water solubility and its near-complete oral absorption.',
+          dependsOnStepId: 'flu-w1',
+          reagentsAndBuffer:
+            'Trimethylsulfoxonium iodide with sodium hydride in dimethyl sulfoxide for epoxide formation, or bromination followed by displacement; sodium 1,2,4-triazolide in dimethylformamide; potassium carbonate; toluene and water workup',
+        },
+        {
+          id: 'flu-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and control of the regioisomeric triazole adduct',
+          description:
+            'Recrystallise and set a specification for the N-2 linked triazole regioisomer, which forms alongside the N-1 product and is the principal related substance in the pharmacopoeial monograph.',
+          dependsOnStepId: 'flu-w2',
+          reagentsAndBuffer:
+            'Ethyl acetate and heptane antisolvent crystallisation, activated carbon treatment, reversed-phase HPLC with ultraviolet detection at 261 nm',
+        },
+        {
+          id: 'flu-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Assay by HPLC and antifungal susceptibility by broth microdilution',
+          description:
+            'Quantify content and related substances against the pharmacopoeial standard, then determine minimum inhibitory concentrations by the reference broth microdilution method, reading the endpoint as the partial inhibition characteristic of azoles rather than as complete clearing.',
+          dependsOnStepId: 'flu-w3',
+          reagentsAndBuffer:
+            'C18 column with aqueous buffer and acetonitrile, USP fluconazole reference standard, RPMI 1640 medium buffered with MOPS to pH 7.0, Candida parapsilosis ATCC 22019 and Candida krusei ATCC 6258 quality-control strains',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'flu-a1',
+        category: 'measured',
+        title:
+          'ACTA: an all-oral fluconazole and flucytosine regimen was non-inferior to two weeks of amphotericin B',
+        laymanSummary:
+          'In 721 African adults with HIV-associated cryptococcal meningitis, two weeks of oral fluconazole plus flucytosine matched two weeks of intravenous amphotericin B on death at two weeks.',
+        technicalDetails:
+          'Randomised trial in HIV-infected adults with cryptococcal meningitis. Two-week mortality was 18.2% (41 of 225) in the oral regimen group, 21.9% (49 of 224) with one week of amphotericin B and 21.4% (49 of 229) with two weeks; ten-week mortality was 35.1%, 36.2% and 39.7%. The upper limit of the one-sided 97.5% confidence interval for the oral regimen versus two-week amphotericin B was 4.2 percentage points, inside the prespecified 10-point non-inferiority margin. Severe anaemia was more frequent with two weeks of amphotericin B than with the oral regimen.',
+        evidenceSource: 'Molloy SF et al., N Engl J Med 2018;378:1004-1017 (ISRCTN45035509)',
+        doi: '10.1056/NEJMoa1710922',
+        measuredMetric: 'All-cause mortality at 2 weeks, with 10-week mortality as a secondary outcome',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'flu-a2',
+        category: 'failed',
+        title:
+          'In the same trial, fluconazole was clearly the inferior partner drug for amphotericin B',
+        laymanSummary:
+          'Patients given amphotericin B with flucytosine died substantially less often than those given amphotericin B with fluconazole.',
+        technicalDetails:
+          'Within ACTA, each patient assigned amphotericin B was separately randomised to fluconazole or flucytosine as the partner drug. Ten-week mortality was 71 deaths (31.1%) with flucytosine and 101 deaths (45.0%) with fluconazole, hazard ratio for death 0.62 (95% CI 0.45 to 0.84; P=0.002). One week of amphotericin B plus flucytosine had the lowest ten-week mortality of any arm at 24.2% (95% CI 16.2 to 32.1). Fluconazole monotherapy, which the trial was explicitly designed to improve upon, was not an arm because it was already known to be inadequate.',
+        evidenceSource: 'Molloy SF et al., N Engl J Med 2018;378:1004-1017',
+        doi: '10.1056/NEJMoa1710922',
+        measuredMetric: 'All-cause mortality at 10 weeks by partner-drug randomisation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'flu-a3',
+        category: 'measured',
+        title: 'First-trimester exposure and tetralogy of Fallot in Danish registry data',
+        laymanSummary:
+          'A national registry study of nearly a million pregnancies found no overall increase in birth defects, and one specific heart malformation that was more common.',
+        technicalDetails:
+          'Registry cohort of liveborn infants in Denmark. Birth defects occurred in 210 of 7,352 fluconazole-exposed pregnancies (2.86%) and 25,159 of 968,236 unexposed (2.60%), adjusted prevalence odds ratio 1.06 (95% CI 0.92 to 1.21). Fourteen of fifteen specific defects previously linked to azoles showed no significant increase. Tetralogy of Fallot did: 7 cases (0.10%) versus 287 (0.03%), adjusted prevalence odds ratio 3.16 (95% CI 1.49 to 6.71). Most exposures were at the common 150 mg or 300 mg doses. Seven events is a small numerator and the confidence interval is correspondingly wide.',
+        evidenceSource: 'Molgaard-Nielsen D et al., N Engl J Med 2013;369:830-839',
+        doi: '10.1056/NEJMoa1301066',
+        measuredMetric: 'Adjusted prevalence odds ratio for specific birth defects',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'flu-a4',
+        category: 'measured',
+        title: 'Spontaneous abortion: a 48% relative increase against unexposed pregnancies',
+        laymanSummary:
+          'A second Danish registry analysis found more miscarriages among women who took oral fluconazole in pregnancy, including when compared with women who used topical antifungals instead.',
+        technicalDetails:
+          'From a cohort of 1,405,663 pregnancies, 3,315 women exposed to oral fluconazole between 7 and 22 weeks were compared with 13,246 propensity-matched unexposed women: 147 versus 563 spontaneous abortions, hazard ratio 1.48 (95% CI 1.23 to 1.77). Against topical azole exposure as the comparator, 130 of 2,823 versus 118 of 2,823, hazard ratio 1.62 (95% CI 1.26 to 2.07). Stillbirth was not significantly increased (hazard ratio 1.32, 95% CI 0.82 to 2.14). The topical-azole comparison is what makes confounding by indication a weaker explanation than it would otherwise be.',
+        evidenceSource: 'Molgaard-Nielsen D et al., JAMA 2016;315:58-67',
+        doi: '10.1001/jama.2015.17844',
+        measuredMetric: 'Hazard ratio for spontaneous abortion and stillbirth',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'flu-a5',
+        category: 'conclusion_shift',
+        title: 'AMBITION then moved the standard again, to a single dose of liposomal amphotericin',
+        laymanSummary:
+          'Four years after the oral regimen was shown to be non-inferior, a single high dose of a different drug plus two weeks of fluconazole and flucytosine did better still.',
+        technicalDetails:
+          'Phase 3 non-inferiority trial in five African countries, 844 randomised and 814 in the intention-to-treat population. A single 10 mg/kg dose of liposomal amphotericin B plus 14 days of flucytosine and fluconazole gave 10-week mortality of 24.8% (95% CI 20.7 to 29.3) against 28.7% (95% CI 24.4 to 33.4) for the then-recommended WHO regimen, difference -3.9 percentage points, upper one-sided 95% bound 1.2 points, P<0.001 for non-inferiority. Grade 3 or 4 adverse events occurred in 50.0% versus 62.3%. Fluconazole is a component of the new standard rather than a competitor to it.',
+        evidenceSource: 'Jarvis JN et al., N Engl J Med 2022;386:1109-1120 (ISRCTN72509687)',
+        doi: '10.1056/NEJMoa2111904',
+        measuredMetric: 'All-cause mortality at 10 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'flu-a6',
+        category: 'inferred',
+        title: 'Single-dose convenience is an efficacy claim about one infection, not about all of them',
+        laymanSummary:
+          'One 150 mg tablet clears most simple vaginal yeast infections. Nothing about that generalises to serious fungal disease, which needs weeks of combination therapy.',
+        technicalDetails:
+          'The dose used in the Danish registry studies for the commonest indication was 150 mg (56% of exposed pregnancies) or 300 mg (31%). The dose used in ACTA and AMBITION for cryptococcal meningitis was 1,200 mg per day for two weeks, as part of a combination, with ten-week mortality still around a quarter of patients. The same molecule spans an eightfold daily dose range and two entirely different evidence bases, and a claim proved at one end says nothing about the other.',
+        evidenceSource:
+          'Molgaard-Nielsen D et al., N Engl J Med 2013; Molloy SF et al., N Engl J Med 2018; Jarvis JN et al., N Engl J Med 2022',
+        doi: '10.1056/NEJMoa2111904',
+        inferredClaim:
+          'That the convenience and safety of a single 150 mg dose describes fluconazole as a drug rather than one indication',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed almost completely and reaching the brain',
+        laymanDesc:
+          'Fluconazole is water-soluble enough to be swallowed and still reach the fluid around the brain, which is why it can treat fungal meningitis.',
+        molecularDetail:
+          'Oral bioavailability exceeds 90% and is unaffected by food or gastric acidity, unlike itraconazole. Protein binding is low, around 11%, and cerebrospinal fluid concentrations approach plasma concentrations. Elimination is largely renal as unchanged drug, so dosing follows creatinine clearance.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters the fungal cell and reaches the endoplasmic reticulum',
+        laymanDesc: 'The drug crosses into the fungus and travels to where membrane fats are made.',
+        molecularDetail:
+          'Uptake is by facilitated diffusion. Efflux through the Candida CDR1, CDR2 and MDR1 transporters is one of the main resistance mechanisms and is upregulated by repeated exposure, which is the pharmacological reason repeated single doses select for resistance.',
+        iconName: 'ArrowDown',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A triazole nitrogen coordinates the enzyme haem iron',
+        laymanDesc:
+          'One of the drug nitrogen atoms grips the iron atom at the heart of the enzyme, blocking the spot where the reaction happens.',
+        molecularDetail:
+          'The N-4 nitrogen of one triazole ring coordinates the haem iron of lanosterol 14-alpha-demethylase (Erg11p, CYP51), while the difluorophenyl group occupies the substrate channel. ERG11 point mutations and gene overexpression are the second major resistance route.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Ergosterol synthesis stalls and toxic sterols accumulate',
+        laymanDesc:
+          'The production line stops, and the half-finished parts pile up and cause their own damage.',
+        molecularDetail:
+          'Depletion of ergosterol and accumulation of 14-alpha-methylated sterols, principally 14-alpha-methyl-3,6-diol, disorders the membrane and inhibits growth. The effect is fungistatic against Candida species, not fungicidal, which is why relapse follows if the immune system cannot finish the job.',
+        iconName: 'Layers',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Fungal growth stops, and human CYP enzymes are inhibited too',
+        laymanDesc:
+          'The infection is controlled. At higher doses the drug also slows some of the enzymes your liver uses to clear other medicines.',
+        molecularDetail:
+          'Fluconazole inhibits human CYP2C9, CYP2C19 and, at higher doses, CYP3A4, raising concentrations of warfarin, phenytoin, sulfonylureas and many other drugs. It also prolongs the QT interval. The selectivity for fungal CYP51 over human CYP enzymes is real but is a matter of degree rather than of kind.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ACTA (ISRCTN45035509)',
+        phase: 'Phase 3 randomised, open-label, non-inferiority with factorial partner-drug randomisation',
+        sampleSize: 721,
+        primaryEndpoint: 'All-cause mortality at 2 weeks in HIV-associated cryptococcal meningitis',
+        endpointMet: true,
+        statisticalPValue:
+          'Non-inferiority met (upper one-sided 97.5% bound 4.2 percentage points against a 10-point margin); P = 0.002 for flucytosine over fluconazole as the partner drug',
+        unreportedAdverseSignals:
+          'The partner-drug comparison showed 45.0% ten-week mortality with fluconazole against 31.1% with flucytosine, a difference not visible in the headline non-inferiority result.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'AMBITION-cm (ISRCTN72509687)',
+        phase: 'Phase 3 randomised controlled non-inferiority',
+        sampleSize: 844,
+        primaryEndpoint: 'Death from any cause at 10 weeks',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001 for non-inferiority (difference -3.9 percentage points)',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Danish national birth-defect registry cohort',
+        phase: 'Registry-based cohort study',
+        sampleSize: 975588,
+        primaryEndpoint:
+          'Birth defects overall and 15 specific defects previously linked to azole antifungals',
+        endpointMet: false,
+        statisticalPValue:
+          'Overall adjusted prevalence odds ratio 1.06 (95% CI 0.92 to 1.21); tetralogy of Fallot 3.16 (95% CI 1.49 to 6.71)',
+        unreportedAdverseSignals:
+          'The tetralogy of Fallot signal rests on 7 exposed cases, so the estimate is imprecise and was found among fifteen defects examined.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Danish spontaneous abortion and stillbirth cohort',
+        phase: 'Registry-based propensity-matched cohort study',
+        sampleSize: 1405663,
+        primaryEndpoint: 'Spontaneous abortion and stillbirth after oral fluconazole in pregnancy',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 1.48 (95% CI 1.23 to 1.77) versus unexposed and 1.62 (95% CI 1.26 to 2.07) versus topical azole exposure',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Two-week mortality of 18.2% with an all-oral fluconazole and flucytosine regimen against 21.4% with two weeks of amphotericin B, inside a 10-point non-inferiority margin',
+        'Ten-week mortality of 45.0% with fluconazole as the amphotericin B partner drug against 31.1% with flucytosine (hazard ratio 0.62; P=0.002)',
+        'Adjusted prevalence odds ratio 3.16 for tetralogy of Fallot and 1.06 for birth defects overall after first-trimester exposure in Danish registry data',
+        'Hazard ratio 1.48 for spontaneous abortion versus unexposed pregnancies and 1.62 versus topical azole exposure',
+      ],
+      unsupportedInferences: [
+        'That the safety and convenience of a single 150 mg dose for vaginal candidiasis describes fluconazole in general, when the cryptococcal regimen is 1,200 mg daily for two weeks in combination',
+        'That non-inferiority of an oral regimen means fluconazole is as good as flucytosine — the same trial randomised that question separately and answered it in the other direction',
+      ],
+      whatFailedInitially: [
+        'Fluconazole as the partner drug for amphotericin B: 45.0% ten-week mortality against 31.1% for flucytosine in the same randomised trial',
+        'Fluconazole monotherapy for cryptococcal meningitis was already known to be inadequate and was not given an arm in ACTA',
+      ],
+      realWorldOutcome: [
+        'The all-oral regimen was designed for settings where intravenous amphotericin B is not sustainable, and its value is that it works where the better regimen cannot be given',
+        'AMBITION moved the standard again in 2022, with fluconazole retained as a component rather than displaced',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, oral suspension and intravenous infusion',
+      description:
+        'A single 150 mg tablet for uncomplicated vaginal candidiasis; daily dosing for oropharyngeal, oesophageal and invasive disease; 1,200 mg daily as part of combination induction for cryptococcal meningitis. Because oral bioavailability exceeds 90% and is unaffected by food or gastric acid, the intravenous and oral routes are interchangeable at the same dose.',
+      safetyProfile:
+        'The dominant practical issue is drug interaction: fluconazole inhibits CYP2C9 and CYP2C19 and, at higher doses, CYP3A4, raising levels of warfarin, phenytoin, sulfonylureas and many others. QT prolongation is documented. Hepatotoxicity and rare severe cutaneous reactions occur. In pregnancy, Danish registry analyses associated oral exposure with tetralogy of Fallot and with spontaneous abortion, and intravaginal azoles are preferred where a local option will do.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is one tablet really enough?',
+        a: 'For an uncomplicated vaginal yeast infection, usually yes, and that is the dose the Danish registry studies mostly captured: 150 mg in 56% of exposed pregnancies. It is not enough for anything serious. Cryptococcal meningitis is treated with 1,200 mg a day for two weeks alongside another antifungal, and ten-week mortality in the best arm of the ACTA trial was still 24.2%. The same molecule, an eightfold difference in daily dose, and two evidence bases that do not transfer to each other.',
+      },
+      {
+        q: 'Is it safe in pregnancy?',
+        a: 'The registry evidence says be careful with the oral form. A Danish cohort of nearly a million pregnancies found no overall increase in birth defects, adjusted odds ratio 1.06, but a specific increase in tetralogy of Fallot on 7 exposed cases, odds ratio 3.16 with a wide interval. A separate analysis found a 48% relative increase in spontaneous abortion against unexposed pregnancies and 62% against women who used topical antifungals instead. These are observational, but the topical-azole comparison makes confounding by indication a weaker explanation. Intravaginal treatment avoids systemic exposure altogether.',
+        auditNote:
+          'Seven events across fifteen examined outcomes is exactly the situation where a single finding should be treated as a signal rather than a settled fact.',
+      },
+      {
+        q: 'Why is a stronger antifungal not just used everywhere?',
+        a: 'Because the stronger regimens require intravenous access, laboratory monitoring and drug supply that many of the places with the highest burden do not have. That is the entire point of ACTA and AMBITION: both trials were designed to find regimens that could actually be delivered in African hospitals, not to find the theoretically best drug. Non-inferiority trials answer the question "can this be done here" rather than "is this the best".',
+      },
+      {
+        q: 'Why does this page have no manufacturing cost?',
+        a: 'Because no published per-unit cost-of-production estimate for fluconazole was verified for this record. The US pharmacy acquisition cost is quoted instead: US$0.433 per 150 mg tablet in the CMS NADAC file effective 19 August 2026.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Molloy SF et al. Antifungal Combinations for Treatment of Cryptococcal Meningitis in Africa (ACTA). N Engl J Med 2018;378:1004-1017',
+        identifier: '10.1056/NEJMoa1710922',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jarvis JN et al. Single-Dose Liposomal Amphotericin B Treatment for Cryptococcal Meningitis (AMBITION). N Engl J Med 2022;386:1109-1120',
+        identifier: '10.1056/NEJMoa2111904',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Molgaard-Nielsen D et al. Use of Oral Fluconazole during Pregnancy and the Risk of Birth Defects. N Engl J Med 2013;369:830-839',
+        identifier: '10.1056/NEJMoa1301066',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Molgaard-Nielsen D et al. Association Between Use of Oral Fluconazole During Pregnancy and Risk of Spontaneous Abortion and Stillbirth. JAMA 2016;315:58-67',
+        identifier: '10.1001/jama.2015.17844',
+        kind: 'doi',
+      },
+      {
+        label: 'DIFLUCAN (fluconazole) tablets and oral suspension, US prescribing information — DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f694c617-3383-416c-91b6-b94fda371204',
+        kind: 'regulatory',
+      },
+      {
+        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 3365 — Fluconazole',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3365',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Valacyclovir — a prodrug with an unusually clean measured result on transmission, and three
+  // separate large trials in which suppressing the virus did not deliver the outcome the biology
+  // predicted.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'valacyclovir',
+    name: 'Valacyclovir',
+    tradeName: 'Valtrex',
+    sponsor: 'GlaxoSmithKline (originator); now manufactured generically',
+    targetGene:
+      'Herpesvirus UL23 (viral thymidine kinase, which activates the drug) and UL30 (viral DNA polymerase, which the drug inhibits)',
+    targetProtein: 'Herpes simplex and varicella-zoster virus DNA polymerase',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1995,
+    indication:
+      'Herpes zoster, genital herpes including suppression and reduction of transmission in heterosexual serodiscordant couples, cold sores, and chickenpox in children',
+    patientFriendlyIndication:
+      'Shingles, cold sores and genital herpes, including reducing the chance of passing genital herpes to a partner',
+    conditionContext: {
+      conditionExplainer:
+        'Herpes viruses hide in nerve cell bodies between outbreaks and cannot be cleared. What antiviral treatment can do is reduce how often the virus wakes up, how much of it is shed, and how long a lesion lasts.',
+      whyItMatters:
+        'Genital herpes is lifelong and most transmission happens from people who do not know they have it, during shedding without visible lesions. That is why a drug that suppresses subclinical shedding could plausibly change transmission, and why it had to be tested rather than assumed.',
+      whoTakesThis:
+        'People with recurrent genital herpes taking suppressive therapy, people with shingles or cold sores taking episodic treatment, and members of serodiscordant couples where reducing transmission is the goal.',
+      clinicalGoals:
+        'Reduce recurrence frequency, shorten and soften episodes, and in serodiscordant couples reduce the probability of transmitting HSV-2 to a partner.',
+    },
+    oneSentenceVerdict:
+      'A valine ester prodrug of acyclovir that raised oral bioavailability enough to make suppression practical, and cut symptomatic HSV-2 transmission from 16 of 741 to 4 of 743 partners over eight months, while failing to reduce HIV-1 transmission, HIV-1 acquisition, Bell palsy recovery or Alzheimer disease progression in four separate randomised trials.',
+    laymanHowItWorks:
+      'Valacyclovir is a delivery trick. Acyclovir itself is poorly absorbed from the gut, so an amino acid is bolted on, which lets a nutrient transporter carry it across the intestinal wall. Once inside, the body cuts the amino acid off. The freed drug is then activated only inside infected cells, because only a herpes virus makes the enzyme that switches it on. The activated form is then fed to the viral copying machine, which incorporates it and stalls permanently.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 86,
+    anatomicalSite:
+      'Herpesvirus-infected epithelial and neuronal cells; the drug is activated only where viral thymidine kinase is present',
+    substitutes: {
+      summary:
+        'Acyclovir is the same active molecule for a third of the price, at the cost of more frequent dosing. Famciclovir is a comparable prodrug of a related nucleoside. Nothing on the natural-products side has a controlled transmission trial, so this record lists none.',
+      conventionalRx: [
+        {
+          name: 'Acyclovir (generic)',
+          class: 'Guanosine nucleoside analogue',
+          howItCompares:
+            'The identical active moiety, released from valacyclovir after absorption. Oral acyclovir has bioavailability of roughly 10 to 20% against about 55% for valacyclovir, so it needs three to five doses a day rather than one or two.',
+          typicalCost:
+            'US$0.099 per 400 mg tablet at pharmacy acquisition cost (CMS NADAC, effective 19 Aug 2026), against US$0.405 per 1 g valacyclovir tablet',
+          prosAndCons:
+            'Pros: cheapest option, decades of use, same active drug. Cons: dosing frequency is the main reason suppression adherence fails.',
+        },
+        {
+          name: 'Famciclovir (generic)',
+          class: 'Prodrug of penciclovir, a guanosine analogue',
+          howItCompares:
+            'A parallel prodrug strategy applied to a different nucleoside, with a longer intracellular half-life of the triphosphate.',
+          typicalCost:
+            'US$0.791 per 500 mg tablet at pharmacy acquisition cost (CMS NADAC, effective 19 Aug 2026)',
+          prosAndCons:
+            'Pros: an alternative when valacyclovir is not tolerated. Cons: more expensive, and it has no transmission-reduction indication.',
+        },
+        {
+          name: 'Consistent condom use and disclosure',
+          class: 'Behavioural, non-pharmacological',
+          howItCompares:
+            'In the Corey transmission trial both partners were counselled on safer sex and offered condoms at every visit, so the 75% relative reduction in symptomatic transmission was measured on top of that, not instead of it.',
+          typicalCost: 'Not priced here',
+          prosAndCons:
+            'Pros: no drug, no cost, and it is the baseline the drug effect was measured against. Cons: does not cover all skin contact, and it depends on both partners.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Start episodic treatment at the first tingle, not at the first blister',
+          action:
+            'For recurrences, begin the prescribed episodic course at the prodromal sensation rather than waiting for a visible lesion.',
+          patientImpact:
+            'The drug works by stopping viral DNA replication, which is largely complete by the time a lesion is fully formed. Earlier initiation is the mechanistic reason episodic treatment shortens episodes.',
+          clinicalPrecaution:
+            'This applies to a course already prescribed for recurrences. It is not a reason to start a leftover course for a new or undiagnosed lesion.',
+        },
+        {
+          name: 'Stay hydrated on high-dose courses',
+          action: 'Maintain fluid intake during shingles-dose or other high-dose treatment.',
+          patientImpact:
+            'Acyclovir is renally cleared and can crystallise in the renal tubules when urine output is low, which is the mechanism of the acute kidney injury reported at high doses.',
+          clinicalPrecaution:
+            'People with existing kidney impairment need a dose adjustment, which is a prescriber decision.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)[C@@H](C(=O)OCCOCN1C=NC2=C1N=C(NC2=O)N)N',
+      chemicalFormula: 'C13H20N6O4',
+      molecularWeight: '324.34 g/mol (PubChem CID 135398742, valacyclovir free base)',
+      targetReceptorAffinity:
+        'No direct target: valacyclovir is hydrolysed to acyclovir, phosphorylated by viral thymidine kinase, and the resulting triphosphate is incorporated by viral DNA polymerase, which it then inactivates',
+      structureSource: {
+        label: 'PubChem CID 135398742 — Valacyclovir, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135398742',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'val-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Control of acyclovir and the protected L-valine',
+          description:
+            'Confirm identity, purity and, critically, the enantiomeric purity of the protected L-valine. The D-enantiomer ester is not a substrate for the intestinal peptide transporter that gives valacyclovir its bioavailability advantage, so an enantiomeric impurity is an inactive impurity.',
+          reagentsAndBuffer:
+            'Acyclovir reference standard, N-carbobenzyloxy-L-valine, chiral HPLC on an amylose stationary phase, 1H NMR in deuterated dimethyl sulfoxide, Karl Fischer titration',
+        },
+        {
+          id: 'val-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Esterification of the acyclovir side-chain hydroxyl and deprotection',
+          description:
+            'Couple the protected L-valine to the primary hydroxyl of the acyclic side chain of acyclovir, then remove the protecting group by catalytic hydrogenolysis. The guanine ring nitrogens must not be acylated, so the coupling conditions are chosen for chemoselectivity rather than for rate.',
+          dependsOnStepId: 'val-w1',
+          reagentsAndBuffer:
+            'N-carbobenzyloxy-L-valine with dicyclohexylcarbodiimide and 4-dimethylaminopyridine in dimethylformamide; palladium on carbon under hydrogen for deprotection; hydrochloric acid for salt formation',
+        },
+        {
+          id: 'val-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrochloride crystallisation and control of residual acyclovir',
+          description:
+            'Crystallise valacyclovir hydrochloride from aqueous alcohol and set the specification for unreacted acyclovir and for the diastereomeric D-valyl ester. Residual acyclovir is not a hazard but it is a potency deduction, since it is absorbed far less efficiently.',
+          dependsOnStepId: 'val-w2',
+          reagentsAndBuffer:
+            'Isopropanol and water crystallisation, activated carbon treatment, chiral and achiral reversed-phase HPLC with ultraviolet detection at 254 nm',
+        },
+        {
+          id: 'val-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Assay by HPLC and antiviral activity by plaque reduction',
+          description:
+            'Quantify content and related substances against the pharmacopoeial standard, then confirm antiviral activity as acyclovir in a plaque reduction assay against reference herpes simplex strains, including a thymidine-kinase-deficient strain as the resistance control.',
+          dependsOnStepId: 'val-w3',
+          reagentsAndBuffer:
+            'C18 column with phosphate buffer and methanol, USP valacyclovir hydrochloride reference standard, Vero cell monolayers in Eagle minimum essential medium with fetal bovine serum, HSV-1 strain KOS and a thymidine-kinase-negative control strain',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'val-a1',
+        category: 'measured',
+        title: 'Symptomatic HSV-2 transmission fell from 16 of 741 partners to 4 of 743',
+        laymanSummary:
+          'In 1,484 couples where one partner had genital herpes and the other did not, daily valacyclovir cut symptomatic transmission by three quarters over eight months.',
+        technicalDetails:
+          'Randomised, placebo-controlled trial in immunocompetent, heterosexual, monogamous couples. The source partner took valacyclovir 500 mg once daily or placebo for eight months; both partners were counselled on safer sex and offered condoms at every visit. Clinically symptomatic HSV-2 infection developed in 4 of 743 partners on valacyclovir versus 16 of 741 on placebo, hazard ratio 0.25 (95% CI 0.08 to 0.75; P=0.008). Overall acquisition, including asymptomatic seroconversion, was 14 of 743 (1.9%) versus 27 of 741 (3.6%), hazard ratio 0.52 (95% CI 0.27 to 0.99; P=0.04). HSV DNA was detected on 2.9% of days versus 10.8% (P<0.001), and recurrences averaged 0.11 versus 0.40 per month (P<0.001).',
+        evidenceSource: 'Corey L et al., N Engl J Med 2004;350:11-20',
+        doi: '10.1056/NEJMoa035144',
+        measuredMetric:
+          'Clinically symptomatic HSV-2 acquisition in the initially susceptible partner over 8 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a2',
+        category: 'failed',
+        title:
+          'Partners in Prevention: suppressing HSV-2 reduced ulcers and viral load and did not reduce HIV-1 transmission',
+        laymanSummary:
+          'The drug did exactly what it was supposed to do biologically and did not change the outcome anyone cared about.',
+        technicalDetails:
+          'Randomised, placebo-controlled trial of acyclovir 400 mg twice daily in 3,408 African couples where the HIV-1-positive partner was also HSV-2-positive and not on antiretroviral therapy. Of 132 seroconversions, 84 were genetically linked within couples: 41 in the acyclovir group and 43 on placebo, hazard ratio 0.92 (95% CI 0.60 to 1.41; P=0.69). In the same trial acyclovir reduced plasma HIV-1 RNA by 0.25 log10 copies per millilitre (P<0.001) and HSV-2-positive genital ulcers by 73% (risk ratio 0.27; P<0.001). Adherence was 96%.',
+        evidenceSource: 'Celum C et al., N Engl J Med 2010;362:427-439 (NCT00194519)',
+        doi: '10.1056/NEJMoa0904849',
+        measuredMetric: 'Genetically linked HIV-1 transmission within serodiscordant couples',
+        inferredClaim:
+          'That reducing HSV-2 ulceration and plasma HIV-1 RNA would translate into reduced HIV-1 transmission',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a3',
+        category: 'failed',
+        title: 'The mirror-image trial in HIV-negative people also found nothing',
+        laymanSummary:
+          'Giving the drug to uninfected people with genital herpes did not protect them from acquiring HIV either.',
+        technicalDetails:
+          'A phase 3 double-blind, randomised, placebo-controlled trial of acyclovir 400 mg twice daily for 12 to 18 months in HSV-2-seropositive, HIV-1-seronegative women in Africa and men who have sex with men in Peru and the United States. 3,172 participants were in the primary dataset. HIV-1 incidence was 3.9 per 100 person-years on acyclovir (75 events) and 3.3 on placebo (64 events), hazard ratio 1.16 (95% CI 0.83 to 1.62). Genital ulcers on examination fell 47% and HSV-2-positive ulcers 63%. Together with Partners in Prevention this closes the hypothesis from both directions: neither suppressing the virus in the person transmitting HIV nor in the person at risk of acquiring it changed HIV incidence.',
+        evidenceSource: 'Celum C et al., Lancet 2008;371:2109-2119',
+        doi: '10.1016/S0140-6736(08)60920-4',
+        inferredClaim:
+          'That HSV-2 suppression is a viable HIV prevention strategy because HSV-2 ulceration facilitates HIV transmission',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a4',
+        category: 'failed',
+        title: 'VALAD: valacyclovir for Alzheimer disease worsened the cognitive endpoint',
+        laymanSummary:
+          'A hypothesis that herpes virus drives Alzheimer disease was tested with 78 weeks of high-dose valacyclovir. The treated group declined more than the placebo group.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled trial at three US memory clinics. 120 participants with probable Alzheimer disease or biomarker-positive mild cognitive impairment, all HSV-1 or HSV-2 seropositive, received valacyclovir 4 g per day (n=60) or placebo (n=60) for 78 weeks; 93 (77.5%) completed. Least-squares mean change in the 11-item ADAS-Cognitive subscale was 10.86 (95% CI 8.80 to 12.91) with valacyclovir and 6.92 (95% CI 4.88 to 8.97) with placebo, a between-group difference of 3.93 (95% CI 1.03 to 6.83; P=0.01) in the direction of greater worsening on drug. Amyloid and tau PET showed no between-group difference. Elevated serum creatinine occurred in 8.3% versus 3.3%.',
+        evidenceSource: 'Devanand DP et al., JAMA 2026;335:511-522 (NCT03282916)',
+        doi: '10.1001/jama.2025.21738',
+        measuredMetric: 'Least-squares mean change in ADAS-Cognitive subscale score at 78 weeks',
+        inferredClaim:
+          'That because herpes simplex virus is epidemiologically associated with Alzheimer disease, suppressing it would slow cognitive decline',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a5',
+        category: 'failed',
+        title: 'Bell palsy: the steroid worked and the antiviral did not',
+        laymanSummary:
+          'A factorial trial gave patients prednisolone, acyclovir, both or neither. Only the steroid made a difference.',
+        technicalDetails:
+          'Double-blind, placebo-controlled, randomised factorial trial in 551 patients recruited within 72 hours of onset, with final outcomes for 496. Recovery of facial function at 3 months was 83.0% with prednisolone versus 63.6% without (P<0.001), and 71.2% with acyclovir versus 75.7% without (adjusted P=0.50). At 9 months, 94.4% versus 81.6% for prednisolone (P<0.001) and 85.4% versus 90.8% for acyclovir (adjusted P=0.10). There was no additional benefit of acyclovir added to prednisolone.',
+        evidenceSource: 'Sullivan FM et al., N Engl J Med 2007;357:1598-1607 (ISRCTN71548196)',
+        doi: '10.1056/NEJMoa072006',
+        measuredMetric: 'Recovery of facial function on the House-Brackmann scale',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a6',
+        category: 'inferred',
+        title: 'Reducing shedding is a surrogate, and it predicted one outcome out of four',
+        laymanSummary:
+          'Valacyclovir reliably reduces how much virus is shed. That surrogate predicted the herpes transmission result and failed to predict three others.',
+        technicalDetails:
+          'In the Corey trial, HSV DNA detection fell from 10.8% to 2.9% of days and symptomatic transmission fell in proportion. In Partners in Prevention, genital ulcers fell 73% and plasma HIV-1 RNA fell 0.25 log10 and linked HIV transmission did not move at all. In VALAD, 78 weeks of suppression at eight times the usual suppressive dose produced worse cognitive scores. A surrogate that tracks the clinical endpoint in one disease is not thereby a surrogate in another, and this drug provides an unusually clean four-trial demonstration of that.',
+        evidenceSource:
+          'Corey L et al., N Engl J Med 2004; Celum C et al., N Engl J Med 2010; Devanand DP et al., JAMA 2026',
+        doi: '10.1056/NEJMoa035144',
+        inferredClaim:
+          'That suppression of viral shedding is a general surrogate for clinical benefit wherever the virus is implicated',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An amino acid tag gets it through the gut wall',
+        laymanDesc:
+          'Acyclovir on its own is barely absorbed. Attaching valine to it lets a nutrient transporter carry it across the intestinal lining.',
+        molecularDetail:
+          'The L-valyl ester is a substrate for the intestinal peptide transporter PEPT1. Oral bioavailability of acyclovir rises from roughly 10 to 20% for acyclovir itself to about 55% for valacyclovir, which is what makes once or twice daily suppression practical. The stereochemistry matters: the D-valyl ester is not a PEPT1 substrate.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'First-pass hydrolysis releases acyclovir',
+        laymanDesc: 'Enzymes in the gut wall and liver snip the valine off, freeing the real drug.',
+        molecularDetail:
+          'Valacyclovir hydrolase in intestinal and hepatic tissue cleaves the ester almost completely on first pass, so systemic exposure is to acyclovir. Valacyclovir itself has no meaningful antiviral activity; every pharmacological statement below is about acyclovir.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Only an infected cell can switch it on',
+        laymanDesc:
+          'The drug is activated by an enzyme that only the herpes virus makes, so uninfected cells leave it alone.',
+        molecularDetail:
+          'Herpesvirus thymidine kinase, encoded by UL23, adds the first phosphate. Host kinases add the second and third. Uninfected cells phosphorylate acyclovir hundreds of times less efficiently, which is the source of the selectivity. Thymidine-kinase-deficient viral mutants are resistant and are the commonest resistance mechanism in immunocompromised patients.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The viral polymerase incorporates it and stops',
+        laymanDesc:
+          'The virus copying machine picks up the activated drug, adds it to the growing DNA strand, and cannot continue because the drug has no attachment point for the next unit.',
+        molecularDetail:
+          'Acyclovir triphosphate competes with deoxyguanosine triphosphate for the viral DNA polymerase encoded by UL30 and is incorporated into the elongating strand. Lacking a 3-hydroxyl, it is an obligate chain terminator, and the terminated primer-template then inactivates the polymerase in a suicide fashion.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Shedding and recurrences fall, and the latent virus remains',
+        laymanDesc:
+          'Outbreaks become rarer and shorter and shedding drops sharply, but the virus stays in the nerve cells for life.',
+        molecularDetail:
+          'The drug acts only on replicating virus, so latent genomes in sensory ganglia are untouched. In the Corey trial suppression cut HSV DNA detection from 10.8% to 2.9% of days and recurrences from 0.40 to 0.11 per month, and stopping the drug returns both to baseline.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Corey HSV-2 transmission trial',
+        phase: 'Randomised double-blind placebo-controlled',
+        sampleSize: 1484,
+        primaryEndpoint:
+          'Reduction in transmission of symptomatic genital herpes to the initially susceptible partner over 8 months',
+        endpointMet: true,
+        statisticalPValue: 'P = 0.008 (hazard ratio 0.25, 95% CI 0.08 to 0.75)',
+        unreportedAdverseSignals:
+          'Overall acquisition including asymptomatic seroconversion fell less steeply, hazard ratio 0.52 (P=0.04), so the headline figure is specific to symptomatic infection.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Partners in Prevention HSV/HIV Transmission Study (NCT00194519)',
+        phase: 'Phase 3 randomised placebo-controlled',
+        sampleSize: 3408,
+        primaryEndpoint: 'Genetically linked HIV-1 transmission within serodiscordant couples',
+        endpointMet: false,
+        statisticalPValue: 'P = 0.69 (hazard ratio 0.92, 95% CI 0.60 to 1.41)',
+        unreportedAdverseSignals:
+          'The intervention worked on every intermediate measure: genital ulcers fell 73% and plasma HIV-1 RNA fell 0.25 log10, with no effect on the endpoint.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Celum HIV-1 acquisition trial (NCT00076232)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled',
+        sampleSize: 3172,
+        primaryEndpoint: 'HIV-1 acquisition in HSV-2-seropositive, HIV-1-seronegative participants',
+        endpointMet: false,
+        statisticalPValue:
+          'Hazard ratio 1.16 (95% CI 0.83 to 1.62), numerically favouring placebo',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'VALAD (NCT03282916)',
+        phase: 'Phase 2 randomised double-blind placebo-controlled',
+        sampleSize: 120,
+        primaryEndpoint:
+          'Least-squares mean change in the 11-item ADAS-Cognitive subscale at 78 weeks',
+        endpointMet: false,
+        statisticalPValue:
+          'P = 0.01 in the direction of greater worsening on valacyclovir (between-group difference 3.93, 95% CI 1.03 to 6.83)',
+        unreportedAdverseSignals:
+          'Elevated serum creatinine occurred in 8.3% on valacyclovir against 3.3% on placebo, at a dose of 4 g per day.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Bell palsy factorial trial (ISRCTN71548196)',
+        phase: 'Randomised double-blind placebo-controlled factorial',
+        sampleSize: 551,
+        primaryEndpoint: 'Recovery of facial function on the House-Brackmann scale at 3 and 9 months',
+        endpointMet: false,
+        statisticalPValue:
+          'Adjusted P = 0.50 at 3 months and 0.10 at 9 months for acyclovir; P < 0.001 for prednisolone',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Symptomatic HSV-2 acquisition in 4 of 743 partners on valacyclovir against 16 of 741 on placebo over 8 months',
+        'HSV DNA detected on 2.9% of days against 10.8%, and recurrences of 0.11 against 0.40 per month',
+        'A 73% reduction in HSV-2 genital ulcers and a 0.25 log10 fall in plasma HIV-1 RNA in Partners in Prevention, with a hazard ratio for linked HIV transmission of 0.92',
+        'HIV-1 incidence of 3.9 against 3.3 per 100 person-years in 3,172 HSV-2-seropositive HIV-negative participants given acyclovir or placebo',
+        'Greater cognitive worsening on valacyclovir than placebo at 78 weeks in 120 participants with early Alzheimer disease (P=0.01)',
+      ],
+      unsupportedInferences: [
+        'That suppressing HSV-2 reduces HIV-1 transmission or acquisition — tested from both directions and refuted in both',
+        'That an epidemiological association between herpes simplex virus and Alzheimer disease implies a treatable causal role',
+        'That reduced viral shedding is a general surrogate for clinical benefit rather than one specific to the herpes transmission endpoint',
+      ],
+      whatFailedInitially: [
+        'Partners in Prevention: no reduction in genetically linked HIV-1 transmission despite every intermediate measure moving in the expected direction',
+        'VALAD: the primary cognitive endpoint moved against the drug',
+        'Bell palsy: no benefit from acyclovir alone or added to prednisolone',
+      ],
+      realWorldOutcome: [
+        'Reduction of transmission in heterosexual serodiscordant couples remains on the US label, and it is the only transmission-reduction claim among the trials on this page that survived testing',
+        'Generic acyclovir delivers the identical active molecule at about a quarter of the per-tablet acquisition cost, at the price of more frequent dosing',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet and oral suspension',
+      description:
+        'Once or twice daily for suppression, higher and more frequent for shingles or an acute episode. The whole design of the molecule is oral delivery: the L-valyl ester is a substrate for the intestinal peptide transporter PEPT1, which raises acyclovir bioavailability from roughly 10 to 20% to about 55% and converts a five-times-daily drug into a once-daily one.',
+      safetyProfile:
+        'Generally well tolerated, with headache and nausea the commonest complaints. Acyclovir is renally cleared and can crystallise in renal tubules, so dose reduction is required in renal impairment and adequate hydration matters at high doses; the VALAD trial at 4 g per day found elevated creatinine in 8.3% of participants. Thrombotic thrombocytopenic purpura and haemolytic uraemic syndrome have been reported at high doses in advanced HIV and in transplant recipients. Neurotoxicity occurs mainly in renal impairment.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does taking it stop me passing herpes on?',
+        a: 'It reduces the chance substantially and does not eliminate it. In 1,484 monogamous heterosexual serodiscordant couples, symptomatic HSV-2 infection developed in 4 of 743 partners over eight months on valacyclovir and 16 of 741 on placebo. Counting asymptomatic seroconversion too, it was 1.9% versus 3.6%. Both partners in that trial were counselled on safer sex and offered condoms at every visit, so this is the drug effect on top of those measures, not instead of them.',
+        auditNote:
+          'Eight months, monogamous heterosexual couples, one partner symptomatic and diagnosed. Populations outside that description were not studied here.',
+      },
+      {
+        q: 'If it suppresses the virus so well, why did it fail for HIV and for Alzheimer disease?',
+        a: 'Because suppressing the virus was never the outcome anybody wanted; it was the assumed route to it. Partners in Prevention showed the point most sharply: acyclovir cut genital ulcers by 73% and plasma HIV-1 RNA by a quarter of a log, and linked HIV transmission was unchanged, hazard ratio 0.92. In VALAD, 78 weeks of high-dose valacyclovir in Alzheimer disease produced worse cognitive scores than placebo. A drug can do exactly what its mechanism says and still not deliver the clinical result.',
+        auditNote:
+          'This is the single clearest surrogate-endpoint lesson in this file, and it is unusual in having four randomised trials on both sides of it.',
+      },
+      {
+        q: 'Should I just take acyclovir instead? It is cheaper.',
+        a: 'It is the same active drug. Valacyclovir exists only because acyclovir is poorly absorbed: attaching valine raises bioavailability from roughly 10 to 20% up to about 55%, which is what turns a five-times-daily schedule into a once-daily one. At US acquisition cost, acyclovir is about US$0.099 per 400 mg tablet against US$0.405 for a 1 g valacyclovir tablet. Whether the dosing convenience is worth the difference is a real question and it is one for the prescriber.',
+      },
+      {
+        q: 'Why does this page have no manufacturing cost?',
+        a: 'Because no published per-unit cost-of-production estimate for valacyclovir was verified for this record. The US pharmacy acquisition cost is quoted instead, from the CMS NADAC file effective 19 August 2026.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Corey L et al. Once-Daily Valacyclovir to Reduce the Risk of Transmission of Genital Herpes. N Engl J Med 2004;350:11-20',
+        identifier: '10.1056/NEJMoa035144',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Celum C et al. Acyclovir and Transmission of HIV-1 from Persons Infected with HIV-1 and HSV-2. N Engl J Med 2010;362:427-439',
+        identifier: '10.1056/NEJMoa0904849',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Celum C et al. Effect of aciclovir on HIV-1 acquisition in herpes simplex virus 2 seropositive women and men who have sex with men. Lancet 2008;371:2109-2119',
+        identifier: '10.1016/S0140-6736(08)60920-4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Devanand DP et al. Valacyclovir Treatment of Early Symptomatic Alzheimer Disease: The VALAD Randomized Clinical Trial. JAMA 2026;335:511-522',
+        identifier: '10.1001/jama.2025.21738',
+        kind: 'doi',
+      },
+      {
+        label:
+          "Sullivan FM et al. Early Treatment with Prednisolone or Acyclovir in Bell's Palsy. N Engl J Med 2007;357:1598-1607",
+        identifier: '10.1056/NEJMoa072006',
+        kind: 'doi',
+      },
+      {
+        label: 'Partners in Prevention HSV/HIV Transmission Study',
+        identifier: 'NCT00194519',
+        kind: 'nct',
+      },
+      { label: "VALAD: Anti-viral Therapy in Alzheimer's Disease", identifier: 'NCT03282916', kind: 'nct' },
+      {
+        label: 'VALTREX (valacyclovir hydrochloride) caplets, US prescribing information — DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f8e0d8f8-cb73-4206-a484-88f5c4fbd719',
+        kind: 'regulatory',
+      },
+      {
+        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 135398742 — Valacyclovir',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135398742',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Oseltamivir — the archetypal conclusion shift. Governments stockpiled it on the strength of a
+  // manufacturer-pooled analysis of trials nobody outside the company had read; when the full
+  // clinical study reports were finally released, the complication claim did not survive.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'oseltamivir',
+    name: 'Oseltamivir',
+    tradeName: 'Tamiflu',
+    sponsor: 'Gilead Sciences (discovery); developed and marketed by Roche and Genentech',
+    targetGene: 'NA, segment 6 of the influenza A and B genome, encoding neuraminidase',
+    targetProtein: 'Influenza A and B neuraminidase (sialidase)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1999,
+    indication:
+      'Treatment of acute uncomplicated influenza A and B in patients symptomatic for no more than 48 hours, and prophylaxis of influenza in patients aged 1 year and older',
+    patientFriendlyIndication: 'Flu, if started within two days of the first symptom',
+    conditionContext: {
+      conditionExplainer:
+        'A new influenza particle assembled at a cell surface stays stuck there, held by the same sugar it used to get in. Neuraminidase is the enzyme that cuts it free. Oseltamivir blocks that enzyme, so new virus particles cannot escape and spread.',
+      whyItMatters:
+        'Influenza kills, and governments spent billions stockpiling this drug against a pandemic. The question that mattered was never whether it shortens symptoms by a few hours, which it does, but whether it prevents pneumonia, hospitalisation and death. That question turned on data that were not public for more than a decade.',
+      whoTakesThis:
+        'Otherwise healthy adults and children with influenza within 48 hours of symptom onset, and people at higher risk of complications; the WHO Expert Committee restricted its recommendation to severe illness in hospitalised patients in 2017.',
+      clinicalGoals:
+        'Shorten symptomatic illness, and in higher-risk patients reduce complications — the second of which is the claim that has moved back and forth for twenty years.',
+    },
+    oneSentenceVerdict:
+      'A neuraminidase inhibitor that shortens influenza symptoms in adults by 16.8 hours, whose claim to prevent pneumonia and hospitalisation rested on a manufacturer-pooled analysis and did not survive the release of the full clinical study reports in 2014.',
+    laymanHowItWorks:
+      'Influenza gets into a cell by grabbing a sugar on its surface. When the cell has finished building new virus particles, they are still holding on to that same sugar and cannot let go. The virus carries a pair of scissors, an enzyme called neuraminidase, to cut itself free. Oseltamivir is shaped like the sugar those scissors are built to cut, so the scissors close on the drug instead and jam. New particles stay stuck to the cell they came from.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    anatomicalSite: 'Respiratory epithelial cell surface, at the budding virion',
+    substitutes: {
+      summary:
+        'Baloxavir and zanamivir are the pharmacological alternatives; annual vaccination is the intervention with the outcome evidence oseltamivir has struggled to produce. For most healthy adults with influenza, the honest comparison is between a drug that shortens illness by about a day and doing nothing.',
+      conventionalRx: [
+        {
+          name: 'Zanamivir (Relenza)',
+          class: 'Neuraminidase inhibitor, inhaled',
+          howItCompares:
+            'In the same Cochrane review of clinical study reports, zanamivir shortened symptoms in adults by 0.60 days against 16.8 hours for oseltamivir, and caused fewer systemic adverse effects because so little is absorbed.',
+          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          prosAndCons:
+            'Pros: lower systemic exposure and lower toxicity. Cons: inhaled powder, unsuitable in asthma and chronic obstructive pulmonary disease.',
+        },
+        {
+          name: 'Baloxavir marboxil (Xofluza)',
+          class: 'Cap-dependent endonuclease inhibitor',
+          howItCompares:
+            'A single oral dose targeting a different viral enzyme, with faster viral clearance than oseltamivir in head-to-head trials. Resistance-conferring substitutions emerge readily during treatment.',
+          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          prosAndCons:
+            'Pros: one dose. Cons: treatment-emergent resistance is common, and the complication evidence is no stronger than for oseltamivir.',
+        },
+        {
+          name: 'Annual influenza vaccination',
+          class: 'Prophylactic vaccine',
+          howItCompares:
+            'Prevention rather than treatment, and the intervention with the largest body of outcome evidence in influenza. Oseltamivir prophylaxis reduced symptomatic influenza with a number needed to treat of 33 in individuals and 7 in households, but only for the duration of dosing.',
+          typicalCost: 'Not priced here',
+          prosAndCons:
+            'Pros: seasonal protection, no daily dosing, established programme evidence. Cons: effectiveness varies with strain match each year.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Note the clock, because the label depends on it',
+          action:
+            'Record when symptoms actually started, because the indication is restricted to patients symptomatic for no more than 48 hours.',
+          patientImpact:
+            'Every efficacy estimate on this page comes from trials that enrolled within 48 hours. Outside that window nothing on this page applies.',
+          clinicalPrecaution:
+            'This is about the evidence base, not a reason to delay seeking care if someone is deteriorating.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCC(CC)O[C@@H]1C=C(C[C@@H]([C@H]1NC(=O)C)N)C(=O)OCC',
+      chemicalFormula: 'C16H28N2O4',
+      molecularWeight: '312.40 g/mol (PubChem CID 65028, oseltamivir free base ethyl ester prodrug)',
+      targetReceptorAffinity:
+        'The active carboxylate metabolite is a transition-state analogue of sialic acid at the neuraminidase active site; the marketed molecule is the ethyl ester prodrug and has little activity itself',
+      structureSource: {
+        label: 'PubChem CID 65028 — Oseltamivir, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/65028',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ose-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Control of the shikimic acid or quinic acid starting material',
+          description:
+            'The historical Roche route begins from shikimic acid isolated from star anise or produced by engineered Escherichia coli. Confirm identity, optical purity and the absence of the quinic acid regioisomer, because the four contiguous stereocentres of oseltamivir are set from the starting material rather than created later.',
+          reagentsAndBuffer:
+            'Shikimic acid reference standard, chiral HPLC, specific optical rotation, 1H and 13C NMR in deuterium oxide, Karl Fischer titration',
+        },
+        {
+          id: 'ose-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Epoxide formation, azide opening and acetamide installation',
+          description:
+            'Esterify and mesylate the shikimate, form the epoxide, open it with the 3-pentyl ether that occupies the hydrophobic pocket of neuraminidase, then introduce nitrogen twice by azide chemistry and acetylate to give the acetamido group. Azide steps at scale are the principal process-safety concern of this route and are the reason alternative routes were developed.',
+          dependsOnStepId: 'ose-w1',
+          reagentsAndBuffer:
+            'Ethanol and thionyl chloride for esterification; methanesulfonyl chloride and triethylamine; 3-pentanone with boron trifluoride etherate and triethylsilane for the ether; sodium azide with ammonium chloride; trimethylphosphine or Staudinger reduction; acetic anhydride',
+        },
+        {
+          id: 'ose-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Phosphate salt crystallisation and stereochemical control',
+          description:
+            'Crystallise oseltamivir phosphate and set specifications for the diastereomers and for residual azide. Because all the stereochemistry is inherited, the critical release test is chiral rather than merely chromatographic purity.',
+          dependsOnStepId: 'ose-w2',
+          reagentsAndBuffer:
+            'Phosphoric acid in ethanol, controlled cooling crystallisation, chiral HPLC on a polysaccharide stationary phase, ion chromatography for residual azide',
+        },
+        {
+          id: 'ose-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Assay and neuraminidase inhibition assay on the active carboxylate',
+          description:
+            'Quantify content and related substances against the pharmacopoeial standard, then hydrolyse to the active carboxylate and measure neuraminidase inhibition fluorometrically against reference influenza A and B strains, including an H275Y-substituted resistant control.',
+          dependsOnStepId: 'ose-w3',
+          reagentsAndBuffer:
+            'C18 column with phosphate buffer and acetonitrile, USP oseltamivir phosphate reference standard, MUNANA fluorogenic sialidase substrate, influenza A/H1N1 and B reference strains, H275Y-substituted resistant control strain',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ose-a1',
+        category: 'measured',
+        title: 'Symptoms resolve 16.8 hours sooner in adults',
+        laymanSummary:
+          'Across all the trial data, including the trials that were never published, oseltamivir shortened flu symptoms in adults from about 7 days to about 6.3 days.',
+        technicalDetails:
+          'The Cochrane review based on 107 clinical study reports obtained from the European Medicines Agency, GlaxoSmithKline and Roche included 20 oseltamivir trials with 9,623 participants. Time to first alleviation of symptoms in adults was reduced by 16.8 hours (95% CI 8.4 to 25.1; P<0.0001), from 7 days to 6.3 days. In otherwise healthy children the reduction was 29 hours (95% CI 12 to 47; P=0.001). In children with asthma there was no effect.',
+        evidenceSource: 'Jefferson T et al., Cochrane Database Syst Rev 2014;(4):CD008965',
+        doi: '10.1002/14651858.CD008965.pub4',
+        measuredMetric: 'Time to first alleviation of symptoms, intention-to-treat population',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ose-a2',
+        category: 'conclusion_shift',
+        title:
+          'Kaiser 2003 claimed a 55% reduction in complications; the clinical study reports did not support it',
+        laymanSummary:
+          'The pooled manufacturer analysis that justified national stockpiles said oseltamivir cut lower respiratory complications by more than half and hospitalisations by 59%. When independent reviewers finally obtained the underlying trial reports, those effects did not hold up.',
+        technicalDetails:
+          'Kaiser and colleagues pooled 3,564 subjects from 10 placebo-controlled oseltamivir trials, eight of which were unpublished, and reported that in influenza-positive adults, lower respiratory tract complications leading to antibiotics fell 55% (4.6% versus 10.3%; P<0.001) and hospitalisation for any cause fell 59% (0.7% versus 1.7%; P=0.02). Ten years later, working from 107 clinical study reports, the Cochrane group found no significant effect on hospitalisations in adults (risk difference 0.15%, 95% CI -0.78 to 0.91) and no significant reduction in complications classified as serious or leading to study withdrawal (risk difference 0.07%, 95% CI -0.78 to 0.44). The reduction in pneumonia was 1.00% (95% CI 0.22 to 1.49, number needed to treat 100) but was self-reported and investigator-mediated, was not significant in the five trials that used a more detailed diagnostic form, and no trial defined pneumonia or confirmed it radiologically.',
+        evidenceSource:
+          'Kaiser L et al., Arch Intern Med 2003;163:1667-1672; Jefferson T et al., BMJ 2014;348:g2545 and Cochrane Database Syst Rev 2014;(4):CD008965',
+        doi: '10.1136/bmj.g2545',
+        measuredMetric:
+          'Risk difference for hospitalisation and for serious complications, from clinical study reports rather than journal publications',
+        inferredClaim:
+          'That oseltamivir prevents pneumonia, hospitalisation and death, the claim on which national stockpiles were built',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ose-a3',
+        category: 'failed',
+        title: 'The trials themselves were not clean, and the review said so in detail',
+        laymanSummary:
+          'The reviewers found problems with how the trials were run and reported, including placebo capsules that may not have been inert and an effect on antibody tests used to decide who counted as having flu.',
+        technicalDetails:
+          'Cochrane judged half the oseltamivir studies at high risk of selection bias, found inadequate measures against performance bias in 11 studies because of non-identical placebo presentation, found high attrition bias across the oseltamivir programme and evidence of selective reporting, and noted that the placebo interventions may have contained active substances. Separately, the proportion of participants with a fourfold rise in antibody titre was significantly lower in the treated group (risk ratio 0.92, 95% CI 0.86 to 0.97), a 5% absolute difference, which matters because antibody rise was one of the criteria used to define influenza infection and therefore to define the influenza-infected analysis population.',
+        evidenceSource: 'Jefferson T et al., Cochrane Database Syst Rev 2014;(4):CD008965',
+        doi: '10.1002/14651858.CD008965.pub4',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ose-a4',
+        category: 'measured',
+        title: 'Harms are real and quantified: nausea, vomiting, headache, renal and psychiatric events',
+        laymanSummary:
+          'One in 22 adults treated vomits because of the drug, and there was a dose-response relationship with psychiatric events in the two pivotal treatment trials.',
+        technicalDetails:
+          'In adult treatment, oseltamivir increased nausea (risk difference 3.66%, 95% CI 0.90 to 7.39; number needed to harm 28) and vomiting (4.56%, 95% CI 2.39 to 7.58; number needed to harm 22). In children, vomiting had a number needed to harm of 19. In prophylaxis, psychiatric adverse events were increased across the combined on- and off-treatment periods (risk difference 1.06%, 95% CI 0.07 to 2.76; number needed to harm 94), headaches on treatment (3.15%; number needed to harm 32) and nausea on treatment (4.15%; number needed to harm 25). There was a dose-response relationship for psychiatric events between the standard and high dose in the two pivotal treatment trials WV15670 and WV15671 (P=0.038).',
+        evidenceSource: 'Jefferson T et al., Cochrane Database Syst Rev 2014;(4):CD008965',
+        doi: '10.1002/14651858.CD008965.pub4',
+        measuredMetric: 'Risk differences and numbers needed to harm for specific adverse events',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ose-a5',
+        category: 'conclusion_shift',
+        title:
+          'A manufacturer-funded individual-patient meta-analysis then reported the complication effect again',
+        laymanSummary:
+          'A year after the Cochrane review, a different group with different funding pooled the individual patient data and reported that complications and hospitalisations did fall.',
+        technicalDetails:
+          'The MUGAS individual patient data meta-analysis included nine Roche-sponsored randomised placebo-controlled trials with 4,328 adults. In the intention-to-treat infected population, time to alleviation of all symptoms was 21% shorter (time ratio 0.79, 95% CI 0.74 to 0.85; P<0.0001), lower respiratory tract complications requiring antibiotics more than 48 hours after randomisation fell (risk ratio 0.56, 95% CI 0.42 to 0.75; P=0.0001; 4.9% versus 8.7%) and admissions to hospital for any cause fell (risk ratio 0.37, 95% CI 0.17 to 0.81; P=0.013; 0.6% versus 1.7%). Nausea and vomiting were increased. The analysis was funded by the Multiparty Group for Advice on Science foundation, which was itself funded by Roche, and it used the same underlying trial programme that Cochrane had judged at high risk of bias. Both analyses are on this page because a reader should see that the disagreement is live rather than settled.',
+        evidenceSource: 'Dobson J et al., Lancet 2015;385:1729-1737',
+        doi: '10.1016/S0140-6736(14)62449-1',
+        measuredMetric:
+          'Risk ratios for lower respiratory tract complications and for hospitalisation, individual patient data',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ose-a6',
+        category: 'measured',
+        title: 'ALIC4E: about one day faster recovery in an independent, publicly funded trial',
+        laymanSummary:
+          'A European trial with no manufacturer funding and no placebo found that adding oseltamivir to usual care shortened recovery by about a day on average, and by two to three days in older, sicker patients.',
+        technicalDetails:
+          'Open-label, pragmatic, adaptive randomised trial in 15 European countries over three influenza seasons, 3,266 participants aged 1 year and over presenting with influenza-like illness in primary care; 52% had PCR-confirmed influenza. The hazard ratio for time to recovery was 1.29 (95% Bayesian credible interval 1.20 to 1.39), an absolute mean benefit of 1.02 days (95% BCrI 0.74 to 1.31). Benefit ranged from 0.70 days in children under 12 with milder illness to 3.20 days (95% BCrI 1.00 to 5.50) in patients aged 65 and over with comorbidities and longer preceding illness. Nausea and vomiting were increased. The trial was open-label and funded by the European Commission.',
+        evidenceSource: 'Butler CC et al., Lancet 2020;395:42-52 (ISRCTN27908921)',
+        doi: '10.1016/S0140-6736(19)32982-4',
+        measuredMetric: 'Time to recovery, defined as return to usual activities with minor or absent fever, headache and muscle ache',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ose-a7',
+        category: 'conclusion_shift',
+        title: 'WHO moved oseltamivir off the core Essential Medicines List in 2017',
+        laymanSummary:
+          'After the reanalysis, the WHO expert committee downgraded oseltamivir and restricted its recommendation to severely ill hospitalised patients.',
+        technicalDetails:
+          'The 2017 WHO Expert Committee on the Selection and Use of Essential Medicines reviewed the additional evidence and concluded that the effect of oseltamivir on hospital admissions and mortality was lower than previously estimated. Oseltamivir was moved from the core to the complementary list and its recommended use limited to severe illness due to confirmed or suspected influenza in critically ill hospitalised patients. Oseltamivir had been added to the list in 2009, during the H1N1 pandemic, on the earlier reading of the evidence.',
+        evidenceSource: 'Torjesen I. WHO downgrades status of oseltamivir. BMJ 2017;358:j3266',
+        doi: '10.1136/bmj.j3266',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed as an inactive ester, activated by the liver',
+        laymanDesc:
+          'The capsule contains a version of the drug that cannot work. Liver enzymes cut it into the active form.',
+        molecularDetail:
+          'Oseltamivir phosphate is an ethyl ester prodrug, converted by hepatic carboxylesterase 1 to oseltamivir carboxylate. The ester exists because the carboxylate itself is too polar to be absorbed orally; bioavailability of the active moiety after the prodrug is roughly 80%. The active metabolite is cleared renally, so dosing follows creatinine clearance.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Distributed to the respiratory tract where infection is',
+        laymanDesc: 'The active drug reaches the airway lining, where influenza replicates.',
+        molecularDetail:
+          'Oseltamivir carboxylate distributes into the middle ear, sinus and bronchoalveolar lining fluid at concentrations exceeding those needed to inhibit neuraminidase of susceptible strains. Neuraminidase acts on the outside of the cell, so the drug does not need to enter cells at all.',
+        iconName: 'Waves',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It mimics the shape of the sugar the enzyme cuts',
+        laymanDesc:
+          'The drug is built to look like the molecule the viral scissors are made to cut, so the scissors close on it and stick.',
+        molecularDetail:
+          'Oseltamivir carboxylate is a transition-state analogue of sialic acid. Its 3-pentyl ether occupies a hydrophobic pocket that opens when the neuraminidase 150-loop rearranges, and the amino group replaces the natural glycerol substituent. The H275Y substitution in N1 neuraminidase distorts that pocket and is the classic resistance mechanism.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'New virus particles cannot cut themselves free',
+        laymanDesc:
+          'Finished virus particles stay tethered to the cell that made them, and clump together instead of spreading.',
+        molecularDetail:
+          'With neuraminidase inhibited, progeny virions remain bound by haemagglutinin to sialic acid residues on the host cell surface and aggregate, so release and spread to neighbouring cells are reduced. The drug does not prevent infection of a cell that has already been entered, which is why the 48-hour window exists.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Illness is shortened; whether complications are prevented is the contested part',
+        laymanDesc:
+          'Symptoms end sooner. Whether the drug stops flu turning into pneumonia or a hospital admission is the question this whole page is about.',
+        molecularDetail:
+          'The symptom-duration effect is consistent across the clinical study reports, the manufacturer meta-analysis and the independent pragmatic trial, at roughly 16.8 hours, 21% and 1.02 days respectively. The complication effect is reported as substantial by Kaiser 2003 and by MUGAS 2015 and as absent by the Cochrane analysis of the clinical study reports, and that disagreement has never been resolved by a trial designed and powered for the complication endpoint.',
+        iconName: 'Gauge',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane CD008965 review of 107 clinical study reports',
+        phase: 'Systematic review of regulatory documents, 20 oseltamivir trials',
+        sampleSize: 9623,
+        primaryEndpoint:
+          'Time to first alleviation of symptoms, complications, hospitalisations and adverse events',
+        endpointMet: true,
+        statisticalPValue:
+          'P < 0.0001 for symptom alleviation; no significant effect on hospitalisation (risk difference 0.15%, 95% CI -0.78 to 0.91)',
+        unreportedAdverseSignals:
+          'Half the oseltamivir studies were judged at high risk of selection bias, attrition bias was high, placebo interventions may have contained active substances, and treatment reduced the proportion of participants with a fourfold antibody rise, which was itself used to define the infected population.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Kaiser pooled analysis of 10 manufacturer trials',
+        phase: 'Pooled analysis of placebo-controlled trials, eight of them unpublished at the time',
+        sampleSize: 3564,
+        primaryEndpoint:
+          'Influenza-related lower respiratory tract complications leading to antibiotics, and hospitalisation',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001 for complications, P = 0.02 for hospitalisation',
+        unreportedAdverseSignals:
+          'Eight of the ten pooled trials were unpublished when this analysis appeared, and the underlying clinical study reports were not available to independent reviewers for another decade.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'MUGAS individual patient data meta-analysis',
+        phase: 'Individual patient data meta-analysis of nine Roche-sponsored trials',
+        sampleSize: 4328,
+        primaryEndpoint: 'Time to alleviation of all symptoms, with complications and admissions as secondary',
+        endpointMet: true,
+        statisticalPValue:
+          'P < 0.0001 for symptom alleviation; P = 0.0001 for lower respiratory complications; P = 0.013 for hospitalisation',
+        unreportedAdverseSignals:
+          'Funded by a foundation supported by the manufacturer, and drawing on the same trial programme that the Cochrane review judged at high risk of bias.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ALIC4E (ISRCTN27908921)',
+        phase: 'Open-label pragmatic adaptive randomised trial',
+        sampleSize: 3266,
+        primaryEndpoint:
+          'Time to recovery, defined as return to usual activities with fever, headache and muscle ache minor or absent',
+        endpointMet: true,
+        statisticalPValue: 'Hazard ratio 1.29 (95% Bayesian credible interval 1.20 to 1.39)',
+        unreportedAdverseSignals:
+          'Open-label and without a placebo, so the symptom-report endpoint is unblinded; an increased burden of nausea and vomiting was observed.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Time to first alleviation of symptoms in adults reduced by 16.8 hours, from 7 days to 6.3 days, across 20 trials and 9,623 participants read from the clinical study reports',
+        'A 1.02-day absolute mean benefit in time to recovery in the independent, publicly funded ALIC4E trial, rising to 3.20 days in older comorbid patients',
+        'Numbers needed to harm of 28 for nausea and 22 for vomiting in adult treatment, and 19 for vomiting in children',
+        'Prophylaxis reduced symptomatic influenza with a number needed to treat of 33 in individuals and 7 in households',
+      ],
+      unsupportedInferences: [
+        'That oseltamivir reduces hospitalisation: the clinical study report analysis found a risk difference of 0.15% with a confidence interval spanning zero',
+        'That it reduces pneumonia: the 1.00% risk difference was for self-reported, investigator-mediated, undefined pneumonia and was not significant in the five trials that used a detailed diagnostic form',
+        'That reduced viral shedding and a clear molecular mechanism imply reduced complications — Cochrane concluded that the mechanism of action proposed by the producers does not fit the clinical evidence',
+      ],
+      whatFailedInitially: [
+        'The complication and hospitalisation claims of the 2003 manufacturer-pooled analysis did not survive independent analysis of the clinical study reports in 2014',
+        'No effect at all on symptom duration in children with asthma',
+        'WHO moved oseltamivir from the core to the complementary Essential Medicines List in 2017 and restricted it to critically ill hospitalised patients',
+      ],
+      realWorldOutcome: [
+        'Governments stockpiled the drug at scale on the strength of an analysis of trials that independent reviewers could not read for another decade; the campaign to obtain those reports is the reason clinical study report access became a policy issue',
+        'The MUGAS individual patient data meta-analysis in 2015 reported the complication effect again, and the disagreement between it and the Cochrane analysis remains open',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule and powder for oral suspension',
+      description:
+        'Twice daily for five days for treatment, once daily for prophylaxis, started within 48 hours of symptom onset. The marketed molecule is an ethyl ester prodrug because the active carboxylate is too polar to be absorbed; hepatic carboxylesterase 1 performs the conversion, and the active metabolite is renally cleared so the dose is adjusted for creatinine clearance.',
+      safetyProfile:
+        'Nausea and vomiting are the commonest adverse effects, with numbers needed to harm of 28 and 22 in adults and 19 for vomiting in children. Cochrane found increased psychiatric adverse events in prophylaxis with a number needed to harm of 94 and a dose-response relationship in the two pivotal treatment trials. Headache and renal events were increased in prophylaxis. Neuropsychiatric events, particularly in adolescents in Japan, prompted label changes and remain the most debated harm.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does Tamiflu work?',
+        a: 'It shortens symptoms. In the analysis of all the clinical study reports, adults recovered 16.8 hours sooner, from 7 days to 6.3; in an independent pragmatic trial in European primary care, about one day sooner on average and two to three days in older patients with comorbidities. Whether it prevents pneumonia, hospitalisation or death is genuinely disputed: the 2003 manufacturer-pooled analysis said yes, the 2014 analysis of the underlying trial reports said the effect was not there, and a 2015 manufacturer-funded individual patient meta-analysis said yes again. No trial designed and powered for the complication endpoint has ever been run.',
+        auditNote:
+          'This page presents both sides because both exist. Presenting only one would be advocacy, in either direction.',
+      },
+      {
+        q: 'Why did it take ten years to check the original claim?',
+        a: 'Because the underlying trial reports were not public. Eight of the ten trials in the 2003 pooled analysis were unpublished. Independent reviewers obtained 107 clinical study reports from the European Medicines Agency, GlaxoSmithKline and Roche only after a multi-year campaign, and the reanalysis was published in 2014. That episode is a substantial part of why clinical study report access became a regulatory and publishing issue.',
+      },
+      {
+        q: 'Was there anything wrong with the trials themselves?',
+        a: 'Cochrane documented several problems: high risk of selection bias in half the oseltamivir studies, high attrition bias, evidence of selective reporting, non-identical placebo presentation in 11 studies, and the observation that the placebo interventions may have contained active substances. It also found that treatment reduced the proportion of participants with a fourfold antibody rise by about 5 percentage points, which matters because antibody rise helped define who counted as influenza-infected in the primary analysis population.',
+      },
+      {
+        q: 'Is it still recommended?',
+        a: 'It is still approved and still used. The WHO Expert Committee moved it from the core to the complementary Essential Medicines List in 2017, judging the effect on hospital admissions and mortality to be lower than previously estimated, and limited its recommendation to severe illness in critically ill hospitalised patients. National guidance varies, and generally favours treatment in patients at higher risk of complications.',
+      },
+      {
+        q: 'Why does this page have no manufacturing cost?',
+        a: 'Because no published per-unit cost-of-production estimate for oseltamivir was verified for this record. The US pharmacy acquisition cost is quoted instead: US$0.806 per 75 mg capsule in the CMS NADAC file effective 19 August 2026, about US$8.06 for a standard ten-capsule course.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Jefferson T et al. Neuraminidase inhibitors for preventing and treating influenza in adults and children. Cochrane Database Syst Rev 2014;(4):CD008965',
+        identifier: '10.1002/14651858.CD008965.pub4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jefferson T et al. Oseltamivir for influenza in adults and children: systematic review of clinical study reports and summary of regulatory comments. BMJ 2014;348:g2545',
+        identifier: '10.1136/bmj.g2545',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kaiser L et al. Impact of Oseltamivir Treatment on Influenza-Related Lower Respiratory Tract Complications and Hospitalizations. Arch Intern Med 2003;163:1667-1672',
+        identifier: '10.1001/archinte.163.14.1667',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dobson J et al. Oseltamivir treatment for influenza in adults: a meta-analysis of randomised controlled trials. Lancet 2015;385:1729-1737',
+        identifier: '10.1016/S0140-6736(14)62449-1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Butler CC et al. Oseltamivir plus usual care versus usual care for influenza-like illness in primary care (ALIC4E). Lancet 2020;395:42-52',
+        identifier: '10.1016/S0140-6736(19)32982-4',
+        kind: 'doi',
+      },
+      {
+        label: 'Torjesen I. WHO downgrades status of oseltamivir. BMJ 2017;358:j3266',
+        identifier: '10.1136/bmj.j3266',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Treanor JJ et al. Efficacy and Safety of the Oral Neuraminidase Inhibitor Oseltamivir in Treating Acute Influenza. JAMA 2000;283:1016-1024',
+        identifier: '10.1001/jama.283.8.1016',
+        kind: 'doi',
+      },
+      {
+        label: 'TAMIFLU (oseltamivir phosphate) capsules, US prescribing information — DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ee3c9555-60f2-4f82-a760-11983c86e97b',
+        kind: 'regulatory',
+      },
+      {
+        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 65028 — Oseltamivir',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/65028',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Nirmatrelvir-ritonavir — an 89% relative risk reduction in unvaccinated high-risk adults, and a
+  // failed symptom endpoint in the vaccinated and standard-risk population most people asking about
+  // it now belong to.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'nirmatrelvir-ritonavir',
+    name: 'Nirmatrelvir-ritonavir',
+    tradeName: 'Paxlovid',
+    sponsor: 'Pfizer',
+    targetGene:
+      'SARS-CoV-2 ORF1ab nsp5, encoding the main protease; human CYP3A4 is the target of the ritonavir component',
+    targetProtein:
+      'SARS-CoV-2 main protease (Mpro, 3CLpro); ritonavir inhibits human cytochrome P450 3A4',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2023,
+    indication:
+      'Treatment of mild-to-moderate COVID-19 in adults who are at high risk for progression to severe COVID-19, including hospitalisation or death',
+    patientFriendlyIndication:
+      'Early COVID-19 in adults at high risk of becoming seriously ill',
+    conditionContext: {
+      conditionExplainer:
+        'SARS-CoV-2 makes its proteins as one long chain that has to be cut into working pieces. The scissors that do the cutting are the main protease. Nirmatrelvir jams those scissors. Ritonavir is not an antiviral here at all: it is added purely to stop the liver destroying nirmatrelvir before it can work.',
+      whyItMatters:
+        'The trial that established the drug enrolled unvaccinated adults during the Delta wave. Almost nobody now presenting with COVID-19 resembles that population, and the trial that tested the drug in vaccinated and standard-risk people missed its primary endpoint.',
+      whoTakesThis:
+        'Adults with mild-to-moderate COVID-19 within five days of symptom onset who are at high risk of progression, most importantly people aged 65 and over and those with significant immunosuppression.',
+      clinicalGoals:
+        'Prevent hospitalisation and death in the people whose baseline risk of both is high enough for an 89% relative reduction to matter in absolute terms.',
+    },
+    oneSentenceVerdict:
+      'A protease inhibitor plus a pharmacokinetic booster that cut COVID-19 hospitalisation or death from 7.01% to 0.77% in unvaccinated high-risk adults, and missed its primary symptom endpoint in vaccinated and standard-risk adults with a hospitalisation difference of 0.8 percentage points that crossed zero.',
+    laymanHowItWorks:
+      'The virus builds all its proteins as one long ribbon and then cuts the ribbon into working parts using a pair of molecular scissors. Nirmatrelvir slots into those scissors and locks them. Without the cuts, none of the parts work and the virus cannot assemble copies of itself. The second drug in the pack, ritonavir, does nothing to the virus: your liver would otherwise destroy nirmatrelvir within an hour or two, and ritonavir blocks the liver enzyme that does it. That is also why the pack has so many drug interactions.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 76,
+    anatomicalSite: 'Cytoplasm of infected respiratory epithelial cells; hepatic CYP3A4 for ritonavir',
+    substitutes: {
+      summary:
+        'Remdesivir is the alternative with an outpatient randomised result; molnupiravir is the alternative that failed in the vaccinated population. For most vaccinated adults under 65 without significant immunosuppression, the honest comparison is against no antiviral, because that is what the EPIC-SR trial tested and did not beat on its primary endpoint.',
+      conventionalRx: [
+        {
+          name: 'Remdesivir (Veklury), three-day outpatient course',
+          class: 'Nucleotide analogue RNA polymerase inhibitor',
+          howItCompares:
+            'In PINETREE, a three-day intravenous course cut COVID-19 hospitalisation or death from 5.3% to 0.7% in 562 high-risk outpatients, hazard ratio 0.13. No ritonavir, so no CYP3A4 interaction problem, but it requires three intravenous infusions.',
+          typicalCost: 'Not priced here — no current acquisition-cost figure verified for this record',
+          prosAndCons:
+            'Pros: no drug-interaction burden, usable where ritonavir is contraindicated. Cons: three infusions on three consecutive days.',
+        },
+        {
+          name: 'Molnupiravir (Lagevrio)',
+          class: 'Mutagenic nucleoside analogue',
+          howItCompares:
+            'Reduced hospitalisation or death from 9.7% to 6.8% in unvaccinated adults in MOVe-OUT, and produced no reduction at all in 25,054 largely vaccinated UK adults in PANORAMIC.',
+          typicalCost: 'Not priced here — not listed in the CMS NADAC file at the time of writing',
+          prosAndCons:
+            'Pros: no drug interactions. Cons: the vaccinated-population trial was null, and a mutational signature attributable to the drug has been identified in global SARS-CoV-2 sequence databases.',
+        },
+        {
+          name: 'No antiviral, with monitoring',
+          class: 'Supportive care',
+          howItCompares:
+            'In EPIC-SR, the placebo group had a 1.6% rate of COVID-19 hospitalisation or death and reached sustained symptom alleviation at a median of 13 days against 12 on nirmatrelvir-ritonavir, a difference that was not statistically significant.',
+          typicalCost: 'No drug cost',
+          prosAndCons:
+            'Pros: no interaction review, no rebound question, no cost. Cons: forgoes a large relative benefit in the specific high-risk groups where the absolute baseline risk is high.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Bring a full medication list, including supplements, before the first dose',
+          action:
+            'List every prescription, over-the-counter product and supplement for the prescriber or pharmacist to review against the ritonavir interaction list.',
+          patientImpact:
+            'Ritonavir is a potent CYP3A4 inhibitor. Statins, some anticoagulants, several antiarrhythmics, immunosuppressants such as tacrolimus, and many others require dose changes or temporary suspension, and a few are contraindicated outright.',
+          clinicalPrecaution:
+            'The interaction review is the single most important safety step with this drug and it cannot be done by the patient alone.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC1([C@@H]2[C@H]1[C@H](N(C2)C(=O)[C@H](C(C)(C)C)NC(=O)C(F)(F)F)C(=O)N[C@@H](C[C@@H]3CCNC3=O)C#N)C',
+      chemicalFormula: 'C23H32F3N5O4',
+      molecularWeight:
+        '499.5 g/mol (PubChem CID 155903259, nirmatrelvir; the co-packaged ritonavir is C37H48N6O5S2, 720.9 g/mol, PubChem CID 392622)',
+      targetReceptorAffinity:
+        'Nirmatrelvir forms a reversible covalent thioimidate adduct between its nitrile warhead and the catalytic cysteine 145 of the SARS-CoV-2 main protease',
+      structureSource: {
+        label: 'PubChem CID 155903259 — Nirmatrelvir, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/155903259',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'nir-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Control of the bicyclic proline and the glutamine lactam building blocks',
+          description:
+            'Confirm identity and stereochemical purity of the (1R,2S,5S)-6,6-dimethyl-3-azabicyclo[3.1.0]hexane-2-carboxylate core and of the gamma-lactam derived from glutamine. Nirmatrelvir has five stereocentres and the fit into the protease active site is stereospecific, so an epimeric impurity is an inactive impurity.',
+          reagentsAndBuffer:
+            'Bicyclic proline methyl ester hydrochloride, (S)-3-amino-2-oxopyrrolidine building block, N-Boc-L-tert-leucine, chiral HPLC on a polysaccharide phase, 1H and 19F NMR',
+        },
+        {
+          id: 'nir-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Peptide couplings, trifluoroacetylation and nitrile formation',
+          description:
+            'Couple tert-leucine to the bicyclic proline, cap the amine with trifluoroacetyl, couple the glutamine-derived lactam amine, then dehydrate the terminal primary amide to the nitrile that forms the reversible covalent bond with the catalytic cysteine.',
+          dependsOnStepId: 'nir-w1',
+          reagentsAndBuffer:
+            'HATU or T3P coupling reagent with N,N-diisopropylethylamine in acetonitrile; ethyl trifluoroacetate; Burgess reagent or the Vilsmeier reagent for amide dehydration; lithium hydroxide for ester hydrolysis; ethyl acetate and heptane for workup',
+        },
+        {
+          id: 'nir-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and control of the epimeric nitrile',
+          description:
+            'Crystallise nirmatrelvir and set the specification for the epimer at the nitrile-bearing carbon, which forms under the dehydration conditions and is the principal stereochemical impurity of this route.',
+          dependsOnStepId: 'nir-w2',
+          reagentsAndBuffer:
+            'Ethanol and water antisolvent crystallisation, seeding, chiral and achiral reversed-phase HPLC with ultraviolet detection',
+        },
+        {
+          id: 'nir-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Assay, protease inhibition and antiviral potency',
+          description:
+            'Quantify content and related substances, then measure inhibition of recombinant SARS-CoV-2 main protease in a fluorogenic substrate assay and confirm antiviral potency in infected cell culture, with and without a P-glycoprotein or CYP3A4 inhibitor so that the pharmacokinetic dependence on ritonavir is visible in the assay.',
+          dependsOnStepId: 'nir-w3',
+          reagentsAndBuffer:
+            'C18 column with aqueous buffer and acetonitrile, recombinant SARS-CoV-2 Mpro, FRET peptide substrate, Vero E6 or Calu-3 cells with a clinical SARS-CoV-2 isolate, CP-100356 P-glycoprotein inhibitor control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'nir-a1',
+        category: 'measured',
+        title: 'EPIC-HR: 0.77% versus 7.01% hospitalisation or death, an 89% relative reduction',
+        laymanSummary:
+          'In unvaccinated adults with risk factors, treated within three days of symptoms, three of 389 were hospitalised or died against 27 of 385 on placebo, and all the deaths were in the placebo group.',
+        technicalDetails:
+          'Phase 2-3 double-blind randomised trial in symptomatic, unvaccinated, non-hospitalised adults at high risk of progression. 2,246 randomised. In the planned interim analysis of patients treated within 3 days of symptom onset, COVID-19-related hospitalisation or death from any cause by day 28 was 0.77% (3 of 389) versus 7.01% (27 of 385), a difference of -6.32 percentage points (95% CI -9.04 to -3.59; P<0.001; relative risk reduction 89.1%). In the final modified intention-to-treat analysis of 1,379 patients the difference was -5.81 percentage points (95% CI -7.78 to -3.84; relative risk reduction 88.9%). All 13 deaths occurred in the placebo group. Day-5 viral load was 0.868 log10 copies per millilitre lower.',
+        evidenceSource: 'Hammond J et al., N Engl J Med 2022;386:1397-1408 (NCT04960202)',
+        doi: '10.1056/NEJMoa2118542',
+        measuredMetric: 'COVID-19-related hospitalisation or death from any cause through day 28',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nir-a2',
+        category: 'failed',
+        title: 'EPIC-SR: the primary endpoint was missed in vaccinated and standard-risk adults',
+        laymanSummary:
+          'When the same drug was tested in people who were vaccinated or at standard risk, symptoms took 12 days to settle on treatment and 13 on placebo, a difference that was not statistically significant.',
+        technicalDetails:
+          'Phase 2-3 trial in adults with COVID-19 within 5 days of symptom onset who were either fully vaccinated with at least one risk factor, or without risk factors and unvaccinated or not vaccinated within the previous year. 1,296 randomised, 1,288 treated and analysed. Median time to sustained alleviation of all targeted signs and symptoms was 12 days on nirmatrelvir-ritonavir and 13 on placebo (P=0.60). COVID-19 hospitalisation or death from any cause occurred in 5 of 654 (0.8%) and 10 of 634 (1.6%), difference -0.8 percentage points (95% CI -2.0 to 0.4). The trial was terminated. Dysgeusia occurred in 5.8% of treated participants.',
+        evidenceSource: 'Hammond J et al., N Engl J Med 2024;390:1186-1195 (NCT05011513)',
+        doi: '10.1056/NEJMoa2309003',
+        measuredMetric:
+          'Time to sustained alleviation of all targeted COVID-19 signs and symptoms',
+        inferredClaim:
+          'That the 89% relative risk reduction measured in unvaccinated high-risk adults describes the benefit in vaccinated or standard-risk adults',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nir-a3',
+        category: 'measured',
+        title: 'Omicron-era effectiveness was confined to people aged 65 and over',
+        laymanSummary:
+          'In a real-world analysis of 109,254 eligible Israeli patients during Omicron, the drug clearly reduced hospitalisation and death in over-65s and showed no benefit in adults aged 40 to 64.',
+        technicalDetails:
+          'Retrospective cohort of Clalit Health Services members aged 40 and over assessed as eligible for nirmatrelvir during the Omicron surge; 3,902 of 109,254 received it. In patients aged 65 and over, COVID-19 hospitalisation was 14.7 versus 58.9 cases per 100,000 person-days, adjusted hazard ratio 0.27 (95% CI 0.15 to 0.49), and death 0.21 (95% CI 0.05 to 0.82). In patients aged 40 to 64, hospitalisation was 15.2 versus 15.8 per 100,000 person-days, adjusted hazard ratio 0.74 (95% CI 0.35 to 1.58), and death 1.32 (95% CI 0.16 to 10.75). Observational, with time-dependent covariate adjustment.',
+        evidenceSource: 'Arbel R et al., N Engl J Med 2022;387:790-798',
+        doi: '10.1056/NEJMoa2204919',
+        measuredMetric: 'Adjusted hazard ratios for COVID-19 hospitalisation and death by age stratum',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nir-a4',
+        category: 'inferred',
+        title: 'Rebound was attributed to the drug before anyone measured it without the drug',
+        laymanSummary:
+          'Symptoms and viral load coming back after treatment became a widely reported problem. When the placebo arm of another trial was examined, rebound turned out to be common without any treatment at all.',
+        technicalDetails:
+          'A retrospective analysis of the 563 placebo recipients in the ACTIV-2/A5401 platform trial found symptom rebound in 26% at a median of 11 days after symptom onset, viral rebound in 31% and high-level viral rebound in 13%, with 89% of symptom rebound and 95% of viral rebound events occurring at a single time point before improving. The combination of symptom and high-level viral rebound occurred in 3%. A separate prospective cohort found viral rebound in 14.2% of 127 treated participants and 9.3% of 43 untreated controls, and symptom rebound in 18.9% against 7.0%; the untreated comparison group was small. The honest position is that rebound occurs with and without treatment, and that the drug-attributable excess has not been cleanly quantified.',
+        evidenceSource:
+          'Deo R et al., Ann Intern Med 2023;176:348-354 (NCT04518410); Pandit JA et al., Clin Infect Dis 2023;77:25-31',
+        doi: '10.7326/M22-2381',
+        inferredClaim:
+          'That symptom or viral rebound after a course of nirmatrelvir-ritonavir is caused by the drug',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'nir-a5',
+        category: 'measured',
+        title: 'Half the product is not an antiviral, and it is the half that causes the problems',
+        laymanSummary:
+          'Ritonavir contributes nothing against the virus. It is there only to stop the liver clearing nirmatrelvir, and it is the reason the drug interacts with so many medicines.',
+        technicalDetails:
+          'Nirmatrelvir is cleared by CYP3A4 fast enough that plasma concentrations fall below the antiviral threshold without a booster. Ritonavir 100 mg twice daily is co-packaged as a potent mechanism-based CYP3A4 inhibitor at a dose far below its own antiretroviral dose. The consequence is a large interaction list: statins, several antiarrhythmics, some anticoagulants, calcineurin inhibitors such as tacrolimus, and various sedatives and ergot derivatives require adjustment, suspension or are contraindicated. The interaction burden is a property of the delivery strategy rather than of the antiviral, which is a distinction worth making because remdesivir treats the same disease without it.',
+        evidenceSource:
+          'PAXLOVID (nirmatrelvir tablets and ritonavir tablets) US prescribing information, drug interactions section',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'nir-a6',
+        category: 'conclusion_shift',
+        title:
+          'The drug went from emergency authorisation to full approval while the population it treats changed underneath it',
+        laymanSummary:
+          'The approval evidence came from unvaccinated people during Delta. By the time full approval arrived, almost everyone eligible had immunity from vaccination or infection.',
+        technicalDetails:
+          'Nirmatrelvir-ritonavir received emergency use authorisation in December 2021 on EPIC-HR, which enrolled unvaccinated adults during the Delta period. Full FDA approval followed on 25 May 2023 under NDA 217188. Between those dates, EPIC-SR failed its primary endpoint in vaccinated and standard-risk adults and the Clalit cohort found benefit confined to those aged 65 and over. The label indication is restricted to adults at high risk of progression, which is the population in whom the absolute benefit survives the change in background immunity.',
+        evidenceSource:
+          'Drugs@FDA record for PAXLOVID NDA 217188, original approval 25 May 2023; Hammond J et al., N Engl J Med 2022 and 2024',
+        doi: '10.1056/NEJMoa2309003',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Two different tablets, taken together, for two different jobs',
+        laymanDesc:
+          'The pack contains the antiviral and a booster. The booster is not there to fight the virus.',
+        molecularDetail:
+          'Each dose is nirmatrelvir 300 mg plus ritonavir 100 mg, twice daily for five days, started within five days of symptom onset. Without ritonavir, nirmatrelvir plasma concentrations fall below the target trough because of rapid CYP3A4 metabolism.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Ritonavir blocks the liver enzyme that would clear the antiviral',
+        laymanDesc:
+          'The booster shuts down a liver enzyme, so the antiviral survives in the blood long enough to reach the virus.',
+        molecularDetail:
+          'Ritonavir is a mechanism-based inactivator of CYP3A4, raising nirmatrelvir exposure several-fold. The same inhibition raises exposure to every other CYP3A4 substrate the patient is taking, which is the origin of the interaction list rather than an unrelated side effect.',
+        iconName: 'Lock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Nirmatrelvir docks into the viral protease active site',
+        laymanDesc:
+          'The antiviral is shaped to fit the pocket where the virus scissors grip what they are about to cut.',
+        molecularDetail:
+          'Nirmatrelvir occupies the S1, S2 and S4 subsites of the SARS-CoV-2 main protease; the gamma-lactam mimics the glutamine that the enzyme requires at the P1 position, which is the specificity determinant with no close human counterpart.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'A nitrile warhead forms a reversible covalent bond with the catalytic cysteine',
+        laymanDesc:
+          'A reactive group on the drug bonds to the exact atom the enzyme uses to cut, and holds it.',
+        molecularDetail:
+          'The terminal nitrile reacts with the thiol of cysteine 145 to form a reversible covalent thioimidate adduct. Because the bond is reversible, potency depends on maintaining plasma concentration, which is again why the ritonavir boost is not optional.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The viral polyprotein is never cut, so no functional virus is assembled',
+        laymanDesc:
+          'The long protein ribbon stays uncut, none of the parts work, and viral replication stops.',
+        molecularDetail:
+          'Inhibition of Mpro prevents cleavage of the ORF1ab polyproteins into the non-structural proteins required for replication. In EPIC-HR this produced a 0.868 log10 lower day-5 viral load and an 89% relative reduction in hospitalisation or death in the unvaccinated high-risk population studied.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'EPIC-HR (NCT04960202)',
+        phase: 'Phase 2-3 randomised double-blind placebo-controlled',
+        sampleSize: 2246,
+        primaryEndpoint:
+          'COVID-19-related hospitalisation or death from any cause through day 28 in unvaccinated high-risk adults',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001 (relative risk reduction 89.1% in the interim analysis)',
+        unreportedAdverseSignals:
+          'The population was unvaccinated and enrolled during the Delta period, so the absolute risk in the placebo arm, 7.01%, is far higher than in a comparable population today.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'EPIC-SR (NCT05011513)',
+        phase: 'Phase 2-3 randomised double-blind placebo-controlled',
+        sampleSize: 1296,
+        primaryEndpoint:
+          'Time to sustained alleviation of all targeted COVID-19 signs and symptoms',
+        endpointMet: false,
+        statisticalPValue: 'P = 0.60 (median 12 days versus 13 days)',
+        unreportedAdverseSignals:
+          'The trial was terminated. Hospitalisation or death was 0.8% versus 1.6%, a difference whose confidence interval crossed zero.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Clalit Health Services Omicron cohort',
+        phase: 'Retrospective cohort with time-dependent covariates',
+        sampleSize: 109254,
+        primaryEndpoint: 'COVID-19 hospitalisation and death during the Omicron surge',
+        endpointMet: true,
+        statisticalPValue:
+          'Adjusted hazard ratio 0.27 (95% CI 0.15 to 0.49) for hospitalisation in those aged 65 and over; 0.74 (95% CI 0.35 to 1.58) in those aged 40 to 64',
+        unreportedAdverseSignals:
+          'Observational. Only 4% of eligible patients received the drug, so treated and untreated groups differed in ways adjustment can reduce but not remove.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ACTIV-2/A5401 placebo-arm rebound analysis (NCT04518410)',
+        phase: 'Retrospective analysis of a randomised placebo-controlled platform trial',
+        sampleSize: 563,
+        primaryEndpoint: 'Symptom and viral rebound in untreated COVID-19',
+        endpointMet: true,
+        statisticalPValue:
+          'Symptom rebound 26%, viral rebound 31%, high-level viral rebound 13%, all without any antiviral treatment',
+        unreportedAdverseSignals:
+          'Largely unvaccinated participants infected with pre-Omicron variants, so the natural-history rates may not transfer to the current population.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'COVID-19 hospitalisation or death of 0.77% against 7.01% in unvaccinated high-risk adults treated within three days, with all 13 deaths in the placebo group',
+        'Median time to sustained symptom alleviation of 12 days against 13 in vaccinated or standard-risk adults (P=0.60)',
+        'Adjusted hazard ratio 0.27 for hospitalisation in Israelis aged 65 and over during Omicron, and 0.74 with a confidence interval crossing 1 in those aged 40 to 64',
+        'Symptom rebound in 26% and viral rebound in 31% of 563 untreated placebo recipients in a separate platform trial',
+      ],
+      unsupportedInferences: [
+        'That the 89% relative risk reduction from EPIC-HR describes the benefit for a vaccinated adult under 65 — the trial designed to answer that missed its primary endpoint',
+        'That rebound is caused by the drug, when a quarter to a third of untreated patients rebound by the same definitions',
+      ],
+      whatFailedInitially: [
+        'EPIC-SR missed its primary symptom endpoint and was terminated',
+        'The Omicron-era observational cohort found no significant benefit in adults aged 40 to 64',
+      ],
+      realWorldOutcome: [
+        'The label indication is confined to adults at high risk of progression, which is where the absolute benefit survives changed background immunity',
+        'The ritonavir component, present only as a pharmacokinetic booster, is the source of an interaction burden that determines whether the drug can be given at all in many patients',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral co-packaged dose pack: nirmatrelvir tablets plus ritonavir tablets',
+      description:
+        'Three tablets twice daily for five days, taken together, started within five days of symptom onset. Separate dose packs exist for moderate renal impairment. The co-packaging is not a convenience: nirmatrelvir alone does not reach antiviral concentrations because CYP3A4 clears it too quickly, so the ritonavir tablet is a pharmacokinetic component of the dose rather than a second treatment.',
+      safetyProfile:
+        'Dysgeusia, a persistent metallic taste, occurred in 5.6% of treated participants in EPIC-HR against 0.3% on placebo, and diarrhoea in 3.1% against 1.6%. Serious adverse events were less frequent on treatment than on placebo in EPIC-HR, 1.6% against 6.6%, reflecting the illness the drug was preventing. The dominant safety issue is the ritonavir interaction profile, which requires a medication review before the first dose and dose adjustment in renal impairment.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it 89% effective?',
+        a: 'It was, in the population EPIC-HR enrolled: unvaccinated adults with risk factors, treated within three days, during the Delta wave, in whom the placebo hospitalisation-or-death rate was 7.01%. That is where the 89% comes from. In vaccinated or standard-risk adults, EPIC-SR found no significant difference in time to symptom resolution and a hospitalisation difference of 0.8 percentage points whose interval crossed zero. A relative risk reduction is only as useful as the absolute risk it is applied to.',
+        auditNote:
+          'The headline number and the population it was measured in should never be separated, and on this drug they routinely are.',
+      },
+      {
+        q: 'Does it cause rebound?',
+        a: 'Rebound after treatment is real; whether the drug causes it is not established. When the placebo arm of a different platform trial was analysed, symptom rebound occurred in 26% of untreated patients and viral rebound in 31%, mostly at a single time point before improving. A prospective cohort found viral rebound in 14.2% of treated and 9.3% of untreated participants, but the untreated group was only 43 people. The phenomenon was named after the drug before anyone measured its background rate.',
+      },
+      {
+        q: 'Why is ritonavir in the pack if it does not fight the virus?',
+        a: 'Because nirmatrelvir alone is cleared by liver CYP3A4 too fast to maintain antiviral concentrations. Ritonavir at 100 mg, well below its own antiretroviral dose, shuts that enzyme down. The unavoidable consequence is that it also slows clearance of every other CYP3A4 substrate the patient is taking, which is why the interaction list is long and why a medication review comes before the first tablet.',
+      },
+      {
+        q: 'Why does this page have no manufacturing cost?',
+        a: 'Because no published cost-of-production estimate for nirmatrelvir was verified for this record. Estimates exist for older repurposed antivirals, including US$0.28 per day for lopinavir/ritonavir, but nirmatrelvir is a new molecule and applying an unrelated figure to it would be inventing a number. The US pharmacy acquisition cost is quoted instead: US$49.23 per dose pack unit in the CMS NADAC file effective 19 August 2026.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Hammond J et al. Oral Nirmatrelvir for High-Risk, Nonhospitalized Adults with Covid-19 (EPIC-HR). N Engl J Med 2022;386:1397-1408',
+        identifier: '10.1056/NEJMoa2118542',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hammond J et al. Nirmatrelvir for Vaccinated or Unvaccinated Adult Outpatients with Covid-19 (EPIC-SR). N Engl J Med 2024;390:1186-1195',
+        identifier: '10.1056/NEJMoa2309003',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Arbel R et al. Nirmatrelvir Use and Severe Covid-19 Outcomes during the Omicron Surge. N Engl J Med 2022;387:790-798',
+        identifier: '10.1056/NEJMoa2204919',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Deo R et al. Symptom and Viral Rebound in Untreated SARS-CoV-2 Infection. Ann Intern Med 2023;176:348-354',
+        identifier: '10.7326/M22-2381',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pandit JA et al. The Coronavirus Disease 2019 Rebound Study. Clin Infect Dis 2023;77:25-31',
+        identifier: '10.1093/cid/ciad102',
+        kind: 'doi',
+      },
+      { label: 'EPIC-HR randomised trial', identifier: 'NCT04960202', kind: 'nct' },
+      { label: 'EPIC-SR randomised trial', identifier: 'NCT05011513', kind: 'nct' },
+      {
+        label: 'PAXLOVID (nirmatrelvir and ritonavir) dose pack, US prescribing information — DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a',
+        kind: 'regulatory',
+      },
+      {
+        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 155903259 — Nirmatrelvir',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/155903259',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 392622 — Ritonavir',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/392622',
+        kind: 'url',
+      },
+    ],
+  },
 ]
