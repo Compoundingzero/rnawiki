@@ -4643,5 +4643,490 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Collagen peptides — swallowed collagen is digested like any other protein, and the collagen
+  // industry's own paper concedes it lacks tryptophan. What survives that is a dipeptide, and the
+  // trials that found skin effects were largely run by the people selling it.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'collagen-peptides',
+    name: 'Collagen peptides',
+    tradeName:
+      'Sold as hydrolysed collagen, collagen hydrolysate, gelatin hydrolysate or "specific collagen peptides"; brand ingredients include Verisol, Fortigel and CH-Alpha',
+    sponsor:
+      'No single sponsor — enzymatically hydrolysed bovine, porcine or marine collagen. GELITA AG and the Collagen Research Institute GmbH are the two entities behind much of the published trial literature.',
+    targetGene: 'COL1A1',
+    targetProtein:
+      'Type I collagen, whose alpha-1 chain is COL1A1. The supplement does not deliver this protein anywhere. The only plausible pharmacological entity is the dipeptide prolyl-hydroxyproline (Pro-Hyp), which survives digestion intact, reaches plasma, and has been proposed as a signal to dermal fibroblasts and chondrocytes rather than as a building block.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for skin wrinkles, hydration and elasticity, joint pain, hair, nails and bone density. Not approved by the FDA or EMA for any of them. Gelatin itself is a pharmaceutical excipient with a long regulatory history as a capsule shell, which is a different use of the same material.',
+    patientFriendlyIndication: 'Taken for skin, joints, hair and nails',
+    conditionContext: {
+      conditionExplainer:
+        'Collagen is the structural protein that makes up most of the dry weight of skin, tendon, ligament and bone matrix. It is built inside fibroblasts from ordinary amino acids, and two of its residues — hydroxyproline and hydroxylysine — are made after the chain is assembled, by enzymes that require vitamin C. Nothing in that process reads dietary collagen as input.',
+      whyItMatters:
+        'This is the category where the naming does the persuading. "Collagen" on the tub and "collagen" in the skin are the same word for two things that never meet, because the first is dismantled in the gut. The honest scientific question is narrower and more interesting: whether the small hydroxyproline-containing peptides that do survive digestion act as signals. That question is genuinely open, and it is not the question the marketing asks.',
+      whoTakesThis:
+        'Overwhelmingly women — 95% of participants in the pooled skin-ageing trials were female. Also athletes taking gelatin for tendon and ligament, older adults for joints and bone, and a large market taking it in coffee for no defined endpoint.',
+      clinicalGoals:
+        'Trials measured instrument-assessed skin hydration, elasticity and wrinkle depth, visual analogue scores for joint pain, bone mineral density T-scores, and circulating markers of collagen synthesis, principally amino-terminal propeptide of type I collagen (P1NP).',
+    },
+    oneSentenceVerdict:
+      'Swallowed collagen is digested like any other protein and, by the admission of a paper written at a collagen manufacturer, lacks tryptophan entirely and is an incomplete protein; a pooled analysis of 19 trials in 1,125 people does find favourable skin hydration, elasticity and wrinkle results, and the mechanism that could explain it is a dipeptide signal rather than any delivery of collagen to skin.',
+    laymanHowItWorks:
+      'Collagen in a tub is animal connective tissue that has been boiled and then cut up by enzymes into short fragments. Swallowed, it meets the same digestion as steak: acid and proteases break it down to individual amino acids and very short peptides, and it is those that cross into the blood. Your body then builds its own collagen from scratch, using whichever amino acids happen to be available, in a process that needs vitamin C and does not care where the raw material came from. The only part of the story that is unusual is that a few two-and-three-letter fragments containing hydroxyproline survive intact, and there is a real hypothesis that these act as a chemical message rather than as material.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 42,
+    anatomicalSite:
+      'Dermal fibroblasts and articular chondrocytes, where any signalling effect would act; digestion and absorption in the small intestine',
+    substitutes: {
+      summary:
+        'For building collagen, the rate-limiting inputs are total protein and vitamin C, not dietary collagen. For skin appearance, topical retinoids and sun protection have vastly larger and better-replicated effects than anything in this category.',
+      conventionalRx: [
+        {
+          name: 'Topical tretinoin and other retinoids',
+          class: 'Prescription dermatological agent',
+          howItCompares:
+            'Retinoids act directly on the fibroblast, increasing procollagen I expression in skin that can be biopsied to show it. Their photoageing evidence base is decades old, replicated, and measured on the tissue itself rather than on a hydration probe.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: mechanism demonstrated in human skin biopsies, not inferred from a serum marker. Cons: irritation, photosensitivity, and prescription-only in most jurisdictions.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Any complete protein plus adequate vitamin C',
+          activeCompound: 'Glycine, proline and lysine, with ascorbate as the hydroxylase cofactor',
+          biologicalMechanism:
+            'Collagen synthesis needs glycine at every third residue, proline and lysine for the hydroxylation steps, and ascorbate to keep prolyl and lysyl hydroxylase iron in the ferrous state. All three amino acids are abundant in ordinary dietary protein, and the enzyme cofactor is the input whose absence actually stops the process — which is what scurvy is.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: Shaw et al. used 5 or 15 g of vitamin-C-enriched gelatin one hour before exercise.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Gelatin, which is the same material one processing step earlier',
+          activeCompound: 'Denatured collagen, not yet enzymatically hydrolysed',
+          biologicalMechanism:
+            'Gelatin is collagen that has been heat-denatured; hydrolysed collagen peptides are gelatin cut further by proteases. The difference is solubility in cold liquid and speed of digestion, not amino acid content. The tendon and ligament literature, including Shaw\'s work, used gelatin.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Ask who funded the skin trial',
+          action:
+            'Check the affiliations on any collagen paper. The two entities that appear most often across the positive literature are a collagen manufacturer and a research institute closely tied to one.',
+          patientImpact:
+            'The paper establishing that collagen peptides can be fitted into the diet while maintaining amino acid balance was written by authors at the Collagen Research Institute GmbH and GELITA AG. The 12-month bone mineral density trial in postmenopausal women was co-authored at the same institute.',
+          clinicalPrecaution:
+            'That does not make the results false. It does mean the independent replication question is the one to ask first, and for most endpoints in this category it has not been answered.',
+        },
+        {
+          name: 'Do not count collagen toward a protein target',
+          action:
+            'Collagen protein lacks tryptophan entirely, which by the PDCAAS method makes it an incomplete protein source.',
+          patientImpact:
+            'A person substituting collagen for whey or meat in a daily protein total is swapping a complete protein for one that cannot support protein synthesis on its own.',
+          clinicalPrecaution:
+            'The industry\'s own calculation put the ceiling at 36% of daily protein as collagen before indispensable amino acid requirements start to fail.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1[C@H](CN[C@@H]1C(=O)O)O',
+      chemicalFormula: 'C5H9NO3',
+      molecularWeight:
+        '131.13 g/mol. This is trans-4-hydroxy-L-proline, not collagen. Collagen peptides are a heterogeneous hydrolysate with no single molecule to draw. Hydroxyproline is the marker the literature tracks, because it occurs almost nowhere else in the diet and because the peptides that survive digestion intact — Pro-Hyp above all — are defined by containing it.',
+      structureSource: {
+        label: 'PubChem CID 5810 — trans-4-Hydroxy-L-proline, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5810',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'col-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Species identification, molecular weight distribution and heavy metal panel',
+          description:
+            'A collagen hydrolysate is defined by its source species and its peptide size distribution, and neither is visible on a label that says only "collagen peptides". Bovine, porcine and marine hydrolysates differ in amino acid profile and in allergen and religious-dietary implications, and mislabelling has been documented. Molecular weight distribution determines how much is free amino acid and how much is intact dipeptide, which is the entire pharmacological question.',
+          reagentsAndBuffer:
+            'Species-specific mitochondrial DNA PCR for bovine, porcine, piscine and equine markers; size-exclusion chromatography with peptide molecular weight standards from 200 Da to 20 kDa; amino acid analysis confirming hydroxyproline content and the absence of tryptophan; ICP-MS for arsenic, cadmium, mercury and lead',
+        },
+        {
+          id: 'col-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Synthesis of the Pro-Hyp and Gly-Pro-Hyp reference peptides',
+          description:
+            'The whole mechanistic claim rests on identified dipeptides and tripeptides appearing in blood. Those cannot be quantified without pure synthetic standards, and hydroxyproline-containing peptides are not commercially routine. This is the step that converts a hypothesis about signalling into a measurable plasma concentration.',
+          dependsOnStepId: 'col-w1',
+          reagentsAndBuffer:
+            'Fmoc solid-phase peptide synthesis of Pro-Hyp, Gly-Pro-Hyp, Ala-Hyp and Leu-Hyp; Fmoc-Hyp(tBu)-OH building block; trifluoroacetic acid cleavage; preparative reversed-phase HPLC purification; stable-isotope-labelled Pro-Hyp as the internal standard',
+        },
+        {
+          id: 'col-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma extraction that separates peptide-bound from free hydroxyproline',
+          description:
+            'Total plasma hydroxyproline is a meaningless number here, because most of it is free amino acid released by digestion and by ordinary bone turnover. Only the peptide-bound fraction speaks to the survival hypothesis. Iwai et al. found negligible peptide-form hydroxyproline before ingestion, which is the control that makes the post-ingestion signal interpretable.',
+          dependsOnStepId: 'col-w2',
+          reagentsAndBuffer:
+            'Immediate plasma separation with protease inhibitor cocktail; ultrafiltration through a 3 kDa cut-off membrane; solid-phase extraction on a porous graphitic carbon cartridge; parallel acid-hydrolysed aliquot for total hydroxyproline; LC-MS/MS in multiple reaction monitoring mode',
+        },
+        {
+          id: 'col-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Fibroblast and chondrocyte response to Pro-Hyp at achieved plasma concentrations',
+          description:
+            'Test the signalling hypothesis at the concentrations actually reached in blood, which Iwai measured at 20 to 60 nanomoles per millilitre of peptide-form hydroxyproline. Almost every positive in vitro collagen-peptide experiment has used far higher concentrations, and an effect at a concentration no human achieves is not a mechanism.',
+          dependsOnStepId: 'col-w3',
+          reagentsAndBuffer:
+            'Primary human dermal fibroblasts and articular chondrocytes; synthetic Pro-Hyp at 1 to 100 micromolar spanning the measured plasma range; free proline and free hydroxyproline at matched concentrations as the specificity controls; qPCR for COL1A1, COL1A2 and HAS2; P1NP in conditioned medium; engineered ligament constructs for a mechanical readout',
+        },
+        {
+          id: 'col-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Instrument skin measurement with an independent-funding declaration',
+          description:
+            'Report cutometer elasticity, corneometer hydration and profilometric wrinkle depth against a placebo, blinded, with the funding source stated at the top rather than in a footnote. The pooled skin literature is 19 trials in 1,125 participants of whom 95% were women, and the concentration of manufacturer involvement across it is the single most important thing a reader needs to know.',
+          dependsOnStepId: 'col-w4',
+          reagentsAndBuffer:
+            'Corneometer capacitance hydration measurement in a humidity- and temperature-controlled room; cutometer suction elasticity; PRIMOS or silicone-replica profilometry for wrinkle depth; identical-tasting placebo; prespecified registration and an explicit funding and conflict declaration',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'col-a1',
+        category: 'inferred',
+        title: 'The industry\'s own paper: collagen has no tryptophan and is an incomplete protein',
+        laymanSummary:
+          'A paper written by authors at a collagen manufacturer and a collagen research institute states plainly that collagen protein lacks an essential amino acid and is therefore incomplete.',
+        technicalDetails:
+          'Paul, Leser and Oesser — affiliated with the Collagen Research Institute GmbH in Kiel and GELITA AG, a collagen manufacturer — wrote that "according to the current protein quality evaluation method PDCAAS, collagen protein lacks one indispensable amino acid (tryptophan) and is therefore categorized as an incomplete protein source" and that it "displays a low indispensable amino acid profile." Their iterative PDCAAS calculation concluded that up to 36% of daily dietary protein could be replaced by collagen peptides while still meeting indispensable amino acid requirements, and that the effective doses in the literature, 2.5 to 15 g per day, fall below that ceiling. Read carefully, this is a paper establishing an upper safe substitution limit, published by the people who sell the product, and it concedes the central nutritional fact: collagen is a poor protein. Any consumer counting a collagen scoop toward a daily protein target is substituting an incomplete protein for a complete one.',
+        evidenceSource: 'Paul C, Leser S, Oesser S. Nutrients 2019;11:1079',
+        doi: '10.3390/nu11051079',
+        inferredClaim:
+          'That collagen peptides are a protein supplement comparable to whey or dairy protein, when the manufacturer-authored analysis classifies them as an incomplete protein source',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'col-a2',
+        category: 'measured',
+        title: 'Pro-Hyp really does survive digestion and reach the blood',
+        laymanSummary:
+          'The one part of the collagen story that holds up mechanically: specific two- and three-amino-acid fragments containing hydroxyproline appear intact in human blood after a dose, peaking at one to two hours.',
+        technicalDetails:
+          'Iwai and colleagues had healthy volunteers ingest 9.4 to 23 g of gelatin hydrolysate from porcine skin, chicken feet or cartilage after a 12-hour fast. Peptide-form hydroxyproline was negligible in blood before ingestion, rose significantly afterward to a maximum of 20 to 60 nanomoles per millilitre of plasma at one to two hours, and fell to half that by four hours. The major constituent identified in serum and plasma was Pro-Hyp, with smaller but significant amounts of Ala-Hyp, Ala-Hyp-Gly, Pro-Hyp-Gly, Leu-Hyp, Ile-Hyp and Phe-Hyp. This is a real, cleanly measured pharmacokinetic finding and it is the only credible foundation for any collagen mechanism. What it demonstrates is that small peptides survive, not that collagen is delivered. The step from "Pro-Hyp is in the blood at 20 to 60 nmol/mL" to "therefore skin collagen increases" is not measured anywhere in this literature.',
+        evidenceSource: 'Iwai K et al. J Agric Food Chem 2005;53:6531-6536',
+        doi: '10.1021/jf050206p',
+        measuredMetric:
+          'Plasma concentration of peptide-form hydroxyproline and identity of the surviving peptides after gelatin hydrolysate ingestion',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'col-a3',
+        category: 'measured',
+        title: 'Nineteen skin trials, 1,125 people, favourable — and 95% were women',
+        laymanSummary:
+          'Pooling nineteen randomised double-blind trials, collagen supplementation improved skin hydration, elasticity and wrinkles compared with placebo. Almost every participant was a woman.',
+        technicalDetails:
+          'De Miranda and colleagues searched Medline, Embase, Cochrane, LILACS and the Journal of Negative Results in BioMedicine, restricting inclusion to randomised, double-blind, controlled trials of oral hydrolysed collagen reporting skin wrinkles, hydration, elasticity or firmness. Nineteen studies with 1,125 participants aged 20 to 70 were included, of whom 95% were women. Grouped analysis showed favourable results for hydrolysed collagen against placebo on skin hydration, elasticity and wrinkles, and the hydration and elasticity findings were confirmed in subgroup meta-analysis. That is a genuinely positive pooled result and this page records it as such. Three qualifications belong beside it: the outcomes are instrument-measured surrogates rather than clinical endpoints, the trials are short relative to skin ageing, and the collagen trial literature is unusually concentrated among manufacturer-affiliated investigators, which the pooled analysis does not correct for.',
+        evidenceSource: 'de Miranda RB, Weimer P, Rossi RC. Int J Dermatol 2021;60:1449-1461',
+        doi: '10.1111/ijd.15518',
+        measuredMetric:
+          'Instrument-measured skin hydration, elasticity and wrinkle outcomes versus placebo across 19 randomised trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'col-a4',
+        category: 'inferred',
+        title: 'The tendon result is eight men, and the tissue tested was engineered in a dish',
+        laymanSummary:
+          'The most-cited study behind "collagen for tendons" had eight subjects. The strengthening was measured not in their tendons but in laboratory-grown ligaments soaked in their blood serum.',
+        technicalDetails:
+          'Shaw and colleagues ran a randomised, double-blinded crossover in eight healthy male subjects consuming 5 g or 15 g of vitamin-C-enriched gelatin or placebo, three times daily with at least six hours between exercise bouts, over three days, each dose followed an hour later by six minutes of rope-skipping. Circulating glycine, proline, hydroxyproline and hydroxylysine all rose, peaking one hour after the supplement. Serum drawn before and one hour after gelatin was then used to treat engineered ligaments in culture, and amino-terminal propeptide of collagen I was measured in blood at 4, 24, 48 and 72 hours after the first exercise bout. The design is elegant and the finding is interesting. It is also eight men, a three-day exposure, a surrogate blood marker of collagen synthesis, and a mechanical measurement performed on tissue constructs rather than on any human tendon. The gap between that and "collagen strengthens your tendons" is the whole of this audit.',
+        evidenceSource: 'Shaw G, Lee-Barthel A, Ross ML, Wang B, Baar K. Am J Clin Nutr 2017;105:136-143',
+        doi: '10.3945/ajcn.116.138594',
+        measuredMetric:
+          'Plasma amino acid response, serum P1NP, and mechanical properties of engineered ligaments treated with subject serum',
+        inferredClaim:
+          'That an increase in a circulating collagen-synthesis marker and a change in engineered tissue mechanics demonstrates strengthening of human tendon or ligament',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'col-a5',
+        category: 'inferred',
+        title: 'The bone trial moved a T-score by one tenth, and was co-authored at the manufacturer\'s institute',
+        laymanSummary:
+          'A twelve-month trial in postmenopausal women reported a statistically significant increase in bone density on collagen peptides. The size of the change was about a tenth of a T-score point.',
+        technicalDetails:
+          'Konig and colleagues randomised 131 postmenopausal women with age-related reduction in bone mineral density to 5 g of specific collagen peptides or placebo daily for 12 months; 102 completed and all were included in the intention-to-treat analysis (mean age 64.3 +/- 7.2 years, spine T-score -2.4 +/- 0.6, femoral neck T-score -1.4 +/- 0.5). Spine T-score changed by +0.1 +/- 0.26 on collagen peptides against -0.03 +/- 0.18 on control (ANCOVA P = 0.030) and femoral neck by +0.09 +/- 0.24 against -0.01 +/- 0.19 (P = 0.003). P1NP rose significantly in the treated group (P = 0.007). The statistics are real and the effect is at the edge of what densitometry resolves: the standard deviations exceed the mean changes, and a tenth of a T-score is well inside the precision error of most DXA scanners for repeat measurement. The corresponding author is affiliated with the Collagen Research Institute GmbH, and this is the single trial on which the bone claim rests.',
+        evidenceSource: 'Konig D, Oesser S, Scharla S, Zdzieblik D, Gollhofer A. Nutrients 2018;10:97',
+        doi: '10.3390/nu10010097',
+        measuredMetric:
+          'Change in spine and femoral neck bone mineral density T-score and in P1NP over 12 months',
+        inferredClaim:
+          'That a 0.1 T-score change, from a single manufacturer-affiliated trial, establishes collagen peptides as a bone density intervention',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'col-a6',
+        category: 'failed',
+        title: 'The joint-pain trial lost a third of its subjects before analysis',
+        laymanSummary:
+          'A widely cited 24-week study of collagen for joint pain in athletes recruited 147 people. Only 97 could be statistically evaluated.',
+        technicalDetails:
+          'Clark and colleagues at Penn State ran a prospective, randomised, placebo-controlled, double-blind study in 147 varsity and club-sport athletes with activity-related joint pain and no evidence of joint disease, comparing 25 mL of a liquid containing 10 g of collagen hydrolysate against a xanthan-containing placebo over 24 weeks, with visual analogue scales as the primary efficacy parameter. Data from only 97 of the 147 subjects could be statistically evaluated. Losing a third of a randomised sample before analysis breaks the protection randomisation provides, because the people who drop out of a study of joint pain are not a random subset of people with joint pain. A visual analogue pain score is also the outcome most responsive to expectation, in a population that knew it was in a supplement trial. The trial is cited throughout the category as establishing a joint benefit; what it establishes is that a large attrition-affected trial reported a subjective improvement.',
+        evidenceSource: 'Clark KL et al. Curr Med Res Opin 2008;24:1485-1496',
+        doi: '10.1185/030079908X291967',
+        measuredMetric:
+          'Change in visual analogue scale scores for joint pain, mobility and inflammation over 24 weeks',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'col-a7',
+        category: 'conclusion_shift',
+        title: 'The mechanism moved from building block to signal, and the marketing did not',
+        laymanSummary:
+          'The original idea was that eating collagen supplies collagen to skin. That is not what happens. The surviving scientific hypothesis is that small fragments act as chemical messages, which is a different claim with far less support.',
+        technicalDetails:
+          'Two facts closed the building-block account. First, dietary protein of any kind is hydrolysed to free amino acids and small peptides before absorption, and collagen has no exemption; the amino acids released enter the general pool and are used for whatever the body is synthesising. Second, collagen is a poor source of those amino acids in the first place, lacking tryptophan entirely, as the manufacturer-affiliated PDCAAS analysis states. What replaced it is the signalling hypothesis: Iwai\'s measured Pro-Hyp in plasma at 20 to 60 nmol/mL, acting as a ligand or a chemotactic signal to fibroblasts and chondrocytes rather than as material. That hypothesis is legitimate, is being actively tested, and is a much weaker claim than the one on the packaging. It also predicts something the marketing does not: if the active entity is a specific dipeptide, then hydrolysate composition and molecular weight distribution matter enormously and products are not interchangeable.',
+        evidenceSource:
+          'Iwai K et al. J Agric Food Chem 2005;53:6531-6536; Paul C, Leser S, Oesser S. Nutrients 2019;11:1079',
+        doi: '10.3390/nu11051079',
+        inferredClaim:
+          'That eating collagen supplies collagen to skin, joints or bone, which digestion rules out',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'It is digested exactly like any other protein',
+        laymanDesc:
+          'Stomach acid and gut enzymes take the collagen fragments apart. Nothing about being collagen protects it from this, and nothing about it addresses it to skin.',
+        molecularDetail:
+          'Pepsin, trypsin, chymotrypsin and brush-border peptidases reduce collagen hydrolysate to free amino acids and di- and tripeptides, which cross the enterocyte through PepT1 and amino acid transporters into the portal circulation. There is no tissue-addressing mechanism at any point. The released amino acids join the free pool and are used according to whatever the body is synthesising.',
+        iconName: 'Scissors',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'A few hydroxyproline fragments survive intact',
+        laymanDesc:
+          'One small class of fragments does get through whole. Pro-Hyp is the main one, and it appears in blood within an hour of a dose.',
+        molecularDetail:
+          'Iwai et al. measured peptide-form hydroxyproline rising from negligible to 20 to 60 nmol/mL of plasma at one to two hours, falling to half by four hours, with Pro-Hyp the dominant species and Ala-Hyp, Ala-Hyp-Gly, Pro-Hyp-Gly, Leu-Hyp, Ile-Hyp and Phe-Hyp also detected. The bond adjacent to hydroxyproline is relatively resistant to prolidase, which is the accepted explanation for the survival.',
+        iconName: 'ShieldCheck',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The proposed action is a message, not a material',
+        laymanDesc:
+          'The live hypothesis is that these fragments act as a signal to the cells that build collagen, telling them to get to work, rather than being used as bricks.',
+        molecularDetail:
+          'Pro-Hyp has been reported to act on dermal fibroblasts and chondrocytes as a chemotactic and proliferative stimulus. The critical unresolved question is concentration: the plasma level achieved is 20 to 60 nmol/mL peptide-form hydroxyproline, and much of the supportive in vitro work has used concentrations well above that. An effect at a concentration humans do not reach is not a mechanism.',
+        iconName: 'MessageSquare',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The fibroblast builds collagen from scratch, needing vitamin C',
+        laymanDesc:
+          'Whatever the signal, the actual construction uses ordinary amino acids and cannot proceed without vitamin C, which is what the hydroxylating enzymes require.',
+        molecularDetail:
+          'Procollagen chains are assembled from glycine, proline and lysine, then hydroxylated at proline and lysine residues by Fe(II)- and 2-oxoglutarate-dependent dioxygenases that require ascorbate to maintain the active-site iron. This is why Shaw et al. supplemented gelatin with vitamin C rather than alone, and why the deficiency that stops collagen synthesis is a vitamin C deficiency, not a collagen deficiency.',
+        iconName: 'Hammer',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The measured outcomes are surrogates',
+        laymanDesc:
+          'What the positive trials measure is skin hydration and elasticity by probe, a blood marker of collagen turnover, and pain scores — not the collagen content of anyone\'s skin.',
+        molecularDetail:
+          'The pooled skin analysis of 19 trials in 1,125 participants used corneometer hydration, cutometer elasticity and wrinkle measurement. Shaw used serum P1NP and engineered ligament mechanics. Konig used DXA T-score changes of about 0.1. No trial in this literature has biopsied human skin and shown increased collagen content after oral collagen.',
+        iconName: 'Ruler',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'de Miranda 2021 meta-analysis of hydrolysed collagen and skin ageing',
+        phase: 'Systematic review and meta-analysis of 19 randomised double-blind controlled trials',
+        sampleSize: 1125,
+        primaryEndpoint: 'Skin hydration, elasticity, firmness and wrinkles versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Favourable grouped results for hydration, elasticity and wrinkles; hydration and elasticity confirmed in subgroup meta-analysis',
+        unreportedAdverseSignals:
+          'Ninety-five percent of participants were women, so the result is effectively untested in men. Outcomes are instrument-measured surrogates over short durations, and manufacturer affiliation is not corrected for in the pooling.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Iwai 2005 — food-derived collagen peptides in human blood',
+        phase: 'Human pharmacokinetic study',
+        sampleSize: 5,
+        primaryEndpoint:
+          'Plasma peptide-form hydroxyproline and identity of surviving peptides after gelatin hydrolysate ingestion',
+        endpointMet: true,
+        statisticalPValue:
+          'Peptide-form hydroxyproline rose significantly to 20-60 nmol/mL at 1-2 h from negligible baseline',
+        unreportedAdverseSignals:
+          'A small pharmacokinetic study with no clinical endpoint. It establishes that peptides survive, not that they do anything after they do.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Shaw 2017 — vitamin C-enriched gelatin and collagen synthesis',
+        phase: 'Randomised double-blinded crossover with an in vitro tissue arm',
+        sampleSize: 8,
+        primaryEndpoint:
+          'Circulating amino acids, serum P1NP, and mechanics of engineered ligaments treated with subject serum',
+        endpointMet: true,
+        statisticalPValue:
+          'Circulating glycine, proline, hydroxyproline and hydroxylysine rose, peaking 1 h after supplementation',
+        unreportedAdverseSignals:
+          'Eight healthy men, three days of exposure, and the mechanical outcome measured on engineered constructs rather than human tendon. No human tendon or ligament was tested.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Konig 2018 — specific collagen peptides and bone mineral density',
+        phase: 'Randomised double-blind placebo-controlled',
+        sampleSize: 131,
+        primaryEndpoint: 'Change in spine and femoral neck bone mineral density T-score at 12 months',
+        endpointMet: true,
+        statisticalPValue:
+          'Spine T-score +0.1 +/- 0.26 versus -0.03 +/- 0.18 (ANCOVA P = 0.030); femoral neck +0.09 +/- 0.24 versus -0.01 +/- 0.19 (P = 0.003)',
+        unreportedAdverseSignals:
+          'Standard deviations exceed the mean changes, and a 0.1 T-score shift sits within the repeat-measurement precision error of most DXA systems. The corresponding author is affiliated with the Collagen Research Institute GmbH.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Clark 2008 — collagen hydrolysate for activity-related joint pain in athletes',
+        phase: 'Prospective randomised placebo-controlled double-blind',
+        sampleSize: 147,
+        primaryEndpoint: 'Change in visual analogue scale for joint pain over 24 weeks',
+        endpointMet: true,
+        statisticalPValue:
+          'Reported improvement in visual analogue parameters; only 97 of 147 randomised subjects could be statistically evaluated',
+        unreportedAdverseSignals:
+          'A third of the randomised sample was lost before analysis, which removes the protection randomisation provides. The primary outcome is a subjective pain scale in a population aware it was in a supplement trial.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Pro-Hyp and related hydroxyproline dipeptides survive digestion and reach plasma at 20 to 60 nmol/mL, peaking at one to two hours',
+        'Pooled across 19 randomised double-blind trials in 1,125 people, instrument-measured skin hydration, elasticity and wrinkles improved versus placebo',
+        'Vitamin-C-enriched gelatin raised circulating glycine, proline, hydroxyproline and hydroxylysine within one hour in eight men',
+        'Collagen protein lacks tryptophan and is classified as an incomplete protein source by PDCAAS, per a manufacturer-affiliated analysis',
+      ],
+      unsupportedInferences: [
+        'That swallowed collagen is delivered to skin, joints or bone as collagen — digestion rules this out',
+        'That an increase in a serum collagen-synthesis marker demonstrates stronger tendon in a person',
+        'That a 0.1 T-score change in one manufacturer-affiliated trial establishes a bone density intervention',
+        'That collagen can substitute for complete protein in a daily total',
+      ],
+      whatFailedInitially: [
+        'The building-block account of how collagen supplements work, which digestion and the amino acid profile both refute',
+        'The Clark joint-pain trial\'s randomisation, which did not survive losing a third of its subjects before analysis',
+      ],
+      realWorldOutcome: [
+        'The pooled skin evidence is positive and this page records that plainly, with its surrogate endpoints and funding concentration stated',
+        'No trial in this literature has biopsied human skin and shown increased collagen content after oral collagen',
+        'The live mechanism is a dipeptide signal, which if true means products differing in molecular weight distribution are not interchangeable',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral powder, capsule or liquid; bovine, porcine or marine hydrolysate',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. Species of origin is a real variable — it changes the amino acid profile, the allergen profile and the religious-dietary status — and is often absent from the label. Molecular weight distribution decides how much of a product is free amino acid and how much is the intact dipeptide the mechanism depends on, and is essentially never disclosed. Branded ingredients such as Verisol and Fortigel are specific hydrolysates whose trial evidence does not transfer to unbranded hydrolysate.',
+      safetyProfile:
+        'Generally well tolerated, with mild gastrointestinal complaints and an unpleasant taste the commonest reports. Marine collagen carries genuine fish allergen risk. As an animal by-product it is not vegetarian regardless of how the tub is styled. The substantive risk is nutritional rather than toxicological: collagen lacks tryptophan, so replacing complete protein with it degrades dietary protein quality, and the industry\'s own analysis puts the substitution ceiling at 36% of daily protein. Independent testing of protein powders as a category has repeatedly found arsenic, cadmium, mercury and lead.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does eating collagen put collagen in my skin?',
+        a: 'No. Collagen is a protein and is digested like every other protein: broken into free amino acids and very short peptides that enter the general amino acid pool with no address on them. Your body then makes its own collagen from scratch, using vitamin C as the essential cofactor. The claim that survives the digestion problem is a different and much narrower one — that certain small fragments act as a signal to the cells that build collagen.',
+        auditNote:
+          'That signalling hypothesis is legitimate and unproven, and it is not what the packaging says.',
+      },
+      {
+        q: 'Then why do the skin trials come out positive?',
+        a: 'They do, and this page records that plainly: nineteen randomised double-blind trials in 1,125 people, pooled, showed favourable hydration, elasticity and wrinkle results against placebo. What to hold alongside it is that these are instrument-measured surrogates rather than clinical outcomes, the trials are short compared with the process they claim to address, 95 percent of participants were women, and the field is unusually concentrated among investigators affiliated with collagen manufacturers. No trial has biopsied skin and shown more collagen in it.',
+      },
+      {
+        q: 'Can I count collagen toward my daily protein?',
+        a: 'Only partly, and the source for that is the collagen industry. A paper written by authors at GELITA AG and the Collagen Research Institute states that collagen protein lacks tryptophan and is therefore an incomplete protein source with a low indispensable amino acid profile. Their own calculation put the ceiling at about 36 percent of daily protein before amino acid requirements start to fail. Swapping a whey or meat serving for a collagen scoop is a downgrade in protein quality.',
+      },
+      {
+        q: 'What about collagen for tendons and joints?',
+        a: 'The tendon evidence is one crossover study in eight men over three days, in which the strengthening was measured on laboratory-grown ligament constructs bathed in the subjects\' serum, not on their tendons. The joint evidence is a 24-week trial in athletes that randomised 147 people and could only evaluate 97, with a subjective pain scale as the primary outcome. Both are interesting. Neither supports the confidence with which the claim is made.',
+      },
+      {
+        q: 'Is one collagen product the same as another?',
+        a: 'On the surviving mechanism, no — and this is the awkward implication nobody in the category emphasises. If the active entity is a specific dipeptide surviving digestion, then how a hydrolysate was cut, what its molecular weight distribution is, and which species it came from all matter directly. Those are the three things almost never printed on a label. The branded ingredients used in trials are specific hydrolysates, and their evidence does not transfer to a generic tub.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Iwai K et al. Identification of food-derived collagen peptides in human blood after oral ingestion of gelatin hydrolysates. J Agric Food Chem 2005;53:6531-6536',
+        identifier: '10.1021/jf050206p',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Clark KL et al. 24-week study on the use of collagen hydrolysate as a dietary supplement in athletes with activity-related joint pain. Curr Med Res Opin 2008;24:1485-1496',
+        identifier: '10.1185/030079908X291967',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Shaw G, Lee-Barthel A, Ross ML, Wang B, Baar K. Vitamin C-enriched gelatin supplementation before intermittent activity augments collagen synthesis. Am J Clin Nutr 2017;105:136-143',
+        identifier: '10.3945/ajcn.116.138594',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Konig D, Oesser S, Scharla S, Zdzieblik D, Gollhofer A. Specific collagen peptides improve bone mineral density and bone markers in postmenopausal women — a randomized controlled study. Nutrients 2018;10:97',
+        identifier: '10.3390/nu10010097',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Paul C, Leser S, Oesser S. Significant amounts of functional collagen peptides can be incorporated in the diet while maintaining indispensable amino acid balance. Nutrients 2019;11:1079',
+        identifier: '10.3390/nu11051079',
+        kind: 'doi',
+      },
+      {
+        label:
+          'de Miranda RB, Weimer P, Rossi RC. Effects of hydrolyzed collagen supplementation on skin aging: a systematic review and meta-analysis. Int J Dermatol 2021;60:1449-1461',
+        identifier: '10.1111/ijd.15518',
+        kind: 'doi',
+      },
+      {
+        label:
+          'PubChem CID 5810 — trans-4-Hydroxy-L-proline, the marker residue tracked in the collagen literature',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5810',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
