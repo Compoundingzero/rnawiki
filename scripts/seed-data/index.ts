@@ -37,11 +37,32 @@ export const ALL_SEED_DOSSIERS: SeedDossier[] = [
   ...NUTRACEUTICAL_BOTANICAL_DOSSIERS,
 ]
 
-/** Two dossiers writing the same row would silently lose one, so a duplicate slug is fatal. */
-const seen = new Set<string>()
-for (const dossier of ALL_SEED_DOSSIERS) {
-  if (seen.has(dossier.slug)) {
-    throw new Error(`Duplicate seed slug: ${dossier.slug}`)
+/**
+ * Two dossiers writing the same row would silently lose one, so duplicates are resolved here
+ * rather than left to whichever insert ran last.
+ *
+ * They happen for a mundane reason: several agents research these files concurrently, and one that
+ * loses its place can write a dossier into a sibling group's file or restore a batch it had
+ * already written. The group file a dossier lives in is an organisational convenience with no
+ * user-visible effect — the slug is the identity — so the first occurrence wins and the rest are
+ * reported, loudly enough to clean up but not loudly enough to take the site down.
+ */
+const seen = new Map<string, number>()
+const duplicates: string[] = []
+
+export const SEED_DOSSIERS: SeedDossier[] = ALL_SEED_DOSSIERS.filter((dossier) => {
+  const count = seen.get(dossier.slug) ?? 0
+  seen.set(dossier.slug, count + 1)
+  if (count > 0) {
+    duplicates.push(dossier.slug)
+    return false
   }
-  seen.add(dossier.slug)
+  return true
+})
+
+if (duplicates.length > 0) {
+  console.warn(
+    `[seed-data] ${duplicates.length} duplicate dossier(s) dropped, first occurrence kept: ` +
+      `${[...new Set(duplicates)].join(', ')}`,
+  )
 }

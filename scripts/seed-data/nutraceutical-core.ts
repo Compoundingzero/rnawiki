@@ -5128,5 +5128,414 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Psyllium husk — one of the few supplements with an authorised FDA health claim written into
+  // the Code of Federal Regulations, a measured LDL reduction, and a conflict worth naming: much
+  // of the pooled evidence was assembled by scientists at the company that sells Metamucil.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'psyllium-husk',
+    name: 'Psyllium husk',
+    tradeName: 'Sold as ispaghula husk; the dominant branded product is Metamucil',
+    sponsor:
+      'No single sponsor — the milled seed coat of Plantago ovata, grown mainly in India. Procter & Gamble holds the largest branded position and has generated a substantial share of the clinical literature.',
+    targetGene: 'CYP7A1',
+    targetProtein:
+      'Cholesterol 7-alpha-hydroxylase (CYP7A1), the rate-limiting enzyme of bile acid synthesis. Psyllium has no molecular target in the usual sense: it is a physical intervention. By trapping bile acids in a gel and carrying them out in stool, it forces hepatic bile acid synthesis, which consumes cholesterol and upregulates LDL receptors.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a bulk-forming laxative and a cholesterol-lowering fibre. Uniquely in this file, the FDA has authorised a health claim for it: 21 CFR 101.81 permits foods supplying 7 g or more per day of soluble fibre from psyllium seed husk to claim, within a low-saturated-fat diet, a reduced risk of coronary heart disease. It is also an OTC monograph bulk laxative.',
+    patientFriendlyIndication:
+      'Taken for constipation and regularity, and to lower cholesterol',
+    conditionContext: {
+      conditionExplainer:
+        'Fibre is not one thing. What matters clinically is whether a fibre forms a viscous gel in the small intestine and whether bacteria in the colon ferment it. Psyllium is unusual on both counts: it is highly gel-forming and it is almost entirely unfermented, so the gel it makes survives all the way through and is still holding water when it arrives.',
+      whyItMatters:
+        'This is one of the very few entries in this file where a regulator examined the evidence and wrote a permitted claim into federal regulation. The effects are physical, measurable, and dose-defined. The audit here is not whether it works but who generated the evidence, and how much of the fibre aisle borrows psyllium\'s credibility for fibres that behave completely differently.',
+      whoTakesThis:
+        'People with chronic constipation, people with irritable bowel syndrome, people with raised LDL cholesterol who want a non-drug option, people with type 2 diabetes, and a large number of people simply trying to eat more fibre.',
+      clinicalGoals:
+        'Trials measured LDL and non-HDL cholesterol and apolipoprotein B in mmol/L, stool water content and total stool output in grams, bowel movements per week, fasting blood glucose and HbA1c, and the proportion of IBS patients remaining symptomatic.',
+    },
+    oneSentenceVerdict:
+      'Psyllium lowers LDL cholesterol by about 0.33 mmol/L across 28 randomised trials, softens stool and increases output more than docusate did head-to-head, and holds an authorised FDA heart-disease health claim at 7 g/day of soluble fibre — with the caveats that much of the pooled evidence was assembled by scientists at the company selling the leading brand, and that its glycaemic effect is zero in people whose glucose is already normal.',
+    laymanHowItWorks:
+      'Psyllium husk is a seed coat that absorbs many times its weight in water and turns into a thick gel. That gel does three physical things. In the small intestine it traps bile acids, which the body normally recycles, so they leave in the stool and the liver has to make more — and making bile acids consumes cholesterol, which is why LDL falls. The gel also slows how quickly sugar from a meal reaches the bloodstream. And because psyllium is barely eaten by gut bacteria, the gel is still intact in the colon, where its trapped water softens hard stool and firms loose stool. No receptor, no enzyme, no absorption into the body at all.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 79,
+    anatomicalSite:
+      'Lumen of the small intestine, where the gel forms and binds bile acids, and the colon, where the retained water changes stool form. It is not absorbed.',
+    substitutes: {
+      summary:
+        'For LDL, statins reduce it several times more than psyllium and have hard outcome trials behind them; psyllium is an adjunct, and the FDA claim is written that way. For constipation, psyllium beat docusate sodium head-to-head. For fibre in general, the important comparison is with the fibres that do not do these things.',
+      conventionalRx: [
+        {
+          name: 'Statins',
+          class: 'HMG-CoA reductase inhibitors',
+          howItCompares:
+            'Statins reduce LDL by a far larger margin and are supported by cardiovascular outcome trials with hard endpoints. Psyllium\'s pooled LDL reduction is 0.33 mmol/L, and its authorised claim is explicitly conditional on a diet low in saturated fat and cholesterol.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros of psyllium: no systemic absorption and a genuine additive effect on top of diet. Cons: the effect size is a fraction of a drug\'s, and no trial has tested psyllium against a cardiovascular endpoint.',
+        },
+        {
+          name: 'Docusate sodium, the head-to-head comparator',
+          class: 'Stool softener, OTC',
+          howItCompares:
+            'Directly compared in 170 patients with chronic idiopathic constipation. Psyllium increased stool water content by 2.33% against docusate\'s 0.01% (P = 0.007), stool water weight 84.0 against 71.4 g per bowel movement (P = 0.04), total weekly stool output 359.9 against 271.9 g (P = 0.005), and bowel movements 3.5 against 2.9 per week in week two (P = 0.02).',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: this is a rare case of a supplement beating an over-the-counter drug in a randomised double-blind head-to-head. Cons: docusate is itself weakly evidenced, so the comparator was not a high bar.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Oats and barley, the other regulated gel-forming fibre',
+          activeCompound: 'Beta-glucan',
+          biologicalMechanism:
+            'Beta-glucan forms a viscous gel by the same physics and appears in the same federal regulation: 21 CFR 101.81 authorises the heart disease claim at 3 g or more per day of beta-glucan from whole oats or barley, alongside 7 g or more per day of psyllium soluble fibre. Two fibres, one mechanism, one regulation.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. The regulation itself specifies the daily amounts associated with reduced coronary heart disease risk.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Wheat bran, as the fibre that does not do this',
+          activeCompound: 'Insoluble, non-viscous, non-gelling fibre',
+          biologicalMechanism:
+            'Coarse insoluble particles produce a laxative effect by mechanically irritating the gut mucosa and stimulating water and mucus secretion — a completely different mechanism from a water-holding gel. In the IBS meta-analysis, bran showed no significant benefit (RR 0.90, 95% CI 0.79 to 1.03) while soluble fibre did.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Do not generalise psyllium results to "fibre"',
+          action:
+            'Check whether a fibre is viscous and gel-forming, and whether it is fermented. Those two properties decide almost everything.',
+          patientImpact:
+            'McRorie and McKeown state that high-viscosity gel-forming fibres such as beta-glucan, psyllium and raw guar gum lower cholesterol and improve glycaemic control, whereas non-viscous soluble fibres such as inulin, fructooligosaccharides and wheat dextrin do not.',
+          clinicalPrecaution:
+            'Marketing routinely transfers psyllium\'s regulated claims to fibres that share the word "soluble" and none of the physics.',
+        },
+        {
+          name: 'Take it with enough liquid, for a regulated reason',
+          action:
+            'Psyllium swells on contact with water. The federal regulation authorising its health claim explicitly requires that the label and labelling of foods containing psyllium husk be consistent with 21 CFR 101.17(f), the warning provision for these products.',
+          patientImpact:
+            'Dry or incompletely hydrated psyllium can swell in the throat or oesophagus and obstruct it. This is the reason the labelling requirement exists.',
+          clinicalPrecaution:
+            'Psyllium also delays gastric emptying, so medicines taken at the same time may be absorbed more slowly. Anyone with a known bowel stricture or obstruction should not take a bulk-forming agent.',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'psy-a1',
+        category: 'measured',
+        title: 'A federal regulation authorises the claim, at a stated dose',
+        laymanSummary:
+          'Almost uniquely for a supplement, the FDA examined the evidence and wrote into federal regulation that psyllium at seven grams of soluble fibre a day can carry a heart disease claim.',
+        technicalDetails:
+          '21 CFR 101.81 governs health claims relating soluble fibre from certain foods to a reduced risk of coronary heart disease. It lists the daily dietary intakes of eligible soluble fibre sources associated with reduced risk: 3 g or more per day of beta-glucan soluble fibre from whole oats or barley, and 7 g or more per day of soluble fibre from psyllium seed husk. The regulation also states that "the label and labeling of foods containing psyllium husk shall be consistent with the provisions of § 101.17(f)," the warning provision covering these products, and requires all conditions of 21 CFR 101.14 to be met. Two features of the claim matter for any reader. First, it is conditional on a diet low in saturated fat and cholesterol — the claim is for an adjunct, not a standalone. Second, it is a risk-reduction claim built on the LDL surrogate; no randomised trial has tested psyllium against cardiovascular events.',
+        evidenceSource:
+          '21 CFR 101.81 — Health claims: soluble fiber from certain foods and risk of coronary heart disease',
+        measuredMetric:
+          'The daily intake of psyllium soluble fibre the FDA associates with reduced coronary heart disease risk',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psy-a2',
+        category: 'measured',
+        title: 'LDL down 0.33 mmol/L across 28 randomised trials',
+        laymanSummary:
+          'Pooling 28 randomised trials in 1,924 people, about ten grams of psyllium a day lowered LDL cholesterol, non-HDL cholesterol and apolipoprotein B.',
+        technicalDetails:
+          'Jovanovski and colleagues searched Medline, EMBASE, CINAHL and CENTRAL through October 2017 for randomised controlled trials of at least three weeks assessing psyllium and blood lipids, in people with or without hypercholesterolaemia. Twenty-eight trials with 1,924 participants were included. A median dose of about 10.2 g psyllium per day significantly reduced LDL cholesterol by 0.33 mmol/L (95% CI -0.38 to -0.27, P < 0.00001) and non-HDL cholesterol by 0.39 mmol/L (95% CI -0.50 to -0.27, P < 0.00001), with apolipoprotein B also reduced. The earlier Anderson meta-analysis of 8 controlled trials, in 384 psyllium and 272 cellulose-placebo subjects all taking 10.2 g/day for at least 8 weeks on top of at least 8 weeks of low-fat diet lead-in, found total cholesterol down 4% (P < 0.0001), LDL down 7% (P < 0.0001) and the apoB to apoA-I ratio down 6% (P < 0.05), with no effect on HDL or triglycerides. The two analyses, eighteen years apart, agree closely, which is more than can be said for most of this file.',
+        evidenceSource:
+          'Jovanovski E et al. Am J Clin Nutr 2018;108:922-932; Anderson JW et al. Am J Clin Nutr 2000;71:472-479',
+        doi: '10.1093/ajcn/nqy115',
+        measuredMetric:
+          'Mean difference in LDL cholesterol, non-HDL cholesterol and apolipoprotein B versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psy-a3',
+        category: 'measured',
+        title: 'It beat docusate sodium head-to-head on every objective stool measure',
+        laymanSummary:
+          'In 170 people with chronic constipation, psyllium outperformed a standard over-the-counter stool softener on stool water content, stool weight, total output and bowel movement frequency.',
+        technicalDetails:
+          'A multi-site, randomised, double-blind, parallel-design trial in 170 subjects with chronic idiopathic constipation ran a two-week placebo baseline then two weeks comparing psyllium 5.1 g twice daily plus docusate placebo against docusate sodium 100 mg twice daily plus psyllium placebo, with stools collected and assessed. Against baseline, psyllium increased stool water content by 2.33% versus 0.01% for docusate (P = 0.007), stool water weight to 84.0 against 71.4 g per bowel movement (P = 0.04), total stool output to 359.9 against 271.9 g per week (P = 0.005), and the O\'Brien rank-type composite score to 475.1 against 403.9 (P = 0.002). Bowel movement frequency was significantly greater on psyllium in treatment week two (3.5 versus 2.9 per week, P = 0.02) but not in week one (3.3 versus 3.1, P > 0.05). These are objective, collected, weighed measurements rather than symptom questionnaires, which is unusual and is what makes the result credible.',
+        evidenceSource: 'McRorie JW et al. Aliment Pharmacol Ther 1998;12:491-497',
+        doi: '10.1046/j.1365-2036.1998.00336.x',
+        measuredMetric:
+          'Stool water content and weight, total stool output, and bowel movements per week',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psy-a4',
+        category: 'inferred',
+        title: 'The glycaemic benefit is proportional to how bad the glucose control already is',
+        laymanSummary:
+          'Psyllium improved blood sugar substantially in people with type 2 diabetes, modestly in people at risk, and not at all in people whose glucose was already normal.',
+        technicalDetails:
+          'Gibb and colleagues identified 35 randomised controlled studies spanning three decades and three continents, assessed in 8 meta-analyses. In patients with type 2 diabetes, multi-week studies with psyllium dosed before meals showed fasting blood glucose down 37.0 mg/dL (P < 0.001) and HbA1c down 0.97 percentage points, or 10.6 mmol/mol (P = 0.048). The effect was proportional to baseline fasting glucose: no significant glucose lowering in euglycaemic subjects, modest improvement in pre-diabetes, greatest improvement in treated type 2 diabetes. That gradient is the finding, and it is the same repletion-shaped pattern that runs through this whole file — the intervention does most where the deficit is largest and nothing where there is no deficit. The conflict belongs on the record: the search covered "clinical records stored by Procter & Gamble", the manufacturer of the leading psyllium brand, alongside the published literature, and the authors are associated with that company. An HbA1c reduction of nearly a full percentage point is close to what some glucose-lowering drugs achieve, which makes the provenance of the pooled dataset something a reader should weigh.',
+        evidenceSource: 'Gibb RD, McRorie JW, Russell DA, Hasselblad V, D\'Alessio DA. Am J Clin Nutr 2015;102:1604-1614',
+        doi: '10.3945/ajcn.115.106989',
+        measuredMetric: 'Change in fasting blood glucose and glycated haemoglobin, stratified by baseline glycaemic status',
+        inferredClaim:
+          'That psyllium is a general glycaemic-control supplement, when the effect is zero in people with normal glucose and the pooled dataset includes unpublished manufacturer records',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'psy-a5',
+        category: 'measured',
+        title: 'IBS: soluble fibre worked, bran did not, and the difference is the point',
+        laymanSummary:
+          'Across fourteen randomised trials in irritable bowel syndrome, soluble fibre helped and wheat bran did not. Roughly one in seven people benefited from soluble fibre.',
+        technicalDetails:
+          'Moayyedi and colleagues searched MEDLINE, EMBASE and the Cochrane Controlled Trials Register to December 2013 for trials comparing fibre supplements against placebo, control therapy or usual management in adults with irritable bowel syndrome. Fourteen randomised trials in 906 patients were identified. Overall there was a significant benefit of fibre (relative risk of remaining symptomatic 0.86, 95% CI 0.80 to 0.94; number needed to treat 10, 95% CI 6 to 33), with no significant heterogeneity (I-squared 0%, Cochran Q 13.85 with 14 degrees of freedom, P = 0.46). The benefit was confined to soluble fibre (RR 0.83, 95% CI 0.73 to 0.94; NNT 7, 95% CI 4 to 25), with no effect from bran (RR 0.90, 95% CI 0.79 to 1.03). The authors found no evidence of harm from bran but also no benefit. The clean separation between two things both called fibre, in the same analysis, is the strongest single argument against treating fibre as a category.',
+        evidenceSource: 'Moayyedi P et al. Am J Gastroenterol 2014;109:1367-1374',
+        doi: '10.1038/ajg.2014.195',
+        measuredMetric:
+          'Relative risk of remaining symptomatic after fibre therapy, and number needed to treat',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'psy-a6',
+        category: 'conclusion_shift',
+        title: 'The field stopped talking about soluble versus insoluble, and started talking about viscosity',
+        laymanSummary:
+          'Fibre was long divided into soluble and insoluble as though that predicted its effects. It does not. What predicts them is whether the fibre forms a thick gel and whether bacteria eat it.',
+        technicalDetails:
+          'McRorie and McKeown set out the reclassification directly. Clinically meaningful small-bowel benefits — cholesterol lowering and improved glycaemic control — are highly correlated with viscosity: high-viscosity gel-forming fibres such as beta-glucan, psyllium and raw guar gum produce them, while non-viscous soluble fibres such as inulin, fructooligosaccharides and wheat dextrin do not. In the large bowel only two mechanisms drive a laxative effect: coarse insoluble particles mechanically irritating the mucosa and stimulating water and mucus secretion, and the high water-holding capacity of a gel-forming soluble fibre. Psyllium sits in the second group and is additionally almost entirely unfermented, so its gel is still holding water when it reaches the colon — a fermentable gel-former loses its water-holding capacity to the bacteria before it gets there. This reframing explains why "add more fibre" produces such inconsistent clinical results, and why psyllium\'s evidence does not transfer to most of the fibre aisle.',
+        evidenceSource: 'McRorie JW, McKeown NM. J Acad Nutr Diet 2017;117:251-264',
+        doi: '10.1016/j.jand.2016.09.021',
+        inferredClaim:
+          'That "soluble fibre" is a functional category whose members share clinical effects',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'It absorbs water and becomes a gel, and that is the entire pharmacology',
+        laymanDesc:
+          'Psyllium husk holds many times its weight in water. There is no receptor and nothing enters the bloodstream — every effect it has comes from the physical properties of that gel.',
+        molecularDetail:
+          'The active fraction is a highly branched arabinoxylan in the seed coat, which hydrates into a viscous gel. Viscosity, not solubility, is the property that predicts clinical effect: McRorie and McKeown group psyllium with beta-glucan and raw guar gum as high-viscosity gel formers, and separate them from non-viscous soluble fibres such as inulin and fructooligosaccharides that do not produce the same benefits.',
+        iconName: 'Droplets',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The gel traps bile acids so the liver has to make more',
+        laymanDesc:
+          'Bile acids are normally reabsorbed and reused. Trapped in the gel, they leave the body instead, and the liver must build replacements out of cholesterol.',
+        molecularDetail:
+          'Sequestration of bile acids in the ileal lumen interrupts enterohepatic circulation, increasing faecal bile acid loss. The hepatocyte compensates by upregulating CYP7A1, the rate-limiting 7-alpha-hydroxylase of bile acid synthesis, which consumes hepatic cholesterol and drives compensatory upregulation of the LDL receptor. Serum LDL falls as a consequence — the same mechanistic route as a bile acid sequestrant drug, achieved physically.',
+        iconName: 'Recycle',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'It slows how fast a meal reaches the bloodstream',
+        laymanDesc:
+          'The gel makes the contents of the small intestine thicker, so sugars diffuse to the gut wall more slowly and the post-meal glucose rise is blunted.',
+        molecularDetail:
+          'Increased luminal viscosity slows gastric emptying and impedes convective mixing and diffusion of glucose to the absorptive surface. Gibb et al. measured the clinical consequence and its dependence on starting point: fasting glucose down 37.0 mg/dL and HbA1c down 0.97 percentage points in treated type 2 diabetes, with no significant lowering in euglycaemic subjects.',
+        iconName: 'Gauge',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Bacteria barely touch it, which is why the gel survives to the colon',
+        laymanDesc:
+          'Most fermentable fibres are consumed by gut bacteria before they get far. Psyllium is not, so it arrives in the colon still holding its water.',
+        molecularDetail:
+          'Psyllium is a non-fermented or minimally fermented gel-forming fibre. A fermentable gel former loses its water-holding capacity to bacterial metabolism in the proximal colon and cannot deliver a laxative effect there. Non-fermentability is therefore not a limitation of psyllium but the precondition of its stool effect, and it is also why psyllium produces far less gas than fermentable prebiotic fibres.',
+        iconName: 'ShieldCheck',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 5,
+        title: 'In the colon the trapped water normalises stool in both directions',
+        laymanDesc:
+          'The same gel softens hard stool by adding water to it and firms loose stool by holding water inside itself. One mechanism, two opposite-looking results.',
+        molecularDetail:
+          'McRorie et al. measured stool water content rising 2.33% on psyllium against 0.01% on docusate, stool water weight 84.0 versus 71.4 g per bowel movement and total output 359.9 versus 271.9 g per week. The bidirectional normalising effect follows from the gel being a water reservoir that neither dissolves nor is fermented away.',
+        iconName: 'Scale',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Jovanovski 2018 meta-analysis of psyllium and blood lipids',
+        phase: 'Systematic review and meta-analysis of 28 randomised controlled trials',
+        sampleSize: 1924,
+        primaryEndpoint: 'Change in LDL cholesterol, non-HDL cholesterol and apolipoprotein B',
+        endpointMet: true,
+        statisticalPValue:
+          'LDL -0.33 mmol/L (95% CI -0.38 to -0.27), P < 0.00001; non-HDL -0.39 mmol/L (95% CI -0.50 to -0.27), P < 0.00001',
+        unreportedAdverseSignals:
+          'All lipid endpoints are surrogates. No randomised trial has tested psyllium against cardiovascular events, and the authorised FDA claim rests on the same surrogate.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Anderson 2000 meta-analysis of psyllium adjunctive to a low-fat diet',
+        phase: 'Meta-analysis of 8 controlled trials',
+        sampleSize: 656,
+        primaryEndpoint: 'Change in total and LDL cholesterol on 10.2 g/day psyllium versus cellulose placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Total cholesterol -4% (P < 0.0001); LDL -7% (P < 0.0001); apoB:apoA-I ratio -6% (P < 0.05); no effect on HDL or triglycerides',
+        unreportedAdverseSignals:
+          'All subjects completed an 8-week low-fat diet lead-in first, so the effect measured is strictly additive to diet and is not a standalone result.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'McRorie 1998 — psyllium versus docusate sodium in chronic constipation',
+        phase: 'Multi-site randomised double-blind parallel-design',
+        sampleSize: 170,
+        primaryEndpoint: 'Stool water content and laxative efficacy over two weeks of treatment',
+        endpointMet: true,
+        statisticalPValue:
+          'Stool water content +2.33% versus +0.01% (P = 0.007); total output 359.9 versus 271.9 g/week (P = 0.005); bowel movements 3.5 versus 2.9 per week in week 2 (P = 0.02)',
+        unreportedAdverseSignals:
+          'Bowel movement frequency did not differ in treatment week one. Docusate is itself a weakly evidenced comparator, so this is a win against a low bar.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Gibb 2015 meta-analyses of psyllium and glycaemic control',
+        phase: 'Eight meta-analyses across 35 randomised controlled studies',
+        sampleSize: 35,
+        primaryEndpoint: 'Change in fasting blood glucose and HbA1c by baseline glycaemic status',
+        endpointMet: true,
+        statisticalPValue:
+          'In type 2 diabetes: fasting glucose -37.0 mg/dL (P < 0.001); HbA1c -0.97 percentage points, -10.6 mmol/mol (P = 0.048)',
+        unreportedAdverseSignals:
+          'No significant glucose lowering in euglycaemic subjects. The search included unpublished clinical records held by Procter & Gamble, the manufacturer of the leading psyllium brand. Sample size here counts studies, not participants.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Moayyedi 2014 meta-analysis of fibre supplementation in irritable bowel syndrome',
+        phase: 'Systematic review and meta-analysis of 14 randomised controlled trials',
+        sampleSize: 906,
+        primaryEndpoint: 'Relative risk of remaining symptomatic after fibre therapy',
+        endpointMet: true,
+        statisticalPValue:
+          'All fibre RR 0.86 (95% CI 0.80 to 0.94), NNT 10; soluble fibre RR 0.83 (95% CI 0.73 to 0.94), NNT 7; bran RR 0.90 (95% CI 0.79 to 1.03), not significant',
+        unreportedAdverseSignals:
+          'Bran showed no benefit but also no evidence of harm. The soluble-fibre trials pooled several different fibres, so the estimate is not psyllium-specific.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'LDL cholesterol fell 0.33 mmol/L and non-HDL 0.39 mmol/L across 28 randomised trials in 1,924 people',
+        'Psyllium beat docusate sodium on stool water content, stool weight, total output and week-two bowel frequency',
+        'Soluble fibre reduced the risk of remaining symptomatic in IBS with a number needed to treat of 7; bran did not',
+        'In treated type 2 diabetes, fasting glucose fell 37 mg/dL and HbA1c 0.97 percentage points; in euglycaemic subjects, nothing',
+        'The FDA authorised a coronary heart disease risk-reduction claim at 7 g/day of psyllium soluble fibre in 21 CFR 101.81',
+      ],
+      unsupportedInferences: [
+        'That psyllium reduces cardiovascular events, which no trial has tested — the claim rests on the LDL surrogate',
+        'That psyllium evidence transfers to fibre generally, when bran failed in the same IBS analysis and non-viscous soluble fibres fail on lipids and glucose',
+        'That it improves blood sugar in people whose blood sugar is normal, which the pooled data specifically rules out',
+      ],
+      whatFailedInitially: [
+        'The soluble-versus-insoluble classification of dietary fibre, replaced by viscosity and fermentability as the properties that predict effect',
+        'Bran for irritable bowel syndrome, which produced no benefit across its trials in the pooled analysis',
+      ],
+      realWorldOutcome: [
+        'This is one of the few entries in this file with an authorised federal health claim naming a dose, and it earned it',
+        'The effects are physical, dose-defined and reproduced across two meta-analyses eighteen years apart',
+        'A substantial share of the evidence base was generated or assembled by the manufacturer of the leading brand, which is worth knowing without being disqualifying',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral powder, granules, wafer or capsule; not absorbed at any point',
+      description:
+        'Sold in the United States both as a dietary supplement and as an OTC bulk-forming laxative, and uniquely among the entries in this file it carries an FDA-authorised health claim written into 21 CFR 101.81. That regulation requires labelling consistent with 21 CFR 101.17(f), the warning provision for these products, and requires all general health claim conditions of 21 CFR 101.14. Capsules deliver far less psyllium per unit than powder, so reaching the dose used in the lipid trials by capsule requires a large number of them. Product husk purity and particle size affect gel formation and are not standardised across brands.',
+      safetyProfile:
+        'Bloating and flatulence, generally less than with fermentable fibres because psyllium is minimally fermented. The specific serious hazard is physical: psyllium swells on contact with liquid, and dry or incompletely hydrated product can obstruct the throat or oesophagus, which is why federal labelling rules apply. It is contraindicated in known bowel obstruction or stricture. Delayed gastric emptying can slow the absorption of medicines taken at the same time. Occupational and, more rarely, ingestion-related IgE-mediated allergy to Plantago ovata is documented, particularly among people handling the powder.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does psyllium really lower cholesterol?',
+        a: 'Yes, and it is one of the few claims in this file a regulator has examined and written into law. Across 28 randomised trials in 1,924 people, about 10 g a day reduced LDL cholesterol by 0.33 mmol/L and non-HDL by 0.39 mmol/L, and an earlier meta-analysis of 8 trials found LDL down 7 percent on top of a low-fat diet. The FDA authorises a coronary heart disease risk-reduction claim at 7 g of psyllium soluble fibre per day. The honest limits: this is a fraction of what a statin does, and no trial has tested psyllium against actual heart attacks.',
+      },
+      {
+        q: 'Is any fibre as good as psyllium?',
+        a: 'Beta-glucan from oats and barley is, and the same federal regulation says so — it authorises the identical claim at 3 g a day of beta-glucan. Beyond those two, the answer is mostly no, and the reason is physics rather than chemistry. What predicts a fibre\'s effect is whether it forms a viscous gel and whether bacteria ferment it. Inulin, fructooligosaccharides and wheat dextrin are soluble and non-viscous and do not lower cholesterol or improve glycaemic control. Wheat bran showed no benefit in irritable bowel syndrome while soluble fibre did.',
+      },
+      {
+        q: 'How can the same thing treat both constipation and diarrhoea?',
+        a: 'Because it is a water reservoir rather than a drug. The gel adds water to hard stool and holds water inside itself when stool is loose, so it moves stool form toward the middle from either direction. This only works because psyllium is barely fermented — a gel-forming fibre that gut bacteria eat loses its water-holding capacity before it reaches the colon and cannot do either job.',
+      },
+      {
+        q: 'Will it help my blood sugar?',
+        a: 'That depends entirely on where your blood sugar starts. In pooled data from 35 studies, people being treated for type 2 diabetes saw fasting glucose fall by 37 mg/dL and HbA1c by nearly a full percentage point. People at risk saw a modest improvement. People with normal glucose saw no significant lowering at all. Worth knowing about that analysis: the dataset included unpublished clinical records held by Procter & Gamble, which sells the leading psyllium brand.',
+        auditNote:
+          'The gradient — biggest effect where the deficit is biggest, nothing where there is none — is the recurring pattern across this whole file.',
+      },
+      {
+        q: 'Is there any real danger?',
+        a: 'One, and it is mechanical rather than toxicological. Psyllium swells immediately on contact with liquid, and taken dry or with too little fluid it can lodge and obstruct the throat or oesophagus. That is why the federal regulation authorising its health claim also requires the labelling to comply with the warning provision at 21 CFR 101.17(f). Anyone with a known bowel narrowing or obstruction should not take a bulk-forming agent, and medicines taken at the same time may be absorbed more slowly.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label:
+          'McRorie JW et al. Psyllium is superior to docusate sodium for treatment of chronic constipation. Aliment Pharmacol Ther 1998;12:491-497',
+        identifier: '10.1046/j.1365-2036.1998.00336.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Anderson JW et al. Cholesterol-lowering effects of psyllium intake adjunctive to diet therapy in men and women with hypercholesterolemia: meta-analysis of 8 controlled trials. Am J Clin Nutr 2000;71:472-479',
+        identifier: '10.1093/ajcn/71.2.472',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Moayyedi P et al. The effect of fiber supplementation on irritable bowel syndrome: a systematic review and meta-analysis. Am J Gastroenterol 2014;109:1367-1374',
+        identifier: '10.1038/ajg.2014.195',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gibb RD, McRorie JW, Russell DA, Hasselblad V, D\'Alessio DA. Psyllium fiber improves glycemic control proportional to loss of glycemic control: a meta-analysis. Am J Clin Nutr 2015;102:1604-1614',
+        identifier: '10.3945/ajcn.115.106989',
+        kind: 'doi',
+      },
+      {
+        label:
+          'McRorie JW, McKeown NM. Understanding the physics of functional fibers in the gastrointestinal tract: an evidence-based approach to resolving enduring misconceptions about insoluble and soluble fiber. J Acad Nutr Diet 2017;117:251-264',
+        identifier: '10.1016/j.jand.2016.09.021',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jovanovski E et al. Effect of psyllium (Plantago ovata) fiber on LDL cholesterol and alternative lipid targets, non-HDL cholesterol and apolipoprotein B: a systematic review and meta-analysis of randomized controlled trials. Am J Clin Nutr 2018;108:922-932',
+        identifier: '10.1093/ajcn/nqy115',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 101.81 — Health claims: soluble fiber from certain foods and risk of coronary heart disease',
+        identifier:
+          'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-101/subpart-E/section-101.81',
+        kind: 'regulatory',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]

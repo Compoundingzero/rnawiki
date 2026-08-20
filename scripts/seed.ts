@@ -6,7 +6,7 @@ import { runFullDeterministicSweep } from '@/lib/rna-intelligence'
 import { countAuditPoints } from '@/lib/dossier'
 import type { MolecularSchema } from '@/lib/types'
 import type { SeedDossier } from '@/lib/seed-types'
-import { ALL_SEED_DOSSIERS } from './seed-data'
+import { SEED_DOSSIERS } from './seed-data'
 
 /**
  * Loads the curated flagship dossiers.
@@ -116,8 +116,8 @@ async function main(): Promise<void> {
     : null
 
   const seeds = only
-    ? ALL_SEED_DOSSIERS.filter((seed) => seed.slug.includes(only))
-    : ALL_SEED_DOSSIERS
+    ? SEED_DOSSIERS.filter((seed) => seed.slug.includes(only))
+    : SEED_DOSSIERS
 
   console.log(`[seed] loading ${seeds.length} curated dossiers`)
 
