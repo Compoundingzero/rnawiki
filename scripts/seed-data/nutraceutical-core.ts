@@ -5537,5 +5537,481 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Inulin — one approved EFSA claim (stool frequency), a real bifidogenic shift, no cholesterol or
+  // glycaemic effect because it is not viscous, and a Cell paper in which it gave dysbiotic mice
+  // liver cancer.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'inulin',
+    name: 'Inulin',
+    tradeName:
+      'Sold as chicory root fibre, oligofructose, fructooligosaccharide (FOS) or agave inulin; branded ingredients include Orafti and Frutafit',
+    sponsor:
+      'No single sponsor — inulin-type fructans extracted mainly from chicory root. Beneo (Orafti) and Sensus (Frutafit) are the two dominant ingredient manufacturers, and both appear in the authorship of the supporting literature.',
+    targetGene: 'BIF_BIFIDOBACTERIUM',
+    targetProtein:
+      'Bacterial beta-fructofuranosidase, the enzyme that lets Bifidobacterium and a few other genera cleave beta-2,1 fructosyl bonds. Human digestive enzymes cannot break that bond at all, which is the whole basis of the category: inulin reaches the colon intact and is fermented selectively by the bacteria that can eat it.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a prebiotic for gut health, immunity, metabolic health and blood sugar. The European Food Safety Authority has authorised exactly one claim for it: that native chicory inulin contributes to maintenance of normal defecation by increasing stool frequency. Nothing else in the marketing has an authorised European claim.',
+    patientFriendlyIndication: 'Taken to feed gut bacteria and improve digestion',
+    conditionContext: {
+      conditionExplainer:
+        'The bond linking the sugars in inulin is one no human enzyme can cut. So inulin passes through the small intestine untouched and arrives in the colon as food for bacteria. Those bacteria ferment it into short-chain fatty acids and gas — which is simultaneously the mechanism of every claimed benefit and the mechanism of every side effect.',
+      whyItMatters:
+        'Inulin is the archetypal prebiotic and the fibre most likely to be added to a protein bar, a yoghurt or a "gut health" supplement. It genuinely changes the microbiota. What it does not do is any of the things psyllium does, and for a specific physical reason: it does not form a viscous gel. Marketing that says "fibre" and shows a heart rarely distinguishes the two.',
+      whoTakesThis:
+        'People buying prebiotic or gut-health supplements, and a much larger number consuming it unknowingly as chicory root fibre added to reduced-sugar and high-fibre processed foods.',
+      clinicalGoals:
+        'Trials measured faecal bifidobacteria counts, stool frequency, gastrointestinal symptom scores, fractional calcium absorption by stable isotope, whole-body bone mineral content and density, and in the animal literature hepatocellular carcinoma incidence.',
+    },
+    oneSentenceVerdict:
+      'Inulin reliably increases bifidobacteria and holds a single authorised European claim for increasing stool frequency; it does not lower cholesterol or improve glycaemic control because it is not viscous, it causes dose-dependent flatulence and bloating with 10 g of oligofructose substantially worsening symptoms in healthy adults, and in dysbiotic mice it induced hepatocellular carcinoma.',
+    laymanHowItWorks:
+      'Inulin is a chain of fructose units joined by a bond that human digestive enzymes cannot break. It therefore travels the whole length of the small intestine unchanged and arrives in the colon, where certain bacteria — bifidobacteria above all — do have the enzyme and eat it. They multiply, and they produce short-chain fatty acids and gas. Everything good that is claimed for inulin and everything uncomfortable about it come from the same event. Because it dissolves without thickening, it does none of the physical work that a gel-forming fibre like psyllium does in the small intestine.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 51,
+    anatomicalSite:
+      'The colonic lumen, where bacterial fermentation occurs. Inulin is not absorbed and has no activity in the small intestine.',
+    substitutes: {
+      summary:
+        'If the goal is stool frequency, inulin has an authorised claim for it. If the goal is cholesterol or blood sugar, inulin is the wrong fibre and psyllium or beta-glucan is the right one. If the goal is a diverse microbiota, whole foods supply fermentable substrate without a concentrated dose arriving at once.',
+      conventionalRx: [
+        {
+          name: 'Psyllium husk, as the fibre that does the other things',
+          class: 'Gel-forming, non-fermented soluble fibre',
+          howItCompares:
+            'McRorie and McKeown place inulin and fructooligosaccharides explicitly among the non-viscous soluble fibres that do not lower cholesterol or improve glycaemic control, in contrast to the gel-forming group of beta-glucan, psyllium and raw guar gum that do. Psyllium also holds an FDA-authorised heart disease claim; inulin does not.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros of psyllium: viscosity-dependent lipid and glucose effects, far less gas because it is barely fermented. Cons: it does not feed bifidobacteria, which is the one thing inulin genuinely does.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Chicory root, Jerusalem artichoke, onion, garlic, leek and asparagus',
+          activeCompound: 'Inulin-type fructans, the same beta-2,1-linked fructose polymers',
+          biologicalMechanism:
+            'These are the dietary sources from which commercial inulin is extracted or which naturally contain it. The chemistry is identical; the difference is dose and rate. A supplement delivers several grams as a single bolus, which is exactly the pattern that produces gas, whereas the same amount spread across meals in food form is better tolerated.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here as advice. For scale only: Bonnema et al. tested 5 and 10 g challenges and found up to 10 g/day of native inulin and up to 5 g/day of oligofructose well tolerated in healthy young adults.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'If you have IBS, inulin is a FODMAP',
+          action:
+            'Fructans are the F in FODMAP. A supplement marketed for gut health may be the specific compound a low-FODMAP diet exists to remove.',
+          patientImpact:
+            'A randomised controlled feeding trial found that a diet low in fermentable oligosaccharides, disaccharides, monosaccharides and polyols reduced symptoms of irritable bowel syndrome. Fructans are one of the named oligosaccharide classes in that acronym.',
+          clinicalPrecaution:
+            'This is the sharpest contradiction in the fibre aisle: the same molecule sold as a gut-health supplement is the one gastroenterologists ask IBS patients to eliminate.',
+        },
+        {
+          name: 'Read the dose, and read where the authors work',
+          action:
+            'Check the amount per serving and the affiliation on any supporting study. Chicory root fibre is added to processed foods in quantities people do not track, and multiple sources add up.',
+          patientImpact:
+            'A 10 g oligofructose challenge substantially increased gastrointestinal symptoms against control in healthy adults with no history of gut conditions. Flatulence was the commonest complaint, then bloating.',
+          clinicalPrecaution:
+            'The most-cited review of the bifidogenic effect was written by an author at Sensus, an inulin manufacturer, and much of the rest of the literature carries similar affiliations.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O[C@]2([C@H]([C@@H]([C@H](O2)CO)O)O)CO[C@]3([C@H]([C@@H]([C@H](O3)CO)O)O)CO)O)O)O)O',
+      chemicalFormula: 'C18H32O16',
+      molecularWeight:
+        '504.4 g/mol. This is 1-kestose, the shortest inulin-type fructan — one glucose with two fructose units, written GF2. Commercial inulin is not a single molecule but a distribution of chain lengths from about 2 to 60 fructose units. 1-kestose is the defined marker the literature and the analytical methods actually track, and chain length distribution is the property that separates "oligofructose" from "native inulin" in tolerance studies.',
+      structureSource: {
+        label: 'PubChem CID 440080 — 1-Kestose, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/440080',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'inu-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Degree of polymerisation profile and free sugar content',
+          description:
+            'Native inulin and oligofructose are the same chemistry at different chain lengths, and chain length is what determines both how fast it ferments and how much gas it causes. A product labelled only "inulin" can be either. Free glucose, fructose and sucrose carried through from extraction also matter, because they are absorbed in the small intestine and are not fibre at all.',
+          reagentsAndBuffer:
+            'High-performance anion-exchange chromatography with pulsed amperometric detection; 1-kestose, nystose and fructosylnystose standards for the short-chain end; enzymatic AOAC 997.08 fructan assay with inulinase and fructanase; free glucose, fructose and sucrose quantified separately',
+        },
+        {
+          id: 'inu-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the 13C-labelled fructan for a fermentation tracer study',
+          description:
+            'To attribute a short-chain fatty acid rise to the administered inulin rather than to background fermentation of everything else in a diet, the substrate has to be labelled. This step is what separates a real measurement of fermentation from an inference off a stool sample.',
+          dependsOnStepId: 'inu-w1',
+          reagentsAndBuffer:
+            'Uniformly 13C-labelled chicory inulin from plants grown on 13CO2, or enzymatically synthesised 13C-fructan using fructosyltransferase on labelled sucrose; isotopic enrichment confirmed by isotope-ratio mass spectrometry; breath 13CO2 collection apparatus',
+        },
+        {
+          id: 'inu-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Faecal sample handling for anaerobe survival and short-chain fatty acid stability',
+          description:
+            'Bifidobacteria are strict anaerobes and die on contact with air, and short-chain fatty acids are volatile and continue to be produced in an unfrozen sample. A bifidogenic result from a badly handled sample is a result about handling. Anaerobic collection and immediate freezing are the step, not a detail of it.',
+          dependsOnStepId: 'inu-w2',
+          reagentsAndBuffer:
+            'Anaerobic collection into an oxygen-scavenging pouch within 30 minutes of passage; immediate snap-freezing at -80 degrees C; DNA extraction with bead-beating for Gram-positive lysis; internal spike of a non-native bacterial standard for absolute quantification; acidified aliquot with internal standard for GC short-chain fatty acid analysis',
+        },
+        {
+          id: 'inu-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Selective fermentation in a continuous colonic model, with a dysbiotic arm',
+          description:
+            'Run the fermentation in a model that reproduces colonic transit and pH, using both a conventional and a deliberately dysbiotic inoculum. The dysbiotic arm is the one that matters, because the Cell 2018 hepatocellular carcinoma finding occurred only in dysbiotic mice and was absent in germ-free and antibiotic-treated animals. A prebiotic tested only against a healthy microbiota cannot detect that failure mode.',
+          dependsOnStepId: 'inu-w3',
+          reagentsAndBuffer:
+            'Continuous three-stage colonic simulator at pH 5.5, 6.2 and 6.8; conventional and antibiotic-perturbed human faecal inocula; 16S rRNA amplicon and shotgun metagenomic sequencing; qPCR for Bifidobacterium 16S; GC quantification of acetate, propionate and butyrate; bile acid profiling by LC-MS/MS',
+        },
+        {
+          id: 'inu-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Stool frequency and symptom scoring against the authorised claim endpoint',
+          description:
+            'Report the endpoint EFSA actually accepted — stool frequency — alongside a validated gastrointestinal symptom score, because the benefit and the adverse effect come from the same fermentation and reporting either alone misrepresents the product.',
+          dependsOnStepId: 'inu-w4',
+          reagentsAndBuffer:
+            'Prospective stool diary with Bristol Stool Form Scale; seven-domain gastrointestinal tolerance questionnaire administered at 0, 2, 4, 24 and 48 hours after challenge, as in Bonnema et al.; maltodextrin placebo matched for appearance and sweetness; crossover design with washout',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'inu-a1',
+        category: 'measured',
+        title: 'EFSA authorised exactly one claim, and it is about stool frequency',
+        laymanSummary:
+          'European regulators reviewed inulin and accepted a single claim: that chicory inulin increases how often you go. Every other health claim for it was not accepted.',
+        technicalDetails:
+          'The EFSA Panel on Dietetic Products, Nutrition and Allergies issued a scientific opinion on the substantiation of a health claim related to "native chicory inulin" and maintenance of normal defecation by increasing stool frequency, under Article 13.5 of Regulation (EC) No 1924/2006. That is the authorised claim, and its narrowness is the finding. Under the same European regime, claims for inulin-type fructans relating to blood glucose control, blood lipids, immune function, mineral absorption and satiety have not achieved authorisation. A reader can therefore treat the European regulatory record as a filter already applied to this category by a body with access to the same literature the marketing draws on: one endpoint survived.',
+        evidenceSource:
+          'EFSA Panel on Dietetic Products, Nutrition and Allergies. EFSA Journal 2015;13(1):3951',
+        doi: '10.2903/j.efsa.2015.3951',
+        measuredMetric:
+          'Stool frequency, as the sole endpoint for which a European health claim was authorised',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'inu-a2',
+        category: 'measured',
+        title: 'The bifidogenic effect is real — and the review establishing it came from a manufacturer',
+        laymanSummary:
+          'Inulin genuinely increases bifidobacteria in the gut, across many studies and age groups. The most-cited review saying so was written by a scientist at an inulin company.',
+        technicalDetails:
+          'Meyer and Stasse-Wolthuis state that the bifidogenic effect of inulin and oligofructose is well established across studies in adults and other age groups, and that this shift in colonic microbiota composition is likely the basis for the effects of these prebiotics on colonic function. The rest of their review is carefully hedged in a way the marketing is not: indications for reduced production of potentially toxic metabolites and immune-mediated effects come "mainly from animal and in vitro studies and also from some human trials." The corresponding author is at Sensus, a chicory inulin manufacturer. The bifidogenic shift itself is not in dispute and is measured by direct bacterial quantification. What has never been established is the step from a bifidobacterial count to a clinical outcome, and that step is where the entire prebiotic value proposition sits.',
+        evidenceSource: 'Meyer D, Stasse-Wolthuis M. Eur J Clin Nutr 2009;63:1277-1289',
+        doi: '10.1038/ejcn.2009.64',
+        measuredMetric: 'Faecal Bifidobacterium counts after inulin or oligofructose supplementation',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'inu-a3',
+        category: 'failed',
+        title: 'It does not lower cholesterol or blood sugar, because it does not thicken',
+        laymanSummary:
+          'Inulin is soluble fibre, but it dissolves without becoming thick. The cholesterol and blood-sugar benefits of fibre depend on thickness, and inulin does not deliver them.',
+        technicalDetails:
+          'McRorie and McKeown set out the physical basis directly: clinically meaningful small-bowel benefits are highly correlated with viscosity, so high-viscosity gel-forming fibres such as beta-glucan, psyllium and raw guar gum lower cholesterol and improve glycaemic control, "whereas nonviscous soluble fibers (eg, inulin, fructooligosaccharides, and wheat dextrin) and insoluble fibers (eg, wheat bran) do not provide these viscosity-dependent health benefits." Inulin is named explicitly in the group that does not. This is not a null result from an underpowered trial; it is a mechanistic exclusion. Bile acid sequestration and slowed glucose diffusion both require a viscous luminal gel, and a fibre that dissolves to a thin solution cannot produce either. The practical consequence is that psyllium\'s FDA-authorised heart disease claim and inulin\'s EFSA stool-frequency claim are not interchangeable evidence, and "added fibre" on a package tells a reader nothing about which kind they have bought.',
+        evidenceSource: 'McRorie JW, McKeown NM. J Acad Nutr Diet 2017;117:251-264',
+        doi: '10.1016/j.jand.2016.09.021',
+        measuredMetric:
+          'Presence or absence of viscosity-dependent cholesterol and glycaemic effects, by fibre type',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'inu-a4',
+        category: 'failed',
+        title: 'Ten grams of oligofructose substantially worsened symptoms in healthy people',
+        laymanSummary:
+          'In a controlled crossover in 26 healthy adults with no history of gut problems, a 10-gram dose of the short-chain form clearly increased gastrointestinal symptoms.',
+        technicalDetails:
+          'Bonnema and colleagues ran a randomised, double-blind, controlled crossover in 26 healthy men and women aged 18 to 60 with no history of gastrointestinal conditions, comparing 5 g and 10 g doses of oligofructose and of native inulin against placebo, each delivered in a breakfast of bagel, cream cheese and orange juice, with a seven-domain tolerance questionnaire at 0, 2, 4, 24 and 48 hours. Both inulin fibres tended to increase symptoms mildly, with flatulence the most frequently reported and bloating second. The 10 g dose of oligofructose substantially increased gastrointestinal symptoms compared with control. The authors concluded that up to 10 g/day of native inulin and up to 5 g/day of oligofructose were well tolerated. Two things follow. First, chain length matters: the shorter oligofructose ferments faster and closer to the proximal colon and is tolerated at half the dose. Second, these were healthy people selected for having no gut complaints, which is not the population buying gut-health supplements.',
+        evidenceSource: 'Bonnema AL, Kolberg LW, Thomas W, Slavin JL. J Am Diet Assoc 2010;110:865-868',
+        doi: '10.1016/j.jada.2010.03.025',
+        measuredMetric:
+          'Summed score across seven gastrointestinal tolerance domains after 5 g and 10 g fibre challenges',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'inu-a5',
+        category: 'failed',
+        title: 'In dysbiotic mice, inulin caused liver cancer — and the authors said so plainly',
+        laymanSummary:
+          'A Cell paper found that adding inulin to the diet of mice with a disturbed gut microbiome caused liver cancer. Insoluble fibre did not, and germ-free mice were protected.',
+        technicalDetails:
+          'Singh and colleagues incorporated soluble fibre inulin into a compositionally defined diet and observed icteric hepatocellular carcinoma. The effect was microbiota-dependent: it occurred in multiple strains of dysbiotic mice, but not in germ-free animals and not in antibiotic-treated animals, and insoluble fibre did not produce it. An inulin-enriched high-fat diet induced both dysbiosis and hepatocellular carcinoma in wild-type mice. The progression ran through early-onset cholestasis, hepatocyte death and neutrophilic liver inflammation. Pharmacologic inhibition of fermentation, or depletion of the fermenting bacteria, markedly reduced intestinal short-chain fatty acids and prevented the cancer, and giving cholestyramine to prevent bile acid reabsorption was also protective. The authors\' own conclusion is the appropriate weight to give this: "its benefits notwithstanding, enrichment of foods with fermentable fiber should be approached with great caution as it may increase risk of HCC." This is a mouse study and has not been shown in humans. It is also the reason a fibre added to processed food at industrial scale deserves a human safety programme rather than an assumption.',
+        evidenceSource: 'Singh V et al. Cell 2018;175:679-694',
+        doi: '10.1016/j.cell.2018.09.004',
+        measuredMetric:
+          'Incidence of icteric hepatocellular carcinoma in dysbiotic, germ-free and antibiotic-treated mice on inulin-containing diets',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'inu-a6',
+        category: 'measured',
+        title: 'The best human outcome result is calcium absorption in adolescents',
+        laymanSummary:
+          'A year-long randomised trial in pubertal teenagers found inulin-type fructans increased calcium absorption and produced measurably more bone mineral over twelve months.',
+        technicalDetails:
+          'Abrams and colleagues randomised pubertal adolescents to 8 g/day of a mixed short- and long-chain inulin-type fructan or maltodextrin placebo, measuring calcium absorption by stable isotope at baseline, 8 weeks and 1 year, and bone mineral content and density before randomisation and at 1 year. Calcium absorption was greater in the fructan group at 8 weeks (difference 8.5 +/- 1.6%, P < 0.001) and still greater at 1 year (5.9 +/- 2.8%, P = 0.04). At one year the fructan group had a greater increment in whole-body bone mineral content (35 +/- 16 g, P = 0.03) and whole-body bone mineral density (0.015 +/- 0.004 g/cm2, P = 0.01). An interaction with the Fok1 vitamin D receptor polymorphism was present, with ff-genotype subjects showing the least initial response. This is a genuine hard-ish outcome from a year-long randomised trial with an isotopic mechanism measurement attached, and it deserves recording as the strongest human result inulin has. It is also in growing adolescents during peak bone accrual, which is the population where any calcium intervention has the most room to act, and it did not achieve an EFSA authorised claim.',
+        evidenceSource: 'Abrams SA et al. Am J Clin Nutr 2005;82:471-476',
+        doi: '10.1093/ajcn.82.2.471',
+        measuredMetric:
+          'Fractional calcium absorption by stable isotope, and one-year change in whole-body bone mineral content and density',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'inu-a7',
+        category: 'conclusion_shift',
+        title: 'The same molecule is a gut-health supplement and a FODMAP to be eliminated',
+        laymanSummary:
+          'Fructans are the F in FODMAP. The compound sold to improve digestion is one of the compounds gastroenterologists ask people with IBS to remove.',
+        technicalDetails:
+          'Halmos and colleagues ran a randomised controlled single-blind cross-over feeding trial showing that a diet low in fermentable oligosaccharides, disaccharides, monosaccharides and polyols reduced symptoms of irritable bowel syndrome relative to a typical Australian diet, with all food provided. Fructans — inulin and oligofructose — are the principal oligosaccharide class in that acronym. The two positions are not actually contradictory once the mechanism is stated: rapid colonic fermentation produces short-chain fatty acids and gas, the first of which is the claimed benefit and the second of which is the symptom, and which one dominates depends on the person\'s baseline gut sensitivity and microbiota. But the marketing does not state the mechanism, and the result is a product sold for digestive comfort to a population for whom the standard clinical advice is to remove it.',
+        evidenceSource: 'Halmos EP, Power VA, Shepherd SJ, Gibson PR, Muir JG. Gastroenterology 2014;146:67-75',
+        doi: '10.1053/j.gastro.2013.09.046',
+        inferredClaim:
+          'That a fermentable fibre marketed for gut health is appropriate for people with functional gut symptoms',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'No human enzyme can cut the bond, so it passes through untouched',
+        laymanDesc:
+          'Inulin is a chain of fructose units joined in a way our digestive enzymes cannot break. It reaches the large intestine chemically unchanged.',
+        molecularDetail:
+          'Inulin-type fructans are linear beta-2,1-linked fructose polymers, usually terminated by a glucose unit, with degrees of polymerisation from about 2 to 60. Human sucrase-isomaltase, maltase-glucoamylase and pancreatic amylase have no activity against the beta-2,1 bond. That single fact defines the whole category and is why inulin counts as dietary fibre.',
+        iconName: 'Lock',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It dissolves without thickening, which is why it does not act like psyllium',
+        laymanDesc:
+          'Inulin is soluble but the solution stays thin. Thickness is what lets a fibre trap bile acids and slow sugar absorption, and inulin has none of it.',
+        molecularDetail:
+          'Viscosity, not solubility, determines small-bowel effects. McRorie and McKeown group inulin, fructooligosaccharides and wheat dextrin as non-viscous soluble fibres that do not lower cholesterol or improve glycaemic control, in explicit contrast to beta-glucan, psyllium and raw guar gum. No gel means no bile acid sequestration and no diffusion barrier.',
+        iconName: 'Waves',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Bifidobacteria have the enzyme, and multiply on it',
+        laymanDesc:
+          'In the colon, certain bacteria can break the bond that we cannot. They eat the inulin and their numbers rise, which is the measured prebiotic effect.',
+        molecularDetail:
+          'Bifidobacterium species express beta-fructofuranosidase and fructan-specific ABC transporters, giving them a competitive advantage on inulin-type substrate. The bifidogenic shift is well established across age groups by direct faecal quantification. Chain length matters: short-chain oligofructose is fermented rapidly and proximally, long-chain native inulin more slowly and further along the colon.',
+        iconName: 'Sprout',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Fermentation produces short-chain fatty acids and gas together',
+        laymanDesc:
+          'The bacteria turn inulin into useful acids and into hydrogen and carbon dioxide. You cannot have one without the other, which is why benefit and bloating arrive together.',
+        molecularDetail:
+          'Saccharolytic fermentation yields acetate, propionate and butyrate along with hydrogen, carbon dioxide and, in methanogen carriers, methane. Bonnema et al. measured the human consequence: flatulence was the commonest reported symptom and 10 g of oligofructose substantially increased symptom scores in healthy adults. In the Cell 2018 mouse work, pharmacologic inhibition of fermentation or depletion of fermenting bacteria both prevented the hepatocellular carcinoma, which identifies fermentation itself as the causal step.',
+        iconName: 'Wind',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The authorised outcome is stool frequency; the measured mineral outcome is calcium',
+        laymanDesc:
+          'What regulators accepted is that it makes you go more often. The best hard result is that it increased calcium absorption and bone mineral in teenagers over a year.',
+        molecularDetail:
+          'EFSA authorised the claim that native chicory inulin contributes to maintenance of normal defecation by increasing stool frequency. Separately, Abrams et al. measured fractional calcium absorption higher by 8.5 +/- 1.6% at 8 weeks and 5.9 +/- 2.8% at one year, with whole-body bone mineral content 35 +/- 16 g and density 0.015 +/- 0.004 g/cm2 greater at one year. The proposed mechanism is colonic acidification increasing calcium solubility and passive absorption.',
+        iconName: 'Bone',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'EFSA Article 13.5 opinion on native chicory inulin and stool frequency',
+        phase: 'Regulatory scientific opinion',
+        sampleSize: 1,
+        primaryEndpoint:
+          'Substantiation of a claim for maintenance of normal defecation by increasing stool frequency',
+        endpointMet: true,
+        statisticalPValue:
+          'Claim authorised under Article 13.5 of Regulation (EC) No 1924/2006; no other inulin health claim authorised',
+        unreportedAdverseSignals:
+          'The narrowness is the finding. Claims for glycaemic control, blood lipids, immune function and mineral absorption did not achieve authorisation under the same regime.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Bonnema 2010 — gastrointestinal tolerance of chicory inulin products',
+        phase: 'Randomised double-blind controlled crossover',
+        sampleSize: 26,
+        primaryEndpoint: 'Summed score across seven gastrointestinal tolerance domains',
+        endpointMet: false,
+        statisticalPValue:
+          '10 g oligofructose substantially increased gastrointestinal symptoms versus control; both fibres tended to increase symptoms mildly',
+        unreportedAdverseSignals:
+          'Participants were healthy adults with no history of gastrointestinal conditions, which is not the population buying gut-health supplements. Flatulence was the commonest symptom, then bloating.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Abrams 2005 — inulin-type fructans, calcium absorption and bone mineralisation',
+        phase: 'Randomised placebo-controlled, one year, with stable-isotope absorption measurement',
+        sampleSize: 100,
+        primaryEndpoint:
+          'Fractional calcium absorption at 8 weeks and 1 year, and one-year change in bone mineral content and density',
+        endpointMet: true,
+        statisticalPValue:
+          'Calcium absorption difference +8.5 +/- 1.6% at 8 weeks (P < 0.001) and +5.9 +/- 2.8% at 1 year (P = 0.04); whole-body BMC +35 +/- 16 g (P = 0.03); BMD +0.015 +/- 0.004 g/cm2 (P = 0.01)',
+        unreportedAdverseSignals:
+          'Conducted in pubertal adolescents during peak bone accrual, the population with the most room for any calcium intervention to act. Response was modified by Fok1 vitamin D receptor genotype. This endpoint did not achieve an EFSA authorised claim.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Singh 2018 — dysregulated microbial fermentation of soluble fibre and liver cancer',
+        phase: 'Preclinical, multiple mouse strains including germ-free and antibiotic-treated controls',
+        sampleSize: 0,
+        primaryEndpoint: 'Incidence of icteric hepatocellular carcinoma on inulin-containing diets',
+        endpointMet: false,
+        statisticalPValue:
+          'Hepatocellular carcinoma induced in dysbiotic mice on inulin but not on insoluble fibre; absent in germ-free and antibiotic-treated animals; prevented by fermentation inhibition or cholestyramine',
+        unreportedAdverseSignals:
+          'A mouse study with no human counterpart. Sample size is recorded as zero because this trial enrolled no human participants. The authors\' own recommendation was that enrichment of foods with fermentable fibre be approached with great caution.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Halmos 2014 — low-FODMAP diet in irritable bowel syndrome',
+        phase: 'Randomised controlled single-blind crossover feeding trial',
+        sampleSize: 30,
+        primaryEndpoint: 'Gastrointestinal symptom scores on a low-FODMAP versus typical diet',
+        endpointMet: true,
+        statisticalPValue: 'Symptoms significantly reduced on the low-FODMAP diet',
+        unreportedAdverseSignals:
+          'Fructans — inulin and oligofructose — are the principal oligosaccharide class removed by that diet, which places this trial directly against the product this record covers.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Inulin reliably increases faecal bifidobacteria across studies and age groups, by direct bacterial quantification',
+        'EFSA authorised one claim: native chicory inulin increases stool frequency',
+        'A 10 g oligofructose dose substantially increased gastrointestinal symptoms in healthy adults with no gut history',
+        'Inulin-type fructans increased fractional calcium absorption by 8.5% at 8 weeks and raised bone mineral content over one year in adolescents',
+        'In dysbiotic mice, dietary inulin induced hepatocellular carcinoma; insoluble fibre did not, and germ-free mice were protected',
+      ],
+      unsupportedInferences: [
+        'That a rise in bifidobacterial counts constitutes a health outcome',
+        'That inulin shares psyllium\'s cholesterol and glycaemic benefits because both are called soluble fibre',
+        'That a fibre marketed for gut health suits people with functional gut symptoms, when fructans are a FODMAP',
+      ],
+      whatFailedInitially: [
+        'Every inulin health claim except stool frequency, under the European authorisation regime',
+        'The assumption that fermentable fibre is unconditionally beneficial, which the Cell 2018 mouse work directly challenges',
+      ],
+      realWorldOutcome: [
+        'Inulin does something real and specific to the microbiota, and one regulator has accepted one downstream consequence of it',
+        'It is added to a large volume of processed food, so consumed doses accumulate across products without anyone tracking them',
+        'The gas that makes it unpopular is not a side effect of the mechanism — it is the mechanism',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral powder, capsule, or added to food as chicory root fibre',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA and used widely as a food ingredient, where it appears on labels as chicory root fibre, inulin or oligofructose. Chain length distribution is the property that matters most and is almost never disclosed: short-chain oligofructose ferments faster and is tolerated at roughly half the dose of native long-chain inulin. Because it is added to bars, yoghurts, reduced-sugar products and fibre supplements simultaneously, a consumer can reach a poorly tolerated total from several products none of which looks like a large dose on its own.',
+      safetyProfile:
+        'Dose-dependent flatulence, bloating, abdominal discomfort and, at higher intakes, osmotic diarrhoea — all direct consequences of colonic fermentation rather than incidental to it. Tolerance in healthy adults was demonstrated to about 10 g/day of native inulin and 5 g/day of oligofructose. Fructans are a FODMAP and commonly provoke symptoms in irritable bowel syndrome. Rare IgE-mediated allergy to inulin has been reported, including anaphylaxis. In mice with a disturbed microbiota, dietary inulin induced hepatocellular carcinoma through fermentation-dependent cholestasis; no human equivalent has been shown, and the investigators nonetheless recommended caution about enriching foods with fermentable fibre.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does inulin actually do anything?',
+        a: 'Yes, one thing very reliably: it increases bifidobacteria in the colon, because those bacteria have an enzyme for the bond in inulin and we do not. European regulators accepted one downstream consequence of that — increased stool frequency — and authorised a claim for it. What has never been established is the step from a higher bifidobacterial count to a health outcome, and that step is where the whole prebiotic value proposition sits.',
+      },
+      {
+        q: 'Will it lower my cholesterol like other soluble fibre?',
+        a: 'No, and the reason is physical rather than a failure to find an effect. Cholesterol lowering by fibre depends on forming a viscous gel that traps bile acids in the small intestine. Inulin dissolves without thickening. The fibre physiology literature names inulin and fructooligosaccharides explicitly among the non-viscous soluble fibres that do not deliver viscosity-dependent benefits, in contrast to psyllium, beta-glucan and raw guar gum, which do.',
+        auditNote:
+          'This is why psyllium holds an FDA heart disease claim and inulin holds a stool frequency claim.',
+      },
+      {
+        q: 'Why does it make me so gassy?',
+        a: 'Because the gas is the mechanism, not a side effect of it. Bacteria fermenting inulin produce short-chain fatty acids and hydrogen and carbon dioxide in the same reaction; you cannot get the first without the second. In a controlled crossover in 26 healthy adults, flatulence was the most frequent complaint and bloating the second, and 10 grams of the short-chain form substantially increased symptoms. Those were people specifically selected for having no history of gut problems.',
+      },
+      {
+        q: 'Should I take it if I have IBS?',
+        a: 'This is the sharpest contradiction in the fibre aisle. Fructans — which is what inulin and oligofructose are — are the F in FODMAP, and a low-FODMAP diet, which removes them, is a standard evidence-supported intervention for irritable bowel syndrome. A supplement marketed for digestive health is, for this population, the specific class of compound clinicians ask patients to eliminate.',
+      },
+      {
+        q: 'What was the liver cancer study about?',
+        a: 'A 2018 Cell paper found that adding inulin to the diet of mice with a disturbed gut microbiome induced hepatocellular carcinoma, progressing through cholestasis and liver inflammation. Insoluble fibre did not do it, germ-free and antibiotic-treated mice were protected, and blocking fermentation or the bile acid recycling both prevented it. This is a mouse study with no human counterpart, and it should not be read as evidence that inulin causes cancer in people. It should be read the way its authors wrote it: that enriching foods with fermentable fibre at industrial scale deserves a safety programme rather than an assumption.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Abrams SA et al. A combination of prebiotic short- and long-chain inulin-type fructans enhances calcium absorption and bone mineralization in young adolescents. Am J Clin Nutr 2005;82:471-476',
+        identifier: '10.1093/ajcn.82.2.471',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Meyer D, Stasse-Wolthuis M. The bifidogenic effect of inulin and oligofructose and its consequences for gut health. Eur J Clin Nutr 2009;63:1277-1289',
+        identifier: '10.1038/ejcn.2009.64',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bonnema AL, Kolberg LW, Thomas W, Slavin JL. Gastrointestinal tolerance of chicory inulin products. J Am Diet Assoc 2010;110:865-868',
+        identifier: '10.1016/j.jada.2010.03.025',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Halmos EP, Power VA, Shepherd SJ, Gibson PR, Muir JG. A diet low in FODMAPs reduces symptoms of irritable bowel syndrome. Gastroenterology 2014;146:67-75',
+        identifier: '10.1053/j.gastro.2013.09.046',
+        kind: 'doi',
+      },
+      {
+        label:
+          'EFSA Panel on Dietetic Products, Nutrition and Allergies. Scientific opinion on the substantiation of a health claim related to native chicory inulin and maintenance of normal defecation by increasing stool frequency. EFSA Journal 2015;13(1):3951',
+        identifier: '10.2903/j.efsa.2015.3951',
+        kind: 'doi',
+      },
+      {
+        label:
+          'McRorie JW, McKeown NM. Understanding the physics of functional fibers in the gastrointestinal tract. J Acad Nutr Diet 2017;117:251-264',
+        identifier: '10.1016/j.jand.2016.09.021',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Singh V et al. Dysregulated microbial fermentation of soluble fiber induces cholestatic liver cancer. Cell 2018;175:679-694',
+        identifier: '10.1016/j.cell.2018.09.004',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 440080 — 1-Kestose, the shortest inulin-type fructan',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/440080',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
