@@ -8250,5 +8250,461 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Coenzyme Q10 — a genuinely positive 420-patient heart failure trial, a Phase 3 Parkinson trial
+  // stopped for futility with both dose arms trending worse, and a randomised test of the statin
+  // myalgia claim in which more people on CoQ10 reported pain than on placebo.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'coenzyme-q10',
+    name: 'Coenzyme Q10',
+    tradeName: 'Ubiquinone (oxidised) and ubiquinol (reduced); also sold as ubidecarenone',
+    sponsor:
+      'No single sponsor — a benzoquinone with a ten-unit isoprenoid tail, produced by yeast or bacterial fermentation. Q-SYMBIO was investigator-initiated with support from Pharma Nord.',
+    targetGene: 'COQ2',
+    targetProtein:
+      'The mitochondrial respiratory chain, where coenzyme Q10 is the mobile lipid-soluble electron carrier shuttling electrons from complexes I and II to complex III. COQ2 is the polyprenyltransferase whose loss-of-function mutations cause primary coenzyme Q10 deficiency — a real, rare disease in which supplementation is genuinely therapeutic.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for heart health, energy, statin-associated muscle pain and neuroprotection. Not approved by the FDA or EMA for any of them. Coenzyme Q10 is genuinely therapeutic in primary CoQ10 deficiency, a rare inherited disorder of its own biosynthesis, which is a different situation entirely.',
+    patientFriendlyIndication:
+      'Taken for heart health and energy, and especially by people on statins for muscle aches',
+    conditionContext: {
+      conditionExplainer:
+        'Coenzyme Q10 carries electrons between the protein complexes of the mitochondrial respiratory chain. Without it, oxidative phosphorylation stops. It is also made by the same biochemical pathway that statins inhibit to lower cholesterol, which is the entire basis of the statin-muscle-pain claim.',
+      whyItMatters:
+        'CoQ10 is one of the few supplements in this file with a genuinely positive randomised mortality trial behind it — and also one with a Phase 3 neurology trial stopped for futility in which both dose arms trended worse than placebo. The claim most people buy it for, statin muscle pain, was tested directly in patients whose statin myalgia had been confirmed by rechallenge, and it failed.',
+      whoTakesThis:
+        'People taking statins, people with heart failure, older adults buying it for energy, and a small number of patients with genuine primary CoQ10 deficiency for whom it is a real treatment.',
+      clinicalGoals:
+        'Trials measured composite major adverse cardiovascular events, cardiovascular and all-cause mortality, NYHA functional class, six-minute walk distance, N-terminal pro-B-type natriuretic peptide, Brief Pain Inventory scores, muscle strength, maximal oxygen uptake, and Unified Parkinson\'s Disease Rating Scale progression.',
+    },
+    oneSentenceVerdict:
+      'Q-SYMBIO randomised 420 heart failure patients and found major adverse cardiovascular events in 15% on CoQ10 against 26% on placebo with all-cause mortality 10% against 18% — a genuinely positive result — while the Phase 3 Parkinson trial was stopped for futility with both dose arms trending worse than placebo, and the statin myalgia trial found marginally more people reporting pain on CoQ10 than on placebo.',
+    laymanHowItWorks:
+      'Every cell makes its energy by passing electrons down a chain of proteins inside mitochondria, and coenzyme Q10 is the shuttle that carries electrons between two of those proteins. Your body makes its own, using the same chemical pathway that statins block to lower cholesterol — which is why statins lower blood CoQ10 and why it seemed obvious that replacing it would fix statin muscle pain. That reasoning is clean, the blood levels really do fall, and when the idea was tested in people whose statin muscle pain had been confirmed by rechallenge, giving them CoQ10 did not help.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 55,
+    anatomicalSite:
+      'Inner mitochondrial membrane in every tissue, with the highest concentrations in heart, kidney and liver',
+    substitutes: {
+      summary:
+        'For heart failure, the comparator is guideline-directed medical therapy, and Q-SYMBIO tested CoQ10 as an addition to it rather than instead of it. For statin muscle pain the honest options are dose reduction, an alternative statin or a statin holiday under supervision, all of which have more support than CoQ10 does.',
+      conventionalRx: [
+        {
+          name: 'Guideline-directed heart failure therapy',
+          class: 'Neurohormonal blockade and device therapy',
+          howItCompares:
+            'Q-SYMBIO added CoQ10 to standard therapy rather than replacing it, and its hazard ratio of 0.50 for major adverse cardiovascular events is an adjunctive effect on top of that background. No trial has tested CoQ10 against or instead of guideline therapy, and none should.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: an adjunctive mortality signal from a two-year randomised trial is unusual for a supplement and this page records it as such. Cons: 420 patients is small for a mortality endpoint, and the result has not been reproduced at scale.',
+        },
+        {
+          name: 'Statin dose reduction or switching, for muscle symptoms',
+          class: 'Standard clinical management of statin intolerance',
+          howItCompares:
+            'The randomised test of CoQ10 in confirmed statin myalgia found no benefit on pain, strength or aerobic capacity, and marginally more subjects reported pain on CoQ10 than on placebo. Reducing dose, changing agent or alternate-day dosing address the exposure that is actually causing the symptom.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: targets the cause rather than a proposed downstream deficiency. Cons: requires a clinician, and lowering the dose lowers the lipid effect.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Organ meat, oily fish and whole grains',
+          activeCompound: 'Ubiquinone, at concentrations far below supplemental doses',
+          biologicalMechanism:
+            'Dietary CoQ10 supplies only a small fraction of body content; most is synthesised endogenously through the mevalonate pathway. This is why a dietary correction argument is weak and why the statin interaction, which acts on synthesis rather than intake, was the mechanistically interesting claim.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'Not stated here as advice. For scale only: Q-SYMBIO used 100 mg three times daily, and the Parkinson trial used 1,200 and 2,400 mg per day — an order of magnitude apart.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Take it with fat, because absorption is the limiting step',
+          action:
+            'Coenzyme Q10 is a large, extremely lipophilic molecule with poor and variable oral absorption, and formulation changes exposure more than dose does.',
+          patientImpact:
+            'In the statin myalgia trial, 600 mg per day of ubiquinol raised serum CoQ10 from 1.3 +/- 0.4 to 5.2 +/- 2.3 micrograms per millilitre, a fourfold rise — and produced no benefit at all. Poor absorption is therefore not the explanation for that negative result.',
+          clinicalPrecaution:
+            'Any product claiming superior bioavailability should be judged on measured serum concentrations, not on formulation language.',
+        },
+        {
+          name: 'Distinguish the heart failure result from everything else',
+          action:
+            'Check the population. Q-SYMBIO enrolled patients with moderate to severe chronic heart failure already on standard therapy.',
+          patientImpact:
+            'Its 2-year composite endpoint was reached by 15% on CoQ10 against 26% on placebo, hazard ratio 0.50 (95% CI 0.32 to 0.80, P = 0.003). But its own short-term endpoints at 16 weeks — NYHA class, six-minute walk and NT-proBNP — showed no significant changes.',
+          clinicalPrecaution:
+            'A trial whose short-term physiological endpoints were null and whose long-term hard endpoint was strongly positive is an unusual and not entirely comfortable pattern.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC1=C(C(=O)C(=C(C1=O)OC)OC)C/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CCC=C(C)C',
+      chemicalFormula: 'C59H90O4',
+      molecularWeight:
+        '863.3 g/mol for ubiquinone, the oxidised form. Ubiquinol, the reduced form sold as a premium product, is the same molecule with two additional hydrogens at C59H92O4 and 865.4 g/mol. The ten-isoprene tail is what makes the molecule extremely lipophilic and its absorption poor.',
+      structureSource: {
+        label: 'PubChem CID 5281915 — Coenzyme Q10, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281915',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'coq-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Redox state and cis-trans isomer determination',
+          description:
+            'Two things distinguish CoQ10 products and neither is on a label. Ubiquinone and ubiquinol are different oxidation states and interconvert on exposure to air, so a product sold as ubiquinol may not be one by the time it is swallowed. Separately, synthetic CoQ10 can contain the cis isomer, which does not occur in nature and is not the fermentation product.',
+          reagentsAndBuffer:
+            'HPLC with electrochemical detection quantifying ubiquinone and ubiquinol separately in a single run; reversed-phase separation resolving all-trans from cis isomers against authenticated standards; nitrogen-blanketed sample preparation to prevent oxidation during handling; amber glassware',
+        },
+        {
+          id: 'coq-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the deuterated internal standard and a shorter-chain analogue',
+          description:
+            'Endogenous CoQ10 is present in every sample, so administered CoQ10 cannot be quantified against it without a labelled standard. A shorter-chain analogue such as CoQ9, which is abundant in rodents and negligible in humans, serves as a second internal reference and as a control for extraction efficiency of the lipophilic quinone class.',
+          dependsOnStepId: 'coq-w1',
+          reagentsAndBuffer:
+            'Deuterated coenzyme Q10 internal standard; coenzyme Q9 as a chain-length control; hexane or propanol extraction system optimised for quinone recovery; isotopic purity confirmed by LC-MS/MS',
+        },
+        {
+          id: 'coq-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Separation of plasma lipoprotein-bound CoQ10 from the tissue-relevant pool',
+          description:
+            'Plasma CoQ10 travels almost entirely on LDL, so plasma concentration tracks LDL concentration as much as it tracks CoQ10 status — a confound that matters enormously when the population under study is taking statins, which lower LDL. Reporting plasma CoQ10 in statin users without normalising to LDL cholesterol conflates two effects.',
+          dependsOnStepId: 'coq-w2',
+          reagentsAndBuffer:
+            'Density gradient ultracentrifugation to separate LDL, VLDL and HDL fractions; CoQ10 quantified per fraction and normalised to LDL cholesterol and to total plasma lipid; muscle biopsy homogenate as the tissue comparator',
+        },
+        {
+          id: 'coq-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Does supplemental CoQ10 actually reach the mitochondrion?',
+          description:
+            'This is the unresolved question the whole category rests on. Raising plasma CoQ10 fourfold, as the statin myalgia trial did, tells you nothing about whether the inner mitochondrial membrane of a myocyte gained any. Measure incorporation directly with a labelled dose, in muscle, with respiratory function as the functional readout.',
+          dependsOnStepId: 'coq-w3',
+          reagentsAndBuffer:
+            'Human myotubes and, in vivo, vastus lateralis biopsy after labelled oral dosing; mitochondrial isolation by differential centrifugation with citrate synthase as the normalising marker; LC-MS/MS quantification of labelled versus endogenous CoQ10 in the mitochondrial fraction; high-resolution respirometry with complex I and II substrates',
+        },
+        {
+          id: 'coq-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Clinical endpoints reported alongside the achieved exposure',
+          description:
+            'Report the hard endpoint and the serum concentration achieved, together. The statin myalgia trial is the model here precisely because it did: serum CoQ10 rose from 1.3 to 5.2 micrograms per millilitre and pain scores did not improve, which converts an ambiguous negative into an informative one by ruling out under-dosing.',
+          dependsOnStepId: 'coq-w4',
+          reagentsAndBuffer:
+            'Brief Pain Inventory severity and interference scores; isokinetic dynamometry for arm and leg strength; maximal oxygen uptake by graded exercise testing; blinded endpoint adjudication; serum CoQ10 measured at every visit to document achieved exposure',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'coq-a1',
+        category: 'measured',
+        title: 'Q-SYMBIO: major cardiovascular events halved in 420 heart failure patients',
+        laymanSummary:
+          'In a two-year randomised trial in people with moderate to severe heart failure, adding CoQ10 to standard treatment halved the rate of serious cardiovascular events and reduced deaths.',
+        technicalDetails:
+          'Q-SYMBIO randomised 420 patients with moderate to severe chronic heart failure to CoQ10 100 mg three times daily or placebo, in addition to standard therapy, over two years. The primary long-term endpoint, a composite of major adverse cardiovascular events analysed by time to first event, was reached by 15% of the CoQ10 group against 26% of placebo — hazard ratio 0.50 (95% CI 0.32 to 0.80, P = 0.003) by intention to treat. Secondary endpoints significantly lower on CoQ10 included cardiovascular mortality (9% versus 16%, P = 0.026) and all-cause mortality (10% versus 18%, P = 0.018). This is a genuinely positive randomised mortality result for a supplement and this page records it without hedging. Two features complicate it. The primary short-term endpoints at 16 weeks — change in NYHA functional class, six-minute walk distance and NT-proBNP — showed no significant changes at all, which is an odd shape for an effect that later halves mortality. And 420 patients is a small trial for a hard endpoint, and the result has not been reproduced in an independent trial of comparable size.',
+        evidenceSource: 'Mortensen SA et al. JACC Heart Fail 2014;2:641-649',
+        doi: '10.1016/j.jchf.2014.06.008',
+        measuredMetric:
+          'Composite major adverse cardiovascular events at 2 years, cardiovascular mortality and all-cause mortality',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'coq-a2',
+        category: 'failed',
+        title: 'The statin muscle pain claim failed its direct randomised test',
+        laymanSummary:
+          'CoQ10 is bought mainly for statin muscle aches. In patients whose statin muscle pain was confirmed by rechallenge, CoQ10 did not reduce pain — and slightly more people on it reported pain than on placebo.',
+        technicalDetails:
+          'Taylor and colleagues first confirmed statin myalgia in 120 patients with prior symptoms using an eight-week randomised double-blind crossover of simvastatin 20 mg daily against placebo. Forty-one subjects who developed muscle pain on simvastatin but not on placebo were then randomised to simvastatin plus CoQ10 600 mg per day as ubiquinol, or simvastatin plus placebo, for eight weeks. Serum CoQ10 rose from 1.3 +/- 0.4 to 5.2 +/- 2.3 micrograms per millilitre on supplementation and fell on placebo (1.3 +/- 0.3 to 0.8 +/- 0.2), P < 0.05 — so the intervention unambiguously delivered. Brief Pain Inventory severity and interference scores both increased with simvastatin (both P < 0.01) irrespective of CoQ10 assignment (P = 0.53 and 0.56). There were no changes in muscle strength or maximal oxygen uptake with or without CoQ10, all P > 0.10. Marginally more subjects reported pain on CoQ10 than on placebo: 14 of 20 against 7 of 18, P = 0.05. The rechallenge design is what makes this trial matter — it excluded the majority of people with self-reported statin myalgia who do not reproduce it under blinding, and tested CoQ10 in the population where the claim should have been strongest.',
+        evidenceSource: 'Taylor BA et al. Atherosclerosis 2015;238:329-335',
+        doi: '10.1016/j.atherosclerosis.2014.12.016',
+        measuredMetric:
+          'Brief Pain Inventory severity and interference, muscle strength, and maximal oxygen uptake with confirmed statin myalgia',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'coq-a3',
+        category: 'failed',
+        title: 'QE3: Phase 3 in Parkinson disease, terminated for futility, both arms worse',
+        laymanSummary:
+          'A 600-patient Phase 3 trial of high-dose CoQ10 in early Parkinson disease was stopped early for futility. Both dose groups declined slightly faster than placebo.',
+        technicalDetails:
+          'The Parkinson Study Group QE3 trial randomised 600 participants with Parkinson disease diagnosed within five years, at 67 North American sites, to placebo, 1,200 mg/day or 2,400 mg/day of CoQ10. Mean age was 62.5 years and mean baseline total UPDRS score 22.7. The study was terminated after a prespecified futility criterion was reached. At termination both active treatment groups showed slight adverse trends relative to placebo: adjusted mean worsening in total UPDRS from baseline to final visit was 6.9 points on placebo, 7.5 points on 1,200 mg/day (P = .49 versus placebo) and 8.0 points on 2,400 mg/day (P = .21). Treatments were well tolerated with no safety concerns, and the authors concluded there was no evidence of clinical benefit. The trial was built on preclinical models showing reduced dopamine neuron loss and on a Phase II study suggesting possible benefit — the standard sequence in which a promising small signal does not survive an adequately powered test. Note the dose: 2,400 mg per day is twenty-four times the amount per dose used in Q-SYMBIO.',
+        evidenceSource: 'Parkinson Study Group QE3 Investigators. JAMA Neurol 2014;71:543-552',
+        doi: '10.1001/jamaneurol.2014.131',
+        measuredMetric:
+          'Adjusted mean change in total Unified Parkinson\'s Disease Rating Scale score from baseline to final visit',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'coq-a4',
+        category: 'inferred',
+        title: 'The mechanism for statin myalgia is sound, and the outcome still did not follow',
+        laymanSummary:
+          'Statins block the pathway that makes CoQ10, and blood CoQ10 really does fall on statins. The step from that to muscle pain, and from replacement to relief, is where the reasoning breaks.',
+        technicalDetails:
+          'HMG-CoA reductase inhibition reduces mevalonate, the precursor both of cholesterol and of the polyprenyl tail of coenzyme Q10, so statins lower circulating CoQ10. That much is uncontested. Two problems separate it from the clinical claim. First, plasma CoQ10 is transported almost entirely on LDL, so a fall in plasma CoQ10 on a statin is partly a fall in its carrier rather than a fall in tissue status, and studies of muscle CoQ10 in statin users have not consistently shown depletion. Second, and decisively, the causal chain was tested directly: raising serum CoQ10 fourfold in patients with rechallenge-confirmed statin myalgia produced no improvement in pain, strength or aerobic capacity. A meta-analysis of randomised trials of CoQ10 for statin-induced myopathy likewise found no significant effect on creatine kinase. This is one of the clearest examples in the file of a mechanistically compelling story that does not survive its own outcome trial.',
+        evidenceSource:
+          'Banach M et al. Mayo Clin Proc 2015;90:24-34; Taylor BA et al. Atherosclerosis 2015;238:329-335',
+        doi: '10.1016/j.mayocp.2014.08.021',
+        inferredClaim:
+          'That because statins lower circulating CoQ10, replacing CoQ10 will relieve statin-associated muscle symptoms',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'coq-a5',
+        category: 'measured',
+        title: 'A five-year Swedish trial found lower cardiovascular mortality — with selenium',
+        laymanSummary:
+          'A five-year randomised trial in elderly Swedes found reduced cardiovascular deaths on a combination of CoQ10 and selenium, in a population with low selenium intake.',
+        technicalDetails:
+          'Alehagen and colleagues randomised elderly Swedish citizens to combined selenium and coenzyme Q10 supplementation or placebo for five years, reporting reduced cardiovascular mortality and reduced N-terminal pro-B-type natriuretic peptide. Two contextual facts are essential and are usually dropped when the trial is cited. The intervention was a combination, so no effect can be attributed to CoQ10 alone. And Sweden has among the lowest soil and dietary selenium in Europe, meaning the population was plausibly selenium-insufficient at baseline — which makes this a repletion study in a deficient population rather than a supplementation study in a replete one. Read alongside the selenium record on this site, where 200 micrograms daily in a selenium-replete American population produced no cancer prevention and increased diabetes incidence, the contrast is the point: the same nutrient helps where there is a deficit and does not, or harms, where there is not.',
+        evidenceSource: 'Alehagen U, Johansson P, Bjornstedt M, Rosen A, Dahlstrom U. Int J Cardiol 2013;167:1860-1866',
+        doi: '10.1016/j.ijcard.2012.04.156',
+        measuredMetric:
+          'Cardiovascular mortality and N-terminal pro-B-type natriuretic peptide over five years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'coq-a6',
+        category: 'inferred',
+        title: 'Ubiquinol versus ubiquinone is a redox state, not a product class',
+        laymanSummary:
+          'The premium "ubiquinol" form is the same molecule carrying two extra hydrogens. It oxidises in air, and the body interconverts the two forms continuously anyway.',
+        technicalDetails:
+          'Ubiquinone (C59H90O4, 863.3 g/mol) and ubiquinol (C59H92O4, 865.4 g/mol) differ by a two-electron, two-proton reduction. The body interconverts them continuously — that interconversion is precisely what coenzyme Q10 does in the respiratory chain — and ingested ubiquinone is reduced to ubiquinol during absorption. Ubiquinol is also chemically unstable in air, so a product\'s redox state at manufacture is not necessarily its redox state at ingestion, and this is not verified on any label. The strongest available counter-evidence to the premium claim is the statin myalgia trial, which used 600 mg per day of ubiquinol specifically, achieved a fourfold rise in serum CoQ10, and produced no clinical benefit whatsoever. Whatever limits CoQ10\'s efficacy in that setting, it was not the redox state or the achieved blood level.',
+        evidenceSource: 'Taylor BA et al. Atherosclerosis 2015;238:329-335',
+        doi: '10.1016/j.atherosclerosis.2014.12.016',
+        inferredClaim:
+          'That ubiquinol is a superior product whose better absorption unlocks clinical effects ubiquinone cannot deliver',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorption is poor, variable, and the main practical constraint',
+        laymanDesc:
+          'CoQ10 is a big, greasy molecule and very little of a swallowed dose gets into the blood. How it is formulated changes absorption more than how much you take.',
+        molecularDetail:
+          'The ten-isoprene tail makes CoQ10 almost insoluble in water, with slow, lipid-dependent and highly variable absorption. In the statin myalgia trial, 600 mg per day of ubiquinol raised serum CoQ10 from 1.3 +/- 0.4 to 5.2 +/- 2.3 micrograms per millilitre — a fourfold increase, which establishes that inadequate absorption cannot explain that trial\'s null result.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It travels on LDL, which confuses every statin measurement',
+        laymanDesc:
+          'In the blood, CoQ10 is carried by LDL particles. Statins lower LDL, so they lower measured CoQ10 partly by lowering its transport, not necessarily by depleting tissue.',
+        molecularDetail:
+          'Plasma CoQ10 is carried predominantly on LDL, so plasma CoQ10 concentration covaries with LDL cholesterol. A statin-associated fall in plasma CoQ10 therefore conflates reduced synthesis with reduced carrier. Muscle CoQ10 content in statin users has not consistently shown depletion, which weakens the deficiency premise before any clinical trial is run.',
+        iconName: 'Package',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Its job is shuttling electrons inside mitochondria',
+        laymanDesc:
+          'Inside mitochondria, CoQ10 is the ferry that carries electrons from the first two protein complexes to the third. Without it, energy production stops.',
+        molecularDetail:
+          'Coenzyme Q10 accepts electrons from complexes I and II and delivers them to complex III at the Qo site of the cytochrome bc1 complex, cycling between ubiquinone, semiquinone and ubiquinol. Loss-of-function mutations in the biosynthetic enzyme COQ2 cause primary coenzyme Q10 deficiency, a rare disease in which supplementation is genuinely therapeutic — and the only setting where a deficiency argument is established.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Statins reduce its synthesis, through the shared mevalonate pathway',
+        laymanDesc:
+          'The pathway statins block to lower cholesterol is the same one that builds CoQ10\'s tail. That shared step is the entire rationale for taking CoQ10 with a statin.',
+        molecularDetail:
+          'HMG-CoA reductase inhibition lowers mevalonate, the precursor of both cholesterol and the polyprenyl tail of CoQ10. The reasoning is sound as far as it goes. It stops at the outcome: in patients whose statin myalgia was confirmed by blinded rechallenge, quadrupling serum CoQ10 changed neither pain severity, nor pain interference, nor strength, nor VO2max.',
+        iconName: 'GitBranch',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The measured outcomes split sharply by population',
+        laymanDesc:
+          'In heart failure on standard therapy, a two-year trial halved major cardiac events. In early Parkinson disease, a Phase 3 trial was stopped for futility with both doses trending worse.',
+        molecularDetail:
+          'Q-SYMBIO: composite major adverse cardiovascular events 15% versus 26%, hazard ratio 0.50 (95% CI 0.32 to 0.80, P = 0.003); all-cause mortality 10% versus 18% (P = 0.018). QE3: adjusted UPDRS worsening 6.9 points on placebo, 7.5 on 1,200 mg/day and 8.0 on 2,400 mg/day, terminated at a prespecified futility criterion.',
+        iconName: 'GitCompare',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Q-SYMBIO — coenzyme Q10 in chronic heart failure',
+        phase: 'Randomised double-blind placebo-controlled multicentre, 2 years',
+        sampleSize: 420,
+        primaryEndpoint:
+          'Composite major adverse cardiovascular events at 2 years by time to first event; short-term NYHA class, six-minute walk and NT-proBNP at 16 weeks',
+        endpointMet: true,
+        statisticalPValue:
+          'Long-term composite 15% versus 26%, hazard ratio 0.50 (95% CI 0.32 to 0.80), P = 0.003; cardiovascular mortality 9% versus 16%, P = 0.026; all-cause mortality 10% versus 18%, P = 0.018',
+        unreportedAdverseSignals:
+          'The primary short-term endpoints at 16 weeks — NYHA class, six-minute walk distance and NT-proBNP — showed no significant changes. A mortality benefit with null physiological endpoints is an unusual shape, and 420 patients is small for a hard endpoint.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Taylor 2015 — CoQ10 in rechallenge-confirmed statin myalgia',
+        phase: 'Randomised double-blind, following an 8-week crossover confirmation phase',
+        sampleSize: 41,
+        primaryEndpoint:
+          'Brief Pain Inventory severity and interference, muscle strength and maximal oxygen uptake',
+        endpointMet: false,
+        statisticalPValue:
+          'Pain severity P = 0.53 and interference P = 0.56 for CoQ10 assignment; strength and VO2max all P > 0.10; more subjects reported pain on CoQ10, 14 of 20 versus 7 of 18, P = 0.05',
+        unreportedAdverseSignals:
+          'Serum CoQ10 rose fourfold on supplementation, which rules out under-dosing as an explanation. Only 41 of 120 screened patients reproduced their myalgia under blinding, which is itself a finding about statin intolerance.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT00740714 — QE3, high-dosage coenzyme Q10 in early Parkinson disease',
+        phase: 'Phase 3 randomised placebo-controlled double-blind',
+        sampleSize: 600,
+        primaryEndpoint:
+          'Change in total Unified Parkinson\'s Disease Rating Scale score from baseline to final visit',
+        endpointMet: false,
+        statisticalPValue:
+          'Worsening 6.9 points placebo, 7.5 points on 1,200 mg/day (P = .49), 8.0 points on 2,400 mg/day (P = .21); terminated at a prespecified futility criterion',
+        unreportedAdverseSignals:
+          'Both active arms showed slight adverse trends relative to placebo. The trial followed a Phase II study that had suggested possible benefit, the standard pattern of a small promising signal failing an adequately powered test.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'KiSel-10 (Alehagen 2013) — selenium and coenzyme Q10 in elderly Swedes',
+        phase: 'Prospective randomised double-blind placebo-controlled, 5 years',
+        sampleSize: 443,
+        primaryEndpoint: 'Cardiovascular mortality and N-terminal pro-B-type natriuretic peptide',
+        endpointMet: true,
+        statisticalPValue:
+          'Reduced cardiovascular mortality and reduced NT-proBNP on combined selenium and coenzyme Q10 versus placebo over five years',
+        unreportedAdverseSignals:
+          'A combination intervention, so no effect is attributable to CoQ10 alone. Sweden has among the lowest dietary selenium in Europe, making this plausibly a repletion study in a selenium-insufficient population.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Major adverse cardiovascular events occurred in 15% on CoQ10 against 26% on placebo over two years in 420 heart failure patients',
+        'All-cause mortality was 10% against 18% in the same trial',
+        'In rechallenge-confirmed statin myalgia, CoQ10 changed neither pain, strength nor VO2max despite a fourfold rise in serum CoQ10',
+        'A 600-patient Phase 3 Parkinson trial was terminated for futility with both dose arms trending worse than placebo',
+      ],
+      unsupportedInferences: [
+        'That because statins lower circulating CoQ10, replacing it relieves statin muscle symptoms',
+        'That ubiquinol is a clinically superior form, when the trial using 600 mg of ubiquinol found nothing',
+        'That the heart failure result generalises to healthy people buying it for energy',
+        'That the Swedish combination trial demonstrates anything about CoQ10 alone, or outside a low-selenium population',
+      ],
+      whatFailedInitially: [
+        'CoQ10 for statin-associated muscle symptoms, the reason most of it is bought, in its most rigorous direct test',
+        'CoQ10 as a neuroprotective agent in Parkinson disease, terminated at a prespecified futility criterion',
+      ],
+      realWorldOutcome: [
+        'Q-SYMBIO is a real positive randomised mortality trial and this page says so without hedging',
+        'It is also small, unreplicated, and its own short-term physiological endpoints were null',
+        'The claim that sells the most product is the one that failed its own direct test most clearly',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule or softgel, as ubiquinone or ubiquinol, usually in an oil base',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. Absorption is poor, lipid-dependent and highly variable, so formulation influences exposure more than label dose does, and any bioavailability claim should be judged on measured serum concentrations. Ubiquinol oxidises to ubiquinone in air, so a product\'s stated redox state is not verifiable at the point of use. Synthetic material can contain the non-natural cis isomer, which fermentation-derived material does not. Doses across the trial literature span more than an order of magnitude, from 300 mg per day in Q-SYMBIO to 2,400 mg per day in QE3.',
+      safetyProfile:
+        'Well tolerated across the trial literature, including at 2,400 mg per day for years in the Parkinson trial, where treatments were described as well tolerated with no safety concerns. Mild gastrointestinal upset and insomnia are the commonest complaints. CoQ10 is structurally related to vitamin K and can reduce the anticoagulant effect of warfarin, which is a genuine and clinically relevant interaction. In the statin myalgia trial, marginally more subjects reported muscle pain on CoQ10 than on placebo, which is a small and unexplained signal rather than an established harm.',
+    },
+    commonQuestions: [
+      {
+        q: 'Should I take CoQ10 with my statin?',
+        a: 'The direct randomised answer is no. Researchers first confirmed statin muscle pain in patients by blinded rechallenge — only 41 of 120 with a prior history actually reproduced it — then gave those patients 600 mg a day of ubiquinol or placebo alongside simvastatin. Serum CoQ10 rose fourfold, so the supplement plainly worked as a supplement. Pain severity and interference did not improve, muscle strength and aerobic capacity did not change, and marginally more people on CoQ10 reported pain than on placebo.',
+        auditNote:
+          'This is the reason most CoQ10 is bought, and it is the claim with the clearest negative test.',
+      },
+      {
+        q: 'But statins do lower CoQ10, don\'t they?',
+        a: 'They lower it in blood, yes, and the mechanism is real: statins block the mevalonate pathway that builds both cholesterol and CoQ10\'s tail. Two complications sit between that and the clinical claim. Plasma CoQ10 rides on LDL particles, so lowering LDL lowers measured CoQ10 partly by removing its transport rather than by depleting tissue. And muscle CoQ10 content in statin users has not consistently shown depletion. The mechanism is compelling and the outcome trial is negative, which is the pattern this whole file is built around.',
+      },
+      {
+        q: 'What about the heart failure result?',
+        a: 'That one is genuinely positive and this page will not hedge it. Q-SYMBIO randomised 420 patients with moderate to severe heart failure, on top of standard therapy, and over two years major adverse cardiovascular events occurred in 15 percent on CoQ10 against 26 percent on placebo, with all-cause mortality 10 percent against 18 percent. The qualifications: 420 patients is small for a mortality endpoint, the result has not been independently reproduced at that scale, and the trial\'s own 16-week physiological endpoints — NYHA class, walk distance, NT-proBNP — showed nothing.',
+      },
+      {
+        q: 'Is ubiquinol worth paying more for?',
+        a: 'There is no clinical evidence that it is. Ubiquinol is the same molecule as ubiquinone carrying two extra hydrogens, the body interconverts the two continuously as part of what CoQ10 does for a living, and ubiquinol oxidises in air so a capsule\'s stated redox state may not survive to your mouth. The most informative data point is that the statin myalgia trial used ubiquinol specifically, at 600 mg a day, achieved a fourfold rise in blood levels, and found no benefit at all.',
+      },
+      {
+        q: 'Does it protect the brain?',
+        a: 'A 600-patient Phase 3 trial says no. QE3 randomised people with early Parkinson disease to placebo, 1,200 mg or 2,400 mg of CoQ10 daily and was stopped early when a prespecified futility criterion was reached. Both active groups declined slightly faster than placebo — 7.5 and 8.0 points of UPDRS worsening against 6.9 on placebo. The trial was built on preclinical models and a promising Phase II signal, and neither survived.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Alehagen U, Johansson P, Bjornstedt M, Rosen A, Dahlstrom U. Cardiovascular mortality and N-terminal-proBNP reduced after combined selenium and coenzyme Q10 supplementation. Int J Cardiol 2013;167:1860-1866',
+        identifier: '10.1016/j.ijcard.2012.04.156',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Parkinson Study Group QE3 Investigators. A randomized clinical trial of high-dosage coenzyme Q10 in early Parkinson disease: no evidence of benefit. JAMA Neurol 2014;71:543-552',
+        identifier: '10.1001/jamaneurol.2014.131',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mortensen SA et al. The effect of coenzyme Q10 on morbidity and mortality in chronic heart failure: results from Q-SYMBIO, a randomized double-blind trial. JACC Heart Fail 2014;2:641-649',
+        identifier: '10.1016/j.jchf.2014.06.008',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Banach M et al. Effects of coenzyme Q10 on statin-induced myopathy: a meta-analysis of randomized controlled trials. Mayo Clin Proc 2015;90:24-34',
+        identifier: '10.1016/j.mayocp.2014.08.021',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Taylor BA et al. A randomized trial of coenzyme Q10 in patients with confirmed statin myopathy. Atherosclerosis 2015;238:329-335',
+        identifier: '10.1016/j.atherosclerosis.2014.12.016',
+        kind: 'doi',
+      },
+      {
+        label: 'QE3 trial registration — coenzyme Q10 in early Parkinson disease',
+        identifier: 'NCT00740714',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 5281915 — Coenzyme Q10 (ubiquinone)',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281915',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
