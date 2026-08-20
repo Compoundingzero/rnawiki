@@ -4184,4 +4184,777 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 11. Terfenadine
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'terfenadine',
+    name: 'Terfenadine',
+    tradeName: 'Seldane / Triludan',
+    sponsor: 'Marion Merrell Dow, then Hoechst Marion Roussel',
+    targetGene: 'HRH1',
+    targetProtein:
+      'Histamine H1 receptor (therapeutic target); hERG / KCNH2 potassium channel (toxicity target)',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1985,
+    indication:
+      'Seasonal allergic rhinitis and chronic idiopathic urticaria. Withdrawn from the United States market in the late 1990s and listed by the FDA among drug products withdrawn for reasons of safety or effectiveness (81 FR 69668).',
+    patientFriendlyIndication: 'A hay fever tablet that did not make you drowsy',
+    anatomicalSite:
+      'Peripheral H1 receptors in nasal mucosa and skin; the toxicity site is the ventricular myocyte',
+    conditionContext: {
+      conditionExplainer:
+        'Terfenadine was the first non-sedating antihistamine, and it worked because the active drug never reached the brain. What almost nobody realised until 1990 is that the tablet you swallow is not the active drug — it is a prodrug, converted almost completely to a different molecule on first pass through the liver.',
+      whyItMatters:
+        'The prodrug blocks a cardiac potassium channel. The metabolite does not. Under normal conditions almost no parent drug survives, so the heart never sees it. Block the enzyme that does the conversion — with an antifungal, an antibiotic, or grapefruit juice — and the parent accumulates.',
+      whoTakesThis:
+        'Nobody. Its active metabolite, fexofenadine, is available over the counter worldwide and is the same antihistamine without the cardiac liability.',
+      clinicalGoals:
+        'Relief of allergic rhinitis and urticaria without sedation. It achieved that entirely, which is what makes the drug\'s replacement by its own metabolite such an unusually clean resolution.',
+    },
+    oneSentenceVerdict:
+      'A non-sedating antihistamine that turned out to be a prodrug whose parent molecule blocks the hERG channel as potently as quinidine while its active metabolite does not block it at all — so the drug was withdrawn and the metabolite was licensed in its place as fexofenadine.',
+    laymanHowItWorks:
+      'Terfenadine is converted in the liver, almost entirely and almost immediately, into a different molecule that blocks histamine receptors in the nose and skin without entering the brain. That metabolite is what actually relieves the symptoms. The unconverted parent, which normally exists only in trace amounts, blocks the potassium channel the heart uses to reset between beats. If anything stops the liver doing the conversion, the parent builds up and the heart rhythm can break down.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 92,
+    substitutes: {
+      summary:
+        'The substitute is the drug\'s own active metabolite. Fexofenadine is terfenadine carboxylate, sold over the counter, with no cardiac potassium channel effect at clinically achievable concentrations. Loratadine, desloratadine and cetirizine were shown in the same comparative work to have no QT signal either.',
+      conventionalRx: [
+        {
+          name: 'Fexofenadine',
+          class: 'Second-generation H1 antihistamine',
+          howItCompares:
+            'It is terfenadine carboxylate — the active metabolite of terfenadine, marketed directly. In vitro it does not inhibit the delayed rectifier potassium current even at 30 times the concentration at which terfenadine produces half-maximal block.',
+          typicalCost: 'Generic and over the counter; not priced here',
+          prosAndCons:
+            'Pros: identical antihistamine effect, no QT liability, no prodrug conversion step to be interfered with. Cons: absorption is reduced by fruit juices and by antacids containing aluminium or magnesium.',
+        },
+        {
+          name: 'Loratadine and desloratadine',
+          class: 'Second-generation H1 antihistamines',
+          howItCompares:
+            'Neither loratadine nor desloratadine significantly inhibits cardiac potassium channels at clinically achievable blood levels, and human volunteer studies found no electrocardiographic effect at several times the recommended dose or with metabolic inhibitors.',
+          typicalCost: 'Generic and over the counter; not priced here',
+          prosAndCons:
+            'Pros: no arrhythmia signal, once daily. Cons: mild sedation in a minority at higher doses.',
+        },
+        {
+          name: 'Cetirizine',
+          class: 'Second-generation H1 antihistamine',
+          howItCompares:
+            'Also confirmed free of electrocardiographic effect in human volunteers at several times the recommended dose or with metabolic inhibitors present.',
+          typicalCost: 'Generic and over the counter; not priced here',
+          prosAndCons:
+            'Pros: potent, no QT signal, renally cleared. Cons: more sedating than fexofenadine or loratadine.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(C)(C)C1=CC=C(C=C1)C(CCCN2CCC(CC2)C(C3=CC=CC=C3)(C4=CC=CC=C4)O)O',
+      chemicalFormula: 'C32H41NO2',
+      molecularWeight: '471.7 g/mol',
+      targetReceptorAffinity:
+        'A prodrug. Terfenadine itself is equipotent with quinidine as a blocker of the delayed rectifier potassium current in isolated myocytes, with an apparent hERG dissociation constant of 350 nmol/L against 2.7 micromol/L for Kv1.5 — a ten-fold selectivity for the ventricular channel. Its major metabolite, terfenadine carboxylate (fexofenadine), does not block either channel.',
+      structureSource: {
+        label: 'PubChem CID 5405 (terfenadine) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5405',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ter-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity confirmation and separation from the carboxylate metabolite',
+          description:
+            'Confirm the tert-butylphenyl carbinol and diphenylmethanol piperidine halves, and — critically — resolve terfenadine from terfenadine carboxylate. The two differ by oxidation of a single tert-butyl methyl group to a carboxylic acid, and confusing them is the difference between the cardiotoxic molecule and the safe one.',
+          reagentsAndBuffer:
+            'Terfenadine and fexofenadine certified reference standards, C18 reversed-phase HPLC with the pair resolved to baseline, LC-MS/MS in positive electrospray at m/z 472 and 502 respectively, deuterated internal standards',
+        },
+        {
+          id: 'ter-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Plasma quantification with a low limit of detection for the parent',
+          description:
+            'The clinically important measurement is unmetabolised parent terfenadine, which is normally undetectable. An assay whose limit of quantification is too high will report "none detected" in exactly the patients who are at risk, so method sensitivity is the whole point here.',
+          dependsOnStepId: 'ter-w1',
+          reagentsAndBuffer:
+            'Plasma with liquid-liquid or solid-phase extraction, LC-MS/MS in multiple reaction monitoring with a sub-nanogram-per-millilitre limit of quantification for the parent, matrix-matched calibration',
+        },
+        {
+          id: 'ter-w3',
+          stepNumber: 3,
+          phase: 'Assay_Quantification',
+          name: 'hERG and Kv1.5 block, parent versus metabolite side by side',
+          description:
+            'Express hERG and Kv1.5 heterologously and measure block by terfenadine and by terfenadine carboxylate on the same preparation. Running both compounds is not optional: the entire scientific resolution of this drug is that one blocks the channel and the other does not.',
+          dependsOnStepId: 'ter-w2',
+          reagentsAndBuffer:
+            'Xenopus oocytes or HEK293 cells expressing hERG (KCNH2) and Kv1.5 (KCNA5), two-electrode voltage clamp or whole-cell patch clamp, quinidine as a reference blocker, terfenadine carboxylate tested to at least 30-fold the terfenadine half-maximal concentration',
+        },
+        {
+          id: 'ter-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'CYP3A4 conversion and inhibition study',
+          description:
+            'Quantify the rate of terfenadine to terfenadine carboxylate conversion in human liver microsomes, then repeat with ketoconazole or erythromycin present. This is the assay that reproduces in a tube the clinical study in which four of six healthy volunteers had to have their ketoconazole course shortened for repolarisation abnormalities.',
+          dependsOnStepId: 'ter-w3',
+          reagentsAndBuffer:
+            'Pooled human liver microsomes with NADPH regenerating system, recombinant CYP3A4, ketoconazole and erythromycin as index inhibitors, LC-MS/MS quantification of parent and carboxylate',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ter-a1',
+        category: 'measured',
+        title: 'Ketoconazole made all six volunteers accumulate the parent drug and prolong their QT',
+        laymanSummary:
+          'Six healthy people took terfenadine for a week, then added a common antifungal. All six began accumulating the unconverted drug and their ECGs changed. Only two could finish the study.',
+        technicalDetails:
+          'Prospective cohort study with each subject as their own control: six healthy volunteers, four men and two women aged 24 to 35, taking no other medication, reached steady state on terfenadine 60 mg every 12 hours for seven days, then added ketoconazole 200 mg every 12 hours. All six had detectable levels of unmetabolised terfenadine after ketoconazole was added, associated with QT prolongation. Only two of the six could complete the full course of ketoconazole coadministration; four received a shortened course because of significant electrocardiographic repolarisation abnormalities. The area under the curve of the acid metabolite changed significantly. The authors\' conclusion was that the combination should be avoided.',
+        evidenceSource:
+          'Honig PK, Wortham DC, Zamani K, Conner DP, Mullin JC, Cantilena LR. JAMA 1993;269:1513-1518',
+        measuredMetric:
+          'Unmetabolised terfenadine plasma concentration and corrected QT interval before and after ketoconazole',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a2',
+        category: 'measured',
+        title: 'The parent is as potent as quinidine; the metabolite does nothing to the channel',
+        laymanSummary:
+          'Laboratory recordings showed the swallowed drug blocks the heart\'s potassium current as strongly as a classic anti-arrhythmic. The molecule it turns into does not block it at all, even at thirty times the concentration.',
+        technicalDetails:
+          'Woosley and colleagues examined FDA Spontaneous Reporting System cases — 25 reports of torsades de pointes as of 1 April 1992 — and then tested the resulting hypothesis in isolated feline myocytes. Terfenadine proved equipotent with quinidine as a blocker of the delayed rectifier potassium current. Terfenadine carboxylate, the major metabolite, did not inhibit that current even at concentrations 30 times higher than the terfenadine concentration producing a half-maximal effect. Their conclusion was that torsades de pointes results from a quinidine-like action of the parent drug plus factors that impair its normally rapid metabolism.',
+        evidenceSource:
+          'Woosley RL, Chen Y, Freiman JP, Gillis RA. Mechanism of the cardiotoxic actions of terfenadine. JAMA 1993;269:1532-1536',
+        measuredMetric:
+          'Delayed rectifier potassium current block by terfenadine versus terfenadine carboxylate',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a3',
+        category: 'measured',
+        title: 'hERG identified as the specific channel, at 350 nanomolar',
+        laymanSummary:
+          'Three years later the exact channel was named. Terfenadine blocks it at concentrations only a few times above what circulates in patients, and ten times more readily than the atrial channel.',
+        technicalDetails:
+          'Roy, Dumaine and Brown expressed Kv1.5 and hERG heterologously in Xenopus oocytes to compare sensitivity. hERG was ten times more sensitive than Kv1.5 to terfenadine block, with apparent dissociation constants of 350 nmol/L and 2.7 micromol/L respectively — values that agree with terfenadine block of IKr and IKur currents measured in human atrial myocytes. They noted the clinical relevance directly: terfenadine concentrations in human plasma may reach the 100 nmol/L range. Terfenadine carboxylate blocked neither channel. Their closing proposal — that hERG is likely the primary target for the cardiotoxic effects of other related antihistamines — was borne out by astemizole.',
+        evidenceSource: 'Roy M, Dumaine R, Brown AM. Circulation 1996;94:817-823',
+        doi: '10.1161/01.CIR.94.4.817',
+        measuredMetric:
+          'Apparent dissociation constant for hERG and Kv1.5 block by terfenadine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a4',
+        category: 'conclusion_shift',
+        title: 'Withdrawn and replaced by its own metabolite',
+        laymanSummary:
+          'Rather than lose the drug entirely, the manufacturer licensed the molecule terfenadine turns into. Fexofenadine is now sold over the counter worldwide.',
+        technicalDetails:
+          'Because the antihistamine activity resides in terfenadine carboxylate and the cardiac liability resides in the parent, the clean solution was to market the metabolite directly. Fexofenadine was developed and licensed, and terfenadine was withdrawn; it now appears in the FDA\'s codified withdrawn-for-safety list at 81 FR 69668 as "all drug products containing terfenadine". This is the most complete resolution of any case in this file: the therapeutic benefit was preserved intact and the harm was removed, because the two lived in different molecules that happened to be linked by one metabolic step.',
+        evidenceSource:
+          'Roy M et al., Circulation 1996;94:817-823; FDA final rule 81 FR 69668, 7 October 2016',
+        doi: '10.1161/01.CIR.94.4.817',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a5',
+        category: 'inferred',
+        title: 'Arrhythmia was assumed to be a class effect of non-sedating antihistamines. It is not',
+        laymanSummary:
+          'After terfenadine and astemizole, the whole class fell under suspicion. Comparative testing showed loratadine, cetirizine and fexofenadine have no such effect.',
+        technicalDetails:
+          'DuBuske reviewed the comparative evidence directly to test whether ventricular arrhythmia is a class effect of second-generation antihistamines. Electrocardiographic studies showed that terfenadine and astemizole, but not loratadine or cetirizine, prolong the QT interval in laboratory animals. In vitro, terfenadine and astemizole block cardiac potassium channels while neither loratadine nor desloratadine significantly inhibits them at clinically achievable blood levels. Human volunteer studies confirmed the absence of electrocardiographic effects of azelastine, cetirizine, fexofenadine and loratadine, given at several times the recommended dose or together with agents inhibiting their metabolism. The conclusion is explicit: the potential to cause ventricular arrhythmias is not a class effect.',
+        evidenceSource:
+          'DuBuske LM. Second-generation antihistamines: the risk of ventricular arrhythmias. Clin Ther 1999;21:281-295',
+        doi: '10.1016/S0149-2918(00)88286-7',
+        inferredClaim:
+          'That QT prolongation and torsades de pointes are a class property of non-sedating H1 antihistamines',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ter-a6',
+        category: 'inferred',
+        title: 'A drug with an enormous safety margin has none once the margin depends on an enzyme',
+        laymanSummary:
+          'Under normal conditions almost no unconverted drug reaches the bloodstream, so the safety margin looked huge. That margin was not a property of the dose — it was a property of one liver enzyme continuing to work.',
+        technicalDetails:
+          'Terfenadine undergoes near-complete first-pass metabolism by CYP3A4, so parent drug concentrations in normal use are very low relative to the 350 nmol/L hERG dissociation constant. That apparent margin was the basis on which the drug was considered safe. It is conditional rather than intrinsic: it disappears whenever CYP3A4 is inhibited by an azole antifungal, a macrolide antibiotic, grapefruit juice, or by hepatic impairment, and it disappears in overdose. Honig\'s study demonstrated the collapse experimentally in six healthy volunteers. The generalisable point is that a safety margin created by metabolism is only as robust as the metabolism, and prodrugs whose parent carries the toxicity have no floor beneath them.',
+        evidenceSource:
+          'Honig PK et al., JAMA 1993;269:1513-1518; Woosley RL et al., JAMA 1993;269:1532-1536',
+        inferredClaim:
+          'That extensive first-pass metabolism provides a reliable safety margin against a toxicity carried by the parent drug',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A tablet twice a day, and almost none of it survives the liver',
+        laymanDesc:
+          'Swallowed twice daily. Nearly all of it is converted on the first pass through the liver, so barely any of the original molecule ever reaches the bloodstream.',
+        molecularDetail:
+          'Oral 60 mg twice daily. Near-complete first-pass oxidation by CYP3A4 to terfenadine carboxylate, with parent drug typically below the limit of quantification in normal use.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The metabolite reaches nose and skin, and not the brain',
+        laymanDesc:
+          'The converted molecule circulates to the tissues where allergy symptoms come from. It does not cross into the brain, which is why it does not cause drowsiness.',
+        molecularDetail:
+          'Terfenadine carboxylate is a zwitterion and a P-glycoprotein substrate, so it is effectively excluded from the central nervous system — the structural basis of non-sedation.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The metabolite blocks H1; the parent blocks hERG',
+        laymanDesc:
+          'The converted form blocks histamine receptors and relieves symptoms. The unconverted form blocks a heart potassium channel and does nothing useful.',
+        molecularDetail:
+          'Terfenadine carboxylate is an inverse agonist at the histamine H1 receptor. Terfenadine itself blocks hERG with an apparent dissociation constant of 350 nmol/L, ten-fold selectively over Kv1.5, and is equipotent with quinidine at the delayed rectifier current in isolated myocytes.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Block the enzyme and the wrong molecule accumulates',
+        laymanDesc:
+          'An antifungal, an antibiotic or grapefruit juice can stop the conversion. Then the original drug builds up to levels that reach the heart.',
+        molecularDetail:
+          'CYP3A4 inhibition by azoles, macrolides, protease inhibitors or furanocoumarins, or hepatic impairment or overdose, raises parent terfenadine towards and past the 350 nmol/L range. Reduced IKr prolongs ventricular repolarisation, widening the QT interval and permitting early afterdepolarisations.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Hay fever relieved without drowsiness; torsades in the wrong combination',
+        laymanDesc:
+          'The antihistamine effect was excellent. In patients taking interacting drugs the heart rhythm could break down into a potentially fatal arrhythmia.',
+        molecularDetail:
+          'Measured endpoints: symptomatic relief of allergic rhinitis and urticaria without sedation, against QT prolongation in all six volunteers given concomitant ketoconazole and 25 spontaneous reports of torsades de pointes to the FDA as of April 1992.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Terfenadine-ketoconazole interaction study (Honig et al.)',
+        phase: 'Prospective clinical pharmacology cohort, subjects as their own controls',
+        sampleSize: 6,
+        primaryEndpoint:
+          'Terfenadine and terfenadine carboxylate serum concentrations and corrected QT interval before and after adding ketoconazole',
+        endpointMet: true,
+        statisticalPValue:
+          'All six subjects developed detectable unmetabolised terfenadine with associated QT prolongation; significant change in acid metabolite area under the curve',
+        unreportedAdverseSignals:
+          'Four of the six volunteers had their ketoconazole course shortened because of significant electrocardiographic repolarisation abnormalities. Only two completed the intended protocol.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'FDA Spontaneous Reporting System analysis with myocyte electrophysiology (Woosley et al.)',
+        phase: 'Spontaneous report analysis with in vitro mechanistic testing',
+        sampleSize: 25,
+        primaryEndpoint:
+          'Predisposing factors in reported torsades de pointes cases, and delayed rectifier potassium current block by parent versus metabolite',
+        endpointMet: true,
+        statisticalPValue:
+          'Terfenadine equipotent with quinidine at the delayed rectifier current; terfenadine carboxylate inactive at 30-fold the terfenadine half-maximal concentration',
+        unreportedAdverseSignals:
+          'Spontaneous reports have no denominator, so 25 cases as of April 1992 establishes that the event occurs, not how often.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Detectable unmetabolised terfenadine with QT prolongation in all six volunteers after adding ketoconazole, four of whom needed the course shortened',
+        'Terfenadine equipotent with quinidine as a delayed rectifier potassium current blocker in isolated myocytes',
+        'hERG apparent dissociation constant 350 nmol/L against 2.7 micromol/L for Kv1.5, with plasma concentrations reaching the 100 nmol/L range',
+        'Terfenadine carboxylate blocks neither channel, even at 30-fold the terfenadine half-maximal concentration',
+      ],
+      unsupportedInferences: [
+        'That near-complete first-pass metabolism gives a durable safety margin against a toxicity carried by the parent drug',
+        'That QT prolongation is a class effect of second-generation antihistamines — loratadine, cetirizine, azelastine and fexofenadine were shown free of it',
+      ],
+      whatFailedInitially: [
+        'Twenty-five torsades de pointes reports had reached the FDA by April 1992, seven years after approval',
+        'Dose restriction and interaction warnings preceded, and did not prevent, eventual withdrawal',
+        'Codified in the FDA withdrawn-for-safety list at 81 FR 69668 as "all drug products containing terfenadine"',
+      ],
+      realWorldOutcome: [
+        'Fexofenadine — terfenadine carboxylate — was licensed in its place and is sold over the counter worldwide',
+        'The parent-versus-metabolite experiment became a template: for a prodrug, the safety question is which species carries the liability, and it must be asked of both',
+        'Together with cisapride and astemizole, terfenadine drove hERG screening and clinical QT assessment into standard regulatory practice',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 60 mg twice daily',
+      description:
+        'Twice-daily oral tablet subject to near-complete first-pass CYP3A4 metabolism to the active carboxylate. That single metabolic step is both the mechanism of action and the entire safety margin, which is why anything inhibiting CYP3A4 — azole antifungals, macrolide antibiotics, protease inhibitors, grapefruit juice — or any degree of hepatic impairment converts a well-tolerated drug into a proarrhythmic one.',
+      safetyProfile:
+        'Withdrawn for QT prolongation and torsades de pointes. The measured harms are hERG block at an apparent dissociation constant of 350 nmol/L, potency equal to quinidine at the delayed rectifier current, and QT prolongation in all six volunteers given concomitant ketoconazole. Risk is concentrated in CYP3A4 inhibition, hepatic impairment and overdose. The antihistamine effect itself is carried entirely by the metabolite and is not implicated.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is fexofenadine safe if terfenadine was not?',
+        a: 'Yes, and the reason is mechanical rather than reassuring rhetoric. Fexofenadine is terfenadine carboxylate — the molecule terfenadine becomes in the liver. All the antihistamine activity is in it. None of the cardiac potassium channel activity is: in isolated myocytes it failed to inhibit the delayed rectifier current even at 30 times the concentration at which terfenadine produced half-maximal block, and in the hERG and Kv1.5 comparison it blocked neither channel. Giving the metabolite directly also removes the metabolic step entirely, so there is nothing for an antifungal or an antibiotic to interfere with.',
+        auditNote:
+          'This is the cleanest resolution in the whole file. The benefit and the harm lived in two different molecules separated by one oxidation, and the fix was to sell the other one.',
+      },
+      {
+        q: 'How did a drug this dangerous get approved in 1985?',
+        a: 'Because under ordinary conditions it was not dangerous, and the conditions that made it dangerous were not being tested for. Terfenadine\'s first-pass metabolism is so nearly complete that parent drug is usually undetectable, so ordinary clinical studies saw no cardiac effect. The hERG channel had not been identified as the shared target of QT-prolonging drugs — that came in 1996, eleven years after approval — and there was no requirement to screen for it. What the 1985 dossier could not show is that the safety margin was conditional on one enzyme continuing to work, in patients who would go on to be prescribed antibiotics and antifungals by other doctors.',
+      },
+      {
+        q: 'Are all non-drowsy antihistamines a risk?',
+        a: 'No, and this was tested rather than assumed. Comparative work found that terfenadine and astemizole prolong the QT interval in animals and block cardiac potassium channels in vitro, while loratadine and cetirizine do neither, and desloratadine does not significantly inhibit cardiac potassium channels at clinically achievable levels. Human volunteer studies gave azelastine, cetirizine, fexofenadine and loratadine at several times the recommended dose, and with metabolic inhibitors present, and found no electrocardiographic effect. The reviewer\'s conclusion is explicit: the potential to cause ventricular arrhythmias is not a class effect.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because terfenadine has had no market since the late 1990s and is codified in the FDA withdrawn-for-safety list at 81 FR 69668. Its metabolite fexofenadine is sold over the counter at low cost, but that is a price for a different product, and this file does not carry a pricing block without a citable per-dose manufacturing cost.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Honig PK, Wortham DC, Zamani K, Conner DP, Mullin JC, Cantilena LR. Terfenadine-ketoconazole interaction: pharmacokinetic and electrocardiographic consequences. JAMA 1993;269:1513-1518',
+        identifier: '8445813',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Woosley RL, Chen Y, Freiman JP, Gillis RA. Mechanism of the cardiotoxic actions of terfenadine. JAMA 1993;269:1532-1536',
+        identifier: '8445816',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Roy M, Dumaine R, Brown AM. HERG, a primary human ventricular target of the nonsedating antihistamine terfenadine. Circulation 1996;94:817-823',
+        identifier: '10.1161/01.CIR.94.4.817',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DuBuske LM. Second-generation antihistamines: the risk of ventricular arrhythmias. Clin Ther 1999;21:281-295',
+        identifier: '10.1016/S0149-2918(00)88286-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA final rule 81 FR 69668, 7 October 2016 — "Terfenadine: All drug products containing terfenadine"',
+        identifier:
+          'https://www.federalregister.gov/documents/2016/10/07/2016-24333/additions-and-modifications-to-the-list-of-drug-products-that-have-been-withdrawn-or-removed-from',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5405 — terfenadine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5405',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 12. Astemizole
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'astemizole',
+    name: 'Astemizole',
+    tradeName: 'Hismanal',
+    sponsor: 'Janssen Pharmaceutica',
+    targetGene: 'HRH1',
+    targetProtein:
+      'Histamine H1 receptor (therapeutic target); hERG / KCNH2 potassium channel (toxicity target)',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1988,
+    indication:
+      'Seasonal allergic rhinitis and chronic idiopathic urticaria. Withdrawn from the United States market in 1999 and listed by the FDA among drug products withdrawn for reasons of safety or effectiveness (81 FR 69668).',
+    patientFriendlyIndication: 'A once-daily hay fever tablet that did not cause drowsiness',
+    anatomicalSite:
+      'Peripheral H1 receptors in nasal mucosa and skin; the toxicity site is the ventricular myocyte',
+    conditionContext: {
+      conditionExplainer:
+        'Astemizole was the second non-sedating antihistamine after terfenadine and shared its fate for the same reason: it blocks the hERG cardiac potassium channel at nanomolar concentrations. What distinguishes it is its pharmacokinetics.',
+      whyItMatters:
+        'Terfenadine\'s risk was created by an interaction lasting as long as the interacting drug did. Astemizole and its active metabolite have elimination half-lives measured in days to weeks, so an interaction or an overdose creates an exposure that persists long after the trigger has gone.',
+      whoTakesThis:
+        'Nobody. Loratadine, cetirizine and fexofenadine replaced it and none of them carries a meaningful hERG signal.',
+      clinicalGoals:
+        'Once-daily relief of allergic rhinitis and urticaria without sedation. It achieved that, and it was withdrawn on the arrhythmia risk rather than on any failure of the antihistamine effect.',
+    },
+    oneSentenceVerdict:
+      'A once-daily non-sedating antihistamine that blocks the hERG channel with an IC50 around 480 nanomolar and has an active metabolite with a half-life of days, so a single interaction or overdose produced torsades de pointes that outlasted its own trigger.',
+    laymanHowItWorks:
+      'Astemizole blocks histamine receptors in the nose and skin and does not enter the brain, so it stops allergy symptoms without causing drowsiness. It also plugs the potassium channel that heart muscle uses to reset between beats. Two things made it harder to manage than its predecessor: it stays in the body for a very long time, and its main metabolite is active and blocks the same channel. A dose too many, or one interacting drug, produced an exposure that took weeks to fall.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 88,
+    substitutes: {
+      summary:
+        'Cetirizine, loratadine and fexofenadine all deliver the same non-sedating antihistamine effect without the channel block. Cetirizine is the informative comparator: it was tested head to head with astemizole in the same hERG preparation and showed no inhibition at all up to 30 micromolar.',
+      conventionalRx: [
+        {
+          name: 'Cetirizine',
+          class: 'Piperazine second-generation H1 antihistamine',
+          howItCompares:
+            'Completely devoid of inhibitory action on hERG channels up to 30 micromolar in the same experiment where astemizole gave an IC50 of about 480 nM. Applied to the intracellular side of the membrane, astemizole caused complete block and cetirizine had no effect at all.',
+          typicalCost: 'Generic and over the counter; not priced here',
+          prosAndCons:
+            'Pros: no hERG activity, potent, renally cleared. Cons: more sedating than fexofenadine or loratadine.',
+        },
+        {
+          name: 'Fexofenadine',
+          class: 'Second-generation H1 antihistamine',
+          howItCompares:
+            'The active metabolite of the other withdrawn antihistamine, terfenadine, marketed directly and free of cardiac channel activity.',
+          typicalCost: 'Generic and over the counter; not priced here',
+          prosAndCons:
+            'Pros: no QT signal, no prodrug conversion step. Cons: absorption reduced by fruit juices and by aluminium- or magnesium-containing antacids.',
+        },
+        {
+          name: 'Loratadine',
+          class: 'Second-generation H1 antihistamine',
+          howItCompares:
+            'Roughly 300-fold less potent than astemizole at hERG, with an estimated IC50 near 100 micromolar, and no electrocardiographic effect in human volunteers at several times the recommended dose.',
+          typicalCost: 'Generic and over the counter; not priced here',
+          prosAndCons:
+            'Pros: once daily, no clinically relevant QT signal. Cons: mild sedation in a minority at higher doses.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'COC1=CC=C(C=C1)CCN2CCC(CC2)NC3=NC4=CC=CC=C4N3CC5=CC=C(C=C5)F',
+      chemicalFormula: 'C28H31FN4O',
+      molecularWeight: '458.6 g/mol',
+      targetReceptorAffinity:
+        'Potent H1 receptor antagonist. Its cardiac liability is hERG block at an estimated IC50 of about 480 nM in Xenopus oocytes — comparable to terfenadine\'s 330 nM in the same experiment, and roughly 300-fold more potent than loratadine. Applied intracellularly at 3 micromolar it produced complete block of hERG current. Its principal metabolite, desmethylastemizole, is pharmacologically active and long-lived.',
+      structureSource: {
+        label: 'PubChem CID 2247 (astemizole) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2247',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ast-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity confirmation of the benzimidazole and piperidine components',
+          description:
+            'Confirm the 2-aminobenzimidazole core, the para-fluorobenzyl and para-methoxyphenethyl substituents. Astemizole is structurally distant from the other second-generation antihistamines, so identity work does not rely on differentiating close analogues in the way terfenadine does.',
+          reagentsAndBuffer:
+            'Astemizole certified reference standard, proton and 19F NMR, high-resolution LC-MS with electrospray in positive mode, expected protonated ion at m/z 459',
+        },
+        {
+          id: 'ast-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Simultaneous quantification of astemizole and desmethylastemizole',
+          description:
+            'Measure parent and the N-desmethyl metabolite together over an extended sampling window. The original pharmacokinetic work followed plasma concentrations to 504 hours after a single dose, which tells you how long a validated method has to remain stable and how low its limit of quantification must go.',
+          dependsOnStepId: 'ast-w1',
+          reagentsAndBuffer:
+            'Plasma with solid-phase extraction, LC-MS/MS in multiple reaction monitoring for both analytes, deuterated internal standards, calibration extending to sub-nanogram-per-millilitre concentrations',
+        },
+        {
+          id: 'ast-w3',
+          stepNumber: 3,
+          phase: 'Assay_Quantification',
+          name: 'hERG block with extracellular and intracellular application',
+          description:
+            'Measure hERG current inhibition with the compound applied outside the cell and, separately, inside it through the patch pipette. Astemizole blocks completely from the intracellular side at 3 micromolar while cetirizine does nothing from either side — the experiment that tied the difference to the physicochemistry of the tertiary amine substituents rather than to the antihistamine pharmacology.',
+          dependsOnStepId: 'ast-w2',
+          reagentsAndBuffer:
+            'Xenopus laevis oocytes and HEK293 cells stably transfected with hERG cDNA, SH-SY5Y neuroblastoma cells as a native IHERG preparation, two-electrode voltage clamp and whole-cell patch clamp, cetirizine and terfenadine as comparators',
+        },
+        {
+          id: 'ast-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Antiplasmodial growth inhibition assay',
+          description:
+            'Astemizole and its principal human metabolite inhibit chloroquine-sensitive and multidrug-resistant Plasmodium falciparum, which is now the main reason the compound is still handled in laboratories. Measure parasite growth inhibition by hypoxanthine incorporation or SYBR Green fluorescence against reference strains.',
+          dependsOnStepId: 'ast-w3',
+          reagentsAndBuffer:
+            'Plasmodium falciparum 3D7 (chloroquine-sensitive) and Dd2 or W2 (multidrug-resistant) cultures in human erythrocytes, RPMI with AlbuMAX, tritiated hypoxanthine incorporation or SYBR Green I readout, chloroquine and artemisinin as reference compounds',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ast-a1',
+        category: 'measured',
+        title: 'hERG block at about 480 nanomolar, against cetirizine at none',
+        laymanSummary:
+          'In one experiment testing four non-drowsy antihistamines on the same channel, astemizole and terfenadine blocked it at nanomolar concentrations, loratadine was three hundred times weaker, and cetirizine did nothing at all.',
+        technicalDetails:
+          'Taglialatela and colleagues compared cetirizine with astemizole, terfenadine and loratadine on hERG channels expressed in Xenopus laevis oocytes. Estimated IC50 values were 330 nM for terfenadine and 480 nM for astemizole; loratadine was approximately 300-fold less potent at around 100 micromolar; cetirizine was completely devoid of inhibitory action up to 30 micromolar. In SH-SY5Y cells expressing native hERG current and in stably transfected HEK293 cells, 3 micromolar astemizole was highly effective while 3 micromolar cetirizine had no effect. Applied to the intracellular side of the membrane, 3 micromolar astemizole caused complete block and cetirizine again had none. The authors attributed cetirizine\'s exemption to its more polar and smaller substituent groups on the tertiary amine.',
+        evidenceSource: 'Taglialatela M et al., Mol Pharmacol 1998;54:113-121',
+        doi: '10.1124/mol.54.1.113',
+        measuredMetric:
+          'Estimated IC50 for hERG channel block across four second-generation antihistamines',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ast-a2',
+        category: 'measured',
+        title: 'Torsades de pointes in overdose, only above a corrected QT of 500 ms',
+        laymanSummary:
+          'The case reports share a pattern: young patients, an overdose, and arrhythmia only in those whose ECG showed the repolarisation interval stretched past half a second.',
+        technicalDetails:
+          'Rao and colleagues described a case of astemizole-induced torsades de pointes ventricular tachycardia and reviewed the previous case reports. Across the series, all patients were young and dysrhythmias developed only in those with corrected QT intervals greater than 500 ms. Treatment comprised stopping astemizole, intravenous magnesium sulfate and isoproterenol, temporary cardiac pacing and, when necessary, direct current cardioversion. The authors add a practical warning that reads as a diagnostic trap: a cardiac cause of syncope or convulsions must not be overlooked in patients taking H1 antagonists, because those symptoms often precede hospitalisation or the detection of torsades.',
+        evidenceSource: 'Rao KA, Adlakha A, Verma-Ansil B, Meloy TD, Stanton MS. Mayo Clin Proc 1994;69:589-593',
+        doi: '10.1016/S0025-6196(12)62252-6',
+        measuredMetric:
+          'Corrected QT interval threshold above which dysrhythmias occurred in reported cases',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ast-a3',
+        category: 'measured',
+        title: 'Itraconazole raised total exposure nearly three-fold and lengthened the half-life to 3.6 days',
+        laymanSummary:
+          'An antifungal did not raise the peak level much, but it nearly tripled the total drug exposure and stretched the elimination half-life from two days to more than three and a half.',
+        technicalDetails:
+          'Twelve male volunteers took itraconazole 200 mg twice daily or placebo for 14 days with a four-week washout, receiving a single 10 mg dose of astemizole on day 11. Itraconazole did not significantly change the peak concentration (0.74 versus 0.81 ng/ml) but increased area under the curve from 0 to 24 hours (5.46 to 9.95 ng/ml/h) and from 0 to infinity (17.4 to 48.2 ng/ml/h), and lengthened the elimination half-life from 2.1 to 3.6 days. Systemic bioavailability of desmethylastemizole also rose. The QTc interval did not increase after the single dose and did not differ between sessions. The authors\' conclusion is the important nuance: a single dose showed no repolarisation change, but reduced clearance under itraconazole "may result in a marked increase in astemizole plasma concentrations and QTc alterations during chronic combined intake".',
+        evidenceSource: 'Lefebvre RA et al., Br J Clin Pharmacol 1997;43:319-322',
+        doi: '10.1046/j.1365-2125.1997.00548.x',
+        measuredMetric:
+          'Area under the concentration-time curve and elimination half-life with and without itraconazole',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ast-a4',
+        category: 'inferred',
+        title: 'A negative single-dose interaction study is not a negative interaction study',
+        laymanSummary:
+          'The formal interaction trial gave one dose of astemizole and saw no ECG change. That result was reassuring about one dose and said nothing about taking the drug every day for a fortnight.',
+        technicalDetails:
+          'The itraconazole study found no QTc increase after a single 10 mg astemizole dose, and no difference between itraconazole and placebo sessions over 24 hours. Taken alone that reads as a null interaction finding. The same study measured a near-three-fold rise in total exposure and an elimination half-life extended to 3.6 days, and the authors drew the correct conclusion themselves: chronic combined intake could produce a marked concentration increase and QTc alterations. For a drug with a multi-day half-life and an active long-lived metabolite, single-dose pharmacodynamics measured over 24 hours are structurally incapable of showing the risk, because accumulation has not happened yet.',
+        evidenceSource: 'Lefebvre RA et al., Br J Clin Pharmacol 1997;43:319-322',
+        doi: '10.1046/j.1365-2125.1997.00548.x',
+        inferredClaim:
+          'That absence of QTc change after a single dose with itraconazole present indicates the combination is safe in continued use',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ast-a5',
+        category: 'conclusion_shift',
+        title: 'The whole class was suspected; the block turned out to depend on molecular detail',
+        laymanSummary:
+          'For a while it looked as though blocking histamine receptors somehow also blocked heart channels. The comparison showed it depends on small chemical features, not on being an antihistamine.',
+        technicalDetails:
+          'Astemizole and terfenadine both block hERG at nanomolar concentrations. Loratadine is around 300-fold weaker and cetirizine is inactive up to 30 micromolar. Since all four are effective H1 antagonists, the channel block cannot be a consequence of the therapeutic pharmacology. Taglialatela and colleagues located the difference in the substituents on the tertiary amine: cetirizine carries more polar and smaller groups, and lacks hERG-blocking properties. The practical result was that the class survived: loratadine, cetirizine and fexofenadine are among the most widely used medicines in the world, and only the two hERG blockers were withdrawn.',
+        evidenceSource:
+          'Taglialatela M et al., Mol Pharmacol 1998;54:113-121; DuBuske LM. Clin Ther 1999;21:281-295',
+        doi: '10.1124/mol.54.1.113',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ast-a6',
+        category: 'measured',
+        title: 'Rediscovered in 2006 as an antimalarial in a library screen of existing drugs',
+        laymanSummary:
+          'A screen of nearly 2,700 approved and withdrawn drugs against the malaria parasite picked out astemizole. It and its main human metabolite killed drug-resistant parasites and worked in two mouse models.',
+        technicalDetails:
+          'Chong and colleagues assembled a library of 2,687 existing drugs and screened it for inhibitors of Plasmodium falciparum. Astemizole and its principal human metabolite emerged as inhibitors of both chloroquine-sensitive and multidrug-resistant parasites, with efficacy in two mouse models of malaria. The finding is a real result and its ceiling should be stated with it: the hERG liability that ended the drug as an antihistamine does not disappear because the indication changed, and malaria is treated in settings where electrocardiographic monitoring is not available. The compound\'s value here has been mainly as a chemical starting point rather than as a candidate for redeployment.',
+        evidenceSource: 'Chong CR, Chen X, Shi L, Liu JO, Sullivan DJ Jr. Nat Chem Biol 2006;2:415-416',
+        doi: '10.1038/nchembio806',
+        measuredMetric:
+          'Inhibition of chloroquine-sensitive and multidrug-resistant Plasmodium falciparum, and efficacy in two mouse models',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A once-daily tablet that lingers for weeks',
+        laymanDesc:
+          'Taken once a day. It clears very slowly, and it turns into another active molecule that clears more slowly still.',
+        molecularDetail:
+          'Oral 10 mg once daily. Elimination half-life of the parent measured at 2.1 days in healthy volunteers and 3.6 days with itraconazole present; the principal metabolite desmethylastemizole is active and longer-lived, with plasma sampling in interaction studies extending to 504 hours after a single dose.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches peripheral tissue and stays out of the brain',
+        laymanDesc:
+          'It circulates to the nose and skin where allergy symptoms arise, and does not appreciably enter the brain, so it does not cause drowsiness.',
+        molecularDetail:
+          'Poor central nervous system penetration relative to first-generation antihistamines, which is the basis of the non-sedating profile. Hepatic metabolism principally by CYP3A4 to desmethylastemizole.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks H1 — and blocks hERG from either side of the membrane',
+        laymanDesc:
+          'It occupies histamine receptors and relieves symptoms. It also plugs the heart\'s potassium channel, and it can do that from inside the cell as well as outside.',
+        molecularDetail:
+          'H1 receptor antagonism at peripheral sites. Separately, hERG block with an estimated IC50 of about 480 nM extracellularly, and complete block at 3 micromolar applied to the intracellular face of the membrane in transfected HEK293 cells.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Repolarisation slows, and the exposure does not fall quickly',
+        laymanDesc:
+          'The heart takes longer to reset between beats. Because the drug leaves the body so slowly, that state persists for days after the last dose.',
+        molecularDetail:
+          'Reduced IKr prolongs ventricular action potential duration and widens the QT interval, permitting early afterdepolarisations and torsades de pointes. Reported dysrhythmias occurred only at corrected QT intervals above 500 ms. Multi-day half-lives for parent and active metabolite mean an accumulated exposure resolves over weeks, not hours.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Allergy symptoms controlled; torsades in overdose or interaction',
+        laymanDesc:
+          'It worked as a once-daily antihistamine. In overdose or with an interacting drug it produced a potentially fatal arrhythmia that outlasted its own cause.',
+        molecularDetail:
+          'Measured endpoints: effective H1 antagonism without sedation, against hERG IC50 of about 480 nM, reported torsades de pointes confined to corrected QT above 500 ms, and a near three-fold rise in total exposure with itraconazole.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Comparative hERG block study (Taglialatela et al.)',
+        phase: 'In vitro electrophysiology across four second-generation antihistamines',
+        sampleSize: 0,
+        primaryEndpoint:
+          'IC50 for hERG channel block by cetirizine, astemizole, terfenadine and loratadine in Xenopus oocytes, SH-SY5Y cells and transfected HEK293 cells',
+        endpointMet: true,
+        statisticalPValue:
+          'Astemizole IC50 approximately 480 nM, terfenadine 330 nM, loratadine approximately 100 micromolar, cetirizine inactive to 30 micromolar',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Astemizole-itraconazole interaction study (Lefebvre et al.)',
+        phase: 'Randomised crossover clinical pharmacology study',
+        sampleSize: 12,
+        primaryEndpoint:
+          'Astemizole and desmethylastemizole plasma concentrations and QTc interval with and without 14 days of itraconazole',
+        endpointMet: true,
+        statisticalPValue:
+          'Area under the curve to infinity rose from 17.4 to 48.2 ng/ml/h and elimination half-life from 2.1 to 3.6 days; QTc unchanged over 24 hours after a single dose',
+        unreportedAdverseSignals:
+          'A single 10 mg dose measured over 24 hours cannot show accumulation in a drug with a multi-day half-life and a long-lived active metabolite. The authors state that chronic combined intake may produce marked concentration increases and QTc alterations.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'hERG block with an estimated IC50 of approximately 480 nM, against cetirizine showing no inhibition up to 30 micromolar',
+        'Complete hERG block by 3 micromolar astemizole applied to the intracellular face of the membrane',
+        'Elimination half-life 2.1 days alone and 3.6 days with itraconazole, with total exposure rising from 17.4 to 48.2 ng/ml/h',
+        'Reported dysrhythmias occurred only in patients with corrected QT intervals above 500 ms',
+      ],
+      unsupportedInferences: [
+        'That absence of QTc change after a single dose with itraconazole indicates the combination is safe in continued use, for a drug with multi-day accumulation',
+        'That QT prolongation is a class property of non-sedating antihistamines, when cetirizine and loratadine show no meaningful hERG block',
+      ],
+      whatFailedInitially: [
+        'Torsades de pointes in overdose and in interaction, with case reports accumulating through the 1990s',
+        'Withdrawn from the United States market in 1999 and codified in the FDA withdrawn-for-safety list at 81 FR 69668',
+      ],
+      realWorldOutcome: [
+        'Loratadine, cetirizine and fexofenadine took the market and none carries a comparable hERG signal',
+        'The cetirizine comparison localised the channel block to the substituents on the tertiary amine, turning a class fear into a structure-activity relationship',
+        'Astemizole was rediscovered in 2006 as an inhibitor of chloroquine-sensitive and multidrug-resistant Plasmodium falciparum, and remains a chemical starting point rather than a redeployment candidate',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 10 mg once daily',
+      description:
+        'Once-daily oral tablet, taken on an empty stomach because food substantially reduces absorption. Metabolised principally by CYP3A4 to the active, long-lived desmethylastemizole. The multi-day half-lives of both species are the feature that made the risk hard to manage: an accumulated exposure takes weeks to resolve, so stopping the drug does not promptly remove the hazard.',
+      safetyProfile:
+        'Withdrawn in 1999 for QT prolongation and torsades de pointes. The measured harms are hERG block at an estimated IC50 near 480 nM, complete block from the intracellular face at 3 micromolar, and reported torsades in patients with corrected QT above 500 ms. Risk concentrates in overdose, hepatic impairment, and CYP3A4 inhibition by azole antifungals, macrolide antibiotics or grapefruit juice, and persists for days after the last dose.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why was astemizole harder to manage than terfenadine?',
+        a: 'Pharmacokinetics. Terfenadine\'s risk appears when CYP3A4 is inhibited and recedes when the inhibitor stops, because terfenadine itself is cleared quickly. Astemizole has an elimination half-life of about two days on its own, 3.6 days with itraconazole present, and an active metabolite that is longer-lived still — the interaction study followed plasma concentrations for 504 hours after a single dose. So an accumulated exposure resolves over weeks. Stopping the drug does not promptly remove the hazard, and neither does stopping the interacting agent.',
+        auditNote:
+          'This is why the formal single-dose interaction study read as negative while the drug was still dangerous. The study measured 24 hours of a process that takes weeks.',
+      },
+      {
+        q: 'Does this mean non-drowsy antihistamines are risky?',
+        a: 'No, and the experiment that settles it tested four of them on the same channel in the same laboratory. Astemizole gave an IC50 of about 480 nM and terfenadine 330 nM; loratadine was roughly 300-fold weaker at around 100 micromolar, and cetirizine showed no inhibition at all up to 30 micromolar. Since all four block histamine receptors effectively, the channel activity cannot come from the therapeutic pharmacology. The authors traced cetirizine\'s exemption to its more polar and smaller substituents on the tertiary amine. Loratadine, cetirizine and fexofenadine remain among the most widely used medicines in the world.',
+      },
+      {
+        q: 'Could astemizole be used for malaria?',
+        a: 'It was identified as an antimalarial in a 2,687-compound screen of existing drugs, and it and its principal human metabolite inhibit both chloroquine-sensitive and multidrug-resistant Plasmodium falciparum with efficacy in two mouse models. That is a genuine finding. What it does not do is remove the hERG block, which does not care what the drug is being given for, and malaria is largely treated in settings where electrocardiographic monitoring is unavailable and where interacting antibiotics and antifungals are commonly used. The realistic value of the result is as a chemical starting point, not as a redeployment of the marketed drug.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because astemizole has had no market since 1999 and is codified in the FDA withdrawn-for-safety list at 81 FR 69668. There is no current list price to cite and no verified per-dose manufacturing cost.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Taglialatela M et al. Molecular basis for the lack of HERG K+ channel block-related cardiotoxicity by the H1 receptor blocker cetirizine compared with other second-generation antihistamines. Mol Pharmacol 1998;54:113-121',
+        identifier: '10.1124/mol.54.1.113',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rao KA, Adlakha A, Verma-Ansil B, Meloy TD, Stanton MS. Torsades de pointes ventricular tachycardia associated with overdose of astemizole. Mayo Clin Proc 1994;69:589-593',
+        identifier: '10.1016/S0025-6196(12)62252-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lefebvre RA et al. Influence of itraconazole on the pharmacokinetics and electrocardiographic effects of astemizole. Br J Clin Pharmacol 1997;43:319-322',
+        identifier: '10.1046/j.1365-2125.1997.00548.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chong CR, Chen X, Shi L, Liu JO, Sullivan DJ Jr. A clinical drug library screen identifies astemizole as an antimalarial agent. Nat Chem Biol 2006;2:415-416',
+        identifier: '10.1038/nchembio806',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DuBuske LM. Second-generation antihistamines: the risk of ventricular arrhythmias. Clin Ther 1999;21:281-295',
+        identifier: '10.1016/S0149-2918(00)88286-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA final rule 81 FR 69668, 7 October 2016 — "Astemizole: All drug products containing astemizole"',
+        identifier:
+          'https://www.federalregister.gov/documents/2016/10/07/2016-24333/additions-and-modifications-to-the-list-of-drug-products-that-have-been-withdrawn-or-removed-from',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2247 — astemizole structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2247',
+        kind: 'url',
+      },
+    ],
+  },
 ]

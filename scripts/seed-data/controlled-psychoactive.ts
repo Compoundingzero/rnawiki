@@ -2581,7 +2581,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           name: 'Hepatocyte and recombinant CYP systems for the interaction work',
           description:
             'The clinically important pharmacology of cannabidiol is metabolic, not receptor-mediated. Human liver microsomes and recombinant CYP2C19 and CYP3A4 are used to measure inhibition, and cryopreserved hepatocytes to measure it in an intact cell.',
-          dependsOnStepId: 'cbd-w3',
+          dependsOnStepId: 'cbd-w2',
           reagentsAndBuffer:
             'Pooled human liver microsomes, recombinant CYP2C19 and CYP3A4 supersomes, NADPH regenerating system, probe substrates (S-mephenytoin for 2C19, midazolam for 3A4), cryopreserved human hepatocytes',
         },
@@ -2960,7 +2960,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           name: 'Mu-opioid receptor expression for the metabolite comparison',
           description:
             'Human OPRM1 expressed in a cell line, so that diacetylmorphine, 6-monoacetylmorphine and morphine can be compared in the same system. This is the experiment behind calling heroin a prodrug: the parent is the weakest of the three at the receptor and the most potent in a whole animal.',
-          dependsOnStepId: 'her-w3',
+          dependsOnStepId: 'her-w2',
           reagentsAndBuffer:
             'CHO or HEK293 cells with human OPRM1, membrane preparation, Tris-HCl assay buffer with MgCl2 and EDTA, esterase inhibitor (sodium fluoride) to prevent hydrolysis during the incubation',
         },
@@ -3337,7 +3337,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           name: 'Separate DAT, NET and SERT expressing lines',
           description:
             'Human SLC6A3, SLC6A2 and SLC6A4 expressed individually in HEK293 cells, so that transporter selectivity is measured rather than assumed. Cocaine is not selective, and the point of the experiment is to quantify how unselective it is.',
-          dependsOnStepId: 'coc-w3',
+          dependsOnStepId: 'coc-w2',
           reagentsAndBuffer:
             'HEK293 cells with separate human SLC6A3, SLC6A2 and SLC6A4 constructs, lipid transfection reagent, DMEM with 10% fetal bovine serum and selection antibiotic',
         },
@@ -3698,7 +3698,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           name: 'DAT- and VMAT2-expressing preparations',
           description:
             'Human SLC6A3 expressed in HEK293 cells for plasma-membrane transporter work, and isolated synaptic vesicle preparations or VMAT2-expressing cells for the vesicular component. Methamphetamine acts at both, and an assay that measures only the plasma-membrane transporter misses half the mechanism.',
-          dependsOnStepId: 'met-w3',
+          dependsOnStepId: 'met-w2',
           reagentsAndBuffer:
             'HEK293 cells with human SLC6A3, rat or human synaptic vesicle preparations or VMAT2-transfected cells, sucrose-HEPES vesicle buffer with ATP and Mg2+',
         },
@@ -3987,6 +3987,380 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/36604',
         kind: 'url',
       },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 11. DMT (N,N-dimethyltryptamine)
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'dmt',
+    name: 'DMT (N,N-Dimethyltryptamine)',
+    tradeName:
+      'No marketed product. The principal psychoactive constituent of ayahuasca; SPL026 and similar synthetic DMT fumarate formulations are in clinical trials',
+    sponsor:
+      'No approved sponsor. Clinical work by Small Pharma / Cybin, Imperial College London, and the Universidade Federal do Rio Grande do Norte (ayahuasca)',
+    targetGene: 'HTR2A',
+    targetProtein:
+      'Serotonin 5-HT2A receptor, with activity at 5-HT1A and 5-HT2C and reported binding at the sigma-1 receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication. Schedule I in the United States. Ayahuasca has been tested in a randomised placebo-controlled trial in treatment-resistant depression; synthetic DMT is in early-phase trials for depression',
+    patientFriendlyIndication:
+      'Nothing approved. A single randomised trial of ayahuasca in 29 people with depression that had not responded to other treatments',
+    anatomicalSite: 'Cortical 5-HT2A receptors, principally in layer V pyramidal neurons',
+    conditionContext: {
+      conditionExplainer:
+        'DMT is destroyed by monoamine oxidase in the gut and liver, so swallowing it does nothing. Ayahuasca solves that by combining a DMT-containing plant with a second plant whose harmala alkaloids inhibit that enzyme. Injected or inhaled, DMT bypasses the problem and produces an experience that peaks in about two minutes and is over in half an hour.',
+      whyItMatters:
+        'That extreme brevity is the reason for the clinical interest: a psychedelic session that lasts twenty minutes rather than eight hours has a completely different cost structure for a health service. Whether a twenty-minute experience produces the same durable change as a six-hour one is unanswered.',
+      whoTakesThis:
+        'In trials: adults with treatment-resistant depression, given ayahuasca or intravenous synthetic DMT in a monitored session. In practice: participants in ayahuasca ceremonies, and members of two syncretic churches with a US legal exemption.',
+      clinicalGoals:
+        'Reduction in depression rating scale score in the days following a single administration.',
+    },
+    oneSentenceVerdict:
+      'A tryptamine that is inactive by mouth unless paired with an enzyme inhibitor, produces its entire effect in under half an hour, and has one 29-patient randomised trial in treatment-resistant depression with a day-seven effect size of 1.49.',
+    laymanHowItWorks:
+      'DMT is structurally almost identical to serotonin, with two extra methyl groups. Those groups are what stop the body\'s ordinary handling of it and let it reach the same receptor psilocybin and LSD use. Swallowed on its own it is destroyed within minutes by an enzyme in the gut wall, which is why the Amazonian brew pairs it with a vine whose alkaloids switch that enzyme off. Injected or smoked it reaches the brain in seconds, peaks in about two minutes, and is essentially gone in thirty.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 48,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(C)CCC1=CNC2=CC=CC=C21',
+      chemicalFormula: 'C12H16N2',
+      molecularWeight:
+        '188.27 g/mol (free base). Trial material is DMT fumarate. Ayahuasca additionally contains the beta-carboline alkaloids harmine, harmaline and tetrahydroharmine from Banisteriopsis caapi, which are reversible monoamine oxidase A inhibitors and are what make the oral route work',
+      targetReceptorAffinity:
+        'Agonist at 5-HT2A, 5-HT1A and 5-HT2C. Reported binding at the sigma-1 receptor and as a substrate for the serotonin transporter and vesicular monoamine transporter 2. As with LSD and psilocin, the subjective effect is attributed to 5-HT2A; DMT is a substrate for monoamine oxidase A, which is why oral bioavailability is essentially zero without an inhibitor.',
+      structureSource: {
+        label:
+          'PubChem CID 6089 (N,N-dimethyltryptamine) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6089',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dmt-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identification in plant material, brew or synthetic powder',
+          description:
+            'Identification against a certified DMT standard. In an ayahuasca preparation the DMT assay alone is not the analysis: the beta-carbolines determine whether the DMT is orally active at all, so harmine, harmaline and tetrahydroharmine are quantified in the same run. Brews vary several-fold in both components between preparations.',
+          reagentsAndBuffer:
+            'DMT, harmine, harmaline and tetrahydroharmine certified reference standards, DMT-d6 internal standard, acidified methanol extraction, C18 column with formic acid/acetonitrile gradient, diode-array and MS detection',
+        },
+        {
+          id: 'dmt-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Distinguishing DMT from its close analogues',
+          description:
+            'N,N-DMT, 5-MeO-DMT, 4-AcO-DMT and the N-methyl and diethyl homologues are all substituted tryptamines that share the m/z 58 iminium fragment. Retention time against authenticated standards, not the mass spectrum, does the discrimination — and 5-MeO-DMT in particular is active at roughly a tenth the dose, so the distinction is consequential.',
+          dependsOnStepId: 'dmt-w1',
+          reagentsAndBuffer:
+            'DMT, 5-MeO-DMT, DET, NMT and 4-AcO-DMT reference standards, GC-MS with retention-index confirmation and LC-MS/MS with distinct MRM transitions per analyte',
+        },
+        {
+          id: 'dmt-w3',
+          stepNumber: 3,
+          phase: 'Assay_Quantification',
+          name: 'Plasma DMT with a sampling schedule matched to a two-minute peak',
+          description:
+            'The pharmacokinetics are the unusual part. Peak plasma concentration and peak subjective effect occur within two minutes of intravenous administration and are negligible by thirty. A conventional sampling schedule with a first draw at fifteen minutes misses the entire curve, so the assay design matters more than the assay chemistry.',
+          dependsOnStepId: 'dmt-w2',
+          reagentsAndBuffer:
+            'DMT-d6 internal standard, sampling at 1, 2, 5, 10, 15, 20 and 30 minutes, immediate cooling and acidification, solid-phase extraction, UHPLC-MS/MS',
+        },
+        {
+          id: 'dmt-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Heterologous 5-HT2A and MAO-A preparations',
+          description:
+            'Human HTR2A expressed in a cell line for receptor work, and recombinant human monoamine oxidase A for the metabolic work. Both halves are needed, because DMT\'s defining pharmacological property is the interaction between its receptor agonism and its rate of enzymatic destruction.',
+          dependsOnStepId: 'dmt-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells with human HTR2A, recombinant human MAO-A and MAO-B preparations, clorgyline and selegiline as isoform-selective reference inhibitors',
+        },
+        {
+          id: 'dmt-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Receptor binding and MAO-A inhibition by the beta-carbolines, measured together',
+          description:
+            'Competition binding gives DMT\'s 5-HT2A affinity; an MAO-A activity assay with harmine, harmaline and tetrahydroharmine gives the inhibition constants that explain why the brew works orally and pure DMT does not. Running both is what converts an ethnobotanical description into a pharmacological one.',
+          dependsOnStepId: 'dmt-w4',
+          reagentsAndBuffer:
+            '[3H]-ketanserin for 5-HT2A, Tris-HCl buffer with ascorbate; kynuramine or Amplex Red MAO-A activity assay with harmine, harmaline and tetrahydroharmine across a concentration series',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dmt-a1',
+        category: 'measured',
+        title: 'Ayahuasca beat placebo in 29 patients with treatment-resistant depression',
+        laymanSummary:
+          'A single dose lowered depression scores more than placebo at one, two and seven days, with the gap widening over the week. Response at day seven was 64% against 27%.',
+        technicalDetails:
+          'Parallel-arm, double-blind, randomised placebo-controlled trial in 29 patients with treatment-resistant depression; a single dose of ayahuasca or placebo, with MADRS and HAM-D measured at baseline and at 1, 2 and 7 days. MADRS was significantly lower in the ayahuasca group at day 1 and day 2 (p=0.04) and at day 7 (p<0.0001). Between-group effect sizes rose across the week: Cohen\'s d 0.84 at day 1, 0.84 at day 2 and 1.49 at day 7. Response rates were high in both arms early and significantly higher with ayahuasca at day 7, 64% versus 27% (p=0.04); remission was 36% versus 7% (p=0.054, a trend). The placebo was a brew designed to mimic taste and appearance. This is the first controlled trial of a psychedelic in treatment-resistant depression and it has 29 patients in it.',
+        evidenceSource:
+          'Palhano-Fontes F et al. Rapid antidepressant effects of the psychedelic ayahuasca in treatment-resistant depression: a randomized placebo-controlled trial. Psychol Med 2019;49:655-663 (NCT02914769)',
+        doi: '10.1017/S0033291718001356',
+        measuredMetric: 'MADRS score at days 1, 2 and 7 after a single dose',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dmt-a2',
+        category: 'measured',
+        title: 'Strassman: full dose-response in humans, peaking at two minutes',
+        laymanSummary:
+          'Intravenous DMT was given at four doses to experienced volunteers. Blood levels and effects peaked within two minutes and were negligible at thirty. Hallucinogenic effects appeared only at the two highest doses.',
+        technicalDetails:
+          'Double-blind, saline placebo-controlled, randomised dose-response study of intravenous dimethyltryptamine fumarate at 0.05, 0.1, 0.2 and 0.4 mg/kg in 11 experienced hallucinogen users, treatments at least a week apart. Peak blood levels and subjective effects occurred within 2 minutes and were negligible at 30 minutes. DMT dose-dependently raised blood pressure, heart rate, pupil diameter and rectal temperature, and raised blood beta-endorphin, corticotropin, cortisol and prolactin. Growth hormone rose equally at all doses. The companion paper reported that hallucinogenic effects appeared at 0.2 and 0.4 mg/kg, that 0.1 mg/kg produced the least desirable effects, and that psychological effects peaked at 90 to 120 seconds and were almost completely resolved by 30 minutes. These were the first US studies of a Schedule I hallucinogen in humans in two decades.',
+        evidenceSource:
+          'Strassman RJ, Qualls CR. Arch Gen Psychiatry 1994;51:85-97 (part I); Strassman RJ et al., Arch Gen Psychiatry 1994;51:98-108 (part II)',
+        doi: '10.1001/archpsyc.1994.03950020009001',
+        measuredMetric:
+          'Neuroendocrine, cardiovascular, autonomic and subjective dose-response to intravenous DMT',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dmt-a3',
+        category: 'failed',
+        title: 'The pineal gland claim: DMT did not move melatonin, and the pineal was never shown to make it',
+        laymanSummary:
+          'The popular story that the pineal gland releases DMT has no supporting human data. In the one controlled study that measured it, DMT left melatonin — the pineal\'s actual product — completely unchanged.',
+        technicalDetails:
+          'DMT is an endogenous compound: it has been detected in mammalian tissue and body fluids, and the enzyme INMT that could synthesise it is expressed in several tissues. The specific claim that the pineal gland synthesises and releases DMT, particularly at birth or death, is not supported by any human measurement. Strassman\'s own dose-response study, which is the source most often invoked for the pineal hypothesis, reported that melatonin levels were unaffected by DMT at any dose — melatonin being the pineal\'s characteristic secretory product and the obvious index of pineal involvement. Detecting a compound in tissue establishes its presence, not its physiological function, its concentration at a receptor, or its release from a particular organ. The endogenous-DMT literature and the pineal story are two different claims, and only the first has evidence.',
+        evidenceSource:
+          'Strassman RJ, Qualls CR, Arch Gen Psychiatry 1994;51:85-97 — melatonin unaffected across all DMT doses',
+        doi: '10.1001/archpsyc.1994.03950020009001',
+        inferredClaim:
+          'That the pineal gland synthesises and releases DMT — a claim with no human measurement behind it, and one contradicted by the melatonin data in the study usually cited for it',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'dmt-a4',
+        category: 'inferred',
+        title: 'The ayahuasca trial tested a brew, and the brew is not standardised',
+        laymanSummary:
+          'The trial used one preparation from one source. Ayahuasca varies several-fold in both its active components between batches, and the DMT is only active because of the second plant.',
+        technicalDetails:
+          'Ayahuasca is a decoction whose DMT content comes from one plant and whose oral activity depends on beta-carboline monoamine oxidase inhibitors from another. Published analyses of ceremonial preparations show several-fold variation in both DMT and beta-carboline content between brews. The randomised trial administered a single characterised batch, which is correct trial practice and also means the result belongs to that preparation. Extending it requires either standardising the brew or moving to synthetic DMT with a defined dose — which is what the current early-phase programmes do, and which makes them a different intervention rather than a confirmation. Separately, the MAO-A inhibition that makes the brew work is a real pharmacological interaction, and it applies to serotonergic drugs and to tyramine-containing foods in the same way any MAO inhibitor does.',
+        evidenceSource:
+          'Palhano-Fontes F et al., Psychol Med 2019;49:655-663, single-batch preparation; composition variability documented in the ayahuasca analytical literature',
+        doi: '10.1017/S0033291718001356',
+        inferredClaim:
+          'That a result obtained with one characterised batch of a plant decoction generalises to ayahuasca as a category, or to synthetic DMT',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dmt-a5',
+        category: 'conclusion_shift',
+        title: 'The Supreme Court allowed a Schedule I sacrament, unanimously',
+        laymanSummary:
+          'In 2006 the US Supreme Court held that a small church could import and drink an ayahuasca tea containing DMT, because the government had not shown a compelling reason to stop it.',
+        technicalDetails:
+          'In Gonzales v. O Centro Espírita Beneficente União do Vegetal, 546 U.S. 418 (2006), decided 21 February 2006, the Court affirmed a preliminary injunction permitting a religious sect to import and consume hoasca, a sacramental tea brewed from Amazonian plants containing DMT, a Schedule I substance. Chief Justice Roberts wrote for the Court. The decision turned on the Religious Freedom Restoration Act, which requires the government to demonstrate a compelling interest served by the least restrictive means when it substantially burdens religious exercise; the government had not made that showing on the record before the Court, notwithstanding the Controlled Substances Act\'s categorical Schedule I treatment. The case is an unusual and instructive shift: Schedule I status was not overturned, and an exemption from it was upheld anyway, on grounds that had nothing to do with the pharmacology.',
+        evidenceSource:
+          'Gonzales v. O Centro Espírita Beneficente União do Vegetal, 546 U.S. 418 (2006), No. 04-1084, opinion of the Court by Chief Justice Roberts',
+        measuredMetric:
+          'Judicial outcome on a Religious Freedom Restoration Act challenge to Schedule I enforcement',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dmt-a6',
+        category: 'measured',
+        title: 'A twenty-minute psychedelic, and the clinical question that follows from it',
+        laymanSummary:
+          'Injected DMT peaks in two minutes and is over in thirty. That is a fraction of a psilocybin session, and it is the main reason companies are developing it.',
+        technicalDetails:
+          'Strassman\'s dose-response work established the human time course directly: peak plasma concentration and peak subjective effect within 2 minutes of intravenous administration, negligible by 30 minutes, with psychological effects almost completely resolved at that point. A psilocybin session runs six to eight hours and a supported LSD session eight to twelve. The clinical implication is a cost implication: monitored time is the dominant cost of psychedelic-assisted therapy, and a twenty-minute drug effect changes it by an order of magnitude. The unresolved question is whether the durable outcome depends on duration. No trial has compared a short-acting and a long-acting psychedelic head to head at matched intensity, so this is currently an economic argument with a pharmacological premise and no clinical evidence either way.',
+        evidenceSource: 'Strassman RJ et al., Arch Gen Psychiatry 1994;51:98-108, subjective effects time course',
+        doi: '10.1001/archpsyc.1994.03950020022002',
+        measuredMetric: 'Time to peak and time to resolution of subjective effects after intravenous DMT',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Inactive by mouth unless an enzyme is blocked first',
+        laymanDesc:
+          'Swallowed alone, DMT is destroyed before it can reach the brain. The Amazonian brew adds a second plant that switches off the enzyme doing the destroying.',
+        molecularDetail:
+          'DMT is a substrate for monoamine oxidase A in the gut wall and liver, giving essentially zero oral bioavailability. Ayahuasca supplies harmine, harmaline and tetrahydroharmine, reversible MAO-A inhibitors, which is what makes the oral route pharmacologically possible.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Injected or inhaled, it reaches the brain in seconds',
+        laymanDesc:
+          'Bypassing the gut entirely, the molecule crosses into the brain almost immediately and peaks about two minutes later.',
+        molecularDetail:
+          'Intravenous dimethyltryptamine fumarate produces peak plasma concentration and peak subjective effect within 2 minutes; effects are negligible at 30 minutes. The time course is set by rapid distribution and rapid MAO-A metabolism rather than by receptor kinetics.',
+        iconName: 'Syringe',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Activates 5-HT2A, the same receptor as LSD and psilocin',
+        laymanDesc:
+          'It is close enough in shape to serotonin to switch on the receptor that all the classic psychedelics use.',
+        molecularDetail:
+          'Agonist at 5-HT2A with additional 5-HT1A and 5-HT2C activity, plus reported sigma-1 receptor binding. Structurally it is serotonin with two N-methyl groups and no 5-hydroxyl, which removes the polar group that would otherwise limit brain entry.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Cortical activity is reorganised, briefly and completely',
+        laymanDesc:
+          'For a few minutes the ordinary flow of experience is replaced rather than modified. Volunteers described it as more vivid and compelling than dreaming or waking.',
+        molecularDetail:
+          'Gq-coupled 5-HT2A signalling in layer V pyramidal neurons, as with the other classic psychedelics. Strassman\'s volunteers described effects that "completely replaced" ongoing mental experience at 0.2 and 0.4 mg/kg, with lower doses producing primarily affective and somaesthetic effects.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Depression scores fall for at least a week after one dose',
+        laymanDesc:
+          'In the one randomised trial, the gap between drug and placebo was largest at day seven — after the drug had been gone for six and a half days.',
+        molecularDetail:
+          'Measured endpoint is MADRS at days 1, 2 and 7. Between-group effect size rose from d=0.84 at day 1 to d=1.49 at day 7, in 29 patients. DMT is cleared within an hour of administration, so the day-7 result is not a drug-concentration effect and no mechanism for its persistence has been demonstrated.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT02914769 (ayahuasca in treatment-resistant depression)',
+        phase: 'Phase 2 randomised, double-blind, placebo-controlled',
+        sampleSize: 29,
+        primaryEndpoint: 'MADRS score change at 1, 2 and 7 days after a single dose',
+        endpointMet: true,
+        statisticalPValue:
+          'p=0.04 at days 1 and 2, p<0.0001 at day 7; between-group Cohen\'s d rose from 0.84 to 1.49 across the week',
+        unreportedAdverseSignals:
+          '29 patients in total. Vomiting is an expected and near-universal effect of the brew, which makes the placebo comparison difficult to maintain even with a taste-matched control.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Strassman intravenous DMT dose-response (parts I and II)',
+        phase: 'Phase 1 double-blind, placebo-controlled, randomised dose-response',
+        sampleSize: 11,
+        primaryEndpoint:
+          'Neuroendocrine, cardiovascular, autonomic and subjective response across four intravenous doses',
+        endpointMet: true,
+        statisticalPValue:
+          'Dose-dependent elevation of blood pressure, heart rate, pupil diameter, rectal temperature, beta-endorphin, corticotropin, cortisol and prolactin; hallucinogenic threshold at 0.2 mg/kg',
+        unreportedAdverseSignals:
+          'Melatonin was unaffected at every dose — the measurement that the pineal-gland hypothesis has to account for and does not.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A day-7 between-group effect size of 1.49 on MADRS after a single dose of ayahuasca in 29 patients with treatment-resistant depression',
+        'Peak plasma concentration and peak subjective effect within 2 minutes of intravenous DMT, negligible by 30 minutes',
+        'Dose-dependent elevation of blood pressure, heart rate, pupil diameter, temperature, beta-endorphin, corticotropin, cortisol and prolactin',
+        'No effect of DMT on melatonin at any dose tested',
+      ],
+      unsupportedInferences: [
+        'That the pineal gland synthesises and releases DMT — no human measurement supports it, and melatonin was unmoved in the study most often cited for it',
+        'That detecting endogenous DMT in tissue establishes a physiological signalling role for it',
+        'That a result from one characterised batch of a plant decoction generalises to ayahuasca as a category or to synthetic DMT',
+        'That a twenty-minute drug effect produces the same durable outcome as a six-hour one — no trial has compared them',
+      ],
+      whatFailedInitially: [
+        'Remission at day 7 in the ayahuasca trial, 36% versus 7%, did not reach significance (p=0.054)',
+        'The 0.1 mg/kg intravenous dose produced the least desirable subjective effects of any dose tested, which is not a linear dose-response',
+      ],
+      realWorldOutcome: [
+        'DMT remains Schedule I; the Supreme Court upheld a religious exemption for one church\'s sacramental use in 2006',
+        'Synthetic DMT is in early-phase clinical development on the basis of its very short duration, not a larger effect',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous or inhaled for the pure compound; oral decoction when combined with an MAO inhibitor',
+      description:
+        'Three routes with three different pharmacologies. Intravenous synthetic DMT gives a controlled, very short exposure and is what the current trials use. Inhalation gives a similarly abrupt onset with an uncontrolled dose. The oral route works only in combination with monoamine oxidase inhibitors, which extends the experience to several hours and introduces the interaction profile of an MAO inhibitor alongside it.',
+      safetyProfile:
+        'Acute effects are dose-dependent rises in blood pressure, heart rate, body temperature and pupil diameter, with elevations of cortisol, corticotropin, prolactin and beta-endorphin, all measured directly in the intravenous dose-response study. Subjectively, the higher doses produce a state that displaces ordinary experience entirely, with a brief overwhelming onset that volunteers described as loss of control and in which euphoria and anxiety coexisted. Vomiting is a near-universal effect of ayahuasca and is treated within the ceremonial context as expected rather than adverse. The MAO-A inhibition in the oral preparation carries the interaction profile of any MAO inhibitor: serotonergic drugs, including SSRIs, and tyramine-containing foods are the relevant hazards. DMT does not produce physical dependence.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does ayahuasca need two plants?',
+        a: 'Because DMT swallowed on its own does nothing. Monoamine oxidase A in the gut wall and liver destroys it before it can reach the circulation. The second plant, Banisteriopsis caapi, supplies harmine, harmaline and tetrahydroharmine — reversible inhibitors of that enzyme. Block the enzyme and the DMT survives absorption. This is a pharmacologically precise solution that was arrived at without any of the pharmacology, and it is one of the more striking things in ethnobotany. It also means an ayahuasca preparation carries the interaction profile of an MAO inhibitor, which matters for anyone taking a serotonergic drug.',
+      },
+      {
+        q: 'Is DMT released by the pineal gland when you die?',
+        a: 'There is no evidence for that. DMT is genuinely endogenous — it has been detected in mammalian tissue and the enzyme that could make it is expressed in several places. What has never been shown is that the pineal gland makes it, releases it, or does either at birth or at death. The study most often cited in support measured melatonin, the pineal\'s characteristic product, across four doses of intravenous DMT and found it unaffected at all of them. Finding a molecule in tissue tells you it is present. It does not tell you what organ made it, what concentration reaches a receptor, or whether it does anything.',
+        auditNote:
+          'The melatonin result is in the same paper the pineal hypothesis is usually attributed to. It is rarely quoted alongside it.',
+      },
+      {
+        q: 'What did the one randomised trial actually find?',
+        a: 'In 29 patients with treatment-resistant depression, a single dose of ayahuasca lowered MADRS scores more than a taste-matched placebo at one, two and seven days, and the gap grew over the week — Cohen\'s d of 0.84 at day one and 1.49 at day seven. Response at day seven was 64% against 27%. Remission was 36% against 7%, which did not quite reach significance. It is a real, well-conducted, positive randomised trial and it has 29 patients in it, has not been replicated, and used one batch of a preparation that varies between batches.',
+      },
+      {
+        q: 'Why is anyone developing a drug that lasts twenty minutes?',
+        a: 'Because monitored time is what makes psychedelic-assisted therapy expensive. A psilocybin session runs six to eight hours with two trained people present; an LSD session runs longer. Intravenous DMT peaks in two minutes and is essentially over in thirty, which changes the staffing cost by an order of magnitude. The premise being tested is that the durable effect does not depend on the duration of the experience. Nobody has compared a short-acting and a long-acting psychedelic head to head, so that premise is currently an assumption with commercial consequences.',
+      },
+      {
+        q: 'How is a Schedule I drug legal for a church?',
+        a: 'Under the Religious Freedom Restoration Act rather than under drug law. In Gonzales v. O Centro Espírita Beneficente União do Vegetal, decided in February 2006, the Supreme Court affirmed an injunction allowing a small religious sect to import and drink a DMT-containing sacramental tea, on the ground that the government had not demonstrated a compelling interest pursued by the least restrictive means. The Schedule I listing was not disturbed. It is an exemption from enforcement, granted on constitutional and statutory grounds that have nothing to do with the drug\'s pharmacology.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Palhano-Fontes F et al. Rapid antidepressant effects of the psychedelic ayahuasca in treatment-resistant depression: a randomized placebo-controlled trial. Psychol Med 2019;49:655-663',
+        identifier: '10.1017/S0033291718001356',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Strassman RJ, Qualls CR. Dose-response study of N,N-dimethyltryptamine in humans. I. Neuroendocrine, autonomic, and cardiovascular effects. Arch Gen Psychiatry 1994;51:85-97',
+        identifier: '10.1001/archpsyc.1994.03950020009001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Strassman RJ et al. Dose-response study of N,N-dimethyltryptamine in humans. II. Subjective effects and preliminary results of a new rating scale. Arch Gen Psychiatry 1994;51:98-108',
+        identifier: '10.1001/archpsyc.1994.03950020022002',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gonzales v. O Centro Espírita Beneficente União do Vegetal, 546 U.S. 418 (2006), No. 04-1084 — opinion of the Court',
+        identifier: 'https://www.law.cornell.edu/supct/html/04-1084.ZO.html',
+        kind: 'regulatory',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT02914769 — ayahuasca in treatment-resistant depression',
+        identifier: 'NCT02914769',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 6089 — N,N-dimethyltryptamine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6089',
+        kind: 'url',
+      },
+      {
+        label:
+          'PubChem CID 5280953 — harmine, one of the beta-carboline MAO-A inhibitors that make ayahuasca orally active',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280953',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
     ],
   },
 ]

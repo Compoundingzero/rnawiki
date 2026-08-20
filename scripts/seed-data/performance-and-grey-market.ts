@@ -3824,4 +3824,373 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 11. Nandrolone decanoate
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'nandrolone-decanoate',
+    name: 'Nandrolone Decanoate',
+    tradeName: 'Deca-Durabolin',
+    sponsor:
+      'Originally Organon. United States generic applications were held by Watson Laboratories, Abraxis, Epic Pharma, Quad Pharmaceuticals and others',
+    targetGene: 'AR',
+    targetProtein: 'Androgen receptor; the parent 19-nortestosterone also binds the progesterone receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    indication:
+      'Approved in the United States for the management of the anaemia of renal insufficiency, where it was shown to increase haemoglobin and red cell mass. Every United States application is now listed Discontinued.',
+    patientFriendlyIndication:
+      'Anaemia of kidney failure — approved, and no longer marketed in the United States',
+    anatomicalSite:
+      'Androgen receptor in skeletal muscle myonuclei, bone and erythroid progenitors in bone marrow',
+    conditionContext: {
+      conditionExplainer:
+        'Before recombinant erythropoietin, patients on dialysis were anaemic and the available treatment was an androgen that pushed the bone marrow to make more red cells. Nandrolone decanoate was one of the standards of care for that.',
+      whyItMatters:
+        'Erythropoietin made the indication obsolete, and the product disappeared from the American market. The molecule did not disappear: it remains the most recognisable injectable anabolic steroid in the world and one of the most frequently detected in anti-doping analysis.',
+      whoTakesThis:
+        'Historically, dialysis patients with anaemia and postmenopausal women with osteoporosis. Now, almost entirely people using it for muscle, and patients in the countries where it remains registered.',
+      clinicalGoals:
+        'In the approved indication, haemoglobin and red cell mass. In the osteoporosis trials, fracture incidence, bone mineral density and bone pain.',
+    },
+    oneSentenceVerdict:
+      'The anabolic steroid with a genuine randomised fracture-reduction result in postmenopausal osteoporosis across seven small trials, an approved indication that erythropoietin made obsolete, and a metabolite that turns up in anti-doping laboratories more often than almost anything else.',
+    laymanHowItWorks:
+      'Nandrolone is testosterone with one carbon removed from the top of the steroid skeleton. That single change has two consequences that define the drug. The enzyme that normally amplifies testosterone in the prostate and scalp converts nandrolone instead into a weaker compound, so it is comparatively kind to the prostate and the hairline. And the resulting molecule looks enough like progesterone that it binds the progesterone receptor too, which is why it affects prolactin and libido in ways testosterone does not. The decanoate ester is a ten-carbon chain that makes one injection last weeks.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 55,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2O)CCC4=CC(=O)CC[C@H]34',
+      chemicalFormula: 'C18H26O2',
+      molecularWeight:
+        '274.4 g/mol for nandrolone (19-nortestosterone); the marketed drug is the decanoate ester, C28H44O3, 428.7 g/mol',
+      targetReceptorAffinity:
+        'Nandrolone is 19-nortestosterone: testosterone lacking the C19 methyl group. 5-alpha-reductase converts it to 5alpha-dihydronandrolone, which binds the androgen receptor more weakly than nandrolone itself — the reverse of what happens to testosterone, and the reason for its comparatively low androgenic profile in skin and prostate. It also has appreciable progesterone receptor affinity.',
+      structureSource: {
+        label:
+          'PubChem CID 9904 (nandrolone) — canonical SMILES, molecular formula and molecular weight of the free steroid',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9904',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'nan-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Reference standard identity and ester chain length',
+          description:
+            'Establish which ester is present. Nandrolone circulates as the decanoate, the phenylpropionate and occasionally as the free steroid, and the ester determines the release profile and the interpretation of a blood concentration. Chain length is read directly from the accurate mass.',
+          reagentsAndBuffer:
+            'Certified nandrolone, nandrolone decanoate and nandrolone phenylpropionate reference standards, deuterated internal standards, 1H and 13C NMR in CDCl3, high-resolution accurate-mass ESI-MS, UV maximum near 240 nm from the enone',
+        },
+        {
+          id: 'nan-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content and sterility of an oil-based injectable',
+          description:
+            'Quantify the ester in the oil vehicle and assess the vehicle itself. For a licensed product this is routine release testing; for an underground preparation it answers whether the concentration on the label is real and whether the vial is sterile.',
+          dependsOnStepId: 'nan-w1',
+          reagentsAndBuffer:
+            'Methanol or acetonitrile dilution of the oil phase, reversed-phase C18 HPLC with UV detection at 240 nm, gas chromatography with flame ionisation for the carrier oil and benzyl alcohol, membrane filtration bioburden and limulus amoebocyte lysate endotoxin testing',
+        },
+        {
+          id: 'nan-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Urine preparation for 19-norandrosterone, and the threshold problem',
+          description:
+            'Anti-doping confirmation targets 19-norandrosterone rather than nandrolone. Because trace amounts can arise endogenously and from some meat and supplement sources, the analysis is threshold-based and requires isotope-ratio mass spectrometry to distinguish pharmaceutical from endogenous origin in borderline cases.',
+          dependsOnStepId: 'nan-w2',
+          reagentsAndBuffer:
+            'Beta-glucuronidase hydrolysis in phosphate buffer pH 7.0, solid-phase extraction, MSTFA derivatisation for GC-MS/MS; high-performance liquid chromatography fraction collection ahead of gas chromatography combustion isotope ratio mass spectrometry',
+        },
+        {
+          id: 'nan-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Androgen and progesterone receptor panel with 5-alpha-reductase co-incubation',
+          description:
+            'Read androgen and progesterone receptor activity, and repeat the androgen assay with 5-alpha-reductase present. For nandrolone this reverses the usual result: the reduced metabolite is less active than the parent, which is the mechanistic basis of its tissue profile and cannot be seen in an assay without the enzyme.',
+          dependsOnStepId: 'nan-w3',
+          reagentsAndBuffer:
+            'AR and PR reporter cell lines with matched response-element luciferase constructs, recombinant SRD5A2 or a prostate-derived cell line expressing it, charcoal-stripped serum in phenol-red-free medium, dihydrotestosterone and progesterone as reference agonists',
+        },
+        {
+          id: 'nan-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Ester quantification in dried blood spots and metabolite quantification in urine',
+          description:
+            'Quantify intact steroid esters in blood, which proves exogenous administration outright because an ester cannot be endogenous, and quantify 19-norandrosterone in urine against the reporting threshold. Dried blood spot methods for intact esters are the significant recent development in this area.',
+          dependsOnStepId: 'nan-w4',
+          reagentsAndBuffer:
+            'Dried blood spot cards, methanolic extraction, LC-MS with multi-stage fragmentation for the intact ester; GC-MS/MS after trimethylsilyl derivatisation for 19-norandrosterone with a deuterated internal standard',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'nan-a1',
+        category: 'measured',
+        title: 'Seven randomised trials in postmenopausal osteoporosis reduced fracture risk',
+        laymanSummary:
+          'Pooling seven randomised trials in 293 postmenopausal women with osteoporosis, nandrolone decanoate reduced fractures, increased forearm bone mineral content, reduced pain and increased muscle mass. It also caused facial hair, acne and voice changes.',
+        technicalDetails:
+          'Camara et al. conducted a PRISMA-compliant systematic review and meta-analysis registered on PROSPERO (CRD420251147647), comparing nandrolone decanoate with placebo in postmenopausal women with primary osteoporosis. Seven trials with 293 participants were included, with sample sizes varying by outcome. Nandrolone reduced fracture risk with moderate-certainty evidence; produced modest increases in bone mineral density at low certainty and more substantial gains in forearm bone mineral content at moderate certainty; reduced pain and increased muscle mass, both at moderate certainty. It was associated with a higher incidence of mostly mild virilising adverse events — hirsutism, acne, voice changes — at low certainty. The authors note the small sample sizes and methodological limitations of the older trials. A fracture-reduction signal in a randomised comparison is a genuinely uncommon thing for a compound in this group to have.',
+        evidenceSource: 'Camara LC et al., Cureus 2025;17:e98114 (PROSPERO CRD420251147647)',
+        doi: '10.7759/cureus.98114',
+        measuredMetric:
+          'Fracture incidence, bone mineral density, forearm bone mineral content, pain and muscle mass versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nan-a2',
+        category: 'measured',
+        title: 'The approved indication was anaemia of renal insufficiency, and the label says so',
+        laymanSummary:
+          'The United States label reads that nandrolone decanoate is indicated for the anaemia of kidney failure and has been shown to increase haemoglobin and red cell mass, with surgically anephric patients responding less well.',
+        technicalDetails:
+          'The nandrolone decanoate prescribing information states the indication as management of the anaemia of renal insufficiency, with the drug shown to increase haemoglobin and red cell mass, and notes that surgically induced anephric patients have been reported to be less responsive. That last clause is a mechanistic clue in itself: it points to a component of the effect that depends on residual renal erythropoietin production, which is exactly what recombinant erythropoietin later replaced. Contraindications listed include breast carcinoma in men, known or suspected prostate carcinoma, breast carcinoma in women with hypercalcaemia, pregnancy, and nephrosis or the nephrotic phase of nephritis.',
+        evidenceSource:
+          'Nandrolone decanoate injection prescribing information, Watson Laboratories, via DailyMed',
+        measuredMetric: 'Approved indication text on the United States label',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nan-a3',
+        category: 'measured',
+        title: 'The same peliosis hepatis warning that the whole class carries',
+        laymanSummary:
+          'The label warns in capital letters about blood-filled cysts in the liver and about liver tumours, exactly as the oxandrolone label does.',
+        technicalDetails:
+          'The nandrolone decanoate label carries the class warning: peliosis hepatis, in which liver and sometimes splenic tissue is replaced with blood-filled cysts, has been reported in patients receiving androgenic anabolic steroid therapy; the cysts are sometimes present with minimal hepatic dysfunction and at other times associated with liver failure, and are often unrecognised until life-threatening liver failure or intra-abdominal haemorrhage develops. It is worth being precise about what this warning is and is not: it is a class warning applied to injectable and oral anabolic steroids alike, and the hepatotoxicity best documented in the recent clinical literature belongs to the 17alpha-alkylated orals. Nandrolone decanoate is not 17-alkylated.',
+        evidenceSource:
+          'Nandrolone decanoate injection prescribing information, Watson Laboratories, via DailyMed',
+        measuredMetric: 'Warning text on the United States label',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nan-a4',
+        category: 'conclusion_shift',
+        title: 'Erythropoietin removed the indication, and the market removed the drug',
+        laymanSummary:
+          'Recombinant erythropoietin made an androgen unnecessary for dialysis anaemia. Every nandrolone decanoate product in the United States is now listed as discontinued.',
+        technicalDetails:
+          'Drugs@FDA lists a series of nandrolone decanoate applications — Watson Laboratories, Abraxis, Epic Pharma, Quad Pharmaceuticals and others — and every one carries the marketing status Discontinued. The clinical reason is not obscure: recombinant human erythropoietin, approved from 1989, treats the anaemia of renal insufficiency directly and without androgenic effects, and the guideline position moved with it. The consequence is the pattern this whole group repeats. A molecule with real randomised evidence in two indications is unavailable through pharmacies, while remaining one of the most widely used and most frequently detected compounds in unsupervised use.',
+        evidenceSource:
+          'openFDA Drugs@FDA — nandrolone decanoate applications ANDA086385, ANDA087519, ANDA088290 and others, all marketing status Discontinued',
+        inferredClaim:
+          'That withdrawal from the market implies a safety judgement, when here it followed the arrival of a better drug for the same indication',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nan-a5',
+        category: 'measured',
+        title: 'A small randomised trial in burn patients, published as a case for reinstatement',
+        laymanSummary:
+          'Forty burn patients were randomised to nandrolone decanoate or standard care in a study whose authors explicitly framed it as an argument for bringing the drug back.',
+        technicalDetails:
+          'Ali and Ali ran a prospective randomised controlled study in 40 patients with burns covering 20% to 40% of body surface, assessing both groups clinically and biochemically through to full recovery, with a recall safety assessment years later. The paper is titled as proposing a new potential indication after recall. Forty patients is a small trial, it was single-centre, and the framing is openly advocacy for an indication rather than a neutral test of one. It is included here because it is the only randomised burn evidence for this specific steroid, and because the reader should be able to see how thin it is next to the fourteen-trial, 2,822-patient oxandrolone base for the same clinical problem.',
+        evidenceSource: 'Ali YH, Ali T, Burns 2022;48:59-68',
+        doi: '10.1016/j.burns.2021.04.011',
+        measuredMetric:
+          'Clinical and laboratory course to full recovery in 40 patients with 20 to 40% burns',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'nan-a6',
+        category: 'inferred',
+        title: '"Kind to the prostate" is a real mechanism with real limits',
+        laymanSummary:
+          'Nandrolone genuinely becomes weaker rather than stronger in tissues that carry 5-alpha-reductase, which is the reverse of testosterone. That explains a lower prostate and scalp effect and says nothing about the heart.',
+        technicalDetails:
+          'Testosterone is converted by 5-alpha-reductase into dihydrotestosterone, which binds the androgen receptor more strongly, amplifying androgenic effects in prostate and skin. Nandrolone is converted by the same enzyme into 5alpha-dihydronandrolone, which binds more weakly. That inversion is well established and it is the mechanistic basis for the drug\'s comparatively favourable prostate and scalp profile. It has no bearing on the cardiac literature, where rodent studies show adverse myocardial proteome changes and cardiac tissue effects when nandrolone is combined with resistance training, or on the profound and often prolonged suppression of the hypothalamic-pituitary-gonadal axis that follows a long-acting injectable androgen.',
+        evidenceSource:
+          'Steroids 2021;175:108916 on myocardial proteome; Steroids 2025;214:109559 on cardiac tissue with resistance training',
+        doi: '10.1016/j.steroids.2021.108916',
+        inferredClaim:
+          'That a favourable prostate and scalp profile makes the compound broadly safer, when the documented concerns are cardiac and endocrine',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected as a long-chain ester, released over weeks',
+        laymanDesc:
+          'The decanoate is a ten-carbon fatty chain attached to the steroid. It sits in an oil depot in the muscle and releases slowly, so a single injection lasts weeks.',
+        molecularDetail:
+          'Nandrolone decanoate is dissolved in a vegetable oil vehicle and injected intramuscularly. Tissue esterases cleave the decanoate to release free nandrolone, with the long chain giving a terminal half-life measured in days to weeks. The phenylpropionate ester is the shorter-acting alternative.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters cells throughout the body',
+        laymanDesc: 'The freed steroid diffuses into cells everywhere and reaches the receptor inside.',
+        molecularDetail:
+          'Passive membrane diffusion of free 19-nortestosterone; binding to the cytoplasmic androgen receptor with high affinity, and to the progesterone receptor with meaningful affinity.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Gets weaker, not stronger, where 5-alpha-reductase is present',
+        laymanDesc:
+          'In the prostate and scalp, the enzyme that makes testosterone more powerful makes nandrolone less powerful. That is the inversion the whole drug is built on.',
+        molecularDetail:
+          '5-alpha-reductase converts nandrolone to 5alpha-dihydronandrolone, which has lower androgen receptor affinity than the parent — the opposite of the testosterone-to-dihydrotestosterone conversion. Aromatisation to oestradiol occurs but at a much lower rate than for testosterone.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Muscle, bone and marrow respond; the gonadal axis and prolactin do too',
+        laymanDesc:
+          'Muscle and bone build, and the bone marrow makes more red cells. Meanwhile the brain stops signalling the testes, and the progesterone-like activity affects prolactin.',
+        molecularDetail:
+          'Androgen response element transactivation in myonuclei, osteoblasts and erythroid progenitors. Hypothalamic and pituitary androgen receptor agonism suppresses LH and FSH, and the long ester makes that suppression prolonged. Progesterone receptor agonism is the standard explanation for the prolactin and libido effects that distinguish this compound from testosterone.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Fractures reduced in the osteoporosis trials, with virilisation',
+        laymanDesc:
+          'Across seven randomised trials in postmenopausal women it reduced fractures, increased forearm bone content and muscle, reduced pain, and caused hirsutism, acne and voice changes.',
+        molecularDetail:
+          'Moderate-certainty fracture reduction and pain reduction, moderate-certainty forearm bone mineral content and muscle mass gains, low-certainty bone mineral density gains, and low-certainty higher incidence of mostly mild virilising adverse events, across 293 randomised participants.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Camara 2025 meta-analysis of 7 randomised trials in postmenopausal osteoporosis',
+        phase: 'Systematic review and meta-analysis of randomised controlled trials',
+        sampleSize: 293,
+        primaryEndpoint:
+          'Fracture risk, bone mineral density, forearm bone mineral content, pain and muscle mass versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Fracture reduction at moderate certainty; forearm bone mineral content gain at moderate certainty; bone mineral density gain at low certainty; pain reduction and muscle mass gain at moderate certainty',
+        unreportedAdverseSignals:
+          'Higher incidence of mostly mild virilising adverse events — hirsutism, acne, voice changes — at low certainty. Sample sizes were small and the constituent trials are old, which the authors flag as limiting.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Ali 2022 randomised controlled study in burn patients',
+        phase: 'Prospective randomised controlled study, single centre',
+        sampleSize: 40,
+        primaryEndpoint:
+          'Clinical and laboratory course through to full recovery in burns covering 20 to 40% of body surface',
+        endpointMet: true,
+        statisticalPValue:
+          'Small single-centre trial reported as supporting a new indication; not powered for hard clinical outcomes',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Fracture risk reduced versus placebo across seven randomised trials and 293 postmenopausal women, at moderate certainty',
+        'Forearm bone mineral content, muscle mass and pain all improved at moderate certainty in the same pooled analysis',
+        'Higher incidence of mostly mild virilising adverse events in the treated arms',
+        'An approved United States indication for the anaemia of renal insufficiency, with the label recording increased haemoglobin and red cell mass',
+        'Every United States nandrolone decanoate application now carries the marketing status Discontinued',
+      ],
+      unsupportedInferences: [
+        'That a favourable prostate and scalp profile implies broad safety, when the concerns documented for this compound are cardiac and endocrine',
+        'That the osteoporosis fracture result, obtained in small old trials at doses used under medical supervision, describes what happens at the doses used for muscle',
+        'That the peliosis hepatis class warning applies to this drug with the same force as to the 17alpha-alkylated orals, which it is not',
+      ],
+      whatFailedInitially: [
+        'Its approved indication was made obsolete by recombinant erythropoietin, and every United States product was discontinued',
+        'The randomised osteoporosis evidence consists of small, methodologically limited trials from a previous era and has never been repeated with modern methods',
+      ],
+      realWorldOutcome: [
+        'Listed in 21 CFR 1308.13 as a Schedule III anabolic steroid, with nandrolone appearing among the named substances',
+        'Its urinary metabolite 19-norandrosterone is one of the most frequently reported findings in anti-doping analysis, on a threshold basis with isotope-ratio confirmation for borderline cases',
+        'Remains registered and prescribed in a number of countries outside the United States',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oil-based intramuscular injection of the decanoate ester; 100 mg/mL and 200 mg/mL strengths in the approved products',
+      description:
+        'An oil solution injected intramuscularly, dosed at intervals of one to four weeks because of the long ester. The approved United States products were 100 mg/mL and 200 mg/mL. What circulates outside the supply chain is the same ester in an oil vehicle prepared without sterility assurance or content testing.',
+      safetyProfile:
+        'The label carries the class warning on peliosis hepatis and hepatic tumours, and contraindicates the drug in male breast or prostate carcinoma, in female breast carcinoma with hypercalcaemia, in pregnancy, and in nephrosis. In the osteoporosis trials the reported harms were mostly mild virilising effects: hirsutism, acne and voice change. By mechanism, a long-acting injectable androgen suppresses LH and FSH profoundly and for a prolonged period after the last dose. Rodent studies report adverse myocardial proteome changes and cardiac tissue effects when combined with strenuous resistance training. Progesterone receptor activity distinguishes its side effect profile from testosterone.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it really reduce fractures?',
+        a: 'In the pooled randomised evidence, yes, at moderate certainty — which is a stronger statement than anything else on these pages can make. Seven trials totalling 293 postmenopausal women with primary osteoporosis found reduced fracture risk, larger gains in forearm bone mineral content than in areal bone mineral density, reduced pain and increased muscle mass. The caveats belong in the same sentence: the trials are small and old, the certainty grading is moderate rather than high, and the treated women more often developed hirsutism, acne and voice changes. Modern osteoporosis drugs were not the comparator, and no contemporary trial has repeated the comparison.',
+      },
+      {
+        q: 'Why is it "safer for the prostate" than testosterone?',
+        a: 'Because of an inversion that is genuinely unusual. Testosterone is converted by 5-alpha-reductase into dihydrotestosterone, which binds the androgen receptor more strongly — so testosterone is amplified in the prostate and scalp, where that enzyme is abundant. Nandrolone is converted by the same enzyme into 5alpha-dihydronandrolone, which binds more weakly. The tissues that amplify testosterone attenuate nandrolone. That is a real mechanism with a real consequence, and it applies to the prostate and the hairline. It does not apply to the heart, the lipid profile or the shutdown of the body\'s own testosterone.',
+      },
+      {
+        q: 'Why can I not get it in the United States?',
+        a: 'Because recombinant erythropoietin replaced it. Its approved indication was the anaemia of renal insufficiency, and from 1989 there was a drug that treated that anaemia directly, without androgenic effects and with better control. Every nandrolone decanoate application in Drugs@FDA now carries the marketing status Discontinued. This is a market withdrawal driven by a superior alternative rather than a safety action, and the drug remains registered in a number of other countries.',
+      },
+      {
+        q: 'Why do laboratories look for 19-norandrosterone rather than nandrolone?',
+        a: 'Because that metabolite is what survives long enough in urine to be found. It brings a complication with it: very small amounts can arise endogenously and from certain foods and supplements, so the test is threshold-based rather than simply present-or-absent, and borderline results are resolved with isotope-ratio mass spectrometry that distinguishes pharmaceutical carbon from the body\'s own. Newer methods measure the intact ester in dried blood spots, which settles the question outright, because an ester of a steroid cannot be made by a human body.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Camara LC et al. Nandrolone decanoate for postmenopausal osteoporosis: a systematic review and meta-analysis of randomized trials. Cureus 2025;17:e98114',
+        identifier: '10.7759/cureus.98114',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ali YH, Ali T. Nandrolone decanoate safely combats catabolism in burned patients: a new potential indication after recall. Burns 2022;48:59-68',
+        identifier: '10.1016/j.burns.2021.04.011',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nandrolone combined with strenuous resistance training impairs myocardial proteome profile of rats. Steroids 2021;175:108916',
+        identifier: '10.1016/j.steroids.2021.108916',
+        kind: 'doi',
+      },
+      {
+        label:
+          'The effect of resistance training and nandrolone decanoate administration on cardiac tissue in mice. Steroids 2025;214:109559',
+        identifier: '10.1016/j.steroids.2024.109559',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Detection of anabolic androgenic steroids and steroid esters: comparing dried blood spot collection devices and urine samples. Drug Test Anal 2025;17:2374-2383',
+        identifier: '10.1002/dta.3950',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nandrolone decanoate injection prescribing information, Watson Laboratories — indication, contraindications and peliosis hepatis warning',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a586b484-1b46-40b9-9508-fd28002ad383',
+        kind: 'regulatory',
+      },
+      {
+        label: '21 CFR 1308.13(f) — Schedule III anabolic steroids, nandrolone among the named substances',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-II/part-1308/section-1308.13',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 9904 — nandrolone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9904',
+        kind: 'url',
+      },
+    ],
+  },
 ]
