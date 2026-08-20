@@ -7796,5 +7796,459 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Selenium — the cleanest cautionary tale in this file. A trial that missed its primary endpoint
+  // and whose secondary endpoints launched a 35,533-man prevention trial; that trial found no
+  // benefit, more diabetes, and — in the vitamin E arm — significantly more prostate cancer.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'selenium',
+    name: 'Selenium',
+    tradeName:
+      'Sold as L-selenomethionine, sodium selenite, sodium selenate or selenium-enriched yeast',
+    sponsor:
+      'No single sponsor — an essential trace element sold in several chemical forms. SELECT was funded by the National Cancer Institute and run by SWOG.',
+    targetGene: 'GPX1',
+    targetProtein:
+      'The selenoproteins, of which there are 25 in humans, all containing selenium as selenocysteine encoded by a recoded UGA codon. The principal families are the glutathione peroxidases (GPX1-4), the thioredoxin reductases (TXNRD1-3) and the iodothyronine deiodinases (DIO1-3), which activate thyroid hormone. Selenium has no receptor: it is built into these proteins or it does nothing.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for immunity, thyroid function, antioxidant protection and — historically — cancer prevention. Not approved by the FDA or EMA for any of them. Selenium is a genuine essential trace element and its deficiency causes Keshan disease, an endemic cardiomyopathy, which is a real disease with a real cure.',
+    patientFriendlyIndication:
+      'Taken as an antioxidant and for thyroid and immune support',
+    conditionContext: {
+      conditionExplainer:
+        'Selenium is not an antioxidant in itself. It is built into 25 human proteins as the amino acid selenocysteine, and some of those proteins are antioxidant enzymes. Once those enzymes have enough selenium to be made, additional selenium has nothing further to do — and the range between enough and too much is narrower than for any other nutrient in this file.',
+      whyItMatters:
+        'Selenium is the substance on which the antioxidant-prevention hypothesis was tested most seriously and failed most completely. The sequence — a trial that missed its primary endpoint, secondary findings that launched a 35,533-man prevention trial, and a result of no benefit plus signals of harm — is the reference case for how a supplement claim can survive for two decades on the strength of an analysis that was never designed to support it.',
+      whoTakesThis:
+        'People taking multivitamins, people with Hashimoto thyroiditis, and a smaller group taking it deliberately for cancer prevention on the strength of research that has since been overturned. Genuine deficiency occurs in low-selenium soil regions, most famously parts of China where Keshan disease was endemic.',
+      clinicalGoals:
+        'Trials measured incidence of basal and squamous cell skin cancer, total cancer incidence and mortality, prostate cancer incidence, incidence of type 2 diabetes, and in the toxicity literature serum and urine selenium concentrations against symptoms.',
+    },
+    oneSentenceVerdict:
+      'Selenium is genuinely essential and cures a real deficiency cardiomyopathy, but the cancer prevention hypothesis it carried for twenty years was tested in 35,533 men and produced a prostate cancer hazard ratio of 1.09, no benefit on any prespecified endpoint, and a diabetes signal that a separate analysis of the founding trial put at a hazard ratio of 1.55.',
+    laymanHowItWorks:
+      'Selenium is not something your body burns or stores as fuel. It is inserted into twenty-five specific proteins as part of an unusual amino acid, and several of those proteins are the enzymes that neutralise peroxides and that switch thyroid hormone on. If you have enough selenium to build them, they work. If you have too little, they cannot be built, and in severe deficiency the heart muscle fails. Adding more selenium than the proteins need does not make them work harder — there is no more of them to make — and the excess accumulates, which is why selenium has one of the narrowest safe ranges of any nutrient.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 36,
+    anatomicalSite:
+      'Incorporated as selenocysteine into selenoproteins in every tissue; highest concentrations in thyroid, kidney and liver',
+    substitutes: {
+      summary:
+        'For a genuine deficiency, selenium is not substitutable and the effects of correcting it are dramatic. For a replete adult, the comparator is nothing, and the two largest randomised trials say so. For thyroid autoimmunity the evidence is more open, and it is a different claim from the cancer one.',
+      conventionalRx: [
+        {
+          name: 'Selenium repletion in Keshan disease',
+          class: 'Nutrient replacement for an endemic deficiency cardiomyopathy',
+          howItCompares:
+            'In selenium-poor regions of China, selenium supplementation essentially eliminated an endemic and often fatal cardiomyopathy of children and young women. This is one of the clearest public-health nutrition successes on record.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: unambiguous, mechanistically explained, and it worked. Cons: it says nothing about supplementing a person whose selenoproteins are already saturated, which is what the two large trials tested and answered.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Brazil nuts',
+          activeCompound: 'Selenomethionine, at concentrations high enough to matter in single nuts',
+          biologicalMechanism:
+            'Brazil nuts concentrate selenium from soil to a degree no other common food matches, and the content varies enormously with where the tree grew. A handful can exceed the tolerable upper intake level, which makes them the one food in ordinary circulation capable of causing a nutrient toxicity.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the recommended dietary allowance referenced in the poisoning investigation is 55 micrograms per day, and the trials used 200 micrograms per day.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Seafood, organ meat and cereals grown on selenium-replete soil',
+          activeCompound: 'Selenomethionine and selenocysteine from plant and animal protein',
+          biologicalMechanism:
+            'Dietary selenium content tracks soil selenium, which is why deficiency is geographic rather than dietary in the usual sense. Selenomethionine is incorporated non-specifically in place of methionine and forms a tissue reservoir; selenite and selenate are not stored this way, which is why the chemical form changes the pharmacokinetics substantially.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Check whether the endpoint was primary or secondary',
+          action:
+            'The entire selenium cancer prevention era rests on secondary endpoint analyses from a trial whose primary endpoints were negative.',
+          patientImpact:
+            'In the Nutritional Prevention of Cancer trial, selenium did not reduce basal cell carcinoma (RR 1.10, 95% CI 0.95 to 1.28) or squamous cell carcinoma (RR 1.14, 95% CI 0.93 to 1.39) — the primary endpoints, both numerically worse on selenium. The secondary analyses showed reduced total cancer incidence (RR 0.63) and mortality (RR 0.50), and it was those that launched twenty years of supplementation.',
+          clinicalPrecaution:
+            'When SELECT tested the secondary finding as a primary endpoint in 35,533 men, it did not replicate.',
+        },
+        {
+          name: 'Respect the narrow window',
+          action:
+            'Selenium has one of the smallest gaps between recommended intake and toxicity of any nutrient, and supplement manufacturing errors are not hypothetical.',
+          patientImpact:
+            'A liquid supplement containing 200 times its labelled selenium concentration poisoned 201 people across 10 states, at a median estimated dose of 41,749 micrograms per day against a recommended allowance of 55.',
+          clinicalPrecaution:
+            'Hair loss, nail discoloration and loss, fatigue and joint pain were the leading symptoms, and at 90 days more than half still had fingernail discoloration or loss.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[Se]CCC(C(=O)O)N',
+      chemicalFormula: 'C5H11NO2Se',
+      molecularWeight:
+        '196.12 g/mol. This is L-selenomethionine, the form used in both SELECT and the Nutritional Prevention of Cancer trial, and the marker the literature actually tracks. Selenium is also sold as sodium selenite and selenate, which are inorganic, are not incorporated in place of methionine, and have different tissue retention.',
+      structureSource: {
+        label: 'PubChem CID 15103 — Selenomethionine, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/15103',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'se-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Total selenium and speciation, with an overdose failure mode in mind',
+          description:
+            'Total selenium alone is insufficient in both directions. It does not distinguish selenomethionine from selenite, which behave differently in the body, and a formulation error can put the total far above label — as it did in the 2008 outbreak, at 200 times the declared concentration. Both the amount and the species must be measured on the finished product, not on the raw material.',
+          reagentsAndBuffer:
+            'Microwave acid digestion with nitric acid and hydrogen peroxide; ICP-MS for total selenium in collision-cell mode to suppress argon dimer interference; HPLC-ICP-MS speciation resolving selenomethionine, selenocysteine, selenite and selenate; NIST-traceable selenium reference material as accuracy control',
+        },
+        {
+          id: 'se-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of an enriched-isotope tracer for retention studies',
+          description:
+            'Selenium status cannot be read from plasma alone because selenomethionine is stored non-specifically in the general protein pool while inorganic selenium is not. Distinguishing the functional selenoprotein pool from the storage pool requires an isotopically distinct tracer.',
+          dependsOnStepId: 'se-w1',
+          reagentsAndBuffer:
+            '77Se- or 82Se-enriched selenomethionine and matched enriched sodium selenite; isotopic enrichment confirmed by ICP-MS; parallel unlabelled controls; sterile preparation where an intravenous reference arm is used',
+        },
+        {
+          id: 'se-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Separation of selenoprotein P from the non-specific protein pool',
+          description:
+            'Plasma selenoprotein P is the functional status marker, because it saturates when selenoprotein synthesis is maximal and stops rising thereafter. Total plasma selenium keeps climbing with selenomethionine intake long after that point, which is exactly how an intake far above requirement can look like improving status.',
+          dependsOnStepId: 'se-w2',
+          reagentsAndBuffer:
+            'Heparin-affinity chromatography for selenoprotein P isolation; immunoassay for selenoprotein P concentration; glutathione peroxidase 3 activity assay on the same samples; separate ICP-MS total plasma selenium for direct comparison',
+        },
+        {
+          id: 'se-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Selenoprotein synthesis saturation and the pro-oxidant crossover',
+          description:
+            'Establish where selenoprotein synthesis stops responding to supply, and what happens above that point. Selenium is not simply inert above saturation: selenite and excess selenomethionine metabolites generate superoxide through redox cycling with thiols, which is a plausible mechanistic account of the harm signals in the human trials.',
+          dependsOnStepId: 'se-w3',
+          reagentsAndBuffer:
+            'Human hepatocyte and prostate epithelial cell lines; selenomethionine and sodium selenite across a wide concentration range spanning nutritional to supraphysiological; 75Se metabolic labelling of selenoproteins; glutathione peroxidase and thioredoxin reductase activity assays; dihydroethidium superoxide probe; reduced and oxidised glutathione quantification',
+        },
+        {
+          id: 'se-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Prespecified primary endpoints, and nothing else',
+          description:
+            'This step is the whole lesson of the selenium literature stated as a method. Register the primary endpoint, power the trial for it, and report secondary analyses as hypothesis-generating. The Nutritional Prevention of Cancer trial\'s secondary endpoints were established in 1990, seven years after randomisation began, and their apparent benefit is what sent 35,533 men into a trial that found nothing.',
+          reagentsAndBuffer:
+            'Prospective registration with a single named primary endpoint; independent data and safety monitoring board with predefined stopping rules; blinded endpoint adjudication; prespecified analysis plan lodged before unblinding; serum selenium measured at baseline and during follow-up to confirm adherence and to permit exposure-response analysis',
+          dependsOnStepId: 'se-w4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'se-a1',
+        category: 'failed',
+        title: 'SELECT: 35,533 men, no prevention, and the trial stopped for futility',
+        laymanSummary:
+          'The definitive test of selenium for preventing prostate cancer enrolled 35,533 men across three countries. Selenium did not prevent prostate cancer or any other prespecified cancer.',
+        technicalDetails:
+          'The Selenium and Vitamin E Cancer Prevention Trial randomised 35,533 men at 427 sites in the United States, Canada and Puerto Rico between 2001 and 2004 to selenium 200 micrograms per day as L-selenomethionine, vitamin E 400 IU per day as all-rac-alpha-tocopheryl acetate, both, or placebo, with planned follow-up of 7 to 12 years. At the 2008 analysis, median follow-up 5.46 years, hazard ratios for prostate cancer against placebo were 1.04 (99% CI 0.87 to 1.24) for selenium, 1.13 (99% CI 0.95 to 1.35) for vitamin E and 1.05 (99% CI 0.88 to 1.25) for the combination. There were no significant differences on any other prespecified cancer endpoint, all P > .15. There were statistically non-significant increased risks of prostate cancer on vitamin E (P = .06) and of type 2 diabetes on selenium (relative risk 1.07, 99% CI 0.94 to 1.22, P = .16). The authors concluded that neither agent, alone or combined, at the doses and formulations used, prevented prostate cancer. Every direction of effect in that paragraph points the wrong way for a preventive agent.',
+        evidenceSource: 'Lippman SM et al. JAMA 2009;301:39-51',
+        doi: '10.1001/jama.2008.864',
+        measuredMetric:
+          'Prostate cancer incidence and prespecified secondary cancer endpoints over a median 5.46 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'se-a2',
+        category: 'failed',
+        title: 'With longer follow-up, vitamin E significantly increased prostate cancer',
+        laymanSummary:
+          'When SELECT was followed for longer, the vitamin E arm showed a statistically significant seventeen percent increase in prostate cancer.',
+        technicalDetails:
+          'Klein and colleagues reported the extended SELECT analysis with 54,464 additional person-years and 521 additional prostate cancers. Against 529 cases in the placebo group, 620 men in the vitamin E group developed prostate cancer (hazard ratio 1.17, 99% CI 1.004 to 1.36, P = .008), 575 in the selenium group (HR 1.09, 99% CI 0.93 to 1.27, P = .18), and 555 in the selenium plus vitamin E group (HR 1.05, 99% CI 0.89 to 1.22, P = .46). The absolute increase in risk per 1,000 person-years against placebo was 1.6 for vitamin E, 0.8 for selenium and 0.4 for the combination. The stated conclusion was that dietary supplementation with vitamin E significantly increased the risk of prostate cancer among healthy men. Two things deserve emphasis. This is a positive finding of harm in a trial designed to find benefit, from a nutrient marketed as protective for decades. And the combination arm was less harmful than vitamin E alone, which is the kind of interaction that makes antioxidant pharmacology in vivo unpredictable rather than reassuring.',
+        evidenceSource: 'Klein EA et al. JAMA 2011;306:1549-1556',
+        doi: '10.1001/jama.2011.1437',
+        measuredMetric: 'Prostate cancer incidence with extended follow-up in SELECT',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'se-a3',
+        category: 'conclusion_shift',
+        title: 'The founding trial missed both primary endpoints, and nobody remembers that',
+        laymanSummary:
+          'The trial that started the selenium-and-cancer story was testing skin cancer. Selenium did not reduce skin cancer — it was numerically worse. The famous result came from secondary analyses added seven years into the trial.',
+        technicalDetails:
+          'Clark and colleagues randomised 1,312 patients with a history of basal or squamous cell skin carcinoma to 200 micrograms of selenium daily or placebo, from 1983 to 1991, with a mean treatment period of 4.5 years and total follow-up of 6.4 years. The primary endpoints were incidences of basal and squamous cell skin carcinoma, and selenium did not affect either: 377 new basal cell cancers on selenium against 350 on control (RR 1.10, 95% CI 0.95 to 1.28) and 218 squamous cell cancers against 190 (RR 1.14, 95% CI 0.93 to 1.39). Both numerically favoured placebo. The secondary endpoints, established in 1990 — seven years after randomisation began — showed reduced total cancer mortality (29 versus 57 deaths, RR 0.50, 95% CI 0.31 to 0.80), reduced total cancer incidence (77 versus 119, RR 0.63, 95% CI 0.47 to 0.85), and reductions in lung, colorectal and prostate cancer. The blinded phase was stopped early primarily because of those secondary findings. That decision — stopping a trial early on endpoints added mid-course, after the prespecified ones had failed — is what put selenium in millions of multivitamins and what SELECT was built to confirm.',
+        evidenceSource: 'Clark LC et al. JAMA 1996;276:1957-1963',
+        doi: '10.1001/jama.1996.03540240035027',
+        measuredMetric:
+          'Incidence of basal and squamous cell skin carcinoma as primary endpoints, and total cancer incidence and mortality as secondary endpoints',
+        inferredClaim:
+          'That secondary endpoints added seven years into a trial, in a study whose primary endpoints were negative, can establish a preventive effect',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'se-a4',
+        category: 'failed',
+        title: 'The same trial\'s data showed selenium raised type 2 diabetes risk by 55 percent',
+        laymanSummary:
+          'A later analysis of the founding trial found that people taking selenium developed type 2 diabetes more often, with the highest risk in those who already had the most selenium in their blood.',
+        technicalDetails:
+          'Stranges and colleagues analysed diabetes incidence among 1,202 participants in the Nutritional Prevention of Cancer trial who did not have type 2 diabetes at baseline, in low-selenium areas of the eastern United States. Over a mean 7.7 years, type 2 diabetes developed in 58 selenium recipients and 39 placebo recipients — 12.6 versus 8.4 cases per 1,000 person-years, hazard ratio 1.55 (95% CI 1.03 to 2.33). The lack of benefit persisted across strata of age, sex, body mass index and smoking. Critically, an exposure-response gradient was found across tertiles of baseline plasma selenium, with a significantly increased risk in the highest tertile (hazard ratio 2.70, 95% CI 1.30 to 5.61). The authors concluded selenium does not seem to prevent type 2 diabetes and may increase risk. Diabetes was a secondary outcome and diagnoses were self-reported, which the authors state as limitations. But the exposure-response gradient — most harm in those who started with the most selenium — is exactly the pattern a genuine toxicity produces and the opposite of what a repletion effect looks like.',
+        evidenceSource: 'Stranges S et al. Ann Intern Med 2007;147:217-223',
+        doi: '10.7326/0003-4819-147-4-200708210-00175',
+        measuredMetric:
+          'Incidence of type 2 diabetes per 1,000 person-years, stratified by baseline plasma selenium tertile',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'se-a5',
+        category: 'failed',
+        title: 'A manufacturing error poisoned 201 people across ten states',
+        laymanSummary:
+          'A liquid supplement was made with two hundred times the selenium on its label. Two hundred and one people were poisoned, and half still had nail damage three months later.',
+        technicalDetails:
+          'MacFarquhar and colleagues investigated an outbreak of acute selenium poisoning traced to a liquid dietary supplement containing 200 times its labelled selenium concentration. Two hundred and one cases were identified across 10 states, with one hospitalisation. The median estimated selenium dose consumed was 41,749 micrograms per day against a recommended dietary allowance of 55 micrograms. Reported symptoms included diarrhoea in 78%, fatigue 75%, hair loss 72%, joint pain 70%, nail discoloration or brittleness 61% and nausea 58%. At 90 days or longer, 52% still had fingernail discoloration and loss, 35% fatigue and 29% hair loss. Mean initial serum selenium in 8 patients was 751 micrograms per litre against a reference of 125 or less, and mean initial urine selenium in 7 patients was 166 micrograms per 24 hours against a reference of 55 or less. The authors\' conclusion is the audit: "Had the manufacturers been held to standards used in the pharmaceutical industry, it may have been prevented." Selenium\'s narrow margin between requirement and toxicity makes it the nutrient least tolerant of the manufacturing regime it is sold under.',
+        evidenceSource: 'MacFarquhar JK et al. Arch Intern Med 2010;170:256-261',
+        doi: '10.1001/archinternmed.2009.495',
+        measuredMetric:
+          'Serum and urine selenium concentrations, symptom prevalence at onset and at 90-day follow-up',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'se-a6',
+        category: 'measured',
+        title: 'Selenium is genuinely essential, and the deficiency disease is real',
+        laymanSummary:
+          'In parts of China with selenium-poor soil, deficiency caused a fatal heart muscle disease in children and young women. Supplementation essentially eliminated it.',
+        technicalDetails:
+          'Selenium is incorporated as selenocysteine into 25 human selenoproteins, including the glutathione peroxidases, the thioredoxin reductases and the iodothyronine deiodinases that activate thyroid hormone. Severe deficiency in low-soil-selenium regions produced Keshan disease, an endemic cardiomyopathy, and supplementation programmes largely eliminated it — one of the clearest nutritional public health successes recorded. This is the fact that every selenium supplement claim leans on, and it is genuine. It is also, precisely, a deficiency effect. The 200 microgram daily doses used in the Nutritional Prevention of Cancer trial and in SELECT were nearly four times the recommended dietary allowance of 55 micrograms, administered to populations that were not deficient, on the hypothesis that more selenoprotein activity would prevent cancer. Selenoprotein synthesis saturates; the doses did not.',
+        evidenceSource: 'MacFarquhar JK et al. Arch Intern Med 2010;170:256-261',
+        doi: '10.1001/archinternmed.2009.495',
+        measuredMetric:
+          'Recommended dietary allowance of 55 micrograms per day against the 200 micrograms per day used in the prevention trials',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed as an amino acid, or as a salt, and the difference matters',
+        laymanDesc:
+          'Selenium comes in two kinds. The organic form is absorbed like an amino acid and stored in your proteins. The inorganic salts are not stored the same way.',
+        molecularDetail:
+          'Selenomethionine is absorbed by neutral amino acid transporters and incorporated non-specifically in place of methionine throughout the body\'s proteins, creating a large storage pool. Sodium selenite and selenate enter a smaller regulated pool. Both SELECT and the Nutritional Prevention of Cancer trial used L-selenomethionine, which means their results speak to the organic form and their tissue kinetics do not transfer to selenite products.',
+        iconName: 'ArrowDown',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It is written into proteins by a recoded stop codon',
+        laymanDesc:
+          'Selenium enters proteins as a special amino acid, inserted at a position that normally means "stop". Only twenty-five human proteins are built this way.',
+        molecularDetail:
+          'Selenocysteine is encoded by UGA, ordinarily a stop codon, recoded in the presence of a selenocysteine insertion sequence element in the 3-prime untranslated region. The 25-member human selenoproteome includes GPX1-4, TXNRD1-3 and DIO1-3. This machinery is the reason selenium has effects at all, and the reason those effects saturate: there are only so many selenoproteins to make.',
+        iconName: 'Dna',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Those proteins neutralise peroxides and activate thyroid hormone',
+        laymanDesc:
+          'The selenium-containing enzymes clear peroxides from cells and convert thyroid hormone into its active form. That is the whole of what selenium does.',
+        molecularDetail:
+          'Glutathione peroxidases reduce hydrogen peroxide and lipid hydroperoxides using glutathione; thioredoxin reductases maintain the thioredoxin system; iodothyronine deiodinases remove iodine from thyroxine to generate the active triiodothyronine. The thyroid holds the highest tissue selenium concentration in the body, which is the mechanistic basis for the separate and more open question of selenium in autoimmune thyroiditis.',
+        iconName: 'Shield',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Synthesis saturates, and beyond it selenium turns pro-oxidant',
+        laymanDesc:
+          'Once there is enough selenium to build all those proteins, extra selenium does not build more. It accumulates instead, and at high enough levels it starts generating the damage it was supposed to prevent.',
+        molecularDetail:
+          'Plasma selenoprotein P saturates at intakes near the requirement while total plasma selenium continues rising with selenomethionine intake, so total selenium can look like improving status long after function has plateaued. Above saturation, selenium metabolites redox-cycle with cellular thiols and generate superoxide, which is the most plausible mechanistic account of the diabetes and cancer signals in the human trials.',
+        iconName: 'Flame',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The measured outcomes were no benefit, more diabetes, and more cancer',
+        laymanDesc:
+          'The two largest trials found no cancer prevention, a hazard ratio of 1.55 for diabetes in one, and a significant seventeen percent increase in prostate cancer in the vitamin E arm of the other.',
+        molecularDetail:
+          'SELECT: prostate cancer hazard ratios 1.04 for selenium and 1.13 for vitamin E at first analysis, 1.09 and 1.17 with extended follow-up, the vitamin E result significant at P = .008. Nutritional Prevention of Cancer trial secondary analysis: type 2 diabetes hazard ratio 1.55 (95% CI 1.03 to 2.33), rising to 2.70 in the highest baseline selenium tertile.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT00006392 — SELECT, selenium and vitamin E for prostate cancer prevention',
+        phase: 'Phase 3 randomised double-blind placebo-controlled',
+        sampleSize: 35533,
+        primaryEndpoint: 'Incidence of prostate cancer',
+        endpointMet: false,
+        statisticalPValue:
+          'Selenium HR 1.04 (99% CI 0.87 to 1.24); vitamin E HR 1.13 (99% CI 0.95 to 1.35); combination HR 1.05 (99% CI 0.88 to 1.25); no prespecified endpoint reached significance, all P > .15',
+        unreportedAdverseSignals:
+          'Non-significant increases in prostate cancer on vitamin E (P = .06) and in type 2 diabetes on selenium (RR 1.07, P = .16) at first analysis. With extended follow-up the vitamin E prostate cancer increase became significant at HR 1.17 (P = .008).',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Nutritional Prevention of Cancer trial (Clark 1996)',
+        phase: 'Multicentre randomised double-blind placebo-controlled',
+        sampleSize: 1312,
+        primaryEndpoint: 'Incidence of basal cell and squamous cell carcinoma of the skin',
+        endpointMet: false,
+        statisticalPValue:
+          'Basal cell RR 1.10 (95% CI 0.95 to 1.28); squamous cell RR 1.14 (95% CI 0.93 to 1.39) — both numerically favouring placebo',
+        unreportedAdverseSignals:
+          'Secondary endpoints were established in 1990, seven years after randomisation began, and the blinded phase was stopped early primarily because of them. Both primary endpoints were negative, which is rarely mentioned when the secondary results are cited.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Stranges 2007 — selenium and incidence of type 2 diabetes',
+        phase: 'Secondary analysis of a randomised double-blind placebo-controlled trial',
+        sampleSize: 1202,
+        primaryEndpoint: 'Incidence of type 2 diabetes over a mean 7.7 years',
+        endpointMet: false,
+        statisticalPValue:
+          '12.6 versus 8.4 cases per 1,000 person-years, hazard ratio 1.55 (95% CI 1.03 to 2.33); highest baseline selenium tertile HR 2.70 (95% CI 1.30 to 5.61)',
+        unreportedAdverseSignals:
+          'Diabetes was a secondary outcome of the parent trial and diagnoses were self-reported, though validated in most participants. The sample was mostly older and white. The exposure-response gradient by baseline selenium is the finding hardest to dismiss.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'MacFarquhar 2010 — acute selenium toxicity outbreak investigation',
+        phase: 'Multi-state outbreak investigation',
+        sampleSize: 201,
+        primaryEndpoint: 'Symptoms of selenium toxicity after ingestion of a mislabelled supplement',
+        endpointMet: false,
+        statisticalPValue:
+          'Median estimated dose 41,749 micrograms per day against a 55 microgram recommended allowance; mean initial serum selenium 751 micrograms/L against a reference of 125 or less',
+        unreportedAdverseSignals:
+          'At 90 days or longer, 52% still had fingernail discoloration and loss, 35% fatigue and 29% hair loss. The product contained 200 times its labelled selenium concentration and reached consumers in 10 states.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Selenium did not prevent prostate cancer in 35,533 men; hazard ratio 1.04 initially and 1.09 with extended follow-up',
+        'Vitamin E in the same trial significantly increased prostate cancer, hazard ratio 1.17 (99% CI 1.004 to 1.36, P = .008)',
+        'Selenium increased type 2 diabetes incidence, hazard ratio 1.55, rising to 2.70 in the highest baseline selenium tertile',
+        'The founding trial missed both primary skin cancer endpoints, with both numerically favouring placebo',
+        'A supplement containing 200 times its labelled selenium poisoned 201 people, with persistent nail and hair effects at 90 days',
+      ],
+      unsupportedInferences: [
+        'That selenium prevents cancer, which two large randomised trials tested directly and rejected',
+        'That secondary endpoints added seven years into a negative trial can establish a preventive effect',
+        'That because selenium is an antioxidant cofactor, more of it means more antioxidant protection',
+        'That an essential nutrient with a documented deficiency disease is therefore safe in excess',
+      ],
+      whatFailedInitially: [
+        'The entire selenium cancer prevention hypothesis, in the largest trial ever run to test it',
+        'Vitamin E alongside it, which produced a statistically significant increase in prostate cancer',
+        'The primary endpoints of the founding trial, which are almost never mentioned when its secondary results are cited',
+      ],
+      realWorldOutcome: [
+        'Selenium is genuinely essential and correcting real deficiency eliminated an endemic fatal cardiomyopathy',
+        'The gap between requirement and toxicity is narrower than for any other nutrient in this file',
+        'This is the reference case for how a supplement claim survives on an analysis that was never designed to support it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet or capsule, as selenomethionine, sodium selenite, sodium selenate or high-selenium yeast',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale — a regime whose consequences the 2008 poisoning outbreak demonstrated directly, with a product carrying 200 times its declared selenium reaching consumers in ten states. Chemical form changes the pharmacokinetics substantially: selenomethionine is incorporated non-specifically into body protein and accumulates, while inorganic selenite and selenate are not stored that way. Both large prevention trials used L-selenomethionine, so their results do not straightforwardly transfer to selenite products.',
+      safetyProfile:
+        'Chronic excess produces selenosis: hair loss, nail discoloration and brittleness, garlic breath odour, fatigue, joint pain, gastrointestinal upset and, in severe cases, peripheral neuropathy. In the documented outbreak, more than half of affected people still had fingernail discoloration and loss at 90 days. Randomised evidence links 200 micrograms per day to increased type 2 diabetes incidence, with the greatest risk in those who already had the highest baseline selenium. Brazil nuts are the one common food capable of delivering a toxic intake. The tolerable upper intake level sits only a few multiples above the recommended allowance, which is the narrowest margin of any nutrient on this site.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does selenium prevent cancer?',
+        a: 'No. This was tested as directly as such a question can be tested: 35,533 men randomised to selenium, vitamin E, both or placebo, followed for up to twelve years. The prostate cancer hazard ratio for selenium was 1.04 at first analysis and 1.09 with extended follow-up, and no other prespecified cancer endpoint reached significance. The vitamin E arm went in the wrong direction significantly, with a 17 percent increase in prostate cancer.',
+      },
+      {
+        q: 'Where did the cancer prevention idea come from then?',
+        a: 'From secondary endpoints of a trial that missed both its primary ones. The 1996 Nutritional Prevention of Cancer trial was testing whether selenium reduced skin cancer, and it did not — basal cell relative risk 1.10, squamous cell 1.14, both numerically worse on selenium. Secondary endpoints added in 1990, seven years after randomisation began, showed reduced total cancer incidence and mortality, and the trial was stopped early largely because of them. Those secondary findings put selenium into millions of multivitamins and sent 35,533 men into SELECT.',
+        auditNote:
+          'This is the reference case on this site for the difference between a prespecified endpoint and a discovered one.',
+      },
+      {
+        q: 'Is there a downside to taking it?',
+        a: 'Two documented ones. A secondary analysis of the same founding trial found type 2 diabetes developing more often on selenium — 12.6 versus 8.4 cases per 1,000 person-years, hazard ratio 1.55 — with the risk rising to 2.70 in people whose baseline blood selenium was already highest. And selenium has the narrowest gap between requirement and toxicity of any nutrient here: chronic excess causes hair loss, nail loss, fatigue and neuropathy.',
+      },
+      {
+        q: 'But selenium is essential, isn\'t it?',
+        a: 'Completely, and the deficiency disease is severe. In selenium-poor regions of China, deficiency caused Keshan disease, an endemic cardiomyopathy that killed children and young women, and supplementation essentially eliminated it. Selenium is written into twenty-five human proteins including the enzymes that clear peroxides and activate thyroid hormone. All of that is true and none of it supports supplementing someone who already has enough — the proteins saturate, and there are no more of them to make.',
+      },
+      {
+        q: 'How dangerous is a bad batch?',
+        a: 'The answer is on the record. In 2008 a liquid supplement was manufactured with 200 times its labelled selenium concentration. Two hundred and one people across ten states were poisoned, taking a median estimated 41,749 micrograms a day against a recommended 55. Seventy-two percent lost hair, 61 percent had nail damage, and at three months more than half still had fingernail discoloration and loss. The investigators\' conclusion was that pharmaceutical manufacturing standards would likely have prevented it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Clark LC et al. Effects of selenium supplementation for cancer prevention in patients with carcinoma of the skin: a randomized controlled trial. JAMA 1996;276:1957-1963',
+        identifier: '10.1001/jama.1996.03540240035027',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stranges S et al. Effects of long-term selenium supplementation on the incidence of type 2 diabetes: a randomized trial. Ann Intern Med 2007;147:217-223',
+        identifier: '10.7326/0003-4819-147-4-200708210-00175',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lippman SM et al. Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT). JAMA 2009;301:39-51',
+        identifier: '10.1001/jama.2008.864',
+        kind: 'doi',
+      },
+      {
+        label:
+          'MacFarquhar JK et al. Acute selenium toxicity associated with a dietary supplement. Arch Intern Med 2010;170:256-261',
+        identifier: '10.1001/archinternmed.2009.495',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Klein EA et al. Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT). JAMA 2011;306:1549-1556',
+        identifier: '10.1001/jama.2011.1437',
+        kind: 'doi',
+      },
+      {
+        label: 'SELECT trial registration',
+        identifier: 'NCT00006392',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 15103 — Selenomethionine',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/15103',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
