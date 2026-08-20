@@ -165,4 +165,12 @@ export interface SweepInput {
    * Off by default: the platform stores RNA, and a silent T is a data-entry error worth surfacing.
    */
   cdnaMode?: boolean
+  /**
+   * Routes Layer 1 explicitly instead of deriving the routing from `modality`.
+   *
+   * Modality answers what kind of drug this is; that usually also answers what kind of string was
+   * submitted, and stops doing so the moment the two diverge. A record that states its own
+   * structureType is asserting a fact about the string in front of the parser, and that wins.
+   */
+  structureType?: StructureType
 }

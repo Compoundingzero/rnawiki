@@ -372,8 +372,10 @@ describe('validateLayer1 — peptide', () => {
     expect(result.nonStandardResidues?.[0]).toContain("'X'")
   })
 
-  it('rejects a backbone shorter than five residues', () => {
-    const result = validateLayer1('HAEG', 'Peptide / GLP-1 Agonist')
+  // The floor used to be five, which rejected epitalon (a real tetrapeptide) and carnosine (a real
+  // dipeptide) in order to filter noise the alphabet check already catches.
+  it('rejects a single residue, which is not a peptide', () => {
+    const result = validateLayer1('H', 'Peptide / GLP-1 Agonist')
 
     expect(result.passed).toBe(false)
     expect(codes(result.diagnostics)).toContain('L1_SEQUENCE_TOO_SHORT')
@@ -470,5 +472,65 @@ describe('validateLayer1 — contract', () => {
       const second = JSON.stringify(validateLayer1(structure, modality))
       expect(second).toBe(first)
     }
+  })
+})
+
+describe('multi-chain peptides and short peptides', () => {
+  // Insulin is two chains held together by disulfide bonds and cannot be written as one
+  // uninterrupted string. Read character by character, the separator and the chain letter both
+  // looked like illegal residues, which rejected the most-prescribed biologic in the corpus.
+  const GLARGINE = 'A-chain GIVEQCCTSICSLYQLENYCG | B-chain FVNQHLCGSHLVEALYLVCGERGFFYTPKTRR'
+
+  it('reads both chains of insulin glargine as one 53-residue molecule', () => {
+    const result = validateLayer1(
+      GLARGINE,
+      'Recombinant Protein / Biologic',
+      false,
+      'peptide_sequence',
+    )
+
+    expect(result.passed).toBe(true)
+    expect(result.aminoAcidCount).toBe(53)
+    expect(result.diagnostics.map((d) => d.code)).toContain('L1_MULTI_CHAIN_PEPTIDE')
+  })
+
+  it('accepts a labelled chain separator', () => {
+    const result = validateLayer1(
+      'chain A: GIVEQ | chain B: FVNQH',
+      'Peptide / GLP-1 Agonist',
+      false,
+      'peptide_sequence',
+    )
+
+    expect(result.passed).toBe(true)
+    expect(result.aminoAcidCount).toBe(10)
+  })
+
+  // A label must announce itself. An earlier pattern treated any leading letter as one, so
+  // epitalon AEDG lost its alanine and came back a tripeptide.
+  it('does not mistake a first residue for a chain label', () => {
+    const result = validateLayer1('AEDG', 'Peptide / GLP-1 Agonist', false, 'peptide_sequence')
+
+    expect(result.passed).toBe(true)
+    expect(result.aminoAcidCount).toBe(4)
+  })
+
+  it('accepts a dipeptide, because a dipeptide is a peptide', () => {
+    const result = validateLayer1('AH', 'Nutraceutical / Botanical', false, 'peptide_sequence')
+
+    expect(result.passed).toBe(true)
+    expect(result.aminoAcidCount).toBe(2)
+  })
+
+  it('still keeps a side-chain conjugate out of the backbone count', () => {
+    const result = validateLayer1(
+      'HAEGTFTSDVSSYLEGQAAK(AEEAc-AEEAc-gamma-Glu-17-carboxyheptadecanoyl)EFIAWLVRGRG',
+      'Peptide / GLP-1 Agonist',
+      false,
+      'peptide_sequence',
+    )
+
+    expect(result.passed).toBe(true)
+    expect(result.aminoAcidCount).toBe(31)
   })
 })

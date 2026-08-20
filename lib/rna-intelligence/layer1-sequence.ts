@@ -25,7 +25,15 @@ import { hillFormula, parseSmiles } from './smiles'
 export const MIN_NUCLEOTIDE_LENGTH = 12
 
 /** Shortest sequence Layer 1 will accept as a real peptide backbone. Matches the reference. */
-export const MIN_PEPTIDE_LENGTH = 5
+/**
+ * Two, not five.
+ *
+ * The floor existed to reject noise, but the alphabet check already does that: a string of random
+ * letters fails on its non-standard residues, not on its length. What five actually rejected was
+ * real drugs — epitalon is the tetrapeptide Ala-Glu-Asp-Gly and carnosine is a dipeptide, and both
+ * are in this corpus. A dipeptide is a peptide.
+ */
+export const MIN_PEPTIDE_LENGTH = 2
 
 /** Shortest descriptor Layer 1 will accept for a biologic. Matches the reference. */
 export const MIN_DESCRIPTOR_LENGTH = 3
@@ -40,6 +48,32 @@ export const MIN_DESCRIPTOR_LENGTH = 3
 export const CODING_FRAME_MIN_LENGTH = 60
 
 const WHITESPACE_OR_SEPARATOR = new Set([' ', '\t', '\n', '\r', '\f', '\v', '-'])
+
+/**
+ * Separates the chains of a multi-chain peptide.
+ *
+ * Insulin is two chains held together by disulfide bonds and cannot be written as one
+ * uninterrupted string. This corpus records it as "A-chain GIVEQ… | B-chain FVNQH…", which a
+ * parser reading one residue at a time saw as an illegal '|' followed by an illegal 'B'. Chains
+ * are a property of real peptides, not a formatting quirk: the separator and any chain label are
+ * removed before the residues are read, and the chain count is reported.
+ */
+const CHAIN_SEPARATORS = /[|/;+]/
+/**
+ * A chain label must announce itself. The bare-letter alternative this pattern used to carry
+ * ("A", "B") matched the first residue of any sequence that happened to start with one — epitalon
+ * AEDG lost its alanine and came back a tripeptide. A label is now only a label when it says
+ * "chain" or ends in a colon or full stop.
+ */
+const CHAIN_LABEL = /^\s*(?:[A-Za-z]\s*-?\s*chain|chain\s*[A-Za-z]?|[A-Za-z]\s*[:.])\s*[:.]?\s*/i
+
+/** Splits a peptide string into chains and strips each chain's label. */
+export function splitPeptideChains(sequence: string): string[] {
+  return sequence
+    .split(CHAIN_SEPARATORS)
+    .map((chain) => chain.replace(CHAIN_LABEL, '').trim())
+    .filter((chain) => chain.length > 0)
+}
 
 function diagnostic(
   severity: DiagnosticSeverity,
@@ -103,8 +137,22 @@ export function validateLayer1(
   rawStructure: string,
   modality: DrugModality,
   cdnaMode = false,
+  /**
+   * Overrides the routing that modality would otherwise imply.
+   *
+   * Modality answers "what kind of drug is this", and for most records that also answers "what
+   * kind of string is this". It stops answering the second question the moment the two diverge,
+   * and they diverge for real molecules: ipamorelin is a pentapeptide whose residues are three
+   * quarters non-proteinogenic, so it is recorded as a connection table rather than a shorthand
+   * no parser could read. Routed on modality it went to the peptide branch, which counted three
+   * standard letters in a SMILES string and rejected the structure as too short.
+   *
+   * When a record states its own structureType, that is a fact about the string in front of us
+   * and it wins.
+   */
+  structureTypeOverride?: StructureType,
 ): Layer1Result {
-  const structureType = structureTypeForModality(modality)
+  const structureType = structureTypeOverride ?? structureTypeForModality(modality)
   const trimmed = rawStructure.trim()
   // Positions in diagnostics are 1-based indices into `rawStructure`, so a UI can highlight the
   // character the contributor actually typed rather than an offset into some cleaned copy.
@@ -501,9 +549,29 @@ function validatePeptide(rawStructure: string, trimmed: string, offset: number):
   let nonStandardCount = 0
   let unbalancedParens = false
 
-  for (let i = 0; i < trimmed.length; i++) {
-    const char = trimmed.charAt(i)
-    const position = offset + i + 1
+  // Chains are resolved before residues are read. Insulin's two chains arrive as
+  // "A-chain GIVEQ… | B-chain FVNQH…"; read character by character, the separator and the chain
+  // letter both look like illegal residues, which is how the most-prescribed biologic in the
+  // corpus came to be rejected as malformed.
+  const chains = splitPeptideChains(trimmed)
+  const scanned = chains.join('')
+  const chainCount = chains.length
+  if (chainCount > 1) {
+    diagnostics.push(
+      diagnostic(
+        'pass',
+        'L1_MULTI_CHAIN_PEPTIDE',
+        `Read as ${chainCount} chains. Residue counts and mass cover every chain; the disulfide ` +
+          'bonds that join them are not described by a sequence and are not checked here.',
+      ),
+    )
+  }
+
+  for (let i = 0; i < scanned.length; i++) {
+    const char = scanned.charAt(i)
+    // Positions index the scanned residues rather than the raw string once chain labels have been
+    // removed, so a diagnostic points at a residue rather than at an offset that no longer exists.
+    const position = i + 1
 
     if (char === '(') {
       depth++

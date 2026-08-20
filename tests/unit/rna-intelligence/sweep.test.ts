@@ -245,3 +245,42 @@ describe('verificationHashFor', () => {
     expect(verificationHashFor(['AUG', 'CAUG'])).not.toBe(verificationHashFor(['AUGC', 'AUG']))
   })
 })
+
+describe('structureType overrides modality routing', () => {
+  // Modality answers what kind of drug this is. That usually also answers what kind of string was
+  // submitted, and stops doing so the moment the two diverge — which they do for any modified
+  // peptide recorded as a connection table. Ipamorelin is the real case: a pentapeptide whose
+  // residues are three quarters non-proteinogenic, so it is stored as a SMILES. Routed on its
+  // modality it reached the peptide branch, which counted three standard letters in a SMILES
+  // string and rejected the structure as a two-residue backbone.
+  const IPAMORELIN_SMILES =
+    'CC(C)(C(=O)N[C@@H](CC1=CN=CN1)C(=O)N[C@H](CC2=CC3=CC=CC=C3C=C2)C(=O)N[C@H](CC4=CC=CC=C4)C(=O)N[C@@H](CCCCN)C(=O)N)N'
+
+  it('misreads a peptide-modality SMILES when routing is left to the modality', () => {
+    const report = runFullDeterministicSweep({
+      structureString: IPAMORELIN_SMILES,
+      modality: 'Peptide / GLP-1 Agonist',
+      workflow: [],
+    })
+
+    // The peptide branch finds the handful of characters in a SMILES that happen to be standard
+    // one-letter residue codes and reads them as a backbone. It does not error — it answers a
+    // question nobody asked, which is why the record has to be able to state its own type.
+    expect(report.layer1.structureType).toBe('peptide_sequence')
+    expect(report.layer1.chemicalFormula).toBeUndefined()
+    expect(report.layer1.aminoAcidCount).toBeLessThan(6)
+  })
+
+  it('accepts the same string when the record states its structure type', () => {
+    const report = runFullDeterministicSweep({
+      structureString: IPAMORELIN_SMILES,
+      modality: 'Peptide / GLP-1 Agonist',
+      workflow: [],
+      structureType: 'small_molecule_smiles',
+    })
+
+    expect(report.layer1.structureType).toBe('small_molecule_smiles')
+    expect(report.layer1.chemicalFormula).toBe('C38H49N9O5')
+    expect(report.overallPassed).toBe(true)
+  })
+})

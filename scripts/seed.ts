@@ -62,6 +62,9 @@ function toMolecularSchema(seed: SeedDossier): {
     structureString,
     modality: seed.modality,
     workflow: source.laboratoryWorkflow,
+    // The record states what kind of string it holds. Trust it over the modality, which answers a
+    // different question and disagrees for any modified peptide recorded as a connection table.
+    structureType: source.structureType,
   })
 
   outcome.swept = true

@@ -7925,8 +7925,13 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 28,
     molecularSchema: {
-      structureType: 'peptide_sequence',
-      sequence5to3: '(Aib)H(D-2-Nal)(D-Phe)K(NH2)',
+      // Given as a SMILES rather than a peptide shorthand. Three of ipamorelin's five residues are
+      // non-proteinogenic — Aib, D-2-Nal and D-Phe — so the shorthand reads as a two-residue
+      // backbone to any parser working from the twenty standard letters, and it carries none of
+      // the D-stereochemistry that makes the molecule work. The connection table carries both.
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(C)(C(=O)N[C@@H](CC1=CN=CN1)C(=O)N[C@H](CC2=CC3=CC=CC=C3C=C2)C(=O)N[C@H](CC4=CC=CC=C4)C(=O)N[C@@H](CCCCN)C(=O)N)N',
       chemicalFormula: 'C38H49N9O5',
       molecularWeight: '711.9 g/mol',
       targetReceptorAffinity:
@@ -8695,6 +8700,840 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 16132413 — sermorelin sequence, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/16132413',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 23. Epitalon
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'epitalon',
+    name: 'Epitalon',
+    tradeName:
+      'Also written Epithalon and AEDG peptide. Distinct from Epithalamin, the bovine pineal extract it was derived from',
+    sponsor:
+      'St Petersburg Institute of Bioregulation and Gerontology, Russian Academy of Medical Sciences. No pharmaceutical sponsor and no registered clinical trial anywhere',
+    targetGene: 'TERT',
+    targetProtein:
+      'Telomerase reverse transcriptase — reported upregulation of hTERT transcription rather than direct binding of any receptor',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Pre-clinical / Open Source',
+    indication:
+      'None. Epitalon has no approved indication in any country and no registered clinical trial in any registry. The human longevity data attributed to it were generated with Epithalamin, a bovine pineal gland extract, which is a different preparation.',
+    patientFriendlyIndication:
+      'A four-amino-acid anti-ageing peptide with no clinical trial anywhere',
+    anatomicalSite: 'Nuclear chromatin and the hTERT promoter in dividing somatic cells',
+    conditionContext: {
+      conditionExplainer:
+        'Telomeres are repetitive caps on the ends of chromosomes that shorten every time a cell divides. When they get short enough the cell stops dividing — the Hayflick limit. Telomerase is the enzyme that rebuilds them, and it is switched off in most adult somatic cells and switched on in most cancers.',
+      whyItMatters:
+        'The claim attached to epitalon is that a four-amino-acid peptide switches telomerase back on in normal cells. That is an extraordinary claim, it comes from one Russian institute, and — unusually for this group — it has now been partly reproduced by an independent laboratory in cell culture. What has not been reproduced is anything in a human being.',
+      whoTakesThis:
+        'Nobody in a registered trial. Outside them, people injecting it in short courses for anti-ageing, usually on the strength of the telomerase claim and of mortality figures that were obtained with a different preparation.',
+      clinicalGoals:
+        'None defined by any regulator. The endpoints in the published work are telomere length, hTERT expression and telomerase activity in cell culture.',
+    },
+    oneSentenceVerdict:
+      'A synthetic tetrapeptide whose telomere-lengthening effect in human cells was reported by one Russian group in 2003 and independently reproduced in 2025 — including telomere extension in cancer cell lines through the alternative lengthening pathway — while the human mortality data it is sold on were generated with a bovine pineal extract, not with this peptide.',
+    laymanHowItWorks:
+      'Epitalon is four amino acids long: alanine, glutamate, aspartate, glycine. It was reverse-engineered from a cattle pineal gland extract that a Soviet-era research programme had been giving to elderly patients since the 1970s. The proposed mechanism is not a receptor. The peptide is small enough and charged in the right pattern to enter the nucleus and interact with DNA directly, and the claim is that this switches on the gene for telomerase, the enzyme that rebuilds the protective caps at the ends of chromosomes. In cell culture, treated human fibroblasts lengthened their telomeres and divided ten more times than untreated ones. Whether any of that happens in a living person has never been tested.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 18,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: 'AEDG',
+      chemicalFormula: 'C14H22N4O9',
+      molecularWeight: '390.35 g/mol',
+      targetReceptorAffinity:
+        'L-alanyl-L-glutamyl-L-aspartyl-glycine, a linear tetrapeptide with free N-terminus and C-terminus and no modifications. It has no identified receptor. The mechanism proposed by its originators is direct interaction with nuclear DNA and chromatin leading to transcriptional activation of the telomerase catalytic subunit hTERT; the independent replication measured hTERT mRNA, telomerase enzyme activity and alternative lengthening of telomeres activity as separate readouts.',
+      structureSource: {
+        label:
+          'PubChem CID 219042 (epitalon) — canonical SMILES, molecular formula and molecular weight for the AEDG tetrapeptide',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/219042',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'epi-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and stereochemistry of a very small peptide',
+          description:
+            'Four residues, 390 daltons, three of them acidic or small — this is at the size where a peptide starts to behave like a small molecule and where sequence isomers are easy to make by accident. Confirm the AEDG order rather than the amino acid composition, and confirm all four residues are L, because a D-substituted impurity has identical mass.',
+          reagentsAndBuffer:
+            'Certified epitalon reference standard, high-resolution accurate-mass ESI-MS with MS/MS b and y ion sequencing, chiral amino acid analysis after 6 M hydrochloric acid hydrolysis with Marfey reagent derivatisation, reversed-phase C18 or HILIC chromatography for a highly polar analyte',
+        },
+        {
+          id: 'epi-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Peptide content, related substances and endotoxin',
+          description:
+            'Determine actual peptide content by amino acid analysis rather than accepting the nominal milligram figure on a lyophilised vial, and screen for deletion sequences and for the cyclic imide that glutamate-aspartate sequences form on storage. Because the grey-market route is injection, endotoxin belongs in the assay.',
+          dependsOnStepId: 'epi-w1',
+          reagentsAndBuffer:
+            'Amino acid analysis after vapour-phase hydrolysis, HILIC or ion-pair reversed-phase HPLC with UV detection at 214 nm, ion chromatography for counterions, Karl Fischer titration for water, limulus amoebocyte lysate for endotoxin',
+        },
+        {
+          id: 'epi-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and nuclear-fraction preparation',
+          description:
+            'Two different questions need two different preparations. Plasma work is hard because the analyte is tiny, polar, endogenous-looking and rapidly cleared by peptidases. The mechanistic question is different: the claim is nuclear action, so the relevant fraction is isolated nuclei and chromatin from treated cells, not plasma at all.',
+          dependsOnStepId: 'epi-w2',
+          reagentsAndBuffer:
+            'For plasma: acidified collection with peptidase inhibitors, HILIC solid-phase extraction, stable-isotope-labelled internal standard. For mechanism: hypotonic cell lysis with a detergent-free nuclear isolation, micrococcal nuclease chromatin digestion, and chromatin immunoprecipitation-grade crosslinking',
+        },
+        {
+          id: 'epi-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Telomerase and telomere-length assay across normal and cancer lines',
+          description:
+            'This is the experiment the compound stands or falls on, and the design matters more than the result. Treat normal fibroblasts and epithelial cells and, separately, cancer lines; measure hTERT mRNA, telomerase enzymatic activity, telomere length and alternative-lengthening activity as four independent readouts. Running cancer lines alongside normal ones is not optional: the independent replication found significant telomere extension in cancer cells through the ALT pathway.',
+          dependsOnStepId: 'epi-w3',
+          reagentsAndBuffer:
+            'Human diploid fibroblasts and epithelial cells with matched cancer lines such as 21NT and BT474, qPCR for hTERT mRNA and for relative telomere length, telomeric repeat amplification protocol for enzyme activity, C-circle assay and PML body immunofluorescence for ALT, serial passaging with population doubling counts for the Hayflick endpoint',
+        },
+        {
+          id: 'epi-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the transcriptional readout',
+          description:
+            'Quantify epitalon by tandem mass spectrometry against a labelled internal standard, and read the transcriptional endpoint on the same samples. For a compound whose entire case is a gene expression change, the expression measurement is the assay and the concentration measurement exists only to say what dose produced it.',
+          dependsOnStepId: 'epi-w4',
+          reagentsAndBuffer:
+            'HILIC or ion-pair C18 chromatography with formic acid and acetonitrile, electrospray positive- and negative-ion multiple-reaction monitoring, stable-isotope-labelled epitalon internal standard; RNA extraction with DNase treatment, reverse transcription and qPCR against multiple reference genes, immunofluorescence for telomerase protein',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'epi-a1',
+        category: 'measured',
+        title: 'Telomerase switched on in telomerase-negative human fibroblasts',
+        laymanSummary:
+          'Adding epitalon to human fetal fibroblasts that make no telomerase caused them to express the enzyme and lengthen their telomeres.',
+        technicalDetails:
+          'Khavinson, Bondarev and Butyugov added Epithalon peptide to telomerase-negative human fetal fibroblast culture and reported induction of expression of the catalytic subunit, enzymatic telomerase activity, and telomere elongation. They interpreted this as reactivation of the telomerase gene in somatic cells. A follow-up from the same group reported that primary pulmonary fibroblasts from a 24-week fetus lost proliferative potential at passage 34 with shortened telomeres; adding Epithalon elongated telomeres to lengths comparable with passage 10, and the treated cells made ten extra divisions, reaching passage 44 and continuing to divide. These are single-laboratory reports in a Russian journal from 2003 and 2004, and for two decades they were the whole basis of the claim.',
+        evidenceSource:
+          'Khavinson VKh et al., Bull Exp Biol Med 2003;135:590-592; Khavinson VKh et al., Bull Exp Biol Med 2004;137:503-506',
+        doi: '10.1023/a:1025493705728',
+        measuredMetric:
+          'hTERT expression, telomerase enzymatic activity, telomere length and population doublings in human fetal fibroblast culture',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'epi-a2',
+        category: 'measured',
+        title: 'An independent laboratory reproduced it in 2025 — and found ALT in cancer cells',
+        laymanSummary:
+          'A separate group treated normal and cancer human cell lines with epitalon. Normal cells lengthened telomeres through telomerase. Cancer cells lengthened them through a different pathway entirely.',
+        technicalDetails:
+          'Al-Dulaimi et al. treated the breast cancer lines 21NT and BT474 alongside normal epithelial and fibroblast cells with epitalon, then extracted DNA, RNA and protein. qPCR and immunofluorescence showed dose-dependent telomere length extension in normal cells through hTERT and telomerase upregulation. In the cancer cells, significant telomere extension also occurred, but through activation of the alternative lengthening of telomeres pathway; only a minor increase in ALT activity was seen in normal cells, which the authors describe as cancer-cell-specific. This is the first independent quantitative replication of the core claim, it broadly supports the 2003 finding in normal cells, and it adds a result nobody was looking for: a telomere-lengthening effect in malignant cells through a pathway associated with tumour immortalisation.',
+        evidenceSource:
+          'Al-Dulaimi S, Thomas R, Matta S et al., Biogerontology 2025;26:178, with published correction Biogerontology 2025;27:1',
+        doi: '10.1007/s10522-025-10315-x',
+        measuredMetric:
+          'Telomere length, hTERT mRNA, telomerase activity and ALT activity in normal epithelial and fibroblast cells against 21NT and BT474 cancer lines',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'epi-a3',
+        category: 'conclusion_shift',
+        title: 'The mortality figures belong to a cattle pineal extract, not to this peptide',
+        laymanSummary:
+          'The famous claim that this compound cut death rates in elderly people comes from studies of Epithalamin, an extract of cow pineal glands. Epitalon is a synthetic four-amino-acid peptide derived from it.',
+        technicalDetails:
+          'Khavinson and Morozov reported a 6-8 year clinical assessment of the thymic extract Thymalin and the pineal extract Epithalamin in 266 elderly people, with the preparations given for the first 2-3 years. They reported a 2.0-2.4-fold decrease in acute respiratory disease incidence and reduced incidence of ischaemic heart disease, hypertension, osteoarthrosis and osteoporosis, with mortality reduced 2.0-2.1-fold on Thymalin, 1.6-1.8-fold on Epithalamin, 2.5-fold on both, and 4.1-fold in a group given both annually for six years. Korkushko et al. reported a 12-year randomised study of Epithalamine in elderly patients with coronary disease, with 28% fewer deaths and two-fold lower cardiovascular mortality than control. Both are studies of a peptide extract of bovine pineal gland. Epitalon is the synthetic AEDG tetrapeptide identified from that extract. Attributing these mortality results to the tetrapeptide is the central substitution on which the compound is marketed.',
+        evidenceSource:
+          'Khavinson VKh, Morozov VG, Neuro Endocrinol Lett 2003;24:233-240 (PMID 14523363); Korkushko OV et al., Bull Exp Biol Med 2006;142:356-359',
+        doi: '10.1007/s10517-006-0365-z',
+        inferredClaim:
+          'That the Epithalamin mortality results are results for epitalon, when the studied preparation was a bovine pineal gland extract and not the synthetic tetrapeptide',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'epi-a4',
+        category: 'failed',
+        title: 'Zero registered clinical trials, anywhere, ever',
+        laymanSummary:
+          'A search of the international trials registry for epitalon or epithalon returns nothing at all.',
+        technicalDetails:
+          'A query of ClinicalTrials.gov for "epitalon" returns a total count of zero studies, and "epithalon" likewise returns zero. There is no registered interventional or observational study of the AEDG tetrapeptide in humans, in any country, at any phase, for any indication. That is a stronger statement than "the trials were small" or "the trials were not replicated". For a compound that has been commercially available for over two decades and is sold specifically as a longevity intervention, the number of registered human studies is nought.',
+        evidenceSource:
+          'ClinicalTrials.gov API queries for "epitalon" and for "epithalon", August 2026: totalCount 0 in both cases',
+        measuredMetric: 'Registered human clinical trials of the AEDG tetrapeptide: zero',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'epi-a5',
+        category: 'measured',
+        title: 'The animal and cell literature is broad, recent, and entirely preclinical',
+        laymanSummary:
+          'Work on epitalon continues in oocytes, retinal cells, stem cells and immune cell lines. All of it is in dishes and animals.',
+        technicalDetails:
+          'Recent published work includes protection of mouse oocytes against post-ovulatory ageing damage in vitro, enhancement of bovine oocyte maturation and post-thaw embryo development through telomerase activation, enhanced wound healing in an in vitro model of diabetic retinopathy, effects on proliferative and inflammatory pathways in the THP-1 monocyte line, and stimulation of gene expression and protein synthesis during neurogenesis with a proposed epigenetic mechanism. The volume is substantial and the direction is consistent. None of it is a human clinical outcome, and this page does not treat a coherent preclinical literature as a substitute for one.',
+        evidenceSource:
+          'Yue X et al., Aging (Albany NY) 2022;14:3191-3202; Ullah S et al., Life Sci 2025;362:123381; Gatta M et al., Stem Cell Rev Rep 2025;21:1822-1834; Khavinson V et al., Molecules 2020;25:609',
+        doi: '10.18632/aging.204007',
+        measuredMetric:
+          'Preclinical endpoints in mouse and bovine oocytes, retinal cell models, monocyte lines and neuronal differentiation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'epi-a6',
+        category: 'inferred',
+        title: 'Lengthening telomeres is not the same as extending life',
+        laymanSummary:
+          'Telomere length is a marker of ageing, not a proven cause of it. Making telomeres longer has never been shown to make a person live longer or better.',
+        technicalDetails:
+          'The chain of reasoning that sells this compound runs: telomeres shorten with age, short telomeres associate with age-related disease, epitalon lengthens telomeres, therefore epitalon slows ageing. The first two steps are well documented associations. The third is now supported in cell culture by two independent laboratories. The fourth does not follow from the first three, and no study of any kind has tested it. The independent replication adds a specific reason for caution: telomere maintenance is a hallmark of malignancy, and the same treatment extended telomeres in two breast cancer lines through the alternative lengthening pathway. That is a finding to be examined, not a demonstrated harm, and it is not a finding that a longevity claim can simply step around.',
+        evidenceSource:
+          'Al-Dulaimi S et al., Biogerontology 2025;26:178 (ALT activation in 21NT and BT474 cancer lines); absence of any human outcome study of epitalon in any registry',
+        doi: '10.1007/s10522-025-10315-x',
+        inferredClaim:
+          'That telomere elongation by epitalon extends human healthspan or lifespan, a step no study has attempted',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected or taken by mouth as four amino acids',
+        laymanDesc:
+          'It is one of the smallest peptides sold as a drug — four residues, smaller than many ordinary tablets.',
+        molecularDetail:
+          'At 390 daltons with free termini, epitalon sits at the boundary between peptide and small molecule. It is sold as a lyophilised powder for subcutaneous injection and also in oral capsules. No published pharmacokinetic study in humans exists for either route, so absorption, distribution and half-life are unknown quantities rather than debated ones.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters the cell and then the nucleus',
+        laymanDesc:
+          'It is small enough to cross into the cell and into the nucleus, where the DNA is, without needing a transporter.',
+        molecularDetail:
+          'No receptor has been identified. The mechanism proposed by the originating group is direct penetration to the nuclear compartment, where the peptide interacts with chromatin. The Khavinson group has published a series of studies proposing sequence-specific interaction of short peptides with promoter regions as a general epigenetic mechanism.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Associates with chromatin at the telomerase gene',
+        laymanDesc:
+          'The proposal is that the peptide sits on DNA near the gene for telomerase and helps switch it on.',
+        molecularDetail:
+          'The claimed interaction is with the hTERT promoter region and with histone-associated chromatin, producing transcriptional derepression. This is the least directly measured step in the chain: what has been measured downstream is hTERT mRNA and telomerase activity, not the binding event itself.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Telomerase activity rises and telomeres lengthen',
+        laymanDesc:
+          'The enzyme that rebuilds chromosome caps becomes active, and the caps get longer.',
+        molecularDetail:
+          'Dose-dependent telomere length extension through hTERT and telomerase upregulation in normal human epithelial and fibroblast cells, independently confirmed in 2025. In cancer cell lines the same treatment produced significant telomere extension through alternative lengthening of telomeres rather than telomerase, with only minor ALT activity in normal cells.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Cells divide past their limit; people have never been studied',
+        laymanDesc:
+          'Treated fibroblasts made ten more divisions than untreated ones. Beyond the culture dish, there is nothing.',
+        molecularDetail:
+          'Fibroblasts that had stopped dividing at passage 34 continued to passage 44 after treatment, which the authors describe as overcoming the Hayflick limit. No human study of epitalon has ever been registered or reported. The human mortality figures in circulation belong to Epithalamin, a bovine pineal extract, in studies from the same institutes.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Khavinson 2003 fibroblast telomerase study',
+        phase: 'In vitro, telomerase-negative human fetal fibroblast culture',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Expression of the telomerase catalytic subunit, telomerase enzymatic activity and telomere length',
+        endpointMet: true,
+        statisticalPValue:
+          'Induction of catalytic subunit expression, enzymatic activity and telomere elongation reported; the paper is a two-page report and no effect sizes or confidence intervals are given in the abstract',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Al-Dulaimi 2025 independent replication across normal and cancer lines',
+        phase: 'In vitro, normal epithelial and fibroblast cells with 21NT and BT474 cancer lines',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Telomere length, hTERT mRNA expression, telomerase enzyme activity and alternative lengthening of telomeres activity',
+        endpointMet: true,
+        statisticalPValue:
+          'Dose-dependent telomere length extension in normal cells via hTERT and telomerase; significant extension in cancer cells via ALT, with only minor ALT activity in normal cells',
+        unreportedAdverseSignals:
+          'Telomere extension in malignant cell lines through the alternative lengthening pathway is a mechanistic signal that the anti-ageing framing does not address.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Khavinson and Morozov 2003 elderly cohort — Thymalin and Epithalamin extracts',
+        phase: 'Clinical observation over 6-8 years, preparations given for the first 2-3 years',
+        sampleSize: 266,
+        primaryEndpoint:
+          'Cardiovascular, endocrine, immune and nervous system indices, disease incidence and mortality',
+        endpointMet: true,
+        statisticalPValue:
+          'Mortality reduced 2.0-2.1-fold on Thymalin, 1.6-1.8-fold on Epithalamin, 2.5-fold on both, and 4.1-fold with six annual courses of both; acute respiratory disease incidence reduced 2.0-2.4-fold',
+        unreportedAdverseSignals:
+          'The studied preparations are bovine thymic and pineal gland peptide extracts, not the synthetic AEDG tetrapeptide. Randomisation, blinding and allocation are not described in the abstract, and the work has not been independently replicated outside the originating institutes.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Korkushko 2006 twelve-year study of Epithalamine in elderly coronary patients',
+        phase: 'Randomised clinical study over 12 years',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Functional age, degree of cardiovascular ageing, exercise tolerance and long-term mortality',
+        endpointMet: true,
+        statisticalPValue:
+          '28% fewer deaths at 12 years than control on the same basic therapy; cardiovascular mortality two-fold lower; incidence of cardiovascular failure and respiratory disease two-fold lower',
+        unreportedAdverseSignals:
+          'Again a pineal gland peptide extract rather than epitalon, from the same collaboration, published in the same journal family, and not independently replicated.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Epitalon induced hTERT expression, telomerase activity and telomere elongation in telomerase-negative human fetal fibroblasts, and treated cells made ten additional population doublings',
+        'An independent 2025 laboratory reproduced dose-dependent telomere extension in normal human cells through hTERT and telomerase upregulation',
+        'The same 2025 study found significant telomere extension in two breast cancer lines through the alternative lengthening of telomeres pathway, with only minor ALT activity in normal cells',
+        'ClinicalTrials.gov returns zero registered studies for either "epitalon" or "epithalon"',
+      ],
+      unsupportedInferences: [
+        'That the Epithalamin mortality reductions in elderly cohorts are results for epitalon — the studied preparation is a bovine pineal extract',
+        'That telomere elongation extends human lifespan or healthspan, a step no study has attempted for this compound',
+        'That a large and consistent preclinical literature in oocytes, retinal cells and immune lines substitutes for a single human trial',
+        'That a compound with no published human pharmacokinetics has a known dose, route or duration of action in a person',
+      ],
+      whatFailedInitially: [
+        'No sponsor has ever registered a human trial of the AEDG tetrapeptide in more than two decades of commercial availability',
+        'The original telomerase findings sat unreplicated by any independent laboratory from 2003 until 2025',
+      ],
+      realWorldOutcome: [
+        'Not approved as a medicine in any jurisdiction; the related bovine extracts were used clinically in the Soviet Union and its successor states',
+        'Sold internationally as a research chemical and as an oral supplement, on the strength of mortality data generated with a different preparation',
+        'The independent replication has raised a mechanistic question specific to malignancy that the marketing does not engage with',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection of a reconstituted lyophilised powder; also sold in oral capsules',
+      description:
+        'A lyophilised tetrapeptide reconstituted for subcutaneous injection, typically in short courses of ten to twenty days. Oral capsules are also sold. No published human pharmacokinetic study exists for either route, so bioavailability, half-life and tissue distribution in a person are unknown. For an orally sold tetrapeptide with free termini, intestinal peptidase survival is a genuine open question rather than a formality.',
+      safetyProfile:
+        'No human safety dataset exists, because no human study of epitalon has been registered or published. The preclinical literature reports no toxicity signal. The one safety-relevant mechanistic finding comes from the independent replication: significant telomere extension in two breast cancer cell lines through the alternative lengthening of telomeres pathway, a route associated with tumour immortalisation. That is an in vitro observation in cancer lines and not a demonstrated clinical harm; it is also exactly the kind of observation a compound sold for longevity should be required to address.',
+    },
+    commonQuestions: [
+      {
+        q: 'Did epitalon really reduce deaths in elderly people?',
+        a: 'The studies that reported reduced mortality used Epithalamin, a peptide extract of bovine pineal gland, not epitalon the synthetic tetrapeptide. Khavinson and Morozov reported mortality reductions of 1.6 to 1.8-fold with Epithalamin over 6-8 years in a 266-person cohort, and 4.1-fold with six annual courses of Epithalamin plus the thymic extract Thymalin. Korkushko and colleagues reported 28% fewer deaths at 12 years with Epithalamine in elderly coronary patients. Epitalon was derived from that extract. Whether the tetrapeptide reproduces what the extract did has never been tested in a person.',
+        auditNote:
+          'This substitution — extract results presented as tetrapeptide results — is the single most consequential claim on the page.',
+      },
+      {
+        q: 'Has the telomerase finding been reproduced?',
+        a: 'Yes, in 2025, by a laboratory unconnected with the original group. Al-Dulaimi and colleagues treated normal human epithelial and fibroblast cells and two breast cancer lines with epitalon and found dose-dependent telomere length extension in the normal cells through hTERT and telomerase upregulation. That is a genuine independent confirmation of the 2003 claim in cell culture, and it is unusual in this file. The same study also found significant telomere extension in the cancer lines through the alternative lengthening of telomeres pathway.',
+      },
+      {
+        q: 'How many clinical trials have there been?',
+        a: 'None. A search of ClinicalTrials.gov for "epitalon" returns zero studies, and "epithalon" returns zero. There is no registered interventional or observational trial of this compound in humans anywhere, at any phase, for any indication, despite more than twenty years of commercial availability. That is not a criticism of the preclinical work, which is real; it is a statement about what does and does not exist.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no approved product anywhere and therefore no list price to cite. This site prints acquisition costs from published sources. A research-chemical or supplement asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Khavinson VKh, Bondarev IE, Butyugov AA. Epithalon peptide induces telomerase activity and telomere elongation in human somatic cells. Bull Exp Biol Med 2003;135:590-592',
+        identifier: '10.1023/a:1025493705728',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Khavinson VKh et al. Peptide promotes overcoming of the division limit in human somatic cell. Bull Exp Biol Med 2004;137:503-506',
+        identifier: '10.1023/b:bebm.0000038164.49947.8c',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Al-Dulaimi S et al. Epitalon increases telomere length in human cell lines through telomerase upregulation or ALT activity. Biogerontology 2025;26:178',
+        identifier: '10.1007/s10522-025-10315-x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Correction: Epitalon increases telomere length in human cell lines through telomerase upregulation or ALT activity. Biogerontology 2025;27:1',
+        identifier: '10.1007/s10522-025-10326-8',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Khavinson VKh, Morozov VG. Peptides of pineal gland and thymus prolong human life. Neuro Endocrinol Lett 2003;24:233-240',
+        identifier: '14523363',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Korkushko OV et al. Geroprotective effect of epithalamine (pineal gland peptide preparation) in elderly subjects with accelerated aging. Bull Exp Biol Med 2006;142:356-359',
+        identifier: '10.1007/s10517-006-0365-z',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Yue X et al. Epitalon protects against post-ovulatory aging-related damage of mouse oocytes in vitro. Aging (Albany NY) 2022;14:3191-3202',
+        identifier: '10.18632/aging.204007',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ullah S et al. Epitalon-activated telomerase enhance bovine oocyte maturation rate and post-thawed embryo development. Life Sci 2025;362:123381',
+        identifier: '10.1016/j.lfs.2025.123381',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gatta M et al. The antioxidant tetrapeptide epitalon enhances delayed wound healing in an in vitro model of diabetic retinopathy. Stem Cell Rev Rep 2025;21:1822-1834',
+        identifier: '10.1007/s12015-025-10911-x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Khavinson V et al. AEDG peptide (epitalon) stimulates gene expression and protein synthesis during neurogenesis: possible epigenetic mechanism. Molecules 2020;25:609',
+        identifier: '10.3390/molecules25030609',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Araj SK et al. Overview of epitalon — highly bioactive pineal tetrapeptide with promising properties. Int J Mol Sci 2025;26:2691',
+        identifier: '10.3390/ijms26062691',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 219042 — epitalon structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/219042',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 24. Follistatin-344
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'follistatin-344',
+    name: 'Follistatin-344',
+    tradeName:
+      'FS344; delivered in trials as AAV1.CMV.huFollistatin344. Sold online as "Follistatin 344" lyophilised powder',
+    sponsor:
+      "Nationwide Children's Hospital, Columbus, for the AAV gene therapy programme; Minicircle Inc. for a plasmid follistatin gene therapy run in Honduras. No sponsor exists for the injectable protein sold online",
+    targetGene: 'MSTN',
+    targetProtein:
+      'Myostatin (GDF-8) and activin A — follistatin binds and neutralises both, blocking the ActRIIB pathway',
+    modality: 'Recombinant Protein / Biologic',
+    approvalStatus: 'Phase 2 Investigational',
+    indication:
+      'No approved indication anywhere. Gene delivery of the FS344 isoform has been through phase 1 and phase 1/2 trials in Becker muscular dystrophy, sporadic inclusion body myositis and Duchenne muscular dystrophy, and a plasmid version through a phase 1 in healthy volunteers offshore.',
+    patientFriendlyIndication:
+      'Blocks the brake on muscle growth — a gene therapy in trials, sold online as an injection',
+    anatomicalSite:
+      'Extracellular space of skeletal muscle, where myostatin and activin A circulate',
+    conditionContext: {
+      conditionExplainer:
+        'Muscle growth has an accelerator and a brake. Myostatin is the brake: a protein muscle cells secrete to limit their own growth. Cattle and dogs with broken myostatin genes are visibly double-muscled, and so are the two humans described with the same mutation. Follistatin is the body own myostatin trap.',
+      whyItMatters:
+        'Follistatin is the most potent natural myostatin antagonist known, and unlike a myostatin antibody it also neutralises activin A, which is why it produces larger effects than antibodies did in trials. It is also a 344-residue glycoprotein, which is why what is sold in a vial online cannot be what was studied.',
+      whoTakesThis:
+        'In trials: six patients with Becker muscular dystrophy, six with sporadic inclusion body myositis, three with Duchenne, and 43 healthy volunteers in a plasmid study in Honduras. Outside them: people injecting a lyophilised powder sold as follistatin-344.',
+      clinicalGoals:
+        'In the muscular dystrophy trials, distance walked in six minutes, with muscle histology as a supporting measure. In the healthy-volunteer plasmid study, adverse events and serum follistatin concentration at three months.',
+    },
+    oneSentenceVerdict:
+      'The most potent natural myostatin inhibitor, delivered by AAV gene therapy in three small open-label trials where four of six inclusion body myositis patients gained 58-153 metres on the six-minute walk and two of six Becker patients gained nothing — and sold online as an injectable protein that no trial has ever administered by that route.',
+    laymanHowItWorks:
+      'Muscle cells make a protein called myostatin whose job is to stop muscle growing too much. Follistatin is the natural trap for it: a larger protein that binds myostatin and a related protein called activin A, so neither can reach its receptor. Take the brake off and muscle grows. This is not a theory — cattle breeds with a broken myostatin gene are famously double-muscled. The way it has actually been tested in people is not by injecting the protein but by injecting a virus carrying the gene for it directly into the thigh muscles, so the muscle makes its own supply continuously. That distinction matters, because follistatin is a 344-amino-acid sugar-coated protein with a short life in blood, and a vial of powder is not a plausible way to deliver it.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 32,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3:
+        'MVRARHQPGGLCLLLLLLCQFMEDRSAQAGNCWLRQAKNGRCQVLYKTELSKEECCSTGRLSTSWTEEDVNDNTLFKWMIFNGGAPNCIPCKETCENVDCGPGKKCRMNKKNKPRCVCAPDCSNITWKGPVCGLDGKTYRNECALLKARCKEQPELEVQYQGRCKKTCRDVFCPGSSTCVVDQTNNAYCVTCNRICPEPASSEQYLCGNDGVTYSSACHLRKATCLLGRSIGLAYEGKCIKAKSCEDIQCTGGKKCLWDFKVGRGRCSLCDELCPDSKSDEPVCASDNATYASECAMKEAACSSGVLLEVKHSGSCNSISEDTEEEEEDEDQDYSFPISSILEW',
+      chemicalFormula:
+        'Glycoprotein — no single empirical formula; the polypeptide is 344 residues',
+      molecularWeight:
+        'Approximately 38 kDa for the unglycosylated 344-residue precursor; the secreted glycosylated forms run higher on a gel',
+      targetReceptorAffinity:
+        'Follistatin is a secreted glycoprotein with an N-terminal domain and three cysteine-rich follistatin domains. It binds transforming growth factor beta superfamily ligands — myostatin (GDF-8) and activin A among them — in a 2:1 complex that occludes both the type I and type II receptor binding surfaces, so the ligand can never engage ActRIIB. FS344 is the full-length precursor transcript; the alternatively spliced FS288 form carries a heparan-sulfate-binding tail that anchors it to cell surfaces and gives it activity outside muscle, which is the reason the trials deliberately used FS344 instead.',
+      structureSource: {
+        label:
+          'UniProt P19883 (FST_HUMAN) — the 344-residue follistatin precursor sequence, which is the FS344 isoform used in the AAV1.CMV.huFollistatin344 construct',
+        identifier: 'https://www.uniprot.org/uniprotkb/P19883',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fst-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Is there a 344-residue glycoprotein in the vial at all?',
+          description:
+            'This is the question that decides everything else about a purchased product. A 38 kDa glycosylated protein with 36 cysteines and multiple disulfide bonds cannot be made by solid-phase peptide synthesis and cannot be produced correctly folded in a simple bacterial system. Gel electrophoresis and intact-mass measurement answer it in an afternoon: a lyophilised vial containing a short synthetic peptide and a vial containing recombinant follistatin do not resemble each other on any analytical method.',
+          reagentsAndBuffer:
+            'Recombinant human follistatin-344 reference standard, reducing and non-reducing SDS-PAGE with silver stain, western blot with an anti-follistatin antibody, intact-mass ESI-MS after deglycosylation with PNGase F, size-exclusion chromatography with multi-angle light scattering',
+        },
+        {
+          id: 'fst-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Disulfide integrity, glycosylation and endotoxin',
+          description:
+            'Follistatin activity depends entirely on correct folding of three cysteine-rich domains. A protein of the right mass with scrambled disulfides is inert, and mass spectrometry alone will not distinguish them. Peptide mapping under non-reducing conditions is the test. Because the product is injected, endotoxin and host-cell protein content belong in the same run.',
+          dependsOnStepId: 'fst-w1',
+          reagentsAndBuffer:
+            'Non-reduced tryptic and Glu-C peptide mapping with LC-MS/MS for disulfide assignment, PNGase F and sialidase release with fluorescent labelling for N-glycan profiling, limulus amoebocyte lysate for endotoxin, host-cell protein ELISA, residual DNA qPCR',
+        },
+        {
+          id: 'fst-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Serum preparation for follistatin and free myostatin',
+          description:
+            'Follistatin is endogenous, rises with exercise and with liver disease, and circulates partly bound to its ligands. A total-follistatin immunoassay therefore says very little on its own. The measurement that matters is free versus complexed myostatin and activin A, which requires separating the complexes before quantification rather than after.',
+          dependsOnStepId: 'fst-w2',
+          reagentsAndBuffer:
+            'Serum with protease inhibitors, size-exclusion or immunodepletion separation of follistatin-ligand complexes, acid dissociation with neutralisation for total ligand, stable-isotope-labelled signature peptide internal standards for LC-MS/MS quantification',
+        },
+        {
+          id: 'fst-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Myostatin and activin reporter assay, and AAV transduction in myotubes',
+          description:
+            'Two different deliveries need two different assays. For protein: a SMAD-responsive reporter cell line stimulated with myostatin or activin A, where follistatin activity appears as concentration-dependent suppression. For gene therapy: transduce differentiated human myotubes with the AAV1.CMV.FS344 construct and measure secreted follistatin in the medium, which is the step that establishes whether the vector actually works in human muscle rather than in a packaging line.',
+          dependsOnStepId: 'fst-w3',
+          reagentsAndBuffer:
+            'HEK293 or C2C12 cells with a CAGA12-luciferase SMAD2/3 reporter, recombinant myostatin and activin A as agonists, follistatin dilution series; separately, differentiated human primary myotubes, AAV1 vector at defined multiplicity of infection, follistatin ELISA on conditioned medium',
+        },
+        {
+          id: 'fst-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Quantification with the functional and histological endpoints',
+          description:
+            'Quantify follistatin protein and, for gene therapy, vector genome copies in muscle biopsy. Read the endpoints the trials actually used: six-minute walk distance, and muscle histology for endomysial fibrosis, central nucleation and fibre size distribution. The histology is not decoration — in the Becker trial it is what corroborated the walk-test changes in the responders.',
+          dependsOnStepId: 'fst-w4',
+          reagentsAndBuffer:
+            'Follistatin ELISA and LC-MS/MS on serum and muscle homogenate, droplet digital PCR for AAV vector genome copies per diploid nucleus, muscle biopsy with haematoxylin and eosin, trichrome for fibrosis, laminin immunostaining for fibre size morphometry, standardised six-minute walk test protocol',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fst-a1',
+        category: 'measured',
+        title: 'Four of six inclusion body myositis patients gained 58 to 153 metres',
+        laymanSummary:
+          'Six men with a progressive muscle-wasting disease received the follistatin gene into both quadriceps. Four walked substantially further at a year; two barely changed. Untreated matched patients got worse.',
+        technicalDetails:
+          'Mendell et al. delivered rAAV1.CMV.huFS344 at 6 x 10^11 vg/kg to the quadriceps of both legs in six subjects with sporadic inclusion body myositis, with an exercise regimen included in the protocol and the six-minute walk test as the primary outcome. Performance annualised to a median one-year change improved by +56.0 metres per year in treated subjects against a decline of -25.8 metres per year in eight untreated subjects matched for age, sex and baseline measures (p = 0.01). Four of the six treated subjects improved by 58 to 153 metres; two improved minimally, by 5 to 23 metres. Treatment effects included decreased fibrosis and improved regeneration on histology. The authors note that more advanced disease with discernible muscle loss poses challenges. The comparison group was matched, not randomised, and the trial was open-label with a concurrent exercise programme.',
+        evidenceSource: 'Mendell JR et al., Mol Ther 2017;25:870-879 (NCT01519349)',
+        doi: '10.1016/j.ymthe.2017.02.015',
+        measuredMetric:
+          'Annualised change in six-minute walk distance in treated subjects against matched untreated subjects',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fst-a2',
+        category: 'measured',
+        title: 'In Becker muscular dystrophy, two of six patients showed no change at all',
+        laymanSummary:
+          'The same gene therapy in six men with Becker muscular dystrophy produced walking gains of 29 to 125 metres in four of them and nothing in the other two.',
+        technicalDetails:
+          'Mendell et al. delivered AAV1.CMV.FS344 by direct bilateral intramuscular quadriceps injection to six Becker muscular dystrophy patients. Cohort 1 received 3 x 10^11 vg/kg per leg: patients 01 and 02 improved by 58 and 125 metres on the six-minute walk test, and patient 03 showed no change. Cohort 2 received 6 x 10^11 vg/kg per leg: patients 05 and 06 improved by 108 and 29 metres, and patient 04 showed no improvement. No adverse effects were encountered. Histology corroborated benefit with reduced endomysial fibrosis, reduced central nucleation and a more normal fibre size distribution with muscle hypertrophy, particularly at the higher dose. The trial used the alternatively spliced FS344 specifically to avoid binding at off-target sites. Six patients, no control arm, no randomisation, and a third of them did not respond.',
+        evidenceSource: 'Mendell JR et al., Mol Ther 2015;23:192-201',
+        doi: '10.1038/mt.2014.200',
+        measuredMetric:
+          'Change in six-minute walk distance per patient, with muscle histology for fibrosis, central nucleation and fibre size',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fst-a3',
+        category: 'measured',
+        title: 'The primate study that justified the human trials',
+        laymanSummary:
+          'Injecting the follistatin gene into monkey thigh muscle produced large, lasting increases in muscle size and strength with no abnormal changes in other organs.',
+        technicalDetails:
+          "Kota et al. tested an alternatively spliced form of human follistatin — chosen because it affects skeletal muscle with only minimal effects on non-muscle cells — delivered from an adeno-associated virus serotype 1 vector into the quadriceps of cynomolgus macaques. AAV1-FS344 induced pronounced and durable increases in muscle size and strength. Long-term transgene expression produced no abnormal changes in the morphology or function of key organs. This is the study that carried the programme from rodents into humans, and it is worth reading alongside the disclosure: the investigators and Nationwide Children's Hospital had filed a provisional patent on gene delivery of myostatin inhibitors and follistatin use. An erratum to the paper was published in 2026.",
+        evidenceSource:
+          'Kota J et al., Sci Transl Med 2009;1:6ra15, with erratum Sci Transl Med 2026;18:eaek4223',
+        doi: '10.1126/scitranslmed.3000112',
+        measuredMetric:
+          'Muscle size and strength after intramuscular AAV1-FS344 in cynomolgus macaques, with organ morphology and function',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fst-a4',
+        category: 'conclusion_shift',
+        title: 'Every human study delivered a gene, not a protein',
+        laymanSummary:
+          'What is sold online is a vial of powder for injection. What has been studied in people is a virus or a plasmid carrying the follistatin gene into muscle.',
+        technicalDetails:
+          "The complete registered human record for follistatin-344 is gene delivery: NCT01519349 (phase 1, 15 subjects, Becker muscular dystrophy and sporadic inclusion body myositis, Nationwide Children's Hospital, completed October 2017), NCT02354781 (phase 1/2, 3 subjects, Duchenne muscular dystrophy, completed November 2017, results posted), and NCT06411366 (phase 1, 43 healthy subjects, injectable follistatin plasmid gene therapy, Minicircle, Honduras, completed August 2023, no results posted). No trial has administered recombinant follistatin protein to a human being by any route. The reason is mechanical rather than regulatory: follistatin is a 38 kDa disulfide-rich glycoprotein cleared rapidly from circulation, and continuous local production from a transduced muscle is the delivery problem the whole field has been solving.",
+        evidenceSource:
+          'ClinicalTrials.gov records NCT01519349, NCT02354781 and NCT06411366 — the complete set of registered human follistatin-344 studies, all gene delivery',
+        inferredClaim:
+          'That a lyophilised vial of "follistatin-344" reproduces the results of intramuscular AAV or plasmid gene delivery of the FS344 transgene',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'fst-a5',
+        category: 'inferred',
+        title: 'What is in the vial is not a 344-residue glycoprotein',
+        laymanSummary:
+          'Follistatin has 344 amino acids and dozens of disulfide bonds. Products sold as follistatin-344 peptide are priced and packaged like short synthetic peptides, which cannot be the same molecule.',
+        technicalDetails:
+          'Follistatin-344 is a secreted glycoprotein of approximately 38 kDa with three cysteine-rich domains stabilised by an extensive disulfide network and N-linked glycosylation. Producing it correctly folded requires a mammalian or comparable eukaryotic expression system with downstream purification, and the resulting material is a biologic. Solid-phase peptide synthesis, the method behind almost every research-chemical peptide vial, does not reach that length or that folding. Analytical testing of any purchased product should therefore begin with a reducing and non-reducing gel and an intact mass, because the first question is not potency but whether the molecule is present. This page states the mismatch and does not assert what any particular vial contains, because no published chain-of-custody analysis of these products exists.',
+        evidenceSource:
+          'UniProt P19883 — 344-residue follistatin precursor with 36 cysteines and N-glycosylation sites; the absence of any published content analysis of commercially sold follistatin-344 products',
+        inferredClaim:
+          'That a synthetic peptide product can deliver a 38 kDa disulfide-rich glycoprotein, an inference no analysis supports and basic protein chemistry argues against',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fst-a6',
+        category: 'measured',
+        title: 'A plasmid version was run in 43 healthy people offshore, and never reported',
+        laymanSummary:
+          'A company ran a phase 1 of an injectable follistatin plasmid gene therapy in 43 healthy volunteers in Honduras. It completed in 2023 and no results have been posted.',
+        technicalDetails:
+          'NCT06411366 is registered as a phase 1, open-label, single-dose study to evaluate the safety and efficacy of an injectable follistatin plasmid gene therapy in healthy subjects, sponsored by Minicircle, conducted in Honduras, with 43 actual participants and an actual completion date of 31 August 2023. The primary outcomes are number of participants with treatment-related adverse events by CTCAE v4.0 and change from baseline in serum follistatin concentration at three months. No results have been posted to ClinicalTrials.gov. This is the only registered human study of follistatin in people without a muscle disease, and it is the closest thing that exists to a study of the use the compound is actually sold for.',
+        evidenceSource:
+          'ClinicalTrials.gov record NCT06411366, Minicircle, Honduras, 43 participants, completed 31 August 2023, no results posted',
+        measuredMetric:
+          'Registered healthy-volunteer follistatin studies: one, completed, unreported',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Delivered into muscle as a gene, not as a protein',
+        laymanDesc:
+          'A virus or a circle of DNA carrying the follistatin gene is injected straight into the thigh muscle, so the muscle makes the protein itself.',
+        molecularDetail:
+          'AAV serotype 1 with a CMV promoter driving the human FS344 coding sequence, given by direct bilateral intramuscular quadriceps injection at 3 x 10^11 or 6 x 10^11 vg/kg per leg. AAV1 has strong skeletal muscle tropism and the episomal genome persists in post-mitotic myofibres, giving durable local expression. The plasmid version in the healthy-volunteer study uses non-viral DNA.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Myofibres transcribe and secrete follistatin',
+        laymanDesc:
+          'The muscle fibres read the delivered gene and start exporting the protein into the space around themselves.',
+        molecularDetail:
+          'Transduced myofibres transcribe FS344, translate it through the secretory pathway with signal peptide cleavage and N-glycosylation, and release mature follistatin into the extracellular space and the local circulation. Local concentration at the muscle is far higher than anything achievable by systemic dosing, which is the point of the route.',
+        iconName: 'ArrowUpFromLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Traps myostatin and activin A before they reach their receptor',
+        laymanDesc:
+          'The protein wraps around the growth brake and around a second related protein, so neither can dock at the cell surface.',
+        molecularDetail:
+          'Two follistatin molecules encircle one myostatin or activin A dimer, occluding both the type I and type II receptor epitopes. The ligand can no longer engage ActRIIB, so SMAD2/3 phosphorylation and the downstream atrophy programme are not triggered. Neutralising activin A as well as myostatin is why follistatin produces larger effects than myostatin-selective antibodies did.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The atrophy signal stops and fibres hypertrophy',
+        laymanDesc:
+          'With the brake released, muscle fibres grow, fibrous scar tissue decreases and the tissue looks more normal under a microscope.',
+        molecularDetail:
+          'Loss of SMAD2/3 signalling relieves inhibition of the Akt-mTOR growth pathway and of satellite cell proliferation. In the treated Becker patients, biopsy showed reduced endomysial fibrosis, reduced central nucleation and a more normal fibre size distribution with hypertrophy, most marked at the higher dose; in the inclusion body myositis trial, decreased fibrosis and improved regeneration.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Some patients walked much further; a third did not move at all',
+        laymanDesc:
+          'The gains were large for the responders and absent for the rest, in trials of six patients with no control group.',
+        molecularDetail:
+          'Becker muscular dystrophy: +58, +125, +108 and +29 metres in four patients, no change in two. Sporadic inclusion body myositis: +58 to +153 metres in four, +5 to +23 metres in two, against -25.8 metres per year in matched untreated subjects (p = 0.01). Both trials were open-label, both were tiny, and the inclusion body myositis protocol included an exercise regimen for every participant.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'NCT01519349 — AAV1.CMV.huFS344 in Becker muscular dystrophy and sporadic inclusion body myositis',
+        phase: 'Phase 1, open-label intramuscular gene transfer',
+        sampleSize: 15,
+        primaryEndpoint: 'Safety, with six-minute walk distance as the efficacy measure reported',
+        endpointMet: true,
+        statisticalPValue:
+          'Inclusion body myositis: +56.0 m/year in treated subjects versus -25.8 m/year in 8 matched untreated subjects, p = 0.01; 4 of 6 improved 58-153 m and 2 improved 5-23 m. Becker: +58, +125, +108, +29 m in four patients and no change in two',
+        unreportedAdverseSignals:
+          'No adverse effects were reported in the Becker cohort. Both cohorts were open-label with no randomised control arm; the inclusion body myositis comparison group was matched rather than randomised, and every treated participant also followed an exercise regimen.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT02354781 — AAV1.CMV.huFollistatin344 in Duchenne muscular dystrophy',
+        phase: 'Phase 1/2, open-label intramuscular gene transfer',
+        sampleSize: 3,
+        primaryEndpoint:
+          'Number of dose-limiting toxicity adverse events as assessed by 21 CFR 312.32',
+        endpointMet: true,
+        statisticalPValue:
+          'Completed November 2017 with results posted to ClinicalTrials.gov. Three participants; the trial was powered for safety and not for any efficacy conclusion',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT06411366 — injectable follistatin plasmid gene therapy in healthy subjects',
+        phase: 'Phase 1, open-label single dose, conducted in Honduras',
+        sampleSize: 43,
+        primaryEndpoint:
+          'Treatment-related adverse events by CTCAE v4.0, and change from baseline in serum follistatin concentration at 3 months',
+        endpointMet: false,
+        statisticalPValue:
+          'Completed 31 August 2023. No results posted to ClinicalTrials.gov as of August 2026',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Kota 2009 AAV1-FS344 in cynomolgus macaques',
+        phase: 'Preclinical, non-human primate, intramuscular quadriceps injection',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Muscle size and strength, with long-term organ morphology and function as safety measures',
+        endpointMet: true,
+        statisticalPValue:
+          'Pronounced and durable increases in muscle size and strength; no abnormal changes in morphology or function of key organs on long-term transgene expression',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'In sporadic inclusion body myositis, annualised six-minute walk change of +56.0 m/year on treatment versus -25.8 m/year in matched untreated subjects, p = 0.01, with 4 of 6 gaining 58-153 m',
+        'In Becker muscular dystrophy, gains of 58, 125, 108 and 29 metres in four of six patients and no change in the other two, with reduced fibrosis and more normal fibre size on biopsy',
+        'Intramuscular AAV1-FS344 produced pronounced and durable increases in muscle size and strength in cynomolgus macaques without organ abnormalities',
+        'Every registered human study of follistatin-344 delivered a gene; none administered the protein',
+      ],
+      unsupportedInferences: [
+        'That injecting a vial sold as follistatin-344 reproduces intramuscular AAV or plasmid gene delivery of the transgene',
+        'That a 38 kDa disulfide-rich glycoprotein can be supplied by a synthetic peptide product',
+        'That gains in a six-minute walk test in a six-patient open-label trial with a concurrent exercise programme establish an effect size',
+        'That results in dystrophin-deficient or inflamed muscle predict anything about healthy muscle, which the one healthy-volunteer study has not reported',
+      ],
+      whatFailedInitially: [
+        'Two of six Becker patients and two of six inclusion body myositis patients showed no meaningful change, in trials with no placebo arm',
+        'The 43-participant healthy-volunteer plasmid study completed in August 2023 and has posted no results',
+        'No follistatin product has advanced beyond phase 1 or phase 1/2 in nearly two decades since the primate data',
+      ],
+      realWorldOutcome: [
+        'No approval anywhere, and no registered phase 3 of any follistatin construct',
+        'Follistatin and myostatin inhibitors are prohibited at all times in sport under WADA class S4.1, myostatin function modifiers; gene delivery falls additionally under the gene doping prohibition M3',
+        'Sold internationally as a lyophilised research-chemical vial, a presentation no trial has used and that protein chemistry argues cannot contain the studied molecule',
+      ],
+    },
+    deliverySystem: {
+      type: 'Direct bilateral intramuscular injection of an AAV1 or plasmid vector in trials; lyophilised powder sold for subcutaneous injection outside them',
+      description:
+        'The clinical route is a vector injected directly into both quadriceps so that the muscle itself produces follistatin continuously and locally. The FS344 isoform was chosen over FS288 specifically because it lacks the heparan-sulfate-binding tail and therefore stays out of non-muscle tissue. The commercial route is a lyophilised vial reconstituted for subcutaneous injection, which corresponds to nothing in the trial literature.',
+      safetyProfile:
+        'No adverse effects were reported in the six-patient Becker cohort, and long-term transgene expression in macaques produced no abnormal changes in organ morphology or function. The safety dataset is nonetheless twenty-four patients across three registered gene therapy trials plus 43 unreported healthy volunteers. Systemic myostatin and activin A blockade has broader consequences than muscle growth — activin A has roles in reproduction, inflammation and haematopoiesis — and the local delivery route used in the trials exists partly to limit them. Nothing is known about the safety of injecting whatever is sold under this name, because no analysis of those products has been published.',
+    },
+    commonQuestions: [
+      {
+        q: 'Did the gene therapy work?',
+        a: 'In some patients, substantially. In sporadic inclusion body myositis, six treated patients improved by a median annualised +56.0 metres on the six-minute walk while eight matched untreated patients declined by 25.8 metres per year, p = 0.01; four of the six gained 58 to 153 metres. In Becker muscular dystrophy, four of six gained 29 to 125 metres and two gained nothing. Both trials were open-label with no randomised control, both were tiny, and the inclusion body myositis protocol included exercise for every participant. Muscle biopsy showed less fibrosis and more normal fibre size, which is a harder result to explain away than a walk test.',
+        auditNote:
+          'Twelve patients across two open-label trials, four of whom did not respond, is a genuine early signal and not an established effect size.',
+      },
+      {
+        q: 'Is the powder sold online the same thing?',
+        a: 'It cannot be the same delivery, and on protein chemistry grounds it is very unlikely to be the same molecule. Every human study delivered the FS344 gene into muscle by AAV or plasmid so that the muscle makes the protein continuously. Follistatin itself is a 344-residue, roughly 38 kDa glycoprotein with an extensive disulfide network, which is beyond what solid-phase peptide synthesis produces and requires a eukaryotic expression system. There is no published chain-of-custody analysis of commercially sold follistatin-344 products, so this page states the mismatch rather than asserting what any particular vial contains.',
+      },
+      {
+        q: 'Why block myostatin instead of taking a steroid?',
+        a: 'Different lever. Androgens push the growth accelerator through the androgen receptor; follistatin releases the brake by trapping myostatin and activin A before they reach ActRIIB. The natural experiment is well documented — cattle breeds with inactivating myostatin mutations are visibly double-muscled. Follistatin is more potent than myostatin-selective antibodies because it also neutralises activin A, and that same breadth is why the trials delivered it locally into muscle rather than systemically.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because no follistatin product is approved anywhere and therefore no list price exists to cite. This site prints acquisition costs from published sources. A research-chemical asking price is not a published figure, and it would in any case be a price for a product whose contents nobody has analysed.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Mendell JR et al. A phase 1/2a follistatin gene therapy trial for Becker muscular dystrophy. Mol Ther 2015;23:192-201',
+        identifier: '10.1038/mt.2014.200',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mendell JR et al. Follistatin gene therapy for sporadic inclusion body myositis improves functional outcomes. Mol Ther 2017;25:870-879',
+        identifier: '10.1016/j.ymthe.2017.02.015',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Al-Zaidy SA et al. Follistatin gene therapy improves ambulation in Becker muscular dystrophy. J Neuromuscul Dis 2015;2:185-192',
+        identifier: '10.3233/JND-150083',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kota J et al. Follistatin gene delivery enhances muscle growth and strength in nonhuman primates. Sci Transl Med 2009;1:6ra15',
+        identifier: '10.1126/scitranslmed.3000112',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rodino-Klapac LR et al. Micro-dystrophin and follistatin co-delivery restores muscle function in aged DMD model. Hum Mol Genet 2013;22:4929-4937',
+        identifier: '10.1093/hmg/ddt342',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Phase 1 intramuscular gene transfer of rAAV1.CMV.huFollistatin344 in Becker muscular dystrophy and sporadic inclusion body myositis',
+        identifier: 'NCT01519349',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Phase 1/2 intramuscular gene transfer of rAAV1.CMV.huFollistatin344 in Duchenne muscular dystrophy, results posted',
+        identifier: 'NCT02354781',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Phase 1 injectable follistatin plasmid gene therapy in healthy subjects, Minicircle, Honduras — completed August 2023, no results posted',
+        identifier: 'NCT06411366',
+        kind: 'nct',
+      },
+      {
+        label: 'UniProt P19883 (FST_HUMAN) — 344-residue follistatin precursor sequence',
+        identifier: 'https://www.uniprot.org/uniprotkb/P19883',
         kind: 'url',
       },
     ],

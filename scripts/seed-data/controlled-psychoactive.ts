@@ -7993,4 +7993,798 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       CSA_SCHEDULES_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 21. Phenibut
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'phenibut',
+    name: 'Phenibut (β-Phenyl-GABA)',
+    tradeName:
+      'Fenibut, Anvifen, Noofen — prescription products in Russia, Latvia, Ukraine and Kazakhstan. In the United States it is sold in supplements under names such as Fenibut and β-phenyl-GABA',
+    sponsor:
+      'Developed at the Herzen Leningrad Pedagogical Institute in the 1960s; manufactured by Olainfarm (Latvia) and others. No US sponsor and no FDA application',
+    targetGene: 'GABBR1 / GABBR2 and CACNA2D1',
+    targetProtein:
+      'GABA-B receptor agonist — the same receptor as baclofen, which is the 4-chloro analogue of the same molecule — plus binding to the α2-δ subunit of voltage-dependent calcium channels, the gabapentin target, at four-fold higher affinity',
+    modality: 'Small Molecule',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Prescribed in several post-Soviet countries for anxiety, insomnia and alcohol withdrawal. Not approved in the United States, not scheduled federally, and sold there in supplements despite FDA stating it does not meet the definition of a dietary ingredient',
+    patientFriendlyIndication:
+      'An anxiety and sleep drug on prescription in Russia and Latvia. In the United States it is a supplement-aisle product that produces coma in about one in sixteen reported exposures',
+    anatomicalSite:
+      'GABA-B receptors and α2-δ calcium-channel subunits in the central nervous system; the withdrawal syndrome is the GABA-B system rebounding',
+    conditionContext: {
+      conditionExplainer:
+        'Where it is licensed, phenibut is used for anxiety, insomnia, tics and alcohol withdrawal, at tablet doses of about 250 mg. In the United States the clinical picture is entirely toxicological: coma, agitation, intubation and a withdrawal syndrome.',
+      whyItMatters:
+        'Phenibut is baclofen with a hydrogen where baclofen has a chlorine. Baclofen is a prescription-only drug with a recognised withdrawal syndrome that can include seizures and delirium. The near-identical molecule is sold in tubs on the internet.',
+      whoTakesThis:
+        'In the 2009-2019 US poison-centre data: 75.5% male, 58.4% aged 18 to 34, mean age 31.7. Where it is licensed, patients on prescription.',
+      clinicalGoals:
+        'None in the United States, where there is no lawful medical use. Abroad, anxiolysis without the sedation profile of a benzodiazepine.',
+    },
+    oneSentenceVerdict:
+      'A GABA-B agonist one chlorine atom away from baclofen, sold in US supplements at up to 1,164 mg per serving — more than four times a Russian pharmaceutical tablet — with 1,320 poison-centre exposures across all 50 states in eleven years, coma in 6.2% and three deaths.',
+    laymanHowItWorks:
+      'Phenibut is GABA with a phenyl ring bolted on, which lets it cross into the brain — plain GABA cannot. Once there it activates the GABA-B receptor, the same one baclofen uses, producing calm and sedation. It also binds the calcium-channel subunit that gabapentin targets, and in fact binds that four times more tightly than it binds GABA-B. Effects come on slowly, over hours, which is why people take a second dose before the first has peaked. Stopping after regular use produces a rebound withdrawal that can include agitation, hallucinations and seizures.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 66,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC=C(C=C1)C(CC(=O)O)CN',
+      chemicalFormula: 'C10H13NO2',
+      molecularWeight:
+        '179.22 g/mol. A Russian pharmaceutical tablet is typically 250 mg; US supplements analysed after the FDA warning contained 21 mg to 1,164 mg per serving',
+      targetReceptorAffinity:
+        'The R-enantiomer carries the activity. In rat brain membranes, Ki at the α2-δ subunit of the voltage-dependent calcium channel was 23 µM for R-phenibut, 39 µM for S-phenibut, 156 µM for baclofen and 0.05 µM for gabapentin. R-phenibut binds α2-δ about four times more tightly than it binds the GABA-B receptor, and its antinociceptive effects in the formalin test were not blocked by the GABA-B antagonist CGP35348 — so the two targets carry different effects.',
+      structureSource: {
+        label: 'PubChem CID 14113 (phenibut) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/14113',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'phe-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Quantify phenibut per serving in the presented product',
+          description:
+            'This is the measurement that produced the most striking finding on this page. Cohen et al. analysed four supplement brands before and after FDA warnings by liquid chromatography time-of-flight mass spectrometry with isotope-dilution quantification, and found content ranging from 21 mg to 1,164 mg per serving — with the quantity rising in three of the four brands after the warning.',
+          reagentsAndBuffer:
+            'Phenibut certified reference standard with a stable-isotope-labelled internal standard, liquid chromatography time-of-flight mass spectrometry, isotope-dilution quantification, multiple units per lot assayed separately',
+        },
+        {
+          id: 'phe-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Resolve the enantiomers',
+          description:
+            'Racemic phenibut is not one drug. R-phenibut binds GABA-B and S-phenibut does not, while both bind the α2-δ subunit. A racemic assay reports total content and says nothing about the fraction that is pharmacologically active at the receptor that produces the sedation and the withdrawal.',
+          dependsOnStepId: 'phe-w1',
+          reagentsAndBuffer:
+            'Chiral stationary phase with a polar-ionic or crown-ether column, R- and S-phenibut reference standards, UV detection at 210 nm with mass confirmation, enantiomeric excess reported alongside total content',
+        },
+        {
+          id: 'phe-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Prepare GABA-B receptor and α2-δ binding systems in parallel',
+          description:
+            'Two unrelated targets need two preparations. Rat brain membranes provide native α2-δ subunits for a gabapentin-displacement assay, and a GABA-B-expressing system provides the receptor arm. Running both against the same enantiomer series is what allowed the affinity ranking that puts α2-δ ahead of GABA-B.',
+          dependsOnStepId: 'phe-w1',
+          reagentsAndBuffer:
+            'Rat brain membrane preparation for α2-δ, GABA-B(1)/GABA-B(2) co-expressing cell line, homogenisation and washing to remove endogenous ligand, Tris-HCl/CaCl2 binding buffer',
+        },
+        {
+          id: 'phe-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Competition binding at α2-δ and GABA-B for both enantiomers',
+          description:
+            'Displacement of radiolabelled gabapentin gives the α2-δ affinity that produced the 23, 39, 156 and 0.05 µM series for R-phenibut, S-phenibut, baclofen and gabapentin. A parallel GABA-B binding series gives the comparison that shows R-phenibut prefers the calcium-channel subunit. The antagonist control — CGP35348 failing to block the antinociceptive effect — is what converts a binding preference into a functional attribution.',
+          dependsOnStepId: 'phe-w3',
+          reagentsAndBuffer:
+            '[3H]-gabapentin as the α2-δ-selective ligand, [3H]-CGP54626 for GABA-B, unlabelled gabapentin and baclofen competition series, CGP35348 as GABA-B antagonist in the functional arm',
+        },
+        {
+          id: 'phe-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma quantification in the clinical presentation',
+          description:
+            'Phenibut is not detected by any routine hospital drug screen, so a patient in coma or withdrawal from it looks like an unexplained presentation. A validated plasma method is the only way to attribute the clinical picture, and the timing matters because onset is slow and the drug is renally cleared.',
+          dependsOnStepId: 'phe-w2',
+          reagentsAndBuffer:
+            'LC-MS/MS with deuterated phenibut internal standard, protein precipitation from plasma, documented time since last dose, renal function recorded alongside, baclofen and gabapentin included in the panel as differential analytes',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'phe-a1',
+        category: 'measured',
+        title: '1,320 exposures in all 50 states, coma in 6.2%, three deaths',
+        laymanSummary:
+          'Across eleven years, US poison centres logged 1,320 phenibut exposures from every state. Eight in a hundred reached life-threatening severity, eighty people were comatose, and three died.',
+        technicalDetails:
+          'Graves et al. analysed National Poison Data System records for 2009 to 2019: 1,320 phenibut exposures from all 50 states and the District of Columbia, with 1,122 (85.0%) of calls originating from health-care facilities. 58.4% of exposures were in adults aged 18 to 34 (mean 31.7 years, SD 13.1) and 75.5% were male. Cases rose sharply from 2015, when poison centres gained the ability to code "phenibut" as a term — a coding change that partly confounds the trend and which the authors state. Formulations were solids in 65.1% and powder in 24.8%; 93.2% were ingestions. Reported effects were agitation 30.4%, drowsiness or lethargy 29.0%, tachycardia 21.9% and confusion 21.3%. Coma occurred in 80 cases (6.2%), including one adolescent. Half of cases (49.6%) had moderate effects; major effects — life-threatening or causing significant disability — occurred in 12.6%, and three deaths were reported. Among exposures where phenibut was the only agent involved, 10.2% had major effects, including one death.',
+        evidenceSource: 'Graves JM et al. MMWR Morb Mortal Wkly Rep 2020;69:1227-1228',
+        doi: '10.15585/mmwr.mm6935a5',
+        measuredMetric:
+          'Exposure count, demographics, clinical effects and outcome severity across 1,320 phenibut exposures, 2009-2019',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'phe-a2',
+        category: 'conclusion_shift',
+        title: 'FDA warned that it did not belong in supplements, and the doses went up',
+        laymanSummary:
+          'After the FDA said phenibut is not a permitted supplement ingredient, researchers re-tested the same four brands. Two that had contained none now contained it, and three of the four had more than before — up to 1,164 mg a serving.',
+        technicalDetails:
+          'Cohen et al. selected four brands of dietary supplements labelled as containing phenibut that were on sale both before and after the FDA warnings, and analysed them by liquid chromatography time-of-flight mass spectrometry with isotope-dilution quantification. Before the warnings, two of the four contained phenibut, at 484 mg and 487 mg per serving. After the warnings, all four contained it, at 21 mg to 1,164 mg per serving; phenibut was first detected only after the warnings in two brands, and the quantity increased in three of the four. Quantities per dose reached as much as 450% greater than a typical 250 mg pharmaceutical tablet manufactured in Russia. The conclusion shift recorded here is not scientific but regulatory: an advisory intended to remove a substance from a market coincided with more of it appearing in the same products, which is a measurable outcome of a regulatory action and is recorded as such.',
+        evidenceSource: 'Cohen PA et al. Clin Toxicol 2022;60:486-488',
+        doi: '10.1080/15563650.2021.1973020',
+        measuredMetric:
+          'Phenibut content per serving in four supplement brands before and after FDA warnings, by LC-TOF-MS isotope dilution',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'phe-a3',
+        category: 'measured',
+        title: 'It binds the gabapentin target more tightly than the baclofen target',
+        laymanSummary:
+          'Phenibut is usually described as a GABA-B drug like baclofen. In a direct binding comparison, the active enantiomer bound the calcium-channel subunit that gabapentin targets about four times more tightly than it bound GABA-B.',
+        technicalDetails:
+          'Zvejniece et al. measured binding affinity for the α2-δ subunit of the voltage-dependent calcium channel using radiolabelled gabapentin in rat brain membranes: Ki was 23 µM for R-phenibut, 39 µM for S-phenibut, 156 µM for baclofen and 0.05 µM for gabapentin. R-phenibut\'s α2-δ affinity was about four times higher than its affinity for GABA-B. In the formalin-induced paw-licking test, pre-treatment with R-phenibut dose-dependently reduced the nociceptive response in both phases, and that effect was not blocked by the GABA-B-selective antagonist CGP35348 — attributing it to α2-δ rather than to GABA-B. Both enantiomers alleviated mechanical and thermal allodynia after chronic constriction injury of the sciatic nerve. R-phenibut did not affect pentylenetetrazole-induced seizures at doses up to 100 mg/kg. Note the absolute numbers: phenibut is a micromolar ligand at both targets while gabapentin is nanomolar at α2-δ, which is why phenibut is dosed in hundreds of milligrams.',
+        evidenceSource: 'Zvejniece L et al. Pharmacol Biochem Behav 2015;137:23-29',
+        doi: '10.1016/j.pbb.2015.07.014',
+        measuredMetric:
+          'Ki at the α2-δ subunit for R-phenibut, S-phenibut, baclofen and gabapentin, with GABA-B antagonist control in a functional pain model',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'phe-a4',
+        category: 'measured',
+        title: 'One in five patients in a regional series required intubation',
+        laymanSummary:
+          'A Minnesota poison-centre review found 56 phenibut cases over nineteen years, 48 of them in the last five. Eleven of the 56 needed a breathing tube. None died.',
+        technicalDetails:
+          'McCabe et al. reviewed all phenibut exposure calls to the Minnesota Poison Control System from January 2000 through December 2018: 56 calls, of which 48 (85.7%) fell in the final five years. More than half of patients had central nervous system effects and 10.7% had withdrawal concerns. Abuse was the stated reason for use in 27 patients (48%) and treatment of anxiety in 13 (23%). Co-ingestants were documented in 35.7%. No patient died, but 11 (19.6%) were intubated. The authors conclude that clinicians should expect CNS and respiratory depression and be prepared to manage the airway. A single-state series of 56 is small, and its value is the intubation proportion — a hard endpoint that does not depend on how a poison-centre outcome category was coded.',
+        evidenceSource: 'McCabe DJ et al. Am J Emerg Med 2019;37:2066-2071',
+        doi: '10.1016/j.ajem.2019.02.044',
+        measuredMetric:
+          'Intubation rate, clinical effects and reason for use across 56 phenibut exposures to one regional poison centre, 2000-2018',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'phe-a5',
+        category: 'measured',
+        title: 'It is baclofen without the chlorine',
+        laymanSummary:
+          'Baclofen is a prescription-only muscle relaxant whose withdrawal can cause seizures and delirium. Phenibut is the same molecule minus one chlorine atom, and it is sold in tubs.',
+        technicalDetails:
+          'Phenibut is β-phenyl-γ-aminobutyric acid; baclofen is β-(4-chlorophenyl)-γ-aminobutyric acid. The chlorine substitution raises GABA-B potency substantially — baclofen is the clinical GABA-B agonist for exactly that reason — but the pharmacological class is the same, and the α2-δ binding comparison in the Zvejniece series put both compounds in the same micromolar range at that second target. Baclofen requires a prescription in the United States and carries a recognised withdrawal syndrome that can include seizures, hallucinations and autonomic instability. Phenibut requires nothing. The structural relationship is the most economical explanation of the withdrawal syndrome described in the case literature, and it is the reason baclofen itself is used to manage phenibut withdrawal in some reported cases.',
+        evidenceSource:
+          'Lapin I. Phenibut (beta-phenyl-GABA): a tranquilizer and nootropic drug. CNS Drug Rev 2001;7:471-481; Zvejniece L et al. Pharmacol Biochem Behav 2015;137:23-29',
+        doi: '10.1111/j.1527-3458.2001.tb00211.x',
+        measuredMetric:
+          'Structural and pharmacological relationship between phenibut and baclofen, with comparative α2-δ binding affinities',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'phe-a6',
+        category: 'inferred',
+        title: 'The 2015 rise in reported cases is partly a coding change',
+        laymanSummary:
+          'Phenibut cases appear to jump sharply from 2015. That is the year poison centres were first able to record "phenibut" as a term, so part of the increase is the counting, not the drug.',
+        technicalDetails:
+          'The MMWR analysis states that the number of cases increased sharply over 2009-2019, particularly since 2015, when regional poison centres became able to use "phenibut" as a relevant term to capture exposures. A surveillance series whose case-ascertainment method changes mid-period cannot separate a real increase from an improvement in detection, and the authors say so. The independent Minnesota series shows the same shape — 48 of 56 calls in the final five years — which is consistent with a genuine rise, but that series covers the same period and is subject to the same coding change. The honest statement is that phenibut exposures rose over the decade and that the size of the rise is not measurable from these data.',
+        evidenceSource: 'Graves JM et al. MMWR Morb Mortal Wkly Rep 2020;69:1227-1228, methods note',
+        doi: '10.15585/mmwr.mm6935a5',
+        inferredClaim:
+          'That the post-2015 rise in reported phenibut exposures measures a rise in phenibut use rather than a change in how exposures were coded',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'phe-a7',
+        category: 'measured',
+        title: 'Routine drug screens do not detect it',
+        laymanSummary:
+          'A person in coma or in withdrawal from phenibut will have a clean hospital toxicology screen, because nothing in the standard panel looks for it.',
+        technicalDetails:
+          'Phenibut is not an analyte in standard hospital immunoassay drug-of-abuse panels, and its identification requires a targeted chromatographic method. The clinical consequence is visible in the case literature: presentations of unexplained coma, agitated delirium or an unfamiliar withdrawal syndrome in young adults with negative screens. The regional series found abuse as the stated reason for use in 48% of cases and withdrawal concerns in 10.7%, with 19.6% intubated — a clinical picture severe enough to demand an explanation that the available test does not supply. This is a measured property of the analytical system rather than of the drug, and it is the reason the workflow on this page ends with a targeted plasma method rather than a screen.',
+        evidenceSource:
+          'McCabe DJ et al. Am J Emerg Med 2019;37:2066-2071; Graves JM et al. MMWR 2020;69:1227-1228',
+        doi: '10.1016/j.ajem.2019.02.044',
+        measuredMetric:
+          'Requirement for a targeted chromatographic method rather than routine immunoassay to identify phenibut exposure',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed as powder or tablet',
+        laymanDesc:
+          'A Russian pharmaceutical tablet is 250 mg. US supplement servings analysed after the FDA warning ranged from 21 mg to 1,164 mg.',
+        molecularDetail:
+          'Oral phenibut hydrochloride, most often as a solid (65.1% of exposures with known formulation) or bulk powder (24.8%). Bulk powder weighed by the user is the formulation most associated with large accidental doses.',
+        iconName: 'Beaker',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The phenyl ring carries it into the brain',
+        laymanDesc:
+          'GABA itself cannot cross into the brain from the blood. Adding a benzene ring makes the molecule lipophilic enough to get in.',
+        molecularDetail:
+          'The β-phenyl substitution is the entire design rationale: it confers the lipophilicity that permits blood-brain barrier penetration, which unmodified GABA lacks. Onset is slow, over hours, and elimination is predominantly renal.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds α2-δ calcium channels and GABA-B receptors',
+        laymanDesc:
+          'It hits two unrelated targets: the one gabapentin uses and the one baclofen uses. In the active enantiomer the gabapentin target is the tighter fit.',
+        molecularDetail:
+          'R-phenibut Ki 23 µM at the α2-δ subunit versus 39 µM for S-phenibut, 156 µM for baclofen and 0.05 µM for gabapentin; R-phenibut binds α2-δ about four times more tightly than GABA-B. S-phenibut does not bind GABA-B at all. The antinociceptive effect survives GABA-B antagonism, attributing it to α2-δ.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Sedation, or at higher doses coma',
+        laymanDesc:
+          'The intended effect is calm. Above that, agitation and confusion are as common as drowsiness, and coma occurred in about one in sixteen reported exposures.',
+        molecularDetail:
+          'Reported effects across 1,320 exposures: agitation 30.4%, drowsiness or lethargy 29.0%, tachycardia 21.9%, confusion 21.3%, coma 6.2%. Major effects in 12.6% overall and 10.2% of single-agent exposures. Respiratory depression is the reason 19.6% of a regional series required intubation.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And on stopping, a rebound withdrawal',
+        laymanDesc:
+          'After regular use, stopping produces agitation, hallucinations and in some reports seizures — a picture closer to alcohol or benzodiazepine withdrawal than to opioid withdrawal.',
+        molecularDetail:
+          'GABA-B system rebound following chronic agonism, the same mechanism as baclofen withdrawal. Withdrawal concerns were recorded in 10.7% of the Minnesota series. The structural identity with baclofen is why baclofen itself appears as a management strategy in reported cases.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Graves et al. 2020 National Poison Data System analysis, 2009-2019',
+        phase: 'National surveillance analysis',
+        sampleSize: 1320,
+        primaryEndpoint: 'Number, characteristics and outcome severity of phenibut exposures',
+        endpointMet: true,
+        statisticalPValue:
+          'Coma in 80 (6.2%); moderate effects 49.6%; major effects 12.6%; three deaths. Among single-agent exposures, 10.2% major effects including one death',
+        unreportedAdverseSignals:
+          'Case ascertainment changed in 2015 when poison centres gained a "phenibut" coding term, so the apparent trend confounds a real increase with improved detection. Poison-centre data count calls, not exposures.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cohen et al. 2022 supplement content analysis before and after FDA warnings',
+        phase: 'Analytical product survey',
+        sampleSize: 4,
+        primaryEndpoint: 'Phenibut content per serving in supplements on sale before and after FDA warnings',
+        endpointMet: true,
+        statisticalPValue:
+          'Before: 2 of 4 contained phenibut at 484 mg and 487 mg per serving. After: 4 of 4 contained it, 21 mg to 1,164 mg per serving, up to 450% of a 250 mg Russian pharmaceutical tablet',
+        unreportedAdverseSignals:
+          'Four brands is a small sample, chosen because they were available both before and after the warning. The finding is a direction of change in a selected set, not a market-wide estimate.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'McCabe et al. 2019 Minnesota Poison Control System review, 2000-2018',
+        phase: 'Regional poison-centre case series',
+        sampleSize: 56,
+        primaryEndpoint: 'Incidence, reasons for use and clinical effects of phenibut exposure calls',
+        endpointMet: true,
+        statisticalPValue:
+          '48 of 56 calls (85.7%) in the final five years; CNS effects in over 50%; 11 of 56 (19.6%) intubated; no deaths',
+        unreportedAdverseSignals:
+          'Single-state data with 56 cases over nineteen years. Co-ingestants documented in 35.7%, so not all clinical effects are attributable to phenibut alone.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '1,320 phenibut exposures reported from all 50 states and DC over 2009-2019, with coma in 6.2%, major effects in 12.6% and three deaths',
+        'Supplement content of 21 mg to 1,164 mg per serving after FDA warnings, rising in three of four brands tested before and after',
+        'Ki 23 µM at the α2-δ calcium-channel subunit for R-phenibut against 156 µM for baclofen and 0.05 µM for gabapentin, in the same assay',
+        'Intubation in 11 of 56 patients (19.6%) in a regional poison-centre series',
+        'Absence of phenibut from every schedule in 21 CFR part 1308',
+      ],
+      unsupportedInferences: [
+        'That the post-2015 rise in reported exposures measures a rise in use rather than the introduction of a coding term',
+        'That approval as a prescription anxiolytic in post-Soviet states describes the exposure obtained from a US bulk-powder product',
+        'That phenibut is simply "a GABA-B drug" — the active enantiomer binds α2-δ four times more tightly, and its antinociceptive effect survives GABA-B blockade',
+        'That a negative hospital toxicology screen excludes phenibut; no routine panel contains it',
+      ],
+      whatFailedInitially: [
+        'FDA advisories that phenibut is not a permitted dietary ingredient were followed by higher measured content in three of four tested brands',
+        'No randomised controlled trial in the peer-reviewed English-language literature supports any indication; the licensed uses abroad rest on an older Soviet-era evidence base',
+      ],
+      realWorldOutcome: [
+        'Sold in the United States without approval and without federal scheduling, in tablets, capsules and bulk powder',
+        'Prescribed in Russia, Latvia, Ukraine and Kazakhstan for anxiety, insomnia and alcohol withdrawal at roughly 250 mg per tablet',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, capsule or bulk powder',
+      description:
+        'The licensed pharmaceutical abroad is a 250 mg tablet. The US market is capsules, tablets and bulk powder sold by weight, and bulk powder is the formulation most implicated in large doses — a user measuring a gram-scale amount by eye is working with a molecule whose effect takes hours to appear.',
+      safetyProfile:
+        'Slow onset over several hours invites redosing before the first dose has peaked. Reported acute effects across 1,320 exposures were agitation 30.4%, drowsiness 29.0%, tachycardia 21.9%, confusion 21.3% and coma 6.2%, with major effects in 12.6% and three deaths; a regional series intubated 19.6% of patients. Combination with alcohol, benzodiazepines or opioids compounds the respiratory depression, and co-exposure was documented in about 40% of adult cases. Chronic use produces dependence with a rebound withdrawal syndrome that can include agitation, hallucinations and seizures, managed in reported cases with benzodiazepines or baclofen. Phenibut is renally cleared and is not detected by routine toxicology screening. It is also the commonest co-exposure recorded in US tianeptine poison-centre calls.',
+    },
+    commonQuestions: [
+      {
+        q: 'How is a drug like this sold as a supplement?',
+        a: 'Because the two regimes that could stop it both fall short. It has no FDA approval, so it cannot be sold as a medicine; it is in no schedule of 21 CFR part 1308, so it is not a controlled substance. FDA has stated that phenibut does not meet the statutory definition of a dietary ingredient, which makes the products misbranded rather than controlled — and when researchers re-tested four brands after those warnings, the phenibut content had gone up in three of them.',
+        auditNote:
+          'That before-and-after measurement is the single most useful number on this page, because it measures the effect of the regulatory action rather than the effect of the drug.',
+      },
+      {
+        q: 'Is it the same as baclofen?',
+        a: 'Structurally it is baclofen minus one chlorine atom, and pharmacologically both are GABA-B agonists with additional α2-δ calcium-channel binding. Baclofen is far more potent at GABA-B, which is why it is the clinical drug, and it requires a prescription. The withdrawal syndromes are of the same kind, which is why baclofen appears in the case literature as a treatment for phenibut withdrawal.',
+      },
+      {
+        q: 'Would a hospital know what was wrong?',
+        a: 'Not from the standard screen. Phenibut is not in routine drug-of-abuse immunoassay panels and needs a targeted chromatographic method, so the typical presentation is a young adult with coma, agitated delirium or an unexplained withdrawal syndrome and a negative toxicology result. The history is what makes the diagnosis, and it is often not offered because the substance was bought as a supplement.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no US-approved product and no published list price. Supplement and bulk-powder prices are set by individual sellers and are not documented anywhere this file could cite.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Graves JM et al. Notes from the Field: Phenibut Exposures Reported to Poison Centers - United States, 2009-2019. MMWR Morb Mortal Wkly Rep 2020;69:1227-1228',
+        identifier: '10.15585/mmwr.mm6935a5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cohen PA et al. Quantity of phenibut in dietary supplements before and after FDA warnings. Clin Toxicol 2022;60:486-488',
+        identifier: '10.1080/15563650.2021.1973020',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Zvejniece L et al. R-phenibut binds to the α2-δ subunit of voltage-dependent calcium channels and exerts gabapentin-like anti-nociceptive effects. Pharmacol Biochem Behav 2015;137:23-29',
+        identifier: '10.1016/j.pbb.2015.07.014',
+        kind: 'doi',
+      },
+      {
+        label:
+          'McCabe DJ et al. Phenibut exposures and clinical effects reported to a regional poison center. Am J Emerg Med 2019;37:2066-2071',
+        identifier: '10.1016/j.ajem.2019.02.044',
+        kind: 'doi',
+      },
+      {
+        label: 'Lapin I. Phenibut (beta-phenyl-GABA): a tranquilizer and nootropic drug. CNS Drug Rev 2001;7:471-481',
+        identifier: '10.1111/j.1527-3458.2001.tb00211.x',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 14113 — phenibut structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/14113',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 22. Delta-8-THC
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'delta-8-thc',
+    name: 'Delta-8-Tetrahydrocannabinol',
+    tradeName:
+      'No approved product. Sold as vape cartridges, gummies, tinctures and pre-rolls in petrol stations, smoke shops and online',
+    sponsor:
+      'No sponsor and no development programme. The market exists because of an interaction between the 2018 Farm Bill and the chemistry of converting CBD into a psychoactive isomer',
+    targetGene: 'CNR1',
+    targetProtein:
+      'Cannabinoid CB1 receptor — a partial agonist at the same receptor as delta-9-THC, with lower psychotropic potency; also active at CB2',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication. Tetrahydrocannabinols including the delta-8 isomer are Schedule I under 21 CFR 1308.11(d)(31)(i), which covers isomers "regardless of numerical designation of atomic positions" — but paragraph (ii) excludes anything meeting the statutory definition of hemp, and the Ninth Circuit held in 2022 that hemp-derived delta-8 products are lawful under the plain text of the 2018 Farm Bill',
+    patientFriendlyIndication:
+      'Nothing approved. It is a legal-in-most-states intoxicant made by chemically converting CBD, and children under six accounted for 30.1% of the poison-centre cases',
+    anatomicalSite:
+      'CB1 receptors on presynaptic terminals throughout the central nervous system, the same site delta-9-THC acts on',
+    conditionContext: {
+      conditionExplainer:
+        'There is no indication. The one controlled human efficacy result is from paediatric oncology in 1995, where delta-8-THC was given as an antiemetic during chemotherapy.',
+      whyItMatters:
+        'Delta-8 is the clearest case in this file of a market created by a definition rather than by a discovery. The 2018 Farm Bill defined hemp by its delta-9 content, and delta-8 is a different isomer — so a psychoactive cannabinoid became purchasable in states where cannabis is illegal.',
+      whoTakesThis:
+        'Adults buying it as a legal cannabis substitute, and — in 30.1% of poison-centre cases — children under six who found an edible at home.',
+      clinicalGoals:
+        'None established. The 1995 paediatric antiemetic series is the only controlled therapeutic use in the literature and has never been repeated.',
+    },
+    oneSentenceVerdict:
+      'A CB1 partial agonist that is Schedule I as an isomer of tetrahydrocannabinol and simultaneously lawful as hemp, sold nationwide since 2018, with 5,022 poison-centre exposures across 2021 and 2022, a 30.1% share in children under six, and a serious medical outcome in 38.4% of cases.',
+    laymanHowItWorks:
+      'Delta-8 and delta-9 THC differ by where one double bond sits in the ring. Both activate the CB1 cannabinoid receptor; delta-8 does it less potently, so the intoxication is milder at the same dose. Almost none of it occurs naturally in the plant, so commercial delta-8 is made by treating hemp-derived CBD with acid, which rearranges the molecule. That reaction is not clean: it produces delta-9, other isomers and reaction by-products alongside the intended product, and none of it is manufactured to a pharmaceutical standard.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 49,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCCCCC1=CC(=C2[C@@H]3CC(=CC[C@H]3C(OC2=C1)(C)C)C)O',
+      chemicalFormula: 'C21H30O2',
+      molecularWeight:
+        '314.5 g/mol — identical to delta-9-THC, which is the analytical problem: the two isomers share a formula and a mass and differ only in double-bond position',
+      targetReceptorAffinity:
+        'CB1 partial agonist with lower psychotropic potency than delta-9-THC, and CB2 activity. Because the two isomers are the same mass, distinguishing them requires chromatographic separation, not mass spectrometry alone — which matters both for product labelling and for forensic identification.',
+      structureSource: {
+        label: 'PubChem CID 638026 (delta-8-THC) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/638026',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'd8-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Separate delta-8 from delta-9 and the other isomers chromatographically',
+          description:
+            'Delta-8, delta-9, delta-10 and the exo- and iso-THC isomers all have the formula C21H30O2 and the same nominal mass. Mass spectrometry alone cannot tell them apart. Baseline chromatographic resolution against certified reference standards for each isomer is the only way to state which cannabinoid a product contains, and it is the measurement that decides whether the product is over the 0.3% delta-9 limit that defines hemp.',
+          reagentsAndBuffer:
+            'Certified reference standards for delta-8, delta-9, delta-10, exo-THC and CBD, high-resolution reversed-phase or biphenyl column with a shallow gradient, UV detection at 228 nm with mass confirmation, resolution criteria documented for each isomer pair',
+        },
+        {
+          id: 'd8-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Screen for conversion by-products and residual reagents',
+          description:
+            'Commercial delta-8 is produced by acid-catalysed isomerisation of CBD, a reaction that generates additional cannabinoid species and can leave residual acid, solvent and catalyst. A product characterised only by its delta-8 content has not been characterised. This step is the reason the workflow exists: the question about a delta-8 product is almost never "how much delta-8", it is "what else is in it".',
+          dependsOnStepId: 'd8-w1',
+          reagentsAndBuffer:
+            'Untargeted high-resolution mass spectrometry with cannabinoid libraries, headspace GC-MS for residual solvents, ICP-MS for catalyst metals, pH and titratable-acidity measurement on the finished article',
+        },
+        {
+          id: 'd8-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express CB1 and CB2 receptors for a potency comparison',
+          description:
+            'The claim that carries the whole product category — that delta-8 is milder than delta-9 — is a potency ratio, and a ratio needs both compounds measured at the same receptor in the same system. Human CNR1 and CNR2 are expressed separately so that CB1 potency can be reported independently of CB2.',
+          dependsOnStepId: 'd8-w1',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells with human CNR1 and CNR2 expression constructs, lipid transfection, DMEM with 10% fetal bovine serum, bovine serum albumin in assay buffer to handle the lipophilicity of the ligands',
+        },
+        {
+          id: 'd8-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Binding and functional potency for delta-8 against delta-9',
+          description:
+            'Competition binding gives affinity and a [35S]GTPγS or cAMP readout gives efficacy, with delta-9-THC run in parallel as the reference. Reporting the ratio rather than either number alone is what makes "lower psychotropic potency" a measurement instead of a marketing phrase.',
+          dependsOnStepId: 'd8-w3',
+          reagentsAndBuffer:
+            '[3H]-CP55,940 as CB1 radioligand, delta-9-THC and CP55,940 as reference agonists, rimonabant for non-specific binding, [35S]GTPγS with GDP, forskolin-stimulated cAMP assay',
+        },
+        {
+          id: 'd8-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Dose reconstruction in the paediatric ingestion cases',
+          description:
+            'The most clinically useful quantification on this page is a milligram-per-kilogram figure. Garay et al. reconstructed ingested dose in 232 single-substance cases in children under six and found a median of 6.7 mg/kg, with a dose-response relationship for central nervous system depression severity. The reconstruction depends on the product\'s labelled content, which the first two steps of this workflow exist to check.',
+          dependsOnStepId: 'd8-w2',
+          reagentsAndBuffer:
+            'Product content verified analytically rather than from the label, documented body weight, structured clinical outcome coding, receiver-operating-characteristic analysis against severe and prolonged toxicity',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'd8-a1',
+        category: 'conclusion_shift',
+        title: 'Schedule I and lawful hemp, in adjacent sub-paragraphs',
+        laymanSummary:
+          'The federal drug schedule lists tetrahydrocannabinols including every isomer — and then, in the next sub-paragraph, excludes anything that meets the legal definition of hemp. Delta-8 made from hemp falls into that exclusion, and a federal appeals court agreed.',
+        technicalDetails:
+          '21 CFR 1308.11(d)(31)(i) places tetrahydrocannabinols in Schedule I, covering synthetic substances, derivatives and isomers "with similar chemical structure and pharmacological activity" and stating that because nomenclature is not internationally standardised, "compounds of these structures, regardless of numerical designation of atomic positions" are covered. Sub-paragraph (ii) then reads: "Tetrahydrocannabinols does not include any material, compound, mixture, or preparation that falls within the definition of hemp set forth in 7 U.S.C. 1639o." That definition, from the Agriculture Improvement Act of 2018, is written in terms of delta-9-THC concentration not exceeding 0.3% on a dry-weight basis — it says nothing about delta-8. DEA\'s interim final rule implementing the Act (85 FR 51639, 21 August 2020) took the position that synthetically derived tetrahydrocannabinols remain Schedule I. In AK Futures LLC v. Boyd Street Distro LLC (9th Cir., No. 21-56133, filed 19 May 2022) the panel held that "the plain and unambiguous text of the Farm Act compels the conclusion" that the delta-8 THC products at issue were lawful. The conflict is unresolved, and the market has grown inside it.',
+        evidenceSource:
+          '21 CFR 1308.11(d)(31)(i) and (ii); DEA interim final rule 85 FR 51639 (21 August 2020); AK Futures LLC v. Boyd Street Distro LLC, 9th Cir. No. 21-56133 (19 May 2022)',
+        measuredMetric:
+          'Text of the scheduling provision and its hemp exclusion, against the federal appellate holding on the same statute',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'd8-a2',
+        category: 'measured',
+        title: '5,022 poison-centre exposures in two years, 30.1% in children under six',
+        laymanSummary:
+          'Across 2021 and 2022, US poison centres logged just over five thousand delta-8-type exposures. The rate almost doubled between the two years, and nearly a third of cases were children under six, most commonly two-year-olds.',
+        technicalDetails:
+          'Burgess et al. analysed National Poison Data System records for 1 January 2021 to 31 December 2022 with delta-8-THC, delta-10-THC or THC-O-acetate as the primary substance: 5,022 cases. The population rate rose 89.1%, from 0.55 to 1.04 per 100,000. Delta-8 accounted for 98.1% of cases. Children under six were 30.1% of all cases, with a mode at age 2 (8.9% of cases). 94.3% were single-substance exposures, 95.9% occurred in a residence and 94.2% were ingestions, rising to 95.1% among children under six. The leading reason was unintentional-general (40.2%), followed by abuse (33.1%). Commonest effects were mild CNS depression 25.0%, tachycardia 23.0% and agitation 15.6%. A serious medical outcome occurred in 38.4% of cases; 10.3% were admitted to a non-critical care unit and 5.3% to critical care. The National Poison Data System is passive surveillance, which the authors state, so these are reported cases rather than an incidence.',
+        evidenceSource: 'Burgess A et al. Clin Toxicol 2024;62:256-266',
+        doi: '10.1080/15563650.2024.2340115',
+        measuredMetric:
+          'Exposure counts, population rates, age distribution, clinical effects and medical outcomes across 5,022 cases, 2021-2022',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'd8-a3',
+        category: 'measured',
+        title: 'A dose-response curve in 232 children under six',
+        laymanSummary:
+          'In young children who swallowed delta-8 alone, the median dose was 6.7 mg per kilogram of body weight. Those in the highest quarter of doses were three times as likely to have severe toxicity and five times as likely for it to be prolonged.',
+        technicalDetails:
+          'Garay et al. analysed 232 single-substance delta-8-THC ingestions in children under six reported to US poison centres (median age 3.0 years, 51.7% female). Median ingested dose was 6.7 mg/kg. CNS depression was the commonest effect at 75.5%, with a dose-response relationship between dose and its severity. Children in the top dose quartile (>17.0 mg/kg) had 3.43 times the odds of severe toxicity (95% CI 1.44-8.14) and 5.02 times the odds of prolonged toxicity (95% CI 2.05-12.29) compared with the lowest quartile (<2.4 mg/kg). ROC analysis gave a 2.3 mg/kg cutoff with 91% sensitivity and 31% specificity for severe toxicity (AUC 0.64), and a 1.7 mg/kg cutoff with 98% sensitivity and 28% specificity. The authors note the AUC values are modest and the cutoffs generate many false positives, and that the findings resemble what is already described for delta-9-THC ingestion in this age group. Dose reconstruction relies on product labels, which for this product category are not independently verified.',
+        evidenceSource: 'Garay RS et al. Inj Epidemiol 2025;12:63',
+        doi: '10.1186/s40621-025-00617-6',
+        measuredMetric:
+          'Body-weight-adjusted ingested dose against severe and prolonged toxicity, with ROC analysis, n=232',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'd8-a4',
+        category: 'measured',
+        title: 'The only controlled therapeutic use: eight children, 480 chemotherapy treatments',
+        laymanSummary:
+          'In 1995, eight children with blood cancers received delta-8-THC before and after chemotherapy. Across 480 treatments, vomiting was completely prevented, and side effects were described as negligible.',
+        technicalDetails:
+          'Abrahamov, Abrahamov and Mechoulam gave delta-8-THC at 18 mg/m² in edible oil orally to eight children aged 3 to 13 with various haematologic cancers, on different antineoplastic regimens, for up to eight months. Dosing began two hours before each antineoplastic treatment and continued every six hours for 24 hours. Across 480 treatments, vomiting was completely prevented and the observed side effects were negligible. The paper explicitly identifies delta-8-THC as a cannabinoid with lower psychotropic potency than delta-9-THC, which was the rationale for choosing it in children. This is an open-label series of eight patients with no control arm and no randomisation, and it has not been repeated in thirty years — but a complete absence of vomiting across 480 treatment episodes is an unusually clean observation, and it is the only human efficacy datum this compound has.',
+        evidenceSource: 'Abrahamov A, Abrahamov A, Mechoulam R. Life Sci 1995;56:2097-2102',
+        doi: '10.1016/0024-3205(95)00194-b',
+        measuredMetric:
+          'Emesis prevention across 480 antineoplastic treatment episodes in 8 children at 18 mg/m² oral delta-8-THC',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'd8-a5',
+        category: 'measured',
+        title: 'It is manufactured from CBD, not extracted from the plant',
+        laymanSummary:
+          'Cannabis contains almost no delta-8. Commercial delta-8 is made by treating hemp-derived CBD with acid, which rearranges it — a reaction that also produces other cannabinoids and leaves residues behind.',
+        technicalDetails:
+          'Delta-8-THC occurs in Cannabis at concentrations far too low to extract commercially. The material sold is produced by acid-catalysed isomerisation of cannabidiol, which is abundant in hemp and inexpensive. The reaction yields delta-8 as the intended product alongside delta-9-THC, other positional isomers such as delta-10 and iso-THC, and further by-products, and can leave residual acid, solvent and catalyst in the finished article. Nothing in the process is subject to pharmaceutical manufacturing standards, and the finished products in the poison-centre series include gummies and vape cartridges sold in general retail. DEA\'s position in the 2020 interim final rule that synthetically derived tetrahydrocannabinols remain Schedule I turns precisely on this manufacturing route; the Ninth Circuit\'s reading of the statute does not.',
+        evidenceSource:
+          'DEA interim final rule 85 FR 51639 (21 August 2020), discussion of synthetically derived tetrahydrocannabinols; 21 CFR 1308.11(d)(31)',
+        measuredMetric:
+          'Production route of commercial delta-8-THC and its regulatory characterisation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'd8-a6',
+        category: 'inferred',
+        title: '"Lower potency" is a per-milligram statement, not a per-product one',
+        laymanSummary:
+          'Delta-8 is genuinely a weaker CB1 agonist than delta-9. That says nothing about how intoxicating a given gummy is, because the amount per serving is set by the manufacturer.',
+        technicalDetails:
+          'The pharmacological claim — that delta-8-THC has lower psychotropic potency than delta-9-THC — is well founded and is why it was chosen for the 1995 paediatric antiemetic study. The inference commonly drawn from it, that delta-8 products are correspondingly milder, does not follow: potency per milligram and dose per product are independent, and a lower-potency cannabinoid at a higher dose delivers a larger effect. The poison-centre data are the relevant check, and they show a serious medical outcome in 38.4% of 5,022 cases and critical-care admission in 5.3%. A weaker molecule with an unverified label in a general-retail product is not a milder exposure.',
+        evidenceSource:
+          'Abrahamov A et al. Life Sci 1995;56:2097-2102 (potency characterisation); Burgess A et al. Clin Toxicol 2024;62:256-266 (outcomes)',
+        doi: '10.1080/15563650.2024.2340115',
+        inferredClaim:
+          'That lower CB1 potency per milligram makes delta-8 products less intoxicating or safer than delta-9 products',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'd8-a7',
+        category: 'measured',
+        title: 'The isomers cannot be distinguished by mass',
+        laymanSummary:
+          'Delta-8, delta-9 and delta-10 all have the same chemical formula and the same molecular weight. Only a chromatographic separation can tell which one is in a product.',
+        technicalDetails:
+          'All positional isomers of tetrahydrocannabinol share the formula C21H30O2 and a molecular weight of 314.5 g/mol. Mass spectrometry, including high-resolution mass spectrometry, cannot distinguish them; separation must be chromatographic and validated against certified reference standards for each isomer. This has two consequences. Analytically, a product\'s compliance with the 0.3% delta-9 limit that defines hemp depends entirely on the quality of that separation. Forensically, the same limitation applies to biological samples, so a positive result for "THC" does not identify which isomer was taken. The CFR anticipates part of the problem in the text of 1308.11(d)(31)(i), which covers compounds of these structures "regardless of numerical designation of atomic positions" — a nomenclature-proofing clause that the hemp exclusion in (ii) then partly reopens.',
+        evidenceSource:
+          '21 CFR 1308.11(d)(31)(i) text; PubChem CID 638026 and CID 16078 molecular formulae',
+        measuredMetric:
+          'Identity of molecular formula and mass across THC positional isomers, requiring chromatographic rather than mass-based discrimination',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Made by rearranging CBD with acid',
+        laymanDesc:
+          'The starting material is cheap hemp-derived CBD. Acid moves a bond and turns it into delta-8, along with a mixture of other things.',
+        molecularDetail:
+          'Acid-catalysed cyclisation and isomerisation of cannabidiol, yielding delta-8-THC together with delta-9, delta-10, iso-THC and other by-products, plus residual acid, solvent and catalyst. Not a pharmaceutical process and not subject to pharmaceutical manufacturing controls.',
+        iconName: 'FlaskConical',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Inhaled or eaten',
+        laymanDesc:
+          'Vape cartridges act within minutes; gummies take an hour or more, which is how a child can eat several before anything happens.',
+        molecularDetail:
+          'Vaporised inhalation gives rapid pulmonary absorption; oral ingestion gives delayed onset with hepatic first-pass metabolism. In the poison-centre series 94.2% of exposures were ingestions, and 95.1% among children under six.',
+        iconName: 'Wind',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Partially activates the CB1 receptor',
+        laymanDesc:
+          'The same receptor delta-9-THC works through, activated less strongly by the same amount of drug.',
+        molecularDetail:
+          'CB1 partial agonism with lower psychotropic potency than delta-9-THC, plus CB2 activity. The lower potency was the stated reason for selecting delta-8 rather than delta-9 for the 1995 paediatric antiemetic study.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Intoxication, or in children, CNS depression',
+        laymanDesc:
+          'Adults describe a milder cannabis-like effect. In young children the picture is sleepiness and unresponsiveness that scales with the dose per kilogram.',
+        molecularDetail:
+          'Across 5,022 exposures: mild CNS depression 25.0%, tachycardia 23.0%, agitation 15.6%. In 232 single-substance paediatric ingestions, CNS depression in 75.5% with a dose-response relationship for severity; top-quartile doses above 17.0 mg/kg carried 3.43 times the odds of severe toxicity.',
+        iconName: 'Activity',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And in 38.4% of reported cases, a serious outcome',
+        laymanDesc:
+          'More than a third of the reported exposures met the definition of a serious medical outcome, and one in nineteen went to intensive care.',
+        molecularDetail:
+          'Serious medical outcome in 38.4% of 5,022 cases, non-critical care admission 10.3%, critical care 5.3%. The exposure rate per 100,000 population rose 89.1% between 2021 and 2022. Passive surveillance means these are reported cases, not incidence.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Abrahamov et al. 1995 paediatric oncology antiemetic series',
+        phase: 'Open-label clinical series',
+        sampleSize: 8,
+        primaryEndpoint: 'Prevention of vomiting during antineoplastic treatment',
+        endpointMet: true,
+        statisticalPValue:
+          'Vomiting completely prevented across 480 treatments at 18 mg/m² orally; side effects described as negligible',
+        unreportedAdverseSignals:
+          'Eight children, no control arm, no randomisation, no blinding, and no replication in the thirty years since. The complete absence of vomiting across 480 episodes is reported without a comparator rate.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Burgess et al. 2024 National Poison Data System analysis, 2021-2022',
+        phase: 'National surveillance analysis',
+        sampleSize: 5022,
+        primaryEndpoint:
+          'Characteristics and outcomes of delta-8, delta-10 and THC-O-acetate exposures',
+        endpointMet: true,
+        statisticalPValue:
+          'Rate rose 89.1% from 0.55 to 1.04 per 100,000; serious medical outcome in 38.4%; children under 6 were 30.1% of cases',
+        unreportedAdverseSignals:
+          'Passive surveillance: counts reported cases, not exposures. Product content was not analytically verified, so the substance recorded is the substance on the label.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Garay et al. 2025 paediatric dose-response analysis',
+        phase: 'Surveillance dose-response analysis',
+        sampleSize: 232,
+        primaryEndpoint:
+          'Relationship between body-weight-adjusted ingested dose and severe or prolonged toxicity in children under 6',
+        endpointMet: true,
+        statisticalPValue:
+          'Top quartile (>17.0 mg/kg) versus lowest (<2.4 mg/kg): severe toxicity OR 3.43 (95% CI 1.44-8.14), prolonged toxicity OR 5.02 (95% CI 2.05-12.29)',
+        unreportedAdverseSignals:
+          'ROC areas under the curve of 0.62 to 0.64 are modest, and the proposed 1.7 mg/kg triage cutoff has 98% sensitivity but 28% specificity — a high false-positive rate the authors state plainly.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'The text of 21 CFR 1308.11(d)(31): tetrahydrocannabinol isomers in Schedule I in (i), with a hemp exclusion in (ii) written in terms of delta-9 content alone',
+        'A Ninth Circuit holding that the plain text of the 2018 Farm Act makes the delta-8 products at issue lawful',
+        '5,022 reported exposures in 2021-2022 with a serious medical outcome in 38.4% and children under six making up 30.1% of cases',
+        'A dose-response relationship in 232 paediatric ingestions, with top-quartile doses carrying 3.43 times the odds of severe toxicity',
+        'Complete prevention of vomiting across 480 chemotherapy treatment episodes in eight children at 18 mg/m² orally',
+      ],
+      unsupportedInferences: [
+        'That lower CB1 potency per milligram makes a delta-8 product milder or safer than a delta-9 product',
+        'That legality implies any safety or manufacturing standard — the material is produced by an uncontrolled chemical conversion of CBD',
+        'That the 1995 antiemetic result supports therapeutic use today; it is eight open-label patients, unreplicated for thirty years',
+        'That a product\'s label describes its contents, when the isomers share a formula and a mass and separation quality decides the answer',
+      ],
+      whatFailedInitially: [
+        'DEA\'s 2020 interim final rule asserted that synthetically derived tetrahydrocannabinols remain Schedule I, and a federal appellate court read the same statute the other way in 2022',
+        'The 2018 Farm Bill defined hemp by delta-9 content alone, which created the market this record describes',
+      ],
+      realWorldOutcome: [
+        'Sold in general retail across much of the United States, including in states where cannabis itself is prohibited',
+        'Poison-centre exposures rose 89.1% between 2021 and 2022, with unintentional ingestion by young children the largest single category',
+      ],
+    },
+    deliverySystem: {
+      type: 'Vape cartridges, gummies, tinctures and edibles sold in general retail',
+      description:
+        'Products are manufactured from converted CBD and sold without age verification in many jurisdictions, in packaging that in the poison-centre series was frequently indistinguishable from confectionery. 95.9% of reported exposures occurred in a residence and 94.2% were ingestions, which describes the delivery system as much as any pharmacological statement does.',
+      safetyProfile:
+        'Reported clinical effects across 5,022 exposures were mild CNS depression 25.0%, tachycardia 23.0% and agitation 15.6%, with a serious medical outcome in 38.4%, non-critical admission in 10.3% and critical care in 5.3%. In children under six, CNS depression occurred in 75.5% of single-substance ingestions with severity scaling with dose per kilogram. The product-level hazards are separate from the pharmacological ones: unverified potency labelling, reaction by-products including delta-9 and other isomers, and residual acid, solvent or catalyst from the conversion. No manufacturing standard applies.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is delta-8 legal?',
+        a: 'It depends which document you read. 21 CFR 1308.11(d)(31)(i) puts tetrahydrocannabinol isomers in Schedule I regardless of atom numbering; sub-paragraph (ii) excludes anything meeting the statutory definition of hemp, and that definition is written only in terms of delta-9 content. DEA said in 2020 that synthetically derived tetrahydrocannabinols remain Schedule I; the Ninth Circuit held in 2022 that the plain text of the Farm Act makes hemp-derived delta-8 products lawful. Many states have since banned it independently. The market operates inside that unresolved gap.',
+        auditNote:
+          'This is a conflict between an agency reading and an appellate reading of the same statute, not a scientific disagreement, and this record does not take a side on it.',
+      },
+      {
+        q: 'Is it natural?',
+        a: 'The molecule occurs in Cannabis, but at concentrations far too low to extract. Everything sold commercially is made by treating hemp-derived CBD with acid to rearrange it. That reaction produces delta-8 alongside delta-9, delta-10 and other by-products, and can leave residual acid, solvent and catalyst behind. Whether that counts as "natural" is what the whole legal dispute turns on.',
+      },
+      {
+        q: 'Why are so many of the cases children?',
+        a: 'Because the products are edibles, sold openly, and often packaged like sweets. Children under six were 30.1% of the 5,022 reported cases, with the single commonest age being two, and 95.1% of exposures in that group were ingestions in a residence. Onset from an edible is delayed by an hour or more, so a small child can eat several servings before any effect appears. The dose-response analysis found central nervous system depression in three quarters of single-substance paediatric ingestions.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no approved product and no published list price. Retail prices are set by individual sellers for products whose actual cannabinoid content has not been independently verified, so a price per milligram could not be stated meaningfully even if a price were available.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Burgess A et al. Delta-8 tetrahydrocannabinol, delta-10 tetrahydrocannabinol, and tetrahydrocannabinol-O acetate exposures reported to America\'s Poison Centers. Clin Toxicol 2024;62:256-266',
+        identifier: '10.1080/15563650.2024.2340115',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Garay RS et al. Investigation of the toxic dose of ingested delta-8 tetrahydrocannabinol among young children. Inj Epidemiol 2025;12:63',
+        identifier: '10.1186/s40621-025-00617-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Abrahamov A, Abrahamov A, Mechoulam R. An efficient new cannabinoid antiemetic in pediatric oncology. Life Sci 1995;56:2097-2102',
+        identifier: '10.1016/0024-3205(95)00194-b',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Smith GA et al. Delta-8 Tetrahydrocannabinol Exposures Reported to US Poison Centers: Variations Among US States and Regions and Associations with Public Policy. J Med Toxicol 2024;20:389-400',
+        identifier: '10.1007/s13181-024-01030-z',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DEA interim final rule: Implementation of the Agriculture Improvement Act of 2018, 85 FR 51639, 21 August 2020',
+        identifier:
+          'https://www.federalregister.gov/documents/2020/08/21/2020-17356/implementation-of-the-agriculture-improvement-act-of-2018',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'AK Futures LLC v. Boyd Street Distro LLC, US Court of Appeals for the Ninth Circuit, No. 21-56133, filed 19 May 2022',
+        identifier: 'https://cdn.ca9.uscourts.gov/datastore/opinions/2022/05/19/21-56133.pdf',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          '21 CFR 1308.11(d)(31) — Tetrahydrocannabinols, including the isomer clause and the hemp exclusion',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-II/part-1308/section-1308.11',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 638026 — delta-8-THC structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/638026',
+        kind: 'url',
+      },
+    ],
+  },
 ]

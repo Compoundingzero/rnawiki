@@ -62,7 +62,12 @@ export function runFullDeterministicSweep(
   }
 
   const steps = input.workflow
-  const layer1 = validateLayer1(input.structureString, input.modality, input.cdnaMode ?? false)
+  const layer1 = validateLayer1(
+    input.structureString,
+    input.modality,
+    input.cdnaMode ?? false,
+    input.structureType,
+  )
   const layer2 = validateLayer2(layer1)
   const layer3 = validateLayer3(steps)
 
