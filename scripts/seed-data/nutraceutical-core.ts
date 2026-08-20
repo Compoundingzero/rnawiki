@@ -10568,5 +10568,456 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Iodine — the deficiency is the leading preventable cause of intellectual disability worldwide
+  // and salt iodisation is one of medicine's great successes. The supplement audit is the other
+  // end of the curve: a five-year Chinese cohort where more than adequate intake raised thyroid disease.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'iodine',
+    name: 'Iodine',
+    tradeName:
+      'Sold as potassium iodide, sodium iodide or kelp extract; potassium iodide is also an FDA-approved over-the-counter drug (iOSAT, NDA 018664)',
+    sponsor:
+      'No single sponsor — an essential trace element. Global iodine nutrition programmes are coordinated through the Iodine Global Network, formerly the International Council for the Control of Iodine Deficiency Disorders.',
+    targetGene: 'TPO',
+    targetProtein:
+      'Thyroid peroxidase (TPO), which oxidises iodide and attaches it to tyrosine residues on thyroglobulin to build thyroxine. Iodine enters the thyrocyte through the sodium-iodide symporter NIS (SLC5A5), the same transporter that makes radioiodine therapy and potassium iodide blockade possible. Iodine has no other role in the body: it is a structural atom in two hormones and nothing else.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for thyroid support, energy and metabolism, often as kelp. Correcting genuine iodine deficiency is one of the highest-value interventions in public health. Potassium iodide is separately an FDA-approved over-the-counter drug for thyroid blockade in a radiological emergency, at doses hundreds of times the nutritional requirement.',
+    patientFriendlyIndication:
+      'Taken for thyroid support and metabolism, often as a kelp supplement',
+    conditionContext: {
+      conditionExplainer:
+        'Thyroid hormone is a tyrosine molecule with iodine atoms bolted onto it — four for thyroxine, three for the active form. Without iodine the hormone cannot be built, the thyroid enlarges trying, and in a developing brain the consequence is permanent. Too much iodine causes a different set of thyroid diseases, and the gap between the two is unusually narrow.',
+      whyItMatters:
+        'Iodine deficiency is the most common preventable cause of intellectual disability worldwide, and salt iodisation is one of the outstanding public health achievements of the twentieth century. That success is also why the supplement question is so awkward: in an iodine-replete country the marginal buyer is not deficient, and the best evidence on what happens when intake goes above adequate comes from a five-year cohort in China where thyroid disease rose.',
+      whoTakesThis:
+        'People buying kelp or thyroid-support supplements, pregnant and lactating women following the American Thyroid Association recommendation of 150 micrograms daily, people avoiding iodised salt through kosher or sea salt and processed food, and populations in areas without salt iodisation.',
+      clinicalGoals:
+        'Studies measured urinary iodine concentration, thyroid volume by ultrasound, thyroid-stimulating hormone and total thyroxine, thyroid autoantibodies, cognitive and motor test performance, and the cumulative incidence of overt and subclinical hypothyroidism and autoimmune thyroiditis.',
+    },
+    oneSentenceVerdict:
+      'Correcting real iodine deficiency transforms outcomes — in Albanian schoolchildren with a median urinary iodine of 43 micrograms per litre and 87% goitrous, supplementation raised median urinary iodine to 172 and improved cognition — while in China, five-year cumulative subclinical hypothyroidism rose from 0.2% in mildly deficient regions to 2.6% where intake was more than adequate and 2.9% where it was excessive.',
+    laymanHowItWorks:
+      'Thyroid hormone is essentially a small molecule with iodine atoms attached, and there is no substitute atom. A special pump concentrates iodide from your blood into the thyroid gland, where an enzyme attaches it to a scaffold protein and assembles the hormone. If iodine runs short the gland grows in an attempt to trap more of it, which is a goitre — and in a fetus or infant, the shortage of thyroid hormone during brain development causes damage that cannot be undone later. Taking more iodine than the gland needs does not make more hormone. It disturbs the gland\'s own regulation, and the trials show that showing up as thyroid disease rather than as extra energy.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 57,
+    anatomicalSite:
+      'Thyroid follicular cell, where the sodium-iodide symporter concentrates iodide at the basolateral membrane and thyroid peroxidase organifies it at the apical surface',
+    substitutes: {
+      summary:
+        'For deficiency there is no substitute and iodised salt is the intervention with the best global track record ever assembled for a micronutrient. For a person in an iodine-replete country, the honest comparator is iodised salt and dairy, and for pregnancy the American Thyroid Association specifically recommends potassium iodide rather than kelp because kelp content is unreliable.',
+      conventionalRx: [
+        {
+          name: 'Potassium iodide for thyroid blockade in a radiological emergency',
+          class: 'FDA-approved over-the-counter drug (iOSAT, NDA 018664; ThyroSafe, ANDA 076350)',
+          howItCompares:
+            'A 65 or 130 mg tablet — roughly a thousand times the daily nutritional requirement — saturates the sodium-iodide symporter so that radioactive iodine cannot be taken up by the thyroid. It is a genuine approved drug with a genuine indication, and it demonstrates that iodine at pharmacological dose does something entirely different from iodine at nutritional dose.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: effective, cheap and life-protecting in its narrow indication. Cons: it is regularly cited as evidence that high-dose iodine is safe, when its mechanism is precisely to shut the thyroid\'s iodine handling down.',
+        },
+        {
+          name: 'Levothyroxine for hypothyroidism',
+          class: 'Thyroid hormone replacement',
+          howItCompares:
+            'If the thyroid is failing for any reason other than iodine deficiency — and in iodine-replete countries the commonest cause is autoimmune thyroiditis — supplying more iodine does not help and, on the Chinese cohort data, may make autoimmune thyroiditis more likely.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: replaces the hormone directly, with a measurable endpoint. Cons: a "thyroid support" supplement bought by someone with early autoimmune thyroiditis addresses neither the cause nor the hormone.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Iodised salt',
+          activeCompound: 'Potassium iodate or potassium iodide added to table salt',
+          biologicalMechanism:
+            'Universal salt iodisation delivers a micronutrient through a vehicle everyone consumes in predictable quantity, without requiring a decision. It is the reason iodine deficiency disorders have receded across much of the world, and the reason the residual risk in wealthy countries comes from kosher salt, sea salt and processed food, none of which is iodised.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the American Thyroid Association recommends 150 micrograms daily in preconception, pregnancy and lactation, and the emergency blockade tablet is 65 or 130 mg.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Dairy, eggs and marine fish',
+          activeCompound: 'Iodide, largely from iodophor sanitisers in dairy and from seawater in fish',
+          biologicalMechanism:
+            'Milk is a major iodine source in several countries substantially because of iodine-containing sanitisers used in milking, which makes national dietary iodine supply partly an artefact of agricultural practice and vulnerable to changes in it.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Avoid kelp as an iodine source, on expert recommendation',
+          action:
+            'Kelp and seaweed iodine content varies by orders of magnitude with species, harvest site and season, and cannot be predicted from a label.',
+          patientImpact:
+            'The American Thyroid Association updated its recommendation in 2011 to specify supplementation with 150 micrograms of iodine daily as potassium iodide, explicitly "given the variability of iodine content in kelp and seaweed."',
+          clinicalPrecaution:
+            'A single kelp tablet can deliver many times the daily requirement, and the Chinese cohort data are about exactly this end of the intake curve.',
+        },
+        {
+          name: 'Check the prenatal vitamin, because half do not contain it',
+          action:
+            'Iodine is not a required component of a prenatal multivitamin in the United States, and many contain none.',
+          patientImpact:
+            'Of the 223 prenatal multivitamin formulations available in the United States, only 51% list iodine, in varying amounts, and measured levels can be discordant from labelled values.',
+          clinicalPrecaution:
+            'This is the one place in this entire file where a supplement is genuinely under-supplied rather than over-supplied, and the population affected is the one where deficiency does permanent harm.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: '[K+].[I-]',
+      chemicalFormula: 'IK',
+      molecularWeight:
+        '166.00 g/mol for potassium iodide, of which 126.90 g/mol — about 76 percent — is iodine. Potassium iodide is the marker the literature tracks: it is the form used in salt iodisation, in the emergency blockade tablet, and in the supplementation the American Thyroid Association recommends in preference to kelp.',
+      structureSource: {
+        label: 'PubChem CID 4875 — Potassium iodide, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4875',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'iod-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Iodine content and speciation, especially in seaweed-derived products',
+          description:
+            'This is the step where kelp supplements fail. Iodine content in seaweed varies by orders of magnitude with species, harvest location and season, so a label figure derived from a generic table is not a measurement. Seaweed also concentrates arsenic, and hijiki in particular carries inorganic arsenic at concentrations that have prompted national advisories.',
+          reagentsAndBuffer:
+            'Alkaline ashing followed by ICP-MS for total iodine, with tellurium as internal standard; ion chromatography with ICP-MS detection to separate iodide from iodate and organically bound iodine; species-specific arsenic speciation to separate inorganic arsenic from arsenosugars; multiple lots of each product assayed to capture batch variation',
+        },
+        {
+          id: 'iod-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the stable-isotope iodine tracer',
+          description:
+            'Iodine kinetics cannot be resolved against the large intrathyroidal store without a tracer, and radioiodine is unacceptable in healthy volunteers and in pregnancy — the populations that matter most here. A stable isotope makes absorption, thyroid uptake and turnover measurable without exposure.',
+          dependsOnStepId: 'iod-w1',
+          reagentsAndBuffer:
+            '129I-free enriched stable iodine as potassium iodide; isotope ratio determination by ICP-MS; sterile preparation for the intravenous reference arm; documented absence of radioiodine contamination',
+        },
+        {
+          id: 'iod-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Urine collection and thyroglobulin as the status pair',
+          description:
+            'Urinary iodine reflects intake over the past day and is far too variable in an individual to classify one person, though it characterises a population well. Serum thyroglobulin is the complementary marker that reflects thyroid status over months. Reporting a single spot urinary iodine as an individual diagnosis is the commonest error in this field.',
+          dependsOnStepId: 'iod-w2',
+          reagentsAndBuffer:
+            'Repeated spot urine collections with creatinine normalisation, or timed collections; Sandell-Kolthoff ammonium persulphate digestion with spectrophotometric detection, or ICP-MS; serum thyroglobulin with a dried blood spot assay for field use; thyroid-stimulating hormone and free thyroxine on the same draw',
+        },
+        {
+          id: 'iod-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Sodium-iodide symporter uptake and the Wolff-Chaikoff escape',
+          description:
+            'Test both ends of the dose curve in the same system. At nutritional concentrations, iodide uptake through NIS supplies hormone synthesis. At high concentrations, iodide acutely inhibits its own organification — the Wolff-Chaikoff effect — and the thyroid normally escapes this by downregulating NIS within days. Failure to escape produces iodine-induced hypothyroidism, which is the mechanism behind the Chinese cohort finding.',
+          dependsOnStepId: 'iod-w3',
+          reagentsAndBuffer:
+            'Rat FRTL-5 or human primary thyrocyte cultures; iodide across a concentration range spanning nutritional to blockade doses; perchlorate as the NIS inhibitor control; NIS and TPO mRNA and protein quantified over 72 hours to capture escape; organification measured as protein-bound iodine; thyroid-stimulating hormone stimulation arm',
+        },
+        {
+          id: 'iod-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Thyroid disease incidence stratified by baseline intake, not just mean effect',
+          description:
+            'Report incidence of overt and subclinical hypothyroidism and of autoimmune thyroiditis stratified by regional or individual baseline iodine intake, because iodine\'s dose-response is U-shaped and a mean effect across an entire population conceals both arms of it. The Chinese five-year cohort is the model: three regions, three intake levels, and the disease incidence read off against each.',
+          dependsOnStepId: 'iod-w4',
+          reagentsAndBuffer:
+            'Serial thyroid-stimulating hormone, free thyroxine and thyroid peroxidase and thyroglobulin antibody measurement; B-mode thyroid ultrasonography at baseline and follow-up; median urinary iodine excretion characterising each cohort; prespecified stratification by baseline antibody status',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'iod-a1',
+        category: 'measured',
+        title: 'More than adequate iodine raised thyroid disease over five years',
+        laymanSummary:
+          'A Chinese study followed three regions with low, adequate and excessive iodine intake for five years. Subclinical hypothyroidism and autoimmune thyroiditis rose more than tenfold where intake was above adequate.',
+        technicalDetails:
+          'Teng and colleagues followed 3,018 of 3,761 baseline participants (80.2%) from 1999 through 2004 across three Chinese regions with different iodine intakes: mildly deficient (median urinary iodine 84 micrograms per litre), more than adequate (median 243) and excessive (median 651), measuring thyroid hormones and autoantibodies in serum, urinary iodine and B-mode thyroid ultrasonography at baseline and follow-up. Cumulative incidence of overt hypothyroidism was 0.2%, 0.5% and 0.3% across the three regions. Cumulative incidence of subclinical hypothyroidism was 0.2%, 2.6% and 2.9%. Cumulative incidence of autoimmune thyroiditis was 0.2%, 1.0% and 1.3%. Among subjects euthyroid with antithyroid antibodies at baseline, the five-year incidence of elevated thyrotropin was greater with more than adequate or excessive iodine intake. The critical detail for a supplement buyer is the middle column: the harm is not confined to "excessive" intake but appears already at intake described as more than adequate, which is precisely where a person in an iodine-replete country adding a kelp tablet would land.',
+        evidenceSource: 'Teng W et al. N Engl J Med 2006;354:2783-2793',
+        doi: '10.1056/NEJMoa054022',
+        measuredMetric:
+          'Five-year cumulative incidence of overt hypothyroidism, subclinical hypothyroidism and autoimmune thyroiditis by regional iodine intake',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iod-a2',
+        category: 'measured',
+        title: 'In genuinely deficient children, supplementation improved cognition',
+        laymanSummary:
+          'Albanian schoolchildren with severe iodine deficiency — 87 percent had goitres — were randomised to iodised oil or placebo. Their iodine and thyroid status normalised and their cognitive test scores improved.',
+        technicalDetails:
+          'Zimmermann and colleagues randomised 310 children aged 10 to 12 in rural southeastern Albania to 400 mg of iodine as oral iodised oil or placebo, in a double-blind trial, with urinary iodine, thyrotropin, total thyroxine and thyroid volume by ultrasound measured at baseline and 24 weeks alongside a battery of seven cognitive and motor tests covering information processing, working memory, visual problem solving, visual search and fine motor skills. At baseline the median urinary iodine concentration was 43 micrograms per litre, 87% were goitrous, and nearly a third had low circulating total thyroxine. At 24 weeks median urinary iodine in the treated group was 172 micrograms per litre and thyroid status had markedly improved. The authors noted that earlier randomised trials of iodine and cognition in schoolchildren had produced equivocal results — the difference here being a population with unambiguous, severe deficiency. That is the whole point: iodine supplementation works where iodine is missing, and this trial is the cleanest available demonstration of it.',
+        evidenceSource: 'Zimmermann MB et al. Am J Clin Nutr 2006;83:108-114',
+        doi: '10.1093/ajcn/83.1.108',
+        measuredMetric:
+          'Urinary iodine concentration, thyroid volume, thyroid hormone status and performance across seven cognitive and motor tests at 24 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iod-a3',
+        category: 'measured',
+        title: 'Iodine deficiency is the leading preventable cause of intellectual disability',
+        laymanSummary:
+          'Globally, more than two billion people are at risk of iodine deficiency, and it remains the most common preventable cause of intellectual disability.',
+        technicalDetails:
+          'Zimmermann, Jooste and Pandav\'s Lancet seminar sets out the scale: iodine deficiency disorders affect populations across the world, the most vulnerable being pregnant and lactating women and young children, and iodine deficiency remains the most common preventable cause of intellectual impairment worldwide. The mechanism is developmental and irreversible — maternal thyroid hormone is required for fetal brain development at stages that cannot be revisited, so the damage from deficiency during pregnancy cannot be corrected by later supplementation. Universal salt iodisation, coordinated internationally since the International Council for the Control of Iodine Deficiency Disorders was established in 1985 and the 1990 World Summit for Children, is the intervention that has driven this down. This audit is recorded as measured because it is the fact that gives iodine its status, and because everything else on this page has to be read against it: the deficiency effect here is enormous, and it is not an argument for supplementing a replete adult.',
+        evidenceSource: 'Zimmermann MB, Jooste PL, Pandav CS. Lancet 2008;372:1251-1262',
+        doi: '10.1016/S0140-6736(08)61005-3',
+        measuredMetric:
+          'Global population at risk of iodine deficiency and its ranking among preventable causes of intellectual impairment',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iod-a4',
+        category: 'failed',
+        title: 'Half of US prenatal vitamins contain no iodine, and labels can be wrong',
+        laymanSummary:
+          'Of 223 prenatal multivitamin formulations sold in the United States, only about half list iodine at all, and the measured amount can differ from the label.',
+        technicalDetails:
+          'Leung, Pearce and Braverman record that of the 223 prenatal multivitamin formulations available in the United States, only 51% list iodine, containing varying amounts, and that measured levels can be discordant from labelled values. They also note NHANES data from 2001 to 2006 showing only 20.3% of US pregnant women routinely take an iodine-containing supplement. The American Thyroid Association recommended in 2006 that all pregnant and lactating women in North America take a supplement containing 150 micrograms of iodine daily, updating this in 2011 to include the preconception period and to specify potassium iodide "given the variability of iodine content in kelp and seaweed". This is the inverse of the pattern that runs through the rest of this file. Almost every other entry here concerns a supplement being oversold to people who do not need it; iodine in pregnancy is a supplement that is genuinely needed, genuinely evidenced, and absent from half the products aimed at exactly the population that needs it.',
+        evidenceSource: 'Leung AM, Pearce EN, Braverman LE. Thyroid 2013;23:7-8',
+        doi: '10.1089/thy.2012.0491',
+        measuredMetric:
+          'Proportion of US prenatal multivitamin formulations listing iodine, and proportion of US pregnant women taking an iodine-containing supplement',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'iod-a5',
+        category: 'inferred',
+        title: 'The emergency tablet is a thousand times the requirement, and it works by shutting the gland down',
+        laymanSummary:
+          'Potassium iodide tablets for radiation emergencies are an approved drug at 65 or 130 milligrams. That dose works by blocking the thyroid, not by nourishing it.',
+        technicalDetails:
+          'Potassium iodide holds FDA approval as an over-the-counter drug for thyroid blockade — iOSAT under NDA 018664 at 65 and 130 mg, and ThyroSafe under ANDA 076350 at the same strengths. A 130 mg tablet contains roughly 100 mg of iodine, about a thousand times the 150 microgram daily figure recommended in pregnancy. The mechanism is saturation: flooding the sodium-iodide symporter with stable iodide prevents uptake of radioactive iodine, and acutely high intrathyroidal iodide also inhibits its own organification through the Wolff-Chaikoff effect. The inference worth auditing is a common one in supplement marketing: that an approved high-dose iodine product demonstrates the safety of high-dose iodine supplementation. It demonstrates the opposite. The tablet is approved because it reliably interrupts thyroid iodine handling for a day or two, which is exactly the physiology that becomes a problem when sustained.',
+        evidenceSource:
+          'Drugs@FDA — iOSAT (potassium iodide) NDA 018664 and ThyroSafe ANDA 076350, over-the-counter thyroid blockade',
+        inferredClaim:
+          'That the existence of an approved high-dose potassium iodide product supports the safety of sustained high-dose iodine supplementation',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'iod-a6',
+        category: 'conclusion_shift',
+        title: 'The dose-response is U-shaped, and salt iodisation programmes had to be recalibrated',
+        laymanSummary:
+          'Iodine was long treated as a nutrient where more is safer. The Chinese data showed that raising a population above adequate intake creates a different set of thyroid diseases, and programmes were adjusted.',
+        technicalDetails:
+          'The classical framing of iodine was one-directional: deficiency causes goitre, cretinism and intellectual impairment, and salt iodisation fixes it. Teng and colleagues measured what happens on the other side of adequate. Across three regions, five-year cumulative subclinical hypothyroidism was 0.2% at mildly deficient intake, 2.6% at more than adequate and 2.9% at excessive; autoimmune thyroiditis was 0.2%, 1.0% and 1.3%. The risk was concentrated in people who already carried antithyroid antibodies while euthyroid at baseline — a large and entirely asymptomatic group that no supplement buyer knows they belong to. The practical consequence was that iodine programmes moved from maximising intake to targeting a range, and national salt iodine concentrations have been revised downward in several countries as a result. The general lesson is the one that recurs throughout this file, in its sharpest form: an essential nutrient with a genuine, severe deficiency disease is not thereby a substance where more is better.',
+        evidenceSource: 'Teng W et al. N Engl J Med 2006;354:2783-2793',
+        doi: '10.1056/NEJMoa054022',
+        inferredClaim:
+          'That because iodine deficiency causes severe disease, higher iodine intake is safer than lower',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A pump concentrates iodide into the thyroid',
+        laymanDesc:
+          'Iodide from food is absorbed into the blood, and a specific pump in the thyroid gland drags it inside against a steep concentration gradient.',
+        molecularDetail:
+          'The sodium-iodide symporter NIS (SLC5A5) at the basolateral membrane of the thyrocyte concentrates iodide by one to two orders of magnitude over plasma, driven by the sodium gradient. This transporter is what makes radioiodine imaging and therapy possible, and what a potassium iodide blockade tablet saturates.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 2,
+        title: 'An enzyme bolts iodine onto a scaffold protein',
+        laymanDesc:
+          'At the far side of the cell, an enzyme oxidises the iodide and attaches it to specific spots on a large protein, then joins two of those spots together to make the hormone.',
+        molecularDetail:
+          'Thyroid peroxidase oxidises iodide and iodinates tyrosyl residues on thyroglobulin, then couples mono- and di-iodotyrosines to form thyroxine and triiodothyronine within the thyroglobulin backbone, which is stored in colloid until proteolysis releases the hormone. Thyroid peroxidase is also the principal autoantigen in autoimmune thyroiditis.',
+        iconName: 'Wrench',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'Too little, and the gland grows trying to catch more',
+        laymanDesc:
+          'When iodine is short, hormone output falls, the pituitary pushes harder, and the thyroid enlarges. In a developing brain the hormone shortage causes permanent damage.',
+        molecularDetail:
+          'Falling thyroid hormone raises thyrotropin, which drives thyrocyte hyperplasia and goitre. In Zimmermann\'s Albanian cohort, baseline median urinary iodine was 43 micrograms per litre with 87% goitrous and nearly a third having low total thyroxine, and 24 weeks of iodised oil raised median urinary iodine to 172 with marked improvement in thyroid status and in cognitive performance.',
+        iconName: 'TrendingDown',
+        visualStage: 'delivery',
+      },
+      {
+        step: 4,
+        title: 'Too much, and the gland shuts its own iodine handling down',
+        laymanDesc:
+          'A large iodine load acutely blocks hormone production. Normally the gland adapts within days, but in some people it does not, and hypothyroidism follows.',
+        molecularDetail:
+          'Acutely high intrathyroidal iodide inhibits its own organification — the Wolff-Chaikoff effect — and normal escape occurs through downregulation of the sodium-iodide symporter within days. Failure to escape produces iodine-induced hypothyroidism, and this mechanism is the most likely explanation for the subclinical hypothyroidism gradient in the Chinese cohort. The opposite failure, iodine-induced hyperthyroidism, occurs in nodular glands adapted to long-standing deficiency.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The measured outcome is a U-shaped curve',
+        laymanDesc:
+          'Disease rises at both ends. Deficiency causes goitre and irreversible developmental damage; more than adequate intake raises subclinical hypothyroidism and autoimmune thyroiditis.',
+        molecularDetail:
+          'Five-year cumulative subclinical hypothyroidism was 0.2%, 2.6% and 2.9% across mildly deficient, more than adequate and excessive intake regions; autoimmune thyroiditis 0.2%, 1.0% and 1.3%. The excess risk concentrated among those euthyroid with antithyroid antibodies at baseline — an asymptomatic group of substantial size in any population.',
+        iconName: 'GitCompare',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Teng 2006 — effect of iodine intake on thyroid diseases in China',
+        phase: 'Prospective five-year cohort across three regions of differing iodine intake',
+        sampleSize: 3018,
+        primaryEndpoint:
+          'Five-year cumulative incidence of overt and subclinical hypothyroidism and of autoimmune thyroiditis',
+        endpointMet: false,
+        statisticalPValue:
+          'Subclinical hypothyroidism 0.2%, 2.6% and 2.9% at mildly deficient, more than adequate and excessive intake; autoimmune thyroiditis 0.2%, 1.0% and 1.3%; overt hypothyroidism 0.2%, 0.5% and 0.3%',
+        unreportedAdverseSignals:
+          'Excess risk concentrated among participants who were euthyroid but antibody-positive at baseline — a group that is asymptomatic and unidentified in ordinary practice. This is a regional cohort comparison rather than a randomised trial, so unmeasured regional differences cannot be excluded.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Zimmermann 2006 — iodised oil and cognition in iodine-deficient Albanian schoolchildren',
+        phase: 'Randomised double-blind placebo-controlled',
+        sampleSize: 310,
+        primaryEndpoint:
+          'Cognitive and motor performance across seven tests, with thyroid and iodine status at 24 weeks',
+        endpointMet: true,
+        statisticalPValue:
+          'Median urinary iodine rose from 43 to 172 micrograms per litre in the treated group, with marked improvement in thyroid status and in cognitive performance',
+        unreportedAdverseSignals:
+          'The authors note that earlier randomised trials of iodine and cognition in schoolchildren produced equivocal results. The distinguishing feature here is a population with severe unambiguous deficiency — 87% goitrous at baseline — which is why the result does not transfer to replete children.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Leung 2013 — iodine content of US prenatal multivitamins',
+        phase: 'Analytical and survey review',
+        sampleSize: 223,
+        primaryEndpoint:
+          'Proportion of prenatal multivitamin formulations listing iodine, and agreement between labelled and measured content',
+        endpointMet: false,
+        statisticalPValue:
+          'Only 51% of 223 formulations list iodine, in varying amounts; measured levels can be discordant from labelled values; NHANES 2001-2006 found only 20.3% of US pregnant women routinely take an iodine-containing supplement',
+        unreportedAdverseSignals:
+          'Iodine is not a mandated component of a US prenatal multivitamin. The American Thyroid Association specifies potassium iodide rather than kelp because of the variability of iodine content in kelp and seaweed.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Five-year cumulative subclinical hypothyroidism rose from 0.2% at mildly deficient intake to 2.6% at more than adequate and 2.9% at excessive',
+        'Autoimmune thyroiditis rose from 0.2% to 1.0% and 1.3% across the same three intake levels',
+        'In severely deficient Albanian children, iodised oil raised median urinary iodine from 43 to 172 micrograms per litre and improved cognition',
+        'Only 51% of 223 US prenatal multivitamin formulations list iodine, and measured levels can differ from labelled values',
+      ],
+      unsupportedInferences: [
+        'That because iodine deficiency causes severe disease, more iodine is safer than less',
+        'That an approved high-dose potassium iodide blockade tablet supports the safety of sustained high-dose supplementation',
+        'That a "thyroid support" supplement helps a thyroid failing from autoimmune thyroiditis, the commonest cause in iodine-replete countries',
+        'That kelp delivers a predictable iodine dose, which is why the American Thyroid Association specifies potassium iodide instead',
+      ],
+      whatFailedInitially: [
+        'The one-directional model of iodine in which the only risk is deficiency, revised after the Chinese cohort data',
+        'US prenatal supplementation, where half of the products aimed at the population that most needs iodine do not contain it',
+      ],
+      realWorldOutcome: [
+        'Correcting iodine deficiency is among the highest-value interventions in the history of public health and this page says so plainly',
+        'The intake window between insufficient and more than adequate is narrower than for almost any other nutrient here',
+        'The people who need supplemental iodine most — pregnant and preconception women — are the least reliably supplied by the products aimed at them',
+      ],
+    },
+    deliverySystem: {
+      type: 'Iodised salt, oral tablet or capsule as potassium iodide, kelp extract, or an approved 65 or 130 mg blockade tablet',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA when in supplement form, added to table salt by voluntary fortification, and separately approved as an over-the-counter drug for radiological thyroid blockade at doses about a thousand times the nutritional requirement. Kelp-derived products are the problem format: seaweed iodine content varies by orders of magnitude with species, harvest site and season, which is why the American Thyroid Association specifies potassium iodide for supplementation. Kosher salt, sea salt and processed foods are not iodised, so national iodine supply in wealthy countries is more fragile than the historical success suggests.',
+      safetyProfile:
+        'At nutritional intakes iodine is well tolerated. Above adequate intake the risks are thyroid-specific and appear at intakes far below anything conventionally called toxic: five-year cumulative subclinical hypothyroidism was more than tenfold higher in Chinese regions with more than adequate intake than in a mildly deficient region, with autoimmune thyroiditis showing the same gradient, and risk concentrated in people who were antibody-positive but euthyroid at baseline. Iodine-induced hyperthyroidism can occur in people with nodular goitre adapted to long-standing deficiency. Very high acute doses cause gastrointestinal upset, metallic taste, sialadenitis and iodism. Iodine crosses the placenta and is concentrated in breast milk, so excess in pregnancy and lactation can cause neonatal hypothyroidism. Kelp supplements additionally carry variable arsenic, with hijiki-derived material of particular concern.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is iodine deficiency still a real problem?',
+        a: 'Yes, on a very large scale, and it is the strongest fact on this page. Iodine deficiency remains the most common preventable cause of intellectual impairment worldwide, with pregnant and lactating women and young children the most vulnerable. In a randomised trial in rural Albania, children whose median urinary iodine was 43 micrograms per litre and of whom 87 percent had goitres showed improved cognitive performance after supplementation. Universal salt iodisation is one of the outstanding public health achievements of the last century.',
+      },
+      {
+        q: 'So should I take an iodine supplement?',
+        a: 'That depends entirely on whether you are deficient, and iodine is unusual in that taking more than enough causes its own diseases. A five-year Chinese cohort compared three regions and found five-year subclinical hypothyroidism of 0.2 percent where intake was mildly deficient, 2.6 percent where it was more than adequate, and 2.9 percent where it was excessive, with autoimmune thyroiditis following the same pattern. Note the middle column: harm appeared already at more than adequate, not only at excessive.',
+        auditNote:
+          'The excess risk was concentrated in people who were antibody-positive but had no symptoms, which nobody knows about themselves.',
+      },
+      {
+        q: 'Is kelp a good source?',
+        a: 'The American Thyroid Association specifically says not, and gives the reason. In 2011 it updated its recommendation to specify supplementation with 150 micrograms of iodine daily as potassium iodide, "given the variability of iodine content in kelp and seaweed". Seaweed iodine varies by orders of magnitude with species, harvest location and season, so a kelp tablet is an unpredictable dose of the one nutrient here whose safe range is narrow. Kelp also carries variable arsenic.',
+      },
+      {
+        q: 'Will iodine help an underactive thyroid?',
+        a: 'Only if the cause is iodine deficiency, and in an iodine-replete country it usually is not — the commonest cause is autoimmune thyroiditis. In that setting supplying more iodine does not restore hormone production, and the Chinese cohort data suggest above-adequate intake makes autoimmune thyroiditis more likely rather than less. A "thyroid support" supplement bought for fatigue addresses neither the cause nor the missing hormone.',
+      },
+      {
+        q: 'My prenatal vitamin does not list iodine. Does that matter?',
+        a: 'It may, and this is the one place in this whole file where a supplement is genuinely under-supplied rather than oversold. Of 223 prenatal multivitamin formulations available in the United States, only 51 percent list iodine at all, in varying amounts, and measured levels can differ from the label. NHANES data found only about 20 percent of US pregnant women routinely take an iodine-containing supplement. Maternal thyroid hormone is required for fetal brain development at stages that cannot be revisited later.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Zimmermann MB et al. Iodine supplementation improves cognition in iodine-deficient schoolchildren in Albania: a randomized, controlled, double-blind study. Am J Clin Nutr 2006;83:108-114',
+        identifier: '10.1093/ajcn/83.1.108',
+        kind: 'doi',
+      },
+      {
+        label: 'Teng W et al. Effect of iodine intake on thyroid diseases in China. N Engl J Med 2006;354:2783-2793',
+        identifier: '10.1056/NEJMoa054022',
+        kind: 'doi',
+      },
+      {
+        label: 'Zimmermann MB, Jooste PL, Pandav CS. Iodine-deficiency disorders. Lancet 2008;372:1251-1262',
+        identifier: '10.1016/S0140-6736(08)61005-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Leung AM, Pearce EN, Braverman LE. Sufficient iodine intake during pregnancy: just do it. Thyroid 2013;23:7-8',
+        identifier: '10.1089/thy.2012.0491',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Leung AM, Pearce EN, Braverman LE. Iodine content of prenatal multivitamins in the United States. N Engl J Med 2009;360:939-940',
+        identifier: '10.1056/NEJMc0807851',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA — NDA 018664, iOSAT (potassium iodide) 65 mg and 130 mg, over-the-counter',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018664',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4875 — Potassium iodide',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4875',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
