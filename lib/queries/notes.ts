@@ -16,11 +16,7 @@ import type { CommunityNote } from '@/lib/types'
 export const NOTE_MAX_LENGTH = 4000
 
 export type NoteErrorCode =
-  | 'content_empty'
-  | 'content_too_long'
-  | 'author_not_found'
-  | 'drug_not_found'
-  | 'note_not_found'
+  'content_empty' | 'content_too_long' | 'author_not_found' | 'drug_not_found' | 'note_not_found'
 
 /** A typed failure so a route can map a cause to a status code without parsing message strings. */
 export class NoteError extends Error {
@@ -140,10 +136,7 @@ export async function listNotesForDrug(
     .from(communityNotes)
     .leftJoin(
       noteUpvotes,
-      and(
-        eq(noteUpvotes.noteId, communityNotes.id),
-        eq(noteUpvotes.userId, viewerUserId ?? ''),
-      ),
+      and(eq(noteUpvotes.noteId, communityNotes.id), eq(noteUpvotes.userId, viewerUserId ?? '')),
     )
     .leftJoin(users, eq(users.id, communityNotes.authorUserId))
     .where(and(eq(communityNotes.drugId, drugId), eq(communityNotes.status, 'published')))
@@ -225,7 +218,7 @@ export async function createNote(input: CreateNoteInput): Promise<CommunityNote>
     const isVerifiedDoctor = author.isDoctor && author.verificationState === 'verified'
     const role = isVerifiedDoctor
       ? (author.medicalSpecialty ?? 'Physician')
-      : (input.role?.trim() || 'Community Contributor')
+      : input.role?.trim() || 'Community Contributor'
 
     let inserted: NoteRow | undefined
     try {

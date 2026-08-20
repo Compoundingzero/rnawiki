@@ -379,9 +379,7 @@ function parseBracketAtom(s: string, start: number): BracketAtomParse {
     errors.push(`Unclosed bracket atom opened at position ${start + 1}`)
     return { element, aromatic, isotope, charge, hydrogens, next: s.length, errors, closed: false }
   }
-  errors.push(
-    `Unparsed content '${s.slice(j, close)}' in bracket atom at position ${start + 1}`,
-  )
+  errors.push(`Unparsed content '${s.slice(j, close)}' in bracket atom at position ${start + 1}`)
   return { element, aromatic, isotope, charge, hydrogens, next: close + 1, errors, closed: true }
 }
 
@@ -478,9 +476,8 @@ export function parseSmiles(smiles: string): SmilesParseResult {
       const previous = atoms[previousAtom]
       // Default bond: aromatic between two aromatic atoms (OpenSMILES 3.4), single otherwise.
       const kind: BondKind =
-        pendingBond ?? (previous !== undefined && previous.aromatic && atom.aromatic
-          ? 'aromatic'
-          : 'single')
+        pendingBond ??
+        (previous !== undefined && previous.aromatic && atom.aromatic ? 'aromatic' : 'single')
       bonds.push({ a: previousAtom, b: index, kind })
       const order = BOND_ORDER[kind]
       if (previous !== undefined) previous.bondOrderSum += order
@@ -669,7 +666,16 @@ export function parseSmiles(smiles: string): SmilesParseResult {
       continue
     }
 
-    if (ch === 'B' || ch === 'C' || ch === 'N' || ch === 'O' || ch === 'P' || ch === 'S' || ch === 'F' || ch === 'I') {
+    if (
+      ch === 'B' ||
+      ch === 'C' ||
+      ch === 'N' ||
+      ch === 'O' ||
+      ch === 'P' ||
+      ch === 'S' ||
+      ch === 'F' ||
+      ch === 'I'
+    ) {
       addAtom({
         element: ch,
         aromatic: false,
@@ -712,9 +718,7 @@ export function parseSmiles(smiles: string): SmilesParseResult {
   const unmatchedRingBonds = Array.from(openRingBonds.keys()).sort((a, b) => a - b)
   for (const ringNumber of unmatchedRingBonds) {
     const open = openRingBonds.get(ringNumber)
-    errors.push(
-      `Ring bond ${ringNumber} opened at position ${open?.position ?? 0} is never closed`,
-    )
+    errors.push(`Ring bond ${ringNumber} opened at position ${open?.position ?? 0} is never closed`)
   }
 
   if (atoms.length === 0) {
@@ -779,7 +783,8 @@ export function parseSmiles(smiles: string): SmilesParseResult {
   // was already weighed above (and can carry an isotope), so only the bracket suffixes and the
   // implicit hydrogens are added here. Ion charges are ignored: an electron is 0.00055 Da and
   // formula weights are conventionally quoted for the neutral formula.
-  molecularWeight += (bracketHydrogenTotal + implicitHydrogens) * (STANDARD_ATOMIC_WEIGHTS['H'] ?? 0)
+  molecularWeight +=
+    (bracketHydrogenTotal + implicitHydrogens) * (STANDARD_ATOMIC_WEIGHTS['H'] ?? 0)
 
   const bondCounts: SmilesBondCounts = { single: 0, double: 0, triple: 0, aromatic: 0 }
   for (const bond of bonds) {

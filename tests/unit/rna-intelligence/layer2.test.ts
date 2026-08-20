@@ -127,9 +127,9 @@ describe('validateLayer2 — RNA secondary structure', () => {
     expect(result.passed).toBe(true)
     expect(result.thermodynamicallyPlausible).toBe(false)
     expect(codes(result)).toContain('L2_SEQUENCE_TOO_LONG_TO_FOLD')
-    expect(result.diagnostics.find((d) => d.code === 'L2_SEQUENCE_TOO_LONG_TO_FOLD')?.severity).toBe(
-      'warning',
-    )
+    expect(
+      result.diagnostics.find((d) => d.code === 'L2_SEQUENCE_TOO_LONG_TO_FOLD')?.severity,
+    ).toBe('warning')
     expect(result.mfeDeltaG).toBeUndefined()
     expect(result.secondaryStructureNotation).toBeUndefined()
     // The complement is a per-base map and costs nothing, so it is still reported.

@@ -402,10 +402,62 @@ function readBracketAtom(s: string, start: number): BracketAtom {
  * depending on a mass table it never reads.
  */
 const TWO_LETTER_ELEMENTS = new Set([
-  'He', 'Li', 'Be', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'Cl', 'Ar', 'Ca', 'Sc', 'Ti', 'Cr', 'Mn', 'Fe',
-  'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Zr', 'Nb', 'Mo', 'Tc',
-  'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'Xe', 'Cs', 'Ba', 'La', 'Gd', 'Re', 'Os',
-  'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Th',
+  'He',
+  'Li',
+  'Be',
+  'Ne',
+  'Na',
+  'Mg',
+  'Al',
+  'Si',
+  'Cl',
+  'Ar',
+  'Ca',
+  'Sc',
+  'Ti',
+  'Cr',
+  'Mn',
+  'Fe',
+  'Co',
+  'Ni',
+  'Cu',
+  'Zn',
+  'Ga',
+  'Ge',
+  'As',
+  'Se',
+  'Br',
+  'Kr',
+  'Rb',
+  'Sr',
+  'Zr',
+  'Nb',
+  'Mo',
+  'Tc',
+  'Ru',
+  'Rh',
+  'Pd',
+  'Ag',
+  'Cd',
+  'In',
+  'Sn',
+  'Sb',
+  'Te',
+  'Xe',
+  'Cs',
+  'Ba',
+  'La',
+  'Gd',
+  'Re',
+  'Os',
+  'Ir',
+  'Pt',
+  'Au',
+  'Hg',
+  'Tl',
+  'Pb',
+  'Bi',
+  'Th',
 ])
 
 /**
@@ -955,9 +1007,7 @@ function tpsaContributionOf(graph: MolecularGraph, index: number): number {
     if (atom.charge > 0) {
       if (hydrogens >= 3) return nitrogen.ammonium
       if (hydrogens === 2) {
-        return profile.double >= 1
-          ? nitrogen.protonatedPrimaryImine
-          : nitrogen.protonatedPrimary
+        return profile.double >= 1 ? nitrogen.protonatedPrimaryImine : nitrogen.protonatedPrimary
       }
       if (hydrogens === 1) {
         return profile.double >= 1 ? nitrogen.protonatedImine : nitrogen.protonatedSecondary

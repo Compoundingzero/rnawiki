@@ -6,19 +6,34 @@ import { readFileSync } from 'node:fs'
  * vocabulary blocklist misses entirely.
  */
 const TICS = [
-  { id: 'definitional inversion ("is not X, it is Y")', re: /\bis not (?:a |an |the )?[\w\s-]{2,40}, (?:it|that|this) is\b/gi },
+  {
+    id: 'definitional inversion ("is not X, it is Y")',
+    re: /\bis not (?:a |an |the )?[\w\s-]{2,40}, (?:it|that|this) is\b/gi,
+  },
   { id: '"That is not X. That is Y."', re: /\bThat is not [\w\s-]{2,40}\.\s+That is\b/g },
   { id: '"which is exactly what"', re: /\bwhich is (exactly|precisely) (what|why|the)\b/gi },
-  { id: '"worth recording/stating/keeping"', re: /\bworth (recording|stating|keeping|noting|saying)\b/gi },
+  {
+    id: '"worth recording/stating/keeping"',
+    re: /\bworth (recording|stating|keeping|noting|saying)\b/gi,
+  },
   { id: '"the whole point"', re: /\bthe whole point\b/gi },
-  { id: '"and that is the story/the page"', re: /\b(?:and )?that is (?:the )?(story|page|point|answer|difference)\b/gi },
+  {
+    id: '"and that is the story/the page"',
+    re: /\b(?:and )?that is (?:the )?(story|page|point|answer|difference)\b/gi,
+  },
   { id: '"on purpose" / "deliberately"', re: /\b(on purpose|deliberate(ly)?)\b/gi },
-  { id: 'rhetorical "not X but Y" chain', re: /\b(?:not|never) (?:merely|simply|just) [\w\s-]{2,40}\bbut\b/gi },
+  {
+    id: 'rhetorical "not X but Y" chain',
+    re: /\b(?:not|never) (?:merely|simply|just) [\w\s-]{2,40}\bbut\b/gi,
+  },
   { id: 'em-dash', re: /—/g },
   { id: '"in other words"', re: /\bin other words\b/gi },
   { id: '"put simply" / "simply put"', re: /\b(put simply|simply put|to put it)\b/gi },
   { id: 'colon-then-restatement', re: /:\s+(?:that is|namely|in short)\b/gi },
-  { id: '"a X that cannot Y is not a Z"', re: /\bA \w+ that (cannot|does not|will not)[\w\s-]{2,50} is not\b/gi },
+  {
+    id: '"a X that cannot Y is not a Z"',
+    re: /\bA \w+ that (cannot|does not|will not)[\w\s-]{2,50} is not\b/gi,
+  },
   { id: '"the difference between X and Y"', re: /\bthe difference between [\w\s-]{2,40} and\b/gi },
   { id: '"far more/less" intensifier', re: /\bfar (more|less|better|worse|cheaper)\b/gi },
 ]
@@ -46,7 +61,11 @@ let words = 0
 
 for (const file of files) {
   let src
-  try { src = extractProse(readFileSync(file, 'utf8')) } catch { continue }
+  try {
+    src = extractProse(readFileSync(file, 'utf8'))
+  } catch {
+    continue
+  }
   if (!src.trim()) continue
   words += src.split(/\s+/).length
   for (const { id, re } of TICS) {

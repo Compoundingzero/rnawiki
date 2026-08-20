@@ -33,7 +33,13 @@ function toMolecularSchema(seed: SeedDossier): {
   schema: MolecularSchema | null
   outcome: SeedOutcome
 } {
-  const outcome: SeedOutcome = { slug: seed.slug, swept: false, passed: false, hash: null, errors: [] }
+  const outcome: SeedOutcome = {
+    slug: seed.slug,
+    swept: false,
+    passed: false,
+    hash: null,
+    errors: [],
+  }
   const source = seed.molecularSchema
   if (!source) return { schema: null, outcome }
 
@@ -115,9 +121,7 @@ async function main(): Promise<void> {
     ? process.argv[process.argv.indexOf('--only') + 1]
     : null
 
-  const seeds = only
-    ? SEED_DOSSIERS.filter((seed) => seed.slug.includes(only))
-    : SEED_DOSSIERS
+  const seeds = only ? SEED_DOSSIERS.filter((seed) => seed.slug.includes(only)) : SEED_DOSSIERS
 
   console.log(`[seed] loading ${seeds.length} curated dossiers`)
 
@@ -127,92 +131,98 @@ async function main(): Promise<void> {
 
   for (const seed of seeds) {
     try {
-    const { schema, outcome } = toMolecularSchema(seed)
-    outcomes.push(outcome)
+      const { schema, outcome } = toMolecularSchema(seed)
+      outcomes.push(outcome)
 
-    const counts = countAuditPoints(seed.keyAudits)
+      const counts = countAuditPoints(seed.keyAudits)
 
-    await db
-      .insert(drugs)
-      .values({
-        id: cap(seed.slug, 96),
-        slug: cap(seed.slug, 128),
-        name: cap(seed.name, 300),
-        tradeName: capOrNull(seed.tradeName, 400),
-        sponsor: cap(seed.sponsor, 300),
-        targetGene: cap(seed.targetGene, 200),
-        targetProtein: cap(seed.targetProtein, 300),
-        modality: seed.modality,
-        approvalStatus: seed.approvalStatus,
-        approvalYear: seed.approvalYear ?? null,
-        indication: seed.indication,
-        patientFriendlyIndication: seed.patientFriendlyIndication,
-        oneSentenceVerdict: seed.oneSentenceVerdict,
-        laymanHowItWorks: seed.laymanHowItWorks,
-        auditConfidence: seed.auditConfidence,
-        confidenceScore: seed.confidenceScore,
-        anatomicalSite: capOrNull(seed.anatomicalSite, 300),
-        recentAuditDate: cap(seed.recentAuditDate, 64),
-        hasDiscrepancy: seed.hasDiscrepancy,
-        dossierDepth: 'flagship',
-        conditionContext: seed.conditionContext ?? null,
-        pricing: seed.pricing ?? null,
-        substitutes: seed.substitutes ?? null,
-        molecularSchema: schema,
-        keyAudits: seed.keyAudits,
-        mechanismSteps: seed.mechanismSteps,
-        trials: seed.trials,
-        measuredVsInferredSummary: seed.measuredVsInferredSummary,
-        deliverySystem: seed.deliverySystem,
-        commonQuestions: seed.commonQuestions,
-        sourceProvenance: seed.sources.map((source) => cap(`${source.label} (${source.identifier})`, 300)),
-        isMachineVerifiedStructure: outcome.passed,
-        verificationHash: outcome.hash,
-        lastVerifiedAt: outcome.passed ? new Date() : null,
-      })
-      .onConflictDoUpdate({
-        target: drugs.slug,
-        set: {
-          name: sql`excluded.name`,
-          tradeName: sql`excluded.trade_name`,
-          sponsor: sql`excluded.sponsor`,
-          targetGene: sql`excluded.target_gene`,
-          targetProtein: sql`excluded.target_protein`,
-          modality: sql`excluded.modality`,
-          approvalStatus: sql`excluded.approval_status`,
-          approvalYear: sql`excluded.approval_year`,
-          indication: sql`excluded.indication`,
-          patientFriendlyIndication: sql`excluded.patient_friendly_indication`,
-          oneSentenceVerdict: sql`excluded.one_sentence_verdict`,
-          laymanHowItWorks: sql`excluded.layman_how_it_works`,
-          auditConfidence: sql`excluded.audit_confidence`,
-          confidenceScore: sql`excluded.confidence_score`,
-          anatomicalSite: sql`excluded.anatomical_site`,
-          recentAuditDate: sql`excluded.recent_audit_date`,
-          hasDiscrepancy: sql`excluded.has_discrepancy`,
-          dossierDepth: sql`excluded.dossier_depth`,
-          conditionContext: sql`excluded.condition_context`,
-          pricing: sql`excluded.pricing`,
-          substitutes: sql`excluded.substitutes`,
-          molecularSchema: sql`excluded.molecular_schema`,
-          keyAudits: sql`excluded.key_audits`,
-          mechanismSteps: sql`excluded.mechanism_steps`,
-          trials: sql`excluded.trials`,
-          measuredVsInferredSummary: sql`excluded.measured_vs_inferred_summary`,
-          deliverySystem: sql`excluded.delivery_system`,
-          commonQuestions: sql`excluded.common_questions`,
-          sourceProvenance: sql`excluded.source_provenance`,
-          isMachineVerifiedStructure: sql`excluded.is_machine_verified_structure`,
-          verificationHash: sql`excluded.verification_hash`,
-          lastVerifiedAt: sql`excluded.last_verified_at`,
-          updatedAt: sql`now()`,
-        },
-      })
+      await db
+        .insert(drugs)
+        .values({
+          id: cap(seed.slug, 96),
+          slug: cap(seed.slug, 128),
+          name: cap(seed.name, 300),
+          tradeName: capOrNull(seed.tradeName, 400),
+          sponsor: cap(seed.sponsor, 300),
+          targetGene: cap(seed.targetGene, 200),
+          targetProtein: cap(seed.targetProtein, 300),
+          modality: seed.modality,
+          approvalStatus: seed.approvalStatus,
+          approvalYear: seed.approvalYear ?? null,
+          indication: seed.indication,
+          patientFriendlyIndication: seed.patientFriendlyIndication,
+          oneSentenceVerdict: seed.oneSentenceVerdict,
+          laymanHowItWorks: seed.laymanHowItWorks,
+          auditConfidence: seed.auditConfidence,
+          confidenceScore: seed.confidenceScore,
+          anatomicalSite: capOrNull(seed.anatomicalSite, 300),
+          recentAuditDate: cap(seed.recentAuditDate, 64),
+          hasDiscrepancy: seed.hasDiscrepancy,
+          dossierDepth: 'flagship',
+          conditionContext: seed.conditionContext ?? null,
+          pricing: seed.pricing ?? null,
+          substitutes: seed.substitutes ?? null,
+          molecularSchema: schema,
+          keyAudits: seed.keyAudits,
+          mechanismSteps: seed.mechanismSteps,
+          trials: seed.trials,
+          measuredVsInferredSummary: seed.measuredVsInferredSummary,
+          deliverySystem: seed.deliverySystem,
+          commonQuestions: seed.commonQuestions,
+          sourceProvenance: seed.sources.map((source) =>
+            cap(`${source.label} (${source.identifier})`, 300),
+          ),
+          isMachineVerifiedStructure: outcome.passed,
+          verificationHash: outcome.hash,
+          lastVerifiedAt: outcome.passed ? new Date() : null,
+        })
+        .onConflictDoUpdate({
+          target: drugs.slug,
+          set: {
+            name: sql`excluded.name`,
+            tradeName: sql`excluded.trade_name`,
+            sponsor: sql`excluded.sponsor`,
+            targetGene: sql`excluded.target_gene`,
+            targetProtein: sql`excluded.target_protein`,
+            modality: sql`excluded.modality`,
+            approvalStatus: sql`excluded.approval_status`,
+            approvalYear: sql`excluded.approval_year`,
+            indication: sql`excluded.indication`,
+            patientFriendlyIndication: sql`excluded.patient_friendly_indication`,
+            oneSentenceVerdict: sql`excluded.one_sentence_verdict`,
+            laymanHowItWorks: sql`excluded.layman_how_it_works`,
+            auditConfidence: sql`excluded.audit_confidence`,
+            confidenceScore: sql`excluded.confidence_score`,
+            anatomicalSite: sql`excluded.anatomical_site`,
+            recentAuditDate: sql`excluded.recent_audit_date`,
+            hasDiscrepancy: sql`excluded.has_discrepancy`,
+            dossierDepth: sql`excluded.dossier_depth`,
+            conditionContext: sql`excluded.condition_context`,
+            pricing: sql`excluded.pricing`,
+            substitutes: sql`excluded.substitutes`,
+            molecularSchema: sql`excluded.molecular_schema`,
+            keyAudits: sql`excluded.key_audits`,
+            mechanismSteps: sql`excluded.mechanism_steps`,
+            trials: sql`excluded.trials`,
+            measuredVsInferredSummary: sql`excluded.measured_vs_inferred_summary`,
+            deliverySystem: sql`excluded.delivery_system`,
+            commonQuestions: sql`excluded.common_questions`,
+            sourceProvenance: sql`excluded.source_provenance`,
+            isMachineVerifiedStructure: sql`excluded.is_machine_verified_structure`,
+            verificationHash: sql`excluded.verification_hash`,
+            lastVerifiedAt: sql`excluded.last_verified_at`,
+            updatedAt: sql`now()`,
+          },
+        })
 
-    const badge = outcome.passed ? `verified ${outcome.hash}` : outcome.swept ? 'SWEEP FAILED' : 'no structure'
-    console.log(
-      `[seed] ${seed.slug.padEnd(32)} ${String(counts.measured + counts.inferred + counts.failed + counts.conclusionShift).padStart(3)} audits · ${seed.mechanismSteps.length} steps · ${badge}`,
-    )
+      const badge = outcome.passed
+        ? `verified ${outcome.hash}`
+        : outcome.swept
+          ? 'SWEEP FAILED'
+          : 'no structure'
+      console.log(
+        `[seed] ${seed.slug.padEnd(32)} ${String(counts.measured + counts.inferred + counts.failed + counts.conclusionShift).padStart(3)} audits · ${seed.mechanismSteps.length} steps · ${badge}`,
+      )
     } catch (error: unknown) {
       // One malformed dossier is one missing page; aborting the run is 86 missing pages.
       const message = error instanceof Error ? error.message : String(error)

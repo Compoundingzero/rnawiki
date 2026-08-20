@@ -237,9 +237,9 @@ export default async function ReviewQueuePage({ searchParams }: ReviewQueuePageP
           {/* The one line the brief asks for: what this queue is. */}
           <p className="text-xs sm:text-sm text-[#6E6E73] leading-relaxed">
             These edits passed every machine check — the sequence, the thermodynamics and the
-            laboratory protocol graph — and are now waiting for a person to read them. Oldest at
-            the top, so nothing waits forever. Anyone can read this page; deciding takes an
-            account with review standing.
+            laboratory protocol graph — and are now waiting for a person to read them. Oldest at the
+            top, so nothing waits forever. Anyone can read this page; deciding takes an account with
+            review standing.
           </p>
           <p className="text-[11px] font-semibold text-[#86868B] tabular-nums">
             {total === 0

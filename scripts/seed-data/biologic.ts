@@ -42,13 +42,15 @@ import type { SeedDossier } from '@/lib/seed-types'
 
 const LANTUS_LABEL = {
   label: 'LANTUS (insulin glargine) injection — US prescribing information, DailyMed',
-  identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3a97c40f-0c83-42d7-a8ee-484b208db4e3',
+  identifier:
+    'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3a97c40f-0c83-42d7-a8ee-484b208db4e3',
   kind: 'regulatory' as const,
 }
 
 const HUMALOG_LABEL = {
   label: 'HUMALOG (insulin lispro) injection — US prescribing information, DailyMed',
-  identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=51d3dc11-52b9-4296-a2f4-58c770d4448d',
+  identifier:
+    'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=51d3dc11-52b9-4296-a2f4-58c770d4448d',
   kind: 'regulatory' as const,
 }
 
@@ -62,7 +64,8 @@ const INSULIN_COST_SOURCE = {
 const INSULIN_PRICE_SOURCE = {
   label:
     'Mulcahy AW, Schwam D. Comparing Insulin Prices in the U.S. to Other Countries. RAND for HHS ASPE, 2020',
-  identifier: 'https://aspe.hhs.gov/sites/default/files/private/pdf/264056/Comparing-Insulin-Prices.pdf',
+  identifier:
+    'https://aspe.hhs.gov/sites/default/files/private/pdf/264056/Comparing-Insulin-Prices.pdf',
   kind: 'regulatory' as const,
 }
 
@@ -140,7 +143,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           class: 'Biosimilar basal insulin analogue',
           howItCompares:
             'Same molecule, approved on analytical and clinical similarity rather than new outcome trials; some carry an interchangeability designation.',
-          typicalCost: 'Approximately $60 - $150 / month US retail after the 2023-2024 list-price cuts',
+          typicalCost:
+            'Approximately $60 - $150 / month US retail after the 2023-2024 list-price cuts',
           prosAndCons:
             'Pros: identical mechanism at a lower list price. Cons: US uptake has been slowed by rebate contracting, so what a patient pays does not always follow the list price down.',
         },
@@ -149,7 +153,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           class: 'Oral non-insulin glucose-lowering agents',
           howItCompares:
             'For type 2 diabetes only. They lower glucose without exogenous insulin and do not cause hypoglycaemia on their own, but cannot replace insulin once beta-cell function is largely gone.',
-          typicalCost: '$4 - $15 / month (generic metformin); $30 - $600 / month (SGLT2 inhibitors)',
+          typicalCost:
+            '$4 - $15 / month (generic metformin); $30 - $600 / month (SGLT2 inhibitors)',
           prosAndCons:
             'Pros: no injection, no hypoglycaemia, cardiovascular and renal outcome data for SGLT2 inhibitors. Cons: useless in type 1 diabetes and insufficient in late type 2 disease.',
         },
@@ -195,8 +200,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'peptide_sequence',
-      sequence5to3:
-        'A-chain GIVEQCCTSICSLYQLENYCG | B-chain FVNQHLCGSHLVEALYLVCGERGFFYTPKTRR',
+      sequence5to3: 'A-chain GIVEQCCTSICSLYQLENYCG | B-chain FVNQHLCGSHLVEALYLVCGERGFFYTPKTRR',
       molecularWeight: '6,063 Da',
       targetReceptorAffinity:
         'Binds the insulin receptor; the label notes glargine has approximately 6-8 times the IGF-1 receptor affinity of human insulin in vitro',
@@ -262,33 +266,38 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'ig-a1',
         category: 'measured',
-        title: 'Treat-to-Target: same HbA1c as NPH, fewer patients reaching it with nocturnal hypoglycaemia',
+        title:
+          'Treat-to-Target: same HbA1c as NPH, fewer patients reaching it with nocturnal hypoglycaemia',
         laymanSummary:
           'In 756 people with type 2 diabetes, glargine and NPH insulin brought average blood sugar to the same place. The difference was in how many got there without night-time lows.',
         technicalDetails:
           'Randomised, open-label, 24-week trial. 756 overweight adults on one or two oral agents added bedtime glargine or NPH titrated to a fasting plasma glucose target of 100 mg/dL. End-point HbA1c was 6.96% with glargine and 6.97% with NPH; mean fasting plasma glucose 117 versus 120 mg/dL. 33.2% versus 26.7% reached HbA1c 7% or less without documented nocturnal hypoglycaemia (p < 0.05), and rates of other symptomatic hypoglycaemia categories were 21-48% lower with glargine.',
         evidenceSource: 'Riddle MC, Rosenstock J, Gerich J. Diabetes Care 2003;26:3080-3086',
         doi: '10.2337/diacare.26.11.3080',
-        measuredMetric: 'HbA1c 6.96% versus 6.97%; 33.2% versus 26.7% reaching target free of documented nocturnal hypoglycaemia',
+        measuredMetric:
+          'HbA1c 6.96% versus 6.97%; 33.2% versus 26.7% reaching target free of documented nocturnal hypoglycaemia',
         auditFlag: 'verified',
       },
       {
         id: 'ig-a2',
         category: 'failed',
-        title: 'ORIGIN: normalising fasting glucose with basal insulin did not reduce cardiovascular events',
+        title:
+          'ORIGIN: normalising fasting glucose with basal insulin did not reduce cardiovascular events',
         laymanSummary:
           'The largest trial ever run on this drug asked whether driving fasting sugar to normal with insulin would prevent heart attacks and strokes. Over more than six years, it did not.',
         technicalDetails:
           'ORIGIN randomised 12,537 people with cardiovascular risk factors plus impaired fasting glucose, impaired glucose tolerance or type 2 diabetes to glargine targeting fasting glucose 95 mg/dL or less, versus standard care. Median follow-up 6.2 years. First coprimary outcome (nonfatal MI, nonfatal stroke or cardiovascular death) 2.94 versus 2.85 events per 100 person-years, hazard ratio 1.02 (95% CI 0.94-1.11), p = 0.63. Second coprimary outcome hazard ratio 1.04, p = 0.27. Severe hypoglycaemia 1.00 versus 0.31 per 100 person-years. Median weight rose 1.6 kg on glargine and fell 0.5 kg on standard care.',
         evidenceSource: 'ORIGIN Trial Investigators. N Engl J Med 2012;367:319-328',
         doi: '10.1056/NEJMoa1203858',
-        measuredMetric: 'Hazard ratio 1.02 (95% CI 0.94-1.11), p = 0.63 for the first coprimary cardiovascular outcome',
+        measuredMetric:
+          'Hazard ratio 1.02 (95% CI 0.94-1.11), p = 0.63 for the first coprimary cardiovascular outcome',
         auditFlag: 'verified',
       },
       {
         id: 'ig-a3',
         category: 'conclusion_shift',
-        title: 'The 2009 cancer scare was raised by observational data and retired by a randomised trial',
+        title:
+          'The 2009 cancer scare was raised by observational data and retired by a randomised trial',
         laymanSummary:
           'A large German insurance database suggested in 2009 that glargine might raise cancer risk. Three years later a randomised trial with over 12,000 people and six years of follow-up found no difference at all.',
         technicalDetails:
@@ -485,7 +494,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Riddle MC, Rosenstock J, Gerich J. The Treat-to-Target Trial. Diabetes Care 2003;26:3080-3086',
+        label:
+          'Riddle MC, Rosenstock J, Gerich J. The Treat-to-Target Trial. Diabetes Care 2003;26:3080-3086',
         identifier: '10.2337/diacare.26.11.3080',
         kind: 'doi',
       },
@@ -510,7 +520,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       },
       INSULIN_COST_SOURCE,
       {
-        label: 'Barber MJ et al. Estimated sustainable cost-based prices for diabetes medicines. JAMA Netw Open 2024;7:e243474',
+        label:
+          'Barber MJ et al. Estimated sustainable cost-based prices for diabetes medicines. JAMA Netw Open 2024;7:e243474',
         identifier: '10.1001/jamanetworkopen.2024.3474',
         kind: 'doi',
       },
@@ -518,13 +529,15 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       LANTUS_LABEL,
       {
         label: 'Drugs@FDA: LANTUS, BLA 021081, original approval 20 April 2000',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021081',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021081',
         kind: 'regulatory',
       },
       {
         label:
           'Sanofi press release: Sanofi cuts U.S. list price of Lantus by 78%, 16 March 2023 (effective 1 January 2024)',
-        identifier: 'https://www.sanofi.com/en/media-room/press-releases/2023/2023-03-16-20-06-43-2629188',
+        identifier:
+          'https://www.sanofi.com/en/media-room/press-releases/2023/2023-03-16-20-06-43-2629188',
         kind: 'url',
       },
       {
@@ -605,7 +618,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           class: 'Rapid-acting insulin analogues',
           howItCompares:
             'Different amino-acid modifications reaching the same pharmacokinetic goal. Clinically interchangeable with lispro in practice.',
-          typicalCost: 'Approximately $30 - $130 per vial US retail after the 2023-2024 list-price cuts',
+          typicalCost:
+            'Approximately $30 - $130 per vial US retail after the 2023-2024 list-price cuts',
           prosAndCons:
             'Pros: same timing benefit, more than one supplier. Cons: no head-to-head evidence that any one of them beats the others on a hard outcome.',
         },
@@ -626,7 +640,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Slows gastric emptying and inhibits disaccharidase activity in the small intestine, lowering the post-meal glucose excursion without changing the insulin dose.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '1 - 2 tablespoons diluted in water, taken shortly before a starch-based meal',
+          dailyUsage:
+            '1 - 2 tablespoons diluted in water, taken shortly before a starch-based meal',
           monthlyCost: '$3 - $8 / month',
         },
         {
@@ -650,7 +665,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Waiting for the injection to take effect before eating',
-          action: 'Check the time between injection and the first bite against what is actually happening on a glucose meter or sensor.',
+          action:
+            'Check the time between injection and the first bite against what is actually happening on a glucose meter or sensor.',
           patientImpact:
             'The onset of a rapid analogue is around 15 minutes, but it varies with site, temperature and lipohypertrophy. Matching the real onset to the real meal is where most of the practical benefit of this drug class sits.',
           clinicalPrecaution:
@@ -733,7 +749,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Cochrane systematic review of randomised trials of at least 24 weeks in adults with type 1 diabetes. Mean HbA1c difference -0.15% (95% CI -0.20 to -0.10, low-quality evidence) favouring analogues. Severe hypoglycaemia odds ratio 0.89 (95% CI 0.71-1.12, p = 0.31, very low-quality evidence). No trial was blinded, and none was designed to measure mortality or diabetic complications.',
         evidenceSource: 'Fullerton B et al. Cochrane Database Syst Rev 2016;(6):CD012161',
         doi: '10.1002/14651858.CD012161',
-        measuredMetric: 'HbA1c mean difference -0.15% (95% CI -0.20 to -0.10) across 2,608 participants',
+        measuredMetric:
+          'HbA1c mean difference -0.15% (95% CI -0.20 to -0.10) across 2,608 participants',
         auditFlag: 'verified',
       },
       {
@@ -954,7 +971,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       HUMALOG_LABEL,
       {
         label: 'Drugs@FDA: HUMALOG, BLA 020563, original approval 14 June 1996',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020563',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020563',
         kind: 'regulatory',
       },
       {
@@ -987,7 +1005,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     approvalYear: 1989,
     indication:
       'Anaemia due to chronic kidney disease, anaemia due to zidovudine in HIV infection, anaemia due to myelosuppressive chemotherapy, and reduction of allogeneic red cell transfusion in elective non-cardiac, non-vascular surgery',
-    patientFriendlyIndication: 'Low red blood cell count caused by kidney failure, HIV treatment or chemotherapy',
+    patientFriendlyIndication:
+      'Low red blood cell count caused by kidney failure, HIV treatment or chemotherapy',
     anatomicalSite: 'Erythroid progenitor cells in the bone marrow',
     conditionContext: {
       conditionExplainer:
@@ -1014,7 +1033,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           class: 'Parenteral iron replacement',
           howItCompares:
             'Corrects the substrate rather than the signal. Many patients labelled ESA-hyporesponsive are simply iron-deficient, and in dialysis populations iron alone raises haemoglobin and lowers the ESA dose needed.',
-          typicalCost: 'Approximately $200 - $1,000 per course (US, varies widely by product and site of care)',
+          typicalCost:
+            'Approximately $200 - $1,000 per course (US, varies widely by product and site of care)',
           prosAndCons:
             'Pros: cheap relative to an ESA, no thrombotic or tumour-progression signal. Cons: infusion reactions, and it does nothing if the erythropoietin signal itself is absent.',
         },
@@ -1044,7 +1064,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Ascorbate reduces ferric to ferrous iron at the duodenal brush border, raising non-haem iron absorption. Relevant only where iron, not erythropoietin, is the limiting factor.',
           evidenceStrength: 'Supportive',
-          dailyUsage: 'Iron-containing foods eaten with a source of vitamin C, away from tea, coffee and calcium',
+          dailyUsage:
+            'Iron-containing foods eaten with a source of vitamin C, away from tea, coffee and calcium',
           monthlyCost: 'No additional cost',
         },
       ],
@@ -1063,10 +1084,13 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       structureType: 'peptide_sequence',
       sequence5to3:
         'APPRLICDSRVLERYLLEAKEAENITTGCAEHCSLNENITVPDTKVNFYAWKRMEVGQQAVEVWQGLALLSEAVLRGQALLVNSSQPWEPLQLHVDKAVSGLRSLTTLLRALGAQKEAISPPDAASAAPLRTITADTFRKLFRVYSNFLRGKLKLYTGEACRTGD',
-      molecularWeight: 'Approximately 30,400 Da (165-residue backbone plus three N-linked and one O-linked glycan)',
-      targetReceptorAffinity: 'Binds the homodimeric erythropoietin receptor with two asymmetric sites',
+      molecularWeight:
+        'Approximately 30,400 Da (165-residue backbone plus three N-linked and one O-linked glycan)',
+      targetReceptorAffinity:
+        'Binds the homodimeric erythropoietin receptor with two asymmetric sites',
       structureSource: {
-        label: 'UniProt P01588 (erythropoietin, mature chain) cross-checked against the EPOGEN label description',
+        label:
+          'UniProt P01588 (erythropoietin, mature chain) cross-checked against the EPOGEN label description',
         identifier: 'https://rest.uniprot.org/uniprotkb/P01588',
         kind: 'url',
       },
@@ -1131,14 +1155,16 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'ea-a1',
         category: 'measured',
-        title: '1987: 12 of 12 transfusion-dependent dialysis patients stopped needing transfusions',
+        title:
+          '1987: 12 of 12 transfusion-dependent dialysis patients stopped needing transfusions',
         laymanSummary:
           'The first clinical trial was 25 patients. Everyone who received an effective dose responded, and the twelve who had been living on regular transfusions no longer needed them.',
         technicalDetails:
           'Combined phase I and II trial, 25 anaemic haemodialysis patients, intravenous recombinant human erythropoietin three times weekly after dialysis at 15-500 units per kilogram. Dose-dependent increases in effective erythropoiesis. At 500 U/kg, haematocrit rose by as much as 10 percentage points within three weeks. Of 18 patients on effective doses, the 12 who had required transfusions no longer needed them and 11 reached a haematocrit of 35% or more. Four patients developed raised blood pressure. No anti-erythropoietin antibodies were detected.',
         evidenceSource: 'Eschbach JW et al. N Engl J Med 1987;316:73-78',
         doi: '10.1056/NEJM198701083160203',
-        measuredMetric: '12 of 12 previously transfusion-dependent patients became transfusion-independent',
+        measuredMetric:
+          '12 of 12 previously transfusion-dependent patients became transfusion-independent',
         auditFlag: 'verified',
       },
       {
@@ -1166,7 +1192,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Singh AK et al. N Engl J Med 2006;355:2085-2098 (CHOIR); Drueke TB et al. N Engl J Med 2006;355:2071-2084 (CREATE)',
         doi: '10.1056/NEJMoa065485',
-        measuredMetric: 'CHOIR composite hazard ratio 1.34 (95% CI 1.03-1.74), p = 0.03 for the higher haemoglobin target',
+        measuredMetric:
+          'CHOIR composite hazard ratio 1.34 (95% CI 1.03-1.74), p = 0.03 for the higher haemoglobin target',
         auditFlag: 'verified',
       },
       {
@@ -1180,7 +1207,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Leyland-Jones B et al. J Clin Oncol 2005;23:5960-5972; Henke M et al. Lancet 2003;362:1255-1260; Bennett CL et al. JAMA 2008;299:914-924',
         doi: '10.1001/jama.299.8.914',
-        measuredMetric: 'Pooled ESA mortality hazard ratio 1.10 (95% CI 1.01-1.20) across 13,611 patients',
+        measuredMetric:
+          'Pooled ESA mortality hazard ratio 1.10 (95% CI 1.01-1.20) across 13,611 patients',
         auditFlag: 'verified',
       },
       {
@@ -1204,7 +1232,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Much of the case for pushing blood counts higher rested on patients feeling better. When trials measured that directly, the higher target did not deliver it.',
         technicalDetails:
           'CHOIR reported that improvements in quality of life were similar in the two groups despite a two-gram difference in achieved haemoglobin. CREATE did find significantly better general health and physical function scores in the normalisation arm, but against no cardiovascular benefit and more patients progressing to dialysis. The residual honest claim is that treating severe anaemia to the transfusion-avoidance range improves symptoms; the claim that more haemoglobin means proportionally more benefit is the one that failed.',
-        evidenceSource: 'Singh AK et al. N Engl J Med 2006;355:2085-2098; Drueke TB et al. N Engl J Med 2006;355:2071-2084',
+        evidenceSource:
+          'Singh AK et al. N Engl J Med 2006;355:2085-2098; Drueke TB et al. N Engl J Med 2006;355:2071-2084',
         doi: '10.1056/NEJMoa062276',
         inferredClaim: 'That higher haemoglobin produces proportionally better quality of life',
         auditFlag: 'caution',
@@ -1279,7 +1308,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         sampleSize: 1233,
         primaryEndpoint: 'Time to death or first non-fatal myocardial infarction',
         endpointMet: false,
-        statisticalPValue: 'Risk ratio 1.3 (95% CI 0.9-1.9); trial halted before the stopping boundary was crossed',
+        statisticalPValue:
+          'Risk ratio 1.3 (95% CI 0.9-1.9); trial halted before the stopping boundary was crossed',
         unreportedAdverseSignals:
           'Dialysis adequacy declined and intravenous iron requirement rose in the normal-haematocrit group, both of which are downstream consequences rarely quoted with the mortality result.',
         independentReplicationStatus: 'Replicated',
@@ -1291,7 +1321,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Composite of death, myocardial infarction, hospitalisation for congestive heart failure and stroke',
         endpointMet: false,
-        statisticalPValue: 'p = 0.03 against the higher haemoglobin target (hazard ratio 1.34, 95% CI 1.03-1.74)',
+        statisticalPValue:
+          'p = 0.03 against the higher haemoglobin target (hazard ratio 1.34, 95% CI 1.03-1.74)',
         independentReplicationStatus: 'Replicated',
       },
       {
@@ -1383,7 +1414,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Singh AK et al. Correction of anemia with epoetin alfa in chronic kidney disease (CHOIR). N Engl J Med 2006;355:2085-2098',
+        label:
+          'Singh AK et al. Correction of anemia with epoetin alfa in chronic kidney disease (CHOIR). N Engl J Med 2006;355:2085-2098',
         identifier: '10.1056/NEJMoa065485',
         kind: 'doi',
       },
@@ -1415,17 +1447,21 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       { label: 'CREATE trial registration', identifier: 'NCT00321919', kind: 'nct' },
       {
         label: 'EPOGEN (epoetin alfa) injection — US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1f2d0b28-9cc5-4523-80b8-637fdaf3f7a5',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1f2d0b28-9cc5-4523-80b8-637fdaf3f7a5',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA: EPOGEN / PROCRIT, BLA 103234, original approval 1 June 1989',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103234',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103234',
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA: RETACRIT (epoetin alfa-epbx), BLA 125545, first US epoetin biosimilar approved 15 May 2018',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125545',
+        label:
+          'Drugs@FDA: RETACRIT (epoetin alfa-epbx), BLA 125545, first US epoetin biosimilar approved 15 May 2018',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125545',
         kind: 'regulatory',
       },
       {
@@ -1451,7 +1487,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     approvalYear: 1991,
     indication:
       'Reduction of febrile neutropenia in patients receiving myelosuppressive chemotherapy, in acute myeloid leukaemia induction and consolidation, in bone marrow transplantation, for peripheral blood progenitor cell mobilisation, and in severe chronic neutropenia',
-    patientFriendlyIndication: 'Rebuilding infection-fighting white cells knocked down by chemotherapy',
+    patientFriendlyIndication:
+      'Rebuilding infection-fighting white cells knocked down by chemotherapy',
     anatomicalSite: 'Neutrophil progenitors in the bone marrow',
     conditionContext: {
       conditionExplainer:
@@ -1478,7 +1515,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           class: 'PEGylated long-acting G-CSF',
           howItCompares:
             'Same protein with a 20 kDa polyethylene glycol chain, cleared by neutrophils themselves rather than by the kidney, so one injection per cycle replaces up to fourteen.',
-          typicalCost: 'Approximately $2,000 - $6,000 per cycle US list, considerably lower for biosimilars',
+          typicalCost:
+            'Approximately $2,000 - $6,000 per cycle US list, considerably lower for biosimilars',
           prosAndCons:
             'Pros: one injection instead of daily dosing. Cons: no flexibility to stop early, and the dose cannot be titrated to the observed count.',
         },
@@ -1514,7 +1552,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Loratadine or paracetamol for growth-factor bone pain',
-          action: 'A simple analgesic or antihistamine taken for the deep bone ache that follows dosing.',
+          action:
+            'A simple analgesic or antihistamine taken for the deep bone ache that follows dosing.',
           patientImpact:
             'Bone pain was reported in about 20% of patients in the registration trial and in 19.6% versus 10.4% of controls in the pooled meta-analysis. It comes from marrow expanding inside a fixed bony space and is not a sign of harm.',
           clinicalPrecaution:
@@ -1522,7 +1561,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Fever thresholds agreed in advance',
-          action: 'Know the temperature at which you are meant to call the oncology unit, and have the number to hand.',
+          action:
+            'Know the temperature at which you are meant to call the oncology unit, and have the number to hand.',
           patientImpact:
             'The entire clinical value of shortening the nadir is lost if a fever during it is not treated within an hour. This is the highest-leverage non-drug action in the whole treatment cycle.',
           clinicalPrecaution:
@@ -1539,7 +1579,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       structureSource: {
         label:
           'NEUPOGEN US prescribing information (Description) with the mature 174-residue sequence from UniProt P09919-2 plus the N-terminal methionine the label describes',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=97cc73cc-b5b7-458a-a933-77b00523e193',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=97cc73cc-b5b7-458a-a933-77b00523e193',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -1610,7 +1651,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Multicentre, randomised, double-blind, placebo-controlled trial of recombinant methionyl G-CSF across up to six cycles of cyclophosphamide, doxorubicin and etoposide. At least one episode of fever with neutropenia occurred in 77% of the placebo group versus 40% of the G-CSF group (p < 0.001). Median duration of grade IV neutropenia across all cycles was six days with placebo and one day with G-CSF. Days on intravenous antibiotics, days in hospital and confirmed infections each fell by approximately 50%. Mild to moderate medullary bone pain occurred in 20% of G-CSF recipients.',
         evidenceSource: 'Crawford J et al. N Engl J Med 1991;325:164-170',
         doi: '10.1056/NEJM199107183250305',
-        measuredMetric: '77% versus 40% of patients with at least one febrile neutropenic episode (p < 0.001)',
+        measuredMetric:
+          '77% versus 40% of patients with at least one febrile neutropenic episode (p < 0.001)',
         auditFlag: 'verified',
       },
       {
@@ -1643,7 +1685,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'fg-a4',
         category: 'measured',
-        title: 'A near doubling of secondary leukaemia risk, against a larger fall in all-cause mortality',
+        title:
+          'A near doubling of secondary leukaemia risk, against a larger fall in all-cause mortality',
         laymanSummary:
           'Following 12,804 randomised patients for a median of four and a half years, treatment-related leukaemia was about twice as common with G-CSF support. Death from any cause was less common.',
         technicalDetails:
@@ -1662,7 +1705,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Zarxio, approved in March 2015, was the first product ever licensed under the US biosimilar pathway. This is one of the few biologic markets where competition genuinely moved the price.',
         technicalDetails:
           'Zarxio (filgrastim-sndz, BLA 125553) was approved 6 March 2015 as the first product licensed under section 351(k) of the Public Health Service Act. Nivestym (BLA 761080) followed in July 2018 and Releuko (BLA 761082) in February 2022. Filgrastim is a small, non-glycosylated, bacterially expressed protein with a well-characterised potency bioassay, which is exactly the profile that makes analytical comparability tractable, and it is why this class became the proving ground for the pathway rather than a monoclonal antibody.',
-        evidenceSource: 'Drugs@FDA, BLA 125553 (Zarxio), BLA 761080 (Nivestym), BLA 761082 (Releuko)',
+        evidenceSource:
+          'Drugs@FDA, BLA 125553 (Zarxio), BLA 761080 (Nivestym), BLA 761082 (Releuko)',
         measuredMetric: 'First US biosimilar approval: 6 March 2015',
         auditFlag: 'verified',
       },
@@ -1731,7 +1775,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Crawford 1991 small cell lung cancer trial (predates ClinicalTrials.gov registration)',
+        trialId:
+          'Crawford 1991 small cell lung cancer trial (predates ClinicalTrials.gov registration)',
         phase: 'Phase 3',
         sampleSize: 211,
         primaryEndpoint: 'Incidence of fever with neutropenia across up to six chemotherapy cycles',
@@ -1745,18 +1790,22 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Kuderer 2007 meta-analysis (17 pooled randomised trials)',
         phase: 'Systematic review of Phase 3 trials',
         sampleSize: 3493,
-        primaryEndpoint: 'Febrile neutropenia, infection-related mortality and early all-cause mortality',
+        primaryEndpoint:
+          'Febrile neutropenia, infection-related mortality and early all-cause mortality',
         endpointMet: true,
-        statisticalPValue: 'p = 0.002 for early all-cause mortality (relative risk 0.60, 95% CI 0.43-0.83)',
+        statisticalPValue:
+          'p = 0.002 for early all-cause mortality (relative risk 0.60, 95% CI 0.43-0.83)',
         independentReplicationStatus: 'Replicated',
       },
       {
         trialId: 'Lyman 2010 secondary malignancy meta-analysis (25 pooled randomised trials)',
         phase: 'Systematic review of Phase 3 trials',
         sampleSize: 12804,
-        primaryEndpoint: 'Acute myeloid leukaemia or myelodysplastic syndrome, and overall mortality',
+        primaryEndpoint:
+          'Acute myeloid leukaemia or myelodysplastic syndrome, and overall mortality',
         endpointMet: true,
-        statisticalPValue: 'p = 0.007 for AML/MDS (relative risk 1.92); p < 0.001 for mortality (relative risk 0.897)',
+        statisticalPValue:
+          'p = 0.007 for AML/MDS (relative risk 1.92); p < 0.001 for mortality (relative risk 0.897)',
         independentReplicationStatus: 'Replicated',
       },
     ],
@@ -1835,21 +1884,26 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'NEUPOGEN (filgrastim) injection — US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=97cc73cc-b5b7-458a-a933-77b00523e193',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=97cc73cc-b5b7-458a-a933-77b00523e193',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA: NEUPOGEN, BLA 103353, original approval 20 February 1991',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103353',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103353',
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA: ZARXIO (filgrastim-sndz), BLA 125553, first US biosimilar approved 6 March 2015',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125553',
+        label:
+          'Drugs@FDA: ZARXIO (filgrastim-sndz), BLA 125553, first US biosimilar approved 6 March 2015',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125553',
         kind: 'regulatory',
       },
       {
-        label: 'UniProt P09919-2 — human G-CSF short isoform, the 174-residue mature sequence used in filgrastim',
+        label:
+          'UniProt P09919-2 — human G-CSF short isoform, the 174-residue mature sequence used in filgrastim',
         identifier: 'https://rest.uniprot.org/uniprotkb/P09919',
         kind: 'url',
       },
@@ -1871,7 +1925,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     approvalYear: 2002,
     indication:
       'Decreasing the incidence of infection, as manifested by febrile neutropenia, in patients with non-myeloid malignancies receiving myelosuppressive anti-cancer drugs associated with a clinically significant incidence of febrile neutropenia; and increasing survival after acute exposure to myelosuppressive doses of radiation',
-    patientFriendlyIndication: 'One injection per chemotherapy cycle instead of a daily white cell injection',
+    patientFriendlyIndication:
+      'One injection per chemotherapy cycle instead of a daily white cell injection',
     anatomicalSite: 'Neutrophil progenitors in the bone marrow',
     conditionContext: {
       conditionExplainer:
@@ -1898,7 +1953,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           class: 'Short-acting G-CSF',
           howItCompares:
             'Identical protein, no PEG. Non-inferior in the registration trial on duration of grade 4 neutropenia (1.8 versus 1.6 days in cycle 1). Requires up to fourteen daily injections instead of one.',
-          typicalCost: 'Approximately $300 - $500 per daily vial US list, and lower for biosimilars',
+          typicalCost:
+            'Approximately $300 - $500 per daily vial US list, and lower for biosimilars',
           prosAndCons:
             'Pros: the dose can be stopped as soon as the count recovers, which pegfilgrastim cannot. Cons: daily injections, and missed doses at the nadir are the ones that count.',
         },
@@ -1934,7 +1990,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Simple analgesia for bone pain',
-          action: 'Paracetamol or an antihistamine for the deep ache in the sternum, pelvis and long bones.',
+          action:
+            'Paracetamol or an antihistamine for the deep ache in the sternum, pelvis and long bones.',
           patientImpact:
             'Bone pain incidence, severity and duration with once-per-cycle pegfilgrastim were not significantly different from daily filgrastim in a retrospective analysis of two phase III trials, and were greatest in cycle 1 for both.',
           clinicalPrecaution:
@@ -1947,10 +2004,13 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       sequence5to3:
         'MTPLGPASSLPQSFLLKCLEQVRKIQGDGAALQEKLCATYKLCHPEELVLLGHSLGIPWAPLSSCPSQALQLAGCLSQLHSGLFLYQGLLQALEGISPELGPTLDTLQLDVADFATTIWQQMEELGMAPALQPTQGAMPAFASAFQRRAGGVLVASHLQSFLEVSYRVLRHLAQP (20 kDa monomethoxypolyethylene glycol covalently bound to the N-terminal methionyl residue)',
       molecularWeight: 'Approximately 39 kDa (19 kDa protein plus a 20 kDa mPEG chain)',
-      targetReceptorAffinity: 'Binds G-CSFR (CD114); receptor-mediated internalisation by neutrophils is the principal clearance route',
+      targetReceptorAffinity:
+        'Binds G-CSFR (CD114); receptor-mediated internalisation by neutrophils is the principal clearance route',
       structureSource: {
-        label: 'NEULASTA US prescribing information (Description) — 175-amino-acid filgrastim backbone with 20 kD mPEG at the N-terminal methionine',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fdfe5d72-6b80-435a-afa4-c5d74dd852ce',
+        label:
+          'NEULASTA US prescribing information (Description) — 175-amino-acid filgrastim backbone with 20 kD mPEG at the N-terminal methionine',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fdfe5d72-6b80-435a-afa4-c5d74dd852ce',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -2045,7 +2105,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'The endpoint that got this drug licensed was how many days the white count stayed critically low, compared with a drug that was already on the market. No trial has shown it makes people live longer than daily filgrastim.',
         technicalDetails:
           'The pivotal comparison was non-inferiority in duration of grade 4 neutropenia against daily filgrastim, in 157 and 310 patients respectively. Duration of severe neutropenia is a laboratory surrogate; the placebo-controlled trial then measured febrile neutropenia, which is a clinical event, but neither design was powered for survival. The convenience advantage of one injection per cycle is real and measurable; a survival advantage over daily filgrastim has never been demonstrated because no trial has looked for one.',
-        evidenceSource: 'Green MD et al. Ann Oncol 2003;14:29-35; Vogel CL et al. J Clin Oncol 2005;23:1178-1184',
+        evidenceSource:
+          'Green MD et al. Ann Oncol 2003;14:29-35; Vogel CL et al. J Clin Oncol 2005;23:1178-1184',
         doi: '10.1200/JCO.2005.09.102',
         inferredClaim:
           'That once-per-cycle dosing produces better patient outcomes rather than better adherence to the same effect',
@@ -2059,7 +2120,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'The device designed to remove the clinic visit can fail to deliver the dose, and the label tells patients to report it if they suspect it has.',
         technicalDetails:
           'Section 5.12 of the US prescribing information, Potential Device Failures, instructs that patients be told to notify their healthcare provider if they suspect the on-body injector may not have performed as intended, so that the need for a replacement dose can be assessed. Section 5.4 separately warns that the acrylic adhesive used by the injector can cause significant reactions in patients sensitive to acrylates. A delivery system introduced to improve adherence therefore introduced a failure mode that the daily syringe did not have.',
-        evidenceSource: 'NEULASTA US prescribing information, Warnings and Precautions sections 5.4 and 5.12',
+        evidenceSource:
+          'NEULASTA US prescribing information, Warnings and Precautions sections 5.4 and 5.12',
         auditFlag: 'caution',
       },
       {
@@ -2071,7 +2133,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'Fulphila (pegfilgrastim-jmdb, BLA 761075) was approved 4 June 2018 and Udenyca (pegfilgrastim-cbqv, BLA 761039) on 2 November 2018, followed by further entrants. Pegfilgrastim became one of the first US biologic markets with meaningful multi-source competition, and the clinical question the biosimilar programmes answered was analytical and pharmacodynamic comparability rather than a fresh outcome trial. Nothing about the underlying evidence for the molecule changed; the price did.',
         evidenceSource: 'Drugs@FDA, BLA 761075 (Fulphila) and BLA 761039 (Udenyca)',
-        measuredMetric: 'First two US pegfilgrastim biosimilar approvals: 4 June 2018 and 2 November 2018',
+        measuredMetric:
+          'First two US pegfilgrastim biosimilar approvals: 4 June 2018 and 2 November 2018',
         auditFlag: 'verified',
       },
       {
@@ -2247,22 +2310,26 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'NEULASTA (pegfilgrastim) injection — US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fdfe5d72-6b80-435a-afa4-c5d74dd852ce',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fdfe5d72-6b80-435a-afa4-c5d74dd852ce',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA: NEULASTA, BLA 125031, original approval 31 January 2002',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125031',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125031',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA: FULPHILA (pegfilgrastim-jmdb), BLA 761075, approved 4 June 2018',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761075',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761075',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA: UDENYCA (pegfilgrastim-cbqv), BLA 761039, approved 2 November 2018',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761039',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761039',
         kind: 'regulatory',
       },
     ],
@@ -2283,7 +2350,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     approvalYear: 1986,
     indication:
       'Growth failure due to inadequate endogenous growth hormone secretion, Turner syndrome, small for gestational age with no catch-up growth, idiopathic short stature, SHOX deficiency, and adult growth hormone deficiency',
-    patientFriendlyIndication: 'Children who are not growing normally, and adults with a damaged pituitary gland',
+    patientFriendlyIndication:
+      'Children who are not growing normally, and adults with a damaged pituitary gland',
     anatomicalSite: 'Growth plate chondrocytes and hepatocytes',
     conditionContext: {
       conditionExplainer:
@@ -2349,7 +2417,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Undernutrition causes acquired growth hormone resistance: circulating growth hormone rises while hepatic IGF-1 falls. Correcting intake restores IGF-1 generation. This matters only where intake was actually inadequate.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: 'Age-appropriate protein and energy intake as assessed by a paediatric dietitian',
+          dailyUsage:
+            'Age-appropriate protein and energy intake as assessed by a paediatric dietitian',
           monthlyCost: 'No additional cost',
         },
         {
@@ -2391,7 +2460,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       structureSource: {
         label:
           'HUMATROPE US prescribing information (Description: 191 amino acid residues, molecular weight about 22,125 daltons, sequence identical to pituitary human GH) cross-checked against UniProt P01241',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a774e1ae-3997-49ee-8b0e-99a2b315d409',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a774e1ae-3997-49ee-8b0e-99a2b315d409',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -2402,7 +2472,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           name: 'Host strain and plasmid release',
           description:
             'Verify the E. coli working cell bank carrying the human GH1 coding sequence with a secretion leader. Sequence confirmation matters more here than in most products because a single residue difference from pituitary growth hormone would change the immunogenicity profile.',
-          reagentsAndBuffer: 'Plasmid sequencing, selective plating, sterility and bacteriophage panels',
+          reagentsAndBuffer:
+            'Plasmid sequencing, selective plating, sterility and bacteriophage panels',
         },
         {
           id: 'sm-2',
@@ -2459,9 +2530,11 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Before recombinant growth hormone, the drug was extracted from pituitary glands taken from cadavers. Some of those donors had Creutzfeldt-Jakob disease, and the extraction did not remove the prion.',
         technicalDetails:
           'The final assessment of iatrogenic Creutzfeldt-Jakob disease identifies contaminated cadaveric growth hormone as the source of 226 cases worldwide, alongside 228 from dura mater grafts. Incubation periods ran to decades. Cadaveric pituitary growth hormone programmes were halted in 1985 and recombinant somatropin replaced them. This is the clearest case in modern medicine of a manufacturing route, rather than a molecule, being the hazard.',
-        evidenceSource: 'Brown P et al. Iatrogenic Creutzfeldt-Jakob disease, final assessment. Emerg Infect Dis 2012;18:901-907',
+        evidenceSource:
+          'Brown P et al. Iatrogenic Creutzfeldt-Jakob disease, final assessment. Emerg Infect Dis 2012;18:901-907',
         doi: '10.3201/eid1806.120116',
-        measuredMetric: '226 cases of iatrogenic Creutzfeldt-Jakob disease attributed to cadaveric growth hormone',
+        measuredMetric:
+          '226 cases of iatrogenic Creutzfeldt-Jakob disease attributed to cadaveric growth hormone',
         auditFlag: 'verified',
       },
       {
@@ -2474,20 +2547,23 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Randomised, double-blind, placebo-controlled trial in 68 children aged 9 to 16 with height or predicted height at or below -2.5 standard deviation score and no growth hormone deficiency. Growth hormone 0.074 mg/kg subcutaneously three times weekly until near adult height, mean treatment duration 4.4 years. Adult height data were available for 33 patients. Adult height was -1.81 SDS on treatment versus -2.32 SDS on placebo, a difference of 0.51 SDS or 3.7 cm (p < 0.02; 95% CI 0.10-0.92 SDS). Modified intent-to-treat analysis in 62 patients treated at least six months gave 0.52 SDS, 3.8 cm.',
         evidenceSource: 'Leschek EW et al. J Clin Endocrinol Metab 2004;89:3140-3148',
         doi: '10.1210/jc.2003-031457',
-        measuredMetric: 'Adult height difference 0.51 SDS, 3.7 cm (95% CI 0.10-0.92 SDS), n = 33 with adult height data',
+        measuredMetric:
+          'Adult height difference 0.51 SDS, 3.7 cm (95% CI 0.10-0.92 SDS), n = 33 with adult height data',
         auditFlag: 'verified',
       },
       {
         id: 'sm-a3',
         category: 'measured',
-        title: 'Systematic review: about 4 cm, and the authors call it less than in licensed conditions',
+        title:
+          'Systematic review: about 4 cm, and the authors call it less than in licensed conditions',
         laymanSummary:
           'Pooling the randomised evidence gives a height gain of roughly 4 cm, and the review authors note that this is smaller than what growth hormone achieves in the conditions it was originally licensed for.',
         technicalDetails:
           'Systematic review of randomised and non-randomised controlled trials from 1985 to April 2010 with adult height measurements. Three randomised trials with 115 children met inclusion criteria: adult height of treated children exceeded controls by 0.65 SDS, about 4 cm. Mean height gain was 1.2 SDS in treated versus 0.34 SDS in untreated children. Seven non-randomised trials gave 0.45 SDS, about 3 cm. The difference between two dose regimens was about 1.2 cm. The authors state the magnitude of effectiveness is on average less than that achieved in other licensed conditions and that individual response is highly variable.',
         evidenceSource: 'Deodati A, Cianfarani S. BMJ 2011;342:c7157',
         doi: '10.1136/bmj.c7157',
-        measuredMetric: 'Adult height gain 0.65 SDS (about 4 cm) across three randomised trials, 115 children',
+        measuredMetric:
+          'Adult height gain 0.65 SDS (about 4 cm) across three randomised trials, 115 children',
         auditFlag: 'verified',
       },
       {
@@ -2529,7 +2605,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'SAGhE cohort study across eight European countries. In low-risk patients with isolated growth hormone deficiency or idiopathic short stature, all-cause mortality standardised mortality ratio was 1.1 (95% CI 0.9-1.3). In children born small for gestational age it was 1.5 (95% CI 1.1-1.9), driven by the French subcohort. In moderate- and high-risk underlying diagnoses it was 3.8 and 17.1 respectively, reflecting the underlying disease. Mortality was not associated with mean daily or cumulative growth hormone dose in any risk group. Mortality from circulatory and haematological disease was increased across all risk groups, which the authors flag as needing continued surveillance.',
         evidenceSource: 'Sävendahl L et al. Lancet Diabetes Endocrinol 2020;8:683-692',
         doi: '10.1016/S2213-8587(20)30163-7',
-        measuredMetric: 'Standardised mortality ratio 1.1 (95% CI 0.9-1.3) in low-risk treated patients over 400,000 person-years',
+        measuredMetric:
+          'Standardised mortality ratio 1.1 (95% CI 0.9-1.3) in low-risk treated patients over 400,000 person-years',
         auditFlag: 'verified',
       },
     ],
@@ -2597,7 +2674,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Leschek 2004 idiopathic short stature trial (predates ClinicalTrials.gov registration)',
+        trialId:
+          'Leschek 2004 idiopathic short stature trial (predates ClinicalTrials.gov registration)',
         phase: 'Phase 3',
         sampleSize: 68,
         primaryEndpoint: 'Adult height standard deviation score versus placebo',
@@ -2620,9 +2698,11 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Liu 2007 healthy elderly systematic review (18 study populations)',
         phase: 'Systematic review of randomised trials',
         sampleSize: 220,
-        primaryEndpoint: 'Body composition, bone density and adverse events in healthy elderly adults',
+        primaryEndpoint:
+          'Body composition, bone density and adverse events in healthy elderly adults',
         endpointMet: false,
-        statisticalPValue: 'p < 0.001 for body composition change; no change in bone density; excess adverse events',
+        statisticalPValue:
+          'p < 0.001 for body composition change; no change in bone density; excess adverse events',
         independentReplicationStatus: 'Replicated',
       },
     ],
@@ -2694,34 +2774,40 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Liu H et al. Systematic review: the safety and efficacy of growth hormone in the healthy elderly. Ann Intern Med 2007;146:104-115',
+        label:
+          'Liu H et al. Systematic review: the safety and efficacy of growth hormone in the healthy elderly. Ann Intern Med 2007;146:104-115',
         identifier: '10.7326/0003-4819-146-2-200701160-00005',
         kind: 'doi',
       },
       {
-        label: 'Rudman D et al. Effects of human growth hormone in men over 60 years old. N Engl J Med 1990;323:1-6',
+        label:
+          'Rudman D et al. Effects of human growth hormone in men over 60 years old. N Engl J Med 1990;323:1-6',
         identifier: '10.1056/NEJM199007053230101',
         kind: 'doi',
       },
       {
-        label: 'Brown P et al. Iatrogenic Creutzfeldt-Jakob disease, final assessment. Emerg Infect Dis 2012;18:901-907',
+        label:
+          'Brown P et al. Iatrogenic Creutzfeldt-Jakob disease, final assessment. Emerg Infect Dis 2012;18:901-907',
         identifier: '10.3201/eid1806.120116',
         kind: 'doi',
       },
       {
-        label: 'Sävendahl L et al. Long-term mortality after childhood growth hormone treatment: the SAGhE cohort study. Lancet Diabetes Endocrinol 2020;8:683-692',
+        label:
+          'Sävendahl L et al. Long-term mortality after childhood growth hormone treatment: the SAGhE cohort study. Lancet Diabetes Endocrinol 2020;8:683-692',
         identifier: '10.1016/S2213-8587(20)30163-7',
         kind: 'doi',
       },
       {
         label: 'HUMATROPE (somatropin) for injection — US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a774e1ae-3997-49ee-8b0e-99a2b315d409',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a774e1ae-3997-49ee-8b0e-99a2b315d409',
         kind: 'regulatory',
       },
       {
         label:
           'Drugs@FDA: HUMATROPE, BLA 019640, original approval 16 October 1986; efficacy supplement 33 (idiopathic short stature) approved 25 July 2003',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019640',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019640',
         kind: 'regulatory',
       },
       {
@@ -2747,7 +2833,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     approvalYear: 1998,
     indication:
       'Rheumatoid arthritis, polyarticular juvenile idiopathic arthritis, psoriatic arthritis, ankylosing spondylitis and plaque psoriasis',
-    patientFriendlyIndication: 'Rheumatoid arthritis, psoriasis and related long-term inflammatory diseases',
+    patientFriendlyIndication:
+      'Rheumatoid arthritis, psoriasis and related long-term inflammatory diseases',
     anatomicalSite: 'Extracellular fluid, inflamed synovium and skin',
     conditionContext: {
       conditionExplainer:
@@ -2783,7 +2870,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           class: 'Anti-TNF monoclonal antibodies',
           howItCompares:
             'Comparable in rheumatoid arthritis. Unlike etanercept they work in Crohn disease and ulcerative colitis, where etanercept failed a randomised trial outright.',
-          typicalCost: 'Approximately $40,000 - $90,000 / year US list, considerably lower for biosimilars',
+          typicalCost:
+            'Approximately $40,000 - $90,000 / year US list, considerably lower for biosimilars',
           prosAndCons:
             'Pros: effective across inflammatory bowel disease as well as arthritis. Cons: higher rates of antibody formation against the drug, and infliximab requires infusion.',
         },
@@ -2829,7 +2917,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Tuberculosis screening before starting, and vigilance during',
-          action: 'Have latent tuberculosis testing completed before the first dose and know the symptoms to report.',
+          action:
+            'Have latent tuberculosis testing completed before the first dose and know the symptoms to report.',
           patientImpact:
             'TNF is required to hold tuberculosis granulomas together. Blocking it reactivates latent infection, often in disseminated or extrapulmonary form that is easy to miss.',
           clinicalPrecaution:
@@ -2837,7 +2926,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Cold chain discipline for the pen',
-          action: 'Keep prefilled syringes refrigerated and do not use a pen that has been frozen or left warm.',
+          action:
+            'Keep prefilled syringes refrigerated and do not use a pen that has been frozen or left warm.',
           patientImpact:
             'Fusion proteins aggregate when temperature-abused. Aggregates are the leading suspect in immunogenicity, and an aggregated dose is both less effective and more likely to provoke antibodies.',
           clinicalPrecaution:
@@ -2853,7 +2943,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       structureSource: {
         label:
           'ENBREL US prescribing information (Description: dimeric fusion protein of the extracellular ligand-binding portion of the human p75 TNF receptor linked to the Fc portion of human IgG1, 934 amino acids, apparent molecular weight approximately 150 kilodaltons)',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a002b40c-097d-47a5-957f-7a7b1807af7f',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a002b40c-097d-47a5-957f-7a7b1807af7f',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -2937,7 +3028,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Double-blind randomised trial of etanercept 25 mg twice weekly, oral methotrexate up to 20 mg weekly, or the combination. Primary efficacy endpoint ACR-N area under the curve over 24 weeks: 18.3%-years for combination versus 14.7% for etanercept alone (p < 0.0001) and 12.2% for methotrexate alone (p < 0.0001). Primary radiographic endpoint, change in modified Sharp score to week 52: -0.54 (95% CI -1.00 to -0.07) for combination, 0.52 for etanercept alone and 2.80 for methotrexate alone. Infection and adverse event rates were similar across groups.',
         evidenceSource: 'Klareskog L et al. Lancet 2004;363:675-681',
         doi: '10.1016/S0140-6736(04)15640-7',
-        measuredMetric: 'Modified Sharp score change at 52 weeks: -0.54 combination versus +2.80 methotrexate alone',
+        measuredMetric:
+          'Modified Sharp score change at 52 weeks: -0.54 combination versus +2.80 methotrexate alone',
         auditFlag: 'verified',
       },
       {
@@ -3071,7 +3163,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         trialId: 'TEMPO (Klareskog 2004)',
         phase: 'Phase 3',
         sampleSize: 686,
-        primaryEndpoint: 'ACR-N area under the curve over 24 weeks and modified Sharp score change at 52 weeks',
+        primaryEndpoint:
+          'ACR-N area under the curve over 24 weeks and modified Sharp score change at 52 weeks',
         endpointMet: true,
         statisticalPValue: 'p < 0.0001 for combination versus each monotherapy',
         independentReplicationStatus: 'Replicated',
@@ -3093,7 +3186,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         sampleSize: 2048,
         primaryEndpoint: 'Death or hospitalisation for chronic heart failure',
         endpointMet: false,
-        statisticalPValue: 'p = 0.33 (relative risk 1.1, 95% CI 0.91-1.33); both trials stopped early for futility',
+        statisticalPValue:
+          'p = 0.33 (relative risk 1.1, 95% CI 0.91-1.33); both trials stopped early for futility',
         independentReplicationStatus: 'Replicated',
       },
       {
@@ -3163,7 +3257,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Moreland LW et al. Etanercept therapy in rheumatoid arthritis. A randomized, controlled trial. Ann Intern Med 1999;130:478-486',
+        label:
+          'Moreland LW et al. Etanercept therapy in rheumatoid arthritis. A randomized, controlled trial. Ann Intern Med 1999;130:478-486',
         identifier: '10.7326/0003-4819-130-6-199903160-00004',
         kind: 'doi',
       },
@@ -3186,28 +3281,33 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Sandborn WJ et al. Etanercept for active Crohn disease: a randomized, double-blind, placebo-controlled trial. Gastroenterology 2001;121:1088-1094',
+        label:
+          'Sandborn WJ et al. Etanercept for active Crohn disease: a randomized, double-blind, placebo-controlled trial. Gastroenterology 2001;121:1088-1094',
         identifier: '10.1053/gast.2001.28674',
         kind: 'doi',
       },
       {
         label: 'ENBREL (etanercept) injection — US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a002b40c-097d-47a5-957f-7a7b1807af7f',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a002b40c-097d-47a5-957f-7a7b1807af7f',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA: ENBREL, BLA 103795, original approval 2 November 1998',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103795',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103795',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA: ERELZI (etanercept-szzs), BLA 761042, approved 30 August 2016',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761042',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761042',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA: ETICOVO (etanercept-ykro), BLA 761066, approved 25 April 2019',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761066',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761066',
         kind: 'regulatory',
       },
     ],
@@ -3228,7 +3328,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     approvalYear: 1987,
     indication:
       'Acute ischaemic stroke, acute ST-elevation myocardial infarction, acute massive pulmonary embolism, and restoration of function to central venous access devices',
-    patientFriendlyIndication: 'Emergency clot-dissolving treatment for stroke, heart attack and major pulmonary embolism',
+    patientFriendlyIndication:
+      'Emergency clot-dissolving treatment for stroke, heart attack and major pulmonary embolism',
     anatomicalSite: 'The fibrin surface of an occluding thrombus within the arterial circulation',
     conditionContext: {
       conditionExplainer:
@@ -3264,7 +3365,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           class: 'Endovascular clot retrieval',
           howItCompares:
             'Physically removes a large-vessel clot. Effect sizes in large-vessel occlusion are far larger than thrombolysis achieves, and the two are often used together.',
-          typicalCost: 'Procedure cost far above any drug cost; restricted to comprehensive stroke centres',
+          typicalCost:
+            'Procedure cost far above any drug cost; restricted to comprehensive stroke centres',
           prosAndCons:
             'Pros: the largest measured benefit in acute stroke care. Cons: needs a catheter laboratory, an interventionalist and a large-vessel occlusion, so it is unavailable to most stroke patients worldwide.',
         },
@@ -3300,7 +3402,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Keeping an accurate, current medication list',
-          action: 'Carry an up-to-date list of anticoagulants and recent surgery or bleeding history.',
+          action:
+            'Carry an up-to-date list of anticoagulants and recent surgery or bleeding history.',
           patientImpact:
             'Most thrombolysis exclusions are about bleeding risk. Ambiguity about whether someone is on an anticoagulant can cost the treatment window while it is resolved.',
           clinicalPrecaution:
@@ -3317,7 +3420,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       structureSource: {
         label:
           'ACTIVASE US prescribing information (Description: sterile purified glycoprotein of 527 amino acids) with the mature 527-residue chain sequence from UniProt P00750',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=91ecdef2-95ff-42dd-a31c-c8a09cab3ad9',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=91ecdef2-95ff-42dd-a31c-c8a09cab3ad9',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -3388,7 +3492,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Two-part randomised, double-blind trial of intravenous t-PA within three hours of stroke onset, 291 patients in part 1 and 333 in part 2. In part 1 there was no significant difference in neurological improvement at 24 hours. In part 2 the global odds ratio for a favourable outcome at three months was 1.7 (95% CI 1.2-2.6); patients were at least 30% more likely to have minimal or no disability across four assessment scales. Symptomatic intracerebral haemorrhage within 36 hours occurred in 6.4% of t-PA patients versus 0.6% of placebo patients (p < 0.001). Mortality at three months was 17% versus 21% (p = 0.30).',
         evidenceSource: 'The NINDS rt-PA Stroke Study Group. N Engl J Med 1995;333:1581-1587',
         doi: '10.1056/NEJM199512143332401',
-        measuredMetric: 'Global odds ratio 1.7 (95% CI 1.2-2.6) for favourable outcome; symptomatic ICH 6.4% versus 0.6%',
+        measuredMetric:
+          'Global odds ratio 1.7 (95% CI 1.2-2.6) for favourable outcome; symptomatic ICH 6.4% versus 0.6%',
         auditFlag: 'verified',
       },
       {
@@ -3401,7 +3506,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Randomised, double-blind trial in 821 patients treated between 3 and 4.5 hours after onset, median administration time 3 hours 59 minutes. Favourable outcome, modified Rankin 0 or 1 at 90 days, in 52.4% versus 45.2%; odds ratio 1.34 (95% CI 1.02-1.76), p = 0.04. Global outcome analysis odds ratio 1.28 (95% CI 1.00-1.65), p < 0.05. Any intracranial haemorrhage 27.0% versus 17.6% (p = 0.001), symptomatic 2.4% versus 0.2% (p = 0.008). Mortality 7.7% versus 8.4% (p = 0.68).',
         evidenceSource: 'Hacke W et al. N Engl J Med 2008;359:1317-1329',
         doi: '10.1056/NEJMoa0804656',
-        measuredMetric: 'Modified Rankin 0-1 at 90 days: 52.4% versus 45.2%, odds ratio 1.34 (95% CI 1.02-1.76), p = 0.04',
+        measuredMetric:
+          'Modified Rankin 0-1 at 90 days: 52.4% versus 45.2%, odds ratio 1.34 (95% CI 1.02-1.76), p = 0.04',
         auditFlag: 'verified',
       },
       {
@@ -3414,7 +3520,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'Prespecified individual-patient-data meta-analysis of nine completed randomised phase 3 trials. Good outcome, modified Rankin 0 or 1, with treatment within 3 hours: 32.9% versus 23.1% (odds ratio 1.75, 95% CI 1.35-2.27); 3 to 4.5 hours: 35.3% versus 30.1% (odds ratio 1.26); beyond 4.5 hours: 32.6% versus 30.6% (odds ratio 1.15, 95% CI 0.95-1.40). Symptomatic intracranial haemorrhage 6.8% versus 1.3% (odds ratio 5.55) and fatal intracranial haemorrhage within seven days 2.7% versus 0.4% (odds ratio 7.14, p < 0.0001). Mortality at 90 days was 17.9% versus 16.5%, hazard ratio 1.11 (95% CI 0.99-1.25), p = 0.07.',
         evidenceSource: 'Emberson J et al. Lancet 2014;384:1929-1935',
         doi: '10.1016/S0140-6736(14)60584-5',
-        inferredClaim: 'That a treatment which improves function in stroke also reduces death from stroke',
+        inferredClaim:
+          'That a treatment which improves function in stroke also reduces death from stroke',
         auditFlag: 'verified',
       },
       {
@@ -3441,7 +3548,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'GUSTO-I randomised 41,021 patients across 1,081 hospitals in 15 countries to four thrombolytic strategies. 30-day mortality was 7.2% for streptokinase plus subcutaneous heparin, 7.4% for streptokinase plus intravenous heparin, 6.3% for accelerated t-PA plus intravenous heparin, and 7.0% for the combination. Accelerated t-PA gave a 14% relative mortality reduction versus streptokinase alone (95% CI 5.9-21.3, p = 0.001). Haemorrhagic stroke rates were 0.49%, 0.54%, 0.72% and 0.94%, a significant excess for accelerated t-PA (p = 0.03). The composite of death or disabling stroke was 6.9% versus 7.8% (p = 0.006).',
         evidenceSource: 'The GUSTO Investigators. N Engl J Med 1993;329:673-682',
         doi: '10.1056/NEJM199309023291001',
-        measuredMetric: '30-day mortality 6.3% versus 7.2-7.4%; absolute benefit approximately 1 per 100 treated',
+        measuredMetric:
+          '30-day mortality 6.3% versus 7.2-7.4%; absolute benefit approximately 1 per 100 treated',
         auditFlag: 'verified',
       },
       {
@@ -3454,7 +3562,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
           'The AcT trial randomised 1,600 patients across 22 Canadian stroke centres to tenecteplase 0.25 mg/kg as a single bolus or alteplase 0.9 mg/kg as bolus plus 60-minute infusion. Modified Rankin 0-1 at 90-120 days occurred in 296 of 802 (36.9%) versus 266 of 765 (34.8%); unadjusted risk difference 2.1% (95% CI -2.6 to 6.9), meeting the prespecified non-inferiority threshold of -5%. Symptomatic intracerebral haemorrhage at 24 hours was 3.4% versus 3.2% and 90-day mortality 15.3% versus 15.4%. The practical advantage is that a bolus can be given before or during transfer for thrombectomy, where a 60-minute infusion cannot.',
         evidenceSource: 'Menon BK et al. Lancet 2022;400:161-169',
         doi: '10.1016/S0140-6736(22)01054-6',
-        measuredMetric: 'Risk difference 2.1% (95% CI -2.6 to 6.9), non-inferiority threshold -5% met',
+        measuredMetric:
+          'Risk difference 2.1% (95% CI -2.6 to 6.9), non-inferiority threshold -5% met',
         auditFlag: 'verified',
       },
     ],
@@ -3536,7 +3645,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         trialId: 'ECASS III (NCT00153036)',
         phase: 'Phase 3',
         sampleSize: 821,
-        primaryEndpoint: 'Modified Rankin scale 0 or 1 at 90 days, treated 3 to 4.5 hours after onset',
+        primaryEndpoint:
+          'Modified Rankin scale 0 or 1 at 90 days, treated 3 to 4.5 hours after onset',
         endpointMet: true,
         statisticalPValue: 'p = 0.04 (odds ratio 1.34, 95% CI 1.02-1.76)',
         independentReplicationStatus: 'Partially Replicated',
@@ -3558,7 +3668,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         sampleSize: 41021,
         primaryEndpoint: '30-day mortality after acute myocardial infarction',
         endpointMet: true,
-        statisticalPValue: 'p = 0.001 (14% relative reduction versus streptokinase, 95% CI 5.9-21.3)',
+        statisticalPValue:
+          'p = 0.001 (14% relative reduction versus streptokinase, 95% CI 5.9-21.3)',
         unreportedAdverseSignals:
           'Haemorrhagic stroke was significantly more common with accelerated t-PA than with streptokinase alone (0.72% versus 0.49-0.54%, p = 0.03).',
         independentReplicationStatus: 'Replicated',
@@ -3569,7 +3680,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         sampleSize: 1600,
         primaryEndpoint: 'Modified Rankin 0-1 at 90-120 days, tenecteplase versus alteplase',
         endpointMet: true,
-        statisticalPValue: 'Non-inferiority met (risk difference 2.1%, 95% CI -2.6 to 6.9, margin -5%)',
+        statisticalPValue:
+          'Non-inferiority met (risk difference 2.1%, 95% CI -2.6 to 6.9, margin -5%)',
         independentReplicationStatus: 'Replicated',
       },
     ],
@@ -3629,12 +3741,14 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'The NINDS rt-PA Stroke Study Group. Tissue plasminogen activator for acute ischemic stroke. N Engl J Med 1995;333:1581-1587',
+        label:
+          'The NINDS rt-PA Stroke Study Group. Tissue plasminogen activator for acute ischemic stroke. N Engl J Med 1995;333:1581-1587',
         identifier: '10.1056/NEJM199512143332401',
         kind: 'doi',
       },
       {
-        label: 'Hacke W et al. Thrombolysis with alteplase 3 to 4.5 hours after acute ischemic stroke (ECASS III). N Engl J Med 2008;359:1317-1329',
+        label:
+          'Hacke W et al. Thrombolysis with alteplase 3 to 4.5 hours after acute ischemic stroke (ECASS III). N Engl J Med 2008;359:1317-1329',
         identifier: '10.1056/NEJMoa0804656',
         kind: 'doi',
       },
@@ -3651,7 +3765,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'The GUSTO Investigators. An international randomized trial comparing four thrombolytic strategies for acute myocardial infarction. N Engl J Med 1993;329:673-682',
+        label:
+          'The GUSTO Investigators. An international randomized trial comparing four thrombolytic strategies for acute myocardial infarction. N Engl J Med 1993;329:673-682',
         identifier: '10.1056/NEJM199309023291001',
         kind: 'doi',
       },
@@ -3662,7 +3777,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Hoffman JR, Schriger DL. A graphic reanalysis of the NINDS Trial. Ann Emerg Med 2009;54:329-336',
+        label:
+          'Hoffman JR, Schriger DL. A graphic reanalysis of the NINDS Trial. Ann Emerg Med 2009;54:329-336',
         identifier: '10.1016/j.annemergmed.2009.03.019',
         kind: 'doi',
       },
@@ -3670,13 +3786,15 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       { label: 'AcT trial registration', identifier: 'NCT03889249', kind: 'nct' },
       {
         label: 'ACTIVASE (alteplase) for injection — US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=91ecdef2-95ff-42dd-a31c-c8a09cab3ad9',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=91ecdef2-95ff-42dd-a31c-c8a09cab3ad9',
         kind: 'regulatory',
       },
       {
         label:
           'Drugs@FDA: ACTIVASE, BLA 103172, original approval 13 November 1987; efficacy supplement 1055 (acute ischaemic stroke) approved 18 June 1996',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103172',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103172',
         kind: 'regulatory',
       },
       {

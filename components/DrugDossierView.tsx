@@ -398,7 +398,8 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
   const laboratoryWorkflow = drug.molecularSchema?.laboratoryWorkflow ?? []
 
   const hasConditionContext =
-    hasText(drug.conditionContext?.conditionExplainer) || hasText(drug.conditionContext?.whyItMatters)
+    hasText(drug.conditionContext?.conditionExplainer) ||
+    hasText(drug.conditionContext?.whyItMatters)
   const hasPricing =
     hasText(drug.pricing?.synthesisCostPerDose) || hasText(drug.pricing?.retailPricePerDoseOrYear)
 
@@ -1090,7 +1091,9 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
                               <span
                                 title={item.typicalCost}
                                 className={`text-xs font-mono font-bold px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap ${
-                                  chip.muted ? 'text-[#0071E3]/60 bg-blue-50/60' : 'text-[#0071E3] bg-blue-50'
+                                  chip.muted
+                                    ? 'text-[#0071E3]/60 bg-blue-50/60'
+                                    : 'text-[#0071E3] bg-blue-50'
                                 }`}
                               >
                                 {chip.label}
@@ -1272,7 +1275,10 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
                 />
               ) : (
                 laboratoryWorkflow.map((step, idx) => (
-                  <div key={step.id || idx} className="p-4 rounded-2xl bg-[#F5F5F7] text-xs space-y-1">
+                  <div
+                    key={step.id || idx}
+                    className="p-4 rounded-2xl bg-[#F5F5F7] text-xs space-y-1"
+                  >
                     <div className="font-bold text-[#1D1D1F]">
                       Step {step.stepNumber}: {step.name}
                     </div>

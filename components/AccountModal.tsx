@@ -208,7 +208,10 @@ export function AccountModal() {
                 {currentUser.name}
               </h2>
               <p className="text-xs text-[#86868B]">
-                {[currentUser.handle ? `@${currentUser.handle}` : null, joinedOn ? `Joined ${joinedOn}` : null]
+                {[
+                  currentUser.handle ? `@${currentUser.handle}` : null,
+                  joinedOn ? `Joined ${joinedOn}` : null,
+                ]
                   .filter(Boolean)
                   .join(' • ')}
               </p>
@@ -285,7 +288,10 @@ export function AccountModal() {
                           {drug.patientFriendlyIndication}
                         </span>
                       </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#86868B] shrink-0" aria-hidden="true" />
+                      <ArrowRight
+                        className="w-3.5 h-3.5 text-[#86868B] shrink-0"
+                        aria-hidden="true"
+                      />
                     </Link>
                   ))}
                 </div>

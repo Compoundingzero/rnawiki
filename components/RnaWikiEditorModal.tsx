@@ -37,15 +37,7 @@
  */
 
 import Link from 'next/link'
-import {
-  useCallback,
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-  useState,
-  type KeyboardEvent,
-} from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import {
   CheckCircle2,
   Dna,
@@ -130,7 +122,8 @@ const INPUT_BASE =
 const TEXTAREA_BASE =
   'w-full bg-[#F5F5F7] p-3 rounded-xl focus:bg-white focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none'
 const ROW_INPUT = 'text-xs bg-white px-2.5 py-1.5 rounded-lg border border-black/[0.06]'
-const ADD_BUTTON = 'flex items-center gap-1 text-xs font-bold text-[#0071E3] hover:underline cursor-pointer'
+const ADD_BUTTON =
+  'flex items-center gap-1 text-xs font-bold text-[#0071E3] hover:underline cursor-pointer'
 const DELETE_BUTTON =
   'p-1.5 text-[#86868B] hover:text-rose-600 rounded-lg hover:bg-rose-50 transition cursor-pointer'
 
@@ -182,7 +175,8 @@ function initialFormFor(drug: DrugDossier): EditorForm {
     laymanHowItWorks: drug.laymanHowItWorks,
     modality: drug.modality,
     structure: structureStringFor(drug) ?? '',
-    workflow: stored.length > 0 ? stored.map((step) => ({ ...step })) : cloneDefaultLaboratoryWorkflow(),
+    workflow:
+      stored.length > 0 ? stored.map((step) => ({ ...step })) : cloneDefaultLaboratoryWorkflow(),
     naturalFoods: (drug.substitutes?.naturalFoods ?? []).map((item) => ({ ...item })),
     conventionalRx: (drug.substitutes?.conventionalRx ?? []).map((item) => ({ ...item })),
     synthesisCostPerDose: drug.pricing?.synthesisCostPerDose ?? '',
@@ -588,7 +582,9 @@ export function RnaWikiEditorModal({
     (index: number, changes: Partial<NaturalFoodSubstitute>) => {
       setForm((prev) => ({
         ...prev,
-        naturalFoods: prev.naturalFoods.map((item, i) => (i === index ? { ...item, ...changes } : item)),
+        naturalFoods: prev.naturalFoods.map((item, i) =>
+          i === index ? { ...item, ...changes } : item,
+        ),
       }))
     },
     [],
@@ -616,7 +612,10 @@ export function RnaWikiEditorModal({
   )
 
   const handleDeletePharmacyAlt = useCallback((index: number) => {
-    setForm((prev) => ({ ...prev, conventionalRx: prev.conventionalRx.filter((_, i) => i !== index) }))
+    setForm((prev) => ({
+      ...prev,
+      conventionalRx: prev.conventionalRx.filter((_, i) => i !== index),
+    }))
   }, [])
 
   // --- Protocol DAG ---------------------------------------------------------
@@ -662,7 +661,8 @@ export function RnaWikiEditorModal({
             stepNumber: i + 1,
             // Deleting a step must not leave the steps that depended on it pointing at nothing.
             // The reference left them dangling, which Layer 3 then rejects the whole edit for.
-            dependsOnStepId: step.dependsOnStepId === removed?.id ? undefined : step.dependsOnStepId,
+            dependsOnStepId:
+              step.dependsOnStepId === removed?.id ? undefined : step.dependsOnStepId,
           })),
       }
     })
@@ -673,7 +673,9 @@ export function RnaWikiEditorModal({
   const handlePublishEdit = useCallback(async () => {
     const trimmedSummary = summary.trim()
     if (!trimmedSummary) {
-      setSubmitError('Describe the change in one line first — a revision with no summary cannot be reviewed.')
+      setSubmitError(
+        'Describe the change in one line first — a revision with no summary cannot be reviewed.',
+      )
       return
     }
     if (changedFieldCount === 0) {
@@ -780,7 +782,10 @@ export function RnaWikiEditorModal({
                 role="status"
                 className="flex items-start gap-2 text-xs font-semibold text-[#1D1D1F] leading-relaxed"
               >
-                <CheckCircle2 className="w-4 h-4 shrink-0 mt-px text-emerald-600" aria-hidden="true" />
+                <CheckCircle2
+                  className="w-4 h-4 shrink-0 mt-px text-emerald-600"
+                  aria-hidden="true"
+                />
                 <span>{outcome.message}</span>
               </p>
               {outcome.kind === 'pending' && (
@@ -945,7 +950,9 @@ export function RnaWikiEditorModal({
                   {/* Natural / Dietary Foods */}
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-sm text-[#1D1D1F]">Dietary &amp; Natural Foods</span>
+                      <span className="font-bold text-sm text-[#1D1D1F]">
+                        Dietary &amp; Natural Foods
+                      </span>
                       <button type="button" onClick={handleAddNaturalFood} className={ADD_BUTTON}>
                         <Plus className="w-3.5 h-3.5" aria-hidden="true" />
                         <span>Add Food Compound</span>
@@ -953,7 +960,10 @@ export function RnaWikiEditorModal({
                     </div>
 
                     {form.naturalFoods.map((item, idx) => (
-                      <div key={idx} className="p-4 bg-[#F5F5F7] rounded-2xl space-y-3 relative group">
+                      <div
+                        key={idx}
+                        className="p-4 bg-[#F5F5F7] rounded-2xl space-y-3 relative group"
+                      >
                         <div className="flex items-center justify-between gap-2">
                           <input
                             type="text"
@@ -993,7 +1003,9 @@ export function RnaWikiEditorModal({
                             type="text"
                             value={item.mechanism ?? ''}
                             placeholder="How it works biologically..."
-                            onChange={(e) => handleUpdateNaturalFood(idx, { mechanism: e.target.value })}
+                            onChange={(e) =>
+                              handleUpdateNaturalFood(idx, { mechanism: e.target.value })
+                            }
                             className={`w-full ${ROW_INPUT} text-[#424245]`}
                           />
                         </div>
@@ -1007,7 +1019,9 @@ export function RnaWikiEditorModal({
                             type="text"
                             value={item.dailyUsage}
                             placeholder="e.g. 2.0 grams daily with meals"
-                            onChange={(e) => handleUpdateNaturalFood(idx, { dailyUsage: e.target.value })}
+                            onChange={(e) =>
+                              handleUpdateNaturalFood(idx, { dailyUsage: e.target.value })
+                            }
                             className={`w-full ${ROW_INPUT} text-[#6E6E73]`}
                           />
                         </div>
@@ -1222,7 +1236,9 @@ export function RnaWikiEditorModal({
                         value={step.description}
                         aria-label={`Step ${step.stepNumber} description`}
                         placeholder="Describe reaction buffer, reaction time, temperature, and validation threshold..."
-                        onChange={(e) => handleUpdateProtocolStep(idx, { description: e.target.value })}
+                        onChange={(e) =>
+                          handleUpdateProtocolStep(idx, { description: e.target.value })
+                        }
                         className={`w-full text-xs bg-white p-2.5 rounded-lg border border-black/[0.06] text-[#424245]`}
                       />
 
@@ -1237,7 +1253,9 @@ export function RnaWikiEditorModal({
                             id={`${domId}-step-${idx}-phase`}
                             value={step.phase}
                             onChange={(e) =>
-                              handleUpdateProtocolStep(idx, { phase: e.target.value as ProtocolPhase })
+                              handleUpdateProtocolStep(idx, {
+                                phase: e.target.value as ProtocolPhase,
+                              })
                             }
                             className={`w-full ${ROW_INPUT} text-[#1D1D1F]`}
                           >

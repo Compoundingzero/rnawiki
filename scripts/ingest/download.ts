@@ -45,7 +45,11 @@ function isComplete(path: string, expectedMb: number): boolean {
   return actualMb >= expectedMb * 0.98
 }
 
-async function download(url: string, destination: string, expectedMb: number): Promise<'downloaded' | 'skipped'> {
+async function download(
+  url: string,
+  destination: string,
+  expectedMb: number,
+): Promise<'downloaded' | 'skipped'> {
   if (isComplete(destination, expectedMb)) return 'skipped'
   if (existsSync(destination)) unlinkSync(destination)
 
@@ -53,7 +57,10 @@ async function download(url: string, destination: string, expectedMb: number): P
   if (!response.ok || !response.body) throw new Error(`${url} returned ${response.status}`)
 
   const temp = `${destination}.part`
-  await pipeline(Readable.fromWeb(response.body as Parameters<typeof Readable.fromWeb>[0]), createWriteStream(temp))
+  await pipeline(
+    Readable.fromWeb(response.body as Parameters<typeof Readable.fromWeb>[0]),
+    createWriteStream(temp),
+  )
 
   // Rename only once the body is fully written, so an interrupted run never leaves a file that
   // looks complete at the final path.

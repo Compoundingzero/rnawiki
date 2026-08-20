@@ -232,9 +232,7 @@ export const HPO3_AVERAGE_MASS = 79.9799
  * 5'-triphosphate before capping; pass the terminus explicitly when that is what is meant.
  */
 export type NucleicAcidTerminus =
-  | 'five-prime-hydroxyl'
-  | 'five-prime-monophosphate'
-  | 'five-prime-triphosphate'
+  'five-prime-hydroxyl' | 'five-prime-monophosphate' | 'five-prime-triphosphate'
 
 export const TERMINUS_MASS_CORRECTION: Record<NucleicAcidTerminus, number> = {
   'five-prime-hydroxyl': WATER_AVERAGE_MASS - HPO3_AVERAGE_MASS,

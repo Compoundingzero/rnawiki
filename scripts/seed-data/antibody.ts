@@ -101,7 +101,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           class: 'Biosimilar anti-TNF monoclonal antibody',
           howItCompares:
             'Same molecule, same target, approved on analytical and clinical similarity rather than fresh outcome trials.',
-          typicalCost: 'Approximately $40,000 - $85,000 / year list, depending on which list price is chosen',
+          typicalCost:
+            'Approximately $40,000 - $85,000 / year list, depending on which list price is chosen',
           prosAndCons:
             'Pros: identical mechanism at a lower list price. Cons: US uptake was slowed by rebate contracting, so patient out-of-pocket cost does not always follow the list price down.',
         },
@@ -142,7 +143,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 148 kDa',
       structureSource: {
         label: 'HUMIRA (adalimumab) US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125057',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125057',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -153,7 +155,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Master cell bank identity and sterility release',
           description:
             'Confirm the CHO working cell bank identity by isoenzyme and STR analysis, and clear it for adventitious agents before any production bioreactor is inoculated.',
-          reagentsAndBuffer: 'Cryopreserved CHO-DG44 vials, in vitro adventitious agent assay, mycoplasma PCR panel',
+          reagentsAndBuffer:
+            'Cryopreserved CHO-DG44 vials, in vitro adventitious agent assay, mycoplasma PCR panel',
         },
         {
           id: 'ada-syn',
@@ -173,7 +176,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Protein A affinity capture',
           description:
             'Clarify the harvest by depth filtration and capture IgG on a recombinant Protein A resin binding the Fc region, then elute at low pH.',
-          reagentsAndBuffer: 'MabSelect SuRe resin, equilibration in PBS pH 7.2, elution in 0.1 M sodium citrate pH 3.5',
+          reagentsAndBuffer:
+            'MabSelect SuRe resin, equilibration in PBS pH 7.2, elution in 0.1 M sodium citrate pH 3.5',
           dependsOnStepId: 'ada-syn',
         },
         {
@@ -217,7 +221,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'ada-2',
         category: 'measured',
-        title: 'PREMIER: combination therapy beat either drug alone on joint damage, not just symptoms',
+        title:
+          'PREMIER: combination therapy beat either drug alone on joint damage, not just symptoms',
         laymanSummary:
           'In 799 people with early aggressive disease who had never had methotrexate, the combination slowed the erosion visible on X-rays more than either drug used alone.',
         technicalDetails:
@@ -391,7 +396,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Weinblatt et al., adalimumab plus methotrexate in rheumatoid arthritis (ARMADA), Arthritis Rheum 2003',
+        label:
+          'Weinblatt et al., adalimumab plus methotrexate in rheumatoid arthritis (ARMADA), Arthritis Rheum 2003',
         identifier: '10.1002/art.10697',
         kind: 'doi',
       },
@@ -401,18 +407,21 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Bongartz et al., Anti-TNF antibody therapy and the risk of serious infections and malignancies, JAMA 2006',
+        label:
+          'Bongartz et al., Anti-TNF antibody therapy and the risk of serious infections and malignancies, JAMA 2006',
         identifier: '10.1001/jama.295.19.2275',
         kind: 'doi',
       },
       {
-        label: 'Mariette et al., Malignancies associated with TNF inhibitors in registries, Ann Rheum Dis 2011',
+        label:
+          'Mariette et al., Malignancies associated with TNF inhibitors in registries, Ann Rheum Dis 2011',
         identifier: '10.1136/ard.2010.149419',
         kind: 'doi',
       },
       {
         label: 'Drugs@FDA, HUMIRA BLA 125057, original approval 31 December 2002',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125057',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125057',
         kind: 'regulatory',
       },
       {
@@ -439,7 +448,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     approvalYear: 2014,
     indication:
       'Melanoma, non-small-cell lung cancer, head and neck squamous cell carcinoma, classical Hodgkin lymphoma, urothelial, gastric, oesophageal, cervical, hepatocellular, renal cell, triple-negative breast and endometrial carcinoma, plus tissue-agnostic use in MSI-high or mismatch-repair-deficient tumours',
-    patientFriendlyIndication: 'Many advanced cancers, by releasing the immune brake on tumour-fighting T cells',
+    patientFriendlyIndication:
+      'Many advanced cancers, by releasing the immune brake on tumour-fighting T cells',
     anatomicalSite: 'Tumour microenvironment and draining lymph nodes',
     conditionContext: {
       conditionExplainer:
@@ -498,7 +508,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 149 kDa',
       structureSource: {
         label: 'KEYTRUDA (pembrolizumab) US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125514',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125514',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -509,7 +520,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Cell bank and hinge-mutation sequence confirmation',
           description:
             'Verify the S228P hinge substitution at the DNA and peptide level before production, since reversion to wild-type IgG4 would permit Fab-arm exchange and destroy bivalent binding.',
-          reagentsAndBuffer: 'Sanger and next-generation sequencing of the heavy chain locus, tryptic peptide map by LC-MS/MS',
+          reagentsAndBuffer:
+            'Sanger and next-generation sequencing of the heavy chain locus, tryptic peptide map by LC-MS/MS',
         },
         {
           id: 'pem-syn',
@@ -518,7 +530,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Fed-batch CHO expression',
           description:
             'Production bioreactor run in chemically defined medium with a temperature shift to favour assembly and limit glycation.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, glucose-limited feed, 37 degrees C shifting to 33 degrees C',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, glucose-limited feed, 37 degrees C shifting to 33 degrees C',
           dependsOnStepId: 'pem-qc',
         },
         {
@@ -528,7 +541,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Protein A capture and low-pH viral inactivation',
           description:
             'Capture on alkali-stable Protein A, elute at low pH and hold to inactivate enveloped virus in the same operation.',
-          reagentsAndBuffer: 'MabSelect PrismA resin, 0.1 M acetate pH 3.6 elution, 60 minute low-pH hold',
+          reagentsAndBuffer:
+            'MabSelect PrismA resin, 0.1 M acetate pH 3.6 elution, 60 minute low-pH hold',
           dependsOnStepId: 'pem-syn',
         },
         {
@@ -538,7 +552,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Multimodal polishing and half-antibody removal',
           description:
             'Remove aggregate, host cell protein and any half-antibody species arising from incomplete hinge disulfide formation.',
-          reagentsAndBuffer: 'Capto adhere multimodal resin, hydrophobic interaction step, 20 nm virus filtration',
+          reagentsAndBuffer:
+            'Capto adhere multimodal resin, hydrophobic interaction step, 20 nm virus filtration',
           dependsOnStepId: 'pem-cap',
         },
         {
@@ -548,7 +563,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'PD-1/PD-L1 blockade reporter bioassay',
           description:
             'Measure potency in a two-cell reporter system where PD-1-expressing Jurkat effector cells and PD-L1-expressing artificial antigen-presenting cells generate luminescence only when the checkpoint is blocked.',
-          reagentsAndBuffer: 'PD-1 effector Jurkat/NFAT-luciferase line, PD-L1 aAPC/CHO-K1 line, Bio-Glo luminescent substrate',
+          reagentsAndBuffer:
+            'PD-1 effector Jurkat/NFAT-luciferase line, PD-L1 aAPC/CHO-K1 line, Bio-Glo luminescent substrate',
           dependsOnStepId: 'pem-pol',
         },
       ],
@@ -562,9 +578,11 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'In 834 people with advanced melanoma, roughly 47% were free of progression at six months on pembrolizumab against 26.5% on the previous standard, ipilimumab, with less severe toxicity.',
         technicalDetails:
           'Randomised phase 3, three arms. Estimated 6-month progression-free survival was 47.3% for pembrolizumab every 2 weeks, 46.4% every 3 weeks and 26.5% for ipilimumab (hazard ratio 0.58). Overall survival also favoured pembrolizumab, and grade 3-5 treatment-related events were less frequent than with ipilimumab.',
-        evidenceSource: 'Robert et al., New England Journal of Medicine 2015 (KEYNOTE-006, NCT01866319)',
+        evidenceSource:
+          'Robert et al., New England Journal of Medicine 2015 (KEYNOTE-006, NCT01866319)',
         doi: '10.1056/NEJMoa1503093',
-        measuredMetric: '6-month progression-free survival 47.3% versus 26.5%; HR for progression 0.58',
+        measuredMetric:
+          '6-month progression-free survival 47.3% versus 26.5%; HR for progression 0.58',
         auditFlag: 'verified',
       },
       {
@@ -575,7 +593,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'In 305 people with previously untreated advanced lung cancer whose tumours carried PD-L1 on at least half of cells, pembrolizumab alone delayed progression from a median of 6.0 to 10.3 months and extended survival.',
         technicalDetails:
           'Open-label phase 3 with blinded independent central review of the primary endpoint. Median progression-free survival 10.3 versus 6.0 months (hazard ratio 0.50, 95% CI 0.37-0.68, p < 0.001), with longer overall survival and fewer treatment-related adverse events than platinum doublet chemotherapy. Crossover from chemotherapy was permitted, which biases the survival comparison conservatively.',
-        evidenceSource: 'Reck et al., New England Journal of Medicine 2016 (KEYNOTE-024, NCT02142738)',
+        evidenceSource:
+          'Reck et al., New England Journal of Medicine 2016 (KEYNOTE-024, NCT02142738)',
         doi: '10.1056/NEJMoa1606774',
         measuredMetric: 'Median progression-free survival 10.3 versus 6.0 months, HR 0.50',
         auditFlag: 'verified',
@@ -583,14 +602,16 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'pem-3',
         category: 'failed',
-        title: 'KEYNOTE-183: the FDA halted the myeloma trial because patients on pembrolizumab died sooner',
+        title:
+          'KEYNOTE-183: the FDA halted the myeloma trial because patients on pembrolizumab died sooner',
         laymanSummary:
           'Adding pembrolizumab to standard myeloma treatment made outcomes worse, not better. Regulators stopped the trial in July 2017 after an unplanned interim analysis.',
         technicalDetails:
           'Randomised open-label phase 3 in relapsed or refractory multiple myeloma, 249 patients randomised to pomalidomide and dexamethasone with or without pembrolizumab. Median progression-free survival was 5.6 months with pembrolizumab versus 8.4 months without (hazard ratio 1.53, 95% CI 1.05-2.22). Six-month overall survival was 82% versus 90%. The FDA halted the study on 3 July 2017 on the grounds that risk outweighed benefit. The companion trial KEYNOTE-185 in newly diagnosed myeloma was halted at the same time.',
         evidenceSource: 'Usmani et al., Lancet Haematology 2019 (KEYNOTE-183, NCT02576977)',
         doi: '10.1016/S2352-3026(19)30110-3',
-        measuredMetric: 'Median progression-free survival 5.6 versus 8.4 months, HR 1.53 against the experimental arm',
+        measuredMetric:
+          'Median progression-free survival 5.6 versus 8.4 months, HR 1.53 against the experimental arm',
         auditFlag: 'verified',
       },
       {
@@ -602,7 +623,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'KEYNOTE-024 restricted enrolment to tumour proportion score of 50% or more, which is an enrichment design and cannot establish that the assay predicts individual benefit. PD-L1 immunohistochemistry is subject to assay-to-assay variation, intratumoural heterogeneity and temporal drift between archival and fresh biopsy. Tissue-agnostic approval on microsatellite instability rests on a different and better-defined biomarker.',
         evidenceSource: 'Enrichment design of KEYNOTE-024 and the assay-comparison literature',
-        inferredClaim: 'That a PD-L1 tumour proportion score identifies which individual patients will respond',
+        inferredClaim:
+          'That a PD-L1 tumour proportion score identifies which individual patients will respond',
         auditFlag: 'caution',
       },
       {
@@ -613,7 +635,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'In 2017 the FDA approved pembrolizumab for any solid tumour with a specific DNA repair defect, regardless of which organ the cancer started in. That broke a century-old convention that cancer drugs are approved by organ of origin.',
         technicalDetails:
           'Accelerated approval for microsatellite-instability-high or mismatch-repair-deficient unresectable or metastatic solid tumours was granted in May 2017 on pooled objective response data across tumour types. The mechanistic rationale is that mismatch repair deficiency generates a high neoantigen burden that checkpoint blockade can exploit. The shift reframed the biomarker, not the antibody.',
-        evidenceSource: 'FDA accelerated approval of pembrolizumab for MSI-H/dMMR solid tumours, May 2017',
+        evidenceSource:
+          'FDA accelerated approval of pembrolizumab for MSI-H/dMMR solid tumours, May 2017',
         auditFlag: 'verified',
       },
       {
@@ -685,7 +708,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         trialId: 'KEYNOTE-006 (NCT01866319)',
         phase: 'Phase 3',
         sampleSize: 834,
-        primaryEndpoint: 'Progression-free survival and overall survival versus ipilimumab in advanced melanoma',
+        primaryEndpoint:
+          'Progression-free survival and overall survival versus ipilimumab in advanced melanoma',
         endpointMet: true,
         statisticalPValue: 'p < 0.001 for progression-free survival; HR 0.58',
         independentReplicationStatus: 'Replicated',
@@ -704,9 +728,11 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         trialId: 'KEYNOTE-183 (NCT02576977)',
         phase: 'Phase 3',
         sampleSize: 249,
-        primaryEndpoint: 'Progression-free survival and overall survival in relapsed or refractory multiple myeloma',
+        primaryEndpoint:
+          'Progression-free survival and overall survival in relapsed or refractory multiple myeloma',
         endpointMet: false,
-        statisticalPValue: 'HR 1.53 (95% CI 1.05-2.22) against the pembrolizumab arm; halted by the FDA',
+        statisticalPValue:
+          'HR 1.53 (95% CI 1.05-2.22) against the pembrolizumab arm; halted by the FDA',
         unreportedAdverseSignals:
           'Excess deaths in the pembrolizumab arm prompted an unplanned FDA-requested interim analysis and a clinical hold on 3 July 2017.',
         independentReplicationStatus: 'Failed to Replicate',
@@ -744,7 +770,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         q: 'If my tumour is PD-L1 negative, is there any point?',
         a: 'Response rates are lower but not zero, and several approvals cover PD-L1-unselected populations, usually in combination with chemotherapy. The assay enriches for benefit rather than ruling it out. What the trials cannot tell you is your individual probability.',
-        auditNote: 'The commonest place where an enrichment biomarker gets read as a predictive test.',
+        auditNote:
+          'The commonest place where an enrichment biomarker gets read as a predictive test.',
       },
       {
         q: 'How long do I stay on it?',
@@ -753,7 +780,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         q: 'Can immunotherapy make a cancer worse?',
         a: 'In multiple myeloma it measurably did. The FDA halted KEYNOTE-183 and KEYNOTE-185 in 2017 because patients receiving pembrolizumab progressed sooner and more died. Hyperprogression in solid tumours has been reported but its definition and existence remain contested.',
-        auditNote: 'A page showing only the melanoma and lung results would be an incomplete record.',
+        auditNote:
+          'A page showing only the melanoma and lung results would be an incomplete record.',
       },
       {
         q: 'Do side effects go away when I stop?',
@@ -790,7 +818,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, KEYTRUDA BLA 125514, original approval 4 September 2014',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125514',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125514',
         kind: 'regulatory',
       },
     ],
@@ -869,7 +898,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Calculated molecular mass 146 kDa',
       structureSource: {
         label: 'OPDIVO (nivolumab) US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125554',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125554',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -880,15 +910,18 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'NS0 murine myeloma expression',
           description:
             'Express the fully human IgG4 in a transfected NS0 murine myeloma line under fed-batch control, then clarify the harvest by centrifugation and depth filtration.',
-          reagentsAndBuffer: 'Serum-free NS0 medium, glutamine synthetase selection, methionine sulfoximine',
+          reagentsAndBuffer:
+            'Serum-free NS0 medium, glutamine synthetase selection, methionine sulfoximine',
         },
         {
           id: 'niv-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture',
-          description: 'Bind IgG4 Fc to Protein A, wash out host cell protein and DNA, and elute at low pH.',
-          reagentsAndBuffer: 'Protein A resin, 25 mM Tris pH 7.4 equilibration, 50 mM glycine pH 3.5 elution',
+          description:
+            'Bind IgG4 Fc to Protein A, wash out host cell protein and DNA, and elute at low pH.',
+          reagentsAndBuffer:
+            'Protein A resin, 25 mM Tris pH 7.4 equilibration, 50 mM glycine pH 3.5 elution',
           dependsOnStepId: 'niv-syn',
         },
         {
@@ -898,7 +931,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Viral clearance and aggregate removal',
           description:
             'Low-pH hold for enveloped virus inactivation, anion exchange in flow-through mode for DNA and virus clearance, then size exclusion or hydrophobic interaction to remove aggregate.',
-          reagentsAndBuffer: 'pH 3.5 hold, Q Sepharose flow-through, 20 nm parvovirus-retentive filter',
+          reagentsAndBuffer:
+            'pH 3.5 hold, Q Sepharose flow-through, 20 nm parvovirus-retentive filter',
           dependsOnStepId: 'niv-cap',
         },
         {
@@ -908,7 +942,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'PD-1 binding affinity by surface plasmon resonance',
           description:
             'Immobilise recombinant human PD-1 extracellular domain and measure association and dissociation rate constants against the reference standard for each lot.',
-          reagentsAndBuffer: 'CM5 sensor chip, EDC/NHS amine coupling, HBS-EP+ running buffer, 10 mM glycine pH 2.0 regeneration',
+          reagentsAndBuffer:
+            'CM5 sensor chip, EDC/NHS amine coupling, HBS-EP+ running buffer, 10 mM glycine pH 2.0 regeneration',
           dependsOnStepId: 'niv-pol',
         },
         {
@@ -918,7 +953,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Glycan and charge variant release testing',
           description:
             'Confirm N-glycan profile, charge heterogeneity and aggregate content are within the validated ranges before lot release.',
-          reagentsAndBuffer: 'PNGase F released glycans by HILIC-UPLC, imaged capillary isoelectric focusing, SEC-HPLC',
+          reagentsAndBuffer:
+            'PNGase F released glycans by HILIC-UPLC, imaged capillary isoelectric focusing, SEC-HPLC',
           dependsOnStepId: 'niv-assay',
         },
       ],
@@ -927,12 +963,14 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'niv-1',
         category: 'measured',
-        title: 'CheckMate 067: combination therapy gave 11.5 months progression-free survival against 2.9',
+        title:
+          'CheckMate 067: combination therapy gave 11.5 months progression-free survival against 2.9',
         laymanSummary:
           'In 945 people with untreated advanced melanoma, nivolumab plus ipilimumab held the disease at bay for a median of 11.5 months compared with 2.9 months on ipilimumab alone.',
         technicalDetails:
           'Randomised, double-blind, three-arm phase 3. Median progression-free survival was 11.5 months (95% CI 8.9-16.7) for the combination versus 6.9 months for nivolumab alone and 2.9 months (95% CI 2.8-3.4) for ipilimumab alone; hazard ratio for the combination versus ipilimumab was 0.42 (99.5% CI 0.31-0.57). The trial was not powered for a formal combination-versus-nivolumab comparison.',
-        evidenceSource: 'Larkin et al., New England Journal of Medicine 2015 (CheckMate 067, NCT01844505)',
+        evidenceSource:
+          'Larkin et al., New England Journal of Medicine 2015 (CheckMate 067, NCT01844505)',
         doi: '10.1056/NEJMoa1504030',
         measuredMetric: 'Median progression-free survival 11.5 versus 2.9 months, HR 0.42',
         auditFlag: 'verified',
@@ -940,31 +978,37 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'niv-2',
         category: 'failed',
-        title: 'CheckMate 026: first-line nivolumab in PD-L1-positive lung cancer missed its endpoint',
+        title:
+          'CheckMate 026: first-line nivolumab in PD-L1-positive lung cancer missed its endpoint',
         laymanSummary:
           'The trial designed to make nivolumab the first treatment for advanced lung cancer failed. Progression-free survival was numerically worse than chemotherapy, and survival was no better.',
         technicalDetails:
           'Open-label phase 3, 541 randomised, primary analysis in the 423 patients with PD-L1 expression of 5% or more. Median progression-free survival 4.2 months with nivolumab versus 5.9 months with platinum chemotherapy (hazard ratio 1.15, 95% CI 0.91-1.45, p = 0.25); median overall survival 14.4 versus 13.2 months (HR 1.02). The contemporaneous KEYNOTE-024 succeeded using a 50% PD-L1 threshold and a different assay, which is the standard explanation but was not tested prospectively.',
-        evidenceSource: 'Carbone et al., New England Journal of Medicine 2017 (CheckMate 026, NCT02041533)',
+        evidenceSource:
+          'Carbone et al., New England Journal of Medicine 2017 (CheckMate 026, NCT02041533)',
         doi: '10.1056/NEJMoa1613493',
-        measuredMetric: 'Median progression-free survival 4.2 versus 5.9 months, HR 1.15, primary endpoint not met',
+        measuredMetric:
+          'Median progression-free survival 4.2 versus 5.9 months, HR 1.15, primary endpoint not met',
         auditFlag: 'verified',
       },
       {
         id: 'niv-3',
         category: 'conclusion_shift',
-        title: 'The biomarker threshold, not the drug, decided two nearly identical lung cancer trials',
+        title:
+          'The biomarker threshold, not the drug, decided two nearly identical lung cancer trials',
         laymanSummary:
           'Two anti-PD-1 antibodies were tested first-line in lung cancer within a year of each other. One succeeded, one failed. The most cited difference is where each trial drew the PD-L1 cut-off, which is a design choice rather than a property of either molecule.',
         technicalDetails:
           'CheckMate 026 enrolled at a 5% tumour PD-L1 threshold using the Dako 28-8 assay; KEYNOTE-024 enrolled at 50% using the Dako 22C3 assay. The field concluded that the enrolled populations differed rather than the drugs, and subsequent first-line development moved to combination regimens with chemotherapy or ipilimumab. This reading is plausible and widely held but rests on cross-trial comparison, which is not evidence of equivalence.',
-        evidenceSource: 'Comparison of CheckMate 026 (NCT02041533) and KEYNOTE-024 (NCT02142738) designs',
+        evidenceSource:
+          'Comparison of CheckMate 026 (NCT02041533) and KEYNOTE-024 (NCT02142738) designs',
         auditFlag: 'contested',
       },
       {
         id: 'niv-4',
         category: 'inferred',
-        title: 'The combination is described as more effective when the trial measured more toxicity too',
+        title:
+          'The combination is described as more effective when the trial measured more toxicity too',
         laymanSummary:
           'Adding ipilimumab lengthens progression-free survival, but grade 3 or 4 side effects rise steeply and a substantial minority stop treatment because of them. Efficacy summaries often quote the first number without the second.',
         technicalDetails:
@@ -989,7 +1033,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         step: 1,
         title: 'Intravenous infusion at fixed dose',
-        laymanDesc: 'Given as a drip over about half an hour, every two, three or four weeks depending on the regimen.',
+        laymanDesc:
+          'Given as a drip over about half an hour, every two, three or four weeks depending on the regimen.',
         molecularDetail:
           'Flat dosing of 240 mg every 2 weeks or 480 mg every 4 weeks, with linear pharmacokinetics, a central volume near 3.6 L and a terminal half-life around 25 days.',
         iconName: 'Droplet',
@@ -998,7 +1043,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         step: 2,
         title: 'Penetration into tumour and lymphoid tissue',
-        laymanDesc: 'It leaks out of the leaky vessels that tumours build and accumulates where PD-1-bearing T cells sit.',
+        laymanDesc:
+          'It leaks out of the leaky vessels that tumours build and accumulates where PD-1-bearing T cells sit.',
         molecularDetail:
           'Interstitial delivery by convection, with target-mediated binding on PD-1-high tumour-infiltrating lymphocytes producing measurable receptor occupancy above 70% at clinical doses.',
         iconName: 'MapPin',
@@ -1007,7 +1053,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Occupying PD-1 on the T cell surface',
-        laymanDesc: 'The antibody sits over the off-switch, so neither of the tumour signals that would flip it can dock.',
+        laymanDesc:
+          'The antibody sits over the off-switch, so neither of the tumour signals that would flip it can dock.',
         molecularDetail:
           'Binds the PD-1 IgV domain, blocking both PD-L1 and PD-L2. The IgG4 S228P backbone minimises Fc effector function so that PD-1-expressing lymphocytes are not depleted by the antibody that is meant to reactivate them.',
         iconName: 'Lock',
@@ -1016,7 +1063,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         step: 4,
         title: 'Inhibitory phosphatase recruitment stops',
-        laymanDesc: 'The chemical brake inside the T cell is no longer applied, and the machinery that had been shut down restarts.',
+        laymanDesc:
+          'The chemical brake inside the T cell is no longer applied, and the machinery that had been shut down restarts.',
         molecularDetail:
           'Unligated PD-1 does not recruit SHP-1 and SHP-2 to its ITIM and ITSM motifs, so CD28 and ZAP-70 remain phosphorylated, PI3K-AKT signalling proceeds, and effector gene transcription resumes.',
         iconName: 'Zap',
@@ -1038,9 +1086,11 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         trialId: 'CheckMate 067 (NCT01844505)',
         phase: 'Phase 3',
         sampleSize: 945,
-        primaryEndpoint: 'Progression-free survival and overall survival in untreated advanced melanoma',
+        primaryEndpoint:
+          'Progression-free survival and overall survival in untreated advanced melanoma',
         endpointMet: true,
-        statisticalPValue: 'p < 0.001; HR 0.42 (99.5% CI 0.31-0.57) for combination versus ipilimumab',
+        statisticalPValue:
+          'p < 0.001; HR 0.42 (99.5% CI 0.31-0.57) for combination versus ipilimumab',
         unreportedAdverseSignals:
           'Grade 3-4 treatment-related events were markedly more frequent in the combination arm than in either monotherapy arm.',
         independentReplicationStatus: 'Replicated',
@@ -1101,7 +1151,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Larkin et al., Combined Nivolumab and Ipilimumab or Monotherapy in Untreated Melanoma, NEJM 2015',
+        label:
+          'Larkin et al., Combined Nivolumab and Ipilimumab or Monotherapy in Untreated Melanoma, NEJM 2015',
         identifier: '10.1056/NEJMoa1504030',
         kind: 'doi',
       },
@@ -1122,7 +1173,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, OPDIVO BLA 125554, original approval 22 December 2014',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125554',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125554',
         kind: 'regulatory',
       },
     ],
@@ -1140,8 +1192,10 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     modality: 'Monoclonal Antibody (mAb)',
     approvalStatus: 'FDA Approved',
     approvalYear: 1998,
-    indication: 'HER2-overexpressing breast cancer, adjuvant and metastatic, and HER2-overexpressing metastatic gastric or gastro-oesophageal junction adenocarcinoma',
-    patientFriendlyIndication: 'Breast and stomach cancers driven by an over-copied growth receptor',
+    indication:
+      'HER2-overexpressing breast cancer, adjuvant and metastatic, and HER2-overexpressing metastatic gastric or gastro-oesophageal junction adenocarcinoma',
+    patientFriendlyIndication:
+      'Breast and stomach cancers driven by an over-copied growth receptor',
     anatomicalSite: 'HER2-overexpressing tumour cell membrane',
     conditionContext: {
       conditionExplainer:
@@ -1168,7 +1222,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           class: 'Biosimilar anti-HER2 monoclonal antibody',
           howItCompares:
             'Same molecule, approved on analytical, pharmacokinetic and confirmatory clinical similarity. Five were approved in the United States between December 2017 and June 2019.',
-          typicalCost: 'Commonly 15-30% below originator list price, varying widely by country and tender',
+          typicalCost:
+            'Commonly 15-30% below originator list price, varying widely by country and tender',
           prosAndCons:
             'Pros: identical target and mechanism at lower cost, which matters most where trastuzumab was previously unaffordable. Cons: uptake depends on procurement rather than on evidence.',
         },
@@ -1195,7 +1250,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           class: 'Small-molecule HER2 tyrosine kinase inhibitors',
           howItCompares:
             'Block the intracellular kinase domain rather than the extracellular receptor, and cross the blood-brain barrier better than an antibody.',
-          typicalCost: 'Lapatinib generic from roughly $500 / month; tucatinib approximately $18,000 / month US list',
+          typicalCost:
+            'Lapatinib generic from roughly $500 / month; tucatinib approximately $18,000 / month US list',
           prosAndCons:
             'Pros: oral, active in brain metastases. Cons: diarrhoea, hand-foot syndrome, hepatotoxicity.',
         },
@@ -1219,7 +1275,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 148 kDa',
       structureSource: {
         label: 'HERCEPTIN HYLECTA US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103792',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103792',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -1230,14 +1287,16 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'CHO fed-batch expression of the humanised IgG1',
           description:
             'Produce the antibody in a CHO line selected for consistent afucosylation, since core fucose content governs FcgammaRIIIa binding and therefore antibody-dependent cellular cytotoxicity.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, manganese and galactose feed control for glycan consistency',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, manganese and galactose feed control for glycan consistency',
         },
         {
           id: 'tra-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture and low-pH viral inactivation',
-          description: 'Capture the Fc, wash, elute at low pH and hold the eluate to inactivate enveloped virus.',
+          description:
+            'Capture the Fc, wash, elute at low pH and hold the eluate to inactivate enveloped virus.',
           reagentsAndBuffer: 'Protein A resin, 25 mM sodium citrate pH 3.4 elution, 60 minute hold',
           dependsOnStepId: 'tra-syn',
         },
@@ -1248,7 +1307,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Cation exchange polishing and lyophilisation',
           description:
             'Resolve charge variants and aggregate, exchange into trehalose and histidine buffer, and lyophilise into the multi-dose vial presentation.',
-          reagentsAndBuffer: 'SP Sepharose cation exchange, alpha,alpha-trehalose dihydrate, L-histidine HCl, polysorbate 20',
+          reagentsAndBuffer:
+            'SP Sepharose cation exchange, alpha,alpha-trehalose dihydrate, L-histidine HCl, polysorbate 20',
           dependsOnStepId: 'tra-cap',
         },
         {
@@ -1258,7 +1318,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'HER2 binding and antiproliferative potency assay',
           description:
             'Confirm binding to the HER2 extracellular domain subdomain IV and quantify growth inhibition of the HER2-amplified BT-474 breast carcinoma line against the reference standard.',
-          reagentsAndBuffer: 'Recombinant HER2 ECD, BT-474 cells, resazurin or CellTiter-Glo viability readout',
+          reagentsAndBuffer:
+            'Recombinant HER2 ECD, BT-474 cells, resazurin or CellTiter-Glo viability readout',
           dependsOnStepId: 'tra-pol',
         },
         {
@@ -1268,7 +1329,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'FcgammaRIIIa-mediated ADCC reporter assay',
           description:
             'Verify the effector arm of the mechanism using an engineered FcgammaRIIIa V158 reporter effector cell line against HER2-positive targets.',
-          reagentsAndBuffer: 'Jurkat/FcgammaRIIIa-NFAT-luciferase effector line, SK-BR-3 target cells, luminescent substrate',
+          reagentsAndBuffer:
+            'Jurkat/FcgammaRIIIa-NFAT-luciferase effector line, SK-BR-3 target cells, luminescent substrate',
           dependsOnStepId: 'tra-assay',
         },
       ],
@@ -1295,22 +1357,26 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'In over 5,000 women treated after surgery and chemotherapy, one year of the antibody reduced recurrence, second cancers and death by roughly half at the first planned analysis.',
         technicalDetails:
           'International randomised trial, 1,694 assigned to one year of trastuzumab, 1,694 to two years and 1,693 to observation. At the first interim analysis with median follow-up of one year, 127 events occurred in the one-year trastuzumab group against 220 in the observation group; unadjusted hazard ratio 0.54 (95% CI 0.43-0.67). Longer follow-up showed the two-year arm gave no additional benefit over one year.',
-        evidenceSource: 'Piccart-Gebhart et al., New England Journal of Medicine 2005 (HERA, NCT00045032)',
+        evidenceSource:
+          'Piccart-Gebhart et al., New England Journal of Medicine 2005 (HERA, NCT00045032)',
         doi: '10.1056/NEJMoa052306',
-        measuredMetric: 'Hazard ratio 0.54 (95% CI 0.43-0.67) for disease-free survival events at first analysis',
+        measuredMetric:
+          'Hazard ratio 0.54 (95% CI 0.43-0.67) for disease-free survival events at first analysis',
         auditFlag: 'verified',
       },
       {
         id: 'tra-3',
         category: 'conclusion_shift',
-        title: 'PERSEPHONE: six months was non-inferior to twelve, and the twelve-month standard was never derived from a dose-finding study',
+        title:
+          'PERSEPHONE: six months was non-inferior to twelve, and the twelve-month standard was never derived from a dose-finding study',
         laymanSummary:
           'The one-year duration was a pragmatic choice made when the first adjuvant trials were designed, not a measured optimum. A 4,088-patient trial later showed six months gave the same four-year disease-free survival with half the cardiac toxicity.',
         technicalDetails:
           'Open-label randomised non-inferiority trial in 152 UK centres, 2,045 assigned to 12 months and 2,044 to 6 months. Four-year disease-free survival was 89.4% for six months and 89.8% for twelve (hazard ratio 1.07, 90% CI 0.93-1.24, non-inferiority p = 0.011). Severe adverse events occurred in 19% versus 24%, and stopping early for cardiotoxicity in 3% versus 8%. Most guidelines still recommend twelve months, so this is a shift the evidence made that practice has only partly followed.',
         evidenceSource: 'Earl et al., The Lancet 2019 (PERSEPHONE, NCT00712140)',
         doi: '10.1016/S0140-6736(19)30650-6',
-        measuredMetric: '4-year disease-free survival 89.4% (6 months) versus 89.8% (12 months), HR 1.07',
+        measuredMetric:
+          '4-year disease-free survival 89.4% (6 months) versus 89.8% (12 months), HR 1.07',
         auditFlag: 'verified',
       },
       {
@@ -1321,7 +1387,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Giving trastuzumab at the same time as an anthracycline caused heart muscle weakening in a substantial minority of patients in the first metastatic trial. That result reshaped every regimen that followed.',
         technicalDetails:
           'In Slamon 2001, cardiac dysfunction was most frequent in patients receiving an anthracycline, cyclophosphamide and trastuzumab concurrently. HER2 signalling is required for cardiomyocyte stress responses, so blockade impairs repair of anthracycline-mediated damage. Modern regimens sequence the anthracycline before trastuzumab or avoid it entirely, and serial left ventricular ejection fraction monitoring is mandated by the label.',
-        evidenceSource: 'Slamon et al., NEJM 2001 and HERCEPTIN US Prescribing Information boxed warning',
+        evidenceSource:
+          'Slamon et al., NEJM 2001 and HERCEPTIN US Prescribing Information boxed warning',
         auditFlag: 'verified',
       },
       {
@@ -1332,8 +1399,10 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Whether a tumour counts as HER2-positive depends on which assay was run, on which sample, and on where the cut-off was drawn. Those cut-offs have moved, and the arrival of HER2-low as a treatable category shows the binary was always a convention.',
         technicalDetails:
           'ASCO/CAP HER2 testing guidelines were revised in 2007, 2013 and 2018, each time reclassifying a fraction of tumours. Immunohistochemistry scoring is observer-dependent, intratumoural heterogeneity is common, and HER2 status can differ between primary and metastatic lesions. The approval of trastuzumab deruxtecan for HER2-low disease means tumours previously classified as HER2-negative now have a HER2-directed option, which the original binary framing cannot express.',
-        evidenceSource: 'Successive ASCO/CAP HER2 testing guideline revisions and the HER2-low antibody-drug conjugate literature',
-        inferredClaim: 'That HER2 status is an intrinsic binary property rather than an assay result at a chosen threshold',
+        evidenceSource:
+          'Successive ASCO/CAP HER2 testing guideline revisions and the HER2-low antibody-drug conjugate literature',
+        inferredClaim:
+          'That HER2 status is an intrinsic binary property rather than an assay result at a chosen threshold',
         auditFlag: 'caution',
       },
     ],
@@ -1361,7 +1430,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Binding subdomain IV of the extracellular region',
-        laymanDesc: 'The antibody grips the outer part of the receptor closest to the cell membrane.',
+        laymanDesc:
+          'The antibody grips the outer part of the receptor closest to the cell membrane.',
         molecularDetail:
           'Binds juxtamembrane subdomain IV of the HER2 ectodomain. This is a different epitope from pertuzumab, which binds subdomain II and blocks heterodimerisation, which is why the two are additive rather than redundant.',
         iconName: 'Target',
@@ -1390,10 +1460,12 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Slamon 2001 pivotal metastatic trial (H0648g, conducted before ClinicalTrials.gov registration)',
+        trialId:
+          'Slamon 2001 pivotal metastatic trial (H0648g, conducted before ClinicalTrials.gov registration)',
         phase: 'Phase 3',
         sampleSize: 469,
-        primaryEndpoint: 'Time to disease progression with first-line chemotherapy, with or without trastuzumab',
+        primaryEndpoint:
+          'Time to disease progression with first-line chemotherapy, with or without trastuzumab',
         endpointMet: true,
         statisticalPValue: 'p < 0.001',
         unreportedAdverseSignals:
@@ -1404,7 +1476,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         trialId: 'HERA (NCT00045032)',
         phase: 'Phase 3',
         sampleSize: 5099,
-        primaryEndpoint: 'Disease-free survival after adjuvant chemotherapy, one or two years of trastuzumab versus observation',
+        primaryEndpoint:
+          'Disease-free survival after adjuvant chemotherapy, one or two years of trastuzumab versus observation',
         endpointMet: true,
         statisticalPValue: 'p < 0.0001; HR 0.54 (95% CI 0.43-0.67) at first interim analysis',
         independentReplicationStatus: 'Replicated',
@@ -1413,7 +1486,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         trialId: 'PERSEPHONE (NCT00712140)',
         phase: 'Phase 3',
         sampleSize: 4088,
-        primaryEndpoint: 'Four-year disease-free survival, 6 months versus 12 months of adjuvant trastuzumab, 3% non-inferiority margin',
+        primaryEndpoint:
+          'Four-year disease-free survival, 6 months versus 12 months of adjuvant trastuzumab, 3% non-inferiority margin',
         endpointMet: true,
         statisticalPValue: 'Non-inferiority p = 0.011; HR 1.07 (90% CI 0.93-1.24)',
         independentReplicationStatus: 'Partially Replicated',
@@ -1451,7 +1525,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         q: 'Do I really need a full year of treatment?',
         a: 'The twelve-month standard came from how the first adjuvant trials were designed rather than from a study that compared durations. PERSEPHONE randomised 4,088 women and found six months non-inferior on four-year disease-free survival, with half the cardiotoxicity. Guidelines have largely kept twelve months, so this is a live disagreement between the evidence and the standard of care.',
-        auditNote: 'One of the clearest examples on this site of a convention outliving the data that would revise it.',
+        auditNote:
+          'One of the clearest examples on this site of a convention outliving the data that would revise it.',
       },
       {
         q: 'Will it damage my heart?',
@@ -1496,7 +1571,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, HERCEPTIN BLA 103792, original approval 25 September 1998',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103792',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103792',
         kind: 'regulatory',
       },
     ],
@@ -1545,12 +1621,14 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         'US biosimilars Truxima (2018), Ruxience (2019) and Riabni (2020) followed patent expiry. Rituximab has been on the WHO Model List of Essential Medicines since 2015.',
       synthesisComplexity: 'High',
       costSource: {
-        label: 'Gotham, Barber & Hill, Estimation of cost-based prices for injectable medicines in the WHO EML, BMJ Open 2019',
+        label:
+          'Gotham, Barber & Hill, Estimation of cost-based prices for injectable medicines in the WHO EML, BMJ Open 2019',
         identifier: '10.1136/bmjopen-2018-027780',
         kind: 'doi',
       },
       priceSource: {
-        label: 'Gotham, Barber & Hill, BMJ Open 2019, comparison of lowest current prices in England, South Africa and India',
+        label:
+          'Gotham, Barber & Hill, BMJ Open 2019, comparison of lowest current prices in England, South Africa and India',
         identifier: '10.1136/bmjopen-2018-027780',
         kind: 'doi',
       },
@@ -1562,7 +1640,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Rituximab biosimilars (Truxima, Ruxience, Riabni)',
           class: 'Biosimilar anti-CD20 monoclonal antibody',
-          howItCompares: 'Same molecule and mechanism, approved on similarity rather than on new outcome trials.',
+          howItCompares:
+            'Same molecule and mechanism, approved on similarity rather than on new outcome trials.',
           typicalCost: 'Commonly 15-35% below originator list price, with wide variation by market',
           prosAndCons:
             'Pros: substantial system-level savings on a WHO essential medicine. Cons: none demonstrated on efficacy or safety grounds.',
@@ -1591,11 +1670,13 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'antibody_structure',
-      chemicalFormula: 'Chimeric murine/human IgG1-kappa with murine variable and human constant regions',
+      chemicalFormula:
+        'Chimeric murine/human IgG1-kappa with murine variable and human constant regions',
       molecularWeight: 'Approximately 145 kDa',
       structureSource: {
         label: 'RITUXAN US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103705',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103705',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -1606,15 +1687,18 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'CHO expression of the chimeric IgG1',
           description:
             'Express the murine 2B8 variable domains grafted onto human IgG1 constant regions in a CHO suspension culture under fed-batch control.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, methotrexate-amplified DHFR selection, glucose-controlled feed',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, methotrexate-amplified DHFR selection, glucose-controlled feed',
         },
         {
           id: 'rtx-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture and viral inactivation',
-          description: 'Affinity capture on Protein A, low-pH elution and a validated low-pH hold for enveloped virus.',
-          reagentsAndBuffer: 'Protein A resin, sodium citrate pH 3.5 elution, 60 minute hold, Tris neutralisation',
+          description:
+            'Affinity capture on Protein A, low-pH elution and a validated low-pH hold for enveloped virus.',
+          reagentsAndBuffer:
+            'Protein A resin, sodium citrate pH 3.5 elution, 60 minute hold, Tris neutralisation',
           dependsOnStepId: 'rtx-syn',
         },
         {
@@ -1624,7 +1708,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Ion exchange polishing and nanofiltration',
           description:
             'Remove aggregate, host cell protein, leached Protein A and residual DNA, then filter through a virus-retentive membrane and formulate.',
-          reagentsAndBuffer: 'Cation and anion exchange, 20 nm virus filter, sodium citrate and polysorbate 80 formulation',
+          reagentsAndBuffer:
+            'Cation and anion exchange, 20 nm virus filter, sodium citrate and polysorbate 80 formulation',
           dependsOnStepId: 'rtx-cap',
         },
         {
@@ -1634,7 +1719,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Complement-dependent cytotoxicity potency assay',
           description:
             'Quantify killing of a CD20-positive lymphoma line in the presence of normal human serum complement, against the reference standard.',
-          reagentsAndBuffer: 'WIL2-S or Daudi target cells, normal human serum as complement source, alamarBlue viability readout',
+          reagentsAndBuffer:
+            'WIL2-S or Daudi target cells, normal human serum as complement source, alamarBlue viability readout',
           dependsOnStepId: 'rtx-pol',
         },
         {
@@ -1644,7 +1730,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'ADCC and CD20 binding confirmation',
           description:
             'Confirm FcgammaRIIIa-mediated effector function and CD20 binding affinity, since both contribute to the clinical mechanism and both are sensitive to glycan variation.',
-          reagentsAndBuffer: 'FcgammaRIIIa reporter effector line, CD20-positive targets, surface plasmon resonance on immobilised CD20 peptide',
+          reagentsAndBuffer:
+            'FcgammaRIIIa reporter effector line, CD20-positive targets, surface plasmon resonance on immobilised CD20 peptide',
           dependsOnStepId: 'rtx-cdc',
         },
       ],
@@ -1653,7 +1740,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'rtx-1',
         category: 'measured',
-        title: 'McLaughlin 1998: a 48% response rate as a single agent in relapsed indolent lymphoma',
+        title:
+          'McLaughlin 1998: a 48% response rate as a single agent in relapsed indolent lymphoma',
         laymanSummary:
           'The trial that made rituximab the first antibody approved for cancer. Just under half of 166 patients with relapsed low-grade lymphoma responded to four weekly infusions, with mostly mild toxicity.',
         technicalDetails:
@@ -1687,29 +1775,34 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Merrill et al., Arthritis & Rheumatism 2010 (EXPLORER); Rovin et al., Arthritis & Rheumatism 2012 (LUNAR)',
         doi: '10.1002/art.27233',
-        measuredMetric: 'No difference from placebo on primary or secondary endpoints in either trial',
+        measuredMetric:
+          'No difference from placebo on primary or secondary endpoints in either trial',
         auditFlag: 'verified',
       },
       {
         id: 'rtx-4',
         category: 'conclusion_shift',
-        title: 'From cancer drug to autoimmune platform, and then to a target obinutuzumab and ocrelizumab improved on',
+        title:
+          'From cancer drug to autoimmune platform, and then to a target obinutuzumab and ocrelizumab improved on',
         laymanSummary:
           'Rituximab was designed for lymphoma. Its success in rheumatoid arthritis and vasculitis reframed B-cell depletion as a general autoimmune strategy, and its off-label success in multiple sclerosis directly motivated ocrelizumab, a humanised successor that was then tested properly.',
         technicalDetails:
           'Approval sequence ran from non-Hodgkin lymphoma in 1997 to rheumatoid arthritis in 2006 and ANCA-associated vasculitis in 2011. Off-label multiple sclerosis use, supported by a positive phase 2 trial that was never taken to phase 3 by the sponsor, provided the rationale for ocrelizumab, which was developed to registration. The shift is instructive: a widely used off-label indication was eventually resolved by developing a different molecule rather than by testing the original one.',
-        evidenceSource: 'Sequence of FDA approvals for RITUXAN BLA 103705 and the ocrelizumab development programme',
+        evidenceSource:
+          'Sequence of FDA approvals for RITUXAN BLA 103705 and the ocrelizumab development programme',
         auditFlag: 'verified',
       },
       {
         id: 'rtx-5',
         category: 'measured',
-        title: 'Hepatitis B reactivation and progressive multifocal leukoencephalopathy carry boxed warnings',
+        title:
+          'Hepatitis B reactivation and progressive multifocal leukoencephalopathy carry boxed warnings',
         laymanSummary:
           'Wiping out B cells removes part of the defence against viruses the body was already holding in check. Hepatitis B can reactivate and cause fatal liver failure, and a rare brain infection has occurred.',
         technicalDetails:
           'The label carries boxed warnings for fatal infusion-related reactions, severe mucocutaneous reactions, hepatitis B virus reactivation with fulminant hepatitis and death, and progressive multifocal leukoencephalopathy caused by JC virus. Hepatitis B serology screening before treatment is mandatory, and hypogammaglobulinaemia after repeated courses is common and sometimes prolonged.',
-        evidenceSource: 'RITUXAN US Prescribing Information, boxed warning and Warnings and Precautions',
+        evidenceSource:
+          'RITUXAN US Prescribing Information, boxed warning and Warnings and Precautions',
         auditFlag: 'verified',
       },
     ],
@@ -1767,37 +1860,45 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'McLaughlin 1998 pivotal single-agent trial (conducted before ClinicalTrials.gov registration)',
+        trialId:
+          'McLaughlin 1998 pivotal single-agent trial (conducted before ClinicalTrials.gov registration)',
         phase: 'Phase 2 pivotal',
         sampleSize: 166,
-        primaryEndpoint: 'Objective response rate in relapsed low-grade or follicular B-cell lymphoma',
+        primaryEndpoint:
+          'Objective response rate in relapsed low-grade or follicular B-cell lymphoma',
         endpointMet: true,
-        statisticalPValue: 'Single-arm; 48% response rate on intent-to-treat, no comparator p-value',
+        statisticalPValue:
+          'Single-arm; 48% response rate on intent-to-treat, no comparator p-value',
         independentReplicationStatus: 'Replicated',
       },
       {
         trialId: 'GELA LNH98-5 (Coiffier 2002, conducted before ClinicalTrials.gov registration)',
         phase: 'Phase 3',
         sampleSize: 399,
-        primaryEndpoint: 'Complete response rate, CHOP versus R-CHOP in elderly diffuse large B-cell lymphoma',
+        primaryEndpoint:
+          'Complete response rate, CHOP versus R-CHOP in elderly diffuse large B-cell lymphoma',
         endpointMet: true,
-        statisticalPValue: 'p = 0.005 for complete response; event-free and overall survival also significantly improved',
+        statisticalPValue:
+          'p = 0.005 for complete response; event-free and overall survival also significantly improved',
         independentReplicationStatus: 'Replicated',
       },
       {
         trialId: 'EXPLORER (Merrill 2010)',
         phase: 'Phase 2/3',
         sampleSize: 257,
-        primaryEndpoint: 'BILAG-defined major clinical response in moderately-to-severely active extrarenal lupus',
+        primaryEndpoint:
+          'BILAG-defined major clinical response in moderately-to-severely active extrarenal lupus',
         endpointMet: false,
-        statisticalPValue: 'No significant difference from placebo on primary or secondary endpoints',
+        statisticalPValue:
+          'No significant difference from placebo on primary or secondary endpoints',
         independentReplicationStatus: 'Failed to Replicate',
       },
       {
         trialId: 'LUNAR (Rovin 2012)',
         phase: 'Phase 3',
         sampleSize: 144,
-        primaryEndpoint: 'Renal response at week 52 in proliferative lupus nephritis on background mycophenolate',
+        primaryEndpoint:
+          'Renal response at week 52 in proliferative lupus nephritis on background mycophenolate',
         endpointMet: false,
         statisticalPValue: 'Primary renal response endpoint not met',
         independentReplicationStatus: 'Failed to Replicate',
@@ -1837,7 +1938,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         q: 'It is used for my lupus. Does that mean it works for lupus?',
         a: 'Two randomised placebo-controlled trials, EXPLORER in general lupus and LUNAR in lupus nephritis, both failed their primary endpoints. Use in refractory lupus rests on uncontrolled series and clinical experience, not on a positive randomised trial. That is a legitimate clinical choice in a desperate situation, but it is not the same evidence as the lymphoma indication.',
-        auditNote: 'The single largest gap between how much rituximab is used and what has actually been measured.',
+        auditNote:
+          'The single largest gap between how much rituximab is used and what has actually been measured.',
       },
       {
         q: 'Why do I need hepatitis B testing before treatment?',
@@ -1852,33 +1954,39 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'McLaughlin et al., Rituximab chimeric anti-CD20 therapy for relapsed indolent lymphoma, JCO 1998',
+        label:
+          'McLaughlin et al., Rituximab chimeric anti-CD20 therapy for relapsed indolent lymphoma, JCO 1998',
         identifier: '10.1200/JCO.1998.16.8.2825',
         kind: 'doi',
       },
       {
-        label: 'Coiffier et al., CHOP plus Rituximab in elderly diffuse large-B-cell lymphoma, NEJM 2002',
+        label:
+          'Coiffier et al., CHOP plus Rituximab in elderly diffuse large-B-cell lymphoma, NEJM 2002',
         identifier: '10.1056/NEJMoa011795',
         kind: 'doi',
       },
       {
-        label: 'Merrill et al., EXPLORER trial of rituximab in systemic lupus erythematosus, Arthritis Rheum 2010',
+        label:
+          'Merrill et al., EXPLORER trial of rituximab in systemic lupus erythematosus, Arthritis Rheum 2010',
         identifier: '10.1002/art.27233',
         kind: 'doi',
       },
       {
-        label: 'Rovin et al., LUNAR trial of rituximab in proliferative lupus nephritis, Arthritis Rheum 2012',
+        label:
+          'Rovin et al., LUNAR trial of rituximab in proliferative lupus nephritis, Arthritis Rheum 2012',
         identifier: '10.1002/art.34359',
         kind: 'doi',
       },
       {
-        label: 'Gotham, Barber & Hill, Cost-based prices for injectable medicines in the WHO EML, BMJ Open 2019',
+        label:
+          'Gotham, Barber & Hill, Cost-based prices for injectable medicines in the WHO EML, BMJ Open 2019',
         identifier: '10.1136/bmjopen-2018-027780',
         kind: 'doi',
       },
       {
         label: 'Drugs@FDA, RITUXAN BLA 103705, original approval 26 November 1997',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103705',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103705',
         kind: 'regulatory',
       },
     ],
@@ -1898,7 +2006,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     approvalYear: 2004,
     indication:
       'Metastatic colorectal cancer, non-squamous non-small-cell lung cancer, recurrent glioblastoma, metastatic renal cell carcinoma, cervical cancer, and epithelial ovarian, fallopian tube or primary peritoneal cancer',
-    patientFriendlyIndication: 'Several advanced cancers, by cutting off the blood supply a tumour builds for itself',
+    patientFriendlyIndication:
+      'Several advanced cancers, by cutting off the blood supply a tumour builds for itself',
     anatomicalSite: 'Tumour vasculature and the extracellular space around it',
     conditionContext: {
       conditionExplainer:
@@ -1923,23 +2032,27 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Bevacizumab biosimilars (Mvasi, Zirabev, Alymsys, Jobevne)',
           class: 'Biosimilar anti-VEGF-A monoclonal antibody',
-          howItCompares: 'Same molecule and mechanism, approved on analytical and clinical similarity from 2017 onward.',
+          howItCompares:
+            'Same molecule and mechanism, approved on analytical and clinical similarity from 2017 onward.',
           typicalCost: 'Commonly 15-30% below originator list price',
-          prosAndCons: 'Pros: identical mechanism, lower cost. Cons: none demonstrated on clinical grounds.',
+          prosAndCons:
+            'Pros: identical mechanism, lower cost. Cons: none demonstrated on clinical grounds.',
         },
         {
           name: 'Ranibizumab (Lucentis)',
           class: 'Anti-VEGF-A antibody fragment licensed for intravitreal use',
           howItCompares:
             'A Fab fragment of the same parent antibody, formulated and licensed for the eye. CATT found no difference in visual acuity against bevacizumab given on the same schedule.',
-          typicalCost: 'Approximately $1,200 - $2,000 per intravitreal injection, versus roughly $50 for a compounded bevacizumab dose',
+          typicalCost:
+            'Approximately $1,200 - $2,000 per intravitreal injection, versus roughly $50 for a compounded bevacizumab dose',
           prosAndCons:
             'Pros: licensed for the indication, single-use presentation. Cons: cost per injection is one to two orders of magnitude higher for an outcome CATT found equivalent.',
         },
         {
           name: 'Ramucirumab (Cyramza)',
           class: 'Anti-VEGFR-2 monoclonal antibody',
-          howItCompares: 'Blocks the receptor rather than the ligand, in gastric, colorectal, lung and hepatocellular cancer.',
+          howItCompares:
+            'Blocks the receptor rather than the ligand, in gastric, colorectal, lung and hepatocellular cancer.',
           typicalCost: 'Approximately $6,000 - $9,000 per two-week cycle US list',
           prosAndCons:
             'Pros: an alternative point of attack on the same pathway. Cons: shares the hypertension, bleeding and perforation profile of the class.',
@@ -1949,7 +2062,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Home blood pressure monitoring',
-          action: 'Record blood pressure at home on a validated cuff and report sustained readings above the target set by the oncology team.',
+          action:
+            'Record blood pressure at home on a validated cuff and report sustained readings above the target set by the oncology team.',
           patientImpact:
             'Hypertension is the commonest dose-limiting toxicity of VEGF blockade and is a direct pharmacological consequence of reduced nitric oxide availability in the vessel wall.',
           clinicalPrecaution:
@@ -1963,7 +2077,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 149 kDa',
       structureSource: {
         label: 'AVASTIN US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125085',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125085',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -1974,15 +2089,18 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'CHO fed-batch expression',
           description:
             'Express the humanised IgG1 in a CHO line, harvest at 12-14 days and clarify by centrifugation followed by depth and sterile filtration.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, DHFR-based selection, glucose and amino acid feeds',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, DHFR-based selection, glucose and amino acid feeds',
         },
         {
           id: 'bev-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture and low-pH hold',
-          description: 'Affinity capture on Protein A followed by a validated low-pH viral inactivation hold.',
-          reagentsAndBuffer: 'Protein A resin, sodium acetate pH 3.5 elution, Tris base neutralisation',
+          description:
+            'Affinity capture on Protein A followed by a validated low-pH viral inactivation hold.',
+          reagentsAndBuffer:
+            'Protein A resin, sodium acetate pH 3.5 elution, Tris base neutralisation',
           dependsOnStepId: 'bev-syn',
         },
         {
@@ -1992,7 +2110,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Polishing chromatography and nanofiltration',
           description:
             'Ion exchange and hydrophobic interaction steps remove aggregate and process residuals; a 20 nm filter provides orthogonal viral clearance before formulation into trehalose and phosphate buffer.',
-          reagentsAndBuffer: 'Q and phenyl resins, 20 nm virus filter, alpha,alpha-trehalose dihydrate, polysorbate 20, pH 6.2',
+          reagentsAndBuffer:
+            'Q and phenyl resins, 20 nm virus filter, alpha,alpha-trehalose dihydrate, polysorbate 20, pH 6.2',
           dependsOnStepId: 'bev-cap',
         },
         {
@@ -2002,7 +2121,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'VEGF-A binding ELISA',
           description:
             'Confirm binding to recombinant human VEGF-A165 and derive relative binding potency against the reference standard.',
-          reagentsAndBuffer: 'Recombinant human VEGF-A165 coated plates, HRP-conjugated anti-human IgG, TMB substrate',
+          reagentsAndBuffer:
+            'Recombinant human VEGF-A165 coated plates, HRP-conjugated anti-human IgG, TMB substrate',
           dependsOnStepId: 'bev-pol',
         },
         {
@@ -2012,7 +2132,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'HUVEC proliferation inhibition bioassay',
           description:
             'Quantify functional potency as inhibition of VEGF-driven proliferation of human umbilical vein endothelial cells.',
-          reagentsAndBuffer: 'HUVEC primary cells, endothelial growth medium without VEGF, recombinant VEGF-A165 challenge, BrdU incorporation readout',
+          reagentsAndBuffer:
+            'HUVEC primary cells, endothelial growth medium without VEGF, recombinant VEGF-A165 challenge, BrdU incorporation readout',
           dependsOnStepId: 'bev-elisa',
         },
       ],
@@ -2021,7 +2142,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'bev-1',
         category: 'measured',
-        title: 'AVF2107g: median overall survival 20.3 versus 15.6 months in metastatic colorectal cancer',
+        title:
+          'AVF2107g: median overall survival 20.3 versus 15.6 months in metastatic colorectal cancer',
         laymanSummary:
           'In 813 people with untreated metastatic bowel cancer, adding bevacizumab to chemotherapy extended median survival by about 4.7 months. This is the result the whole approval rests on.',
         technicalDetails:
@@ -2034,7 +2156,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'bev-2',
         category: 'conclusion_shift',
-        title: 'The breast cancer indication was granted on progression-free survival and revoked in 2011',
+        title:
+          'The breast cancer indication was granted on progression-free survival and revoked in 2011',
         laymanSummary:
           'Accelerated approval in 2008 rested on delaying progression in the E2100 trial. Confirmatory trials showed a smaller delay and no survival benefit, and on 18 November 2011 the FDA Commissioner revoked the indication.',
         technicalDetails:
@@ -2054,7 +2177,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'A tumour that grows more slowly on a scan is not the same as a patient who lives longer. Bevacizumab is the drug that made that distinction concrete for a whole generation of oncologists.',
         technicalDetails:
           'The 2008 accelerated approval in breast cancer was granted on progression-free survival as a surrogate reasonably likely to predict clinical benefit. Across E2100, AVADO and RIBBON-1 the surrogate moved and overall survival did not. The pattern recurs in other indications: bevacizumab improves progression-free survival in recurrent glioblastoma without a demonstrated overall survival benefit, and its glioblastoma approval likewise came through the accelerated pathway.',
-        evidenceSource: 'FDA accelerated approval and withdrawal record for the Avastin breast cancer indication',
+        evidenceSource:
+          'FDA accelerated approval and withdrawal record for the Avastin breast cancer indication',
         inferredClaim: 'That a progression-free survival gain implies an overall survival gain',
         auditFlag: 'caution',
       },
@@ -2066,7 +2190,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Given after curative surgery to prevent recurrence, bevacizumab did not improve disease-free survival. The setting where it works and the setting where it does not are separated by whether visible tumour is present.',
         technicalDetails:
           'NSABP C-08 and AVANT both tested bevacizumab added to adjuvant chemotherapy in resected colon cancer and neither showed a durable disease-free survival benefit; AVANT showed a numerically worse overall survival trend. The mechanistic reading is that anti-angiogenic therapy acts on established tumour vasculature and has little to act on against micrometastatic disease. Bevacizumab is not approved in the adjuvant setting.',
-        evidenceSource: 'Absence of an adjuvant colon cancer indication in the AVASTIN US Prescribing Information',
+        evidenceSource:
+          'Absence of an adjuvant colon cancer indication in the AVASTIN US Prescribing Information',
         auditFlag: 'verified',
       },
       {
@@ -2160,9 +2285,11 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         trialId: 'E2100 (Miller 2007)',
         phase: 'Phase 3',
         sampleSize: 722,
-        primaryEndpoint: 'Progression-free survival, paclitaxel with or without bevacizumab in metastatic breast cancer',
+        primaryEndpoint:
+          'Progression-free survival, paclitaxel with or without bevacizumab in metastatic breast cancer',
         endpointMet: true,
-        statisticalPValue: 'Progression-free survival significantly improved; overall survival was not',
+        statisticalPValue:
+          'Progression-free survival significantly improved; overall survival was not',
         unreportedAdverseSignals:
           'Hypertension, proteinuria, haemorrhage and gastrointestinal perforation contributed to the FDA conclusion that risk outweighed benefit in this indication.',
         independentReplicationStatus: 'Partially Replicated',
@@ -2171,7 +2298,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         trialId: 'CATT (NCT00593450)',
         phase: 'Phase 3 non-inferiority, publicly funded',
         sampleSize: 1208,
-        primaryEndpoint: 'Mean change in visual acuity at one year, 5-letter non-inferiority margin, neovascular AMD',
+        primaryEndpoint:
+          'Mean change in visual acuity at one year, 5-letter non-inferiority margin, neovascular AMD',
         endpointMet: true,
         statisticalPValue: 'Non-inferiority met on the same dosing schedule',
         unreportedAdverseSignals:
@@ -2231,12 +2359,14 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Hurwitz et al., Bevacizumab plus irinotecan, fluorouracil and leucovorin, NEJM 2004',
+        label:
+          'Hurwitz et al., Bevacizumab plus irinotecan, fluorouracil and leucovorin, NEJM 2004',
         identifier: '10.1056/NEJMoa032691',
         kind: 'doi',
       },
       {
-        label: 'Miller et al., Paclitaxel plus Bevacizumab in metastatic breast cancer (E2100), NEJM 2007',
+        label:
+          'Miller et al., Paclitaxel plus Bevacizumab in metastatic breast cancer (E2100), NEJM 2007',
         identifier: '10.1056/NEJMoa072113',
         kind: 'doi',
       },
@@ -2254,7 +2384,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, AVASTIN BLA 125085, original approval 26 February 2004',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125085',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125085',
         kind: 'regulatory',
       },
     ],
@@ -2274,7 +2405,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     approvalYear: 2017,
     indication:
       'Atopic dermatitis, eosinophilic or oral-corticosteroid-dependent asthma, chronic rhinosinusitis with nasal polyps, eosinophilic oesophagitis, prurigo nodularis, chronic obstructive pulmonary disease with raised eosinophils, chronic spontaneous urticaria',
-    patientFriendlyIndication: 'Eczema, asthma and other diseases driven by the same allergic pathway',
+    patientFriendlyIndication:
+      'Eczema, asthma and other diseases driven by the same allergic pathway',
     anatomicalSite: 'Skin, airway and oesophageal epithelium and the immune cells within them',
     conditionContext: {
       conditionExplainer:
@@ -2326,7 +2458,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Ciclosporin',
           class: 'Systemic calcineurin inhibitor',
-          howItCompares: 'The older systemic option for severe eczema, effective quickly but limited by organ toxicity.',
+          howItCompares:
+            'The older systemic option for severe eczema, effective quickly but limited by organ toxicity.',
           typicalCost: '$50 - $200 / month generic',
           prosAndCons:
             'Pros: inexpensive, rapid. Cons: nephrotoxicity and hypertension restrict use to short courses, and blood monitoring is mandatory.',
@@ -2345,7 +2478,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Lubricating eye drops from the first injection',
-          action: 'Use preservative-free artificial tears routinely, and report red or gritty eyes early.',
+          action:
+            'Use preservative-free artificial tears routinely, and report red or gritty eyes early.',
           patientImpact:
             'Conjunctivitis is the most characteristic dupilumab-specific adverse event and is far easier to manage when treated early than once it is established.',
           clinicalPrecaution:
@@ -2359,7 +2493,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 147 kDa',
       structureSource: {
         label: 'DUPIXENT US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761055',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761055',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -2370,15 +2505,18 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Cell line and sequence verification',
           description:
             'Confirm heavy and light chain sequence and the IgG4 hinge stabilisation in the production cell bank before scale-up.',
-          reagentsAndBuffer: 'Next-generation sequencing of the integrated construct, intact mass and peptide mapping by LC-MS',
+          reagentsAndBuffer:
+            'Next-generation sequencing of the integrated construct, intact mass and peptide mapping by LC-MS',
         },
         {
           id: 'dup-syn',
           stepNumber: 2,
           phase: 'Synthesis',
           name: 'CHO fed-batch expression',
-          description: 'Fed-batch production run with controlled feed strategy to hold glycan and charge profile within specification.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, glucose and amino acid feeds, pH and dissolved oxygen control',
+          description:
+            'Fed-batch production run with controlled feed strategy to hold glycan and charge profile within specification.',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, glucose and amino acid feeds, pH and dissolved oxygen control',
           dependsOnStepId: 'dup-qc',
         },
         {
@@ -2386,8 +2524,10 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           stepNumber: 3,
           phase: 'Purification',
           name: 'Protein A capture and viral inactivation',
-          description: 'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
-          reagentsAndBuffer: 'Protein A resin, 50 mM acetate pH 3.6 elution, Tris neutralisation to pH 7.0',
+          description:
+            'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
+          reagentsAndBuffer:
+            'Protein A resin, 50 mM acetate pH 3.6 elution, Tris neutralisation to pH 7.0',
           dependsOnStepId: 'dup-syn',
         },
         {
@@ -2397,7 +2537,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Polishing and high-concentration formulation',
           description:
             'Remove aggregate and residuals, then ultrafilter and diafilter into a high-concentration histidine and arginine formulation suitable for a small subcutaneous injection volume.',
-          reagentsAndBuffer: 'Multimodal and anion exchange steps, tangential flow filtration, L-histidine, L-arginine HCl, sucrose, polysorbate 80',
+          reagentsAndBuffer:
+            'Multimodal and anion exchange steps, tangential flow filtration, L-histidine, L-arginine HCl, sucrose, polysorbate 80',
           dependsOnStepId: 'dup-cap',
         },
         {
@@ -2407,7 +2548,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Dual IL-4 and IL-13 blockade reporter bioassay',
           description:
             'Confirm that the lot inhibits STAT6 activation driven by both IL-4 and IL-13 in a reporter line expressing the type II receptor complex, since blocking only one would be a mechanism failure the binding assay would miss.',
-          reagentsAndBuffer: 'HEK-Blue or STAT6-luciferase reporter line, recombinant human IL-4 and IL-13, luminescent substrate',
+          reagentsAndBuffer:
+            'HEK-Blue or STAT6-luciferase reporter line, recombinant human IL-4 and IL-13, luminescent substrate',
           dependsOnStepId: 'dup-pol',
         },
       ],
@@ -2421,7 +2563,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Two identically designed trials in 671 and 708 adults with moderate-to-severe eczema both hit their primary endpoint at 16 weeks, with itch, anxiety, depression and quality of life all improving alongside the skin.',
         technicalDetails:
           'Randomised, placebo-controlled, 16-week phase 3 trials of identical design. In SOLO 1 the primary endpoint of Investigator Global Assessment 0 or 1 with a 2-point or greater reduction was met by 38% on every-other-week dupilumab and 37% weekly, against 10% on placebo. SOLO 2 reproduced the result. Pruritus numeric rating scale, HADS anxiety and depression scores and DLQI all improved.',
-        evidenceSource: 'Simpson et al., New England Journal of Medicine 2016 (SOLO 1 NCT02277743, SOLO 2 NCT02277769)',
+        evidenceSource:
+          'Simpson et al., New England Journal of Medicine 2016 (SOLO 1 NCT02277743, SOLO 2 NCT02277769)',
         doi: '10.1056/NEJMoa1610020',
         measuredMetric: 'IGA 0/1 with 2-point reduction at week 16: 38% and 37% versus 10% placebo',
         auditFlag: 'verified',
@@ -2429,24 +2572,28 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'dup-2',
         category: 'measured',
-        title: 'LIBERTY ASTHMA QUEST: fewer exacerbations and better lung function in uncontrolled asthma',
+        title:
+          'LIBERTY ASTHMA QUEST: fewer exacerbations and better lung function in uncontrolled asthma',
         laymanSummary:
           'The same antibody, in the same pathway, reduced severe asthma attacks and improved breathing tests, with the largest effects in people who had high blood eosinophil counts to begin with.',
         technicalDetails:
           'Randomised, double-blind, placebo-controlled 52-week trial in patients with uncontrolled moderate-to-severe asthma. Annualised severe exacerbation rate and pre-bronchodilator FEV1 both improved significantly, with effect size increasing across baseline eosinophil strata. Transient blood eosinophilia occurred in a minority, which is a direct consequence of blocking eosinophil tissue trafficking rather than production.',
-        evidenceSource: 'Castro et al., New England Journal of Medicine 2018 (LIBERTY ASTHMA QUEST)',
+        evidenceSource:
+          'Castro et al., New England Journal of Medicine 2018 (LIBERTY ASTHMA QUEST)',
         doi: '10.1056/NEJMoa1804092',
         auditFlag: 'verified',
       },
       {
         id: 'dup-3',
         category: 'failed',
-        title: 'LIBERTY-CSU CUPID Study B: the primary endpoint was missed in omalizumab-refractory hives',
+        title:
+          'LIBERTY-CSU CUPID Study B: the primary endpoint was missed in omalizumab-refractory hives',
         laymanSummary:
           'In people whose chronic hives had already failed the anti-IgE antibody omalizumab, dupilumab did not meet its primary endpoint and the effects that were seen were small.',
         technicalDetails:
           'Study A, in 138 omalizumab-naive patients, met its endpoints with a UAS7 difference of -8.5 (95% CI -13.2 to -3.9). Study B, in 108 omalizumab-intolerant or incomplete responders and tested at alpha 0.043 after an interim analysis, missed its primary endpoint: UAS7 difference -5.8 (95% CI -11.4 to -0.3) with a non-significant numerical trend on itch. The authors state plainly that effects were small in this population. A replicate trial, CUPID-C, was required by the FDA before approval in the anti-IgE-naive population.',
-        evidenceSource: 'Maurer et al., Journal of Allergy and Clinical Immunology 2024 (LIBERTY-CSU CUPID Studies A and B)',
+        evidenceSource:
+          'Maurer et al., Journal of Allergy and Clinical Immunology 2024 (LIBERTY-CSU CUPID Studies A and B)',
         doi: '10.1016/j.jaci.2024.01.028',
         measuredMetric: 'Study B UAS7 difference -5.8; primary endpoint not met',
         auditFlag: 'verified',
@@ -2459,8 +2606,10 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Eye inflammation happens far more often on dupilumab than on placebo in eczema trials, and far less often in asthma trials of the same drug. Nobody has established why.',
         technicalDetails:
           'Conjunctivitis was reported substantially more frequently on dupilumab than placebo in the atopic dermatitis programme, but not at the same rate in the asthma or nasal polyp programmes, suggesting an interaction with atopic dermatitis itself rather than a pure drug effect. Proposed mechanisms include loss of IL-13-dependent goblet cell mucin production in the conjunctiva and shifts in ocular surface Demodex or microbial populations. None has been established.',
-        evidenceSource: 'DUPIXENT US Prescribing Information, Adverse Reactions, and the atopic dermatitis trial programme',
-        inferredClaim: 'That conjunctivitis is a direct pharmacological consequence of IL-4Ralpha blockade in all populations',
+        evidenceSource:
+          'DUPIXENT US Prescribing Information, Adverse Reactions, and the atopic dermatitis trial programme',
+        inferredClaim:
+          'That conjunctivitis is a direct pharmacological consequence of IL-4Ralpha blockade in all populations',
         auditFlag: 'caution',
       },
       {
@@ -2606,17 +2755,20 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Simpson et al., Two Phase 3 Trials of Dupilumab versus Placebo in Atopic Dermatitis, NEJM 2016',
+        label:
+          'Simpson et al., Two Phase 3 Trials of Dupilumab versus Placebo in Atopic Dermatitis, NEJM 2016',
         identifier: '10.1056/NEJMoa1610020',
         kind: 'doi',
       },
       {
-        label: 'Castro et al., Dupilumab Efficacy and Safety in Moderate-to-Severe Uncontrolled Asthma, NEJM 2018',
+        label:
+          'Castro et al., Dupilumab Efficacy and Safety in Moderate-to-Severe Uncontrolled Asthma, NEJM 2018',
         identifier: '10.1056/NEJMoa1804092',
         kind: 'doi',
       },
       {
-        label: 'Maurer et al., Dupilumab in chronic spontaneous urticaria (LIBERTY-CSU CUPID), JACI 2024',
+        label:
+          'Maurer et al., Dupilumab in chronic spontaneous urticaria (LIBERTY-CSU CUPID), JACI 2024',
         identifier: '10.1016/j.jaci.2024.01.028',
         kind: 'doi',
       },
@@ -2627,7 +2779,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, DUPIXENT BLA 761055, original approval 28 March 2017',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761055',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761055',
         kind: 'regulatory',
       },
     ],
@@ -2645,7 +2798,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     modality: 'Monoclonal Antibody (mAb)',
     approvalStatus: 'FDA Approved',
     approvalYear: 2009,
-    indication: 'Moderate-to-severe plaque psoriasis, psoriatic arthritis, Crohn disease, ulcerative colitis',
+    indication:
+      'Moderate-to-severe plaque psoriasis, psoriatic arthritis, Crohn disease, ulcerative colitis',
     patientFriendlyIndication: 'Psoriasis, psoriatic arthritis and inflammatory bowel disease',
     anatomicalSite: 'Skin dermis, synovium and intestinal lamina propria',
     conditionContext: {
@@ -2673,14 +2827,16 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           class: 'Anti-IL-23 p19 monoclonal antibody',
           howItCompares:
             'Blocks IL-23 alone, leaving IL-12 intact. Risankizumab was superior to ustekinumab on PASI 90 in the head-to-head UltIMMa-1 and UltIMMa-2 trials.',
-          typicalCost: 'Approximately $16,000 - $20,000 per dose US list, given every 8 or 12 weeks',
+          typicalCost:
+            'Approximately $16,000 - $20,000 per dose US list, given every 8 or 12 weeks',
           prosAndCons:
             'Pros: higher complete clearance rates, quarterly dosing. Cons: cost, and no advantage demonstrated in every indication ustekinumab holds.',
         },
         {
           name: 'Secukinumab or ixekizumab',
           class: 'Anti-IL-17A monoclonal antibody',
-          howItCompares: 'Acts one step downstream on the effector cytokine, with faster onset in skin disease.',
+          howItCompares:
+            'Acts one step downstream on the effector cytokine, with faster onset in skin disease.',
           typicalCost: 'Approximately $6,000 - $7,000 / month US list',
           prosAndCons:
             'Pros: rapid skin clearance, strong axial spondyloarthritis data. Cons: contraindicated in inflammatory bowel disease, where IL-17 blockade made disease worse.',
@@ -2688,7 +2844,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Methotrexate',
           class: 'Conventional systemic antimetabolite',
-          howItCompares: 'The traditional systemic option for moderate-to-severe psoriasis, far less effective but orders of magnitude cheaper.',
+          howItCompares:
+            'The traditional systemic option for moderate-to-severe psoriasis, far less effective but orders of magnitude cheaper.',
           typicalCost: '$15 - $40 / month generic',
           prosAndCons:
             'Pros: cost, oral, long experience. Cons: hepatotoxicity, marrow suppression, monitoring burden, contraindicated in pregnancy.',
@@ -2696,7 +2853,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Narrowband UVB phototherapy',
           class: 'Physical therapy',
-          howItCompares: 'Induces local T-cell apoptosis in the skin without systemic immunomodulation.',
+          howItCompares:
+            'Induces local T-cell apoptosis in the skin without systemic immunomodulation.',
           typicalCost: '$60 - $150 per session in a clinic; home units are a one-off capital cost',
           prosAndCons:
             'Pros: no systemic drug exposure, safe in pregnancy. Cons: two or three clinic visits a week, cumulative photodamage, no effect on joint or bowel disease.',
@@ -2721,7 +2879,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Estimated 148,079 to 149,690 Da',
       structureSource: {
         label: 'STELARA US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125261',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125261',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -2732,14 +2891,16 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Murine myeloma expression of the fully human IgG1',
           description:
             'Express the transgenic-mouse-derived fully human antibody in a recombinant murine myeloma cell line under fed-batch control.',
-          reagentsAndBuffer: 'Serum-free myeloma medium, glutamine synthetase selection, controlled feed regime',
+          reagentsAndBuffer:
+            'Serum-free myeloma medium, glutamine synthetase selection, controlled feed regime',
         },
         {
           id: 'ust-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture and viral inactivation',
-          description: 'Capture on Protein A, elute at low pH and hold to inactivate enveloped virus.',
+          description:
+            'Capture on Protein A, elute at low pH and hold to inactivate enveloped virus.',
           reagentsAndBuffer: 'Protein A resin, sodium acetate pH 3.5 elution, 60 minute hold',
           dependsOnStepId: 'ust-syn',
         },
@@ -2750,7 +2911,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Polishing chromatography and nanofiltration',
           description:
             'Remove aggregate, host cell protein and residual DNA, then filter for orthogonal viral clearance and formulate in histidine and sucrose.',
-          reagentsAndBuffer: 'Cation and anion exchange, 20 nm virus filter, L-histidine, sucrose, polysorbate 80, EDTA',
+          reagentsAndBuffer:
+            'Cation and anion exchange, 20 nm virus filter, L-histidine, sucrose, polysorbate 80, EDTA',
           dependsOnStepId: 'ust-cap',
         },
         {
@@ -2769,8 +2931,10 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           stepNumber: 5,
           phase: 'Assay_Quantification',
           name: 'Aggregate, charge variant and glycan release testing',
-          description: 'Confirm product quality attributes are within validated ranges before lot release.',
-          reagentsAndBuffer: 'SEC-HPLC, imaged capillary isoelectric focusing, HILIC-UPLC released glycan mapping',
+          description:
+            'Confirm product quality attributes are within validated ranges before lot release.',
+          reagentsAndBuffer:
+            'SEC-HPLC, imaged capillary isoelectric focusing, HILIC-UPLC released glycan mapping',
           dependsOnStepId: 'ust-assay',
         },
       ],
@@ -2798,7 +2962,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'The same antibody induced and maintained remission in Crohn disease, including in people whose disease had already failed anti-TNF therapy.',
         technicalDetails:
           'The UNITI programme comprised two eight-week induction trials, one in patients who had failed anti-TNF therapy and one in patients who had failed conventional therapy, and a 44-week randomised withdrawal maintenance trial. A single intravenous induction dose produced significantly higher clinical response than placebo, and subcutaneous maintenance every 8 or 12 weeks preserved remission.',
-        evidenceSource: 'Feagan et al., New England Journal of Medicine 2016 (UNITI-1, UNITI-2, IM-UNITI)',
+        evidenceSource:
+          'Feagan et al., New England Journal of Medicine 2016 (UNITI-1, UNITI-2, IM-UNITI)',
         doi: '10.1056/NEJMoa1602773',
         auditFlag: 'verified',
       },
@@ -2812,7 +2977,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Phase 2, multicentre, randomised, double-blind, placebo-controlled trial in 249 patients with relapsing-remitting multiple sclerosis across five arms. The primary endpoint, cumulative number of new gadolinium-enhancing T1-weighted lesions through week 23, showed no significant reduction at any dose. The result was one of the earliest strong signals that the T-helper-1 and IL-12 model of autoimmune demyelination was wrong and that IL-23 and IL-17 were the relevant axis.',
         evidenceSource: 'Segal et al., The Lancet Neurology 2008 (NCT00207727)',
         doi: '10.1016/S1474-4422(08)70173-X',
-        measuredMetric: 'No significant reduction in new gadolinium-enhancing lesions at any of four doses',
+        measuredMetric:
+          'No significant reduction in new gadolinium-enhancing lesions at any of four doses',
         auditFlag: 'verified',
       },
       {
@@ -2823,7 +2989,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Ustekinumab blocks IL-12 and IL-23 together. When drugs were built that block IL-23 alone, they cleared skin better, not worse. Blocking IL-12 was contributing nothing useful and may have been removing a protective signal.',
         technicalDetails:
           'The p19-specific IL-23 antibodies risankizumab and guselkumab both demonstrated superiority over ustekinumab on PASI 90 in randomised head-to-head psoriasis trials. IL-12 drives the T-helper-1 and interferon-gamma axis, which appears to be redundant or even protective in psoriasis. The field moved from p40 to p19 within a decade, and ustekinumab was displaced as first-line biologic in skin disease by its own mechanistic successors.',
-        evidenceSource: 'Head-to-head superiority of p19-specific IL-23 antibodies over ustekinumab in psoriasis',
+        evidenceSource:
+          'Head-to-head superiority of p19-specific IL-23 antibodies over ustekinumab in psoriasis',
         auditFlag: 'verified',
       },
       {
@@ -2898,14 +3065,16 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         sampleSize: 766,
         primaryEndpoint: 'PASI 75 at week 12',
         endpointMet: true,
-        statisticalPValue: 'p < 0.0001; 63.9 percentage point difference versus placebo (95% CI 57.8-70.1)',
+        statisticalPValue:
+          'p < 0.0001; 63.9 percentage point difference versus placebo (95% CI 57.8-70.1)',
         independentReplicationStatus: 'Replicated',
       },
       {
         trialId: 'Segal 2008 multiple sclerosis phase 2 (NCT00207727)',
         phase: 'Phase 2',
         sampleSize: 249,
-        primaryEndpoint: 'Cumulative new gadolinium-enhancing T1-weighted brain lesions through week 23',
+        primaryEndpoint:
+          'Cumulative new gadolinium-enhancing T1-weighted brain lesions through week 23',
         endpointMet: false,
         statisticalPValue: 'No significant reduction versus placebo at any of four dose groups',
         independentReplicationStatus: 'Failed to Replicate',
@@ -2957,28 +3126,33 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Leonardi et al., Efficacy and safety of ustekinumab in psoriasis (PHOENIX 1), Lancet 2008',
+        label:
+          'Leonardi et al., Efficacy and safety of ustekinumab in psoriasis (PHOENIX 1), Lancet 2008',
         identifier: '10.1016/S0140-6736(08)60725-4',
         kind: 'doi',
       },
       {
-        label: 'Papp et al., Efficacy and safety of ustekinumab in psoriasis (PHOENIX 2), Lancet 2008',
+        label:
+          'Papp et al., Efficacy and safety of ustekinumab in psoriasis (PHOENIX 2), Lancet 2008',
         identifier: '10.1016/S0140-6736(08)60726-6',
         kind: 'doi',
       },
       {
-        label: 'Feagan et al., Ustekinumab as Induction and Maintenance Therapy for Crohn Disease, NEJM 2016',
+        label:
+          'Feagan et al., Ustekinumab as Induction and Maintenance Therapy for Crohn Disease, NEJM 2016',
         identifier: '10.1056/NEJMoa1602773',
         kind: 'doi',
       },
       {
-        label: 'Segal et al., Ustekinumab in relapsing-remitting multiple sclerosis, Lancet Neurology 2008',
+        label:
+          'Segal et al., Ustekinumab in relapsing-remitting multiple sclerosis, Lancet Neurology 2008',
         identifier: '10.1016/S1474-4422(08)70173-X',
         kind: 'doi',
       },
       {
         label: 'Drugs@FDA, STELARA BLA 125261, original approval 25 September 2009',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125261',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125261',
         kind: 'regulatory',
       },
     ],
@@ -3023,7 +3197,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Ixekizumab (Taltz)',
           class: 'Anti-IL-17A monoclonal antibody',
-          howItCompares: 'Same cytokine, higher affinity, similar clearance rates in indirect comparison.',
+          howItCompares:
+            'Same cytokine, higher affinity, similar clearance rates in indirect comparison.',
           typicalCost: 'Approximately $6,500 - $7,500 / month US list',
           prosAndCons:
             'Pros: rapid onset. Cons: shares the class contraindication in inflammatory bowel disease and the candidiasis signal.',
@@ -3074,7 +3249,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 151 kDa',
       structureSource: {
         label: 'COSENTYX US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125504',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125504',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -3085,15 +3261,18 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'CHO fed-batch expression',
           description:
             'Produce the fully human IgG1 in a CHO suspension culture with feed control tuned to hold the glycan profile within specification.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, controlled glucose and amino acid feed, temperature shift at day 5',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, controlled glucose and amino acid feed, temperature shift at day 5',
         },
         {
           id: 'sec-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture and low-pH viral inactivation',
-          description: 'Affinity capture and low-pH elution with a validated hold for enveloped virus.',
-          reagentsAndBuffer: 'Protein A resin, 50 mM glycine pH 3.4 elution, 60 minute hold, Tris neutralisation',
+          description:
+            'Affinity capture and low-pH elution with a validated hold for enveloped virus.',
+          reagentsAndBuffer:
+            'Protein A resin, 50 mM glycine pH 3.4 elution, 60 minute hold, Tris neutralisation',
           dependsOnStepId: 'sec-syn',
         },
         {
@@ -3103,7 +3282,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Polishing, nanofiltration and high-concentration formulation',
           description:
             'Remove aggregate and residuals, filter for viral clearance, then concentrate into a formulation supporting a 150 mg dose in 1 mL for subcutaneous injection.',
-          reagentsAndBuffer: 'Anion and multimodal exchange, 20 nm virus filter, trehalose, L-histidine, methionine, polysorbate 80',
+          reagentsAndBuffer:
+            'Anion and multimodal exchange, 20 nm virus filter, trehalose, L-histidine, methionine, polysorbate 80',
           dependsOnStepId: 'sec-cap',
         },
         {
@@ -3113,7 +3293,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'IL-17A neutralisation bioassay',
           description:
             'Quantify potency as inhibition of IL-17A-induced IL-6 release from human dermal fibroblasts or a reporter line, against the reference standard.',
-          reagentsAndBuffer: 'Recombinant human IL-17A, human dermal fibroblasts or NIH-3T3 reporter, IL-6 ELISA readout',
+          reagentsAndBuffer:
+            'Recombinant human IL-17A, human dermal fibroblasts or NIH-3T3 reporter, IL-6 ELISA readout',
           dependsOnStepId: 'sec-pol',
         },
         {
@@ -3123,7 +3304,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Family cross-reactivity specificity check',
           description:
             'Confirm the lot neutralises IL-17A and the IL-17A/F heterodimer but not IL-17F homodimer, IL-17B, C, D or E, since selectivity within the family determines both efficacy and the candidiasis profile.',
-          reagentsAndBuffer: 'Recombinant IL-17 family panel, surface plasmon resonance, orthogonal ELISA cross-reactivity screen',
+          reagentsAndBuffer:
+            'Recombinant IL-17 family panel, surface plasmon resonance, orthogonal ELISA cross-reactivity screen',
           dependsOnStepId: 'sec-assay',
         },
       ],
@@ -3132,14 +3314,17 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'sec-1',
         category: 'measured',
-        title: 'ERASURE and FIXTURE: PASI 75 in 77-82% at 12 weeks, and superiority over etanercept',
+        title:
+          'ERASURE and FIXTURE: PASI 75 in 77-82% at 12 weeks, and superiority over etanercept',
         laymanSummary:
           'Two trials in 738 and 1,306 people with moderate-to-severe psoriasis. At the higher dose, roughly four in five reached a 75% improvement, against fewer than one in twenty on placebo and fewer than half on the older anti-TNF comparator.',
         technicalDetails:
           'Two 52-week phase 3 trials with co-primary endpoints of PASI 75 and modified IGA 0 or 1 at week 12. ERASURE: PASI 75 in 81.6% at 300 mg, 71.6% at 150 mg, 4.5% placebo. FIXTURE: 77.1% at 300 mg, 67.0% at 150 mg, 44.0% for etanercept 50 mg twice weekly and 4.9% placebo. The active-comparator arm is what makes FIXTURE unusually informative: it is a direct measurement against the previous standard rather than against nothing.',
-        evidenceSource: 'Langley et al., New England Journal of Medicine 2014 (ERASURE NCT01365455, FIXTURE NCT01358578)',
+        evidenceSource:
+          'Langley et al., New England Journal of Medicine 2014 (ERASURE NCT01365455, FIXTURE NCT01358578)',
         doi: '10.1056/NEJMoa1314258',
-        measuredMetric: 'PASI 75 at week 12: 81.6% (ERASURE 300 mg) and 77.1% versus 44.0% etanercept (FIXTURE)',
+        measuredMetric:
+          'PASI 75 at week 12: 81.6% (ERASURE 300 mg) and 77.1% versus 44.0% etanercept (FIXTURE)',
         auditFlag: 'verified',
       },
       {
@@ -3152,7 +3337,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Double-blind randomised placebo-controlled proof-of-concept study, 39 to secukinumab 2 x 10 mg/kg intravenously and 20 to placebo, mean baseline CDAI 307 and 301. Blockade of IL-17A was ineffective. Discontinuation for insufficient therapeutic effect occurred in 21% on secukinumab versus 10% on placebo, and 20 infections including four local fungal infections were seen on secukinumab against none on placebo. The paper is titled "unexpected results" and the finding is now the basis of a class contraindication.',
         evidenceSource: 'Hueber et al., Gut 2012 (NCT01009281)',
         doi: '10.1136/gutjnl-2011-301668',
-        measuredMetric: 'Primary endpoint not met; more adverse events and more withdrawals for lack of effect than placebo',
+        measuredMetric:
+          'Primary endpoint not met; more adverse events and more withdrawals for lack of effect than placebo',
         auditFlag: 'verified',
       },
       {
@@ -3163,7 +3349,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'The same cytokine drives disease in one organ and defends another. The Crohn result forced the field to abandon the idea that an inflammatory cytokine is simply bad wherever it appears.',
         technicalDetails:
           'IL-17A maintains intestinal epithelial tight junction integrity and antimicrobial peptide production, so neutralising it in a barrier already compromised by Crohn disease permits increased bacterial translocation. Every IL-17-directed agent now carries a warning about inflammatory bowel disease, and new-onset or exacerbated IBD has been reported on secukinumab. Upstream IL-23 blockade does not share this liability, which is a mechanistically informative dissociation.',
-        evidenceSource: 'Hueber et al., Gut 2012, and the resulting class warning in the COSENTYX label',
+        evidenceSource:
+          'Hueber et al., Gut 2012, and the resulting class warning in the COSENTYX label',
         auditFlag: 'verified',
       },
       {
@@ -3174,7 +3361,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'IL-17A is the main defence of mouth, throat and skin against Candida. Blocking it produces thrush at a measurably higher rate than placebo, which is exactly what the biology predicts.',
         technicalDetails:
           'Mucocutaneous candidiasis occurred more frequently on secukinumab than placebo across the trial programme. People with inherited defects in IL-17 signalling, such as autosomal dominant hyper-IgE syndrome or IL-17F mutations, develop chronic mucocutaneous candidiasis, which is the natural experiment that predicted this. Most cases are mild and treatable without stopping the antibody.',
-        evidenceSource: 'COSENTYX US Prescribing Information, Warnings and Precautions and Adverse Reactions',
+        evidenceSource:
+          'COSENTYX US Prescribing Information, Warnings and Precautions and Adverse Reactions',
         auditFlag: 'verified',
       },
       {
@@ -3186,7 +3374,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'ERASURE and FIXTURE measured skin severity indices at week 12 with 52-week extension. Neither was designed to measure structural joint outcomes, drug-free remission or long-term cardiovascular risk in a population with known excess cardiovascular mortality. Cross-class comparisons of PASI 100 rates from separate trials are indirect and subject to differing baseline severity and washout requirements.',
         evidenceSource: 'Endpoint structure of ERASURE and FIXTURE',
-        inferredClaim: 'That higher skin clearance rates across separate trials establish superiority of one biologic over another',
+        inferredClaim:
+          'That higher skin clearance rates across separate trials establish superiority of one biologic over another',
         auditFlag: 'caution',
       },
     ],
@@ -3266,9 +3455,11 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         trialId: 'Hueber 2012 Crohn disease proof-of-concept (NCT01009281)',
         phase: 'Phase 2 proof of concept',
         sampleSize: 59,
-        primaryEndpoint: 'Bayesian probability that secukinumab reduces CDAI by at least 50 points more than placebo at week 6',
+        primaryEndpoint:
+          'Bayesian probability that secukinumab reduces CDAI by at least 50 points more than placebo at week 6',
         endpointMet: false,
-        statisticalPValue: 'Blockade of IL-17A was ineffective; higher adverse event rates than placebo',
+        statisticalPValue:
+          'Blockade of IL-17A was ineffective; higher adverse event rates than placebo',
         unreportedAdverseSignals:
           'Twenty infections including four local fungal infections on secukinumab against none on placebo, in a 59-patient study.',
         independentReplicationStatus: 'Failed to Replicate',
@@ -3305,7 +3496,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         q: 'I have psoriasis and Crohn disease. Can I take this?',
         a: 'Generally no. A proof-of-concept trial in Crohn disease found IL-17A blockade ineffective and associated with more adverse events than placebo, and new onset or worsening of inflammatory bowel disease is a specific label warning. An IL-23 p19 antibody, which acts upstream, is usually preferred because it treats both conditions.',
-        auditNote: 'One of the clearest instances in immunology of the same cytokine being harmful in one tissue and protective in another.',
+        auditNote:
+          'One of the clearest instances in immunology of the same cytokine being harmful in one tissue and protective in another.',
       },
       {
         q: 'Why do I keep getting oral thrush?',
@@ -3320,12 +3512,14 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Langley et al., Secukinumab in Plaque Psoriasis, Results of Two Phase 3 Trials, NEJM 2014',
+        label:
+          'Langley et al., Secukinumab in Plaque Psoriasis, Results of Two Phase 3 Trials, NEJM 2014',
         identifier: '10.1056/NEJMoa1314258',
         kind: 'doi',
       },
       {
-        label: 'Hueber et al., Secukinumab for moderate to severe Crohn disease, unexpected results, Gut 2012',
+        label:
+          'Hueber et al., Secukinumab for moderate to severe Crohn disease, unexpected results, Gut 2012',
         identifier: '10.1136/gutjnl-2011-301668',
         kind: 'doi',
       },
@@ -3336,7 +3530,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, COSENTYX BLA 125504, original approval 21 January 2015',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125504',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125504',
         kind: 'regulatory',
       },
     ],
@@ -3356,7 +3551,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     approvalYear: 2015,
     indication:
       'Reduction of cardiovascular events in established atherosclerotic disease, primary hyperlipidaemia including heterozygous familial hypercholesterolaemia, and homozygous familial hypercholesterolaemia',
-    patientFriendlyIndication: 'Very high cholesterol that statins alone cannot bring down far enough',
+    patientFriendlyIndication:
+      'Very high cholesterol that statins alone cannot bring down far enough',
     anatomicalSite: 'Blood plasma and the hepatocyte surface',
     conditionContext: {
       conditionExplainer:
@@ -3422,7 +3618,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Compete with dietary and biliary cholesterol for incorporation into intestinal micelles, reducing absorption and increasing hepatic LDL receptor expression.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '2 grams daily from fortified spreads, yoghurt drinks or supplements, taken with meals',
+          dailyUsage:
+            '2 grams daily from fortified spreads, yoghurt drinks or supplements, taken with meals',
           monthlyCost: '$12 - $25 / month',
         },
         {
@@ -3461,7 +3658,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 144 kDa',
       structureSource: {
         label: 'REPATHA US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125522',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125522',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -3472,14 +3670,16 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'CHO expression of the IgG2 with disulfide isoform control',
           description:
             'Produce the fully human IgG2 in CHO culture with redox conditions controlled to hold the ratio of IgG2-A, A/B and B hinge disulfide isoforms within specification, since these isoforms differ in potency.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, cysteine and cystine redox control, controlled feed',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, cysteine and cystine redox control, controlled feed',
         },
         {
           id: 'evo-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture and viral inactivation',
-          description: 'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
+          description:
+            'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
           reagentsAndBuffer: 'Protein A resin, acetate pH 3.5 elution, Tris neutralisation',
           dependsOnStepId: 'evo-syn',
         },
@@ -3490,7 +3690,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Polishing and high-concentration autoinjector formulation',
           description:
             'Remove aggregate and process residuals, then concentrate to support 140 mg in 1 mL or 420 mg in 3.5 mL for an on-body infusor.',
-          reagentsAndBuffer: 'Ion exchange and multimodal polishing, 20 nm virus filter, proline, acetate, polysorbate 80, pH 5.0',
+          reagentsAndBuffer:
+            'Ion exchange and multimodal polishing, 20 nm virus filter, proline, acetate, polysorbate 80, pH 5.0',
           dependsOnStepId: 'evo-cap',
         },
         {
@@ -3510,7 +3711,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Hepatocyte LDL uptake bioassay',
           description:
             'Confirm functional potency by restoring fluorescently labelled LDL uptake in HepG2 cells that have been suppressed by exogenous PCSK9.',
-          reagentsAndBuffer: 'HepG2 hepatoma cells, recombinant PCSK9 challenge, DiI-labelled human LDL, fluorescence plate reader',
+          reagentsAndBuffer:
+            'HepG2 hepatoma cells, recombinant PCSK9 challenge, DiI-labelled human LDL, fluorescence plate reader',
           dependsOnStepId: 'evo-spr',
         },
       ],
@@ -3524,9 +3726,11 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'In 27,564 people with existing heart disease already taking statins, evolocumab cut LDL cholesterol to a median of 30 mg/dL and reduced a combined measure of heart attacks, strokes, unstable angina, revascularisation and cardiovascular death by 15% relative.',
         technicalDetails:
           'Randomised, double-blind, placebo-controlled trial with median follow-up 2.2 years. At 48 weeks LDL fell 59% from a median baseline of 92 mg/dL to 30 mg/dL. The primary composite endpoint was reduced, driven by myocardial infarction, stroke and revascularisation. There was no significant reduction in cardiovascular death or all-cause death, which the trial was neither long enough nor powered to detect.',
-        evidenceSource: 'Sabatine et al., New England Journal of Medicine 2017 (FOURIER, NCT01764633)',
+        evidenceSource:
+          'Sabatine et al., New England Journal of Medicine 2017 (FOURIER, NCT01764633)',
         doi: '10.1056/NEJMoa1615664',
-        measuredMetric: '59% LDL reduction at 48 weeks; 15% relative reduction in the primary composite endpoint',
+        measuredMetric:
+          '59% LDL reduction at 48 weeks; 15% relative reduction in the primary composite endpoint',
         auditFlag: 'verified',
       },
       {
@@ -3538,20 +3742,23 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'The relative reduction in the composite endpoint was 15%, against a 59% reduction in LDL. Absolute risk reduction over the trial period was in the low single percentage points, giving a number needed to treat in the several dozens over 2.2 years. Cardiovascular mortality and all-cause mortality were not significantly reduced. The mechanistic argument that longer exposure would yield larger benefit is plausible on genetic grounds but was not what this trial measured.',
         evidenceSource: 'Sabatine et al., NEJM 2017, primary and secondary endpoint results',
-        inferredClaim: 'That the magnitude of LDL lowering translates proportionally into event or mortality reduction over a short trial',
+        inferredClaim:
+          'That the magnitude of LDL lowering translates proportionally into event or mortality reduction over a short trial',
         auditFlag: 'caution',
       },
       {
         id: 'evo-3',
         category: 'failed',
-        title: 'Bococizumab: the class member that failed because it was humanised rather than fully human',
+        title:
+          'Bococizumab: the class member that failed because it was humanised rather than fully human',
         laymanSummary:
           'Pfizer developed a PCSK9 antibody in parallel. Patients made antibodies against the drug itself, and the cholesterol lowering faded away in a large fraction of them. The whole programme was cancelled.',
         technicalDetails:
           'Six parallel SPIRE lipid-lowering trials enrolled 4,300 patients. At 12 weeks bococizumab reduced LDL by 54.2%. Anti-drug antibodies developed in a large proportion of patients and significantly attenuated the LDL reduction, with wide variation even among patients who did not develop them. Bococizumab was humanised rather than fully human, and Pfizer discontinued the programme in 2016. This is a direct demonstration that immunogenicity, not target biology, can decide whether a class member survives.',
         evidenceSource: 'Ridker et al., New England Journal of Medicine 2017 (SPIRE programme)',
         doi: '10.1056/NEJMoa1614062',
-        measuredMetric: 'LDL reduction of 54.2% at 12 weeks, substantially attenuated by anti-drug antibodies over time',
+        measuredMetric:
+          'LDL reduction of 54.2% at 12 weeks, substantially attenuated by anti-drug antibodies over time',
         auditFlag: 'verified',
       },
       {
@@ -3601,7 +3808,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Binding the catalytic domain of PCSK9',
-        laymanDesc: 'The antibody grips the exact face of PCSK9 that would otherwise clamp onto the cholesterol receptor.',
+        laymanDesc:
+          'The antibody grips the exact face of PCSK9 that would otherwise clamp onto the cholesterol receptor.',
         molecularDetail:
           'Binds the catalytic domain of PCSK9 at the surface that contacts the EGF-A domain of the LDL receptor, sterically preventing the PCSK9-LDLR interaction. The IgG2 isotype was chosen for minimal effector function.',
         iconName: 'Lock',
@@ -3636,7 +3844,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Composite of cardiovascular death, myocardial infarction, stroke, hospitalisation for unstable angina or coronary revascularisation',
         endpointMet: true,
-        statisticalPValue: 'p < 0.001 for the primary composite; no significant reduction in cardiovascular or all-cause death',
+        statisticalPValue:
+          'p < 0.001 for the primary composite; no significant reduction in cardiovascular or all-cause death',
         unreportedAdverseSignals:
           'Median follow-up was only 2.2 years, which is short relative to the lifetime exposure implied by the genetic rationale for the target.',
         independentReplicationStatus: 'Replicated',
@@ -3703,12 +3912,14 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Sabatine et al., Evolocumab and Clinical Outcomes in Patients with Cardiovascular Disease, NEJM 2017',
+        label:
+          'Sabatine et al., Evolocumab and Clinical Outcomes in Patients with Cardiovascular Disease, NEJM 2017',
         identifier: '10.1056/NEJMoa1615664',
         kind: 'doi',
       },
       {
-        label: 'Ridker et al., Lipid-Reduction Variability and Antidrug-Antibody Formation with Bococizumab, NEJM 2017',
+        label:
+          'Ridker et al., Lipid-Reduction Variability and Antidrug-Antibody Formation with Bococizumab, NEJM 2017',
         identifier: '10.1056/NEJMoa1614062',
         kind: 'doi',
       },
@@ -3719,7 +3930,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, REPATHA BLA 125522, original approval 27 August 2015',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125522',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125522',
         kind: 'regulatory',
       },
     ],
@@ -3782,7 +3994,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Ezetimibe',
           class: 'NPC1L1 cholesterol absorption inhibitor',
-          howItCompares: 'Adds 15-20% LDL reduction with demonstrated outcome benefit after acute coronary syndrome in IMPROVE-IT.',
+          howItCompares:
+            'Adds 15-20% LDL reduction with demonstrated outcome benefit after acute coronary syndrome in IMPROVE-IT.',
           typicalCost: '$8 - $20 / month generic',
           prosAndCons:
             'Pros: cheap, oral, and the guideline-recommended step before a PCSK9 antibody. Cons: much smaller effect.',
@@ -3826,7 +4039,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 146 kDa',
       structureSource: {
         label: 'PRALUENT US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125559',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125559',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -3837,14 +4051,16 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'CHO fed-batch expression',
           description:
             'Express the fully human IgG1 derived from VelocImmune transgenic mice in a CHO production line under fed-batch control.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, glutamine synthetase selection, controlled glucose feed',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, glutamine synthetase selection, controlled glucose feed',
         },
         {
           id: 'ali-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture and low-pH viral inactivation',
-          description: 'Affinity capture followed by low-pH elution and a validated viral inactivation hold.',
+          description:
+            'Affinity capture followed by low-pH elution and a validated viral inactivation hold.',
           reagentsAndBuffer: 'Protein A resin, acetate pH 3.5 elution, Tris base neutralisation',
           dependsOnStepId: 'ali-syn',
         },
@@ -3855,7 +4071,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Polishing and pen formulation',
           description:
             'Remove aggregate and residuals, filter for viral clearance, and formulate at 75 mg/mL or 150 mg/mL for a 1 mL autoinjector.',
-          reagentsAndBuffer: 'Ion exchange polishing, 20 nm virus filter, histidine, sucrose, polysorbate 20, pH 6.0',
+          reagentsAndBuffer:
+            'Ion exchange polishing, 20 nm virus filter, histidine, sucrose, polysorbate 20, pH 6.0',
           dependsOnStepId: 'ali-cap',
         },
         {
@@ -3863,8 +4080,10 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           stepNumber: 4,
           phase: 'Assay_Quantification',
           name: 'PCSK9 binding kinetics',
-          description: 'Determine binding kinetics against immobilised recombinant human PCSK9 for lot release.',
-          reagentsAndBuffer: 'Recombinant human PCSK9, surface plasmon resonance sensor chip, HBS-EP+ buffer',
+          description:
+            'Determine binding kinetics against immobilised recombinant human PCSK9 for lot release.',
+          reagentsAndBuffer:
+            'Recombinant human PCSK9, surface plasmon resonance sensor chip, HBS-EP+ buffer',
           dependsOnStepId: 'ali-pol',
         },
         {
@@ -3874,7 +4093,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'LDL receptor rescue cell assay and immunogenicity screen',
           description:
             'Confirm restoration of LDL uptake in PCSK9-suppressed hepatocytes, and run the validated anti-drug antibody bridging assay on clinical samples, since anti-drug antibodies are what destroyed a competing PCSK9 antibody programme.',
-          reagentsAndBuffer: 'HepG2 cells, recombinant PCSK9, DiI-LDL, bridging electrochemiluminescence immunoassay',
+          reagentsAndBuffer:
+            'HepG2 cells, recombinant PCSK9, DiI-LDL, bridging electrochemiluminescence immunoassay',
           dependsOnStepId: 'ali-spr',
         },
       ],
@@ -3888,7 +4108,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'In 18,924 people who had had an acute coronary syndrome one to twelve months earlier and were on high-intensity statins, alirocumab reduced the combined rate of coronary death, heart attack, ischaemic stroke and unstable angina hospitalisation from 11.1 in 100 to 9.5 in 100 over a median of 2.8 years.',
         technicalDetails:
           'Randomised, double-blind, placebo-controlled trial with 9,462 patients per arm, dosed at 75 mg every two weeks and blindly titrated to a target LDL of 25 to 50 mg/dL. The primary composite occurred in 903 (9.5%) versus 1,052 (11.1%), hazard ratio 0.85 (95% CI 0.78-0.93). Absolute risk reduction of 1.6 percentage points over 2.8 years corresponds to a number needed to treat of roughly 63.',
-        evidenceSource: 'Schwartz et al., New England Journal of Medicine 2018 (ODYSSEY OUTCOMES, NCT01663402)',
+        evidenceSource:
+          'Schwartz et al., New England Journal of Medicine 2018 (ODYSSEY OUTCOMES, NCT01663402)',
         doi: '10.1056/NEJMoa1801174',
         measuredMetric: 'Primary composite 9.5% versus 11.1%, HR 0.85 (95% CI 0.78-0.93)',
         auditFlag: 'verified',
@@ -3919,7 +4140,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'ali-4',
         category: 'conclusion_shift',
-        title: 'Value-based pricing was applied to this drug before it was applied to almost any other',
+        title:
+          'Value-based pricing was applied to this drug before it was applied to almost any other',
         laymanSummary:
           'An independent cost-effectiveness body judged the launch price too high for the benefit measured. The manufacturer then cut the US list price by around 60% and tied access to it. This is one of the first cases where a published value assessment visibly moved a price.',
         technicalDetails:
@@ -3964,7 +4186,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Blocking the PCSK9 to LDL receptor interface',
-        laymanDesc: 'The antibody covers the exact patch on PCSK9 that grips the cholesterol receptor.',
+        laymanDesc:
+          'The antibody covers the exact patch on PCSK9 that grips the cholesterol receptor.',
         molecularDetail:
           'Binds the catalytic domain of PCSK9 at the EGF-A binding interface, preventing formation of the PCSK9-LDLR complex that would otherwise route the receptor to lysosomal degradation.',
         iconName: 'Lock',
@@ -4035,7 +4258,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         q: 'Does it save lives?',
         a: 'Fewer people died in the alirocumab arm of ODYSSEY OUTCOMES, but that comparison fell outside the pre-specified statistical testing sequence, so it is a nominal finding rather than a demonstrated mortality benefit. What was formally established is a reduction in the composite of coronary death, heart attack, ischaemic stroke and unstable angina hospitalisation from 11.1% to 9.5%.',
-        auditNote: 'The distinction between a nominal and a confirmatory result is where most reporting on this trial goes wrong.',
+        auditNote:
+          'The distinction between a nominal and a confirmatory result is where most reporting on this trial goes wrong.',
       },
       {
         q: 'Should I take this or evolocumab?',
@@ -4050,7 +4274,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Schwartz et al., Alirocumab and Cardiovascular Outcomes after Acute Coronary Syndrome, NEJM 2018',
+        label:
+          'Schwartz et al., Alirocumab and Cardiovascular Outcomes after Acute Coronary Syndrome, NEJM 2018',
         identifier: '10.1056/NEJMoa1801174',
         kind: 'doi',
       },
@@ -4066,7 +4291,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, PRALUENT BLA 125559, original approval 24 July 2015',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125559',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125559',
         kind: 'regulatory',
       },
     ],
@@ -4086,7 +4312,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     approvalYear: 2023,
     indication:
       'Alzheimer disease in patients with mild cognitive impairment or mild dementia stage, with confirmed amyloid pathology',
-    patientFriendlyIndication: 'Early Alzheimer disease, confirmed by an amyloid scan or spinal fluid test',
+    patientFriendlyIndication:
+      'Early Alzheimer disease, confirmed by an amyloid scan or spinal fluid test',
     anatomicalSite: 'Brain parenchyma and cerebral vasculature',
     conditionContext: {
       conditionExplainer:
@@ -4115,8 +4342,10 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       synthesisComplexity: 'High',
       costSource: MAB_COGS_SOURCE,
       priceSource: {
-        label: 'Eisai US launch price announcement for Leqembi, January 2023, widely reported at $26,500 per year',
-        identifier: 'https://www.nbcnews.com/health/health-news/new-alzheimers-drug-will-cost-26500-year-will-able-get-rcna64883',
+        label:
+          'Eisai US launch price announcement for Leqembi, January 2023, widely reported at $26,500 per year',
+        identifier:
+          'https://www.nbcnews.com/health/health-news/new-alzheimers-drug-will-cost-26500-year-will-able-get-rcna64883',
         kind: 'url',
       },
     },
@@ -4145,7 +4374,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Memantine',
           class: 'NMDA receptor antagonist',
-          howItCompares: 'Used at moderate-to-severe stages, often with a cholinesterase inhibitor. Symptomatic.',
+          howItCompares:
+            'Used at moderate-to-severe stages, often with a cholinesterase inhibitor. Symptomatic.',
           typicalCost: '$8 - $30 / month generic',
           prosAndCons:
             'Pros: well tolerated, cheap. Cons: modest effect, and licensed for a later disease stage than lecanemab.',
@@ -4170,7 +4400,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 150 kDa',
       structureSource: {
         label: 'LEQEMBI US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761269',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761269',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -4181,14 +4412,16 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'CHO expression of the humanised IgG1',
           description:
             'Express the humanised version of the murine mAb158 antibody, raised against the Arctic mutation amyloid beta protofibril, in a CHO fed-batch process.',
-          reagentsAndBuffer: 'Chemically defined CHO medium, controlled feed, temperature shift for productivity and glycan control',
+          reagentsAndBuffer:
+            'Chemically defined CHO medium, controlled feed, temperature shift for productivity and glycan control',
         },
         {
           id: 'lec-cap',
           stepNumber: 2,
           phase: 'Purification',
           name: 'Protein A capture and viral inactivation',
-          description: 'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
+          description:
+            'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
           reagentsAndBuffer: 'Protein A resin, acetate pH 3.5 elution, Tris base neutralisation',
           dependsOnStepId: 'lec-syn',
         },
@@ -4199,7 +4432,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Polishing and formulation for infusion and subcutaneous presentations',
           description:
             'Remove aggregate and residuals, then formulate at 100 mg/mL for infusion or at high concentration for the weekly subcutaneous autoinjector approved in 2025.',
-          reagentsAndBuffer: 'Ion exchange and multimodal polishing, 20 nm virus filter, histidine, arginine, polysorbate 80',
+          reagentsAndBuffer:
+            'Ion exchange and multimodal polishing, 20 nm virus filter, histidine, arginine, polysorbate 80',
           dependsOnStepId: 'lec-cap',
         },
         {
@@ -4220,7 +4454,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Microglial phagocytosis potency assay',
           description:
             'Quantify FcgammaR-dependent uptake of opsonised amyloid aggregates by a microglial cell line, since the clearance mechanism depends on effector function rather than on binding alone.',
-          reagentsAndBuffer: 'BV-2 or human iPSC-derived microglia, fluorescently labelled Abeta aggregates, flow cytometry readout',
+          reagentsAndBuffer:
+            'BV-2 or human iPSC-derived microglia, fluorescently labelled Abeta aggregates, flow cytometry readout',
           dependsOnStepId: 'lec-sel',
         },
       ],
@@ -4229,12 +4464,14 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'lec-1',
         category: 'measured',
-        title: 'Clarity AD: CDR-SB decline of 1.21 against 1.66, a difference of 0.45 points on an 18-point scale',
+        title:
+          'Clarity AD: CDR-SB decline of 1.21 against 1.66, a difference of 0.45 points on an 18-point scale',
         laymanSummary:
           'Over 18 months, people on lecanemab got worse by 1.21 points on an 18-point disability scale and people on placebo got worse by 1.66. The difference of 0.45 points, or 27% less decline, is the entire clinical result.',
         technicalDetails:
           'Randomised, double-blind, placebo-controlled 18-month phase 3 trial. 1,795 participants randomised, 898 to lecanemab 10 mg/kg every two weeks and 897 to placebo. Mean baseline CDR-SB was approximately 3.2 in both groups. Adjusted least-squares mean change at 18 months was 1.21 with lecanemab and 1.66 with placebo; difference -0.45 (95% CI -0.67 to -0.23), P < 0.001. ADAS-Cog14 difference -1.44 and ADCS MCI-ADL difference 2.0 both favoured lecanemab.',
-        evidenceSource: 'van Dyck et al., New England Journal of Medicine 2023 (Clarity AD, NCT03887455)',
+        evidenceSource:
+          'van Dyck et al., New England Journal of Medicine 2023 (Clarity AD, NCT03887455)',
         doi: '10.1056/NEJMoa2212948',
         measuredMetric: 'CDR-SB difference -0.45 (95% CI -0.67 to -0.23), P < 0.001, 27% slowing',
         auditFlag: 'verified',
@@ -4247,50 +4484,60 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Brain scans showed the amyloid plaque burden falling to below the threshold used to define a positive scan in most treated patients. The drug does what it was designed to do at the level of the target.',
         technicalDetails:
           'In the phase 2 amyloid PET substudy, adjusted mean change from baseline at week 79 was -72.5 centiloids on lecanemab against 1.0 on placebo, from mean baselines of 78.0 and 84.8 centiloids, a difference of -73.5 (P < 0.001). Clarity AD reproduced substantial amyloid reduction. Target engagement and plaque removal are the best-established facts about this drug.',
-        evidenceSource: 'LEQEMBI US Prescribing Information, Clinical Studies, amyloid PET substudy',
+        evidenceSource:
+          'LEQEMBI US Prescribing Information, Clinical Studies, amyloid PET substudy',
         measuredMetric: 'Amyloid PET change -72.5 centiloids versus 1.0 on placebo at week 79',
         auditFlag: 'verified',
       },
       {
         id: 'lec-3',
         category: 'inferred',
-        title: 'A 0.45-point difference is presented as a clinically meaningful slowing of Alzheimer disease',
+        title:
+          'A 0.45-point difference is presented as a clinically meaningful slowing of Alzheimer disease',
         laymanSummary:
           'Whether 0.45 points on an 18-point scale is something a family would notice has never been established. Published estimates of the smallest CDR-SB change that matters to patients are generally larger than the effect measured.',
         technicalDetails:
           'The CDR-SB runs from 0 to 18. Published estimates of the minimal clinically important difference in mild cognitive impairment and mild dementia populations generally sit in the range of one to two points, above the 0.45 measured here. The trial was 18 months long, which cannot distinguish a genuine slowing of the disease process from a fixed offset that would not widen with time. Presenting the result as a percentage, 27% less decline, makes it sound larger than the absolute number does, and both descriptions are of the same measurement.',
         evidenceSource: 'CDR-SB scale properties and the 18-month duration of Clarity AD',
-        inferredClaim: 'That a 0.45-point CDR-SB difference over 18 months is a change patients and families would perceive',
+        inferredClaim:
+          'That a 0.45-point CDR-SB difference over 18 months is a change patients and families would perceive',
         auditFlag: 'contested',
       },
       {
         id: 'lec-4',
         category: 'measured',
-        title: 'ARIA: brain swelling in 13% and microbleeding in 17%, with fatal intracerebral haemorrhage reported',
+        title:
+          'ARIA: brain swelling in 13% and microbleeding in 17%, with fatal intracerebral haemorrhage reported',
         laymanSummary:
           'One patient in eight developed brain swelling and one in six developed small brain bleeds. Most were symptomless and found only on the required MRI scans, but serious and fatal events have occurred and the drug carries a boxed warning.',
         technicalDetails:
           'From the label, in Study 2: ARIA of any type in 21% (191/898) on lecanemab versus 9% (84/897) on placebo; ARIA-E in 13% (113/898) versus 2% (15/897); ARIA-H in 17% (152/898) versus 9% (80/897). Symptomatic ARIA in 3% (29/898), serious symptoms in 0.7% (6/898). Intracerebral haemorrhage larger than 1 cm in 0.7% (6/898) versus 0.1% (1/897), with fatal events observed. Monitoring MRIs are required before the fifth, seventh and fourteenth infusions.',
-        evidenceSource: 'LEQEMBI US Prescribing Information, boxed warning and Warnings and Precautions 5.1',
-        measuredMetric: 'ARIA-E 13% versus 2%; ARIA-H 17% versus 9%; intracerebral haemorrhage >1 cm 0.7% versus 0.1%',
+        evidenceSource:
+          'LEQEMBI US Prescribing Information, boxed warning and Warnings and Precautions 5.1',
+        measuredMetric:
+          'ARIA-E 13% versus 2%; ARIA-H 17% versus 9%; intracerebral haemorrhage >1 cm 0.7% versus 0.1%',
         auditFlag: 'verified',
       },
       {
         id: 'lec-5',
         category: 'failed',
-        title: 'In ApoE e4 homozygotes no effect on the primary endpoint was observed, and their ARIA risk is the highest',
+        title:
+          'In ApoE e4 homozygotes no effect on the primary endpoint was observed, and their ARIA risk is the highest',
         laymanSummary:
           'The 15% of patients carrying two copies of the highest-risk Alzheimer gene had the worst safety profile and, in an exploratory analysis, showed no benefit on the main outcome measure at all.',
         technicalDetails:
           'The label states that in an exploratory subgroup analysis of ApoE e4 homozygotes, representing 15% of the trial population, a treatment effect was not observed on the primary CDR-SB endpoint, although secondary clinical endpoints and biomarkers favoured lecanemab. In the same subgroup, ARIA occurred in 45% on lecanemab versus 22% on placebo, and symptomatic ARIA-E in 9% against 2% of heterozygotes and 1% of noncarriers. ApoE genotyping before treatment is recommended in the boxed warning for exactly this reason. This is the group with the strongest genetic case for treating and the weakest measured benefit-to-risk ratio.',
-        evidenceSource: 'LEQEMBI US Prescribing Information, Clinical Studies and Warnings and Precautions 5.1',
-        measuredMetric: 'No CDR-SB treatment effect observed in ApoE e4 homozygotes; ARIA in 45% versus 22% on placebo',
+        evidenceSource:
+          'LEQEMBI US Prescribing Information, Clinical Studies and Warnings and Precautions 5.1',
+        measuredMetric:
+          'No CDR-SB treatment effect observed in ApoE e4 homozygotes; ARIA in 45% versus 22% on placebo',
         auditFlag: 'caution',
       },
       {
         id: 'lec-6',
         category: 'conclusion_shift',
-        title: 'From accelerated approval on a surrogate to traditional approval on an outcome, in six months',
+        title:
+          'From accelerated approval on a surrogate to traditional approval on an outcome, in six months',
         laymanSummary:
           'Lecanemab was first approved in January 2023 on amyloid removal alone, the same basis as aducanumab. When the outcome trial read out, it converted to full approval in July 2023. That is the pathway working as designed, and it is why this drug is not aducanumab.',
         technicalDetails:
@@ -4431,8 +4678,10 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         kind: 'nct',
       },
       {
-        label: 'Drugs@FDA, LEQEMBI BLA 761269, accelerated approval 6 January 2023 and traditional approval 6 July 2023',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761269',
+        label:
+          'Drugs@FDA, LEQEMBI BLA 761269, accelerated approval 6 January 2023 and traditional approval 6 July 2023',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761269',
         kind: 'regulatory',
       },
       MAB_COGS_SOURCE,
@@ -4447,13 +4696,15 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     tradeName: 'Kisunla',
     sponsor: 'Eli Lilly and Company',
     targetGene: 'APP',
-    targetProtein: 'N-terminal pyroglutamate-modified amyloid beta (AbetaP3-42), found only in deposited plaque',
+    targetProtein:
+      'N-terminal pyroglutamate-modified amyloid beta (AbetaP3-42), found only in deposited plaque',
     modality: 'Monoclonal Antibody (mAb)',
     approvalStatus: 'FDA Approved',
     approvalYear: 2024,
     indication:
       'Alzheimer disease in patients with mild cognitive impairment or mild dementia stage, with confirmed amyloid pathology',
-    patientFriendlyIndication: 'Early Alzheimer disease, with treatment stopped once the plaque is cleared',
+    patientFriendlyIndication:
+      'Early Alzheimer disease, with treatment stopped once the plaque is cleared',
     anatomicalSite: 'Brain parenchyma and cerebral vasculature',
     conditionContext: {
       conditionExplainer:
@@ -4477,11 +4728,13 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       retailPricePerDoseOrYear: 'US list price of approximately $32,000 for a 12-month course',
       markupEstimate:
         'Drug substance at published best-practice cost of goods accounts for a small fraction of the course price; PET, MRI and ApoE genotyping add substantial system cost',
-      openPatentNotes: 'Developed in-house at Eli Lilly from the mE8 antibody series. Under patent with no biosimilar pathway open.',
+      openPatentNotes:
+        'Developed in-house at Eli Lilly from the mE8 antibody series. Under patent with no biosimilar pathway open.',
       synthesisComplexity: 'High',
       costSource: MAB_COGS_SOURCE,
       priceSource: {
-        label: 'Eli Lilly US launch pricing for Kisunla, July 2024, widely reported at $32,000 for a 12-month course',
+        label:
+          'Eli Lilly US launch pricing for Kisunla, July 2024, widely reported at $32,000 for a 12-month course',
         identifier: 'https://news.northeastern.edu/2024/07/12/new-alzheimers-drug-cost/',
         kind: 'url',
       },
@@ -4502,7 +4755,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Donepezil, rivastigmine or galantamine',
           class: 'Cholinesterase inhibitor',
-          howItCompares: 'Symptomatic benefit only, with no effect on amyloid or on the disease course.',
+          howItCompares:
+            'Symptomatic benefit only, with no effect on amyloid or on the disease course.',
           typicalCost: '$5 - $25 / month generic',
           prosAndCons:
             'Pros: oral, inexpensive, no imaging requirement. Cons: does not alter pathology; nausea and bradycardia are common.',
@@ -4510,9 +4764,11 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         {
           name: 'Memantine',
           class: 'NMDA receptor antagonist',
-          howItCompares: 'Symptomatic, licensed for moderate-to-severe disease, frequently combined with a cholinesterase inhibitor.',
+          howItCompares:
+            'Symptomatic, licensed for moderate-to-severe disease, frequently combined with a cholinesterase inhibitor.',
           typicalCost: '$8 - $30 / month generic',
-          prosAndCons: 'Pros: cheap and well tolerated. Cons: modest effect and a later disease stage than donanemab treats.',
+          prosAndCons:
+            'Pros: cheap and well tolerated. Cons: modest effect and a later disease stage than donanemab treats.',
         },
       ],
       naturalFoods: [],
@@ -4534,7 +4790,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       molecularWeight: 'Approximately 145 kDa',
       structureSource: {
         label: 'KISUNLA US Prescribing Information, Description section',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761248',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761248',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -4545,7 +4802,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Mammalian cell expression of the humanised IgG1',
           description:
             'Express the humanised descendant of the murine mE8 antibody series in a fed-batch mammalian production process.',
-          reagentsAndBuffer: 'Chemically defined medium, controlled feed and temperature profile for glycan consistency',
+          reagentsAndBuffer:
+            'Chemically defined medium, controlled feed and temperature profile for glycan consistency',
         },
         {
           id: 'don-cap',
@@ -4563,7 +4821,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           name: 'Polishing, nanofiltration and vial formulation',
           description:
             'Remove aggregate and process residuals, filter for viral clearance and formulate at 350 mg per 20 mL vial for dilution before infusion.',
-          reagentsAndBuffer: 'Ion exchange polishing, 20 nm virus filter, histidine, sucrose, polysorbate 80',
+          reagentsAndBuffer:
+            'Ion exchange polishing, 20 nm virus filter, histidine, sucrose, polysorbate 80',
           dependsOnStepId: 'don-cap',
         },
         {
@@ -4594,7 +4853,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         id: 'don-1',
         category: 'measured',
-        title: 'TRAILBLAZER-ALZ 2: iADRS difference of 3.25 points and 23 of 24 gated outcomes significant',
+        title:
+          'TRAILBLAZER-ALZ 2: iADRS difference of 3.25 points and 23 of 24 gated outcomes significant',
         laymanSummary:
           'In 1,736 people with early symptomatic Alzheimer disease, donanemab slowed decline on the trial primary scale by 3.25 points on a 144-point range in the low-tau group, and nearly every prespecified outcome favoured the drug.',
         technicalDetails:
@@ -4625,7 +4885,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'Patients were eligible to switch to placebo if amyloid was below 11 centiloids on a single PET scan or 11 to under 25 centiloids on two consecutive scans. The proportion eligible to switch was 17% at week 24, 47% at week 52 and 69% at week 76. This design makes the treatment a finite course rather than an indefinite one. The label states plainly that amyloid PET values may rise again after donanemab is stopped, and that there are no data beyond 76 weeks to guide whether further dosing is needed.',
         evidenceSource: 'KISUNLA US Prescribing Information, Clinical Studies',
-        measuredMetric: '17%, 47% and 69% of patients eligible to stop treatment at weeks 24, 52 and 76',
+        measuredMetric:
+          '17%, 47% and 69% of patients eligible to stop treatment at weeks 24, 52 and 76',
         auditFlag: 'verified',
       },
       {
@@ -4636,7 +4897,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'More than one patient in three developed amyloid-related imaging abnormalities, nearly one in four had brain swelling and nearly one in three had microbleeding. Fatal brain haemorrhages have occurred.',
         technicalDetails:
           'From the label, Study 1 with the original dosing regimen: ARIA of any kind in 36%, ARIA-E in 24% and ARIA-H in 31% of donanemab patients, against 14%, 2% and 13% on placebo. Symptomatic ARIA-E in 6%, resolving clinically in about 85%. Intracerebral haemorrhage larger than 1 cm in 0.5% versus 0.2%, with fatal events observed. In ApoE e4 homozygotes ARIA occurred in 55% versus 22% on placebo. A modified titration regimen tested in Study 2 reduced ARIA-E to 16% at 12 months and is now the recommended dosing.',
-        evidenceSource: 'KISUNLA US Prescribing Information, boxed warning and Warnings and Precautions 5.1',
+        evidenceSource:
+          'KISUNLA US Prescribing Information, boxed warning and Warnings and Precautions 5.1',
         measuredMetric: 'ARIA 36%, ARIA-E 24%, ARIA-H 31% versus 14%, 2%, 13% on placebo',
         auditFlag: 'verified',
       },
@@ -4649,7 +4911,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'Statistical alpha was allocated 0.04 to the low/medium tau population and 0.01 to the combined population. The headline iADRS difference of 3.25 is the low/medium tau figure; the combined population figure is 2.92. This is a prespecified and legitimate design, and it also means the widely quoted result describes 68% of enrolled patients rather than all of them. The high-tau third, who have more advanced pathology, showed smaller effects.',
         evidenceSource: 'Sims et al., JAMA 2023, prespecified statistical analysis plan',
-        inferredClaim: 'That the headline efficacy figure applies to everyone who would receive the drug in practice',
+        inferredClaim:
+          'That the headline efficacy figure applies to everyone who would receive the drug in practice',
         auditFlag: 'caution',
       },
       {
@@ -4660,7 +4923,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
           'Donanemab removes plaque faster and more completely than any previous antibody. Decline still continues at roughly seven-tenths of the placebo rate. Whatever else drives Alzheimer disease, it is not fully stopped by clearing amyloid.',
         technicalDetails:
           'Amyloid clearance below the PET positivity threshold in most patients within a year produced a 29% slowing on CDR-SB and a 20% slowing on ADAS-Cog13. The tau-stratified design itself encodes the shift: tau burden predicted treatment effect, which places the amyloid cascade upstream of a tau-driven process that continues after amyloid is gone. The field has moved from testing whether amyloid matters to asking how much of the remaining decline is tau, inflammation or synaptic loss.',
-        evidenceSource: 'Tau stratification results in Sims et al., JAMA 2023, and the KISUNLA label Clinical Studies section',
+        evidenceSource:
+          'Tau stratification results in Sims et al., JAMA 2023, and the KISUNLA label Clinical Studies section',
         auditFlag: 'verified',
       },
     ],
@@ -4764,7 +5028,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       {
         q: 'Is it better than lecanemab?',
         a: 'Nobody has measured that. There is no head-to-head trial. The CDR-SB difference was 0.70 points over 76 weeks for donanemab and 0.45 over 18 months for lecanemab, but in different trials with different populations and different scales as primary endpoints. Donanemab clears plaque faster and causes ARIA-E in 24% against 13%. It also stops, which lecanemab does not.',
-        auditNote: 'A cross-trial comparison that is made constantly and is not supported by any direct experiment.',
+        auditNote:
+          'A cross-trial comparison that is made constantly and is not supported by any direct experiment.',
       },
       {
         q: 'What happens after I stop?',
@@ -4783,7 +5048,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Sims et al., Donanemab in Early Symptomatic Alzheimer Disease (TRAILBLAZER-ALZ 2), JAMA 2023',
+        label:
+          'Sims et al., Donanemab in Early Symptomatic Alzheimer Disease (TRAILBLAZER-ALZ 2), JAMA 2023',
         identifier: '10.1001/jama.2023.13239',
         kind: 'doi',
       },
@@ -4794,7 +5060,8 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'Drugs@FDA, KISUNLA BLA 761248, original approval 2 July 2024',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761248',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761248',
         kind: 'regulatory',
       },
       MAB_COGS_SOURCE,

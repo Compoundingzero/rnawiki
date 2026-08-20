@@ -55,16 +55,26 @@ export const api = {
   search: (q: string, limit = 10) =>
     request<{ results: SearchHit[] }>(`/api/search?q=${encodeURIComponent(q)}&limit=${limit}`),
 
-  getDrug: (slug: string) => request<{ drug: DrugDossier }>(`/api/drugs/${encodeURIComponent(slug)}`),
+  getDrug: (slug: string) =>
+    request<{ drug: DrugDossier }>(`/api/drugs/${encodeURIComponent(slug)}`),
 
-  register: (body: { name: string; email: string; password: string; handle?: string; orcid?: string }) =>
+  register: (body: {
+    name: string
+    email: string
+    password: string
+    handle?: string
+    orcid?: string
+  }) =>
     request<{ user: CommentUser }>('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify(body),
     }),
 
   login: (body: { email: string; password: string }) =>
-    request<{ user: CommentUser }>('/api/auth/login', { method: 'POST', body: JSON.stringify(body) }),
+    request<{ user: CommentUser }>('/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify(body),
+    }),
 
   logout: () => request<{ ok: true }>('/api/auth/logout', { method: 'POST' }),
 

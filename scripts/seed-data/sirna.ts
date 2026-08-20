@@ -48,7 +48,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
     patientFriendlyIndication: 'High LDL cholesterol that stays high despite statins',
     conditionContext: {
       conditionExplainer:
-        "LDL particles carry cholesterol through the blood, and the liver clears them by catching them on LDL receptors. A liver protein called PCSK9 binds those receptors and sends them to be destroyed instead of reused, so the more PCSK9 a person makes, the fewer receptors survive and the higher their LDL cholesterol runs.",
+        'LDL particles carry cholesterol through the blood, and the liver clears them by catching them on LDL receptors. A liver protein called PCSK9 binds those receptors and sends them to be destroyed instead of reused, so the more PCSK9 a person makes, the fewer receptors survive and the higher their LDL cholesterol runs.',
       whyItMatters:
         'Lifetime LDL exposure is the best-established causal driver of atherosclerosis, and people with familial hypercholesterolemia inherit high LDL from birth. The open question inclisiran does not yet answer is whether lowering the number this way lowers the events.',
       whoTakesThis:
@@ -160,7 +160,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           phase: 'QC',
           name: 'Incoming control of amidites and GalNAc solid support',
           description:
-            'Confirm identity and purity of the 2\'-F and 2\'-OMe phosphoramidites and the loading of the triantennary GalNAc (L96) controlled-pore-glass support before any coupling is attempted. A low-purity amidite becomes a truncation the anion-exchange step cannot separate.',
+            "Confirm identity and purity of the 2'-F and 2'-OMe phosphoramidites and the loading of the triantennary GalNAc (L96) controlled-pore-glass support before any coupling is attempted. A low-purity amidite becomes a truncation the anion-exchange step cannot separate.",
           reagentsAndBuffer:
             "2'-F and 2'-OMe A/C/G/U phosphoramidites, L96-GalNAc CPG support, anhydrous acetonitrile (<30 ppm water), Karl Fischer titration, 31P NMR",
         },
@@ -253,7 +253,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'inc-a3',
         category: 'failed',
-        title: 'ORION-5: no LDL-C reduction in adults with homozygous familial hypercholesterolemia',
+        title:
+          'ORION-5: no LDL-C reduction in adults with homozygous familial hypercholesterolemia',
         laymanSummary:
           'In the most severe inherited form of high cholesterol, inclisiran wiped out PCSK9 exactly as designed and LDL cholesterol did not move.',
         technicalDetails:
@@ -266,7 +267,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'inc-a4',
         category: 'conclusion_shift',
-        title: 'Adolescent HoFH was later approved on 13 patients, after the adult HoFH trial failed',
+        title:
+          'Adolescent HoFH was later approved on 13 patients, after the adult HoFH trial failed',
         laymanSummary:
           'The adult trial in homozygous familial hypercholesterolemia found nothing. A 13-patient adolescent trial found a 33% reduction, and the label now covers 12-year-olds with the same condition.',
         technicalDetails:
@@ -278,7 +280,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'inc-a5',
         category: 'failed',
-        title: 'The first FDA submission was refused in December 2020 over a manufacturing inspection',
+        title:
+          'The first FDA submission was refused in December 2020 over a manufacturing inspection',
         laymanSummary:
           'The FDA turned inclisiran down a year before approving it, and not because of the science.',
         technicalDetails:
@@ -319,7 +322,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The injection goes under the skin. Three sugar molecules on the end of the drug act as a postcode that only liver cells read, so almost all of it ends up where it is meant to be.',
         molecularDetail:
-          'The triantennary N-acetylgalactosamine ligand (L96) is attached to the 3\' terminus of the 21-mer sense strand and binds the asialoglycoprotein receptor, which is expressed at roughly a million copies per hepatocyte and recycles every 15 minutes.',
+          "The triantennary N-acetylgalactosamine ligand (L96) is attached to the 3' terminus of the 21-mer sense strand and binds the asialoglycoprotein receptor, which is expressed at roughly a million copies per hepatocyte and recycles every 15 minutes.",
         iconName: 'Target',
         visualStage: 'delivery',
       },
@@ -335,11 +338,11 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       },
       {
         step: 3,
-        title: 'The guide strand is loaded into the cell\'s own cutting machine',
+        title: "The guide strand is loaded into the cell's own cutting machine",
         laymanDesc:
           'The two strands separate. One is discarded; the other is loaded into a protein complex the cell already uses to silence its own genes.',
         molecularDetail:
-          'The 23-nucleotide antisense strand is loaded into Argonaute 2 within the RNA-induced silencing complex. The sense strand is cleaved and discarded. The 2\'-F and 2\'-OMe ribose modifications and the six terminal phosphorothioate linkages are what let the strand survive nuclease attack long enough to be loaded.',
+          "The 23-nucleotide antisense strand is loaded into Argonaute 2 within the RNA-induced silencing complex. The sense strand is cleaved and discarded. The 2'-F and 2'-OMe ribose modifications and the six terminal phosphorothioate linkages are what let the strand survive nuclease attack long enough to be loaded.",
         iconName: 'Cpu',
         visualStage: 'target_binding',
       },
@@ -349,7 +352,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The loaded complex hunts down the instructions for PCSK9 and cuts them. It then releases the pieces and goes looking for the next copy, which is why so little drug does so much.',
         molecularDetail:
-          'The guide strand base-pairs with a conserved site in the 3\' untranslated region of PCSK9 mRNA with full complementarity, and Argonaute 2 catalyses endonucleolytic cleavage between the nucleotides paired to guide positions 10 and 11. The cleaved transcript is degraded by cellular exonucleases and the complex is recycled — a catalytic, not stoichiometric, mechanism.',
+          "The guide strand base-pairs with a conserved site in the 3' untranslated region of PCSK9 mRNA with full complementarity, and Argonaute 2 catalyses endonucleolytic cleavage between the nucleotides paired to guide positions 10 and 11. The cleaved transcript is degraded by cellular exonucleases and the complex is recycled — a catalytic, not stoichiometric, mechanism.",
         iconName: 'Scissors',
         visualStage: 'catalytic_action',
       },
@@ -514,7 +517,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'No meaningful cardiovascular outcome data for inclisiran. Drug Ther Bull 2023;61:86',
+        label:
+          'No meaningful cardiovascular outcome data for inclisiran. Drug Ther Bull 2023;61:86',
         identifier: '10.1136/dtb.2023.000024',
         kind: 'doi',
       },
@@ -525,7 +529,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'ORION-4: A Randomized Trial Assessing the Effects of Inclisiran on Clinical Outcomes',
+        label:
+          'ORION-4: A Randomized Trial Assessing the Effects of Inclisiran on Clinical Outcomes',
         identifier: 'NCT03705234',
         kind: 'nct',
       },
@@ -536,7 +541,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'LEQVIO (inclisiran) injection, US prescribing information — DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6fc0afca-4513-4c35-b594-6544aee29a44',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6fc0afca-4513-4c35-b594-6544aee29a44',
         kind: 'regulatory',
       },
       {
@@ -591,8 +597,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
     modality: 'siRNA (Small Interfering RNA)',
     approvalStatus: 'FDA Approved',
     approvalYear: 2018,
-    indication:
-      'Polyneuropathy of hereditary transthyretin-mediated amyloidosis in adults',
+    indication: 'Polyneuropathy of hereditary transthyretin-mediated amyloidosis in adults',
     patientFriendlyIndication: 'Nerve damage caused by inherited transthyretin amyloidosis',
     conditionContext: {
       conditionExplainer:
@@ -679,7 +684,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           description:
             'Release-test the four ionisable and helper lipids named in the label alongside the phosphoramidites. Lipid identity matters as much as oligonucleotide identity here, because the particle is the delivery mechanism.',
           reagentsAndBuffer:
-            'DLin-MC3-DMA, DSPC, cholesterol USP and PEG2000-C-DMG reference standards; 2\'-OMe and unmodified phosphoramidites; Karl Fischer titration and HPLC-CAD purity',
+            "DLin-MC3-DMA, DSPC, cholesterol USP and PEG2000-C-DMG reference standards; 2'-OMe and unmodified phosphoramidites; Karl Fischer titration and HPLC-CAD purity",
         },
         {
           id: 'pat-w2',
@@ -687,7 +692,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           phase: 'Synthesis',
           name: 'Solid-phase assembly of the 21-mer sense and antisense strands',
           description:
-            'Assemble both strands with the 2\'-OMe pattern the label specifies and the 3\'-terminal deoxythymidine overhangs, then cleave and deprotect. Patisiran carries no phosphorothioate backbone and no conjugate — the particle, not the chemistry, does the protecting.',
+            "Assemble both strands with the 2'-OMe pattern the label specifies and the 3'-terminal deoxythymidine overhangs, then cleave and deprotect. Patisiran carries no phosphorothioate backbone and no conjugate — the particle, not the chemistry, does the protecting.",
           dependsOnStepId: 'pat-w1',
           reagentsAndBuffer:
             '5-(ethylthio)-1H-tetrazole activator in acetonitrile; 3% dichloroacetic acid in toluene; acetic anhydride / N-methylimidazole capping; 0.02 M iodine in THF/pyridine/water; concentrated aqueous ammonia for cleavage and deprotection',
@@ -723,7 +728,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
             'Dose primary human hepatocytes with the finished particle and quantify TTR mRNA by RT-qPCR and secreted transthyretin by ELISA. Apolipoprotein E in the serum-containing medium is required, because it is the opsonin that routes the particle to the LDL receptor.',
           dependsOnStepId: 'pat-w4',
           reagentsAndBuffer:
-            'Cryopreserved primary human hepatocytes in Williams\' E medium with serum; TaqMan Fast Advanced Master Mix with a TTR FAM probe and GAPDH control; human prealbumin (transthyretin) ELISA',
+            "Cryopreserved primary human hepatocytes in Williams' E medium with serum; TaqMan Fast Advanced Master Mix with a TTR FAM probe and GAPDH control; human prealbumin (transthyretin) ELISA",
         },
       ],
     },
@@ -749,7 +754,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           'In heart involvement, patisiran preserved about 15 metres of six-minute walking distance over a year. An FDA advisory committee voted 9 to 3 that this was worth it. The FDA disagreed and rejected the application.',
         technicalDetails:
           'APOLLO-B randomised 360 patients with hereditary or wild-type ATTR cardiac amyloidosis. The primary endpoint, change in 6-minute walk distance at 12 months, favoured patisiran by a Hodges-Lehmann median difference of 14.69 m (95% CI 0.69 to 28.69; P=0.02). KCCQ-OS differed by 3.7 points (95% CI 0.2 to 7.2; P=0.04). The second secondary endpoint, a composite of death, cardiovascular events and 6-minute walk change, showed no significant benefit. On 9 October 2023 Alnylam disclosed a complete response letter stating that clinical meaningfulness had not been established; the letter identified no safety, study-conduct, quality or manufacturing issue.',
-        evidenceSource: 'Maurer MS et al., N Engl J Med 2023;389:1553-1565; Alnylam release, 9 October 2023',
+        evidenceSource:
+          'Maurer MS et al., N Engl J Med 2023;389:1553-1565; Alnylam release, 9 October 2023',
         doi: '10.1056/NEJMoa2300757',
         inferredClaim:
           'That a statistically significant 6-minute walk difference is by itself a clinically meaningful cardiac benefit',
@@ -829,9 +835,9 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         step: 4,
         title: 'TTR messenger RNA is cut in the untranslated tail',
         laymanDesc:
-          'The RNA loads into the cell\'s silencing machinery, which finds the transthyretin instructions and cuts them, so no protein is made from that copy.',
+          "The RNA loads into the cell's silencing machinery, which finds the transthyretin instructions and cuts them, so no protein is made from that copy.",
         molecularDetail:
-          'The 21-nucleotide antisense strand with its 3\' dTdT overhang loads into Argonaute 2 and directs cleavage of a genetically conserved site in the 3\' untranslated region shared by mutant and wild-type TTR mRNA, which is why the drug works on both variant and wild-type disease.',
+          "The 21-nucleotide antisense strand with its 3' dTdT overhang loads into Argonaute 2 and directs cleavage of a genetically conserved site in the 3' untranslated region shared by mutant and wild-type TTR mRNA, which is why the drug works on both variant and wild-type disease.",
         iconName: 'Scissors',
         visualStage: 'catalytic_action',
       },
@@ -951,7 +957,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'ONPATTRO (patisiran) injection, US prescribing information — DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e87ec36f-b4b4-49d4-aea4-d4ffb09b0970',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e87ec36f-b4b4-49d4-aea4-d4ffb09b0970',
         kind: 'regulatory',
       },
       {
@@ -1080,7 +1087,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           phase: 'QC',
           name: 'Amidite and GalNAc support release testing',
           description:
-            'Verify amidite purity and the loading of the triantennary GalNAc support. Vutrisiran carries nine fluorines against inclisiran\'s twelve, so the 2\'-F amidite lots are tracked separately by lot to keep the modification pattern reproducible.',
+            "Verify amidite purity and the loading of the triantennary GalNAc support. Vutrisiran carries nine fluorines against inclisiran's twelve, so the 2'-F amidite lots are tracked separately by lot to keep the modification pattern reproducible.",
           reagentsAndBuffer:
             "2'-F and 2'-OMe A/C/G/U phosphoramidites, L96-GalNAc CPG support, anhydrous acetonitrile, 31P NMR and HPLC purity, Karl Fischer water determination",
         },
@@ -1173,13 +1180,13 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'vut-a3',
         category: 'conclusion_shift',
-        title:
-          'The same target was refused for cardiomyopathy in 2023 and approved for it in 2025',
+        title: 'The same target was refused for cardiomyopathy in 2023 and approved for it in 2025',
         laymanSummary:
           'The FDA turned down patisiran for amyloid heart disease because a walking-distance benefit was not convincing enough. Two years later it approved vutrisiran for the same disease, because the trial had measured deaths instead.',
         technicalDetails:
           'Patisiran received a complete response letter on 9 October 2023 for the ATTR cardiomyopathy indication after APOLLO-B met a 6-minute walk endpoint by 14.69 m. Vutrisiran received an efficacy supplement approval on 20 March 2025 (NDA 215515, supplement 6) on the strength of HELIOS-B, whose primary endpoint was death and recurrent cardiovascular events. The mechanism did not change between those two decisions; the endpoint did.',
-        evidenceSource: 'Drugs@FDA NDA 215515 supplement 6, approved 20 March 2025; NDA 210922 history',
+        evidenceSource:
+          'Drugs@FDA NDA 215515 supplement 6, approved 20 March 2025; NDA 210922 history',
         auditFlag: 'verified',
       },
       {
@@ -1216,7 +1223,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'A 25 mg injection every three months. Three sugar molecules on the end act as an address label that only liver cells can read, so no infusion or premedication is needed.',
         molecularDetail:
-          'Triantennary N-acetylgalactosamine (L96) on the 3\' terminus of the sense strand binds the hepatocyte asialoglycoprotein receptor. The enhanced stabilisation chemistry — nine 2\'-F residues, the remainder 2\'-OMe, six phosphorothioate linkages — is what allows a quarterly rather than a monthly interval.',
+          "Triantennary N-acetylgalactosamine (L96) on the 3' terminus of the sense strand binds the hepatocyte asialoglycoprotein receptor. The enhanced stabilisation chemistry — nine 2'-F residues, the remainder 2'-OMe, six phosphorothioate linkages — is what allows a quarterly rather than a monthly interval.",
         iconName: 'Target',
         visualStage: 'delivery',
       },
@@ -1236,7 +1243,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The two strands separate; one is thrown away and the other is loaded into the machine the cell already uses to silence its own genes.',
         molecularDetail:
-          'The 23-nucleotide antisense strand is loaded into Argonaute 2 within RISC and the passenger strand is cleaved and discarded. The 2\'-F and 2\'-OMe pattern is chosen so that the thermodynamic asymmetry favours loading the correct strand.',
+          "The 23-nucleotide antisense strand is loaded into Argonaute 2 within RISC and the passenger strand is cleaved and discarded. The 2'-F and 2'-OMe pattern is chosen so that the thermodynamic asymmetry favours loading the correct strand.",
         iconName: 'Cpu',
         visualStage: 'target_binding',
       },
@@ -1246,7 +1253,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The complex finds the transthyretin instructions and cuts them. It targets a stretch shared by the normal and the faulty gene, so it works in both inherited and age-related disease.',
         molecularDetail:
-          'The guide directs Argonaute 2 to a conserved site in the 3\' untranslated region of TTR mRNA that is identical in variant and wild-type transcripts, and catalyses endonucleolytic cleavage. The complex is then recycled onto the next transcript.',
+          "The guide directs Argonaute 2 to a conserved site in the 3' untranslated region of TTR mRNA that is identical in variant and wild-type transcripts, and catalyses endonucleolytic cleavage. The complex is then recycled onto the next transcript.",
         iconName: 'Scissors',
         visualStage: 'catalytic_action',
       },
@@ -1351,7 +1358,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       { label: 'HELIOS-B', identifier: 'NCT04153149', kind: 'nct' },
       {
         label: 'AMVUTTRA (vutrisiran) injection, US prescribing information — DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8db0facb-81b6-4006-9239-27dc6409c5d3',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8db0facb-81b6-4006-9239-27dc6409c5d3',
         kind: 'regulatory',
       },
       {
@@ -1425,8 +1433,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           class: 'Surgical replacement of the enzyme-deficient organ',
           howItCompares:
             'Curative for the biochemical defect, because the transplanted liver carries a working pathway. It does not reverse nerve damage already sustained.',
-          typicalCost:
-            'About US$878,000 over a lifetime (Sehgal, Eells & Hudson, Pharmacy 2024)',
+          typicalCost: 'About US$878,000 over a lifetime (Sehgal, Eells & Hudson, Pharmacy 2024)',
           prosAndCons:
             'Pros: definitive. Cons: major surgery, lifelong immunosuppression, and it does not undo established neuropathy.',
         },
@@ -1463,7 +1470,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           phase: 'QC',
           name: 'Amidite and GalNAc support release testing',
           description:
-            'Release-test the phosphoramidites and the triantennary GalNAc support. Givosiran carries sixteen 2\'-F residues, the highest fluorine content of the approved GalNAc conjugates, so 2\'-F amidite quality dominates the impurity profile.',
+            "Release-test the phosphoramidites and the triantennary GalNAc support. Givosiran carries sixteen 2'-F residues, the highest fluorine content of the approved GalNAc conjugates, so 2'-F amidite quality dominates the impurity profile.",
           reagentsAndBuffer:
             "2'-F and 2'-OMe A/C/G/U phosphoramidites, L96-GalNAc CPG support, anhydrous acetonitrile, 31P NMR, HPLC purity, Karl Fischer titration",
         },
@@ -1559,8 +1566,9 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The trial ran half a year and counted attacks. It did not measure whether kidney function, nerve damage or liver cancer risk change over the years people will actually take this drug.',
         technicalDetails:
-          'ENVISION\'s randomised period was 6 months with a primary endpoint of annualised attack rate in 89 patients. Chronic kidney disease progression, established neuropathy, and the elevated hepatocellular carcinoma risk associated with acute hepatic porphyria were not endpoints. The homocysteine elevation named in the label has no established clinical consequence in this population and no trial has tested treating it.',
-        evidenceSource: 'Balwani M et al., N Engl J Med 2020;382:2289-2301; GIVLAARI label section 5.5',
+          "ENVISION's randomised period was 6 months with a primary endpoint of annualised attack rate in 89 patients. Chronic kidney disease progression, established neuropathy, and the elevated hepatocellular carcinoma risk associated with acute hepatic porphyria were not endpoints. The homocysteine elevation named in the label has no established clinical consequence in this population and no trial has tested treating it.",
+        evidenceSource:
+          'Balwani M et al., N Engl J Med 2020;382:2289-2301; GIVLAARI label section 5.5',
         doi: '10.1056/NEJMoa1913147',
         inferredClaim:
           'That fewer attacks over six months means fewer long-term hepatic, renal and neurological complications',
@@ -1586,7 +1594,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Every other approved siRNA aims at the untranslated tail of its target message. Givosiran aims at the protein-coding body of ALAS1 instead.',
         technicalDetails:
-          'A 2024 review of the approved RNAi therapeutics notes that givosiran targets the coding sequence of ALAS1 mRNA with near-complete binding, while patisiran, lumasiran, inclisiran, vutrisiran and nedosiran all act on the 3\' untranslated regions of their targets. The design consequence is that the guide must tolerate the sequence constraints of a coding region, where synonymous variation is limited.',
+          "A 2024 review of the approved RNAi therapeutics notes that givosiran targets the coding sequence of ALAS1 mRNA with near-complete binding, while patisiran, lumasiran, inclisiran, vutrisiran and nedosiran all act on the 3' untranslated regions of their targets. The design consequence is that the guide must tolerate the sequence constraints of a coding region, where synonymous variation is limited.",
         evidenceSource: 'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024',
         doi: '10.1124/molpharm.124.000895',
         auditFlag: 'verified',
@@ -1617,9 +1625,9 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Guide strand loaded into the silencing complex',
         laymanDesc:
-          'The two strands split; one is loaded into the cell\'s gene-silencing machinery and the other is discarded.',
+          "The two strands split; one is loaded into the cell's gene-silencing machinery and the other is discarded.",
         molecularDetail:
-          'The 23-nucleotide antisense strand loads into Argonaute 2 within RISC. The extensive 2\'-F and 2\'-OMe substitution and the six phosphorothioate linkages give it the nuclease resistance to survive long enough to be loaded.',
+          "The 23-nucleotide antisense strand loads into Argonaute 2 within RISC. The extensive 2'-F and 2'-OMe substitution and the six phosphorothioate linkages give it the nuclease resistance to survive long enough to be loaded.",
         iconName: 'Cpu',
         visualStage: 'target_binding',
       },
@@ -1629,7 +1637,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The complex finds the instructions for the enzyme that starts the haem assembly line, and cuts them.',
         molecularDetail:
-          'Unusually for this class, the guide binds the coding sequence of ALAS1 mRNA with near-complete complementarity rather than a 3\' untranslated region, and Argonaute 2 catalyses cleavage. Reduced ALAS1 protein means reduced flux into the haem pathway upstream of the deficient enzyme.',
+          "Unusually for this class, the guide binds the coding sequence of ALAS1 mRNA with near-complete complementarity rather than a 3' untranslated region, and Argonaute 2 catalyses cleavage. Reduced ALAS1 protein means reduced flux into the haem pathway upstream of the deficient enzyme.",
         iconName: 'Scissors',
         visualStage: 'catalytic_action',
       },
@@ -1716,7 +1724,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       { label: 'ENVISION', identifier: 'NCT03338816', kind: 'nct' },
       {
         label: 'GIVLAARI (givosiran) injection, US prescribing information — DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=167e663c-11e1-497b-a3fc-951d65d58eaa',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=167e663c-11e1-497b-a3fc-951d65d58eaa',
         kind: 'regulatory',
       },
       {
@@ -1748,7 +1757,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
     approvalYear: 2020,
     indication:
       'Primary hyperoxaluria type 1, to lower urinary and plasma oxalate levels in paediatric and adult patients',
-    patientFriendlyIndication: 'Primary hyperoxaluria type 1 — a genetic cause of kidney stones and kidney failure',
+    patientFriendlyIndication:
+      'Primary hyperoxaluria type 1 — a genetic cause of kidney stones and kidney failure',
     conditionContext: {
       conditionExplainer:
         'In primary hyperoxaluria type 1 a faulty liver enzyme lets glyoxylate escape into a pathway that turns it into oxalate. Oxalate has no metabolic use and must leave through the kidney, where it crystallises with calcium into stones and deposits, scarring the kidney until it fails and then depositing throughout the body.',
@@ -1775,8 +1785,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           class: 'Cofactor supplementation',
           howItCompares:
             'Acts as a chaperone for the misfolded AGT enzyme in a minority of genotypes, partially restoring its function. Where it works it lowers oxalate; where the genotype is unresponsive it does nothing.',
-          typicalCost:
-            'Under US$120 per year (Sehgal, Eells & Hudson, Pharmacy 2024)',
+          typicalCost: 'Under US$120 per year (Sehgal, Eells & Hudson, Pharmacy 2024)',
           prosAndCons:
             'Pros: oral, trivially cheap, decades of use. Cons: genotype-dependent, and unresponsive patients gain nothing.',
         },
@@ -1851,7 +1860,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
           phase: 'Synthesis',
           name: 'Solid-phase assembly of the 21-mer sense and 23-mer antisense strands',
           description:
-            'Assemble both strands with the label\'s modification pattern, sulfurising the terminal linkages and oxidising the rest, then cleave and deprotect.',
+            "Assemble both strands with the label's modification pattern, sulfurising the terminal linkages and oxidising the rest, then cleave and deprotect.",
           dependsOnStepId: 'lum-w1',
           reagentsAndBuffer:
             '5-(ethylthio)-1H-tetrazole in acetonitrile; 3% dichloroacetic acid in toluene; acetic anhydride / N-methylimidazole capping; 0.02 M iodine in THF/pyridine/water; phenylacetyl disulfide; concentrated aqueous ammonia',
@@ -1919,7 +1928,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'lum-a2',
         category: 'inferred',
-        title: 'The indication is written as a chemistry, because the chemistry is what was measured',
+        title:
+          'The indication is written as a chemistry, because the chemistry is what was measured',
         laymanSummary:
           'The FDA licensed lumasiran "to lower urinary and plasma oxalate levels". It did not license it to prevent kidney stones or kidney failure, because the trial did not measure those.',
         technicalDetails:
@@ -1994,7 +2004,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'RISC loading',
         laymanDesc:
-          'One of the two strands is loaded into the cell\'s own silencing machinery; the other is discarded.',
+          "One of the two strands is loaded into the cell's own silencing machinery; the other is discarded.",
         molecularDetail:
           'The 23-nucleotide antisense strand loads into Argonaute 2. Lumasiran is one of the three approved siRNAs whose guide binds its target with complete base-pair complementarity.',
         iconName: 'Cpu',
@@ -2006,7 +2016,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The complex destroys the instructions for glycolate oxidase, the enzyme that makes the raw material for oxalate.',
         molecularDetail:
-          'Argonaute 2 cleaves HAO1 mRNA in its 3\' untranslated region. Loss of hepatic glycolate oxidase reduces conversion of glycolate to glyoxylate, so less substrate reaches the lactate dehydrogenase step that produces oxalate. This is substrate reduction therapy: the deficient enzyme AGT is never touched.',
+          "Argonaute 2 cleaves HAO1 mRNA in its 3' untranslated region. Loss of hepatic glycolate oxidase reduces conversion of glycolate to glyoxylate, so less substrate reaches the lactate dehydrogenase step that produces oxalate. This is substrate reduction therapy: the deficient enzyme AGT is never touched.",
         iconName: 'Scissors',
         visualStage: 'catalytic_action',
       },
@@ -2099,7 +2109,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       { label: 'ILLUMINATE-A', identifier: 'NCT03681184', kind: 'nct' },
       {
         label: 'OXLUMO (lumasiran) injection, US prescribing information — DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=16985a31-f5e4-4557-9266-fc78d4bc5055',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=16985a31-f5e4-4557-9266-fc78d4bc5055',
         kind: 'regulatory',
       },
       {
@@ -2137,7 +2148,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
     approvalYear: 2023,
     indication:
       'Primary hyperoxaluria type 1, to lower urinary oxalate levels in children aged 2 and older and adults with relatively preserved kidney function (eGFR 30 mL/min/1.73 m2 or above)',
-    patientFriendlyIndication: 'Primary hyperoxaluria type 1 — a genetic cause of kidney stones and kidney failure',
+    patientFriendlyIndication:
+      'Primary hyperoxaluria type 1 — a genetic cause of kidney stones and kidney failure',
     conditionContext: {
       conditionExplainer:
         'Primary hyperoxaluria is a family of liver enzyme defects that all end in the same place: too much glyoxylate reaching the enzyme that converts it into oxalate. Oxalate cannot be metabolised, so it leaves through the kidney, crystallises with calcium and destroys it.',
@@ -2313,9 +2325,9 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'ned-a3',
         category: 'conclusion_shift',
-        title: 'Two published sources disagree about one base of the drug\'s own guide strand',
+        title: "Two published sources disagree about one base of the drug's own guide strand",
         laymanSummary:
-          'The FDA label and a separate published database describe the sixth letter of nedosiran\'s active strand differently — a G in one, a C in the other. The sequence on this page is the one printed in the label.',
+          "The FDA label and a separate published database describe the sixth letter of nedosiran's active strand differently — a G in one, a C in the other. The sequence on this page is the one printed in the label.",
         technicalDetails:
           'A 2024 review that transcribed the approved siRNA sequences from the FDA inserts records, in the footnote to its own table, that "the guanosine at position 6 from the 5\' end of the nedosiran antisense strand is instead called a cytosine in an alternative source (Siramshetty et al., 2022) to the FDA label". The sequence stored here is the label version. One base changes the predicted base-pairing with the LDHA transcript, so this is not a typographical curiosity.',
         evidenceSource:
@@ -2377,8 +2389,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         step: 2,
         title: 'Receptor-mediated uptake into the liver cell',
-        laymanDesc:
-          'Liver cells recognise the sugar cluster and pull the whole molecule inside.',
+        laymanDesc: 'Liver cells recognise the sugar cluster and pull the whole molecule inside.',
         molecularDetail:
           'ASGPR-mediated clathrin endocytosis internalises the conjugate; the receptor releases its cargo at endosomal pH and recycles. A fraction of the duplex escapes to the cytoplasm.',
         iconName: 'ArrowDownToLine',
@@ -2388,7 +2399,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Guide strand loaded into Argonaute 2',
         laymanDesc:
-          'The 22-letter active strand is loaded into the cell\'s silencing machinery and the folded carrier strand is discarded.',
+          "The 22-letter active strand is loaded into the cell's silencing machinery and the folded carrier strand is discarded.",
         molecularDetail:
           'The 22-nucleotide antisense strand loads into Argonaute 2 within RISC. Nedosiran is one of the two approved siRNAs described as binding its target with near-complete rather than complete complementarity.',
         iconName: 'Cpu',
@@ -2400,7 +2411,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The complex destroys the instructions for lactate dehydrogenase A, the enzyme that performs the final conversion into oxalate.',
         molecularDetail:
-          'Argonaute 2 cleaves LDHA mRNA in its 3\' untranslated region. Hepatic lactate dehydrogenase A catalyses the terminal glyoxylate-to-oxalate step common to all primary hyperoxaluria subtypes, which is the theoretical basis for subtype-agnostic activity that PHYOX2 did not confirm in type 2.',
+          "Argonaute 2 cleaves LDHA mRNA in its 3' untranslated region. Hepatic lactate dehydrogenase A catalyses the terminal glyoxylate-to-oxalate step common to all primary hyperoxaluria subtypes, which is the theoretical basis for subtype-agnostic activity that PHYOX2 did not confirm in type 2.",
         iconName: 'Scissors',
         visualStage: 'catalytic_action',
       },
@@ -2494,7 +2505,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       { label: 'PHYOX2', identifier: 'NCT03847909', kind: 'nct' },
       {
         label: 'RIVFLOZA (nedosiran) injection, US prescribing information — DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ace9d4bc-4d20-4beb-9e9d-888690424833',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ace9d4bc-4d20-4beb-9e9d-888690424833',
         kind: 'regulatory',
       },
       {
@@ -2532,7 +2544,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
     approvalYear: 2025,
     indication:
       'Routine prophylaxis to prevent or reduce the frequency of bleeding episodes in patients aged 12 and older with haemophilia A or B, with or without factor VIII or IX inhibitors',
-    patientFriendlyIndication: 'Haemophilia A or B, including when factor replacement no longer works',
+    patientFriendlyIndication:
+      'Haemophilia A or B, including when factor replacement no longer works',
     conditionContext: {
       conditionExplainer:
         'Clotting is a balance between proteins that make clots and proteins that dissolve or restrain them. Haemophilia removes one of the clot-forming factors. Fitusiran does not put it back — it removes antithrombin, one of the natural brakes, so that whatever clotting capacity remains goes further.',
@@ -2587,7 +2600,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         {
           name: 'Know your antithrombin number and the bleed-management plan that goes with it',
           action:
-            'Keep a current record of the most recent antithrombin activity result and the haemophilia centre\'s written bleed-management plan, and carry both when travelling or attending any other hospital.',
+            "Keep a current record of the most recent antithrombin activity result and the haemophilia centre's written bleed-management plan, and carry both when travelling or attending any other hospital.",
           patientImpact:
             'The boxed warning names persistent antithrombin activity below 15%, an indwelling venous catheter, and the post-operative setting when bleed management guidelines were not followed as thrombosis risk factors. Every one of those is a situation where another clinician needs the information immediately.',
           clinicalPrecaution:
@@ -2602,7 +2615,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       structureSource: {
         label:
           'QFITLIA (fitusiran) US prescribing information, section 11 — molecular formula and mass. No nucleotide sequence has been published for fitusiran, so none is stored here.',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6dd2f8ac-6f90-4cbf-b197-97d74964135c',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6dd2f8ac-6f90-4cbf-b197-97d74964135c',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -2726,7 +2740,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'fit-a5',
         category: 'inferred',
-        title: 'Both pivotal trials compared fitusiran against on-demand treatment, not prophylaxis',
+        title:
+          'Both pivotal trials compared fitusiran against on-demand treatment, not prophylaxis',
         laymanSummary:
           'The tenfold bleeding reduction is against treating bleeds as they happen. It is not a comparison against the preventive treatments most patients would otherwise be on.',
         technicalDetails:
@@ -2777,7 +2792,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Guide strand loaded into the silencing complex',
         laymanDesc:
-          'One strand is loaded into the cell\'s gene-silencing machinery; the other is discarded.',
+          "One strand is loaded into the cell's gene-silencing machinery; the other is discarded.",
         molecularDetail:
           'The antisense strand loads into Argonaute 2 within RISC. No nucleotide sequence has been published for fitusiran, so this page records the chemistry from the label formula — twenty-one fluorines and six phosphorothioate sulfurs — and does not assert a sequence.',
         iconName: 'Cpu',
@@ -2901,7 +2916,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       { label: 'ATLAS-A/B', identifier: 'NCT03417245', kind: 'nct' },
       {
         label: 'QFITLIA (fitusiran) injection, US prescribing information — DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6dd2f8ac-6f90-4cbf-b197-97d74964135c',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6dd2f8ac-6f90-4cbf-b197-97d74964135c',
         kind: 'regulatory',
       },
       {
@@ -2928,7 +2944,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Phase 3 Clinical Trial',
     indication:
       'Investigational: reduction of lipoprotein(a) in adults with established atherosclerotic cardiovascular disease and elevated lipoprotein(a)',
-    patientFriendlyIndication: 'High lipoprotein(a) — an inherited cardiovascular risk factor with no approved treatment',
+    patientFriendlyIndication:
+      'High lipoprotein(a) — an inherited cardiovascular risk factor with no approved treatment',
     conditionContext: {
       conditionExplainer:
         'Lipoprotein(a) is an LDL particle with an extra protein, apolipoprotein(a), bolted onto it. How much of it a person carries is set almost entirely by the LPA gene they inherited, it barely moves with diet or exercise, and about one adult in five carries a level considered high.',
@@ -2948,7 +2965,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
     anatomicalSite: 'Hepatocyte cytoplasm (liver)',
     substitutes: {
       summary:
-        'Nothing approved lowers lipoprotein(a) meaningfully. Lipoprotein apheresis removes it mechanically. Everything else on this list is a way of reducing the rest of a patient\'s cardiovascular risk, which is currently the only evidence-based response to a high lipoprotein(a) result.',
+        "Nothing approved lowers lipoprotein(a) meaningfully. Lipoprotein apheresis removes it mechanically. Everything else on this list is a way of reducing the rest of a patient's cardiovascular risk, which is currently the only evidence-based response to a high lipoprotein(a) result.",
       conventionalRx: [
         {
           name: 'Intensive LDL lowering (high-intensity statin plus ezetimibe)',
@@ -3071,7 +3088,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'No trial has shown that lowering lipoprotein(a) prevents anything',
         laymanSummary:
-          'Genetics say lipoprotein(a) causes heart disease. No drug has yet shown that removing it prevents heart attacks, and olpasiran\'s outcome trial does not finish until 2028.',
+          "Genetics say lipoprotein(a) causes heart disease. No drug has yet shown that removing it prevents heart attacks, and olpasiran's outcome trial does not finish until 2028.",
         technicalDetails:
           'OCEAN(a)-Outcomes (NCT05581303) is a phase 3 cardiovascular outcome trial with 7,297 participants enrolled, currently active but not recruiting, with a primary completion date of 31 March 2028. The phase 2 trial\'s own conclusion states that "longer and larger trials will be necessary to determine the effect of olpasiran therapy on cardiovascular disease". Until that reports, the causal argument rests on Mendelian randomisation and epidemiology, not on a randomised drug trial.',
         evidenceSource:
@@ -3099,7 +3116,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'A placebo-adjusted reduction above 100% is arithmetic, not a miracle',
         laymanSummary:
-          'One dose group shows -101.1%. That does not mean lipoprotein(a) went below zero. It means the placebo group\'s level rose while the treated group\'s fell to the bottom of the assay.',
+          "One dose group shows -101.1%. That does not mean lipoprotein(a) went below zero. It means the placebo group's level rose while the treated group's fell to the bottom of the assay.",
         technicalDetails:
           'Lipoprotein(a) increased by a mean of 3.6% in the placebo group over 36 weeks. A placebo-adjusted change is the treated change minus the placebo change, so a treated reduction approaching 100% against a rising comparator produces a figure past -100%. Reading -101.1% as more than complete elimination is a units error, and it is the kind of number that gets quoted without its denominator.',
         evidenceSource: "O'Donoghue ML et al., N Engl J Med 2022;387:1855-1864",
@@ -3146,7 +3163,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Guide strand loaded into Argonaute 2',
         laymanDesc:
-          'The active strand is loaded into the cell\'s silencing machinery. No sequence has been published for this drug, so this page describes the mechanism, not the letters.',
+          "The active strand is loaded into the cell's silencing machinery. No sequence has been published for this drug, so this page describes the mechanism, not the letters.",
         molecularDetail:
           'The antisense strand loads into Argonaute 2 within RISC and directs it to LPA transcripts. No nucleotide sequence for olpasiran has been published in a verifiable source, so none is recorded here and the structure carries no machine-verification badge.',
         iconName: 'Cpu',
@@ -3463,7 +3480,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'zil-a3',
         category: 'inferred',
-        title: 'No cardiovascular outcome has been measured, and the phase 3 trial has not reported',
+        title:
+          'No cardiovascular outcome has been measured, and the phase 3 trial has not reported',
         laymanSummary:
           'Everything measured so far is blood pressure. Whether that translates into fewer strokes and heart attacks is the point of a trial that was only announced in August 2025.',
         technicalDetails:
@@ -3539,7 +3557,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Guide strand loaded into Argonaute 2',
         laymanDesc:
-          'The active strand enters the cell\'s silencing machinery. No sequence has been published for this drug, so this page describes the mechanism rather than the letters.',
+          "The active strand enters the cell's silencing machinery. No sequence has been published for this drug, so this page describes the mechanism rather than the letters.",
         molecularDetail:
           'The antisense strand loads into Argonaute 2 within RISC and directs it to AGT transcripts. No nucleotide sequence for zilebesiran has been published in a verifiable source, so none is recorded and the structure carries no machine-verification badge.',
         iconName: 'Cpu',
@@ -3596,7 +3614,8 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Difference versus placebo in change from baseline to 3 months in 24-hour mean ambulatory systolic blood pressure, within each background-therapy cohort',
         endpointMet: true,
-        statisticalPValue: 'P < .001 (indapamide and amlodipine cohorts); P = .02 (olmesartan cohort)',
+        statisticalPValue:
+          'P < .001 (indapamide and amlodipine cohorts); P = .02 (olmesartan cohort)',
         unreportedAdverseSignals:
           'Hyperkalaemia 5.5% versus 1.8%, hypotension 4.3% versus 2.1% and acute kidney failure 4.9% versus 1.5% against placebo.',
         independentReplicationStatus: 'Partially Replicated',
@@ -3612,7 +3631,7 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That the blood pressure reduction reduces strokes, heart attacks or death — no outcome trial has reported',
         'That the KARDIA-1 monotherapy effect size applies to patients already on renin-angiotensin blockade; KARDIA-2 shows it does not',
-        'That KARDIA-3\'s office systolic reduction can be compared with KARDIA-1\'s ambulatory figures — they are different measurements',
+        "That KARDIA-3's office systolic reduction can be compared with KARDIA-1's ambulatory figures — they are different measurements",
       ],
       whatFailedInitially: [
         'The effect size fell from roughly 16 mmHg after washout to 4.5 mmHg on top of an angiotensin receptor blocker, because both act on the same pathway',

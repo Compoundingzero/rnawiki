@@ -66,7 +66,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'A plant alkaloid with a real, replicated effect on glucose and lipid blood chemistry, almost no oral absorption, and a 23-trial meta-analysis showing a 0.88 kg weight difference — which is not what "nature\'s Ozempic" means to anyone who says it.',
     laymanHowItWorks:
-      'Berberine barely gets into your bloodstream at all. What reaches the liver mildly slows the cell\'s power plants, and the cell reads that as being short of energy. It responds by switching on a master energy sensor called AMPK, which tells the liver to stop manufacturing sugar and to keep more cholesterol catchers on its surface. Separately, most of the dose never leaves the gut, where bacteria convert it into a more absorbable form and where it changes the microbial population directly.',
+      "Berberine barely gets into your bloodstream at all. What reaches the liver mildly slows the cell's power plants, and the cell reads that as being short of energy. It responds by switching on a master energy sensor called AMPK, which tells the liver to stop manufacturing sugar and to keep more cholesterol catchers on its surface. Separately, most of the dose never leaves the gut, where bacteria convert it into a more absorbable form and where it changes the microbial population directly.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 58,
     anatomicalSite: 'Intestinal lumen and hepatocyte mitochondria (liver)',
@@ -79,7 +79,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Biguanide',
           howItCompares:
             'Acts on the same complex I / AMPK axis in the hepatocyte and was the active comparator in the 2008 Yin trial, where the two produced a similar fall in glucose over three months in 36 newly diagnosed patients. Metformin also has randomised mortality data; berberine does not.',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: metformin 500 mg at $0.014 a tablet, February 2026',
           prosAndCons:
             'Pros: decades of outcome evidence, regulated manufacture, known dose. Cons: gastrointestinal upset early on, and long-term use can lower vitamin B12.',
         },
@@ -88,7 +89,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'HMG-CoA reductase inhibitor',
           howItCompares:
             'Lowers LDL cholesterol far more than berberine and by a completely different mechanism — blocking cholesterol synthesis rather than stabilising the LDL receptor messenger RNA, which is the route Kong et al. described for berberine in 2004.',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: atorvastatin 20 mg $0.031, rosuvastatin 10 mg $0.038 a tablet',
           prosAndCons:
             'Pros: cardiovascular outcome trials exist. Cons: muscle symptoms in a minority, and no effect on glucose.',
         },
@@ -110,7 +112,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Slows gastric emptying and traps bile acids, blunting the post-meal glucose rise and forcing the liver to spend cholesterol making replacement bile acids. A smaller effect than berberine on both readings, from a much better-characterised mechanism.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'The amounts are named in 21 CFR 101.81: 3 g or more a day of beta-glucan from whole oats or barley, or 7 g or more of soluble fibre from psyllium husk, for the authorised heart disease claim.',
           monthlyCost: '',
         },
       ],
@@ -240,7 +243,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Once it was clear berberine barely reaches the blood, researchers stopped explaining it as a blood-borne drug and started explaining it as something that acts in the intestine.',
         technicalDetails:
-          'Feng et al. (Sci Rep 2015) showed that gut bacterial nitroreductase converts berberine into dihydroberberine, which is absorbed roughly five times more efficiently and is then oxidised back to berberine in intestinal tissue. That reframes the pharmacology: the gut microbiota is not a nuisance in the absorption path, it is part of the activation step, and it also means the effect size should vary with a person\'s microbiome. Almost no clinical trial in this literature stratifies for that.',
+          "Feng et al. (Sci Rep 2015) showed that gut bacterial nitroreductase converts berberine into dihydroberberine, which is absorbed roughly five times more efficiently and is then oxidised back to berberine in intestinal tissue. That reframes the pharmacology: the gut microbiota is not a nuisance in the absorption path, it is part of the activation step, and it also means the effect size should vary with a person's microbiome. Almost no clinical trial in this literature stratifies for that.",
         evidenceSource: 'Feng R et al. Sci Rep 2015;5:12155',
         doi: '10.1038/srep12155',
         inferredClaim:
@@ -264,7 +267,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         id: 'ber-a6',
         category: 'inferred',
-        title: 'No trial has measured a clinical event, and the trial base is geographically narrow',
+        title:
+          'No trial has measured a clinical event, and the trial base is geographically narrow',
         laymanSummary:
           'Every positive berberine result is a number from a blood test. Nobody has run a trial long enough or large enough to see whether anything happens to patients.',
         technicalDetails:
@@ -301,7 +305,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Inside the liver cell it collects in the mitochondria',
         laymanDesc:
-          'What reaches the liver piles up inside the cell\'s power plants, because their electrical charge pulls the positively charged molecule in.',
+          "What reaches the liver piles up inside the cell's power plants, because their electrical charge pulls the positively charged molecule in.",
         molecularDetail:
           'The delocalised cationic charge drives accumulation in the mitochondrial matrix down the inner-membrane potential gradient, where berberine mildly inhibits complex I of the respiratory chain and raises the cellular AMP to ATP ratio.',
         iconName: 'Cpu',
@@ -323,7 +327,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Less sugar leaves the liver, and separately the liver keeps more of its cholesterol catchers, so both readings come down.',
         molecularDetail:
-          'Glucose lowering follows from AMPK-mediated suppression of gluconeogenesis. LDL lowering is a distinct mechanism: Kong et al. showed berberine stabilises LDL receptor mRNA through its 3\' untranslated region, raising receptor density without engaging the SREBP pathway statins work through.',
+          "Glucose lowering follows from AMPK-mediated suppression of gluconeogenesis. LDL lowering is a distinct mechanism: Kong et al. showed berberine stabilises LDL receptor mRNA through its 3' untranslated region, raising receptor density without engaging the SREBP pathway statins work through.",
         iconName: 'Activity',
         visualStage: 'therapeutic_result',
       },
@@ -347,7 +351,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Pooled effect on glucose and lipid parameters in type 2 diabetes, hyperlipidaemia and hypertension',
         endpointMet: true,
-        statisticalPValue: 'Significant for glucose and lipid parameters; see paper for per-outcome values',
+        statisticalPValue:
+          'Significant for glucose and lipid parameters; see paper for per-outcome values',
         unreportedAdverseSignals:
           'The authors flagged that included trials were small, largely Chinese, and of limited methodological quality. No included trial reported a clinical event endpoint.',
         independentReplicationStatus: 'Partially Replicated',
@@ -411,14 +416,15 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does it interact with prescription medicine?',
-        a: 'Yes, and this is the practical safety issue rather than direct toxicity. Berberine inhibits CYP3A4 and CYP2D6, the enzymes that clear a large share of prescription drugs, so it can raise the blood level of a co-administered medicine without anyone changing that medicine\'s dose. It is not a substance to add silently alongside a prescription.',
+        a: "Yes, and this is the practical safety issue rather than direct toxicity. Berberine inhibits CYP3A4 and CYP2D6, the enzymes that clear a large share of prescription drugs, so it can raise the blood level of a co-administered medicine without anyone changing that medicine's dose. It is not a substance to add silently alongside a prescription.",
       },
     ],
     recentAuditDate: 'August 2026',
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Yin J, Xing H, Ye J. Efficacy of berberine in patients with type 2 diabetes mellitus. Metabolism 2008;57:712-717',
+        label:
+          'Yin J, Xing H, Ye J. Efficacy of berberine in patients with type 2 diabetes mellitus. Metabolism 2008;57:712-717',
         identifier: '10.1016/j.metabol.2008.01.013',
         kind: 'doi',
       },
@@ -457,6 +463,19 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2353',
         kind: 'url',
       },
+      {
+        label:
+          '21 CFR 101.81 — Health claims: soluble fiber from certain foods and risk of coronary heart disease',
+        identifier:
+          'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-101/subpart-E/section-101.81',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -466,7 +485,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
   {
     slug: 'curcumin',
     name: 'Curcumin',
-    tradeName: 'Sold as turmeric extract, and as branded complexes including Meriva, BCM-95 and Theracurmin',
+    tradeName:
+      'Sold as turmeric extract, and as branded complexes including Meriva, BCM-95 and Theracurmin',
     sponsor: 'No single sponsor — a diarylheptanoid from Curcuma longa rhizome',
     targetGene: 'NFKB1',
     targetProtein:
@@ -502,7 +522,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Non-steroidal anti-inflammatory drug',
           howItCompares:
             'Kuptniratsaikul et al. randomised 367 patients with primary knee osteoarthritis to Curcuma domestica extract or ibuprofen for four weeks and reported non-inferiority on the WOMAC pain subscale, with fewer gastrointestinal adverse events in the extract arm.',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: ibuprofen 800 mg $0.057, over-the-counter 200 mg $0.033 a tablet',
           prosAndCons:
             'Pros: fast, cheap, thoroughly characterised. Cons: gastrointestinal and renal risk with chronic use, which is exactly the reason people look for an alternative.',
         },
@@ -519,11 +540,13 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       naturalFoods: [
         {
           name: 'Culinary turmeric',
-          activeCompound: 'Curcumin, demethoxycurcumin and bisdemethoxycurcumin, roughly 2 to 5% of the rhizome',
+          activeCompound:
+            'Curcumin, demethoxycurcumin and bisdemethoxycurcumin, roughly 2 to 5% of the rhizome',
           biologicalMechanism:
             'The same curcuminoids at food concentration. The important point is arithmetic: a standardised 95% extract capsule contains an order of magnitude more curcuminoid than a culinary portion of the spice, so trial results on the extract do not transfer to the kitchen.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'The trials dosed curcuminoids in grams: 2 g in the Shoba pharmacokinetic arm, and 2 or 4 g daily for 24 weeks in Ringman et al. The rhizome itself is 2 to 5 percent curcuminoid by weight.',
           monthlyCost: '',
         },
         {
@@ -598,7 +621,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           phase: 'Cellular_Delivery',
           name: 'Caco-2 monolayer permeability with and without a glucuronidation inhibitor',
           description:
-            'Measure apparent permeability across a differentiated Caco-2 monolayer, with and without piperine, to reproduce the absorption limit rather than assume it away. This step exists because the compound\'s central clinical problem is here, not at the target.',
+            "Measure apparent permeability across a differentiated Caco-2 monolayer, with and without piperine, to reproduce the absorption limit rather than assume it away. This step exists because the compound's central clinical problem is here, not at the target.",
           dependsOnStepId: 'cur-w3',
           reagentsAndBuffer:
             'Caco-2 cells on Transwell inserts, 21-day differentiation; Hanks balanced salt solution with HEPES; piperine as UGT inhibitor; lucifer yellow monolayer integrity control',
@@ -624,7 +647,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'People taking turmeric extract reported meaningfully less knee pain than people taking placebo over twelve weeks.',
         technicalDetails:
-          'Wang et al. randomised 70 participants with symptomatic knee osteoarthritis and ultrasound-detected effusion-synovitis to Curcuma longa extract or placebo for 12 weeks. The extract group reported greater improvement in knee pain on the visual analogue scale, the trial\'s co-primary symptomatic endpoint.',
+          "Wang et al. randomised 70 participants with symptomatic knee osteoarthritis and ultrasound-detected effusion-synovitis to Curcuma longa extract or placebo for 12 weeks. The extract group reported greater improvement in knee pain on the visual analogue scale, the trial's co-primary symptomatic endpoint.",
         evidenceSource: 'Wang Z et al. Ann Intern Med 2020;173:861-869',
         doi: '10.7326/M20-0990',
         measuredMetric: 'Change in knee pain on a visual analogue scale at 12 weeks',
@@ -646,7 +669,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         id: 'cur-a3',
         category: 'conclusion_shift',
-        title: 'A 2017 medicinal-chemistry review reclassified curcumin as an assay-interference compound',
+        title:
+          'A 2017 medicinal-chemistry review reclassified curcumin as an assay-interference compound',
         laymanSummary:
           'Chemists showed that many of the thousands of published curcumin results are probably artefacts of the way the tests were run, not real effects on the proteins claimed.',
         technicalDetails:
@@ -675,11 +699,11 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         id: 'cur-a5',
         category: 'failed',
-        title: 'Curcumin did not slow Alzheimer\'s disease in a randomised trial',
+        title: "Curcumin did not slow Alzheimer's disease in a randomised trial",
         laymanSummary:
-          'A 24-week trial in Alzheimer\'s patients found no cognitive benefit, and plasma levels of the drug were very low.',
+          "A 24-week trial in Alzheimer's patients found no cognitive benefit, and plasma levels of the drug were very low.",
         technicalDetails:
-          'Ringman et al. randomised patients with mild-to-moderate Alzheimer\'s disease to oral curcumin at 2 g or 4 g daily, or placebo, for 24 weeks with a 24-week open-label extension. There was no difference in cognitive or biomarker outcomes. Native curcumin was largely undetectable in plasma, with only conjugated metabolites present, which is the pharmacokinetic finding that makes the negative efficacy result unsurprising rather than mysterious.',
+          "Ringman et al. randomised patients with mild-to-moderate Alzheimer's disease to oral curcumin at 2 g or 4 g daily, or placebo, for 24 weeks with a 24-week open-label extension. There was no difference in cognitive or biomarker outcomes. Native curcumin was largely undetectable in plasma, with only conjugated metabolites present, which is the pharmacokinetic finding that makes the negative efficacy result unsurprising rather than mysterious.",
         evidenceSource: 'Ringman JM et al. Alzheimers Res Ther 2012;4:43',
         doi: '10.1186/alzrt146',
         measuredMetric: 'Change in ADAS-Cog and plasma curcumin concentration over 24 weeks',
@@ -695,7 +719,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           'Halegoua-DeMarzio et al. reported ten cases of turmeric-associated liver injury enrolled in the Drug-Induced Liver Injury Network, describing the problem as growing. Injury was predominantly hepatocellular and included cases requiring hospitalisation. Susceptibility has been linked to the HLA-B*35:01 allele. The exposure in these cases is concentrated supplement extract, not culinary turmeric, and the risk is plausibly higher for the enhanced-absorption formulations precisely because they work.',
         evidenceSource: 'Halegoua-DeMarzio D et al. Am J Med 2023;136:200-206',
         doi: '10.1016/j.amjmed.2022.09.026',
-        measuredMetric: 'Adjudicated cases of hepatocellular liver injury attributed to turmeric products',
+        measuredMetric:
+          'Adjudicated cases of hepatocellular liver injury attributed to turmeric products',
         auditFlag: 'caution',
       },
     ],
@@ -733,8 +758,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         step: 4,
         title: 'Downstream, inflammatory signalling is reported to fall',
-        laymanDesc:
-          'In cells and in some human trials, markers of inflammation come down.',
+        laymanDesc: 'In cells and in some human trials, markers of inflammation come down.',
         molecularDetail:
           'The most consistently reported downstream effect is reduced NF-kappaB-dependent transcription with lower TNF-alpha, IL-6 and CRP. Whether that is target engagement or a downstream consequence of redox stress is exactly the question the interference literature raises.',
         iconName: 'Activity',
@@ -777,10 +801,11 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Partially Replicated',
       },
       {
-        trialId: 'Ringman 2012 (oral curcumin in Alzheimer\'s disease)',
+        trialId: "Ringman 2012 (oral curcumin in Alzheimer's disease)",
         phase: 'Randomised, double-blind, placebo-controlled',
         sampleSize: 36,
-        primaryEndpoint: 'Tolerability and change in cognitive and biomarker measures over 24 weeks',
+        primaryEndpoint:
+          'Tolerability and change in cognitive and biomarker measures over 24 weeks',
         endpointMet: false,
         statisticalPValue: 'No significant difference from placebo on any efficacy measure',
         unreportedAdverseSignals:
@@ -802,7 +827,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         'That a trial without a plasma concentration measurement tested a systemic effect at all',
       ],
       whatFailedInitially: [
-        'Alzheimer\'s disease: no cognitive or biomarker benefit over 24 weeks, with native curcumin undetectable in plasma',
+        "Alzheimer's disease: no cognitive or biomarker benefit over 24 weeks, with native curcumin undetectable in plasma",
         'The compound has never produced a successful, replicated, double-blind placebo-controlled trial sufficient for any regulatory approval, despite hundreds of registered studies',
       ],
       realWorldOutcome: [
@@ -861,7 +886,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Anand P et al. Bioavailability of curcumin: problems and promises. Mol Pharm 2007;4:807-818',
+        label:
+          'Anand P et al. Bioavailability of curcumin: problems and promises. Mol Pharm 2007;4:807-818',
         identifier: '10.1021/mp700113r',
         kind: 'doi',
       },
@@ -873,7 +899,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Ringman JM et al. Oral curcumin for Alzheimer\'s disease: tolerability and efficacy in a 24-week randomized, double blind, placebo-controlled study. Alzheimers Res Ther 2012;4:43',
+          "Ringman JM et al. Oral curcumin for Alzheimer's disease: tolerability and efficacy in a 24-week randomized, double blind, placebo-controlled study. Alzheimers Res Ther 2012;4:43",
         identifier: '10.1186/alzrt146',
         kind: 'doi',
       },
@@ -886,6 +912,12 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 969516 — Curcumin',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/969516',
+        kind: 'url',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
     ],
@@ -906,7 +938,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold as a dietary supplement for stress, anxiety and sleep. Not approved as a medicine anywhere, and banned outright in food supplements in Denmark since 2023.',
-    patientFriendlyIndication: 'Marketed for stress and sleep; legal status differs between countries',
+    patientFriendlyIndication:
+      'Marketed for stress and sleep; legal status differs between countries',
     conditionContext: {
       conditionExplainer:
         'Chronic psychological stress keeps the hypothalamic-pituitary-adrenal axis active, and cortisol stays elevated when it should be falling. Ashwagandha root extract is the most-trialled botanical against that pattern, usually measured by a self-report stress scale plus a morning serum cortisol.',
@@ -933,7 +966,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Selective serotonin reuptake inhibitor',
           howItCompares:
             'Approved for generalised anxiety disorder on the strength of large randomised trials with clinician-rated endpoints. No trial has randomised ashwagandha against an SSRI, so the comparison is between different evidence classes rather than between two treatments.',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: sertraline 50 mg $0.036, escitalopram 10 mg $0.042 a tablet',
           prosAndCons:
             'Pros: regulatory review, clinician-rated endpoints, known interaction profile. Cons: sexual and gastrointestinal side effects, discontinuation symptoms.',
         },
@@ -943,7 +977,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Has the largest randomised evidence base of anything in this comparison and no hepatotoxicity signal. It costs time rather than money and is the only option here that changes behaviour rather than a blood measurement.',
           typicalCost: '',
-          prosAndCons: 'Pros: durable effect, no drug interaction. Cons: access, waiting lists, effort.',
+          prosAndCons:
+            'Pros: durable effect, no drug interaction. Cons: access, waiting lists, effort.',
         },
       ],
       naturalFoods: [
@@ -953,7 +988,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Acute exercise raises cortisol and chronic training lowers resting cortisol reactivity, alongside effects on sleep architecture that ashwagandha trials do not attempt to control for.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '',
+          dailyUsage:
+            'The WHO 2020 guidelines put the studied amount at 150 to 300 minutes of moderate or 75 to 150 minutes of vigorous aerobic activity a week, plus muscle strengthening.',
           monthlyCost: '',
         },
         {
@@ -962,7 +998,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Cortisol follows a circadian rhythm with a morning peak. Irregular sleep timing flattens and shifts that curve, and morning serum cortisol — the endpoint most ashwagandha trials use — is directly sensitive to it.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '',
+          dailyUsage:
+            'The AASM and Sleep Research Society consensus statement sets the amount at 7 or more hours a night on a regular basis.',
           monthlyCost: '',
         },
       ],
@@ -1050,14 +1087,16 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         id: 'ash-a1',
         category: 'measured',
-        title: 'Nine randomised trials, 558 patients: perceived stress, anxiety and cortisol all fell',
+        title:
+          'Nine randomised trials, 558 patients: perceived stress, anxiety and cortisol all fell',
         laymanSummary:
           'Pooling the randomised evidence, ashwagandha lowered self-rated stress, a clinician-rated anxiety scale, and the stress hormone in blood.',
         technicalDetails:
           'A 2024 systematic review and meta-analysis of nine randomised controlled trials in 558 patients found significant effects on the Perceived Stress Scale (MD -4.72, 95% CI -8.45 to -0.99), the Hamilton Anxiety Scale (MD -2.19, 95% CI -3.83 to -0.55) and serum cortisol (MD -2.58, 95% CI -4.99 to -0.16) against placebo. Four of the included studies reported mild to moderate adverse events. The confidence intervals are wide and the trial base is small, but the direction is consistent across three different kinds of measurement.',
         evidenceSource: 'Arumugam V et al. Explore (NY) 2024;20:103062',
         doi: '10.1016/j.explore.2024.103062',
-        measuredMetric: 'Perceived Stress Scale, Hamilton Anxiety Scale and serum cortisol versus placebo',
+        measuredMetric:
+          'Perceived Stress Scale, Hamilton Anxiety Scale and serum cortisol versus placebo',
         auditFlag: 'verified',
       },
       {
@@ -1068,7 +1107,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           'The most-cited single trial gave 300 mg of root extract twice daily for 60 days and found lower stress scores and lower cortisol than placebo.',
         technicalDetails:
           'Single-centre, prospective, double-blind, randomised, placebo-controlled trial in 64 adults with a history of chronic stress. The treatment arm received 300 mg of a high-concentration full-spectrum root extract twice daily for 60 days. Scores on all stress-assessment scales fell significantly against placebo (P < 0.0001) and serum cortisol fell substantially (P = 0.0006). Adverse effects were mild and comparable between groups. This is a 64-person single-centre trial, which is the honest scale to hold the result at.',
-        evidenceSource: 'Chandrasekhar K, Kapoor J, Anishetty S. Indian J Psychol Med 2012;34:255-262',
+        evidenceSource:
+          'Chandrasekhar K, Kapoor J, Anishetty S. Indian J Psychol Med 2012;34:255-262',
         doi: '10.4103/0253-7176.106022',
         measuredMetric: 'Stress-assessment scale scores and serum cortisol at day 60',
         auditFlag: 'verified',
@@ -1140,7 +1180,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Something in the stress axis is dampened, and nobody has established what',
         laymanDesc:
-          'The body\'s stress hormone system runs quieter. The step at which the extract acts has not been pinned down in humans.',
+          "The body's stress hormone system runs quieter. The step at which the extract acts has not been pinned down in humans.",
         molecularDetail:
           'Proposed mechanisms include GABA-A receptor modulation, glucocorticoid receptor interaction and direct effects on adrenal steroidogenesis. None has been demonstrated at a human-achievable concentration, and the extract is a mixture, so a single-target account may not be the right shape of explanation.',
         iconName: 'Network',
@@ -1149,8 +1189,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         step: 4,
         title: 'Serum cortisol falls',
-        laymanDesc:
-          'The measurable consequence is less cortisol in the blood.',
+        laymanDesc: 'The measurable consequence is less cortisol in the blood.',
         molecularDetail:
           'The 2024 pooled estimate is a mean difference of -2.58 in serum cortisol against placebo (95% CI -4.99 to -0.16). This is the only objective biochemical endpoint in the meta-analysis, and its confidence interval nearly touches zero.',
         iconName: 'Activity',
@@ -1172,7 +1211,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         trialId: 'Chandrasekhar 2012 (chronic stress, 60 days)',
         phase: 'Randomised, double-blind, placebo-controlled',
         sampleSize: 64,
-        primaryEndpoint: 'Change in standard stress-assessment scale scores and serum cortisol at day 60',
+        primaryEndpoint:
+          'Change in standard stress-assessment scale scores and serum cortisol at day 60',
         endpointMet: true,
         statisticalPValue: 'P < 0.0001 for stress scales; P = 0.0006 for serum cortisol',
         unreportedAdverseSignals:
@@ -1183,7 +1223,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         trialId: 'Arumugam 2024 pooled analysis (nine randomised trials)',
         phase: 'Systematic review and meta-analysis',
         sampleSize: 558,
-        primaryEndpoint: 'Pooled effect on Perceived Stress Scale, Hamilton Anxiety Scale and serum cortisol',
+        primaryEndpoint:
+          'Pooled effect on Perceived Stress Scale, Hamilton Anxiety Scale and serum cortisol',
         endpointMet: true,
         statisticalPValue: 'All three pooled estimates significant; confidence intervals wide',
         unreportedAdverseSignals:
@@ -1283,6 +1324,24 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/265237',
         kind: 'url',
       },
+      {
+        label:
+          'Bull FC et al. World Health Organization 2020 guidelines on physical activity and sedentary behaviour. Br J Sports Med 2020;54:1451-1462',
+        identifier: '10.1136/bjsports-2020-102955',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Watson NF et al. Recommended amount of sleep for a healthy adult: a joint consensus statement of the American Academy of Sleep Medicine and Sleep Research Society. Sleep 2015;38:843-844',
+        identifier: '10.5665/sleep.4716',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -1312,7 +1371,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         'Trials have measured fatigue indices, cognitive test batteries, and in one case the Hamilton Depression Rating Scale against sertraline. None has measured a hard clinical outcome.',
     },
     oneSentenceVerdict:
-      'Eleven placebo-controlled trials, moderate to good methodological quality, effects reported on physical and mental performance — and, in the systematic review\'s own words, a lack of independent replication of any single one of them.',
+      "Eleven placebo-controlled trials, moderate to good methodological quality, effects reported on physical and mental performance — and, in the systematic review's own words, a lack of independent replication of any single one of them.",
     laymanHowItWorks:
       'Rhodiola root contains two families of marker compounds: rosavins, which are close to unique to this species, and salidroside, which is not. Trials give a standardised extract to people who are tired and measure whether they perform better on tests. What the extract is doing at the molecular level in a human being has not been established; the animal and cell work points at monoamine signalling and at stress-hormone regulation, but at concentrations nobody has shown a person reaches.',
     auditConfidence: 'Moderate / Debated',
@@ -1327,7 +1386,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Selective serotonin reuptake inhibitor',
           howItCompares:
             'Directly compared in Mao et al. 2015. Sertraline produced a larger fall in the Hamilton Depression Rating Scale (-8.2, 95% CI -12.7 to -3.6) than rhodiola (-5.1, 95% CI -8.8 to -1.3) or placebo (-4.6, 95% CI -8.6 to -0.6), with no significant difference between groups, and adverse events in 63.2% of the sertraline arm against 30.0% on rhodiola and 16.7% on placebo (P = 0.012).',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: sertraline 50 mg at $0.036 a tablet, February 2026',
           prosAndCons:
             'Pros: larger effect, regulatory approval, decades of use. Cons: twice the adverse event rate of rhodiola in the one trial that measured both.',
         },
@@ -1348,7 +1408,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Most rhodiola trials enrol people whose fatigue is caused by sleep restriction — night-duty physicians, students in exam periods, cadets. Sleep is the intervention with the effect size everything else in this comparison is measured against.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '',
+          dailyUsage:
+            'The AASM and Sleep Research Society consensus quantifies it as 7 or more hours a night on a regular basis, which is the exposure these night-duty and exam-period cohorts were short of.',
           monthlyCost: '',
         },
       ],
@@ -1455,7 +1516,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           'A double-blind crossover study of the standardised SHR-5 extract on a repeated low-dose regimen in healthy physicians during night duty, reporting improvement on a fatigue index built from cognitive performance tasks. The design is the strongest feature: crossover with each participant as their own control removes between-person variation, which matters at this sample size. The weakness is that it has not been independently repeated in the twenty-five years since.',
         evidenceSource: 'Darbinyan V et al. Phytomedicine 2000;7:365-371',
         doi: '10.1016/S0944-7113(00)80055-0',
-        measuredMetric: 'Composite fatigue index from cognitive performance tasks during night duty',
+        measuredMetric:
+          'Composite fatigue index from cognitive performance tasks during night duty',
         auditFlag: 'verified',
       },
       {
@@ -1534,8 +1596,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         step: 4,
         title: 'Fatigue indices improve in acutely stressed people',
-        laymanDesc:
-          'People who are tired for a specific reason score better on the tests.',
+        laymanDesc: 'People who are tired for a specific reason score better on the tests.',
         molecularDetail:
           'The most consistent trial signal is in populations under acute stress with sleep restriction — night-duty physicians, students, cadets — rather than in healthy rested volunteers, which is a pattern worth noticing about what the extract may be compensating for.',
         iconName: 'Activity',
@@ -1674,6 +1735,18 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/159278',
         kind: 'url',
       },
+      {
+        label:
+          'Watson NF et al. Recommended amount of sleep for a healthy adult: a joint consensus statement of the American Academy of Sleep Medicine and Sleep Research Society. Sleep 2015;38:843-844',
+        identifier: '10.5665/sleep.4716',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -1706,7 +1779,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'A tea amino acid with a reproducible acute effect on attention when paired with caffeine, a four-week trial showing better sleep-quality and verbal-fluency scores, an excellent safety record, and a European regulator that rejected every claim made for it.',
     laymanHowItWorks:
-      'L-theanine looks enough like glutamate, the brain\'s main excitatory signal, to be carried into the brain by the same transporter. Once there it interacts weakly with glutamate receptors and shifts the balance toward inhibition, which shows up on an EEG as increased alpha-wave activity — the pattern associated with relaxed wakefulness rather than drowsiness. Paired with caffeine, the combination reliably outperforms caffeine alone on attention tasks in the laboratory.',
+      "L-theanine looks enough like glutamate, the brain's main excitatory signal, to be carried into the brain by the same transporter. Once there it interacts weakly with glutamate receptors and shifts the balance toward inhibition, which shows up on an EEG as increased alpha-wave activity — the pattern associated with relaxed wakefulness rather than drowsiness. Paired with caffeine, the combination reliably outperforms caffeine alone on attention tasks in the laboratory.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 46,
     anatomicalSite: 'Central nervous system, entered via the large neutral amino acid transporter',
@@ -1718,7 +1791,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           name: 'Cognitive behavioural therapy for insomnia',
           class: 'Structured behavioural therapy',
           howItCompares:
-            'First-line for chronic insomnia in every major guideline, with durable effects that outlast treatment. L-theanine\'s sleep evidence is a four-week crossover trial in 30 people using a self-report questionnaire.',
+            "First-line for chronic insomnia in every major guideline, with durable effects that outlast treatment. L-theanine's sleep evidence is a four-week crossover trial in 30 people using a self-report questionnaire.",
           typicalCost: '',
           prosAndCons:
             'Pros: durable, no pharmacology, guideline-recommended. Cons: requires several weeks of structured effort and access to a therapist or programme.',
@@ -1727,11 +1800,13 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       naturalFoods: [
         {
           name: 'Green tea',
-          activeCompound: 'L-theanine at roughly 1 to 2% of dry leaf, alongside caffeine and catechins',
+          activeCompound:
+            'L-theanine at roughly 1 to 2% of dry leaf, alongside caffeine and catechins',
           biologicalMechanism:
             'Delivers theanine and caffeine together, which is the pairing the combination trials test. The EFSA opinion that rejected the L-theanine claims was specifically about L-theanine from Camellia sinensis, which is to say about this.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Keenan et al. measured 7.9 mg of theanine in a 200 mL cup of green tea and 24.2 mg in black tea. Hidese et al. gave 200 mg a day for four weeks.',
           monthlyCost: '',
         },
       ],
@@ -1839,7 +1914,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           'Hidese et al. ran a randomised, placebo-controlled, crossover, double-blind trial in 30 healthy adults with no major psychiatric illness, giving 200 mg/day L-theanine or placebo for four weeks. Self-rating Depression Scale, State-Trait Anxiety Inventory-trait and Pittsburgh Sleep Quality Index scores all fell after L-theanine (P = 0.019, 0.006 and 0.013). PSQI subscale scores for sleep latency, sleep disturbance and use of sleep medication all reduced against placebo. Verbal fluency and executive function scores improved (P = 0.001 and 0.031). Two of the seven authors are employees of the company that supplied the L-theanine and placebo tablets, which the paper discloses.',
         evidenceSource: 'Hidese S et al. Nutrients 2019;11:2362',
         doi: '10.3390/nu11102362',
-        measuredMetric: 'PSQI, STAI-trait, SDS, verbal fluency and executive function over four weeks',
+        measuredMetric:
+          'PSQI, STAI-trait, SDS, verbal fluency and executive function over four weeks',
         auditFlag: 'caution',
       },
       {
@@ -1847,7 +1923,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'EFSA rejected every health claim submitted for L-theanine',
         laymanSummary:
-          'Europe\'s food safety regulator looked at the claims for cognition, stress, sleep and menstrual discomfort and concluded that none of them was supported.',
+          "Europe's food safety regulator looked at the claims for cognition, stress, sleep and menstrual discomfort and concluded that none of them was supported.",
         technicalDetails:
           'The EFSA Panel on Dietetic Products, Nutrition and Allergies assessed L-theanine from Camellia sinensis under Article 13(1) of Regulation (EC) No 1924/2006 across four claim areas: improvement of cognitive function (claim IDs 1104, 1222, 1600, 1601, 1707, 1935, 2004, 2005), alleviation of psychological stress (1598, 1601), maintenance of normal sleep (1222, 1737, 2004) and reduction of menstrual discomfort (1599). No cause and effect relationship was established for any of them. That is a regulatory judgement about whether the evidence supports a claim on a package, not a finding that the laboratory results are wrong.',
         evidenceSource: 'EFSA NDA Panel. EFSA Journal 2011;9(6):2238',
@@ -1863,7 +1939,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A 2020 review concluded L-theanine probably helps with acute stress and that the studies are too few and too small to say more.',
         technicalDetails:
-          'Williams et al. reviewed the evidence for L-theanine consumption and the ability to manage stress and anxiety, and found supportive signals across acute-stress paradigms alongside considerable heterogeneity in dose, format and outcome measure, with few trials in clinically anxious populations. The review\'s value here is as a boundary: the case is for acute, situational stress in healthy people, not for anxiety as a diagnosis.',
+          "Williams et al. reviewed the evidence for L-theanine consumption and the ability to manage stress and anxiety, and found supportive signals across acute-stress paradigms alongside considerable heterogeneity in dose, format and outcome measure, with few trials in clinically anxious populations. The review's value here is as a boundary: the case is for acute, situational stress in healthy people, not for anxiety as a diagnosis.",
         evidenceSource: 'Williams JL et al. Plant Foods Hum Nutr 2020;75:12-23',
         doi: '10.1007/s11130-019-00771-5',
         inferredClaim:
@@ -1931,7 +2007,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Change in stress-related symptom scales and cognitive function over four weeks',
         endpointMet: true,
-        statisticalPValue: 'P = 0.019 SDS, P = 0.006 STAI-trait, P = 0.013 PSQI, P = 0.001 verbal fluency',
+        statisticalPValue:
+          'P = 0.019 SDS, P = 0.006 STAI-trait, P = 0.013 PSQI, P = 0.001 verbal fluency',
         unreportedAdverseSignals:
           'Two authors are employees of the company that supplied both the L-theanine and the placebo tablets. The trial discloses this and it does not invalidate the result, but it belongs beside it.',
         independentReplicationStatus: 'Unreplicated',
@@ -2044,6 +2121,12 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/439378',
         kind: 'url',
       },
+      {
+        label:
+          'Keenan EK et al. How much theanine in a cup of tea? Effects of tea type and method of preparation. Food Chem 2011;125:588-594',
+        identifier: '10.1016/j.foodchem.2010.08.071',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -2078,7 +2161,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       'The original story was that resveratrol switches on an enzyme called SIRT1 that mimics the effects of eating less, and that this explains longer life in yeast, worms and mice. That story has two holes. In 2010 a pharmaceutical group showed the SIRT1 activation was an artefact of the fluorescent tag used in the assay: with a normal substrate, resveratrol does not activate the enzyme. And in humans, oral resveratrol is absorbed and then almost entirely conjugated within minutes, so the blood carries the deactivated form.',
     auditConfidence: 'Inference Overreach Found',
     confidenceScore: 20,
-    anatomicalSite: 'Intestinal epithelium and liver, where it is conjugated before reaching tissue',
+    anatomicalSite:
+      'Intestinal epithelium and liver, where it is conjugated before reaching tissue',
     substitutes: {
       summary:
         'Everything resveratrol was proposed to do — improve insulin sensitivity, lower blood pressure, improve cardiovascular fitness — is done more reliably by exercise, which is also the one intervention resveratrol was shown to interfere with.',
@@ -2097,9 +2181,9 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'HMG-CoA reductase inhibitor',
           howItCompares:
             'The lipid endpoint resveratrol was marketed against. Statins have cardiovascular outcome trials; resveratrol was shown in Gliemann et al. to abolish exercise-induced improvements in LDL, the total-to-HDL cholesterol ratio and triglycerides.',
-          typicalCost: '',
-          prosAndCons:
-            'Pros: outcome evidence. Cons: muscle symptoms in a minority.',
+          typicalCost:
+            'Generic. Medicaid NADAC: atorvastatin 20 mg at $0.031 a tablet, December 2025',
+          prosAndCons: 'Pros: outcome evidence. Cons: muscle symptoms in a minority.',
         },
       ],
       naturalFoods: [
@@ -2231,7 +2315,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           'Randomised, placebo-controlled, double-blinded, parallel-group trial in 24 obese but otherwise healthy men, with insulin sensitivity by hyperinsulinaemic euglycaemic clamp as the primary outcome. Insulin sensitivity deteriorated insignificantly in both groups. Endogenous glucose production and glucose turnover and oxidation rates were unchanged. There was no effect on blood pressure, resting energy expenditure, lipid oxidation, ectopic or visceral fat content, or inflammatory and metabolic biomarkers. The authors wrote that the lack of effect disagrees with persuasive rodent data and raises doubt about the justification of resveratrol as a human nutritional supplement in metabolic disorders.',
         evidenceSource: 'Poulsen MM et al. Diabetes 2013;62:1186-1195',
         doi: '10.2337/db12-0975',
-        measuredMetric: 'Insulin sensitivity by hyperinsulinaemic euglycaemic clamp over four weeks',
+        measuredMetric:
+          'Insulin sensitivity by hyperinsulinaemic euglycaemic clamp over four weeks',
         auditFlag: 'verified',
       },
       {
@@ -2334,9 +2419,11 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         trialId: 'Poulsen 2013 (high-dose resveratrol in obese men)',
         phase: 'Randomised, double-blind, placebo-controlled, parallel group',
         sampleSize: 24,
-        primaryEndpoint: 'Insulin sensitivity by hyperinsulinaemic euglycaemic clamp after four weeks',
+        primaryEndpoint:
+          'Insulin sensitivity by hyperinsulinaemic euglycaemic clamp after four weeks',
         endpointMet: false,
-        statisticalPValue: 'No significant difference; insulin sensitivity deteriorated insignificantly in both arms',
+        statisticalPValue:
+          'No significant difference; insulin sensitivity deteriorated insignificantly in both arms',
         unreportedAdverseSignals:
           'No effect on any secondary endpoint either: blood pressure, resting energy expenditure, lipid oxidation, ectopic or visceral fat, inflammatory or metabolic biomarkers.',
         independentReplicationStatus: 'Replicated',
@@ -2357,7 +2444,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         trialId: 'Gliemann 2013 (resveratrol with high-intensity training in aged men)',
         phase: 'Randomised, double-blind, placebo-controlled',
         sampleSize: 27,
-        primaryEndpoint: 'Training-induced change in cardiovascular health parameters over eight weeks',
+        primaryEndpoint:
+          'Training-induced change in cardiovascular health parameters over eight weeks',
         endpointMet: false,
         statisticalPValue:
           'P < 0.05 in favour of placebo for maximal oxygen uptake, mean arterial pressure and blood lipids',
@@ -2369,9 +2457,11 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         trialId: 'Semba 2014 (InCHIANTI prospective cohort, urinary resveratrol metabolites)',
         phase: 'Prospective observational cohort, nine years',
         sampleSize: 783,
-        primaryEndpoint: 'All-cause mortality by quartile of 24-hour urinary resveratrol metabolites',
+        primaryEndpoint:
+          'All-cause mortality by quartile of 24-hour urinary resveratrol metabolites',
         endpointMet: false,
-        statisticalPValue: 'P = 0.67 across quartiles; HR 0.80 (95% CI 0.54 to 1.17) lowest versus highest',
+        statisticalPValue:
+          'P = 0.67 across quartiles; HR 0.80 (95% CI 0.54 to 1.17) lowest versus highest',
         unreportedAdverseSignals:
           'Observational, so confounding cannot be excluded — but the exposure measure is biochemical rather than a dietary questionnaire, which is stronger than most nutritional epidemiology.',
         independentReplicationStatus: 'Unreplicated',
@@ -2479,6 +2569,12 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445154',
         kind: 'url',
       },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -2496,7 +2592,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold as a dietary supplement for allergy, immunity, blood pressure and, increasingly, as a senolytic. It is also the quercetin half of the dasatinib-plus-quercetin combination under investigation in clinical trials, which is a prescription oncology drug plus a supplement.',
-    patientFriendlyIndication: 'Marketed for allergy and immunity; investigated as a senescent-cell killer',
+    patientFriendlyIndication:
+      'Marketed for allergy and immunity; investigated as a senescent-cell killer',
     conditionContext: {
       conditionExplainer:
         'Quercetin is the most abundant flavonol in the ordinary diet. Two very different claims attach to it. The consumer claim is about allergy, immunity and blood pressure. The research claim is that in combination with the leukaemia drug dasatinib it selectively kills senescent cells — worn-out cells that accumulate with age and secrete inflammatory signals.',
@@ -2513,7 +2610,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       'Two stories. As a supplement, quercetin is a broad weak inhibitor of a great many enzymes and a stabiliser of the cells that release histamine, which is where the allergy claim comes from. As a senolytic, it is used with dasatinib to disable the survival proteins that keep senescent cells alive when they should have died, so that those cells self-destruct. The senolytic use is a combination with a prescription drug, in supervised trials, and is not what is in a bottle on a shelf.',
     auditConfidence: 'Inference Overreach Found',
     confidenceScore: 34,
-    anatomicalSite: 'Adipose tissue and vascular endothelium, in the trials that measured tissue directly',
+    anatomicalSite:
+      'Adipose tissue and vascular endothelium, in the trials that measured tissue directly',
     substitutes: {
       summary:
         'For blood pressure, every approved antihypertensive class produces several times the 3 mmHg systolic reduction quercetin achieved, with outcome trials behind it. For allergy, second-generation antihistamines have regulatory approval and quercetin does not.',
@@ -2523,7 +2621,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Antihypertensive',
           howItCompares:
             'Produces roughly 8 to 10 mmHg systolic reduction at standard dose, against the 3.04 mmHg pooled estimate for quercetin, and has cardiovascular outcome trials that quercetin has never attempted.',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: lisinopril 10 mg $0.019, amlodipine 5 mg $0.011 a tablet',
           prosAndCons:
             'Pros: larger effect, outcome data, regulatory review. Cons: class-specific side effects.',
         },
@@ -2532,7 +2631,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Second-generation H1 antihistamine',
           howItCompares:
             'Blocks the histamine receptor directly rather than attempting to stabilise the mast cell that releases it, and is approved for allergic rhinitis on randomised evidence. No trial has compared quercetin with an antihistamine.',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: cetirizine 10 mg $0.061, loratadine 10 mg $0.053 a tablet',
           prosAndCons: 'Pros: approved, predictable, cheap. Cons: mild sedation in some people.',
         },
       ],
@@ -2638,7 +2738,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           'Serban et al. pooled seven placebo-controlled randomised trials comprising nine treatment arms and 587 patients. Systolic BP fell by a weighted mean difference of -3.04 mmHg (95% CI -5.75 to -0.33, P = 0.028) and diastolic by -2.63 mmHg (95% CI -3.26 to -2.01, P < 0.001). Subgroup analysis suggested the effect was limited to, or greater at, doses above 500 mg/day. The authors themselves called for further work on whether the effect is clinically relevant.',
         evidenceSource: 'Serban MC et al. J Am Heart Assoc 2016;5:e002713',
         doi: '10.1161/JAHA.115.002713',
-        measuredMetric: 'Weighted mean difference in systolic and diastolic blood pressure versus placebo',
+        measuredMetric:
+          'Weighted mean difference in systolic and diastolic blood pressure versus placebo',
         auditFlag: 'verified',
       },
       {
@@ -2651,7 +2752,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           'Hickson et al. ran an open-label phase 1 pilot in nine subjects with diabetic kidney disease, mean age 68.7, giving three days of oral dasatinib 100 mg plus quercetin 1000 mg. Adipose tissue, skin biopsies and blood were collected before and 11 days after. Adipose senescent cell burden fell, with decreases in p16INK4A- and p21CIP1-expressing cells, cells with senescence-associated beta-galactosidase activity, and adipocyte progenitors with limited replicative potential. This was the first peer-reviewed demonstration that senolytics reduce senescent cells in humans. It is nine people, open-label, with no control group, and it is the combination rather than quercetin alone.',
         evidenceSource: 'Hickson LJ et al. EBioMedicine 2019;47:446-456',
         doi: '10.1016/j.ebiom.2019.08.069',
-        measuredMetric: 'p16INK4A, p21CIP1 and SA-beta-galactosidase positive cell counts in adipose biopsy',
+        measuredMetric:
+          'p16INK4A, p21CIP1 and SA-beta-galactosidase positive cell counts in adipose biopsy',
         auditFlag: 'caution',
       },
       {
@@ -2675,7 +2777,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           'Pooling eleven trials, quercetin improved endurance by about 2%, which the authors themselves described as between trivial and small.',
         technicalDetails:
           'Kressler et al. pooled eleven studies with data on 254 human subjects, median treatment duration 11 days at a median 1,000 mg/day. The combined effect size for VO2max and endurance performance favoured quercetin (ES = 0.15, P = 0.021, 95% CI 0.02 to 0.27) but the magnitude was described as between trivial and small, equating to approximately a 2% improvement over placebo. Meta-regression against fitness level and against achieved plasma quercetin concentration was not significant, meaning the effect does not scale with exposure — which is what a real pharmacological effect usually does.',
-        evidenceSource: 'Kressler J, Millard-Stafford M, Warren GL. Med Sci Sports Exerc 2011;43:2396-2404',
+        evidenceSource:
+          'Kressler J, Millard-Stafford M, Warren GL. Med Sci Sports Exerc 2011;43:2396-2404',
         doi: '10.1249/MSS.0b013e31822495a7',
         inferredClaim:
           'That quercetin is an ergogenic aid of practical significance for endurance athletes',
@@ -2766,7 +2869,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         sampleSize: 9,
         primaryEndpoint: 'Change in adipose tissue senescent cell burden 11 days after treatment',
         endpointMet: true,
-        statisticalPValue: 'Significant reductions in p16INK4A, p21CIP1 and SA-beta-gal positive cells',
+        statisticalPValue:
+          'Significant reductions in p16INK4A, p21CIP1 and SA-beta-gal positive cells',
         unreportedAdverseSignals:
           'Nine participants, open-label, no control group, three days of treatment. This is a mechanism demonstration and was designed as one.',
         independentReplicationStatus: 'Unreplicated',
@@ -2876,13 +2980,20 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans',
+        label:
+          'Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans',
         identifier: 'NCT04313634',
         kind: 'nct',
       },
       {
         label: 'PubChem CID 5280343 — Quercetin',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280343',
+        kind: 'url',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
     ],
@@ -2894,7 +3005,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
   {
     slug: 'saffron-extract',
     name: 'Saffron extract',
-    tradeName: 'Sold as affron, Safr\'Inside and other standardised Crocus sativus stigma extracts',
+    tradeName: "Sold as affron, Safr'Inside and other standardised Crocus sativus stigma extracts",
     sponsor: 'No single sponsor — stigma extract of Crocus sativus',
     targetGene: 'SLC6A4',
     targetProtein:
@@ -2930,7 +3041,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Selective serotonin reuptake inhibitor',
           howItCompares:
             'Directly compared in Noorbala et al. 2005: 40 outpatients with DSM-IV major depression randomised to saffron 30 mg/day or fluoxetine 20 mg/day for six weeks, with saffron found similar to fluoxetine (F = 0.13, df = 1, P = 0.71) and no significant difference in side effects. An equivalence claim from 40 patients over six weeks is not an equivalence demonstration.',
-          typicalCost: '',
+          typicalCost: 'Generic. Medicaid NADAC: fluoxetine 20 mg at $0.030 a capsule, March 2026',
           prosAndCons:
             'Pros: regulatory approval, decades of use, known interaction profile. Cons: sexual side effects, discontinuation symptoms.',
         },
@@ -3039,7 +3150,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Effect of saffron on depression, anxiety and mood disorder: a GRADE assessed systematic review and meta-analysis of 34 randomized controlled trials. Nutr Neurosci 2026;29:816-837',
         doi: '10.1080/1028415X.2025.2602153',
-        measuredMetric: 'Weighted mean difference in Beck Depression Inventory and Beck Anxiety Inventory',
+        measuredMetric:
+          'Weighted mean difference in Beck Depression Inventory and Beck Anxiety Inventory',
         auditFlag: 'verified',
       },
       {
@@ -3064,7 +3176,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A 2019 review reported very large effects and then said the pattern of results suggested negative trials were missing, and that nearly all the trials came from one place.',
         technicalDetails:
-          'Marx et al. pooled 23 studies and reported a large positive effect size for saffron against placebo for depressive symptoms (Hedges g = 0.99, P < 0.001) and anxiety symptoms (g = 0.95, P = 0.006), and a large effect as an adjunct to antidepressants (g = 1.23, P = 0.028). Egger\'s regression test found evidence of publication bias. The authors concluded that further trials are required because of that bias and the lack of regional diversity. An effect size approaching 1.0 for any depression intervention is larger than most approved antidepressants achieve against placebo, which is itself a reason for caution rather than enthusiasm.',
+          "Marx et al. pooled 23 studies and reported a large positive effect size for saffron against placebo for depressive symptoms (Hedges g = 0.99, P < 0.001) and anxiety symptoms (g = 0.95, P = 0.006), and a large effect as an adjunct to antidepressants (g = 1.23, P = 0.028). Egger's regression test found evidence of publication bias. The authors concluded that further trials are required because of that bias and the lack of regional diversity. An effect size approaching 1.0 for any depression intervention is larger than most approved antidepressants achieve against placebo, which is itself a reason for caution rather than enthusiasm.",
         evidenceSource: 'Marx W et al. Nutr Rev 2019;77:557-571',
         doi: '10.1093/nutrit/nuz023',
         inferredClaim:
@@ -3105,7 +3217,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         step: 1,
         title: 'A standardised stigma extract, with three marker families',
         laymanDesc:
-          'The capsule contains an extract of the flower\'s stigma, standardised on the compounds that give saffron its colour, taste and smell.',
+          "The capsule contains an extract of the flower's stigma, standardised on the compounds that give saffron its colour, taste and smell.",
         molecularDetail:
           'Crocins are diglycosylated crocetin esters responsible for colour; picrocrocin is the bitter glycoside; safranal is the volatile aroma compound derived from picrocrocin. Standardisation is on crocin and safranal, not on a demonstrated active moiety.',
         iconName: 'Leaf',
@@ -3134,8 +3246,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         step: 4,
         title: 'Self-rated scores fall substantially',
-        laymanDesc:
-          'People report feeling meaningfully better, and the pooled effect is large.',
+        laymanDesc: 'People report feeling meaningfully better, and the pooled effect is large.',
         molecularDetail:
           'BDI -4.39 and BAI -5.06 against placebo across 34 trials, with GRADE certainty rated moderate and heterogeneity above 90% on both estimates.',
         iconName: 'Activity',
@@ -3160,8 +3271,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Pooled effect on BDI, BAI, HDRS, HARS and POMS in adults over interventions of at least four weeks',
         endpointMet: false,
-        statisticalPValue:
-          'BDI P < 0.001 and BAI P = 0.003; HDRS, HARS and POMS not significant',
+        statisticalPValue: 'BDI P < 0.001 and BAI P = 0.003; HDRS, HARS and POMS not significant',
         unreportedAdverseSignals:
           'Recorded as endpoint not met because the clinician-rated scales showed no effect. Heterogeneity was 92.3% for BDI and 94.8% for BAI, which is very high.',
         independentReplicationStatus: 'Partially Replicated',
@@ -3170,11 +3280,12 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         trialId: 'Marx 2019 meta-analysis (23 studies)',
         phase: 'Systematic review and meta-analysis',
         sampleSize: 0,
-        primaryEndpoint: 'Pooled effect size for depressive and anxiety symptoms versus placebo and versus pharmacotherapy',
+        primaryEndpoint:
+          'Pooled effect size for depressive and anxiety symptoms versus placebo and versus pharmacotherapy',
         endpointMet: true,
         statisticalPValue: 'g = 0.99 P < 0.001 depression; g = 0.95 P = 0.006 anxiety',
         unreportedAdverseSignals:
-          'Egger\'s regression test found evidence of publication bias, and the authors flagged lack of regional diversity. Sample size recorded as 0 because the review reports study counts rather than a single pooled total.',
+          "Egger's regression test found evidence of publication bias, and the authors flagged lack of regional diversity. Sample size recorded as 0 because the review reports study counts rather than a single pooled total.",
         independentReplicationStatus: 'Partially Replicated',
       },
       {
@@ -3193,7 +3304,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       strictlyMeasured: [
         'Beck Depression Inventory -4.39 and Beck Anxiety Inventory -5.06 against placebo across 34 randomised trials in 1,769 participants, GRADE certainty moderate',
         'No significant effect on the Hamilton Depression Rating Scale, Hamilton Anxiety Rating Scale or Profile of Mood States in the same analysis',
-        'Evidence of publication bias by Egger\'s regression test in the 2019 pooled analysis',
+        "Evidence of publication bias by Egger's regression test in the 2019 pooled analysis",
         'New adulterant materials identified in market saffron, with first-grade material reported as rare',
       ],
       unsupportedInferences: [
@@ -3230,7 +3341,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What does "evidence of publication bias" mean here?',
-        a: 'Marx et al. ran Egger\'s regression test on their pooled data and found the pattern that appears when small negative trials are missing from the literature: small studies showing large effects, without the corresponding small studies showing nothing. That inflates the pooled estimate. It is why an effect size of 0.99 for a depression intervention — larger than most approved antidepressants achieve against placebo — should read as a warning rather than a result.',
+        a: "Marx et al. ran Egger's regression test on their pooled data and found the pattern that appears when small negative trials are missing from the literature: small studies showing large effects, without the corresponding small studies showing nothing. That inflates the pooled estimate. It is why an effect size of 0.99 for a depression intervention — larger than most approved antidepressants achieve against placebo — should read as a warning rather than a result.",
       },
       {
         q: 'Does it matter that saffron is adulterated?',
@@ -3269,6 +3380,12 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281233',
         kind: 'url',
       },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -3278,7 +3395,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
   {
     slug: 'st-johns-wort',
     name: "St John's wort",
-    tradeName: 'Sold as standardised Hypericum perforatum extracts including LI-160, WS 5570 and Ze 117',
+    tradeName:
+      'Sold as standardised Hypericum perforatum extracts including LI-160, WS 5570 and Ze 117',
     sponsor: 'No single sponsor — flowering aerial parts of Hypericum perforatum',
     targetGene: 'NR1I2',
     targetProtein:
@@ -3299,7 +3417,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         'Trials have measured response rate on the Hamilton Depression Rating Scale against placebo and against tricyclics and SSRIs. Interaction studies have measured plasma concentrations of specific co-administered drugs.',
     },
     oneSentenceVerdict:
-      "Twenty-nine randomised trials in 5,489 patients show hypericum extracts superior to placebo and similarly effective to standard antidepressants with fewer side effects — while the same plant induces CYP3A4 strongly enough to have caused acute heart transplant rejection, and failed twice in severe major depression in US trials where sertraline also failed.",
+      'Twenty-nine randomised trials in 5,489 patients show hypericum extracts superior to placebo and similarly effective to standard antidepressants with fewer side effects — while the same plant induces CYP3A4 strongly enough to have caused acute heart transplant rejection, and failed twice in severe major depression in US trials where sertraline also failed.',
     laymanHowItWorks:
       "St John's wort contains hyperforin, hypericin and several flavonoids. Hyperforin inhibits the reuptake of serotonin, noradrenaline and dopamine, which is a plausible antidepressant mechanism. Hyperforin also binds a receptor in the liver called PXR, which switches on the body's main drug-clearing enzyme, CYP3A4, and the transport pump P-glycoprotein. That second effect is the reason a plant sold beside vitamins can cause a transplanted heart to be rejected.",
     auditConfidence: 'High Confidence',
@@ -3314,8 +3432,9 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           name: 'SSRIs (sertraline, fluoxetine, escitalopram)',
           class: 'Selective serotonin reuptake inhibitor',
           howItCompares:
-            'Across 12 comparisons in the Cochrane review, the response rate ratio for hypericum against SSRIs was 1.00 (95% CI 0.90 to 1.11) — statistically indistinguishable — with fewer adverse effects reported for hypericum. SSRIs do not induce CYP3A4, and combining an SSRI with St John\'s wort risks serotonin syndrome.',
-          typicalCost: '',
+            "Across 12 comparisons in the Cochrane review, the response rate ratio for hypericum against SSRIs was 1.00 (95% CI 0.90 to 1.11) — statistically indistinguishable — with fewer adverse effects reported for hypericum. SSRIs do not induce CYP3A4, and combining an SSRI with St John's wort risks serotonin syndrome.",
+          typicalCost:
+            'Generic. Medicaid NADAC: sertraline $0.036, fluoxetine $0.030, escitalopram $0.042 a unit',
           prosAndCons:
             'Pros: no enzyme induction, prescriber oversight, known dose. Cons: more adverse effects in the pooled comparison.',
         },
@@ -3324,7 +3443,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Non-selective monoamine reuptake inhibitor',
           howItCompares:
             'Response rate ratio 1.02 (95% CI 0.90 to 1.15) across five comparisons, again indistinguishable from hypericum, with a considerably heavier side-effect burden.',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: amitriptyline 25 mg at $0.054 a tablet, April 2026',
           prosAndCons:
             'Pros: long clinical record, useful in some pain syndromes. Cons: anticholinergic effects, cardiac toxicity in overdose.',
         },
@@ -3334,7 +3454,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         {
           name: 'Tell the prescriber, every time',
           action:
-            'Disclose St John\'s wort to any prescriber, pharmacist or surgeon, and treat it as a drug rather than as a supplement.',
+            "Disclose St John's wort to any prescriber, pharmacist or surgeon, and treat it as a drug rather than as a supplement.",
           patientImpact:
             'Markowitz et al. measured a 1.4-fold increase in the clearance of an intravenous CYP3A4 probe and a 2.5-fold reduction in oral bioavailability after 14 days. Half of all prescription drugs go through CYP3A4.',
           clinicalPrecaution:
@@ -3419,7 +3539,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           "Twenty-nine randomised trials in nearly 5,500 patients found St John's wort better than placebo and about as good as prescription antidepressants, with fewer side effects.",
         technicalDetails:
           'Linde et al. included 29 randomised double-blind trials comprising 5,489 patients, with 18 placebo comparisons and 17 comparisons against synthetic antidepressants. Placebo-controlled results were markedly heterogeneous: in nine larger trials the combined response rate ratio was 1.28 (95% CI 1.10 to 1.49), and in nine smaller trials 1.87 (95% CI 1.22 to 2.87). Comparisons against standard antidepressants were statistically homogeneous, with response rate ratios of 1.02 (95% CI 0.90 to 1.15) against tricyclics and tetracyclics across five trials and 1.00 (95% CI 0.90 to 1.11) against SSRIs across 12 trials. Fewer patients dropped out for adverse effects on hypericum. The authors flagged that country of origin and trial precision were associated with effect size, which complicates interpretation.',
-        evidenceSource: "Linde K et al. Cochrane Database Syst Rev 2008;(4):CD000448",
+        evidenceSource: 'Linde K et al. Cochrane Database Syst Rev 2008;(4):CD000448',
         doi: '10.1002/14651858.CD000448.pub3',
         measuredMetric: 'Response rate ratio against placebo and against standard antidepressants',
         auditFlag: 'verified',
@@ -3431,7 +3551,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           "In two large American trials in properly diagnosed major depression, St John's wort did not beat placebo. In one of them, the antidepressant used as a comparator did not either.",
         technicalDetails:
-          "Shelton et al. randomised 200 outpatients with major depression and a baseline HAM-D of at least 20 across 11 US academic centres to hypericum extract or placebo for eight weeks, and found no significant treatment effect on HAM-D, HAM-A, CGI-S or CGI-I. The Hypericum Depression Trial Study Group then randomised 340 outpatients across 12 centres to hypericum, placebo or sertraline as an active comparator for eight weeks: neither hypericum nor sertraline separated from placebo on the two primary outcomes. HAM-D change was -9.20 for placebo, -8.68 for hypericum (P = 0.59) and -10.53 for sertraline (P = 0.18). Full response occurred in 31.9% on placebo, 23.9% on hypericum and 24.8% on sertraline. The authors noted the failure of the active comparator raises the question of assay sensitivity, while adding that the complete absence of any trend toward efficacy for hypericum is noteworthy.",
+          'Shelton et al. randomised 200 outpatients with major depression and a baseline HAM-D of at least 20 across 11 US academic centres to hypericum extract or placebo for eight weeks, and found no significant treatment effect on HAM-D, HAM-A, CGI-S or CGI-I. The Hypericum Depression Trial Study Group then randomised 340 outpatients across 12 centres to hypericum, placebo or sertraline as an active comparator for eight weeks: neither hypericum nor sertraline separated from placebo on the two primary outcomes. HAM-D change was -9.20 for placebo, -8.68 for hypericum (P = 0.59) and -10.53 for sertraline (P = 0.18). Full response occurred in 31.9% on placebo, 23.9% on hypericum and 24.8% on sertraline. The authors noted the failure of the active comparator raises the question of assay sensitivity, while adding that the complete absence of any trend toward efficacy for hypericum is noteworthy.',
         evidenceSource:
           'Shelton RC et al. JAMA 2001;285:1978-1986; Hypericum Depression Trial Study Group. JAMA 2002;287:1807-1814',
         doi: '10.1001/jama.287.14.1807',
@@ -3441,20 +3561,22 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         id: 'sjw-a3',
         category: 'measured',
-        title: 'Acute heart transplant rejection caused by St John\'s wort',
+        title: "Acute heart transplant rejection caused by St John's wort",
         laymanSummary:
           "Two heart transplant patients began rejecting their transplants after starting St John's wort, because it stripped out the drug protecting the graft.",
         technicalDetails:
           "Ruschitzka et al. reported acute heart transplant rejection in two patients who had started St John's wort while on stable ciclosporin. Ciclosporin trough concentrations fell to subtherapeutic levels through CYP3A4 and P-glycoprotein induction, rejection followed, and levels and graft function recovered on stopping the herb and increasing the dose. This is the case report that converted a theoretical interaction into a clinical one, and it is why the plant is contraindicated in transplant medicine.",
-        evidenceSource: "Ruschitzka F et al. Lancet 2000;355:548-549",
+        evidenceSource: 'Ruschitzka F et al. Lancet 2000;355:548-549',
         doi: '10.1016/S0140-6736(99)05467-7',
-        measuredMetric: 'Ciclosporin trough concentration and endomyocardial biopsy rejection grade',
+        measuredMetric:
+          'Ciclosporin trough concentration and endomyocardial biopsy rejection grade',
         auditFlag: 'caution',
       },
       {
         id: 'sjw-a4',
         category: 'measured',
-        title: 'CYP3A4 induction measured directly: 1.4-fold clearance, 2.5-fold bioavailability loss',
+        title:
+          'CYP3A4 induction measured directly: 1.4-fold clearance, 2.5-fold bioavailability loss',
         laymanSummary:
           "Fourteen days of St John's wort measurably sped up the body's main drug-clearing enzyme and more than halved how much of an oral test drug got into the blood.",
         technicalDetails:
@@ -3469,11 +3591,11 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'Oral contraceptive failure and HIV treatment failure, both documented',
         laymanSummary:
-          "The same enzyme induction breaks hormonal contraception and strips out HIV drugs.",
+          'The same enzyme induction breaks hormonal contraception and strips out HIV drugs.',
         technicalDetails:
           "Hall et al. studied the interaction between St John's wort and a low-dose oral contraceptive in healthy women and found increased contraceptive steroid clearance with breakthrough bleeding, a recognised marker of reduced contraceptive reliability. Piscitelli et al. separately measured an 81% reduction in indinavir area under the curve in healthy volunteers, an exposure loss large enough to permit viral rebound and resistance. These are not incidental findings: they are the two interactions most likely to be encountered by someone who buys the product without telling anyone.",
         evidenceSource:
-          "Hall SD et al. Clin Pharmacol Ther 2003;74:525-535; Piscitelli SC et al. Lancet 2000;355:547-548",
+          'Hall SD et al. Clin Pharmacol Ther 2003;74:525-535; Piscitelli SC et al. Lancet 2000;355:547-548',
         doi: '10.1016/j.clpt.2003.08.009',
         measuredMetric:
           'Contraceptive steroid clearance and breakthrough bleeding; indinavir area under the concentration-time curve',
@@ -3482,12 +3604,13 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         id: 'sjw-a6',
         category: 'conclusion_shift',
-        title: 'Effect size tracked country of origin, which the Cochrane authors flagged themselves',
+        title:
+          'Effect size tracked country of origin, which the Cochrane authors flagged themselves',
         laymanSummary:
           'The trials showing the biggest benefits were disproportionately from one part of the world, and the reviewers said so.',
         technicalDetails:
           'Linde et al. reported marked heterogeneity among placebo-controlled trials, with smaller trials showing response rate ratios nearly twice those of larger ones (1.87 versus 1.28), and stated that the association of country of origin and precision with effect size complicates interpretation. German-speaking countries, where hypericum is a licensed prescription medicine, contributed a large share of the positive trials, while the two large US trials found nothing. That geographic pattern is the honest reason the pooled estimate sits where it does rather than higher.',
-        evidenceSource: "Linde K et al. Cochrane Database Syst Rev 2008;(4):CD000448",
+        evidenceSource: 'Linde K et al. Cochrane Database Syst Rev 2008;(4):CD000448',
         doi: '10.1002/14651858.CD000448.pub3',
         inferredClaim:
           'That the pooled response rate ratio applies uniformly across populations and severities',
@@ -3539,7 +3662,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         step: 5,
         title: 'Depression improves; co-administered drugs stop working',
         laymanDesc:
-          "The mood effect is real. So is the failure of whatever else the person is taking.",
+          'The mood effect is real. So is the failure of whatever else the person is taking.',
         molecularDetail:
           'Response rate ratio 1.28 against placebo in larger trials and 1.00 against SSRIs. In parallel: ciclosporin loss causing transplant rejection, an 81% fall in indinavir exposure, and contraceptive steroid clearance sufficient to cause breakthrough bleeding.',
         iconName: 'ShieldCheck',
@@ -3564,9 +3687,11 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         trialId: 'Hypericum Depression Trial Study Group 2002 (hypericum, sertraline, placebo)',
         phase: 'Randomised, double-blind, placebo-controlled with active comparator',
         sampleSize: 340,
-        primaryEndpoint: 'Change in HAM-D total score from baseline to eight weeks, and full response rate',
+        primaryEndpoint:
+          'Change in HAM-D total score from baseline to eight weeks, and full response rate',
         endpointMet: false,
-        statisticalPValue: 'P = 0.59 for hypericum versus placebo; P = 0.18 for sertraline versus placebo',
+        statisticalPValue:
+          'P = 0.59 for hypericum versus placebo; P = 0.18 for sertraline versus placebo',
         unreportedAdverseSignals:
           'The active comparator also failed, which raises assay sensitivity as an explanation. The authors noted that the complete absence of any trend toward efficacy for hypericum is nevertheless noteworthy.',
         independentReplicationStatus: 'Replicated',
@@ -3636,13 +3761,14 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: "Linde K et al. St John's wort for major depression. Cochrane Database Syst Rev 2008;(4):CD000448",
+        label:
+          "Linde K et al. St John's wort for major depression. Cochrane Database Syst Rev 2008;(4):CD000448",
         identifier: '10.1002/14651858.CD000448.pub3',
         kind: 'doi',
       },
       {
         label:
-          'Hypericum Depression Trial Study Group. Effect of Hypericum perforatum (St John\'s wort) in major depressive disorder: a randomized controlled trial. JAMA 2002;287:1807-1814',
+          "Hypericum Depression Trial Study Group. Effect of Hypericum perforatum (St John's wort) in major depressive disorder: a randomized controlled trial. JAMA 2002;287:1807-1814",
         identifier: '10.1001/jama.287.14.1807',
         kind: 'doi',
       },
@@ -3653,7 +3779,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: "Ruschitzka F et al. Acute heart transplant rejection due to Saint John's wort. Lancet 2000;355:548-549",
+        label:
+          "Ruschitzka F et al. Acute heart transplant rejection due to Saint John's wort. Lancet 2000;355:548-549",
         identifier: '10.1016/S0140-6736(99)05467-7',
         kind: 'doi',
       },
@@ -3664,18 +3791,26 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: "Hall SD et al. The interaction between St John's wort and an oral contraceptive. Clin Pharmacol Ther 2003;74:525-535",
+        label:
+          "Hall SD et al. The interaction between St John's wort and an oral contraceptive. Clin Pharmacol Ther 2003;74:525-535",
         identifier: '10.1016/j.clpt.2003.08.009',
         kind: 'doi',
       },
       {
-        label: "Piscitelli SC et al. Indinavir concentrations and St John's wort. Lancet 2000;355:547-548",
+        label:
+          "Piscitelli SC et al. Indinavir concentrations and St John's wort. Lancet 2000;355:547-548",
         identifier: '10.1016/S0140-6736(99)05712-8',
         kind: 'doi',
       },
       {
         label: 'PubChem CID 441298 — Hyperforin',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441298',
+        kind: 'url',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
     ],
@@ -3730,7 +3865,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
           class: 'Non-benzodiazepine GABA-A receptor agonist',
           howItCompares:
             'Acts at the receptor valerian is proposed to act at, with unambiguous polysomnographic effects — which is precisely the contrast: when sleep is measured objectively, the drug shows up and valerian does not.',
-          typicalCost: '',
+          typicalCost:
+            'Generic. Medicaid NADAC: zolpidem 10 mg $0.039, eszopiclone 3 mg $0.086 a tablet',
           prosAndCons:
             'Pros: measurable effect on sleep latency. Cons: dependence, next-day impairment, complex sleep behaviours.',
         },
@@ -3819,7 +3955,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         id: 'val-a1',
         category: 'measured',
-        title: 'Bent 2006: relative risk of improved sleep 1.8, with publication bias in the same estimate',
+        title:
+          'Bent 2006: relative risk of improved sleep 1.8, with publication bias in the same estimate',
         laymanSummary:
           'A meta-analysis found people were more likely to report improved sleep on valerian, and found in the same breath that negative studies appeared to be missing.',
         technicalDetails:
@@ -3836,7 +3973,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A wider review of 37 studies found that as trial quality improved, the effect disappeared, and that the newest and best studies found no effect at all.',
         technicalDetails:
-          'Taibi et al. screened 592 articles and reviewed 37 separate studies — 29 controlled trials assessed for efficacy and safety, plus eight open-label trials for safety only. Most studies found no significant difference between valerian and placebo, in healthy individuals or in people with general sleep disturbance or insomnia. The authors wrote that none of the most recent studies, which were also the most methodologically rigorous, found significant effects of valerian on sleep, and concluded that while valerian is a safe herb associated with only rare adverse events, the evidence does not support its clinical efficacy as a sleep aid for insomnia. The paper\'s title states the finding plainly: safe but not effective.',
+          "Taibi et al. screened 592 articles and reviewed 37 separate studies — 29 controlled trials assessed for efficacy and safety, plus eight open-label trials for safety only. Most studies found no significant difference between valerian and placebo, in healthy individuals or in people with general sleep disturbance or insomnia. The authors wrote that none of the most recent studies, which were also the most methodologically rigorous, found significant effects of valerian on sleep, and concluded that while valerian is a safe herb associated with only rare adverse events, the evidence does not support its clinical efficacy as a sleep aid for insomnia. The paper's title states the finding plainly: safe but not effective.",
         evidenceSource: 'Taibi DM et al. Sleep Med Rev 2007;11:209-230',
         doi: '10.1016/j.smrv.2007.03.002',
         inferredClaim:
@@ -3897,7 +4034,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'A proposed GABA-A action at the same receptor as benzodiazepines',
         laymanDesc:
-          'Valerenic acid nudges the brain\'s main calming receptor, at a different site from sleeping pills and far more weakly.',
+          "Valerenic acid nudges the brain's main calming receptor, at a different site from sleeping pills and far more weakly.",
         molecularDetail:
           'Valerenic acid is a positive allosteric modulator of GABA-A receptors containing the beta-2 or beta-3 subunit, acting at the loreclezole site rather than the benzodiazepine site. The reported potency sits well above the plasma concentrations an oral extract produces.',
         iconName: 'Network',
@@ -3906,8 +4043,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         step: 4,
         title: 'Subjective sleep quality improves in the weaker studies',
-        laymanDesc:
-          'When people are asked how they slept, more of them say better on valerian.',
+        laymanDesc: 'When people are asked how they slept, more of them say better on valerian.',
         molecularDetail:
           'Relative risk of improved sleep 1.8 (95% CI 1.2 to 2.9) across six trials reporting a dichotomous outcome — with publication bias detected in that same summary measure by the authors who computed it.',
         iconName: 'Activity',
@@ -3944,7 +4080,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         sampleSize: 1093,
         primaryEndpoint: 'Improvement in sleep quality versus placebo',
         endpointMet: true,
-        statisticalPValue: 'RR 1.8 (95% CI 1.2 to 2.9) for a dichotomous improved-sleep outcome across six trials',
+        statisticalPValue:
+          'RR 1.8 (95% CI 1.2 to 2.9) for a dichotomous improved-sleep outcome across six trials',
         unreportedAdverseSignals:
           'The authors reported evidence of publication bias in this summary measure, and that most included studies had significant methodological problems with considerable variation in dose, preparation and treatment length.',
         independentReplicationStatus: 'Failed to Replicate',
@@ -3953,9 +4090,11 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         trialId: 'Taibi 2007 systematic review (37 studies, 29 controlled trials)',
         phase: 'Systematic review',
         sampleSize: 0,
-        primaryEndpoint: 'Efficacy of valerian as a sleep aid, stratified by preparation and population',
+        primaryEndpoint:
+          'Efficacy of valerian as a sleep aid, stratified by preparation and population',
         endpointMet: false,
-        statisticalPValue: 'Not applicable — narrative synthesis with standardised quality criteria',
+        statisticalPValue:
+          'Not applicable — narrative synthesis with standardised quality criteria',
         unreportedAdverseSignals:
           'Sample size recorded as 0 because the review reports study counts rather than a pooled total. None of the most recent and most methodologically rigorous studies found any significant effect on sleep.',
         independentReplicationStatus: 'Replicated',
@@ -3998,7 +4137,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why did the early studies look positive?',
-        a: 'Three reasons, all documented rather than speculated. Most of the early trials had significant methodological problems, by the reviewers\' own assessment. Publication bias was detected statistically in the pooled estimate, meaning small negative trials appear to be missing. And the outcome that produced the positive result was a self-reported yes-or-no question about sleep quality, which is the measure most sensitive to expectation. As trials adopted objective measurement, the effect went away.',
+        a: "Three reasons, all documented rather than speculated. Most of the early trials had significant methodological problems, by the reviewers' own assessment. Publication bias was detected statistically in the pooled estimate, meaning small negative trials appear to be missing. And the outcome that produced the positive result was a self-reported yes-or-no question about sleep quality, which is the measure most sensitive to expectation. As trials adopted objective measurement, the effect went away.",
       },
       {
         q: 'Is it safe?',
@@ -4013,7 +4152,8 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Bent S et al. Valerian for sleep: a systematic review and meta-analysis. Am J Med 2006;119:1005-1012',
+        label:
+          'Bent S et al. Valerian for sleep: a systematic review and meta-analysis. Am J Med 2006;119:1005-1012',
         identifier: '10.1016/j.amjmed.2006.02.026',
         kind: 'doi',
       },
@@ -4032,6 +4172,12 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 6440940 — Valerenic acid',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6440940',
+        kind: 'url',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
     ],

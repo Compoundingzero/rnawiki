@@ -73,7 +73,10 @@ const curationRank = sql`case ${drugs.dossierDepth} when 'flagship' then 0 when 
  * — the naive version of that is a lookup per note, which is fine with three notes and quietly
  * fatal with three hundred.
  */
-export async function getDrugBySlug(slug: string, viewerUserId?: string): Promise<DrugDossier | null> {
+export async function getDrugBySlug(
+  slug: string,
+  viewerUserId?: string,
+): Promise<DrugDossier | null> {
   const rows = await db.select(drugColumns).from(drugs).where(eq(drugs.slug, slug)).limit(1)
   const row = rows[0]
   if (!row) return null
@@ -256,7 +259,6 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
     )
     .limit(capped)
 }
-
 
 // ---------------------------------------------------------------------------
 // Home page

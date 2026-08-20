@@ -75,7 +75,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     slug: 'metformin',
     name: 'Metformin',
     tradeName: 'Glucophage',
-    sponsor: 'Bristol-Myers Squibb (originator); now off-patent and made by hundreds of manufacturers',
+    sponsor:
+      'Bristol-Myers Squibb (originator); now off-patent and made by hundreds of manufacturers',
     targetGene: 'PRKAA1',
     targetProtein:
       'AMP-activated protein kinase catalytic subunit alpha-1, downstream of mitochondrial respiratory complex I',
@@ -97,7 +98,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'Lower fasting and post-meal glucose, and in UKPDS 34 reduce diabetes-related endpoints and all-cause mortality in overweight patients — the one hard-outcome result the drug actually owns.',
     },
     oneSentenceVerdict:
-      'A 1950s biguanide that suppresses the liver\'s own glucose production, and the only glucose-lowering drug with a randomised all-cause mortality reduction in overweight type 2 diabetes — 36% in 753 patients in UKPDS 34, a result that has never been repeated and is routinely stretched into a longevity claim no trial has tested.',
+      "A 1950s biguanide that suppresses the liver's own glucose production, and the only glucose-lowering drug with a randomised all-cause mortality reduction in overweight type 2 diabetes — 36% in 753 patients in UKPDS 34, a result that has never been repeated and is routinely stretched into a longevity claim no trial has tested.",
     laymanHowItWorks:
       'Your liver makes sugar and releases it into the blood between meals. Metformin gets carried into liver cells by a specific transporter, mildly slows one step of their energy production, and the cell reads that dip as a signal that it cannot afford to be manufacturing sugar. Output falls. It does not push insulin out of the pancreas, which is why it does not cause low blood sugar on its own.',
     auditConfidence: 'Rigorous Replicated',
@@ -236,12 +237,13 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'UKPDS 34: 36% lower all-cause mortality in 753 randomised overweight patients',
         laymanSummary:
-          'Over a median of nearly eleven years, overweight patients randomised to metformin had a third fewer deaths from any cause than those managed by diet alone. This is the drug\'s one hard-outcome result and nothing since has repeated it.',
+          "Over a median of nearly eleven years, overweight patients randomised to metformin had a third fewer deaths from any cause than those managed by diet alone. This is the drug's one hard-outcome result and nothing since has repeated it.",
         technicalDetails:
           'Of 1,704 overweight patients with newly diagnosed type 2 diabetes, 753 entered the randomised comparison: intensive control with metformin (n=342) versus conventional policy, primarily diet (n=411), median 10.7 years. Median HbA1c was 7.4% on metformin against 8.0% on conventional therapy. Risk reductions were 32% for any diabetes-related endpoint (95% CI 13 to 47, p=0.002), 42% for diabetes-related death (9 to 63, p=0.017) and 36% for all-cause mortality (9 to 55, p=0.011). Against the other intensive arms, metformin beat chlorpropamide, glibenclamide and insulin for any diabetes-related endpoint (p=0.0034), all-cause mortality (p=0.021) and stroke (p=0.032).',
         evidenceSource: 'UK Prospective Diabetes Study (UKPDS) Group, Lancet 1998;352:854-865',
         doi: '10.1016/S0140-6736(98)07037-8',
-        measuredMetric: 'All-cause mortality and aggregate diabetes-related endpoints at median 10.7 years',
+        measuredMetric:
+          'All-cause mortality and aggregate diabetes-related endpoints at median 10.7 years',
         auditFlag: 'verified',
       },
       {
@@ -296,7 +298,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'Konopka et al. randomised 53 adults with a mean age of 62 to placebo (n=26) or metformin (n=27) during twelve weeks of aerobic exercise training. Training reduced fat mass, HbA1c, fasting insulin, 24-hour mean glucose and glycaemic variability irrespective of treatment. Metformin attenuated the increase in whole-body insulin sensitivity and in VO2 max after training, and abrogated the training-induced rise in skeletal muscle mitochondrial respiration. The change in insulin sensitivity correlated with the change in mitochondrial respiration. Responses were highly variable, with both positive and negative responders in the metformin arm. The authors conclude that more work is needed before metformin is prescribed to slow ageing.',
         evidenceSource: 'Konopka AR et al., Aging Cell 2019;18:e12880',
         doi: '10.1111/acel.12880',
-        measuredMetric: 'Change in VO2 max, whole-body insulin sensitivity and mitochondrial respiration after 12 weeks of training',
+        measuredMetric:
+          'Change in VO2 max, whole-body insulin sensitivity and mitochondrial respiration after 12 weeks of training',
         auditFlag: 'verified',
       },
       {
@@ -309,7 +312,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'De Jager et al. randomised 390 insulin-treated patients with type 2 diabetes to metformin 850 mg three times daily or placebo for 4.3 years. Metformin produced a mean 19% decrease in vitamin B12 (95% CI -24% to -14%, p<0.001) and a 5% decrease in folate. The absolute risk of B12 deficiency below 150 pmol/L was 7.2 percentage points higher on metformin (95% CI 2.3 to 12.1, p=0.004), a number needed to harm of 13.8 over 4.3 years; the risk of a low B12 of 150 to 220 pmol/L was 11.2 points higher (p=0.001). Homocysteine rose 5% (95% CI -1% to 11%, p=0.091).',
         evidenceSource: 'de Jager J et al., BMJ 2010;340:c2181 (NCT00375388)',
         doi: '10.1136/bmj.c2181',
-        measuredMetric: 'Percentage change in serum vitamin B12 and absolute risk of deficiency at 4.3 years',
+        measuredMetric:
+          'Percentage change in serum vitamin B12 and absolute risk of deficiency at 4.3 years',
         auditFlag: 'verified',
       },
       {
@@ -319,7 +323,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Metformin was kept away from patients with heart, kidney and lung disease for decades on the grounds that it caused a dangerous build-up of lactic acid. Pooling 347 studies found not one case, in either arm.',
         technicalDetails:
-          'Salpeter et al. pooled 347 comparative trials and cohort studies in the Cochrane review and found no case of fatal or non-fatal lactic acidosis in 70,490 patient-years of metformin use, nor in 55,451 patient-years of non-metformin comparators. By Poisson statistics the upper bound on the true incidence was 4.3 cases per 100,000 patient-years on metformin and 5.4 on comparators. Blood lactate did not differ, either as a mean level or as change from baseline. The contraindication that produced the original fear belonged to phenformin, a different biguanide withdrawn in the 1970s; the FDA replaced metformin\'s creatinine-based renal contraindication with an eGFR-based one in 2016.',
+          "Salpeter et al. pooled 347 comparative trials and cohort studies in the Cochrane review and found no case of fatal or non-fatal lactic acidosis in 70,490 patient-years of metformin use, nor in 55,451 patient-years of non-metformin comparators. By Poisson statistics the upper bound on the true incidence was 4.3 cases per 100,000 patient-years on metformin and 5.4 on comparators. Blood lactate did not differ, either as a mean level or as change from baseline. The contraindication that produced the original fear belonged to phenformin, a different biguanide withdrawn in the 1970s; the FDA replaced metformin's creatinine-based renal contraindication with an eGFR-based one in 2016.",
         evidenceSource: 'Salpeter SR et al., Cochrane Database Syst Rev 2010;(4):CD002967',
         doi: '10.1002/14651858.CD002967.pub4',
         inferredClaim:
@@ -329,7 +333,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'met-a8',
         category: 'inferred',
-        title: 'Metformin users outliving non-diabetic controls is an observational finding, not a drug effect',
+        title:
+          'Metformin users outliving non-diabetic controls is an observational finding, not a drug effect',
         laymanSummary:
           'A widely quoted UK database study found that people starting metformin lived longer than matched people without diabetes at all. It is not a trial, and who gets prescribed metformin is not random.',
         technicalDetails:
@@ -409,7 +414,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'UKPDS 34 supplementary randomisation (metformin added to sulfonylurea)',
         phase: 'Randomised controlled trial',
         sampleSize: 537,
-        primaryEndpoint: 'Diabetes-related death with metformin added to maximum sulfonylurea therapy',
+        primaryEndpoint:
+          'Diabetes-related death with metformin added to maximum sulfonylurea therapy',
         endpointMet: false,
         statisticalPValue: 'P = 0.039 for a 96% increased risk of diabetes-related death',
         unreportedAdverseSignals:
@@ -537,7 +543,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'American Federation for Aging Research — TAME (Targeting Aging with Metformin) programme page',
+        label:
+          'American Federation for Aging Research — TAME (Targeting Aging with Metformin) programme page',
         identifier: 'https://www.afar.org/tame-trial',
         kind: 'url',
       },
@@ -638,8 +645,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Parenteral electrolyte, genuine emergency drug',
           howItCompares:
             'This is the one setting where magnesium is unambiguously a drug that saves lives, and it is given by infusion under monitoring in an obstetric or coronary care unit. It is not evidence for a capsule. The same programme that established magnesium in eclampsia failed twice in myocardial infarction.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: large, replicated mortality and morbidity benefit in its own indication. Cons: entirely irrelevant to an oral supplement, and routinely cited as though it were not.',
         },
@@ -648,8 +654,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Inorganic magnesium salt',
           howItCompares:
             'Firoz and Graber measured fractional absorption of magnesium oxide at about 4 percent against significantly higher and mutually equivalent absorption from magnesium chloride, lactate and aspartate. That study is the source of most "oxide is poorly absorbed" marketing. It did not test glycinate.',
-          typicalCost:
-            '',
+          typicalCost: 'Medicaid NADAC: magnesium oxide 400 mg at $0.035 a tablet, August 2026',
           prosAndCons:
             'Pros: cheapest form, and its poor absorption is exactly why it works as a laxative. Cons: the 4 percent figure is one small urinary-excretion study in normal volunteers, and it is being used to sell a form it never compared against.',
         },
@@ -671,7 +676,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Magnesium in water is already dissociated and needs no digestion, and in populations drinking hard water it is a non-trivial share of total intake. It is also the reason intake surveys that count only food underestimate what people actually get.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'Azoulay et al. analysed 21 North American municipal supplies: two litres a day of half of them supplied 6 to 31 percent of the magnesium reference intake, and a litre of most moderately mineralised European bottled waters 16 to 41 percent.',
           monthlyCost: '',
         },
       ],
@@ -691,7 +697,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       structureType: 'small_molecule_smiles',
       smilesString: 'C(C(=O)[O-])N.C(C(=O)[O-])N.[Mg+2]',
       chemicalFormula: 'C4H8MgN2O4',
-      molecularWeight: '172.42 g/mol, of which 24.31 g/mol — about 14 percent — is elemental magnesium',
+      molecularWeight:
+        '172.42 g/mol, of which 24.31 g/mol — about 14 percent — is elemental magnesium',
       structureSource: {
         label: 'PubChem CID 84645 — Magnesium glycinate, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
@@ -790,7 +797,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The one human trial comparing magnesium glycinate against the cheap oxide form found no overall difference in absorption. It was run in twelve people who had had part of their intestine removed.',
         technicalDetails:
-          'Schuette, Lashner and Janghorbani ran a double-blind randomised crossover in twelve patients with ileal resections, comparing a 100 mg dose of 26Mg-labelled magnesium diglycinate against 26Mg-labelled magnesium oxide. For the group as a whole, absorption was low and not different between the two forms: 23.5% for the chelate against 22.8% for the oxide. A difference emerged only in the four patients with the worst oxide absorption (23.5% against 11.8%, P < .05). Peak isotope enrichment came earlier after the chelate (mean difference 3.2 +/- 1.3 hours, P < .05) and the area under the enrichment curve was greater. The authors concluded that some portion of the diglycinate is probably absorbed intact by a dipeptide pathway and that it may be a good alternative in patients with intestinal resection — a conclusion about surgical patients that the retail category has generalised to everyone. Separately, Firoz and Graber\'s much-cited bioavailability comparison of US commercial preparations tested oxide, chloride, lactate and aspartate. It did not include glycinate at all.',
+          "Schuette, Lashner and Janghorbani ran a double-blind randomised crossover in twelve patients with ileal resections, comparing a 100 mg dose of 26Mg-labelled magnesium diglycinate against 26Mg-labelled magnesium oxide. For the group as a whole, absorption was low and not different between the two forms: 23.5% for the chelate against 22.8% for the oxide. A difference emerged only in the four patients with the worst oxide absorption (23.5% against 11.8%, P < .05). Peak isotope enrichment came earlier after the chelate (mean difference 3.2 +/- 1.3 hours, P < .05) and the area under the enrichment curve was greater. The authors concluded that some portion of the diglycinate is probably absorbed intact by a dipeptide pathway and that it may be a good alternative in patients with intestinal resection — a conclusion about surgical patients that the retail category has generalised to everyone. Separately, Firoz and Graber's much-cited bioavailability comparison of US commercial preparations tested oxide, chloride, lactate and aspartate. It did not include glycinate at all.",
         evidenceSource:
           'Schuette SA, Lashner BA, Janghorbani M. JPEN J Parenter Enteral Nutr 1994;18:430-435; Firoz M, Graber M. Magnes Res 2001;14:257-262',
         doi: '10.1177/0148607194018005430',
@@ -848,7 +855,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'The deficiency test is weak, which is what makes the category sellable',
         laymanSummary:
-          'The blood test used to call people magnesium-deficient measures less than one percent of the body\'s magnesium, and the normal range it is judged against was never set from health outcomes.',
+          "The blood test used to call people magnesium-deficient measures less than one percent of the body's magnesium, and the normal range it is judged against was never set from health outcomes.",
         technicalDetails:
           'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, which is the honest half of the marketing claim. And no ordinary test can confirm the depletion either, which means a supplement sold against it can never be shown to have been unnecessary.',
         evidenceSource: 'Costello RB et al. Adv Nutr 2016;7:977-993',
@@ -885,7 +892,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Almost no magnesium floats free. Inside cells it is bound to the energy molecule ATP, and it is that complex, not ATP alone, that enzymes actually use.',
         molecularDetail:
-          'The biologically active substrate of most kinases, ATPases and polymerases is Mg-ATP, not ATP. Intracellular free magnesium is held near 0.5 to 1.0 mmol/L against a total cellular content roughly twenty times higher, and the bone reservoir buffers the extracellular pool. This buffering is exactly why serum magnesium moved only 0.05 mmol/L across the 34 trials in Zhang\'s meta-analysis.',
+          "The biologically active substrate of most kinases, ATPases and polymerases is Mg-ATP, not ATP. Intracellular free magnesium is held near 0.5 to 1.0 mmol/L against a total cellular content roughly twenty times higher, and the bone reservoir buffers the extracellular pool. This buffering is exactly why serum magnesium moved only 0.05 mmol/L across the 34 trials in Zhang's meta-analysis.",
         iconName: 'Battery',
         visualStage: 'target_binding',
       },
@@ -927,7 +934,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Cochrane CD009402 — magnesium for skeletal muscle cramps',
         phase: 'Cochrane systematic review of 11 randomised trials',
         sampleSize: 735,
-        primaryEndpoint: 'Percentage change from baseline in number of cramps per week at four weeks',
+        primaryEndpoint:
+          'Percentage change from baseline in number of cramps per week at four weeks',
         endpointMet: false,
         statisticalPValue:
           'MD -9.59% (95% CI -23.14 to 3.97); cramps per week MD -0.18 (95% CI -0.84 to 0.49); 25% responder RR 1.04 (95% CI 0.84 to 1.29), high certainty',
@@ -1020,7 +1028,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How would I know if I am actually deficient?',
-        a: 'You largely would not, and that is the structural problem in this category. Serum magnesium is under one percent of the body\'s magnesium and is buffered by bone, so it falls late and recovers fast, and the reference interval it is judged against was set from population distributions rather than from outcomes. A normal result does not rule out depletion. It also means a supplement sold against invisible depletion can never be shown to have been unnecessary, which is a commercially useful property.',
+        a: "You largely would not, and that is the structural problem in this category. Serum magnesium is under one percent of the body's magnesium and is buffered by bone, so it falls late and recovers fast, and the reference interval it is judged against was set from population distributions rather than from outcomes. A normal result does not rule out depletion. It also means a supplement sold against invisible depletion can never be shown to have been unnecessary, which is a commercially useful property.",
       },
       {
         q: 'Who has a documented reason to take it?',
@@ -1095,6 +1103,18 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
         kind: 'url',
       },
+      {
+        label:
+          'Azoulay A, Garzon P, Eisenberg MJ. Comparison of the mineral content of tap water and bottled waters. J Gen Intern Med 2001;16:168-175',
+        identifier: '10.1111/j.1525-1497.2001.04189.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -1110,13 +1130,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'No single sponsor — an essential trace element sold as several salts by many manufacturers. Zinc acetate is also an FDA-approved prescription drug under NDA 020458.',
     targetGene: 'SLC39A4',
     targetProtein:
-      'ZIP4 (SLC39A4), the apical enterocyte zinc importer whose loss-of-function mutations cause acrodermatitis enteropathica. The counterpart that explains most of zinc\'s harms is metallothionein, a cysteine-rich cytosolic chelator that zinc itself induces in the enterocyte and that binds copper more tightly than zinc, trapping it for excretion in shed cells.',
+      "ZIP4 (SLC39A4), the apical enterocyte zinc importer whose loss-of-function mutations cause acrodermatitis enteropathica. The counterpart that explains most of zinc's harms is metallothionein, a cysteine-rich cytosolic chelator that zinc itself induces in the enterocyte and that binds copper more tightly than zinc, trapping it for excretion in shed cells.",
     modality: 'Nutraceutical / Botanical',
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold over the counter for the common cold, immunity, skin and testosterone. Zinc acetate is separately an FDA-approved prescription drug for maintenance therapy in Wilson disease, and oral zinc is a WHO- and UNICEF-recommended treatment for acute childhood diarrhoea. Those two are genuine, evidenced indications, and neither is why most zinc is bought.',
-    patientFriendlyIndication:
-      'Taken at the first sign of a cold, and daily for immune support',
+    patientFriendlyIndication: 'Taken at the first sign of a cold, and daily for immune support',
     conditionContext: {
       conditionExplainer:
         'The common cold is a self-limiting viral illness that resolves on its own in about a week. Any treatment for it is therefore competing with spontaneous recovery, and any trial has to separate a real shortening from the ordinary variation in how long colds last. This is why the zinc literature is so noisy: the effect being chased is a day or two against a background that already ends by itself.',
@@ -1144,8 +1163,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Copper absorption blocker, FDA-approved under NDA 020458',
           howItCompares:
             'The same salt, prescribed precisely because it induces intestinal metallothionein and stops copper being absorbed. The mechanism regulators approved as the therapeutic action is identical to the mechanism that makes high-dose zinc supplementation dangerous in a person with normal copper handling.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: a clean, approved, mechanistically transparent use. Cons: it is also the clearest possible warning label for the supplement, and it is almost never presented as one.',
         },
@@ -1154,8 +1172,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Public-health mineral supplementation',
           howItCompares:
             'This is the strongest efficacy evidence zinc has anywhere. In children over six months, 33 trials in 10,841 children found diarrhoea shortened by about eleven hours, and in malnourished children by about a day, graded high certainty.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: large, replicated, and in the population where baseline zinc deficiency is common. Cons: in children under six months the same review found no effect, and the trials were run mostly in Asian settings at high risk of deficiency, so it is a repletion result rather than a general antiviral one.',
         },
@@ -1177,7 +1194,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Phytate forms insoluble complexes with zinc in the intestinal lumen, which is why populations eating unleavened high-phytate staples have measurably higher rates of zinc deficiency despite adequate total zinc intake. Soaking, sprouting and leavening degrade phytate and raise absorption.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'The measured quantity here is a ratio rather than a dose. Nsabimana et al. took maize from a phytate-to-zinc molar ratio of 40.8 down to 7.8 by soaking, germinating and fermenting it.',
           monthlyCost: '',
         },
       ],
@@ -1196,7 +1214,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           action:
             'Sustained high-dose zinc induces intestinal metallothionein, which binds copper and carries it out in shed enterocytes. The result is a copper deficiency that presents haematologically or neurologically, often without the zinc being suspected.',
           patientImpact:
-            'Willis et al. reported three cases first recognised on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of them with progressive peripheral neuropathy. Kumar\'s Mayo Clinic series describes a copper deficiency myelopathy with spastic gait and sensory ataxia that mimics vitamin B12 subacute combined degeneration.',
+            "Willis et al. reported three cases first recognised on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of them with progressive peripheral neuropathy. Kumar's Mayo Clinic series describes a copper deficiency myelopathy with spastic gait and sensory ataxia that mimics vitamin B12 subacute combined degeneration.",
           clinicalPrecaution:
             'Copper replacement resolves the anaemia and neutropenia promptly and completely. The neurological damage often does not recover; supplementation mainly prevents further deterioration. AREDS included 2 mg of copper alongside its 80 mg of zinc for exactly this reason.',
         },
@@ -1207,7 +1225,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       smilesString: 'CC(=O)[O-].CC(=O)[O-].[Zn+2]',
       chemicalFormula: 'C4H6O4Zn',
       molecularWeight:
-        '183.5 g/mol for zinc acetate, of which 65.4 g/mol is elemental zinc. The marker salt here is the acetate because it is the form that produced the largest cold-duration effect in Hemila\'s dose-stratified analysis, and the form approved as a prescription drug.',
+        "183.5 g/mol for zinc acetate, of which 65.4 g/mol is elemental zinc. The marker salt here is the acetate because it is the form that produced the largest cold-duration effect in Hemila's dose-stratified analysis, and the form approved as a prescription drug.",
       structureSource: {
         label: 'PubChem CID 11192 — Zinc acetate, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11192',
@@ -1274,7 +1292,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'zn-a1',
         category: 'measured',
-        title: 'Cochrane 2024: about two days off a cold, at low certainty, and nothing for prevention',
+        title:
+          'Cochrane 2024: about two days off a cold, at low certainty, and nothing for prevention',
         laymanSummary:
           'Thirty-four trials in 8,526 people. Taking zinc once a cold has started may shorten it by roughly two days. Taking it to avoid catching one does nothing.',
         technicalDetails:
@@ -1309,7 +1328,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'A multicentre open-label factorial randomised trial at Cleveland Clinic sites in Ohio and Florida enrolled 214 outpatients with PCR-confirmed SARS-CoV-2 between April and October 2020, allocated 1:1:1:1 to ten days of zinc gluconate 50 mg, ascorbic acid 8,000 mg, both, or usual care. The primary endpoint was days to a 50% reduction in a four-symptom severity score. The study was stopped for low conditional power for benefit. Usual care reached 50% symptom reduction at a mean of 6.7 (SD 4.4) days, against 5.9 (4.9) days for zinc, 5.5 (3.7) for ascorbic acid and 5.5 (3.4) for both — overall P = .45, with no significant difference in any secondary outcome. The trial is open-label and was not designed to detect a small effect, but it is the direct randomised test of the exact combination that was being bought by the million during the pandemic.',
         evidenceSource: 'Thomas S et al. JAMA Netw Open 2021;4:e210369',
         doi: '10.1001/jamanetworkopen.2021.0369',
-        measuredMetric: 'Days to 50% reduction in a composite fever, cough, dyspnoea and fatigue score',
+        measuredMetric:
+          'Days to 50% reduction in a composite fever, cough, dyspnoea and fatigue score',
         auditFlag: 'verified',
       },
       {
@@ -1317,7 +1337,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'Intranasal zinc gluconate causes anosmia, and the causation analysis is formal',
         laymanSummary:
-          'A homeopathic zinc nasal gel sold for colds destroyed people\'s sense of smell. In some cases it never came back.',
+          "A homeopathic zinc nasal gel sold for colds destroyed people's sense of smell. In some cases it never came back.",
         technicalDetails:
           'Jafek, Linschoten and Murrow reported a case series of severe hyposmia and anosmia following intranasal zinc gluconate, concluding that zinc ions are toxic to olfactory epithelium and that the loss appeared long-lasting or permanent in some cases, with the mechanism attributed to direct action of the divalent zinc ion on the olfactory receptor cell. Davidson and Smith later applied all nine Bradford Hill criteria — strength, consistency, specificity, temporality, biological gradient, plausibility, coherence, experimental evidence and analogy — to 25 patients presenting to the University of California San Diego Nasal Dysfunction Clinic with acute-onset anosmia after intranasal homeopathic zinc gluconate gel, and concluded that the clinical, biological and experimental data support causation. Their stated conclusion was that increased FDA oversight of homeopathic medications is needed. This is a harm caused by route, not by element: the same zinc in a lozenge does not do this.',
         evidenceSource:
@@ -1333,7 +1353,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'High-dose zinc blocks copper absorption. That is not a rare quirk — it is the reason the FDA approved zinc as a prescription drug for a copper-overload disease. In people without that disease it causes anaemia, low white cells and spinal cord damage.',
         technicalDetails:
-          'Zinc induces metallothionein in the enterocyte; metallothionein binds copper with higher affinity than zinc and holds it until the cell is shed, so copper never reaches the circulation. The FDA approved zinc acetate under NDA 020458 for maintenance therapy in Wilson disease on exactly this mechanism. In people with normal copper handling, Willis et al. reported three cases of zinc-induced copper deficiency first suspected on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of the three with progressive peripheral neuropathy, one of them arising from zinc taken for acrodermatitis enteropathica. Kumar\'s Mayo Clinic review of copper deficiency myelopathy describes a spastic gait with prominent sensory ataxia that mirrors vitamin B12 subacute combined degeneration, lists excess zinc ingestion among the established causes, and records the crucial asymmetry: copper replacement resolves the anaemia and neutropenia promptly and completely, while neurological improvement is often only subjective and mainly prevents further deterioration.',
+          "Zinc induces metallothionein in the enterocyte; metallothionein binds copper with higher affinity than zinc and holds it until the cell is shed, so copper never reaches the circulation. The FDA approved zinc acetate under NDA 020458 for maintenance therapy in Wilson disease on exactly this mechanism. In people with normal copper handling, Willis et al. reported three cases of zinc-induced copper deficiency first suspected on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of the three with progressive peripheral neuropathy, one of them arising from zinc taken for acrodermatitis enteropathica. Kumar's Mayo Clinic review of copper deficiency myelopathy describes a spastic gait with prominent sensory ataxia that mirrors vitamin B12 subacute combined degeneration, lists excess zinc ingestion among the established causes, and records the crucial asymmetry: copper replacement resolves the anaemia and neutropenia promptly and completely, while neurological improvement is often only subjective and mainly prevents further deterioration.",
         evidenceSource:
           'Willis MS et al. Am J Clin Pathol 2005;123:125-131; Kumar N. Mayo Clin Proc 2006;81:1371-1384',
         doi: '10.1309/V6GVYW2QTYD5C5PJ',
@@ -1378,7 +1398,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'A zinc lozenge is not a dose of zinc — it is a dose of whatever free zinc it releases in your mouth. Many common sweeteners and acids grab the zinc and never let go, and a lozenge like that does nothing.',
         molecularDetail:
-          'The proposed antiviral species is free Zn2+ released in the oropharynx. Citric acid, tartaric acid, sorbitol and mannitol chelate zinc and suppress ionic release. Hemila\'s dose stratification is the observable consequence: below 75 mg per day, five trials found nothing at all, while zinc acetate above 75 mg pooled to a 42% duration reduction.',
+          "The proposed antiviral species is free Zn2+ released in the oropharynx. Citric acid, tartaric acid, sorbitol and mannitol chelate zinc and suppress ionic release. Hemila's dose stratification is the observable consequence: below 75 mg per day, five trials found nothing at all, while zinc acetate above 75 mg pooled to a 42% duration reduction.",
         iconName: 'Pill',
         visualStage: 'delivery',
       },
@@ -1418,7 +1438,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Short bursts at cold onset may take a day or two off a cold. Sustained high daily intake quietly strips copper, and the first sign of that is often a blood count or a change in the way someone walks.',
         molecularDetail:
-          'The therapeutic window is defined by time, not just amount. Cochrane found treatment courses of 4.5 to 21 days, over which copper depletion does not develop. Willis\'s three cases and Kumar\'s myelopathy series arose from sustained intake. Anaemia and neutropenia reverse completely on copper replacement; the neurological deficit generally does not.',
+          "The therapeutic window is defined by time, not just amount. Cochrane found treatment courses of 4.5 to 21 days, over which copper depletion does not develop. Willis's three cases and Kumar's myelopathy series arose from sustained intake. Anaemia and neutropenia reverse completely on copper replacement; the neurological deficit generally does not.",
         iconName: 'GitBranch',
         visualStage: 'therapeutic_result',
       },
@@ -1521,7 +1541,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does zinc actually shorten a cold?',
-        a: 'Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila\'s earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.',
+        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.",
         auditNote:
           'Free ionic zinc is the active species, and citric acid, tartaric acid, sorbitol and mannitol in a lozenge chelate it away.',
       },
@@ -1537,7 +1557,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What happened with zinc nasal sprays?',
-        a: 'They destroyed people\'s sense of smell. Jafek and colleagues described a series of severe hyposmia and anosmia after intranasal zinc gluconate and concluded that zinc ions are directly toxic to olfactory epithelium, with loss that was long-lasting or permanent in some cases. Davidson and Smith later ran the full nine Bradford Hill causation criteria over 25 such patients and found causation supported. The products were withdrawn from the US market in 2009. Nothing about that finding applies to a lozenge, and nothing about lozenge evidence excused the nasal product.',
+        a: "They destroyed people's sense of smell. Jafek and colleagues described a series of severe hyposmia and anosmia after intranasal zinc gluconate and concluded that zinc ions are directly toxic to olfactory epithelium, with loss that was long-lasting or permanent in some cases. Davidson and Smith later ran the full nine Bradford Hill causation criteria over 25 such patients and found causation supported. The products were withdrawn from the US market in 2009. Nothing about that finding applies to a lozenge, and nothing about lozenge evidence excused the nasal product.",
       },
       {
         q: 'Is the zinc in my multivitamin doing anything?',
@@ -1566,7 +1586,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Kumar N. Copper deficiency myelopathy (human swayback). Mayo Clin Proc 2006;81:1371-1384',
+        label:
+          'Kumar N. Copper deficiency myelopathy (human swayback). Mayo Clin Proc 2006;81:1371-1384',
         identifier: '10.4065/81.10.1371',
         kind: 'doi',
       },
@@ -1615,6 +1636,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         label: 'PubChem CID 11192 — Zinc acetate',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11192',
         kind: 'url',
+      },
+      {
+        label:
+          'Nsabimana S, Ismail T, Lazarte CE. Enhancing iron and zinc bioavailability in maize through phytate reduction: fermentation alone and combined with soaking and germination. Front Nutr 2024;11:1478155',
+        identifier: '10.3389/fnut.2024.1478155',
+        kind: 'doi',
       },
     ],
   },
@@ -1743,7 +1770,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           phase: 'QC',
           name: 'Chiral purity control of the dioxane side-chain amine',
           description:
-            'Assay the incoming (4R,6R)-configured protected diol amine, the fragment that becomes the drug\'s active dihydroxyheptanoic acid arm, for enantiomeric and diastereomeric purity before it is committed to the ring-forming step. Both stereocentres are the pharmacology: the enantiomer with inverted configuration does not inhibit the enzyme, and once the pyrrole is built the mistake cannot be corrected.',
+            "Assay the incoming (4R,6R)-configured protected diol amine, the fragment that becomes the drug's active dihydroxyheptanoic acid arm, for enantiomeric and diastereomeric purity before it is committed to the ring-forming step. Both stereocentres are the pharmacology: the enantiomer with inverted configuration does not inhibit the enzyme, and once the pyrrole is built the mistake cannot be corrected.",
           reagentsAndBuffer:
             'tert-butyl (4R,6R)-6-(2-aminoethyl)-2,2-dimethyl-1,3-dioxane-4-acetate reference standard, chiral HPLC on an amylose tris(3,5-dimethylphenylcarbamate) column with hexane/isopropanol, Karl Fischer titration for water content',
         },
@@ -2170,7 +2197,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: LIPITOR (atorvastatin calcium), NDA 020702, original approval 17 December 1996',
+        label:
+          'Drugs@FDA: LIPITOR (atorvastatin calcium), NDA 020702, original approval 17 December 1996',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020702',
         kind: 'regulatory',
@@ -2228,8 +2256,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Nutrient replacement for a defined deficiency disease',
           howItCompares:
             'Complete and rapid cure of a disease that is otherwise fatal, established well before controlled trials existed. It is the strongest possible evidence that vitamin C is essential, and it says nothing whatever about the effect of extra vitamin C in someone who is not deficient.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: unambiguous, mechanistically understood, fast. Cons: routinely used as rhetorical cover for claims about replete adults, which is the central error this file exists to name.',
         },
@@ -2238,8 +2265,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Investigational critical-care intervention, now negative',
           howItCompares:
             'Between 2017 and 2022 this went from a widely adopted ICU protocol to a randomised finding of harm. LOVIT found death or persistent organ dysfunction at day 28 in 44.5% on vitamin C against 38.5% on placebo, risk ratio 1.21 (95% CI 1.04 to 1.40, P = 0.01).',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: none demonstrated. Cons: a randomised signal of harm, from a trial designed to look for benefit.',
         },
@@ -2261,7 +2287,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Ascorbate reduces dietary Fe(III) to Fe(II) and forms a soluble chelate that survives the alkaline duodenum, substantially increasing non-haem iron absorption. This is one of the few supplemental vitamin C effects that is mechanistically direct, measurable, and useful in ordinary people.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Teucher et al. put the working amount at a 2 to 1 molar ratio of ascorbate to iron in the same meal, around 20 mg of vitamin C to 3 mg of iron, rising past 4 to 1 where phytate is high.',
           monthlyCost: '',
         },
       ],
@@ -2378,11 +2405,11 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'vitc-a3',
         category: 'conclusion_shift',
-        title: 'Pauling\'s cancer claim, and the two Mayo trials that ended it',
+        title: "Pauling's cancer claim, and the two Mayo trials that ended it",
         laymanSummary:
           'A double Nobel laureate spent decades arguing that high-dose vitamin C treated advanced cancer. Two randomised double-blind trials found no benefit whatsoever.',
         technicalDetails:
-          'Moertel and colleagues at the Mayo Clinic randomised 100 patients with advanced colorectal cancer, none of whom had received any prior cytotoxic drugs — the precise population in which the claim was said to hold — to 10 g of vitamin C daily or placebo, double-blind. There was no advantage over placebo in time from start of treatment to disease progression or in survival, and among patients with measurable disease none had objective improvement. The authors wrote that on the basis of this and their previous randomised study, high-dose vitamin C is not effective against advanced malignant disease regardless of prior chemotherapy. The scientific residue of the episode is instructive: Pauling\'s original supporting data came from a non-randomised comparison against historical controls at a hospital where patients entering the vitamin C group were selected differently. The mechanism was never absurd — ascorbate at millimolar concentration does generate hydrogen peroxide near tumour cells — but that mechanism was tested and did not produce the outcome.',
+          "Moertel and colleagues at the Mayo Clinic randomised 100 patients with advanced colorectal cancer, none of whom had received any prior cytotoxic drugs — the precise population in which the claim was said to hold — to 10 g of vitamin C daily or placebo, double-blind. There was no advantage over placebo in time from start of treatment to disease progression or in survival, and among patients with measurable disease none had objective improvement. The authors wrote that on the basis of this and their previous randomised study, high-dose vitamin C is not effective against advanced malignant disease regardless of prior chemotherapy. The scientific residue of the episode is instructive: Pauling's original supporting data came from a non-randomised comparison against historical controls at a hospital where patients entering the vitamin C group were selected differently. The mechanism was never absurd — ascorbate at millimolar concentration does generate hydrogen peroxide near tumour cells — but that mechanism was tested and did not produce the outcome.",
         evidenceSource: 'Moertel CG et al. N Engl J Med 1985;312:137-141',
         doi: '10.1056/NEJM198501173120301',
         measuredMetric:
@@ -2412,7 +2439,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A single small retrospective study reported that a vitamin C protocol cut sepsis deaths from 40 percent to 8 percent. Intensive care units adopted it worldwide. The randomised trials that followed found nothing, then found harm.',
         technicalDetails:
-          'Marik and colleagues published a retrospective before-after study of 47 treated and 47 historical control patients, reporting hospital mortality of 8.5% against 40.4% (P < .001) and a propensity-adjusted odds ratio for mortality of 0.13 (95% CI 0.04 to 0.48). The design is the weakest one that can produce a number: no randomisation, no blinding, sequential time periods, and a control group assembled from the preceding seven months. Adoption nevertheless outran the evidence by years. CITRIS-ALI then randomised 167 patients with sepsis and ARDS and found no difference in the primary endpoints — modified SOFA score change from baseline to 96 hours differed by -0.10 (95% CI -1.23 to 1.03, P = .86), C-reactive protein P = .33. The VITAMINS trial compared vitamin C, hydrocortisone and thiamine against hydrocortisone alone in septic shock and found no difference in time alive and free of vasopressors. LOVIT then found harm. CHEST published an Editor\'s Note attached to the original 2017 paper in 2023.',
+          "Marik and colleagues published a retrospective before-after study of 47 treated and 47 historical control patients, reporting hospital mortality of 8.5% against 40.4% (P < .001) and a propensity-adjusted odds ratio for mortality of 0.13 (95% CI 0.04 to 0.48). The design is the weakest one that can produce a number: no randomisation, no blinding, sequential time periods, and a control group assembled from the preceding seven months. Adoption nevertheless outran the evidence by years. CITRIS-ALI then randomised 167 patients with sepsis and ARDS and found no difference in the primary endpoints — modified SOFA score change from baseline to 96 hours differed by -0.10 (95% CI -1.23 to 1.03, P = .86), C-reactive protein P = .33. The VITAMINS trial compared vitamin C, hydrocortisone and thiamine against hydrocortisone alone in septic shock and found no difference in time alive and free of vasopressors. LOVIT then found harm. CHEST published an Editor's Note attached to the original 2017 paper in 2023.",
         evidenceSource:
           'Marik PE et al. Chest 2017;151:1229-1238; Fowler AA et al. JAMA 2019;322:1261-1270; Fujii T et al. JAMA 2020;323:423-431',
         doi: '10.1001/jama.2019.11825',
@@ -2425,11 +2452,11 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'vitc-a6',
         category: 'failed',
-        title: 'Physicians\' Health Study II: 14,641 men, eight years, no cardiovascular effect',
+        title: "Physicians' Health Study II: 14,641 men, eight years, no cardiovascular effect",
         laymanSummary:
           'A long randomised trial gave 500 mg of vitamin C a day to nearly fifteen thousand male doctors for eight years. It made no difference to heart attacks, strokes or cardiovascular death.',
         technicalDetails:
-          'The Physicians\' Health Study II randomised 14,641 male physicians aged 50 or older to vitamin C 500 mg daily, vitamin E 400 IU every other day, both, or placebo, in a factorial design with a mean follow-up of eight years. Neither vitamin C nor vitamin E reduced the composite of major cardiovascular events, and neither reduced total mortality. Vitamin E was associated with an increased risk of haemorrhagic stroke. The companion cancer analysis from the same cohort found neither vitamin reduced prostate cancer or total cancer incidence. Eight years of randomised supplementation in a well-nourished population is exactly the design that should have detected an antioxidant benefit if one existed at that dose, and it detected none.',
+          "The Physicians' Health Study II randomised 14,641 male physicians aged 50 or older to vitamin C 500 mg daily, vitamin E 400 IU every other day, both, or placebo, in a factorial design with a mean follow-up of eight years. Neither vitamin C nor vitamin E reduced the composite of major cardiovascular events, and neither reduced total mortality. Vitamin E was associated with an increased risk of haemorrhagic stroke. The companion cancer analysis from the same cohort found neither vitamin reduced prostate cancer or total cancer incidence. Eight years of randomised supplementation in a well-nourished population is exactly the design that should have detected an antioxidant benefit if one existed at that dose, and it detected none.",
         evidenceSource: 'Sesso HD et al. JAMA 2008;300:2123-2133',
         doi: '10.1001/jama.2008.600',
         measuredMetric:
@@ -2490,7 +2517,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'At the enormous concentrations only a drip can produce, vitamin C flips character and starts generating hydrogen peroxide. That was the hoped-for anticancer mechanism, and it is also the most likely reason it hurt septic patients.',
         molecularDetail:
-          'At millimolar extracellular concentration ascorbate reduces catalytically available transition metals, driving Fenton chemistry and generating extracellular hydrogen peroxide. Critically ill patients have elevated free iron and impaired antioxidant defences, which is the condition under which that chemistry does damage rather than good. LOVIT\'s risk ratio of 1.21 for death or persistent organ dysfunction is the clinical form of this step.',
+          "At millimolar extracellular concentration ascorbate reduces catalytically available transition metals, driving Fenton chemistry and generating extracellular hydrogen peroxide. Critically ill patients have elevated free iron and impaired antioxidant defences, which is the condition under which that chemistry does damage rather than good. LOVIT's risk ratio of 1.21 for death or persistent organ dysfunction is the clinical form of this step.",
         iconName: 'Flame',
         visualStage: 'catalytic_action',
       },
@@ -2531,13 +2558,15 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Failed to Replicate',
       },
       {
-        trialId: 'Physicians\' Health Study II — vitamin C and vitamin E in cardiovascular prevention',
+        trialId:
+          "Physicians' Health Study II — vitamin C and vitamin E in cardiovascular prevention",
         phase: 'Randomised double-blind placebo-controlled factorial',
         sampleSize: 14641,
         primaryEndpoint:
           'Composite of nonfatal myocardial infarction, nonfatal stroke and cardiovascular death',
         endpointMet: false,
-        statisticalPValue: 'No significant effect of vitamin C on the composite endpoint over eight years',
+        statisticalPValue:
+          'No significant effect of vitamin C on the composite endpoint over eight years',
         unreportedAdverseSignals:
           'Vitamin E in the same trial was associated with an increased risk of haemorrhagic stroke. The companion analysis found no reduction in prostate or total cancer.',
         independentReplicationStatus: 'Replicated',
@@ -2582,9 +2611,9 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'That because the excess is excreted, more is harmless — the excess is excreted partly as oxalate',
       ],
       whatFailedInitially: [
-        'Pauling\'s cancer programme, which rested on a non-randomised comparison against historical controls',
+        "Pauling's cancer programme, which rested on a non-randomised comparison against historical controls",
         'The Marik sepsis protocol, adopted worldwide from a 47-patient before-after study and then negative in CITRIS-ALI, VITAMINS and LOVIT',
-        'Vitamin C as cardiovascular prevention, null across 14,641 men and eight years in Physicians\' Health Study II',
+        "Vitamin C as cardiovascular prevention, null across 14,641 men and eight years in Physicians' Health Study II",
       ],
       realWorldOutcome: [
         'Vitamin C is unambiguously essential, and scurvy is a real disease that it cures completely and quickly',
@@ -2613,8 +2642,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         q: 'What happened with vitamin C and sepsis?',
         a: 'It is one of the clearest cautionary tales in modern critical care. A 47-patient retrospective before-after study in 2017 reported mortality falling from 40 percent to 8.5 percent, and units around the world adopted the protocol. CITRIS-ALI then randomised 167 patients and found no difference in its primary endpoints. The VITAMINS trial found no difference in time alive and free of vasopressors. Then LOVIT randomised 872 patients and found death or persistent organ dysfunction in 44.5 percent on vitamin C against 38.5 percent on placebo, risk ratio 1.21, P = 0.01. The sequence took five years and went from spectacular benefit to measurable harm.',
-        auditNote:
-          'CHEST attached an Editor\'s Note to the original 2017 paper in 2023.',
+        auditNote: "CHEST attached an Editor's Note to the original 2017 paper in 2023.",
       },
       {
         q: 'Is there any downside to taking a lot?',
@@ -2636,7 +2664,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Sesso HD et al. Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians\' Health Study II randomized controlled trial. JAMA 2008;300:2123-2133',
+          "Sesso HD et al. Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial. JAMA 2008;300:2123-2133",
         identifier: '10.1001/jama.2008.600',
         kind: 'doi',
       },
@@ -2677,7 +2705,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'CHEST Editor\'s Note attached to Marik PE et al. Chest 2017;151:1229-1238',
+        label: "CHEST Editor's Note attached to Marik PE et al. Chest 2017;151:1229-1238",
         identifier: '10.1016/j.chest.2023.04.021',
         kind: 'doi',
       },
@@ -2685,6 +2713,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         label: 'PubChem CID 54670067 — L-Ascorbic acid',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/54670067',
         kind: 'url',
+      },
+      {
+        label:
+          'Teucher B, Olivares M, Cori H. Enhancers of iron absorption: ascorbic acid and other organic acids. Int J Vitam Nutr Res 2004;74:403-419',
+        identifier: '10.1024/0300-9831.74.6.403',
+        kind: 'doi',
       },
     ],
   },
@@ -2706,7 +2740,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     approvalYear: 1988,
     indication:
       'Hypertension in adults and children aged 6 and older; adjunctive therapy for heart failure with reduced ejection fraction; and treatment within 24 hours of acute myocardial infarction in haemodynamically stable patients to improve survival',
-    patientFriendlyIndication: 'High blood pressure, heart failure, and the days after a heart attack',
+    patientFriendlyIndication:
+      'High blood pressure, heart failure, and the days after a heart attack',
     anatomicalSite:
       'Vascular endothelium, principally pulmonary capillary endothelium, plus renal proximal tubule',
     conditionContext: {
@@ -2765,7 +2800,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Dietary sodium reduction',
           activeCompound: 'The absence of sodium chloride',
           biologicalMechanism:
-            'Lowering sodium intake reduces extracellular volume and lowers blood pressure through a different lever than the renin-angiotensin system. It also raises renin, which is one reason its effect and an ACE inhibitor\'s effect are partly additive rather than redundant.',
+            "Lowering sodium intake reduces extracellular volume and lowers blood pressure through a different lever than the renin-angiotensin system. It also raises renin, which is one reason its effect and an ACE inhibitor's effect are partly additive rather than redundant.",
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here. Sodium reduction has randomised trials with blood pressure as the endpoint; this page does not give intake targets.',
@@ -2863,8 +2898,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'Nearly twenty thousand people in Italian coronary care units were randomised, within a day of their heart attack, to six weeks of lisinopril or to no lisinopril. Fewer of the treated group were dead at six weeks.',
         technicalDetails:
           'Between June 1991 and July 1993, 19,394 patients were randomised in 200 Italian coronary care units within 24 hours of symptom onset, in a factorial design of oral lisinopril (5 mg then 10 mg daily for 6 weeks) or open control, crossed with transdermal glyceryl trinitrate or open control. Complete 6-week follow-up was available for 18,895 patients (97.4%). Overall 6-week mortality was 6.7%. Lisinopril reduced overall mortality with an odds ratio of 0.88 (95% CI 0.79 to 0.99) and the combined outcome of mortality plus severe ventricular dysfunction with an odds ratio of 0.90 (0.84 to 0.98). Transdermal nitrate alone showed no independent effect on either (0.94, 0.84 to 1.05; and 0.94, 0.87 to 1.02). The result was obtained against a background of thrombolysis in 72%, aspirin in 84% and beta-blockade in 31%.',
-        evidenceSource:
-          'GISSI-3 investigators, Lancet 1994;343:1115-1122 (PMID 7910229)',
+        evidenceSource: 'GISSI-3 investigators, Lancet 1994;343:1115-1122 (PMID 7910229)',
         doi: '10.1016/S0140-6736(94)90232-1',
         measuredMetric: 'All-cause mortality at 6 weeks after acute myocardial infarction',
         auditFlag: 'verified',
@@ -2872,13 +2906,13 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'lis-a2',
         category: 'failed',
-        title: 'ALLHAT: lisinopril lost to a cheap diuretic on stroke, heart failure and combined disease',
+        title:
+          'ALLHAT: lisinopril lost to a cheap diuretic on stroke, heart failure and combined disease',
         laymanSummary:
           'The largest hypertension trial ever run compared lisinopril with a thiazide-type diuretic in more than 24,000 people. On the main endpoint they tied. On three secondary endpoints the diuretic won.',
         technicalDetails:
           'ALLHAT randomised 33,357 hypertensive participants aged 55 or older with at least one other coronary risk factor to chlorthalidone 12.5-25 mg (n=15,255), amlodipine 2.5-10 mg (n=9,048) or lisinopril 10-40 mg (n=9,054), mean follow-up 4.9 years. The primary endpoint of fatal coronary heart disease plus non-fatal myocardial infarction did not differ: 6-year rates 11.5% on chlorthalidone against 11.4% on lisinopril, relative risk 0.99 (95% CI 0.91 to 1.08). All-cause mortality did not differ either. But lisinopril had higher 6-year rates of combined cardiovascular disease (33.3% against 30.9%; RR 1.10, 1.05 to 1.16), stroke (6.3% against 5.6%; RR 1.15, 1.02 to 1.30) and heart failure (8.7% against 7.7%; RR 1.19, 1.07 to 1.31). Five-year systolic blood pressure was 2 mm Hg higher on lisinopril (p<0.001). The investigators concluded that thiazide-type diuretics should be preferred for first-step therapy.',
-        evidenceSource:
-          'ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997 (NCT00000542)',
+        evidenceSource: 'ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997 (NCT00000542)',
         doi: '10.1001/jama.288.23.2981',
         measuredMetric:
           'Six-year rates of stroke, heart failure and combined cardiovascular disease, lisinopril versus chlorthalidone',
@@ -2915,7 +2949,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'lis-a5',
         category: 'inferred',
-        title: 'ATLAS is routinely cited as showing high doses save lives. Its mortality result was p=0.128',
+        title:
+          'ATLAS is routinely cited as showing high doses save lives. Its mortality result was p=0.128',
         laymanSummary:
           'Guidelines say to push ACE inhibitor doses toward the target used in trials. The trial that tested exactly that found a mortality difference that could have been chance.',
         technicalDetails:
@@ -2929,7 +2964,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'lis-a6',
         category: 'measured',
-        title: 'The cough is bradykinin, it is common, and switching within the class does not help',
+        title:
+          'The cough is bradykinin, it is common, and switching within the class does not help',
         laymanSummary:
           'Between one in twenty and one in five people on this class develop a persistent dry cough. It comes back if you try a different drug of the same class, because the cause is the shared mechanism.',
         technicalDetails:
@@ -3022,7 +3058,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'ATLAS',
         phase: 'Randomised double-blind dose-comparison trial, 39 to 58 months',
         sampleSize: 3164,
-        primaryEndpoint: 'All-cause mortality, high-dose versus low-dose lisinopril in heart failure',
+        primaryEndpoint:
+          'All-cause mortality, high-dose versus low-dose lisinopril in heart failure',
         endpointMet: false,
         statisticalPValue: '8% lower risk of death, P = 0.128 — not statistically significant',
         unreportedAdverseSignals:
@@ -3119,8 +3156,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label:
-          'Drugs@FDA: ZESTRIL (lisinopril), NDA 019777, original approval 19 May 1988',
+        label: 'Drugs@FDA: ZESTRIL (lisinopril), NDA 019777, original approval 19 May 1988',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019777',
         kind: 'regulatory',
@@ -3196,7 +3232,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Atenolol plus a thiazide',
           class: 'Beta blocker with diuretic — the comparator regimen in ASCOT-BPLA',
           howItCompares:
-            'Lost to the amlodipine-based regimen on stroke (422 against 327 events; HR 0.77, p=0.0003), on total cardiovascular events (1,602 against 1,362; HR 0.84, p<0.0001), on all-cause mortality (820 against 738; HR 0.89, p=0.025) and on new-onset diabetes (799 against 567; HR 0.70, p<0.0001) in 19,257 patients — but not on the trial\'s designated primary endpoint.',
+            "Lost to the amlodipine-based regimen on stroke (422 against 327 events; HR 0.77, p=0.0003), on total cardiovascular events (1,602 against 1,362; HR 0.84, p<0.0001), on all-cause mortality (820 against 738; HR 0.89, p=0.025) and on new-onset diabetes (799 against 567; HR 0.70, p<0.0001) in 19,257 patients — but not on the trial's designated primary endpoint.",
           typicalCost: 'Both components are low-cost generics',
           prosAndCons:
             'Pros: beta blockade has independent indications after myocardial infarction and in heart failure. Cons: as a first-line hypertension strategy it lost on four separate measured endpoints in ASCOT-BPLA.',
@@ -3337,7 +3373,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'aml-a3',
         category: 'conclusion_shift',
-        title: 'PRAISE promised a 46% mortality reduction; PRAISE-2 delivered a hazard ratio of 1.09',
+        title:
+          'PRAISE promised a 46% mortality reduction; PRAISE-2 delivered a hazard ratio of 1.09',
         laymanSummary:
           'In a heart failure trial, a subgroup of patients whose disease was not caused by blocked arteries appeared to have their risk of death nearly halved. A second trial was run in exactly that subgroup. It found nothing at all.',
         technicalDetails:
@@ -3357,8 +3394,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'In the largest hypertension trial ever run, amlodipine matched the diuretic on heart attacks and on death, but produced substantially more heart failure over six years.',
         technicalDetails:
           'ALLHAT randomised 9,048 participants to amlodipine 2.5-10 mg against 15,255 to chlorthalidone 12.5-25 mg, mean follow-up 4.9 years. The primary endpoint of fatal coronary heart disease plus non-fatal myocardial infarction did not differ: 6-year rates 11.3% against 11.5%, relative risk 0.98 (95% CI 0.90 to 1.07). All-cause mortality did not differ. Secondary outcomes were similar except for heart failure, where the 6-year rate was 10.2% on amlodipine against 7.7% on chlorthalidone: relative risk 1.38 (1.25 to 1.52). Five-year systolic blood pressure was 0.8 mm Hg higher on amlodipine (p=0.03), a difference far too small to account for the heart failure gap.',
-        evidenceSource:
-          'ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997 (NCT00000542)',
+        evidenceSource: 'ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997 (NCT00000542)',
         doi: '10.1001/jama.288.23.2981',
         measuredMetric: 'Six-year rate of heart failure, amlodipine versus chlorthalidone',
         auditFlag: 'verified',
@@ -3366,7 +3402,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'aml-a5',
         category: 'measured',
-        title: 'CAMELOT: fewer events in coronary disease at a blood pressure already called normal',
+        title:
+          'CAMELOT: fewer events in coronary disease at a blood pressure already called normal',
         laymanSummary:
           'Two thousand people with narrowed coronary arteries and blood pressure in the normal range were given amlodipine, an ACE inhibitor or placebo for two years. Amlodipine reduced cardiovascular events. The ACE inhibitor did not, significantly.',
         technicalDetails:
@@ -3601,7 +3638,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: NORVASC (amlodipine besylate), NDA 019787, original approval 31 July 1992',
+        label:
+          'Drugs@FDA: NORVASC (amlodipine besylate), NDA 019787, original approval 31 July 1992',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019787',
         kind: 'regulatory',
@@ -3631,7 +3669,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     modality: 'Nutraceutical / Botanical',
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
-      'Sold over the counter in the US for insomnia, jet lag and children\'s sleep. In the European Union the same molecule requires a prescription, and prolonged-release melatonin is authorised only as short-term monotherapy for primary insomnia in patients aged 55 or over. The regulatory gap between the two jurisdictions is the largest for any substance in this file.',
+      "Sold over the counter in the US for insomnia, jet lag and children's sleep. In the European Union the same molecule requires a prescription, and prolonged-release melatonin is authorised only as short-term monotherapy for primary insomnia in patients aged 55 or over. The regulatory gap between the two jurisdictions is the largest for any substance in this file.",
     patientFriendlyIndication: 'Taken to fall asleep faster, and to reset the clock after flying',
     conditionContext: {
       conditionExplainer:
@@ -3660,8 +3698,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Melatonin receptor agonist, authorised medicine',
           howItCompares:
             'The regulated version of the same molecule, assessed by the EMA and authorised in 2007 for short-term monotherapy in primary insomnia in patients aged 55 or over. Across three trials in 681 patients, 32% on Circadin (86 of 265) reported significant symptom improvement at three weeks against 19% on placebo (51 of 272).',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: known content, known release profile, a defined indication and an age restriction. Cons: a 13-percentage-point responder difference is modest, and the authorisation is deliberately narrow in a way the US supplement market simply is not.',
         },
@@ -3669,9 +3706,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Cognitive behavioural therapy for insomnia (CBT-I)',
           class: 'Behavioural therapy, first-line in guidelines',
           howItCompares:
-            'Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin\'s and, unlike melatonin, persist after treatment stops.',
-          typicalCost:
-            '',
+            "Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin's and, unlike melatonin, persist after treatment stops.",
+          typicalCost: '',
           prosAndCons:
             'Pros: durable, no pharmacology, no content-variability problem. Cons: requires weeks of effort and access to a clinician or a structured programme, which is why a gummy wins on convenience every time.',
         },
@@ -3681,7 +3717,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Darkness in the two hours before bed',
           activeCompound: 'Endogenous melatonin, released when retinal light input falls',
           biologicalMechanism:
-            'Melanopsin-containing retinal ganglion cells signal light directly to the suprachiasmatic nucleus, which suppresses pineal melatonin release. Short-wavelength light in the evening is the most potent suppressor. Removing that light restores the body\'s own signal at the correct time and correct amplitude, which no tablet can reproduce.',
+            "Melanopsin-containing retinal ganglion cells signal light directly to the suprachiasmatic nucleus, which suppresses pineal melatonin release. Short-wavelength light in the evening is the most potent suppressor. Removing that light restores the body's own signal at the correct time and correct amplitude, which no tablet can reproduce.",
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. The mechanistic point is that this is the same signal the supplement imitates, delivered by the system that knows the right dose.',
@@ -3693,7 +3729,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Light in the early biological morning advances circadian phase, which is the intervention that pairs with evening melatonin for delayed sleep-wake phase disorder. The phase-response curves for light and for melatonin run in roughly opposite directions, which is why the two are used together and why timing errors make either one useless or counterproductive.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Rosenthal et al. treated delayed sleep phase syndrome with two hours of bright light in the morning alongside evening light restriction, and measured the advance in core temperature and sleep latency.',
           monthlyCost: '',
         },
       ],
@@ -3814,7 +3851,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         category: 'conclusion_shift',
         title: 'The physiological dose worked; the pharmacological dose worked and overshot',
         laymanSummary:
-          'A dose-ranging study found that a small dose matching the body\'s own night-time level restored sleep efficiency. A ten-times-larger dose also worked, but dropped body temperature and left melatonin circulating into the next day.',
+          "A dose-ranging study found that a small dose matching the body's own night-time level restored sleep efficiency. A ten-times-larger dose also worked, but dropped body temperature and left melatonin circulating into the next day.",
         technicalDetails:
           'Zhdanova and colleagues ran a double-blind placebo-controlled crossover in 30 subjects over 50 — 15 with actigraphically confirmed reduced sleep efficiency and 15 normal sleepers — giving placebo and 0.1, 0.3 and 3.0 mg melatonin 30 minutes before bed for a week each, with polysomnography on the last three nights of each period. The physiological dose of 0.3 mg restored sleep efficiency (P < 0.0001), acting principally in the middle third of the night, and raised plasma melatonin to the normal nocturnal range (P < 0.0008). The pharmacological 3.0 mg dose also improved sleep, but induced hypothermia and caused plasma melatonin to remain elevated into the daylight hours. The 0.1 mg dose also improved sleep. Crucially, control subjects with equally low melatonin levels showed no sleep effect at any dose. Retail products in the US are commonly sold at 3, 5 and 10 mg, which is ten to thirty times the dose that this study showed sufficed, and the surplus does not simply vanish: it keeps signalling night into the following morning, which is the opposite of what a circadian intervention should do.',
         evidenceSource: 'Zhdanova IV et al. J Clin Endocrinol Metab 2001;86:4727-4730',
@@ -3875,7 +3912,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 1,
         title: 'Darkness starts the signal, and light stops it',
         laymanDesc:
-          'Special cells in the retina report ambient light straight to the body\'s master clock. When light falls, the clock releases the brake on the pineal gland and melatonin rises.',
+          "Special cells in the retina report ambient light straight to the body's master clock. When light falls, the clock releases the brake on the pineal gland and melatonin rises.",
         molecularDetail:
           'Melanopsin-expressing intrinsically photosensitive retinal ganglion cells project through the retinohypothalamic tract to the suprachiasmatic nucleus, which controls pineal melatonin synthesis through a multisynaptic pathway ending in sympathetic input to the pineal. Evening short-wavelength light suppresses release. Dim-light melatonin onset, measured under sub-10-lux conditions, is the reference standard for circadian phase precisely because it is the least contaminated marker available.',
         iconName: 'Moon',
@@ -3895,7 +3932,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'It binds two receptors on the clock itself',
         laymanDesc:
-          'Melatonin docks onto two specific receptors concentrated in the small cluster of cells that runs the body\'s daily timing. One quietens those cells; the other moves the clock.',
+          "Melatonin docks onto two specific receptors concentrated in the small cluster of cells that runs the body's daily timing. One quietens those cells; the other moves the clock.",
         molecularDetail:
           'MT1 (MTNR1A) and MT2 (MTNR1B) are Gi-coupled receptors densely expressed in the suprachiasmatic nucleus. MT1 activation acutely suppresses SCN neuronal firing; MT2 mediates phase shifts. Both inhibit adenylyl cyclase and lower cAMP. MT2 internalises and desensitises under sustained agonist exposure, which is why a large dose held high for many hours is not a scaled-up version of the physiological pulse.',
         iconName: 'Target',
@@ -4094,6 +4131,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/896',
         kind: 'url',
       },
+      {
+        label:
+          'Rosenthal NE et al. Phase-shifting effects of bright morning light as treatment for delayed sleep phase syndrome. Sleep 1990;13:354-361',
+        identifier: '10.1093/sleep/13.4.354',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -4151,8 +4194,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Dihydropyridine calcium channel blocker',
           howItCompares:
             'Comparable blood pressure reduction by an unrelated mechanism, with no potassium effect, no creatinine rise and no pregnancy contraindication of the same kind. It causes ankle oedema, which losartan does not.',
-          typicalCost:
-            'Among the lowest-cost entries in the CMS NADAC file, a few cents a tablet',
+          typicalCost: 'Among the lowest-cost entries in the CMS NADAC file, a few cents a tablet',
           prosAndCons:
             'Pros: no metabolic or renal monitoring burden. Cons: dose-dependent oedema, and 38% more heart failure than a diuretic in ALLHAT.',
         },
@@ -4231,7 +4273,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           phase: 'Purification',
           name: 'Trityl removal and potassium salt crystallisation',
           description:
-            'Cleave the trityl group under aqueous acid, filter off the triphenylmethanol by-product, then form and crystallise the potassium salt. The potassium counter-ion is part of the product identity and part of the clinical picture: it is a small potassium load on a drug that also reduces the kidney\'s ability to excrete potassium.',
+            "Cleave the trityl group under aqueous acid, filter off the triphenylmethanol by-product, then form and crystallise the potassium salt. The potassium counter-ion is part of the product identity and part of the clinical picture: it is a small potassium load on a drug that also reduces the kidney's ability to excrete potassium.",
           dependsOnStepId: 'los-w2',
           reagentsAndBuffer:
             'Hydrochloric acid in aqueous methanol or tetrahydrofuran for detritylation, potassium hydroxide or potassium tert-butoxide for salt formation, isopropanol/cyclohexane recrystallisation, reversed-phase HPLC against the N2-regioisomer and the deschloro impurity',
@@ -4278,7 +4320,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'los-a2',
         category: 'inferred',
-        title: 'The LIFE composite was carried by stroke alone, and myocardial infarction went the other way',
+        title:
+          'The LIFE composite was carried by stroke alone, and myocardial infarction went the other way',
         laymanSummary:
           'Break the winning composite into its three parts and only one of them moved. Strokes fell by a quarter. Cardiovascular deaths did not change significantly. Heart attacks were slightly more common on losartan.',
         technicalDetails:
@@ -4328,7 +4371,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'OPTIMAAL recruited 5,477 patients aged 50 or older with confirmed acute myocardial infarction plus heart failure in the acute phase, or a new anterior Q-wave infarction or reinfarction, from 329 centres in seven European countries, randomised to losartan 50 mg once daily or captopril 50 mg three times daily as tolerated. Over a mean 2.7 years there were 946 deaths: 499 (18%) on losartan against 447 (16%) on captopril, relative risk 1.13 (95% CI 0.99 to 1.28), p=0.07. Sudden cardiac death or resuscitated arrest was 239 (9%) against 203 (7%), 1.19 (0.98 to 1.43), p=0.07. Reinfarction and all-cause hospital admission did not differ. Losartan was significantly better tolerated, with 458 (17%) against 624 (23%) discontinuing (p<0.0001). The stated interpretation is that ACE inhibitors should remain first-choice treatment and losartan cannot be generally recommended in this population.',
         evidenceSource: 'Dickstein K et al., OPTIMAAL, Lancet 2002;360:752-760',
         doi: '10.1016/S0140-6736(02)09895-1',
-        measuredMetric: 'All-cause mortality over a mean 2.7 years after acute myocardial infarction',
+        measuredMetric:
+          'All-cause mortality over a mean 2.7 years after acute myocardial infarction',
         auditFlag: 'verified',
       },
       {
@@ -4336,7 +4380,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The uric acid explanation for LIFE is a post-hoc mediation analysis',
         laymanSummary:
-          'Losartan is the only drug in its class that lowers uric acid. A later analysis suggested that effect explained about 29% of the trial\'s benefit. That analysis was done after the fact, on a variable nobody was randomised to.',
+          "Losartan is the only drug in its class that lowers uric acid. A later analysis suggested that effect explained about 29% of the trial's benefit. That analysis was done after the fact, on a variable nobody was randomised to.",
         technicalDetails:
           'A LIFE substudy examined serum uric acid across 4.8 years. Baseline uric acid was associated with cardiovascular events, hazard ratio 1.024 (95% CI 1.017 to 1.032) per 10 micromol/L. The rise in uric acid over the trial was attenuated by losartan relative to atenolol, and the analysis reports this as "appearing to explain 29% of the treatment effect on the primary composite end point", with a stronger association in women than men. The uricosuric effect is real and mechanistically specific — losartan inhibits the renal urate transporter URAT1, which the other angiotensin receptor blockers do not. But attributing a share of a randomised treatment effect to a post-randomisation biomarker requires assumptions that the trial design cannot test, and the figure is an estimate from a regression model rather than a measured contribution.',
         evidenceSource: 'Høieggen A et al., LIFE uric acid substudy, Kidney Int 2004;65:1041-1049',
@@ -4369,7 +4413,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         step: 3,
-        title: 'The tetrazole ring anchors it in the hormone\'s docking pocket',
+        title: "The tetrazole ring anchors it in the hormone's docking pocket",
         laymanDesc:
           'A ring of nitrogen atoms in the drug mimics the acidic end of the natural hormone closely enough to occupy the same slot, and once the liver has modified the molecule it holds on hard enough that the hormone cannot push it out.',
         molecularDetail:
@@ -4429,7 +4473,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         sampleSize: 3152,
         primaryEndpoint: 'All-cause mortality, losartan versus captopril, in elderly heart failure',
         endpointMet: false,
-        statisticalPValue: 'HR 1.13 (95.7% CI 0.95-1.35), P = 0.16 — numerically favouring captopril',
+        statisticalPValue:
+          'HR 1.13 (95.7% CI 0.95-1.35), P = 0.16 — numerically favouring captopril',
         unreportedAdverseSignals:
           'Sudden death or resuscitated arrest was also numerically higher on losartan (HR 1.25, p=0.08). Losartan was clearly better tolerated (9.7% against 14.7% discontinuation).',
         independentReplicationStatus: 'Failed to Replicate',
@@ -4539,7 +4584,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: COZAAR (losartan potassium), NDA 020386, original approval 14 April 1995',
+        label:
+          'Drugs@FDA: COZAAR (losartan potassium), NDA 020386, original approval 14 April 1995',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020386',
         kind: 'regulatory',
@@ -4570,7 +4616,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold as a dietary supplement and as an ingredient in coffee, tea, energy drinks and pre-workout formulas, for alertness and exercise performance. Caffeine citrate is separately an approved prescription drug under NDA 020793 for apnea of prematurity in very-low-birth-weight infants, where it reduced bronchopulmonary dysplasia and, at 18 months, death or neurodevelopmental disability.',
-    patientFriendlyIndication: 'Taken for alertness, and before training or competition for performance',
+    patientFriendlyIndication:
+      'Taken for alertness, and before training or competition for performance',
     conditionContext: {
       conditionExplainer:
         'Adenosine accumulates in the brain across a waking day and, by acting on its receptors, is one of the signals that produces the feeling of sleepiness. Caffeine occupies those receptors without activating them. It does not add energy; it blocks the message that you are tired, and the adenosine keeps accumulating underneath.',
@@ -4598,8 +4645,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Methylxanthine respiratory stimulant, FDA-approved under NDA 020793',
           howItCompares:
             'The same molecule as a licensed drug, given to very-low-birth-weight infants. In the 2,006-infant CAP trial it reduced bronchopulmonary dysplasia and, at 18 to 21 months corrected age, reduced death or neurodevelopmental disability from 46.2% to 40.2% and cerebral palsy from 7.3% to 4.4%.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: a genuine randomised benefit on hard neurological outcomes in a real disease, from a substance most people meet as a beverage. Cons: it tells you nothing about the coffee you drank this morning, and it is regularly cited as if it did.',
         },
@@ -4608,8 +4654,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'The mechanism-matching comparator',
           howItCompares:
             'Sleep clears accumulated adenosine; caffeine occupies the receptor while the adenosine keeps accumulating. That difference is why caffeine reliably improves performance on a rested athlete and cannot substitute for sleep across days. It is also why 400 mg six hours before bed measurably reduces total sleep time.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: removes the underlying signal rather than blocking it, with no tolerance and no withdrawal. Cons: cannot be bought, which is precisely why the caffeine market exists.',
         },
@@ -4617,12 +4662,13 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       naturalFoods: [
         {
           name: 'Coffee',
-          activeCompound: 'Caffeine, plus chlorogenic acids and diterpenes that anhydrous caffeine lacks',
+          activeCompound:
+            'Caffeine, plus chlorogenic acids and diterpenes that anhydrous caffeine lacks',
           biologicalMechanism:
             'The caffeine in coffee and the caffeine in a capsule are the same molecule acting at the same receptors, and coffee has been used successfully in ergogenic trials. The differences are dose precision and the accompanying compounds: unfiltered coffee carries cafestol and kahweol, which raise LDL cholesterol, and filtered coffee does not.',
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
-            'Not stated here as advice. For scale only: Goncalves\'s time-trial study used 6 mg per kilogram of body mass, and Drake\'s sleep study used a fixed 400 mg.',
+            "Not stated here as advice. For scale only: Goncalves's time-trial study used 6 mg per kilogram of body mass, and Drake's sleep study used a fixed 400 mg.",
           monthlyCost: '',
         },
         {
@@ -4631,7 +4677,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tea delivers less caffeine per serving alongside L-theanine, an amino acid that crosses the blood-brain barrier and is frequently combined with caffeine in supplement products on the claim that it smooths the stimulant effect. The receptor pharmacology of the caffeine is unchanged.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Chin et al. assayed 20 commercial teas and found 14 to 61 mg of caffeine per 6 or 8 ounce serving, with steep time mattering more than variety. Decaffeinated teas held under 12 mg.',
           monthlyCost: '',
         },
       ],
@@ -4718,7 +4765,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Time-trial performance with perceived exertion and a sleep readout',
           description:
-            'Report the performance outcome, the perceived-exertion outcome and the subsequent night\'s sleep from the same subjects. Doherty and Smith showed that exertion ratings account for roughly 29% of the variance in performance improvement, and Drake showed that a moderate dose six hours before bed disrupts sleep. A trial that reports only the time trial is reporting a third of the effect.',
+            "Report the performance outcome, the perceived-exertion outcome and the subsequent night's sleep from the same subjects. Doherty and Smith showed that exertion ratings account for roughly 29% of the variance in performance improvement, and Drake showed that a moderate dose six hours before bed disrupts sleep. A trial that reports only the time trial is reporting a third of the effect.",
           dependsOnStepId: 'caf-w4',
           reagentsAndBuffer:
             'Cycle ergometer simulated time trial with a validated protocol; Borg 6-20 rating of perceived exertion at fixed intervals; capillary blood lactate; matched placebo capsule plus a no-supplement control arm to detect placebo response; validated portable sleep monitor for the following night',
@@ -4772,11 +4819,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'caf-a4',
         category: 'inferred',
-        title: 'Half of habitual users get a withdrawal headache, from doses as low as 100 mg a day',
+        title:
+          'Half of habitual users get a withdrawal headache, from doses as low as 100 mg a day',
         laymanSummary:
           'Caffeine withdrawal is a real, validated syndrome with ten confirmed symptoms. Half of people get a headache, and it can be triggered by a daily habit as small as one cup.',
         technicalDetails:
-          'Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user\'s morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.',
+          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
         evidenceSource: 'Juliano LM, Griffiths RR. Psychopharmacology (Berl) 2004;176:1-29',
         doi: '10.1007/s00213-004-2000-x',
         measuredMetric:
@@ -4792,7 +4840,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'For years athletes were told to abstain from caffeine before competition so it would work better. A controlled study across low, moderate and heavy habitual users found their daily intake made no difference to the benefit.',
         technicalDetails:
-          'Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher\'s exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.',
+          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.",
         evidenceSource: 'Goncalves LS et al. J Appl Physiol (1985) 2017;123:213-220',
         doi: '10.1152/japplphysiol.00260.2017',
         measuredMetric:
@@ -4921,9 +4969,11 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Goncalves 2017 — habitual caffeine intake and the acute ergogenic response',
-        phase: 'Double-blind randomised crossover, counterbalanced, with a no-supplement control arm',
+        phase:
+          'Double-blind randomised crossover, counterbalanced, with a no-supplement control arm',
         sampleSize: 40,
-        primaryEndpoint: 'Simulated cycling time-trial completion time stratified by habitual intake',
+        primaryEndpoint:
+          'Simulated cycling time-trial completion time stratified by habitual intake',
         endpointMet: true,
         statisticalPValue:
           'Caffeine 29.92 min versus placebo 30.81 and control 31.14, P = 0.0002; habitual intake as covariate P = 0.47; between-tertile difference P = 0.75',
@@ -4937,7 +4987,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         sampleSize: 12,
         primaryEndpoint: 'Self-reported and objectively monitored sleep disturbance',
         endpointMet: true,
-        statisticalPValue: 'Significant sleep disturbance at all three timings versus placebo, P < 0.05',
+        statisticalPValue:
+          'Significant sleep disturbance at all three timings versus placebo, P < 0.05',
         unreportedAdverseSignals:
           'A small sample, but the six-hour finding is the empirical basis of the standard sleep-hygiene recommendation and had not previously been tested directly in the home environment.',
         independentReplicationStatus: 'Partially Replicated',
@@ -4987,7 +5038,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is the morning coffee doing anything, or just fixing withdrawal?',
-        a: 'Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user\'s pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.',
+        a: "Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user's pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.",
       },
       {
         q: 'How late is too late?',
@@ -5064,6 +5115,11 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         label: 'PubChem CID 2519 — Caffeine',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2519',
         kind: 'url',
+      },
+      {
+        label: 'Chin JM et al. Caffeine content of brewed teas. J Anal Toxicol 2008;32:702-704',
+        identifier: '10.1093/jat/32.8.702',
+        kind: 'doi',
       },
     ],
   },
@@ -5257,7 +5313,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'For decades everyone leaving hospital after a heart attack went home on a beta blocker. In 2024 a trial of five thousand patients with normal pumping function found it made no difference to death or reinfarction.',
         technicalDetails:
           'REDUCE-AMI randomised 5,020 patients at 45 centres in Sweden, Estonia and New Zealand who had an acute myocardial infarction, had undergone coronary angiography and had a left ventricular ejection fraction of at least 50%, to long-term beta blocker (metoprolol or bisoprolol) or no beta blocker, open-label. Median follow-up was 3.5 years. The primary composite of death from any cause or new myocardial infarction occurred in 199 of 2,508 (7.9%) on beta blocker and 208 of 2,512 (8.3%) without: hazard ratio 0.96 (95% CI 0.79 to 1.16), p=0.64. No secondary endpoint favoured treatment either: death from any cause 3.9% against 4.1%, cardiovascular death 1.5% against 1.3%, myocardial infarction 4.5% against 4.7%, hospitalisation for atrial fibrillation 1.1% against 1.4%, hospitalisation for heart failure 0.8% against 0.9%. The evidence the practice rested on came from trials conducted before biomarker-based diagnosis, percutaneous intervention, high-intensity statins and renin-angiotensin blockade were standard.',
-        evidenceSource: 'Yndigegn T et al., REDUCE-AMI, N Engl J Med 2024;390:1372-1381 (NCT03278509)',
+        evidenceSource:
+          'Yndigegn T et al., REDUCE-AMI, N Engl J Med 2024;390:1372-1381 (NCT03278509)',
         doi: '10.1056/NEJMoa2401479',
         measuredMetric:
           'Composite of death from any cause or new myocardial infarction over a median 3.5 years',
@@ -5285,8 +5342,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'The largest trial of early beta blockade in acute heart attack found fewer reinfarctions and fewer dangerous rhythms, and exactly as many extra cases of circulatory collapse. Neither of the two main endpoints was reduced.',
         technicalDetails:
           'COMMIT/CCS-2 randomised 45,852 patients admitted within 24 hours of suspected acute myocardial infarction across 1,250 hospitals to metoprolol (up to 15 mg intravenous then 200 mg oral daily; n=22,929) or matching placebo (n=22,923), continued for up to 4 weeks. Neither co-primary outcome was significantly reduced: death, reinfarction or cardiac arrest occurred in 2,166 (9.4%) against 2,261 (9.9%), odds ratio 0.96 (95% CI 0.90 to 1.01), p=0.1; death alone in 1,774 (7.7%) against 1,797 (7.8%), 0.99 (0.92 to 1.05), p=0.69. Metoprolol produced 5 fewer reinfarctions per 1,000 treated (2.0% against 2.5%, p=0.001) and 5 fewer ventricular fibrillations per 1,000 (2.5% against 3.0%, p=0.001), counterbalanced by 11 more cases of cardiogenic shock per 1,000 (5.0% against 3.9%, odds ratio 1.30, 1.19 to 1.41, p<0.00001). The shock excess fell in days 0 to 1; the benefits emerged gradually afterwards. Net effect was significantly adverse on days 0 to 1 and significantly beneficial thereafter.',
-        evidenceSource:
-          'COMMIT collaborative group, Lancet 2005;366:1622-1632 (NCT00222573)',
+        evidenceSource: 'COMMIT collaborative group, Lancet 2005;366:1622-1632 (NCT00222573)',
         doi: '10.1016/S0140-6736(05)67661-1',
         measuredMetric:
           'Death, reinfarction or cardiac arrest, and death alone, during up to 4 weeks of treatment',
@@ -5333,7 +5389,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'It occupies the adrenaline pocket without switching anything on',
         laymanDesc:
-          'The drug fits the same slot adrenaline uses but does not activate it, so as long as it is sitting there the body\'s own adrenaline has nowhere to act.',
+          "The drug fits the same slot adrenaline uses but does not activate it, so as long as it is sitting there the body's own adrenaline has nowhere to act.",
         molecularDetail:
           'Metoprolol is a competitive, reversible antagonist at the orthosteric catecholamine site, with essentially no intrinsic sympathomimetic activity. Because the antagonism is competitive, a sufficiently large surge of endogenous catecholamine can still displace it — which is the pharmacological basis of rebound after abrupt withdrawal, on receptors that chronic blockade has upregulated.',
         iconName: 'Lock',
@@ -5343,7 +5399,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 4,
         title: 'Cyclic AMP falls, so the heart slows and contracts less forcefully',
         laymanDesc:
-          'The blocked receptor stops producing its internal messenger. Calcium handling slows, the heart rate falls, each beat is less forceful, and the heart\'s oxygen demand drops.',
+          "The blocked receptor stops producing its internal messenger. Calcium handling slows, the heart rate falls, each beat is less forceful, and the heart's oxygen demand drops.",
         molecularDetail:
           'Loss of Gs-mediated adenylate cyclase activation lowers cyclic AMP and protein kinase A activity, reducing phosphorylation of L-type calcium channels, phospholamban and ryanodine receptors. Heart rate, contractility and atrioventricular conduction velocity all fall, cutting myocardial oxygen consumption. In the kidney, reduced beta-1 signalling on juxtaglomerular cells lowers renin release.',
         iconName: 'Zap',
@@ -5365,7 +5421,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'MERIT-HF',
         phase: 'Randomised double-blind placebo-controlled trial, stopped early, mean 1 year',
         sampleSize: 3991,
-        primaryEndpoint: 'All-cause mortality in chronic heart failure with ejection fraction ≤0.40',
+        primaryEndpoint:
+          'All-cause mortality in chronic heart failure with ejection fraction ≤0.40',
         endpointMet: true,
         statisticalPValue:
           'RR 0.66 (95% CI 0.53-0.81), P = 0.00009; P = 0.0062 adjusted for interim analyses',
@@ -5449,8 +5506,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral immediate-release tablet (tartrate), oral extended-release tablet (succinate), and intravenous solution for acute use',
+      type: 'Oral immediate-release tablet (tartrate), oral extended-release tablet (succinate), and intravenous solution for acute use',
       description:
         'The tartrate is taken with or immediately after food and is usually twice daily; the succinate is a controlled-release multiple-unit pellet system taken once daily and is the formulation with the heart failure evidence. The two are not interchangeable milligram for milligram and do not carry the same indications.',
       safetyProfile:
@@ -5527,7 +5583,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA: LOPRESSOR (metoprolol tartrate), NDA 017963, original approval 7 August 1978',
+        label:
+          'Drugs@FDA: LOPRESSOR (metoprolol tartrate), NDA 017963, original approval 7 August 1978',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=017963',
         kind: 'regulatory',
@@ -5587,9 +5644,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Extensively hydrolysed whey infant formula',
           class: 'Medical nutrition, hypoallergenic feed',
           howItCompares:
-            'The same starting material cut into peptides small enough to avoid triggering cow\'s milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.',
-          typicalCost:
-            '',
+            "The same starting material cut into peptides small enough to avoid triggering cow's milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.",
+          typicalCost: '',
           prosAndCons:
             'Pros: solves a defined clinical problem. Cons: the word "hydrolysate" on a sports tub borrows credibility from this use, and hydrolysing whey for an adult buys speed of digestion, not a different biology.',
         },
@@ -5611,7 +5667,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tang et al. measured it directly. After resistance exercise, muscle protein synthesis on whey was about 31% greater than on soy and about 122% greater than on casein, with soy sitting between the two — an ordering that tracks digestion speed and leucine delivery rather than any unique property of dairy.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Tang et al. matched the three drinks at 10 g of essential amino acids, which is the comparison the whey-against-soy ordering rests on.',
           monthlyCost: '',
         },
       ],
@@ -5667,7 +5724,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
             'Muscle protein synthesis is a rate, not a quantity, and it can only be measured by tracking a labelled amino acid into muscle protein over time. This is the technique that produced every number in this dossier about whey versus casein versus soy, and it is why those numbers are trustworthy in a way that scale weight is not.',
           dependsOnStepId: 'whey-w1',
           reagentsAndBuffer:
-            'L-[ring-13C6]phenylalanine for the primed constant infusion; [1-13C]leucine for the parallel oxidation measurement; sterile pyrogen-free preparation; priming dose calculated from the subject\'s estimated pool size; background enrichment sampled before infusion',
+            "L-[ring-13C6]phenylalanine for the primed constant infusion; [1-13C]leucine for the parallel oxidation measurement; sterile pyrogen-free preparation; priming dose calculated from the subject's estimated pool size; background enrichment sampled before infusion",
         },
         {
           id: 'whey-w3',
@@ -5726,7 +5783,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The same meta-analysis found the point where extra protein stops adding anything: once total daily intake passes about 1.6 grams per kilogram of body weight, more protein produced no further muscle gain.',
         technicalDetails:
-          'A two-phase break point analysis across the 49 included studies determined that protein supplementation beyond a total protein intake of 1.62 g/kg/day resulted in no further resistance-training-induced gains in fat-free mass. This is not an opinion or a rule of thumb — it is a break point estimated from the pooled data, and it defines the exact boundary of the product\'s usefulness. A person already eating above that from food is, on the best available evidence, buying a supplement with a measured incremental effect of zero on fat-free mass, no matter how much of it they take. The finding also reframes the whole category: whey is not a muscle-building agent, it is a convenient way to reach a threshold, and past the threshold it is protein-flavoured food.',
+          "A two-phase break point analysis across the 49 included studies determined that protein supplementation beyond a total protein intake of 1.62 g/kg/day resulted in no further resistance-training-induced gains in fat-free mass. This is not an opinion or a rule of thumb — it is a break point estimated from the pooled data, and it defines the exact boundary of the product's usefulness. A person already eating above that from food is, on the best available evidence, buying a supplement with a measured incremental effect of zero on fat-free mass, no matter how much of it they take. The finding also reframes the whole category: whey is not a muscle-building agent, it is a convenient way to reach a threshold, and past the threshold it is protein-flavoured food.",
         evidenceSource: 'Morton RW et al. Br J Sports Med 2018;52:376-384',
         doi: '10.1136/bjsports-2017-097608',
         measuredMetric:
@@ -5741,7 +5798,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'A stable-isotope study measured muscle protein synthesis directly after equal amounts of essential amino acids from whey, casein or soy. Whey produced by far the biggest response.',
         technicalDetails:
           'Tang and colleagues gave three groups of six healthy young men drinks matched for essential amino acid content at 10 g, as whey hydrolysate, micellar casein or soy protein isolate, after unilateral leg resistance exercise, with mixed muscle protein synthesis measured by primed constant infusion of L-[ring-13C6]phenylalanine. Whey produced larger increases in blood essential amino acids, branched-chain amino acids and leucine than either comparator (P < 0.05). At rest, mixed muscle protein synthesis was 0.091 +/- 0.015 %/h on whey, 0.078 +/- 0.014 on soy and 0.047 +/- 0.008 on casein — whey approximately 93% greater than casein (P < 0.01) and 18% greater than soy (P = 0.067). After exercise the ordering held: whey approximately 122% greater than casein (P < 0.01) and 31% greater than soy (P < 0.05). This is a genuine, mechanistically clean advantage for whey, and it is an acute synthesis rate in six men per group, not a training outcome. The chronic meta-analysis that measured training outcomes did not separate protein sources.',
-        evidenceSource: 'Tang JE, Moore DR, Kujbida GW, Tarnopolsky MA, Phillips SM. J Appl Physiol 2009;107:987-992',
+        evidenceSource:
+          'Tang JE, Moore DR, Kujbida GW, Tarnopolsky MA, Phillips SM. J Appl Physiol 2009;107:987-992',
         doi: '10.1152/japplphysiol.00076.2009',
         measuredMetric:
           'Fractional rate of mixed muscle protein synthesis, percent per hour, at rest and after resistance exercise',
@@ -5796,7 +5854,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'whey-a7',
         category: 'inferred',
-        title: 'Heavy metals: found repeatedly, then assessed as safe by industry-adjacent consultants',
+        title:
+          'Heavy metals: found repeatedly, then assessed as safe by industry-adjacent consultants',
         laymanSummary:
           'Consumer testing found arsenic, cadmium, mercury and lead in protein powders, with 40 percent of 133 products elevated. A follow-up risk assessment concluded the exposures were below regulatory thresholds. Its three authors all worked for the same litigation-support consultancy.',
         technicalDetails:
@@ -5836,7 +5895,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'Once triggered, a master kinase turns on the cellular machinery that reads genetic instructions into new muscle protein. It stays on for a few hours.',
         molecularDetail:
           'Activated mTORC1 phosphorylates p70S6K and 4E-BP1, relieving translational repression and increasing translation initiation. Notably, Moore et al. found phosphorylation of p70S6K Thr389, ribosomal protein S6 Ser240/244 and eIF2B-epsilon Ser539 was unaffected across protein doses from 0 to 40 g, which argues the dose-response in synthesis is driven by substrate availability rather than by graded signalling.',
-          iconName: 'Cpu',
+        iconName: 'Cpu',
         visualStage: 'target_binding',
       },
       {
@@ -5903,7 +5962,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Schoenfeld 2013 meta-regression of protein timing',
         phase: 'Multi-level meta-regression of randomised controlled trials',
         sampleSize: 525,
-        primaryEndpoint: 'Muscle strength and hypertrophy effect size attributable to protein timing',
+        primaryEndpoint:
+          'Muscle strength and hypertrophy effect size attributable to protein timing',
         endpointMet: false,
         statisticalPValue:
           'Simple pooled analysis showed a small-to-moderate hypertrophy effect; in the full model controlling for covariates, no significant difference for strength or hypertrophy',
@@ -5915,7 +5975,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Devries 2018 meta-analysis of higher-protein intake and kidney function',
         phase: 'Systematic review and meta-analysis of 28 randomised controlled trials',
         sampleSize: 1358,
-        primaryEndpoint: 'Glomerular filtration rate on higher versus normal or lower protein intake',
+        primaryEndpoint:
+          'Glomerular filtration rate on higher versus normal or lower protein intake',
         endpointMet: false,
         statisticalPValue:
           'Post-intervention GFR SMD 0.19 (95% CI 0.07 to 0.31), P = 0.002; change in GFR SMD 0.11 (95% CI -0.05 to 0.27), P = 0.16',
@@ -5935,7 +5996,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That protein must be taken in a window around training, which vanished when total daily intake was controlled for',
         'That a larger serving produces a proportionally larger response, when the response plateaued at 20 g',
-        'That whey\'s acute superiority over casein and soy translates into superior long-term hypertrophy, which no chronic trial has separated',
+        "That whey's acute superiority over casein and soy translates into superior long-term hypertrophy, which no chronic trial has separated",
         'That heavy metal contamination is a closed question because one industry-adjacent risk assessment computed a hazard index below 1',
       ],
       whatFailedInitially: [
@@ -5953,7 +6014,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       description:
         'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. The three grades differ by processing rather than by biology: concentrate retains more lactose and fat, isolate is filtered further to a higher protein percentage, and hydrolysate is pre-cleaved into peptides for faster absorption. All three deliver the same amino acids, and leucine content per gram of protein is nearly identical between them. Label protein content is usually derived from total nitrogen, which is inflatable by nitrogen-rich non-protein additives, so a full amino acid profile is the only assay that verifies the claim.',
       safetyProfile:
-        'Bloating, flatulence and diarrhoea in lactose-intolerant users of concentrate, which isolate largely avoids. Cow\'s milk protein allergy is a genuine contraindication and is not the same as lactose intolerance. Higher protein intake does not change glomerular filtration rate in healthy adults across 28 randomised trials, but that evidence does not extend to existing chronic kidney disease, where protein restriction remains standard. Independent testing has repeatedly found arsenic, cadmium, mercury and lead in this product category, with plant-based and mass-gain formulas worse than whey; a subsequent risk assessment by industry-adjacent consultants calculated hazard indices below the regulatory screening threshold.',
+        "Bloating, flatulence and diarrhoea in lactose-intolerant users of concentrate, which isolate largely avoids. Cow's milk protein allergy is a genuine contraindication and is not the same as lactose intolerance. Higher protein intake does not change glomerular filtration rate in healthy adults across 28 randomised trials, but that evidence does not extend to existing chronic kidney disease, where protein restriction remains standard. Independent testing has repeatedly found arsenic, cadmium, mercury and lead in this product category, with plant-based and mass-gain formulas worse than whey; a subsequent risk assessment by industry-adjacent consultants calculated hazard indices below the regulatory screening threshold.",
     },
     commonQuestions: [
       {
@@ -6057,7 +6118,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'The most potent oral statin per milligram, with two positive primary-prevention outcome trials in 17,802 and 12,705 participants, and three consecutive negative outcome trials in 5,011 patients with ischaemic heart failure, 4,574 with heart failure of any cause, and 2,776 on haemodialysis — a pattern that constrains the inflammation hypothesis its most famous trial was designed to prove.',
     laymanHowItWorks:
-      'Rosuvastatin blocks the enzyme your liver uses to build cholesterol. The liver responds by putting out more collection receptors that pull LDL particles from the blood. It is more water-loving than most statins, so it depends heavily on a liver transporter to get into the cell, and it is barely metabolised — which is why its interaction profile differs from atorvastatin\'s.',
+      "Rosuvastatin blocks the enzyme your liver uses to build cholesterol. The liver responds by putting out more collection receptors that pull LDL particles from the blood. It is more water-loving than most statins, so it depends heavily on a liver transporter to get into the cell, and it is barely metabolised — which is why its interaction profile differs from atorvastatin's.",
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 88,
     substitutes: {
@@ -6121,8 +6182,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CC(C)C1=NC(=NC(=C1/C=C/[C@H](C[C@H](CC(=O)O)O)O)C2=CC=C(C=C2)F)N(C)S(=O)(=O)C',
+      smilesString: 'CC(C)C1=NC(=NC(=C1/C=C/[C@H](C[C@H](CC(=O)O)O)O)C2=CC=C(C=C2)F)N(C)S(=O)(=O)C',
       chemicalFormula: 'C22H28FN3O6S',
       molecularWeight: '481.5 g/mol (free acid); dispensed as rosuvastatin calcium',
       targetReceptorAffinity:
@@ -6257,7 +6317,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'In nearly three thousand people on haemodialysis, rosuvastatin lowered cholesterol substantially over almost four years and changed neither cardiovascular events nor deaths.',
         technicalDetails:
           'AURORA randomised 2,776 patients aged 50 to 80 on maintenance haemodialysis to rosuvastatin 10 mg daily or placebo. At 3 months mean LDL reduction was 43%, from a mean baseline of 100 mg/dL. Over a median 3.8 years, the combined primary endpoint of cardiovascular death, non-fatal myocardial infarction or non-fatal stroke occurred in 396 rosuvastatin patients against 408 on placebo: 9.2 against 9.5 events per 100 patient-years, hazard ratio 0.96 (95% CI 0.84 to 1.11), p=0.59. Rosuvastatin had no effect on any individual component. All-cause mortality was 13.5 against 14.0 events per 100 patient-years: hazard ratio 0.96 (0.86 to 1.07), p=0.51.',
-        evidenceSource: 'Fellström BC et al., AURORA, N Engl J Med 2009;360:1395-1407 (NCT00240331)',
+        evidenceSource:
+          'Fellström BC et al., AURORA, N Engl J Med 2009;360:1395-1407 (NCT00240331)',
         doi: '10.1056/NEJMoa0810177',
         measuredMetric:
           'Cardiovascular death, non-fatal myocardial infarction or non-fatal stroke over a median 3.8 years in haemodialysis',
@@ -6316,7 +6377,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         step: 3,
-        title: 'The dihydroxy arm occupies the enzyme\'s substrate slot',
+        title: "The dihydroxy arm occupies the enzyme's substrate slot",
         laymanDesc:
           'The business end of the molecule imitates the natural raw material closely enough to sit in its place, and the rest of the molecule fills the space next to it so nothing else fits.',
         molecularDetail:
@@ -6338,7 +6399,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 5,
         title: 'LDL falls up to 50%, and events fall where events were atherosclerotic',
         laymanDesc:
-          'The blood number drops within weeks and by more than most statins achieve. Whether that translates into fewer events depends entirely on whether the person\'s risk came from artery plaque in the first place.',
+          "The blood number drops within weeks and by more than most statins achieve. Whether that translates into fewer events depends entirely on whether the person's risk came from artery plaque in the first place.",
         molecularDetail:
           'In JUPITER a 50% LDL reduction produced a hazard ratio of 0.56 in people whose risk was atherosclerotic. In AURORA a 43% LDL reduction in haemodialysis produced a hazard ratio of 0.96, and in GISSI-HF the hazard ratio for death was 1.00. The mechanism was engaged in all three; only in the first did engaging it change outcomes.',
         iconName: 'TrendingDown',
@@ -6393,7 +6454,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'HOPE-3 (NCT00468923)',
-        phase: 'Randomised double-blind placebo-controlled 2-by-2 factorial trial, median 5.6 years',
+        phase:
+          'Randomised double-blind placebo-controlled 2-by-2 factorial trial, median 5.6 years',
         sampleSize: 12705,
         primaryEndpoint:
           'Co-primary composites of cardiovascular death, non-fatal myocardial infarction and non-fatal stroke, with and without revascularisation, heart failure and resuscitated arrest',
@@ -6503,7 +6565,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: CRESTOR (rosuvastatin calcium), NDA 021366, original approval 12 August 2003',
+        label:
+          'Drugs@FDA: CRESTOR (rosuvastatin calcium), NDA 021366, original approval 12 August 2003',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021366',
         kind: 'regulatory',
@@ -6562,8 +6625,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Parenteral electrolyte, genuine emergency drug',
           howItCompares:
             'This is the one setting where magnesium is unambiguously a drug that saves lives, and it is given by infusion under monitoring in an obstetric or coronary care unit. It is not evidence for a capsule. The same programme that established magnesium in eclampsia failed twice in myocardial infarction.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: large, replicated mortality and morbidity benefit in its own indication. Cons: entirely irrelevant to an oral supplement, and routinely cited as though it were not.',
         },
@@ -6572,8 +6634,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Inorganic magnesium salt',
           howItCompares:
             'Firoz and Graber measured fractional absorption of magnesium oxide at about 4 percent against significantly higher and mutually equivalent absorption from magnesium chloride, lactate and aspartate. That study is the source of most "oxide is poorly absorbed" marketing. It did not test glycinate.',
-          typicalCost:
-            '',
+          typicalCost: 'Medicaid NADAC: magnesium oxide 400 mg at $0.035 a tablet, August 2026',
           prosAndCons:
             'Pros: cheapest form, and its poor absorption is exactly why it works as a laxative. Cons: the 4 percent figure is one small urinary-excretion study in normal volunteers, and it is being used to sell a form it never compared against.',
         },
@@ -6595,7 +6656,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Magnesium in water is already dissociated and needs no digestion, and in populations drinking hard water it is a non-trivial share of total intake. It is also the reason intake surveys that count only food underestimate what people actually get.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'Azoulay et al. analysed 21 North American municipal supplies: two litres a day of half of them supplied 6 to 31 percent of the magnesium reference intake, and a litre of most moderately mineralised European bottled waters 16 to 41 percent.',
           monthlyCost: '',
         },
       ],
@@ -6615,7 +6677,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       structureType: 'small_molecule_smiles',
       smilesString: 'C(C(=O)[O-])N.C(C(=O)[O-])N.[Mg+2]',
       chemicalFormula: 'C4H8MgN2O4',
-      molecularWeight: '172.42 g/mol, of which 24.31 g/mol — about 14 percent — is elemental magnesium',
+      molecularWeight:
+        '172.42 g/mol, of which 24.31 g/mol — about 14 percent — is elemental magnesium',
       structureSource: {
         label: 'PubChem CID 84645 — Magnesium glycinate, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
@@ -6714,7 +6777,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The one human trial comparing magnesium glycinate against the cheap oxide form found no overall difference in absorption. It was run in twelve people who had had part of their intestine removed.',
         technicalDetails:
-          'Schuette, Lashner and Janghorbani ran a double-blind randomised crossover in twelve patients with ileal resections, comparing a 100 mg dose of 26Mg-labelled magnesium diglycinate against 26Mg-labelled magnesium oxide. For the group as a whole, absorption was low and not different between the two forms: 23.5% for the chelate against 22.8% for the oxide. A difference emerged only in the four patients with the worst oxide absorption (23.5% against 11.8%, P < .05). Peak isotope enrichment came earlier after the chelate (mean difference 3.2 +/- 1.3 hours, P < .05) and the area under the enrichment curve was greater. The authors concluded that some portion of the diglycinate is probably absorbed intact by a dipeptide pathway and that it may be a good alternative in patients with intestinal resection — a conclusion about surgical patients that the retail category has generalised to everyone. Separately, Firoz and Graber\'s much-cited bioavailability comparison of US commercial preparations tested oxide, chloride, lactate and aspartate. It did not include glycinate at all.',
+          "Schuette, Lashner and Janghorbani ran a double-blind randomised crossover in twelve patients with ileal resections, comparing a 100 mg dose of 26Mg-labelled magnesium diglycinate against 26Mg-labelled magnesium oxide. For the group as a whole, absorption was low and not different between the two forms: 23.5% for the chelate against 22.8% for the oxide. A difference emerged only in the four patients with the worst oxide absorption (23.5% against 11.8%, P < .05). Peak isotope enrichment came earlier after the chelate (mean difference 3.2 +/- 1.3 hours, P < .05) and the area under the enrichment curve was greater. The authors concluded that some portion of the diglycinate is probably absorbed intact by a dipeptide pathway and that it may be a good alternative in patients with intestinal resection — a conclusion about surgical patients that the retail category has generalised to everyone. Separately, Firoz and Graber's much-cited bioavailability comparison of US commercial preparations tested oxide, chloride, lactate and aspartate. It did not include glycinate at all.",
         evidenceSource:
           'Schuette SA, Lashner BA, Janghorbani M. JPEN J Parenter Enteral Nutr 1994;18:430-435; Firoz M, Graber M. Magnes Res 2001;14:257-262',
         doi: '10.1177/0148607194018005430',
@@ -6772,7 +6835,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'The deficiency test is weak, which is what makes the category sellable',
         laymanSummary:
-          'The blood test used to call people magnesium-deficient measures less than one percent of the body\'s magnesium, and the normal range it is judged against was never set from health outcomes.',
+          "The blood test used to call people magnesium-deficient measures less than one percent of the body's magnesium, and the normal range it is judged against was never set from health outcomes.",
         technicalDetails:
           'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, which is the honest half of the marketing claim. And no ordinary test can confirm the depletion either, which means a supplement sold against it can never be shown to have been unnecessary.',
         evidenceSource: 'Costello RB et al. Adv Nutr 2016;7:977-993',
@@ -6809,7 +6872,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Almost no magnesium floats free. Inside cells it is bound to the energy molecule ATP, and it is that complex, not ATP alone, that enzymes actually use.',
         molecularDetail:
-          'The biologically active substrate of most kinases, ATPases and polymerases is Mg-ATP, not ATP. Intracellular free magnesium is held near 0.5 to 1.0 mmol/L against a total cellular content roughly twenty times higher, and the bone reservoir buffers the extracellular pool. This buffering is exactly why serum magnesium moved only 0.05 mmol/L across the 34 trials in Zhang\'s meta-analysis.',
+          "The biologically active substrate of most kinases, ATPases and polymerases is Mg-ATP, not ATP. Intracellular free magnesium is held near 0.5 to 1.0 mmol/L against a total cellular content roughly twenty times higher, and the bone reservoir buffers the extracellular pool. This buffering is exactly why serum magnesium moved only 0.05 mmol/L across the 34 trials in Zhang's meta-analysis.",
         iconName: 'Battery',
         visualStage: 'target_binding',
       },
@@ -6851,7 +6914,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Cochrane CD009402 — magnesium for skeletal muscle cramps',
         phase: 'Cochrane systematic review of 11 randomised trials',
         sampleSize: 735,
-        primaryEndpoint: 'Percentage change from baseline in number of cramps per week at four weeks',
+        primaryEndpoint:
+          'Percentage change from baseline in number of cramps per week at four weeks',
         endpointMet: false,
         statisticalPValue:
           'MD -9.59% (95% CI -23.14 to 3.97); cramps per week MD -0.18 (95% CI -0.84 to 0.49); 25% responder RR 1.04 (95% CI 0.84 to 1.29), high certainty',
@@ -6944,7 +7008,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How would I know if I am actually deficient?',
-        a: 'You largely would not, and that is the structural problem in this category. Serum magnesium is under one percent of the body\'s magnesium and is buffered by bone, so it falls late and recovers fast, and the reference interval it is judged against was set from population distributions rather than from outcomes. A normal result does not rule out depletion. It also means a supplement sold against invisible depletion can never be shown to have been unnecessary, which is a commercially useful property.',
+        a: "You largely would not, and that is the structural problem in this category. Serum magnesium is under one percent of the body's magnesium and is buffered by bone, so it falls late and recovers fast, and the reference interval it is judged against was set from population distributions rather than from outcomes. A normal result does not rule out depletion. It also means a supplement sold against invisible depletion can never be shown to have been unnecessary, which is a commercially useful property.",
       },
       {
         q: 'Who has a documented reason to take it?',
@@ -7019,6 +7083,18 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
         kind: 'url',
       },
+      {
+        label:
+          'Azoulay A, Garzon P, Eisenberg MJ. Comparison of the mineral content of tap water and bottled waters. J Gen Intern Med 2001;16:168-175',
+        identifier: '10.1111/j.1525-1497.2001.04189.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -7034,13 +7110,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'No single sponsor — an essential trace element sold as several salts by many manufacturers. Zinc acetate is also an FDA-approved prescription drug under NDA 020458.',
     targetGene: 'SLC39A4',
     targetProtein:
-      'ZIP4 (SLC39A4), the apical enterocyte zinc importer whose loss-of-function mutations cause acrodermatitis enteropathica. The counterpart that explains most of zinc\'s harms is metallothionein, a cysteine-rich cytosolic chelator that zinc itself induces in the enterocyte and that binds copper more tightly than zinc, trapping it for excretion in shed cells.',
+      "ZIP4 (SLC39A4), the apical enterocyte zinc importer whose loss-of-function mutations cause acrodermatitis enteropathica. The counterpart that explains most of zinc's harms is metallothionein, a cysteine-rich cytosolic chelator that zinc itself induces in the enterocyte and that binds copper more tightly than zinc, trapping it for excretion in shed cells.",
     modality: 'Nutraceutical / Botanical',
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold over the counter for the common cold, immunity, skin and testosterone. Zinc acetate is separately an FDA-approved prescription drug for maintenance therapy in Wilson disease, and oral zinc is a WHO- and UNICEF-recommended treatment for acute childhood diarrhoea. Those two are genuine, evidenced indications, and neither is why most zinc is bought.',
-    patientFriendlyIndication:
-      'Taken at the first sign of a cold, and daily for immune support',
+    patientFriendlyIndication: 'Taken at the first sign of a cold, and daily for immune support',
     conditionContext: {
       conditionExplainer:
         'The common cold is a self-limiting viral illness that resolves on its own in about a week. Any treatment for it is therefore competing with spontaneous recovery, and any trial has to separate a real shortening from the ordinary variation in how long colds last. This is why the zinc literature is so noisy: the effect being chased is a day or two against a background that already ends by itself.',
@@ -7068,8 +7143,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Copper absorption blocker, FDA-approved under NDA 020458',
           howItCompares:
             'The same salt, prescribed precisely because it induces intestinal metallothionein and stops copper being absorbed. The mechanism regulators approved as the therapeutic action is identical to the mechanism that makes high-dose zinc supplementation dangerous in a person with normal copper handling.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: a clean, approved, mechanistically transparent use. Cons: it is also the clearest possible warning label for the supplement, and it is almost never presented as one.',
         },
@@ -7078,8 +7152,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Public-health mineral supplementation',
           howItCompares:
             'This is the strongest efficacy evidence zinc has anywhere. In children over six months, 33 trials in 10,841 children found diarrhoea shortened by about eleven hours, and in malnourished children by about a day, graded high certainty.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: large, replicated, and in the population where baseline zinc deficiency is common. Cons: in children under six months the same review found no effect, and the trials were run mostly in Asian settings at high risk of deficiency, so it is a repletion result rather than a general antiviral one.',
         },
@@ -7101,7 +7174,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Phytate forms insoluble complexes with zinc in the intestinal lumen, which is why populations eating unleavened high-phytate staples have measurably higher rates of zinc deficiency despite adequate total zinc intake. Soaking, sprouting and leavening degrade phytate and raise absorption.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'The measured quantity here is a ratio rather than a dose. Nsabimana et al. took maize from a phytate-to-zinc molar ratio of 40.8 down to 7.8 by soaking, germinating and fermenting it.',
           monthlyCost: '',
         },
       ],
@@ -7120,7 +7194,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           action:
             'Sustained high-dose zinc induces intestinal metallothionein, which binds copper and carries it out in shed enterocytes. The result is a copper deficiency that presents haematologically or neurologically, often without the zinc being suspected.',
           patientImpact:
-            'Willis et al. reported three cases first recognised on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of them with progressive peripheral neuropathy. Kumar\'s Mayo Clinic series describes a copper deficiency myelopathy with spastic gait and sensory ataxia that mimics vitamin B12 subacute combined degeneration.',
+            "Willis et al. reported three cases first recognised on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of them with progressive peripheral neuropathy. Kumar's Mayo Clinic series describes a copper deficiency myelopathy with spastic gait and sensory ataxia that mimics vitamin B12 subacute combined degeneration.",
           clinicalPrecaution:
             'Copper replacement resolves the anaemia and neutropenia promptly and completely. The neurological damage often does not recover; supplementation mainly prevents further deterioration. AREDS included 2 mg of copper alongside its 80 mg of zinc for exactly this reason.',
         },
@@ -7131,7 +7205,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       smilesString: 'CC(=O)[O-].CC(=O)[O-].[Zn+2]',
       chemicalFormula: 'C4H6O4Zn',
       molecularWeight:
-        '183.5 g/mol for zinc acetate, of which 65.4 g/mol is elemental zinc. The marker salt here is the acetate because it is the form that produced the largest cold-duration effect in Hemila\'s dose-stratified analysis, and the form approved as a prescription drug.',
+        "183.5 g/mol for zinc acetate, of which 65.4 g/mol is elemental zinc. The marker salt here is the acetate because it is the form that produced the largest cold-duration effect in Hemila's dose-stratified analysis, and the form approved as a prescription drug.",
       structureSource: {
         label: 'PubChem CID 11192 — Zinc acetate, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11192',
@@ -7198,7 +7272,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'zn-a1',
         category: 'measured',
-        title: 'Cochrane 2024: about two days off a cold, at low certainty, and nothing for prevention',
+        title:
+          'Cochrane 2024: about two days off a cold, at low certainty, and nothing for prevention',
         laymanSummary:
           'Thirty-four trials in 8,526 people. Taking zinc once a cold has started may shorten it by roughly two days. Taking it to avoid catching one does nothing.',
         technicalDetails:
@@ -7233,7 +7308,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'A multicentre open-label factorial randomised trial at Cleveland Clinic sites in Ohio and Florida enrolled 214 outpatients with PCR-confirmed SARS-CoV-2 between April and October 2020, allocated 1:1:1:1 to ten days of zinc gluconate 50 mg, ascorbic acid 8,000 mg, both, or usual care. The primary endpoint was days to a 50% reduction in a four-symptom severity score. The study was stopped for low conditional power for benefit. Usual care reached 50% symptom reduction at a mean of 6.7 (SD 4.4) days, against 5.9 (4.9) days for zinc, 5.5 (3.7) for ascorbic acid and 5.5 (3.4) for both — overall P = .45, with no significant difference in any secondary outcome. The trial is open-label and was not designed to detect a small effect, but it is the direct randomised test of the exact combination that was being bought by the million during the pandemic.',
         evidenceSource: 'Thomas S et al. JAMA Netw Open 2021;4:e210369',
         doi: '10.1001/jamanetworkopen.2021.0369',
-        measuredMetric: 'Days to 50% reduction in a composite fever, cough, dyspnoea and fatigue score',
+        measuredMetric:
+          'Days to 50% reduction in a composite fever, cough, dyspnoea and fatigue score',
         auditFlag: 'verified',
       },
       {
@@ -7241,7 +7317,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'Intranasal zinc gluconate causes anosmia, and the causation analysis is formal',
         laymanSummary:
-          'A homeopathic zinc nasal gel sold for colds destroyed people\'s sense of smell. In some cases it never came back.',
+          "A homeopathic zinc nasal gel sold for colds destroyed people's sense of smell. In some cases it never came back.",
         technicalDetails:
           'Jafek, Linschoten and Murrow reported a case series of severe hyposmia and anosmia following intranasal zinc gluconate, concluding that zinc ions are toxic to olfactory epithelium and that the loss appeared long-lasting or permanent in some cases, with the mechanism attributed to direct action of the divalent zinc ion on the olfactory receptor cell. Davidson and Smith later applied all nine Bradford Hill criteria — strength, consistency, specificity, temporality, biological gradient, plausibility, coherence, experimental evidence and analogy — to 25 patients presenting to the University of California San Diego Nasal Dysfunction Clinic with acute-onset anosmia after intranasal homeopathic zinc gluconate gel, and concluded that the clinical, biological and experimental data support causation. Their stated conclusion was that increased FDA oversight of homeopathic medications is needed. This is a harm caused by route, not by element: the same zinc in a lozenge does not do this.',
         evidenceSource:
@@ -7257,7 +7333,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'High-dose zinc blocks copper absorption. That is not a rare quirk — it is the reason the FDA approved zinc as a prescription drug for a copper-overload disease. In people without that disease it causes anaemia, low white cells and spinal cord damage.',
         technicalDetails:
-          'Zinc induces metallothionein in the enterocyte; metallothionein binds copper with higher affinity than zinc and holds it until the cell is shed, so copper never reaches the circulation. The FDA approved zinc acetate under NDA 020458 for maintenance therapy in Wilson disease on exactly this mechanism. In people with normal copper handling, Willis et al. reported three cases of zinc-induced copper deficiency first suspected on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of the three with progressive peripheral neuropathy, one of them arising from zinc taken for acrodermatitis enteropathica. Kumar\'s Mayo Clinic review of copper deficiency myelopathy describes a spastic gait with prominent sensory ataxia that mirrors vitamin B12 subacute combined degeneration, lists excess zinc ingestion among the established causes, and records the crucial asymmetry: copper replacement resolves the anaemia and neutropenia promptly and completely, while neurological improvement is often only subjective and mainly prevents further deterioration.',
+          "Zinc induces metallothionein in the enterocyte; metallothionein binds copper with higher affinity than zinc and holds it until the cell is shed, so copper never reaches the circulation. The FDA approved zinc acetate under NDA 020458 for maintenance therapy in Wilson disease on exactly this mechanism. In people with normal copper handling, Willis et al. reported three cases of zinc-induced copper deficiency first suspected on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of the three with progressive peripheral neuropathy, one of them arising from zinc taken for acrodermatitis enteropathica. Kumar's Mayo Clinic review of copper deficiency myelopathy describes a spastic gait with prominent sensory ataxia that mirrors vitamin B12 subacute combined degeneration, lists excess zinc ingestion among the established causes, and records the crucial asymmetry: copper replacement resolves the anaemia and neutropenia promptly and completely, while neurological improvement is often only subjective and mainly prevents further deterioration.",
         evidenceSource:
           'Willis MS et al. Am J Clin Pathol 2005;123:125-131; Kumar N. Mayo Clin Proc 2006;81:1371-1384',
         doi: '10.1309/V6GVYW2QTYD5C5PJ',
@@ -7302,7 +7378,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'A zinc lozenge is not a dose of zinc — it is a dose of whatever free zinc it releases in your mouth. Many common sweeteners and acids grab the zinc and never let go, and a lozenge like that does nothing.',
         molecularDetail:
-          'The proposed antiviral species is free Zn2+ released in the oropharynx. Citric acid, tartaric acid, sorbitol and mannitol chelate zinc and suppress ionic release. Hemila\'s dose stratification is the observable consequence: below 75 mg per day, five trials found nothing at all, while zinc acetate above 75 mg pooled to a 42% duration reduction.',
+          "The proposed antiviral species is free Zn2+ released in the oropharynx. Citric acid, tartaric acid, sorbitol and mannitol chelate zinc and suppress ionic release. Hemila's dose stratification is the observable consequence: below 75 mg per day, five trials found nothing at all, while zinc acetate above 75 mg pooled to a 42% duration reduction.",
         iconName: 'Pill',
         visualStage: 'delivery',
       },
@@ -7342,7 +7418,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Short bursts at cold onset may take a day or two off a cold. Sustained high daily intake quietly strips copper, and the first sign of that is often a blood count or a change in the way someone walks.',
         molecularDetail:
-          'The therapeutic window is defined by time, not just amount. Cochrane found treatment courses of 4.5 to 21 days, over which copper depletion does not develop. Willis\'s three cases and Kumar\'s myelopathy series arose from sustained intake. Anaemia and neutropenia reverse completely on copper replacement; the neurological deficit generally does not.',
+          "The therapeutic window is defined by time, not just amount. Cochrane found treatment courses of 4.5 to 21 days, over which copper depletion does not develop. Willis's three cases and Kumar's myelopathy series arose from sustained intake. Anaemia and neutropenia reverse completely on copper replacement; the neurological deficit generally does not.",
         iconName: 'GitBranch',
         visualStage: 'therapeutic_result',
       },
@@ -7445,7 +7521,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does zinc actually shorten a cold?',
-        a: 'Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila\'s earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.',
+        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.",
         auditNote:
           'Free ionic zinc is the active species, and citric acid, tartaric acid, sorbitol and mannitol in a lozenge chelate it away.',
       },
@@ -7461,7 +7537,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What happened with zinc nasal sprays?',
-        a: 'They destroyed people\'s sense of smell. Jafek and colleagues described a series of severe hyposmia and anosmia after intranasal zinc gluconate and concluded that zinc ions are directly toxic to olfactory epithelium, with loss that was long-lasting or permanent in some cases. Davidson and Smith later ran the full nine Bradford Hill causation criteria over 25 such patients and found causation supported. The products were withdrawn from the US market in 2009. Nothing about that finding applies to a lozenge, and nothing about lozenge evidence excused the nasal product.',
+        a: "They destroyed people's sense of smell. Jafek and colleagues described a series of severe hyposmia and anosmia after intranasal zinc gluconate and concluded that zinc ions are directly toxic to olfactory epithelium, with loss that was long-lasting or permanent in some cases. Davidson and Smith later ran the full nine Bradford Hill causation criteria over 25 such patients and found causation supported. The products were withdrawn from the US market in 2009. Nothing about that finding applies to a lozenge, and nothing about lozenge evidence excused the nasal product.",
       },
       {
         q: 'Is the zinc in my multivitamin doing anything?',
@@ -7490,7 +7566,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Kumar N. Copper deficiency myelopathy (human swayback). Mayo Clin Proc 2006;81:1371-1384',
+        label:
+          'Kumar N. Copper deficiency myelopathy (human swayback). Mayo Clin Proc 2006;81:1371-1384',
         identifier: '10.4065/81.10.1371',
         kind: 'doi',
       },
@@ -7540,6 +7617,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11192',
         kind: 'url',
       },
+      {
+        label:
+          'Nsabimana S, Ismail T, Lazarte CE. Enhancing iron and zinc bioavailability in maize through phytate reduction: fermentation alone and combined with soaking and germination. Front Nutr 2024;11:1478155',
+        identifier: '10.3389/fnut.2024.1478155',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -7587,8 +7670,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Nutrient replacement for a defined deficiency disease',
           howItCompares:
             'Complete and rapid cure of a disease that is otherwise fatal, established well before controlled trials existed. It is the strongest possible evidence that vitamin C is essential, and it says nothing whatever about the effect of extra vitamin C in someone who is not deficient.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: unambiguous, mechanistically understood, fast. Cons: routinely used as rhetorical cover for claims about replete adults, which is the central error this file exists to name.',
         },
@@ -7597,8 +7679,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Investigational critical-care intervention, now negative',
           howItCompares:
             'Between 2017 and 2022 this went from a widely adopted ICU protocol to a randomised finding of harm. LOVIT found death or persistent organ dysfunction at day 28 in 44.5% on vitamin C against 38.5% on placebo, risk ratio 1.21 (95% CI 1.04 to 1.40, P = 0.01).',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: none demonstrated. Cons: a randomised signal of harm, from a trial designed to look for benefit.',
         },
@@ -7620,7 +7701,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Ascorbate reduces dietary Fe(III) to Fe(II) and forms a soluble chelate that survives the alkaline duodenum, substantially increasing non-haem iron absorption. This is one of the few supplemental vitamin C effects that is mechanistically direct, measurable, and useful in ordinary people.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Teucher et al. put the working amount at a 2 to 1 molar ratio of ascorbate to iron in the same meal, around 20 mg of vitamin C to 3 mg of iron, rising past 4 to 1 where phytate is high.',
           monthlyCost: '',
         },
       ],
@@ -7737,11 +7819,11 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'vitc-a3',
         category: 'conclusion_shift',
-        title: 'Pauling\'s cancer claim, and the two Mayo trials that ended it',
+        title: "Pauling's cancer claim, and the two Mayo trials that ended it",
         laymanSummary:
           'A double Nobel laureate spent decades arguing that high-dose vitamin C treated advanced cancer. Two randomised double-blind trials found no benefit whatsoever.',
         technicalDetails:
-          'Moertel and colleagues at the Mayo Clinic randomised 100 patients with advanced colorectal cancer, none of whom had received any prior cytotoxic drugs — the precise population in which the claim was said to hold — to 10 g of vitamin C daily or placebo, double-blind. There was no advantage over placebo in time from start of treatment to disease progression or in survival, and among patients with measurable disease none had objective improvement. The authors wrote that on the basis of this and their previous randomised study, high-dose vitamin C is not effective against advanced malignant disease regardless of prior chemotherapy. The scientific residue of the episode is instructive: Pauling\'s original supporting data came from a non-randomised comparison against historical controls at a hospital where patients entering the vitamin C group were selected differently. The mechanism was never absurd — ascorbate at millimolar concentration does generate hydrogen peroxide near tumour cells — but that mechanism was tested and did not produce the outcome.',
+          "Moertel and colleagues at the Mayo Clinic randomised 100 patients with advanced colorectal cancer, none of whom had received any prior cytotoxic drugs — the precise population in which the claim was said to hold — to 10 g of vitamin C daily or placebo, double-blind. There was no advantage over placebo in time from start of treatment to disease progression or in survival, and among patients with measurable disease none had objective improvement. The authors wrote that on the basis of this and their previous randomised study, high-dose vitamin C is not effective against advanced malignant disease regardless of prior chemotherapy. The scientific residue of the episode is instructive: Pauling's original supporting data came from a non-randomised comparison against historical controls at a hospital where patients entering the vitamin C group were selected differently. The mechanism was never absurd — ascorbate at millimolar concentration does generate hydrogen peroxide near tumour cells — but that mechanism was tested and did not produce the outcome.",
         evidenceSource: 'Moertel CG et al. N Engl J Med 1985;312:137-141',
         doi: '10.1056/NEJM198501173120301',
         measuredMetric:
@@ -7771,7 +7853,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A single small retrospective study reported that a vitamin C protocol cut sepsis deaths from 40 percent to 8 percent. Intensive care units adopted it worldwide. The randomised trials that followed found nothing, then found harm.',
         technicalDetails:
-          'Marik and colleagues published a retrospective before-after study of 47 treated and 47 historical control patients, reporting hospital mortality of 8.5% against 40.4% (P < .001) and a propensity-adjusted odds ratio for mortality of 0.13 (95% CI 0.04 to 0.48). The design is the weakest one that can produce a number: no randomisation, no blinding, sequential time periods, and a control group assembled from the preceding seven months. Adoption nevertheless outran the evidence by years. CITRIS-ALI then randomised 167 patients with sepsis and ARDS and found no difference in the primary endpoints — modified SOFA score change from baseline to 96 hours differed by -0.10 (95% CI -1.23 to 1.03, P = .86), C-reactive protein P = .33. The VITAMINS trial compared vitamin C, hydrocortisone and thiamine against hydrocortisone alone in septic shock and found no difference in time alive and free of vasopressors. LOVIT then found harm. CHEST published an Editor\'s Note attached to the original 2017 paper in 2023.',
+          "Marik and colleagues published a retrospective before-after study of 47 treated and 47 historical control patients, reporting hospital mortality of 8.5% against 40.4% (P < .001) and a propensity-adjusted odds ratio for mortality of 0.13 (95% CI 0.04 to 0.48). The design is the weakest one that can produce a number: no randomisation, no blinding, sequential time periods, and a control group assembled from the preceding seven months. Adoption nevertheless outran the evidence by years. CITRIS-ALI then randomised 167 patients with sepsis and ARDS and found no difference in the primary endpoints — modified SOFA score change from baseline to 96 hours differed by -0.10 (95% CI -1.23 to 1.03, P = .86), C-reactive protein P = .33. The VITAMINS trial compared vitamin C, hydrocortisone and thiamine against hydrocortisone alone in septic shock and found no difference in time alive and free of vasopressors. LOVIT then found harm. CHEST published an Editor's Note attached to the original 2017 paper in 2023.",
         evidenceSource:
           'Marik PE et al. Chest 2017;151:1229-1238; Fowler AA et al. JAMA 2019;322:1261-1270; Fujii T et al. JAMA 2020;323:423-431',
         doi: '10.1001/jama.2019.11825',
@@ -7784,11 +7866,11 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'vitc-a6',
         category: 'failed',
-        title: 'Physicians\' Health Study II: 14,641 men, eight years, no cardiovascular effect',
+        title: "Physicians' Health Study II: 14,641 men, eight years, no cardiovascular effect",
         laymanSummary:
           'A long randomised trial gave 500 mg of vitamin C a day to nearly fifteen thousand male doctors for eight years. It made no difference to heart attacks, strokes or cardiovascular death.',
         technicalDetails:
-          'The Physicians\' Health Study II randomised 14,641 male physicians aged 50 or older to vitamin C 500 mg daily, vitamin E 400 IU every other day, both, or placebo, in a factorial design with a mean follow-up of eight years. Neither vitamin C nor vitamin E reduced the composite of major cardiovascular events, and neither reduced total mortality. Vitamin E was associated with an increased risk of haemorrhagic stroke. The companion cancer analysis from the same cohort found neither vitamin reduced prostate cancer or total cancer incidence. Eight years of randomised supplementation in a well-nourished population is exactly the design that should have detected an antioxidant benefit if one existed at that dose, and it detected none.',
+          "The Physicians' Health Study II randomised 14,641 male physicians aged 50 or older to vitamin C 500 mg daily, vitamin E 400 IU every other day, both, or placebo, in a factorial design with a mean follow-up of eight years. Neither vitamin C nor vitamin E reduced the composite of major cardiovascular events, and neither reduced total mortality. Vitamin E was associated with an increased risk of haemorrhagic stroke. The companion cancer analysis from the same cohort found neither vitamin reduced prostate cancer or total cancer incidence. Eight years of randomised supplementation in a well-nourished population is exactly the design that should have detected an antioxidant benefit if one existed at that dose, and it detected none.",
         evidenceSource: 'Sesso HD et al. JAMA 2008;300:2123-2133',
         doi: '10.1001/jama.2008.600',
         measuredMetric:
@@ -7849,7 +7931,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'At the enormous concentrations only a drip can produce, vitamin C flips character and starts generating hydrogen peroxide. That was the hoped-for anticancer mechanism, and it is also the most likely reason it hurt septic patients.',
         molecularDetail:
-          'At millimolar extracellular concentration ascorbate reduces catalytically available transition metals, driving Fenton chemistry and generating extracellular hydrogen peroxide. Critically ill patients have elevated free iron and impaired antioxidant defences, which is the condition under which that chemistry does damage rather than good. LOVIT\'s risk ratio of 1.21 for death or persistent organ dysfunction is the clinical form of this step.',
+          "At millimolar extracellular concentration ascorbate reduces catalytically available transition metals, driving Fenton chemistry and generating extracellular hydrogen peroxide. Critically ill patients have elevated free iron and impaired antioxidant defences, which is the condition under which that chemistry does damage rather than good. LOVIT's risk ratio of 1.21 for death or persistent organ dysfunction is the clinical form of this step.",
         iconName: 'Flame',
         visualStage: 'catalytic_action',
       },
@@ -7890,13 +7972,15 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Failed to Replicate',
       },
       {
-        trialId: 'Physicians\' Health Study II — vitamin C and vitamin E in cardiovascular prevention',
+        trialId:
+          "Physicians' Health Study II — vitamin C and vitamin E in cardiovascular prevention",
         phase: 'Randomised double-blind placebo-controlled factorial',
         sampleSize: 14641,
         primaryEndpoint:
           'Composite of nonfatal myocardial infarction, nonfatal stroke and cardiovascular death',
         endpointMet: false,
-        statisticalPValue: 'No significant effect of vitamin C on the composite endpoint over eight years',
+        statisticalPValue:
+          'No significant effect of vitamin C on the composite endpoint over eight years',
         unreportedAdverseSignals:
           'Vitamin E in the same trial was associated with an increased risk of haemorrhagic stroke. The companion analysis found no reduction in prostate or total cancer.',
         independentReplicationStatus: 'Replicated',
@@ -7941,9 +8025,9 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'That because the excess is excreted, more is harmless — the excess is excreted partly as oxalate',
       ],
       whatFailedInitially: [
-        'Pauling\'s cancer programme, which rested on a non-randomised comparison against historical controls',
+        "Pauling's cancer programme, which rested on a non-randomised comparison against historical controls",
         'The Marik sepsis protocol, adopted worldwide from a 47-patient before-after study and then negative in CITRIS-ALI, VITAMINS and LOVIT',
-        'Vitamin C as cardiovascular prevention, null across 14,641 men and eight years in Physicians\' Health Study II',
+        "Vitamin C as cardiovascular prevention, null across 14,641 men and eight years in Physicians' Health Study II",
       ],
       realWorldOutcome: [
         'Vitamin C is unambiguously essential, and scurvy is a real disease that it cures completely and quickly',
@@ -7972,8 +8056,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         q: 'What happened with vitamin C and sepsis?',
         a: 'It is one of the clearest cautionary tales in modern critical care. A 47-patient retrospective before-after study in 2017 reported mortality falling from 40 percent to 8.5 percent, and units around the world adopted the protocol. CITRIS-ALI then randomised 167 patients and found no difference in its primary endpoints. The VITAMINS trial found no difference in time alive and free of vasopressors. Then LOVIT randomised 872 patients and found death or persistent organ dysfunction in 44.5 percent on vitamin C against 38.5 percent on placebo, risk ratio 1.21, P = 0.01. The sequence took five years and went from spectacular benefit to measurable harm.',
-        auditNote:
-          'CHEST attached an Editor\'s Note to the original 2017 paper in 2023.',
+        auditNote: "CHEST attached an Editor's Note to the original 2017 paper in 2023.",
       },
       {
         q: 'Is there any downside to taking a lot?',
@@ -7995,7 +8078,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Sesso HD et al. Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians\' Health Study II randomized controlled trial. JAMA 2008;300:2123-2133',
+          "Sesso HD et al. Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial. JAMA 2008;300:2123-2133",
         identifier: '10.1001/jama.2008.600',
         kind: 'doi',
       },
@@ -8036,7 +8119,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'CHEST Editor\'s Note attached to Marik PE et al. Chest 2017;151:1229-1238',
+        label: "CHEST Editor's Note attached to Marik PE et al. Chest 2017;151:1229-1238",
         identifier: '10.1016/j.chest.2023.04.021',
         kind: 'doi',
       },
@@ -8044,6 +8127,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         label: 'PubChem CID 54670067 — L-Ascorbic acid',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/54670067',
         kind: 'url',
+      },
+      {
+        label:
+          'Teucher B, Olivares M, Cori H. Enhancers of iron absorption: ascorbic acid and other organic acids. Int J Vitam Nutr Res 2004;74:403-419',
+        identifier: '10.1024/0300-9831.74.6.403',
+        kind: 'doi',
       },
     ],
   },
@@ -8064,7 +8153,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     modality: 'Nutraceutical / Botanical',
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
-      'Sold over the counter in the US for insomnia, jet lag and children\'s sleep. In the European Union the same molecule requires a prescription, and prolonged-release melatonin is authorised only as short-term monotherapy for primary insomnia in patients aged 55 or over. The regulatory gap between the two jurisdictions is the largest for any substance in this file.',
+      "Sold over the counter in the US for insomnia, jet lag and children's sleep. In the European Union the same molecule requires a prescription, and prolonged-release melatonin is authorised only as short-term monotherapy for primary insomnia in patients aged 55 or over. The regulatory gap between the two jurisdictions is the largest for any substance in this file.",
     patientFriendlyIndication: 'Taken to fall asleep faster, and to reset the clock after flying',
     conditionContext: {
       conditionExplainer:
@@ -8093,8 +8182,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Melatonin receptor agonist, authorised medicine',
           howItCompares:
             'The regulated version of the same molecule, assessed by the EMA and authorised in 2007 for short-term monotherapy in primary insomnia in patients aged 55 or over. Across three trials in 681 patients, 32% on Circadin (86 of 265) reported significant symptom improvement at three weeks against 19% on placebo (51 of 272).',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: known content, known release profile, a defined indication and an age restriction. Cons: a 13-percentage-point responder difference is modest, and the authorisation is deliberately narrow in a way the US supplement market simply is not.',
         },
@@ -8102,9 +8190,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Cognitive behavioural therapy for insomnia (CBT-I)',
           class: 'Behavioural therapy, first-line in guidelines',
           howItCompares:
-            'Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin\'s and, unlike melatonin, persist after treatment stops.',
-          typicalCost:
-            '',
+            "Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin's and, unlike melatonin, persist after treatment stops.",
+          typicalCost: '',
           prosAndCons:
             'Pros: durable, no pharmacology, no content-variability problem. Cons: requires weeks of effort and access to a clinician or a structured programme, which is why a gummy wins on convenience every time.',
         },
@@ -8114,7 +8201,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Darkness in the two hours before bed',
           activeCompound: 'Endogenous melatonin, released when retinal light input falls',
           biologicalMechanism:
-            'Melanopsin-containing retinal ganglion cells signal light directly to the suprachiasmatic nucleus, which suppresses pineal melatonin release. Short-wavelength light in the evening is the most potent suppressor. Removing that light restores the body\'s own signal at the correct time and correct amplitude, which no tablet can reproduce.',
+            "Melanopsin-containing retinal ganglion cells signal light directly to the suprachiasmatic nucleus, which suppresses pineal melatonin release. Short-wavelength light in the evening is the most potent suppressor. Removing that light restores the body's own signal at the correct time and correct amplitude, which no tablet can reproduce.",
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. The mechanistic point is that this is the same signal the supplement imitates, delivered by the system that knows the right dose.',
@@ -8126,7 +8213,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Light in the early biological morning advances circadian phase, which is the intervention that pairs with evening melatonin for delayed sleep-wake phase disorder. The phase-response curves for light and for melatonin run in roughly opposite directions, which is why the two are used together and why timing errors make either one useless or counterproductive.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Rosenthal et al. treated delayed sleep phase syndrome with two hours of bright light in the morning alongside evening light restriction, and measured the advance in core temperature and sleep latency.',
           monthlyCost: '',
         },
       ],
@@ -8247,7 +8335,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         category: 'conclusion_shift',
         title: 'The physiological dose worked; the pharmacological dose worked and overshot',
         laymanSummary:
-          'A dose-ranging study found that a small dose matching the body\'s own night-time level restored sleep efficiency. A ten-times-larger dose also worked, but dropped body temperature and left melatonin circulating into the next day.',
+          "A dose-ranging study found that a small dose matching the body's own night-time level restored sleep efficiency. A ten-times-larger dose also worked, but dropped body temperature and left melatonin circulating into the next day.",
         technicalDetails:
           'Zhdanova and colleagues ran a double-blind placebo-controlled crossover in 30 subjects over 50 — 15 with actigraphically confirmed reduced sleep efficiency and 15 normal sleepers — giving placebo and 0.1, 0.3 and 3.0 mg melatonin 30 minutes before bed for a week each, with polysomnography on the last three nights of each period. The physiological dose of 0.3 mg restored sleep efficiency (P < 0.0001), acting principally in the middle third of the night, and raised plasma melatonin to the normal nocturnal range (P < 0.0008). The pharmacological 3.0 mg dose also improved sleep, but induced hypothermia and caused plasma melatonin to remain elevated into the daylight hours. The 0.1 mg dose also improved sleep. Crucially, control subjects with equally low melatonin levels showed no sleep effect at any dose. Retail products in the US are commonly sold at 3, 5 and 10 mg, which is ten to thirty times the dose that this study showed sufficed, and the surplus does not simply vanish: it keeps signalling night into the following morning, which is the opposite of what a circadian intervention should do.',
         evidenceSource: 'Zhdanova IV et al. J Clin Endocrinol Metab 2001;86:4727-4730',
@@ -8308,7 +8396,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 1,
         title: 'Darkness starts the signal, and light stops it',
         laymanDesc:
-          'Special cells in the retina report ambient light straight to the body\'s master clock. When light falls, the clock releases the brake on the pineal gland and melatonin rises.',
+          "Special cells in the retina report ambient light straight to the body's master clock. When light falls, the clock releases the brake on the pineal gland and melatonin rises.",
         molecularDetail:
           'Melanopsin-expressing intrinsically photosensitive retinal ganglion cells project through the retinohypothalamic tract to the suprachiasmatic nucleus, which controls pineal melatonin synthesis through a multisynaptic pathway ending in sympathetic input to the pineal. Evening short-wavelength light suppresses release. Dim-light melatonin onset, measured under sub-10-lux conditions, is the reference standard for circadian phase precisely because it is the least contaminated marker available.',
         iconName: 'Moon',
@@ -8328,7 +8416,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'It binds two receptors on the clock itself',
         laymanDesc:
-          'Melatonin docks onto two specific receptors concentrated in the small cluster of cells that runs the body\'s daily timing. One quietens those cells; the other moves the clock.',
+          "Melatonin docks onto two specific receptors concentrated in the small cluster of cells that runs the body's daily timing. One quietens those cells; the other moves the clock.",
         molecularDetail:
           'MT1 (MTNR1A) and MT2 (MTNR1B) are Gi-coupled receptors densely expressed in the suprachiasmatic nucleus. MT1 activation acutely suppresses SCN neuronal firing; MT2 mediates phase shifts. Both inhibit adenylyl cyclase and lower cAMP. MT2 internalises and desensitises under sustained agonist exposure, which is why a large dose held high for many hours is not a scaled-up version of the physiological pulse.',
         iconName: 'Target',
@@ -8527,6 +8615,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/896',
         kind: 'url',
       },
+      {
+        label:
+          'Rosenthal NE et al. Phase-shifting effects of bright morning light as treatment for delayed sleep phase syndrome. Sleep 1990;13:354-361',
+        identifier: '10.1093/sleep/13.4.354',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -8547,7 +8641,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold as a dietary supplement and as an ingredient in coffee, tea, energy drinks and pre-workout formulas, for alertness and exercise performance. Caffeine citrate is separately an approved prescription drug under NDA 020793 for apnea of prematurity in very-low-birth-weight infants, where it reduced bronchopulmonary dysplasia and, at 18 months, death or neurodevelopmental disability.',
-    patientFriendlyIndication: 'Taken for alertness, and before training or competition for performance',
+    patientFriendlyIndication:
+      'Taken for alertness, and before training or competition for performance',
     conditionContext: {
       conditionExplainer:
         'Adenosine accumulates in the brain across a waking day and, by acting on its receptors, is one of the signals that produces the feeling of sleepiness. Caffeine occupies those receptors without activating them. It does not add energy; it blocks the message that you are tired, and the adenosine keeps accumulating underneath.',
@@ -8575,8 +8670,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Methylxanthine respiratory stimulant, FDA-approved under NDA 020793',
           howItCompares:
             'The same molecule as a licensed drug, given to very-low-birth-weight infants. In the 2,006-infant CAP trial it reduced bronchopulmonary dysplasia and, at 18 to 21 months corrected age, reduced death or neurodevelopmental disability from 46.2% to 40.2% and cerebral palsy from 7.3% to 4.4%.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: a genuine randomised benefit on hard neurological outcomes in a real disease, from a substance most people meet as a beverage. Cons: it tells you nothing about the coffee you drank this morning, and it is regularly cited as if it did.',
         },
@@ -8585,8 +8679,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'The mechanism-matching comparator',
           howItCompares:
             'Sleep clears accumulated adenosine; caffeine occupies the receptor while the adenosine keeps accumulating. That difference is why caffeine reliably improves performance on a rested athlete and cannot substitute for sleep across days. It is also why 400 mg six hours before bed measurably reduces total sleep time.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: removes the underlying signal rather than blocking it, with no tolerance and no withdrawal. Cons: cannot be bought, which is precisely why the caffeine market exists.',
         },
@@ -8594,12 +8687,13 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       naturalFoods: [
         {
           name: 'Coffee',
-          activeCompound: 'Caffeine, plus chlorogenic acids and diterpenes that anhydrous caffeine lacks',
+          activeCompound:
+            'Caffeine, plus chlorogenic acids and diterpenes that anhydrous caffeine lacks',
           biologicalMechanism:
             'The caffeine in coffee and the caffeine in a capsule are the same molecule acting at the same receptors, and coffee has been used successfully in ergogenic trials. The differences are dose precision and the accompanying compounds: unfiltered coffee carries cafestol and kahweol, which raise LDL cholesterol, and filtered coffee does not.',
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
-            'Not stated here as advice. For scale only: Goncalves\'s time-trial study used 6 mg per kilogram of body mass, and Drake\'s sleep study used a fixed 400 mg.',
+            "Not stated here as advice. For scale only: Goncalves's time-trial study used 6 mg per kilogram of body mass, and Drake's sleep study used a fixed 400 mg.",
           monthlyCost: '',
         },
         {
@@ -8608,7 +8702,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tea delivers less caffeine per serving alongside L-theanine, an amino acid that crosses the blood-brain barrier and is frequently combined with caffeine in supplement products on the claim that it smooths the stimulant effect. The receptor pharmacology of the caffeine is unchanged.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Chin et al. assayed 20 commercial teas and found 14 to 61 mg of caffeine per 6 or 8 ounce serving, with steep time mattering more than variety. Decaffeinated teas held under 12 mg.',
           monthlyCost: '',
         },
       ],
@@ -8695,7 +8790,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Time-trial performance with perceived exertion and a sleep readout',
           description:
-            'Report the performance outcome, the perceived-exertion outcome and the subsequent night\'s sleep from the same subjects. Doherty and Smith showed that exertion ratings account for roughly 29% of the variance in performance improvement, and Drake showed that a moderate dose six hours before bed disrupts sleep. A trial that reports only the time trial is reporting a third of the effect.',
+            "Report the performance outcome, the perceived-exertion outcome and the subsequent night's sleep from the same subjects. Doherty and Smith showed that exertion ratings account for roughly 29% of the variance in performance improvement, and Drake showed that a moderate dose six hours before bed disrupts sleep. A trial that reports only the time trial is reporting a third of the effect.",
           dependsOnStepId: 'caf-w4',
           reagentsAndBuffer:
             'Cycle ergometer simulated time trial with a validated protocol; Borg 6-20 rating of perceived exertion at fixed intervals; capillary blood lactate; matched placebo capsule plus a no-supplement control arm to detect placebo response; validated portable sleep monitor for the following night',
@@ -8749,11 +8844,12 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'caf-a4',
         category: 'inferred',
-        title: 'Half of habitual users get a withdrawal headache, from doses as low as 100 mg a day',
+        title:
+          'Half of habitual users get a withdrawal headache, from doses as low as 100 mg a day',
         laymanSummary:
           'Caffeine withdrawal is a real, validated syndrome with ten confirmed symptoms. Half of people get a headache, and it can be triggered by a daily habit as small as one cup.',
         technicalDetails:
-          'Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user\'s morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.',
+          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
         evidenceSource: 'Juliano LM, Griffiths RR. Psychopharmacology (Berl) 2004;176:1-29',
         doi: '10.1007/s00213-004-2000-x',
         measuredMetric:
@@ -8769,7 +8865,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'For years athletes were told to abstain from caffeine before competition so it would work better. A controlled study across low, moderate and heavy habitual users found their daily intake made no difference to the benefit.',
         technicalDetails:
-          'Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher\'s exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.',
+          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.",
         evidenceSource: 'Goncalves LS et al. J Appl Physiol (1985) 2017;123:213-220',
         doi: '10.1152/japplphysiol.00260.2017',
         measuredMetric:
@@ -8898,9 +8994,11 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Goncalves 2017 — habitual caffeine intake and the acute ergogenic response',
-        phase: 'Double-blind randomised crossover, counterbalanced, with a no-supplement control arm',
+        phase:
+          'Double-blind randomised crossover, counterbalanced, with a no-supplement control arm',
         sampleSize: 40,
-        primaryEndpoint: 'Simulated cycling time-trial completion time stratified by habitual intake',
+        primaryEndpoint:
+          'Simulated cycling time-trial completion time stratified by habitual intake',
         endpointMet: true,
         statisticalPValue:
           'Caffeine 29.92 min versus placebo 30.81 and control 31.14, P = 0.0002; habitual intake as covariate P = 0.47; between-tertile difference P = 0.75',
@@ -8914,7 +9012,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         sampleSize: 12,
         primaryEndpoint: 'Self-reported and objectively monitored sleep disturbance',
         endpointMet: true,
-        statisticalPValue: 'Significant sleep disturbance at all three timings versus placebo, P < 0.05',
+        statisticalPValue:
+          'Significant sleep disturbance at all three timings versus placebo, P < 0.05',
         unreportedAdverseSignals:
           'A small sample, but the six-hour finding is the empirical basis of the standard sleep-hygiene recommendation and had not previously been tested directly in the home environment.',
         independentReplicationStatus: 'Partially Replicated',
@@ -8964,7 +9063,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is the morning coffee doing anything, or just fixing withdrawal?',
-        a: 'Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user\'s pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.',
+        a: "Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user's pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.",
       },
       {
         q: 'How late is too late?',
@@ -9042,6 +9141,11 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2519',
         kind: 'url',
       },
+      {
+        label: 'Chin JM et al. Caffeine content of brewed teas. J Anal Toxicol 2008;32:702-704',
+        identifier: '10.1093/jat/32.8.702',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -9091,9 +9195,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Extensively hydrolysed whey infant formula',
           class: 'Medical nutrition, hypoallergenic feed',
           howItCompares:
-            'The same starting material cut into peptides small enough to avoid triggering cow\'s milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.',
-          typicalCost:
-            '',
+            "The same starting material cut into peptides small enough to avoid triggering cow's milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.",
+          typicalCost: '',
           prosAndCons:
             'Pros: solves a defined clinical problem. Cons: the word "hydrolysate" on a sports tub borrows credibility from this use, and hydrolysing whey for an adult buys speed of digestion, not a different biology.',
         },
@@ -9115,7 +9218,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tang et al. measured it directly. After resistance exercise, muscle protein synthesis on whey was about 31% greater than on soy and about 122% greater than on casein, with soy sitting between the two — an ordering that tracks digestion speed and leucine delivery rather than any unique property of dairy.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Tang et al. matched the three drinks at 10 g of essential amino acids, which is the comparison the whey-against-soy ordering rests on.',
           monthlyCost: '',
         },
       ],
@@ -9171,7 +9275,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
             'Muscle protein synthesis is a rate, not a quantity, and it can only be measured by tracking a labelled amino acid into muscle protein over time. This is the technique that produced every number in this dossier about whey versus casein versus soy, and it is why those numbers are trustworthy in a way that scale weight is not.',
           dependsOnStepId: 'whey-w1',
           reagentsAndBuffer:
-            'L-[ring-13C6]phenylalanine for the primed constant infusion; [1-13C]leucine for the parallel oxidation measurement; sterile pyrogen-free preparation; priming dose calculated from the subject\'s estimated pool size; background enrichment sampled before infusion',
+            "L-[ring-13C6]phenylalanine for the primed constant infusion; [1-13C]leucine for the parallel oxidation measurement; sterile pyrogen-free preparation; priming dose calculated from the subject's estimated pool size; background enrichment sampled before infusion",
         },
         {
           id: 'whey-w3',
@@ -9230,7 +9334,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The same meta-analysis found the point where extra protein stops adding anything: once total daily intake passes about 1.6 grams per kilogram of body weight, more protein produced no further muscle gain.',
         technicalDetails:
-          'A two-phase break point analysis across the 49 included studies determined that protein supplementation beyond a total protein intake of 1.62 g/kg/day resulted in no further resistance-training-induced gains in fat-free mass. This is not an opinion or a rule of thumb — it is a break point estimated from the pooled data, and it defines the exact boundary of the product\'s usefulness. A person already eating above that from food is, on the best available evidence, buying a supplement with a measured incremental effect of zero on fat-free mass, no matter how much of it they take. The finding also reframes the whole category: whey is not a muscle-building agent, it is a convenient way to reach a threshold, and past the threshold it is protein-flavoured food.',
+          "A two-phase break point analysis across the 49 included studies determined that protein supplementation beyond a total protein intake of 1.62 g/kg/day resulted in no further resistance-training-induced gains in fat-free mass. This is not an opinion or a rule of thumb — it is a break point estimated from the pooled data, and it defines the exact boundary of the product's usefulness. A person already eating above that from food is, on the best available evidence, buying a supplement with a measured incremental effect of zero on fat-free mass, no matter how much of it they take. The finding also reframes the whole category: whey is not a muscle-building agent, it is a convenient way to reach a threshold, and past the threshold it is protein-flavoured food.",
         evidenceSource: 'Morton RW et al. Br J Sports Med 2018;52:376-384',
         doi: '10.1136/bjsports-2017-097608',
         measuredMetric:
@@ -9245,7 +9349,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'A stable-isotope study measured muscle protein synthesis directly after equal amounts of essential amino acids from whey, casein or soy. Whey produced by far the biggest response.',
         technicalDetails:
           'Tang and colleagues gave three groups of six healthy young men drinks matched for essential amino acid content at 10 g, as whey hydrolysate, micellar casein or soy protein isolate, after unilateral leg resistance exercise, with mixed muscle protein synthesis measured by primed constant infusion of L-[ring-13C6]phenylalanine. Whey produced larger increases in blood essential amino acids, branched-chain amino acids and leucine than either comparator (P < 0.05). At rest, mixed muscle protein synthesis was 0.091 +/- 0.015 %/h on whey, 0.078 +/- 0.014 on soy and 0.047 +/- 0.008 on casein — whey approximately 93% greater than casein (P < 0.01) and 18% greater than soy (P = 0.067). After exercise the ordering held: whey approximately 122% greater than casein (P < 0.01) and 31% greater than soy (P < 0.05). This is a genuine, mechanistically clean advantage for whey, and it is an acute synthesis rate in six men per group, not a training outcome. The chronic meta-analysis that measured training outcomes did not separate protein sources.',
-        evidenceSource: 'Tang JE, Moore DR, Kujbida GW, Tarnopolsky MA, Phillips SM. J Appl Physiol 2009;107:987-992',
+        evidenceSource:
+          'Tang JE, Moore DR, Kujbida GW, Tarnopolsky MA, Phillips SM. J Appl Physiol 2009;107:987-992',
         doi: '10.1152/japplphysiol.00076.2009',
         measuredMetric:
           'Fractional rate of mixed muscle protein synthesis, percent per hour, at rest and after resistance exercise',
@@ -9300,7 +9405,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'whey-a7',
         category: 'inferred',
-        title: 'Heavy metals: found repeatedly, then assessed as safe by industry-adjacent consultants',
+        title:
+          'Heavy metals: found repeatedly, then assessed as safe by industry-adjacent consultants',
         laymanSummary:
           'Consumer testing found arsenic, cadmium, mercury and lead in protein powders, with 40 percent of 133 products elevated. A follow-up risk assessment concluded the exposures were below regulatory thresholds. Its three authors all worked for the same litigation-support consultancy.',
         technicalDetails:
@@ -9407,7 +9513,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Schoenfeld 2013 meta-regression of protein timing',
         phase: 'Multi-level meta-regression of randomised controlled trials',
         sampleSize: 525,
-        primaryEndpoint: 'Muscle strength and hypertrophy effect size attributable to protein timing',
+        primaryEndpoint:
+          'Muscle strength and hypertrophy effect size attributable to protein timing',
         endpointMet: false,
         statisticalPValue:
           'Simple pooled analysis showed a small-to-moderate hypertrophy effect; in the full model controlling for covariates, no significant difference for strength or hypertrophy',
@@ -9419,7 +9526,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Devries 2018 meta-analysis of higher-protein intake and kidney function',
         phase: 'Systematic review and meta-analysis of 28 randomised controlled trials',
         sampleSize: 1358,
-        primaryEndpoint: 'Glomerular filtration rate on higher versus normal or lower protein intake',
+        primaryEndpoint:
+          'Glomerular filtration rate on higher versus normal or lower protein intake',
         endpointMet: false,
         statisticalPValue:
           'Post-intervention GFR SMD 0.19 (95% CI 0.07 to 0.31), P = 0.002; change in GFR SMD 0.11 (95% CI -0.05 to 0.27), P = 0.16',
@@ -9439,7 +9547,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That protein must be taken in a window around training, which vanished when total daily intake was controlled for',
         'That a larger serving produces a proportionally larger response, when the response plateaued at 20 g',
-        'That whey\'s acute superiority over casein and soy translates into superior long-term hypertrophy, which no chronic trial has separated',
+        "That whey's acute superiority over casein and soy translates into superior long-term hypertrophy, which no chronic trial has separated",
         'That heavy metal contamination is a closed question because one industry-adjacent risk assessment computed a hazard index below 1',
       ],
       whatFailedInitially: [
@@ -9457,7 +9565,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       description:
         'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. The three grades differ by processing rather than by biology: concentrate retains more lactose and fat, isolate is filtered further to a higher protein percentage, and hydrolysate is pre-cleaved into peptides for faster absorption. All three deliver the same amino acids, and leucine content per gram of protein is nearly identical between them. Label protein content is usually derived from total nitrogen, which is inflatable by nitrogen-rich non-protein additives, so a full amino acid profile is the only assay that verifies the claim.',
       safetyProfile:
-        'Bloating, flatulence and diarrhoea in lactose-intolerant users of concentrate, which isolate largely avoids. Cow\'s milk protein allergy is a genuine contraindication and is not the same as lactose intolerance. Higher protein intake does not change glomerular filtration rate in healthy adults across 28 randomised trials, but that evidence does not extend to existing chronic kidney disease, where protein restriction remains standard. Independent testing has repeatedly found arsenic, cadmium, mercury and lead in this product category, with plant-based and mass-gain formulas worse than whey; a subsequent risk assessment by industry-adjacent consultants calculated hazard indices below the regulatory screening threshold.',
+        "Bloating, flatulence and diarrhoea in lactose-intolerant users of concentrate, which isolate largely avoids. Cow's milk protein allergy is a genuine contraindication and is not the same as lactose intolerance. Higher protein intake does not change glomerular filtration rate in healthy adults across 28 randomised trials, but that evidence does not extend to existing chronic kidney disease, where protein restriction remains standard. Independent testing has repeatedly found arsenic, cadmium, mercury and lead in this product category, with plant-based and mass-gain formulas worse than whey; a subsequent risk assessment by industry-adjacent consultants calculated hazard indices below the regulatory screening threshold.",
     },
     commonQuestions: [
       {
@@ -9593,7 +9701,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           class: 'Animal-derived thyroid preparation containing both T4 and T3',
           howItCompares:
             'Contains both hormones in a ratio set by pig physiology rather than by human requirement. The 2014 American Thyroid Association guideline reviewed thyroid extracts alongside synthetic combination therapy and did not recommend them over levothyroxine.',
-          typicalCost: 'Varies by product; several are marketed without an approved new drug application',
+          typicalCost:
+            'Varies by product; several are marketed without an approved new drug application',
           prosAndCons:
             'Pros: some patients report preferring it. Cons: fixed hormone ratio not matched to human needs, batch variability, and no randomised trial showing superiority on a symptom endpoint.',
         },
@@ -9637,7 +9746,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'C15H11I4NO4',
       molecularWeight: '776.87 g/mol; dispensed as levothyroxine sodium, usually as a hydrate',
       targetReceptorAffinity:
-        'Levothyroxine (T4) is itself a low-affinity ligand for the nuclear thyroid hormone receptors. Activity comes from outer-ring deiodination by the selenoenzymes DIO1 and DIO2 to triiodothyronine (T3), which binds the receptor with roughly ten to fifteen times higher affinity. Giving T4 rather than T3 hands dose control to each tissue\'s own deiodinase, which is the pharmacological argument for T4 monotherapy.',
+        "Levothyroxine (T4) is itself a low-affinity ligand for the nuclear thyroid hormone receptors. Activity comes from outer-ring deiodination by the selenoenzymes DIO1 and DIO2 to triiodothyronine (T3), which binds the receptor with roughly ten to fifteen times higher affinity. Giving T4 rather than T3 hands dose control to each tissue's own deiodinase, which is the pharmacological argument for T4 monotherapy.",
       structureSource: {
         label:
           'PubChem CID 5819 (levothyroxine) — canonical SMILES, molecular formula and molecular weight',
@@ -9724,8 +9833,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'A planned combined analysis in people aged 80 and over — the group most often described as needing treatment — found no improvement in symptoms or fatigue.',
         technicalDetails:
           'A prospectively planned combined analysis pooled the participants aged 80 and older from TRUST with a second randomised trial, 251 community-dwelling adults with subclinical hypothyroidism, mean age 85, of whom 118 (47%) were women and 212 (84%) completed. 112 received levothyroxine and 139 placebo. The hypothyroid symptoms score fell from 21.7 to 19.3 on levothyroxine and from 19.8 to 17.4 on placebo: adjusted between-group difference 1.3 (95% CI -2.7 to 5.2), p=0.53. The tiredness score rose from 25.5 to 28.2 on levothyroxine and from 25.1 to 28.7 on placebo: adjusted difference -0.1 (-4.5 to 4.3), p=0.96. Both are far below the 9-point minimum clinically important difference. At least one adverse event occurred in 29.5% on levothyroxine and 28.8% on placebo.',
-        evidenceSource:
-          'Mooijaart SP et al., JAMA 2019;322:1977-1986 (NCT01660126, NTR3851)',
+        evidenceSource: 'Mooijaart SP et al., JAMA 2019;322:1977-1986 (NCT01660126, NTR3851)',
         doi: '10.1001/jama.2019.17274',
         measuredMetric:
           'ThyPRO hypothyroid symptoms and tiredness domain scores at 1 year in adults aged 80 and older',
@@ -9919,8 +10027,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet in twelve strengths, plus soft-gel capsules, an oral solution and an intravenous formulation for myxoedema coma',
+      type: 'Oral tablet in twelve strengths, plus soft-gel capsules, an oral solution and an intravenous formulation for myxoedema coma',
       description:
         'Taken once daily on an empty stomach with water, kept consistent relative to food and to interacting medicines. The wide range of tablet strengths exists because dosing is titrated in small increments against a laboratory value with a six-week lag. Soft-gel and solution formulations exist because tablet dissolution depends on gastric acid, which several common drugs suppress.',
       safetyProfile:
@@ -10001,7 +10108,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA: UNITHROID (levothyroxine sodium), NDA 021210, original approval 21 August 2000',
+        label:
+          'Drugs@FDA: UNITHROID (levothyroxine sodium), NDA 021210, original approval 21 August 2000',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021210',
         kind: 'regulatory',
@@ -10051,7 +10159,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     confidenceScore: 90,
     substitutes: {
       summary:
-        'Empagliflozin has no generic in the United States and costs about US$11 per tablet at pharmacy acquisition cost. Dapagliflozin is the closest comparator with an almost identical outcome portfolio. Metformin remains the cheapest glucose-lowering drug by three orders of magnitude and has its own mortality trial, but nothing in the diabetes formulary has this drug\'s heart failure and kidney evidence.',
+        "Empagliflozin has no generic in the United States and costs about US$11 per tablet at pharmacy acquisition cost. Dapagliflozin is the closest comparator with an almost identical outcome portfolio. Metformin remains the cheapest glucose-lowering drug by three orders of magnitude and has its own mortality trial, but nothing in the diabetes formulary has this drug's heart failure and kidney evidence.",
       conventionalRx: [
         {
           name: 'Dapagliflozin (Farxiga)',
@@ -10096,7 +10204,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Genital fungal infection is the commonest reason people stop',
-          action: 'Expect and report genital itching or discharge, particularly in the first months.',
+          action:
+            'Expect and report genital itching or discharge, particularly in the first months.',
           patientImpact:
             'Glucose in the urine feeds yeast. EMPA-REG reported an increased rate of genital infection with no increase in other adverse events, and EMPEROR-Preserved reported more uncomplicated genital and urinary tract infections and more hypotension.',
           clinicalPrecaution:
@@ -10194,7 +10303,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'emp-a2',
         category: 'inferred',
-        title: 'The benefit did not come from the glucose, and nobody has shown what it did come from',
+        title:
+          'The benefit did not come from the glucose, and nobody has shown what it did come from',
         laymanSummary:
           'The heart attacks and strokes this drug was supposed to prevent did not change. What changed was heart failure and death. Several explanations have been proposed and none has been tested against the others.',
         technicalDetails:
@@ -10268,7 +10378,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'emp-a7',
         category: 'inferred',
-        title: 'Empagliflozin and dapagliflozin are treated as interchangeable without a comparison',
+        title:
+          'Empagliflozin and dapagliflozin are treated as interchangeable without a comparison',
         laymanSummary:
           'The two leading drugs in this class have never been tested against each other. Everything said about one being better or equal to the other comes from comparing separate trials against separate placebos.',
         technicalDetails:
@@ -10306,7 +10417,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'A glucose look-alike jams the transporter, and cannot be cut loose',
         laymanDesc:
-          'The drug looks enough like glucose to occupy the transporter, but the link holding its sugar ring on is a carbon-carbon bond that the body\'s sugar-cleaving enzymes cannot break.',
+          "The drug looks enough like glucose to occupy the transporter, but the link holding its sugar ring on is a carbon-carbon bond that the body's sugar-cleaving enzymes cannot break.",
         molecularDetail:
           'Empagliflozin is a C-aryl glucoside: replacing the natural oxygen glycosidic linkage with a carbon-carbon bond makes it resistant to beta-glucosidase hydrolysis, the flaw that made the natural product phlorizin unusable as a drug. Selectivity for SGLT2 over SGLT1 is roughly 2,500-fold, the highest in the class, which keeps intestinal glucose absorption intact.',
         iconName: 'Lock',
@@ -10336,7 +10447,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'EMPA-REG OUTCOME (NCT01131676)',
-        phase: 'Randomised double-blind placebo-controlled cardiovascular safety trial, median 3.1 years',
+        phase:
+          'Randomised double-blind placebo-controlled cardiovascular safety trial, median 3.1 years',
         sampleSize: 7020,
         primaryEndpoint:
           'Composite of cardiovascular death, non-fatal myocardial infarction and non-fatal stroke',
@@ -10585,7 +10697,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Genital infection is the commonest reason for stopping',
-          action: 'Report genital itching, soreness or discharge, particularly in the first months.',
+          action:
+            'Report genital itching, soreness or discharge, particularly in the first months.',
           patientImpact:
             'In DECLARE-TIMI 58, genital infections that led to discontinuation or were classed as serious occurred in 0.9% on dapagliflozin against 0.1% on placebo (p<0.001). Milder cases were much more common than that.',
           clinicalPrecaution:
@@ -10595,8 +10708,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CCOC1=CC=C(C=C1)CC2=C(C=CC(=C2)[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O)Cl',
+      smilesString: 'CCOC1=CC=C(C=C1)CC2=C(C=CC(=C2)[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O)Cl',
       chemicalFormula: 'C21H25ClO6',
       molecularWeight: '408.9 g/mol; dispensed as dapagliflozin propanediol monohydrate',
       targetReceptorAffinity:
@@ -10690,7 +10802,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'Nearly five thousand people with a weakened heart, over half of them without diabetes, were randomised. Worsening heart failure and cardiovascular death fell by a quarter, and deaths from any cause fell too.',
         technicalDetails:
           'DAPA-HF randomised 4,744 patients with NYHA class II-IV heart failure and ejection fraction of 40% or less to dapagliflozin 10 mg daily or placebo on top of recommended therapy. Over a median 18.2 months the primary composite of worsening heart failure — hospitalisation or an urgent visit requiring intravenous therapy — or cardiovascular death occurred in 386 of 2,373 (16.3%) against 502 of 2,371 (21.2%): hazard ratio 0.74 (95% CI 0.65 to 0.85), p<0.001. First worsening heart failure event 10.0% against 13.7% (0.70, 0.59 to 0.83). Cardiovascular death 9.6% against 11.5% (0.82, 0.69 to 0.98). Death from any cause 11.6% against 13.9% (0.83, 0.71 to 0.97). Findings in patients with diabetes were similar to those without. Adverse events relating to volume depletion, renal dysfunction and hypoglycaemia did not differ between groups.',
-        evidenceSource: 'McMurray JJV et al., DAPA-HF, N Engl J Med 2019;381:1995-2008 (NCT03036124)',
+        evidenceSource:
+          'McMurray JJV et al., DAPA-HF, N Engl J Med 2019;381:1995-2008 (NCT03036124)',
         doi: '10.1056/NEJMoa1911303',
         measuredMetric:
           'Worsening heart failure or cardiovascular death, and death from any cause, over a median 18.2 months',
@@ -10733,8 +10846,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'A trial after heart attack could not accumulate enough hard events, so during the trial the analysis was switched to a scoring method that also counts weight loss and new diabetes diagnoses. On that measure it won; on death and heart failure hospitalisation it did not move.',
         technicalDetails:
           'DAPA-MI was a registry-based randomised double-blind trial in patients without prior diabetes or chronic heart failure presenting with acute myocardial infarction and impaired left ventricular systolic function; 2,019 received dapagliflozin and 1,998 placebo. The primary outcome was a hierarchical composite analysed by win ratio comprising death, heart failure hospitalisation, non-fatal infarction, atrial fibrillation or flutter, new type 2 diabetes, NYHA class at last visit and a body-weight decrease of 5% or more. The win ratio was 1.34 (95% CI 1.20 to 1.50), p<0.001. The paper states directly that this outcome was adopted in a change of analysis during trial performance because of low event accrual, and that the result was mainly driven by the added cardiometabolic outcomes. The conventional composite of cardiovascular death or heart failure hospitalisation occurred in 50 of 2,019 (2.5%) against 52 of 1,998 (2.6%): hazard ratio 0.95 (0.64 to 1.40). Other cardiovascular event differences did not reach nominal significance.',
-        evidenceSource:
-          'James S et al., DAPA-MI, NEJM Evid 2024;3(2) (NCT04564742)',
+        evidenceSource: 'James S et al., DAPA-MI, NEJM Evid 2024;3(2) (NCT04564742)',
         doi: '10.1056/EVIDoa2300286',
         measuredMetric:
           'Hierarchical win-ratio composite, and separately the composite of cardiovascular death or heart failure hospitalisation',
@@ -10806,7 +10918,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         step: 4,
-        title: 'Glucose, sodium and water leave together, and the kidney filter resets its pressure',
+        title:
+          'Glucose, sodium and water leave together, and the kidney filter resets its pressure',
         laymanDesc:
           'Unreclaimed sugar drags water out with it and leaves sodium behind in the tubule. A sensor further along reads that extra sodium and tightens the vessel feeding the filter, lowering the pressure across it.',
         molecularDetail:
@@ -10843,15 +10956,15 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'DAPA-HF (NCT03036124)',
         phase: 'Randomised double-blind placebo-controlled phase 3 trial, median 18.2 months',
         sampleSize: 4744,
-        primaryEndpoint:
-          'Worsening heart failure or cardiovascular death, ejection fraction ≤40%',
+        primaryEndpoint: 'Worsening heart failure or cardiovascular death, ejection fraction ≤40%',
         endpointMet: true,
         statisticalPValue: 'HR 0.74 (95% CI 0.65-0.85), P < 0.001',
         independentReplicationStatus: 'Replicated',
       },
       {
         trialId: 'DAPA-CKD (NCT03036150)',
-        phase: 'Randomised double-blind placebo-controlled trial, stopped early for efficacy, median 2.4 years',
+        phase:
+          'Randomised double-blind placebo-controlled trial, stopped early for efficacy, median 2.4 years',
         sampleSize: 4304,
         primaryEndpoint:
           'Sustained eGFR decline of at least 50%, end-stage kidney disease, or death from renal or cardiovascular causes',
@@ -11162,7 +11275,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'sit-a2',
         category: 'inferred',
-        title: 'A non-inferiority trial cannot show benefit, and TECOS is often cited as though it did',
+        title:
+          'A non-inferiority trial cannot show benefit, and TECOS is often cited as though it did',
         laymanSummary:
           'TECOS was designed to prove the drug does not cause harm, using a statistical test that can only rule harm out. Its result is genuinely reassuring and is not evidence that the drug helps the heart.',
         technicalDetails:
@@ -11182,8 +11296,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'Five thousand people already on metformin were randomised to one of four additional drugs and followed for five years. Sitagliptin was the least durable: more people on it drifted above target, and did so sooner.',
         technicalDetails:
           'GRADE randomised 5,047 participants with type 2 diabetes of less than 10 years duration on metformin with HbA1c 6.8 to 8.5% to insulin glargine U-100, glimepiride, liraglutide or sitagliptin, and followed them a mean of 5.0 years. The cumulative incidence of the primary metabolic outcome — a confirmed HbA1c of 7.0% or higher — differed significantly across groups (p<0.001 for a global test). Rates per 100 participant-years were 26.5 for glargine, 26.1 for liraglutide, 30.4 for glimepiride and 38.1 for sitagliptin. The secondary outcome, confirmed HbA1c above 7.5%, paralleled it. Among participants with higher baseline HbA1c the advantage of the other three over sitagliptin appeared greater still. Severe hypoglycaemia was rare and most frequent on glimepiride (2.2%) against glargine (1.3%), liraglutide (1.0%) and sitagliptin (0.7%).',
-        evidenceSource:
-          'GRADE Study Research Group, N Engl J Med 2022;387:1063-1074 (NCT01794143)',
+        evidenceSource: 'GRADE Study Research Group, N Engl J Med 2022;387:1063-1074 (NCT01794143)',
         doi: '10.1056/NEJMoa2200433',
         measuredMetric:
           'Cumulative incidence of confirmed HbA1c of 7.0% or higher over a mean 5.0 years, per 100 participant-years',
@@ -11192,7 +11305,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'sit-a4',
         category: 'measured',
-        title: 'The class heart failure signal belongs to saxagliptin, and TECOS did not reproduce it',
+        title:
+          'The class heart failure signal belongs to saxagliptin, and TECOS did not reproduce it',
         laymanSummary:
           'A trial of a related drug found more heart failure hospitalisations, which raised a question about the whole class. The sitagliptin trial specifically checked and found no difference at all.',
         technicalDetails:
@@ -11226,8 +11340,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'Because the hormones this drug preserves only work when blood sugar is high, it hardly ever pushes sugar too low. In a five-year randomised comparison that was its clearest advantage.',
         technicalDetails:
           'In GRADE, severe hypoglycaemia over a mean 5.0 years occurred in 0.7% of participants on sitagliptin, the lowest of the four arms, against 1.0% on liraglutide, 1.3% on insulin glargine and 2.2% on glimepiride — the difference from glimepiride being statistically significant. The mechanistic basis is that GLP-1 and GIP stimulate insulin secretion in a glucose-dependent manner and suppress glucagon only when glucose is elevated, so preserving them does not drive insulin release at normal glucose. This is the trade that defines the drug: the lowest hypoglycaemia rate of the four, and the weakest glycaemic durability of the four.',
-        evidenceSource:
-          'GRADE Study Research Group, N Engl J Med 2022;387:1063-1074 (NCT01794143)',
+        evidenceSource: 'GRADE Study Research Group, N Engl J Med 2022;387:1063-1074 (NCT01794143)',
         doi: '10.1056/NEJMoa2200433',
         measuredMetric:
           'Proportion of participants with severe hypoglycaemia over a mean 5.0 years, by treatment arm',
@@ -11259,7 +11372,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'A trifluorinated ring fills the pocket that normally grips the hormone',
         laymanDesc:
-          'The drug slots into the enzyme\'s active site in the place where the end of the incretin hormone would sit, and holds there without being cut.',
+          "The drug slots into the enzyme's active site in the place where the end of the incretin hormone would sit, and holds there without being cut.",
         molecularDetail:
           'The 2,4,5-trifluorophenyl group occupies the S1 hydrophobic pocket, the primary amine of the beta-amino amide engages the S2 glutamate pair, and the trifluoromethyl-triazolopiperazine fills the adjacent lipophilic region. Inhibition is competitive and reversible, with more than 2,600-fold selectivity over DPP-8 and DPP-9 — the related peptidases whose inhibition was toxic in preclinical species.',
         iconName: 'Lock',
@@ -11289,7 +11402,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'TECOS (NCT00790205)',
-        phase: 'Randomised double-blind placebo-controlled cardiovascular safety trial, median 3.0 years',
+        phase:
+          'Randomised double-blind placebo-controlled cardiovascular safety trial, median 3.0 years',
         sampleSize: 14671,
         primaryEndpoint:
           'Composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or hospitalisation for unstable angina',
@@ -11414,7 +11528,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: JANUVIA (sitagliptin phosphate), NDA 021995, original approval 16 October 2006',
+        label:
+          'Drugs@FDA: JANUVIA (sitagliptin phosphate), NDA 021995, original approval 16 October 2006',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021995',
         kind: 'regulatory',
@@ -11514,7 +11629,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           action:
             'Warfarin interacts with a very large number of drugs, foods and supplements, in both directions.',
           patientImpact:
-            'The drug is a racemate cleared by two different enzymes, is highly protein-bound, has a narrow therapeutic index, and acts on a pathway that dietary intake feeds directly. Antibiotics, antifungals, amiodarone, non-steroidal anti-inflammatories and St John\'s wort all change either its level or its effect.',
+            "The drug is a racemate cleared by two different enzymes, is highly protein-bound, has a narrow therapeutic index, and acts on a pathway that dietary intake feeds directly. Antibiotics, antifungals, amiodarone, non-steroidal anti-inflammatories and St John's wort all change either its level or its effect.",
           clinicalPrecaution:
             'Bleeding risk is the boxed warning on the US label. A change in any co-medication is a reason to check the INR sooner, not a reason to adjust the dose without one.',
         },
@@ -11551,7 +11666,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           phase: 'Synthesis',
           name: 'Michael addition of 4-hydroxycoumarin to benzylideneacetone',
           description:
-            'Add the coumarin enol across the conjugated ketone. This is the reaction Karl Link\'s laboratory ran in 1948 and it is still the route: one bond, two commodity inputs, no protecting groups. It creates the single stereocentre with no facial control, which is why warfarin has always been sold and dosed as a racemate despite the enantiomers differing several-fold in potency and being cleared by different enzymes.',
+            "Add the coumarin enol across the conjugated ketone. This is the reaction Karl Link's laboratory ran in 1948 and it is still the route: one bond, two commodity inputs, no protecting groups. It creates the single stereocentre with no facial control, which is why warfarin has always been sold and dosed as a racemate despite the enantiomers differing several-fold in potency and being cleared by different enzymes.",
           dependsOnStepId: 'war-w1',
           reagentsAndBuffer:
             'Pyridine or piperidine as base in water or ethanol at reflux, or a solvent-free melt; nitrogen atmosphere; thin-layer chromatography monitoring',
@@ -11609,7 +11724,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'war-a2',
         category: 'conclusion_shift',
-        title: 'COAG: genotype-guided dosing did not beat a clinical algorithm, and was worse in Black patients',
+        title:
+          'COAG: genotype-guided dosing did not beat a clinical algorithm, and was worse in Black patients',
         laymanSummary:
           'The flagship American trial of pharmacogenomic warfarin dosing found no advantage at all over dosing that used clinical information alone. In Black participants, the genotype-guided arm did worse.',
         technicalDetails:
@@ -11640,7 +11756,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'war-a4',
         category: 'measured',
-        title: 'GIFT: a clinical benefit, in a narrow surgical population, driven by INR excursions',
+        title:
+          'GIFT: a clinical benefit, in a narrow surgical population, driven by INR excursions',
         laymanSummary:
           'A third trial, in older patients starting warfarin after hip or knee replacement, did find fewer adverse events with genotype-guided dosing. Most of the difference was in over-anticoagulation rather than in bleeding or clots.',
         technicalDetails:
@@ -11683,13 +11800,13 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'war-a7',
         category: 'measured',
-        title: 'Where warfarin still wins: a factor Xa inhibitor lost to it in rheumatic valve disease',
+        title:
+          'Where warfarin still wins: a factor Xa inhibitor lost to it in rheumatic valve disease',
         laymanSummary:
           'The idea that warfarin has been superseded is population-specific. In rheumatic heart disease with atrial fibrillation, a trial of over four thousand patients found more deaths on rivaroxaban than on a vitamin K antagonist.',
         technicalDetails:
           'INVICTUS randomised 4,565 patients with rheumatic heart disease and atrial fibrillation to rivaroxaban or a dose-adjusted vitamin K antagonist. The trial found the vitamin K antagonist superior, with the difference driven by death. Mechanical prosthetic heart valves are the other setting where a direct oral anticoagulant was tested against warfarin and performed worse, and the direct oral anticoagulants carry a labelled contraindication there. Warfarin remains on the WHO Model List of Essential Medicines, and at about nine cents a tablet against US$5.52 for apixaban it is also the only anticoagulant most of the world can afford at scale.',
-        evidenceSource:
-          'Connolly SJ et al., INVICTUS, N Engl J Med 2022;387:978-988 (NCT02832544)',
+        evidenceSource: 'Connolly SJ et al., INVICTUS, N Engl J Med 2022;387:978-988 (NCT02832544)',
         doi: '10.1056/NEJMoa2209051',
         measuredMetric:
           'Composite of stroke, systemic embolism, myocardial infarction or death, rivaroxaban versus vitamin K antagonist in rheumatic heart disease',
@@ -11769,7 +11886,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Percentage of time in the therapeutic INR range of 2.0 to 3.0 during the first 12 weeks',
         endpointMet: true,
-        statisticalPValue: '67.4% against 60.3%; adjusted difference 7.0 points (95% CI 3.3 to 10.6)',
+        statisticalPValue:
+          '67.4% against 60.3%; adjusted difference 7.0 points (95% CI 3.3 to 10.6)',
         unreportedAdverseSignals:
           'The control group received a fixed 3-day loading regimen, not a clinical algorithm. The comparator, not the genotype, is what separates this result from COAG.',
         independentReplicationStatus: 'Partially Replicated',
@@ -11816,7 +11934,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       whatFailedInitially: [
         'COAG: the flagship pharmacogenomic trial found an adjusted mean difference of -0.2 percentage points, p=0.91, and a race interaction running against the genotype arm',
         'Warfarin lost to apixaban simultaneously on stroke, major bleeding and all-cause death in 18,201 patients',
-        'Aspirin, the alternative widely used for decades in atrial fibrillation, delivered 22% stroke reduction against warfarin\'s 64%',
+        "Aspirin, the alternative widely used for decades in atrial fibrillation, delivered 22% stroke reduction against warfarin's 64%",
       ],
       realWorldOutcome: [
         'Still on the WHO Model List of Essential Medicines, and the only anticoagulant licensed for mechanical heart valves',
@@ -11934,7 +12052,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Cholesterol reaching the bloodstream comes from two sources: what the liver makes and what the gut absorbs, and the gut handles both dietary cholesterol and the much larger amount the body itself secretes in bile and then reclaims. Statins block manufacture. Ezetimibe blocks the reclamation, by inhibiting a specific transporter on the intestinal lining.',
       whyItMatters:
-        'This drug is the cleanest natural experiment in the LDL hypothesis. It lowers LDL by a mechanism that has nothing to do with the statin pathway and none of the statin\'s proposed side effects. If lowering LDL is what prevents events, ezetimibe should prevent events in proportion to how much LDL it removes. IMPROVE-IT tested exactly that, and the answer is on this page along with the two trials that came before it and failed.',
+        "This drug is the cleanest natural experiment in the LDL hypothesis. It lowers LDL by a mechanism that has nothing to do with the statin pathway and none of the statin's proposed side effects. If lowering LDL is what prevents events, ezetimibe should prevent events in proportion to how much LDL it removes. IMPROVE-IT tested exactly that, and the answer is on this page along with the two trials that came before it and failed.",
       whoTakesThis:
         'People who need further LDL reduction on a statin, people who cannot tolerate a statin dose high enough to reach target, and people with familial hypercholesterolaemia. It is on the WHO Model List of Essential Medicines.',
       clinicalGoals:
@@ -12007,8 +12125,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'C1=CC(=CC=C1[C@@H]2[C@H](C(=O)N2C3=CC=C(C=C3)F)CC[C@@H](C4=CC=C(C=C4)F)O)O',
+      smilesString: 'C1=CC(=CC=C1[C@@H]2[C@H](C(=O)N2C3=CC=C(C=C3)F)CC[C@@H](C4=CC=C(C=C4)F)O)O',
       chemicalFormula: 'C24H21F2NO3',
       molecularWeight: '409.4 g/mol',
       targetReceptorAffinity:
@@ -12085,7 +12202,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'Adding ezetimibe to a statin after a heart attack lowered cholesterol further and prevented events. The absolute difference over seven years was two people in a hundred.',
         technicalDetails:
           'IMPROVE-IT randomised 18,144 patients hospitalised for an acute coronary syndrome within the preceding 10 days, with LDL cholesterol of 50 to 100 mg/dL on lipid-lowering therapy or 50 to 125 mg/dL if not, to simvastatin 40 mg plus ezetimibe 10 mg or simvastatin 40 mg plus placebo, median follow-up 6 years. Median time-weighted average LDL during the study was 53.7 mg/dL on the combination against 69.5 mg/dL on simvastatin alone (p<0.001). The Kaplan-Meier event rate at 7 years for the primary composite of cardiovascular death, non-fatal myocardial infarction, unstable angina requiring rehospitalisation, coronary revascularisation at 30 days or later, or non-fatal stroke was 32.7% against 34.7%: absolute risk difference 2.0 percentage points, hazard ratio 0.936 (95% CI 0.89 to 0.99), p=0.016. Prespecified muscle, gallbladder and hepatic adverse effects and cancer were similar between groups.',
-        evidenceSource: 'Cannon CP et al., IMPROVE-IT, N Engl J Med 2015;372:2387-2397 (NCT00202878)',
+        evidenceSource:
+          'Cannon CP et al., IMPROVE-IT, N Engl J Med 2015;372:2387-2397 (NCT00202878)',
         doi: '10.1056/NEJMoa1410489',
         measuredMetric:
           'Kaplan-Meier rate at 7 years of a five-component cardiovascular composite, and time-weighted average LDL cholesterol',
@@ -12406,7 +12524,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'An irreversible P2Y12 blocker with a 2.1 percentage-point absolute event reduction added to aspirin in 12,562 acute coronary syndrome patients, offset by a 1.0 point increase in major bleeding — and the drug on which both platelet-function-guided and genotype-guided dosing were tested in randomised trials and neither changed outcomes.',
     laymanHowItWorks:
-      'Platelets recruit each other using a chemical signal that lands on a specific receptor. Clopidogrel arrives as an inactive molecule, is converted by liver enzymes into a reactive form, and that form permanently welds itself to the receptor. The platelet can never respond to that signal again, so the effect lasts the platelet\'s whole ten-day life and only fades as new platelets are made.',
+      "Platelets recruit each other using a chemical signal that lands on a specific receptor. Clopidogrel arrives as an inactive molecule, is converted by liver enzymes into a reactive form, and that form permanently welds itself to the receptor. The platelet can never respond to that signal again, so the effect lasts the platelet's whole ten-day life and only fades as new platelets are made.",
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 85,
     substitutes: {
@@ -12460,7 +12578,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'C16H16ClNO2S',
       molecularWeight: '321.8 g/mol; dispensed as clopidogrel bisulfate',
       targetReceptorAffinity:
-        'Clopidogrel itself has no activity at P2Y12. About 85% of an absorbed dose is hydrolysed by carboxylesterase-1 to an inactive acid; the remaining 15% undergoes two sequential cytochrome oxidations, largely CYP2C19, to a thiol-containing active metabolite that forms a disulphide bond with cysteine residues on the receptor. That bond is covalent and irreversible, so the affinity that matters is not a dissociation constant but a rate of platelet turnover: the receptor is disabled for the platelet\'s remaining life.',
+        "Clopidogrel itself has no activity at P2Y12. About 85% of an absorbed dose is hydrolysed by carboxylesterase-1 to an inactive acid; the remaining 15% undergoes two sequential cytochrome oxidations, largely CYP2C19, to a thiol-containing active metabolite that forms a disulphide bond with cysteine residues on the receptor. That bond is covalent and irreversible, so the affinity that matters is not a dissociation constant but a rate of platelet turnover: the receptor is disabled for the platelet's remaining life.",
       structureSource: {
         label:
           'PubChem CID 60606 (clopidogrel) — canonical SMILES, molecular formula and molecular weight',
@@ -12600,7 +12718,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'clo-a6',
         category: 'inferred',
-        title: 'The genotype is real, the pharmacology is real, and the clinical payoff is not established',
+        title:
+          'The genotype is real, the pharmacology is real, and the clinical payoff is not established',
         laymanSummary:
           'CYP2C19 variants genuinely reduce how much active drug is made, and that is measurable. Two randomised trials designed to turn that knowledge into fewer events did not succeed.',
         technicalDetails:
@@ -12820,7 +12939,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: PLAVIX (clopidogrel bisulfate), NDA 020839, original approval 17 November 1997',
+        label:
+          'Drugs@FDA: PLAVIX (clopidogrel bisulfate), NDA 020839, original approval 17 November 1997',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020839',
         kind: 'regulatory',
@@ -12851,7 +12971,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'Reduction of stroke and systemic embolism risk in non-valvular atrial fibrillation; treatment of deep vein thrombosis and pulmonary embolism and reduction of recurrence risk; and prophylaxis of deep vein thrombosis after hip or knee replacement',
     patientFriendlyIndication:
       'Preventing stroke in an irregular heartbeat, and treating and preventing blood clots in the legs and lungs',
-    anatomicalSite: 'Circulating plasma and the prothrombinase complex on activated platelet membranes',
+    anatomicalSite:
+      'Circulating plasma and the prothrombinase complex on activated platelet membranes',
     conditionContext: {
       conditionExplainer:
         'Clotting works as a cascade in which each step activates far more of the next, and factor Xa sits at the point where the two initiating branches converge. One molecule of factor Xa in the prothrombinase complex generates roughly a thousand molecules of thrombin, so blocking it is a leverage point: the cascade is throttled before the amplification rather than after.',
@@ -12916,8 +13037,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'COC1=CC=C(C=C1)N2C3=C(CCN(C3=O)C4=CC=C(C=C4)N5CCCCC5=O)C(=N2)C(=O)N',
+      smilesString: 'COC1=CC=C(C=C1)N2C3=C(CCN(C3=O)C4=CC=C(C=C4)N5CCCCC5=O)C(=N2)C(=O)N',
       chemicalFormula: 'C25H25N5O4',
       molecularWeight: '459.5 g/mol',
       targetReceptorAffinity:
@@ -13003,7 +13123,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'api-a2',
         category: 'inferred',
-        title: 'The superiority came from bleeding into the brain, not from preventing clots better',
+        title:
+          'The superiority came from bleeding into the brain, not from preventing clots better',
         laymanSummary:
           'Break the stroke result apart and the difference is almost entirely haemorrhagic stroke. Ischaemic strokes — the kind caused by a clot — were not significantly reduced.',
         technicalDetails:
@@ -13046,7 +13167,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'api-a5',
         category: 'measured',
-        title: 'AMPLIFY: same efficacy as warfarin in venous thromboembolism with a third of the bleeding',
+        title:
+          'AMPLIFY: same efficacy as warfarin in venous thromboembolism with a third of the bleeding',
         laymanSummary:
           'For treating clots in the legs and lungs, a fixed-dose oral regimen matched injections plus warfarin for effectiveness and caused about a third as much major bleeding.',
         technicalDetails:
@@ -13176,7 +13298,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'APPRAISE-2 (NCT00831441)',
-        phase: 'Randomised double-blind placebo-controlled trial, terminated early, median 241 days',
+        phase:
+          'Randomised double-blind placebo-controlled trial, terminated early, median 241 days',
         sampleSize: 7392,
         primaryEndpoint:
           'Cardiovascular death, myocardial infarction or ischaemic stroke added to antiplatelet therapy after acute coronary syndrome',
@@ -13267,7 +13390,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why does this page show no manufacturing cost?',
-        a: 'Because no verified per-dose synthesis cost for apixaban could be cited. The price shown is pharmacy acquisition cost from the CMS NADAC file effective 19 August 2026: US$5.52 for a 5 mg ELIQUIS tablet, with no generic listing, against about 8.9 cents for a 5 mg warfarin tablet. The synthesis involves a dipolar cycloaddition to build a fused bicycle, a lactam coupling and an amide conversion, with particle size controlled at release because absorption is dissolution-limited. That is a more involved route than warfarin\'s single Michael addition, and it is a description of chemistry, not a cost figure.',
+        a: "Because no verified per-dose synthesis cost for apixaban could be cited. The price shown is pharmacy acquisition cost from the CMS NADAC file effective 19 August 2026: US$5.52 for a 5 mg ELIQUIS tablet, with no generic listing, against about 8.9 cents for a 5 mg warfarin tablet. The synthesis involves a dipolar cycloaddition to build a fused bicycle, a lactam coupling and an amide conversion, with particle size controlled at release because absorption is dissolution-limited. That is a more involved route than warfarin's single Michael addition, and it is a description of chemistry, not a cost figure.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -13418,8 +13541,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CC(=O)N[C@H]1CCC2=CC(=C(C(=C2C3=CC=C(C(=O)C=C13)OC)OC)OC)OC',
+      smilesString: 'CC(=O)N[C@H]1CCC2=CC(=C(C(=C2C3=CC=C(C(=O)C=C13)OC)OC)OC)OC',
       chemicalFormula: 'C22H25NO6',
       molecularWeight: '399.4 g/mol',
       targetReceptorAffinity:
@@ -13505,7 +13627,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'col-a2',
         category: 'measured',
-        title: 'LoDoCo2: a 31% reduction in chronic coronary disease, with more non-cardiovascular deaths',
+        title:
+          'LoDoCo2: a 31% reduction in chronic coronary disease, with more non-cardiovascular deaths',
         laymanSummary:
           'In more than five thousand patients with stable coronary disease, colchicine reduced cardiovascular events substantially. Deaths from causes other than the heart were higher in the colchicine group.',
         technicalDetails:
@@ -13918,7 +14041,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           phase: 'Purification',
           name: 'Recrystallisation with canrenone limit and particle size control',
           description:
-            'Recrystallise and control both canrenone content and particle size. Canrenone is not an inert impurity: it is one of the drug\'s own active metabolites, so an excess in the drug substance shifts the exposure profile rather than simply diluting the dose. Particle size matters because spironolactone is poorly water-soluble and its absorption is dissolution-limited.',
+            "Recrystallise and control both canrenone content and particle size. Canrenone is not an inert impurity: it is one of the drug's own active metabolites, so an excess in the drug substance shifts the exposure profile rather than simply diluting the dose. Particle size matters because spironolactone is poorly water-soluble and its absorption is dissolution-limited.",
           dependsOnStepId: 'spi-w2',
           reagentsAndBuffer:
             'Methanol or acetone/water recrystallisation, reversed-phase HPLC against canrenone and the 7-beta epimer, laser diffraction particle size analysis, X-ray powder diffraction',
@@ -14094,7 +14217,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'RALES',
         phase: 'Randomised double-blind placebo-controlled trial, stopped early, mean 24 months',
         sampleSize: 1663,
-        primaryEndpoint: 'Death from all causes in severe heart failure with ejection fraction ≤35%',
+        primaryEndpoint:
+          'Death from all causes in severe heart failure with ejection fraction ≤35%',
         endpointMet: true,
         statisticalPValue: 'Relative risk 0.70 (95% CI 0.60-0.82), P < 0.001',
         unreportedAdverseSignals:
@@ -14120,7 +14244,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Co-primary: total events of cardiovascular death or new or worsening heart failure; and first occurrence of infarction, stroke, new or worsening heart failure or cardiovascular death',
         endpointMet: false,
-        statisticalPValue: 'Adjusted HR 0.91 (95% CI 0.69-1.21), P = 0.51; and 0.96 (0.81-1.13), P = 0.60',
+        statisticalPValue:
+          'Adjusted HR 0.91 (95% CI 0.69-1.21), P = 0.51; and 0.96 (0.81-1.13), P = 0.60',
         unreportedAdverseSignals:
           'Vital status was unknown for 45 patients (0.6%). Serious adverse events were 7.2% against 6.8%.',
         independentReplicationStatus: 'Failed to Replicate',
@@ -14146,7 +14271,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'A home systolic blood pressure reduction 8.70 mm Hg greater than placebo and about 4 mm Hg greater than either active comparator in resistant hypertension',
       ],
       unsupportedInferences: [
-        'That the RALES benefit transfers to routine prescribing without the trial\'s exclusions and monitoring — the Ontario data measured what happened when it did not',
+        "That the RALES benefit transfers to routine prescribing without the trial's exclusions and monitoring — the Ontario data measured what happened when it did not",
         'That spironolactone benefits heart failure with preserved ejection fraction in the Americas — a post-hoc geographic subgroup of a trial that missed',
         'That the RALES mortality result extends to the post-infarction setting — CLEAR SYNERGY tested that in 7,062 patients and both primary outcomes were null',
         'That "serious hyperkalaemia was minimal" in RALES describes the risk in practice — the trial excluded creatinine above 2.5 mg/dL and monitored potassium closely',
@@ -14167,14 +14292,14 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       description:
         'Once daily, taken with food because absorption is improved by it. Effect builds over days because most of the activity resides in metabolites with long half-lives, and for the same reason it does not disappear immediately on stopping.',
       safetyProfile:
-        'Hyperkalaemia is the defining risk: 18.7% against 9.1% on placebo in TOPCAT, and the Ontario time-series measured the population consequence of prescribing without the trial\'s monitoring. Risk rises with renal impairment, with ACE inhibitors or angiotensin receptor blockers, with potassium supplements and with potassium-based salt substitutes. Gynaecomastia or breast pain occurred in 10% of men in RALES against 1% on placebo. Menstrual irregularity occurs in women. Serum creatinine rises. It is contraindicated in pregnancy because of anti-androgen activity.',
+        "Hyperkalaemia is the defining risk: 18.7% against 9.1% on placebo in TOPCAT, and the Ontario time-series measured the population consequence of prescribing without the trial's monitoring. Risk rises with renal impairment, with ACE inhibitors or angiotensin receptor blockers, with potassium supplements and with potassium-based salt substitutes. Gynaecomastia or breast pain occurred in 10% of men in RALES against 1% on placebo. Menstrual irregularity occurs in women. Serum creatinine rises. It is contraindicated in pregnancy because of anti-androgen activity.",
     },
     commonQuestions: [
       {
         q: 'Why does my potassium have to be checked so often?',
         a: 'Because the entire mechanism of the drug is that the kidney stops excreting potassium, and because the population consequence of not checking has been measured. RALES excluded patients with a creatinine above 2.5 mg/dL and monitored potassium closely, and reported serious hyperkalaemia as minimal. When the result was published, prescribing in Ontario rose from 34 to 149 per thousand eligible patients, and hospitalisations for hyperkalaemia rose from 2.4 to 11.0 per thousand with associated deaths rising from 0.3 to 2.0 per thousand — an estimated 560 extra admissions and 73 extra hospital deaths in that province in 2001 alone. High potassium causes no symptoms until it disturbs the heart rhythm, so the blood test is the only warning available.',
         auditNote:
-          'This is the clearest case on the site of a benefit that is real in a trial and conditional on the trial\'s own safeguards being carried across with it.',
+          "This is the clearest case on the site of a benefit that is real in a trial and conditional on the trial's own safeguards being carried across with it.",
       },
       {
         q: 'Does it work if my heart failure has a normal ejection fraction?',
@@ -14194,7 +14319,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why does this page show no manufacturing cost?',
-        a: 'Because no verified per-dose production cost for spironolactone could be cited. It is a steroid, so the route runs from a plant- or fermentation-derived sterol through a spirolactone closure and a stereoselective thioacetate addition, with the specification written around canrenone content — an impurity that is also one of the drug\'s own active metabolites. The tablets are inexpensive generics. That is a description of the chemistry and of the market, not a cost figure, and this page does not manufacture one.',
+        a: "Because no verified per-dose production cost for spironolactone could be cited. It is a steroid, so the route runs from a plant- or fermentation-derived sterol through a spirolactone closure and a stereoselective thioacetate addition, with the specification written around canrenone content — an impurity that is also one of the drug's own active metabolites. The tablets are inexpensive generics. That is a description of the chemistry and of the market, not a cost figure, and this page does not manufacture one.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -14237,7 +14362,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: ALDACTONE (spironolactone), NDA 012151, original approval 21 January 1960',
+        label:
+          'Drugs@FDA: ALDACTONE (spironolactone), NDA 012151, original approval 21 January 1960',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=012151',
         kind: 'regulatory',
@@ -14452,8 +14578,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'In the largest hypertension trial ever run, the thiazide-type diuretic matched a calcium channel blocker and an ACE inhibitor on heart attacks and death, and beat both on other endpoints, at a fraction of the cost.',
         technicalDetails:
           'ALLHAT randomised 33,357 hypertensive participants aged 55 or older with at least one other coronary risk factor to chlorthalidone 12.5-25 mg (n=15,255), amlodipine 2.5-10 mg (n=9,048) or lisinopril 10-40 mg (n=9,054), mean follow-up 4.9 years. The primary endpoint of fatal coronary disease plus non-fatal infarction did not differ, with six-year rates of 11.5%, 11.3% and 11.4% respectively, and all-cause mortality did not differ either. Against chlorthalidone, amlodipine had a higher six-year heart failure rate (10.2% against 7.7%; RR 1.38, 95% CI 1.25 to 1.52) and lisinopril had higher rates of combined cardiovascular disease (33.3% against 30.9%; RR 1.10), stroke (6.3% against 5.6%; RR 1.15) and heart failure (8.7% against 7.7%; RR 1.19). The stated conclusion was that thiazide-type diuretics should be preferred for first-step therapy. Read alongside the Diuretic Comparison Project, the class conclusion holds and does not single out one member of it.',
-        evidenceSource:
-          'ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997 (NCT00000542)',
+        evidenceSource: 'ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997 (NCT00000542)',
         doi: '10.1001/jama.288.23.2981',
         measuredMetric:
           'Six-year rates of coronary events, heart failure, stroke and combined cardiovascular disease across three first-line strategies',
@@ -14480,7 +14605,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The dose-response pattern and the absence of any similar signal with other blood pressure drugs make chance and simple confounding unlikely. There is still no trial, and sun exposure was not measured.',
         technicalDetails:
-          'Three features strengthen the case that this is causal: a monotonic dose-response across cumulative exposure categories, biological plausibility from the drug\'s known photosensitising property and its earlier association with lip cancer, and specificity — no association was seen for other diuretics or antihypertensives, which argues against confounding by indication or by the general characteristics of treated hypertensive patients. Three features limit it: the design is case-control on registry data, sun exposure was not recorded and is the dominant risk factor for both cancers, and no randomised trial has been or realistically could be run at the required duration. Both regulators added labelling. The honest statement is a well-characterised association with a dose-response and no randomised confirmation, and the absolute risk depends on a person\'s baseline skin cancer risk, which the study cannot supply.',
+          "Three features strengthen the case that this is causal: a monotonic dose-response across cumulative exposure categories, biological plausibility from the drug's known photosensitising property and its earlier association with lip cancer, and specificity — no association was seen for other diuretics or antihypertensives, which argues against confounding by indication or by the general characteristics of treated hypertensive patients. Three features limit it: the design is case-control on registry data, sun exposure was not recorded and is the dominant risk factor for both cancers, and no randomised trial has been or realistically could be run at the required duration. Both regulators added labelling. The honest statement is a well-characterised association with a dose-response and no randomised confirmation, and the absolute risk depends on a person's baseline skin cancer risk, which the study cannot supply.",
         evidenceSource: 'Pedersen SA et al., J Am Acad Dermatol 2018;78:673-681',
         doi: '10.1016/j.jaad.2017.11.042',
         inferredClaim:
@@ -14563,7 +14688,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Composite of non-fatal myocardial infarction, stroke, heart failure hospitalisation, urgent revascularisation for unstable angina and non-cancer death',
         endpointMet: false,
-        statisticalPValue: 'HR 1.04 (95% CI 0.94-1.16), P = 0.45 — no difference in either direction',
+        statisticalPValue:
+          'HR 1.04 (95% CI 0.94-1.16), P = 0.45 — no difference in either direction',
         unreportedAdverseSignals:
           'Hypokalaemia was more frequent on chlorthalidone (6.0% against 4.4%, p<0.001). Participants were already established on hydrochlorothiazide, which is a survivor population for that drug.',
         independentReplicationStatus: 'Unreplicated',
@@ -14771,7 +14897,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Ask about hearing if a large intravenous dose is given quickly',
-          action: 'Report tinnitus or hearing change during or after high-dose intravenous treatment.',
+          action:
+            'Report tinnitus or hearing change during or after high-dose intravenous treatment.',
           patientImpact:
             'Furosemide is ototoxic at high plasma concentrations because the same NKCC family transporter maintains the potassium-rich endolymph of the inner ear. The effect is usually reversible and is related to peak concentration, which is why rapid intravenous administration of large doses carries more risk than the same dose infused.',
           clinicalPrecaution:
@@ -14890,7 +15017,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'TRANSFORM-HF randomised 2,859 participants discharged after hospitalisation for heart failure, median age 65, 36.9% women and 33.9% Black, to a loop diuretic strategy of torsemide (n=1,431) or furosemide (n=1,428) at investigator-selected dose, with follow-up to 30 months for death and 12 months for hospitalisations. The prespecified primary hypothesis was that torsemide would reduce all-cause mortality by 20%. Over a median 17.4 months, death occurred in 373 of 1,431 (26.1%) on torsemide and 374 of 1,428 (26.2%) on furosemide: hazard ratio 1.02 (95% CI 0.89 to 1.18). Over 12 months, all-cause mortality or all-cause hospitalisation occurred in 47.3% against 49.3% (hazard ratio 0.92, 0.83 to 1.02), and total hospitalisations were 940 in 536 participants against 987 in 577 (rate ratio 0.94, 0.84 to 1.07). Results were similar across ejection fraction strata. The authors state that interpretation is limited by loss to follow-up, crossover and non-adherence; 113 patients withdrew consent before completion.',
         evidenceSource: 'Mentz RJ et al., TRANSFORM-HF, JAMA 2023;329:214-223 (NCT03296813)',
         doi: '10.1001/jama.2022.23924',
-        measuredMetric: 'All-cause mortality over a median 17.4 months, torsemide versus furosemide',
+        measuredMetric:
+          'All-cause mortality over a median 17.4 months, torsemide versus furosemide',
         inferredClaim:
           'That better oral bioavailability and a longer duration translate into better outcomes — a mechanistic expectation the trial did not support',
         auditFlag: 'verified',
@@ -14948,7 +15076,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'How much of a tablet gets absorbed varies enormously between people and from day to day, especially when the gut wall is swollen with fluid. Intravenous dosing removes that uncertainty.',
         molecularDetail:
           'Oral bioavailability averages roughly 50% and ranges from about 10% to 100% between individuals, and falls further with gut wall oedema in decompensated heart failure. Onset is within 30 to 60 minutes orally and about 5 minutes intravenously, with a short duration of 6 to 8 hours. This variability is the practical reason torsemide, with more reliable absorption, was expected to be better — an expectation TRANSFORM-HF did not confirm.',
-          iconName: 'Pill',
+        iconName: 'Pill',
         visualStage: 'delivery',
       },
       {
@@ -15010,7 +15138,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'TRANSFORM-HF (NCT03296813)',
         phase: 'Pragmatic randomised open-label trial, median 17.4 months',
         sampleSize: 2859,
-        primaryEndpoint: 'All-cause mortality, torsemide versus furosemide after heart failure hospitalisation',
+        primaryEndpoint:
+          'All-cause mortality, torsemide versus furosemide after heart failure hospitalisation',
         endpointMet: false,
         statisticalPValue:
           '26.1% against 26.2%; HR 1.02 (95% CI 0.89-1.18), against a prespecified hypothesis of a 20% reduction',
@@ -15022,7 +15151,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         trialId: 'Cochrane review: diuretics for heart failure',
         phase: 'Systematic review and meta-analysis of 14 randomised trials',
         sampleSize: 525,
-        primaryEndpoint: 'Mortality and worsening heart failure, diuretics versus placebo or active control',
+        primaryEndpoint:
+          'Mortality and worsening heart failure, diuretics versus placebo or active control',
         endpointMet: true,
         statisticalPValue:
           'Odds ratio for death 0.24 (95% CI 0.07-0.83), P = 0.02 — from 3 placebo-controlled trials with 202 participants',
@@ -15106,7 +15236,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Faris RF et al. Diuretics for heart failure. Cochrane Database Syst Rev 2012;(2):CD003838',
+        label:
+          'Faris RF et al. Diuretics for heart failure. Cochrane Database Syst Rev 2012;(2):CD003838',
         identifier: '10.1002/14651858.CD003838.pub3',
         kind: 'doi',
       },
@@ -15142,7 +15273,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'Reduction of stroke and systemic embolism risk in non-valvular atrial fibrillation; treatment of deep vein thrombosis and pulmonary embolism and reduction of recurrence; prophylaxis after hip or knee replacement; and, at 2.5 mg twice daily with aspirin, reduction of major cardiovascular events in chronic coronary or peripheral artery disease',
     patientFriendlyIndication:
       'Preventing stroke in an irregular heartbeat, treating and preventing clots, and reducing events in stable artery disease',
-    anatomicalSite: 'Circulating plasma and the prothrombinase complex on activated platelet membranes',
+    anatomicalSite:
+      'Circulating plasma and the prothrombinase complex on activated platelet membranes',
     conditionContext: {
       conditionExplainer:
         'Factor Xa is the convergence point of the coagulation cascade and the step immediately before its largest amplification: one molecule of factor Xa in the prothrombinase complex produces on the order of a thousand molecules of thrombin. Inhibiting it directly throttles clot formation without touching platelets and without depending on the liver to build clotting factors, which is what separates this class from warfarin.',
@@ -15294,7 +15426,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'riv-a2',
         category: 'inferred',
-        title: 'A published question about the INR device used in ROCKET AF has never been resolved',
+        title:
+          'A published question about the INR device used in ROCKET AF has never been resolved',
         laymanSummary:
           'The point-of-care device used to manage warfarin dosing in the comparator arm was later recalled for producing falsely low readings. Whether that made warfarin look worse than it was is a question the trial data cannot settle.',
         technicalDetails:
@@ -15322,12 +15455,14 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'riv-a4',
         category: 'measured',
-        title: 'COMPASS: a low vascular dose reduced events and deaths, and increased bleeding by 70%',
+        title:
+          'COMPASS: a low vascular dose reduced events and deaths, and increased bleeding by 70%',
         laymanSummary:
           'Adding a small twice-daily dose of rivaroxaban to aspirin in stable artery disease cut cardiovascular events and deaths. It also caused about twelve extra major bleeds per thousand patients.',
         technicalDetails:
-          'COMPASS randomised 27,395 participants with stable atherosclerotic vascular disease to rivaroxaban 2.5 mg twice daily plus aspirin 100 mg daily, rivaroxaban 5 mg twice daily alone, or aspirin 100 mg daily alone. The trial was stopped for superiority of the combination after a mean 23 months. The primary composite of cardiovascular death, stroke or myocardial infarction occurred in 379 (4.1%) on the combination against 496 (5.4%) on aspirin alone: hazard ratio 0.76 (95% CI 0.66 to 0.86), p<0.001. Major bleeding occurred in 288 (3.1%) against 170 (1.9%): hazard ratio 1.70 (1.40 to 2.05), p<0.001, with no significant difference in intracranial or fatal bleeding. Deaths were 313 (3.4%) against 378 (4.1%): hazard ratio 0.82 (0.71 to 0.96), p=0.01 against a prespecified significance threshold of 0.0025 — so by the trial\'s own rule the mortality result was nominal rather than significant. Rivaroxaban 5 mg twice daily alone did not improve cardiovascular outcomes over aspirin and caused more major bleeding.',
-        evidenceSource: 'Eikelboom JW et al., COMPASS, N Engl J Med 2017;377:1319-1330 (NCT01776424)',
+          "COMPASS randomised 27,395 participants with stable atherosclerotic vascular disease to rivaroxaban 2.5 mg twice daily plus aspirin 100 mg daily, rivaroxaban 5 mg twice daily alone, or aspirin 100 mg daily alone. The trial was stopped for superiority of the combination after a mean 23 months. The primary composite of cardiovascular death, stroke or myocardial infarction occurred in 379 (4.1%) on the combination against 496 (5.4%) on aspirin alone: hazard ratio 0.76 (95% CI 0.66 to 0.86), p<0.001. Major bleeding occurred in 288 (3.1%) against 170 (1.9%): hazard ratio 1.70 (1.40 to 2.05), p<0.001, with no significant difference in intracranial or fatal bleeding. Deaths were 313 (3.4%) against 378 (4.1%): hazard ratio 0.82 (0.71 to 0.96), p=0.01 against a prespecified significance threshold of 0.0025 — so by the trial's own rule the mortality result was nominal rather than significant. Rivaroxaban 5 mg twice daily alone did not improve cardiovascular outcomes over aspirin and caused more major bleeding.",
+        evidenceSource:
+          'Eikelboom JW et al., COMPASS, N Engl J Med 2017;377:1319-1330 (NCT01776424)',
         doi: '10.1056/NEJMoa1709118',
         measuredMetric:
           'Composite of cardiovascular death, stroke or myocardial infarction, and major bleeding, over a mean 23 months',
@@ -15336,15 +15471,15 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'riv-a5',
         category: 'inferred',
-        title: 'The COMPASS mortality result did not meet the trial\'s own significance threshold',
+        title: "The COMPASS mortality result did not meet the trial's own significance threshold",
         laymanSummary:
           'The trial is often described as showing rivaroxaban plus aspirin reduces deaths. Its own prespecified rule required a p-value below 0.0025 for that claim, and the result was 0.01.',
         technicalDetails:
-          'COMPASS prespecified a significance threshold of 0.0025 for the mortality comparison to account for multiplicity across the trial\'s hypotheses. All-cause death occurred in 313 of the combination group (3.4%) against 378 on aspirin alone (4.1%), hazard ratio 0.82 (95% CI 0.71 to 0.96), p=0.01 — a nominally impressive number that does not cross the bar the trial set for itself. The primary composite endpoint did cross its threshold decisively (p<0.001, z=-4.126) and is not in question. This is a distinction between a result the trial was designed to establish and one it was designed only to observe, and it is exactly the distinction multiplicity thresholds exist to preserve. The trial also stopped early for superiority of the combination, which independently inflates measured effect sizes.',
+          "COMPASS prespecified a significance threshold of 0.0025 for the mortality comparison to account for multiplicity across the trial's hypotheses. All-cause death occurred in 313 of the combination group (3.4%) against 378 on aspirin alone (4.1%), hazard ratio 0.82 (95% CI 0.71 to 0.96), p=0.01 — a nominally impressive number that does not cross the bar the trial set for itself. The primary composite endpoint did cross its threshold decisively (p<0.001, z=-4.126) and is not in question. This is a distinction between a result the trial was designed to establish and one it was designed only to observe, and it is exactly the distinction multiplicity thresholds exist to preserve. The trial also stopped early for superiority of the combination, which independently inflates measured effect sizes.",
         evidenceSource: 'Eikelboom JW et al., COMPASS, N Engl J Med 2017;377:1319-1330',
         doi: '10.1056/NEJMoa1709118',
         inferredClaim:
-          'That COMPASS demonstrated a mortality reduction — the observed p-value of 0.01 did not meet the trial\'s own prespecified threshold of 0.0025',
+          "That COMPASS demonstrated a mortality reduction — the observed p-value of 0.01 did not meet the trial's own prespecified threshold of 0.0025",
         auditFlag: 'caution',
       },
       {
@@ -15429,13 +15564,14 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'COMPASS (NCT01776424)',
-        phase: 'Randomised double-blind three-arm trial, stopped early for superiority, mean 23 months',
+        phase:
+          'Randomised double-blind three-arm trial, stopped early for superiority, mean 23 months',
         sampleSize: 27395,
         primaryEndpoint: 'Composite of cardiovascular death, stroke or myocardial infarction',
         endpointMet: true,
         statisticalPValue: 'HR 0.76 (95% CI 0.66-0.86), P < 0.001 for rivaroxaban plus aspirin',
         unreportedAdverseSignals:
-          'Major bleeding rose from 1.9% to 3.1% (HR 1.70, p<0.001). The mortality result (p=0.01) did not meet the trial\'s prespecified threshold of 0.0025. Rivaroxaban 5 mg alone did not beat aspirin and bled more.',
+          "Major bleeding rose from 1.9% to 3.1% (HR 1.70, p<0.001). The mortality result (p=0.01) did not meet the trial's prespecified threshold of 0.0025. Rivaroxaban 5 mg alone did not beat aspirin and bled more.",
         independentReplicationStatus: 'Unreplicated',
       },
       {
@@ -15474,7 +15610,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       ],
       unsupportedInferences: [
         'That rivaroxaban is superior to warfarin in atrial fibrillation — the intention-to-treat superiority p-value was 0.12',
-        'That COMPASS demonstrated a mortality reduction — the observed p=0.01 did not meet the trial\'s own prespecified 0.0025 threshold',
+        "That COMPASS demonstrated a mortality reduction — the observed p=0.01 did not meet the trial's own prespecified 0.0025 threshold",
         'That the ROCKET AF safety comparison is unaffected by the recalled INR device — no reanalysis can reconstruct the readings a working device would have given',
         'That the factor Xa inhibitors are interchangeable — no head-to-head trial exists, and INVICTUS shows at least one setting where the class does not behave as one',
       ],
@@ -15644,7 +15780,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Expect uric acid to rise and report a first gout attack',
-          action: 'Mention any history of gout before starting, and report joint pain during treatment.',
+          action:
+            'Mention any history of gout before starting, and report joint pain during treatment.',
           patientImpact:
             'In CLEAR Outcomes gout occurred in 3.1% on bempedoic acid against 2.1% on placebo, and small increases in serum uric acid, creatinine and hepatic enzymes were also more frequent. In the earlier CLEAR Harmony trial, gout occurred in 1.2% against 0.3%.',
           clinicalPrecaution:
@@ -15652,7 +15789,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Tendon problems are a labelled effect',
-          action: 'Report tendon pain or swelling, particularly in the shoulder, biceps or Achilles.',
+          action:
+            'Report tendon pain or swelling, particularly in the shoulder, biceps or Achilles.',
           patientImpact:
             'Tendon rupture is described in the US label, with cases reported within weeks to months of starting and risk increased with age, renal impairment and prior fluoroquinolone exposure.',
           clinicalPrecaution:
@@ -15763,7 +15901,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'bem-a3',
         category: 'measured',
-        title: 'The tissue-selectivity design is real, and it is a prodrug argument rather than a trial result',
+        title:
+          'The tissue-selectivity design is real, and it is a prodrug argument rather than a trial result',
         laymanSummary:
           'The drug is inert until an enzyme found in liver but not muscle switches it on. That is a genuine and deliberate design feature, and no trial has compared muscle symptoms head to head against a statin.',
         technicalDetails:
@@ -15808,7 +15947,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'bem-a6',
         category: 'measured',
-        title: 'The LDL reduction is about half a statin\'s and the mechanism is two enzymes upstream',
+        title:
+          "The LDL reduction is about half a statin's and the mechanism is two enzymes upstream",
         laymanSummary:
           'It lowers LDL by roughly a fifth, where a moderate statin dose lowers it by a third to a half. The blocked step sits above the one statins block, in the same pathway.',
         technicalDetails:
@@ -15987,7 +16127,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: NEXLETOL (bempedoic acid), NDA 211616, original approval 21 February 2020',
+        label:
+          'Drugs@FDA: NEXLETOL (bempedoic acid), NDA 211616, original approval 21 February 2020',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=211616',
         kind: 'regulatory',
@@ -16085,8 +16226,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CCOC1=NC=C(C2=C1[C@@H](C(=C(N2)C)C(=O)N)C3=C(C=C(C=C3)C#N)OC)C',
+      smilesString: 'CCOC1=NC=C(C2=C1[C@@H](C(=C(N2)C)C(=O)N)C3=C(C=C(C=C3)C#N)OC)C',
       chemicalFormula: 'C21H22N4O3',
       molecularWeight: '378.4 g/mol',
       targetReceptorAffinity:
@@ -16178,8 +16318,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           'A second trial of more than seven thousand patients measured cardiovascular events as its main endpoint. It fell, and the paper states the benefit came mainly from fewer heart failure hospitalisations.',
         technicalDetails:
           'FIGARO-DKD randomised 7,437 patients with type 2 diabetes and either stage 2 to 4 chronic kidney disease with moderately elevated albuminuria or stage 1 or 2 with severely elevated albuminuria, all on maximum tolerated renin-angiotensin blockade. Over a median 3.4 years the primary composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or hospitalisation for heart failure occurred in 458 of 3,686 (12.4%) against 519 of 3,666 (14.2%): hazard ratio 0.87 (95% CI 0.76 to 0.98), p=0.03, with the paper stating the benefit was driven primarily by a lower incidence of heart failure hospitalisation (hazard ratio 0.71, 0.56 to 0.90). The first secondary composite of kidney failure, sustained 40% eGFR decline or renal death occurred in 350 (9.5%) against 395 (10.8%): hazard ratio 0.87 (0.76 to 1.01) — an interval that includes no effect. Hyperkalaemia-related discontinuation was 1.2% against 0.4%.',
-        evidenceSource:
-          'Pitt B et al., FIGARO-DKD, N Engl J Med 2021;385:2252-2263 (NCT02545049)',
+        evidenceSource: 'Pitt B et al., FIGARO-DKD, N Engl J Med 2021;385:2252-2263 (NCT02545049)',
         doi: '10.1056/NEJMoa2110956',
         measuredMetric:
           'Composite of cardiovascular death, non-fatal infarction, non-fatal stroke or heart failure hospitalisation over a median 3.4 years',
@@ -16203,7 +16342,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'fin-a4',
         category: 'inferred',
-        title: 'Every composite was carried by its softest component, and no trial changed mortality',
+        title:
+          'Every composite was carried by its softest component, and no trial changed mortality',
         laymanSummary:
           'Across three large trials the endpoints that moved were kidney function decline and heart failure admissions. Cardiovascular death never moved, and total death was never shown to.',
         technicalDetails:
@@ -16218,7 +16358,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'fin-a5',
         category: 'inferred',
-        title: 'Finerenone has never been compared with spironolactone, which costs a fraction as much',
+        title:
+          'Finerenone has never been compared with spironolactone, which costs a fraction as much',
         laymanSummary:
           'The two block the same receptor. One is a brand-only drug with three modern trials; the other is a generic costing cents with a mortality result the newer drug has never matched. No trial has compared them.',
         technicalDetails:
@@ -16233,7 +16374,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'fin-a6',
         category: 'measured',
-        title: 'Hyperkalaemia is lower than with the steroidal antagonists and is still the limiting effect',
+        title:
+          'Hyperkalaemia is lower than with the steroidal antagonists and is still the limiting effect',
         laymanSummary:
           'About one in forty patients stopped finerenone because of high potassium in the kidney trials, against about one in a hundred on placebo. That is a smaller problem than with spironolactone, and it is the same problem.',
         technicalDetails:
@@ -16458,7 +16600,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     approvalYear: 2024,
     indication:
       'Adults with non-cirrhotic non-alcoholic steatohepatitis with moderate to advanced liver fibrosis (consistent with stages F2 to F3), in conjunction with diet and exercise',
-    patientFriendlyIndication: 'Fatty liver disease with inflammation and moderate to advanced scarring',
+    patientFriendlyIndication:
+      'Fatty liver disease with inflammation and moderate to advanced scarring',
     anatomicalSite: 'Hepatocyte nucleus (liver)',
     conditionContext: {
       conditionExplainer:
@@ -16513,8 +16656,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'The indication stops at cirrhosis',
-          action:
-            'Ask which fibrosis stage your biopsy or non-invasive testing put you at.',
+          action: 'Ask which fibrosis stage your biopsy or non-invasive testing put you at.',
           patientImpact:
             'The approval covers non-cirrhotic disease with fibrosis consistent with stages F2 to F3. It has not been shown to be safe or effective in cirrhosis, which is stage F4, and that is where liver-related events actually concentrate.',
           clinicalPrecaution:
@@ -16524,8 +16666,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CC(C)C1=CC(=NNC1=O)OC2=C(C=C(C=C2Cl)N3C(=O)NC(=O)C(=N3)C#N)Cl',
+      smilesString: 'CC(C)C1=CC(=NNC1=O)OC2=C(C=C(C=C2Cl)N3C(=O)NC(=O)C(=N3)C#N)Cl',
       chemicalFormula: 'C17H12Cl2N6O4',
       molecularWeight: '435.2 g/mol',
       targetReceptorAffinity:
@@ -16627,7 +16768,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'res-a3',
         category: 'measured',
-        title: 'The placebo response was 9.7% and 14.2%, which is why the trial had to be this large',
+        title:
+          'The placebo response was 9.7% and 14.2%, which is why the trial had to be this large',
         laymanSummary:
           'Roughly one in ten placebo patients had their steatohepatitis resolve and one in seven had their scarring improve, without any drug at all. That is the background against which the drug effect has to be read.',
         technicalDetails:
@@ -16641,7 +16783,8 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       {
         id: 'res-a4',
         category: 'measured',
-        title: 'MAESTRO-NAFLD-1: a 52-week safety trial with lipid and imaging endpoints, not histology',
+        title:
+          'MAESTRO-NAFLD-1: a 52-week safety trial with lipid and imaging endpoints, not histology',
         laymanSummary:
           'A companion trial of more than a thousand patients tested safety and measured cholesterol, liver fat by scan and liver stiffness. It did not use biopsies and did not measure inflammation or scarring directly.',
         technicalDetails:
@@ -16856,8 +16999,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         kind: 'nct',
       },
       {
-        label:
-          'Drugs@FDA: REZDIFFRA (resmetirom), NDA 217785, accelerated approval 14 March 2024',
+        label: 'Drugs@FDA: REZDIFFRA (resmetirom), NDA 217785, accelerated approval 14 March 2024',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=217785',
         kind: 'regulatory',

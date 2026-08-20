@@ -292,11 +292,7 @@ function ComputedFacts({ report }: { report: RnaIntelligenceReport }) {
 
   if (layer3.topologicalOrder.length > 0) {
     blocks.push(
-      <SpecBlock
-        key="topo"
-        label="Protocol order"
-        value={layer3.topologicalOrder.join('  →  ')}
-      />,
+      <SpecBlock key="topo" label="Protocol order" value={layer3.topologicalOrder.join('  →  ')} />,
     )
   }
 
@@ -304,9 +300,7 @@ function ComputedFacts({ report }: { report: RnaIntelligenceReport }) {
 
   return (
     <div className="space-y-2">
-      {chips.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{chips}</div>
-      )}
+      {chips.length > 0 && <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{chips}</div>}
       {blocks.length > 0 && <div className="space-y-2">{blocks}</div>}
     </div>
   )

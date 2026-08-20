@@ -44,7 +44,9 @@ function Section({
         <span className="text-[11px] font-bold uppercase tracking-widest text-[#86868B] block">
           {eyebrow}
         </span>
-        <h2 className="text-xl sm:text-2xl font-extrabold text-[#1D1D1F] tracking-tight">{title}</h2>
+        <h2 className="text-xl sm:text-2xl font-extrabold text-[#1D1D1F] tracking-tight">
+          {title}
+        </h2>
       </div>
       {children}
     </section>
@@ -122,21 +124,21 @@ export default async function HowEditingWorksPage() {
           <Card>
             <ol className="space-y-3 text-xs sm:text-sm text-[#424245] leading-relaxed list-none counter-reset">
               <li>
-                <strong className="text-[#1D1D1F]">A computer checks the chemistry.</strong> Instantly,
-                before anything else. If the molecule you typed could not exist, the edit is refused
-                on the spot and you are told which character was wrong.
+                <strong className="text-[#1D1D1F]">A computer checks the chemistry.</strong>{' '}
+                Instantly, before anything else. If the molecule you typed could not exist, the edit
+                is refused on the spot and you are told which character was wrong.
               </li>
               <li>
                 <strong className="text-[#1D1D1F]">A person checks the meaning.</strong> A computer
                 cannot tell whether a sentence about a drug is true. Someone reads it.
               </li>
               <li>
-                <strong className="text-[#1D1D1F]">It goes live, with your name on it.</strong> Every
-                version is kept for ever and attributed to whoever wrote it.
+                <strong className="text-[#1D1D1F]">It goes live, with your name on it.</strong>{' '}
+                Every version is kept for ever and attributed to whoever wrote it.
               </li>
               <li>
-                <strong className="text-[#1D1D1F]">You earn the right to skip the queue.</strong> After
-                enough accepted edits, your changes publish immediately.
+                <strong className="text-[#1D1D1F]">You earn the right to skip the queue.</strong>{' '}
+                After enough accepted edits, your changes publish immediately.
               </li>
             </ol>
           </Card>
@@ -148,8 +150,8 @@ export default async function HowEditingWorksPage() {
               <p>
                 Open any medicine and press <em>Edit Wiki Dossier &amp; Scientific Records</em>. You
                 get a form with the page split into five parts: the plain-English summary, the
-                alternatives, the chemical structure, the pricing and the laboratory protocol. Change
-                whatever you know something about and leave the rest alone.
+                alternatives, the chemical structure, the pricing and the laboratory protocol.
+                Change whatever you know something about and leave the rest alone.
               </p>
               <p>
                 You have to write one line saying what you changed. It is the first thing a reviewer
@@ -171,8 +173,8 @@ export default async function HowEditingWorksPage() {
               </p>
               <p>
                 This runs while you are still typing, so you see the problem before you submit. If
-                something fails, the <em>Save</em> button stays switched off and the message tells you
-                what and where. This is not a moderator disagreeing with you — it is arithmetic.
+                something fails, the <em>Save</em> button stays switched off and the message tells
+                you what and where. This is not a moderator disagreeing with you — it is arithmetic.
               </p>
               <p className="text-[#1D1D1F] font-medium">
                 Nothing that fails this check reaches a human. It cannot be approved by anyone, at
@@ -198,13 +200,13 @@ export default async function HowEditingWorksPage() {
                 until an experienced editor reads it.
               </p>
               <p>
-                The queue is public. You can watch your own edit sitting in it, see its position, and
-                see everyone else&rsquo;s. There is no private moderation channel and no way to have
-                something approved out of sight.
+                The queue is public. You can watch your own edit sitting in it, see its position,
+                and see everyone else&rsquo;s. There is no private moderation channel and no way to
+                have something approved out of sight.
               </p>
               <p>
-                A reviewer either accepts the edit or sends it back with a reason. Being sent back is
-                not a strike against you — most first edits get a note, and you can fix it and
+                A reviewer either accepts the edit or sends it back with a reason. Being sent back
+                is not a strike against you — most first edits get a note, and you can fix it and
                 resubmit as many times as you like.
               </p>
             </Step>
@@ -288,9 +290,9 @@ export default async function HowEditingWorksPage() {
                 </span>
                 <p>
                   The chemical structure on this page was checked by the program and is internally
-                  consistent. The code beside it is a fingerprint of exactly what was checked, so the
-                  same check can be re-run and compared. It says nothing about whether the medicine
-                  works, whether the price is right, or whether the writing is accurate.
+                  consistent. The code beside it is a fingerprint of exactly what was checked, so
+                  the same check can be re-run and compared. It says nothing about whether the
+                  medicine works, whether the price is right, or whether the writing is accurate.
                 </p>
               </div>
 
@@ -332,8 +334,8 @@ export default async function HowEditingWorksPage() {
                 can be argued with rather than buried.
               </li>
               <li>
-                <strong className="text-[#1D1D1F]">The machine check is narrow on purpose.</strong> It
-                proves a molecule is possible and a protocol is orderly. It has no opinion about
+                <strong className="text-[#1D1D1F]">The machine check is narrow on purpose.</strong>{' '}
+                It proves a molecule is possible and a protocol is orderly. It has no opinion about
                 whether a drug helps anyone. Treating that badge as a stamp of medical accuracy is
                 the single easiest way to misread this site.
               </li>

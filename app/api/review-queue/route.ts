@@ -84,9 +84,7 @@ export const GET = withHandler(async (req: Request) => {
   ])
 
   const handles = await handlesFor(
-    pending
-      .map((revision) => revision.authorUserId)
-      .filter((id): id is string => id !== null),
+    pending.map((revision) => revision.authorUserId).filter((id): id is string => id !== null),
   )
 
   const rows: PendingRevision[] = pending.map((revision) => {

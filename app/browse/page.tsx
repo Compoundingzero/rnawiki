@@ -203,9 +203,7 @@ function DrugCard({ drug }: { drug: DrugDossier }) {
           </span>
         </div>
 
-        {summary && (
-          <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">{summary}</p>
-        )}
+        {summary && <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">{summary}</p>}
       </Link>
     </li>
   )
@@ -321,10 +319,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
         {/* Pager. Rendered only when there is more than one page, and each side disappears at the
             end rather than turning into a dead control. */}
         {lastPage > 1 && (
-          <nav
-            aria-label="Corpus pages"
-            className="flex items-center justify-between gap-3 pt-2"
-          >
+          <nav aria-label="Corpus pages" className="flex items-center justify-between gap-3 pt-2">
             {filters.page > 1 ? (
               <Link
                 href={browseHref({ ...filters, page: filters.page - 1 })}

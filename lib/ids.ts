@@ -56,7 +56,11 @@ function randomBase36(length: number): string {
  * a varchar length or pattern check much later, in a transaction, with no useful stack.
  */
 export function newId(prefix: string): string {
-  const cleanPrefix = prefix.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 16) || 'id'
+  const cleanPrefix =
+    prefix
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '')
+      .slice(0, 16) || 'id'
   const stamp = Date.now().toString(36).padStart(ID_TIMESTAMP_CHARS, '0')
   return `${cleanPrefix}_${stamp}${randomBase36(ID_RANDOM_CHARS)}`
 }

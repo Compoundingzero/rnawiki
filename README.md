@@ -13,17 +13,17 @@ Anyone can edit. Every edit is checked by a deterministic engine before a human 
 ## What makes it different
 
 **The evidence audit.** A dossier does not just describe a drug. It separates what a trial
-*measured* from what is *inferred* from it, records what *failed*, and notes where the field
-*changed its mind*. A page with only good news is not an audit.
+_measured_ from what is _inferred_ from it, records what _failed_, and notes where the field
+_changed its mind_. A page with only good news is not an audit.
 
 **Deterministic verification, not generative AI.** Every proposed edit runs through
 `lib/rna-intelligence/` — three layers of published, reproducible science:
 
-| Layer | Checks |
-|---|---|
-| 1 · Sequence | A/U/C/G alphabet enforcement, thymine transcription, triplet reading frame, start and stop codons, open reading frames, premature stops, exact molecular weight from composition, a real SMILES tokenizer with Hill-notation formulae |
-| 2 · Thermodynamics | Zuker-style O(n³) folding over the published Turner 2004 nearest-neighbour parameters — real minimum free energy in kcal/mol and dot-bracket notation — plus Lipinski and Crippen descriptors for small molecules |
-| 3 · Protocol | Laboratory workflows as a directed acyclic graph: duplicate ids, dangling dependencies, cycles via Kahn's algorithm, and phase progression along every edge |
+| Layer              | Checks                                                                                                                                                                                                                                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 · Sequence       | A/U/C/G alphabet enforcement, thymine transcription, triplet reading frame, start and stop codons, open reading frames, premature stops, exact molecular weight from composition, a real SMILES tokenizer with Hill-notation formulae |
+| 2 · Thermodynamics | Zuker-style O(n³) folding over the published Turner 2004 nearest-neighbour parameters — real minimum free energy in kcal/mol and dot-bracket notation — plus Lipinski and Crippen descriptors for small molecules                     |
+| 3 · Protocol       | Laboratory workflows as a directed acyclic graph: duplicate ids, dangling dependencies, cycles via Kahn's algorithm, and phase progression along every edge                                                                           |
 
 Same input, same report, same verification hash. No model is involved, and none may be introduced.
 
@@ -64,12 +64,12 @@ checkable DOI, PMID, NCT number or regulatory URL, verified at research time.
 4. Accepted edits earn tier. Every revision is immutable, timestamped and attributed to your
    profile and, if you supply one, your ORCID iD.
 
-| Tier | Accepted edits | Publishes |
-|---|---|---|
-| New | 0 | via review queue |
-| Contributor | 3 | via review queue |
-| Trusted | 15 | directly |
-| Steward | 60 | directly, and reviews others |
+| Tier        | Accepted edits | Publishes                    |
+| ----------- | -------------- | ---------------------------- |
+| New         | 0              | via review queue             |
+| Contributor | 3              | via review queue             |
+| Trusted     | 15             | directly                     |
+| Steward     | 60             | directly, and reviews others |
 
 ---
 

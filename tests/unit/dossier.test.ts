@@ -279,7 +279,9 @@ describe('diffDossiers', () => {
   const before = rowToDossier(makeRow({ pricing, keyAudits: [audit('a1', 'measured')] }))
 
   it('reports a scalar change with both values in plain text', () => {
-    const after = rowToDossier(makeRow({ pricing, keyAudits: [audit('a1', 'measured')], name: 'Metformin hydrochloride' }))
+    const after = rowToDossier(
+      makeRow({ pricing, keyAudits: [audit('a1', 'measured')], name: 'Metformin hydrochloride' }),
+    )
     const changes = diffDossiers(before, after)
 
     expect(changes).toHaveLength(1)
@@ -295,7 +297,11 @@ describe('diffDossiers', () => {
     const after = rowToDossier(
       makeRow({
         keyAudits: [audit('a1', 'measured')],
-        pricing: { ...pricing, retailPricePerDoseOrYear: '$19 / month', markupEstimate: '900% markup' },
+        pricing: {
+          ...pricing,
+          retailPricePerDoseOrYear: '$19 / month',
+          markupEstimate: '900% markup',
+        },
       }),
     )
     const changes = diffDossiers(before, after)

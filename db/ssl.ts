@@ -58,7 +58,7 @@ export function databaseSslConfig(connectionString: string): ConnectionOptions |
     console.warn(
       '[db] DATABASE_SSL_NO_VERIFY=true — the database TLS certificate is NOT being verified. ' +
         'The connection is encrypted but not authenticated, so anything able to intercept it can ' +
-        'read the credentials in DATABASE_URL. Set PGSSLROOTCERT to the server certificate instead.'
+        'read the credentials in DATABASE_URL. Set PGSSLROOTCERT to the server certificate instead.',
     )
     return { rejectUnauthorized: false }
   }

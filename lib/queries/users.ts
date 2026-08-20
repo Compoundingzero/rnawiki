@@ -23,11 +23,7 @@ export type UserRow = typeof users.$inferSelect
 export type AccountUser = Omit<UserRow, 'passwordHash'>
 
 export type UserErrorCode =
-  | 'email_taken'
-  | 'handle_taken'
-  | 'not_found'
-  | 'not_admin'
-  | 'not_pending'
+  'email_taken' | 'handle_taken' | 'not_found' | 'not_admin' | 'not_pending'
 
 export class UserError extends Error {
   readonly code: UserErrorCode
@@ -468,10 +464,7 @@ export async function rejectVerification(
 // ---------------------------------------------------------------------------
 
 /** Adds or removes a bookmark. Returns the state the row is in afterwards, for the button label. */
-export async function toggleSavedDrug(
-  userId: string,
-  drugId: string,
-): Promise<{ saved: boolean }> {
+export async function toggleSavedDrug(userId: string, drugId: string): Promise<{ saved: boolean }> {
   return db.transaction(async (tx) => {
     const removed = await tx
       .delete(savedDrugs)

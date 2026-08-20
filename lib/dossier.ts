@@ -68,7 +68,12 @@ export function countAuditPoints(audits: readonly AuditPoint[]): AuditPointsCoun
 
 /** Fresh objects, not shared constants: a caller that mutates one dossier must not touch another. */
 function emptyMeasuredVsInferred(): MeasuredVsInferredSummary {
-  return { strictlyMeasured: [], unsupportedInferences: [], whatFailedInitially: [], realWorldOutcome: [] }
+  return {
+    strictlyMeasured: [],
+    unsupportedInferences: [],
+    whatFailedInitially: [],
+    realWorldOutcome: [],
+  }
 }
 
 function emptyDeliverySystem(): DeliverySystem {
@@ -230,7 +235,9 @@ function sectionIsPresent(d: DrugDossier, key: string): boolean {
     case 'laymanHowItWorks':
       return hasText(d.laymanHowItWorks)
     case 'conditionContext':
-      return hasText(d.conditionContext?.conditionExplainer) || hasText(d.conditionContext?.whyItMatters)
+      return (
+        hasText(d.conditionContext?.conditionExplainer) || hasText(d.conditionContext?.whyItMatters)
+      )
     case 'keyAudits':
       return d.keyAudits.length > 0
     case 'mechanismSteps':
@@ -289,9 +296,7 @@ export function missingSections(d: DrugDossier): string[] {
  */
 export function isStub(d: DrugDossier): boolean {
   if (d.dossierDepth === 'stub') return true
-  return (
-    d.keyAudits.length === 0 && d.mechanismSteps.length === 0 && !hasText(d.oneSentenceVerdict)
-  )
+  return d.keyAudits.length === 0 && d.mechanismSteps.length === 0 && !hasText(d.oneSentenceVerdict)
 }
 
 /**

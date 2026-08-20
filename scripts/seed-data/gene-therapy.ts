@@ -86,7 +86,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           class: 'Ribonucleotide reductase inhibitor that raises fetal haemoglobin',
           howItCompares:
             'Works on the same biological lever — more fetal haemoglobin — by a cruder route, taken as a daily capsule, and has the longest safety record of anything in sickle cell disease. It reduces crisis frequency rather than abolishing it.',
-          typicalCost: 'Generic; a small fraction of any gene therapy, exact price varies by market',
+          typicalCost:
+            'Generic; a small fraction of any gene therapy, exact price varies by market',
           prosAndCons:
             'Pros: oral, generic, decades of use, reversible. Cons: adherence-dependent, incomplete response, and it does not eliminate crises the way the trial endpoint here did.',
         },
@@ -134,7 +135,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
     molecularSchema: {
       structureType: 'antibody_structure',
       chemicalFormula:
-        "Autologous CD34+ haematopoietic stem and progenitor cells edited ex vivo by a Streptococcus pyogenes Cas9 ribonucleoprotein with a single guide RNA against the BCL11A erythroid enhancer",
+        'Autologous CD34+ haematopoietic stem and progenitor cells edited ex vivo by a Streptococcus pyogenes Cas9 ribonucleoprotein with a single guide RNA against the BCL11A erythroid enhancer',
       targetReceptorAffinity:
         'Minimum recommended dose 3 x 10^6 CD34+ cells/kg body weight, per the FDA label',
       structureSource: {
@@ -203,7 +204,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'exa-a1',
         category: 'measured',
-        title: 'CLIMB SCD-121: 29 of 30 evaluable patients free of vaso-occlusive crises for 12 months or more',
+        title:
+          'CLIMB SCD-121: 29 of 30 evaluable patients free of vaso-occlusive crises for 12 months or more',
         laymanSummary:
           'Forty-four people with severe sickle cell disease were treated. Of the thirty followed long enough to judge, twenty-nine went at least a year with no severe pain crisis, and all thirty went a year with no hospital admission for one.',
         technicalDetails:
@@ -217,7 +219,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'exa-a2',
         category: 'measured',
-        title: 'CLIMB THAL-111: transfusion independence in 32 of 35 evaluable thalassemia patients',
+        title:
+          'CLIMB THAL-111: transfusion independence in 32 of 35 evaluable thalassemia patients',
         laymanSummary:
           'In transfusion-dependent beta-thalassemia, 91% of the patients followed long enough kept a haemoglobin of at least 9 g/dL for a year with no transfusions at all.',
         technicalDetails:
@@ -232,7 +235,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'Off-target editing has not been ruled out, and the label says so',
         laymanSummary:
-          'CRISPR was designed to cut one place. Whether it also cut somewhere else in a particular person depends on that person\'s own genetic variants, and the label states plainly that the risk cannot be excluded.',
+          "CRISPR was designed to cut one place. Whether it also cut somewhere else in a particular person depends on that person's own genetic variants, and the label states plainly that the risk cannot be excluded.",
         technicalDetails:
           'Section 5.4 of the US prescribing information, added in August 2025, reads: "The risk of unintended, off-target editing in CD34+ cells due to genetic variants cannot be ruled out." Off-target assessment for this product is built on in-silico prediction and in-vitro nomination in reference genomes, which cannot enumerate the private variants of an individual patient near the guide site. No trial endpoint measured off-target editing in vivo, and the pivotal studies reported no cancers over a median follow-up under two years — an observation that constrains but does not settle a question whose natural timescale is decades.',
         evidenceSource:
@@ -244,7 +247,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'exa-a4',
         category: 'inferred',
-        title: 'Neither pivotal trial had a control group, and neither measured survival or organ damage',
+        title:
+          'Neither pivotal trial had a control group, and neither measured survival or organ damage',
         laymanSummary:
           'Both studies compared each patient to their own history, not to a randomised comparison group, and neither asked whether patients live longer or keep their kidneys.',
         technicalDetails:
@@ -277,13 +281,15 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           'At approval this was a medicine for teenagers and adults. It is now approved from age two, which is a different risk-benefit judgement about giving a child myeloablative chemotherapy.',
         technicalDetails:
           'The original BLA (STN 125785) covered patients aged 12 and older with sickle cell disease with recurrent vaso-occlusive crises, approved 8 December 2023, extended to transfusion-dependent beta-thalassemia on 16 January 2024. A separate BLA (STN 125787) now covers patients aged 2 years and older for both indications, with approval letters dated 18 March 2026, 15 June 2026 and 1 July 2026 on the FDA product page. The Indications and Usage and Dosage and Administration sections of the label were revised in July 2026.',
-        evidenceSource: 'FDA CASGEVY product page and approval letters (content current 2 July 2026)',
+        evidenceSource:
+          'FDA CASGEVY product page and approval letters (content current 2 July 2026)',
         auditFlag: 'verified',
       },
       {
         id: 'exa-a7',
         category: 'failed',
-        title: 'A $2.2 million list price met an eligible population that mostly could not reach it',
+        title:
+          'A $2.2 million list price met an eligible population that mostly could not reach it',
         laymanSummary:
           'The therapy was priced at $2.2 million per patient in the United States. Uptake in the first year was close to nothing, not because the science failed but because the delivery system around it did.',
         technicalDetails:
@@ -398,7 +404,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
     deliverySystem: {
       type: 'Ex vivo CRISPR-Cas9 edited autologous CD34+ cell suspension, single intravenous infusion',
       description:
-        'One intravenous infusion of the patient\'s own gene-edited haematopoietic stem cells, at a minimum of 3 x 10^6 CD34+ cells/kg, given 48 hours to 7 days after full myeloablative busulfan conditioning. Each vial is infused within 20 minutes of thaw and no in-line blood filter is used. The whole course — mobilisation, apheresis, manufacture, conditioning, infusion, engraftment — runs to months, not to a single appointment.',
+        "One intravenous infusion of the patient's own gene-edited haematopoietic stem cells, at a minimum of 3 x 10^6 CD34+ cells/kg, given 48 hours to 7 days after full myeloablative busulfan conditioning. Each vial is infused within 20 minutes of thaw and no in-line blood filter is used. The whole course — mobilisation, apheresis, manufacture, conditioning, infusion, engraftment — runs to months, not to a single appointment.",
       safetyProfile:
         'No boxed warning. Labelled warnings are neutrophil engraftment failure, delayed platelet engraftment, hypersensitivity reactions, and off-target genome editing risk that cannot be ruled out. The dominant clinical toxicity is the conditioning: mucositis and febrile neutropenia at 25% or more, and grade 3-4 neutropenia, thrombocytopenia, leukopenia, anaemia and lymphopenia at 50% or more. Infertility from myeloablation is a foreseeable consequence and warrants a fertility discussion before conditioning.',
     },
@@ -442,7 +448,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'CLIMB SCD-121: A Safety and Efficacy Study Evaluating CTX001 in Severe Sickle Cell Disease',
+        label:
+          'CLIMB SCD-121: A Safety and Efficacy Study Evaluating CTX001 in Severe Sickle Cell Disease',
         identifier: 'NCT03745287',
         kind: 'nct',
       },
@@ -493,12 +500,13 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
     indication:
       'Patients 12 years of age or older with sickle cell disease and a history of vaso-occlusive events',
     patientFriendlyIndication: 'Sickle cell disease with a history of severe pain crises',
-    anatomicalSite: 'Bone marrow — autologous CD34+ cells carrying an integrated lentiviral transgene',
+    anatomicalSite:
+      'Bone marrow — autologous CD34+ cells carrying an integrated lentiviral transgene',
     conditionContext: {
       conditionExplainer:
         'Sickle cell disease is one letter wrong in the beta-globin gene. The resulting haemoglobin polymerises when it releases oxygen, stiffening the red cell into a crescent that jams capillaries. The result is a vaso-occlusive event: sudden, severe pain, often needing hospital admission, and cumulative damage to spleen, kidney, lung and brain.',
       whyItMatters:
-        'Lyfgenia and Casgevy were approved on the same day for nearly the same population, by opposite strategies. Casgevy switches a healthy back-up gene back on. Lyfgenia adds a new, deliberately redesigned beta-globin gene, permanently inserted into the patient\'s chromosomes by a lentiviral vector. That permanence is both the mechanism and the reason this product carries a boxed warning the other does not.',
+        "Lyfgenia and Casgevy were approved on the same day for nearly the same population, by opposite strategies. Casgevy switches a healthy back-up gene back on. Lyfgenia adds a new, deliberately redesigned beta-globin gene, permanently inserted into the patient's chromosomes by a lentiviral vector. That permanence is both the mechanism and the reason this product carries a boxed warning the other does not.",
       whoTakesThis:
         'Patients aged 12 and older with sickle cell disease and a history of vaso-occlusive events, who can tolerate myeloablative conditioning and accept lifelong malignancy surveillance.',
       clinicalGoals:
@@ -625,7 +633,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'lovo-a1',
         category: 'measured',
-        title: 'HGB-206 Group C: complete resolution of severe vaso-occlusive events in all 25 evaluable patients',
+        title:
+          'HGB-206 Group C: complete resolution of severe vaso-occlusive events in all 25 evaluable patients',
         laymanSummary:
           'Thirty-five people were treated. Of the twenty-five followed long enough to judge, every one stopped having severe pain crises, against a median of 3.5 a year beforehand.',
         technicalDetails:
@@ -639,22 +648,25 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'lovo-a2',
         category: 'failed',
-        title: 'A boxed warning for blood cancer, written out of the product\'s own development programme',
+        title:
+          "A boxed warning for blood cancer, written out of the product's own development programme",
         laymanSummary:
-          'Two patients in an early group developed acute myeloid leukaemia and one in the pivotal group developed myelodysplastic syndrome. The label now warns about blood cancer and requires monitoring for the rest of the patient\'s life.',
+          "Two patients in an early group developed acute myeloid leukaemia and one in the pivotal group developed myelodysplastic syndrome. The label now warns about blood cancer and requires monitoring for the rest of the patient's life.",
         technicalDetails:
           'The US prescribing information carries a boxed warning: haematologic malignancy has occurred in patients treated with Lyfgenia, and patients must be monitored by complete blood count at least every six months and by integration site analysis at months 6 and 12 and as warranted. At approval, two patients treated in Study 1 Group A — an earlier manufacturing process and transplant procedure — had developed acute myeloid leukaemia, and one patient in Group C with alpha-thalassemia trait had been diagnosed with myelodysplastic syndrome. The mechanism is inherent to the platform: a lentiviral vector integrates semi-randomly and permanently into the genome of a self-renewing stem cell.',
-        evidenceSource: 'LYFGENIA US prescribing information, Boxed Warning and Warnings and Precautions',
+        evidenceSource:
+          'LYFGENIA US prescribing information, Boxed Warning and Warnings and Precautions',
         auditFlag: 'caution',
       },
       {
         id: 'lovo-a3',
         category: 'conclusion_shift',
-        title: 'The first leukaemia case was investigated and attributed to the disease, not the vector',
+        title:
+          'The first leukaemia case was investigated and attributed to the disease, not the vector',
         laymanSummary:
           'When the first patient developed leukaemia five and a half years after treatment, the obvious suspect was the inserted gene. A detailed investigation concluded the insertion was probably not the cause — and that sickle cell disease plus transplant is itself a cancer risk.',
         technicalDetails:
-          'Acute myeloid leukaemia developed in a woman approximately 5.5 years after LentiGlobin for sickle cell disease in the initial Group A cohort of HGB-206. Blast cells did contain a BB305 vector insertion site, but the causality investigation found the leukaemia unlikely to be vector-related given the insertion site\'s location, very low transgene expression in blasts, and no effect on neighbouring gene expression. Several somatic mutations predisposing to acute myeloid leukaemia were present at diagnosis. The published conclusion was that patients with sickle cell disease carry an elevated baseline risk of haematologic malignancy after transplantation, from the disease, the procedure and inadequate prior disease control combined.',
+          "Acute myeloid leukaemia developed in a woman approximately 5.5 years after LentiGlobin for sickle cell disease in the initial Group A cohort of HGB-206. Blast cells did contain a BB305 vector insertion site, but the causality investigation found the leukaemia unlikely to be vector-related given the insertion site's location, very low transgene expression in blasts, and no effect on neighbouring gene expression. Several somatic mutations predisposing to acute myeloid leukaemia were present at diagnosis. The published conclusion was that patients with sickle cell disease carry an elevated baseline risk of haematologic malignancy after transplantation, from the disease, the procedure and inadequate prior disease control combined.",
         evidenceSource: 'Goyal S et al., N Engl J Med 2022;386:138-147',
         doi: '10.1056/NEJMoa2109167',
         auditFlag: 'contested',
@@ -680,7 +692,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The evidence behind this approval is an interim analysis that was not planned in advance, in an early-phase single-arm study, in 25 patients.',
         technicalDetails:
-          'The New England Journal publication describes itself as an unprespecified interim analysis of Group C of the ongoing phase 1-2 HGB-206 study. Group C was created mid-study with a more stringent entry criterion of at least four severe vaso-occlusive events in the preceding 24 months, after Groups A and B were used to optimise the manufacturing and transplant process. There is no control arm; the comparator is each patient\'s own pre-enrolment event rate. Median follow-up was 17.3 months.',
+          "The New England Journal publication describes itself as an unprespecified interim analysis of Group C of the ongoing phase 1-2 HGB-206 study. Group C was created mid-study with a more stringent entry criterion of at least four severe vaso-occlusive events in the preceding 24 months, after Groups A and B were used to optimise the manufacturing and transplant process. There is no control arm; the comparator is each patient's own pre-enrolment event rate. Median follow-up was 17.3 months.",
         evidenceSource: 'Study design of Kanter 2022, HGB-206 (NCT02140554)',
         doi: '10.1056/NEJMoa2117175',
         inferredClaim:
@@ -694,7 +706,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Lyfgenia launched at $3.1 million, $900,000 above the therapy approved the same week. Eighteen months later the company was taken private for $3.00 a share.',
         technicalDetails:
-          'bluebird bio set a US list price of $3.1 million in December 2023 against Vertex\'s $2.2 million for Casgevy. In February 2025 bluebird agreed to be acquired by funds managed by Carlyle and SK Capital at $3.00 per share in cash plus a contingent value right of $6.84 per share tied to a net sales milestone; the acquisition completed on 2 June 2025 and the common stock ceased trading. The clinical result and the commercial result of this product point in opposite directions, and only one of them is on the label.',
+          "bluebird bio set a US list price of $3.1 million in December 2023 against Vertex's $2.2 million for Casgevy. In February 2025 bluebird agreed to be acquired by funds managed by Carlyle and SK Capital at $3.00 per share in cash plus a contingent value right of $6.84 per share tied to a net sales milestone; the acquisition completed on 2 June 2025 and the common stock ceased trading. The clinical result and the commercial result of this product point in opposite directions, and only one of them is on the label.",
         evidenceSource:
           'Reuters, 8 December 2023 (list prices); Carlyle press release, 2 June 2025 (completion of acquisition)',
         auditFlag: 'verified',
@@ -703,7 +715,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
     mechanismSteps: [
       {
         step: 1,
-        title: 'Collect the patient\'s own blood stem cells',
+        title: "Collect the patient's own blood stem cells",
         laymanDesc:
           'Plerixafor pushes stem cells out of the marrow into the blood, and a machine collects them over several sessions. Patients are transfused first so the collection itself does not trigger a crisis.',
         molecularDetail:
@@ -715,7 +727,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         step: 2,
         title: 'A disabled virus carries a redesigned gene into the DNA',
         laymanDesc:
-          'A virus stripped of everything that lets it replicate delivers a new beta-globin gene, which becomes a permanent part of the cell\'s own DNA.',
+          "A virus stripped of everything that lets it replicate delivers a new beta-globin gene, which becomes a permanent part of the cell's own DNA.",
         molecularDetail:
           'The BB305 self-inactivating lentiviral vector integrates the beta-A-T87Q globin transgene, with erythroid-specific promoter and locus control region elements, into the host genome at a vector copy number measured at release. Integration is semi-random and permanent.',
         iconName: 'Dna',
@@ -761,7 +773,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           'Complete resolution of severe vaso-occlusive events after infusion, in patients with at least four such events in the preceding 24 months',
         endpointMet: true,
         statisticalPValue:
-          'Not reported as a p-value — a single-arm within-patient comparison against each patient\'s own pre-enrolment event rate',
+          "Not reported as a p-value — a single-arm within-patient comparison against each patient's own pre-enrolment event rate",
         unreportedAdverseSignals:
           'No haematologic cancer was observed during up to 37.6 months of follow-up in Group C at the time of this publication. Cases in Group A and a later Group C myelodysplastic syndrome are what produced the boxed warning, and they sit outside this analysis window.',
         independentReplicationStatus: 'Unreplicated',
@@ -775,7 +787,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         'Engraftment in all 35 patients infused',
       ],
       unsupportedInferences: [
-        'That the leukaemia risk has been excluded — the label\'s boxed warning and the required lifelong surveillance say the opposite',
+        "That the leukaemia risk has been excluded — the label's boxed warning and the required lifelong surveillance say the opposite",
         'That the 2022 causality verdict on the first leukaemia case generalises, when the sister lentiviral product reported 7 haematologic cancers in 67 patients two years later',
         'That an unprespecified interim analysis of 25 patients in a phase 1-2 group is equivalent to a randomised pivotal result',
         'That resolving crises has been shown to prevent stroke, nephropathy or organ failure; none was measured',
@@ -793,7 +805,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
     deliverySystem: {
       type: 'Ex vivo lentiviral-transduced autologous CD34+ cell suspension, single intravenous infusion',
       description:
-        'One intravenous infusion of the patient\'s own CD34+ cells carrying an integrated beta-A-T87Q globin transgene, given after pharmacokinetically dose-adjusted myeloablative busulfan conditioning. Manufacture requires multiple apheresis cycles and transfusion support beforehand.',
+        "One intravenous infusion of the patient's own CD34+ cells carrying an integrated beta-A-T87Q globin transgene, given after pharmacokinetically dose-adjusted myeloablative busulfan conditioning. Manufacture requires multiple apheresis cycles and transfusion support beforehand.",
       safetyProfile:
         'Boxed warning for haematologic malignancy, with mandated complete blood counts at least every six months and integration site analysis at months 6 and 12 and as warranted. Additional labelled risks include delayed platelet engraftment, infusion reactions, and the toxicities of myeloablative busulfan — cytopenias, mucositis, febrile neutropenia and infertility. Anti-retroviral medicines must be stopped before mobilisation and apheresis because they interfere with lentiviral transduction.',
     },
@@ -839,7 +851,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'HGB-206: A Study Evaluating the Safety and Efficacy of Lovo-cel in Severe Sickle Cell Disease',
+        label:
+          'HGB-206: A Study Evaluating the Safety and Efficacy of Lovo-cel in Severe Sickle Cell Disease',
         identifier: 'NCT02140554',
         kind: 'nct',
       },
@@ -884,7 +897,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Spinal muscular atrophy is caused by losing both copies of SMN1, the gene for a protein every cell needs and motor neurons need most. Without it the motor neurons in the spinal cord die. In the most severe form, type 1, a baby who looked normal at birth loses head control, then the ability to swallow, then the ability to breathe. Almost everyone carries a back-up gene, SMN2, but a splicing quirk means it produces mostly a truncated, useless protein. How many SMN2 copies a child has is the main thing that decides how severe the disease is.',
       whyItMatters:
-        'Untreated SMA type 1 killed or permanently ventilated the great majority of children by age two. In the pivotal trial\'s natural history comparator, 6 of 23 untreated infants were alive without permanent ventilation at 14 months. This is the disease against which every SMA therapy is judged, and the reason a single-arm trial against a historical cohort was accepted as pivotal evidence.',
+        "Untreated SMA type 1 killed or permanently ventilated the great majority of children by age two. In the pivotal trial's natural history comparator, 6 of 23 untreated infants were alive without permanent ventilation at 14 months. This is the disease against which every SMA therapy is judged, and the reason a single-arm trial against a historical cohort was accepted as pivotal evidence.",
       whoTakesThis:
         'Babies under two years old with genetically confirmed bi-allelic SMN1 mutations. Newborn screening has changed who this actually means: most children now identified are pre-symptomatic, a population the pivotal trial did not study.',
       clinicalGoals:
@@ -893,7 +906,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'A single intravenous AAV9 infusion delivering a working SMN1 gene: 13 of 22 infants sat unassisted for 30 seconds at 18 months where none of 23 untreated infants did, and 20 of 22 survived to 14 months without permanent ventilation — measured against a historical cohort, not a randomised control, and carrying a boxed warning for fatal acute liver failure.',
     laymanHowItWorks:
-      'Motor neurons need a protein called SMN to stay alive. Your child\'s copies of the gene that makes it are broken. A harmless virus shell, chosen because it can cross from the bloodstream into the nervous system, carries a working copy of the gene into those neurons. It does not join the child\'s chromosomes; it sits alongside them as a separate loop of DNA and starts making the missing protein. Motor neurons that have not yet died can then survive. The ones already lost do not come back, which is why timing decides almost everything.',
+      "Motor neurons need a protein called SMN to stay alive. Your child's copies of the gene that makes it are broken. A harmless virus shell, chosen because it can cross from the bloodstream into the nervous system, carries a working copy of the gene into those neurons. It does not join the child's chromosomes; it sits alongside them as a separate loop of DNA and starts making the missing protein. Motor neurons that have not yet died can then survive. The ones already lost do not come back, which is why timing decides almost everything.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 78,
     substitutes: {
@@ -920,7 +933,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Onasemnogene abeparvovec, intrathecal (Itvisma)',
-          class: 'The same vector and transgene, delivered into cerebrospinal fluid at a fixed dose',
+          class:
+            'The same vector and transgene, delivered into cerebrospinal fluid at a fixed dose',
           howItCompares:
             'A separate product approved on 24 November 2025 for patients aged 2 and older, reaching the population the intravenous version cannot. Fixed dosing avoids the enormous vector loads a weight-based intravenous dose would require in an older child.',
           typicalCost: '',
@@ -1013,7 +1027,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'ona-a1',
         category: 'measured',
-        title: 'STR1VE: 13 of 22 infants sat unassisted at 18 months, where 0 of 23 untreated infants did',
+        title:
+          'STR1VE: 13 of 22 infants sat unassisted at 18 months, where 0 of 23 untreated infants did',
         laymanSummary:
           'In babies under six months with the most severe form of the disease, more than half could sit up on their own for half a minute at eighteen months. In the untreated comparison group, none could.',
         technicalDetails:
@@ -1031,7 +1046,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Nobody was randomised. The children who got the drug were compared with records of children who had the disease before the drug existed.',
         technicalDetails:
-          'Both pivotal studies are open-label and single-arm. STR1VE compared its 22 patients against 23 untreated infants drawn from the Pediatric Neuromuscular Clinical Research dataset; START compared 15 patients against published natural history. Historical comparison is defensible in a disease with a near-uniform fatal course, and the effect size here is large enough that confounding is an implausible full explanation. It is not the same evidence as a concurrent control, and it cannot separate the drug\'s contribution from improvements in supportive care over the intervening years.',
+          "Both pivotal studies are open-label and single-arm. STR1VE compared its 22 patients against 23 untreated infants drawn from the Pediatric Neuromuscular Clinical Research dataset; START compared 15 patients against published natural history. Historical comparison is defensible in a disease with a near-uniform fatal course, and the effect size here is large enough that confounding is an implausible full explanation. It is not the same evidence as a concurrent control, and it cannot separate the drug's contribution from improvements in supportive care over the intervening years.",
         evidenceSource: 'Trial designs of Day 2021 (STR1VE) and Mendell 2017 (START)',
         doi: '10.1056/NEJMoa1706198',
         inferredClaim:
@@ -1053,7 +1068,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'ona-a4',
         category: 'conclusion_shift',
-        title: 'The FDA disclosed that animal test data in the approval application had been manipulated',
+        title:
+          'The FDA disclosed that animal test data in the approval application had been manipulated',
         laymanSummary:
           'A month after approving the drug, the FDA announced that the manufacturer had told it about manipulated data in animal product-testing submitted with the application — and that the manufacturer had known before approval.',
         technicalDetails:
@@ -1065,14 +1081,16 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'ona-a5',
         category: 'measured',
-        title: 'START: all 15 infants alive and event-free at 20 months against 8% historical survival',
+        title:
+          'START: all 15 infants alive and event-free at 20 months against 8% historical survival',
         laymanSummary:
           'The first-in-human study treated fifteen babies. All were alive and off permanent ventilation at twenty months, where historically about 8 in 100 would have been. Two of them walked.',
         technicalDetails:
           'Phase 1, open-label, dose-escalation: 3 patients at 6.7 x 10^13 vg/kg and 12 at 2.0 x 10^14 vg/kg. As of the 7 August 2017 data cutoff, all 15 were alive and event-free at 20 months of age against a historical survival rate of 8%. In the high-dose cohort, CHOP INTEND rose 9.8 points at one month and 15.4 points at three months from baseline, against a decline in historical cohorts; 11 of 12 sat unassisted, 9 rolled over, 11 fed orally and could speak, and 2 walked independently. Elevated serum aminotransferases occurred in 4 patients and were attenuated by prednisolone — the first signal of the toxicity that later became a boxed warning.',
         evidenceSource: 'Mendell JR et al., N Engl J Med 2017;377:1713-1722 (START)',
         doi: '10.1056/NEJMoa1706198',
-        measuredMetric: 'Survival free of permanent ventilation at 20 months: 15/15 versus 8% historical',
+        measuredMetric:
+          'Survival free of permanent ventilation at 20 months: 15/15 versus 8% historical',
         auditFlag: 'verified',
       },
       {
@@ -1086,17 +1104,19 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           'STEER (NCT05089656) randomised 126 treatment-naive patients aged 2 to under 18 who could sit but had never walked, to intrathecal onasemnogene abeparvovec (n=75) or a sham procedure (n=51), double-blind for 52 weeks. The primary endpoint, change from baseline in the Hammersmith Functional Motor Scale-Expanded, favoured treatment with a least-squares mean difference of 1.88 (95% CI 0.51 to 3.25; P=0.0074). Two treated participants and one sham participant developed sensory symptoms. Itvisma (onasemnogene abeparvovec-brve) was approved by the FDA on 24 November 2025 for patients aged 2 and older. The contrast with the infant data is the point: the same vector and transgene produce a transformative result in a pre-symptomatic newborn and a modest one in a child whose motor neurons are already gone.',
         evidenceSource: 'Nature Medicine 2026;32:481-487 (STEER); FDA ITVISMA product page',
         doi: '10.1038/s41591-025-04103-w',
-        measuredMetric: 'HFMSE change at week 52, least-squares mean difference versus sham: 1.88 points',
+        measuredMetric:
+          'HFMSE change at week 52, least-squares mean difference versus sham: 1.88 points',
         auditFlag: 'verified',
       },
       {
         id: 'ona-a7',
         category: 'inferred',
-        title: 'Durability is a promise about a non-integrating genome that has never been re-dosed',
+        title:
+          'Durability is a promise about a non-integrating genome that has never been re-dosed',
         laymanSummary:
-          'The gene does not join the child\'s chromosomes — it sits beside them. Whether it keeps working as the child grows has not been established, and the label says repeat dosing has never been tested.',
+          "The gene does not join the child's chromosomes — it sits beside them. Whether it keeps working as the child grows has not been established, and the label says repeat dosing has never been tested.",
         technicalDetails:
-          'The AAV9 genome persists mainly as a non-integrating episome. Episomes are diluted by cell division, so durability depends on the target cell being post-mitotic — which motor neurons are, and hepatocytes and cardiomyocytes are not. The label\'s Limitations of Use state that the safety and effectiveness of repeat administration have not been evaluated and that use in patients with advanced SMA has not been evaluated. A second dose is in any case obstructed by the anti-AAV9 antibodies the first dose induces. Warnings also list a theoretical risk of tumorigenicity from AAV vector DNA integration, with a request to report any tumours.',
+          "The AAV9 genome persists mainly as a non-integrating episome. Episomes are diluted by cell division, so durability depends on the target cell being post-mitotic — which motor neurons are, and hepatocytes and cardiomyocytes are not. The label's Limitations of Use state that the safety and effectiveness of repeat administration have not been evaluated and that use in patients with advanced SMA has not been evaluated. A second dose is in any case obstructed by the anti-AAV9 antibodies the first dose induces. Warnings also list a theoretical risk of tumorigenicity from AAV vector DNA integration, with a request to report any tumours.",
         evidenceSource: 'ZOLGENSMA US prescribing information, Limitations of Use and Section 5.6',
         inferredClaim:
           'That a single infusion in infancy produces lifelong SMN expression, when no re-dosing option exists if it does not',
@@ -1128,7 +1148,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'The genome stays beside the chromosomes, not inside them',
         laymanDesc:
-          'The delivered gene forms a separate loop of DNA in the nucleus. It is not stitched into the child\'s own chromosomes, so it cannot disrupt a neighbouring gene.',
+          "The delivered gene forms a separate loop of DNA in the nucleus. It is not stitched into the child's own chromosomes, so it cannot disrupt a neighbouring gene.",
         molecularDetail:
           'The self-complementary genome persists predominantly as a non-integrating nuclear episome, bypassing the rate-limiting second-strand synthesis step of conventional single-stranded AAV. Absence of integration is why there is no insertional-oncogenesis boxed warning, and episomal dilution in dividing cells is why durability depends on the target being post-mitotic.',
         iconName: 'CircleDot',
@@ -1163,7 +1183,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Coprimary: independent sitting for 30 seconds or longer at 18 months, and survival free of permanent ventilation at 14 months',
         endpointMet: true,
-        statisticalPValue: 'P < 0.0001 for both coprimary endpoints versus the PNCR natural history cohort',
+        statisticalPValue:
+          'P < 0.0001 for both coprimary endpoints versus the PNCR natural history cohort',
         unreportedAdverseSignals:
           'Every patient had at least one adverse event, most commonly pyrexia. Serious events included bronchiolitis, pneumonia, respiratory distress and RSV bronchiolitis. Three serious events were treatment-related or possibly related: two elevated hepatic aminotransferases and one hydrocephalus.',
         independentReplicationStatus: 'Partially Replicated',
@@ -1172,7 +1193,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         trialId: 'START (NCT02122952)',
         phase: 'Phase 1, open label, dose escalation',
         sampleSize: 15,
-        primaryEndpoint: 'Safety; secondary endpoint time to death or permanent ventilatory assistance',
+        primaryEndpoint:
+          'Safety; secondary endpoint time to death or permanent ventilatory assistance',
         endpointMet: true,
         statisticalPValue:
           'Not reported as a p-value — descriptive comparison against historical cohorts',
@@ -1290,8 +1312,10 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'FDA ITVISMA product page (onasemnogene abeparvovec-brve), approved 24 November 2025',
-        identifier: 'https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/itvisma',
+        label:
+          'FDA ITVISMA product page (onasemnogene abeparvovec-brve), approved 24 November 2025',
+        identifier:
+          'https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/itvisma',
         kind: 'regulatory',
       },
       {
@@ -1323,13 +1347,14 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
     approvalYear: 2017,
     indication:
       'Patients with confirmed biallelic RPE65 mutation-associated retinal dystrophy who have viable retinal cells as determined by the treating physician',
-    patientFriendlyIndication: 'An inherited form of childhood blindness caused by two faulty RPE65 genes',
+    patientFriendlyIndication:
+      'An inherited form of childhood blindness caused by two faulty RPE65 genes',
     anatomicalSite: 'Retinal pigment epithelium, reached by subretinal injection',
     conditionContext: {
       conditionExplainer:
         'Seeing depends on a chemical loop. Light bends a molecule called retinal, and an enzyme in the layer behind the retina, RPE65, bends it back so it can be used again. If both copies of the RPE65 gene are broken, that recycling stops. Vision is poor from early childhood, night blindness comes first, and the photoreceptors themselves slowly die.',
       whyItMatters:
-        'This was the first in vivo gene therapy approved in the United States: a gene delivered directly into a person\'s body rather than into cells outside it. The eye was chosen because it is small, enclosed, immune-privileged, and directly injectable, so a modest dose reaches the target and stays there. Everything about the AAV field\'s later ambitions rests on this proof.',
+        "This was the first in vivo gene therapy approved in the United States: a gene delivered directly into a person's body rather than into cells outside it. The eye was chosen because it is small, enclosed, immune-privileged, and directly injectable, so a modest dose reaches the target and stays there. Everything about the AAV field's later ambitions rests on this proof.",
       whoTakesThis:
         'Adults and children with genetically confirmed biallelic RPE65 mutations, provided enough viable retina remains for the injected cells to be worth rescuing.',
       clinicalGoals:
@@ -1385,7 +1410,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         'Dose 1.5 x 10^11 vector genomes per eye in a total subretinal volume of 0.3 mL, per the FDA label',
       structureSource: {
         label: 'LUXTURNA (voretigene neparvovec-rzyl) US package insert, FDA',
-        identifier: 'https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/luxturna',
+        identifier:
+          'https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/luxturna',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -1467,9 +1493,11 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           'Treated participants could complete a navigation course at much dimmer light than before. Thirteen of twenty passed at the dimmest level tested, roughly a moonless night, where none of the control group did.',
         technicalDetails:
           'Mean bilateral MLMT change at 1 year was 1.8 light levels (SD 1.1) with treatment versus 0.2 (SD 1.0) with control, a difference of 1.6 (95% CI 0.72 to 2.41; P=0.0013). 13 of 20 treated but no control participants passed at 1 lux, the lowest level tested. The FDA label reports the same study by median: MLMT score change 2 (min 0, max 4) treated versus 0 (min -1, max 2) control, P=0.001 bilaterally and P=0.003 for the first-treated eye, with 11 of 21 treated versus 1 of 10 control achieving a change of two or more, the threshold the label calls clinically meaningful.',
-        evidenceSource: 'Russell 2017; LUXTURNA US prescribing information, Section 14, Tables 2 and 3',
+        evidenceSource:
+          'Russell 2017; LUXTURNA US prescribing information, Section 14, Tables 2 and 3',
         doi: '10.1016/S0140-6736(17)31868-8',
-        measuredMetric: 'Bilateral MLMT change at 1 year: 1.8 versus 0.2 light levels, difference 1.6',
+        measuredMetric:
+          'Bilateral MLMT change at 1 year: 1.8 versus 0.2 light levels, difference 1.6',
         auditFlag: 'verified',
       },
       {
@@ -1490,9 +1518,9 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The primary endpoint was invented for this product, and patented',
         laymanSummary:
-          'The obstacle course used to prove the drug works did not exist before this trial. The sponsor developed it, and the trial\'s own disclosures record patent applications on it licensed to the sponsor.',
+          "The obstacle course used to prove the drug works did not exist before this trial. The sponsor developed it, and the trial's own disclosures record patent applications on it licensed to the sponsor.",
         technicalDetails:
-          'Multi-luminance mobility testing scores a videotaped navigation course at seven illumination levels from 400 lux to 1 lux, with a score of -1 for failure at 400 lux. The Lancet paper\'s declaration of interests records that several authors, including sponsor employees, hold a patent pending pertaining to the primary endpoint measure licensed to Spark Therapeutics. A sponsor-developed, sponsor-licensed endpoint is not disqualifying — no pre-existing instrument measured what this therapy was meant to change — but it removes the independence a standard endpoint would carry, and it makes cross-product comparison impossible.',
+          "Multi-luminance mobility testing scores a videotaped navigation course at seven illumination levels from 400 lux to 1 lux, with a score of -1 for failure at 400 lux. The Lancet paper's declaration of interests records that several authors, including sponsor employees, hold a patent pending pertaining to the primary endpoint measure licensed to Spark Therapeutics. A sponsor-developed, sponsor-licensed endpoint is not disqualifying — no pre-existing instrument measured what this therapy was meant to change — but it removes the independence a standard endpoint would carry, and it makes cross-product comparison impossible.",
         evidenceSource: 'Russell 2017, Declaration of interests; LUXTURNA label Section 14',
         doi: '10.1016/S0140-6736(17)31868-8',
         inferredClaim:
@@ -1552,7 +1580,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'The gene stays as a loop in the nucleus and is read continuously',
         laymanDesc:
-          'The delivered gene does not join the cell\'s chromosomes. It sits alongside them and is read, and because these cells barely divide, it can stay for years.',
+          "The delivered gene does not join the cell's chromosomes. It sits alongside them and is read, and because these cells barely divide, it can stay for years.",
         molecularDetail:
           'The RPE65 cassette persists as a non-integrating episome under a hybrid chicken beta-actin promoter. Retinal pigment epithelial cells are essentially post-mitotic, so episomal dilution is minimal — the structural reason ocular AAV durability outperforms hepatic AAV durability.',
         iconName: 'CircleDot',
@@ -1597,7 +1625,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         sampleSize: 103,
         primaryEndpoint: 'Real-world safety and effectiveness up to 2 years',
         endpointMet: true,
-        statisticalPValue: 'Descriptive; no hypothesis test — an observational registry with no control arm',
+        statisticalPValue:
+          'Descriptive; no hypothesis test — an observational registry with no control arm',
         unreportedAdverseSignals:
           'Ocular treatment-emergent adverse events in 34% of patients, chorioretinal atrophy in 12.6%, procedure-related intraocular inflammation or infection in 7.',
         independentReplicationStatus: 'Partially Replicated',
@@ -1613,7 +1642,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That vision was restored — visual acuity did not differ significantly from control at one year, per the FDA label',
         'That the degeneration is halted; the therapy replaces a metabolic enzyme and the indication itself requires viable retina remaining',
-        'That the mobility gain is comparable to any other product\'s endpoint, when the endpoint was created for this trial and is licensed to its sponsor',
+        "That the mobility gain is comparable to any other product's endpoint, when the endpoint was created for this trial and is licensed to its sponsor",
         'That two-year registry light-sensitivity numbers establish durability, when they come from 13 eyes',
       ],
       whatFailedInitially: [
@@ -1646,7 +1675,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How long does it last?',
-        a: 'Longer than a liver gene therapy, for a structural reason: retinal pigment epithelial cells barely divide, so the delivered gene, which sits beside the chromosomes rather than inside them, is not diluted away. Published follow-up shows benefit maintained for several years, and the registry\'s two-year light-sensitivity figures come from a small number of eyes. Follow-up studies run for fifteen years and have not finished.',
+        a: "Longer than a liver gene therapy, for a structural reason: retinal pigment epithelial cells barely divide, so the delivered gene, which sits beside the chromosomes rather than inside them, is not diluted away. Published follow-up shows benefit maintained for several years, and the registry's two-year light-sensitivity figures come from a small number of eyes. Follow-up studies run for fifteen years and have not finished.",
       },
       {
         q: 'Why does this page show no manufacturing cost or markup?',
@@ -1679,7 +1708,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       },
       {
         label: 'FDA LUXTURNA product page and package insert',
-        identifier: 'https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/luxturna',
+        identifier:
+          'https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/luxturna',
         kind: 'regulatory',
       },
       {
@@ -1717,7 +1747,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         'Enough endogenous factor IX activity to stop prophylactic infusions and to reduce the annualised bleeding rate, sustained for years rather than months.',
     },
     oneSentenceVerdict:
-      'A single AAV5 infusion carrying the hyperactive factor IX Padua variant: the annualised bleeding rate fell 64% against each patient\'s own prophylaxis lead-in, and at five years mean factor IX activity was still 36.1 IU/dL — the strongest durability result any liver-directed gene therapy has published.',
+      "A single AAV5 infusion carrying the hyperactive factor IX Padua variant: the annualised bleeding rate fell 64% against each patient's own prophylaxis lead-in, and at five years mean factor IX activity was still 36.1 IU/dL — the strongest durability result any liver-directed gene therapy has published.",
     laymanHowItWorks:
       'Your liver is supposed to make a clotting protein and does not. A harmless virus shell carries a working copy of the gene into liver cells, where it stays as a separate loop of DNA and starts producing the protein. The copy delivered is not the ordinary version — it is a naturally occurring variant found in an Italian family, about eight times more active than normal, so even modest production gives a useful clotting level. One infusion, and for most patients the weekly injections stop.',
     auditConfidence: 'High Confidence',
@@ -1730,9 +1760,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
           name: 'Recombinant factor IX prophylaxis, including extended half-life products',
           class: 'Coagulation factor replacement',
           howItCompares:
-            'The standard of care and the trial\'s own comparator. In the HOPE-B lead-in period it produced an annualised bleeding rate of 4.19; gene therapy reduced that to 1.51. Extended half-life products have stretched dosing intervals from twice weekly toward weekly or longer.',
-          typicalCost:
-            '',
+            "The standard of care and the trial's own comparator. In the HOPE-B lead-in period it produced an annualised bleeding rate of 4.19; gene therapy reduced that to 1.51. Extended half-life products have stretched dosing intervals from twice weekly toward weekly or longer.",
+          typicalCost: '',
           prosAndCons:
             'Pros: reversible, dose-adjustable, decades of experience, no AAV antibody constraint. Cons: intravenous access for life, and breakthrough bleeds between doses.',
         },
@@ -1840,7 +1869,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'etra-a1',
         category: 'measured',
-        title: 'HOPE-B: annualised bleeding rate fell 64% against each patient\'s own prophylaxis',
+        title: "HOPE-B: annualised bleeding rate fell 64% against each patient's own prophylaxis",
         laymanSummary:
           'Fifty-four men spent at least six months on standard prophylaxis first, so their own bleeding rate was measured before treatment. After one infusion, bleeds fell by roughly two thirds.',
         technicalDetails:
@@ -1867,12 +1896,14 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'etra-a3',
         category: 'conclusion_shift',
-        title: 'Pre-existing AAV5 antibodies were expected to disqualify patients, and mostly did not',
+        title:
+          'Pre-existing AAV5 antibodies were expected to disqualify patients, and mostly did not',
         laymanSummary:
           'Most gene therapies exclude anyone whose immune system has already met the virus shell. This trial enrolled them anyway, and the treatment still worked below a certain antibody level.',
         technicalDetails:
-          'HOPE-B enrolled participants regardless of pre-existing AAV5 neutralising antibody status, a deliberate departure from the field\'s standard exclusion. Benefit and safety were observed in participants with predose titres below 700, and the five-year analysis found efficacy did not differ substantially between antibody-positive and antibody-negative participants. The contrast with the competing haemophilia B product is stark: in BENEGENE-2, 188 of 316 men screened (59.5%) were ineligible because of anti-AAV neutralising antibodies. Capsid choice and screening policy, not the transgene, decide who is treatable.',
-        evidenceSource: 'Pipe 2023 and the HOPE-B five-year analysis; contrast with Cuker A et al., N Engl J Med 2024;391:1108-1118',
+          "HOPE-B enrolled participants regardless of pre-existing AAV5 neutralising antibody status, a deliberate departure from the field's standard exclusion. Benefit and safety were observed in participants with predose titres below 700, and the five-year analysis found efficacy did not differ substantially between antibody-positive and antibody-negative participants. The contrast with the competing haemophilia B product is stark: in BENEGENE-2, 188 of 316 men screened (59.5%) were ineligible because of anti-AAV neutralising antibodies. Capsid choice and screening policy, not the transgene, decide who is treatable.",
+        evidenceSource:
+          'Pipe 2023 and the HOPE-B five-year analysis; contrast with Cuker A et al., N Engl J Med 2024;391:1108-1118',
         doi: '10.1056/NEJMoa2211644',
         auditFlag: 'verified',
       },
@@ -1891,11 +1922,11 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'etra-a5',
         category: 'inferred',
-        title: 'The comparator was each patient\'s own unblinded lead-in, not a randomised arm',
+        title: "The comparator was each patient's own unblinded lead-in, not a randomised arm",
         laymanSummary:
           'There was no control group. Every participant was compared with their own bleeding rate from the months before treatment, and everyone knew who had been treated.',
         technicalDetails:
-          'HOPE-B is open-label and single-group. The lead-in design is a genuine strength — it establishes each patient\'s own prophylaxis-era bleeding rate prospectively rather than by recall — but it cannot control for regression to the mean, for the behavioural effect of knowing one has been treated, or for changes in bleed reporting once weekly infusions stop. Annualised bleeding rate is patient-reported and adjudicated, not instrumented. Factor IX activity, by contrast, is a laboratory measurement and is not vulnerable to any of this.',
+          "HOPE-B is open-label and single-group. The lead-in design is a genuine strength — it establishes each patient's own prophylaxis-era bleeding rate prospectively rather than by recall — but it cannot control for regression to the mean, for the behavioural effect of knowing one has been treated, or for changes in bleed reporting once weekly infusions stop. Annualised bleeding rate is patient-reported and adjudicated, not instrumented. Factor IX activity, by contrast, is a laboratory measurement and is not vulnerable to any of this.",
         evidenceSource: 'HOPE-B study design (NCT03569891)',
         doi: '10.1056/NEJMoa2211644',
         inferredClaim:
@@ -1905,7 +1936,8 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       {
         id: 'etra-a6',
         category: 'inferred',
-        title: 'A $3.5 million price justified by lifetime factor costs that were never measured against it',
+        title:
+          'A $3.5 million price justified by lifetime factor costs that were never measured against it',
         laymanSummary:
           'The price was set on the argument that a lifetime of clotting factor costs more. The trial measured five years, and the arithmetic beyond that is a projection.',
         technicalDetails:
@@ -2012,7 +2044,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         'An FDA clinical hold in December 2020 after a hepatocellular carcinoma case, resolved only after independent vector integration and whole genome analysis',
       ],
       realWorldOutcome: [
-        'The most durable published result in liver-directed gene therapy, and the direct contrast that makes the haemophilia A product\'s decline legible',
+        "The most durable published result in liver-directed gene therapy, and the direct contrast that makes the haemophilia A product's decline legible",
         'Enrolling patients regardless of AAV5 antibody status widened eligibility in a field where capsid immunity routinely excludes more than half of those screened',
         'Priced at $3.5 million on approval, the most expensive medicine in the world at the time',
       ],
@@ -2080,11 +2112,11 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Sporting a $3.5M price tag, CSL and uniQure\'s hemophilia B gene therapy crosses FDA finish line. Fierce Pharma, 22 November 2022',
+          "Sporting a $3.5M price tag, CSL and uniQure's hemophilia B gene therapy crosses FDA finish line. Fierce Pharma, 22 November 2022",
         identifier:
           'https://www.fiercepharma.com/pharma/csl-and-uniqures-hemophilia-b-gene-therapy-scores-approval-35-million-price-tag',
         kind: 'url',
       },
     ],
-  }
+  },
 ]

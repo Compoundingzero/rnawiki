@@ -66,8 +66,7 @@ export default function Error({
 
         {error.digest && (
           <p className="text-[11px] text-[#86868B]">
-            Reference{' '}
-            <code className="font-mono text-[#6E6E73]">{error.digest}</code>
+            Reference <code className="font-mono text-[#6E6E73]">{error.digest}</code>
           </p>
         )}
       </div>

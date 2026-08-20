@@ -67,10 +67,7 @@ export const APPROVAL_STATUSES: ApprovalStatus[] = [
 ]
 
 export type AuditConfidence =
-  | 'High Confidence'
-  | 'Moderate / Debated'
-  | 'Inference Overreach Found'
-  | 'Rigorous Replicated'
+  'High Confidence' | 'Moderate / Debated' | 'Inference Overreach Found' | 'Rigorous Replicated'
 
 export interface AuditPoint {
   id: string
@@ -94,10 +91,7 @@ export interface ClinicalTrialRecord {
   statisticalPValue: string
   unreportedAdverseSignals?: string
   independentReplicationStatus:
-    | 'Replicated'
-    | 'Partially Replicated'
-    | 'Unreplicated'
-    | 'Failed to Replicate'
+    'Replicated' | 'Partially Replicated' | 'Unreplicated' | 'Failed to Replicate'
 }
 
 export interface MechanismStep {
@@ -107,11 +101,7 @@ export interface MechanismStep {
   molecularDetail: string
   iconName: string
   visualStage:
-    | 'delivery'
-    | 'cellular_entry'
-    | 'target_binding'
-    | 'catalytic_action'
-    | 'therapeutic_result'
+    'delivery' | 'cellular_entry' | 'target_binding' | 'catalytic_action' | 'therapeutic_result'
 }
 
 export interface CommunityNote {
@@ -174,12 +164,7 @@ export interface DrugSubstitutes {
 }
 
 export type ProtocolPhase =
-  | 'QC'
-  | 'Synthesis'
-  | 'Purification'
-  | 'Conjugation'
-  | 'Cellular_Delivery'
-  | 'Assay_Quantification'
+  'QC' | 'Synthesis' | 'Purification' | 'Conjugation' | 'Cellular_Delivery' | 'Assay_Quantification'
 
 export const PROTOCOL_PHASES: ProtocolPhase[] = [
   'QC',

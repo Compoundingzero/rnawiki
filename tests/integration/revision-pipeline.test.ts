@@ -67,7 +67,10 @@ interface TestUser {
 
 async function makeUser(
   label: string,
-  overrides: { trustTier?: 'new' | 'contributor' | 'trusted' | 'steward'; acceptedEditCount?: number } = {},
+  overrides: {
+    trustTier?: 'new' | 'contributor' | 'trusted' | 'steward'
+    acceptedEditCount?: number
+  } = {},
 ): Promise<TestUser> {
   const id = `usr_test_${RUN}_${label}`
   const handle = `test-${RUN}-${label}`
@@ -213,7 +216,11 @@ describe('an edit the deterministic engine rejects', () => {
     expect(body.error).toContain('not part of the RNA')
 
     const rows = await db
-      .select({ id: revisions.id, status: revisions.status, machineVerified: revisions.machineVerified })
+      .select({
+        id: revisions.id,
+        status: revisions.status,
+        machineVerified: revisions.machineVerified,
+      })
       .from(revisions)
       .where(eq(revisions.drugId, drug.id))
 

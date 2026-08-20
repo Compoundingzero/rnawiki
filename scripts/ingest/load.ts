@@ -61,18 +61,25 @@ async function loadAliases(rows: readonly DrugInsert[]): Promise<void> {
   })
   const stolen = aliasRows.length - kept.length
   if (stolen > 0) {
-    console.log(`[load] dropped ${stolen.toLocaleString()} aliases that named a different substance`)
+    console.log(
+      `[load] dropped ${stolen.toLocaleString()} aliases that named a different substance`,
+    )
   }
   aliasRows.length = 0
   aliasRows.push(...kept)
 
   const drugIds = rows.map((row) => row.id)
   for (let offset = 0; offset < drugIds.length; offset += BATCH_SIZE) {
-    await db.delete(drugAliases).where(inArray(drugAliases.drugId, drugIds.slice(offset, offset + BATCH_SIZE)))
+    await db
+      .delete(drugAliases)
+      .where(inArray(drugAliases.drugId, drugIds.slice(offset, offset + BATCH_SIZE)))
   }
 
   for (let offset = 0; offset < aliasRows.length; offset += BATCH_SIZE) {
-    await db.insert(drugAliases).values(aliasRows.slice(offset, offset + BATCH_SIZE)).onConflictDoNothing()
+    await db
+      .insert(drugAliases)
+      .values(aliasRows.slice(offset, offset + BATCH_SIZE))
+      .onConflictDoNothing()
   }
   console.log(`[load] ${aliasRows.length.toLocaleString()} search aliases written`)
 }
@@ -116,7 +123,9 @@ export async function loadDrugs(
   const runId = newId('ingest')
 
   if (options.dryRun) {
-    console.log(`[load] dry run: would write ${rows.length.toLocaleString()} rows, touching nothing`)
+    console.log(
+      `[load] dry run: would write ${rows.length.toLocaleString()} rows, touching nothing`,
+    )
     return { inserted: 0, updated: 0, batches: 0, runId }
   }
 
@@ -204,7 +213,9 @@ export async function loadDrugs(
     .set({ recordsWritten: written, finishedAt: new Date() })
     .where(sql`${ingestRuns.id} = ${runId}`)
 
-  console.log(`[load] done · ${written.toLocaleString()} rows written · ${total.toLocaleString()} rows in table`)
+  console.log(
+    `[load] done · ${written.toLocaleString()} rows written · ${total.toLocaleString()} rows in table`,
+  )
 
   return { inserted: written, updated: 0, batches, runId }
 }

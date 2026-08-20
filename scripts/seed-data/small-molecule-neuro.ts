@@ -159,7 +159,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           phase: 'Synthesis',
           name: 'Imine condensation and stereoselective hydrogenation',
           description:
-            'Condense the tetralone with methylamine to the ketimine, then hydrogenate over palladium on carbon. The hydrogenation sets the second stereocentre and favours the cis diastereomer that carries the activity. Pfizer\'s redesigned commercial route runs the condensation, the reduction and the resolution in ethanol alone, replacing the dichloromethane, tetrahydrofuran, toluene and hexane of the original process — the change that won the 2002 Presidential Green Chemistry Challenge Award.',
+            "Condense the tetralone with methylamine to the ketimine, then hydrogenate over palladium on carbon. The hydrogenation sets the second stereocentre and favours the cis diastereomer that carries the activity. Pfizer's redesigned commercial route runs the condensation, the reduction and the resolution in ethanol alone, replacing the dichloromethane, tetrahydrofuran, toluene and hexane of the original process — the change that won the 2002 Presidential Green Chemistry Challenge Award.",
           dependsOnStepId: 'sert-w1',
           reagentsAndBuffer:
             'Methylamine in ethanol; 5% palladium on carbon under hydrogen; absolute ethanol as the single process solvent',
@@ -216,7 +216,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'sert-a2',
         category: 'failed',
-        title: 'PANDA: sertraline missed its primary endpoint at six weeks in 653 primary-care patients',
+        title:
+          'PANDA: sertraline missed its primary endpoint at six weeks in 653 primary-care patients',
         laymanSummary:
           'In the biggest trial of sertraline in ordinary general practice, depression scores at six weeks were no better than on placebo. Anxiety and self-rated mental health did improve.',
         technicalDetails:
@@ -244,7 +245,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'sert-a4',
         category: 'inferred',
-        title: 'Effect size versus placebo depends on baseline severity, and is small below the top of the range',
+        title:
+          'Effect size versus placebo depends on baseline severity, and is small below the top of the range',
         laymanSummary:
           'Analysing the trial data the FDA holds rather than only what was published, the gap between drug and placebo grows as depression gets more severe, and is small for anyone who is not very severely ill.',
         technicalDetails:
@@ -258,7 +260,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'sert-a5',
         category: 'measured',
-        title: 'SADHART: safe after myocardial infarction, and the primary endpoint was safety, not mood',
+        title:
+          'SADHART: safe after myocardial infarction, and the primary endpoint was safety, not mood',
         laymanSummary:
           'In 369 patients who had just had a heart attack or unstable angina, sertraline did not damage heart function. Its effect on depression was clearest in the most severe and most recurrent cases.',
         technicalDetails:
@@ -271,7 +274,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'sert-a6',
         category: 'measured',
-        title: 'Discontinuation symptoms occur in about a third of people, and in a sixth after placebo',
+        title:
+          'Discontinuation symptoms occur in about a third of people, and in a sixth after placebo',
         laymanSummary:
           'Stopping an antidepressant produced at least one withdrawal symptom in roughly 31 people in 100. Stopping a placebo produced one in 17 people in 100, so the drug-caused share is smaller than the headline number.',
         technicalDetails:
@@ -284,7 +288,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'sert-a7',
         category: 'inferred',
-        title: 'STAR*D: cumulative remission after four steps was 67%, and the number is not a drug effect',
+        title:
+          'STAR*D: cumulative remission after four steps was 67%, and the number is not a drug effect',
         laymanSummary:
           'The largest real-world treatment study reported that two thirds of patients eventually remitted after up to four medication steps. There was no placebo group, so the figure cannot be attributed to the drugs.',
         technicalDetails:
@@ -483,7 +488,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: ZOLOFT (sertraline hydrochloride), NDA 019839, approved 30 December 1991',
+        label:
+          'Drugs@FDA: ZOLOFT (sertraline hydrochloride), NDA 019839, approved 30 December 1991',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019839',
         kind: 'regulatory',
@@ -559,8 +565,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Ask what dose the evidence supports, not what dose is licensed',
-          action:
-            'Discuss whether a dose increase is likely to add benefit before accepting one.',
+          action: 'Discuss whether a dose increase is likely to add benefit before accepting one.',
           patientImpact:
             'The dose-response meta-analysis of 77 studies and 19,364 participants found SSRI efficacy rising to roughly 20 to 40 mg fluoxetine equivalents and then flat to declining, while dropouts from adverse effects rose steeply across the whole range.',
           clinicalPrecaution:
@@ -673,7 +678,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In the trial that supported the teenage indication, depression scores fell about three points further on escitalopram than on placebo over eight weeks, on a scale that runs from 17 to 113.',
         technicalDetails:
-          'Emslie et al. randomised adolescents aged 12 to 17; 259 of 312 completed eight weeks of double-blind treatment. Baseline Children\'s Depression Rating Scale-Revised was 57.6 on escitalopram and 56.0 on placebo. Change at endpoint was -22.1 versus -18.8 (p=0.022, last observation carried forward). Discontinuation for adverse events was 2.6% versus 0.6%; serious adverse events 2.6% versus 1.3%; suicidality incidence similar between groups. The FDA granted the adolescent MDD indication on this evidence base.',
+          "Emslie et al. randomised adolescents aged 12 to 17; 259 of 312 completed eight weeks of double-blind treatment. Baseline Children's Depression Rating Scale-Revised was 57.6 on escitalopram and 56.0 on placebo. Change at endpoint was -22.1 versus -18.8 (p=0.022, last observation carried forward). Discontinuation for adverse events was 2.6% versus 0.6%; serious adverse events 2.6% versus 1.3%; suicidality incidence similar between groups. The FDA granted the adolescent MDD indication on this evidence base.",
         evidenceSource: 'Emslie GJ et al., J Am Acad Child Adolesc Psychiatry 2009;48:721-729',
         doi: '10.1097/CHI.0b013e3181a2b304',
         measuredMetric: 'Change in CDRS-R total score at 8 weeks',
@@ -682,11 +687,12 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'esci-a4',
         category: 'failed',
-        title: 'The paediatric citalopram trial behind the franchise was misreported, and court documents proved it',
+        title:
+          'The paediatric citalopram trial behind the franchise was misreported, and court documents proved it',
         laymanSummary:
-          'The children\'s trial of citalopram — escitalopram\'s parent drug — was published as positive. Litigation documents later showed the protocol-specified outcome had shown no difference from placebo.',
+          "The children's trial of citalopram — escitalopram's parent drug — was published as positive. Litigation documents later showed the protocol-specified outcome had shown no difference from placebo.",
         technicalDetails:
-          'Jureidini, Amsterdam and McHenry reconstructed the CIT-MD-18 paediatric depression trial from documents produced in litigation. They found efficacy and safety data inconsistent with the protocol criteria; unreported procedural deviations that conferred statistical significance on the primary outcome; an implausible claimed effect size; post-hoc positive measures introduced and negative secondary outcomes omitted; adverse events analysed misleadingly; and manuscript drafts prepared by company employees and outside ghostwriters with academic researchers solicited as authors. Their conclusion was that protocol-specified outcomes showed no statistically significant difference between citalopram and placebo. Forest Laboratories, escitalopram\'s US marketer, resolved related federal charges in 2010.',
+          "Jureidini, Amsterdam and McHenry reconstructed the CIT-MD-18 paediatric depression trial from documents produced in litigation. They found efficacy and safety data inconsistent with the protocol criteria; unreported procedural deviations that conferred statistical significance on the primary outcome; an implausible claimed effect size; post-hoc positive measures introduced and negative secondary outcomes omitted; adverse events analysed misleadingly; and manuscript drafts prepared by company employees and outside ghostwriters with academic researchers solicited as authors. Their conclusion was that protocol-specified outcomes showed no statistically significant difference between citalopram and placebo. Forest Laboratories, escitalopram's US marketer, resolved related federal charges in 2010.",
         evidenceSource: 'Jureidini JN, Amsterdam JD, McHenry LB. Int J Risk Saf Med 2016;28:33-43',
         doi: '10.3233/JRS-160671',
         auditFlag: 'caution',
@@ -708,11 +714,12 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'esci-a6',
         category: 'conclusion_shift',
-        title: 'The serotonin-deficiency account is not supported, and the trial results are unchanged',
+        title:
+          'The serotonin-deficiency account is not supported, and the trial results are unchanged',
         laymanSummary:
           'The explanation given to patients for decades — that the drug corrects a chemical imbalance — has no consistent biomarker evidence behind it. That does not undo the trial results, and the trials never measured serotonin.',
         technicalDetails:
-          'Moncrieff et al.\'s umbrella review of 17 studies found no consistent association between depression and serotonin metabolite concentrations, 5-HT1A binding, SERT binding, or SERT genetics, and reported evidence that lowered plasma serotonin was associated with antidepressant use rather than with depression. Jauhar et al., for 35 co-authors, argued the conclusion was overstated on methodological and interpretive grounds, particularly regarding tryptophan depletion and molecular imaging. Both papers are about pathophysiology. Neither reanalyses an escitalopram trial.',
+          "Moncrieff et al.'s umbrella review of 17 studies found no consistent association between depression and serotonin metabolite concentrations, 5-HT1A binding, SERT binding, or SERT genetics, and reported evidence that lowered plasma serotonin was associated with antidepressant use rather than with depression. Jauhar et al., for 35 co-authors, argued the conclusion was overstated on methodological and interpretive grounds, particularly regarding tryptophan depletion and molecular imaging. Both papers are about pathophysiology. Neither reanalyses an escitalopram trial.",
         evidenceSource:
           'Moncrieff J et al., Mol Psychiatry 2023;28:3243-3256; Jauhar S et al., Mol Psychiatry 2023;28:3149-3152',
         doi: '10.1038/s41380-022-01661-0',
@@ -765,8 +772,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         step: 5,
         title: 'Rating-scale scores fall',
-        laymanDesc:
-          'The endpoint in every trial is a questionnaire score, not a laboratory value.',
+        laymanDesc: 'The endpoint in every trial is a questionnaire score, not a laboratory value.',
         molecularDetail:
           'Efficacy is measured as MADRS, HAM-D, HAM-A or CDRS-R change. In the adolescent trial the separation was 3.3 CDRS-R points; in the adult network the estimate is an odds ratio on response rate.',
         iconName: 'Activity',
@@ -841,7 +847,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'The teenage indication came from one trial. Is that enough?',
-        a: 'The registration evidence for adolescent major depression is thin by adult standards: an 8-week trial in 312 patients with a 3.3-point separation on a 17-to-113 scale, p=0.022. That is a real result and a small one. It sits next to the history of the parent drug\'s paediatric trial, CIT-MD-18, whose protocol-specified outcome showed no difference from placebo while the published paper concluded the opposite. Both facts belong on the same page.',
+        a: "The registration evidence for adolescent major depression is thin by adult standards: an 8-week trial in 312 patients with a 3.3-point separation on a 17-to-113 scale, p=0.022. That is a real result and a small one. It sits next to the history of the parent drug's paediatric trial, CIT-MD-18, whose protocol-specified outcome showed no difference from placebo while the published paper concluded the opposite. Both facts belong on the same page.",
         auditNote:
           'Reading the adolescent evidence base without the CIT-MD-18 reconstruction gives a misleadingly clean picture of how this indication was built.',
       },
@@ -945,7 +951,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
     confidenceScore: 74,
     substitutes: {
       summary:
-        'For depression, every SSRI has more evidence in anxiety disorders and none has bupropion\'s freedom from sexual side effects. For smoking cessation, varenicline beat bupropion head to head in EAGLES and in the Cochrane review, and nicotine replacement matched it.',
+        "For depression, every SSRI has more evidence in anxiety disorders and none has bupropion's freedom from sexual side effects. For smoking cessation, varenicline beat bupropion head to head in EAGLES and in the Cochrane review, and nicotine replacement matched it.",
       conventionalRx: [
         {
           name: 'Varenicline',
@@ -1089,7 +1095,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'bupr-a3',
         category: 'failed',
-        title: 'LIGHT: the cardiovascular outcome trial was terminated after its interim data leaked',
+        title:
+          'LIGHT: the cardiovascular outcome trial was terminated after its interim data leaked',
         laymanSummary:
           'A trial testing whether the naltrexone-bupropion weight-loss combination was safe for the heart was stopped early after partial results were made public, and it can no longer answer the question it was designed to answer.',
         technicalDetails:
@@ -1135,7 +1142,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           'Cortese et al. pooled 133 double-blind randomised trials. In adults, on clinician-rated core ADHD symptoms closest to 12 weeks, bupropion gave SMD -0.46 (95% CI -0.85 to -0.07), against -0.79 (-0.99 to -0.58) for amphetamines and -0.49 (-0.64 to -0.35) for methylphenidate. Bupropion is not FDA-approved for ADHD; this is an off-label use with network-level evidence behind it.',
         evidenceSource: 'Cortese S et al., Lancet Psychiatry 2018;5:727-738',
         doi: '10.1016/S2215-0366(18)30269-4',
-        measuredMetric: 'Standardised mean difference on clinician-rated ADHD core symptoms in adults',
+        measuredMetric:
+          'Standardised mean difference on clinician-rated ADHD core symptoms in adults',
         auditFlag: 'verified',
       },
     ],
@@ -1153,8 +1161,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         step: 2,
         title: 'Crosses into the brain',
-        laymanDesc:
-          'Both the drug and its main breakdown product reach brain tissue.',
+        laymanDesc: 'Both the drug and its main breakdown product reach brain tissue.',
         molecularDetail:
           'Bupropion and hydroxybupropion cross the blood-brain barrier and reach dopaminergic and noradrenergic terminal fields in prefrontal cortex, striatum and the ventral tegmental projection system.',
         iconName: 'ArrowDownToLine',
@@ -1209,7 +1216,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         trialId: 'LIGHT (NCT01601704)',
         phase: 'Phase 3 cardiovascular outcome trial, terminated early',
         sampleSize: 8910,
-        primaryEndpoint: 'Time to first major adverse cardiovascular event, non-inferiority margin 1.4',
+        primaryEndpoint:
+          'Time to first major adverse cardiovascular event, non-inferiority margin 1.4',
         endpointMet: false,
         statisticalPValue:
           'HR 0.88 at 50% of planned events (adjusted 99.7% CI 0.57 to 1.34); non-inferiority to a margin of 1.4 could not be assessed',
@@ -1310,7 +1318,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'EAGLES: study evaluating the safety and efficacy of varenicline and bupropion for smoking cessation',
+        label:
+          'EAGLES: study evaluating the safety and efficacy of varenicline and bupropion for smoking cessation',
         identifier: 'NCT01456936',
         kind: 'nct',
       },
@@ -1320,7 +1329,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         kind: 'nct',
       },
       {
-        label: 'Drugs@FDA: WELLBUTRIN (bupropion hydrochloride), NDA 018644, approved 30 December 1985',
+        label:
+          'Drugs@FDA: WELLBUTRIN (bupropion hydrochloride), NDA 018644, approved 30 December 1985',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018644',
         kind: 'regulatory',
@@ -1353,7 +1363,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
     anatomicalSite: 'Presynaptic terminals in dorsal horn and cortex; alpha-2-delta-1 subunit',
     conditionContext: {
       conditionExplainer:
-        'Gabapentin is named after GABA, the brain\'s main inhibitory messenger, and it does not act on GABA receptors at all. Its target is a helper subunit that sits on voltage-gated calcium channels and controls how many of them get to the nerve terminal.',
+        "Gabapentin is named after GABA, the brain's main inhibitory messenger, and it does not act on GABA receptors at all. Its target is a helper subunit that sits on voltage-gated calcium channels and controls how many of them get to the nerve terminal.",
       whyItMatters:
         'The name is the first misleading thing about this drug and the licensed indications are the second: gabapentin is approved for two conditions and prescribed for dozens. The gap between those two facts is documented in court records, not just in the literature.',
       whoTakesThis:
@@ -1517,7 +1527,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The company that made gabapentin pleaded guilty and paid $430 million for marketing it for conditions it had never been approved for. Internal documents released in that litigation show how the evidence base was shaped.',
         technicalDetails:
-          'The Department of Justice announced on 13 May 2004 that Warner-Lambert would plead guilty and pay more than $430 million over its Parke-Davis division\'s promotion of Neurontin for unapproved uses; the drug had been approved in December 1993 solely for adjunctive anti-seizure use. Steinman et al. analysed the internal industry documents produced in that litigation and traced a strategy in which publication planning, continuing medical education and advisory boards were used as promotional channels. Landefeld and Steinman later described the episode in the New England Journal of Medicine as marketing through misinformation and manipulation. The lesson is not historical: a large share of current gabapentin prescribing is for indications this campaign popularised.',
+          "The Department of Justice announced on 13 May 2004 that Warner-Lambert would plead guilty and pay more than $430 million over its Parke-Davis division's promotion of Neurontin for unapproved uses; the drug had been approved in December 1993 solely for adjunctive anti-seizure use. Steinman et al. analysed the internal industry documents produced in that litigation and traced a strategy in which publication planning, continuing medical education and advisory boards were used as promotional channels. Landefeld and Steinman later described the episode in the New England Journal of Medicine as marketing through misinformation and manipulation. The lesson is not historical: a large share of current gabapentin prescribing is for indications this campaign popularised.",
         evidenceSource:
           'US Department of Justice press release, 13 May 2004; Steinman MA et al., Ann Intern Med 2006;145:284-293; Landefeld CS, Steinman MA, N Engl J Med 2009;360:103-106',
         doi: '10.7326/0003-4819-145-4-200608150-00008',
@@ -1526,7 +1536,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'gaba-a4',
         category: 'measured',
-        title: 'Combining gabapentin with an opioid was associated with a 60% higher odds of opioid death',
+        title:
+          'Combining gabapentin with an opioid was associated with a 60% higher odds of opioid death',
         laymanSummary:
           'In a population study of people prescribed opioids, those also taking gabapentin were around 60% more likely to die of an opioid-related cause, and nearly half of gabapentin users were also getting an opioid.',
         technicalDetails:
@@ -1552,7 +1563,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'gaba-a6',
         category: 'failed',
-        title: 'Perioperative use: 281 trials, 24,682 patients, and no clinically significant analgesia',
+        title:
+          'Perioperative use: 281 trials, 24,682 patients, and no clinically significant analgesia',
         laymanSummary:
           'Giving gabapentin or pregabalin around surgery lowered pain scores by less than the amount considered clinically meaningful, and increased dizziness and visual disturbance.',
         technicalDetails:
@@ -1658,7 +1670,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         trialId: 'Verret perioperative gabapentinoid meta-analysis (281 trials pooled)',
         phase: 'Systematic review and meta-analysis',
         sampleSize: 24682,
-        primaryEndpoint: 'Postoperative pain intensity on a 100-point scale at 6, 12, 24 and 48 hours',
+        primaryEndpoint:
+          'Postoperative pain intensity on a 100-point scale at 6, 12, 24 and 48 hours',
         endpointMet: false,
         statisticalPValue:
           'All effects below the 10-point minimally important difference (-10, -9, -7, -3 respectively)',
@@ -1762,7 +1775,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Johansen ME, Maust DT. Update to gabapentinoid use in the United States, 2002-2021. Ann Fam Med 2024;22:45-49',
+        label:
+          'Johansen ME, Maust DT. Update to gabapentinoid use in the United States, 2002-2021. Ann Fam Med 2024;22:45-49',
         identifier: '10.1370/afm.3052',
         kind: 'doi',
       },
@@ -1895,7 +1909,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           phase: 'Synthesis',
           name: 'Enzymatic kinetic resolution, decarboxylation and nitrile hydrogenation',
           description:
-            'Hydrolyse one enantiomer of the racemic cyanodiester selectively with lipase, decarboxylate the resulting mono-acid, then hydrogenate the nitrile over Raney nickel to the primary amine. Pfizer\'s enzymatic route replaced a classical resolution that discarded half the material at the last step; performing the resolution first is what raised the atom economy and won the 2005 Presidential Green Chemistry Challenge Award for the process.',
+            "Hydrolyse one enantiomer of the racemic cyanodiester selectively with lipase, decarboxylate the resulting mono-acid, then hydrogenate the nitrile over Raney nickel to the primary amine. Pfizer's enzymatic route replaced a classical resolution that discarded half the material at the last step; performing the resolution first is what raised the atom economy and won the 2005 Presidential Green Chemistry Challenge Award for the process.",
           dependsOnStepId: 'preg-w1',
           reagentsAndBuffer:
             'Immobilised Thermomyces lanuginosus lipase in aqueous buffer at controlled pH; heat for decarboxylation; Raney nickel under hydrogen in aqueous ammonia or methanol',
@@ -1953,7 +1967,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'preg-a2',
         category: 'inferred',
-        title: 'Diabetic neuropathy: the same drug, a far weaker effect, and a number needed to treat of 22',
+        title:
+          'Diabetic neuropathy: the same drug, a far weaker effect, and a number needed to treat of 22',
         laymanSummary:
           'In painful diabetic nerve damage the benefit was much smaller than in shingles pain. At 300 mg, 22 people had to be treated for one extra person to get a 30% reduction in pain.',
         technicalDetails:
@@ -2011,7 +2026,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'When pregabalin was compared with other painkillers for chronic low back pain, the other painkillers did better.',
         technicalDetails:
-          'In Shanthanna et al.\'s systematic review, three studies comparing pregabalin with other analgesic medication (n=332) showed greater improvement in the comparator group: mean difference 0.42 units, 95% CI 0.20 to 0.64, I-squared 0, GRADE very low. Studies using pregabalin as an adjuvant (n=423) were not pooled for heterogeneity, but the largest showed no benefit from adding pregabalin to tapentadol. Verret et al. separately found no clinically significant perioperative analgesia from either gabapentinoid across 281 trials and 24,682 patients.',
+          "In Shanthanna et al.'s systematic review, three studies comparing pregabalin with other analgesic medication (n=332) showed greater improvement in the comparator group: mean difference 0.42 units, 95% CI 0.20 to 0.64, I-squared 0, GRADE very low. Studies using pregabalin as an adjuvant (n=423) were not pooled for heterogeneity, but the largest showed no benefit from adding pregabalin to tapentadol. Verret et al. separately found no clinically significant perioperative analgesia from either gabapentinoid across 281 trials and 24,682 patients.",
         evidenceSource:
           'Shanthanna H et al., PLoS Med 2017;14:e1002369; Verret M et al., Anesthesiology 2020;133:265-279',
         doi: '10.1371/journal.pmed.1002369',
@@ -2043,8 +2058,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Binds alpha-2-delta-1 with higher affinity than gabapentin',
-        laymanDesc:
-          'It sticks to the same helper protein as gabapentin, and sticks harder.',
+        laymanDesc: 'It sticks to the same helper protein as gabapentin, and sticks harder.',
         molecularDetail:
           'Binds the alpha-2-delta-1 auxiliary subunit encoded by CACNA2D1 with higher affinity than gabapentin. Only the (S)-enantiomer binds. No meaningful GABA-A or GABA-B receptor activity.',
         iconName: 'Lock',
@@ -2239,7 +2253,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
     anatomicalSite: 'Cortical and hippocampal glutamatergic synapses; NMDA receptor channel pore',
     conditionContext: {
       conditionExplainer:
-        'Esketamine is the S-enantiomer of ketamine, an anaesthetic in use since the 1960s. It acts on glutamate, the brain\'s main excitatory messenger, rather than on serotonin, and its antidepressant effect appears within hours rather than weeks.',
+        "Esketamine is the S-enantiomer of ketamine, an anaesthetic in use since the 1960s. It acts on glutamate, the brain's main excitatory messenger, rather than on serotonin, and its antidepressant effect appears within hours rather than weeks.",
       whyItMatters:
         'A rapid-onset antidepressant is genuinely new, and the drug is dissociative, which makes blinding a trial extremely difficult. Almost every dispute about esketamine traces back to that one methodological problem.',
       whoTakesThis:
@@ -2398,7 +2412,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'esk-a3',
         category: 'measured',
-        title: 'SUSTAIN-1: relapse risk cut by half to two thirds in patients who had already responded',
+        title:
+          'SUSTAIN-1: relapse risk cut by half to two thirds in patients who had already responded',
         laymanSummary:
           'Among patients who got better on esketamine and then continued it, relapse over the following months was roughly half as likely as in those switched to placebo spray.',
         technicalDetails:
@@ -2439,7 +2454,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'esk-a6',
         category: 'measured',
-        title: 'Suicidal ideation: rapid symptom reduction, no measured effect on the ideation itself',
+        title:
+          'Suicidal ideation: rapid symptom reduction, no measured effect on the ideation itself',
         laymanSummary:
           'In patients with active suicidal thoughts, esketamine reduced depression scores within a day. The suicidal ideation score itself did not separate from placebo.',
         technicalDetails:
@@ -2590,7 +2606,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'It failed two of three trials. How was it approved?',
-        a: 'The FDA accepted a package consisting of one positive short-term trial (TRANSFORM-2, a 4.0-point MADRS separation) plus a positive randomised-withdrawal maintenance trial (SUSTAIN-1) as substantial evidence of effectiveness, in a population — depression that has failed at least two antidepressants — with no approved options. TRANSFORM-1 missed at P=0.088 and TRANSFORM-3 missed at P=0.059. Turner\'s Lancet Psychiatry critique lists this as one of seven concerns, in particular the counting of a discontinuation-design study toward efficacy. Both facts are true: the approval was defensible on unmet need, and the efficacy package was thinner than the usual two adequate and well-controlled trials.',
+        a: "The FDA accepted a package consisting of one positive short-term trial (TRANSFORM-2, a 4.0-point MADRS separation) plus a positive randomised-withdrawal maintenance trial (SUSTAIN-1) as substantial evidence of effectiveness, in a population — depression that has failed at least two antidepressants — with no approved options. TRANSFORM-1 missed at P=0.088 and TRANSFORM-3 missed at P=0.059. Turner's Lancet Psychiatry critique lists this as one of seven concerns, in particular the counting of a discontinuation-design study toward efficacy. Both facts are true: the approval was defensible on unmet need, and the efficacy package was thinner than the usual two adequate and well-controlled trials.",
         auditNote:
           'This is the single most important thing to understand about esketamine, and it is rarely stated plainly in patient-facing material.',
       },
@@ -2696,8 +2712,10 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
     approvalYear: 1984,
     indication:
       'Treatment of alcohol dependence, and blockade of the effects of exogenously administered opioids; the extended-release injectable is indicated for alcohol dependence and for prevention of relapse to opioid dependence after opioid detoxification',
-    patientFriendlyIndication: 'Alcohol use disorder, and relapse prevention in opioid use disorder',
-    anatomicalSite: 'Mu-opioid receptors in ventral tegmental area, nucleus accumbens and brainstem',
+    patientFriendlyIndication:
+      'Alcohol use disorder, and relapse prevention in opioid use disorder',
+    anatomicalSite:
+      'Mu-opioid receptors in ventral tegmental area, nucleus accumbens and brainstem',
     conditionContext: {
       conditionExplainer:
         'Naltrexone blocks opioid receptors rather than stimulating them. In alcohol use disorder it blunts the reward that follows a drink; in opioid use disorder it makes an opioid dose have no effect at all.',
@@ -2711,7 +2729,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'An opioid receptor blocker with a modest but replicated effect in alcohol use disorder (number needed to treat 12 to prevent return to heavy drinking), and an opioid indication whose real-world limitation is not the drug but the detoxification required before it can be started.',
     laymanHowItWorks:
-      'Alcohol and opioids both end up releasing the body\'s own opioid-like chemicals, which is a large part of why they feel rewarding. Naltrexone sits in the same receptors those chemicals use and does nothing there — it just occupies the seat. Drinking still happens, but it delivers less of a payoff, and taking an opioid on top of naltrexone produces no effect at all.',
+      "Alcohol and opioids both end up releasing the body's own opioid-like chemicals, which is a large part of why they feel rewarding. Naltrexone sits in the same receptors those chemicals use and does nothing there — it just occupies the seat. Drinking still happens, but it delivers less of a payoff, and taking an opioid on top of naltrexone produces no effect at all.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 71,
     substitutes: {
@@ -2850,7 +2868,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Pooling 53 naltrexone trials, twelve people have to take it for one extra person to avoid returning to heavy drinking. That is a real effect and a modest one.',
         technicalDetails:
-          'Jonas et al. included 122 randomised trials and one cohort study, 22,803 participants. For oral naltrexone 50 mg daily, the number needed to treat to prevent return to heavy drinking was 12 (95% CI 8 to 26; risk difference -0.09, 95% CI -0.13 to -0.04); to prevent return to any drinking it was 20 (95% CI 11 to 500). Acamprosate\'s NNT to prevent return to any drinking was 12 (8 to 26). Direct comparison of the two found no statistically significant difference. Number needed to harm for withdrawal from trials due to adverse events was 48 (30 to 112) for naltrexone.',
+          "Jonas et al. included 122 randomised trials and one cohort study, 22,803 participants. For oral naltrexone 50 mg daily, the number needed to treat to prevent return to heavy drinking was 12 (95% CI 8 to 26; risk difference -0.09, 95% CI -0.13 to -0.04); to prevent return to any drinking it was 20 (95% CI 11 to 500). Acamprosate's NNT to prevent return to any drinking was 12 (8 to 26). Direct comparison of the two found no statistically significant difference. Number needed to harm for withdrawal from trials due to adverse events was 48 (30 to 112) for naltrexone.",
         evidenceSource: 'Jonas DE et al., JAMA 2014;311:1889-1900',
         doi: '10.1001/jama.2014.3628',
         measuredMetric: 'Number needed to treat to prevent return to heavy drinking',
@@ -2859,7 +2877,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'nal-a3',
         category: 'failed',
-        title: 'X:BOT: the injectable lost on intention to treat, entirely because of induction failure',
+        title:
+          'X:BOT: the injectable lost on intention to treat, entirely because of induction failure',
         laymanSummary:
           'Extended-release naltrexone looked worse than buprenorphine overall, but almost all of the difference came from patients who never managed to start it. Among those who did start, the two were equal.',
         technicalDetails:
@@ -2886,7 +2905,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'nal-a5',
         category: 'measured',
-        title: 'Krupitsky: extended-release naltrexone tripled confirmed abstinent weeks against placebo',
+        title:
+          'Krupitsky: extended-release naltrexone tripled confirmed abstinent weeks against placebo',
         laymanSummary:
           'In a placebo-controlled trial in patients who had already completed detoxification, monthly naltrexone injections produced 90% confirmed abstinent weeks against 35% on placebo.',
         technicalDetails:
@@ -2925,7 +2945,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         step: 2,
         title: 'Distributes to opioid receptors throughout the brain',
         laymanDesc:
-          'It reaches the reward circuits and the brainstem, where the body\'s own opioid signals normally act.',
+          "It reaches the reward circuits and the brainstem, where the body's own opioid signals normally act.",
         molecularDetail:
           'Crosses the blood-brain barrier and occupies mu-opioid receptors in the ventral tegmental area, nucleus accumbens and brainstem. Receptor occupancy after a monthly injection remains high for weeks, which is what gives the depot formulation its dosing interval.',
         iconName: 'ArrowDownToLine',
@@ -2945,7 +2965,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         step: 4,
         title: 'The reward signal that follows a drink is blunted',
         laymanDesc:
-          'Alcohol releases the body\'s own opioid-like chemicals, which is part of why a first drink leads to a second. With the receptors occupied, that chain is weakened.',
+          "Alcohol releases the body's own opioid-like chemicals, which is part of why a first drink leads to a second. With the receptors occupied, that chain is weakened.",
         molecularDetail:
           'Alcohol consumption triggers endogenous beta-endorphin release that disinhibits ventral tegmental dopamine neurons. Mu-receptor blockade attenuates that alcohol-induced dopamine response, which is the pharmacological basis for the reduction in heavy drinking days rather than in drinking at all.',
         iconName: 'Cpu',
@@ -2967,7 +2987,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         trialId: 'COMBINE (NCT00006206)',
         phase: 'Phase 3',
         sampleSize: 1383,
-        primaryEndpoint: 'Percent days abstinent and time to first heavy drinking day over 16 weeks',
+        primaryEndpoint:
+          'Percent days abstinent and time to first heavy drinking day over 16 weeks',
         endpointMet: true,
         statisticalPValue:
           'Hazard ratio 0.72 for a heavy drinking day (97.5% CI 0.53 to 0.98, P = .02); naltrexone-by-behavioural-intervention interaction P = .009',
@@ -3116,7 +3137,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'Drugs@FDA: VIVITROL (naltrexone extended-release injectable), NDA 021897, approved 13 April 2006',
+        label:
+          'Drugs@FDA: VIVITROL (naltrexone extended-release injectable), NDA 021897, approved 13 April 2006',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021897',
         kind: 'regulatory',
@@ -3210,7 +3232,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'Very high affinity partial agonist at the mu-opioid receptor with slow dissociation, and antagonist at the kappa-opioid receptor. The high affinity and slow off-rate are what displace full agonists and what produce precipitated withdrawal',
       structureSource: {
-        label: 'PubChem CID 644073 (buprenorphine) — canonical SMILES, formula and molecular weight',
+        label:
+          'PubChem CID 644073 (buprenorphine) — canonical SMILES, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/644073',
         kind: 'url',
       },
@@ -3295,13 +3318,15 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
           'Sordo et al. pooled 19 cohorts: 122,885 people treated with methadone over 1.3 to 13.9 years and 15,831 treated with buprenorphine over 1.1 to 4.5 years. Pooled all-cause mortality was 4.3 per 1,000 person-years in buprenorphine treatment and 9.5 out of it (unadjusted out-to-in rate ratio 2.20, 95% CI 1.34 to 3.61); for methadone, 11.3 in and 36.1 out (rate ratio 3.20, 2.65 to 3.86). Overdose mortality was 1.4 in and 4.6 out of buprenorphine treatment. All-cause mortality dropped sharply over the first four weeks of methadone treatment but remained stable during buprenorphine induction — the induction period is the dangerous one for methadone and not for buprenorphine. The authors flag confounding and selection bias as unresolved limitations of any between-drug comparison.',
         evidenceSource: 'Sordo L et al., BMJ 2017;357:j1550',
         doi: '10.1136/bmj.j1550',
-        measuredMetric: 'All-cause and overdose mortality per 1,000 person-years, in versus out of treatment',
+        measuredMetric:
+          'All-cause and overdose mortality per 1,000 person-years, in versus out of treatment',
         auditFlag: 'verified',
       },
       {
         id: 'bup-a3',
         category: 'measured',
-        title: 'After a non-fatal overdose, buprenorphine was associated with 37% lower all-cause mortality',
+        title:
+          'After a non-fatal overdose, buprenorphine was associated with 37% lower all-cause mortality',
         laymanSummary:
           'Among people who survived an opioid overdose, those who went on to receive buprenorphine were about a third less likely to die in the following year. Only 17% of them received it.',
         technicalDetails:
@@ -3341,11 +3366,12 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       {
         id: 'bup-a6',
         category: 'inferred',
-        title: 'The classical induction protocol was built for a drug landscape that no longer exists',
+        title:
+          'The classical induction protocol was built for a drug landscape that no longer exists',
         laymanSummary:
           'The standard advice on when to take the first dose was developed when the opioids people used cleared quickly. High-potency synthetic opioids behave differently, and precipitated withdrawal has become a more common problem.',
         technicalDetails:
-          'Buprenorphine\'s very high mu-receptor affinity and slow dissociation displace full agonists from the receptor while only partly activating it. The classical induction protocols specify waiting for objective withdrawal, typically assessed with a structured scale, before the first dose. Those protocols were developed and validated in a population using heroin and prescription opioids. This page records that the Cochrane evidence base for buprenorphine retention and suppression of use predates the widespread presence of high-potency synthetic opioids in the illicit supply, and that the applicability of induction timing derived from that era is an assumption rather than a finding.',
+          "Buprenorphine's very high mu-receptor affinity and slow dissociation displace full agonists from the receptor while only partly activating it. The classical induction protocols specify waiting for objective withdrawal, typically assessed with a structured scale, before the first dose. Those protocols were developed and validated in a population using heroin and prescription opioids. This page records that the Cochrane evidence base for buprenorphine retention and suppression of use predates the widespread presence of high-potency synthetic opioids in the illicit supply, and that the applicability of induction timing derived from that era is an assumption rather than a finding.",
         evidenceSource: 'Mattick RP et al., Cochrane Database Syst Rev 2014;2:CD002207',
         doi: '10.1002/14651858.CD002207.pub4',
         inferredClaim:
@@ -3466,8 +3492,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Sublingual tablet and film, transdermal patch, buccal film, and extended-release subcutaneous injection',
+      type: 'Sublingual tablet and film, transdermal patch, buccal film, and extended-release subcutaneous injection',
       description:
         'Opioid use disorder is treated with sublingual tablets or films, usually combined with naloxone as a misuse deterrent, or with a monthly extended-release subcutaneous depot. Chronic pain uses entirely different products at far lower doses: a weekly transdermal patch and a twice-daily buccal film. These are not interchangeable.',
       safetyProfile:
@@ -3527,7 +3552,8 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA: SUBUTEX (buprenorphine hydrochloride), NDA 020732, approved 8 October 2002',
+        label:
+          'Drugs@FDA: SUBUTEX (buprenorphine hydrochloride), NDA 020732, approved 8 October 2002',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020732',
         kind: 'regulatory',

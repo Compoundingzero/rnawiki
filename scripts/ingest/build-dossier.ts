@@ -80,14 +80,24 @@ export interface SkipDecision {
  */
 const NON_SUBSTANCE_PATTERNS: ReadonlyArray<{ pattern: RegExp; reason: string }> = [
   { pattern: /^[\d\W]+$/, reason: 'no letters' },
-  { pattern: /^(WATER|PURIFIED WATER|STERILE WATER|ALCOHOL|ETHYL ALCOHOL|GLYCERIN|GLYCERINE)$/i, reason: 'solvent or vehicle, not an active substance' },
+  {
+    pattern: /^(WATER|PURIFIED WATER|STERILE WATER|ALCOHOL|ETHYL ALCOHOL|GLYCERIN|GLYCERINE)$/i,
+    reason: 'solvent or vehicle, not an active substance',
+  },
   // Tablet fillers, binders and coatings. They are genuinely listed as ingredients on thousands of
   // labels, which is exactly why they float to the top of any popularity ordering -- and a wiki
   // page for "Magnesium Stearate" is a page nobody came for.
-  { pattern: /^(CELLULOSE|MICROCRYSTALLINE CELLULOSE|MAGNESIUM STEARATE|STEARIC ACID|SILICON DIOXIDE|TITANIUM DIOXIDE|CROSCARMELLOSE|SODIUM STARCH GLYCOLATE|HYPROMELLOSE|POVIDONE|POLYSORBATE 80|SHELLAC|CARNAUBA WAX|TALC|DEXTRIN|MALTODEXTRIN|SUCROSE|LACTOSE|CORN STARCH|STARCH|SILICA|COLOR|FLAVOR|NATURAL FLAVOR)$/i, reason: 'excipient (filler, binder, coating or colourant)' },
+  {
+    pattern:
+      /^(CELLULOSE|MICROCRYSTALLINE CELLULOSE|MAGNESIUM STEARATE|STEARIC ACID|SILICON DIOXIDE|TITANIUM DIOXIDE|CROSCARMELLOSE|SODIUM STARCH GLYCOLATE|HYPROMELLOSE|POVIDONE|POLYSORBATE 80|SHELLAC|CARNAUBA WAX|TALC|DEXTRIN|MALTODEXTRIN|SUCROSE|LACTOSE|CORN STARCH|STARCH|SILICA|COLOR|FLAVOR|NATURAL FLAVOR)$/i,
+    reason: 'excipient (filler, binder, coating or colourant)',
+  },
   { pattern: /\bPROPRIETARY BLEND\b/i, reason: 'proprietary blend with no named substance' },
   { pattern: /^\(/, reason: 'IUPAC systematic name, not a drug name' },
-  { pattern: /\d[,-]\d.*\b(YL|OXY|AMINO|METHYL|ETHYL)\b.*\d/i, reason: 'IUPAC systematic name, not a drug name' },
+  {
+    pattern: /\d[,-]\d.*\b(YL|OXY|AMINO|METHYL|ETHYL)\b.*\d/i,
+    reason: 'IUPAC systematic name, not a drug name',
+  },
 ]
 
 const MAX_NAME_LENGTH = 120
@@ -98,7 +108,10 @@ export function shouldIngest(input: BuildInput): SkipDecision {
 
   if (moiety.length < 3) return { keep: false, reason: 'name shorter than 3 characters' }
   if (moiety.length > MAX_NAME_LENGTH) {
-    return { keep: false, reason: `name longer than ${MAX_NAME_LENGTH} characters (systematic name)` }
+    return {
+      keep: false,
+      reason: `name longer than ${MAX_NAME_LENGTH} characters (systematic name)`,
+    }
   }
   for (const { pattern, reason } of NON_SUBSTANCE_PATTERNS) {
     if (pattern.test(moiety)) return { keep: false, reason }
@@ -113,7 +126,10 @@ export function shouldIngest(input: BuildInput): SkipDecision {
   // A substance with no label, no FDA application, one lone product listing and no supplement
   // record is almost always a data artefact. Anything with any of those four survives.
   if (!hasApplication && !substance.label && !supplement && substance.productCount < 2) {
-    return { keep: false, reason: 'single product listing with no application, label or supplement record' }
+    return {
+      keep: false,
+      reason: 'single product listing with no application, label or supplement record',
+    }
   }
 
   return { keep: true, reason: 'kept' }
@@ -125,7 +141,10 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
   // DSLD group names carry a parenthesised qualifier -- "Vitamin D (Mixed)", "Vitamin D
   // (Cholecalciferol)". baseMoiety already strips it for keying, so leaving it in the display name
   // produced a page titled with the parenthetical while a second page held the plain name.
-  const supplementName = supplement?.group.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim()
+  const supplementName = supplement?.group
+    .replace(/\s*\([^)]*\)\s*/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
   const displayName = titleCaseDrugName(supplementName || substance.moiety)
   const labelText = [
     substance.label?.mechanism_of_action,
@@ -252,7 +271,9 @@ export function assignUniqueSlugs(rows: DrugInsert[]): DrugInsert[] {
   }
 
   if (collisions.length > 0) {
-    console.log(`[build] resolved ${collisions.length} slug collisions, e.g. ${collisions.slice(0, 5).join(', ')}`)
+    console.log(
+      `[build] resolved ${collisions.length} slug collisions, e.g. ${collisions.slice(0, 5).join(', ')}`,
+    )
   }
   return rows
 }

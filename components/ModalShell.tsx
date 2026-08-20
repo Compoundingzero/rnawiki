@@ -13,7 +13,14 @@
 // One primitive cannot honour both, so it carries the first, which is the pair the product opens
 // most often.
 
-import { useCallback, useEffect, useRef, type KeyboardEvent, type MouseEvent, type ReactNode } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  type KeyboardEvent,
+  type MouseEvent,
+  type ReactNode,
+} from 'react'
 import { X } from 'lucide-react'
 
 // `[tabindex="-1"]` is excluded on purpose: the panel itself carries it so it can be focused

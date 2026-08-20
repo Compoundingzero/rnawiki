@@ -123,9 +123,7 @@ export function validateLayer3(steps: LaboratoryProtocolStep[]): Layer3Result {
   // Missing phases are computed before any early return: "this protocol documents purification
   // only" is useful information even when the graph itself is broken.
   const presentPhases = new Set<ProtocolPhase>(ordered.map(({ step }) => step.phase))
-  const missingPhases: string[] = CANONICAL_PHASE_ORDER.filter(
-    (phase) => !presentPhases.has(phase),
-  )
+  const missingPhases: string[] = CANONICAL_PHASE_ORDER.filter((phase) => !presentPhases.has(phase))
 
   // --- Node identity -------------------------------------------------------------------------
   // Duplicate ids make the graph unresolvable rather than merely wrong: an edge naming "step-2"
@@ -327,8 +325,7 @@ export function validateLayer3(steps: LaboratoryProtocolStep[]): Layer3Result {
     totalSteps >= 2
       ? ordered
           .filter(
-            ({ step }) =>
-              (inDegree.get(step.id) ?? 0) === 0 && (outDegree.get(step.id) ?? 0) === 0,
+            ({ step }) => (inDegree.get(step.id) ?? 0) === 0 && (outDegree.get(step.id) ?? 0) === 0,
           )
           .map(({ step }) => step.id)
       : []

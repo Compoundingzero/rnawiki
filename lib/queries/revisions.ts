@@ -204,7 +204,9 @@ export async function listPendingRevisions(opts: {
     .limit(Math.max(1, Math.trunc(opts.limit)))
     .offset(Math.max(0, Math.trunc(opts.offset)))
 
-  return rows.map(({ drugName, drugSlug, ...row }) => toRevision(row, { name: drugName, slug: drugSlug }))
+  return rows.map(({ drugName, drugSlug, ...row }) =>
+    toRevision(row, { name: drugName, slug: drugSlug }),
+  )
 }
 
 /** How many edits are waiting. A real count, for the queue's header and pagination. */
@@ -226,7 +228,9 @@ export async function listRevisionsForDrug(drugId: string, limit: number): Promi
     .orderBy(desc(revisions.createdAt), desc(revisions.id))
     .limit(Math.max(1, Math.trunc(limit)))
 
-  return rows.map(({ drugName, drugSlug, ...row }) => toRevision(row, { name: drugName, slug: drugSlug }))
+  return rows.map(({ drugName, drugSlug, ...row }) =>
+    toRevision(row, { name: drugName, slug: drugSlug }),
+  )
 }
 
 /** A contributor's history, newest first. The engine report is not loaded. */
@@ -239,7 +243,9 @@ export async function listRevisionsByUser(userId: string, limit: number): Promis
     .orderBy(desc(revisions.createdAt), desc(revisions.id))
     .limit(Math.max(1, Math.trunc(limit)))
 
-  return rows.map(({ drugName, drugSlug, ...row }) => toRevision(row, { name: drugName, slug: drugSlug }))
+  return rows.map(({ drugName, drugSlug, ...row }) =>
+    toRevision(row, { name: drugName, slug: drugSlug }),
+  )
 }
 
 // ---------------------------------------------------------------------------
@@ -464,7 +470,11 @@ const SCALAR_FIELDS: ScalarSpec[] = [
   { field: 'targetProtein', label: 'Target protein', read: (d) => d.targetProtein },
   { field: 'modality', label: 'Modality', read: (d) => d.modality },
   { field: 'approvalStatus', label: 'Approval status', read: (d) => d.approvalStatus },
-  { field: 'approvalYear', label: 'Approval year', read: (d) => (d.approvalYear ? String(d.approvalYear) : '') },
+  {
+    field: 'approvalYear',
+    label: 'Approval year',
+    read: (d) => (d.approvalYear ? String(d.approvalYear) : ''),
+  },
   { field: 'indication', label: 'Indication', read: (d) => d.indication },
   {
     field: 'patientFriendlyIndication',
@@ -477,7 +487,11 @@ const SCALAR_FIELDS: ScalarSpec[] = [
   { field: 'confidenceScore', label: 'Confidence score', read: (d) => String(d.confidenceScore) },
   { field: 'anatomicalSite', label: 'Anatomical site', read: (d) => d.anatomicalSite ?? '' },
   { field: 'recentAuditDate', label: 'Last audit date', read: (d) => d.recentAuditDate },
-  { field: 'hasDiscrepancy', label: 'Discrepancy flag', read: (d) => (d.hasDiscrepancy ? 'yes' : 'no') },
+  {
+    field: 'hasDiscrepancy',
+    label: 'Discrepancy flag',
+    read: (d) => (d.hasDiscrepancy ? 'yes' : 'no'),
+  },
   { field: 'dossierDepth', label: 'Record depth', read: (d) => d.dossierDepth ?? 'stub' },
 ]
 
@@ -546,7 +560,9 @@ const SECTION_FIELDS: SectionSpec[] = [
         structure ? `${structure.length} characters` : null,
         schema.chemicalFormula,
         schema.molecularWeight,
-        schema.laboratoryWorkflow.length > 0 ? `${schema.laboratoryWorkflow.length} protocol steps` : null,
+        schema.laboratoryWorkflow.length > 0
+          ? `${schema.laboratoryWorkflow.length} protocol steps`
+          : null,
       ].filter((part): part is string => typeof part === 'string' && part.length > 0)
       return truncate(parts.join(' · '))
     },
@@ -584,7 +600,8 @@ const SECTION_FIELDS: SectionSpec[] = [
     field: 'commonQuestions',
     label: 'Common questions',
     value: (d) => d.commonQuestions,
-    describe: (d) => (d.commonQuestions.length === 0 ? '' : `${d.commonQuestions.length} questions`),
+    describe: (d) =>
+      d.commonQuestions.length === 0 ? '' : `${d.commonQuestions.length} questions`,
   },
   {
     field: 'sourceProvenance',

@@ -3,16 +3,42 @@ import type { LaboratoryProtocolStep } from '@/lib/types'
 
 const wf: LaboratoryProtocolStep[] = [
   { id: 'a', stepNumber: 1, phase: 'QC', name: 'q', description: 'd', reagentsAndBuffer: 'r' },
-  { id: 'b', stepNumber: 2, phase: 'Synthesis', name: 's', description: 'd', dependsOnStepId: 'a', reagentsAndBuffer: 'r' },
-  { id: 'c', stepNumber: 3, phase: 'Purification', name: 'p', description: 'd', dependsOnStepId: 'b', reagentsAndBuffer: 'r' },
-  { id: 'd', stepNumber: 4, phase: 'Assay_Quantification', name: 'a', description: 'd', dependsOnStepId: 'c', reagentsAndBuffer: 'r' },
+  {
+    id: 'b',
+    stepNumber: 2,
+    phase: 'Synthesis',
+    name: 's',
+    description: 'd',
+    dependsOnStepId: 'a',
+    reagentsAndBuffer: 'r',
+  },
+  {
+    id: 'c',
+    stepNumber: 3,
+    phase: 'Purification',
+    name: 'p',
+    description: 'd',
+    dependsOnStepId: 'b',
+    reagentsAndBuffer: 'r',
+  },
+  {
+    id: 'd',
+    stepNumber: 4,
+    phase: 'Assay_Quantification',
+    name: 'a',
+    description: 'd',
+    dependsOnStepId: 'c',
+    reagentsAndBuffer: 'r',
+  },
 ]
 
 const smiles: Record<string, string> = {
-  remdesivir: 'CCC(CC)COC(=O)[C@H](C)N[P@](=O)(OC[C@@H]1[C@H]([C@H]([C@](O1)(C#N)C2=CC=C3N2N=CN=C3N)O)O)OC4=CC=CC=C4',
+  remdesivir:
+    'CCC(CC)COC(=O)[C@H](C)N[P@](=O)(OC[C@@H]1[C@H]([C@H]([C@](O1)(C#N)C2=CC=C3N2N=CN=C3N)O)O)OC4=CC=CC=C4',
   molnupiravir: 'CC(C)C(=O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)N2C=CC(=NC2=O)NO)O)O',
   hydroxychloroquine: 'CCN(CCCC(C)NC1=C2C=CC(=CC2=NC=C1)Cl)CCO',
-  ivermectinB1a: 'CC[C@H](C)[C@@H]1[C@H](CC[C@@]2(O1)C[C@@H]3C[C@H](O2)C/C=C(/[C@H]([C@H](/C=C/C=C/4\\CO[C@H]5[C@@]4([C@@H](C=C([C@H]5O)C)C(=O)O3)O)C)O[C@H]6C[C@@H]([C@H]([C@@H](O6)C)O[C@H]7C[C@@H]([C@H]([C@@H](O7)C)O)OC)OC)\\C)C',
+  ivermectinB1a:
+    'CC[C@H](C)[C@@H]1[C@H](CC[C@@]2(O1)C[C@@H]3C[C@H](O2)C/C=C(/[C@H]([C@H](/C=C/C=C/4\\CO[C@H]5[C@@]4([C@@H](C=C([C@H]5O)C)C(=O)O3)O)C)O[C@H]6C[C@@H]([C@H]([C@@H](O6)C)O[C@H]7C[C@@H]([C@H]([C@@H](O7)C)O)OC)OC)\\C)C',
   methotrexate: 'CN(CC1=CN=C2C(=N1)C(=NC(=N2)N)N)C3=CC=C(C=C3)C(=O)N[C@@H](CCC(=O)O)C(=O)O',
   tamoxifen: 'CC/C(=C(\\C1=CC=CC=C1)/C2=CC=C(C=C2)OCCN(C)C)/C3=CC=CC=C3',
   anastrozole: 'CC(C)(C#N)C1=CC(=CC(=C1)CN2C=NC=N2)C(C)(C)C#N',
@@ -26,7 +52,11 @@ const smiles: Record<string, string> = {
 }
 
 for (const [name, s] of Object.entries(smiles)) {
-  const r = runFullDeterministicSweep({ structureString: s, modality: 'Small Molecule', workflow: wf })
+  const r = runFullDeterministicSweep({
+    structureString: s,
+    modality: 'Small Molecule',
+    workflow: wf,
+  })
   console.log(
     name.padEnd(20),
     r.overallPassed ? 'PASS' : 'FAIL',

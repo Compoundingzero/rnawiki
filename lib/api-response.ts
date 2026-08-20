@@ -184,7 +184,10 @@ export function rateLimitKey(req: Request, userId?: string | null): string {
  * `Retry-After` is in seconds and is always at least 1 — `Retry-After: 0` means "retry now", which
  * is exactly what a limited client must not do.
  */
-export function rateLimited(policy: RateLimitPolicy, key: string): NextResponse<ApiErrorBody> | null {
+export function rateLimited(
+  policy: RateLimitPolicy,
+  key: string,
+): NextResponse<ApiErrorBody> | null {
   const result = checkPolicy(policy, key)
   if (result.allowed) return null
 

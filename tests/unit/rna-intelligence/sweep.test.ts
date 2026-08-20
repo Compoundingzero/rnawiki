@@ -97,11 +97,7 @@ describe('runFullDeterministicSweep', () => {
   })
 
   it('accepts the positional call shape and agrees with the object shape', () => {
-    const positional = runFullDeterministicSweep(
-      SEQUENCE,
-      'mRNA Vaccine / Therapeutic',
-      WORKFLOW,
-    )
+    const positional = runFullDeterministicSweep(SEQUENCE, 'mRNA Vaccine / Therapeutic', WORKFLOW)
     const objectForm = runFullDeterministicSweep({
       structureString: SEQUENCE,
       modality: 'mRNA Vaccine / Therapeutic',
@@ -160,10 +156,7 @@ describe('runFullDeterministicSweep', () => {
     const report = runFullDeterministicSweep({
       structureString: SEQUENCE,
       modality: 'mRNA Vaccine / Therapeutic',
-      workflow: [
-        step('a', 1, 'Synthesis', 'b'),
-        step('b', 2, 'Purification', 'a'),
-      ],
+      workflow: [step('a', 1, 'Synthesis', 'b'), step('b', 2, 'Purification', 'a')],
     })
 
     expect(report.overallPassed).toBe(false)

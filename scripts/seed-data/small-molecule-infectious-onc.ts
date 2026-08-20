@@ -267,7 +267,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       {
         id: 'amx-a6',
         category: 'inferred',
-        title: 'Resistance is a population-level cost that no individual prescription trial measures',
+        title:
+          'Resistance is a population-level cost that no individual prescription trial measures',
         laymanSummary:
           'Every trial here counts what happened to the patients in it. None of them count what the prescribing did to the bacteria everyone else will meet.',
         technicalDetails:
@@ -693,7 +694,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           'Cluster-randomised, placebo-controlled trial in Malawi, Niger and Tanzania. 1,533 communities, 190,238 children identified at census, 323,302 person-years monitored, mean coverage 90.4%. Annual mortality was 14.6 per 1,000 person-years with azithromycin and 16.5 with placebo, a 13.5% reduction overall (95% CI 6.7 to 19.8; P<0.001). Country effects differed sharply: 18.1% lower in Niger (95% CI 10.0 to 25.5), 5.7% in Malawi (95% CI -9.7 to 18.9) and 3.4% in Tanzania (95% CI -21.2 to 23.0). The largest effect was in infants aged 1 to 5 months, at 24.9% (95% CI 10.6 to 37.0).',
         evidenceSource: 'Keenan JD et al., N Engl J Med 2018;378:1583-1592 (NCT02047981)',
         doi: '10.1056/NEJMoa1715474',
-        measuredMetric: 'All-cause mortality in children aged 1 to 59 months, per 1,000 person-years',
+        measuredMetric:
+          'All-cause mortality in children aged 1 to 59 months, per 1,000 person-years',
         auditFlag: 'verified',
       },
       {
@@ -969,7 +971,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Ray WA et al. Azithromycin and the Risk of Cardiovascular Death. N Engl J Med 2012;366:1881-1890',
+        label:
+          'Ray WA et al. Azithromycin and the Risk of Cardiovascular Death. N Engl J Med 2012;366:1881-1890',
         identifier: '10.1056/NEJMoa1003833',
         kind: 'doi',
       },
@@ -1234,7 +1237,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           'UK primary-care adaptive platform trial in people aged 65 and over, or 50 and over with comorbidities. 2,689 participants were randomised to the doxycycline comparison between July and December 2020, when the prespecified futility criterion was met. Median time to first self-reported recovery was 9.6 days with doxycycline and 10.1 days with usual care, hazard ratio 1.04 (95% Bayesian credible interval 0.93 to 1.17), with a 0.10 probability of a clinically meaningful benefit. Hospitalisation or death occurred in 5.3% and 4.5%.',
         evidenceSource: 'Butler CC et al., Lancet Respir Med 2021;9:1010-1020 (ISRCTN86534580)',
         doi: '10.1016/S2213-2600(21)00310-6',
-        measuredMetric: 'Time to first self-reported recovery, and hospitalisation or death by day 28',
+        measuredMetric:
+          'Time to first self-reported recovery, and hospitalisation or death by day 28',
         auditFlag: 'verified',
       },
       {
@@ -1275,8 +1279,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'It occupies the docking slot on the small ribosomal subunit',
-        laymanDesc:
-          'The drug sits in the slot where the next amino acid has to arrive.',
+        laymanDesc: 'The drug sits in the slot where the next amino acid has to arrive.',
         molecularDetail:
           'Doxycycline binds the h34 region of 16S ribosomal RNA in the 30S subunit, overlapping the aminoacyl-tRNA acceptor site. A single high-affinity primary site accounts for the antibacterial effect; the interaction is reversible.',
         iconName: 'Target',
@@ -1333,7 +1336,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
         sampleSize: 261,
         primaryEndpoint: 'Change in maximum transverse aneurysm diameter on CT at 2 years',
         endpointMet: false,
-        statisticalPValue: 'P = 0.93 for measured diameter change; one-sided P = 0.71 for the primary normal-scores analysis',
+        statisticalPValue:
+          'P = 0.93 for measured diameter change; one-sided P = 0.71 for the primary normal-scores analysis',
         independentReplicationStatus: 'Unreplicated',
       },
       {
@@ -1623,7 +1627,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           'Randomised single-blind trial in 370 women aged 18 to 45 with acute uncomplicated cystitis. Clinical cure was 77% (124 of 162) with 3 days of ciprofloxacin 250 mg twice daily and 58% (93 of 160) with 3 days of amoxicillin-clavulanate (P<0.001), and the gap persisted among women infected with susceptible strains (77% versus 60%; P=0.004). At two weeks, vaginal Escherichia coli colonisation was 10% versus 45% (P<0.001), which the investigators identified as the mechanism of the difference.',
         evidenceSource: 'Hooton TM et al., JAMA 2005;293:949-955',
         doi: '10.1001/jama.293.8.949',
-        measuredMetric: 'Clinical cure, microbiological cure and vaginal Escherichia coli colonisation',
+        measuredMetric:
+          'Clinical cure, microbiological cure and vaginal Escherichia coli colonisation',
         auditFlag: 'verified',
       },
       {
@@ -1875,7 +1880,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
     slug: 'metronidazole',
     name: 'Metronidazole',
     tradeName: 'Flagyl / MetroGel',
-    sponsor: 'Rhone-Poulenc (originator); marketed in the US by Pfizer and manufactured generically',
+    sponsor:
+      'Rhone-Poulenc (originator); marketed in the US by Pfizer and manufactured generically',
     targetGene:
       'No host or microbial gene is bound directly; activation depends on microbial pyruvate:ferredoxin oxidoreductase and ferredoxin (nifJ, fdx)',
     targetProtein:
@@ -2073,7 +2079,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       {
         id: 'met-a5',
         category: 'inferred',
-        title: 'Selectivity is by activation, not by binding, which limits what resistance can mean',
+        title:
+          'Selectivity is by activation, not by binding, which limits what resistance can mean',
         laymanSummary:
           'The drug has no receptor and no binding site. It works by being switched on inside anaerobes, so resistance means failing to switch it on.',
         technicalDetails:
@@ -2377,7 +2384,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           description:
             'Confirm identity and purity of the difluorinated ketone and of 1,2,4-triazole, and in particular that the triazole is the 1,2,4 isomer rather than 1,2,3. Fluconazole carries two triazole rings, so an isomeric impurity in the feed is doubled in the product.',
           reagentsAndBuffer:
-            "2,4-difluoroacetophenone, 1,2,4-triazole reference standard, gas chromatography with mass-selective detection, 19F and 1H NMR, Karl Fischer titration",
+            '2,4-difluoroacetophenone, 1,2,4-triazole reference standard, gas chromatography with mass-selective detection, 19F and 1H NMR, Karl Fischer titration',
         },
         {
           id: 'flu-w2',
@@ -2426,7 +2433,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           'Randomised trial in HIV-infected adults with cryptococcal meningitis. Two-week mortality was 18.2% (41 of 225) in the oral regimen group, 21.9% (49 of 224) with one week of amphotericin B and 21.4% (49 of 229) with two weeks; ten-week mortality was 35.1%, 36.2% and 39.7%. The upper limit of the one-sided 97.5% confidence interval for the oral regimen versus two-week amphotericin B was 4.2 percentage points, inside the prespecified 10-point non-inferiority margin. Severe anaemia was more frequent with two weeks of amphotericin B than with the oral regimen.',
         evidenceSource: 'Molloy SF et al., N Engl J Med 2018;378:1004-1017 (ISRCTN45035509)',
         doi: '10.1056/NEJMoa1710922',
-        measuredMetric: 'All-cause mortality at 2 weeks, with 10-week mortality as a secondary outcome',
+        measuredMetric:
+          'All-cause mortality at 2 weeks, with 10-week mortality as a secondary outcome',
         auditFlag: 'verified',
       },
       {
@@ -2485,7 +2493,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       {
         id: 'flu-a6',
         category: 'inferred',
-        title: 'Single-dose convenience is an efficacy claim about one infection, not about all of them',
+        title:
+          'Single-dose convenience is an efficacy claim about one infection, not about all of them',
         laymanSummary:
           'One 150 mg tablet clears most simple vaginal yeast infections. Nothing about that generalises to serious fungal disease, which needs weeks of combination therapy.',
         technicalDetails:
@@ -2552,7 +2561,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'ACTA (ISRCTN45035509)',
-        phase: 'Phase 3 randomised, open-label, non-inferiority with factorial partner-drug randomisation',
+        phase:
+          'Phase 3 randomised, open-label, non-inferiority with factorial partner-drug randomisation',
         sampleSize: 721,
         primaryEndpoint: 'All-cause mortality at 2 weeks in HIV-associated cryptococcal meningitis',
         endpointMet: true,
@@ -2670,7 +2680,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'DIFLUCAN (fluconazole) tablets and oral suspension, US prescribing information — DailyMed',
+        label:
+          'DIFLUCAN (fluconazole) tablets and oral suspension, US prescribing information — DailyMed',
         identifier:
           'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f694c617-3383-416c-91b6-b94fda371204',
         kind: 'regulatory',
@@ -3008,8 +3019,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
         sampleSize: 3172,
         primaryEndpoint: 'HIV-1 acquisition in HSV-2-seropositive, HIV-1-seronegative participants',
         endpointMet: false,
-        statisticalPValue:
-          'Hazard ratio 1.16 (95% CI 0.83 to 1.62), numerically favouring placebo',
+        statisticalPValue: 'Hazard ratio 1.16 (95% CI 0.83 to 1.62), numerically favouring placebo',
         independentReplicationStatus: 'Replicated',
       },
       {
@@ -3029,7 +3039,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
         trialId: 'Bell palsy factorial trial (ISRCTN71548196)',
         phase: 'Randomised double-blind placebo-controlled factorial',
         sampleSize: 551,
-        primaryEndpoint: 'Recovery of facial function on the House-Brackmann scale at 3 and 9 months',
+        primaryEndpoint:
+          'Recovery of facial function on the House-Brackmann scale at 3 and 9 months',
         endpointMet: false,
         statisticalPValue:
           'Adjusted P = 0.50 at 3 months and 0.10 at 9 months for acyclovir; P < 0.001 for prednisolone',
@@ -3126,9 +3137,14 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
         identifier: 'NCT00194519',
         kind: 'nct',
       },
-      { label: "VALAD: Anti-viral Therapy in Alzheimer's Disease", identifier: 'NCT03282916', kind: 'nct' },
       {
-        label: 'VALTREX (valacyclovir hydrochloride) caplets, US prescribing information — DailyMed',
+        label: "VALAD: Anti-viral Therapy in Alzheimer's Disease",
+        identifier: 'NCT03282916',
+        kind: 'nct',
+      },
+      {
+        label:
+          'VALTREX (valacyclovir hydrochloride) caplets, US prescribing information — DailyMed',
         identifier:
           'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f8e0d8f8-cb73-4206-a484-88f5c4fbd719',
         kind: 'regulatory',
@@ -3229,7 +3245,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       structureType: 'small_molecule_smiles',
       smilesString: 'CCC(CC)O[C@@H]1C=C(C[C@@H]([C@H]1NC(=O)C)N)C(=O)OCC',
       chemicalFormula: 'C16H28N2O4',
-      molecularWeight: '312.40 g/mol (PubChem CID 65028, oseltamivir free base ethyl ester prodrug)',
+      molecularWeight:
+        '312.40 g/mol (PubChem CID 65028, oseltamivir free base ethyl ester prodrug)',
       targetReceptorAffinity:
         'The active carboxylate metabolite is a transition-state analogue of sialic acid at the neuraminidase active site; the marketed molecule is the ethyl ester prodrug and has little activity itself',
       structureSource: {
@@ -3330,7 +3347,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       {
         id: 'ose-a4',
         category: 'measured',
-        title: 'Harms are real and quantified: nausea, vomiting, headache, renal and psychiatric events',
+        title:
+          'Harms are real and quantified: nausea, vomiting, headache, renal and psychiatric events',
         laymanSummary:
           'One in 22 adults treated vomits because of the drug, and there was a dose-response relationship with psychiatric events in the two pivotal treatment trials.',
         technicalDetails:
@@ -3365,7 +3383,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           'Open-label, pragmatic, adaptive randomised trial in 15 European countries over three influenza seasons, 3,266 participants aged 1 year and over presenting with influenza-like illness in primary care; 52% had PCR-confirmed influenza. The hazard ratio for time to recovery was 1.29 (95% Bayesian credible interval 1.20 to 1.39), an absolute mean benefit of 1.02 days (95% BCrI 0.74 to 1.31). Benefit ranged from 0.70 days in children under 12 with milder illness to 3.20 days (95% BCrI 1.00 to 5.50) in patients aged 65 and over with comorbidities and longer preceding illness. Nausea and vomiting were increased. The trial was open-label and funded by the European Commission.',
         evidenceSource: 'Butler CC et al., Lancet 2020;395:42-52 (ISRCTN27908921)',
         doi: '10.1016/S0140-6736(19)32982-4',
-        measuredMetric: 'Time to recovery, defined as return to usual activities with minor or absent fever, headache and muscle ache',
+        measuredMetric:
+          'Time to recovery, defined as return to usual activities with minor or absent fever, headache and muscle ache',
         auditFlag: 'verified',
       },
       {
@@ -3448,7 +3467,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Kaiser pooled analysis of 10 manufacturer trials',
-        phase: 'Pooled analysis of placebo-controlled trials, eight of them unpublished at the time',
+        phase:
+          'Pooled analysis of placebo-controlled trials, eight of them unpublished at the time',
         sampleSize: 3564,
         primaryEndpoint:
           'Influenza-related lower respiratory tract complications leading to antibiotics, and hospitalisation',
@@ -3462,7 +3482,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
         trialId: 'MUGAS individual patient data meta-analysis',
         phase: 'Individual patient data meta-analysis of nine Roche-sponsored trials',
         sampleSize: 4328,
-        primaryEndpoint: 'Time to alleviation of all symptoms, with complications and admissions as secondary',
+        primaryEndpoint:
+          'Time to alleviation of all symptoms, with complications and admissions as secondary',
         endpointMet: true,
         statisticalPValue:
           'P < 0.0001 for symptom alleviation; P = 0.0001 for lower respiratory complications; P = 0.013 for hospitalisation',
@@ -3617,8 +3638,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
     approvalYear: 2023,
     indication:
       'Treatment of mild-to-moderate COVID-19 in adults who are at high risk for progression to severe COVID-19, including hospitalisation or death',
-    patientFriendlyIndication:
-      'Early COVID-19 in adults at high risk of becoming seriously ill',
+    patientFriendlyIndication: 'Early COVID-19 in adults at high risk of becoming seriously ill',
     conditionContext: {
       conditionExplainer:
         'SARS-CoV-2 makes its proteins as one long chain that has to be cut into working pieces. The scissors that do the cutting are the main protease. Nirmatrelvir jams those scissors. Ritonavir is not an antiviral here at all: it is added purely to stop the liver destroying nirmatrelvir before it can work.',
@@ -3635,7 +3655,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       'The virus builds all its proteins as one long ribbon and then cuts the ribbon into working parts using a pair of molecular scissors. Nirmatrelvir slots into those scissors and locks them. Without the cuts, none of the parts work and the virus cannot assemble copies of itself. The second drug in the pack, ritonavir, does nothing to the virus: your liver would otherwise destroy nirmatrelvir within an hour or two, and ritonavir blocks the liver enzyme that does it. That is also why the pack has so many drug interactions.',
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 76,
-    anatomicalSite: 'Cytoplasm of infected respiratory epithelial cells; hepatic CYP3A4 for ritonavir',
+    anatomicalSite:
+      'Cytoplasm of infected respiratory epithelial cells; hepatic CYP3A4 for ritonavir',
     substitutes: {
       summary:
         'Remdesivir is the alternative with an outpatient randomised result; molnupiravir is the alternative that failed in the vaccinated population. For most vaccinated adults under 65 without significant immunosuppression, the honest comparison is against no antiviral, because that is what the EPIC-SR trial tested and did not beat on its primary endpoint.',
@@ -3765,8 +3786,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           'Phase 2-3 trial in adults with COVID-19 within 5 days of symptom onset who were either fully vaccinated with at least one risk factor, or without risk factors and unvaccinated or not vaccinated within the previous year. 1,296 randomised, 1,288 treated and analysed. Median time to sustained alleviation of all targeted signs and symptoms was 12 days on nirmatrelvir-ritonavir and 13 on placebo (P=0.60). COVID-19 hospitalisation or death from any cause occurred in 5 of 654 (0.8%) and 10 of 634 (1.6%), difference -0.8 percentage points (95% CI -2.0 to 0.4). The trial was terminated. Dysgeusia occurred in 5.8% of treated participants.',
         evidenceSource: 'Hammond J et al., N Engl J Med 2024;390:1186-1195 (NCT05011513)',
         doi: '10.1056/NEJMoa2309003',
-        measuredMetric:
-          'Time to sustained alleviation of all targeted COVID-19 signs and symptoms',
+        measuredMetric: 'Time to sustained alleviation of all targeted COVID-19 signs and symptoms',
         inferredClaim:
           'That the 89% relative risk reduction measured in unvaccinated high-risk adults describes the benefit in vaccinated or standard-risk adults',
         auditFlag: 'verified',
@@ -3781,7 +3801,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
           'Retrospective cohort of Clalit Health Services members aged 40 and over assessed as eligible for nirmatrelvir during the Omicron surge; 3,902 of 109,254 received it. In patients aged 65 and over, COVID-19 hospitalisation was 14.7 versus 58.9 cases per 100,000 person-days, adjusted hazard ratio 0.27 (95% CI 0.15 to 0.49), and death 0.21 (95% CI 0.05 to 0.82). In patients aged 40 to 64, hospitalisation was 15.2 versus 15.8 per 100,000 person-days, adjusted hazard ratio 0.74 (95% CI 0.35 to 1.58), and death 1.32 (95% CI 0.16 to 10.75). Observational, with time-dependent covariate adjustment.',
         evidenceSource: 'Arbel R et al., N Engl J Med 2022;387:790-798',
         doi: '10.1056/NEJMoa2204919',
-        measuredMetric: 'Adjusted hazard ratios for COVID-19 hospitalisation and death by age stratum',
+        measuredMetric:
+          'Adjusted hazard ratios for COVID-19 hospitalisation and death by age stratum',
         auditFlag: 'verified',
       },
       {
@@ -4011,7 +4032,8 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       { label: 'EPIC-HR randomised trial', identifier: 'NCT04960202', kind: 'nct' },
       { label: 'EPIC-SR randomised trial', identifier: 'NCT05011513', kind: 'nct' },
       {
-        label: 'PAXLOVID (nirmatrelvir and ritonavir) dose pack, US prescribing information — DailyMed',
+        label:
+          'PAXLOVID (nirmatrelvir and ritonavir) dose pack, US prescribing information — DailyMed',
         identifier:
           'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a',
         kind: 'regulatory',

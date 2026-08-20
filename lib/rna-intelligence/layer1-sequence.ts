@@ -298,11 +298,7 @@ function validateNucleotide(
     }
     if (!hasStopCodon) {
       diagnostics.push(
-        diagnostic(
-          'warning',
-          'L1_NO_STOP_CODON',
-          'Sequence does not end on UAA, UGA or UAG.',
-        ),
+        diagnostic('warning', 'L1_NO_STOP_CODON', 'Sequence does not end on UAA, UGA or UAG.'),
       )
     }
     if (orf === null) {
@@ -640,9 +636,9 @@ function validatePeptide(rawStructure: string, trimmed: string, offset: number):
 
   if (mass !== null) {
     result.molecularWeightDaltons = roundTo(mass, 2)
-    result.molecularWeightEstimate = `${groupThousands(mass.toFixed(2))} Da (${(mass / 1000).toFixed(
-      2,
-    )} kDa)`
+    result.molecularWeightEstimate = `${groupThousands(mass.toFixed(2))} Da (${(
+      mass / 1000
+    ).toFixed(2)} kDa)`
   }
 
   return result

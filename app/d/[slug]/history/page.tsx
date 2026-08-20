@@ -304,9 +304,7 @@ export default async function RevisionHistoryPage({ params }: HistoryPageProps) 
                 <RevisionCard
                   key={revision.id}
                   revision={revision}
-                  handle={
-                    revision.authorUserId ? handles.get(revision.authorUserId) : undefined
-                  }
+                  handle={revision.authorUserId ? handles.get(revision.authorUserId) : undefined}
                 />
               ))}
             </ul>

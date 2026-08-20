@@ -76,12 +76,14 @@ class TokenBucket {
         return
       }
 
-      const secondWait = this.secondWindow.length >= this.perSecond
-        ? 1000 - (now - (this.secondWindow[0] ?? now))
-        : 0
-      const minuteWait = this.minuteWindow.length >= this.perMinute
-        ? 60_000 - (now - (this.minuteWindow[0] ?? now))
-        : 0
+      const secondWait =
+        this.secondWindow.length >= this.perSecond
+          ? 1000 - (now - (this.secondWindow[0] ?? now))
+          : 0
+      const minuteWait =
+        this.minuteWindow.length >= this.perMinute
+          ? 60_000 - (now - (this.minuteWindow[0] ?? now))
+          : 0
       await sleep(Math.max(25, secondWait, minuteWait))
     }
   }
@@ -216,7 +218,11 @@ async function fetchProperties(name: string): Promise<PropertyRow | null> {
  * the bare name while the salt form does, and vice versa, so both are worth a lookup — but only in
  * that order, because the bare moiety is the molecule the page is about.
  */
-export function nameVariants(moiety: string, saltForms: readonly string[], brands: readonly string[]): string[] {
+export function nameVariants(
+  moiety: string,
+  saltForms: readonly string[],
+  brands: readonly string[],
+): string[] {
   const variants = [moiety]
   for (const salt of saltForms.slice(0, 2)) {
     if (salt.toUpperCase() !== moiety.toUpperCase()) variants.push(salt)
@@ -228,7 +234,11 @@ export function nameVariants(moiety: string, saltForms: readonly string[], brand
 
 export async function resolveStructure(
   moiety: string,
-  options: { saltForms?: readonly string[]; brands?: readonly string[]; cache?: StructureCache } = {},
+  options: {
+    saltForms?: readonly string[]
+    brands?: readonly string[]
+    cache?: StructureCache
+  } = {},
 ): Promise<PubChemRecord | null> {
   const cache = options.cache
   if (cache?.has(moiety)) return cache.get(moiety) ?? null
@@ -239,9 +249,10 @@ export async function resolveStructure(
 
     const smiles = row.SMILES ?? row.ConnectivitySMILES
     const formula = row.MolecularFormula
-    const weight = typeof row.MolecularWeight === 'string'
-      ? Number.parseFloat(row.MolecularWeight)
-      : row.MolecularWeight
+    const weight =
+      typeof row.MolecularWeight === 'string'
+        ? Number.parseFloat(row.MolecularWeight)
+        : row.MolecularWeight
 
     // A row with no structure is not a match. Writing a formula with no SMILES would leave the
     // dossier claiming a structure the page cannot display.

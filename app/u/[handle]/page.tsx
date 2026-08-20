@@ -116,9 +116,7 @@ export default async function ContributorProfilePage({ params }: ProfilePageProp
             <span className="text-xs font-semibold text-[#6E6E73] bg-black/[0.04] px-3 py-1 rounded-full">
               {TIER_LABEL[profile.trustTier]}
             </span>
-            <span className="text-xs text-[#86868B]">
-              Joined {formatMonth(profile.joinedDate)}
-            </span>
+            <span className="text-xs text-[#86868B]">Joined {formatMonth(profile.joinedDate)}</span>
           </div>
 
           {/* Credentials appear only beside a verified state — the query already withholds them

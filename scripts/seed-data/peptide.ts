@@ -32,7 +32,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
     approvalYear: 2017,
     indication:
       'Type 2 diabetes; chronic weight management; cardiovascular risk reduction in established cardiovascular disease with overweight or obesity; chronic kidney disease in type 2 diabetes',
-    patientFriendlyIndication: 'Type 2 diabetes, obesity, and heart and kidney risk that comes with them',
+    patientFriendlyIndication:
+      'Type 2 diabetes, obesity, and heart and kidney risk that comes with them',
     conditionContext: {
       conditionExplainer:
         'In type 2 diabetes the body still makes insulin but responds to it poorly, so blood glucose stays high. In obesity the brain circuits that decide when eating stops settle at a higher body weight and defend it. The two conditions share machinery, which is why one hormone analogue moves both.',
@@ -49,7 +50,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       'After a meal your gut releases a hormone called GLP-1 that tells the brain you have had enough. Natural GLP-1 is destroyed within minutes. Semaglutide is a rebuilt version with a fatty tail that clips onto albumin, the taxi protein of the blood, so one injection lasts a week. While it is there, the stomach empties more slowly and the appetite circuits in the brain run quieter.',
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 94,
-    anatomicalSite: 'Hypothalamic arcuate nucleus, area postrema, pancreatic islet beta cell, gastric antrum',
+    anatomicalSite:
+      'Hypothalamic arcuate nucleus, area postrema, pancreatic islet beta cell, gastric antrum',
     pricing: {
       synthesisCostPerDose:
         'Modelled cost-based price of $0.89 to $4.73 per month for injectable semaglutide at 0.77 mg per week, covering active ingredient, formulation, tax and a profit allowance',
@@ -136,7 +138,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Eating protein and vegetables before starch at a meal',
-          action: 'Put the protein and non-starchy vegetable portion of a meal first, and the carbohydrate last.',
+          action:
+            'Put the protein and non-starchy vegetable portion of a meal first, and the carbohydrate last.',
           patientImpact:
             'Lowers the height of the post-meal glucose rise in small crossover studies, through earlier incretin release and slower gastric emptying.',
           clinicalPrecaution:
@@ -158,10 +161,12 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         'HA(residue 2 is 2-aminoisobutyric acid, position 8 in GLP-1 numbering, not alanine)EGTFTSDVSSYLEGQAAK(AEEA-AEEA-gamma-Glu-C18 diacid on Lys26)EFIAWLVRGRG',
       chemicalFormula: 'C187H291N45O59',
       molecularWeight: '4113.58 g/mol',
-      targetReceptorAffinity: 'Selective GLP-1 receptor agonist; no measurable GIP or glucagon receptor activity',
+      targetReceptorAffinity:
+        'Selective GLP-1 receptor agonist; no measurable GIP or glucagon receptor activity',
       structureSource: {
         label: 'OZEMPIC (semaglutide) injection, US prescribing information, section 11, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=42bdd912-2393-44c4-b7e0-47672ca28991',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=42bdd912-2393-44c4-b7e0-47672ca28991',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -172,7 +177,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           name: 'Incoming amino acid and resin qualification',
           description:
             'Confirm identity and enantiomeric purity of each Fmoc-protected residue and measure resin substitution before any coupling begins, since a single wrong residue propagates through every subsequent cycle.',
-          reagentsAndBuffer: 'Fmoc-amino acid reference standards, chiral HPLC, Fmoc release assay at 301 nm',
+          reagentsAndBuffer:
+            'Fmoc-amino acid reference standards, chiral HPLC, Fmoc release assay at 301 nm',
         },
         {
           id: 'sema-w2',
@@ -215,7 +221,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Measure agonist potency in cells stably expressing human GLP-1R and confirm intact mass and acylation site by LC-MS peptide mapping.',
           dependsOnStepId: 'sema-w4',
-          reagentsAndBuffer: 'HEK293 hGLP-1R line, HTRF cAMP detection kit, trypsin digest with LC-MS/MS',
+          reagentsAndBuffer:
+            'HEK293 hGLP-1R line, HTRF cAMP detection kit, trypsin digest with LC-MS/MS',
         },
       ],
     },
@@ -243,7 +250,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'Event-driven superiority trial. Primary composite occurred in 569/8,803 (6.5%) versus 701/8,801 (8.0%); hazard ratio 0.80 (95% CI 0.72 to 0.90, P<0.001). Permanent discontinuation for adverse events was 16.6% versus 8.2%.',
         evidenceSource: 'Lincoff AM et al. N Engl J Med 2023;389:2221-2232 (NCT03574597)',
         doi: '10.1056/NEJMoa2307563',
-        measuredMetric: 'Time to first cardiovascular death, nonfatal myocardial infarction or nonfatal stroke',
+        measuredMetric:
+          'Time to first cardiovascular death, nonfatal myocardial infarction or nonfatal stroke',
         auditFlag: 'verified',
       },
       {
@@ -380,17 +388,20 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         trialId: 'SUSTAIN-6 (NCT01720446)',
         phase: 'Phase 3',
         sampleSize: 3297,
-        primaryEndpoint: 'Cardiovascular death, nonfatal myocardial infarction or nonfatal stroke in type 2 diabetes',
+        primaryEndpoint:
+          'Cardiovascular death, nonfatal myocardial infarction or nonfatal stroke in type 2 diabetes',
         endpointMet: true,
         statisticalPValue: 'P < 0.001 for noninferiority',
-        unreportedAdverseSignals: 'Increased rate of diabetic retinopathy complications in the semaglutide arm',
+        unreportedAdverseSignals:
+          'Increased rate of diabetic retinopathy complications in the semaglutide arm',
         independentReplicationStatus: 'Replicated',
       },
       {
         trialId: 'evoke (NCT04777396)',
         phase: 'Phase 3',
         sampleSize: 1840,
-        primaryEndpoint: 'Change in Clinical Dementia Rating Sum of Boxes in early Alzheimer disease',
+        primaryEndpoint:
+          'Change in Clinical Dementia Rating Sum of Boxes in early Alzheimer disease',
         endpointMet: false,
         statisticalPValue: 'Not met at the week 104 readout',
         independentReplicationStatus: 'Failed to Replicate',
@@ -454,27 +465,32 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Wilding JPH et al. Once-Weekly Semaglutide in Adults with Overweight or Obesity. NEJM 2021',
+        label:
+          'Wilding JPH et al. Once-Weekly Semaglutide in Adults with Overweight or Obesity. NEJM 2021',
         identifier: '10.1056/NEJMoa2032183',
         kind: 'doi',
       },
       {
-        label: 'Lincoff AM et al. Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes. NEJM 2023',
+        label:
+          'Lincoff AM et al. Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes. NEJM 2023',
         identifier: '10.1056/NEJMoa2307563',
         kind: 'doi',
       },
       {
-        label: 'Marso SP et al. Semaglutide and Cardiovascular Outcomes in Type 2 Diabetes (SUSTAIN-6). NEJM 2016',
+        label:
+          'Marso SP et al. Semaglutide and Cardiovascular Outcomes in Type 2 Diabetes (SUSTAIN-6). NEJM 2016',
         identifier: '10.1056/NEJMoa1607141',
         kind: 'doi',
       },
       {
-        label: 'Wilding JPH et al. Weight regain after withdrawal of semaglutide: STEP 1 extension. DOM 2022',
+        label:
+          'Wilding JPH et al. Weight regain after withdrawal of semaglutide: STEP 1 extension. DOM 2022',
         identifier: '10.1111/dom.14725',
         kind: 'doi',
       },
       {
-        label: 'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        label:
+          'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
         identifier: '10.1001/jamanetworkopen.2024.3474',
         kind: 'doi',
       },
@@ -484,12 +500,14 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'NANOS and AAO consensus statement on GLP-1 receptor agonists and NAION. Ophthalmology 2026',
+        label:
+          'NANOS and AAO consensus statement on GLP-1 receptor agonists and NAION. Ophthalmology 2026',
         identifier: '10.1016/j.ophtha.2026.04.008',
         kind: 'doi',
       },
       {
-        label: 'Rohn TT. Semaglutide showed limited improvements in Alzheimer disease. J Alzheimers Dis 2026',
+        label:
+          'Rohn TT. Semaglutide showed limited improvements in Alzheimer disease. J Alzheimers Dis 2026',
         identifier: '10.1177/13872877261458402',
         kind: 'doi',
       },
@@ -498,12 +516,14 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       { label: 'evoke trial record', identifier: 'NCT04777396', kind: 'nct' },
       {
         label: 'OZEMPIC US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=42bdd912-2393-44c4-b7e0-47672ca28991',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=42bdd912-2393-44c4-b7e0-47672ca28991',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA NDA 209637 (Ozempic), original approval 5 December 2017',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=209637',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=209637',
         kind: 'regulatory',
       },
       {
@@ -523,7 +543,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
     tradeName: 'Mounjaro / Zepbound',
     sponsor: 'Eli Lilly and Company',
     targetGene: 'GIPR / GLP1R',
-    targetProtein: 'Glucose-Dependent Insulinotropic Polypeptide Receptor and Glucagon-Like Peptide-1 Receptor',
+    targetProtein:
+      'Glucose-Dependent Insulinotropic Polypeptide Receptor and Glucagon-Like Peptide-1 Receptor',
     modality: 'Peptide / GLP-1 Agonist',
     approvalStatus: 'FDA Approved',
     approvalYear: 2022,
@@ -546,7 +567,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       'Your gut releases two different "you have eaten" hormones after a meal, GIP and GLP-1. Older drugs in this family imitated one of them. Tirzepatide is a single peptide shaped to fit both receptors, with a long fatty tail that keeps it circulating for about five days. The result is stronger appetite suppression than imitating GLP-1 alone, and, in the one trial that compared them directly, more weight lost.',
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 90,
-    anatomicalSite: 'Hypothalamus, pancreatic islet alpha and beta cells, adipose tissue, gastric antrum',
+    anatomicalSite:
+      'Hypothalamus, pancreatic islet alpha and beta cells, adipose tissue, gastric antrum',
     substitutes: {
       summary:
         'Semaglutide is the direct comparator and lost the head-to-head on weight but has the larger cardiovascular outcome dataset. Metformin and SGLT2 inhibitors remain the low-cost backbone for glucose. On the diet side, the mechanisms that raise your own incretin output are real but an order of magnitude smaller.',
@@ -566,7 +588,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Covers the glucose side only, with a weight change measured in kilograms rather than tens of percent.',
           typicalCost: 'About $1.50 per month (US NADAC generic cost)',
-          prosAndCons: 'Pros: cheapest effective glucose-lowering agent in existence. Cons: no appetite effect.',
+          prosAndCons:
+            'Pros: cheapest effective glucose-lowering agent in existence. Cons: no appetite effect.',
         },
         {
           name: 'Bariatric surgery (sleeve gastrectomy or gastric bypass)',
@@ -609,7 +632,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Slow, structured meals during dose escalation',
-          action: 'Smaller portions eaten slowly, stopping at the first sign of fullness, in the weeks after a dose increase.',
+          action:
+            'Smaller portions eaten slowly, stopping at the first sign of fullness, in the weeks after a dose increase.',
           patientImpact:
             'Most nausea and vomiting on this class occurs during escalation and is dose- and volume-related.',
           clinicalPrecaution:
@@ -627,7 +651,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         'Balanced dual agonist; affinity at the GIP receptor is comparable to native GIP, and at the GLP-1 receptor is lower than native GLP-1',
       structureSource: {
         label: 'MOUNJARO (tirzepatide) injection, US prescribing information, section 11, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0818426a-53eb-4db7-9609-bbae1e7a3964',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0818426a-53eb-4db7-9609-bbae1e7a3964',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -638,7 +663,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           name: 'Building-block qualification including the Aib residue',
           description:
             'Confirm identity and purity of Fmoc-Aib-OH and every standard residue. Aib is sterically hindered and couples poorly, so its quality drives the yield of the whole assembly.',
-          reagentsAndBuffer: 'Fmoc-Aib-OH reference standard, chiral HPLC, Karl Fischer moisture titration',
+          reagentsAndBuffer:
+            'Fmoc-Aib-OH reference standard, chiral HPLC, Karl Fischer moisture titration',
         },
         {
           id: 'tirz-w2',
@@ -659,7 +685,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Cleave, precipitate and separate the full-length backbone from deletion and Aib-truncation sequences on a C18 stationary phase.',
           dependsOnStepId: 'tirz-w2',
-          reagentsAndBuffer: 'TFA/TIS/water/EDT cleavage cocktail, cold diethyl ether, acetonitrile-water with 0.1% TFA',
+          reagentsAndBuffer:
+            'TFA/TIS/water/EDT cleavage cocktail, cold diethyl ether, acetonitrile-water with 0.1% TFA',
         },
         {
           id: 'tirz-w4',
@@ -669,7 +696,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Acylate the free lysine side chain with the AEEA-AEEA-gamma-Glu-eicosanedioic acid arm. The C20 chain gives tighter albumin binding than semaglutide C18 arm.',
           dependsOnStepId: 'tirz-w3',
-          reagentsAndBuffer: 'Activated ester of the protected C20 diacid arm, DIPEA in NMP, then global deprotection',
+          reagentsAndBuffer:
+            'Activated ester of the protected C20 diacid arm, DIPEA in NMP, then global deprotection',
         },
         {
           id: 'tirz-w5',
@@ -679,7 +707,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Measure cAMP accumulation separately in cells expressing human GIPR and human GLP-1R, since the therapeutic identity of this molecule is the ratio between the two, not either alone.',
           dependsOnStepId: 'tirz-w4',
-          reagentsAndBuffer: 'HEK293 hGIPR and hGLP-1R stable lines, HTRF cAMP kit, LC-MS intact mass confirmation',
+          reagentsAndBuffer:
+            'HEK293 hGIPR and hGLP-1R stable lines, HTRF cAMP kit, LC-MS intact mass confirmation',
         },
       ],
     },
@@ -754,7 +783,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         id: 'tirz-6',
         category: 'conclusion_shift',
-        title: 'Compounded and research-use-only tirzepatide moved from fringe to mainstream and back',
+        title:
+          'Compounded and research-use-only tirzepatide moved from fringe to mainstream and back',
         laymanSummary:
           'While supply was short, compounded copies were legal in the US. When the shortage ended, that route closed, and a large unregulated market selling vials for research use only did not.',
         technicalDetails:
@@ -825,7 +855,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         primaryEndpoint: 'Percentage change in body weight at week 72',
         endpointMet: true,
         statisticalPValue: 'P < 0.001',
-        unreportedAdverseSignals: 'Gastrointestinal adverse events concentrated in the 20-week escalation period',
+        unreportedAdverseSignals:
+          'Gastrointestinal adverse events concentrated in the 20-week escalation period',
         independentReplicationStatus: 'Replicated',
       },
       {
@@ -844,7 +875,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         primaryEndpoint: 'Percentage change in body weight at week 72 versus semaglutide',
         endpointMet: true,
         statisticalPValue: 'P < 0.001',
-        unreportedAdverseSignals: 'Open-label design, so participant and investigator expectation is not controlled',
+        unreportedAdverseSignals:
+          'Open-label design, so participant and investigator expectation is not controlled',
         independentReplicationStatus: 'Unreplicated',
       },
       {
@@ -889,7 +921,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         q: 'Is it better than semaglutide?',
         a: 'For weight, in one 751-person open-label trial, yes: 20.2% against 13.7% at 72 weeks. For cardiovascular events, there is no trial comparing the two. Against dulaglutide, an older GLP-1 agonist, tirzepatide was noninferior but not superior.',
-        auditNote: 'Better on the measured endpoint that was compared. Untested on the one that was not.',
+        auditNote:
+          'Better on the measured endpoint that was compared. Untested on the one that was not.',
       },
       {
         q: 'What does the GIP part actually add?',
@@ -910,27 +943,32 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Jastreboff AM et al. Tirzepatide Once Weekly for the Treatment of Obesity. NEJM 2022',
+        label:
+          'Jastreboff AM et al. Tirzepatide Once Weekly for the Treatment of Obesity. NEJM 2022',
         identifier: '10.1056/NEJMoa2206038',
         kind: 'doi',
       },
       {
-        label: 'Frias JP et al. Tirzepatide versus Semaglutide Once Weekly in Type 2 Diabetes. NEJM 2021',
+        label:
+          'Frias JP et al. Tirzepatide versus Semaglutide Once Weekly in Type 2 Diabetes. NEJM 2021',
         identifier: '10.1056/NEJMoa2107519',
         kind: 'doi',
       },
       {
-        label: 'Aronne LJ et al. Tirzepatide as Compared with Semaglutide for the Treatment of Obesity. NEJM 2025',
+        label:
+          'Aronne LJ et al. Tirzepatide as Compared with Semaglutide for the Treatment of Obesity. NEJM 2025',
         identifier: '10.1056/NEJMoa2416394',
         kind: 'doi',
       },
       {
-        label: 'Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes. NEJM 2025',
+        label:
+          'Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes. NEJM 2025',
         identifier: '10.1056/NEJMoa2505928',
         kind: 'doi',
       },
       {
-        label: 'Malhotra A et al. Tirzepatide for the Treatment of Obstructive Sleep Apnea and Obesity. NEJM 2024',
+        label:
+          'Malhotra A et al. Tirzepatide for the Treatment of Obstructive Sleep Apnea and Obesity. NEJM 2024',
         identifier: '10.1056/NEJMoa2404881',
         kind: 'doi',
       },
@@ -940,7 +978,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Ann Pharmacother 2025: online purchasing of semaglutide and tirzepatide for research purposes',
+        label:
+          'Ann Pharmacother 2025: online purchasing of semaglutide and tirzepatide for research purposes',
         identifier: '10.1177/10600280241277551',
         kind: 'doi',
       },
@@ -949,12 +988,14 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       { label: 'SURPASS-CVOT trial record', identifier: 'NCT04255433', kind: 'nct' },
       {
         label: 'MOUNJARO US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0818426a-53eb-4db7-9609-bbae1e7a3964',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0818426a-53eb-4db7-9609-bbae1e7a3964',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA NDA 215866 (Mounjaro), original approval 13 May 2022',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=215866',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=215866',
         kind: 'regulatory',
       },
       {
@@ -1027,7 +1068,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         {
           name: 'Generic liraglutide',
           class: 'GLP-1 receptor agonist, identical molecule',
-          howItCompares: 'Identical peptide, identical evidence base, roughly 45% lower acquisition cost.',
+          howItCompares:
+            'Identical peptide, identical evidence base, roughly 45% lower acquisition cost.',
           typicalCost: 'About $433 per month at 1.8 mg daily (US NADAC generic)',
           prosAndCons:
             'Pros: same drug, lower price. Cons: still a daily injection, and still less effective for weight than the weekly agents.',
@@ -1046,7 +1088,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Oral, lowers HbA1c by a comparable amount in many patients, no injection, no appetite effect.',
           typicalCost: 'About $1.50 per month (US NADAC generic cost)',
-          prosAndCons: 'Pros: cost, oral route, long safety record. Cons: no cardiovascular outcome trial of its own at this standard.',
+          prosAndCons:
+            'Pros: cost, oral route, long safety record. Cons: no cardiovascular outcome trial of its own at this standard.',
         },
       ],
       naturalFoods: [
@@ -1093,10 +1136,12 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       sequence5to3: 'HAEGTFTSDVSSYLEGQAAK(gamma-Glu-palmitoyl on Lys26)EFIAWLVRGRG',
       chemicalFormula: 'C172H265N43O51',
       molecularWeight: '3751.2 Da',
-      targetReceptorAffinity: 'Selective GLP-1 receptor agonist; 97% amino acid homology to native human GLP-1(7-37)',
+      targetReceptorAffinity:
+        'Selective GLP-1 receptor agonist; 97% amino acid homology to native human GLP-1(7-37)',
       structureSource: {
         label: 'VICTOZA (liraglutide) injection, US prescribing information, section 11, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5a9ef4ea-c76a-4d34-a604-27c5b505f5a4',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5a9ef4ea-c76a-4d34-a604-27c5b505f5a4',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -1107,7 +1152,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           name: 'Yeast expression system and precursor identity check',
           description:
             'Confirm the Saccharomyces cerevisiae production strain and the identity of the expressed Arg34 precursor peptide before acylation, since the whole molecule is defined by one substitution and one attachment.',
-          reagentsAndBuffer: 'Strain identity PCR, intact-mass LC-MS of the precursor, host cell protein ELISA',
+          reagentsAndBuffer:
+            'Strain identity PCR, intact-mass LC-MS of the precursor, host cell protein ELISA',
         },
         {
           id: 'lira-w2',
@@ -1117,7 +1163,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Ferment the engineered yeast strain, harvest and recover the 31-residue precursor in which the position 34 lysine has been replaced by arginine so that only Lys26 remains available for acylation.',
           dependsOnStepId: 'lira-w1',
-          reagentsAndBuffer: 'Defined fermentation medium, cell separation by centrifugation, capture chromatography',
+          reagentsAndBuffer:
+            'Defined fermentation medium, cell separation by centrifugation, capture chromatography',
         },
         {
           id: 'lira-w3',
@@ -1127,7 +1174,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Remove host cell protein, truncated species and process impurities before the acylation chemistry, which is far harder to purify away afterwards.',
           dependsOnStepId: 'lira-w2',
-          reagentsAndBuffer: 'C18 reverse-phase with acetonitrile gradient, anion-exchange polishing, tangential flow filtration',
+          reagentsAndBuffer:
+            'C18 reverse-phase with acetonitrile gradient, anion-exchange polishing, tangential flow filtration',
         },
         {
           id: 'lira-w4',
@@ -1137,7 +1185,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Attach a C16 palmitic acid chain through a glutamic acid spacer to the epsilon-amine of Lys26. This single arm is what turns a two-minute hormone into a once-daily drug.',
           dependsOnStepId: 'lira-w3',
-          reagentsAndBuffer: 'Activated gamma-Glu(OSu)-palmitate, organic-aqueous buffer at controlled pH, then deprotection',
+          reagentsAndBuffer:
+            'Activated gamma-Glu(OSu)-palmitate, organic-aqueous buffer at controlled pH, then deprotection',
         },
         {
           id: 'lira-w5',
@@ -1147,7 +1196,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Measure cAMP potency at human GLP-1R, and separately measure albumin binding, because the pharmacokinetics that define this molecule live in that second number.',
           dependsOnStepId: 'lira-w4',
-          reagentsAndBuffer: 'hGLP-1R reporter cell line, HTRF cAMP kit, equilibrium dialysis against human serum albumin',
+          reagentsAndBuffer:
+            'hGLP-1R reporter cell line, HTRF cAMP kit, equilibrium dialysis against human serum albumin',
         },
       ],
     },
@@ -1162,7 +1212,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'Primary composite hazard ratio 0.87 (95% CI 0.78 to 0.97), P<0.001 for noninferiority and P=0.01 for superiority. Cardiovascular death hazard ratio 0.78 (95% CI 0.66 to 0.93), P=0.007. All-cause death 8.2% versus 9.6%.',
         evidenceSource: 'Marso SP et al. N Engl J Med 2016;375:311-322 (NCT01179048)',
         doi: '10.1056/NEJMoa1603827',
-        measuredMetric: 'Time to first cardiovascular death, nonfatal myocardial infarction or nonfatal stroke',
+        measuredMetric:
+          'Time to first cardiovascular death, nonfatal myocardial infarction or nonfatal stroke',
         auditFlag: 'verified',
       },
       {
@@ -1194,7 +1245,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         id: 'lira-4',
         category: 'inferred',
-        title: 'That the cardiovascular benefit is a class effect that transfers to every GLP-1 agonist',
+        title:
+          'That the cardiovascular benefit is a class effect that transfers to every GLP-1 agonist',
         laymanSummary:
           'It does not transfer automatically. Once-weekly exenatide ran the same kind of trial in 14,752 people and missed superiority. Each molecule has had to prove it separately.',
         technicalDetails:
@@ -1276,7 +1328,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         primaryEndpoint: 'Cardiovascular death, nonfatal myocardial infarction or nonfatal stroke',
         endpointMet: true,
         statisticalPValue: 'P = 0.01 for superiority, hazard ratio 0.87',
-        unreportedAdverseSignals: 'Higher rate of gallstone disease and of acute gallbladder events on treatment',
+        unreportedAdverseSignals:
+          'Higher rate of gallstone disease and of acute gallbladder events on treatment',
         independentReplicationStatus: 'Replicated',
       },
       {
@@ -1330,7 +1383,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         q: 'Does the weight-loss dose protect my heart the way LEADER showed?',
         a: 'Nobody has tested that. LEADER used diabetes doses in people with type 2 diabetes and high cardiovascular risk. The 3.0 mg weight-management dose has never had a cardiovascular outcome trial of its own.',
-        auditNote: 'Unknown. Carrying the LEADER result across doses and populations is an inference.',
+        auditNote:
+          'Unknown. Carrying the LEADER result across doses and populations is an inference.',
       },
       {
         q: 'What about the thyroid cancer warning?',
@@ -1342,35 +1396,45 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: false,
     sources: [
       {
-        label: 'Marso SP et al. Liraglutide and Cardiovascular Outcomes in Type 2 Diabetes. NEJM 2016',
+        label:
+          'Marso SP et al. Liraglutide and Cardiovascular Outcomes in Type 2 Diabetes. NEJM 2016',
         identifier: '10.1056/NEJMoa1603827',
         kind: 'doi',
       },
       {
-        label: 'Pi-Sunyer X et al. A Randomized, Controlled Trial of 3.0 mg of Liraglutide in Weight Management. NEJM 2015',
+        label:
+          'Pi-Sunyer X et al. A Randomized, Controlled Trial of 3.0 mg of Liraglutide in Weight Management. NEJM 2015',
         identifier: '10.1056/NEJMoa1411892',
         kind: 'doi',
       },
       {
-        label: 'Holman RR et al. Effects of Once-Weekly Exenatide on Cardiovascular Outcomes. NEJM 2017',
+        label:
+          'Holman RR et al. Effects of Once-Weekly Exenatide on Cardiovascular Outcomes. NEJM 2017',
         identifier: '10.1056/NEJMoa1612917',
         kind: 'doi',
       },
       {
-        label: 'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        label:
+          'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
         identifier: '10.1001/jamanetworkopen.2024.3474',
         kind: 'doi',
       },
       { label: 'LEADER trial record', identifier: 'NCT01179048', kind: 'nct' },
-      { label: 'SCALE Obesity and Prediabetes trial record', identifier: 'NCT01272219', kind: 'nct' },
+      {
+        label: 'SCALE Obesity and Prediabetes trial record',
+        identifier: 'NCT01272219',
+        kind: 'nct',
+      },
       {
         label: 'VICTOZA US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5a9ef4ea-c76a-4d34-a604-27c5b505f5a4',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5a9ef4ea-c76a-4d34-a604-27c5b505f5a4',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA NDA 022341 (Victoza), original approval 25 January 2010',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=022341',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=022341',
         kind: 'regulatory',
       },
       {
@@ -1396,7 +1460,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
     approvalYear: 2014,
     indication:
       'Type 2 diabetes, and reduction of major adverse cardiovascular events in adults with type 2 diabetes with established cardiovascular disease or multiple risk factors',
-    patientFriendlyIndication: 'Type 2 diabetes, including in people who have not yet had a heart attack',
+    patientFriendlyIndication:
+      'Type 2 diabetes, including in people who have not yet had a heart attack',
     conditionContext: {
       conditionExplainer:
         'Dulaglutide solves the half-life problem a different way from the fatty-acid drugs: two GLP-1 analogue chains are genetically fused to an antibody tail, making a 63 kilodalton protein too large for the kidney to filter.',
@@ -1404,7 +1469,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         'REWIND is the GLP-1 outcome trial that enrolled people with cardiovascular risk factors rather than only people who had already had an event, and followed them for a median 5.4 years. That makes it the closest thing this class has to primary-prevention evidence.',
       whoTakesThis:
         'Adults with type 2 diabetes needing better glucose control, particularly those with cardiovascular disease or multiple risk factors, and paediatric patients aged 10 years and older.',
-      clinicalGoals: 'Lower HbA1c by 1 to 1.6 percentage points and reduce major adverse cardiovascular events.',
+      clinicalGoals:
+        'Lower HbA1c by 1 to 1.6 percentage points and reduce major adverse cardiovascular events.',
     },
     oneSentenceVerdict:
       'A GLP-1 analogue fused to an antibody tail so it lasts a week by size rather than by fat, which cut the composite of heart attack, stroke and cardiovascular death from 13.4% to 12.0% over 5.4 years in 9,901 people.',
@@ -1444,7 +1510,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Larger HbA1c and weight reduction in head-to-head diabetes trials, with its own cardiovascular outcome data.',
           typicalCost: 'About $996 per month (US NADAC)',
-          prosAndCons: 'Pros: more effective on both endpoints. Cons: costs more, and the pen is a different device.',
+          prosAndCons:
+            'Pros: more effective on both endpoints. Cons: costs more, and the pen is a different device.',
         },
         {
           name: 'Generic liraglutide',
@@ -1487,7 +1554,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'A fixed weekly injection day',
-          action: 'Choose one day of the week and keep it, changing only when at least three days separate the doses.',
+          action:
+            'Choose one day of the week and keep it, changing only when at least three days separate the doses.',
           patientImpact:
             'A five-day half-life means exposure is fairly flat, but drifting the day forward repeatedly stacks doses.',
           clinicalPrecaution:
@@ -1495,21 +1563,26 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Room-temperature pen before injecting',
-          action: 'Take the pen out of the refrigerator and let it stand for around half an hour before use.',
+          action:
+            'Take the pen out of the refrigerator and let it stand for around half an hour before use.',
           patientImpact: 'Cold solution stings more; warming reduces injection-site discomfort.',
-          clinicalPrecaution: 'Do not warm with hot water or a microwave, which can denature the protein.',
+          clinicalPrecaution:
+            'Do not warm with hot water or a microwave, which can denature the protein.',
         },
       ],
     },
     molecularSchema: {
       structureType: 'antibody_structure',
-      chemicalFormula: 'Recombinant glycoprotein; no single empirical formula is stated in the label',
+      chemicalFormula:
+        'Recombinant glycoprotein; no single empirical formula is stated in the label',
       molecularWeight: 'Approximately 63 kDa',
       targetReceptorAffinity:
         'GLP-1 analogue portion is 90% homologous to native human GLP-1(7-37), with substitutions blocking DPP-4 cleavage and removing a T-cell epitope',
       structureSource: {
-        label: 'TRULICITY (dulaglutide) injection, US prescribing information, section 11, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=463050bd-2b1c-40f5-b3c3-0a04bb433309',
+        label:
+          'TRULICITY (dulaglutide) injection, US prescribing information, section 11, DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=463050bd-2b1c-40f5-b3c3-0a04bb433309',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -1520,7 +1593,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           name: 'Master cell bank identity and stability testing',
           description:
             'Confirm the Chinese hamster ovary master cell bank identity, copy number and freedom from adventitious agents. For a fusion protein the cell line is the process, so this is the first control point.',
-          reagentsAndBuffer: 'Isoenzyme and STR identity testing, in vitro and in vivo adventitious agent assays',
+          reagentsAndBuffer:
+            'Isoenzyme and STR identity testing, in vitro and in vivo adventitious agent assays',
         },
         {
           id: 'dula-w2',
@@ -1530,7 +1604,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Express the GLP-1 analogue-linker-IgG4 Fc fusion in CHO cells, where the Fc domain dimerises and the glycosylation is installed.',
           dependsOnStepId: 'dula-w1',
-          reagentsAndBuffer: 'Chemically defined serum-free CHO medium, glucose and amino acid feeds, controlled pH and dissolved oxygen',
+          reagentsAndBuffer:
+            'Chemically defined serum-free CHO medium, glucose and amino acid feeds, controlled pH and dissolved oxygen',
         },
         {
           id: 'dula-w3',
@@ -1540,7 +1615,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Capture on Protein A through the Fc domain, then remove aggregates, half-molecules and host cell protein by ion exchange and hydrophobic interaction steps.',
           dependsOnStepId: 'dula-w2',
-          reagentsAndBuffer: 'Protein A resin, low-pH elution and viral inactivation hold, anion exchange, viral filtration',
+          reagentsAndBuffer:
+            'Protein A resin, low-pH elution and viral inactivation hold, anion exchange, viral filtration',
         },
         {
           id: 'dula-w4',
@@ -1550,7 +1626,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Measure cAMP potency at human GLP-1R and characterise the N-glycan profile, since Fc glycosylation affects both stability and receptor-mediated clearance.',
           dependsOnStepId: 'dula-w3',
-          reagentsAndBuffer: 'hGLP-1R reporter cell line, HTRF cAMP kit, released-glycan HILIC-fluorescence chromatography',
+          reagentsAndBuffer:
+            'hGLP-1R reporter cell line, HTRF cAMP kit, released-glycan HILIC-fluorescence chromatography',
         },
       ],
     },
@@ -1565,7 +1642,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           '371 sites, 24 countries, median follow-up 5.4 years, median baseline HbA1c 7.2%. Primary composite 594 (12.0%) versus 663 (13.4%), hazard ratio 0.88 (95% CI 0.79 to 0.99), P=0.026. All-cause mortality 536 (10.8%) versus 592 (12.0%), hazard ratio 0.90 (95% CI 0.80 to 1.01), P=0.067.',
         evidenceSource: 'Gerstein HC et al. Lancet 2019;394:121-130 (NCT01394952)',
         doi: '10.1016/S0140-6736(19)31149-3',
-        measuredMetric: 'Time to first nonfatal myocardial infarction, nonfatal stroke or cardiovascular death',
+        measuredMetric:
+          'Time to first nonfatal myocardial infarction, nonfatal stroke or cardiovascular death',
         auditFlag: 'verified',
       },
       {
@@ -1590,7 +1668,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'When Lilly tested tirzepatide for cardiovascular outcomes it did not use placebo. It used dulaglutide, and tirzepatide did not beat it.',
         technicalDetails:
           'SURPASS-CVOT randomised 13,299 people with type 2 diabetes and atherosclerotic disease to tirzepatide or dulaglutide 1.5 mg. Primary composite 12.2% versus 13.1%, hazard ratio 0.92 (95.3% CI 0.83 to 1.01), P=0.09 for superiority. Using dulaglutide rather than placebo was itself a statement that placebo was no longer an acceptable comparator in this population.',
-        evidenceSource: 'Cardiovascular Outcomes with Tirzepatide versus Dulaglutide. NEJM 2025 (NCT04255433)',
+        evidenceSource:
+          'Cardiovascular Outcomes with Tirzepatide versus Dulaglutide. NEJM 2025 (NCT04255433)',
         doi: '10.1056/NEJMoa2505928',
         auditFlag: 'verified',
       },
@@ -1616,7 +1695,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'The label describes a recombinant fusion of a GLP-1 analogue to a modified human IgG4 Fc, expressed in CHO cells, molecular weight approximately 63 kDa. Follow-on entry therefore requires analytical, non-clinical and clinical comparability rather than bioequivalence, and the 2026 NADAC file lists no generic dulaglutide.',
         evidenceSource: 'TRULICITY US prescribing information, section 11; CMS NADAC 2026 file',
-        inferredClaim: 'That competition will erode the price of every drug in this class on the same timeline',
+        inferredClaim:
+          'That competition will erode the price of every drug in this class on the same timeline',
         auditFlag: 'caution',
       },
     ],
@@ -1687,9 +1767,11 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         trialId: 'AWARD-11',
         phase: 'Phase 3',
         sampleSize: 1842,
-        primaryEndpoint: 'Change in HbA1c at week 36 with dulaglutide 3.0 mg and 4.5 mg versus 1.5 mg',
+        primaryEndpoint:
+          'Change in HbA1c at week 36 with dulaglutide 3.0 mg and 4.5 mg versus 1.5 mg',
         endpointMet: true,
-        statisticalPValue: 'P < 0.001 for 4.5 mg; P = 0.096 for 3.0 mg on the treatment-regimen estimand',
+        statisticalPValue:
+          'P < 0.001 for 4.5 mg; P = 0.096 for 3.0 mg on the treatment-regimen estimand',
         unreportedAdverseSignals:
           'The 3.0 mg conclusion depends on the estimand chosen, which is a design decision rather than a finding',
         independentReplicationStatus: 'Unreplicated',
@@ -1698,7 +1780,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         trialId: 'SURPASS-CVOT (NCT04255433), as active comparator',
         phase: 'Phase 3',
         sampleSize: 13299,
-        primaryEndpoint: 'Cardiovascular death, myocardial infarction or stroke, tirzepatide versus dulaglutide',
+        primaryEndpoint:
+          'Cardiovascular death, myocardial infarction or stroke, tirzepatide versus dulaglutide',
         endpointMet: true,
         statisticalPValue: 'Noninferiority met; superiority of tirzepatide not met, P = 0.09',
         independentReplicationStatus: 'Unreplicated',
@@ -1753,22 +1836,26 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: false,
     sources: [
       {
-        label: 'Gerstein HC et al. Dulaglutide and cardiovascular outcomes in type 2 diabetes (REWIND). Lancet 2019',
+        label:
+          'Gerstein HC et al. Dulaglutide and cardiovascular outcomes in type 2 diabetes (REWIND). Lancet 2019',
         identifier: '10.1016/S0140-6736(19)31149-3',
         kind: 'doi',
       },
       {
-        label: 'Frias JP et al. Efficacy and Safety of Dulaglutide 3.0 mg and 4.5 mg (AWARD-11). Diabetes Care 2021',
+        label:
+          'Frias JP et al. Efficacy and Safety of Dulaglutide 3.0 mg and 4.5 mg (AWARD-11). Diabetes Care 2021',
         identifier: '10.2337/dc20-1473',
         kind: 'doi',
       },
       {
-        label: 'Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes. NEJM 2025',
+        label:
+          'Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes. NEJM 2025',
         identifier: '10.1056/NEJMoa2505928',
         kind: 'doi',
       },
       {
-        label: 'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        label:
+          'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
         identifier: '10.1001/jamanetworkopen.2024.3474',
         kind: 'doi',
       },
@@ -1776,12 +1863,14 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       { label: 'SURPASS-CVOT trial record', identifier: 'NCT04255433', kind: 'nct' },
       {
         label: 'TRULICITY US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=463050bd-2b1c-40f5-b3c3-0a04bb433309',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=463050bd-2b1c-40f5-b3c3-0a04bb433309',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA BLA 125469 (Trulicity), original approval 18 September 2014',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125469',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125469',
         kind: 'regulatory',
       },
       {
@@ -1814,7 +1903,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         'This was the first GLP-1 receptor agonist ever approved, in 2005. Every drug in this class descends from it. All three of its US products are now listed as discontinued in the FDA drug database.',
       whoTakesThis:
         'Historically, adults with type 2 diabetes inadequately controlled on oral agents. In the United States it is no longer marketed.',
-      clinicalGoals: 'Lower HbA1c by roughly 0.8 to 1.0 percentage points with modest weight reduction.',
+      clinicalGoals:
+        'Lower HbA1c by roughly 0.8 to 1.0 percentage points with modest weight reduction.',
     },
     oneSentenceVerdict:
       'The first GLP-1 receptor agonist, isolated from Gila monster venom in 1992 and approved in 2005, which in 14,752 people was noninferior but not superior to placebo for cardiovascular events and is now discontinued in the United States.',
@@ -1840,7 +1930,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       priceSource: {
-        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file, final Byetta and Bydureon BCise entries',
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) 2026 file, final Byetta and Bydureon BCise entries',
         identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
@@ -1855,7 +1946,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Same receptor, larger HbA1c effect, and a positive cardiovascular outcome trial that exenatide did not achieve.',
           typicalCost: 'About $433 per month (US NADAC generic)',
-          prosAndCons: 'Pros: cheapest available agent in the class with outcome data. Cons: daily injection.',
+          prosAndCons:
+            'Pros: cheapest available agent in the class with outcome data. Cons: daily injection.',
         },
         {
           name: 'Dulaglutide (Trulicity)',
@@ -1870,7 +1962,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           class: 'Biguanide, small molecule',
           howItCompares: 'Oral, comparable HbA1c effect in many patients, no injection.',
           typicalCost: 'About $1.50 per month (US NADAC generic cost)',
-          prosAndCons: 'Pros: cost and route. Cons: no appetite effect, and gastrointestinal upset is common early.',
+          prosAndCons:
+            'Pros: cost and route. Cons: no appetite effect, and gastrointestinal upset is common early.',
         },
       ],
       naturalFoods: [
@@ -1896,7 +1989,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Injecting the twice-daily form within an hour before a meal',
-          action: 'Give the injection in the hour before the morning and evening meals, never after eating.',
+          action:
+            'Give the injection in the hour before the morning and evening meals, never after eating.',
           patientImpact:
             'The short-acting form works by blunting the meal glucose excursion; taken after a meal it has largely missed the event it was meant to modify.',
           clinicalPrecaution:
@@ -1904,10 +1998,12 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Maintaining fluid intake during gastrointestinal upset',
-          action: 'Keep up oral fluids during any period of nausea, vomiting or diarrhoea on treatment.',
+          action:
+            'Keep up oral fluids during any period of nausea, vomiting or diarrhoea on treatment.',
           patientImpact:
             'Volume depletion is the main route to the acute kidney injury reported with this class, particularly alongside ACE inhibitors, ARBs or diuretics.',
-          clinicalPrecaution: 'Persistent vomiting or reduced urine output needs medical assessment, not more fluids at home.',
+          clinicalPrecaution:
+            'Persistent vomiting or reduced urine output needs medical assessment, not more fluids at home.',
         },
       ],
     },
@@ -1920,7 +2016,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         'GLP-1 receptor agonist; roughly 53% amino acid identity with human GLP-1(7-37), with a glycine at position 2 that makes it resistant to DPP-4 cleavage',
       structureSource: {
         label: 'BYETTA (exenatide) injection, US prescribing information, section 11, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=53d03c03-ebf7-418d-88a8-533eabd2ee4f',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=53d03c03-ebf7-418d-88a8-533eabd2ee4f',
         kind: 'regulatory',
       },
       laboratoryWorkflow: [
@@ -1931,7 +2028,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           name: 'Resin and building-block qualification for a Rink amide assembly',
           description:
             'Confirm resin loading and residue identity. The C-terminal amide is part of the molecule, so the choice of resin is a structural decision rather than a convenience.',
-          reagentsAndBuffer: 'Rink amide MBHA resin, Fmoc release assay at 301 nm, chiral HPLC of building blocks',
+          reagentsAndBuffer:
+            'Rink amide MBHA resin, Fmoc release assay at 301 nm, chiral HPLC of building blocks',
         },
         {
           id: 'exen-w2',
@@ -1941,7 +2039,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Sequential coupling of all thirty-nine residues, with pseudoproline dipeptides through the C-terminal proline-rich stretch to suppress aggregation on resin.',
           dependsOnStepId: 'exen-w1',
-          reagentsAndBuffer: 'Fmoc-amino acids, pseudoproline dipeptides, DIC/Oxyma, DMF, 20% piperidine',
+          reagentsAndBuffer:
+            'Fmoc-amino acids, pseudoproline dipeptides, DIC/Oxyma, DMF, 20% piperidine',
         },
         {
           id: 'exen-w3',
@@ -1951,7 +2050,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Cleave with a scavenger cocktail that protects the single methionine from oxidation, then purify on C18 to remove deletion sequences and the methionine sulfoxide impurity.',
           dependsOnStepId: 'exen-w2',
-          reagentsAndBuffer: 'TFA with TIS, water and thioanisole; acetonitrile-water gradients with 0.1% TFA',
+          reagentsAndBuffer:
+            'TFA with TIS, water and thioanisole; acetonitrile-water gradients with 0.1% TFA',
         },
         {
           id: 'exen-w4',
@@ -1961,7 +2061,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'For the extended-release product, entrap the purified peptide in biodegradable PLGA microspheres that release it over weeks as the polymer hydrolyses. This step is what separates the weekly product from the twice-daily one.',
           dependsOnStepId: 'exen-w3',
-          reagentsAndBuffer: 'Poly(D,L-lactide-co-glycolide) 50:50, sucrose, dichloromethane emulsion process, lyophilisation',
+          reagentsAndBuffer:
+            'Poly(D,L-lactide-co-glycolide) 50:50, sucrose, dichloromethane emulsion process, lyophilisation',
         },
         {
           id: 'exen-w5',
@@ -1971,7 +2072,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           description:
             'Measure cAMP potency at human GLP-1R and, for the microsphere product, the cumulative in vitro release curve, since the burst fraction determines the tolerability of the first weeks.',
           dependsOnStepId: 'exen-w4',
-          reagentsAndBuffer: 'hGLP-1R reporter line, HTRF cAMP kit, phosphate release medium at 37 degrees C with HPLC quantification',
+          reagentsAndBuffer:
+            'hGLP-1R reporter line, HTRF cAMP kit, phosphate release medium at 37 degrees C with HPLC quantification',
         },
       ],
     },
@@ -1985,7 +2087,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'Eng and colleagues isolated exendin-4 as an exendin-3 analogue from Heloderma suspectum venom and characterised its activity on dispersed guinea pig pancreatic acini. The peptide has a glycine at position 2 in place of the alanine that makes human GLP-1 a DPP-4 substrate, which is the whole reason it survives in circulation.',
         evidenceSource: 'Eng J et al. J Biol Chem 1992;267:7402-7405',
-        measuredMetric: 'Isolation and receptor characterisation of a natural GLP-1 receptor agonist',
+        measuredMetric:
+          'Isolation and receptor characterisation of a natural GLP-1 receptor agonist',
         auditFlag: 'verified',
       },
       {
@@ -2021,7 +2124,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'Exenatide has the lowest modelled manufacturing cost of any GLP-1 agonist, under five dollars a month. Its final US acquisition cost was over eight hundred. No generic ever launched, and then the brand left the market.',
         technicalDetails:
           'Modelled cost-based price $0.75 to $4.46 per month against a final NADAC of about $816 per month for the twice-daily pen. Patent protection had lapsed, and the synthesis is an unmodified 39-residue solid-phase assembly, yet the product line was discontinued before generic entry rather than after it.',
-        evidenceSource: 'Barber MJ et al. JAMA Netw Open 2024; CMS NADAC; Drugs@FDA marketing status',
+        evidenceSource:
+          'Barber MJ et al. JAMA Netw Open 2024; CMS NADAC; Drugs@FDA marketing status',
         doi: '10.1001/jamanetworkopen.2024.3474',
         inferredClaim: 'That patent expiry alone produces price competition',
         auditFlag: 'caution',
@@ -2063,7 +2167,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Binding the human GLP-1 receptor',
-        laymanDesc: 'Despite coming from a lizard, it fits the human receptor and switches it on fully.',
+        laymanDesc:
+          'Despite coming from a lizard, it fits the human receptor and switches it on fully.',
         molecularDetail:
           'Full agonism at the class B GPCR GLP-1R with Gs coupling and cAMP accumulation, despite only about 53% sequence identity with human GLP-1(7-37).',
         iconName: 'Target',
@@ -2133,7 +2238,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         q: 'Can I still get it?',
         a: 'Not in the United States. Drugs@FDA lists Byetta, Bydureon and Bydureon BCise as discontinued for every product code, and the last national acquisition-cost entries date from early 2025. It remains available in some other markets.',
-        auditNote: 'This is a marketing-status fact from the FDA database, not a safety withdrawal.',
+        auditNote:
+          'This is a marketing-status fact from the FDA database, not a safety withdrawal.',
       },
       {
         q: 'Was it withdrawn because it was unsafe?',
@@ -2142,7 +2248,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         q: 'Does a GLP-1 agonist automatically protect the heart?',
         a: 'No, and exenatide is the counterexample. In the largest trial of the drug, 14,752 people over a median 3.2 years, the reduction in cardiovascular events was 9% relative and did not reach significance. Liraglutide, semaglutide and dulaglutide each had to show it separately.',
-        auditNote: 'Measured, and negative for superiority. This is why class-effect language is an inference.',
+        auditNote:
+          'Measured, and negative for superiority. This is why class-effect language is an inference.',
       },
       {
         q: 'It came from venom, so is it dangerous?',
@@ -2159,29 +2266,34 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         kind: 'pmid',
       },
       {
-        label: 'Holman RR et al. Effects of Once-Weekly Exenatide on Cardiovascular Outcomes (EXSCEL). NEJM 2017',
+        label:
+          'Holman RR et al. Effects of Once-Weekly Exenatide on Cardiovascular Outcomes (EXSCEL). NEJM 2017',
         identifier: '10.1056/NEJMoa1612917',
         kind: 'doi',
       },
       {
-        label: 'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        label:
+          'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
         identifier: '10.1001/jamanetworkopen.2024.3474',
         kind: 'doi',
       },
       { label: 'EXSCEL trial record', identifier: 'NCT01144338', kind: 'nct' },
       {
         label: 'BYETTA US prescribing information, DailyMed',
-        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=53d03c03-ebf7-418d-88a8-533eabd2ee4f',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=53d03c03-ebf7-418d-88a8-533eabd2ee4f',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA NDA 021773 (Byetta), approved 28 April 2005, all products discontinued',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021773',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021773',
         kind: 'regulatory',
       },
       {
         label: 'Drugs@FDA NDA 209210 (Bydureon BCise), approved 20 October 2017, discontinued',
-        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=209210',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=209210',
         kind: 'regulatory',
       },
       {
@@ -2244,7 +2356,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Smaller weight effect than either multi-agonist, but it is the only one with a completed cardiovascular outcome trial in obesity without diabetes.',
           typicalCost: 'About $1,307 per month (US NADAC)',
-          prosAndCons: 'Pros: SELECT outcome data. Cons: less weight loss than tirzepatide head-to-head.',
+          prosAndCons:
+            'Pros: SELECT outcome data. Cons: less weight loss than tirzepatide head-to-head.',
         },
         {
           name: 'Enrolment in a retatrutide trial',
@@ -2332,7 +2445,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'The pivotal obesity trial, TRIUMPH-1, enrolled 2,335 people and completed on 30 April 2026. No results are posted on the trial registry and none are published.',
         technicalDetails:
           'NCT05929066 is a master protocol with percentage weight change as its primary outcome, status COMPLETED with a completion date of 2026-04-30, and no results posted as of this audit. The only published phase 3 data are from a 537-person diabetes trial in which weight fell 15.3% at the top dose over 40 weeks, which is not the same population, dose exposure or duration as the phase 2 obesity result.',
-        evidenceSource: 'ClinicalTrials.gov record NCT05929066 (TRIUMPH-1), completed 30 April 2026, no results posted',
+        evidenceSource:
+          'ClinicalTrials.gov record NCT05929066 (TRIUMPH-1), completed 30 April 2026, no results posted',
         inferredClaim: 'That retatrutide produces about 24% weight loss',
         measuredMetric: 'Publication status of the completed pivotal obesity trial',
         auditFlag: 'caution',
@@ -2340,14 +2454,17 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         id: 'reta-4',
         category: 'failed',
-        title: 'A grey market is selling an unapproved molecule, and the products have been analysed',
+        title:
+          'A grey market is selling an unapproved molecule, and the products have been analysed',
         laymanSummary:
           'Retatrutide is not approved anywhere, and is sold widely online. A 2026 study measured what is actually in products sold under that name in Australia. A BMJ news investigation examined a reported death.',
         technicalDetails:
           'Drug and Alcohol Review 2026 published a compositional and labelling-accuracy analysis of products sold as retatrutide in Australia. BMJ published a fact-check on a reported death associated with the unapproved product in July 2026, and separately reported the opening of a compassionate-use route in the United States in August 2026. None of this constitutes efficacy or safety evidence for the molecule; it is evidence about the market around it.',
-        evidenceSource: 'Drug Alcohol Rev 2026; BMJ 2026;doi:10.1136/bmj-2026-100245 and doi:10.1136/bmj-2026-100530',
+        evidenceSource:
+          'Drug Alcohol Rev 2026; BMJ 2026;doi:10.1136/bmj-2026-100245 and doi:10.1136/bmj-2026-100530',
         doi: '10.1111/dar.70231',
-        inferredClaim: 'That a product sold as retatrutide contains retatrutide at the stated concentration',
+        inferredClaim:
+          'That a product sold as retatrutide contains retatrutide at the stated concentration',
         auditFlag: 'caution',
       },
       {
@@ -2360,7 +2477,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'The mechanistic case rests on rodent work and on the energy-expenditure biology of glucagon receptor agonism. No head-to-head human trial against tirzepatide exists, and the phase 2 and phase 3 comparators were placebo. Attribution of the effect size to the third receptor is therefore inference from mechanism, not measurement.',
         evidenceSource: 'Jastreboff AM et al. NEJM 2023; TRANSCEND-T2D-1, Lancet 2026',
         doi: '10.1056/NEJMoa2301972',
-        inferredClaim: 'That glucagon receptor agonism is responsible for the additional weight reduction',
+        inferredClaim:
+          'That glucagon receptor agonism is responsible for the additional weight reduction',
         auditFlag: 'caution',
       },
       {
@@ -2400,7 +2518,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Appetite suppression through the incretin arms',
-        laymanDesc: 'The GIP and GLP-1 arms do what tirzepatide does: less hunger, slower stomach, more insulin when glucose is high.',
+        laymanDesc:
+          'The GIP and GLP-1 arms do what tirzepatide does: less hunger, slower stomach, more insulin when glucose is high.',
         molecularDetail:
           'Central GLP-1R and GIPR signalling in the hypothalamus and hindbrain reducing energy intake, with glucose-dependent potentiation of insulin secretion at the beta cell.',
         iconName: 'Brain',
@@ -2435,7 +2554,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         primaryEndpoint: 'Percentage change in body weight from baseline to week 24',
         endpointMet: true,
         statisticalPValue: 'Dose-dependent separation from placebo at every dose level',
-        unreportedAdverseSignals: 'Dose-related gastrointestinal events; the trial was not powered for rare harms',
+        unreportedAdverseSignals:
+          'Dose-related gastrointestinal events; the trial was not powered for rare harms',
         independentReplicationStatus: 'Unreplicated',
       },
       {
@@ -2455,7 +2575,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         sampleSize: 2335,
         primaryEndpoint: 'Percentage change in body weight',
         endpointMet: false,
-        statisticalPValue: 'Completed 30 April 2026; no results posted and no publication as of this audit',
+        statisticalPValue:
+          'Completed 30 April 2026; no results posted and no publication as of this audit',
         independentReplicationStatus: 'Unreplicated',
       },
     ],
@@ -2493,7 +2614,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         q: 'Can I buy it?',
         a: 'Not legally as a medicine, because it is not approved anywhere. Products sold under the name exist and have been analysed for what they actually contain. Whatever is in an unregulated vial, the evidence on this page does not describe it.',
-        auditNote: 'The trials measured a defined molecule at a defined dose. Neither is guaranteed outside them.',
+        auditNote:
+          'The trials measured a defined molecule at a defined dose. Neither is guaranteed outside them.',
       },
       {
         q: 'Is it better than tirzepatide?',
@@ -2514,22 +2636,26 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'Jastreboff AM et al. Triple-Hormone-Receptor Agonist Retatrutide for Obesity, A Phase 2 Trial. NEJM 2023',
+        label:
+          'Jastreboff AM et al. Triple-Hormone-Receptor Agonist Retatrutide for Obesity, A Phase 2 Trial. NEJM 2023',
         identifier: '10.1056/NEJMoa2301972',
         kind: 'doi',
       },
       {
-        label: 'Efficacy and safety of retatrutide in type 2 diabetes (TRANSCEND-T2D-1). Lancet 2026',
+        label:
+          'Efficacy and safety of retatrutide in type 2 diabetes (TRANSCEND-T2D-1). Lancet 2026',
         identifier: '10.1016/S0140-6736(26)00967-0',
         kind: 'doi',
       },
       {
-        label: 'Composition and Labelling Accuracy of Products Sold as Retatrutide in Australia. Drug Alcohol Rev 2026',
+        label:
+          'Composition and Labelling Accuracy of Products Sold as Retatrutide in Australia. Drug Alcohol Rev 2026',
         identifier: '10.1111/dar.70231',
         kind: 'doi',
       },
       {
-        label: 'Retatrutide fact check: has a man died after taking the unapproved weight loss jab? BMJ 2026',
+        label:
+          'Retatrutide fact check: has a man died after taking the unapproved weight loss jab? BMJ 2026',
         identifier: '10.1136/bmj-2026-100245',
         kind: 'doi',
       },
@@ -2545,7 +2671,11 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       },
       { label: 'Phase 2 obesity trial record', identifier: 'NCT04881760', kind: 'nct' },
       { label: 'TRANSCEND-T2D-1 trial record', identifier: 'NCT06354660', kind: 'nct' },
-      { label: 'TRIUMPH-1 trial record, completed 30 April 2026, no results posted', identifier: 'NCT05929066', kind: 'nct' },
+      {
+        label: 'TRIUMPH-1 trial record, completed 30 April 2026, no results posted',
+        identifier: 'NCT05929066',
+        kind: 'nct',
+      },
     ],
   },
 
@@ -2591,7 +2721,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Approved, 20.9% weight loss at 72 weeks in its pivotal trial, and a completed cardiovascular outcome trial.',
           typicalCost: 'About $1,052 per month (US NADAC)',
-          prosAndCons: 'Pros: licensed with published pivotal data. Cons: no liver-biopsy endpoint programme.',
+          prosAndCons:
+            'Pros: licensed with published pivotal data. Cons: no liver-biopsy endpoint programme.',
         },
         {
           name: 'Semaglutide (Wegovy)',
@@ -2599,7 +2730,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Approved for weight and for cardiovascular risk reduction, with its own steatohepatitis programme.',
           typicalCost: 'About $1,307 per month (US NADAC)',
-          prosAndCons: 'Pros: the largest outcome dataset in the class. Cons: smaller weight effect than the multi-agonists.',
+          prosAndCons:
+            'Pros: the largest outcome dataset in the class. Cons: smaller weight effect than the multi-agonists.',
         },
         {
           name: 'Resmetirom',
@@ -2634,7 +2766,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Removing alcohol while liver fat is being treated',
-          action: 'Stop alcohol intake during any period of active treatment or investigation for fatty liver disease.',
+          action:
+            'Stop alcohol intake during any period of active treatment or investigation for fatty liver disease.',
           patientImpact:
             'Alcohol and metabolic steatohepatitis damage the liver through overlapping routes, and continued intake confounds both the disease and any assessment of treatment.',
           clinicalPrecaution:
@@ -2659,7 +2792,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'In 387 adults, weight fell 14.9% on the 4.8 mg dose against 2.8% on placebo. Only 60% of participants completed the 46 weeks.',
         technicalDetails:
           'Dose-finding phase 2 across 43 centres in 12 countries. Mean weight change from baseline to week 46: -6.2% (0.6 mg), -12.5% (2.4 mg), -13.2% (3.6 mg), -14.9% (4.8 mg), -2.8% (placebo). 233 of 386 treated participants (60.4%) completed. Adverse events in 91% on survodutide versus 75% on placebo, primarily gastrointestinal in 75% versus 42%.',
-        evidenceSource: 'le Roux CW et al. Lancet Diabetes Endocrinol 2024;12:162-173 (NCT04667377)',
+        evidenceSource:
+          'le Roux CW et al. Lancet Diabetes Endocrinol 2024;12:162-173 (NCT04667377)',
         doi: '10.1016/S2213-8587(23)00356-X',
         measuredMetric: 'Mean percentage change in body weight at week 46',
         auditFlag: 'verified',
@@ -2672,9 +2806,11 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'The pivotal trial in 725 people gave 12.2% and 13.0% weight loss for the two doses. Placebo lost 5.4%. The gap over placebo shrank from about 12 points in phase 2 to about 7.6 in phase 3.',
         technicalDetails:
           'SYNCHRONIZE-1, phase 3, double-blind, 76 weeks. Treatment-regimen estimand mean weight change -12.2% (95% CI -13.6 to -10.8) on 3.6 mg, -13.0% (95% CI -14.4 to -11.6) on 6.0 mg, and -5.4% (95% CI -6.9 to -4.0) on placebo. Weight reduction of at least 5% in 72.6%, 71.9% and 46.3%. The estimand incorporates early discontinuation, use of prohibited obesity medications and prolonged escalation, which is a more conservative analysis than the phase 2 reporting.',
-        evidenceSource: 'Survodutide Once Weekly for the Treatment of Adults with Obesity. NEJM 2026 (NCT06066515)',
+        evidenceSource:
+          'Survodutide Once Weekly for the Treatment of Adults with Obesity. NEJM 2026 (NCT06066515)',
         doi: '10.1056/NEJMoa2600751',
-        measuredMetric: 'Percentage change in body weight at week 76 under the treatment-regimen estimand',
+        measuredMetric:
+          'Percentage change in body weight at week 76 under the treatment-regimen estimand',
         auditFlag: 'verified',
       },
       {
@@ -2712,7 +2848,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
           'Four in ten phase 2 participants did not finish. In phase 3, gastrointestinal side effects affected 81% to 90% of the treated groups against 48% on placebo.',
         technicalDetails:
           'Phase 2: 60.4% completed the 46-week treatment period, with gastrointestinal adverse events in 75% of survodutide recipients. Phase 3 SYNCHRONIZE-1: gastrointestinal symptoms in 80.9% of the 3.6 mg group and 89.7% of the 6.0 mg group versus 47.9% on placebo. No deaths were reported in phase 3.',
-        evidenceSource: 'le Roux CW et al. Lancet Diabetes Endocrinol 2024; SYNCHRONIZE-1, NEJM 2026',
+        evidenceSource:
+          'le Roux CW et al. Lancet Diabetes Endocrinol 2024; SYNCHRONIZE-1, NEJM 2026',
         doi: '10.1056/NEJMoa2600751',
         measuredMetric: 'Trial completion and gastrointestinal adverse event rates',
         auditFlag: 'verified',
@@ -2754,7 +2891,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'GLP-1 arm: appetite and insulin',
-        laymanDesc: 'The appetite side does what every drug in this class does, reducing intake and slowing the stomach.',
+        laymanDesc:
+          'The appetite side does what every drug in this class does, reducing intake and slowing the stomach.',
         molecularDetail:
           'Central GLP-1R signalling in the hypothalamus and hindbrain reduces energy intake; peripheral signalling potentiates glucose-stimulated insulin secretion.',
         iconName: 'Brain',
@@ -2808,7 +2946,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         trialId: 'Phase 2 MASH biopsy trial (NCT04771273)',
         phase: 'Phase 2',
         sampleSize: 293,
-        primaryEndpoint: 'Histological improvement in MASH with no worsening of fibrosis at week 48',
+        primaryEndpoint:
+          'Histological improvement in MASH with no worsening of fibrosis at week 48',
         endpointMet: true,
         statisticalPValue: 'P < 0.001 for the quadratic dose-response model',
         unreportedAdverseSignals: 'Vomiting in 41% versus 4% on placebo',
@@ -2820,7 +2959,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         sampleSize: 5531,
         primaryEndpoint: 'Cardiovascular safety',
         endpointMet: true,
-        statisticalPValue: 'Listed as completed; results not yet in the peer-reviewed record at this audit',
+        statisticalPValue:
+          'Listed as completed; results not yet in the peer-reviewed record at this audit',
         independentReplicationStatus: 'Unreplicated',
       },
     ],
@@ -2860,7 +3000,8 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         q: 'Is it better for the liver than the other drugs?',
         a: 'It has a biopsy trial that most competitors do not, and the result on inflammation was strong. Fibrosis, the part that predicts liver outcomes, improved in 34 to 36% against 22% on placebo, which is a much narrower margin and was a secondary endpoint.',
-        auditNote: 'Steatohepatitis improvement is measured and primary. Fibrosis benefit is secondary and modest.',
+        auditNote:
+          'Steatohepatitis improvement is measured and primary. Fibrosis benefit is secondary and modest.',
       },
       {
         q: 'How bad are the side effects?',
@@ -2869,28 +3010,36 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         q: 'Has it been shown to prevent heart attacks?',
         a: 'No. A 5,531-person cardiovascular safety trial has completed, and a safety trial asks whether harm can be excluded, not whether benefit exists. Nothing in the public record supports a cardiovascular prevention claim.',
-        auditNote: 'Unknown, and structurally different from what the trial was designed to measure.',
+        auditNote:
+          'Unknown, and structurally different from what the trial was designed to measure.',
       },
     ],
     recentAuditDate: 'August 2026',
     hasDiscrepancy: true,
     sources: [
       {
-        label: 'le Roux CW et al. Glucagon and GLP-1 receptor dual agonist survodutide for obesity, phase 2. Lancet Diabetes Endocrinol 2024',
+        label:
+          'le Roux CW et al. Glucagon and GLP-1 receptor dual agonist survodutide for obesity, phase 2. Lancet Diabetes Endocrinol 2024',
         identifier: '10.1016/S2213-8587(23)00356-X',
         kind: 'doi',
       },
       {
-        label: 'Survodutide Once Weekly for the Treatment of Adults with Obesity (SYNCHRONIZE-1). NEJM 2026',
+        label:
+          'Survodutide Once Weekly for the Treatment of Adults with Obesity (SYNCHRONIZE-1). NEJM 2026',
         identifier: '10.1056/NEJMoa2600751',
         kind: 'doi',
       },
       {
-        label: 'Sanyal AJ et al. A Phase 2 Randomized Trial of Survodutide in MASH and Fibrosis. NEJM 2024',
+        label:
+          'Sanyal AJ et al. A Phase 2 Randomized Trial of Survodutide in MASH and Fibrosis. NEJM 2024',
         identifier: '10.1056/NEJMoa2401755',
         kind: 'doi',
       },
-      { label: 'Phase 2 obesity dose-finding trial record', identifier: 'NCT04667377', kind: 'nct' },
+      {
+        label: 'Phase 2 obesity dose-finding trial record',
+        identifier: 'NCT04667377',
+        kind: 'nct',
+      },
       { label: 'SYNCHRONIZE-1 trial record', identifier: 'NCT06066515', kind: 'nct' },
       { label: 'Phase 2 MASH biopsy trial record', identifier: 'NCT04771273', kind: 'nct' },
       { label: 'SYNCHRONIZE-CVOT trial record', identifier: 'NCT06077864', kind: 'nct' },

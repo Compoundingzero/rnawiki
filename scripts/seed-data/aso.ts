@@ -166,14 +166,16 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         id: 'nus-1',
         category: 'measured',
-        title: 'ENDEAR: 51 percent of infants reached a new motor milestone, against 0 percent on sham',
+        title:
+          'ENDEAR: 51 percent of infants reached a new motor milestone, against 0 percent on sham',
         laymanSummary:
           'In the final analysis of the sham-controlled infant trial, 37 of 73 treated infants gained a motor milestone. None of the 37 control infants did.',
         technicalDetails:
           'Study 1 (NCT02193074) randomised 121 symptomatic infants 2:1 to nusinersen or a sham lumbar procedure. Motor-milestone response was defined on Section 2 of the Hammersmith Infant Neurologic Exam. The trial was stopped early at a pre-specified interim analysis, at which the response rate was 40 percent versus 0 percent.',
         evidenceSource: 'Finkel et al., New England Journal of Medicine 2017 (ENDEAR)',
         doi: '10.1056/NEJMoa1702752',
-        measuredMetric: 'Motor-milestone responders: 51 percent nusinersen versus 0 percent sham control',
+        measuredMetric:
+          'Motor-milestone responders: 51 percent nusinersen versus 0 percent sham control',
         auditFlag: 'verified',
       },
       {
@@ -537,7 +539,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'Binds an exonic splicing enhancer region within DMD exon 51; steric block, uncharged backbone',
       structureSource: {
-        label: 'EXONDYS 51 US prescribing information section 11, cross-checked against Ali et al. 2025 Table 1',
+        label:
+          'EXONDYS 51 US prescribing information section 11, cross-checked against Ali et al. 2025 Table 1',
         identifier: '10.1007/s10974-024-09688-2',
         kind: 'doi',
       },
@@ -615,7 +618,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         id: 'ete-2',
         category: 'measured',
-        title: 'Study 3: dystrophin rose from 0.16 to 0.44 percent of normal, median change 0.1 percent',
+        title:
+          'Study 3: dystrophin rose from 0.16 to 0.44 percent of normal, median change 0.1 percent',
         laymanSummary:
           'In the only study with before-and-after biopsies, the average went from 0.16 percent to 0.44 percent. The median boy gained 0.1 percent.',
         technicalDetails:
@@ -810,7 +814,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         q: 'Has eteplirsen been shown to help boys walk for longer?',
         a: 'No. The FDA label states that a clinical benefit, including improved motor function, has not been established, and that the open-label extension failed to show benefit against its external control. The functional claims you will read come from post-hoc comparisons with historical cohorts.',
-        auditNote: 'This sentence is in the prescribing information itself, not an outside critique.',
+        auditNote:
+          'This sentence is in the prescribing information itself, not an outside critique.',
       },
       {
         q: 'Is 0.44 percent of normal dystrophin a meaningful amount?',
@@ -973,9 +978,11 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       sequence5to3: 'GTTGCCTCCGGTTCTGAAGGTGTTC',
       chemicalFormula: 'C305H481N138O112P25',
       molecularWeight: '8,647.28 Da',
-      targetReceptorAffinity: 'Binds a 25-nucleotide site in DMD exon 53; steric block, uncharged backbone',
+      targetReceptorAffinity:
+        'Binds a 25-nucleotide site in DMD exon 53; steric block, uncharged backbone',
       structureSource: {
-        label: 'VYONDYS 53 US prescribing information, section 11 (sequence stated in the label text)',
+        label:
+          'VYONDYS 53 US prescribing information, section 11 (sequence stated in the label text)',
         identifier:
           'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=35c227d1-5b24-44b0-b5d3-f0f6b1c46bd5',
         kind: 'regulatory',
@@ -1074,7 +1081,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'ESSENCE (NCT02500381) randomised 212 ambulatory patients to golodirsen or casimersen versus placebo over 96 weeks. The primary endpoint, change in 4-step ascend velocity, gave a least-squares mean difference of 0.06 steps per second (95 percent CI -0.05 to 0.16, p=0.309). Secondary functional measures including the 6-minute walk test, 10-metre walk/run and North Star Ambulatory Assessment favoured treatment numerically without reaching significance. Dystrophin expression again increased significantly.',
         evidenceSource:
           'Muntoni et al., ESSENCE phase 3 topline results, MDA Clinical and Scientific Conference 2026',
-        measuredMetric: '4-step ascend velocity: LSM difference 0.06 steps/s, 95 percent CI -0.05 to 0.16, p=0.309',
+        measuredMetric:
+          '4-step ascend velocity: LSM difference 0.06 steps/s, 95 percent CI -0.05 to 0.16, p=0.309',
         auditFlag: 'contested',
       },
       {
@@ -1099,7 +1107,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'The FDA first refused the application over kidney toxicity seen in animals and over infections from long-term infusion lines. After a formal dispute, the same agency approved it in December 2019.',
         technicalDetails:
           'A complete response letter issued on 19 August 2019 cited risk of infections related to vascular access ports and renal toxicity observed in mice, rats and monkeys. The sponsor filed a formal dispute resolution request. Approval followed on 12 December 2019, with renal toxicity retained as a labelled warning and no new clinical safety data resolving the animal finding.',
-        evidenceSource: 'FDA summary review, NDA 211970; Sarepta approval announcement December 2019',
+        evidenceSource:
+          'FDA summary review, NDA 211970; Sarepta approval announcement December 2019',
         auditFlag: 'caution',
       },
       {
@@ -1112,7 +1121,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'Golodirsen was quantified by Sarepta western blot against a healthy-muscle standard; viltolarsen was quantified by western blot normalised to myosin heavy chain, with mass spectrometry normalised to filamin C as a secondary measure. Different antibodies, different normalisation proteins and different standard curves. No head-to-head study has ever measured the two drugs on one assay.',
         evidenceSource:
           'VYONDYS 53 and VILTEPSO US prescribing information, section 14 methods statements',
-        inferredClaim: 'That viltolarsen produces roughly six times more dystrophin than golodirsen',
+        inferredClaim:
+          'That viltolarsen produces roughly six times more dystrophin than golodirsen',
         auditFlag: 'caution',
       },
     ],
@@ -1245,7 +1255,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: 'Frank et al., Increased dystrophin production with golodirsen in DMD, Neurology 2020',
+        label:
+          'Frank et al., Increased dystrophin production with golodirsen in DMD, Neurology 2020',
         identifier: '10.1212/WNL.0000000000009233',
         kind: 'doi',
       },
@@ -1259,7 +1270,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA summary review, NDA 211970 (golodirsen), including the August 2019 complete response letter',
-        identifier: 'https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/211970Orig1s000SumR.pdf',
+        identifier:
+          'https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/211970Orig1s000SumR.pdf',
         kind: 'regulatory',
       },
       {
@@ -1374,9 +1386,11 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       sequence5to3: 'CAATGCCATCCTGGAGTTCCTG',
       chemicalFormula: 'C268H424N124O95P22',
       molecularWeight: '7,584.5 Da',
-      targetReceptorAffinity: 'Binds a 22-nucleotide site in DMD exon 45; steric block, uncharged backbone',
+      targetReceptorAffinity:
+        'Binds a 22-nucleotide site in DMD exon 45; steric block, uncharged backbone',
       structureSource: {
-        label: 'AMONDYS 45 US prescribing information, section 11 (sequence stated in the label text)',
+        label:
+          'AMONDYS 45 US prescribing information, section 11 (sequence stated in the label text)',
         identifier:
           'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e9e5fd44-eeda-4580-bba1-a734828bbcc3',
         kind: 'regulatory',
@@ -1486,7 +1500,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'Accelerated approval in February 2021 rested entirely on the interim biopsy result, with the confirmatory functional data still years away. With ESSENCE now reported, the surrogate has been reproduced and the clinical link has not been demonstrated. The label already stated that continued approval may be contingent on verification of clinical benefit.',
         evidenceSource: 'AMONDYS 45 US prescribing information, section 1',
         doi: '10.7326/M23-1073',
-        inferredClaim: 'That a 0.59 percentage point dystrophin gain slows Duchenne muscular dystrophy',
+        inferredClaim:
+          'That a 0.59 percentage point dystrophin gain slows Duchenne muscular dystrophy',
         auditFlag: 'contested',
       },
       {
@@ -1532,7 +1547,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         step: 4,
         title: 'Exon 45 is spliced out and the frame is restored',
-        laymanDesc: 'The neighbouring exons are joined, which realigns the rest of the instructions.',
+        laymanDesc:
+          'The neighbouring exons are joined, which realigns the rest of the instructions.',
         molecularDetail:
           'Exclusion of exon 45 creates an in-frame junction in patients with deletions such as 46-47, 46-48 or 44, allowing translation of an internally truncated dystrophin.',
         iconName: 'Scissors',
@@ -1741,7 +1757,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       sequence5to3: 'CCTCCGGTTCTGAAGGTGTTC',
       chemicalFormula: 'C244H381N113O88P20',
       molecularWeight: '6,924.82 Da',
-      targetReceptorAffinity: 'Binds a 21-nucleotide site in DMD exon 53; steric block, uncharged backbone',
+      targetReceptorAffinity:
+        'Binds a 21-nucleotide site in DMD exon 53; steric block, uncharged backbone',
       structureSource: {
         label:
           'Ali et al., J Muscle Res Cell Motil 2025, Table 1 (FDA-approved DMD exon-skipping ASO sequences); mass and formula from the VILTEPSO label section 11',
@@ -1841,13 +1858,15 @@ export const ASO_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'RACER53 (NCT04060199) randomised 77 ambulatory boys to viltolarsen 80 mg/kg weekly or placebo for 48 weeks, with time to stand from supine as the primary endpoint. Preliminary results announced in May 2024 reported a trend of increased rising velocity in the treated group, matched by improvement in the placebo comparators, and no statistically significant difference between arms. Adverse events were mild or moderate and no participant withdrew for side effects.',
         evidenceSource: 'NS Pharma preliminary RACER53 results announcement, May 2024',
-        measuredMetric: 'Time to stand from supine at week 48: no statistically significant difference',
+        measuredMetric:
+          'Time to stand from supine at week 48: no statistically significant difference',
         auditFlag: 'contested',
       },
       {
         id: 'vil-4',
         category: 'inferred',
-        title: 'Timed-function gains were measured against 65 historical controls, not a randomised arm',
+        title:
+          'Timed-function gains were measured against 65 historical controls, not a randomised arm',
         laymanSummary:
           'The improvements in walking and standing reported in the approval study came from comparing treated boys with boys from old natural-history datasets, not with a placebo group.',
         technicalDetails:
@@ -1861,7 +1880,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         id: 'vil-5',
         category: 'conclusion_shift',
-        title: 'Two drugs, one exon, a sixfold gap in reported dystrophin, and neither changed function',
+        title:
+          'Two drugs, one exon, a sixfold gap in reported dystrophin, and neither changed function',
         laymanSummary:
           'Viltolarsen reports about six times more dystrophin than golodirsen for the same exon. Both then failed their confirmatory functional trials, which undercuts the idea that the percentage is what matters.',
         technicalDetails:
@@ -1895,7 +1915,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Hybridising to a 21-nucleotide site in exon 53',
-        laymanDesc: 'It pairs with a stretch inside exon 53 and hides it from the splicing machinery.',
+        laymanDesc:
+          'It pairs with a stretch inside exon 53 and hides it from the splicing machinery.',
         molecularDetail:
           'The 21-mer covers the same region as the 25-mer golodirsen minus five bases at the 5-prime end, occluding exonic splicing enhancer elements required for exon definition.',
         iconName: 'Target',
@@ -2203,7 +2224,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'The boxed warning states that inotersen causes reductions in platelet count that may be sudden, unpredictable and life-threatening, and that one clinical trial patient died from intracranial haemorrhage. Grade 4 thrombocytopenia and glomerulonephritis each occurred in 3 percent of treated patients. The drug is contraindicated below a platelet count of 100 x 10^9/L and requires weekly counts on treatment and for eight weeks after stopping.',
         evidenceSource: 'TEGSEDI US prescribing information, boxed warning',
         doi: '10.1056/NEJMoa1716793',
-        measuredMetric: 'Grade 4 thrombocytopenia 3 percent; glomerulonephritis 3 percent; one treatment-associated death',
+        measuredMetric:
+          'Grade 4 thrombocytopenia 3 percent; glomerulonephritis 3 percent; one treatment-associated death',
         auditFlag: 'verified',
       },
       {
@@ -2240,7 +2262,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'Eplontersen carries the identical 20-letter sequence with a liver-targeting sugar cluster bolted on. It is dosed monthly instead of weekly, at far lower total exposure, and it has no boxed warning.',
         technicalDetails:
           'Eplontersen is inotersen conjugated to a triantennary N-acetylgalactosamine ligand. Comparing label regimens, inotersen delivers roughly 14.8 g of oligonucleotide per year and eplontersen roughly 0.6 g, an approximately 25-fold reduction in systemic oligonucleotide burden for the same target engagement. The platelet and renal signals that produced the inotersen boxed warning did not recur.',
-        evidenceSource: 'TEGSEDI and WAINUA US prescribing information; Viney et al., ESC Heart Failure 2021',
+        evidenceSource:
+          'TEGSEDI and WAINUA US prescribing information; Viney et al., ESC Heart Failure 2021',
         doi: '10.1002/ehf2.13154',
         auditFlag: 'verified',
       },
@@ -2355,7 +2378,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         q: 'Why does it need weekly blood tests?',
         a: 'Because platelet counts can fall suddenly and without warning, and one trial participant died of an intracranial haemorrhage before enhanced monitoring existed. Weekly counts are a labelled requirement, not a precaution that can be relaxed.',
-        auditNote: 'The monitoring schedule is the mitigation that made the boxed-warning risk manageable.',
+        auditNote:
+          'The monitoring schedule is the mitigation that made the boxed-warning risk manageable.',
       },
       {
         q: 'Can I still get inotersen?',
@@ -2403,7 +2427,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Adams et al., Patisiran, an RNAi Therapeutic, for Hereditary Transthyretin Amyloidosis, NEJM 2018',
+        label:
+          'Adams et al., Patisiran, an RNAi Therapeutic, for Hereditary Transthyretin Amyloidosis, NEJM 2018',
         identifier: '10.1056/NEJMoa1716153',
         kind: 'doi',
       },
@@ -2614,7 +2639,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'Eplontersen carries no boxed warning and no requirement for weekly platelet counts. Adverse events leading to discontinuation occurred in 4 percent of the eplontersen group against 3 percent of the comparison group. Two deaths occurred in the eplontersen group, both attributed to known disease sequelae. Comparing label regimens, annual oligonucleotide exposure is roughly 0.6 g against roughly 14.8 g for inotersen.',
         evidenceSource: 'WAINUA and TEGSEDI US prescribing information',
-        measuredMetric: 'No boxed warning; discontinuation for adverse events 4 percent versus 3 percent',
+        measuredMetric:
+          'No boxed warning; discontinuation for adverse events 4 percent versus 3 percent',
         auditFlag: 'verified',
       },
       {
@@ -2789,7 +2815,11 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       },
       { label: 'NEURO-TTRansform trial registration', identifier: 'NCT04136184', kind: 'nct' },
       { label: 'CARDIO-TTRansform trial registration', identifier: 'NCT04136171', kind: 'nct' },
-      { label: 'NEURO-TTR, source of the external placebo group', identifier: 'NCT01737398', kind: 'nct' },
+      {
+        label: 'NEURO-TTR, source of the external placebo group',
+        identifier: 'NCT01737398',
+        kind: 'nct',
+      },
     ],
   },
 
@@ -2852,7 +2882,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           class: 'Respiratory support, not a drug',
           howItCompares:
             'A randomised controlled trial found a median survival benefit of about seven months, and a much larger quality-of-life effect, in patients with normal or moderately impaired bulbar function.',
-          typicalCost: 'Device and service cost; funded through respiratory services in most systems',
+          typicalCost:
+            'Device and service cost; funded through respiratory services in most systems',
           prosAndCons:
             'Pros: the largest randomised survival effect established in ALS. Cons: tolerance is poor with severe bulbar involvement.',
         },
@@ -2951,7 +2982,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'VALOR (NCT02623699) Part C randomised 108 adults 2:1. In the faster-progression subgroup that formed the primary analysis, change in ALSFRS-R from baseline to week 28 was -6.98 with tofersen and -8.14 with placebo, a difference of 1.2 points (95 percent CI -3.2 to 5.5), p=0.97. Secondary clinical endpoints including slow vital capacity and handheld dynamometry also did not differ significantly.',
         evidenceSource: 'Miller et al., New England Journal of Medicine 2022 (VALOR)',
         doi: '10.1056/NEJMoa2204705',
-        measuredMetric: 'ALSFRS-R difference at week 28: 1.2 points, 95 percent CI -3.2 to 5.5, p=0.97',
+        measuredMetric:
+          'ALSFRS-R difference at week 28: 1.2 points, 95 percent CI -3.2 to 5.5, p=0.97',
         auditFlag: 'verified',
       },
       {
@@ -2964,7 +2996,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'At week 28 plasma neurofilament light chain showed a 55 percent reduction with tofersen against a 12 percent increase with placebo, p<0.0001. This, not any clinical measure, is the basis on which accelerated approval was granted. SOD1 protein in cerebrospinal fluid also fell, confirming target engagement.',
         evidenceSource: 'QALSODY US prescribing information, sections 1 and 14',
         doi: '10.1056/NEJMoa2204705',
-        measuredMetric: 'Plasma NfL: -55 percent with tofersen versus +12 percent with placebo, p<0.0001',
+        measuredMetric:
+          'Plasma NfL: -55 percent with tofersen versus +12 percent with placebo, p<0.0001',
         auditFlag: 'verified',
       },
       {
@@ -3115,7 +3148,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         q: 'Did tofersen slow ALS in its pivotal trial?',
         a: 'No. The primary endpoint, change on the ALS functional rating scale at 28 weeks, gave a difference of 1.2 points with a p-value of 0.97. What did change was a blood marker of nerve fibre breakdown, which fell by 55 percent, and that is what the approval was based on.',
-        auditNote: 'The label states the approval rests on the neurofilament reduction, not on function.',
+        auditNote:
+          'The label states the approval rests on the neurofilament reduction, not on function.',
       },
       {
         q: 'Is neurofilament light chain a reliable stand-in for how the disease progresses?',
@@ -3128,7 +3162,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         q: 'Why do people say it was given too late rather than that it failed?',
         a: 'Because in the open-label extension, patients who started earlier declined less than those who switched over at 28 weeks, a 3.5-point difference at 52 weeks. That comparison was not randomised to start time and was not adjusted for multiplicity, so it generates a hypothesis. ATLAS, in presymptomatic carriers, is the trial designed to test it.',
-        auditNote: 'A delayed-start comparison within an open-label extension is not a randomised result.',
+        auditNote:
+          'A delayed-start comparison within an open-label extension is not a randomised result.',
       },
       {
         q: 'What are the risks?',
@@ -3237,7 +3272,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           class: 'Extracorporeal LDL removal, not a drug',
           howItCompares:
             'Physically filters LDL from plasma every one to two weeks. It remains the fallback when drugs are insufficient, which in true receptor-negative HoFH is common.',
-          typicalCost: 'Per-session procedure cost, typically funded through specialist lipid services',
+          typicalCost:
+            'Per-session procedure cost, typically funded through specialist lipid services',
           prosAndCons:
             'Pros: works regardless of receptor status. Cons: vascular access, hours per session, and LDL rebounds between treatments.',
         },
@@ -3376,7 +3412,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
         technicalDetails:
           'The boxed warning records a median absolute increase in hepatic fat of 10 percent after 26 weeks of treatment, from 0 percent at baseline, measured by magnetic resonance imaging, in the heterozygous FH and hyperlipidaemia trials. Alanine aminotransferase rose to at least three times the upper limit of normal in 4 of 34 treated HoFH patients (12 percent) against none on placebo. Hepatic steatosis is a risk factor for steatohepatitis and cirrhosis, and the long-term consequence was never established.',
         evidenceSource: 'KYNAMRO US prescribing information, boxed warning',
-        measuredMetric: 'Median absolute hepatic fat increase 10 percentage points at 26 weeks; ALT at least 3x ULN in 12 percent',
+        measuredMetric:
+          'Median absolute hepatic fat increase 10 percentage points at 26 weeks; ALT at least 3x ULN in 12 percent',
         auditFlag: 'verified',
       },
       {
@@ -3414,7 +3451,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'Kynamro moved from Genzyme back to Ionis and then to Kastle Therapeutics. Sales were discontinued on 31 May 2018 and the new drug application was among those withdrawn by the FDA in 2019. Restricted distribution under a REMS, weekly injection-site reactions in 84 percent of patients and flu-like symptoms in 30 percent left it with almost no prescribing base once lomitapide and later evinacumab arrived.',
         evidenceSource:
           'FDA Federal Register notice, Withdrawal of Approval of 11 New Drug Applications, 2019; KYNAMRO label sections 5.3 and 5.4',
-        measuredMetric: 'Injection-site reactions in 84 percent and flu-like symptoms in 30 percent of patients',
+        measuredMetric:
+          'Injection-site reactions in 84 percent and flu-like symptoms in 30 percent of patients',
         auditFlag: 'verified',
       },
       {
@@ -3425,7 +3463,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'Both drugs that stopped the liver exporting fat caused fatty liver. The lasting answer for this disease came from a different mechanism entirely.',
         technicalDetails:
           'Mipomersen and lomitapide both block lipoprotein assembly and both cause hepatic steatosis, which now looks like a mechanistic consequence rather than an accident of either molecule. Evinacumab, an ANGPTL3 antibody, lowered LDL by about half in a randomised placebo-controlled HoFH trial without that trade-off. The apoB antisense idea itself has not returned in this indication.',
-        evidenceSource: 'Raal et al., Evinacumab for Homozygous Familial Hypercholesterolemia, NEJM 2020',
+        evidenceSource:
+          'Raal et al., Evinacumab for Homozygous Familial Hypercholesterolemia, NEJM 2020',
         doi: '10.1056/NEJMoa2004215',
         auditFlag: 'verified',
       },
@@ -3434,7 +3473,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         step: 1,
         title: 'Weekly subcutaneous injection',
-        laymanDesc: 'A weekly injection under the skin, which caused a local reaction in most patients.',
+        laymanDesc:
+          'A weekly injection under the skin, which caused a local reaction in most patients.',
         molecularDetail:
           'Unconjugated full-phosphorothioate 20-mer, 200 mg weekly. Injection-site reactions occurred in 84 percent of patients, a direct consequence of high local phosphorothioate concentration.',
         iconName: 'Syringe',
@@ -3453,7 +3493,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         step: 3,
         title: 'Hybridising to apoB-100 messenger RNA',
-        laymanDesc: 'It pairs with the instructions for the scaffolding protein of every LDL particle.',
+        laymanDesc:
+          'It pairs with the instructions for the scaffolding protein of every LDL particle.',
         molecularDetail:
           'Watson-Crick binding within the apoB coding region at positions 3249 to 3268. The label records that the effect was shown to be highly sequence-specific in hepatoma cells and primary hepatocytes.',
         iconName: 'Target',
@@ -3462,7 +3503,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         step: 4,
         title: 'RNase H destroys the transcript',
-        laymanDesc: 'A cellular enzyme cuts up the paired instructions so the protein is never translated.',
+        laymanDesc:
+          'A cellular enzyme cuts up the paired instructions so the protein is never translated.',
         molecularDetail:
           'RNase H-mediated degradation of the apoB mRNA at the deoxynucleotide gap, inhibiting translation of apoB-100 and therefore assembly of VLDL, the metabolic precursor of LDL.',
         iconName: 'Scissors',
@@ -3528,7 +3570,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         q: 'Why did a drug that lowered LDL by 25 percent fail?',
         a: 'Because the way it lowered LDL was by preventing the liver from exporting fat, and the fat then stayed in the liver. Median liver fat rose by ten percentage points in six months. A cholesterol number that improves while the organ doing the work deteriorates is not a net benefit anyone could demonstrate.',
-        auditNote: 'The hepatic steatosis appears in the boxed warning, not in a post-marketing footnote.',
+        auditNote:
+          'The hepatic steatosis appears in the boxed warning, not in a post-marketing footnote.',
       },
       {
         q: 'Did it prevent heart attacks?',
@@ -3755,7 +3798,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'In APPROACH, 15 of 33 volanesorsen patients had platelet counts below 100,000 per microlitre, including 2 below 25,000, against 0 of 33 on placebo. After enhanced platelet monitoring was introduced mid-trial no patient fell below 50,000. Injection-site reactions occurred in 20 of 33 treated patients and none on placebo.',
         evidenceSource: 'Witztum et al., NEJM 2019, results section',
         doi: '10.1056/NEJMoa1715944',
-        measuredMetric: 'Platelets below 100,000/microlitre in 15 of 33 treated versus 0 of 33 placebo',
+        measuredMetric:
+          'Platelets below 100,000/microlitre in 15 of 33 treated versus 0 of 33 placebo',
         auditFlag: 'verified',
       },
       {
@@ -3790,7 +3834,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
           'The APPROACH primary endpoint was the percentage change in fasting triglycerides at three months. With 66 patients over 52 weeks in a disease where attacks are episodic, the trial had no power to demonstrate a reduction in pancreatitis events. The inference from triglyceride level to pancreatitis risk is biologically well supported and it is still an inference.',
         evidenceSource: 'Witztum et al., NEJM 2019, methods',
         doi: '10.1056/NEJMoa1715944',
-        inferredClaim: 'That volanesorsen was shown in APPROACH to prevent episodes of acute pancreatitis',
+        inferredClaim:
+          'That volanesorsen was shown in APPROACH to prevent episodes of acute pancreatitis',
         auditFlag: 'caution',
       },
       {
@@ -3901,7 +3946,8 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       {
         q: 'Was volanesorsen shown to prevent pancreatitis?',
         a: 'No. APPROACH measured triglycerides at three months in 66 patients. Pancreatitis attacks are episodic and the trial had no power to count them. The link from very high triglycerides to pancreatitis is strong biology, but it was not the thing measured.',
-        auditNote: 'The primary endpoint was percentage change in fasting triglycerides, not an event count.',
+        auditNote:
+          'The primary endpoint was percentage change in fasting triglycerides, not an event count.',
       },
       {
         q: 'Why did Europe approve it and the United States refuse it?',

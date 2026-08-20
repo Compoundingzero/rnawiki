@@ -50,7 +50,10 @@ export const POST = withHandler(async (req: Request) => {
   const row = await getUserByEmail(input.email)
 
   // Always compared, even when there is no account: see DECOY_PASSWORD_HASH above.
-  const passwordMatches = await verifyPassword(input.password, row?.passwordHash ?? DECOY_PASSWORD_HASH)
+  const passwordMatches = await verifyPassword(
+    input.password,
+    row?.passwordHash ?? DECOY_PASSWORD_HASH,
+  )
 
   if (!row || !passwordMatches) {
     throw new ApiError(401, CREDENTIALS_REJECTED, 'invalid_credentials')

@@ -5,12 +5,12 @@ know when it goes wrong.
 
 ## The service
 
-| | |
-|---|---|
-| Project | **RNAwiki** (`328c5ae7-2ccb-4d37-8524-ba7029daddae`) |
-| App service | **RNAwiki** — capital R-N-A, and the CLI is case-sensitive |
-| Database | **Postgres** service, private host `postgres.railway.internal` |
-| Domain | https://rnawiki.com |
+|             |                                                                |
+| ----------- | -------------------------------------------------------------- |
+| Project     | **RNAwiki** (`328c5ae7-2ccb-4d37-8524-ba7029daddae`)           |
+| App service | **RNAwiki** — capital R-N-A, and the CLI is case-sensitive     |
+| Database    | **Postgres** service, private host `postgres.railway.internal` |
+| Domain      | https://rnawiki.com                                            |
 
 ## What a deploy does
 
@@ -24,12 +24,12 @@ back an otherwise-good deploy.
 
 ## Environment
 
-| Variable | Notes |
-|---|---|
-| `DATABASE_URL` | Set by Railway's service reference. Uses the private host at runtime. |
+| Variable         | Notes                                                                    |
+| ---------------- | ------------------------------------------------------------------------ |
+| `DATABASE_URL`   | Set by Railway's service reference. Uses the private host at runtime.    |
 | `SESSION_SECRET` | ≥ 32 characters or `lib/session.ts` throws on the first session request. |
-| `SITE_URL` | `https://rnawiki.com`. Feeds `metadataBase`, the sitemap and JSON-LD. |
-| `SITE_NAME` | `RNAwiki`. |
+| `SITE_URL`       | `https://rnawiki.com`. Feeds `metadataBase`, the sitemap and JSON-LD.    |
+| `SITE_NAME`      | `RNAwiki`.                                                               |
 
 ## Running scripts against production
 

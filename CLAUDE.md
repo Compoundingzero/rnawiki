@@ -38,7 +38,7 @@ Four divergences from it are deliberate and must not be reverted:
    the page says so. This overrides every other instruction in this repo.
 2. **The engine is deterministic and stays that way.** Nothing under `lib/rna-intelligence/` may
    call a generative model or use randomness. Same input, same report, same verification hash —
-   `runFullDeterministicSweep` hashes the *input*, never the timestamp.
+   `runFullDeterministicSweep` hashes the _input_, never the timestamp.
 3. **An engine failure is an instant rejection.** `decideEditRouting` checks `enginePassed` before
    it checks trust tier, so a steward cannot publish a structurally broken edit. The server always
    re-runs the sweep; a client-computed report is a suggestion, not a verdict.

@@ -23,27 +23,74 @@ import type { ApprovalStatus, DrugModality } from '@/lib/types'
  * pass would leave one behind.
  */
 const SALT_SUFFIXES = [
-  'HYDROCHLORIDE', 'HYDROBROMIDE', 'SODIUM', 'POTASSIUM', 'CALCIUM', 'MAGNESIUM', 'SULFATE',
-  'SULPHATE', 'PHOSPHATE', 'ACETATE', 'TARTRATE', 'BITARTRATE', 'MALEATE', 'FUMARATE', 'CITRATE',
-  'MESYLATE', 'MESILATE', 'BESYLATE', 'TOSYLATE', 'SUCCINATE', 'LACTATE', 'GLUCONATE', 'NITRATE',
-  'CHLORIDE', 'BROMIDE', 'IODIDE', 'OXALATE', 'PAMOATE', 'STEARATE', 'PALMITATE', 'DIHYDRATE',
-  'MONOHYDRATE', 'ANHYDROUS', 'TRIHYDRATE', 'HEMIHYDRATE', 'DISODIUM', 'DIPOTASSIUM', 'HYCLATE',
-  'VALERATE', 'PROPIONATE', 'DIPROPIONATE', 'FUROATE', 'BENZOATE', 'SALICYLATE', 'AXETIL',
-  'OLAMINE', 'TROMETHAMINE', 'MALATE', 'ASPARTATE', 'GLUTAMATE', 'NAPSYLATE', 'EDISYLATE',
-  'XINAFOATE', 'LAURYL SULFATE',
+  'HYDROCHLORIDE',
+  'HYDROBROMIDE',
+  'SODIUM',
+  'POTASSIUM',
+  'CALCIUM',
+  'MAGNESIUM',
+  'SULFATE',
+  'SULPHATE',
+  'PHOSPHATE',
+  'ACETATE',
+  'TARTRATE',
+  'BITARTRATE',
+  'MALEATE',
+  'FUMARATE',
+  'CITRATE',
+  'MESYLATE',
+  'MESILATE',
+  'BESYLATE',
+  'TOSYLATE',
+  'SUCCINATE',
+  'LACTATE',
+  'GLUCONATE',
+  'NITRATE',
+  'CHLORIDE',
+  'BROMIDE',
+  'IODIDE',
+  'OXALATE',
+  'PAMOATE',
+  'STEARATE',
+  'PALMITATE',
+  'DIHYDRATE',
+  'MONOHYDRATE',
+  'ANHYDROUS',
+  'TRIHYDRATE',
+  'HEMIHYDRATE',
+  'DISODIUM',
+  'DIPOTASSIUM',
+  'HYCLATE',
+  'VALERATE',
+  'PROPIONATE',
+  'DIPROPIONATE',
+  'FUROATE',
+  'BENZOATE',
+  'SALICYLATE',
+  'AXETIL',
+  'OLAMINE',
+  'TROMETHAMINE',
+  'MALATE',
+  'ASPARTATE',
+  'GLUTAMATE',
+  'NAPSYLATE',
+  'EDISYLATE',
+  'XINAFOATE',
+  'LAURYL SULFATE',
 ] as const
 
 export function baseMoiety(name: string): string {
   // Source data uses "||" to join the ingredients of a combination product, and DSLD group names
   // carry a parenthesised synonym ("Vitamin D (Cholecalciferol)"). Left in, the first produces a
   // page titled "Abacavir || Dolutegravir || Lamivudine" and the second produces a second Vitamin D.
-  let n = name
-    .split('||')[0]
-    ?.replace(/\s*\([^)]*\)\s*/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .toUpperCase()
-    .replace(/^[\s,.;]+|[\s,.;]+$/g, '') ?? ''
+  let n =
+    name
+      .split('||')[0]
+      ?.replace(/\s*\([^)]*\)\s*/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toUpperCase()
+      .replace(/^[\s,.;]+|[\s,.;]+$/g, '') ?? ''
   let changed = true
   while (changed) {
     changed = false
@@ -63,15 +110,62 @@ export function baseMoiety(name: string): string {
 
 /** Tokens that must not be title-cased, because their real capitalisation carries meaning. */
 const KEEP_AS_IS = new Set([
-  'PEG', 'DNA', 'RNA', 'HCL', 'HBR', 'USP', 'NF', 'EDTA', 'DHA', 'EPA', 'MSM', 'NAD', 'NMN',
-  'CoQ10', 'MCT', 'ATP', 'GABA', 'HMB', 'SAM-E', 'BCAA', 'IU', 'II', 'III', 'IV', 'VI', 'VII',
-  'VIII', 'IX', 'XI', 'XII', 'XIII', 'A', 'B', 'C', 'D', 'E', 'K',
+  'PEG',
+  'DNA',
+  'RNA',
+  'HCL',
+  'HBR',
+  'USP',
+  'NF',
+  'EDTA',
+  'DHA',
+  'EPA',
+  'MSM',
+  'NAD',
+  'NMN',
+  'CoQ10',
+  'MCT',
+  'ATP',
+  'GABA',
+  'HMB',
+  'SAM-E',
+  'BCAA',
+  'IU',
+  'II',
+  'III',
+  'IV',
+  'VI',
+  'VII',
+  'VIII',
+  'IX',
+  'XI',
+  'XII',
+  'XIII',
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'K',
 ])
 
 /** INN convention keeps Greek-letter glycosylation suffixes lowercase: "epoetin alfa". */
 const LOWERCASE_SUFFIXES = new Set([
-  'alfa', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'pegol', 'aviv', 'dulce', 'and', 'or',
-  'with', 'in', 'of', 'the',
+  'alfa',
+  'beta',
+  'gamma',
+  'delta',
+  'epsilon',
+  'zeta',
+  'pegol',
+  'aviv',
+  'dulce',
+  'and',
+  'or',
+  'with',
+  'in',
+  'of',
+  'the',
 ])
 
 /**
@@ -83,12 +177,34 @@ const LOWERCASE_SUFFIXES = new Set([
  * become "Covid-19 Vaccine, Mrna" -- these are proper names with fixed capitalisation.
  */
 const FIXED_CASE: Readonly<Record<string, string>> = {
-  MRNA: 'mRNA', SIRNA: 'siRNA', TRNA: 'tRNA', RRNA: 'rRNA', SNRNA: 'snRNA', CDNA: 'cDNA',
-  'COVID-19': 'COVID-19', COVID: 'COVID', 'SARS-COV-2': 'SARS-CoV-2', HIV: 'HIV', HPV: 'HPV',
-  HBV: 'HBV', HCV: 'HCV', RSV: 'RSV', BCG: 'BCG', PCSK9: 'PCSK9', 'GLP-1': 'GLP-1',
-  'IL-2': 'IL-2', 'IL-6': 'IL-6', 'TNF-ALPHA': 'TNF-alpha', 'PD-1': 'PD-1', 'PD-L1': 'PD-L1',
-  LDL: 'LDL', HDL: 'HDL', 'L-CARNITINE': 'L-Carnitine', 'L-THEANINE': 'L-Theanine',
-  'D-RIBOSE': 'D-Ribose', 'N-ACETYLCYSTEINE': 'N-Acetylcysteine',
+  MRNA: 'mRNA',
+  SIRNA: 'siRNA',
+  TRNA: 'tRNA',
+  RRNA: 'rRNA',
+  SNRNA: 'snRNA',
+  CDNA: 'cDNA',
+  'COVID-19': 'COVID-19',
+  COVID: 'COVID',
+  'SARS-COV-2': 'SARS-CoV-2',
+  HIV: 'HIV',
+  HPV: 'HPV',
+  HBV: 'HBV',
+  HCV: 'HCV',
+  RSV: 'RSV',
+  BCG: 'BCG',
+  PCSK9: 'PCSK9',
+  'GLP-1': 'GLP-1',
+  'IL-2': 'IL-2',
+  'IL-6': 'IL-6',
+  'TNF-ALPHA': 'TNF-alpha',
+  'PD-1': 'PD-1',
+  'PD-L1': 'PD-L1',
+  LDL: 'LDL',
+  HDL: 'HDL',
+  'L-CARNITINE': 'L-Carnitine',
+  'L-THEANINE': 'L-Theanine',
+  'D-RIBOSE': 'D-Ribose',
+  'N-ACETYLCYSTEINE': 'N-Acetylcysteine',
 }
 
 export function titleCaseDrugName(upper: string): string {
@@ -111,7 +227,10 @@ export function titleCaseDrugName(upper: string): string {
       // "and", "of" etc. stay lowercase unless they open the name.
       if (index > 0 && LOWERCASE_SUFFIXES.has(lower)) return lower
       // Hyphenated and slashed compounds capitalise each part: "Carbidopa-Levodopa".
-      return lower.replace(/(^|[-/(])([a-z0-9])/g, (_m, sep: string, ch: string) => sep + ch.toUpperCase())
+      return lower.replace(
+        /(^|[-/(])([a-z0-9])/g,
+        (_m, sep: string, ch: string) => sep + ch.toUpperCase(),
+      )
     })
     .join(' ')
 }
@@ -145,27 +264,71 @@ const STEM_RULES: ReadonlyArray<{ test: RegExp; modality: DrugModality; rule: st
   // separate siRNA from antisense — the label's own words do, so those are handled before this
   // list runs (see classifyModality). These are the fallbacks when there is no label.
   { test: /siran$/i, modality: 'siRNA (Small Interfering RNA)', rule: 'INN stem -siran (siRNA)' },
-  { test: /rsen$/i, modality: 'ASO (Antisense Oligonucleotide)', rule: 'INN stem -rsen (antisense)' },
+  {
+    test: /rsen$/i,
+    modality: 'ASO (Antisense Oligonucleotide)',
+    rule: 'INN stem -rsen (antisense)',
+  },
 
   // Gene and cell therapies. -vec (vector), -cel (cell), -gene (gene therapy component).
-  { test: /(parvovec|repvec|vec)$/i, modality: 'CRISPR / Gene Therapy', rule: 'INN stem -vec (viral vector)' },
-  { test: /(temcel|leucel|cel)$/i, modality: 'CRISPR / Gene Therapy', rule: 'INN stem -cel (cell therapy)' },
-  { test: /gene\s+\w+$/i, modality: 'CRISPR / Gene Therapy', rule: 'INN two-word gene-therapy name' },
+  {
+    test: /(parvovec|repvec|vec)$/i,
+    modality: 'CRISPR / Gene Therapy',
+    rule: 'INN stem -vec (viral vector)',
+  },
+  {
+    test: /(temcel|leucel|cel)$/i,
+    modality: 'CRISPR / Gene Therapy',
+    rule: 'INN stem -cel (cell therapy)',
+  },
+  {
+    test: /gene\s+\w+$/i,
+    modality: 'CRISPR / Gene Therapy',
+    rule: 'INN two-word gene-therapy name',
+  },
 
   // Antibodies. -mab is the stem; the sub-stems (-ximab, -zumab, -umab) all end in it.
-  { test: /mab$/i, modality: 'Monoclonal Antibody (mAb)', rule: 'INN stem -mab (monoclonal antibody)' },
+  {
+    test: /mab$/i,
+    modality: 'Monoclonal Antibody (mAb)',
+    rule: 'INN stem -mab (monoclonal antibody)',
+  },
 
   // Fusion proteins and enzymes come before the peptide stems, because -cept and -ase are
   // recombinant proteins even though some end in letters the peptide rules would also match.
-  { test: /cept$/i, modality: 'Recombinant Protein / Biologic', rule: 'INN stem -cept (receptor fusion)' },
-  { test: /(ase|dase|teplase|uplase)$/i, modality: 'Recombinant Protein / Biologic', rule: 'INN stem -ase (enzyme)' },
-  { test: /(poetin|stim|kin|feron)$/i, modality: 'Recombinant Protein / Biologic', rule: 'INN stem for a cytokine/growth factor' },
-  { test: /^(INSULIN|SOMATROPIN|MENOTROPINS|FOLLITROPIN|CHORIOGONADOTROPIN)\b/i, modality: 'Recombinant Protein / Biologic', rule: 'named recombinant hormone' },
-  { test: /^(COAGULATION FACTOR|ANTIHEMOPHILIC FACTOR|FACTOR (VIII|IX|VIIA))/i, modality: 'Recombinant Protein / Biologic', rule: 'named clotting factor' },
+  {
+    test: /cept$/i,
+    modality: 'Recombinant Protein / Biologic',
+    rule: 'INN stem -cept (receptor fusion)',
+  },
+  {
+    test: /(ase|dase|teplase|uplase)$/i,
+    modality: 'Recombinant Protein / Biologic',
+    rule: 'INN stem -ase (enzyme)',
+  },
+  {
+    test: /(poetin|stim|kin|feron)$/i,
+    modality: 'Recombinant Protein / Biologic',
+    rule: 'INN stem for a cytokine/growth factor',
+  },
+  {
+    test: /^(INSULIN|SOMATROPIN|MENOTROPINS|FOLLITROPIN|CHORIOGONADOTROPIN)\b/i,
+    modality: 'Recombinant Protein / Biologic',
+    rule: 'named recombinant hormone',
+  },
+  {
+    test: /^(COAGULATION FACTOR|ANTIHEMOPHILIC FACTOR|FACTOR (VIII|IX|VIIA))/i,
+    modality: 'Recombinant Protein / Biologic',
+    rule: 'named clotting factor',
+  },
 
   // Peptides. -tide is the general stem; -relin, -actide, -pressin are peptide hormone stems.
   { test: /tide$/i, modality: 'Peptide / GLP-1 Agonist', rule: 'INN stem -tide (peptide)' },
-  { test: /(relin|actide|pressin|ocin)$/i, modality: 'Peptide / GLP-1 Agonist', rule: 'INN stem for a peptide hormone' },
+  {
+    test: /(relin|actide|pressin|ocin)$/i,
+    modality: 'Peptide / GLP-1 Agonist',
+    rule: 'INN stem for a peptide hormone',
+  },
 ]
 
 /**
@@ -179,12 +342,10 @@ const MRNA_MARKERS =
   /\b(nucleoside[- ]modified (messenger rna|mrna)|mrna vaccine|is an? (modified )?(messenger rna|mrna)\b|lipid nanoparticle[- ]encapsulated (messenger rna|mrna))/i
 const SIRNA_MARKERS = /\bsmall interfering (ribonucleic acid|rna)|\bsirna\b|\brna interference\b/i
 const ASO_MARKERS = /\bantisense oligonucleotide\b|\bantisense\b/i
-const GENE_THERAPY_MARKERS = /\b(adeno-associated virus|aav|lentiviral vector|gene therapy|crispr|cas9|genome edit)\b/i
+const GENE_THERAPY_MARKERS =
+  /\b(adeno-associated virus|aav|lentiviral vector|gene therapy|crispr|cas9|genome edit)\b/i
 
-const SUPPLEMENT_CATEGORIES = new Set([
-  'UNAPPROVED HOMEOPATHIC',
-  'DIETARY SUPPLEMENT',
-])
+const SUPPLEMENT_CATEGORIES = new Set(['UNAPPROVED HOMEOPATHIC', 'DIETARY SUPPLEMENT'])
 
 /**
  * DSLD categories that name a nutrient rather than a drug that happens to appear on a supplement
@@ -214,16 +375,28 @@ export function classifyModality(input: ModalityInput): ModalityDecision {
   // whose label says "small interfering" is not filed under antisense on the strength of a suffix.
   if (label) {
     if (SIRNA_MARKERS.test(label)) {
-      return { modality: 'siRNA (Small Interfering RNA)', rule: 'SPL label states RNA interference' }
+      return {
+        modality: 'siRNA (Small Interfering RNA)',
+        rule: 'SPL label states RNA interference',
+      }
     }
     if (ASO_MARKERS.test(label)) {
-      return { modality: 'ASO (Antisense Oligonucleotide)', rule: 'SPL label states antisense oligonucleotide' }
+      return {
+        modality: 'ASO (Antisense Oligonucleotide)',
+        rule: 'SPL label states antisense oligonucleotide',
+      }
     }
     if (MRNA_MARKERS.test(label)) {
-      return { modality: 'mRNA Vaccine / Therapeutic', rule: 'SPL label states the product is messenger RNA' }
+      return {
+        modality: 'mRNA Vaccine / Therapeutic',
+        rule: 'SPL label states the product is messenger RNA',
+      }
     }
     if (GENE_THERAPY_MARKERS.test(label)) {
-      return { modality: 'CRISPR / Gene Therapy', rule: 'SPL label states a gene-therapy vector or genome edit' }
+      return {
+        modality: 'CRISPR / Gene Therapy',
+        rule: 'SPL label states a gene-therapy vector or genome edit',
+      }
     }
   }
 
@@ -244,18 +417,30 @@ export function classifyModality(input: ModalityInput): ModalityDecision {
   // appears as an ingredient in homeopathic products, and without this guard a molecule with
   // hundreds of ANDAs behind it was filed as a botanical on the strength of one such listing.
   const hasDrugApplication =
-    (input.applicationKinds.NDA ?? 0) + (input.applicationKinds.BLA ?? 0) + (input.applicationKinds.ANDA ?? 0) > 0
+    (input.applicationKinds.NDA ?? 0) +
+      (input.applicationKinds.BLA ?? 0) +
+      (input.applicationKinds.ANDA ?? 0) >
+    0
 
   // Supplement sources and supplement-shaped marketing categories. A DSLD listing still wins for a
   // genuine nutrient even when an approved application exists — vitamin C is sold as an injectable
   // drug AND as a supplement, and a reader looking it up means the second one.
-  if (input.fromSupplementDatabase && (NUTRIENT_CATEGORIES.has(input.supplementCategory ?? '') || !hasDrugApplication)) {
-    return { modality: 'Nutraceutical / Botanical', rule: 'listed in the NIH Dietary Supplement Label Database' }
+  if (
+    input.fromSupplementDatabase &&
+    (NUTRIENT_CATEGORIES.has(input.supplementCategory ?? '') || !hasDrugApplication)
+  ) {
+    return {
+      modality: 'Nutraceutical / Botanical',
+      rule: 'listed in the NIH Dietary Supplement Label Database',
+    }
   }
   if (!hasDrugApplication) {
     for (const category of Object.keys(input.marketingCategories)) {
       if (SUPPLEMENT_CATEGORIES.has(category)) {
-        return { modality: 'Nutraceutical / Botanical', rule: `NDC marketing category "${category}"` }
+        return {
+          modality: 'Nutraceutical / Botanical',
+          rule: `NDC marketing category "${category}"`,
+        }
       }
     }
   }
@@ -300,13 +485,24 @@ export function classifyApprovalStatus(input: ApprovalInput): ApprovalDecision {
     // A generic is an approved copy of an approved drug. Calling it anything else would be wrong.
     return { status: 'FDA Approved', rule: 'approved under an ANDA (generic of an approved drug)' }
   }
-  if (categories['OTC MONOGRAPH DRUG'] || categories['OTC MONOGRAPH FINAL'] || categories['OTC MONOGRAPH NOT FINAL']) {
+  if (
+    categories['OTC MONOGRAPH DRUG'] ||
+    categories['OTC MONOGRAPH FINAL'] ||
+    categories['OTC MONOGRAPH NOT FINAL']
+  ) {
     return { status: 'FDA Approved', rule: 'marketed under an OTC monograph' }
   }
   if (input.fromSupplementDatabase || categories['UNAPPROVED HOMEOPATHIC']) {
-    return { status: 'Non-FDA / Dietary Supplement', rule: 'dietary supplement or homeopathic listing, no FDA approval' }
+    return {
+      status: 'Non-FDA / Dietary Supplement',
+      rule: 'dietary supplement or homeopathic listing, no FDA approval',
+    }
   }
-  if (categories['UNAPPROVED DRUG OTHER'] || categories['UNAPPROVED DRUG FOR USE IN DRUG SHORTAGE'] || categories['UNAPPROVED MEDICAL GAS']) {
+  if (
+    categories['UNAPPROVED DRUG OTHER'] ||
+    categories['UNAPPROVED DRUG FOR USE IN DRUG SHORTAGE'] ||
+    categories['UNAPPROVED MEDICAL GAS']
+  ) {
     return { status: 'Off-Label / Compounded', rule: 'marketed without an approved application' }
   }
   if (categories['EMERGENCY USE AUTHORIZATION']) {
@@ -327,13 +523,47 @@ export function classifyApprovalStatus(input: ApprovalInput): ApprovalDecision {
  * false of the drug. Matched as substrings because these firms appear under many legal variants.
  */
 const REPACKAGER_MARKERS = [
-  'BRYANT RANCH', 'A-S MEDICATION', 'REMEDYREPACK', 'PROFICIENT RX', 'NUCARE', 'PREFERRED PHARMACEUTICALS',
-  'QUALITY CARE', 'REDPHARM', 'DENTON PHARMA', 'DIRECTRX', 'DIRECT RX', 'ASCLEMED', 'PD-RX',
-  'LAKE ERIE MEDICAL', 'BLENHEIM', "ST. MARY'S MEDICAL PARK", 'ST MARYS MEDICAL PARK', 'APHENA',
-  'CLINICAL SOLUTIONS', 'UNIT DOSE', 'MEDSOURCE', 'NORTHWIND', 'BLUEPOINT', 'REPACK', 'RE-PACK',
-  'DISPENSING SOLUTIONS', 'PHYSICIANS TOTAL CARE', 'STAT RX', 'GENERAL INJECTABLES', 'CARDINAL HEALTH',
-  'MCKESSON', 'MAJOR PHARMACEUTICALS', 'AVPAK', 'AVKARE', 'HF ACQUISITION', 'HENRY SCHEIN',
-  'MEDVANTX', 'RPK PHARMACEUTICALS', 'ADVANCED RX', 'LIBERTY PHARMACEUTICALS', 'TIME CAP',
+  'BRYANT RANCH',
+  'A-S MEDICATION',
+  'REMEDYREPACK',
+  'PROFICIENT RX',
+  'NUCARE',
+  'PREFERRED PHARMACEUTICALS',
+  'QUALITY CARE',
+  'REDPHARM',
+  'DENTON PHARMA',
+  'DIRECTRX',
+  'DIRECT RX',
+  'ASCLEMED',
+  'PD-RX',
+  'LAKE ERIE MEDICAL',
+  'BLENHEIM',
+  "ST. MARY'S MEDICAL PARK",
+  'ST MARYS MEDICAL PARK',
+  'APHENA',
+  'CLINICAL SOLUTIONS',
+  'UNIT DOSE',
+  'MEDSOURCE',
+  'NORTHWIND',
+  'BLUEPOINT',
+  'REPACK',
+  'RE-PACK',
+  'DISPENSING SOLUTIONS',
+  'PHYSICIANS TOTAL CARE',
+  'STAT RX',
+  'GENERAL INJECTABLES',
+  'CARDINAL HEALTH',
+  'MCKESSON',
+  'MAJOR PHARMACEUTICALS',
+  'AVPAK',
+  'AVKARE',
+  'HF ACQUISITION',
+  'HENRY SCHEIN',
+  'MEDVANTX',
+  'RPK PHARMACEUTICALS',
+  'ADVANCED RX',
+  'LIBERTY PHARMACEUTICALS',
+  'TIME CAP',
 ] as const
 
 export function isRepackager(name: string): boolean {
@@ -394,9 +624,26 @@ const SPONSOR_ABBREVIATIONS: ReadonlyArray<readonly [RegExp, string]> = [
 
 /** Legal-form tokens whose conventional capitalisation is not plain title case. */
 const SPONSOR_LEGAL_FORMS: Readonly<Record<string, string>> = {
-  INC: 'Inc.', LLC: 'LLC', LP: 'LP', LTD: 'Ltd.', PLC: 'plc', GMBH: 'GmbH', AG: 'AG', SA: 'SA',
-  NV: 'NV', BV: 'BV', AS: 'AS', AB: 'AB', KK: 'KK', PTE: 'Pte.', PVT: 'Pvt.', CO: 'Co.',
-  USA: 'USA', US: 'US', UK: 'UK', RD: 'R&D',
+  INC: 'Inc.',
+  LLC: 'LLC',
+  LP: 'LP',
+  LTD: 'Ltd.',
+  PLC: 'plc',
+  GMBH: 'GmbH',
+  AG: 'AG',
+  SA: 'SA',
+  NV: 'NV',
+  BV: 'BV',
+  AS: 'AS',
+  AB: 'AB',
+  KK: 'KK',
+  PTE: 'Pte.',
+  PVT: 'Pvt.',
+  CO: 'Co.',
+  USA: 'USA',
+  US: 'US',
+  UK: 'UK',
+  RD: 'R&D',
 }
 
 export function formatSponsorName(raw: string): string {
@@ -416,7 +663,9 @@ export function formatSponsorName(raw: string): string {
       const bare = word.replace(/[^A-Za-z&]/g, '').toUpperCase()
       const legal = SPONSOR_LEGAL_FORMS[bare]
       if (legal) return legal
-      return word.toLowerCase().replace(/(^|[-/'])([a-z])/g, (_m, sep: string, ch: string) => sep + ch.toUpperCase())
+      return word
+        .toLowerCase()
+        .replace(/(^|[-/'])([a-z])/g, (_m, sep: string, ch: string) => sep + ch.toUpperCase())
     })
     .join(' ')
 }
@@ -450,7 +699,9 @@ export function pickBrandNames(
   // tells a reader something false. Keep such a brand only when no single-ingredient brand exists,
   // which is the legitimate case of a drug sold exclusively in combination.
   const hasSingleIngredientBrand = candidates.some((c) => c.singleIngredient && c.name.trim())
-  const usable = hasSingleIngredientBrand ? candidates.filter((c) => c.singleIngredient) : candidates
+  const usable = hasSingleIngredientBrand
+    ? candidates.filter((c) => c.singleIngredient)
+    : candidates
 
   for (const candidate of usable) {
     const raw = candidate.name.trim()
@@ -462,15 +713,21 @@ export function pickBrandNames(
     // Combination products: "AMLODIPINE AND ATORVASTATIN", "DAPAGLIFLOZIN AND METFORMIN".
     if (/\bAND\b|\bWITH\b|\//.test(upper) && upper.includes(moiety.split(' ')[0] ?? '')) continue
     // Names that are the generic plus a salt or form word add nothing.
-    if (moietyNormalised && upper.replace(/[^A-Z0-9]/g, '').startsWith(moietyNormalised) && raw.length < moiety.length + 14) {
+    if (
+      moietyNormalised &&
+      upper.replace(/[^A-Z0-9]/g, '').startsWith(moietyNormalised) &&
+      raw.length < moiety.length + 14
+    ) {
       continue
     }
 
     // Collapse dosage-form variants onto the parent brand: WEGOVY FLEXTOUCH -> Wegovy.
-    const parent = raw.replace(
-      /\s+(XR|ER|SR|CR|LA|HD|DS|IR|ODT|FLEXTOUCH|FLEXPEN|SOLOSTAR|KWIKPEN|PEN|INJECTOR|AUTOINJECTOR|SINGLE-DOSE|QLEX)\b.*$/i,
-      '',
-    ).trim()
+    const parent = raw
+      .replace(
+        /\s+(XR|ER|SR|CR|LA|HD|DS|IR|ODT|FLEXTOUCH|FLEXPEN|SOLOSTAR|KWIKPEN|PEN|INJECTOR|AUTOINJECTOR|SINGLE-DOSE|QLEX)\b.*$/i,
+        '',
+      )
+      .trim()
     const key = parent.toUpperCase()
     seen.set(key, (seen.get(key) ?? 0) + candidate.count * (candidate.singleIngredient ? 3 : 1))
   }
@@ -494,7 +751,11 @@ export function trimToSentence(text: string, max: number): string {
   if (clean.length <= max) return clean
 
   const window = clean.slice(0, max)
-  const lastStop = Math.max(window.lastIndexOf('. '), window.lastIndexOf('. '), window.lastIndexOf('? '))
+  const lastStop = Math.max(
+    window.lastIndexOf('. '),
+    window.lastIndexOf('. '),
+    window.lastIndexOf('? '),
+  )
   if (lastStop > max * 0.5) return window.slice(0, lastStop + 1).trim()
 
   const lastSpace = window.lastIndexOf(' ')
@@ -564,7 +825,10 @@ export function extractPatientFriendlyIndication(labelIndication: string | undef
     for (let pass = 0; pass < 3; pass += 1) {
       phrase = phrase
         .replace(INDICATION_TAIL, '')
-        .replace(/^(?:adults?|adult|pediatric|paediatric|patients?|children|infants?)(?:\s+(?:and|or)\s+\w+)*(?:\s+patients?)?\s+with\s+/i, '')
+        .replace(
+          /^(?:adults?|adult|pediatric|paediatric|patients?|children|infants?)(?:\s+(?:and|or)\s+\w+)*(?:\s+patients?)?\s+with\s+/i,
+          '',
+        )
         .replace(/\s*\([^)]*\)\s*$/, '')
         .replace(/\s+(?:in|for|with|as|to|of|and|or|the|a|an)\s*$/i, '')
         .replace(/[,;:]\s*$/, '')
@@ -600,8 +864,32 @@ const TARGET_PATTERNS: ReadonlyArray<{ pattern: RegExp; group: number }> = [
 
 /** Words that look like gene symbols in capitals but are not. */
 const TARGET_STOPWORDS = new Set([
-  'FDA', 'USP', 'NDA', 'ANDA', 'BLA', 'USA', 'AUC', 'CMAX', 'TMAX', 'IV', 'IM', 'SC', 'PO',
-  'THE', 'AND', 'FOR', 'NOT', 'ITS', 'ONE', 'TWO', 'HAS', 'WAS', 'ARE', 'MAY', 'CAN', 'ALL',
+  'FDA',
+  'USP',
+  'NDA',
+  'ANDA',
+  'BLA',
+  'USA',
+  'AUC',
+  'CMAX',
+  'TMAX',
+  'IV',
+  'IM',
+  'SC',
+  'PO',
+  'THE',
+  'AND',
+  'FOR',
+  'NOT',
+  'ITS',
+  'ONE',
+  'TWO',
+  'HAS',
+  'WAS',
+  'ARE',
+  'MAY',
+  'CAN',
+  'ALL',
 ])
 
 export function extractTarget(mechanismText: string | undefined): string {

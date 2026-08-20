@@ -1,9 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import {
-  hillFormula,
-  parseSmiles,
-  STANDARD_ATOMIC_WEIGHTS,
-} from '@/lib/rna-intelligence/smiles'
+import { hillFormula, parseSmiles, STANDARD_ATOMIC_WEIGHTS } from '@/lib/rna-intelligence/smiles'
 
 // Every expected formula and mass below is the published value for that compound (PubChem CID
 // 2244 aspirin, 2519 caffeine, 4091 metformin, and so on). They are the point of the test: a

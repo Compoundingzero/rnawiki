@@ -1,8 +1,18 @@
 import 'dotenv/config'
 import { readFileSync, existsSync } from 'node:fs'
 import { aggregateOpenFda, summariseAggregate, type AggregatedSubstance } from './openfda'
-import { loadSupplementIngredients, SUPPLEMENT_DRUG_ALIASES, type SupplementIngredient } from './dsld'
-import { assignUniqueSlugs, buildDossierRow, shouldIngest, type DrugInsert, type IngestStructure } from './build-dossier'
+import {
+  loadSupplementIngredients,
+  SUPPLEMENT_DRUG_ALIASES,
+  type SupplementIngredient,
+} from './dsld'
+import {
+  assignUniqueSlugs,
+  buildDossierRow,
+  shouldIngest,
+  type DrugInsert,
+  type IngestStructure,
+} from './build-dossier'
 import { baseMoiety } from './normalise'
 import { loadDrugs } from './load'
 import { CACHE_FILES } from './paths'
@@ -50,7 +60,15 @@ function loadStructures(skip: boolean): Map<string, IngestStructure> {
   // where a null record is a cached "PubChem does not have this" — a real answer worth keeping.
   const raw = JSON.parse(readFileSync(CACHE_FILES.structureIndex, 'utf8')) as Record<
     string,
-    { record: { smiles?: string; formula?: string; molecularWeight?: number; iupacName?: string; xlogp?: number } | null } | null
+    {
+      record: {
+        smiles?: string
+        formula?: string
+        molecularWeight?: number
+        iupacName?: string
+        xlogp?: number
+      } | null
+    } | null
   >
 
   let negatives = 0
@@ -85,7 +103,9 @@ function mergeSupplements(
   supplements: Map<string, SupplementIngredient>,
 ): Map<string, SupplementIngredient> {
   const attached = new Map<string, SupplementIngredient>()
-  const aliasToMoiety = new Map(SUPPLEMENT_DRUG_ALIASES.map(([supplement, moiety]) => [supplement, moiety]))
+  const aliasToMoiety = new Map(
+    SUPPLEMENT_DRUG_ALIASES.map(([supplement, moiety]) => [supplement, moiety]),
+  )
 
   // DSLD writes "Alpha Lipoic Acid"; openFDA writes "ALPHA-LIPOIC ACID". Exact-key matching gave
   // each of them its own page, and the slug resolver then papered over the duplicate by appending
@@ -156,7 +176,8 @@ async function main(): Promise<void> {
   const skips = new Map<string, number>()
 
   for (const substance of index.values()) {
-    if (options.only && !substance.moiety.toLowerCase().includes(options.only.toLowerCase())) continue
+    if (options.only && !substance.moiety.toLowerCase().includes(options.only.toLowerCase()))
+      continue
 
     const input = {
       substance,

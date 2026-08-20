@@ -54,13 +54,61 @@ function buildTerms(): string[] {
   const pairs = letters.flatMap((a) => vowels.map((b) => a + b))
   return [
     ...pairs,
-    'nicotinamide', 'riboside', 'nmn', 'nad', 'creatine', 'peptide', 'collagen', 'probiotic',
-    'mushroom', 'extract', 'oil', 'root', 'leaf', 'berry', 'seed', 'bark', 'powder', 'amino',
-    'enzyme', 'omega', 'curcumin', 'resveratrol', 'quercetin', 'spermidine', 'urolithin',
-    'astaxanthin', 'fisetin', 'ashwagandha', 'rhodiola', 'bacopa', 'ginseng', 'turkesterone',
-    'ecdysterone', 'tongkat', 'fadogia', 'betaine', 'taurine', 'glycine', 'citrulline', 'carnitine',
-    'carnosine', 'theanine', 'tyrosine', 'berberine', 'policosanol', 'bergamot', 'monacolin',
-    'cordyceps', 'reishi', 'chaga', 'lutein', 'zeaxanthin', 'melatonin', 'inositol', 'choline',
+    'nicotinamide',
+    'riboside',
+    'nmn',
+    'nad',
+    'creatine',
+    'peptide',
+    'collagen',
+    'probiotic',
+    'mushroom',
+    'extract',
+    'oil',
+    'root',
+    'leaf',
+    'berry',
+    'seed',
+    'bark',
+    'powder',
+    'amino',
+    'enzyme',
+    'omega',
+    'curcumin',
+    'resveratrol',
+    'quercetin',
+    'spermidine',
+    'urolithin',
+    'astaxanthin',
+    'fisetin',
+    'ashwagandha',
+    'rhodiola',
+    'bacopa',
+    'ginseng',
+    'turkesterone',
+    'ecdysterone',
+    'tongkat',
+    'fadogia',
+    'betaine',
+    'taurine',
+    'glycine',
+    'citrulline',
+    'carnitine',
+    'carnosine',
+    'theanine',
+    'tyrosine',
+    'berberine',
+    'policosanol',
+    'bergamot',
+    'monacolin',
+    'cordyceps',
+    'reishi',
+    'chaga',
+    'lutein',
+    'zeaxanthin',
+    'melatonin',
+    'inositol',
+    'choline',
   ]
 }
 
@@ -84,7 +132,12 @@ export async function loadSupplementIngredients(
   if (!options.force && existsSync(CACHE_FILES.dsldIngredients)) {
     const cached = JSON.parse(readFileSync(CACHE_FILES.dsldIngredients, 'utf8')) as Record<
       string,
-      { category: string; labels: number; names: Array<[string, number]>; brands: Array<[string, number]> }
+      {
+        category: string
+        labels: number
+        names: Array<[string, number]>
+        brands: Array<[string, number]>
+      }
     >
     const map = new Map<string, SupplementIngredient>()
     for (const [group, value] of Object.entries(cached)) {
@@ -174,27 +227,28 @@ function pushCount(list: Array<[string, number]>, value: string): void {
  * cannot merge these, and left unmerged the site would carry two pages for one molecule.
  * Every pair is a documented USP/INN synonym relationship, not a guess.
  */
-export const SUPPLEMENT_DRUG_ALIASES: ReadonlyArray<readonly [supplement: string, moiety: string]> = [
-  ['Vitamin D', 'CHOLECALCIFEROL'],
-  ['Vitamin D3', 'CHOLECALCIFEROL'],
-  ['Vitamin D2', 'ERGOCALCIFEROL'],
-  ['Vitamin B12', 'CYANOCOBALAMIN'],
-  ['Vitamin B1', 'THIAMINE'],
-  ['Vitamin B2', 'RIBOFLAVIN'],
-  ['Vitamin B3', 'NIACIN'],
-  ['Vitamin B5', 'PANTOTHENIC ACID'],
-  ['Vitamin B6', 'PYRIDOXINE'],
-  ['Vitamin B7', 'BIOTIN'],
-  ['Vitamin B9', 'FOLIC ACID'],
-  ['Vitamin C', 'ASCORBIC ACID'],
-  ['Vitamin E', 'TOCOPHEROL'],
-  ['Vitamin K', 'PHYTONADIONE'],
-  ['Vitamin A', 'RETINOL'],
-  ['CoQ10', 'UBIDECARENONE'],
-  ['Coenzyme Q10', 'UBIDECARENONE'],
-  ['Fish Oil', 'OMEGA-3 ACID ETHYL ESTERS'],
-  ['Omega-3', 'OMEGA-3 ACID ETHYL ESTERS'],
-  ['Folate', 'FOLIC ACID'],
-  ['Glucosamine', 'GLUCOSAMINE'],
-  ['Melatonin', 'MELATONIN'],
-] as const
+export const SUPPLEMENT_DRUG_ALIASES: ReadonlyArray<readonly [supplement: string, moiety: string]> =
+  [
+    ['Vitamin D', 'CHOLECALCIFEROL'],
+    ['Vitamin D3', 'CHOLECALCIFEROL'],
+    ['Vitamin D2', 'ERGOCALCIFEROL'],
+    ['Vitamin B12', 'CYANOCOBALAMIN'],
+    ['Vitamin B1', 'THIAMINE'],
+    ['Vitamin B2', 'RIBOFLAVIN'],
+    ['Vitamin B3', 'NIACIN'],
+    ['Vitamin B5', 'PANTOTHENIC ACID'],
+    ['Vitamin B6', 'PYRIDOXINE'],
+    ['Vitamin B7', 'BIOTIN'],
+    ['Vitamin B9', 'FOLIC ACID'],
+    ['Vitamin C', 'ASCORBIC ACID'],
+    ['Vitamin E', 'TOCOPHEROL'],
+    ['Vitamin K', 'PHYTONADIONE'],
+    ['Vitamin A', 'RETINOL'],
+    ['CoQ10', 'UBIDECARENONE'],
+    ['Coenzyme Q10', 'UBIDECARENONE'],
+    ['Fish Oil', 'OMEGA-3 ACID ETHYL ESTERS'],
+    ['Omega-3', 'OMEGA-3 ACID ETHYL ESTERS'],
+    ['Folate', 'FOLIC ACID'],
+    ['Glucosamine', 'GLUCOSAMINE'],
+    ['Melatonin', 'MELATONIN'],
+  ] as const

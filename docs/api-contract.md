@@ -22,6 +22,7 @@ Rate limits come from `lib/rate-limit.ts`. A limited request returns 429 with
 ## Search and read
 
 ### `GET /api/search?q=<query>&limit=<n>`
+
 Public. Rate limit PUBLIC_API. `limit` defaults 10, max 25.
 
 ```
@@ -29,9 +30,11 @@ Public. Rate limit PUBLIC_API. `limit` defaults 10, max 25.
 SearchHit = { slug, name, tradeName?, modality, approvalStatus, patientFriendlyIndication,
               dossierDepth }
 ```
+
 Empty query returns `{ results: [] }` without touching the database.
 
 ### `GET /api/drugs/:slug`
+
 Public. Returns the full `DrugDossier` including published community notes.
 
 ```
@@ -40,6 +43,7 @@ Public. Returns the full `DrugDossier` including published community notes.
 ```
 
 ### `GET /api/drugs?modality=&approvalStatus=&depth=&limit=&offset=`
+
 Public, paginated browse. `limit` max 60.
 
 ```
@@ -51,6 +55,7 @@ Public, paginated browse. `limit` max 60.
 ## Accounts
 
 ### `POST /api/auth/register`
+
 Body `{ name, email, password, handle?, orcid? }`. Rate limit AUTH.
 
 ```
@@ -60,6 +65,7 @@ Body `{ name, email, password, handle?, orcid? }`. Rate limit AUTH.
 ```
 
 ### `POST /api/auth/login`
+
 Body `{ email, password }`. Rate limit AUTH. Timing-safe: the same 401 message for an unknown
 email and a wrong password.
 
@@ -77,12 +83,14 @@ raw licence number (send `hasCredentialOnFile: boolean` instead), no email for a
 account owner.
 
 ### `POST /api/auth/doctor-verification`
+
 Authenticated. Body `{ fullName, licenseOrNpi, specialty, institution, workEmail }`.
 Sets `verificationState = 'pending'`. **It can never set `'verified'`.**
 
 ```
 202 { user: PublicUser, state: 'pending' }
 ```
+
 The client must render "Submitted for review", not a verified badge. This is the one place the
 wireframe was dishonest — it granted the blue check after a 900 ms timer — and it is corrected
 here on purpose.
@@ -92,6 +100,7 @@ here on purpose.
 ## Community notes
 
 ### `POST /api/drugs/:slug/notes`
+
 Authenticated. Rate limit WRITE. Body `{ content }` (1–4000 chars).
 
 ```
@@ -100,6 +109,7 @@ Authenticated. Rate limit WRITE. Body `{ content }` (1–4000 chars).
 ```
 
 ### `POST /api/notes/:id/upvote`
+
 Authenticated. Toggles. Rate limit WRITE.
 
 ```
@@ -111,6 +121,7 @@ Authenticated. Toggles. Rate limit WRITE.
 ## Edits — the RNA Intelligence pipeline
 
 ### `POST /api/drugs/:slug/sweep`
+
 Authenticated. Rate limit WRITE. Runs the deterministic sweep WITHOUT saving, so the editor can
 show live diagnostics as the contributor types.
 
@@ -121,9 +132,11 @@ Body `{ structureString, modality, workflow: LaboratoryProtocolStep[], cdnaMode?
 ```
 
 ### `POST /api/drugs/:slug/revisions`
+
 Authenticated. Rate limit WRITE. Body `{ payload: Partial<DrugDossier>, summary }`.
 
 Server-side sequence, in this exact order:
+
 1. Run the full deterministic sweep on the submitted structure and workflow.
 2. **Engine failure → instant rejection.** Persist a `machine_rejected` revision for the audit
    trail and return 422 with the diagnostics. It is never queued for a human.
@@ -137,6 +150,7 @@ Server-side sequence, in this exact order:
 ```
 
 ### `GET /api/review-queue?limit=&offset=`
+
 Public — the queue is public by design.
 
 ```
@@ -146,6 +160,7 @@ PendingRevision = { id, drugSlug, drugName, authorName, authorHandle?, authorTru
 ```
 
 ### `POST /api/revisions/:id/review`
+
 Requires `trusted` tier or admin. Body `{ decision: 'approve' | 'reject', note? }`.
 Idempotent: reviewing an already-reviewed revision returns 409, never a second increment.
 
@@ -159,6 +174,7 @@ Idempotent: reviewing an already-reviewed revision returns 409, never a second i
 ## Feedback
 
 ### `POST /api/feedback`
+
 Public. Rate limit FEEDBACK, keyed on `sessionHash` (never the raw IP).
 Body `{ type: 'suggestion' | 'correction' | 'request', message, email?, drugSlug? }`.
 
@@ -171,4 +187,5 @@ Body `{ type: 'suggestion' | 'correction' | 'request', message, email?, drugSlug
 ## Bookmarks
 
 ### `POST /api/drugs/:slug/save` — authenticated, toggles. `200 { saved: boolean }`
+
 ### `GET /api/me/saved` — authenticated. `200 { drugs: SearchHit[] }`

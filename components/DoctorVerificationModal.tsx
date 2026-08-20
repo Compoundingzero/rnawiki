@@ -419,9 +419,7 @@ export function AuthModal() {
             value={orcid}
             onChange={(e) => setOrcid(e.target.value)}
             aria-invalid={Boolean(fieldErrors.orcid)}
-            aria-describedby={
-              fieldErrors.orcid ? `${baseId}-orcid-error` : `${baseId}-orcid-hint`
-            }
+            aria-describedby={fieldErrors.orcid ? `${baseId}-orcid-error` : `${baseId}-orcid-hint`}
             className={INPUT_CLASS}
           />
           <FieldError id={`${baseId}-orcid-error`} message={fieldErrors.orcid} />
@@ -685,9 +683,7 @@ export function AuthModal() {
             </span>
           )}
         </div>
-        {currentUser.handle && (
-          <p className="text-[11px] text-[#86868B]">@{currentUser.handle}</p>
-        )}
+        {currentUser.handle && <p className="text-[11px] text-[#86868B]">@{currentUser.handle}</p>}
       </div>
       <button
         type="button"

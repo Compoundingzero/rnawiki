@@ -146,9 +146,9 @@ export default async function MethodologyPage() {
           </h1>
           <p className="text-sm text-[#6E6E73] leading-relaxed">
             Anyone can edit a record here. Before an edit is shown to anyone, a program reads the
-            structure it describes and tries to find something wrong with it. That program is
-            called RNA Intelligence, it runs in three layers, and this page says exactly what each
-            layer does — including what it cannot do.
+            structure it describes and tries to find something wrong with it. That program is called
+            RNA Intelligence, it runs in three layers, and this page says exactly what each layer
+            does — including what it cannot do.
           </p>
         </header>
 
@@ -157,15 +157,15 @@ export default async function MethodologyPage() {
           <Card>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
               Every check below is a pure function of the text submitted. No language model is
-              involved anywhere in this pipeline and none may be introduced. There is no
-              randomness, no clock reading, and no network call inside a verification path — the
-              same sequence produces the same report, character for character, on any machine, this
-              year and in ten years.
+              involved anywhere in this pipeline and none may be introduced. There is no randomness,
+              no clock reading, and no network call inside a verification path — the same sequence
+              produces the same report, character for character, on any machine, this year and in
+              ten years.
             </p>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              That is not a performance preference. A finding you cannot recompute yourself is not
-              a finding, it is an opinion wearing a badge. Everything on this page is designed so
-              you can re-run it and get our answer back.
+              That is not a performance preference. A finding you cannot recompute yourself is not a
+              finding, it is an opinion wearing a badge. Everything on this page is designed so you
+              can re-run it and get our answer back.
             </p>
             <p className="text-[11px] text-[#86868B] leading-relaxed">
               The parameter set currently in use is named in every report:{' '}
@@ -189,9 +189,9 @@ export default async function MethodologyPage() {
                 Which alphabet applies is decided by the record&rsquo;s modality. RNA, siRNA, ASO,
                 mRNA and gene-therapy records are read as nucleotide sequences; small molecules and
                 botanicals as SMILES chemistry strings; peptides and GLP-1 agonists as amino-acid
-                backbones. An antibody or a recombinant protein is usually recorded as a
-                descriptor &mdash; a name, not a sequence &mdash; and this layer can only check that
-                one is present and long enough to mean anything. It does not pretend to have read a
+                backbones. An antibody or a recombinant protein is usually recorded as a descriptor
+                &mdash; a name, not a sequence &mdash; and this layer can only check that one is
+                present and long enough to mean anything. It does not pretend to have read a
                 structure it was never given.
               </p>
 
@@ -236,12 +236,11 @@ export default async function MethodologyPage() {
 
               <p className="text-[11px] text-[#86868B] leading-relaxed">
                 One honest limit, stated with its direction: the parameter table carries stacking,
-                loop-initiation, multiloop, terminal-AU and Ninio terms, but not Turner
-                2004&rsquo;s terminal-mismatch, dangling-end or tabulated small-internal-loop
-                tables. Folds computed here are therefore systematically slightly{' '}
-                <em>less</em> stable than full ViennaRNA for larger loops, and exact for helices
-                closed by a triloop. That is a stated approximation with a known sign, not an
-                unquantified guess.
+                loop-initiation, multiloop, terminal-AU and Ninio terms, but not Turner 2004&rsquo;s
+                terminal-mismatch, dangling-end or tabulated small-internal-loop tables. Folds
+                computed here are therefore systematically slightly <em>less</em> stable than full
+                ViennaRNA for larger loops, and exact for helices closed by a triloop. That is a
+                stated approximation with a known sign, not an unquantified guess.
               </p>
             </LayerCard>
 
@@ -284,9 +283,10 @@ export default async function MethodologyPage() {
 
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
               When all three layers pass, the engine prints a short code beside the structure. It
-              answers one question and no other: <strong>is the structure on screen still the
-              structure the engine swept?</strong> It is not a statement that the drug works, that
-              the record is accurate, or that anyone has reviewed it.
+              answers one question and no other:{' '}
+              <strong>is the structure on screen still the structure the engine swept?</strong> It
+              is not a statement that the drug works, that the record is accurate, or that anyone
+              has reviewed it.
             </p>
 
             <CheckList
@@ -302,7 +302,10 @@ export default async function MethodologyPage() {
         </Section>
 
         {/* Routing */}
-        <Section eyebrow="What happens to your edit" title="The machine decides first, people decide second">
+        <Section
+          eyebrow="What happens to your edit"
+          title="The machine decides first, people decide second"
+        >
           <Card>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
               Two questions, answered in this order and never merged. First: is the submitted

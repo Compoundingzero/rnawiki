@@ -170,7 +170,9 @@ export const drugs = pgTable(
     oneSentenceVerdict: text('one_sentence_verdict').notNull().default(''),
     laymanHowItWorks: text('layman_how_it_works').notNull().default(''),
 
-    auditConfidence: auditConfidenceEnum('audit_confidence').notNull().default('Moderate / Debated'),
+    auditConfidence: auditConfidenceEnum('audit_confidence')
+      .notNull()
+      .default('Moderate / Debated'),
     confidenceScore: integer('confidence_score').notNull().default(0),
 
     anatomicalSite: varchar('anatomical_site', { length: 300 }),
@@ -185,13 +187,21 @@ export const drugs = pgTable(
     pricing: jsonb('pricing').$type<PricingTransparency>(),
     substitutes: jsonb('substitutes').$type<DrugSubstitutes>(),
     molecularSchema: jsonb('molecular_schema').$type<MolecularSchema>(),
-    keyAudits: jsonb('key_audits').$type<AuditPoint[]>().notNull().default(sql`'[]'::jsonb`),
+    keyAudits: jsonb('key_audits')
+      .$type<AuditPoint[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
     mechanismSteps: jsonb('mechanism_steps')
       .$type<MechanismStep[]>()
       .notNull()
       .default(sql`'[]'::jsonb`),
-    trials: jsonb('trials').$type<ClinicalTrialRecord[]>().notNull().default(sql`'[]'::jsonb`),
-    measuredVsInferredSummary: jsonb('measured_vs_inferred_summary').$type<MeasuredVsInferredSummary>(),
+    trials: jsonb('trials')
+      .$type<ClinicalTrialRecord[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    measuredVsInferredSummary: jsonb(
+      'measured_vs_inferred_summary',
+    ).$type<MeasuredVsInferredSummary>(),
     deliverySystem: jsonb('delivery_system').$type<DeliverySystem>(),
     commonQuestions: jsonb('common_questions')
       .$type<CommonQuestion[]>()
@@ -199,7 +209,10 @@ export const drugs = pgTable(
       .default(sql`'[]'::jsonb`),
 
     // Provenance for the ingested identity layer, e.g. ['openFDA Drugs@FDA', 'PubChem PUG-REST'].
-    sourceProvenance: jsonb('source_provenance').$type<string[]>().notNull().default(sql`'[]'::jsonb`),
+    sourceProvenance: jsonb('source_provenance')
+      .$type<string[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
 
     // Set only by a passing deterministic sweep of the RNA Intelligence engine. Never by hand.
     isMachineVerifiedStructure: boolean('is_machine_verified_structure').notNull().default(false),
@@ -416,7 +429,10 @@ export const feedback = pgTable(
     resolved: boolean('resolved').notNull().default(false),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [index('feedback_created_idx').on(table.createdAt), index('feedback_type_idx').on(table.type)],
+  (table) => [
+    index('feedback_created_idx').on(table.createdAt),
+    index('feedback_type_idx').on(table.type),
+  ],
 )
 
 // ---------------------------------------------------------------------------

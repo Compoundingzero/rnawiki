@@ -57,7 +57,10 @@ export function SiteHeader() {
                 <span className="sr-only sm:hidden">All Medicines</span>
               </Link>
             ) : (
-              <Link href="/" className="flex items-center gap-2 cursor-pointer select-none shrink-0">
+              <Link
+                href="/"
+                className="flex items-center gap-2 cursor-pointer select-none shrink-0"
+              >
                 <span className="text-base font-bold tracking-tight text-[#1D1D1F]">
                   RNA<span className="text-[#0071E3]">wiki</span>
                   <span className="text-[11px] font-normal text-[#86868B]">.com</span>
@@ -74,7 +77,10 @@ export function SiteHeader() {
             {isDossierView && (
               <div className="relative" ref={search.containerRef}>
                 <div className="flex items-center bg-[#F5F5F7] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0071E3]/20 focus-within:border-[#0071E3] rounded-full px-3 py-1.5 border border-black/[0.06] transition-all">
-                  <Search className="w-3.5 h-3.5 text-[#86868B] shrink-0 mr-1.5" aria-hidden="true" />
+                  <Search
+                    className="w-3.5 h-3.5 text-[#86868B] shrink-0 mr-1.5"
+                    aria-hidden="true"
+                  />
                   <input
                     type="text"
                     placeholder="Search medicine or target..."

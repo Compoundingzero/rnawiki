@@ -139,7 +139,6 @@ export function looksLikeCodename(name: string): boolean {
   return CODENAME_PATTERN.test(name.trim().toUpperCase())
 }
 
-
 export function aggregateOpenFda(): Map<string, AggregatedSubstance> {
   const index = new Map<string, AggregatedSubstance>()
   const get = (moiety: string): AggregatedSubstance => {
@@ -152,9 +151,9 @@ export function aggregateOpenFda(): Map<string, AggregatedSubstance> {
   }
 
   // --- Drugs@FDA: the approval record ---------------------------------------
-  const drugsFda = JSON.parse(
-    readFileSync(requireSourceFile(SOURCE_FILES.drugsFda), 'utf8'),
-  ) as { results?: DrugsFdaRecord[] }
+  const drugsFda = JSON.parse(readFileSync(requireSourceFile(SOURCE_FILES.drugsFda), 'utf8')) as {
+    results?: DrugsFdaRecord[]
+  }
 
   for (const record of drugsFda.results ?? []) {
     const applicationNumber = record.application_number ?? ''
@@ -176,7 +175,10 @@ export function aggregateOpenFda(): Map<string, AggregatedSubstance> {
 
         const entry = get(moiety)
         entry.productCount += 1
-        entry.rawNames.set(rawName.toUpperCase(), (entry.rawNames.get(rawName.toUpperCase()) ?? 0) + 1)
+        entry.rawNames.set(
+          rawName.toUpperCase(),
+          (entry.rawNames.get(rawName.toUpperCase()) ?? 0) + 1,
+        )
         entry.sources.add('openFDA Drugs@FDA')
         bump(entry.applicationKinds, kind)
         bump(entry.marketingStatuses, product.marketing_status)
@@ -231,7 +233,10 @@ export function aggregateOpenFda(): Map<string, AggregatedSubstance> {
 
       const entry = get(moiety)
       entry.productCount += 1
-      entry.rawNames.set(rawName.toUpperCase(), (entry.rawNames.get(rawName.toUpperCase()) ?? 0) + 1)
+      entry.rawNames.set(
+        rawName.toUpperCase(),
+        (entry.rawNames.get(rawName.toUpperCase()) ?? 0) + 1,
+      )
       entry.sources.add('openFDA NDC Directory')
       bump(entry.marketingCategories, category)
       bumpMap(entry.dosageForms, record.dosage_form)
@@ -275,7 +280,10 @@ function attachLabelText(index: Map<string, AggregatedSubstance>): void {
     return
   }
 
-  const labels = JSON.parse(readFileSync(CACHE_FILES.labelIndex, 'utf8')) as Record<string, LabelText>
+  const labels = JSON.parse(readFileSync(CACHE_FILES.labelIndex, 'utf8')) as Record<
+    string,
+    LabelText
+  >
   let attached = 0
 
   for (const [moiety, text] of Object.entries(labels)) {
@@ -292,7 +300,11 @@ function attachLabelText(index: Map<string, AggregatedSubstance>): void {
 export function summariseAggregate(index: Map<string, AggregatedSubstance>): string {
   const withLabel = [...index.values()].filter((entry) => entry.label).length
   const withApplication = [...index.values()].filter(
-    (entry) => (entry.applicationKinds.NDA ?? 0) + (entry.applicationKinds.BLA ?? 0) + (entry.applicationKinds.ANDA ?? 0) > 0,
+    (entry) =>
+      (entry.applicationKinds.NDA ?? 0) +
+        (entry.applicationKinds.BLA ?? 0) +
+        (entry.applicationKinds.ANDA ?? 0) >
+      0,
   ).length
   return [
     `moieties: ${index.size.toLocaleString()}`,

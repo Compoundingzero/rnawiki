@@ -22,10 +22,18 @@ const where = new Map()
 
 for (const file of process.argv.slice(2)) {
   let strings
-  try { strings = extractProse(readFileSync(file, 'utf8')) } catch { continue }
+  try {
+    strings = extractProse(readFileSync(file, 'utf8'))
+  } catch {
+    continue
+  }
   const short = file.split('/').pop()
   for (const str of strings) {
-    const words = str.toLowerCase().replace(/[^a-z0-9\s'-]/g, ' ').split(/\s+/).filter(Boolean)
+    const words = str
+      .toLowerCase()
+      .replace(/[^a-z0-9\s'-]/g, ' ')
+      .split(/\s+/)
+      .filter(Boolean)
     for (let i = 0; i + N <= words.length; i += 1) {
       const gram = words.slice(i, i + N).join(' ')
       counts.set(gram, (counts.get(gram) ?? 0) + 1)

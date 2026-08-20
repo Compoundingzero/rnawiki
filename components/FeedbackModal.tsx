@@ -52,7 +52,8 @@ function placeholderFor(type: FeedbackType): string {
   return 'How can we make this platform simpler and more useful for you?'
 }
 
-const TYPE_TAB_CLASS = 'flex-1 py-1 rounded-lg transition cursor-pointer whitespace-nowrap text-center'
+const TYPE_TAB_CLASS =
+  'flex-1 py-1 rounded-lg transition cursor-pointer whitespace-nowrap text-center'
 
 export function FeedbackModal() {
   const { openModal, setOpenModal } = useApp()

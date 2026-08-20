@@ -24,7 +24,10 @@ const MAX_LIMIT = 25
 const MAX_QUERY_LENGTH = 200
 
 const querySchema = z.object({
-  q: z.string().max(MAX_QUERY_LENGTH * 20).optional(),
+  q: z
+    .string()
+    .max(MAX_QUERY_LENGTH * 20)
+    .optional(),
   limit: z.coerce.number().int().positive().max(MAX_LIMIT).optional(),
 })
 

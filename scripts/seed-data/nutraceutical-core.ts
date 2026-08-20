@@ -80,8 +80,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Metabolite replacement therapy',
           howItCompares:
             'The identical molecule, used medically rather than recreationally, in children whose enzymes cannot make creatine and whose brains are therefore depleted of it. That clinical use is the strongest evidence that creatine crosses into the brain at all — and it says nothing about whether adding more to an already-replete adult brain does anything.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: addresses a genuine deficiency with a measurable brain creatine readout on MR spectroscopy. Cons: entirely irrelevant to the healthy adult who is the market for the tub.',
         },
@@ -103,7 +102,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'People who eat no meat start with a lower muscle total creatine content, and Harris et al. found the rise on supplementation was greatest in exactly those subjects who began lowest. That is a repletion effect, not a supraphysiological one, and it is why response varies so much between individuals.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'None at all from food. The ISSN position stand records that a normal omnivorous diet supplying 1 to 2 g of creatine a day leaves muscle stores about 60 to 80 percent saturated.',
           monthlyCost: '',
         },
       ],
@@ -123,7 +123,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       structureType: 'small_molecule_smiles',
       smilesString: 'CN(CC(=O)O)C(=N)N.O',
       chemicalFormula: 'C4H11N3O3',
-      molecularWeight: '149.15 g/mol (monohydrate; 131.13 g/mol for the anhydrous creatine zwitterion)',
+      molecularWeight:
+        '149.15 g/mol (monohydrate; 131.13 g/mol for the anhydrous creatine zwitterion)',
       structureSource: {
         label: 'PubChem CID 80116 — Creatine monohydrate, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/80116',
@@ -275,9 +276,9 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         category: 'conclusion_shift',
         title: 'The kidney scare reversed: raised creatinine is the metabolite, not the injury',
         laymanSummary:
-          'Creatine was widely believed to damage kidneys because it pushes up a blood marker doctors use to check kidney function. That marker is creatine\'s own breakdown product, and studies of long-term users found normal kidney function.',
+          "Creatine was widely believed to damage kidneys because it pushes up a blood marker doctors use to check kidney function. That marker is creatine's own breakdown product, and studies of long-term users found normal kidney function.",
         technicalDetails:
-          'Serum creatinine is the non-enzymatic breakdown product of creatine, so supplementation raises it mechanically without any change in glomerular filtration — which made every early eGFR-based safety signal uninterpretable. Poortmans and Francaux measured creatinine, urea and albumin clearances directly in athletes who had used creatine for ten months to five years against controls and found no difference in plasma content, urinary excretion rate or clearance for any of the three; glomerular filtration rate, tubular reabsorption and glomerular membrane permeability were normal in both groups. The 2017 International Society of Sports Nutrition position stand reviewed the accumulated safety literature and concluded there is no compelling evidence of harm to kidney function in healthy individuals. The practical residue is diagnostic, not toxicological: a creatine user\'s eGFR will read low, and that has to be known before it is acted on.',
+          "Serum creatinine is the non-enzymatic breakdown product of creatine, so supplementation raises it mechanically without any change in glomerular filtration — which made every early eGFR-based safety signal uninterpretable. Poortmans and Francaux measured creatinine, urea and albumin clearances directly in athletes who had used creatine for ten months to five years against controls and found no difference in plasma content, urinary excretion rate or clearance for any of the three; glomerular filtration rate, tubular reabsorption and glomerular membrane permeability were normal in both groups. The 2017 International Society of Sports Nutrition position stand reviewed the accumulated safety literature and concluded there is no compelling evidence of harm to kidney function in healthy individuals. The practical residue is diagnostic, not toxicological: a creatine user's eGFR will read low, and that has to be known before it is acted on.",
         evidenceSource:
           'Poortmans JR, Francaux M. Med Sci Sports Exerc 1999;31:1108-1110; Kreider RB et al. J Int Soc Sports Nutr 2017;14:18',
         doi: '10.1186/s12970-017-0173-z',
@@ -315,9 +316,9 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         step: 2,
         title: 'A dedicated pump drags it into the muscle cell',
         laymanDesc:
-          'Muscle does not wait for creatine to drift in. A specific transporter pulls it across the membrane against a steep concentration difference, using the cell\'s sodium gradient to pay for it.',
+          "Muscle does not wait for creatine to drift in. A specific transporter pulls it across the membrane against a steep concentration difference, using the cell's sodium gradient to pay for it.",
         molecularDetail:
-          'SLC6A8, the sodium- and chloride-dependent creatine transporter, concentrates creatine roughly a hundredfold over plasma. Uptake is highest at the start of loading — 32% of the administered dose in the first two days in Harris et al.\'s three intensively sampled subjects — and falls sharply as the muscle approaches its ceiling of about 160 mmol/kg dry matter. Insulin and contractile activity both increase transporter activity.',
+          "SLC6A8, the sodium- and chloride-dependent creatine transporter, concentrates creatine roughly a hundredfold over plasma. Uptake is highest at the start of loading — 32% of the administered dose in the first two days in Harris et al.'s three intensively sampled subjects — and falls sharply as the muscle approaches its ceiling of about 160 mmol/kg dry matter. Insulin and contractile activity both increase transporter activity.",
         iconName: 'ArrowDownToLine',
         visualStage: 'cellular_entry',
       },
@@ -372,7 +373,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Fat-free mass, one-repetition maximum strength and muscle fibre cross-sectional area after 12 weeks',
         endpointMet: true,
-        statisticalPValue: 'P <= 0.05 for body mass, fat-free mass, bench press, squat and fibre CSA',
+        statisticalPValue:
+          'P <= 0.05 for body mass, fat-free mass, bench press, squat and fibre CSA',
         unreportedAdverseSignals:
           'No negative side effects were reported by subjects. The trial was small and in already resistance-trained men, so it does not speak to untrained or older populations.',
         independentReplicationStatus: 'Replicated',
@@ -455,7 +457,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is it bad for your kidneys?',
-        a: 'The evidence says no in healthy people, and the reason the belief persists is a measurement artefact. Creatinine, the blood marker used to estimate kidney function, is creatine\'s own breakdown product, so taking creatine raises it without anything happening to the kidney. When clearances were measured directly in people who had used creatine for up to five years, filtration, tubular reabsorption and membrane permeability were all normal. The practical point is to tell a clinician you take it before an eGFR result gets acted on.',
+        a: "The evidence says no in healthy people, and the reason the belief persists is a measurement artefact. Creatinine, the blood marker used to estimate kidney function, is creatine's own breakdown product, so taking creatine raises it without anything happening to the kidney. When clearances were measured directly in people who had used creatine for up to five years, filtration, tubular reabsorption and membrane permeability were all normal. The practical point is to tell a clinician you take it before an eGFR result gets acted on.",
       },
       {
         q: 'What about creatine for the brain and for ageing?',
@@ -465,7 +467,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why do some people say it did nothing for them?',
-        a: 'Because for some people it did. In Greenhaff\'s biopsy study three of eight subjects raised muscle creatine by only 5 to 7% and showed no improvement in phosphocreatine resynthesis. Harris found the rise was largest in subjects who started with the least, which is why vegetarians tend to respond and people already eating a lot of meat often do not. The response tracks how much the muscle loads, and the muscle has a ceiling.',
+        a: "Because for some people it did. In Greenhaff's biopsy study three of eight subjects raised muscle creatine by only 5 to 7% and showed no improvement in phosphocreatine resynthesis. Harris found the rise was largest in subjects who started with the least, which is why vegetarians tend to respond and people already eating a lot of meat often do not. The response tracks how much the muscle loads, and the muscle has a ceiling.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -570,7 +572,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold as a dietary supplement for bone, immune and general health. Nutritional vitamin D3 is not an FDA-approved drug for any disease; the prescription analogues calcitriol, doxercalciferol and paricalcitol are separate approved products for renal bone disease.',
-    patientFriendlyIndication: 'Taken for bones and immunity, tested against most of that and failed',
+    patientFriendlyIndication:
+      'Taken for bones and immunity, tested against most of that and failed',
     conditionContext: {
       conditionExplainer:
         'Vitamin D is not really a vitamin. Skin makes it from cholesterol under ultraviolet B light, the liver and then the kidney convert it into a hormone, and that hormone tells the gut to absorb calcium. Without enough of it, the gut cannot pull calcium out of food, the parathyroid glands compensate by stripping calcium from bone, and the bone that is laid down does not mineralise properly — rickets in children, osteomalacia in adults.',
@@ -599,7 +602,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'These skip one or both activation steps and are used where the kidney cannot perform the final hydroxylation, principally chronic kidney disease. They are far more potent, carry a real hypercalcaemia risk and require monitoring. They are also not what is in a supplement bottle, and results with them do not transfer to cholecalciferol.',
           typicalCost:
-            '',
+            'Generic. Medicaid NADAC: calcitriol 0.25 mcg at $0.158 a capsule, August 2026',
           prosAndCons:
             'Pros: work when the kidney cannot activate cholecalciferol. Cons: narrow therapeutic window, hypercalcaemia, prescription-only for good reason.',
         },
@@ -609,7 +612,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'These have what vitamin D lacks: randomised fracture-outcome data in the populations they are given to. VITAL tested vitamin D3 for exactly that endpoint in 25,871 adults and found a hazard ratio of 0.98 for total fractures and 1.01 for hip fractures. Vitamin D repletion remains a prerequisite for these drugs to work, which is a supporting role, not a substitute one.',
           typicalCost:
-            '',
+            'Medicaid NADAC: alendronate 70 mg $0.258 a tablet; denosumab is a biologic and is not in it',
           prosAndCons:
             'Pros: fracture reduction demonstrated in randomised trials. Cons: rare atypical femoral fracture and osteonecrosis of the jaw, and they do nothing for deficiency itself.',
         },
@@ -621,16 +624,19 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Identical molecule by the identical pathway, with the difference that cutaneous synthesis is self-limiting — continued exposure photodegrades previtamin D3 to inert lumisterol and tachysterol, so the skin cannot overproduce. Latitude, season, skin pigmentation, age and sunscreen all reduce the yield, and above roughly 35 degrees latitude winter sunlight carries too little UVB to make any.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '',
+          dailyUsage:
+            'Rhodes et al. gave 1.3 standard erythemal doses of simulated summer sunlight three times a week for six weeks, to the skin left bare by a T-shirt and shorts. That is about 13 minutes of midday sun at 53 degrees north.',
           monthlyCost: '',
         },
         {
           name: 'Oily fish, cod liver oil, egg yolk, fortified milk and cereal',
-          activeCompound: 'Cholecalciferol, with 25-hydroxyvitamin D3 also present in animal tissue',
+          activeCompound:
+            'Cholecalciferol, with 25-hydroxyvitamin D3 also present in animal tissue',
           biologicalMechanism:
             'Dietary vitamin D is absorbed with fat into chylomicrons and enters the same hepatic 25-hydroxylation step. Food fortification, introduced in the 1930s specifically against rickets, is the intervention that actually ended the disease as a mass phenomenon in industrialised countries.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '',
+          dailyUsage:
+            'The fortified amount is fixed by the standard of identity: 21 CFR 131.110 sets vitamin D in milk at 400 IU per quart. VITAL used 2,000 IU a day in a capsule.',
           monthlyCost: '',
         },
       ],
@@ -648,10 +654,10 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'C[C@H](CCCC(C)C)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C/3\\C[C@H](CCC3=C)O)C',
+      smilesString: 'C[C@H](CCCC(C)C)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C/3\\C[C@H](CCC3=C)O)C',
       chemicalFormula: 'C27H44O',
-      molecularWeight: '384.6 g/mol (cholecalciferol; the circulating marker 25-hydroxyvitamin D3 is 400.6 g/mol)',
+      molecularWeight:
+        '384.6 g/mol (cholecalciferol; the circulating marker 25-hydroxyvitamin D3 is 400.6 g/mol)',
       structureSource: {
         label: 'PubChem CID 5280795 — Cholecalciferol, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280795',
@@ -736,10 +742,11 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The largest randomised test of vitamin D for the two diseases it is most often sold against found nothing. Cancer risk was unchanged. Heart attack and stroke risk was unchanged. So was death from any cause.',
         technicalDetails:
-          'A nationwide two-by-two factorial randomised placebo-controlled trial of vitamin D3 2000 IU/day and marine n-3 fatty acids 1 g/day in 25,871 US adults (men 50 and over, women 55 and over, including 5,106 Black participants), median follow-up 5.3 years. Invasive cancer of any type: 793 cases on vitamin D against 824 on placebo, hazard ratio 0.96 (95% CI 0.88 to 1.06), P = 0.47. Major cardiovascular events: 396 against 409, hazard ratio 0.97 (95% CI 0.85 to 1.12), P = 0.69. Death from any cause across 978 deaths: hazard ratio 0.99 (95% CI 0.87 to 1.12). Secondary endpoints were uniformly null except a non-significant signal for death from cancer, hazard ratio 0.83 (95% CI 0.67 to 1.02). No excess hypercalcaemia. Participants were not selected for deficiency, which is both the trial\'s limitation and precisely the point: it tested the population that actually buys the product.',
+          "A nationwide two-by-two factorial randomised placebo-controlled trial of vitamin D3 2000 IU/day and marine n-3 fatty acids 1 g/day in 25,871 US adults (men 50 and over, women 55 and over, including 5,106 Black participants), median follow-up 5.3 years. Invasive cancer of any type: 793 cases on vitamin D against 824 on placebo, hazard ratio 0.96 (95% CI 0.88 to 1.06), P = 0.47. Major cardiovascular events: 396 against 409, hazard ratio 0.97 (95% CI 0.85 to 1.12), P = 0.69. Death from any cause across 978 deaths: hazard ratio 0.99 (95% CI 0.87 to 1.12). Secondary endpoints were uniformly null except a non-significant signal for death from cancer, hazard ratio 0.83 (95% CI 0.67 to 1.02). No excess hypercalcaemia. Participants were not selected for deficiency, which is both the trial's limitation and precisely the point: it tested the population that actually buys the product.",
         evidenceSource: 'Manson JE et al. N Engl J Med 2019;380:33-44',
         doi: '10.1056/NEJMoa1809944',
-        measuredMetric: 'Incident invasive cancer and major cardiovascular events over a median 5.3 years',
+        measuredMetric:
+          'Incident invasive cancer and major cardiovascular events over a median 5.3 years',
         auditFlag: 'verified',
       },
       {
@@ -758,14 +765,16 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'vd3-a4',
         category: 'failed',
-        title: 'D-Health: 21,315 people, no mortality benefit, and a cancer-death signal the wrong way',
+        title:
+          'D-Health: 21,315 people, no mortality benefit, and a cancer-death signal the wrong way',
         laymanSummary:
           'An Australian trial gave 21,315 older adults monthly vitamin D for five years. Deaths were not reduced. When the first two years were excluded, death from cancer was numerically higher on vitamin D.',
         technicalDetails:
           'A randomised double-blind placebo-controlled trial of 60,000 IU vitamin D3 monthly in 21,315 Australians aged 60 and over, median follow-up 5.7 years. Serum 25-hydroxyvitamin D reached 115 (SD 30) nmol/L on treatment against 77 (SD 25) on placebo, so the intervention plainly worked biochemically. All-cause mortality: 562 deaths (5.3%) on vitamin D against 538 (5.1%) on placebo, hazard ratio 1.04 (95% CI 0.93 to 1.18), P = 0.47. Cardiovascular mortality 0.96 (0.72 to 1.28). Cancer mortality 1.15 (0.96 to 1.39), P = 0.13. In an exploratory analysis excluding the first two years, cancer mortality was 1.24 (95% CI 1.01 to 1.54), P = 0.05. The authors wrote that the precautionary principle suggests this dosing regimen might not be appropriate in people who are already vitamin D-replete.',
         evidenceSource: 'Neale RE et al. Lancet Diabetes Endocrinol 2022;10:120-128',
         doi: '10.1016/S2213-8587(21)00345-4',
-        measuredMetric: 'All-cause mortality over five years of monthly dosing, plus cause-specific mortality',
+        measuredMetric:
+          'All-cause mortality over five years of monthly dosing, plus cause-specific mortality',
         auditFlag: 'caution',
       },
       {
@@ -886,18 +895,21 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         sampleSize: 3270,
         primaryEndpoint: 'Radiologically confirmed hip and nonvertebral fractures over 18 months',
         endpointMet: true,
-        statisticalPValue: 'P = 0.043 for hip fracture (43% lower); P = 0.015 for nonvertebral fracture',
+        statisticalPValue:
+          'P = 0.043 for hip fracture (43% lower); P = 0.015 for nonvertebral fracture',
         unreportedAdverseSignals:
           'Vitamin D3 was given with 1.2 g of elemental calcium, so the trial cannot separate the two. Mean age was 84 and participants were institutionalised with baseline secondary hyperparathyroidism.',
         independentReplicationStatus: 'Partially Replicated',
       },
       {
-        trialId: 'NCT01169259 — VITAL, vitamin D3 2000 IU/day for cancer and cardiovascular disease',
+        trialId:
+          'NCT01169259 — VITAL, vitamin D3 2000 IU/day for cancer and cardiovascular disease',
         phase: 'Phase 3',
         sampleSize: 25871,
         primaryEndpoint: 'Invasive cancer of any type, and major cardiovascular events',
         endpointMet: false,
-        statisticalPValue: 'Cancer HR 0.96 (0.88-1.06), P = 0.47; major CVD HR 0.97 (0.85-1.12), P = 0.69',
+        statisticalPValue:
+          'Cancer HR 0.96 (0.88-1.06), P = 0.47; major CVD HR 0.97 (0.85-1.12), P = 0.69',
         unreportedAdverseSignals:
           'No excess hypercalcaemia or other adverse events. Participants were not selected for vitamin D deficiency, so the trial answers the general-population question rather than the deficiency question.',
         independentReplicationStatus: 'Replicated',
@@ -931,7 +943,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Six co-primary endpoints: systolic and diastolic blood pressure, SPPB, MoCA, nonvertebral fractures, infection rate',
         endpointMet: false,
-        statisticalPValue: 'No endpoint reached the prespecified P < .01 with 99% confidence intervals',
+        statisticalPValue:
+          'No endpoint reached the prespecified P < .01 with 99% confidence intervals',
         unreportedAdverseSignals:
           'A three-way factorial design across eight arms means each pairwise comparison is modestly powered, but no endpoint showed a signal in any direction.',
         independentReplicationStatus: 'Replicated',
@@ -1027,7 +1040,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'VITAL trial registration — vitamin D and omega-3 for cancer and cardiovascular disease',
+        label:
+          'VITAL trial registration — vitamin D and omega-3 for cancer and cardiovascular disease',
         identifier: 'NCT01169259',
         kind: 'nct',
       },
@@ -1093,6 +1107,25 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280795',
         kind: 'url',
       },
+      {
+        label:
+          'Rhodes LE et al. Recommended summer sunlight exposure levels can produce sufficient but not proposed optimal 25(OH)D levels at UK latitudes. J Invest Dermatol 2010;130:1411-1418',
+        identifier: '10.1038/jid.2009.417',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 131.110 — Milk: optional vitamin D addition, 400 International Units per quart',
+        identifier:
+          'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-131/subpart-B/section-131.110',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -1113,7 +1146,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold as a dietary supplement for heart, brain and joint health. The supplement has no approved indication. Icosapent ethyl and omega-3-acid ethyl esters are separately FDA-approved prescription drugs for severe hypertriglyceridaemia, and icosapent ethyl additionally for cardiovascular risk reduction — those approvals belong to the drugs, not to the fish oil aisle.',
-    patientFriendlyIndication: 'Taken for the heart; one prescription version has outcome data, the tub does not',
+    patientFriendlyIndication:
+      'Taken for the heart; one prescription version has outcome data, the tub does not',
     conditionContext: {
       conditionExplainer:
         'Triglycerides are the fat the liver packages into VLDL particles and sends into the blood. High triglycerides travel with small dense LDL, low HDL and inflammation, and that whole cluster tracks cardiovascular risk. EPA and DHA are long-chain omega-3 fatty acids that reduce hepatic triglyceride output and get built into cell membranes, changing the raw material available for making inflammatory signalling molecules.',
@@ -1140,9 +1174,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Icosapent ethyl (Vascepa)',
           class: 'Purified EPA ethyl ester, prescription',
           howItCompares:
-            'The same fatty acid at four times the supplement amount, in a form containing no DHA. It is the only omega-3 preparation with a positive cardiovascular outcome trial, and that trial\'s comparator was pharmaceutical grade mineral oil rather than an inert placebo. It is a different product from a fish oil capsule and its result should not be read onto one.',
-          typicalCost:
-            '',
+            "The same fatty acid at four times the supplement amount, in a form containing no DHA. It is the only omega-3 preparation with a positive cardiovascular outcome trial, and that trial's comparator was pharmaceutical grade mineral oil rather than an inert placebo. It is a different product from a fish oil capsule and its result should not be read onto one.",
+          typicalCost: 'Medicaid NADAC: generic icosapent ethyl 1 g at $0.447 a capsule, June 2026',
           prosAndCons:
             'Pros: a randomised 25% relative risk reduction in a prespecified composite. Cons: significantly more hospitalisation for atrial fibrillation or flutter (3.1% versus 2.1%, P = 0.004) and a comparator that is still argued about.',
         },
@@ -1152,7 +1185,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Every patient in REDUCE-IT and STRENGTH was already on a statin, so omega-3 was being tested as an addition, not an alternative. LDL-lowering therapy has repeated, independent, placebo-controlled outcome trials; omega-3 has one positive trial with a contested comparator and several clearly null ones.',
           typicalCost:
-            '',
+            'Medicaid NADAC: atorvastatin 20 mg $0.031, ezetimibe 10 mg $0.073; PCSK9 agents are not in it',
           prosAndCons:
             'Pros: the largest and most consistently replicated cardiovascular evidence base in medicine. Cons: muscle symptoms in a minority; no effect on triglycerides comparable to 4 g of EPA.',
         },
@@ -1161,8 +1194,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'PPAR-alpha agonists',
           howItCompares:
             'Reach the same nuclear receptor as EPA and DHA and lower triglycerides more, which makes them the natural test of whether triglyceride lowering per se prevents events. Their outcome record on top of a statin has been largely negative, which is itself evidence against a purely triglyceride-mediated explanation for REDUCE-IT.',
-          typicalCost:
-            '',
+          typicalCost: 'Generic. Medicaid NADAC: fenofibrate 145 mg at $0.120 a tablet, May 2026',
           prosAndCons:
             'Pros: large triglyceride reductions. Cons: myopathy risk with statins, raised creatinine, and no convincing add-on outcome benefit.',
         },
@@ -1184,7 +1216,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'The original source of the marine omega-3s — fish accumulate them from algae rather than synthesising them. Algal oil raises the erythrocyte omega-3 content by the same route without the marine food chain, and therefore without the oxidation and contaminant profile of a fish-derived oil.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'Arterburn et al. compared 600 mg of DHA a day from algal-oil capsules against assayed portions of cooked salmon over two weeks. Plasma phospholipid DHA rose about 80 percent on both.',
           monthlyCost: '',
         },
         {
@@ -1193,7 +1226,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'The plant omega-3 is not a substitute for the marine ones in any practical sense. Conversion of ALA to EPA is limited and conversion onward to DHA is very low in adults, so ALA intake barely moves the erythrocyte EPA and DHA content that all of the cardiovascular literature is indexed to.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'Goyens et al. fed 0.4 and 1.1 percent of energy as ALA with a carbon-13 tracer. Conversion onward to DHA measured under 0.1 percent of dietary ALA at either intake.',
           monthlyCost: '',
         },
       ],
@@ -1203,7 +1237,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           action:
             'For any omega-3 outcome trial, look up the comparator before reading the hazard ratio. REDUCE-IT used mineral oil, STRENGTH used corn oil, ASCEND used olive oil.',
           patientImpact:
-            'In the REDUCE-IT biomarker substudy the mineral oil arm\'s interleukin-1 beta rose 28.9%, C-reactive protein 21.9% and LDL cholesterol 10.9% from baseline over 12 months, while the EPA arm barely moved. A treatment effect measured against a comparator that is itself drifting is partly a comparator effect.',
+            "In the REDUCE-IT biomarker substudy the mineral oil arm's interleukin-1 beta rose 28.9%, C-reactive protein 21.9% and LDL cholesterol 10.9% from baseline over 12 months, while the EPA arm barely moved. A treatment effect measured against a comparator that is itself drifting is partly a comparator effect.",
           clinicalPrecaution:
             'Omega-3 supplementation raises the risk of atrial fibrillation in pooled randomised data, hazard ratio 1.25 overall and 1.49 in trials above 1 g/day. Anyone with a history of atrial fibrillation should treat this as a real signal rather than a footnote.',
         },
@@ -1314,12 +1348,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The REDUCE-IT placebo was mineral oil. Blood markers of inflammation rose substantially in the placebo group and barely moved in the treated group, so part of the measured difference is the placebo getting worse rather than the drug making people better.',
         technicalDetails:
-          'A REDUCE-IT biomarker substudy measured interleukin-1 beta, interleukin-6, hsCRP, oxidised LDL, homocysteine, lipoprotein(a) and Lp-PLA2 at baseline, 12 and 24 months. Baseline medians were similar between arms. At 12 months the mineral oil arm rose by 1.5% for homocysteine, 2.2% for lipoprotein(a), 10.9% for oxidised LDL, 16.2% for interleukin-6, 18.5% for Lp-PLA2, 21.9% for hsCRP and 28.9% for interleukin-1 beta, all P < 0.001, with similar changes at 24 months. The icosapent ethyl arm showed minimal change. End-of-study between-group differences were therefore largely increases in the comparator: 38.5% for hsCRP and 48.7% for interleukin-1 beta. LDL cholesterol at 12 months changed by -1.2% on icosapent ethyl and +10.9% on mineral oil. Separately, a Copenhagen General Population Study analysis mimicking both trial designs estimated that the comparator difference (mineral versus corn oil) rather than the active oil difference (EPA versus EPA plus DHA) explains a substantial part of the divergence, leaving roughly 13% of REDUCE-IT\'s risk reduction unexplained by lipids and CRP. The authors of the biomarker substudy state the effect on interpretation is uncertain, and this page states it the same way.',
+          "A REDUCE-IT biomarker substudy measured interleukin-1 beta, interleukin-6, hsCRP, oxidised LDL, homocysteine, lipoprotein(a) and Lp-PLA2 at baseline, 12 and 24 months. Baseline medians were similar between arms. At 12 months the mineral oil arm rose by 1.5% for homocysteine, 2.2% for lipoprotein(a), 10.9% for oxidised LDL, 16.2% for interleukin-6, 18.5% for Lp-PLA2, 21.9% for hsCRP and 28.9% for interleukin-1 beta, all P < 0.001, with similar changes at 24 months. The icosapent ethyl arm showed minimal change. End-of-study between-group differences were therefore largely increases in the comparator: 38.5% for hsCRP and 48.7% for interleukin-1 beta. LDL cholesterol at 12 months changed by -1.2% on icosapent ethyl and +10.9% on mineral oil. Separately, a Copenhagen General Population Study analysis mimicking both trial designs estimated that the comparator difference (mineral versus corn oil) rather than the active oil difference (EPA versus EPA plus DHA) explains a substantial part of the divergence, leaving roughly 13% of REDUCE-IT's risk reduction unexplained by lipids and CRP. The authors of the biomarker substudy state the effect on interpretation is uncertain, and this page states it the same way.",
         evidenceSource:
           'Ridker PM et al. Circulation 2022;146:372-379; Doi T, Langsted A, Nordestgaard BG. Eur Heart J 2021;42:4807-4817',
         doi: '10.1161/CIRCULATIONAHA.122.059410',
         inferredClaim:
-          'That the whole of REDUCE-IT\'s 25% relative risk reduction is an effect of EPA, when a measurable part of the between-group difference is deterioration in the mineral oil comparator arm',
+          "That the whole of REDUCE-IT's 25% relative risk reduction is an effect of EPA, when a measurable part of the between-group difference is deterioration in the mineral oil comparator arm",
         auditFlag: 'contested',
       },
       {
@@ -1463,7 +1497,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         sampleSize: 25871,
         primaryEndpoint: 'Major cardiovascular events, and invasive cancer of any type',
         endpointMet: false,
-        statisticalPValue: 'CVD HR 0.92 (0.80-1.06), P = 0.24; cancer HR 1.03 (0.93-1.13), P = 0.56',
+        statisticalPValue:
+          'CVD HR 0.92 (0.80-1.06), P = 0.24; cancer HR 1.03 (0.93-1.13), P = 0.56',
         unreportedAdverseSignals:
           'A secondary endpoint, total myocardial infarction, was lower at HR 0.72 (0.59-0.90). It is one positive result among many secondary endpoints in a trial whose primary endpoints were null, and it has not been independently confirmed.',
         independentReplicationStatus: 'Replicated',
@@ -1502,7 +1537,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       ],
       unsupportedInferences: [
         'That an over-the-counter fish oil capsule reduces cardiovascular events — 1 g/day was null in VITAL (n = 25,871) and ASCEND (n = 15,480)',
-        'That REDUCE-IT\'s result is wholly attributable to EPA, when part of the between-group difference is deterioration in the comparator arm',
+        "That REDUCE-IT's result is wholly attributable to EPA, when part of the between-group difference is deterioration in the comparator arm",
         'That triglyceride lowering is the mechanism, when STRENGTH lowered triglycerides and produced a hazard ratio of 0.99',
         'That the observational fish-intake literature transfers to a capsule, when eating fish also displaces other food',
       ],
@@ -1533,7 +1568,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What is the problem with mineral oil?',
-        a: 'A placebo is supposed to do nothing. In the REDUCE-IT biomarker substudy the mineral oil group\'s interleukin-1 beta rose 28.9%, hsCRP 21.9%, oxidised LDL 10.9% and LDL cholesterol 10.9% over twelve months, while the treated group barely moved. That means part of the measured difference between the groups is the comparator getting worse rather than the treatment making people better. Nobody has established how much. The substudy authors say the effect on interpretation is uncertain, and a Copenhagen cohort analysis mimicking both trials attributed a substantial share of the REDUCE-IT versus STRENGTH divergence to the comparator rather than the active oil, leaving about 13% unexplained.',
+        a: "A placebo is supposed to do nothing. In the REDUCE-IT biomarker substudy the mineral oil group's interleukin-1 beta rose 28.9%, hsCRP 21.9%, oxidised LDL 10.9% and LDL cholesterol 10.9% over twelve months, while the treated group barely moved. That means part of the measured difference between the groups is the comparator getting worse rather than the treatment making people better. Nobody has established how much. The substudy authors say the effect on interpretation is uncertain, and a Copenhagen cohort analysis mimicking both trials attributed a substantial share of the REDUCE-IT versus STRENGTH divergence to the comparator rather than the active oil, leaving about 13% unexplained.",
       },
       {
         q: 'Is there anything to worry about?',
@@ -1628,6 +1663,24 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445580',
         kind: 'url',
       },
+      {
+        label:
+          'Arterburn LM et al. Algal-oil capsules and cooked salmon: nutritionally equivalent sources of docosahexaenoic acid. J Am Diet Assoc 2008;108:1204-1209',
+        identifier: '10.1016/j.jada.2008.04.020',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Goyens PL et al. Conversion of alpha-linolenic acid in humans is influenced by the absolute amounts of alpha-linolenic acid and linoleic acid in the diet and not by their ratio. Am J Clin Nutr 2006;84:44-53',
+        identifier: '10.1093/ajcn/84.1.44',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -1676,8 +1729,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Parenteral electrolyte, genuine emergency drug',
           howItCompares:
             'This is the one setting where magnesium is unambiguously a drug that saves lives, and it is given by infusion under monitoring in an obstetric or coronary care unit. It is not evidence for a capsule. The same programme that established magnesium in eclampsia failed twice in myocardial infarction.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: large, replicated mortality and morbidity benefit in its own indication. Cons: entirely irrelevant to an oral supplement, and routinely cited as though it were not.',
         },
@@ -1686,8 +1738,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Inorganic magnesium salt',
           howItCompares:
             'Firoz and Graber measured fractional absorption of magnesium oxide at about 4 percent against significantly higher and mutually equivalent absorption from magnesium chloride, lactate and aspartate. That study is the source of most "oxide is poorly absorbed" marketing. It did not test glycinate.',
-          typicalCost:
-            '',
+          typicalCost: 'Medicaid NADAC: magnesium oxide 400 mg at $0.035 a tablet, August 2026',
           prosAndCons:
             'Pros: cheapest form, and its poor absorption is exactly why it works as a laxative. Cons: the 4 percent figure is one small urinary-excretion study in normal volunteers, and it is being used to sell a form it never compared against.',
         },
@@ -1709,7 +1760,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Magnesium in water is already dissociated and needs no digestion, and in populations drinking hard water it is a non-trivial share of total intake. It is also the reason intake surveys that count only food underestimate what people actually get.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'Azoulay et al. analysed 21 North American municipal supplies: two litres a day of half of them supplied 6 to 31 percent of the magnesium reference intake, and a litre of most moderately mineralised European bottled waters 16 to 41 percent.',
           monthlyCost: '',
         },
       ],
@@ -1729,7 +1781,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       structureType: 'small_molecule_smiles',
       smilesString: 'C(C(=O)[O-])N.C(C(=O)[O-])N.[Mg+2]',
       chemicalFormula: 'C4H8MgN2O4',
-      molecularWeight: '172.42 g/mol, of which 24.31 g/mol — about 14 percent — is elemental magnesium',
+      molecularWeight:
+        '172.42 g/mol, of which 24.31 g/mol — about 14 percent — is elemental magnesium',
       structureSource: {
         label: 'PubChem CID 84645 — Magnesium glycinate, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
@@ -1828,7 +1881,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The one human trial comparing magnesium glycinate against the cheap oxide form found no overall difference in absorption. It was run in twelve people who had had part of their intestine removed.',
         technicalDetails:
-          'Schuette, Lashner and Janghorbani ran a double-blind randomised crossover in twelve patients with ileal resections, comparing a 100 mg dose of 26Mg-labelled magnesium diglycinate against 26Mg-labelled magnesium oxide. For the group as a whole, absorption was low and not different between the two forms: 23.5% for the chelate against 22.8% for the oxide. A difference emerged only in the four patients with the worst oxide absorption (23.5% against 11.8%, P < .05). Peak isotope enrichment came earlier after the chelate (mean difference 3.2 +/- 1.3 hours, P < .05) and the area under the enrichment curve was greater. The authors concluded that some portion of the diglycinate is probably absorbed intact by a dipeptide pathway and that it may be a good alternative in patients with intestinal resection — a conclusion about surgical patients that the retail category has generalised to everyone. Separately, Firoz and Graber\'s much-cited bioavailability comparison of US commercial preparations tested oxide, chloride, lactate and aspartate. It did not include glycinate at all.',
+          "Schuette, Lashner and Janghorbani ran a double-blind randomised crossover in twelve patients with ileal resections, comparing a 100 mg dose of 26Mg-labelled magnesium diglycinate against 26Mg-labelled magnesium oxide. For the group as a whole, absorption was low and not different between the two forms: 23.5% for the chelate against 22.8% for the oxide. A difference emerged only in the four patients with the worst oxide absorption (23.5% against 11.8%, P < .05). Peak isotope enrichment came earlier after the chelate (mean difference 3.2 +/- 1.3 hours, P < .05) and the area under the enrichment curve was greater. The authors concluded that some portion of the diglycinate is probably absorbed intact by a dipeptide pathway and that it may be a good alternative in patients with intestinal resection — a conclusion about surgical patients that the retail category has generalised to everyone. Separately, Firoz and Graber's much-cited bioavailability comparison of US commercial preparations tested oxide, chloride, lactate and aspartate. It did not include glycinate at all.",
         evidenceSource:
           'Schuette SA, Lashner BA, Janghorbani M. JPEN J Parenter Enteral Nutr 1994;18:430-435; Firoz M, Graber M. Magnes Res 2001;14:257-262',
         doi: '10.1177/0148607194018005430',
@@ -1886,7 +1939,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'The deficiency test is weak, which is what makes the category sellable',
         laymanSummary:
-          'The blood test used to call people magnesium-deficient measures less than one percent of the body\'s magnesium, and the normal range it is judged against was never set from health outcomes.',
+          "The blood test used to call people magnesium-deficient measures less than one percent of the body's magnesium, and the normal range it is judged against was never set from health outcomes.",
         technicalDetails:
           'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, which is the honest half of the marketing claim. And no ordinary test can confirm the depletion either, which means a supplement sold against it can never be shown to have been unnecessary.',
         evidenceSource: 'Costello RB et al. Adv Nutr 2016;7:977-993',
@@ -1923,7 +1976,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Almost no magnesium floats free. Inside cells it is bound to the energy molecule ATP, and it is that complex, not ATP alone, that enzymes actually use.',
         molecularDetail:
-          'The biologically active substrate of most kinases, ATPases and polymerases is Mg-ATP, not ATP. Intracellular free magnesium is held near 0.5 to 1.0 mmol/L against a total cellular content roughly twenty times higher, and the bone reservoir buffers the extracellular pool. This buffering is exactly why serum magnesium moved only 0.05 mmol/L across the 34 trials in Zhang\'s meta-analysis.',
+          "The biologically active substrate of most kinases, ATPases and polymerases is Mg-ATP, not ATP. Intracellular free magnesium is held near 0.5 to 1.0 mmol/L against a total cellular content roughly twenty times higher, and the bone reservoir buffers the extracellular pool. This buffering is exactly why serum magnesium moved only 0.05 mmol/L across the 34 trials in Zhang's meta-analysis.",
         iconName: 'Battery',
         visualStage: 'target_binding',
       },
@@ -1965,7 +2018,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'Cochrane CD009402 — magnesium for skeletal muscle cramps',
         phase: 'Cochrane systematic review of 11 randomised trials',
         sampleSize: 735,
-        primaryEndpoint: 'Percentage change from baseline in number of cramps per week at four weeks',
+        primaryEndpoint:
+          'Percentage change from baseline in number of cramps per week at four weeks',
         endpointMet: false,
         statisticalPValue:
           'MD -9.59% (95% CI -23.14 to 3.97); cramps per week MD -0.18 (95% CI -0.84 to 0.49); 25% responder RR 1.04 (95% CI 0.84 to 1.29), high certainty',
@@ -2058,7 +2112,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How would I know if I am actually deficient?',
-        a: 'You largely would not, and that is the structural problem in this category. Serum magnesium is under one percent of the body\'s magnesium and is buffered by bone, so it falls late and recovers fast, and the reference interval it is judged against was set from population distributions rather than from outcomes. A normal result does not rule out depletion. It also means a supplement sold against invisible depletion can never be shown to have been unnecessary, which is a commercially useful property.',
+        a: "You largely would not, and that is the structural problem in this category. Serum magnesium is under one percent of the body's magnesium and is buffered by bone, so it falls late and recovers fast, and the reference interval it is judged against was set from population distributions rather than from outcomes. A normal result does not rule out depletion. It also means a supplement sold against invisible depletion can never be shown to have been unnecessary, which is a commercially useful property.",
       },
       {
         q: 'Who has a documented reason to take it?',
@@ -2133,6 +2187,18 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
         kind: 'url',
       },
+      {
+        label:
+          'Azoulay A, Garzon P, Eisenberg MJ. Comparison of the mineral content of tap water and bottled waters. J Gen Intern Med 2001;16:168-175',
+        identifier: '10.1111/j.1525-1497.2001.04189.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -2148,13 +2214,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'No single sponsor — an essential trace element sold as several salts by many manufacturers. Zinc acetate is also an FDA-approved prescription drug under NDA 020458.',
     targetGene: 'SLC39A4',
     targetProtein:
-      'ZIP4 (SLC39A4), the apical enterocyte zinc importer whose loss-of-function mutations cause acrodermatitis enteropathica. The counterpart that explains most of zinc\'s harms is metallothionein, a cysteine-rich cytosolic chelator that zinc itself induces in the enterocyte and that binds copper more tightly than zinc, trapping it for excretion in shed cells.',
+      "ZIP4 (SLC39A4), the apical enterocyte zinc importer whose loss-of-function mutations cause acrodermatitis enteropathica. The counterpart that explains most of zinc's harms is metallothionein, a cysteine-rich cytosolic chelator that zinc itself induces in the enterocyte and that binds copper more tightly than zinc, trapping it for excretion in shed cells.",
     modality: 'Nutraceutical / Botanical',
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold over the counter for the common cold, immunity, skin and testosterone. Zinc acetate is separately an FDA-approved prescription drug for maintenance therapy in Wilson disease, and oral zinc is a WHO- and UNICEF-recommended treatment for acute childhood diarrhoea. Those two are genuine, evidenced indications, and neither is why most zinc is bought.',
-    patientFriendlyIndication:
-      'Taken at the first sign of a cold, and daily for immune support',
+    patientFriendlyIndication: 'Taken at the first sign of a cold, and daily for immune support',
     conditionContext: {
       conditionExplainer:
         'The common cold is a self-limiting viral illness that resolves on its own in about a week. Any treatment for it is therefore competing with spontaneous recovery, and any trial has to separate a real shortening from the ordinary variation in how long colds last. This is why the zinc literature is so noisy: the effect being chased is a day or two against a background that already ends by itself.',
@@ -2182,8 +2247,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Copper absorption blocker, FDA-approved under NDA 020458',
           howItCompares:
             'The same salt, prescribed precisely because it induces intestinal metallothionein and stops copper being absorbed. The mechanism regulators approved as the therapeutic action is identical to the mechanism that makes high-dose zinc supplementation dangerous in a person with normal copper handling.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: a clean, approved, mechanistically transparent use. Cons: it is also the clearest possible warning label for the supplement, and it is almost never presented as one.',
         },
@@ -2192,8 +2256,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Public-health mineral supplementation',
           howItCompares:
             'This is the strongest efficacy evidence zinc has anywhere. In children over six months, 33 trials in 10,841 children found diarrhoea shortened by about eleven hours, and in malnourished children by about a day, graded high certainty.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: large, replicated, and in the population where baseline zinc deficiency is common. Cons: in children under six months the same review found no effect, and the trials were run mostly in Asian settings at high risk of deficiency, so it is a repletion result rather than a general antiviral one.',
         },
@@ -2215,7 +2278,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Phytate forms insoluble complexes with zinc in the intestinal lumen, which is why populations eating unleavened high-phytate staples have measurably higher rates of zinc deficiency despite adequate total zinc intake. Soaking, sprouting and leavening degrade phytate and raise absorption.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'The measured quantity here is a ratio rather than a dose. Nsabimana et al. took maize from a phytate-to-zinc molar ratio of 40.8 down to 7.8 by soaking, germinating and fermenting it.',
           monthlyCost: '',
         },
       ],
@@ -2234,7 +2298,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           action:
             'Sustained high-dose zinc induces intestinal metallothionein, which binds copper and carries it out in shed enterocytes. The result is a copper deficiency that presents haematologically or neurologically, often without the zinc being suspected.',
           patientImpact:
-            'Willis et al. reported three cases first recognised on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of them with progressive peripheral neuropathy. Kumar\'s Mayo Clinic series describes a copper deficiency myelopathy with spastic gait and sensory ataxia that mimics vitamin B12 subacute combined degeneration.',
+            "Willis et al. reported three cases first recognised on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of them with progressive peripheral neuropathy. Kumar's Mayo Clinic series describes a copper deficiency myelopathy with spastic gait and sensory ataxia that mimics vitamin B12 subacute combined degeneration.",
           clinicalPrecaution:
             'Copper replacement resolves the anaemia and neutropenia promptly and completely. The neurological damage often does not recover; supplementation mainly prevents further deterioration. AREDS included 2 mg of copper alongside its 80 mg of zinc for exactly this reason.',
         },
@@ -2245,7 +2309,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       smilesString: 'CC(=O)[O-].CC(=O)[O-].[Zn+2]',
       chemicalFormula: 'C4H6O4Zn',
       molecularWeight:
-        '183.5 g/mol for zinc acetate, of which 65.4 g/mol is elemental zinc. The marker salt here is the acetate because it is the form that produced the largest cold-duration effect in Hemila\'s dose-stratified analysis, and the form approved as a prescription drug.',
+        "183.5 g/mol for zinc acetate, of which 65.4 g/mol is elemental zinc. The marker salt here is the acetate because it is the form that produced the largest cold-duration effect in Hemila's dose-stratified analysis, and the form approved as a prescription drug.",
       structureSource: {
         label: 'PubChem CID 11192 — Zinc acetate, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11192',
@@ -2312,7 +2376,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'zn-a1',
         category: 'measured',
-        title: 'Cochrane 2024: about two days off a cold, at low certainty, and nothing for prevention',
+        title:
+          'Cochrane 2024: about two days off a cold, at low certainty, and nothing for prevention',
         laymanSummary:
           'Thirty-four trials in 8,526 people. Taking zinc once a cold has started may shorten it by roughly two days. Taking it to avoid catching one does nothing.',
         technicalDetails:
@@ -2347,7 +2412,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'A multicentre open-label factorial randomised trial at Cleveland Clinic sites in Ohio and Florida enrolled 214 outpatients with PCR-confirmed SARS-CoV-2 between April and October 2020, allocated 1:1:1:1 to ten days of zinc gluconate 50 mg, ascorbic acid 8,000 mg, both, or usual care. The primary endpoint was days to a 50% reduction in a four-symptom severity score. The study was stopped for low conditional power for benefit. Usual care reached 50% symptom reduction at a mean of 6.7 (SD 4.4) days, against 5.9 (4.9) days for zinc, 5.5 (3.7) for ascorbic acid and 5.5 (3.4) for both — overall P = .45, with no significant difference in any secondary outcome. The trial is open-label and was not designed to detect a small effect, but it is the direct randomised test of the exact combination that was being bought by the million during the pandemic.',
         evidenceSource: 'Thomas S et al. JAMA Netw Open 2021;4:e210369',
         doi: '10.1001/jamanetworkopen.2021.0369',
-        measuredMetric: 'Days to 50% reduction in a composite fever, cough, dyspnoea and fatigue score',
+        measuredMetric:
+          'Days to 50% reduction in a composite fever, cough, dyspnoea and fatigue score',
         auditFlag: 'verified',
       },
       {
@@ -2355,7 +2421,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'Intranasal zinc gluconate causes anosmia, and the causation analysis is formal',
         laymanSummary:
-          'A homeopathic zinc nasal gel sold for colds destroyed people\'s sense of smell. In some cases it never came back.',
+          "A homeopathic zinc nasal gel sold for colds destroyed people's sense of smell. In some cases it never came back.",
         technicalDetails:
           'Jafek, Linschoten and Murrow reported a case series of severe hyposmia and anosmia following intranasal zinc gluconate, concluding that zinc ions are toxic to olfactory epithelium and that the loss appeared long-lasting or permanent in some cases, with the mechanism attributed to direct action of the divalent zinc ion on the olfactory receptor cell. Davidson and Smith later applied all nine Bradford Hill criteria — strength, consistency, specificity, temporality, biological gradient, plausibility, coherence, experimental evidence and analogy — to 25 patients presenting to the University of California San Diego Nasal Dysfunction Clinic with acute-onset anosmia after intranasal homeopathic zinc gluconate gel, and concluded that the clinical, biological and experimental data support causation. Their stated conclusion was that increased FDA oversight of homeopathic medications is needed. This is a harm caused by route, not by element: the same zinc in a lozenge does not do this.',
         evidenceSource:
@@ -2371,7 +2437,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'High-dose zinc blocks copper absorption. That is not a rare quirk — it is the reason the FDA approved zinc as a prescription drug for a copper-overload disease. In people without that disease it causes anaemia, low white cells and spinal cord damage.',
         technicalDetails:
-          'Zinc induces metallothionein in the enterocyte; metallothionein binds copper with higher affinity than zinc and holds it until the cell is shed, so copper never reaches the circulation. The FDA approved zinc acetate under NDA 020458 for maintenance therapy in Wilson disease on exactly this mechanism. In people with normal copper handling, Willis et al. reported three cases of zinc-induced copper deficiency first suspected on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of the three with progressive peripheral neuropathy, one of them arising from zinc taken for acrodermatitis enteropathica. Kumar\'s Mayo Clinic review of copper deficiency myelopathy describes a spastic gait with prominent sensory ataxia that mirrors vitamin B12 subacute combined degeneration, lists excess zinc ingestion among the established causes, and records the crucial asymmetry: copper replacement resolves the anaemia and neutropenia promptly and completely, while neurological improvement is often only subjective and mainly prevents further deterioration.',
+          "Zinc induces metallothionein in the enterocyte; metallothionein binds copper with higher affinity than zinc and holds it until the cell is shed, so copper never reaches the circulation. The FDA approved zinc acetate under NDA 020458 for maintenance therapy in Wilson disease on exactly this mechanism. In people with normal copper handling, Willis et al. reported three cases of zinc-induced copper deficiency first suspected on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of the three with progressive peripheral neuropathy, one of them arising from zinc taken for acrodermatitis enteropathica. Kumar's Mayo Clinic review of copper deficiency myelopathy describes a spastic gait with prominent sensory ataxia that mirrors vitamin B12 subacute combined degeneration, lists excess zinc ingestion among the established causes, and records the crucial asymmetry: copper replacement resolves the anaemia and neutropenia promptly and completely, while neurological improvement is often only subjective and mainly prevents further deterioration.",
         evidenceSource:
           'Willis MS et al. Am J Clin Pathol 2005;123:125-131; Kumar N. Mayo Clin Proc 2006;81:1371-1384',
         doi: '10.1309/V6GVYW2QTYD5C5PJ',
@@ -2416,7 +2482,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'A zinc lozenge is not a dose of zinc — it is a dose of whatever free zinc it releases in your mouth. Many common sweeteners and acids grab the zinc and never let go, and a lozenge like that does nothing.',
         molecularDetail:
-          'The proposed antiviral species is free Zn2+ released in the oropharynx. Citric acid, tartaric acid, sorbitol and mannitol chelate zinc and suppress ionic release. Hemila\'s dose stratification is the observable consequence: below 75 mg per day, five trials found nothing at all, while zinc acetate above 75 mg pooled to a 42% duration reduction.',
+          "The proposed antiviral species is free Zn2+ released in the oropharynx. Citric acid, tartaric acid, sorbitol and mannitol chelate zinc and suppress ionic release. Hemila's dose stratification is the observable consequence: below 75 mg per day, five trials found nothing at all, while zinc acetate above 75 mg pooled to a 42% duration reduction.",
         iconName: 'Pill',
         visualStage: 'delivery',
       },
@@ -2456,7 +2522,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Short bursts at cold onset may take a day or two off a cold. Sustained high daily intake quietly strips copper, and the first sign of that is often a blood count or a change in the way someone walks.',
         molecularDetail:
-          'The therapeutic window is defined by time, not just amount. Cochrane found treatment courses of 4.5 to 21 days, over which copper depletion does not develop. Willis\'s three cases and Kumar\'s myelopathy series arose from sustained intake. Anaemia and neutropenia reverse completely on copper replacement; the neurological deficit generally does not.',
+          "The therapeutic window is defined by time, not just amount. Cochrane found treatment courses of 4.5 to 21 days, over which copper depletion does not develop. Willis's three cases and Kumar's myelopathy series arose from sustained intake. Anaemia and neutropenia reverse completely on copper replacement; the neurological deficit generally does not.",
         iconName: 'GitBranch',
         visualStage: 'therapeutic_result',
       },
@@ -2559,7 +2625,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does zinc actually shorten a cold?',
-        a: 'Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila\'s earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.',
+        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.",
         auditNote:
           'Free ionic zinc is the active species, and citric acid, tartaric acid, sorbitol and mannitol in a lozenge chelate it away.',
       },
@@ -2575,7 +2641,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What happened with zinc nasal sprays?',
-        a: 'They destroyed people\'s sense of smell. Jafek and colleagues described a series of severe hyposmia and anosmia after intranasal zinc gluconate and concluded that zinc ions are directly toxic to olfactory epithelium, with loss that was long-lasting or permanent in some cases. Davidson and Smith later ran the full nine Bradford Hill causation criteria over 25 such patients and found causation supported. The products were withdrawn from the US market in 2009. Nothing about that finding applies to a lozenge, and nothing about lozenge evidence excused the nasal product.',
+        a: "They destroyed people's sense of smell. Jafek and colleagues described a series of severe hyposmia and anosmia after intranasal zinc gluconate and concluded that zinc ions are directly toxic to olfactory epithelium, with loss that was long-lasting or permanent in some cases. Davidson and Smith later ran the full nine Bradford Hill causation criteria over 25 such patients and found causation supported. The products were withdrawn from the US market in 2009. Nothing about that finding applies to a lozenge, and nothing about lozenge evidence excused the nasal product.",
       },
       {
         q: 'Is the zinc in my multivitamin doing anything?',
@@ -2604,7 +2670,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Kumar N. Copper deficiency myelopathy (human swayback). Mayo Clin Proc 2006;81:1371-1384',
+        label:
+          'Kumar N. Copper deficiency myelopathy (human swayback). Mayo Clin Proc 2006;81:1371-1384',
         identifier: '10.4065/81.10.1371',
         kind: 'doi',
       },
@@ -2654,6 +2721,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11192',
         kind: 'url',
       },
+      {
+        label:
+          'Nsabimana S, Ismail T, Lazarte CE. Enhancing iron and zinc bioavailability in maize through phytate reduction: fermentation alone and combined with soaking and germination. Front Nutr 2024;11:1478155',
+        identifier: '10.3389/fnut.2024.1478155',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -2701,8 +2774,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Nutrient replacement for a defined deficiency disease',
           howItCompares:
             'Complete and rapid cure of a disease that is otherwise fatal, established well before controlled trials existed. It is the strongest possible evidence that vitamin C is essential, and it says nothing whatever about the effect of extra vitamin C in someone who is not deficient.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: unambiguous, mechanistically understood, fast. Cons: routinely used as rhetorical cover for claims about replete adults, which is the central error this file exists to name.',
         },
@@ -2711,8 +2783,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Investigational critical-care intervention, now negative',
           howItCompares:
             'Between 2017 and 2022 this went from a widely adopted ICU protocol to a randomised finding of harm. LOVIT found death or persistent organ dysfunction at day 28 in 44.5% on vitamin C against 38.5% on placebo, risk ratio 1.21 (95% CI 1.04 to 1.40, P = 0.01).',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: none demonstrated. Cons: a randomised signal of harm, from a trial designed to look for benefit.',
         },
@@ -2734,7 +2805,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Ascorbate reduces dietary Fe(III) to Fe(II) and forms a soluble chelate that survives the alkaline duodenum, substantially increasing non-haem iron absorption. This is one of the few supplemental vitamin C effects that is mechanistically direct, measurable, and useful in ordinary people.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Teucher et al. put the working amount at a 2 to 1 molar ratio of ascorbate to iron in the same meal, around 20 mg of vitamin C to 3 mg of iron, rising past 4 to 1 where phytate is high.',
           monthlyCost: '',
         },
       ],
@@ -2851,11 +2923,11 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'vitc-a3',
         category: 'conclusion_shift',
-        title: 'Pauling\'s cancer claim, and the two Mayo trials that ended it',
+        title: "Pauling's cancer claim, and the two Mayo trials that ended it",
         laymanSummary:
           'A double Nobel laureate spent decades arguing that high-dose vitamin C treated advanced cancer. Two randomised double-blind trials found no benefit whatsoever.',
         technicalDetails:
-          'Moertel and colleagues at the Mayo Clinic randomised 100 patients with advanced colorectal cancer, none of whom had received any prior cytotoxic drugs — the precise population in which the claim was said to hold — to 10 g of vitamin C daily or placebo, double-blind. There was no advantage over placebo in time from start of treatment to disease progression or in survival, and among patients with measurable disease none had objective improvement. The authors wrote that on the basis of this and their previous randomised study, high-dose vitamin C is not effective against advanced malignant disease regardless of prior chemotherapy. The scientific residue of the episode is instructive: Pauling\'s original supporting data came from a non-randomised comparison against historical controls at a hospital where patients entering the vitamin C group were selected differently. The mechanism was never absurd — ascorbate at millimolar concentration does generate hydrogen peroxide near tumour cells — but that mechanism was tested and did not produce the outcome.',
+          "Moertel and colleagues at the Mayo Clinic randomised 100 patients with advanced colorectal cancer, none of whom had received any prior cytotoxic drugs — the precise population in which the claim was said to hold — to 10 g of vitamin C daily or placebo, double-blind. There was no advantage over placebo in time from start of treatment to disease progression or in survival, and among patients with measurable disease none had objective improvement. The authors wrote that on the basis of this and their previous randomised study, high-dose vitamin C is not effective against advanced malignant disease regardless of prior chemotherapy. The scientific residue of the episode is instructive: Pauling's original supporting data came from a non-randomised comparison against historical controls at a hospital where patients entering the vitamin C group were selected differently. The mechanism was never absurd — ascorbate at millimolar concentration does generate hydrogen peroxide near tumour cells — but that mechanism was tested and did not produce the outcome.",
         evidenceSource: 'Moertel CG et al. N Engl J Med 1985;312:137-141',
         doi: '10.1056/NEJM198501173120301',
         measuredMetric:
@@ -2885,7 +2957,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A single small retrospective study reported that a vitamin C protocol cut sepsis deaths from 40 percent to 8 percent. Intensive care units adopted it worldwide. The randomised trials that followed found nothing, then found harm.',
         technicalDetails:
-          'Marik and colleagues published a retrospective before-after study of 47 treated and 47 historical control patients, reporting hospital mortality of 8.5% against 40.4% (P < .001) and a propensity-adjusted odds ratio for mortality of 0.13 (95% CI 0.04 to 0.48). The design is the weakest one that can produce a number: no randomisation, no blinding, sequential time periods, and a control group assembled from the preceding seven months. Adoption nevertheless outran the evidence by years. CITRIS-ALI then randomised 167 patients with sepsis and ARDS and found no difference in the primary endpoints — modified SOFA score change from baseline to 96 hours differed by -0.10 (95% CI -1.23 to 1.03, P = .86), C-reactive protein P = .33. The VITAMINS trial compared vitamin C, hydrocortisone and thiamine against hydrocortisone alone in septic shock and found no difference in time alive and free of vasopressors. LOVIT then found harm. CHEST published an Editor\'s Note attached to the original 2017 paper in 2023.',
+          "Marik and colleagues published a retrospective before-after study of 47 treated and 47 historical control patients, reporting hospital mortality of 8.5% against 40.4% (P < .001) and a propensity-adjusted odds ratio for mortality of 0.13 (95% CI 0.04 to 0.48). The design is the weakest one that can produce a number: no randomisation, no blinding, sequential time periods, and a control group assembled from the preceding seven months. Adoption nevertheless outran the evidence by years. CITRIS-ALI then randomised 167 patients with sepsis and ARDS and found no difference in the primary endpoints — modified SOFA score change from baseline to 96 hours differed by -0.10 (95% CI -1.23 to 1.03, P = .86), C-reactive protein P = .33. The VITAMINS trial compared vitamin C, hydrocortisone and thiamine against hydrocortisone alone in septic shock and found no difference in time alive and free of vasopressors. LOVIT then found harm. CHEST published an Editor's Note attached to the original 2017 paper in 2023.",
         evidenceSource:
           'Marik PE et al. Chest 2017;151:1229-1238; Fowler AA et al. JAMA 2019;322:1261-1270; Fujii T et al. JAMA 2020;323:423-431',
         doi: '10.1001/jama.2019.11825',
@@ -2898,11 +2970,11 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'vitc-a6',
         category: 'failed',
-        title: 'Physicians\' Health Study II: 14,641 men, eight years, no cardiovascular effect',
+        title: "Physicians' Health Study II: 14,641 men, eight years, no cardiovascular effect",
         laymanSummary:
           'A long randomised trial gave 500 mg of vitamin C a day to nearly fifteen thousand male doctors for eight years. It made no difference to heart attacks, strokes or cardiovascular death.',
         technicalDetails:
-          'The Physicians\' Health Study II randomised 14,641 male physicians aged 50 or older to vitamin C 500 mg daily, vitamin E 400 IU every other day, both, or placebo, in a factorial design with a mean follow-up of eight years. Neither vitamin C nor vitamin E reduced the composite of major cardiovascular events, and neither reduced total mortality. Vitamin E was associated with an increased risk of haemorrhagic stroke. The companion cancer analysis from the same cohort found neither vitamin reduced prostate cancer or total cancer incidence. Eight years of randomised supplementation in a well-nourished population is exactly the design that should have detected an antioxidant benefit if one existed at that dose, and it detected none.',
+          "The Physicians' Health Study II randomised 14,641 male physicians aged 50 or older to vitamin C 500 mg daily, vitamin E 400 IU every other day, both, or placebo, in a factorial design with a mean follow-up of eight years. Neither vitamin C nor vitamin E reduced the composite of major cardiovascular events, and neither reduced total mortality. Vitamin E was associated with an increased risk of haemorrhagic stroke. The companion cancer analysis from the same cohort found neither vitamin reduced prostate cancer or total cancer incidence. Eight years of randomised supplementation in a well-nourished population is exactly the design that should have detected an antioxidant benefit if one existed at that dose, and it detected none.",
         evidenceSource: 'Sesso HD et al. JAMA 2008;300:2123-2133',
         doi: '10.1001/jama.2008.600',
         measuredMetric:
@@ -2963,7 +3035,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'At the enormous concentrations only a drip can produce, vitamin C flips character and starts generating hydrogen peroxide. That was the hoped-for anticancer mechanism, and it is also the most likely reason it hurt septic patients.',
         molecularDetail:
-          'At millimolar extracellular concentration ascorbate reduces catalytically available transition metals, driving Fenton chemistry and generating extracellular hydrogen peroxide. Critically ill patients have elevated free iron and impaired antioxidant defences, which is the condition under which that chemistry does damage rather than good. LOVIT\'s risk ratio of 1.21 for death or persistent organ dysfunction is the clinical form of this step.',
+          "At millimolar extracellular concentration ascorbate reduces catalytically available transition metals, driving Fenton chemistry and generating extracellular hydrogen peroxide. Critically ill patients have elevated free iron and impaired antioxidant defences, which is the condition under which that chemistry does damage rather than good. LOVIT's risk ratio of 1.21 for death or persistent organ dysfunction is the clinical form of this step.",
         iconName: 'Flame',
         visualStage: 'catalytic_action',
       },
@@ -3004,13 +3076,15 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Failed to Replicate',
       },
       {
-        trialId: 'Physicians\' Health Study II — vitamin C and vitamin E in cardiovascular prevention',
+        trialId:
+          "Physicians' Health Study II — vitamin C and vitamin E in cardiovascular prevention",
         phase: 'Randomised double-blind placebo-controlled factorial',
         sampleSize: 14641,
         primaryEndpoint:
           'Composite of nonfatal myocardial infarction, nonfatal stroke and cardiovascular death',
         endpointMet: false,
-        statisticalPValue: 'No significant effect of vitamin C on the composite endpoint over eight years',
+        statisticalPValue:
+          'No significant effect of vitamin C on the composite endpoint over eight years',
         unreportedAdverseSignals:
           'Vitamin E in the same trial was associated with an increased risk of haemorrhagic stroke. The companion analysis found no reduction in prostate or total cancer.',
         independentReplicationStatus: 'Replicated',
@@ -3055,9 +3129,9 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'That because the excess is excreted, more is harmless — the excess is excreted partly as oxalate',
       ],
       whatFailedInitially: [
-        'Pauling\'s cancer programme, which rested on a non-randomised comparison against historical controls',
+        "Pauling's cancer programme, which rested on a non-randomised comparison against historical controls",
         'The Marik sepsis protocol, adopted worldwide from a 47-patient before-after study and then negative in CITRIS-ALI, VITAMINS and LOVIT',
-        'Vitamin C as cardiovascular prevention, null across 14,641 men and eight years in Physicians\' Health Study II',
+        "Vitamin C as cardiovascular prevention, null across 14,641 men and eight years in Physicians' Health Study II",
       ],
       realWorldOutcome: [
         'Vitamin C is unambiguously essential, and scurvy is a real disease that it cures completely and quickly',
@@ -3086,8 +3160,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         q: 'What happened with vitamin C and sepsis?',
         a: 'It is one of the clearest cautionary tales in modern critical care. A 47-patient retrospective before-after study in 2017 reported mortality falling from 40 percent to 8.5 percent, and units around the world adopted the protocol. CITRIS-ALI then randomised 167 patients and found no difference in its primary endpoints. The VITAMINS trial found no difference in time alive and free of vasopressors. Then LOVIT randomised 872 patients and found death or persistent organ dysfunction in 44.5 percent on vitamin C against 38.5 percent on placebo, risk ratio 1.21, P = 0.01. The sequence took five years and went from spectacular benefit to measurable harm.',
-        auditNote:
-          'CHEST attached an Editor\'s Note to the original 2017 paper in 2023.',
+        auditNote: "CHEST attached an Editor's Note to the original 2017 paper in 2023.",
       },
       {
         q: 'Is there any downside to taking a lot?',
@@ -3109,7 +3182,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Sesso HD et al. Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians\' Health Study II randomized controlled trial. JAMA 2008;300:2123-2133',
+          "Sesso HD et al. Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial. JAMA 2008;300:2123-2133",
         identifier: '10.1001/jama.2008.600',
         kind: 'doi',
       },
@@ -3150,7 +3223,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'CHEST Editor\'s Note attached to Marik PE et al. Chest 2017;151:1229-1238',
+        label: "CHEST Editor's Note attached to Marik PE et al. Chest 2017;151:1229-1238",
         identifier: '10.1016/j.chest.2023.04.021',
         kind: 'doi',
       },
@@ -3158,6 +3231,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         label: 'PubChem CID 54670067 — L-Ascorbic acid',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/54670067',
         kind: 'url',
+      },
+      {
+        label:
+          'Teucher B, Olivares M, Cori H. Enhancers of iron absorption: ascorbic acid and other organic acids. Int J Vitam Nutr Res 2004;74:403-419',
+        identifier: '10.1024/0300-9831.74.6.403',
+        kind: 'doi',
       },
     ],
   },
@@ -3178,7 +3257,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     modality: 'Nutraceutical / Botanical',
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
-      'Sold over the counter in the US for insomnia, jet lag and children\'s sleep. In the European Union the same molecule requires a prescription, and prolonged-release melatonin is authorised only as short-term monotherapy for primary insomnia in patients aged 55 or over. The regulatory gap between the two jurisdictions is the largest for any substance in this file.',
+      "Sold over the counter in the US for insomnia, jet lag and children's sleep. In the European Union the same molecule requires a prescription, and prolonged-release melatonin is authorised only as short-term monotherapy for primary insomnia in patients aged 55 or over. The regulatory gap between the two jurisdictions is the largest for any substance in this file.",
     patientFriendlyIndication: 'Taken to fall asleep faster, and to reset the clock after flying',
     conditionContext: {
       conditionExplainer:
@@ -3207,8 +3286,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Melatonin receptor agonist, authorised medicine',
           howItCompares:
             'The regulated version of the same molecule, assessed by the EMA and authorised in 2007 for short-term monotherapy in primary insomnia in patients aged 55 or over. Across three trials in 681 patients, 32% on Circadin (86 of 265) reported significant symptom improvement at three weeks against 19% on placebo (51 of 272).',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: known content, known release profile, a defined indication and an age restriction. Cons: a 13-percentage-point responder difference is modest, and the authorisation is deliberately narrow in a way the US supplement market simply is not.',
         },
@@ -3216,9 +3294,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Cognitive behavioural therapy for insomnia (CBT-I)',
           class: 'Behavioural therapy, first-line in guidelines',
           howItCompares:
-            'Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin\'s and, unlike melatonin, persist after treatment stops.',
-          typicalCost:
-            '',
+            "Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin's and, unlike melatonin, persist after treatment stops.",
+          typicalCost: '',
           prosAndCons:
             'Pros: durable, no pharmacology, no content-variability problem. Cons: requires weeks of effort and access to a clinician or a structured programme, which is why a gummy wins on convenience every time.',
         },
@@ -3228,7 +3305,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Darkness in the two hours before bed',
           activeCompound: 'Endogenous melatonin, released when retinal light input falls',
           biologicalMechanism:
-            'Melanopsin-containing retinal ganglion cells signal light directly to the suprachiasmatic nucleus, which suppresses pineal melatonin release. Short-wavelength light in the evening is the most potent suppressor. Removing that light restores the body\'s own signal at the correct time and correct amplitude, which no tablet can reproduce.',
+            "Melanopsin-containing retinal ganglion cells signal light directly to the suprachiasmatic nucleus, which suppresses pineal melatonin release. Short-wavelength light in the evening is the most potent suppressor. Removing that light restores the body's own signal at the correct time and correct amplitude, which no tablet can reproduce.",
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
             'Not stated here as advice. The mechanistic point is that this is the same signal the supplement imitates, delivered by the system that knows the right dose.',
@@ -3240,7 +3317,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Light in the early biological morning advances circadian phase, which is the intervention that pairs with evening melatonin for delayed sleep-wake phase disorder. The phase-response curves for light and for melatonin run in roughly opposite directions, which is why the two are used together and why timing errors make either one useless or counterproductive.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Rosenthal et al. treated delayed sleep phase syndrome with two hours of bright light in the morning alongside evening light restriction, and measured the advance in core temperature and sleep latency.',
           monthlyCost: '',
         },
       ],
@@ -3361,7 +3439,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         category: 'conclusion_shift',
         title: 'The physiological dose worked; the pharmacological dose worked and overshot',
         laymanSummary:
-          'A dose-ranging study found that a small dose matching the body\'s own night-time level restored sleep efficiency. A ten-times-larger dose also worked, but dropped body temperature and left melatonin circulating into the next day.',
+          "A dose-ranging study found that a small dose matching the body's own night-time level restored sleep efficiency. A ten-times-larger dose also worked, but dropped body temperature and left melatonin circulating into the next day.",
         technicalDetails:
           'Zhdanova and colleagues ran a double-blind placebo-controlled crossover in 30 subjects over 50 — 15 with actigraphically confirmed reduced sleep efficiency and 15 normal sleepers — giving placebo and 0.1, 0.3 and 3.0 mg melatonin 30 minutes before bed for a week each, with polysomnography on the last three nights of each period. The physiological dose of 0.3 mg restored sleep efficiency (P < 0.0001), acting principally in the middle third of the night, and raised plasma melatonin to the normal nocturnal range (P < 0.0008). The pharmacological 3.0 mg dose also improved sleep, but induced hypothermia and caused plasma melatonin to remain elevated into the daylight hours. The 0.1 mg dose also improved sleep. Crucially, control subjects with equally low melatonin levels showed no sleep effect at any dose. Retail products in the US are commonly sold at 3, 5 and 10 mg, which is ten to thirty times the dose that this study showed sufficed, and the surplus does not simply vanish: it keeps signalling night into the following morning, which is the opposite of what a circadian intervention should do.',
         evidenceSource: 'Zhdanova IV et al. J Clin Endocrinol Metab 2001;86:4727-4730',
@@ -3422,7 +3500,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         step: 1,
         title: 'Darkness starts the signal, and light stops it',
         laymanDesc:
-          'Special cells in the retina report ambient light straight to the body\'s master clock. When light falls, the clock releases the brake on the pineal gland and melatonin rises.',
+          "Special cells in the retina report ambient light straight to the body's master clock. When light falls, the clock releases the brake on the pineal gland and melatonin rises.",
         molecularDetail:
           'Melanopsin-expressing intrinsically photosensitive retinal ganglion cells project through the retinohypothalamic tract to the suprachiasmatic nucleus, which controls pineal melatonin synthesis through a multisynaptic pathway ending in sympathetic input to the pineal. Evening short-wavelength light suppresses release. Dim-light melatonin onset, measured under sub-10-lux conditions, is the reference standard for circadian phase precisely because it is the least contaminated marker available.',
         iconName: 'Moon',
@@ -3442,7 +3520,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'It binds two receptors on the clock itself',
         laymanDesc:
-          'Melatonin docks onto two specific receptors concentrated in the small cluster of cells that runs the body\'s daily timing. One quietens those cells; the other moves the clock.',
+          "Melatonin docks onto two specific receptors concentrated in the small cluster of cells that runs the body's daily timing. One quietens those cells; the other moves the clock.",
         molecularDetail:
           'MT1 (MTNR1A) and MT2 (MTNR1B) are Gi-coupled receptors densely expressed in the suprachiasmatic nucleus. MT1 activation acutely suppresses SCN neuronal firing; MT2 mediates phase shifts. Both inhibit adenylyl cyclase and lower cAMP. MT2 internalises and desensitises under sustained agonist exposure, which is why a large dose held high for many hours is not a scaled-up version of the physiological pulse.',
         iconName: 'Target',
@@ -3641,6 +3719,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/896',
         kind: 'url',
       },
+      {
+        label:
+          'Rosenthal NE et al. Phase-shifting effects of bright morning light as treatment for delayed sleep phase syndrome. Sleep 1990;13:354-361',
+        identifier: '10.1093/sleep/13.4.354',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -3661,7 +3745,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold as a dietary supplement and as an ingredient in coffee, tea, energy drinks and pre-workout formulas, for alertness and exercise performance. Caffeine citrate is separately an approved prescription drug under NDA 020793 for apnea of prematurity in very-low-birth-weight infants, where it reduced bronchopulmonary dysplasia and, at 18 months, death or neurodevelopmental disability.',
-    patientFriendlyIndication: 'Taken for alertness, and before training or competition for performance',
+    patientFriendlyIndication:
+      'Taken for alertness, and before training or competition for performance',
     conditionContext: {
       conditionExplainer:
         'Adenosine accumulates in the brain across a waking day and, by acting on its receptors, is one of the signals that produces the feeling of sleepiness. Caffeine occupies those receptors without activating them. It does not add energy; it blocks the message that you are tired, and the adenosine keeps accumulating underneath.',
@@ -3689,8 +3774,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Methylxanthine respiratory stimulant, FDA-approved under NDA 020793',
           howItCompares:
             'The same molecule as a licensed drug, given to very-low-birth-weight infants. In the 2,006-infant CAP trial it reduced bronchopulmonary dysplasia and, at 18 to 21 months corrected age, reduced death or neurodevelopmental disability from 46.2% to 40.2% and cerebral palsy from 7.3% to 4.4%.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: a genuine randomised benefit on hard neurological outcomes in a real disease, from a substance most people meet as a beverage. Cons: it tells you nothing about the coffee you drank this morning, and it is regularly cited as if it did.',
         },
@@ -3699,8 +3783,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'The mechanism-matching comparator',
           howItCompares:
             'Sleep clears accumulated adenosine; caffeine occupies the receptor while the adenosine keeps accumulating. That difference is why caffeine reliably improves performance on a rested athlete and cannot substitute for sleep across days. It is also why 400 mg six hours before bed measurably reduces total sleep time.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: removes the underlying signal rather than blocking it, with no tolerance and no withdrawal. Cons: cannot be bought, which is precisely why the caffeine market exists.',
         },
@@ -3708,12 +3791,13 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       naturalFoods: [
         {
           name: 'Coffee',
-          activeCompound: 'Caffeine, plus chlorogenic acids and diterpenes that anhydrous caffeine lacks',
+          activeCompound:
+            'Caffeine, plus chlorogenic acids and diterpenes that anhydrous caffeine lacks',
           biologicalMechanism:
             'The caffeine in coffee and the caffeine in a capsule are the same molecule acting at the same receptors, and coffee has been used successfully in ergogenic trials. The differences are dose precision and the accompanying compounds: unfiltered coffee carries cafestol and kahweol, which raise LDL cholesterol, and filtered coffee does not.',
           evidenceStrength: 'High Clinical Proof',
           dailyUsage:
-            'Not stated here as advice. For scale only: Goncalves\'s time-trial study used 6 mg per kilogram of body mass, and Drake\'s sleep study used a fixed 400 mg.',
+            "Not stated here as advice. For scale only: Goncalves's time-trial study used 6 mg per kilogram of body mass, and Drake's sleep study used a fixed 400 mg.",
           monthlyCost: '',
         },
         {
@@ -3722,7 +3806,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tea delivers less caffeine per serving alongside L-theanine, an amino acid that crosses the blood-brain barrier and is frequently combined with caffeine in supplement products on the claim that it smooths the stimulant effect. The receptor pharmacology of the caffeine is unchanged.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Chin et al. assayed 20 commercial teas and found 14 to 61 mg of caffeine per 6 or 8 ounce serving, with steep time mattering more than variety. Decaffeinated teas held under 12 mg.',
           monthlyCost: '',
         },
       ],
@@ -3809,7 +3894,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Time-trial performance with perceived exertion and a sleep readout',
           description:
-            'Report the performance outcome, the perceived-exertion outcome and the subsequent night\'s sleep from the same subjects. Doherty and Smith showed that exertion ratings account for roughly 29% of the variance in performance improvement, and Drake showed that a moderate dose six hours before bed disrupts sleep. A trial that reports only the time trial is reporting a third of the effect.',
+            "Report the performance outcome, the perceived-exertion outcome and the subsequent night's sleep from the same subjects. Doherty and Smith showed that exertion ratings account for roughly 29% of the variance in performance improvement, and Drake showed that a moderate dose six hours before bed disrupts sleep. A trial that reports only the time trial is reporting a third of the effect.",
           dependsOnStepId: 'caf-w4',
           reagentsAndBuffer:
             'Cycle ergometer simulated time trial with a validated protocol; Borg 6-20 rating of perceived exertion at fixed intervals; capillary blood lactate; matched placebo capsule plus a no-supplement control arm to detect placebo response; validated portable sleep monitor for the following night',
@@ -3863,11 +3948,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'caf-a4',
         category: 'inferred',
-        title: 'Half of habitual users get a withdrawal headache, from doses as low as 100 mg a day',
+        title:
+          'Half of habitual users get a withdrawal headache, from doses as low as 100 mg a day',
         laymanSummary:
           'Caffeine withdrawal is a real, validated syndrome with ten confirmed symptoms. Half of people get a headache, and it can be triggered by a daily habit as small as one cup.',
         technicalDetails:
-          'Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user\'s morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.',
+          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
         evidenceSource: 'Juliano LM, Griffiths RR. Psychopharmacology (Berl) 2004;176:1-29',
         doi: '10.1007/s00213-004-2000-x',
         measuredMetric:
@@ -3883,7 +3969,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'For years athletes were told to abstain from caffeine before competition so it would work better. A controlled study across low, moderate and heavy habitual users found their daily intake made no difference to the benefit.',
         technicalDetails:
-          'Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher\'s exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.',
+          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.",
         evidenceSource: 'Goncalves LS et al. J Appl Physiol (1985) 2017;123:213-220',
         doi: '10.1152/japplphysiol.00260.2017',
         measuredMetric:
@@ -4012,9 +4098,11 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Goncalves 2017 — habitual caffeine intake and the acute ergogenic response',
-        phase: 'Double-blind randomised crossover, counterbalanced, with a no-supplement control arm',
+        phase:
+          'Double-blind randomised crossover, counterbalanced, with a no-supplement control arm',
         sampleSize: 40,
-        primaryEndpoint: 'Simulated cycling time-trial completion time stratified by habitual intake',
+        primaryEndpoint:
+          'Simulated cycling time-trial completion time stratified by habitual intake',
         endpointMet: true,
         statisticalPValue:
           'Caffeine 29.92 min versus placebo 30.81 and control 31.14, P = 0.0002; habitual intake as covariate P = 0.47; between-tertile difference P = 0.75',
@@ -4028,7 +4116,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         sampleSize: 12,
         primaryEndpoint: 'Self-reported and objectively monitored sleep disturbance',
         endpointMet: true,
-        statisticalPValue: 'Significant sleep disturbance at all three timings versus placebo, P < 0.05',
+        statisticalPValue:
+          'Significant sleep disturbance at all three timings versus placebo, P < 0.05',
         unreportedAdverseSignals:
           'A small sample, but the six-hour finding is the empirical basis of the standard sleep-hygiene recommendation and had not previously been tested directly in the home environment.',
         independentReplicationStatus: 'Partially Replicated',
@@ -4078,7 +4167,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is the morning coffee doing anything, or just fixing withdrawal?',
-        a: 'Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user\'s pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.',
+        a: "Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user's pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.",
       },
       {
         q: 'How late is too late?',
@@ -4156,6 +4245,11 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2519',
         kind: 'url',
       },
+      {
+        label: 'Chin JM et al. Caffeine content of brewed teas. J Anal Toxicol 2008;32:702-704',
+        identifier: '10.1093/jat/32.8.702',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -4205,9 +4299,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Extensively hydrolysed whey infant formula',
           class: 'Medical nutrition, hypoallergenic feed',
           howItCompares:
-            'The same starting material cut into peptides small enough to avoid triggering cow\'s milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.',
-          typicalCost:
-            '',
+            "The same starting material cut into peptides small enough to avoid triggering cow's milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.",
+          typicalCost: '',
           prosAndCons:
             'Pros: solves a defined clinical problem. Cons: the word "hydrolysate" on a sports tub borrows credibility from this use, and hydrolysing whey for an adult buys speed of digestion, not a different biology.',
         },
@@ -4229,7 +4322,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Tang et al. measured it directly. After resistance exercise, muscle protein synthesis on whey was about 31% greater than on soy and about 122% greater than on casein, with soy sitting between the two — an ordering that tracks digestion speed and leucine delivery rather than any unique property of dairy.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Tang et al. matched the three drinks at 10 g of essential amino acids, which is the comparison the whey-against-soy ordering rests on.',
           monthlyCost: '',
         },
       ],
@@ -4285,7 +4379,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
             'Muscle protein synthesis is a rate, not a quantity, and it can only be measured by tracking a labelled amino acid into muscle protein over time. This is the technique that produced every number in this dossier about whey versus casein versus soy, and it is why those numbers are trustworthy in a way that scale weight is not.',
           dependsOnStepId: 'whey-w1',
           reagentsAndBuffer:
-            'L-[ring-13C6]phenylalanine for the primed constant infusion; [1-13C]leucine for the parallel oxidation measurement; sterile pyrogen-free preparation; priming dose calculated from the subject\'s estimated pool size; background enrichment sampled before infusion',
+            "L-[ring-13C6]phenylalanine for the primed constant infusion; [1-13C]leucine for the parallel oxidation measurement; sterile pyrogen-free preparation; priming dose calculated from the subject's estimated pool size; background enrichment sampled before infusion",
         },
         {
           id: 'whey-w3',
@@ -4344,7 +4438,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The same meta-analysis found the point where extra protein stops adding anything: once total daily intake passes about 1.6 grams per kilogram of body weight, more protein produced no further muscle gain.',
         technicalDetails:
-          'A two-phase break point analysis across the 49 included studies determined that protein supplementation beyond a total protein intake of 1.62 g/kg/day resulted in no further resistance-training-induced gains in fat-free mass. This is not an opinion or a rule of thumb — it is a break point estimated from the pooled data, and it defines the exact boundary of the product\'s usefulness. A person already eating above that from food is, on the best available evidence, buying a supplement with a measured incremental effect of zero on fat-free mass, no matter how much of it they take. The finding also reframes the whole category: whey is not a muscle-building agent, it is a convenient way to reach a threshold, and past the threshold it is protein-flavoured food.',
+          "A two-phase break point analysis across the 49 included studies determined that protein supplementation beyond a total protein intake of 1.62 g/kg/day resulted in no further resistance-training-induced gains in fat-free mass. This is not an opinion or a rule of thumb — it is a break point estimated from the pooled data, and it defines the exact boundary of the product's usefulness. A person already eating above that from food is, on the best available evidence, buying a supplement with a measured incremental effect of zero on fat-free mass, no matter how much of it they take. The finding also reframes the whole category: whey is not a muscle-building agent, it is a convenient way to reach a threshold, and past the threshold it is protein-flavoured food.",
         evidenceSource: 'Morton RW et al. Br J Sports Med 2018;52:376-384',
         doi: '10.1136/bjsports-2017-097608',
         measuredMetric:
@@ -4359,7 +4453,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'A stable-isotope study measured muscle protein synthesis directly after equal amounts of essential amino acids from whey, casein or soy. Whey produced by far the biggest response.',
         technicalDetails:
           'Tang and colleagues gave three groups of six healthy young men drinks matched for essential amino acid content at 10 g, as whey hydrolysate, micellar casein or soy protein isolate, after unilateral leg resistance exercise, with mixed muscle protein synthesis measured by primed constant infusion of L-[ring-13C6]phenylalanine. Whey produced larger increases in blood essential amino acids, branched-chain amino acids and leucine than either comparator (P < 0.05). At rest, mixed muscle protein synthesis was 0.091 +/- 0.015 %/h on whey, 0.078 +/- 0.014 on soy and 0.047 +/- 0.008 on casein — whey approximately 93% greater than casein (P < 0.01) and 18% greater than soy (P = 0.067). After exercise the ordering held: whey approximately 122% greater than casein (P < 0.01) and 31% greater than soy (P < 0.05). This is a genuine, mechanistically clean advantage for whey, and it is an acute synthesis rate in six men per group, not a training outcome. The chronic meta-analysis that measured training outcomes did not separate protein sources.',
-        evidenceSource: 'Tang JE, Moore DR, Kujbida GW, Tarnopolsky MA, Phillips SM. J Appl Physiol 2009;107:987-992',
+        evidenceSource:
+          'Tang JE, Moore DR, Kujbida GW, Tarnopolsky MA, Phillips SM. J Appl Physiol 2009;107:987-992',
         doi: '10.1152/japplphysiol.00076.2009',
         measuredMetric:
           'Fractional rate of mixed muscle protein synthesis, percent per hour, at rest and after resistance exercise',
@@ -4414,7 +4509,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'whey-a7',
         category: 'inferred',
-        title: 'Heavy metals: found repeatedly, then assessed as safe by industry-adjacent consultants',
+        title:
+          'Heavy metals: found repeatedly, then assessed as safe by industry-adjacent consultants',
         laymanSummary:
           'Consumer testing found arsenic, cadmium, mercury and lead in protein powders, with 40 percent of 133 products elevated. A follow-up risk assessment concluded the exposures were below regulatory thresholds. Its three authors all worked for the same litigation-support consultancy.',
         technicalDetails:
@@ -4521,7 +4617,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'Schoenfeld 2013 meta-regression of protein timing',
         phase: 'Multi-level meta-regression of randomised controlled trials',
         sampleSize: 525,
-        primaryEndpoint: 'Muscle strength and hypertrophy effect size attributable to protein timing',
+        primaryEndpoint:
+          'Muscle strength and hypertrophy effect size attributable to protein timing',
         endpointMet: false,
         statisticalPValue:
           'Simple pooled analysis showed a small-to-moderate hypertrophy effect; in the full model controlling for covariates, no significant difference for strength or hypertrophy',
@@ -4533,7 +4630,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'Devries 2018 meta-analysis of higher-protein intake and kidney function',
         phase: 'Systematic review and meta-analysis of 28 randomised controlled trials',
         sampleSize: 1358,
-        primaryEndpoint: 'Glomerular filtration rate on higher versus normal or lower protein intake',
+        primaryEndpoint:
+          'Glomerular filtration rate on higher versus normal or lower protein intake',
         endpointMet: false,
         statisticalPValue:
           'Post-intervention GFR SMD 0.19 (95% CI 0.07 to 0.31), P = 0.002; change in GFR SMD 0.11 (95% CI -0.05 to 0.27), P = 0.16',
@@ -4553,7 +4651,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That protein must be taken in a window around training, which vanished when total daily intake was controlled for',
         'That a larger serving produces a proportionally larger response, when the response plateaued at 20 g',
-        'That whey\'s acute superiority over casein and soy translates into superior long-term hypertrophy, which no chronic trial has separated',
+        "That whey's acute superiority over casein and soy translates into superior long-term hypertrophy, which no chronic trial has separated",
         'That heavy metal contamination is a closed question because one industry-adjacent risk assessment computed a hazard index below 1',
       ],
       whatFailedInitially: [
@@ -4571,7 +4669,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       description:
         'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. The three grades differ by processing rather than by biology: concentrate retains more lactose and fat, isolate is filtered further to a higher protein percentage, and hydrolysate is pre-cleaved into peptides for faster absorption. All three deliver the same amino acids, and leucine content per gram of protein is nearly identical between them. Label protein content is usually derived from total nitrogen, which is inflatable by nitrogen-rich non-protein additives, so a full amino acid profile is the only assay that verifies the claim.',
       safetyProfile:
-        'Bloating, flatulence and diarrhoea in lactose-intolerant users of concentrate, which isolate largely avoids. Cow\'s milk protein allergy is a genuine contraindication and is not the same as lactose intolerance. Higher protein intake does not change glomerular filtration rate in healthy adults across 28 randomised trials, but that evidence does not extend to existing chronic kidney disease, where protein restriction remains standard. Independent testing has repeatedly found arsenic, cadmium, mercury and lead in this product category, with plant-based and mass-gain formulas worse than whey; a subsequent risk assessment by industry-adjacent consultants calculated hazard indices below the regulatory screening threshold.',
+        "Bloating, flatulence and diarrhoea in lactose-intolerant users of concentrate, which isolate largely avoids. Cow's milk protein allergy is a genuine contraindication and is not the same as lactose intolerance. Higher protein intake does not change glomerular filtration rate in healthy adults across 28 randomised trials, but that evidence does not extend to existing chronic kidney disease, where protein restriction remains standard. Independent testing has repeatedly found arsenic, cadmium, mercury and lead in this product category, with plant-based and mass-gain formulas worse than whey; a subsequent risk assessment by industry-adjacent consultants calculated hazard indices below the regulatory screening threshold.",
     },
     commonQuestions: [
       {
@@ -4690,8 +4788,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Prescription dermatological agent',
           howItCompares:
             'Retinoids act directly on the fibroblast, increasing procollagen I expression in skin that can be biopsied to show it. Their photoageing evidence base is decades old, replicated, and measured on the tissue itself rather than on a hydration probe.',
-          typicalCost:
-            '',
+          typicalCost: 'Generic. Medicaid NADAC: tretinoin 0.025% cream at $0.49 a gram, June 2026',
           prosAndCons:
             'Pros: mechanism demonstrated in human skin biopsies, not inferred from a serum marker. Cons: irritation, photosensitivity, and prescription-only in most jurisdictions.',
         },
@@ -4711,9 +4808,10 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Gelatin, which is the same material one processing step earlier',
           activeCompound: 'Denatured collagen, not yet enzymatically hydrolysed',
           biologicalMechanism:
-            'Gelatin is collagen that has been heat-denatured; hydrolysed collagen peptides are gelatin cut further by proteases. The difference is solubility in cold liquid and speed of digestion, not amino acid content. The tendon and ligament literature, including Shaw\'s work, used gelatin.',
+            "Gelatin is collagen that has been heat-denatured; hydrolysed collagen peptides are gelatin cut further by proteases. The difference is solubility in cold liquid and speed of digestion, not amino acid content. The tendon and ligament literature, including Shaw's work, used gelatin.",
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Shaw et al. used 5 or 15 g of vitamin-C-enriched gelatin three times a day across three days, each dose an hour before six minutes of rope-skipping.',
           monthlyCost: '',
         },
       ],
@@ -4734,7 +4832,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           patientImpact:
             'A person substituting collagen for whey or meat in a daily protein total is swapping a complete protein for one that cannot support protein synthesis on its own.',
           clinicalPrecaution:
-            'The industry\'s own calculation put the ceiling at 36% of daily protein as collagen before indispensable amino acid requirements start to fail.',
+            "The industry's own calculation put the ceiling at 36% of daily protein as collagen before indispensable amino acid requirements start to fail.",
         },
       ],
     },
@@ -4745,7 +4843,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       molecularWeight:
         '131.13 g/mol. This is trans-4-hydroxy-L-proline, not collagen. Collagen peptides are a heterogeneous hydrolysate with no single molecule to draw. Hydroxyproline is the marker the literature tracks, because it occurs almost nowhere else in the diet and because the peptides that survive digestion intact — Pro-Hyp above all — are defined by containing it.',
       structureSource: {
-        label: 'PubChem CID 5810 — trans-4-Hydroxy-L-proline, canonical SMILES and computed properties',
+        label:
+          'PubChem CID 5810 — trans-4-Hydroxy-L-proline, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5810',
         kind: 'url',
       },
@@ -4810,7 +4909,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'col-a1',
         category: 'inferred',
-        title: 'The industry\'s own paper: collagen has no tryptophan and is an incomplete protein',
+        title: "The industry's own paper: collagen has no tryptophan and is an incomplete protein",
         laymanSummary:
           'A paper written by authors at a collagen manufacturer and a collagen research institute states plainly that collagen protein lacks an essential amino acid and is therefore incomplete.',
         technicalDetails:
@@ -4857,7 +4956,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'The most-cited study behind "collagen for tendons" had eight subjects. The strengthening was measured not in their tendons but in laboratory-grown ligaments soaked in their blood serum.',
         technicalDetails:
           'Shaw and colleagues ran a randomised, double-blinded crossover in eight healthy male subjects consuming 5 g or 15 g of vitamin-C-enriched gelatin or placebo, three times daily with at least six hours between exercise bouts, over three days, each dose followed an hour later by six minutes of rope-skipping. Circulating glycine, proline, hydroxyproline and hydroxylysine all rose, peaking one hour after the supplement. Serum drawn before and one hour after gelatin was then used to treat engineered ligaments in culture, and amino-terminal propeptide of collagen I was measured in blood at 4, 24, 48 and 72 hours after the first exercise bout. The design is elegant and the finding is interesting. It is also eight men, a three-day exposure, a surrogate blood marker of collagen synthesis, and a mechanical measurement performed on tissue constructs rather than on any human tendon. The gap between that and "collagen strengthens your tendons" is the whole of this audit.',
-        evidenceSource: 'Shaw G, Lee-Barthel A, Ross ML, Wang B, Baar K. Am J Clin Nutr 2017;105:136-143',
+        evidenceSource:
+          'Shaw G, Lee-Barthel A, Ross ML, Wang B, Baar K. Am J Clin Nutr 2017;105:136-143',
         doi: '10.3945/ajcn.116.138594',
         measuredMetric:
           'Plasma amino acid response, serum P1NP, and mechanical properties of engineered ligaments treated with subject serum',
@@ -4868,12 +4968,14 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'col-a5',
         category: 'inferred',
-        title: 'The bone trial moved a T-score by one tenth, and was co-authored at the manufacturer\'s institute',
+        title:
+          "The bone trial moved a T-score by one tenth, and was co-authored at the manufacturer's institute",
         laymanSummary:
           'A twelve-month trial in postmenopausal women reported a statistically significant increase in bone density on collagen peptides. The size of the change was about a tenth of a T-score point.',
         technicalDetails:
           'Konig and colleagues randomised 131 postmenopausal women with age-related reduction in bone mineral density to 5 g of specific collagen peptides or placebo daily for 12 months; 102 completed and all were included in the intention-to-treat analysis (mean age 64.3 +/- 7.2 years, spine T-score -2.4 +/- 0.6, femoral neck T-score -1.4 +/- 0.5). Spine T-score changed by +0.1 +/- 0.26 on collagen peptides against -0.03 +/- 0.18 on control (ANCOVA P = 0.030) and femoral neck by +0.09 +/- 0.24 against -0.01 +/- 0.19 (P = 0.003). P1NP rose significantly in the treated group (P = 0.007). The statistics are real and the effect is at the edge of what densitometry resolves: the standard deviations exceed the mean changes, and a tenth of a T-score is well inside the precision error of most DXA scanners for repeat measurement. The corresponding author is affiliated with the Collagen Research Institute GmbH, and this is the single trial on which the bone claim rests.',
-        evidenceSource: 'Konig D, Oesser S, Scharla S, Zdzieblik D, Gollhofer A. Nutrients 2018;10:97',
+        evidenceSource:
+          'Konig D, Oesser S, Scharla S, Zdzieblik D, Gollhofer A. Nutrients 2018;10:97',
         doi: '10.3390/nu10010097',
         measuredMetric:
           'Change in spine and femoral neck bone mineral density T-score and in P1NP over 12 months',
@@ -4902,7 +5004,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The original idea was that eating collagen supplies collagen to skin. That is not what happens. The surviving scientific hypothesis is that small fragments act as chemical messages, which is a different claim with far less support.',
         technicalDetails:
-          'Two facts closed the building-block account. First, dietary protein of any kind is hydrolysed to free amino acids and small peptides before absorption, and collagen has no exemption; the amino acids released enter the general pool and are used for whatever the body is synthesising. Second, collagen is a poor source of those amino acids in the first place, lacking tryptophan entirely, as the manufacturer-affiliated PDCAAS analysis states. What replaced it is the signalling hypothesis: Iwai\'s measured Pro-Hyp in plasma at 20 to 60 nmol/mL, acting as a ligand or a chemotactic signal to fibroblasts and chondrocytes rather than as material. That hypothesis is legitimate, is being actively tested, and is a much weaker claim than the one on the packaging. It also predicts something the marketing does not: if the active entity is a specific dipeptide, then hydrolysate composition and molecular weight distribution matter enormously and products are not interchangeable.',
+          "Two facts closed the building-block account. First, dietary protein of any kind is hydrolysed to free amino acids and small peptides before absorption, and collagen has no exemption; the amino acids released enter the general pool and are used for whatever the body is synthesising. Second, collagen is a poor source of those amino acids in the first place, lacking tryptophan entirely, as the manufacturer-affiliated PDCAAS analysis states. What replaced it is the signalling hypothesis: Iwai's measured Pro-Hyp in plasma at 20 to 60 nmol/mL, acting as a ligand or a chemotactic signal to fibroblasts and chondrocytes rather than as material. That hypothesis is legitimate, is being actively tested, and is a much weaker claim than the one on the packaging. It also predicts something the marketing does not: if the active entity is a specific dipeptide, then hydrolysate composition and molecular weight distribution matter enormously and products are not interchangeable.",
         evidenceSource:
           'Iwai K et al. J Agric Food Chem 2005;53:6531-6536; Paul C, Leser S, Oesser S. Nutrients 2019;11:1079',
         doi: '10.3390/nu11051079',
@@ -4956,7 +5058,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         step: 5,
         title: 'The measured outcomes are surrogates',
         laymanDesc:
-          'What the positive trials measure is skin hydration and elasticity by probe, a blood marker of collagen turnover, and pain scores — not the collagen content of anyone\'s skin.',
+          "What the positive trials measure is skin hydration and elasticity by probe, a blood marker of collagen turnover, and pain scores — not the collagen content of anyone's skin.",
         molecularDetail:
           'The pooled skin analysis of 19 trials in 1,125 participants used corneometer hydration, cutometer elasticity and wrinkle measurement. Shaw used serum P1NP and engineered ligament mechanics. Konig used DXA T-score changes of about 0.1. No trial in this literature has biopsied human skin and shown increased collagen content after oral collagen.',
         iconName: 'Ruler',
@@ -4966,7 +5068,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'de Miranda 2021 meta-analysis of hydrolysed collagen and skin ageing',
-        phase: 'Systematic review and meta-analysis of 19 randomised double-blind controlled trials',
+        phase:
+          'Systematic review and meta-analysis of 19 randomised double-blind controlled trials',
         sampleSize: 1125,
         primaryEndpoint: 'Skin hydration, elasticity, firmness and wrinkles versus placebo',
         endpointMet: true,
@@ -5006,7 +5109,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'Konig 2018 — specific collagen peptides and bone mineral density',
         phase: 'Randomised double-blind placebo-controlled',
         sampleSize: 131,
-        primaryEndpoint: 'Change in spine and femoral neck bone mineral density T-score at 12 months',
+        primaryEndpoint:
+          'Change in spine and femoral neck bone mineral density T-score at 12 months',
         endpointMet: true,
         statisticalPValue:
           'Spine T-score +0.1 +/- 0.26 versus -0.03 +/- 0.18 (ANCOVA P = 0.030); femoral neck +0.09 +/- 0.24 versus -0.01 +/- 0.19 (P = 0.003)',
@@ -5042,7 +5146,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       ],
       whatFailedInitially: [
         'The building-block account of how collagen supplements work, which digestion and the amino acid profile both refute',
-        'The Clark joint-pain trial\'s randomisation, which did not survive losing a third of its subjects before analysis',
+        "The Clark joint-pain trial's randomisation, which did not survive losing a third of its subjects before analysis",
       ],
       realWorldOutcome: [
         'The pooled skin evidence is positive and this page records that plainly, with its surrogate endpoints and funding concentration stated',
@@ -5055,7 +5159,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       description:
         'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. Species of origin is a real variable — it changes the amino acid profile, the allergen profile and the religious-dietary status — and is often absent from the label. Molecular weight distribution decides how much of a product is free amino acid and how much is the intact dipeptide the mechanism depends on, and is essentially never disclosed. Branded ingredients such as Verisol and Fortigel are specific hydrolysates whose trial evidence does not transfer to unbranded hydrolysate.',
       safetyProfile:
-        'Generally well tolerated, with mild gastrointestinal complaints and an unpleasant taste the commonest reports. Marine collagen carries genuine fish allergen risk. As an animal by-product it is not vegetarian regardless of how the tub is styled. The substantive risk is nutritional rather than toxicological: collagen lacks tryptophan, so replacing complete protein with it degrades dietary protein quality, and the industry\'s own analysis puts the substitution ceiling at 36% of daily protein. Independent testing of protein powders as a category has repeatedly found arsenic, cadmium, mercury and lead.',
+        "Generally well tolerated, with mild gastrointestinal complaints and an unpleasant taste the commonest reports. Marine collagen carries genuine fish allergen risk. As an animal by-product it is not vegetarian regardless of how the tub is styled. The substantive risk is nutritional rather than toxicological: collagen lacks tryptophan, so replacing complete protein with it degrades dietary protein quality, and the industry's own analysis puts the substitution ceiling at 36% of daily protein. Independent testing of protein powders as a category has repeatedly found arsenic, cadmium, mercury and lead.",
     },
     commonQuestions: [
       {
@@ -5074,7 +5178,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What about collagen for tendons and joints?',
-        a: 'The tendon evidence is one crossover study in eight men over three days, in which the strengthening was measured on laboratory-grown ligament constructs bathed in the subjects\' serum, not on their tendons. The joint evidence is a 24-week trial in athletes that randomised 147 people and could only evaluate 97, with a subjective pain scale as the primary outcome. Both are interesting. Neither supports the confidence with which the claim is made.',
+        a: "The tendon evidence is one crossover study in eight men over three days, in which the strengthening was measured on laboratory-grown ligament constructs bathed in the subjects' serum, not on their tendons. The joint evidence is a 24-week trial in athletes that randomised 147 people and could only evaluate 97, with a subjective pain scale as the primary outcome. Both are interesting. Neither supports the confidence with which the claim is made.",
       },
       {
         q: 'Is one collagen product the same as another?',
@@ -5126,6 +5230,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5810',
         kind: 'url',
       },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -5146,13 +5256,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold as a bulk-forming laxative and a cholesterol-lowering fibre. Uniquely in this file, the FDA has authorised a health claim for it: 21 CFR 101.81 permits foods supplying 7 g or more per day of soluble fibre from psyllium seed husk to claim, within a low-saturated-fat diet, a reduced risk of coronary heart disease. It is also an OTC monograph bulk laxative.',
-    patientFriendlyIndication:
-      'Taken for constipation and regularity, and to lower cholesterol',
+    patientFriendlyIndication: 'Taken for constipation and regularity, and to lower cholesterol',
     conditionContext: {
       conditionExplainer:
         'Fibre is not one thing. What matters clinically is whether a fibre forms a viscous gel in the small intestine and whether bacteria in the colon ferment it. Psyllium is unusual on both counts: it is highly gel-forming and it is almost entirely unfermented, so the gel it makes survives all the way through and is still holding water when it arrives.',
       whyItMatters:
-        'This is one of the very few entries in this file where a regulator examined the evidence and wrote a permitted claim into federal regulation. The effects are physical, measurable, and dose-defined. The audit here is not whether it works but who generated the evidence, and how much of the fibre aisle borrows psyllium\'s credibility for fibres that behave completely differently.',
+        "This is one of the very few entries in this file where a regulator examined the evidence and wrote a permitted claim into federal regulation. The effects are physical, measurable, and dose-defined. The audit here is not whether it works but who generated the evidence, and how much of the fibre aisle borrows psyllium's credibility for fibres that behave completely differently.",
       whoTakesThis:
         'People with chronic constipation, people with irritable bowel syndrome, people with raised LDL cholesterol who want a non-drug option, people with type 2 diabetes, and a large number of people simply trying to eat more fibre.',
       clinicalGoals:
@@ -5174,19 +5283,19 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Statins',
           class: 'HMG-CoA reductase inhibitors',
           howItCompares:
-            'Statins reduce LDL by a far larger margin and are supported by cardiovascular outcome trials with hard endpoints. Psyllium\'s pooled LDL reduction is 0.33 mmol/L, and its authorised claim is explicitly conditional on a diet low in saturated fat and cholesterol.',
+            "Statins reduce LDL by a far larger margin and are supported by cardiovascular outcome trials with hard endpoints. Psyllium's pooled LDL reduction is 0.33 mmol/L, and its authorised claim is explicitly conditional on a diet low in saturated fat and cholesterol.",
           typicalCost:
-            '',
+            'Generic. Medicaid NADAC: atorvastatin 20 mg at $0.031 a tablet, December 2025',
           prosAndCons:
-            'Pros of psyllium: no systemic absorption and a genuine additive effect on top of diet. Cons: the effect size is a fraction of a drug\'s, and no trial has tested psyllium against a cardiovascular endpoint.',
+            "Pros of psyllium: no systemic absorption and a genuine additive effect on top of diet. Cons: the effect size is a fraction of a drug's, and no trial has tested psyllium against a cardiovascular endpoint.",
         },
         {
           name: 'Docusate sodium, the head-to-head comparator',
           class: 'Stool softener, OTC',
           howItCompares:
-            'Directly compared in 170 patients with chronic idiopathic constipation. Psyllium increased stool water content by 2.33% against docusate\'s 0.01% (P = 0.007), stool water weight 84.0 against 71.4 g per bowel movement (P = 0.04), total weekly stool output 359.9 against 271.9 g (P = 0.005), and bowel movements 3.5 against 2.9 per week in week two (P = 0.02).',
+            "Directly compared in 170 patients with chronic idiopathic constipation. Psyllium increased stool water content by 2.33% against docusate's 0.01% (P = 0.007), stool water weight 84.0 against 71.4 g per bowel movement (P = 0.04), total weekly stool output 359.9 against 271.9 g (P = 0.005), and bowel movements 3.5 against 2.9 per week in week two (P = 0.02).",
           typicalCost:
-            '',
+            'Generic. Medicaid NADAC: docusate sodium 100 mg at $0.028 a softgel, August 2026',
           prosAndCons:
             'Pros: this is a rare case of a supplement beating an over-the-counter drug in a randomised double-blind head-to-head. Cons: docusate is itself weakly evidenced, so the comparator was not a high bar.',
         },
@@ -5208,7 +5317,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Coarse insoluble particles produce a laxative effect by mechanically irritating the gut mucosa and stimulating water and mucus secretion — a completely different mechanism from a water-holding gel. In the IBS meta-analysis, bran showed no significant benefit (RR 0.90, 95% CI 0.79 to 1.03) while soluble fibre did.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'Hebden et al. gave 15 g of coarse bran twice daily for two weeks. It accelerated small bowel transit in healthy controls and increased pain and bloating in the IBS patients.',
           monthlyCost: '',
         },
       ],
@@ -5270,7 +5380,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In 170 people with chronic constipation, psyllium outperformed a standard over-the-counter stool softener on stool water content, stool weight, total output and bowel movement frequency.',
         technicalDetails:
-          'A multi-site, randomised, double-blind, parallel-design trial in 170 subjects with chronic idiopathic constipation ran a two-week placebo baseline then two weeks comparing psyllium 5.1 g twice daily plus docusate placebo against docusate sodium 100 mg twice daily plus psyllium placebo, with stools collected and assessed. Against baseline, psyllium increased stool water content by 2.33% versus 0.01% for docusate (P = 0.007), stool water weight to 84.0 against 71.4 g per bowel movement (P = 0.04), total stool output to 359.9 against 271.9 g per week (P = 0.005), and the O\'Brien rank-type composite score to 475.1 against 403.9 (P = 0.002). Bowel movement frequency was significantly greater on psyllium in treatment week two (3.5 versus 2.9 per week, P = 0.02) but not in week one (3.3 versus 3.1, P > 0.05). These are objective, collected, weighed measurements rather than symptom questionnaires, which is unusual and is what makes the result credible.',
+          "A multi-site, randomised, double-blind, parallel-design trial in 170 subjects with chronic idiopathic constipation ran a two-week placebo baseline then two weeks comparing psyllium 5.1 g twice daily plus docusate placebo against docusate sodium 100 mg twice daily plus psyllium placebo, with stools collected and assessed. Against baseline, psyllium increased stool water content by 2.33% versus 0.01% for docusate (P = 0.007), stool water weight to 84.0 against 71.4 g per bowel movement (P = 0.04), total stool output to 359.9 against 271.9 g per week (P = 0.005), and the O'Brien rank-type composite score to 475.1 against 403.9 (P = 0.002). Bowel movement frequency was significantly greater on psyllium in treatment week two (3.5 versus 2.9 per week, P = 0.02) but not in week one (3.3 versus 3.1, P > 0.05). These are objective, collected, weighed measurements rather than symptom questionnaires, which is unusual and is what makes the result credible.",
         evidenceSource: 'McRorie JW et al. Aliment Pharmacol Ther 1998;12:491-497',
         doi: '10.1046/j.1365-2036.1998.00336.x',
         measuredMetric:
@@ -5285,9 +5395,11 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'Psyllium improved blood sugar substantially in people with type 2 diabetes, modestly in people at risk, and not at all in people whose glucose was already normal.',
         technicalDetails:
           'Gibb and colleagues identified 35 randomised controlled studies spanning three decades and three continents, assessed in 8 meta-analyses. In patients with type 2 diabetes, multi-week studies with psyllium dosed before meals showed fasting blood glucose down 37.0 mg/dL (P < 0.001) and HbA1c down 0.97 percentage points, or 10.6 mmol/mol (P = 0.048). The effect was proportional to baseline fasting glucose: no significant glucose lowering in euglycaemic subjects, modest improvement in pre-diabetes, greatest improvement in treated type 2 diabetes. That gradient is the finding, and it is the same repletion-shaped pattern that runs through this whole file — the intervention does most where the deficit is largest and nothing where there is no deficit. The conflict belongs on the record: the search covered "clinical records stored by Procter & Gamble", the manufacturer of the leading psyllium brand, alongside the published literature, and the authors are associated with that company. An HbA1c reduction of nearly a full percentage point is close to what some glucose-lowering drugs achieve, which makes the provenance of the pooled dataset something a reader should weigh.',
-        evidenceSource: 'Gibb RD, McRorie JW, Russell DA, Hasselblad V, D\'Alessio DA. Am J Clin Nutr 2015;102:1604-1614',
+        evidenceSource:
+          "Gibb RD, McRorie JW, Russell DA, Hasselblad V, D'Alessio DA. Am J Clin Nutr 2015;102:1604-1614",
         doi: '10.3945/ajcn.115.106989',
-        measuredMetric: 'Change in fasting blood glucose and glycated haemoglobin, stratified by baseline glycaemic status',
+        measuredMetric:
+          'Change in fasting blood glucose and glycated haemoglobin, stratified by baseline glycaemic status',
         inferredClaim:
           'That psyllium is a general glycaemic-control supplement, when the effect is zero in people with normal glucose and the pooled dataset includes unpublished manufacturer records',
         auditFlag: 'contested',
@@ -5309,7 +5421,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'psy-a6',
         category: 'conclusion_shift',
-        title: 'The field stopped talking about soluble versus insoluble, and started talking about viscosity',
+        title:
+          'The field stopped talking about soluble versus insoluble, and started talking about viscosity',
         laymanSummary:
           'Fibre was long divided into soluble and insoluble as though that predicted its effects. It does not. What predicts them is whether the fibre forms a thick gel and whether bacteria eat it.',
         technicalDetails:
@@ -5390,7 +5503,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'Anderson 2000 meta-analysis of psyllium adjunctive to a low-fat diet',
         phase: 'Meta-analysis of 8 controlled trials',
         sampleSize: 656,
-        primaryEndpoint: 'Change in total and LDL cholesterol on 10.2 g/day psyllium versus cellulose placebo',
+        primaryEndpoint:
+          'Change in total and LDL cholesterol on 10.2 g/day psyllium versus cellulose placebo',
         endpointMet: true,
         statisticalPValue:
           'Total cholesterol -4% (P < 0.0001); LDL -7% (P < 0.0001); apoB:apoA-I ratio -6% (P < 0.05); no effect on HDL or triglycerides',
@@ -5472,7 +5586,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is any fibre as good as psyllium?',
-        a: 'Beta-glucan from oats and barley is, and the same federal regulation says so — it authorises the identical claim at 3 g a day of beta-glucan. Beyond those two, the answer is mostly no, and the reason is physics rather than chemistry. What predicts a fibre\'s effect is whether it forms a viscous gel and whether bacteria ferment it. Inulin, fructooligosaccharides and wheat dextrin are soluble and non-viscous and do not lower cholesterol or improve glycaemic control. Wheat bran showed no benefit in irritable bowel syndrome while soluble fibre did.',
+        a: "Beta-glucan from oats and barley is, and the same federal regulation says so — it authorises the identical claim at 3 g a day of beta-glucan. Beyond those two, the answer is mostly no, and the reason is physics rather than chemistry. What predicts a fibre's effect is whether it forms a viscous gel and whether bacteria ferment it. Inulin, fructooligosaccharides and wheat dextrin are soluble and non-viscous and do not lower cholesterol or improve glycaemic control. Wheat bran showed no benefit in irritable bowel syndrome while soluble fibre did.",
       },
       {
         q: 'How can the same thing treat both constipation and diarrhoea?',
@@ -5512,7 +5626,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Gibb RD, McRorie JW, Russell DA, Hasselblad V, D\'Alessio DA. Psyllium fiber improves glycemic control proportional to loss of glycemic control: a meta-analysis. Am J Clin Nutr 2015;102:1604-1614',
+          "Gibb RD, McRorie JW, Russell DA, Hasselblad V, D'Alessio DA. Psyllium fiber improves glycemic control proportional to loss of glycemic control: a meta-analysis. Am J Clin Nutr 2015;102:1604-1614",
         identifier: '10.3945/ajcn.115.106989',
         kind: 'doi',
       },
@@ -5534,6 +5648,18 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier:
           'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-101/subpart-E/section-101.81',
         kind: 'regulatory',
+      },
+      {
+        label:
+          'Hebden JM et al. Abnormalities of GI transit in bloated irritable bowel syndrome: effect of bran on transit and symptoms. Am J Gastroenterol 2002;97:2315-2320',
+        identifier: '10.1111/j.1572-0241.2002.05985.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
       },
     ],
   },
@@ -5584,8 +5710,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Gel-forming, non-fermented soluble fibre',
           howItCompares:
             'McRorie and McKeown place inulin and fructooligosaccharides explicitly among the non-viscous soluble fibres that do not lower cholesterol or improve glycaemic control, in contrast to the gel-forming group of beta-glucan, psyllium and raw guar gum that do. Psyllium also holds an FDA-authorised heart disease claim; inulin does not.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros of psyllium: viscosity-dependent lipid and glucose effects, far less gas because it is barely fermented. Cons: it does not feed bifidobacteria, which is the one thing inulin genuinely does.',
         },
@@ -5711,14 +5836,16 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'inu-a2',
         category: 'measured',
-        title: 'The bifidogenic effect is real — and the review establishing it came from a manufacturer',
+        title:
+          'The bifidogenic effect is real — and the review establishing it came from a manufacturer',
         laymanSummary:
           'Inulin genuinely increases bifidobacteria in the gut, across many studies and age groups. The most-cited review saying so was written by a scientist at an inulin company.',
         technicalDetails:
           'Meyer and Stasse-Wolthuis state that the bifidogenic effect of inulin and oligofructose is well established across studies in adults and other age groups, and that this shift in colonic microbiota composition is likely the basis for the effects of these prebiotics on colonic function. The rest of their review is carefully hedged in a way the marketing is not: indications for reduced production of potentially toxic metabolites and immune-mediated effects come "mainly from animal and in vitro studies and also from some human trials." The corresponding author is at Sensus, a chicory inulin manufacturer. The bifidogenic shift itself is not in dispute and is measured by direct bacterial quantification. What has never been established is the step from a bifidobacterial count to a clinical outcome, and that step is where the entire prebiotic value proposition sits.',
         evidenceSource: 'Meyer D, Stasse-Wolthuis M. Eur J Clin Nutr 2009;63:1277-1289',
         doi: '10.1038/ejcn.2009.64',
-        measuredMetric: 'Faecal Bifidobacterium counts after inulin or oligofructose supplementation',
+        measuredMetric:
+          'Faecal Bifidobacterium counts after inulin or oligofructose supplementation',
         auditFlag: 'contested',
       },
       {
@@ -5743,7 +5870,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'In a controlled crossover in 26 healthy adults with no history of gut problems, a 10-gram dose of the short-chain form clearly increased gastrointestinal symptoms.',
         technicalDetails:
           'Bonnema and colleagues ran a randomised, double-blind, controlled crossover in 26 healthy men and women aged 18 to 60 with no history of gastrointestinal conditions, comparing 5 g and 10 g doses of oligofructose and of native inulin against placebo, each delivered in a breakfast of bagel, cream cheese and orange juice, with a seven-domain tolerance questionnaire at 0, 2, 4, 24 and 48 hours. Both inulin fibres tended to increase symptoms mildly, with flatulence the most frequently reported and bloating second. The 10 g dose of oligofructose substantially increased gastrointestinal symptoms compared with control. The authors concluded that up to 10 g/day of native inulin and up to 5 g/day of oligofructose were well tolerated. Two things follow. First, chain length matters: the shorter oligofructose ferments faster and closer to the proximal colon and is tolerated at half the dose. Second, these were healthy people selected for having no gut complaints, which is not the population buying gut-health supplements.',
-        evidenceSource: 'Bonnema AL, Kolberg LW, Thomas W, Slavin JL. J Am Diet Assoc 2010;110:865-868',
+        evidenceSource:
+          'Bonnema AL, Kolberg LW, Thomas W, Slavin JL. J Am Diet Assoc 2010;110:865-868',
         doi: '10.1016/j.jada.2010.03.025',
         measuredMetric:
           'Summed score across seven gastrointestinal tolerance domains after 5 g and 10 g fibre challenges',
@@ -5784,8 +5912,9 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Fructans are the F in FODMAP. The compound sold to improve digestion is one of the compounds gastroenterologists ask people with IBS to remove.',
         technicalDetails:
-          'Halmos and colleagues ran a randomised controlled single-blind cross-over feeding trial showing that a diet low in fermentable oligosaccharides, disaccharides, monosaccharides and polyols reduced symptoms of irritable bowel syndrome relative to a typical Australian diet, with all food provided. Fructans — inulin and oligofructose — are the principal oligosaccharide class in that acronym. The two positions are not actually contradictory once the mechanism is stated: rapid colonic fermentation produces short-chain fatty acids and gas, the first of which is the claimed benefit and the second of which is the symptom, and which one dominates depends on the person\'s baseline gut sensitivity and microbiota. But the marketing does not state the mechanism, and the result is a product sold for digestive comfort to a population for whom the standard clinical advice is to remove it.',
-        evidenceSource: 'Halmos EP, Power VA, Shepherd SJ, Gibson PR, Muir JG. Gastroenterology 2014;146:67-75',
+          "Halmos and colleagues ran a randomised controlled single-blind cross-over feeding trial showing that a diet low in fermentable oligosaccharides, disaccharides, monosaccharides and polyols reduced symptoms of irritable bowel syndrome relative to a typical Australian diet, with all food provided. Fructans — inulin and oligofructose — are the principal oligosaccharide class in that acronym. The two positions are not actually contradictory once the mechanism is stated: rapid colonic fermentation produces short-chain fatty acids and gas, the first of which is the claimed benefit and the second of which is the symptom, and which one dominates depends on the person's baseline gut sensitivity and microbiota. But the marketing does not state the mechanism, and the result is a product sold for digestive comfort to a population for whom the standard clinical advice is to remove it.",
+        evidenceSource:
+          'Halmos EP, Power VA, Shepherd SJ, Gibson PR, Muir JG. Gastroenterology 2014;146:67-75',
         doi: '10.1053/j.gastro.2013.09.046',
         inferredClaim:
           'That a fermentable fibre marketed for gut health is appropriate for people with functional gut symptoms',
@@ -5872,7 +6001,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Abrams 2005 — inulin-type fructans, calcium absorption and bone mineralisation',
-        phase: 'Randomised placebo-controlled, one year, with stable-isotope absorption measurement',
+        phase:
+          'Randomised placebo-controlled, one year, with stable-isotope absorption measurement',
         sampleSize: 100,
         primaryEndpoint:
           'Fractional calcium absorption at 8 weeks and 1 year, and one-year change in bone mineral content and density',
@@ -5884,15 +6014,17 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Partially Replicated',
       },
       {
-        trialId: 'Singh 2018 — dysregulated microbial fermentation of soluble fibre and liver cancer',
-        phase: 'Preclinical, multiple mouse strains including germ-free and antibiotic-treated controls',
+        trialId:
+          'Singh 2018 — dysregulated microbial fermentation of soluble fibre and liver cancer',
+        phase:
+          'Preclinical, multiple mouse strains including germ-free and antibiotic-treated controls',
         sampleSize: 0,
         primaryEndpoint: 'Incidence of icteric hepatocellular carcinoma on inulin-containing diets',
         endpointMet: false,
         statisticalPValue:
           'Hepatocellular carcinoma induced in dysbiotic mice on inulin but not on insoluble fibre; absent in germ-free and antibiotic-treated animals; prevented by fermentation inhibition or cholestyramine',
         unreportedAdverseSignals:
-          'A mouse study with no human counterpart. Sample size is recorded as zero because this trial enrolled no human participants. The authors\' own recommendation was that enrichment of foods with fermentable fibre be approached with great caution.',
+          "A mouse study with no human counterpart. Sample size is recorded as zero because this trial enrolled no human participants. The authors' own recommendation was that enrichment of foods with fermentable fibre be approached with great caution.",
         independentReplicationStatus: 'Unreplicated',
       },
       {
@@ -5917,7 +6049,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       ],
       unsupportedInferences: [
         'That a rise in bifidobacterial counts constitutes a health outcome',
-        'That inulin shares psyllium\'s cholesterol and glycaemic benefits because both are called soluble fibre',
+        "That inulin shares psyllium's cholesterol and glycaemic benefits because both are called soluble fibre",
         'That a fibre marketed for gut health suits people with functional gut symptoms, when fructans are a FODMAP',
       ],
       whatFailedInitially: [
@@ -6032,7 +6164,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold for sleep quality, and as a component of collagen and glutathione support formulas. Not approved by the FDA or EMA for any of that. Glycine 1.5% irrigation solution is separately an approved prescription product used during transurethral surgery, and its known complication is instructive about what happens when a lot of glycine enters the circulation at once.',
-    patientFriendlyIndication: 'Taken before bed for sleep quality, and for collagen and detox support',
+    patientFriendlyIndication:
+      'Taken before bed for sleep quality, and for collagen and detox support',
     conditionContext: {
       conditionExplainer:
         'Falling asleep is preceded by a drop in core body temperature, achieved by opening blood vessels in the hands and feet and dumping heat. Anything that accelerates that heat loss tends to shorten the time to sleep. This, and not sedation, is the mechanism proposed for glycine.',
@@ -6059,9 +6192,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Glycine 1.5% irrigation solution, and what it teaches',
           class: 'Approved prescription irrigant for transurethral surgery',
           howItCompares:
-            'The same molecule, absorbed in quantity through open prostatic venous sinuses during resection, produces the recognised complication known as TUR syndrome: dilutional hyponatraemia with visual disturbance, confusion and, in severe cases, seizures, with glycine\'s ammonia metabolite implicated in the encephalopathy.',
-          typicalCost:
-            '',
+            "The same molecule, absorbed in quantity through open prostatic venous sinuses during resection, produces the recognised complication known as TUR syndrome: dilutional hyponatraemia with visual disturbance, confusion and, in severe cases, seizures, with glycine's ammonia metabolite implicated in the encephalopathy.",
+          typicalCost: '',
           prosAndCons:
             'Pros: it establishes beyond doubt that glycine is pharmacologically active when enough of it reaches the circulation. Cons for the supplement narrative: it also establishes that "it is just an amino acid" is not a safety argument, only a dose argument.',
         },
@@ -6070,8 +6202,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'First-line behavioural treatment',
           howItCompares:
             'Addresses the conditioned arousal and time-in-bed behaviours maintaining chronic insomnia, with effects on sleep latency and efficiency several times larger than anything reported for glycine, and which persist after treatment ends.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: durable, no pharmacology. Cons: requires weeks of structured effort, which is why a powder wins on convenience.',
         },
@@ -6081,7 +6212,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Gelatin, bone broth, skin and connective tissue',
           activeCompound: 'Glycine, roughly one residue in three of collagen',
           biologicalMechanism:
-            'Collagen\'s repeating Gly-X-Y motif makes glycine its single most abundant residue, so any collagen-rich food is a concentrated glycine source. The amino acid released is identical to supplemental glycine and enters the same free pool.',
+            "Collagen's repeating Gly-X-Y motif makes glycine its single most abundant residue, so any collagen-rich food is a concentrated glycine source. The amino acid released is identical to supplemental glycine and enters the same free pool.",
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Not stated here as advice. For scale only: the sleep trials used 3 g before bedtime, which is a larger single dose than most whole-food sources supply at once.',
@@ -6093,7 +6224,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Passive body heating raises skin blood flow and accelerates core temperature decline afterwards, which is precisely the physiology Bannai and Kawai proposed for glycine. If the mechanism is thermoregulatory rather than neurochemical, then a non-pharmacological intervention producing the same heat loss is the honest comparator.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Haghayegh et al. pooled 13 studies: water at 40 to 42.5 degrees Celsius, 1 to 2 hours before bed, for as little as 10 minutes, shortened sleep onset latency.',
           monthlyCost: '',
         },
       ],
@@ -6113,7 +6245,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       structureType: 'small_molecule_smiles',
       smilesString: 'C(C(=O)O)N',
       chemicalFormula: 'C2H5NO2',
-      molecularWeight: '75.07 g/mol — the smallest amino acid, with hydrogen as its entire side chain',
+      molecularWeight:
+        '75.07 g/mol — the smallest amino acid, with hydrogen as its entire side chain',
       targetReceptorAffinity:
         'Micromolar at the strychnine-sensitive glycine receptor and sub-micromolar at the NMDA receptor glycine co-agonist site. The NMDA site is near-saturated at normal cerebrospinal fluid glycine concentrations, which is the pharmacological reason oral glycine struggles to change NMDA signalling and is directly relevant to why CONSIST failed.',
       structureSource: {
@@ -6241,7 +6374,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The NMDA site is already nearly full, which is why more glycine changes little',
         laymanSummary:
-          'Glycine is required for the brain\'s main excitatory receptor to work, but that site is already close to saturated. Adding more glycine has little room to act — which is what the schizophrenia trial found.',
+          "Glycine is required for the brain's main excitatory receptor to work, but that site is already close to saturated. Adding more glycine has little room to act — which is what the schizophrenia trial found.",
         technicalDetails:
           'The NMDA receptor glycine co-agonist site has sub-micromolar affinity and, at physiological cerebrospinal fluid glycine and D-serine concentrations, sits close to saturation in most brain regions. This is the pharmacological explanation for a pattern that recurs across the glycine literature: doses far above supplement levels, used specifically to raise brain glycine, fail to change NMDA-dependent outcomes. CONSIST is the clearest example, and it is why the field moved to glycine transporter type 1 inhibitors, which raise synaptic glycine locally rather than flooding the whole compartment. Any supplement claim that invokes NMDA modulation as its mechanism has to explain how a few grams orally achieves what a full clinical trial programme at higher doses did not.',
         evidenceSource: 'Buchanan RW et al. Am J Psychiatry 2007;164:1593-1602',
@@ -6280,7 +6413,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         step: 2,
         title: 'Two receptors that do opposite things',
         laymanDesc:
-          'In the spinal cord and brainstem glycine quietens neurons. Everywhere else it is a required partner for the brain\'s main excitatory receptor. Same molecule, opposite jobs.',
+          "In the spinal cord and brainstem glycine quietens neurons. Everywhere else it is a required partner for the brain's main excitatory receptor. Same molecule, opposite jobs.",
         molecularDetail:
           'Strychnine-sensitive glycine receptors are pentameric chloride channels mediating fast inhibition in brainstem and spinal cord. The NMDA receptor requires glycine or D-serine at an obligatory co-agonist site for channel opening. The NMDA site is near-saturated at physiological concentrations, which limits how much exogenous glycine can add — and is the most likely reason the CONSIST trial found nothing.',
         iconName: 'GitBranch',
@@ -6394,7 +6527,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     deliverySystem: {
       type: 'Oral powder or capsule; also an approved 1.5% sterile irrigation solution by a completely different route',
       description:
-        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy or safety before sale. Glycine is highly water-soluble and distinctly sweet, which is why it appears as a flavour-masking excipient in other supplements and why blinding it in a trial is harder than it looks. Anyone taking magnesium bisglycinate is also taking glycine: two glycine molecules per magnesium, about 86 percent of the chelate\'s mass, which is rarely counted in a total.',
+        "Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy or safety before sale. Glycine is highly water-soluble and distinctly sweet, which is why it appears as a flavour-masking excipient in other supplements and why blinding it in a trial is harder than it looks. Anyone taking magnesium bisglycinate is also taking glycine: two glycine molecules per magnesium, about 86 percent of the chelate's mass, which is rarely counted in a total.",
       safetyProfile:
         'At gram doses orally, generally well tolerated with mild gastrointestinal upset and its sweet taste the commonest complaints. The informative safety data come from the surgical route: systemic absorption of glycine 1.5% irrigant during transurethral resection produces dilutional hyponatraemia with visual disturbance including transient blindness, nausea, confusion and, in severe cases, seizures, with the ammonia metabolite implicated in the encephalopathy. No comparable syndrome occurs at supplement doses. The point is that glycine has a known toxic profile at sufficient systemic exposure, so its safety at 3 g is a dose fact rather than a property of the molecule.',
     },
@@ -6461,6 +6594,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/750',
         kind: 'url',
       },
+      {
+        label:
+          'Haghayegh S et al. Before-bedtime passive body heating by warm shower or bath to improve sleep: a systematic review and meta-analysis. Sleep Med Rev 2019;46:124-135',
+        identifier: '10.1016/j.smrv.2019.04.008',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -6509,9 +6648,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Taurine fortification of infant formula and cat food',
           class: 'Mandated nutrient addition',
           howItCompares:
-            'The two settings where taurine\'s necessity is established rather than argued. Cats lack cysteine sulphinic acid decarboxylase and cannot synthesise it; human neonates have limited synthetic capacity. Both are fortification decisions made because deficiency produced disease.',
-          typicalCost:
-            '',
+            "The two settings where taurine's necessity is established rather than argued. Cats lack cysteine sulphinic acid decarboxylase and cannot synthesise it; human neonates have limited synthetic capacity. Both are fortification decisions made because deficiency produced disease.",
+          typicalCost: '',
           prosAndCons:
             'Pros: an unambiguous, mechanistically explained requirement with a documented disease when unmet. Cons: it is regularly cited as though it demonstrated something about a healthy adult, which it does not.',
         },
@@ -6657,7 +6795,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'Pooling ten trials, taurine produced a small improvement in endurance performance. Taking more of it, or taking it for longer, did not make the effect bigger.',
         technicalDetails:
           'Waldron and colleagues meta-analysed ten peer-reviewed studies of isolated oral taurine and endurance performance, with a sub-analysis of seven time-to-exhaustion trials, using doses from 1 to 6 g per day given acutely or for up to two weeks. Taurine improved overall endurance performance with a Hedges g of 0.40 (95% CI 0.12 to 0.67, P = 0.004), and similarly in time-to-exhaustion trials (g 0.43, 95% CI 0.12 to 0.75, P = 0.007). Meta-regression found no difference between acute and chronic supplementation for the full sample (P = 0.897) or the time-to-exhaustion group (P = 0.896), and the dose did not moderate the effect (P > 0.05). A small positive effect with no dose-response and no time-course is an uncomfortable combination: a genuine pharmacological effect would usually show at least one of the two. Ten studies is also a small evidence base for a meta-analysis, and the isolated-taurine requirement excludes the way almost everyone actually consumes it, which is alongside caffeine and sugar.',
-        evidenceSource: 'Waldron M, Patterson SD, Tallent J, Jeffries O. Sports Med 2018;48:1247-1253',
+        evidenceSource:
+          'Waldron M, Patterson SD, Tallent J, Jeffries O. Sports Med 2018;48:1247-1253',
         doi: '10.1007/s40279-018-0896-2',
         measuredMetric:
           'Hedges g for endurance performance and time to exhaustion, with dose and duration as meta-regression moderators',
@@ -6775,7 +6914,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Waldron 2018 meta-analysis of oral taurine and endurance performance',
-        phase: 'Meta-analysis of 10 peer-reviewed studies with a 7-trial time-to-exhaustion sub-analysis',
+        phase:
+          'Meta-analysis of 10 peer-reviewed studies with a 7-trial time-to-exhaustion sub-analysis',
         sampleSize: 10,
         primaryEndpoint: 'Effect of isolated oral taurine on endurance performance',
         endpointMet: true,
@@ -6787,9 +6927,11 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Singh 2023 — taurine deficiency as a driver of aging',
-        phase: 'Multi-species intervention and observational study in mice, monkeys, worms and humans',
+        phase:
+          'Multi-species intervention and observational study in mice, monkeys, worms and humans',
         sampleSize: 0,
-        primaryEndpoint: 'Health span and life span after taurine supplementation, and taurine against age',
+        primaryEndpoint:
+          'Health span and life span after taurine supplementation, and taurine against age',
         endpointMet: true,
         statisticalPValue:
           'Increased health span in mice and monkeys and life span in mice and worms; circulating taurine reported to decline with age across species',
@@ -6799,7 +6941,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Science 2025 — Is taurine an aging biomarker?',
-        phase: 'Longitudinal and cross-sectional cohort analysis in humans, nonhuman primates and mice',
+        phase:
+          'Longitudinal and cross-sectional cohort analysis in humans, nonhuman primates and mice',
         sampleSize: 0,
         primaryEndpoint: 'Circulating taurine concentration against chronological age',
         endpointMet: false,
@@ -6813,7 +6956,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'Beyranvand 2011 — taurine and exercise capacity in heart failure',
         phase: 'Randomised single-blind placebo-controlled, two weeks',
         sampleSize: 29,
-        primaryEndpoint: 'Exercise time, metabolic equivalents and exercise distance on exercise tolerance testing',
+        primaryEndpoint:
+          'Exercise time, metabolic equivalents and exercise distance on exercise tolerance testing',
         endpointMet: true,
         statisticalPValue:
           'Within-group increases in exercise time, METs and distance on taurine, P < 0.0001 for all; no significant increase within the placebo group',
@@ -6973,9 +7117,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'Sodium bicarbonate',
           class: 'Extracellular buffering agent',
           howItCompares:
-            'Buffers the blood rather than the muscle cell, raising the gradient for proton efflux, and its performance window overlaps beta-alanine\'s one-to-four-minute range. The two act on opposite sides of the sarcolemma and are frequently studied together for that reason.',
-          typicalCost:
-            '',
+            "Buffers the blood rather than the muscle cell, raising the gradient for proton efflux, and its performance window overlaps beta-alanine's one-to-four-minute range. The two act on opposite sides of the sarcolemma and are frequently studied together for that reason.",
+          typicalCost: '',
           prosAndCons:
             'Pros: acts acutely rather than requiring weeks of loading. Cons: gastrointestinal distress is common and severe enough to be performance-limiting in its own right.',
         },
@@ -6997,7 +7140,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Plant foods contain essentially no carnosine or free beta-alanine, so vegetarians start with lower muscle carnosine. This produces the same responder pattern seen with creatine: the largest gains occur in those who began lowest, which is a repletion effect rather than a supraphysiological one.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'A diet without meat supplies essentially none, against the 3.2 and 6.4 g a day the four-week biopsy study used.',
           monthlyCost: '',
         },
       ],
@@ -7040,7 +7184,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           phase: 'QC',
           name: 'Beta versus alpha isomer discrimination and pre-workout co-ingredient panel',
           description:
-            'Alpha-alanine is a cheap proteinogenic amino acid that shares beta-alanine\'s formula and molecular weight and is invisible to a total-amino-acid assay. It is also biologically useless for carnosine synthesis. Because beta-alanine is overwhelmingly sold inside multi-ingredient pre-workout blends, the co-ingredient panel matters as much as the identity test.',
+            "Alpha-alanine is a cheap proteinogenic amino acid that shares beta-alanine's formula and molecular weight and is invisible to a total-amino-acid assay. It is also biologically useless for carnosine synthesis. Because beta-alanine is overwhelmingly sold inside multi-ingredient pre-workout blends, the co-ingredient panel matters as much as the identity test.",
           reagentsAndBuffer:
             'HPLC with pre-column derivatisation resolving beta-alanine from L-alanine against both reference standards; 1H NMR for unambiguous isomer confirmation; LC-MS/MS screen for undeclared stimulants in blended products; total caffeine quantification including from botanical sources',
         },
@@ -7113,7 +7257,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'Pooling fifteen studies, beta-alanine improved efforts lasting one to four minutes and did nothing at all for efforts under a minute — precisely what a proton buffer should do.',
         technicalDetails:
           'Hobson and colleagues meta-analysed 15 published manuscripts reporting 57 measures within 23 exercise tests across 18 supplementation regimes in 360 participants (174 beta-alanine, 186 placebo). Beta-alanine improved exercise outcomes more than placebo (P = 0.002), with median effect sizes of 0.374 (IQR 0.140 to 0.747) against 0.108 (IQR -0.019 to 0.487). Splitting by duration produced the finding that matters: exercise lasting 60 to 240 seconds improved (P = 0.001), exercise over 240 seconds improved (P = 0.046), and exercise lasting under 60 seconds showed nothing (P = 0.312). The improvement was in exercise capacity (P = 0.013) rather than exercise performance (P = 0.204). The median effect was a 2.85% improvement (range -0.37 to 10.49%) at a median cumulative dose of 179 g of beta-alanine. A supplement whose benefit appears only in the duration window where its proposed mechanism is rate-limiting is doing something more convincing than a supplement that helps a little at everything.',
-        evidenceSource: 'Hobson RM, Saunders B, Ball G, Harris RC, Sale C. Amino Acids 2012;43:25-37',
+        evidenceSource:
+          'Hobson RM, Saunders B, Ball G, Harris RC, Sale C. Amino Acids 2012;43:25-37',
         doi: '10.1007/s00726-011-1200-z',
         measuredMetric:
           'Median effect size for exercise outcomes stratified by effort duration, and percentage improvement per cumulative dose',
@@ -7193,7 +7338,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         step: 2,
         title: 'It enters muscle through a transporter it shares with taurine',
         laymanDesc:
-          'Muscle takes beta-alanine in through a specific door — the same door taurine uses, which is why the two get in each other\'s way.',
+          "Muscle takes beta-alanine in through a specific door — the same door taurine uses, which is why the two get in each other's way.",
         molecularDetail:
           'SLC6A6, the sodium- and chloride-dependent taurine transporter, also carries beta-alanine. Harris et al. observed plasma taurine rising on beta-alanine ingestion without increased urinary loss. Uptake, not synthesis, is the more likely rate-limiting step in loading, which is why muscle carnosine accumulates over weeks rather than days.',
         iconName: 'DoorOpen',
@@ -7215,7 +7360,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'During hard efforts the muscle fills with acid. Carnosine absorbs it, so the cell can keep contracting for longer before pH stops it.',
         molecularDetail:
-          'The imidazole ring of carnosine has a pKa close to intracellular pH during high-intensity exercise, which is what makes it an effective physicochemical buffer in exactly the range that matters. This is an intracellular mechanism, distinct from sodium bicarbonate\'s extracellular buffering, and the two are additive in principle.',
+          "The imidazole ring of carnosine has a pKa close to intracellular pH during high-intensity exercise, which is what makes it an effective physicochemical buffer in exactly the range that matters. This is an intracellular mechanism, distinct from sodium bicarbonate's extracellular buffering, and the two are additive in principle.",
         iconName: 'Shield',
         visualStage: 'catalytic_action',
       },
@@ -7248,7 +7393,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'Hobson 2012 meta-analysis of beta-alanine and exercise performance',
         phase: 'Meta-analysis of 15 published manuscripts',
         sampleSize: 360,
-        primaryEndpoint: 'Effect of beta-alanine on exercise outcomes, stratified by effort duration',
+        primaryEndpoint:
+          'Effect of beta-alanine on exercise outcomes, stratified by effort duration',
         endpointMet: true,
         statisticalPValue:
           'Overall P = 0.002; 60-240 s P = 0.001; over 240 s P = 0.046; under 60 s P = 0.312; median improvement 2.85%',
@@ -7258,9 +7404,11 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Saunders 2017 meta-analysis of beta-alanine supplementation',
-        phase: 'Three-level mixed effects meta-analysis of 40 double-blind placebo-controlled studies',
+        phase:
+          'Three-level mixed effects meta-analysis of 40 double-blind placebo-controlled studies',
         sampleSize: 1461,
-        primaryEndpoint: 'Effect of chronic beta-alanine supplementation on exercise capacity and performance',
+        primaryEndpoint:
+          'Effect of chronic beta-alanine supplementation on exercise capacity and performance',
         endpointMet: true,
         statisticalPValue:
           'Overall effect size 0.18 (95% CI 0.08 to 0.28); exercise duration a significant moderator (P = 0.004)',
@@ -7418,8 +7566,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Nitric oxide precursor, directly',
           howItCompares:
             'Schwedhelm et al. compared them head to head over a week in 20 volunteers. Citrulline dose-dependently increased both the area under the curve and the peak plasma L-arginine concentration more effectively than L-arginine itself did (P < 0.01), because arginine is extensively eliminated presystemically by intestinal arginase.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros of citrulline: it actually raises the analyte, which arginine largely fails to do. Cons: raising the analyte was never the point, and in that same trial no treatment improved flow-mediated vasodilation over baseline.',
         },
@@ -7437,11 +7584,13 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Beetroot juice, as the alternative route to nitric oxide',
-          activeCompound: 'Inorganic nitrate, reduced to nitrite by oral bacteria then to nitric oxide',
+          activeCompound:
+            'Inorganic nitrate, reduced to nitrite by oral bacteria then to nitric oxide',
           biologicalMechanism:
             'The nitrate-nitrite-nitric oxide pathway bypasses nitric oxide synthase entirely and does not depend on arginine availability. It is the honest comparator for anything sold on a nitric oxide rationale, and it has a considerably larger and older performance literature.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Wylie et al. ran the dose-response with 70, 140 and 280 mL of concentrated juice, carrying 4.2, 8.4 and 16.8 mmol of nitrate. The oxygen cost of exercise fell at 8.4 mmol and no further at 16.8.',
           monthlyCost: '',
         },
       ],
@@ -7453,7 +7602,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           patientImpact:
             'Eight grams of a 2:1 product supplies roughly 5.3 g of citrulline; eight grams of a 1:1 product supplies about 4 g. Products frequently do not state the ratio, and blends listing "citrulline malate" inside a proprietary formula state neither the ratio nor the amount.',
           clinicalPrecaution:
-            'The malate half is not inert marketing filler in principle — it is a tricarboxylic acid cycle intermediate — but no trial has separated its contribution from citrulline\'s.',
+            "The malate half is not inert marketing filler in principle — it is a tricarboxylic acid cycle intermediate — but no trial has separated its contribution from citrulline's.",
         },
         {
           name: 'Treat a single spectacular trial as a hypothesis',
@@ -7559,7 +7708,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'Schwedhelm et al. measured flow-mediated vasodilation as a pharmacodynamic endpoint alongside their pharmacokinetic measures, and reported plainly that no treatment improved flow-mediated dilation over baseline. A pooled analysis of all the flow-mediated dilation data did reveal a correlation between the increase in the arginine to ADMA ratio and improvement, which is a post hoc correlational finding rather than a treatment effect. This is the load-bearing negative result for the entire nitric oxide supplement category and it is almost never quoted. The likely explanation is the arginine paradox: intracellular arginine in endothelial cells already sits far above the Km of nitric oxide synthase, so raising plasma arginine has limited capacity to raise nitric oxide output in a healthy endothelium. Raising the substrate concentration for an enzyme that is not substrate-limited is a chemistry result, not a physiology result.',
         evidenceSource: 'Schwedhelm E et al. Br J Clin Pharmacol 2008;65:51-59',
         doi: '10.1111/j.1365-2125.2007.02990.x',
-        measuredMetric: 'Flow-mediated vasodilation after one week of citrulline or arginine supplementation',
+        measuredMetric:
+          'Flow-mediated vasodilation after one week of citrulline or arginine supplementation',
         auditFlag: 'verified',
       },
       {
@@ -7616,7 +7766,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'When the pooled analysis split upper body from lower body, the lower body result was only a trend rather than a clear effect.',
         technicalDetails:
           'Varvik and colleagues ran two prespecified subanalyses of their eight-study, 137-participant dataset. The overall result was an increase of 3 +/- 5 repetitions, 6.4 +/- 7.9%, with a standardised mean difference of 0.196 (P = .022). The lower-body subanalysis produced an 8.1 +/- 8.4% improvement that the authors describe as a tendency toward an effect rather than a demonstrated one. Subgroup analyses of a small pooled dataset are underpowered by construction, and the honest reading is that the total-repetition effect is modest, that its distribution across exercise types is not resolved, and that the participant base is 101 strength-trained men, 26 women and 9 untrained men — a sample from which claims about untrained lifters or about women cannot responsibly be drawn.',
-        evidenceSource: 'Varvik FT, Bjornsen T, Gonzalez AM. Int J Sport Nutr Exerc Metab 2021;31:350-358',
+        evidenceSource:
+          'Varvik FT, Bjornsen T, Gonzalez AM. Int J Sport Nutr Exerc Metab 2021;31:350-358',
         doi: '10.1123/ijsnem.2020-0295',
         measuredMetric:
           'Standardised mean difference in repetitions to failure, overall and in upper-body and lower-body subanalyses',
@@ -7677,7 +7828,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Schwedhelm 2008 — oral citrulline versus arginine pharmacokinetics and pharmacodynamics',
+        trialId:
+          'Schwedhelm 2008 — oral citrulline versus arginine pharmacokinetics and pharmacodynamics',
         phase: 'Double-blind randomised placebo-controlled crossover, six dosing regimens',
         sampleSize: 20,
         primaryEndpoint:
@@ -7794,6 +7946,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9750',
         kind: 'url',
       },
+      {
+        label:
+          'Wylie LJ et al. Beetroot juice and exercise: pharmacodynamic and dose-response relationships. J Appl Physiol 2013;115:325-336',
+        identifier: '10.1152/japplphysiol.00372.2013',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -7815,8 +7973,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'Non-FDA / Dietary Supplement',
     indication:
       'Sold for immunity, thyroid function, antioxidant protection and — historically — cancer prevention. Not approved by the FDA or EMA for any of them. Selenium is a genuine essential trace element and its deficiency causes Keshan disease, an endemic cardiomyopathy, which is a real disease with a real cure.',
-    patientFriendlyIndication:
-      'Taken as an antioxidant and for thyroid and immune support',
+    patientFriendlyIndication: 'Taken as an antioxidant and for thyroid and immune support',
     conditionContext: {
       conditionExplainer:
         'Selenium is not an antioxidant in itself. It is built into 25 human proteins as the amino acid selenocysteine, and some of those proteins are antioxidant enzymes. Once those enzymes have enough selenium to be made, additional selenium has nothing further to do — and the range between enough and too much is narrower than for any other nutrient in this file.',
@@ -7844,8 +8001,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Nutrient replacement for an endemic deficiency cardiomyopathy',
           howItCompares:
             'In selenium-poor regions of China, selenium supplementation essentially eliminated an endemic and often fatal cardiomyopathy of children and young women. This is one of the clearest public-health nutrition successes on record.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: unambiguous, mechanistically explained, and it worked. Cons: it says nothing about supplementing a person whose selenoproteins are already saturated, which is what the two large trials tested and answered.',
         },
@@ -7853,7 +8009,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       naturalFoods: [
         {
           name: 'Brazil nuts',
-          activeCompound: 'Selenomethionine, at concentrations high enough to matter in single nuts',
+          activeCompound:
+            'Selenomethionine, at concentrations high enough to matter in single nuts',
           biologicalMechanism:
             'Brazil nuts concentrate selenium from soil to a degree no other common food matches, and the content varies enormously with where the tree grew. A handful can exceed the tolerable upper intake level, which makes them the one food in ordinary circulation capable of causing a nutrient toxicity.',
           evidenceStrength: 'High Clinical Proof',
@@ -7867,7 +8024,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Dietary selenium content tracks soil selenium, which is why deficiency is geographic rather than dietary in the usual sense. Selenomethionine is incorporated non-specifically in place of methionine and forms a tissue reservoir; selenite and selenate are not stored this way, which is why the chemical form changes the pharmacokinetics substantially.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '',
+          dailyUsage:
+            'Soil sets the amount. Finnish intake averaged 25 micrograms a day before selenium was added to national fertilisers in 1984 and roughly doubled after, with animal-source foods supplying over 70 percent of it.',
           monthlyCost: '',
         },
       ],
@@ -7953,7 +8111,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Prespecified primary endpoints, and nothing else',
           description:
-            'This step is the whole lesson of the selenium literature stated as a method. Register the primary endpoint, power the trial for it, and report secondary analyses as hypothesis-generating. The Nutritional Prevention of Cancer trial\'s secondary endpoints were established in 1990, seven years after randomisation began, and their apparent benefit is what sent 35,533 men into a trial that found nothing.',
+            "This step is the whole lesson of the selenium literature stated as a method. Register the primary endpoint, power the trial for it, and report secondary analyses as hypothesis-generating. The Nutritional Prevention of Cancer trial's secondary endpoints were established in 1990, seven years after randomisation began, and their apparent benefit is what sent 35,533 men into a trial that found nothing.",
           reagentsAndBuffer:
             'Prospective registration with a single named primary endpoint; independent data and safety monitoring board with predefined stopping rules; blinded endpoint adjudication; prespecified analysis plan lodged before unblinding; serum selenium measured at baseline and during follow-up to confirm adherence and to permit exposure-response analysis',
           dependsOnStepId: 'se-w4',
@@ -8007,7 +8165,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'se-a4',
         category: 'failed',
-        title: 'The same trial\'s data showed selenium raised type 2 diabetes risk by 55 percent',
+        title: "The same trial's data showed selenium raised type 2 diabetes risk by 55 percent",
         laymanSummary:
           'A later analysis of the founding trial found that people taking selenium developed type 2 diabetes more often, with the highest risk in those who already had the most selenium in their blood.',
         technicalDetails:
@@ -8054,7 +8212,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Selenium comes in two kinds. The organic form is absorbed like an amino acid and stored in your proteins. The inorganic salts are not stored the same way.',
         molecularDetail:
-          'Selenomethionine is absorbed by neutral amino acid transporters and incorporated non-specifically in place of methionine throughout the body\'s proteins, creating a large storage pool. Sodium selenite and selenate enter a smaller regulated pool. Both SELECT and the Nutritional Prevention of Cancer trial used L-selenomethionine, which means their results speak to the organic form and their tissue kinetics do not transfer to selenite products.',
+          "Selenomethionine is absorbed by neutral amino acid transporters and incorporated non-specifically in place of methionine throughout the body's proteins, creating a large storage pool. Sodium selenite and selenate enter a smaller regulated pool. Both SELECT and the Nutritional Prevention of Cancer trial used L-selenomethionine, which means their results speak to the organic form and their tissue kinetics do not transfer to selenite products.",
         iconName: 'ArrowDown',
         visualStage: 'delivery',
       },
@@ -8140,7 +8298,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'MacFarquhar 2010 — acute selenium toxicity outbreak investigation',
         phase: 'Multi-state outbreak investigation',
         sampleSize: 201,
-        primaryEndpoint: 'Symptoms of selenium toxicity after ingestion of a mislabelled supplement',
+        primaryEndpoint:
+          'Symptoms of selenium toxicity after ingestion of a mislabelled supplement',
         endpointMet: false,
         statisticalPValue:
           'Median estimated dose 41,749 micrograms per day against a 55 microgram recommended allowance; mean initial serum selenium 751 micrograms/L against a reference of 125 or less',
@@ -8197,12 +8356,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         a: 'Two documented ones. A secondary analysis of the same founding trial found type 2 diabetes developing more often on selenium — 12.6 versus 8.4 cases per 1,000 person-years, hazard ratio 1.55 — with the risk rising to 2.70 in people whose baseline blood selenium was already highest. And selenium has the narrowest gap between requirement and toxicity of any nutrient here: chronic excess causes hair loss, nail loss, fatigue and neuropathy.',
       },
       {
-        q: 'But selenium is essential, isn\'t it?',
+        q: "But selenium is essential, isn't it?",
         a: 'Completely, and the deficiency disease is severe. In selenium-poor regions of China, deficiency caused Keshan disease, an endemic cardiomyopathy that killed children and young women, and supplementation essentially eliminated it. Selenium is written into twenty-five human proteins including the enzymes that clear peroxides and activate thyroid hormone. All of that is true and none of it supports supplementing someone who already has enough — the proteins saturate, and there are no more of them to make.',
       },
       {
         q: 'How dangerous is a bad batch?',
-        a: 'The answer is on the record. In 2008 a liquid supplement was manufactured with 200 times its labelled selenium concentration. Two hundred and one people across ten states were poisoned, taking a median estimated 41,749 micrograms a day against a recommended 55. Seventy-two percent lost hair, 61 percent had nail damage, and at three months more than half still had fingernail discoloration and loss. The investigators\' conclusion was that pharmaceutical manufacturing standards would likely have prevented it.',
+        a: "The answer is on the record. In 2008 a liquid supplement was manufactured with 200 times its labelled selenium concentration. Two hundred and one people across ten states were poisoned, taking a median estimated 41,749 micrograms a day against a recommended 55. Seventy-two percent lost hair, 61 percent had nail damage, and at three months more than half still had fingernail discoloration and loss. The investigators' conclusion was that pharmaceutical manufacturing standards would likely have prevented it.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -8248,6 +8407,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/15103',
         kind: 'url',
       },
+      {
+        label:
+          'Alfthan G et al. Effects of nationwide addition of selenium to fertilizers on foods, and animal and human health in Finland. J Trace Elem Med Biol 2015;31:142-147',
+        identifier: '10.1016/j.jtemb.2014.04.009',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -8278,7 +8443,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       whoTakesThis:
         'People taking statins, people with heart failure, older adults buying it for energy, and a small number of patients with genuine primary CoQ10 deficiency for whom it is a real treatment.',
       clinicalGoals:
-        'Trials measured composite major adverse cardiovascular events, cardiovascular and all-cause mortality, NYHA functional class, six-minute walk distance, N-terminal pro-B-type natriuretic peptide, Brief Pain Inventory scores, muscle strength, maximal oxygen uptake, and Unified Parkinson\'s Disease Rating Scale progression.',
+        "Trials measured composite major adverse cardiovascular events, cardiovascular and all-cause mortality, NYHA functional class, six-minute walk distance, N-terminal pro-B-type natriuretic peptide, Brief Pain Inventory scores, muscle strength, maximal oxygen uptake, and Unified Parkinson's Disease Rating Scale progression.",
     },
     oneSentenceVerdict:
       'Q-SYMBIO randomised 420 heart failure patients and found major adverse cardiovascular events in 15% on CoQ10 against 26% on placebo with all-cause mortality 10% against 18% — a genuinely positive result — while the Phase 3 Parkinson trial was stopped for futility with both dose arms trending worse than placebo, and the statin myalgia trial found marginally more people reporting pain on CoQ10 than on placebo.',
@@ -8297,8 +8462,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Neurohormonal blockade and device therapy',
           howItCompares:
             'Q-SYMBIO added CoQ10 to standard therapy rather than replacing it, and its hazard ratio of 0.50 for major adverse cardiovascular events is an adjunctive effect on top of that background. No trial has tested CoQ10 against or instead of guideline therapy, and none should.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: an adjunctive mortality signal from a two-year randomised trial is unusual for a supplement and this page records it as such. Cons: 420 patients is small for a mortality endpoint, and the result has not been reproduced at scale.',
         },
@@ -8307,8 +8471,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Standard clinical management of statin intolerance',
           howItCompares:
             'The randomised test of CoQ10 in confirmed statin myalgia found no benefit on pain, strength or aerobic capacity, and marginally more subjects reported pain on CoQ10 than on placebo. Reducing dose, changing agent or alternate-day dosing address the exposure that is actually causing the symptom.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: targets the cause rather than a proposed downstream deficiency. Cons: requires a clinician, and lowering the dose lowers the lipid effect.',
         },
@@ -8455,7 +8618,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         evidenceSource: 'Parkinson Study Group QE3 Investigators. JAMA Neurol 2014;71:543-552',
         doi: '10.1001/jamaneurol.2014.131',
         measuredMetric:
-          'Adjusted mean change in total Unified Parkinson\'s Disease Rating Scale score from baseline to final visit',
+          "Adjusted mean change in total Unified Parkinson's Disease Rating Scale score from baseline to final visit",
         auditFlag: 'verified',
       },
       {
@@ -8481,7 +8644,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'A five-year randomised trial in elderly Swedes found reduced cardiovascular deaths on a combination of CoQ10 and selenium, in a population with low selenium intake.',
         technicalDetails:
           'Alehagen and colleagues randomised elderly Swedish citizens to combined selenium and coenzyme Q10 supplementation or placebo for five years, reporting reduced cardiovascular mortality and reduced N-terminal pro-B-type natriuretic peptide. Two contextual facts are essential and are usually dropped when the trial is cited. The intervention was a combination, so no effect can be attributed to CoQ10 alone. And Sweden has among the lowest soil and dietary selenium in Europe, meaning the population was plausibly selenium-insufficient at baseline — which makes this a repletion study in a deficient population rather than a supplementation study in a replete one. Read alongside the selenium record on this site, where 200 micrograms daily in a selenium-replete American population produced no cancer prevention and increased diabetes incidence, the contrast is the point: the same nutrient helps where there is a deficit and does not, or harms, where there is not.',
-        evidenceSource: 'Alehagen U, Johansson P, Bjornstedt M, Rosen A, Dahlstrom U. Int J Cardiol 2013;167:1860-1866',
+        evidenceSource:
+          'Alehagen U, Johansson P, Bjornstedt M, Rosen A, Dahlstrom U. Int J Cardiol 2013;167:1860-1866',
         doi: '10.1016/j.ijcard.2012.04.156',
         measuredMetric:
           'Cardiovascular mortality and N-terminal pro-B-type natriuretic peptide over five years',
@@ -8494,7 +8658,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The premium "ubiquinol" form is the same molecule carrying two extra hydrogens. It oxidises in air, and the body interconverts the two forms continuously anyway.',
         technicalDetails:
-          'Ubiquinone (C59H90O4, 863.3 g/mol) and ubiquinol (C59H92O4, 865.4 g/mol) differ by a two-electron, two-proton reduction. The body interconverts them continuously — that interconversion is precisely what coenzyme Q10 does in the respiratory chain — and ingested ubiquinone is reduced to ubiquinol during absorption. Ubiquinol is also chemically unstable in air, so a product\'s redox state at manufacture is not necessarily its redox state at ingestion, and this is not verified on any label. The strongest available counter-evidence to the premium claim is the statin myalgia trial, which used 600 mg per day of ubiquinol specifically, achieved a fourfold rise in serum CoQ10, and produced no clinical benefit whatsoever. Whatever limits CoQ10\'s efficacy in that setting, it was not the redox state or the achieved blood level.',
+          "Ubiquinone (C59H90O4, 863.3 g/mol) and ubiquinol (C59H92O4, 865.4 g/mol) differ by a two-electron, two-proton reduction. The body interconverts them continuously — that interconversion is precisely what coenzyme Q10 does in the respiratory chain — and ingested ubiquinone is reduced to ubiquinol during absorption. Ubiquinol is also chemically unstable in air, so a product's redox state at manufacture is not necessarily its redox state at ingestion, and this is not verified on any label. The strongest available counter-evidence to the premium claim is the statin myalgia trial, which used 600 mg per day of ubiquinol specifically, achieved a fourfold rise in serum CoQ10, and produced no clinical benefit whatsoever. Whatever limits CoQ10's efficacy in that setting, it was not the redox state or the achieved blood level.",
         evidenceSource: 'Taylor BA et al. Atherosclerosis 2015;238:329-335',
         doi: '10.1016/j.atherosclerosis.2014.12.016',
         inferredClaim:
@@ -8509,7 +8673,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'CoQ10 is a big, greasy molecule and very little of a swallowed dose gets into the blood. How it is formulated changes absorption more than how much you take.',
         molecularDetail:
-          'The ten-isoprene tail makes CoQ10 almost insoluble in water, with slow, lipid-dependent and highly variable absorption. In the statin myalgia trial, 600 mg per day of ubiquinol raised serum CoQ10 from 1.3 +/- 0.4 to 5.2 +/- 2.3 micrograms per millilitre — a fourfold increase, which establishes that inadequate absorption cannot explain that trial\'s null result.',
+          "The ten-isoprene tail makes CoQ10 almost insoluble in water, with slow, lipid-dependent and highly variable absorption. In the statin myalgia trial, 600 mg per day of ubiquinol raised serum CoQ10 from 1.3 +/- 0.4 to 5.2 +/- 2.3 micrograms per millilitre — a fourfold increase, which establishes that inadequate absorption cannot explain that trial's null result.",
         iconName: 'Droplet',
         visualStage: 'delivery',
       },
@@ -8537,7 +8701,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         step: 4,
         title: 'Statins reduce its synthesis, through the shared mevalonate pathway',
         laymanDesc:
-          'The pathway statins block to lower cholesterol is the same one that builds CoQ10\'s tail. That shared step is the entire rationale for taking CoQ10 with a statin.',
+          "The pathway statins block to lower cholesterol is the same one that builds CoQ10's tail. That shared step is the entire rationale for taking CoQ10 with a statin.",
         molecularDetail:
           'HMG-CoA reductase inhibition lowers mevalonate, the precursor of both cholesterol and the polyprenyl tail of CoQ10. The reasoning is sound as far as it goes. It stops at the outcome: in patients whose statin myalgia was confirmed by blinded rechallenge, quadrupling serum CoQ10 changed neither pain severity, nor pain interference, nor strength, nor VO2max.',
         iconName: 'GitBranch',
@@ -8586,7 +8750,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         phase: 'Phase 3 randomised placebo-controlled double-blind',
         sampleSize: 600,
         primaryEndpoint:
-          'Change in total Unified Parkinson\'s Disease Rating Scale score from baseline to final visit',
+          "Change in total Unified Parkinson's Disease Rating Scale score from baseline to final visit",
         endpointMet: false,
         statisticalPValue:
           'Worsening 6.9 points placebo, 7.5 points on 1,200 mg/day (P = .49), 8.0 points on 2,400 mg/day (P = .21); terminated at a prespecified futility criterion',
@@ -8633,7 +8797,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     deliverySystem: {
       type: 'Oral capsule or softgel, as ubiquinone or ubiquinol, usually in an oil base',
       description:
-        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. Absorption is poor, lipid-dependent and highly variable, so formulation influences exposure more than label dose does, and any bioavailability claim should be judged on measured serum concentrations. Ubiquinol oxidises to ubiquinone in air, so a product\'s stated redox state is not verifiable at the point of use. Synthetic material can contain the non-natural cis isomer, which fermentation-derived material does not. Doses across the trial literature span more than an order of magnitude, from 300 mg per day in Q-SYMBIO to 2,400 mg per day in QE3.',
+        "Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. Absorption is poor, lipid-dependent and highly variable, so formulation influences exposure more than label dose does, and any bioavailability claim should be judged on measured serum concentrations. Ubiquinol oxidises to ubiquinone in air, so a product's stated redox state is not verifiable at the point of use. Synthetic material can contain the non-natural cis isomer, which fermentation-derived material does not. Doses across the trial literature span more than an order of magnitude, from 300 mg per day in Q-SYMBIO to 2,400 mg per day in QE3.",
       safetyProfile:
         'Well tolerated across the trial literature, including at 2,400 mg per day for years in the Parkinson trial, where treatments were described as well tolerated with no safety concerns. Mild gastrointestinal upset and insomnia are the commonest complaints. CoQ10 is structurally related to vitamin K and can reduce the anticoagulant effect of warfarin, which is a genuine and clinically relevant interaction. In the statin myalgia trial, marginally more subjects reported muscle pain on CoQ10 than on placebo, which is a small and unexplained signal rather than an established harm.',
     },
@@ -8645,16 +8809,16 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'This is the reason most CoQ10 is bought, and it is the claim with the clearest negative test.',
       },
       {
-        q: 'But statins do lower CoQ10, don\'t they?',
-        a: 'They lower it in blood, yes, and the mechanism is real: statins block the mevalonate pathway that builds both cholesterol and CoQ10\'s tail. Two complications sit between that and the clinical claim. Plasma CoQ10 rides on LDL particles, so lowering LDL lowers measured CoQ10 partly by removing its transport rather than by depleting tissue. And muscle CoQ10 content in statin users has not consistently shown depletion. The mechanism is compelling and the outcome trial is negative, which is the pattern this whole file is built around.',
+        q: "But statins do lower CoQ10, don't they?",
+        a: "They lower it in blood, yes, and the mechanism is real: statins block the mevalonate pathway that builds both cholesterol and CoQ10's tail. Two complications sit between that and the clinical claim. Plasma CoQ10 rides on LDL particles, so lowering LDL lowers measured CoQ10 partly by removing its transport rather than by depleting tissue. And muscle CoQ10 content in statin users has not consistently shown depletion. The mechanism is compelling and the outcome trial is negative, which is the pattern this whole file is built around.",
       },
       {
         q: 'What about the heart failure result?',
-        a: 'That one is genuinely positive and this page will not hedge it. Q-SYMBIO randomised 420 patients with moderate to severe heart failure, on top of standard therapy, and over two years major adverse cardiovascular events occurred in 15 percent on CoQ10 against 26 percent on placebo, with all-cause mortality 10 percent against 18 percent. The qualifications: 420 patients is small for a mortality endpoint, the result has not been independently reproduced at that scale, and the trial\'s own 16-week physiological endpoints — NYHA class, walk distance, NT-proBNP — showed nothing.',
+        a: "That one is genuinely positive and this page will not hedge it. Q-SYMBIO randomised 420 patients with moderate to severe heart failure, on top of standard therapy, and over two years major adverse cardiovascular events occurred in 15 percent on CoQ10 against 26 percent on placebo, with all-cause mortality 10 percent against 18 percent. The qualifications: 420 patients is small for a mortality endpoint, the result has not been independently reproduced at that scale, and the trial's own 16-week physiological endpoints — NYHA class, walk distance, NT-proBNP — showed nothing.",
       },
       {
         q: 'Is ubiquinol worth paying more for?',
-        a: 'There is no clinical evidence that it is. Ubiquinol is the same molecule as ubiquinone carrying two extra hydrogens, the body interconverts the two continuously as part of what CoQ10 does for a living, and ubiquinol oxidises in air so a capsule\'s stated redox state may not survive to your mouth. The most informative data point is that the statin myalgia trial used ubiquinol specifically, at 600 mg a day, achieved a fourfold rise in blood levels, and found no benefit at all.',
+        a: "There is no clinical evidence that it is. Ubiquinol is the same molecule as ubiquinone carrying two extra hydrogens, the body interconverts the two continuously as part of what CoQ10 does for a living, and ubiquinol oxidises in air so a capsule's stated redox state may not survive to your mouth. The most informative data point is that the statin myalgia trial used ubiquinol specifically, at 600 mg a day, achieved a fourfold rise in blood levels, and found no benefit at all.",
       },
       {
         q: 'Does it protect the brain?',
@@ -8746,15 +8910,15 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'Absorbed in the small intestine and distributed widely; endogenous lipoyl groups are covalently bound to mitochondrial dehydrogenase complexes, which supplemental lipoic acid does not join',
     substitutes: {
       summary:
-        'For painful diabetic neuropathy, duloxetine, pregabalin and amitriptyline have larger and better-established effects and are guideline treatments. For glycaemic control, nothing in this category competes with glucose-lowering therapy. Lipoic acid\'s distinct position is a favourable side-effect profile relative to those drugs, which is a real consideration and not an efficacy argument.',
+        "For painful diabetic neuropathy, duloxetine, pregabalin and amitriptyline have larger and better-established effects and are guideline treatments. For glycaemic control, nothing in this category competes with glucose-lowering therapy. Lipoic acid's distinct position is a favourable side-effect profile relative to those drugs, which is a real consideration and not an efficacy argument.",
       conventionalRx: [
         {
           name: 'Duloxetine and pregabalin for painful diabetic neuropathy',
           class: 'Guideline first-line neuropathic pain agents',
           howItCompares:
-            'Both have larger randomised evidence bases and regulatory approvals for this indication in most jurisdictions. Lipoic acid\'s five-week trial produced a 51% symptom reduction against 32% on placebo, which is a real difference on a subjective scale over a short period.',
+            "Both have larger randomised evidence bases and regulatory approvals for this indication in most jurisdictions. Lipoic acid's five-week trial produced a 51% symptom reduction against 32% on placebo, which is a real difference on a subjective scale over a short period.",
           typicalCost:
-            '',
+            'Generic. Medicaid NADAC: duloxetine 60 mg $0.097, pregabalin 75 mg $0.051 a capsule',
           prosAndCons:
             'Pros of lipoic acid: better tolerated than the standard agents in short-term use. Cons: the four-year trial recorded serious adverse events in 38.1% on treatment against 28.0% on placebo, so the tolerability advantage does not obviously persist.',
         },
@@ -8763,8 +8927,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'The intervention that addresses the cause',
           howItCompares:
             'Diabetic polyneuropathy is driven by hyperglycaemia, and improving glycaemic control is the only intervention with evidence of slowing the underlying nerve damage rather than modifying the symptom.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: addresses the mechanism. Cons: hard to achieve, and does not relieve established symptoms quickly, which is exactly the gap symptomatic agents fill.',
         },
@@ -8863,7 +9026,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Symptom score and nerve function measured together, with proteinuria monitoring',
           description:
-            'Report the patient-reported symptom score and the objective neurophysiological composite side by side, because the literature\'s central finding is that these diverged. Add urinary protein monitoring as a safety endpoint, which is not standard in this field and is exactly how the membranous nephropathy signal was found.',
+            "Report the patient-reported symptom score and the objective neurophysiological composite side by side, because the literature's central finding is that these diverged. Add urinary protein monitoring as a safety endpoint, which is not standard in this field and is exactly how the membranous nephropathy signal was found.",
           dependsOnStepId: 'ala-w4',
           reagentsAndBuffer:
             'Total Symptom Score capturing stabbing pain, burning pain, paraesthesia and numbness; Neuropathy Impairment Score and lower-limb subscale; nerve conduction studies and quantitative sensory testing to a standardised protocol; urine protein-to-creatinine ratio at each visit with prespecified biopsy referral thresholds',
@@ -8878,7 +9041,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In 181 people with diabetic nerve pain, five weeks of oral lipoic acid roughly halved symptom scores, against about a third on placebo. All three doses worked equally.',
         technicalDetails:
-          'SYDNEY 2 randomised 181 diabetic patients in Russia and Israel to once-daily oral alpha-lipoic acid at 600 mg (n = 45), 1,200 mg (n = 47) or 1,800 mg (n = 46), or placebo (n = 43), for five weeks after a one-week placebo run-in. The primary outcome was change in the Total Symptom Score covering stabbing pain, burning pain, paraesthesia and numbness of the feet. Mean Total Symptom Score fell by 4.9 points (51%) on 600 mg, 4.5 (48%) on 1,200 mg and 4.7 (52%) on 1,800 mg, against 2.9 points (32%) on placebo, all P < 0.05 versus placebo. Response rates, defined as a 50% or greater reduction, were 62%, 50%, 56% and 26% respectively. Significant improvements also appeared for stabbing and burning pain, the Neuropathy Symptoms and Change score and patients\' global assessment. The Neuropathy Impairment Score — the objective measure — was only numerically reduced. Note the dose-response: three doses spanning a threefold range produced essentially identical effects, which is not the shape of a dose-dependent pharmacological action and is compatible with a ceiling reached at the lowest dose or with a substantial non-specific component.',
+          "SYDNEY 2 randomised 181 diabetic patients in Russia and Israel to once-daily oral alpha-lipoic acid at 600 mg (n = 45), 1,200 mg (n = 47) or 1,800 mg (n = 46), or placebo (n = 43), for five weeks after a one-week placebo run-in. The primary outcome was change in the Total Symptom Score covering stabbing pain, burning pain, paraesthesia and numbness of the feet. Mean Total Symptom Score fell by 4.9 points (51%) on 600 mg, 4.5 (48%) on 1,200 mg and 4.7 (52%) on 1,800 mg, against 2.9 points (32%) on placebo, all P < 0.05 versus placebo. Response rates, defined as a 50% or greater reduction, were 62%, 50%, 56% and 26% respectively. Significant improvements also appeared for stabbing and burning pain, the Neuropathy Symptoms and Change score and patients' global assessment. The Neuropathy Impairment Score — the objective measure — was only numerically reduced. Note the dose-response: three doses spanning a threefold range produced essentially identical effects, which is not the shape of a dose-dependent pharmacological action and is compatible with a ceiling reached at the lowest dose or with a substantial non-specific component.",
         evidenceSource: 'Ziegler D et al. Diabetes Care 2006;29:2365-2370',
         doi: '10.2337/dc06-1216',
         measuredMetric:
@@ -8921,7 +9084,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Lipoic acid is famous as an essential piece of the enzymes that burn fuel in mitochondria. The lipoic acid in a capsule does not become part of those enzymes.',
         technicalDetails:
-          'Endogenous lipoic acid is synthesised inside the mitochondrion by lipoyl synthase, acting on an octanoyl group already attached to the target protein, and it exists in biology almost exclusively as lipoyl-lysine covalently bound to the E2 subunits of pyruvate dehydrogenase, alpha-ketoglutarate dehydrogenase, branched-chain ketoacid dehydrogenase and the glycine cleavage system. Free lipoic acid is not a normal metabolite at meaningful concentrations, and mammalian cells do not efficiently attach exogenous free lipoate to those complexes. Supplemental alpha-lipoic acid therefore acts as something else: a free, redox-active dithiol that is reduced to dihydrolipoic acid, regenerates other cellular reductants, chelates transition metals, and is rapidly beta-oxidised and cleared with a plasma half-life measured in tens of minutes. That is a legitimate pharmacology, and it is a different one from the cofactor role that supplies the molecule\'s reputation. Dietary lipoic acid, which occurs as protein-bound lipoyllysine, is delivered in amounts orders of magnitude below the 600 to 1,800 mg used in the trials.',
+          "Endogenous lipoic acid is synthesised inside the mitochondrion by lipoyl synthase, acting on an octanoyl group already attached to the target protein, and it exists in biology almost exclusively as lipoyl-lysine covalently bound to the E2 subunits of pyruvate dehydrogenase, alpha-ketoglutarate dehydrogenase, branched-chain ketoacid dehydrogenase and the glycine cleavage system. Free lipoic acid is not a normal metabolite at meaningful concentrations, and mammalian cells do not efficiently attach exogenous free lipoate to those complexes. Supplemental alpha-lipoic acid therefore acts as something else: a free, redox-active dithiol that is reduced to dihydrolipoic acid, regenerates other cellular reductants, chelates transition metals, and is rapidly beta-oxidised and cleared with a plasma half-life measured in tens of minutes. That is a legitimate pharmacology, and it is a different one from the cofactor role that supplies the molecule's reputation. Dietary lipoic acid, which occurs as protein-bound lipoyllysine, is delivered in amounts orders of magnitude below the 600 to 1,800 mg used in the trials.",
         evidenceSource: 'Ziegler D et al. Diabetes Care 2011;34:2054-2060',
         doi: '10.2337/dc11-0503',
         inferredClaim:
@@ -9156,6 +9319,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/864',
         kind: 'url',
       },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -9190,7 +9359,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'Trials measured progression to advanced age-related macular degeneration by photographic grading, visual acuity loss, macular pigment optical density, and — in the trials that shaped the formulation — lung cancer incidence and all-cause mortality.',
     },
     oneSentenceVerdict:
-      'AREDS2\'s primary analysis found no significant reduction in progression to advanced macular degeneration from adding lutein and zeaxanthin (hazard ratio 0.90, 98.7% CI 0.76 to 1.07, P = .12), and their real justification is negative rather than positive: they replaced beta-carotene, which raised lung cancer 18% in ATBC, 28% in CARET, and nearly doubled the ten-year odds in AREDS2 itself.',
+      "AREDS2's primary analysis found no significant reduction in progression to advanced macular degeneration from adding lutein and zeaxanthin (hazard ratio 0.90, 98.7% CI 0.76 to 1.07, P = .12), and their real justification is negative rather than positive: they replaced beta-carotene, which raised lung cancer 18% in ATBC, 28% in CARET, and nearly doubled the ten-year odds in AREDS2 itself.",
     laymanHowItWorks:
       'Two yellow pigments from plants collect in the exact centre of your retina and nowhere else in the body at that concentration. They act as a built-in filter, soaking up the blue light that does the most photochemical damage before it reaches the light-sensing cells, and mopping up the reactive oxygen that light produces. You cannot make them, so the only source is diet. That much is well established. Whether swallowing more of them meaningfully slows macular degeneration is a separate question, and the large randomised trial that asked it did not find a significant answer.',
     auditConfidence: 'Moderate / Debated',
@@ -9206,8 +9375,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Multi-component supplement with trial evidence as a combination',
           howItCompares:
             'The evidence base belongs to the combination — vitamins C and E, zinc, copper and lutein/zeaxanthin — tested in a defined high-risk population. A standalone lutein capsule has not been shown to do what the formulation does, and the original AREDS benefit came largely from the antioxidant-plus-zinc combination.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: an actual randomised evidence base in a defined population. Cons: that population is people already at high risk, and the formulation is regularly bought by people who are not in it.',
         },
@@ -9216,8 +9384,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Intravitreal biologic therapy',
           howItCompares:
             'For wet macular degeneration, anti-VEGF therapy preserves and often restores vision, with an evidence base incomparably stronger than any supplement. Carotenoids address risk of progression, not established neovascular disease.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: transformative for the disease it treats. Cons: entirely different indication, and no supplement substitutes for it.',
         },
@@ -9239,7 +9406,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'Egg yolk contains less lutein per gram than kale but delivers it in a phospholipid matrix that raises absorption substantially, which is one of the clearest food-matrix effects in carotenoid nutrition.',
           evidenceStrength: 'Supportive',
-          dailyUsage: '',
+          dailyUsage:
+            'Goodrow et al. used one egg a day for five weeks in adults over 60. Serum lutein rose 26 percent and zeaxanthin 38 percent, with no change in LDL cholesterol. AREDS2 used 10 mg of lutein.',
           monthlyCost: '',
         },
       ],
@@ -9315,7 +9483,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           phase: 'Cellular_Delivery',
           name: 'Selective macular uptake through the carotenoid binding proteins',
           description:
-            'Test the step that makes these two molecules special. The retina concentrates lutein and zeaxanthin specifically and excludes beta-carotene and lycopene, and it does so through dedicated binding proteins. If a product\'s carotenoid does not bind those proteins, raising its serum concentration cannot raise macular pigment.',
+            "Test the step that makes these two molecules special. The retina concentrates lutein and zeaxanthin specifically and excludes beta-carotene and lycopene, and it does so through dedicated binding proteins. If a product's carotenoid does not bind those proteins, raising its serum concentration cannot raise macular pigment.",
           dependsOnStepId: 'lz-w3',
           reagentsAndBuffer:
             'Recombinant StARD3 and GSTP1 with fluorescence-quenching binding assays against lutein, zeaxanthin, meso-zeaxanthin, beta-carotene and lycopene; retinal pigment epithelium cell line uptake assay; SCARB1 knockdown as the transport control; competition assays with mixed carotenoids at physiological ratios',
@@ -9341,8 +9509,9 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The large trial designed to test whether adding lutein and zeaxanthin helps macular degeneration found no statistically significant benefit in its main analysis.',
         technicalDetails:
-          'AREDS2 tested the addition of lutein 10 mg plus zeaxanthin 2 mg, DHA plus EPA, or both, to the original AREDS formulation, with median follow-up of five years and 1,940 study eyes in 1,608 participants progressing to advanced age-related macular degeneration. Kaplan-Meier probabilities of progression by five years were 31% for placebo, 29% for lutein plus zeaxanthin, 31% for DHA plus EPA and 30% for both. Primary comparisons against placebo showed no statistically significant reduction: hazard ratio 0.90 (98.7% CI 0.76 to 1.07, P = .12) for lutein plus zeaxanthin, 0.97 (98.7% CI 0.82 to 1.16, P = .70) for DHA plus EPA, and 0.89 (98.7% CI 0.75 to 1.06, P = .10) for the combination. There was no apparent effect of beta-carotene elimination or of lower-dose zinc. The authors\' conclusion states it plainly: addition of lutein plus zeaxanthin, DHA plus EPA, or both, in primary analyses did not further reduce the risk of progression. The recommendation to use lutein and zeaxanthin in the revised formulation was made not because they worked better but because of the lung cancer risk of the ingredient they replaced.',
-        evidenceSource: 'Age-Related Eye Disease Study 2 (AREDS2) Research Group. JAMA 2013;309:2005-2015',
+          "AREDS2 tested the addition of lutein 10 mg plus zeaxanthin 2 mg, DHA plus EPA, or both, to the original AREDS formulation, with median follow-up of five years and 1,940 study eyes in 1,608 participants progressing to advanced age-related macular degeneration. Kaplan-Meier probabilities of progression by five years were 31% for placebo, 29% for lutein plus zeaxanthin, 31% for DHA plus EPA and 30% for both. Primary comparisons against placebo showed no statistically significant reduction: hazard ratio 0.90 (98.7% CI 0.76 to 1.07, P = .12) for lutein plus zeaxanthin, 0.97 (98.7% CI 0.82 to 1.16, P = .70) for DHA plus EPA, and 0.89 (98.7% CI 0.75 to 1.06, P = .10) for the combination. There was no apparent effect of beta-carotene elimination or of lower-dose zinc. The authors' conclusion states it plainly: addition of lutein plus zeaxanthin, DHA plus EPA, or both, in primary analyses did not further reduce the risk of progression. The recommendation to use lutein and zeaxanthin in the revised formulation was made not because they worked better but because of the lung cancer risk of the ingredient they replaced.",
+        evidenceSource:
+          'Age-Related Eye Disease Study 2 (AREDS2) Research Group. JAMA 2013;309:2005-2015',
         doi: '10.1001/jama.2013.4997',
         measuredMetric:
           'Kaplan-Meier probability of progression to advanced AMD at five years, by photographic grading',
@@ -9351,14 +9520,17 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'lz-a2',
         category: 'failed',
-        title: 'ATBC: beta-carotene raised lung cancer 18% and total mortality 8% in 29,133 smokers',
+        title:
+          'ATBC: beta-carotene raised lung cancer 18% and total mortality 8% in 29,133 smokers',
         laymanSummary:
           'A trial of nearly thirty thousand male smokers gave beta-carotene expecting fewer lung cancers. There were more, and more deaths.',
         technicalDetails:
           'The Alpha-Tocopherol, Beta-Carotene Cancer Prevention Study randomised 29,133 male smokers aged 50 to 69 in southwestern Finland to alpha-tocopherol, beta-carotene, both, or placebo. Among 876 new lung cancers diagnosed during the trial, alpha-tocopherol produced no reduction in incidence (change -2%, 95% CI -14 to 12%). Beta-carotene produced an 18% higher incidence of lung cancer (95% CI 3 to 36%). Total mortality was 8% higher among those receiving beta-carotene (95% CI 1 to 16%), driven by more deaths from lung cancer and ischaemic heart disease. Alpha-tocopherol was associated with more deaths from haemorrhagic stroke. The trial was built on epidemiologic evidence that diets high in carotenoid-rich fruits and vegetables and high serum beta-carotene were associated with lower lung cancer risk. It is the canonical demonstration that isolating a nutrient from the food it was observed in, and giving it at supplemental dose, can reverse the direction of the association entirely.',
-        evidenceSource: 'The Alpha-Tocopherol, Beta Carotene Cancer Prevention Study Group. N Engl J Med 1994;330:1029-1035',
+        evidenceSource:
+          'The Alpha-Tocopherol, Beta Carotene Cancer Prevention Study Group. N Engl J Med 1994;330:1029-1035',
         doi: '10.1056/NEJM199404143301501',
-        measuredMetric: 'Lung cancer incidence and total mortality over the trial period in male smokers',
+        measuredMetric:
+          'Lung cancer incidence and total mortality over the trial period in male smokers',
         auditFlag: 'verified',
       },
       {
@@ -9394,7 +9566,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The ten-year AMD benefit is real, small, and not the randomised primary endpoint',
         laymanSummary:
-          'Following participants for ten years found a nine percent lower rate of progression to late macular degeneration with lutein and zeaxanthin. It comes from a follow-up analysis, not the trial\'s main result.',
+          "Following participants for ten years found a nine percent lower rate of progression to late macular degeneration with lutein and zeaxanthin. It comes from a follow-up analysis, not the trial's main result.",
         technicalDetails:
           'In the ten-year AREDS2 follow-up, the hazard ratio for progression to late AMD comparing lutein/zeaxanthin with no lutein/zeaxanthin was 0.91 (95% CI 0.84 to 0.99, P = .02), while omega-3 fatty acids gave 1.01 (95% CI 0.93 to 1.09, P = .91). Restricting the lutein/zeaxanthin main-effects analysis to those randomised to beta-carotene gave a hazard ratio of 0.80 (95% CI 0.68 to 0.92, P = .002), and a direct comparison of lutein/zeaxanthin against beta-carotene gave 0.85 (95% CI 0.73 to 0.98, P = .02). The last two are the informative ones and they change the interpretation: the apparent lutein benefit is largest and clearest precisely where the comparator is beta-carotene, which is consistent with beta-carotene competitively interfering with lutein absorption rather than with lutein having a large independent effect. The authors describe this as a long-term epidemiologic follow-up study, not a randomised primary result, and its confidence interval reaches 0.99.',
         evidenceSource: 'Chew EY et al. JAMA Ophthalmol 2022;140:692-698',
@@ -9413,7 +9585,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'Supplementing lutein reliably increases the yellow pigment in the retina, which is easy to measure. Whether that translates into less vision loss is what AREDS2 tested, and it did not reach significance.',
         technicalDetails:
           'Lutein and zeaxanthin are taken up selectively into the macula by dedicated binding proteins — StARD3 for lutein and GSTP1 for zeaxanthin — and supplementation raises macular pigment optical density reliably and dose-dependently. That surrogate is the basis of most consumer marketing in this category and of the blue-light protection claim. The problem is the step to a clinical outcome. AREDS2 measured photographic progression to advanced AMD in 1,608 participants who progressed, and found hazard ratio 0.90 with P = .12 against a prespecified 98.7% confidence interval. A trial reporting only macular pigment optical density would have declared unambiguous success. The gap between a surrogate that moves and an endpoint that does not is the standing lesson of this entire file, and this is one of its cleanest instances because the surrogate is so directly and physically related to the proposed mechanism.',
-        evidenceSource: 'Age-Related Eye Disease Study 2 (AREDS2) Research Group. JAMA 2013;309:2005-2015',
+        evidenceSource:
+          'Age-Related Eye Disease Study 2 (AREDS2) Research Group. JAMA 2013;309:2005-2015',
         doi: '10.1001/jama.2013.4997',
         inferredClaim:
           'That increasing macular pigment optical density demonstrates protection against macular degeneration or against blue-light damage',
@@ -9427,7 +9600,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Lutein and zeaxanthin are plant pigments. Humans have no pathway to synthesise either, so every molecule in your retina came from something you ate.',
         molecularDetail:
-          'Both are xanthophyll carotenoids with the formula C40H56O2, differing only in the position of one double bond in a terminal ionone ring. Neither is a vitamin precursor — unlike beta-carotene, they are not cleaved to retinal, which is part of why they lack beta-carotene\'s toxicity profile at supplemental dose.',
+          "Both are xanthophyll carotenoids with the formula C40H56O2, differing only in the position of one double bond in a terminal ionone ring. Neither is a vitamin precursor — unlike beta-carotene, they are not cleaved to retinal, which is part of why they lack beta-carotene's toxicity profile at supplemental dose.",
         iconName: 'Leaf',
         visualStage: 'delivery',
       },
@@ -9477,7 +9650,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         trialId: 'AREDS2 — lutein/zeaxanthin and omega-3 added to the AREDS formulation',
         phase: 'Randomised double-masked placebo-controlled multicentre, median 5 years',
         sampleSize: 4203,
-        primaryEndpoint: 'Progression to advanced age-related macular degeneration by photographic grading',
+        primaryEndpoint:
+          'Progression to advanced age-related macular degeneration by photographic grading',
         endpointMet: false,
         statisticalPValue:
           'Lutein + zeaxanthin HR 0.90 (98.7% CI 0.76 to 1.07), P = .12; DHA + EPA HR 0.97, P = .70; both HR 0.89, P = .10',
@@ -9533,7 +9707,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That lutein and zeaxanthin were adopted because they outperformed beta-carotene, when the primary comparison was null',
         'That raising macular pigment optical density demonstrates protection against vision loss or blue light',
-        'That the AREDS2 formulation\'s evidence transfers to a standalone lutein capsule',
+        "That the AREDS2 formulation's evidence transfers to a standalone lutein capsule",
         'That an epidemiologic ten-year follow-up hazard ratio of 0.91 is equivalent to a randomised primary result',
       ],
       whatFailedInitially: [
@@ -9541,7 +9715,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'The AREDS2 primary hypothesis that adding lutein and zeaxanthin would further reduce AMD progression',
       ],
       realWorldOutcome: [
-        'The retinal selectivity of these two molecules is real and specific, and their safety record is far better than beta-carotene\'s',
+        "The retinal selectivity of these two molecules is real and specific, and their safety record is far better than beta-carotene's",
         'Their place in eye supplements is a negative one: they are what beta-carotene was replaced with, not what beat it',
         'Anyone who has ever smoked should check an older eye supplement for beta-carotene before taking it',
       ],
@@ -9556,7 +9730,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does lutein prevent macular degeneration?',
-        a: 'The trial designed to answer that says not significantly. AREDS2 added lutein and zeaxanthin to the existing AREDS formulation and followed participants for a median five years, and the primary analysis found a hazard ratio of 0.90 with a P value of .12 — five-year progression of 29 percent against 31 percent on placebo. A ten-year follow-up analysis later found a hazard ratio of 0.91 with a confidence interval reaching 0.99. That is a small effect from a non-randomised follow-up, and it is not the same thing as the trial\'s primary result.',
+        a: "The trial designed to answer that says not significantly. AREDS2 added lutein and zeaxanthin to the existing AREDS formulation and followed participants for a median five years, and the primary analysis found a hazard ratio of 0.90 with a P value of .12 — five-year progression of 29 percent against 31 percent on placebo. A ten-year follow-up analysis later found a hazard ratio of 0.91 with a confidence interval reaching 0.99. That is a small effect from a non-randomised follow-up, and it is not the same thing as the trial's primary result.",
       },
       {
         q: 'Then why are they in every eye supplement?',
@@ -9614,6 +9788,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280899',
         kind: 'url',
       },
+      {
+        label:
+          'Goodrow EF et al. Consumption of one egg per day increases serum lutein and zeaxanthin concentrations in older adults without altering serum lipid and lipoprotein cholesterol concentrations. J Nutr 2006;136:2519-2524',
+        identifier: '10.1093/jn/136.10.2519',
+        kind: 'doi',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -9665,7 +9845,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'Folic acid is a genuine prescription medicine for megaloblastic anaemia, and folinic acid (leucovorin) rescues normal cells after high-dose methotrexate. Methotrexate works precisely by blocking dihydrofolate reductase, which is the strongest possible demonstration that folate metabolism is a real and consequential drug target.',
           typicalCost:
-            '',
+            'Medicaid NADAC: folic acid 1 mg $0.019 a tablet, leucovorin 5 mg $0.343 a tablet',
           prosAndCons:
             'Pros: unambiguous clinical uses with defined mechanisms. Cons: the same interaction means folate supplements can interfere with methotrexate therapy, which matters for anyone taking it for rheumatoid arthritis or psoriasis.',
         },
@@ -9674,8 +9854,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Cobalamin, essential cofactor for methionine synthase',
           howItCompares:
             'Folate and B12 meet at a single reaction, and folate can normalise the anaemia of B12 deficiency without touching its neurological damage. In older Americans with low B12 status, serum folate above 59 nmol/L was associated with anaemia (odds ratio 3.1) and cognitive impairment (odds ratio 2.6) compared with lower folate.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
             'Pros: checking B12 before supplementing folate is cheap and prevents a specific, documented harm. Cons: it is almost never done before someone starts a multivitamin.',
         },
@@ -9697,7 +9876,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'The US Food and Drug Administration authorised the addition of folic acid to enriched grain products in March 1996, with compliance mandatory by January 1998. This is population-level supplementation that reaches people who never buy a supplement, which is exactly why it worked — the target behaviour, taking a tablet before you know you are pregnant, is nearly impossible to achieve individually.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '',
+          dailyUsage:
+            'The amount is written into the standard of identity: 21 CFR 137.165 requires 0.7 mg of folic acid in each pound of enriched flour. The prevention trials used 400 micrograms a day.',
           monthlyCost: '',
         },
       ],
@@ -9798,7 +9978,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A trial across seven countries gave folic acid to women who had already had a pregnancy affected by spina bifida or anencephaly. It cut the recurrence by nearly three quarters.',
         technicalDetails:
-          'The Medical Research Council Vitamin Study was a randomised double-blind factorial trial at 33 centres in seven countries, allocating 1,817 women at high risk because of a previous affected pregnancy to folic acid, a mixture of seven other vitamins, both, or neither. Of 1,195 women with a completed pregnancy in which neural tube defect status was known, 27 had a defect: 6 in the folic acid groups and 21 in the other groups — a 72% protective effect, relative risk 0.28 (95% CI 0.12 to 0.71). The other vitamins showed no significant effect (relative risk 0.80, 95% CI 0.32 to 1.72), which is the internal control that makes the folate result specific rather than a general prenatal-vitamin effect. The authors noted no demonstrable harm from folic acid, while stating that the study\'s ability to detect rare or slight adverse effects was limited. Czeizel and Dudas subsequently showed the same effect for first occurrence rather than recurrence in a separate randomised trial. This is the reference standard against which every other claim in this file is judged, and it is worth stating exactly what it took: a randomised, double-blind, multinational trial with an active-comparator arm and a hard, unambiguous clinical endpoint.',
+          "The Medical Research Council Vitamin Study was a randomised double-blind factorial trial at 33 centres in seven countries, allocating 1,817 women at high risk because of a previous affected pregnancy to folic acid, a mixture of seven other vitamins, both, or neither. Of 1,195 women with a completed pregnancy in which neural tube defect status was known, 27 had a defect: 6 in the folic acid groups and 21 in the other groups — a 72% protective effect, relative risk 0.28 (95% CI 0.12 to 0.71). The other vitamins showed no significant effect (relative risk 0.80, 95% CI 0.32 to 1.72), which is the internal control that makes the folate result specific rather than a general prenatal-vitamin effect. The authors noted no demonstrable harm from folic acid, while stating that the study's ability to detect rare or slight adverse effects was limited. Czeizel and Dudas subsequently showed the same effect for first occurrence rather than recurrence in a separate randomised trial. This is the reference standard against which every other claim in this file is judged, and it is worth stating exactly what it took: a randomised, double-blind, multinational trial with an active-comparator arm and a hard, unambiguous clinical endpoint.",
         evidenceSource: 'MRC Vitamin Study Research Group. Lancet 1991;338:131-137',
         doi: '10.1016/0140-6736(91)90133-A',
         measuredMetric:
@@ -9812,8 +9992,9 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'After the United States required folic acid in enriched grain products, neural tube defects at birth fell by nineteen percent nationally.',
         technicalDetails:
-          'Honein and colleagues analysed birth certificate data for live births in 45 US states and Washington DC between January 1990 and December 1999. Comparing the pre-fortification window of October 1995 to December 1996 against the post-mandatory-fortification window of October 1998 to December 1999, birth prevalence of neural tube defects fell from 37.8 to 30.5 per 100,000 live births — a 19% decline, prevalence ratio 0.81 (95% CI 0.75 to 0.87). Among women who received only third-trimester or no prenatal care, prevalence fell from 53.4 to 46.5 per 100,000 (prevalence ratio 0.87, 95% CI 0.64 to 1.18). The context that makes this a public health argument rather than a supplement argument is in the paper\'s first paragraph: before fortification only an estimated 29% of US reproductive-aged women were taking 400 micrograms of folic acid daily. The behaviour the trial required — supplementation before conception, in the weeks before a pregnancy is usually detected — could not be achieved by advice, and fortification achieved it by removing the decision.',
-        evidenceSource: 'Honein MA, Paulozzi LJ, Mathews TJ, Erickson JD, Wong LY. JAMA 2001;285:2981-2986',
+          "Honein and colleagues analysed birth certificate data for live births in 45 US states and Washington DC between January 1990 and December 1999. Comparing the pre-fortification window of October 1995 to December 1996 against the post-mandatory-fortification window of October 1998 to December 1999, birth prevalence of neural tube defects fell from 37.8 to 30.5 per 100,000 live births — a 19% decline, prevalence ratio 0.81 (95% CI 0.75 to 0.87). Among women who received only third-trimester or no prenatal care, prevalence fell from 53.4 to 46.5 per 100,000 (prevalence ratio 0.87, 95% CI 0.64 to 1.18). The context that makes this a public health argument rather than a supplement argument is in the paper's first paragraph: before fortification only an estimated 29% of US reproductive-aged women were taking 400 micrograms of folic acid daily. The behaviour the trial required — supplementation before conception, in the weeks before a pregnancy is usually detected — could not be achieved by advice, and fortification achieved it by removing the decision.",
+        evidenceSource:
+          'Honein MA, Paulozzi LJ, Mathews TJ, Erickson JD, Wong LY. JAMA 2001;285:2981-2986',
         doi: '10.1001/jama.285.23.2981',
         measuredMetric:
           'National birth prevalence of spina bifida and anencephaly per 100,000 live births, before and after mandatory fortification',
@@ -9841,7 +10022,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'In older people with enough vitamin B12, high folate was associated with better cognition. In those short of B12, the same high folate was associated with anaemia and worse cognition.',
         technicalDetails:
           'Morris and colleagues examined 1,459 senior participants in the 1999-2002 US National Health and Nutrition Examination Survey, defining low B12 status as serum B12 below 148 pmol/L or serum methylmalonic acid above 210 nmol/L. After adjustment, low versus normal B12 status was associated with anaemia (odds ratio 2.7, 95% CI 1.7 to 4.2), macrocytosis (1.8, 95% CI 1.01 to 3.3) and cognitive impairment (2.5, 95% CI 1.6 to 3.8). Within the low-B12 group, serum folate above 59 nmol/L compared with at or below that level was associated with anaemia (odds ratio 3.1, 95% CI 1.5 to 6.6) and cognitive impairment (2.6, 95% CI 1.1 to 6.1). In the normal-B12 group the odds ratios for high folate were below 1.0, significantly so for cognitive impairment (0.4, 95% CI 0.2 to 0.9), with a significant interaction, P less than 0.05. The authors note the historic origin of the concern — reports of folic acid treatment of pernicious anaemia delaying diagnosis or worsening outcomes — and that experimental investigation of it would be unethical. This is observational and cannot establish causation. It is also a direction-reversing interaction with a fully specified biochemical mechanism, and it is the reason B12 status should be known before high-dose folate is taken.',
-        evidenceSource: 'Morris MS, Jacques PF, Rosenberg IH, Selhub J. Am J Clin Nutr 2007;85:193-200',
+        evidenceSource:
+          'Morris MS, Jacques PF, Rosenberg IH, Selhub J. Am J Clin Nutr 2007;85:193-200',
         doi: '10.1093/ajcn/85.1.193',
         inferredClaim:
           'That folate supplementation is uniformly beneficial, when its association with anaemia and cognition reverses direction across vitamin B12 status',
@@ -9855,7 +10037,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           'The trial proved that a tablet works. The problem was that the tablet has to be taken before you know you are pregnant, and only 29 percent of women were taking one. So the vitamin was put in the flour instead.',
         technicalDetails:
           'The MRC trial proved efficacy in 1991. Six years later the intervention had barely moved: before fortification, an estimated 29% of US reproductive-aged women were taking 400 micrograms of folic acid daily, and the neural tube closes within four weeks of conception, before most pregnancies are recognised. The FDA authorised folic acid in enriched grain products in March 1996 with mandatory compliance by January 1998, and national birth prevalence of neural tube defects fell 19%. This is a shift in the unit of intervention rather than in the science, and it carries a lesson that runs against most of this file: the folate case succeeded not because a supplement worked but because a public health system stopped relying on individuals to take one. It also created the exposure that produced the colorectal and vitamin B12 concerns, since fortification supplements the entire population including men, older adults and people with undiagnosed B12 deficiency, none of whom stand to gain anything from it.',
-        evidenceSource: 'Honein MA, Paulozzi LJ, Mathews TJ, Erickson JD, Wong LY. JAMA 2001;285:2981-2986',
+        evidenceSource:
+          'Honein MA, Paulozzi LJ, Mathews TJ, Erickson JD, Wong LY. JAMA 2001;285:2981-2986',
         doi: '10.1001/jama.285.23.2981',
         inferredClaim:
           'That a proven individual supplement benefit translates into individual behaviour, when the required behaviour precedes knowledge of the pregnancy',
@@ -9901,7 +10084,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'Without it, DNA cannot be copied and cells stop dividing',
         laymanDesc:
-          'One of DNA\'s four letters can only be made with folate. A cell short of folate cannot replicate its genome — which is exactly why some chemotherapy drugs work by blocking folate.',
+          "One of DNA's four letters can only be made with folate. A cell short of folate cannot replicate its genome — which is exactly why some chemotherapy drugs work by blocking folate.",
         molecularDetail:
           'Thymidylate synthase converts dUMP to dTMP using 5,10-methylenetetrahydrofolate. Deficiency causes uracil misincorporation and megaloblastic arrest. Methotrexate inhibits dihydrofolate reductase and 5-fluorouracil inhibits thymidylate synthase — folate antagonism is a working chemotherapy strategy, which is the strongest possible evidence that this pathway matters and the mechanistic backdrop to the colorectal adenoma finding.',
         iconName: 'Dna',
@@ -9938,11 +10121,12 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'Relative risk 0.28 (95% CI 0.12 to 0.71), a 72% protective effect; other vitamins relative risk 0.80 (95% CI 0.32 to 1.72)',
         unreportedAdverseSignals:
-          'The authors stated that no harm was demonstrable but that the study\'s power to detect rare or slight adverse effects was limited — a caveat that later trials in other indications went on to fill in.',
+          "The authors stated that no harm was demonstrable but that the study's power to detect rare or slight adverse effects was limited — a caveat that later trials in other indications went on to fill in.",
         independentReplicationStatus: 'Replicated',
       },
       {
-        trialId: 'Czeizel 1992 — periconceptional multivitamin and first occurrence of neural tube defects',
+        trialId:
+          'Czeizel 1992 — periconceptional multivitamin and first occurrence of neural tube defects',
         phase: 'Randomised controlled trial',
         sampleSize: 4753,
         primaryEndpoint:
@@ -10044,7 +10228,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is methylfolate better than folic acid?',
-        a: 'There is no outcome evidence that it is. Methylfolate is a different molecule that enters folate metabolism downstream of the MTHFR enzyme, and it is sold on the basis of the common C677T variant that reduces that enzyme\'s activity. But every result on this page — the 72 percent reduction, the national fall after fortification, the colorectal signal, the B12 interaction data — was generated with folic acid, in populations containing the usual share of C677T carriers, and the benefit appeared anyway. There is a real open question about unmetabolised folic acid at high intakes, and methylfolate does bypass it. That is a mechanism, not a demonstrated advantage.',
+        a: "There is no outcome evidence that it is. Methylfolate is a different molecule that enters folate metabolism downstream of the MTHFR enzyme, and it is sold on the basis of the common C677T variant that reduces that enzyme's activity. But every result on this page — the 72 percent reduction, the national fall after fortification, the colorectal signal, the B12 interaction data — was generated with folic acid, in populations containing the usual share of C677T carriers, and the benefit appeared anyway. There is a real open question about unmetabolised folic acid at high intakes, and methylfolate does bypass it. That is a mechanism, not a demonstrated advantage.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -10095,6 +10279,18 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135398561',
         kind: 'url',
       },
+      {
+        label: '21 CFR 137.165 — Enriched flour: 0.7 milligrams of folic acid in each pound',
+        identifier:
+          'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-137/subpart-B/section-137.165',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -10107,7 +10303,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     name: 'Vitamin K2 MK-7',
     tradeName: 'Menaquinone-7; the dominant branded ingredient in the trial literature is MenaQ7',
     sponsor:
-      'No single sponsor — a long-chain menaquinone produced by bacterial fermentation, typically from Bacillus subtilis natto. NattoPharma\'s MenaQ7 is the ingredient used in the principal three-year trials.',
+      "No single sponsor — a long-chain menaquinone produced by bacterial fermentation, typically from Bacillus subtilis natto. NattoPharma's MenaQ7 is the ingredient used in the principal three-year trials.",
     targetGene: 'GGCX',
     targetProtein:
       'Gamma-glutamyl carboxylase (GGCX), which uses reduced vitamin K to convert glutamate residues to gamma-carboxyglutamate in the vitamin K-dependent proteins. Two matter here: osteocalcin, which binds calcium into bone matrix, and matrix Gla protein, which inhibits calcification in arterial wall. Both are inactive until carboxylated, and how much remains uncarboxylated is the biomarker the whole field runs on.',
@@ -10130,7 +10326,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'MK-7 halves circulating inactive matrix Gla protein and, in two three-year trials using the same branded ingredient, reduced bone loss and arterial stiffness in postmenopausal women — but in 365 men with aortic valve calcification followed for two years the difference in calcium score progression was 17 arbitrary units (P = 0.64), and two other randomised imaging trials in diabetes and coronary disease also found nothing.',
     laymanHowItWorks:
-      'A handful of proteins in your body are made with a chemical clamp that only closes after vitamin K modifies them. One of those proteins locks calcium into bone; another patrols artery walls and stops calcium crystallising there. If vitamin K is short, both proteins are still made but sit around uncarboxylated and useless, and you can measure exactly how much of the inactive form is circulating. Supplementing MK-7 activates them, and the inactive fraction drops by about half — which is a real and impressive biochemical result. The question the trials asked next is whether activating those proteins changes the calcium in anybody\'s arteries, and the imaging says no.',
+      "A handful of proteins in your body are made with a chemical clamp that only closes after vitamin K modifies them. One of those proteins locks calcium into bone; another patrols artery walls and stops calcium crystallising there. If vitamin K is short, both proteins are still made but sit around uncarboxylated and useless, and you can measure exactly how much of the inactive form is circulating. Supplementing MK-7 activates them, and the inactive fraction drops by about half — which is a real and impressive biochemical result. The question the trials asked next is whether activating those proteins changes the calcium in anybody's arteries, and the imaging says no.",
     auditConfidence: 'Inference Overreach Found',
     confidenceScore: 40,
     anatomicalSite:
@@ -10144,8 +10340,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'Prescription antidote and neonatal prophylaxis',
           howItCompares:
             'Vitamin K1 is genuinely a medicine: it reverses warfarin anticoagulation and, given at birth, prevents vitamin K deficiency bleeding of the newborn — a condition that is fatal or disabling and essentially eliminated by a single injection. That is the vitamin K claim with hard outcome evidence, and it belongs to K1 rather than to MK-7.',
-          typicalCost:
-            '',
+          typicalCost: 'Medicaid NADAC: phytonadione 5 mg at $8.83 a tablet, August 2026',
           prosAndCons:
             'Pros: unambiguous, life-saving, and mechanistically transparent. Cons: it is routinely invoked to lend authority to MK-7 supplement claims that rest on different proteins and different endpoints.',
         },
@@ -10155,7 +10350,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'These reduce fractures in randomised trials with fracture as the endpoint. The MK-7 bone trial measured bone mineral density and content over three years and reported reduced age-related decline; it was not powered for fractures.',
           typicalCost:
-            '',
+            'Medicaid NADAC: alendronate 70 mg $0.258 a tablet; denosumab is a biologic and is not in it',
           prosAndCons:
             'Pros: fracture endpoints, which is what patients care about. Cons: real adverse effects, which is part of why a supplement alternative is attractive and why the standard of evidence for one should not be lower.',
         },
@@ -10177,7 +10372,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           biologicalMechanism:
             'K1 is the dominant dietary vitamin K and fully covers the hepatic clotting requirement, which is why frank vitamin K deficiency is rare in adults. The K2 supplement case is not about deficiency of the vitamin but about the carboxylation status of two extrahepatic proteins.',
           evidenceStrength: 'High Clinical Proof',
-          dailyUsage: '',
+          dailyUsage:
+            'Booth et al. measured 113 to 440 micrograms of phylloquinone per 100 g of green leafy vegetable across the FDA Total Diet Study, against the 180 micrograms of MK-7 used in the three-year trials.',
           monthlyCost: '',
         },
       ],
@@ -10185,7 +10381,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         {
           name: 'If you take warfarin, this is a genuine interaction',
           action:
-            'Vitamin K in any form directly antagonises warfarin, which works by blocking vitamin K recycling. MK-7\'s long half-life makes the interaction more persistent than K1\'s.',
+            "Vitamin K in any form directly antagonises warfarin, which works by blocking vitamin K recycling. MK-7's long half-life makes the interaction more persistent than K1's.",
           patientImpact:
             'Starting or stopping a K2 supplement can shift the INR substantially, and the effect will not clear quickly.',
           clinicalPrecaution:
@@ -10208,7 +10404,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'CC1=C(C(=O)C2=CC=CC=C2C1=O)C/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CC/C=C(\\C)/CCC=C(C)C',
       chemicalFormula: 'C46H64O2',
       molecularWeight:
-        '649.0 g/mol. The naphthoquinone head is shared with all vitamin K forms; what differs is the tail. MK-7 carries seven isoprene units against MK-4\'s four and phylloquinone\'s single phytyl chain, which is why its plasma half-life is measured in days rather than hours and why MK-4 trial evidence does not transfer to it.',
+        "649.0 g/mol. The naphthoquinone head is shared with all vitamin K forms; what differs is the tail. MK-7 carries seven isoprene units against MK-4's four and phylloquinone's single phytyl chain, which is why its plasma half-life is measured in days rather than hours and why MK-4 trial evidence does not transfer to it.",
       structureSource: {
         label: 'PubChem CID 5287554 — Menaquinone-7, canonical SMILES and computed properties',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5287554',
@@ -10231,7 +10427,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           phase: 'Synthesis',
           name: 'Preparation of the deuterated MK-7 tracer',
           description:
-            'MK-7\'s multi-day half-life means steady state takes weeks and plasma sampling in a short study measures accumulation rather than exposure. A labelled tracer separates administered MK-7 from the dietary and gut-bacterial background and is what makes a real pharmacokinetic statement possible.',
+            "MK-7's multi-day half-life means steady state takes weeks and plasma sampling in a short study measures accumulation rather than exposure. A labelled tracer separates administered MK-7 from the dietary and gut-bacterial background and is what makes a real pharmacokinetic statement possible.",
           dependsOnStepId: 'k2-w1',
           reagentsAndBuffer:
             'Deuterated MK-7 internal standard; deuterated phylloquinone for the parallel K1 arm; formulation in a defined lipid matrix, since menaquinone absorption is strongly fat-dependent; isotopic purity confirmed by LC-MS/MS',
@@ -10365,7 +10561,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Vitamin K needs dietary fat to be absorbed. The long-tailed MK-7 form then lingers in the blood for days, where the short forms are gone in hours.',
         molecularDetail:
-          'Menaquinones are absorbed into chylomicrons and require dietary lipid. MK-7\'s seven-isoprene tail gives it strong lipoprotein binding and a plasma half-life measured in days, against hours for MK-4 and phylloquinone. This is the genuine pharmacological argument for the form, and it means steady state takes weeks, so short trials measure accumulation rather than a stable exposure.',
+          "Menaquinones are absorbed into chylomicrons and require dietary lipid. MK-7's seven-isoprene tail gives it strong lipoprotein binding and a plasma half-life measured in days, against hours for MK-4 and phylloquinone. This is the genuine pharmacological argument for the form, and it means steady state takes weeks, so short trials measure accumulation rather than a stable exposure.",
         iconName: 'Clock',
         visualStage: 'delivery',
       },
@@ -10462,7 +10658,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Replicated',
       },
       {
-        trialId: 'Geleijnse 2004 — dietary menaquinone intake and coronary heart disease (Rotterdam Study)',
+        trialId:
+          'Geleijnse 2004 — dietary menaquinone intake and coronary heart disease (Rotterdam Study)',
         phase: 'Prospective population cohort',
         sampleSize: 0,
         primaryEndpoint: 'Incident coronary heart disease by dietary menaquinone intake',
@@ -10502,7 +10699,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       description:
         'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. A label reading "vitamin K2" may contain MK-4, MK-7 or a blend, and these differ by more than an order of magnitude in half-life with entirely separate trial literatures. Synthetic MK-7 can contain the biologically inactive cis isomer, which fermentation-derived material does not, and neither the isomer content nor the chain length is typically disclosed. Absorption is strongly fat-dependent, and MK-7\'s multi-day half-life means several weeks are needed to reach steady state.',
       safetyProfile:
-        'Generally well tolerated with no established toxicity at supplemental doses, and no signal of harm in trials running to three years at 180 micrograms or two years at 720 micrograms. The one certain and clinically important effect is the warfarin interaction: vitamin K in any form directly opposes warfarin\'s mechanism, and MK-7\'s long half-life makes the interference more persistent and slower to clear than with vitamin K1. Anyone on warfarin who starts or stops a K2 supplement should expect their INR to move. There is no comparable interaction with direct oral anticoagulants, which do not act on vitamin K recycling.',
+        "Generally well tolerated with no established toxicity at supplemental doses, and no signal of harm in trials running to three years at 180 micrograms or two years at 720 micrograms. The one certain and clinically important effect is the warfarin interaction: vitamin K in any form directly opposes warfarin's mechanism, and MK-7's long half-life makes the interference more persistent and slower to clear than with vitamin K1. Anyone on warfarin who starts or stops a K2 supplement should expect their INR to move. There is no comparable interaction with direct oral anticoagulants, which do not act on vitamin K recycling.",
     },
     commonQuestions: [
       {
@@ -10525,7 +10722,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is it safe to take with my blood thinner?',
-        a: 'Not without medical supervision, and this is the one certain clinical effect on this page. Warfarin works by blocking the recycling of vitamin K, so any vitamin K supplement directly opposes it — and MK-7\'s long half-life makes the interference more persistent and slower to clear than vitamin K1\'s. Starting or stopping a K2 supplement can shift the INR substantially. Direct oral anticoagulants such as apixaban and rivaroxaban do not work through vitamin K and are not affected in the same way.',
+        a: "Not without medical supervision, and this is the one certain clinical effect on this page. Warfarin works by blocking the recycling of vitamin K, so any vitamin K supplement directly opposes it — and MK-7's long half-life makes the interference more persistent and slower to clear than vitamin K1's. Starting or stopping a K2 supplement can shift the INR substantially. Direct oral anticoagulants such as apixaban and rivaroxaban do not work through vitamin K and are not affected in the same way.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -10566,6 +10763,18 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5287554',
         kind: 'url',
       },
+      {
+        label:
+          'Booth SL, Sadowski JA, Pennington JAT. Phylloquinone (vitamin K1) content of foods in the US Food and Drug Administration Total Diet Study. J Agric Food Chem 1995;43:1574-1579',
+        identifier: '10.1021/jf00054a030',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
     ],
   },
   // ---------------------------------------------------------------------------------------------
@@ -10602,7 +10811,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'Correcting real iodine deficiency transforms outcomes — in Albanian schoolchildren with a median urinary iodine of 43 micrograms per litre and 87% goitrous, supplementation raised median urinary iodine to 172 and improved cognition — while in China, five-year cumulative subclinical hypothyroidism rose from 0.2% in mildly deficient regions to 2.6% where intake was more than adequate and 2.9% where it was excessive.',
     laymanHowItWorks:
-      'Thyroid hormone is essentially a small molecule with iodine atoms attached, and there is no substitute atom. A special pump concentrates iodide from your blood into the thyroid gland, where an enzyme attaches it to a scaffold protein and assembles the hormone. If iodine runs short the gland grows in an attempt to trap more of it, which is a goitre — and in a fetus or infant, the shortage of thyroid hormone during brain development causes damage that cannot be undone later. Taking more iodine than the gland needs does not make more hormone. It disturbs the gland\'s own regulation, and the trials show that showing up as thyroid disease rather than as extra energy.',
+      "Thyroid hormone is essentially a small molecule with iodine atoms attached, and there is no substitute atom. A special pump concentrates iodide from your blood into the thyroid gland, where an enzyme attaches it to a scaffold protein and assembles the hormone. If iodine runs short the gland grows in an attempt to trap more of it, which is a goitre — and in a fetus or infant, the shortage of thyroid hormone during brain development causes damage that cannot be undone later. Taking more iodine than the gland needs does not make more hormone. It disturbs the gland's own regulation, and the trials show that showing up as thyroid disease rather than as extra energy.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 57,
     anatomicalSite:
@@ -10616,10 +10825,9 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           class: 'FDA-approved over-the-counter drug (iOSAT, NDA 018664; ThyroSafe, ANDA 076350)',
           howItCompares:
             'A 65 or 130 mg tablet — roughly a thousand times the daily nutritional requirement — saturates the sodium-iodide symporter so that radioactive iodine cannot be taken up by the thyroid. It is a genuine approved drug with a genuine indication, and it demonstrates that iodine at pharmacological dose does something entirely different from iodine at nutritional dose.',
-          typicalCost:
-            '',
+          typicalCost: '',
           prosAndCons:
-            'Pros: effective, cheap and life-protecting in its narrow indication. Cons: it is regularly cited as evidence that high-dose iodine is safe, when its mechanism is precisely to shut the thyroid\'s iodine handling down.',
+            "Pros: effective, cheap and life-protecting in its narrow indication. Cons: it is regularly cited as evidence that high-dose iodine is safe, when its mechanism is precisely to shut the thyroid's iodine handling down.",
         },
         {
           name: 'Levothyroxine for hypothyroidism',
@@ -10627,7 +10835,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           howItCompares:
             'If the thyroid is failing for any reason other than iodine deficiency — and in iodine-replete countries the commonest cause is autoimmune thyroiditis — supplying more iodine does not help and, on the Chinese cohort data, may make autoimmune thyroiditis more likely.',
           typicalCost:
-            '',
+            'Generic. Medicaid NADAC: levothyroxine 50 mcg at $0.050 a tablet, December 2025',
           prosAndCons:
             'Pros: replaces the hormone directly, with a measurable endpoint. Cons: a "thyroid support" supplement bought by someone with early autoimmune thyroiditis addresses neither the cause nor the hormone.',
         },
@@ -10645,11 +10853,13 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Dairy, eggs and marine fish',
-          activeCompound: 'Iodide, largely from iodophor sanitisers in dairy and from seawater in fish',
+          activeCompound:
+            'Iodide, largely from iodophor sanitisers in dairy and from seawater in fish',
           biologicalMechanism:
             'Milk is a major iodine source in several countries substantially because of iodine-containing sanitisers used in milking, which makes national dietary iodine supply partly an artefact of agricultural practice and vulnerable to changes in it.',
           evidenceStrength: 'Moderate Evidence',
-          dailyUsage: '',
+          dailyUsage:
+            'Bath et al. measured UK retail milk at a median 249.5 nanograms of iodine per gram conventional and 144.5 organic, a 42 percent gap, against the 150 micrograms daily the American Thyroid Association recommends in pregnancy.',
           monthlyCost: '',
         },
       ],
@@ -10735,7 +10945,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Thyroid disease incidence stratified by baseline intake, not just mean effect',
           description:
-            'Report incidence of overt and subclinical hypothyroidism and of autoimmune thyroiditis stratified by regional or individual baseline iodine intake, because iodine\'s dose-response is U-shaped and a mean effect across an entire population conceals both arms of it. The Chinese five-year cohort is the model: three regions, three intake levels, and the disease incidence read off against each.',
+            "Report incidence of overt and subclinical hypothyroidism and of autoimmune thyroiditis stratified by regional or individual baseline iodine intake, because iodine's dose-response is U-shaped and a mean effect across an entire population conceals both arms of it. The Chinese five-year cohort is the model: three regions, three intake levels, and the disease incidence read off against each.",
           dependsOnStepId: 'iod-w4',
           reagentsAndBuffer:
             'Serial thyroid-stimulating hormone, free thyroxine and thyroid peroxidase and thyroglobulin antibody measurement; B-mode thyroid ultrasonography at baseline and follow-up; median urinary iodine excretion characterising each cohort; prespecified stratification by baseline antibody status',
@@ -10778,7 +10988,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Globally, more than two billion people are at risk of iodine deficiency, and it remains the most common preventable cause of intellectual disability.',
         technicalDetails:
-          'Zimmermann, Jooste and Pandav\'s Lancet seminar sets out the scale: iodine deficiency disorders affect populations across the world, the most vulnerable being pregnant and lactating women and young children, and iodine deficiency remains the most common preventable cause of intellectual impairment worldwide. The mechanism is developmental and irreversible — maternal thyroid hormone is required for fetal brain development at stages that cannot be revisited, so the damage from deficiency during pregnancy cannot be corrected by later supplementation. Universal salt iodisation, coordinated internationally since the International Council for the Control of Iodine Deficiency Disorders was established in 1985 and the 1990 World Summit for Children, is the intervention that has driven this down. This audit is recorded as measured because it is the fact that gives iodine its status, and because everything else on this page has to be read against it: the deficiency effect here is enormous, and it is not an argument for supplementing a replete adult.',
+          "Zimmermann, Jooste and Pandav's Lancet seminar sets out the scale: iodine deficiency disorders affect populations across the world, the most vulnerable being pregnant and lactating women and young children, and iodine deficiency remains the most common preventable cause of intellectual impairment worldwide. The mechanism is developmental and irreversible — maternal thyroid hormone is required for fetal brain development at stages that cannot be revisited, so the damage from deficiency during pregnancy cannot be corrected by later supplementation. Universal salt iodisation, coordinated internationally since the International Council for the Control of Iodine Deficiency Disorders was established in 1985 and the 1990 World Summit for Children, is the intervention that has driven this down. This audit is recorded as measured because it is the fact that gives iodine its status, and because everything else on this page has to be read against it: the deficiency effect here is enormous, and it is not an argument for supplementing a replete adult.",
         evidenceSource: 'Zimmermann MB, Jooste PL, Pandav CS. Lancet 2008;372:1251-1262',
         doi: '10.1016/S0140-6736(08)61005-3',
         measuredMetric:
@@ -10802,7 +11012,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'iod-a5',
         category: 'inferred',
-        title: 'The emergency tablet is a thousand times the requirement, and it works by shutting the gland down',
+        title:
+          'The emergency tablet is a thousand times the requirement, and it works by shutting the gland down',
         laymanSummary:
           'Potassium iodide tablets for radiation emergencies are an approved drug at 65 or 130 milligrams. That dose works by blocking the thyroid, not by nourishing it.',
         technicalDetails:
@@ -10816,7 +11027,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'iod-a6',
         category: 'conclusion_shift',
-        title: 'The dose-response is U-shaped, and salt iodisation programmes had to be recalibrated',
+        title:
+          'The dose-response is U-shaped, and salt iodisation programmes had to be recalibrated',
         laymanSummary:
           'Iodine was long treated as a nutrient where more is safer. The Chinese data showed that raising a population above adequate intake creates a different set of thyroid diseases, and programmes were adjusted.',
         technicalDetails:
@@ -10855,7 +11067,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'When iodine is short, hormone output falls, the pituitary pushes harder, and the thyroid enlarges. In a developing brain the hormone shortage causes permanent damage.',
         molecularDetail:
-          'Falling thyroid hormone raises thyrotropin, which drives thyrocyte hyperplasia and goitre. In Zimmermann\'s Albanian cohort, baseline median urinary iodine was 43 micrograms per litre with 87% goitrous and nearly a third having low total thyroxine, and 24 weeks of iodised oil raised median urinary iodine to 172 with marked improvement in thyroid status and in cognitive performance.',
+          "Falling thyroid hormone raises thyrotropin, which drives thyrocyte hyperplasia and goitre. In Zimmermann's Albanian cohort, baseline median urinary iodine was 43 micrograms per litre with 87% goitrous and nearly a third having low total thyroxine, and 24 weeks of iodised oil raised median urinary iodine to 172 with marked improvement in thyroid status and in cognitive performance.",
         iconName: 'TrendingDown',
         visualStage: 'delivery',
       },
@@ -10895,7 +11107,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Partially Replicated',
       },
       {
-        trialId: 'Zimmermann 2006 — iodised oil and cognition in iodine-deficient Albanian schoolchildren',
+        trialId:
+          'Zimmermann 2006 — iodised oil and cognition in iodine-deficient Albanian schoolchildren',
         phase: 'Randomised double-blind placebo-controlled',
         sampleSize: 310,
         primaryEndpoint:
@@ -10985,12 +11198,14 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Teng W et al. Effect of iodine intake on thyroid diseases in China. N Engl J Med 2006;354:2783-2793',
+        label:
+          'Teng W et al. Effect of iodine intake on thyroid diseases in China. N Engl J Med 2006;354:2783-2793',
         identifier: '10.1056/NEJMoa054022',
         kind: 'doi',
       },
       {
-        label: 'Zimmermann MB, Jooste PL, Pandav CS. Iodine-deficiency disorders. Lancet 2008;372:1251-1262',
+        label:
+          'Zimmermann MB, Jooste PL, Pandav CS. Iodine-deficiency disorders. Lancet 2008;372:1251-1262',
         identifier: '10.1016/S0140-6736(08)61005-3',
         kind: 'doi',
       },
@@ -11007,7 +11222,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Drugs@FDA — NDA 018664, iOSAT (potassium iodide) 65 mg and 130 mg, over-the-counter',
+        label:
+          'Drugs@FDA — NDA 018664, iOSAT (potassium iodide) 65 mg and 130 mg, over-the-counter',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018664',
         kind: 'regulatory',
@@ -11015,6 +11231,18 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 4875 — Potassium iodide',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4875',
+        kind: 'url',
+      },
+      {
+        label:
+          'Bath SC, Button S, Rayman MP. Iodine concentration of organic and conventional milk: implications for iodine intake. Br J Nutr 2012;107:935-940',
+        identifier: '10.1017/s0007114511003059',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NADAC (National Average Drug Acquisition Cost) 2026 — Centers for Medicare and Medicaid Services pharmacy acquisition-cost survey',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
     ],

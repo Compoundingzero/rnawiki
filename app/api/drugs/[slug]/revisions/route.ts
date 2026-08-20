@@ -229,7 +229,12 @@ const dossierPayloadSchema = z.object({
   oneSentenceVerdict: z.string().trim().max(1000).optional(),
   laymanHowItWorks: z.string().trim().max(4000).optional(),
   auditConfidence: z
-    .enum(['High Confidence', 'Moderate / Debated', 'Inference Overreach Found', 'Rigorous Replicated'])
+    .enum([
+      'High Confidence',
+      'Moderate / Debated',
+      'Inference Overreach Found',
+      'Rigorous Replicated',
+    ])
     .optional(),
   confidenceScore: z.number().int().min(0).max(100).optional(),
   anatomicalSite: z.string().trim().max(300).optional(),
@@ -412,11 +417,7 @@ export const POST = withHandler(async (req: Request, ctx: SlugContext) => {
   // submission or an account farming accepted-edit counts toward the tier that skips review.
   // Either way the honest answer is that there is nothing to record.
   if (changedFields.length === 0) {
-    throw new ApiError(
-      422,
-      'This edit does not change anything on the record.',
-      'no_change',
-    )
+    throw new ApiError(422, 'This edit does not change anything on the record.', 'no_change')
   }
 
   const tier = user.trustTier ?? 'new'
