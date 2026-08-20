@@ -43,6 +43,29 @@ async function loadAliases(rows: readonly DrugInsert[]): Promise<void> {
   )
   if (aliasRows.length === 0) return
 
+  // An alias must never be another substance's own name.
+  //
+  // openFDA lists "Creatine" and "Creatine Monohydrate" among the ingredient spellings on products
+  // whose moiety normalised to Creatine Gluconate, so the alias builder handed that stub both
+  // names — and a search for "creatine" then ranked it above the written Creatine Monohydrate
+  // dossier, because an exact alias hit outranks a prefix hit on a name.
+  //
+  // The rule is not a ranking tweak: an alias claiming a name that belongs to a different record
+  // is wrong on its own terms, and it would keep surfacing as long as it existed.
+  const canonicalNames = new Map<string, string>()
+  for (const row of rows) canonicalNames.set(row.name.toLowerCase(), row.id)
+
+  const kept = aliasRows.filter((alias) => {
+    const owner = canonicalNames.get(alias.alias.toLowerCase())
+    return owner === undefined || owner === alias.drugId
+  })
+  const stolen = aliasRows.length - kept.length
+  if (stolen > 0) {
+    console.log(`[load] dropped ${stolen.toLocaleString()} aliases that named a different substance`)
+  }
+  aliasRows.length = 0
+  aliasRows.push(...kept)
+
   const drugIds = rows.map((row) => row.id)
   for (let offset = 0; offset < drugIds.length; offset += BATCH_SIZE) {
     await db.delete(drugAliases).where(inArray(drugAliases.drugId, drugIds.slice(offset, offset + BATCH_SIZE)))

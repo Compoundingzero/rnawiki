@@ -197,10 +197,24 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
   // The alias join is what makes "paracetamol" find acetaminophen and "ozempic" find semaglutide.
   // EXISTS rather than a LEFT JOIN: a drug with twelve aliases must not come back twelve times,
   // and the planner can stop at the first matching alias instead of materialising all of them.
-  const aliasMatch = sql`exists (
+  // An exact alias and a name prefix share a tier on purpose, so the depth ordering below decides
+  // between them. openFDA lists "Creatine" as an ingredient spelling on a product whose moiety
+  // normalised to Creatine Gluconate; with the alias on its own higher tier, that stub outranked
+  // the written Creatine Monohydrate dossier for the query "creatine". Ranking the two routes
+  // together means a page someone wrote wins, which is what the reader wanted either way.
+  //
+  // Split deliberately. An EXACT alias hit means the reader typed another official name for this
+  // substance — "paracetamol" for acetaminophen — and deserves to rank near an exact name match.
+  // A PREFIX hit on an alias means far less: "creatine" prefix-matches the alias "Creatine
+  // Leucine", and when both routes shared one tier that stub outranked the written Creatine
+  // Monohydrate dossier. A prefix alias belongs with the other prefix matches.
+  const aliasExact = sql`exists (
     select 1 from ${drugAliases}
-    where ${drugAliases.drugId} = ${drugs.id}
-      and (lower(${drugAliases.alias}) = ${lowered} or lower(${drugAliases.alias}) like ${prefix.toLowerCase()})
+    where ${drugAliases.drugId} = ${drugs.id} and lower(${drugAliases.alias}) = ${lowered}
+  )`
+  const aliasPrefix = sql`exists (
+    select 1 from ${drugAliases}
+    where ${drugAliases.drugId} = ${drugs.id} and lower(${drugAliases.alias}) like ${prefix.toLowerCase()}
   )`
 
   return db
@@ -211,7 +225,7 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
         sql`${drugs.searchVector} @@ ${tsQuery}`,
         ilike(drugs.name, prefix),
         ilike(drugs.tradeName, prefix),
-        aliasMatch,
+        aliasPrefix,
       ),
     )
     .orderBy(
@@ -221,15 +235,20 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
       sql`case
         when lower(${drugs.name}) = ${lowered} then 0
         when lower(${drugs.tradeName}) = ${lowered} then 1
-        when ${aliasMatch} then 2
-        when ${drugs.name} ilike ${prefix} then 3
-        when ${drugs.tradeName} ilike ${prefix} then 4
+        when ${aliasExact} then 2
+        when ${drugs.name} ilike ${prefix} then 2
+        when ${drugs.tradeName} ilike ${prefix} then 3
+        when ${aliasPrefix} then 4
         else 5
       end`,
-      // Among equally-ranked prefix matches, the shorter name is the more general substance:
-      // "Vitamin D" before "Vitamin D (Ergocalciferol)".
-      sql`length(${drugs.name})`,
+      // Among equally-ranked matches, a page with content beats a shorter name. Typing "creatine"
+      // was returning Creatine-Leucine and Creatine Gluconate — ingested stubs that happen to be
+      // short — ahead of the written Creatine Monohydrate dossier. A reader searching a substance
+      // wants the page someone wrote about it.
       sql`case ${drugs.dossierDepth} when 'flagship' then 0 when 'curated' then 1 else 2 end`,
+      // Then the shorter name, which is the more general substance: "Vitamin D" before
+      // "Vitamin D (Ergocalciferol)".
+      sql`length(${drugs.name})`,
       sql`ts_rank_cd(${drugs.searchVector}, ${tsQuery}) desc`,
       desc(drugs.viewCount),
       asc(drugs.name),
