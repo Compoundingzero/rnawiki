@@ -5743,4 +5743,1688 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 15. Tegaserod — withdrawn on an internal adjudication, returned on two external ones
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tegaserod',
+    name: 'Tegaserod',
+    tradeName: 'Zelnorm',
+    sponsor: 'Novartis (NDA 021200), later Alfasigma; US Worldmeds and Alfasigma after 2019',
+    targetGene: 'HTR4',
+    targetProtein: 'Serotonin 5-HT4 receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2002,
+    indication:
+      'Irritable bowel syndrome with constipation in women under 65 with no history of cardiovascular ischaemic events. Voluntarily withdrawn in March 2007 over a cardiovascular ischaemic signal, reapproved in March 2019 with the population narrowed to that group.',
+    patientFriendlyIndication:
+      'A tablet for irritable bowel syndrome with constipation, in women under 65 without heart disease',
+    anatomicalSite:
+      'Enteric nervous system of the gastrointestinal tract; 5-HT4 receptors on interneurons and motor neurons of the myenteric plexus',
+    conditionContext: {
+      conditionExplainer:
+        'Irritable bowel syndrome with constipation combines infrequent, hard stools with abdominal pain and bloating. It has no structural lesion, so treatment targets motility and visceral sensation rather than a repairable defect.',
+      whyItMatters:
+        'The withdrawal and the return rest on the same 18,645 patients. Nothing new was measured. What changed was who adjudicated the events, and how the eligible population was drawn.',
+      whoTakesThis:
+        'Women under 65 with irritable bowel syndrome with constipation, no history of myocardial infarction, stroke, transient ischaemic attack or angina, and at most one cardiovascular risk factor.',
+      clinicalGoals:
+        'Increase stool frequency and reduce abdominal discomfort and bloating. The endpoint used in registration was a subject global assessment of relief over four weeks.',
+    },
+    oneSentenceVerdict:
+      'A 5-HT4 agonist withdrawn in 2007 on an internal adjudication that found cardiovascular ischaemic events in 13 of 11,614 tegaserod patients against 1 of 7,031 on placebo, and reapproved in 2019 after two independent external adjudications of the same dataset put the coronary and cerebrovascular signal at an odds ratio of 4.24 with a confidence interval from 0.52 to 34.74.',
+    laymanHowItWorks:
+      'Serotonin is a signalling molecule the gut uses to coordinate the wave of muscle contraction that moves food along. Tegaserod switches on one particular serotonin receptor in the gut wall, which makes that wave stronger and more frequent, so stool moves faster and the gut becomes less sensitive to stretch. The same receptor family exists in blood vessels and platelets, which is where the cardiovascular question came from.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 62,
+    substitutes: {
+      summary:
+        'For irritable bowel syndrome with constipation the alternatives act on chloride secretion rather than motility: linaclotide, plecanatide and lubiprostone. None carries a cardiovascular ischaemic question, and none has tegaserod\'s prokinetic mechanism.',
+      conventionalRx: [
+        {
+          name: 'Linaclotide',
+          class: 'Guanylate cyclase-C agonist',
+          howItCompares:
+            'Increases intestinal fluid secretion and transit through cyclic GMP rather than through serotonin receptors. Minimally absorbed, so it has no systemic cardiovascular exposure at all.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: no systemic exposure, robust trial evidence in IBS-C. Cons: diarrhoea is the dose-limiting effect and is common.',
+        },
+        {
+          name: 'Lubiprostone',
+          class: 'Chloride channel type 2 activator',
+          howItCompares:
+            'Also a secretagogue rather than a prokinetic. Approved for IBS-C in women, which makes it the closest licensed comparator by population.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: long post-marketing record. Cons: nausea is frequent and dose-related.',
+        },
+        {
+          name: 'Plecanatide',
+          class: 'Guanylate cyclase-C agonist',
+          howItCompares:
+            'Same target as linaclotide with a uroguanylin-like pH-dependent activity profile. Another secretory route to the same clinical goal.',
+          typicalCost: '',
+          prosAndCons: 'Pros: no cardiovascular signal. Cons: diarrhoea, contraindicated under six.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCCCCN=C(N)N/N=C/C1=CNC2=C1C=C(C=C2)OC',
+      chemicalFormula: 'C16H23N5O',
+      molecularWeight: '301.39 g/mol',
+      targetReceptorAffinity:
+        'An aminoguanidine indole and a selective partial agonist at the serotonin 5-HT4 receptor. It is an indole rather than a benzamide, which distinguishes it from cisapride: cisapride blocked the hERG potassium channel and prolonged the QT interval, and tegaserod does not. The two gastrointestinal prokinetics on this page failed for entirely different reasons.',
+      structureSource: {
+        label: 'PubChem CID 135409453 (tegaserod) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135409453',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'teg-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the aminoguanidine hydrazone and its E geometry',
+          description:
+            'Confirm the methoxy-indole core, the pentyl aminoguanidine and the E configuration of the hydrazone double bond. Hydrazones isomerise, so a method that resolves E from Z is required rather than a total-tegaserod assay.',
+          reagentsAndBuffer:
+            'Tegaserod maleate certified reference standard, reversed-phase HPLC with photodiode array detection, proton and carbon NMR in deuterated dimethyl sulfoxide, LC-MS electrospray positive mode at m/z 302',
+        },
+        {
+          id: 'teg-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Related substances and maleate counter-ion assay',
+          description:
+            'Quantify the hydrazone Z isomer, the indole aldehyde hydrolysis product and residual aminoguanidine. Separately confirm maleate stoichiometry, since the marketed salt is the maleate and the free base mass differs.',
+          dependsOnStepId: 'teg-w1',
+          reagentsAndBuffer:
+            'C18 column with acetonitrile and ammonium formate gradient, ion chromatography or capillary electrophoresis for maleate, forced degradation samples under acid, base, oxidative and photolytic stress',
+        },
+        {
+          id: 'teg-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Colonic smooth muscle and enteric neuron preparation',
+          description:
+            'Prepare isolated segments of human or guinea pig colon with the myenteric plexus intact, mounted in organ baths, to measure the peristaltic reflex that 5-HT4 agonism is meant to enhance. This is the functional preparation the receptor binding numbers have to explain.',
+          reagentsAndBuffer:
+            'Krebs-Henseleit solution gassed with 95% oxygen and 5% carbon dioxide at 37 degrees, isometric force transducers, tetrodotoxin and a selective 5-HT4 antagonist as mechanism controls',
+        },
+        {
+          id: 'teg-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: '5-HT4 binding and functional selectivity against 5-HT2B and hERG',
+          description:
+            'Radioligand displacement at recombinant human 5-HT4 to establish potency, then counter-screen at 5-HT2B and at the hERG potassium channel. The 5-HT2B screen exists because of fenfluramine and pergolide; the hERG screen exists because of cisapride, the prokinetic tegaserod was intended to replace.',
+          dependsOnStepId: 'teg-w3',
+          reagentsAndBuffer:
+            'Membranes from cells expressing human HTR4, [3H]-GR113808 radioligand, cyclic AMP accumulation assay for functional agonism, hERG patch-clamp in stably transfected HEK293 cells with cisapride as positive control',
+        },
+        {
+          id: 'teg-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Platelet aggregation and vascular contractility screen',
+          description:
+            'Measure platelet aggregation in platelet-rich plasma and contractile responses in isolated coronary artery rings across the clinically relevant concentration range. This is the assay that addresses the mechanism proposed for the 2007 ischaemic signal, and its results are what an adjudication panel has to weigh against thirteen events in eleven thousand patients.',
+          dependsOnStepId: 'teg-w4',
+          reagentsAndBuffer:
+            'Human platelet-rich plasma, light transmission aggregometry with ADP and collagen agonists, isolated coronary or mesenteric artery ring myography, serotonin and a 5-HT2A antagonist as reference compounds',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'teg-a1',
+        category: 'measured',
+        title: 'Thirteen ischaemic events in 11,614 patients against one in 7,031 on placebo',
+        laymanSummary:
+          'Pooling every placebo-controlled trial, thirteen people on tegaserod had a cardiovascular ischaemic event and one person on placebo did. That is 0.11% against 0.014%.',
+        technicalDetails:
+          'The 2007 withdrawal rested on an internal adjudication of pooled placebo-controlled tegaserod data covering 18,645 patients — 11,614 on tegaserod and 7,031 on placebo. Twenty-four possible cardiovascular ischaemic events were identified internally, twenty on tegaserod and four on placebo. The first adjudication classified 14 of these (0.075% of the pooled population) as events: 13 on tegaserod (0.11%) and 1 on placebo (0.014%). Every one of the 14 patients had at least one cardiovascular risk factor and 11 had two or more. The absolute numbers are what make this a hard case: thirteen events is a small enough count that a single reclassification moves the ratio substantially.',
+        evidenceSource: 'Lacy BE, Brenner DM, Chey WD. Clin Gastroenterol Hepatol 2022;20:e682-e695',
+        doi: '10.1016/j.cgh.2021.05.040',
+        measuredMetric:
+          'Adjudicated cardiovascular ischaemic events in pooled placebo-controlled trials, tegaserod versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'teg-a2',
+        category: 'conclusion_shift',
+        title: 'Two external adjudications of the same data reached a different answer',
+        laymanSummary:
+          'Independent committees re-reviewed the same patient records. Restricted to coronary and cerebrovascular events, the difference was 7 against 1, and the confidence interval ran from 0.52 to 34.74 — it crosses 1.',
+        technicalDetails:
+          'For the 2018 advisory committee an independent committee re-adjudicated the 24 possible events, and a second independent external adjudication followed. The second adjudication reviewed 390 events, of which 24 (0.13%) were classified as probable new or worsening cardiovascular events: 18 on tegaserod (0.16%) and 6 on placebo (0.09%). Restricting to coronary or cerebrovascular ischaemic events gave 7 on tegaserod (0.06%) against 1 on placebo (0.01%), an odds ratio of 4.24 with a 95% confidence interval of 0.52 to 34.74 and P = 0.273. Among women under 65 with no history of cardiovascular ischaemic events and at most one risk factor, there were no major adverse cardiovascular events at all. The dataset did not change between 2007 and 2018. The classification of the events, and the definition of the population, did.',
+        evidenceSource: 'Lacy BE, Brenner DM, Chey WD. Clin Gastroenterol Hepatol 2022;20:e682-e695',
+        doi: '10.1016/j.cgh.2021.05.040',
+        measuredMetric:
+          'Odds ratio 4.24 (95% CI 0.52 to 34.74, P = 0.273) for coronary or cerebrovascular ischaemic events on external re-adjudication',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'teg-a3',
+        category: 'inferred',
+        title: 'A non-significant odds ratio of 4.24 is not evidence of no effect',
+        laymanSummary:
+          'The re-adjudicated result did not reach statistical significance, but its central estimate is still a fourfold difference. Failing to reach significance on eight events is not the same as showing there is no risk.',
+        technicalDetails:
+          'The confidence interval on the re-adjudicated coronary and cerebrovascular comparison runs from 0.52 to 34.74. It includes 1, which is why P = 0.273, and it also includes 30, which is why the result cannot be read as reassurance. Eight events in 18,645 patients is close to the limit of what a pooled trial programme can resolve. The 2019 approval is better described as a decision that the residual uncertainty is acceptable in a low-risk population than as a finding that the 2007 signal was spurious. The label carries the restriction precisely because the uncertainty was not eliminated.',
+        evidenceSource:
+          'Lacy BE, Brenner DM, Chey WD. Clin Gastroenterol Hepatol 2022;20:e682-e695; FDA notice of the joint Gastrointestinal Drugs and Drug Safety and Risk Management advisory committee meeting, 11 September 2018',
+        doi: '10.1016/j.cgh.2021.05.040',
+        inferredClaim:
+          'That the external re-adjudication showed tegaserod carries no cardiovascular ischaemic risk',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'teg-a4',
+        category: 'measured',
+        title: 'Efficacy in the reapproval population: 44.1% responded against 36.5% on placebo',
+        laymanSummary:
+          'In the four trials pooled for the 2019 label, 44.1% of women rated themselves relieved on tegaserod against 36.5% on placebo. The odds ratio is 1.38.',
+        technicalDetails:
+          'A pooled analysis of four 12-week randomised placebo-controlled trials of tegaserod 6 mg twice daily. The indicated population — women under 65 with IBS-C and no history of cardiovascular ischaemic events — comprised 2,752 participants, 1,386 on tegaserod and 1,366 on placebo. The primary endpoint was subjective global assessment of symptom relief, with a responder rating themselves considerably or completely relieved at least half the time, or at least somewhat relieved all of the time, over the final four weeks. Clinical response during the last four weeks was 44.1% on tegaserod against 36.5% on placebo, pooled odds ratio 1.38 (95% CI 1.18 to 1.61, P < 0.001). In the overall female population the figures were 43.3% against 35.9%, odds ratio 1.37 (1.18 to 1.59). The effect size here is the other half of the benefit-risk arithmetic the adjudication argument was about.',
+        evidenceSource: 'Shah ED, Lacy BE, Chey WD, Chang L, Brenner DM. Am J Gastroenterol 2021;116:1601-1611',
+        doi: '10.14309/ajg.0000000000001313',
+        measuredMetric:
+          'Pooled 12-week subjective global assessment responder rate, tegaserod 6 mg twice daily versus placebo, in women under 65 without cardiovascular ischaemic history',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'teg-a5',
+        category: 'conclusion_shift',
+        title: 'It is on the market and still on the federal withdrawn-for-safety list',
+        laymanSummary:
+          'Tegaserod has been approved again since 2019, but the federal regulation listing drugs withdrawn for safety reasons still names it. Both statements are currently true.',
+        technicalDetails:
+          '21 CFR 216.24, the codified list of drug products withdrawn or removed from the market for reasons of safety or effectiveness, still carries the entry "Tegaserod maleate: All drug products containing tegaserod maleate", added after the 2007 withdrawal. That list governs which substances may be used in pharmacy compounding; it is not a statement about the current marketing status of the approved product, which is a separate determination. The result is that a reader checking the regulation and a reader checking the label get opposite impressions, and both are reading a current federal document. Recording only one of them would misrepresent the record.',
+        evidenceSource: '21 CFR 216.24, current as of August 2026',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'teg-a6',
+        category: 'measured',
+        title: 'It is not cisapride: the mechanism of failure is different',
+        laymanSummary:
+          'The previous gut prokinetic to be withdrawn, cisapride, caused fatal heart rhythm disturbances by blocking a specific cardiac potassium channel. Tegaserod does not do that.',
+        technicalDetails:
+          'Cisapride is a substituted benzamide that blocks the hERG potassium channel, prolonging cardiac repolarisation and producing torsades de pointes; it was withdrawn in 2000 for that reason. Tegaserod is an aminoguanidine indole with no comparable hERG activity and no QT signal in its trial programme. The 2007 tegaserod question was ischaemic — myocardial infarction, unstable angina, stroke — not arrhythmic. Two 5-HT4 agonists for the same indication were removed from the United States market seven years apart for two unrelated cardiac mechanisms, which is why "5-HT4 agonists are cardiotoxic" is not a usable summary of either case.',
+        evidenceSource:
+          'Lacy BE, Brenner DM, Chey WD. Clin Gastroenterol Hepatol 2022;20:e682-e695; 21 CFR 216.24 entries for cisapride and tegaserod maleate',
+        doi: '10.1016/j.cgh.2021.05.040',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'teg-a7',
+        category: 'failed',
+        title: 'The original NDA was withdrawn outright in 2022',
+        laymanSummary:
+          'The 2019 return did not revive the old application. Novartis\'s original approval was formally withdrawn in December 2022, after the drug was already back on sale under new ownership.',
+        technicalDetails:
+          'Zelnorm returned to the market in 2019 under a new sponsor arrangement, and the original application, NDA 021200, appears in Drugs@FDA with all listed Zelnorm products in Discontinued marketing status. The Federal Register notice of 8 December 2022 records the withdrawal of approval of 35 new drug applications by Teva Branded Pharmaceutical Products R and D and others. The administrative history and the commercial history of this drug diverge, which is why an approval-status field alone cannot describe it.',
+        evidenceSource:
+          'Drugs@FDA NDA 021200 (ZELNORM, Alfasigma) — all products Discontinued; Federal Register 87 FR (8 December 2022) withdrawal notice',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oral tablet taken before meals',
+        laymanDesc: 'Swallowed twice a day, shortly before eating.',
+        molecularDetail:
+          'Oral tegaserod maleate 6 mg twice daily before meals. Absolute bioavailability is low and food reduces absorption further, which is why the timing is specified.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the nerve network in the gut wall',
+        laymanDesc:
+          'It reaches the layer of nerve cells embedded between the muscle coats of the intestine.',
+        molecularDetail:
+          'Distributes to the myenteric plexus, the enteric neuronal network lying between the circular and longitudinal muscle layers, where 5-HT4 receptors sit on interneurons and motor neurons.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Partial agonist at the 5-HT4 receptor',
+        laymanDesc:
+          'It switches on a serotonin receptor on those nerve cells — partly, not fully, which limits how far the effect can be pushed.',
+        molecularDetail:
+          'Selective partial agonism at 5-HT4, a Gs-coupled receptor. Receptor occupancy raises intracellular cyclic AMP in enteric neurons and enhances release of acetylcholine and calcitonin gene-related peptide.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The peristaltic reflex is amplified',
+        laymanDesc:
+          'The coordinated squeeze that moves contents along the gut becomes stronger and more frequent, and the gut becomes less sensitive to stretch.',
+        molecularDetail:
+          'Enhanced neurotransmitter release amplifies the peristaltic reflex: contraction above the bolus and relaxation below it. Intestinal secretion increases and visceral afferent sensitivity to distension falls.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Faster transit, fewer symptoms — and the ischaemic question',
+        laymanDesc:
+          'Stool frequency rises and pain and bloating fall. The unresolved question is whether the same receptor family acting outside the gut raises cardiovascular risk.',
+        molecularDetail:
+          'Measured: subjective global assessment response 44.1% against 36.5% on placebo, odds ratio 1.38 (95% CI 1.18 to 1.61), in the indicated population. Unresolved: adjudicated coronary and cerebrovascular ischaemic events 7 versus 1, odds ratio 4.24 (95% CI 0.52 to 34.74).',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Pooled placebo-controlled tegaserod safety database (internal adjudication, 2007)',
+        phase: 'Pooled analysis of the placebo-controlled programme',
+        sampleSize: 18645,
+        primaryEndpoint:
+          'Adjudicated cardiovascular ischaemic events in 11,614 tegaserod and 7,031 placebo patients',
+        endpointMet: false,
+        statisticalPValue:
+          '13 events (0.11%) on tegaserod against 1 (0.014%) on placebo; all 14 patients had at least one cardiovascular risk factor and 11 had two or more',
+        unreportedAdverseSignals:
+          'Fourteen events across 18,645 patients is close to the resolution limit of the dataset; a single reclassification moves the ratio substantially, which is what the later adjudications demonstrated.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'External re-adjudication for the 2018 advisory committee',
+        phase: 'Independent external adjudication of the same pooled dataset',
+        sampleSize: 18645,
+        primaryEndpoint:
+          'Probable new or worsening cardiovascular events, and coronary or cerebrovascular ischaemic events specifically',
+        endpointMet: true,
+        statisticalPValue:
+          'Coronary or cerebrovascular ischaemic events 7 (0.06%) versus 1 (0.01%); odds ratio 4.24, 95% CI 0.52 to 34.74, P = 0.273',
+        unreportedAdverseSignals:
+          'The interval extends to 34.74. A non-significant result on eight events is uninformative rather than reassuring, and the restricted label reflects that.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Pooled efficacy analysis in the indicated population (Shah et al.)',
+        phase: 'Pooled analysis of four 12-week randomised placebo-controlled trials',
+        sampleSize: 2752,
+        primaryEndpoint:
+          'Subjective global assessment of IBS-C symptom relief over the final four weeks, in women under 65 without a history of cardiovascular ischaemic events',
+        endpointMet: true,
+        statisticalPValue:
+          '44.1% versus 36.5%; pooled odds ratio 1.38 (95% CI 1.18 to 1.61), P < 0.001',
+        unreportedAdverseSignals:
+          'Diarrhoea was the most frequent adverse event. The trials were not powered for cardiovascular outcomes and were never intended to settle that question.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Internal adjudication: 13 cardiovascular ischaemic events in 11,614 tegaserod patients (0.11%) against 1 in 7,031 on placebo (0.014%)',
+        'External re-adjudication: 7 coronary or cerebrovascular ischaemic events (0.06%) against 1 (0.01%), odds ratio 4.24, 95% CI 0.52 to 34.74, P = 0.273',
+        'No major adverse cardiovascular events in women under 65 with no ischaemic history and at most one risk factor',
+        'Pooled subjective global assessment response 44.1% versus 36.5% on placebo, odds ratio 1.38 (95% CI 1.18 to 1.61), P < 0.001, in 2,752 women in the indicated population',
+      ],
+      unsupportedInferences: [
+        'That a non-significant odds ratio of 4.24 with an upper bound of 34.74 demonstrates the absence of cardiovascular risk',
+        'That the 2007 withdrawal was refuted by new evidence — no new patients were studied; the same records were re-adjudicated',
+        'That "5-HT4 agonists are cardiotoxic" summarises both this drug and cisapride, whose failure was hERG-mediated arrhythmia rather than ischaemia',
+      ],
+      whatFailedInitially: [
+        'Voluntarily withdrawn from the United States market in March 2007 on the internal adjudication',
+        'The original application, NDA 021200, is recorded in Drugs@FDA with all Zelnorm products Discontinued',
+        'The entry "Tegaserod maleate: All drug products containing tegaserod maleate" remains in 21 CFR 216.24 today',
+      ],
+      realWorldOutcome: [
+        'Reapproved in March 2019 for women under 65 with IBS-C and no history of cardiovascular ischaemic events',
+        'The restriction is the mechanism by which the residual uncertainty is managed rather than resolved',
+        'Secretagogues — linaclotide, plecanatide, lubiprostone — took most of the indication during the twelve-year absence',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 6 mg twice daily before meals',
+      description:
+        'Tegaserod maleate tablets taken twice daily shortly before eating. Low absolute bioavailability, reduced further by food, with rapid absorption and a short elimination half-life.',
+      safetyProfile:
+        'Diarrhoea is the most common adverse effect and the dose-limiting one; ischaemic colitis has been reported. The cardiovascular ischaemic signal that caused the 2007 withdrawal was not eliminated by re-adjudication — the point estimate remained an odds ratio of 4.24 with a confidence interval from 0.52 to 34.74 — and the current label manages it by excluding women 65 and over, anyone with a history of myocardial infarction, stroke, transient ischaemic attack or angina, and anyone with more than one cardiovascular risk factor. Contraindicated in severe renal impairment and moderate or severe hepatic impairment.',
+    },
+    commonQuestions: [
+      {
+        q: 'If no new trial was run, what actually changed between 2007 and 2019?',
+        a: 'Who classified the events, and who the drug is for. The 2007 decision came from an adjudication run inside the sponsor, applied to the whole treated population. The 2018 case rested on two independent external adjudications of the identical records, which reclassified enough events that the coronary and cerebrovascular comparison fell to 7 against 1 with a confidence interval crossing 1, and on restricting the label to the subgroup in which no major adverse cardiovascular events had occurred at all. Both of those are legitimate moves. Neither is new evidence about the drug.',
+        auditNote:
+          'The dataset is identical in both directions: 18,645 patients, 11,614 on tegaserod and 7,031 on placebo.',
+      },
+      {
+        q: 'Is the drug safe now?',
+        a: 'The honest answer is that the question was narrowed rather than answered. In the population the label now covers — women under 65, no history of cardiovascular ischaemic events, at most one risk factor — no major adverse cardiovascular events occurred in the pooled programme. That is a real observation, and it is also an observation about a subgroup within a dataset containing eight adjudicated ischaemic events in total. The restriction exists because the uncertainty was not removed.',
+      },
+      {
+        q: 'Why does a federal regulation still list it as withdrawn for safety?',
+        a: 'Because 21 CFR 216.24 governs pharmacy compounding rather than marketing. A substance enters that list when it is withdrawn or removed for reasons of safety or effectiveness, and the entry for tegaserod maleate added after 2007 has not been removed. The approved product is separately marketed under its current label. Both records are current; they answer different questions.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file does not carry pricing. A per-dose manufacturing cost would be an estimate rather than a published figure, and this page states published figures with their sources.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Lacy BE, Brenner DM, Chey WD. Re-evaluation of the cardiovascular safety profile of tegaserod: a review of the clinical data. Clin Gastroenterol Hepatol 2022;20:e682-e695',
+        identifier: '10.1016/j.cgh.2021.05.040',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Shah ED, Lacy BE, Chey WD, Chang L, Brenner DM. Tegaserod for irritable bowel syndrome with constipation in women younger than 65 years without cardiovascular disease: pooled analyses of 4 controlled trials. Am J Gastroenterol 2021;116:1601-1611',
+        identifier: '10.14309/ajg.0000000000001313',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA notice of the joint meeting of the Gastrointestinal Drugs Advisory Committee and the Drug Safety and Risk Management Advisory Committee on tegaserod, 11 September 2018',
+        identifier:
+          'https://www.federalregister.gov/documents/2018/09/11/2018-19669/joint-meeting-of-the-gastrointestinal-drugs-advisory-committee-and-the-drug-safety-and-risk',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          '21 CFR 216.24 — Drug products withdrawn or removed from the market for reasons of safety or effectiveness (entry: tegaserod maleate)',
+        identifier: 'https://www.ecfr.gov/current/title-21/section-216.24',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: ZELNORM (tegaserod maleate), NDA 021200, Alfasigma — Discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021200',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 135409453 — tegaserod structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/135409453',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 16. Efalizumab — the anti-integrin that did not come back
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'efalizumab',
+    name: 'Efalizumab',
+    tradeName: 'Raptiva',
+    sponsor: 'Genentech in the United States, Merck Serono in Europe (BLA 125075)',
+    targetGene: 'ITGAL',
+    targetProtein:
+      'Integrin alpha-L chain (CD11a), the alpha subunit of leukocyte function-associated antigen 1 (LFA-1, alphaLbeta2)',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 2003,
+    indication:
+      'Chronic moderate to severe plaque psoriasis in adults who were candidates for systemic therapy or phototherapy. Suspended by the EMA in February 2009 and voluntarily withdrawn from the United States market in 2009 after four reports of progressive multifocal leukoencephalopathy.',
+    patientFriendlyIndication: 'A weekly injection for severe plaque psoriasis',
+    anatomicalSite:
+      'Circulating T lymphocytes and the dermal vascular endothelium; the toxicity site is central nervous system white matter',
+    conditionContext: {
+      conditionExplainer:
+        'Plaque psoriasis is driven by T cells that leave the bloodstream, enter the skin, and sustain an inflammatory loop that makes keratinocytes divide far too fast. Blocking the adhesion step that lets T cells cross the vessel wall was a rational way to interrupt it.',
+      whyItMatters:
+        'Efalizumab and natalizumab are the same idea applied to two organs: block a leukocyte integrin so lymphocytes cannot enter the tissue. Both produced progressive multifocal leukoencephalopathy. Natalizumab returned under a monitoring programme and efalizumab did not, and the reason is arithmetic rather than principle.',
+      whoTakesThis:
+        'Nobody. The product is withdrawn worldwide. Patients on it in 2009 were transitioned to other systemic agents, which by then included the TNF inhibitors and ustekinumab.',
+      clinicalGoals:
+        'A 75% reduction in the Psoriasis Area and Severity Index — PASI-75 — was the registration endpoint, measured at 12 weeks.',
+    },
+    oneSentenceVerdict:
+      'A humanised anti-CD11a antibody that produced PASI-75 in 22 to 28 per cent of patients against 5 per cent on placebo at 12 weeks, withdrawn in 2009 after four reports of progressive multifocal leukoencephalopathy in psoriasis patients — every one of them fatal, and every one after three or more years of continuous treatment.',
+    laymanHowItWorks:
+      'White blood cells stick to the inside of blood vessels before they squeeze through the wall into tissue. That sticking uses a surface protein pair, and efalizumab is an antibody that covers one half of that pair. T cells then cannot grip the vessel wall properly, so far fewer of them reach the skin and the psoriasis plaques settle. The same grip is used by T cells that patrol the brain for a common dormant virus, and blocking it long enough allowed that virus to reactivate.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 88,
+    substitutes: {
+      summary:
+        'By 2009 the biologic alternatives for severe plaque psoriasis were already better: the TNF inhibitors and ustekinumab, and since then the IL-17 and IL-23 antagonists, which reach PASI-75 rates two to three times efalizumab\'s.',
+      conventionalRx: [
+        {
+          name: 'Ustekinumab',
+          class: 'Anti-IL-12/IL-23 p40 monoclonal antibody',
+          howItCompares:
+            'Approved for plaque psoriasis in 2009, the year efalizumab was withdrawn. Blocks a cytokine pathway rather than a leukocyte adhesion step, so it does not impair immune surveillance of the central nervous system in the same way.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: far higher PASI-75 rates, quarterly dosing. Cons: infection risk, cost, long half-life.',
+        },
+        {
+          name: 'Adalimumab',
+          class: 'Anti-TNF-alpha monoclonal antibody',
+          howItCompares:
+            'The established biologic comparator at the time of withdrawal. In the FDA adverse event review that examined all psoriasis biologics, the PML cases attributed to anti-TNF agents occurred in other conditions and with confounding immunosuppression.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: long safety record, effective in psoriatic arthritis too. Cons: tuberculosis reactivation, injection-site reactions.',
+        },
+        {
+          name: 'Secukinumab',
+          class: 'Anti-IL-17A monoclonal antibody',
+          howItCompares:
+            'A later generation with PASI-75 rates well above 70 per cent at 12 weeks, against efalizumab\'s 22 to 28 per cent. The efficacy gap is why efalizumab has no argument for return even setting the PML aside.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: high and rapid clearance rates. Cons: candidiasis, inflammatory bowel disease exacerbation.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Humanised IgG1 kappa monoclonal antibody',
+      molecularWeight: 'Approximately 150 kDa',
+      targetReceptorAffinity:
+        'Binds the alpha-L subunit (CD11a) of leukocyte function-associated antigen 1, the alphaLbeta2 integrin expressed on all leukocytes. Blocking CD11a prevents LFA-1 from engaging intercellular adhesion molecule 1 on endothelium and antigen-presenting cells, which blocks both firm adhesion for transendothelial migration and the immunological synapse. Natalizumab targets a different integrin subunit, alpha-4, on the same functional step.',
+      structureSource: {
+        label:
+          'Lebwohl M et al. A novel targeted T-cell modulator, efalizumab, for plaque psoriasis. N Engl J Med 2003;349:2004-2013 — antibody description and target',
+        identifier: '10.1056/NEJMoa030002',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'efa-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, charge variants and glycan profile',
+          description:
+            'Confirm the humanised IgG1 kappa framework by peptide mapping and intact mass, then profile charge heterogeneity and the N-linked glycan distribution at the conserved Fc site, which governs effector function.',
+          reagentsAndBuffer:
+            'Trypsin and Lys-C digestion with LC-MS/MS peptide mapping, imaged capillary isoelectric focusing, released N-glycan analysis by hydrophilic interaction chromatography with fluorescence detection, size-exclusion chromatography for aggregate content',
+        },
+        {
+          id: 'efa-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'CD11a binding affinity and epitope confirmation',
+          description:
+            'Measure association and dissociation rates against recombinant human CD11a I-domain by surface plasmon resonance, and confirm the antibody does not cross-react with the beta-2 subunit or with alpha-4 integrin, which is a different drug\'s target.',
+          dependsOnStepId: 'efa-w1',
+          reagentsAndBuffer:
+            'Recombinant human ITGAL I-domain on a CM5 sensor chip, HBS-EP running buffer, ELISA plates coated with alphaLbeta2, alphaMbeta2 and alpha4beta1 for selectivity, isotype-matched control antibody',
+        },
+        {
+          id: 'efa-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'T-cell transendothelial migration assay',
+          description:
+            'Culture human brain or dermal microvascular endothelial monolayers on permeable supports, add primary human T cells with the antibody, and measure how many cross. This is the assay that shows the therapeutic mechanism and the PML mechanism are the same event in two tissues.',
+          reagentsAndBuffer:
+            'Primary human dermal and brain microvascular endothelial cells, transwell inserts with 3 micron pores, TNF-alpha and interferon-gamma to upregulate ICAM-1, CD3-positive T cells from healthy donors, CXCL12 chemotactic gradient',
+        },
+        {
+          id: 'efa-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'CD11a receptor occupancy and surface downmodulation on circulating T cells',
+          description:
+            'Flow cytometry on whole blood to quantify free CD11a, bound antibody and total CD11a on CD3-positive lymphocytes. Efalizumab both blocks and downmodulates the receptor, so an occupancy figure alone understates the functional effect and understates how long recovery takes after the last dose.',
+          dependsOnStepId: 'efa-w3',
+          reagentsAndBuffer:
+            'Whole blood with EDTA, non-competing anti-CD11a detection clone, anti-human IgG secondary for bound drug, CD3 and CD4 lineage markers, quantitative calibration beads for antibodies bound per cell',
+        },
+        {
+          id: 'efa-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'JC virus DNA quantification in cerebrospinal fluid and plasma',
+          description:
+            'Quantitative PCR for JC polyomavirus DNA in cerebrospinal fluid, the diagnostic that confirmed PML in every reported case. Paired with anti-JCV antibody serology and a lymphocyte migration measurement, this is the assay set that a monitoring programme for an anti-integrin antibody has to be built on.',
+          dependsOnStepId: 'efa-w4',
+          reagentsAndBuffer:
+            'Cerebrospinal fluid and EDTA plasma, real-time quantitative PCR targeting the JCV large T antigen region, plasmid standard curve for copy number, anti-JCV antibody ELISA, magnetic resonance imaging correlation',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'efa-a1',
+        category: 'measured',
+        title: 'PASI-75 in 22 to 28 per cent at 12 weeks against 5 per cent on placebo',
+        laymanSummary:
+          'In the pivotal trial of 597 patients, about a quarter of those on efalizumab had their psoriasis score fall by three quarters at 12 weeks, against one in twenty on placebo.',
+        technicalDetails:
+          'Phase 3 multicentre randomised placebo-controlled double-blind trial in 597 subjects with moderate to severe plaque psoriasis, randomised to subcutaneous efalizumab 1 mg/kg/week, 2 mg/kg/week, or placebo for 12 weeks. At week 12, an improvement of 75 per cent or more in the Psoriasis Area and Severity Index occurred in 22 per cent at 1 mg/kg and 28 per cent at 2 mg/kg, against 5 per cent on placebo (P < 0.001 for both). Separation from placebo was evident by week 4 (P < 0.001). Among efalizumab-treated responders at week 12, response was maintained through week 24 in 77 per cent of those who continued against 20 per cent of those switched to placebo. After discontinuation at week 24, PASI-50 was maintained in roughly 30 per cent over the following 12 weeks.',
+        evidenceSource: 'Lebwohl M et al. N Engl J Med 2003;349:2004-2013',
+        doi: '10.1056/NEJMoa030002',
+        measuredMetric: 'PASI-75 response rate at 12 weeks, efalizumab versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'efa-a2',
+        category: 'measured',
+        title: 'Four PML cases in psoriasis patients, all fatal, all after three or more years',
+        laymanSummary:
+          'The FDA searched its adverse-event database for brain infections reported with every psoriasis biologic. Efalizumab was the only one with cases in psoriasis patients. All of them died.',
+        technicalDetails:
+          'FDA Office of Surveillance and Epidemiology searched the Adverse Event Reporting System for post-marketing reports of progressive multifocal leukoencephalopathy associated with the biologics approved for psoriasis — adalimumab, alefacept, efalizumab, etanercept and infliximab — from approval to 30 January 2009. Twelve cases suggestive of PML were identified: adalimumab 1, efalizumab 4, etanercept 3, infliximab 4. Efalizumab was the only drug with cases occurring in the setting of psoriasis. All four efalizumab cases presented three years or more after treatment initiation, and all resulted in death. The cases attributed to the other agents occurred in conditions other than psoriasis and were confounded by concurrent immunosuppression or were not confirmed PML.',
+        evidenceSource: 'Kothary N, Diak IL, Brinker A, Bezabeh S, Avigan M, Dal Pan G. J Am Acad Dermatol 2011;65:546-551',
+        doi: '10.1016/j.jaad.2010.05.033',
+        measuredMetric:
+          'Confirmed PML cases by psoriasis biologic in the FDA Adverse Event Reporting System through 30 January 2009',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'efa-a3',
+        category: 'measured',
+        title: 'The mechanism was demonstrated directly in a treated patient',
+        laymanSummary:
+          'In one patient, researchers measured how well T cells could cross a vessel wall while on the drug, and again after it was removed. Migration recovered as the blocked protein reappeared.',
+        technicalDetails:
+          'Two patients with severe psoriasis treated for three years or more developed fatal PML with JC virus identified in cerebrospinal fluid; both died two and six months after onset despite plasma exchange and signs of immune reconstitution, with PML confirmed neuropathologically. Serial studies in one patient showed that efalizumab treatment was associated with reduced transendothelial migration by peripheral T cells in vitro, and that as LFA-1 expression on peripheral T cells rose after plasma exchange, in vitro migration increased with it. That is a direct dose-response measurement of the proposed mechanism in the affected patient rather than an inference from the drug\'s target.',
+        evidenceSource: 'Schwab N et al. Neurology 2012;78:458-467',
+        doi: '10.1212/WNL.0b013e3182478d4b',
+        measuredMetric:
+          'T-cell transendothelial migration against LFA-1 surface expression, before and after plasma exchange',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'efa-a4',
+        category: 'conclusion_shift',
+        title: 'The same mechanism, the opposite regulatory outcome, in the same years',
+        laymanSummary:
+          'Natalizumab blocks a closely related adhesion protein, also caused PML, and was brought back under a monitoring programme. Efalizumab was not. The difference is what the alternatives looked like.',
+        technicalDetails:
+          'Natalizumab, an anti-alpha-4-integrin antibody, was withdrawn in February 2005 after three PML cases and returned in June 2006 under a restricted distribution and monitoring programme. Efalizumab, an anti-CD11a antibody blocking the same functional step in a different integrin, was withdrawn in 2009 and never returned. The distinguishing facts are not mechanistic. Natalizumab reduced the relapse rate by 68 per cent in relapsing multiple sclerosis, a progressive neurological disease with limited alternatives. Efalizumab produced PASI-75 in a quarter of psoriasis patients at a time when ustekinumab was being approved and the TNF inhibitors were established. When the benefit is modest and substitutes exist, a monitoring programme does not change the arithmetic.',
+        evidenceSource:
+          'Kothary N et al. J Am Acad Dermatol 2011;65:546-551; Polman CH et al. N Engl J Med 2006;354:899-910',
+        doi: '10.1016/j.jaad.2010.05.033',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'efa-a5',
+        category: 'inferred',
+        title: 'No incidence rate was ever established, only a numerator',
+        laymanSummary:
+          'Four cases were reported. Nobody knows how many people had taken the drug for three or more years, so the actual risk per patient was never calculated.',
+        technicalDetails:
+          'The FDA analysis rests on spontaneous post-marketing reports, which the authors identify as limited by underreporting and by variable quality of information. There is a numerator — four confirmed cases in psoriasis — and no reliable denominator of patients treated for three or more years, which is the exposure window in which every case occurred. Statements of the form "the PML risk with efalizumab was one in N" therefore do not derive from the evidence base that caused the withdrawal. The authors were explicit that a treatment duration which does not place patients at risk has not been defined. The decision was made on four fatal cases with a plausible and later demonstrated mechanism, not on a rate.',
+        evidenceSource: 'Kothary N et al. J Am Acad Dermatol 2011;65:546-551',
+        doi: '10.1016/j.jaad.2010.05.033',
+        inferredClaim: 'That a per-patient PML incidence rate for efalizumab is known',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'efa-a6',
+        category: 'failed',
+        title: 'Withdrawal came from Europe first',
+        laymanSummary:
+          'The European Medicines Agency recommended suspension in February 2009. The United States withdrawal followed in the same year.',
+        technicalDetails:
+          'The European Medicines Agency\'s Committee for Medicinal Products for Human Use recommended suspension of the Raptiva marketing authorisation on 19 February 2009, concluding that the benefits no longer outweighed the risks given the reports of PML. Genentech announced a phased voluntary withdrawal from the United States market, completed in 2009. The sequence matters for reading the record: the European suspension is a formal regulatory act with a published assessment, while the United States exit was a sponsor decision, so the two jurisdictions leave different kinds of document behind for the same event.',
+        evidenceSource:
+          'European Medicines Agency, Raptiva (efalizumab): withdrawn medicine, marketing authorisation withdrawn 2009; Kothary N et al. J Am Acad Dermatol 2011;65:546-551',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'efa-a7',
+        category: 'measured',
+        title: 'Rebound psoriasis on withdrawal was a documented problem of stopping it',
+        laymanSummary:
+          'Stopping the drug abruptly could make psoriasis flare worse than before, which complicated moving thousands of patients off it at once.',
+        technicalDetails:
+          'The pivotal trial measured what happens on discontinuation: among subjects who achieved PASI-75 at week 12 and were then switched to placebo, response was maintained in 20 per cent against 77 per cent of those who continued, and after treatment stopped at week 24 only about 30 per cent maintained even PASI-50 over 12 weeks of follow-up. Rebound and severe flares including erythrodermic and pustular presentations were recognised on discontinuation. The 2009 withdrawal therefore required a supervised transition rather than a stop order, which is a class of harm that a withdrawal itself creates and that a withdrawal notice does not usually count.',
+        evidenceSource: 'Lebwohl M et al. N Engl J Med 2003;349:2004-2013',
+        doi: '10.1056/NEJMoa030002',
+        measuredMetric:
+          'Maintenance of PASI-75 on continued treatment versus switch to placebo, and PASI-50 maintenance after discontinuation',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A weekly injection under the skin',
+        laymanDesc: 'Given once a week as a subcutaneous injection, often self-administered.',
+        molecularDetail:
+          'Subcutaneous efalizumab, a conditioning dose followed by weekly maintenance dosing at 1 mg/kg. Clearance is target-mediated and saturable, so steady-state exposure rises disproportionately once CD11a is fully occupied.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Binds CD11a on circulating T cells',
+        laymanDesc:
+          'In the bloodstream it coats a specific protein on the surface of T cells and pulls some of it off the surface entirely.',
+        molecularDetail:
+          'Binds the alpha-L subunit of LFA-1 on circulating lymphocytes, producing both steric blockade and downmodulation of surface CD11a, which is why lymphocyte counts rise and functional recovery lags the drug\'s clearance.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'T cells lose their grip on the vessel wall',
+        laymanDesc:
+          'Without that protein working, T cells cannot hold on to the inside of blood vessels long enough to squeeze through into tissue.',
+        molecularDetail:
+          'LFA-1 can no longer engage ICAM-1 on activated endothelium, so firm adhesion and transendothelial migration fail. The same blockade impairs the LFA-1/ICAM-1 immunological synapse required for T-cell activation by antigen-presenting cells.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Fewer T cells reach the plaque — and fewer reach the brain',
+        laymanDesc:
+          'Far fewer T cells enter the skin, so the psoriasis inflammatory loop breaks. The same block applies to the T cells that keep a dormant brain virus in check.',
+        molecularDetail:
+          'Reduced T-cell trafficking into dermis and epidermis interrupts the IL-23/Th17 keratinocyte loop. The same reduction in transendothelial migration applies at the blood-brain barrier, permitting reactivation of JC polyomavirus in oligodendrocytes.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Plaques clear in a quarter of patients; four developed fatal PML',
+        laymanDesc:
+          'About a quarter of patients had a major improvement in their skin. Four patients developed a fatal brain infection after three or more years of treatment.',
+        molecularDetail:
+          'Measured: PASI-75 in 22 to 28 per cent at 12 weeks against 5 per cent on placebo. Measured: four confirmed PML cases in psoriasis patients in the FDA adverse event database, all fatal, all after three or more years of treatment.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Phase 3 placebo-controlled trial of efalizumab in plaque psoriasis (Lebwohl et al.)',
+        phase: 'Phase 3',
+        sampleSize: 597,
+        primaryEndpoint:
+          'Improvement of 75 per cent or more in the Psoriasis Area and Severity Index at week 12',
+        endpointMet: true,
+        statisticalPValue:
+          'PASI-75 in 22 per cent at 1 mg/kg/week and 28 per cent at 2 mg/kg/week against 5 per cent on placebo, P < 0.001 for both',
+        unreportedAdverseSignals:
+          'The trial ran 12 weeks with 24 weeks of treatment in extension. Every PML case reported after approval occurred at three years or more of continuous exposure, a duration the registration programme could not have observed.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'FDA Adverse Event Reporting System review of PML with psoriasis biologics',
+        phase: 'Post-marketing pharmacovigilance case series',
+        sampleSize: 12,
+        primaryEndpoint:
+          'Confirmed PML cases by biologic agent approved for psoriasis, from approval to 30 January 2009',
+        endpointMet: true,
+        statisticalPValue:
+          'Efalizumab 4 cases, all in psoriasis, all fatal, all at three or more years of treatment; adalimumab 1, etanercept 3, infliximab 4, none in psoriasis and all confounded or unconfirmed',
+        unreportedAdverseSignals:
+          'Spontaneous reporting has no denominator and is subject to underreporting, so a per-patient incidence rate was never established.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'PASI-75 at week 12 in 22 per cent (1 mg/kg) and 28 per cent (2 mg/kg) against 5 per cent on placebo, P < 0.001, in 597 patients',
+        'Response maintained through week 24 in 77 per cent of continuing responders against 20 per cent switched to placebo',
+        'Four confirmed PML cases in efalizumab-treated psoriasis patients, all fatal, all at three or more years of exposure',
+        'T-cell transendothelial migration recovered in step with returning LFA-1 surface expression after plasma exchange in a treated patient',
+      ],
+      unsupportedInferences: [
+        'That a per-patient PML incidence rate is known — the analysis has a numerator of four and no denominator of long-duration exposures',
+        'That a safe treatment duration exists below three years; the authors state explicitly that none has been defined',
+        'That the PML cases reported with anti-TNF agents in the same review are comparable — those occurred in other conditions with confounding immunosuppression',
+      ],
+      whatFailedInitially: [
+        'Marketing authorisation suspended in the European Union in February 2009 and voluntarily withdrawn in the United States the same year',
+        'The registration programme observed 12 to 24 weeks; the harm appeared at three years and later',
+        'Discontinuation itself carried rebound and severe flare risk, so the withdrawal required managed transition rather than a stop order',
+      ],
+      realWorldOutcome: [
+        'Ustekinumab was approved for plaque psoriasis in 2009, and the IL-17 and IL-23 antagonists followed, all with far higher PASI-75 rates',
+        'Natalizumab, blocking the same functional step through a different integrin, returned under a monitoring programme; efalizumab did not',
+        'The efalizumab and natalizumab cases together established anti-integrin PML as a class question rather than a single-drug accident',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection, once weekly',
+      description:
+        'Weekly subcutaneous humanised IgG1 antibody with a conditioning first dose. Target-mediated clearance means exposure rises non-linearly once CD11a occupancy saturates, and surface CD11a downmodulation means immune function recovers more slowly than drug concentrations fall.',
+      safetyProfile:
+        'Withdrawn worldwide in 2009. The decisive harm was progressive multifocal leukoencephalopathy: four confirmed cases in psoriasis patients in the FDA adverse event database, all fatal, all after three or more years of continuous treatment. Other recognised effects were first-dose flu-like reactions, thrombocytopenia, haemolytic anaemia, immune-mediated arthritis, and rebound or severe flare of psoriasis on discontinuation, including erythrodermic and pustular presentations.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why did natalizumab come back and efalizumab did not?',
+        a: 'Because the benefit side of the arithmetic was different, not the risk side. Natalizumab cut the annualised relapse rate by 68 per cent in relapsing multiple sclerosis, a disease that accumulates irreversible disability and had limited alternatives in 2006. Efalizumab produced PASI-75 in a quarter of psoriasis patients, and by 2009 ustekinumab was arriving and the TNF inhibitors were established, with substantially better response rates. A monitoring programme lets you keep a drug whose benefit justifies the residual risk. It cannot manufacture benefit that is not there.',
+        auditNote:
+          'The mechanisms are close relatives: both block a leukocyte integrin subunit required for transendothelial migration.',
+      },
+      {
+        q: 'Was the PML risk knowable before approval?',
+        a: 'The mechanism was predictable in outline — blocking lymphocyte entry into tissue includes the central nervous system — but the registration trials ran 12 to 24 weeks and every reported case occurred at three years or more. No trial of that length can observe a harm with that latency. What the case series later established is that the mechanism is real and measurable: in one patient, T-cell migration across an endothelial monolayer recovered in step with LFA-1 returning to the cell surface after plasma exchange.',
+      },
+      {
+        q: 'How many people actually got PML from it?',
+        a: 'Four confirmed cases in psoriasis patients were identified in the FDA adverse event database through January 2009, and all four died. That is a count of reports, not a rate. Spontaneous reporting systems under-capture events and there is no reliable count of how many patients had taken the drug for three or more years, so the risk per treated patient is not a figure this page can give.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because the product has had no market anywhere since 2009 and no current list price exists to cite.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Lebwohl M, Tyring SK, Hamilton TK, et al. A novel targeted T-cell modulator, efalizumab, for plaque psoriasis. N Engl J Med 2003;349:2004-2013',
+        identifier: '10.1056/NEJMoa030002',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kothary N, Diak IL, Brinker A, Bezabeh S, Avigan M, Dal Pan G. Progressive multifocal leukoencephalopathy associated with efalizumab use in psoriasis patients. J Am Acad Dermatol 2011;65:546-551',
+        identifier: '10.1016/j.jaad.2010.05.033',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Schwab N, Ulzheimer JC, Fox RJ, et al. Fatal PML associated with efalizumab therapy: insights into integrin alphaLbeta2 in JC virus control. Neurology 2012;78:458-467',
+        identifier: '10.1212/WNL.0b013e3182478d4b',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Polman CH et al. A randomized, placebo-controlled trial of natalizumab for relapsing multiple sclerosis. N Engl J Med 2006;354:899-910 — the comparator case for anti-integrin PML',
+        identifier: '10.1056/NEJMoa044397',
+        kind: 'doi',
+      },
+      {
+        label:
+          'European Medicines Agency — Raptiva (efalizumab), withdrawn medicine, marketing authorisation withdrawn 2009',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/raptiva',
+        kind: 'regulatory',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 17. Natalizumab — withdrawn for PML, returned under a monitoring programme
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'natalizumab',
+    name: 'Natalizumab',
+    tradeName: 'Tysabri',
+    sponsor: 'Biogen and Elan Pharmaceuticals (BLA 125104); biosimilar Tyruko, Sandoz (BLA 761322)',
+    targetGene: 'ITGA4',
+    targetProtein:
+      'Integrin alpha-4 subunit, the alpha chain of very late antigen 4 (alpha4beta1) and of alpha4beta7',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Relapsing forms of multiple sclerosis, and moderate to severe Crohn\'s disease with evidence of inflammation in patients who have failed conventional therapy and TNF inhibitors. Voluntarily suspended in February 2005 after three cases of progressive multifocal leukoencephalopathy and returned in June 2006 under a mandatory monitoring programme.',
+    patientFriendlyIndication:
+      'A monthly infusion for relapsing multiple sclerosis, given under a mandatory monitoring programme',
+    anatomicalSite:
+      'Blood-brain barrier endothelium and gut vascular endothelium; the toxicity site is oligodendrocytes in central nervous system white matter',
+    conditionContext: {
+      conditionExplainer:
+        'In relapsing multiple sclerosis, lymphocytes cross the blood-brain barrier and attack myelin, producing relapses and, over years, permanent disability. Natalizumab blocks the adhesion step those lymphocytes need to get across.',
+      whyItMatters:
+        'This is the reference case for managing a rare fatal harm rather than abandoning the drug. The risk was not eliminated. It was stratified into groups that differ by more than a hundredfold, so that a patient and a clinician can see which group they are in before the first infusion.',
+      whoTakesThis:
+        'Patients with relapsing multiple sclerosis, generally those with inadequate response to or intolerance of other disease-modifying therapies, enrolled in the mandatory monitoring programme. Anti-JC virus antibody status is checked before and during treatment.',
+      clinicalGoals:
+        'Reduce the annualised relapse rate and delay sustained accumulation of disability on the Expanded Disability Status Scale, while keeping the patient out of the highest PML risk stratum.',
+    },
+    oneSentenceVerdict:
+      'An anti-alpha-4-integrin antibody that cut the relapse rate by 68 per cent at one year and sustained disability progression by 42 per cent over two years, withdrawn in 2005 after three PML cases and returned in 2006 under monitoring that now stratifies PML risk from under 0.09 cases per 1000 patients in the seronegative to 11.1 per 1000 in patients who are seropositive, previously immunosuppressed, and 25 to 48 months into treatment.',
+    laymanHowItWorks:
+      'Immune cells cannot enter tissue from the bloodstream unless they first grip the vessel wall using a surface protein. Natalizumab is an antibody that covers one part of that protein, so the cells cannot grip and cannot cross into the brain. That stops them attacking myelin. It also stops the immune cells that keep a common dormant virus, JC virus, suppressed in the brain, and in a small fraction of people that virus reactivates and destroys white matter.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 93,
+    substitutes: {
+      summary:
+        'The high-efficacy disease-modifying therapies that followed — the anti-CD20 antibodies and the S1P modulators — reach comparable relapse reduction without blocking lymphocyte entry to the central nervous system, which is why they do not carry natalizumab\'s PML profile.',
+      conventionalRx: [
+        {
+          name: 'Ocrelizumab',
+          class: 'Anti-CD20 monoclonal antibody',
+          howItCompares:
+            'Depletes B cells rather than blocking trafficking, so immune surveillance of the central nervous system by T cells is preserved. High-efficacy in relapsing MS with a far lower PML signal.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: six-monthly infusion, effective in primary progressive MS too. Cons: infusion reactions, hypogammaglobulinaemia over time, infection risk.',
+        },
+        {
+          name: 'Fingolimod',
+          class: 'Sphingosine-1-phosphate receptor modulator',
+          howItCompares:
+            'Traps lymphocytes in lymph nodes rather than blocking their adhesion at the vessel wall. Oral, and does not require anti-JCV serology, though PML has been reported rarely.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: oral daily dosing. Cons: first-dose bradycardia, macular oedema, lymphopenia.',
+        },
+        {
+          name: 'Natalizumab-sztn (Tyruko)',
+          class: 'Anti-alpha-4-integrin biosimilar',
+          howItCompares:
+            'The same molecule from a second manufacturer, approved on biosimilarity rather than on a repeat efficacy programme. It carries the identical PML risk and the identical monitoring requirement.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: a second supply source for the same benefit. Cons: identical PML risk profile and the same programme obligations.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Humanised IgG4 kappa monoclonal antibody',
+      molecularWeight: 'Approximately 149 kDa',
+      targetReceptorAffinity:
+        'Binds the alpha-4 subunit shared by two integrin heterodimers: alpha4beta1 (very late antigen 4), which binds VCAM-1 on inflamed brain endothelium, and alpha4beta7, which binds MAdCAM-1 on gut endothelium. One antibody therefore blocks lymphocyte entry into two different tissues, which is why the same molecule treats both multiple sclerosis and Crohn\'s disease. Efalizumab blocked the same functional step through a different integrin, CD11a.',
+      structureSource: {
+        label:
+          'Polman CH et al. A randomized, placebo-controlled trial of natalizumab for relapsing multiple sclerosis. N Engl J Med 2006;354:899-910 — target and class description',
+        identifier: '10.1056/NEJMoa044397',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'nat-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, IgG4 half-antibody content and glycan profile',
+          description:
+            'Confirm the humanised IgG4 kappa sequence by peptide mapping and intact mass. IgG4 antibodies undergo Fab-arm exchange and form half-antibodies, so half-molecule content and hinge integrity are release-critical in a way they are not for an IgG1.',
+          reagentsAndBuffer:
+            'Trypsin and Lys-C digests with LC-MS/MS peptide mapping, non-reduced capillary electrophoresis SDS for half-antibody, size-exclusion chromatography with multi-angle light scattering, released N-glycan HILIC-fluorescence',
+        },
+        {
+          id: 'nat-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Alpha-4 binding affinity and dual-heterodimer selectivity',
+          description:
+            'Surface plasmon resonance against recombinant alpha4beta1 and alpha4beta7, confirming comparable binding to both, and a counter-screen against alphaLbeta2 and alpha4-free beta1 to establish that the epitope is on the alpha-4 chain.',
+          dependsOnStepId: 'nat-w1',
+          reagentsAndBuffer:
+            'Recombinant human alpha4beta1 and alpha4beta7 ectodomains, CM5 sensor chip, HBS-P buffer with manganese to stabilise the active integrin conformation, isotype control IgG4',
+        },
+        {
+          id: 'nat-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'VCAM-1 adhesion and blood-brain barrier migration model',
+          description:
+            'Primary human brain microvascular endothelial monolayers on permeable supports, cytokine-activated to express VCAM-1, with primary human lymphocytes under physiological shear. Measure firm adhesion and transmigration with and without antibody. This preparation reproduces both the therapeutic effect and the surveillance failure in the same dish.',
+          reagentsAndBuffer:
+            'Human brain microvascular endothelial cells, transwell inserts or parallel-plate flow chamber, TNF-alpha and interferon-gamma activation, peripheral blood mononuclear cells, CCL19 or CXCL12 chemotactic gradient',
+        },
+        {
+          id: 'nat-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Alpha-4 receptor saturation on circulating lymphocytes',
+          description:
+            'Flow cytometry to measure alpha-4 integrin saturation and surface downmodulation on CD3-positive and CD19-positive cells, alongside trough drug concentration. Saturation is the pharmacodynamic endpoint that governs both efficacy and the loss of central nervous system immune surveillance, and it is the measurement behind extended-interval dosing.',
+          dependsOnStepId: 'nat-w3',
+          reagentsAndBuffer:
+            'EDTA whole blood, non-competing anti-CD49d detection clone, anti-human IgG4 for bound drug, lineage markers, quantitative calibration beads, validated trough serum natalizumab immunoassay',
+        },
+        {
+          id: 'nat-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Anti-JC virus antibody index and cerebrospinal fluid JCV DNA',
+          description:
+            'Two-step anti-JCV antibody ELISA reported as an index value, plus quantitative PCR for JC virus DNA in cerebrospinal fluid when magnetic resonance imaging raises suspicion. These two assays are the operational core of the monitoring programme: the serology assigns the risk stratum before treatment, the PCR confirms or excludes the diagnosis during it.',
+          dependsOnStepId: 'nat-w4',
+          reagentsAndBuffer:
+            'Two-step anti-JCV antibody ELISA with confirmatory inhibition step and index reporting, cerebrospinal fluid, real-time quantitative PCR for the JCV large T antigen region with plasmid standard curve, contemporaneous MRI',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'nat-a1',
+        category: 'measured',
+        title: 'Relapse rate down 68 per cent at one year, disability progression down 42 per cent',
+        laymanSummary:
+          'In a two-year trial of 942 patients, relapses fell by about two thirds in the first year and the chance of lasting disability worsening fell from 29 per cent to 17 per cent.',
+        technicalDetails:
+          'AFFIRM (NCT00027300): 942 patients with relapsing multiple sclerosis randomised 2:1 to natalizumab 300 mg or placebo by intravenous infusion every four weeks for more than two years. Natalizumab reduced the rate of clinical relapse at one year by 68 per cent (P < 0.001) and reduced the risk of sustained disability progression over two years by 42 per cent (hazard ratio 0.58, 95% CI 0.43 to 0.77, P < 0.001); cumulative probability of progression was 17 per cent against 29 per cent. New or enlarging T2 hyperintense lesions fell by 83 per cent over two years — mean 1.9 lesions against 11.0 (P < 0.001) — and gadolinium-enhancing lesions by 92 per cent at both one and two years (P < 0.001).',
+        evidenceSource: 'Polman CH et al., AFFIRM Investigators. N Engl J Med 2006;354:899-910',
+        doi: '10.1056/NEJMoa044397',
+        measuredMetric:
+          'Annualised relapse rate at one year and sustained disability progression at two years, natalizumab versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nat-a2',
+        category: 'failed',
+        title: 'Three PML cases, one of them in Crohn\'s disease, and the drug came off the market',
+        laymanSummary:
+          'Within months of approval, three patients on natalizumab developed a rare fatal brain infection. Two had multiple sclerosis; one had Crohn\'s disease. The drug was suspended.',
+        technicalDetails:
+          'Three cases of progressive multifocal leukoencephalopathy were reported in early 2005 and published together in the New England Journal of Medicine: two in patients receiving natalizumab with interferon beta-1a in the multiple sclerosis programme, and one in a patient treated for Crohn\'s disease. Natalizumab was voluntarily suspended from marketing and from all clinical trials in February 2005, four months after its accelerated approval in November 2004. The third case, in Crohn\'s disease, is the one that established this as a property of the drug rather than of combination therapy with interferon.',
+        evidenceSource:
+          'Kleinschmidt-DeMasters BK, Tyler KL. N Engl J Med 2005;353:369-374; Langer-Gould A et al. N Engl J Med 2005;353:375-381; Van Assche G et al. N Engl J Med 2005;353:362-368',
+        doi: '10.1056/NEJMoa051586',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nat-a3',
+        category: 'conclusion_shift',
+        title: 'It returned in 2006 — the risk unchanged, the information about it transformed',
+        laymanSummary:
+          'The drug came back sixteen months later under a programme that requires prescribers, pharmacies and patients to register and be monitored. The infection risk did not go away.',
+        technicalDetails:
+          'Natalizumab returned to the United States market in June 2006 under a restricted distribution and monitoring programme, now operated as a risk evaluation and mitigation strategy, requiring enrolment of prescribers, infusion centres and patients, with mandatory reporting and periodic reassessment. Nothing about the molecule changed. What changed was that the drug could only be given inside a system that counts the exposures, checks for the risk factors, and images the brain when symptoms appear. This is the clearest example in this file of a withdrawal reversed by building an information system around a drug rather than by re-analysing its data — which is the opposite of what happened with tegaserod.',
+        evidenceSource:
+          'Drugs@FDA BLA 125104 (TYSABRI, Biogen); Bloomgren G et al. N Engl J Med 2012;366:1870-1880',
+        doi: '10.1056/NEJMoa1107829',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nat-a4',
+        category: 'measured',
+        title: '2.1 PML cases per 1000 overall — and a 120-fold spread once stratified',
+        laymanSummary:
+          'By 2012 there were 212 confirmed cases among 99,571 patients treated. But the risk is not one number: it ranges from under 0.09 per 1000 to 11.1 per 1000 depending on three things known before treatment.',
+        technicalDetails:
+          'As of 29 February 2012 there were 212 confirmed PML cases among 99,571 natalizumab-treated patients, 2.1 per 1000. Stratifying by three factors — anti-JC virus antibody status, prior immunosuppressant use, and treatment duration of 1 to 24 versus 25 to 48 months — separates that average into groups that differ by more than a hundredfold. Anti-JCV antibody negative patients had an estimated incidence of 0.09 cases or fewer per 1000 (95% CI 0 to 0.48). Patients who were antibody positive, had prior immunosuppressant exposure, and had received 25 to 48 months of treatment had an estimated 11.1 cases per 1000 (95% CI 8.3 to 14.5). All 54 PML patients for whom a pre-diagnosis sample existed were anti-JCV antibody positive, without exception.',
+        evidenceSource: 'Bloomgren G et al. N Engl J Med 2012;366:1870-1880',
+        doi: '10.1056/NEJMoa1107829',
+        measuredMetric:
+          'PML incidence per 1000 natalizumab-treated patients, stratified by anti-JCV serostatus, prior immunosuppressant use and treatment duration',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nat-a5',
+        category: 'inferred',
+        title: 'Seronegative does not mean immune, and the confidence interval says so',
+        laymanSummary:
+          'A negative antibody test puts a patient in the lowest risk group, but the interval around that estimate does not reach zero, and antibody status can change.',
+        technicalDetails:
+          'The seronegative estimate is 0.09 cases or fewer per 1000 with a 95% confidence interval of 0 to 0.48. The upper bound is not zero, the test has a false-negative rate, and seroconversion occurs during treatment at a measurable annual rate, which is why the programme repeats the serology rather than testing once. A negative result is a statement about the current stratum, not a permanent exemption. Reading "anti-JCV negative" as "cannot develop PML" is the single most consequential inference error available on this drug, and the stratified table exists precisely to prevent one number from standing in for a distribution.',
+        evidenceSource: 'Bloomgren G et al. N Engl J Med 2012;366:1870-1880',
+        doi: '10.1056/NEJMoa1107829',
+        inferredClaim:
+          'That an anti-JC virus antibody negative result confers immunity to natalizumab-associated PML',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'nat-a6',
+        category: 'measured',
+        title: 'The combination trial was the one that produced two of the three first cases',
+        laymanSummary:
+          'The second pivotal trial added natalizumab to an existing interferon treatment. Two of the first three brain infections came out of that trial.',
+        technicalDetails:
+          'SENTINEL (NCT00030966) randomised 1,171 patients who had relapsed despite interferon beta-1a to continue interferon with added natalizumab 300 mg (589 patients) or placebo (582) every four weeks for up to 116 weeks. Combination therapy reduced the relative risk of sustained disability progression by 24 per cent (hazard ratio 0.76, 95% CI 0.61 to 0.96, P = 0.02), with cumulative progression at two years of 23 per cent against 29 per cent, and lowered the annualised relapse rate from 0.75 to 0.34 (P < 0.001) with 0.9 against 5.4 new or enlarging T2 lesions (P < 0.001). Two cases of progressive multifocal leukoencephalopathy, one fatal, were diagnosed in natalizumab-treated patients in this trial. That initially suggested the harm might belong to the combination rather than to natalizumab itself; the Crohn\'s disease case, in a patient not receiving interferon, removed that explanation. Natalizumab is not used in combination with other disease-modifying therapies today, and the reason is this trial.',
+        evidenceSource:
+          'Rudick RA et al., SENTINEL Investigators. N Engl J Med 2006;354:911-923; Kleinschmidt-DeMasters BK, Tyler KL. N Engl J Med 2005;353:369-374',
+        doi: '10.1056/NEJMoa044396',
+        measuredMetric:
+          'Relapse rate and disability progression with natalizumab added to interferon beta-1a versus interferon alone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nat-a7',
+        category: 'conclusion_shift',
+        title: 'A biosimilar was approved in 2023 for a drug that was withdrawn in 2005',
+        laymanSummary:
+          'A second manufacturer\'s version of natalizumab was approved in 2023, on the basis that it is the same molecule rather than by repeating the trials.',
+        technicalDetails:
+          'Natalizumab-sztn (Tyruko, BLA 761322, Sandoz) is listed in Drugs@FDA with prescription marketing status. A biosimilar approval is a statement that the molecule and its clinical behaviour are established well enough that similarity can substitute for a repeat efficacy programme. That a drug suspended for a fatal infection eighteen years earlier reached that point is a measure of how completely the monitoring programme converted an unmanageable risk into a quantified one. The biosimilar carries the identical PML risk and the identical programme obligations.',
+        evidenceSource:
+          'Drugs@FDA BLA 761322 (TYRUKO, natalizumab-sztn, Sandoz Inc) — Prescription',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An intravenous infusion every four weeks',
+        laymanDesc:
+          'Given as a drip in a registered infusion centre, once a month, with the patient enrolled in a monitoring programme.',
+        molecularDetail:
+          'Natalizumab 300 mg by intravenous infusion every four weeks. Extended-interval dosing at six weeks is used in some settings on the basis of receptor saturation data. Administration is restricted to certified infusion centres.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Binds alpha-4 integrin on circulating lymphocytes',
+        laymanDesc:
+          'It coats a docking protein on the surface of circulating immune cells, and pulls some of it off the surface.',
+        molecularDetail:
+          'Binds the alpha-4 subunit of alpha4beta1 and alpha4beta7 on lymphocytes and monocytes, producing near-complete receptor saturation at trough with partial surface downmodulation.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'Lymphocytes can no longer cross the blood-brain barrier',
+        laymanDesc:
+          'Those cells can no longer stick to inflamed brain blood vessels, so they stop entering the brain.',
+        molecularDetail:
+          'Blocked alpha4beta1 cannot engage VCAM-1 on cytokine-activated brain endothelium, so firm adhesion under shear and subsequent diapedesis fail. The same blockade at alpha4beta7 and MAdCAM-1 reduces lymphocyte entry to gut mucosa.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Demyelination stops — and so does viral surveillance',
+        laymanDesc:
+          'The immune attack on myelin stops, so relapses and new lesions fall sharply. The same block removes the immune patrol that keeps a dormant virus suppressed in brain tissue.',
+        molecularDetail:
+          'Reduced central nervous system lymphocyte trafficking cuts new inflammatory demyelinating lesions by 83 to 92 per cent on MRI. It also removes CD4 and CD8 surveillance of JC polyomavirus, permitting reactivation and lytic infection of oligodendrocytes in susceptible patients.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Two thirds fewer relapses; PML in 2.1 per 1000, stratified more than a hundredfold',
+        laymanDesc:
+          'Relapses fall by about two thirds and disability progression by 42 per cent. Two patients per thousand develop PML, but who those two are is largely predictable in advance.',
+        molecularDetail:
+          'Measured: 68 per cent relapse rate reduction at one year, 42 per cent reduction in sustained disability progression (HR 0.58, 95% CI 0.43 to 0.77). Measured: 212 PML cases in 99,571 patients (2.1 per 1000), ranging from under 0.09 per 1000 seronegative to 11.1 per 1000 in the highest stratum.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT00027300',
+        phase: 'Phase 3 (AFFIRM)',
+        sampleSize: 942,
+        primaryEndpoint:
+          'Rate of clinical relapse at one year and rate of sustained disability progression on the Expanded Disability Status Scale at two years',
+        endpointMet: true,
+        statisticalPValue:
+          'Relapse rate reduced 68 per cent at one year, P < 0.001; sustained disability progression hazard ratio 0.58 (95% CI 0.43 to 0.77), P < 0.001',
+        unreportedAdverseSignals:
+          'Hypersensitivity reactions occurred in 4 per cent and serious hypersensitivity in 1 per cent. The trial was not long enough or large enough to observe PML, which emerged from post-marketing exposure.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT00030966',
+        phase: 'Phase 3',
+        sampleSize: 1171,
+        primaryEndpoint:
+          'Rate of clinical relapse at one year and cumulative probability of 12-week sustained disability progression at two years, added to interferon beta-1a',
+        endpointMet: true,
+        statisticalPValue:
+          'Sustained disability progression hazard ratio 0.76 (95% CI 0.61 to 0.96), P = 0.02; annualised relapse rate 0.34 versus 0.75, P < 0.001; new or enlarging T2 lesions 0.9 versus 5.4, P < 0.001',
+        unreportedAdverseSignals:
+          'Two cases of progressive multifocal leukoencephalopathy, one fatal, were diagnosed in natalizumab-treated patients in this trial. Combination with other disease-modifying therapy is no longer used.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Pooled post-marketing and registry PML risk stratification (Bloomgren et al.)',
+        phase: 'Post-marketing epidemiology across clinical studies, spontaneous reports and a Swedish registry',
+        sampleSize: 99571,
+        primaryEndpoint:
+          'PML incidence per 1000 treated patients by anti-JCV serostatus, prior immunosuppressant use and treatment duration',
+        endpointMet: true,
+        statisticalPValue:
+          '212 cases in 99,571 patients (2.1 per 1000); seronegative 0.09 or fewer per 1000 (95% CI 0 to 0.48); highest stratum 11.1 per 1000 (95% CI 8.3 to 14.5)',
+        unreportedAdverseSignals:
+          'Post-marketing case ascertainment depends on reporting, and the seronegative interval does not exclude zero. Seroconversion during treatment means a stratum assignment is provisional.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Relapse rate at one year reduced 68 per cent (P < 0.001) in 942 patients',
+        'Sustained disability progression over two years reduced 42 per cent, hazard ratio 0.58 (95% CI 0.43 to 0.77); cumulative progression 17 per cent versus 29 per cent',
+        'New or enlarging T2 lesions 1.9 versus 11.0 over two years (83 per cent reduction); gadolinium-enhancing lesions 92 per cent fewer',
+        '212 confirmed PML cases in 99,571 treated patients as of 29 February 2012 (2.1 per 1000)',
+        'All 54 PML patients with a pre-diagnosis sample were anti-JC virus antibody positive',
+      ],
+      unsupportedInferences: [
+        'That anti-JCV antibody negative status confers immunity — the estimate is 0.09 or fewer per 1000 with an interval to 0.48, and seroconversion occurs during treatment',
+        'That the 2.1 per 1000 average describes any individual patient; the stratified estimates differ by more than a hundredfold',
+        'That the 2005 cases reflected combination with interferon — the Crohn\'s disease case, on natalizumab alone, removed that explanation',
+      ],
+      whatFailedInitially: [
+        'Accelerated approval November 2004, voluntary suspension February 2005 after three PML cases, four months on the market',
+        'Two of the three index cases came from the combination trial, which is why combination with other disease-modifying therapy is no longer used',
+      ],
+      realWorldOutcome: [
+        'Returned June 2006 under a mandatory prescriber, centre and patient monitoring programme, now a risk evaluation and mitigation strategy',
+        'Anti-JCV antibody serology and index reporting turned a single average risk into a stratified one that can be discussed before the first infusion',
+        'A biosimilar, natalizumab-sztn, was approved in 2023 and carries the identical risk and the identical programme obligations',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion, 300 mg every four weeks, in a certified centre',
+      description:
+        'One-hour intravenous infusion every four weeks with post-infusion observation, given only through registered infusion centres under the monitoring programme. Extended-interval dosing at approximately six weeks is used in some settings, based on receptor saturation and PML risk considerations.',
+      safetyProfile:
+        'Progressive multifocal leukoencephalopathy is the defining risk: 212 confirmed cases in 99,571 patients as of February 2012, stratified from 0.09 or fewer per 1000 in anti-JCV antibody negative patients to 11.1 per 1000 in patients who are seropositive, previously immunosuppressed and 25 to 48 months into treatment. Anti-JCV antibody status is checked before and during treatment and MRI is used for surveillance. Other effects include infusion hypersensitivity reactions in about 4 per cent with serious reactions in about 1 per cent, anti-natalizumab antibodies causing loss of efficacy, hepatotoxicity, herpes infections, and immune reconstitution inflammatory syndrome after the drug is removed by plasma exchange.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was the risk actually reduced when it came back in 2006?',
+        a: 'No. The risk per exposed patient was not changed by the monitoring programme — the molecule and its mechanism are identical. What changed is that exposures are counted, risk factors are measured before treatment starts, and imaging is done when symptoms appear. The 2012 stratification is the payoff: the same drug carries an estimated risk below 0.09 per 1000 in one group and 11.1 per 1000 in another, and both patients can know which group they are in. Managing a risk and reducing it are different things, and only the first one happened here.',
+        auditNote:
+          'All 54 PML patients with a pre-diagnosis blood sample were anti-JCV antibody positive, which is what makes the serology usable as a stratifier.',
+      },
+      {
+        q: 'What is JC virus and why does blocking a brain-entry protein matter?',
+        a: 'JC polyomavirus is a common virus most adults have been exposed to and carry harmlessly, held in check by circulating T cells that patrol tissue. Natalizumab stops lymphocytes crossing the blood-brain barrier, which is exactly the therapeutic effect in multiple sclerosis. The same block removes the surveillance that keeps JC virus suppressed in the central nervous system, so in a susceptible patient it reactivates and lyses oligodendrocytes, destroying white matter. The benefit and the harm are the same event in the same place.',
+      },
+      {
+        q: 'Why did efalizumab, which works the same way, never come back?',
+        a: 'Because the benefit differed, not the risk. Natalizumab reduces relapses by 68 per cent and disability progression by 42 per cent in a disease that accumulates permanent damage. Efalizumab produced a 75 per cent skin improvement in about a quarter of psoriasis patients, in a period when better psoriasis biologics were arriving. A monitoring programme is worth building when the benefit justifies accepting a residual fatal risk. It cannot make a modest benefit large enough.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file states published figures with their sources and does not carry a pricing block. Natalizumab is currently marketed, and its price varies by country, payer and infusion setting in ways a single number would misrepresent.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Polman CH, O\'Connor PW, Havrdova E, et al. A randomized, placebo-controlled trial of natalizumab for relapsing multiple sclerosis. N Engl J Med 2006;354:899-910',
+        identifier: '10.1056/NEJMoa044397',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rudick RA, Stuart WH, Calabresi PA, et al. Natalizumab plus interferon beta-1a for relapsing multiple sclerosis. N Engl J Med 2006;354:911-923',
+        identifier: '10.1056/NEJMoa044396',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kleinschmidt-DeMasters BK, Tyler KL. Progressive multifocal leukoencephalopathy complicating treatment with natalizumab and interferon beta-1a for multiple sclerosis. N Engl J Med 2005;353:369-374',
+        identifier: '10.1056/NEJMoa051782',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Langer-Gould A, Atlas SW, Green AJ, Bollen AW, Pelletier D. Progressive multifocal leukoencephalopathy in a patient treated with natalizumab. N Engl J Med 2005;353:375-381',
+        identifier: '10.1056/NEJMoa051847',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Van Assche G, Van Ranst M, Sciot R, et al. Progressive multifocal leukoencephalopathy after natalizumab therapy for Crohn\'s disease. N Engl J Med 2005;353:362-368',
+        identifier: '10.1056/NEJMoa051586',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bloomgren G, Richman S, Hotermans C, et al. Risk of natalizumab-associated progressive multifocal leukoencephalopathy. N Engl J Med 2012;366:1870-1880',
+        identifier: '10.1056/NEJMoa1107829',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT00027300 — AFFIRM',
+        identifier: 'NCT00027300',
+        kind: 'nct',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT00030966 — SENTINEL',
+        identifier: 'NCT00030966',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA: TYSABRI (natalizumab), BLA 125104, Biogen Idec — Prescription',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125104',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: TYRUKO (natalizumab-sztn), BLA 761322, Sandoz Inc — Prescription',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761322',
+        kind: 'regulatory',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 18. Aducanumab — approved on a surrogate, discontinued in 2024
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'aducanumab-avwa',
+    name: 'Aducanumab-avwa',
+    tradeName: 'Aduhelm',
+    sponsor: 'Biogen, with Eisai (BLA 761178)',
+    targetGene: 'APP',
+    targetProtein: 'Aggregated amyloid beta, principally fibrillar plaque and oligomeric species',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 2021,
+    indication:
+      'Alzheimer\'s disease, granted accelerated approval in June 2021 on reduction of amyloid beta plaque as a surrogate endpoint. Biogen announced discontinuation of the product and of the confirmatory trial in January 2024.',
+    patientFriendlyIndication:
+      'A monthly infusion for early Alzheimer\'s disease, approved on a brain-scan measurement rather than on symptoms',
+    anatomicalSite:
+      'Cerebral cortex and leptomeningeal vasculature; amyloid plaque in brain parenchyma and vessel walls',
+    conditionContext: {
+      conditionExplainer:
+        'Alzheimer\'s disease is accompanied by extracellular plaques of aggregated amyloid beta and intracellular tau tangles. Whether removing the plaques changes the disease is the question this drug was supposed to answer, and it is not the question its approval was based on.',
+      whyItMatters:
+        'This is the clearest case in the file of a surrogate endpoint standing in for a clinical one. Amyloid removal was measured, and measured well. Cognitive benefit was demonstrated in one trial and not in its identical twin, and the approval rested on the amyloid.',
+      whoTakesThis:
+        'Nobody. Biogen discontinued the product in 2024 and stopped the confirmatory trial. Patients were transitioned to lecanemab or donanemab, later anti-amyloid antibodies with completed phase 3 programmes.',
+      clinicalGoals:
+        'Slow decline on the Clinical Dementia Rating Sum of Boxes at 78 weeks, with amyloid PET reduction as the accelerated-approval surrogate.',
+    },
+    oneSentenceVerdict:
+      'An anti-amyloid antibody approved on plaque clearance after two identically designed phase 3 trials disagreed — high-dose aducanumab slowed decline on the Clinical Dementia Rating Sum of Boxes by 22 per cent in EMERGE and by nothing at all in ENGAGE — and discontinued by its sponsor in January 2024 with the confirmatory trial unfinished.',
+    laymanHowItWorks:
+      'Alzheimer\'s brains accumulate clumps of a protein called amyloid beta. Aducanumab is an antibody that grips those clumps, which flags them for immune cells in the brain to engulf and clear. Brain scans show the clumps do shrink, substantially and in proportion to dose and time. Whether that slows memory loss is the part that two large trials of the same drug answered differently.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 34,
+    substitutes: {
+      summary:
+        'Two later anti-amyloid antibodies completed their phase 3 programmes without discordant results and took the indication: lecanemab and donanemab. In a head-to-head study donanemab cleared plaque faster and more completely than aducanumab.',
+      conventionalRx: [
+        {
+          name: 'Lecanemab',
+          class: 'Anti-amyloid beta protofibril monoclonal antibody',
+          howItCompares:
+            'Completed a single phase 3 trial that met its primary clinical endpoint, rather than two trials that disagreed. Traditional approval followed the accelerated one.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: consistent clinical result. Cons: amyloid-related imaging abnormalities, infusion reactions, APOE4 homozygote risk.',
+        },
+        {
+          name: 'Donanemab',
+          class: 'Anti-amyloid beta N3pG monoclonal antibody',
+          howItCompares:
+            'Directly compared against aducanumab in an open-label randomised study: plaque clearance at 18 months in 76.8 per cent on donanemab against 43.1 per cent on aducanumab (P < 0.001), with median time to clearance 359 against 568 days.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: faster and deeper plaque clearance, dosing can stop once cleared. Cons: amyloid-related imaging abnormalities, including in that head-to-head study 23.9 per cent ARIA-oedema.',
+        },
+        {
+          name: 'Donepezil',
+          class: 'Acetylcholinesterase inhibitor',
+          howItCompares:
+            'Symptomatic rather than disease-modifying, and makes no claim on amyloid. It remains the baseline against which any anti-amyloid benefit has to be judged.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: oral, inexpensive, decades of use. Cons: modest symptomatic effect, gastrointestinal effects, bradycardia.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Human IgG1 kappa monoclonal antibody',
+      molecularWeight: 'Approximately 146 kDa',
+      targetReceptorAffinity:
+        'A fully human IgG1 derived from B cells of cognitively healthy elderly donors, selecting for an antibody the human immune system had already made. It binds a linear epitope in the amyloid beta N-terminus and shows strong selectivity for aggregated forms — fibrils and oligomers — over monomer, which is the property intended to concentrate its effect on plaque rather than on circulating peptide.',
+      structureSource: {
+        label:
+          'Sevigny J et al. The antibody aducanumab reduces Abeta plaques in Alzheimer\'s disease. Nature 2016;537:50-56',
+        identifier: '10.1038/nature19323',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'adu-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, aggregate content and Fc glycan profile',
+          description:
+            'Confirm the human IgG1 kappa sequence by peptide mapping and intact mass, and quantify high molecular weight species. For an antibody whose mechanism depends on microglial Fc receptor engagement, the afucosylated glycan fraction is a functional attribute rather than a cosmetic one.',
+          reagentsAndBuffer:
+            'Trypsin and Lys-C digestion with LC-MS/MS peptide mapping, size-exclusion chromatography with multi-angle light scattering, released N-glycan HILIC-fluorescence with afucosylation quantitation, imaged capillary isoelectric focusing',
+        },
+        {
+          id: 'adu-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Conformational selectivity: aggregate over monomer',
+          description:
+            'Measure binding to synthetic amyloid beta monomer, oligomer and fibril preparations side by side, and confirm the selectivity ratio that defines this antibody. An assay against monomer alone would report a misleadingly weak affinity and miss the property the drug was selected for.',
+          dependsOnStepId: 'adu-w1',
+          reagentsAndBuffer:
+            'Synthetic amyloid beta 1-42 prepared as monomer, soluble oligomer and mature fibril, surface plasmon resonance and ELISA formats, thioflavin T fluorescence to confirm aggregation state, transmission electron microscopy for fibril morphology',
+        },
+        {
+          id: 'adu-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Microglial phagocytosis of plaque in ex vivo brain sections',
+          description:
+            'Apply antibody and primary microglia to unfixed cryosections of amyloid-bearing brain tissue and measure plaque clearance over time. This preparation reproduces the proposed mechanism — antibody opsonisation followed by Fc-receptor-mediated microglial phagocytosis — in the tissue where it has to occur.',
+          reagentsAndBuffer:
+            'Unfixed cryosections of amyloid-bearing transgenic mouse or post-mortem human cortex, primary murine or human microglia, culture medium with the test antibody and isotype control, immunohistochemistry for amyloid beta with quantitative image analysis',
+        },
+        {
+          id: 'adu-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Amyloid PET standardised uptake value ratio in centiloids',
+          description:
+            'Quantify cortical amyloid burden by florbetapir or florbetaben positron emission tomography, expressed on the centiloid scale, with clearance conventionally defined as below 24.1 centiloids. This is the surrogate endpoint on which the accelerated approval was granted, and it is a genuinely reliable measurement of the thing it measures.',
+          dependsOnStepId: 'adu-w3',
+          reagentsAndBuffer:
+            'Florbetapir F 18 or florbetaben F 18 tracer, PET-CT with standardised acquisition window, composite cortical target region normalised to a reference region, centiloid conversion using the standard anchor datasets',
+        },
+        {
+          id: 'adu-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'ARIA surveillance MRI and APOE genotyping',
+          description:
+            'Serial fluid-attenuated inversion recovery and gradient-echo or susceptibility-weighted MRI to detect amyloid-related imaging abnormalities of oedema and of haemosiderin deposition, with APOE genotype as the principal risk stratifier. This is the safety measurement that governs dosing for the entire anti-amyloid class.',
+          dependsOnStepId: 'adu-w4',
+          reagentsAndBuffer:
+            'FLAIR and T2-star gradient-echo or susceptibility-weighted MRI sequences at fixed intervals, standardised ARIA-E and ARIA-H severity grading, APOE genotyping by PCR-based allelic discrimination',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'adu-a1',
+        category: 'measured',
+        title: 'Amyloid plaque fell, and the measurement is sound',
+        laymanSummary:
+          'Brain scans showed the drug removes amyloid plaque in a dose- and time-dependent way. That part is not in dispute.',
+        technicalDetails:
+          'The phase 1b PRIME study established dose- and time-dependent reduction of brain amyloid beta plaque on florbetapir PET in patients with prodromal or mild Alzheimer\'s disease, with the fully human antibody selected for selectivity toward aggregated over monomeric amyloid. In the later head-to-head TRAILBLAZER-ALZ 4 study, amyloid plaque clearance — defined as below 24.1 centiloids — was achieved by 1.6 per cent, 24.6 per cent and 43.1 per cent of aducanumab-treated participants at 6, 12 and 18 months. The surrogate endpoint behaves exactly as claimed. The question the approval turned on is what it predicts.',
+        evidenceSource:
+          'Sevigny J et al. Nature 2016;537:50-56; Salloway S et al. Alzheimers Dement 2025;21:e70293',
+        doi: '10.1038/nature19323',
+        measuredMetric:
+          'Brain amyloid beta plaque burden on florbetapir PET, dose- and time-dependent reduction',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'adu-a2',
+        category: 'conclusion_shift',
+        title: 'Two identical trials, opposite answers, and a futility stop in between',
+        laymanSummary:
+          'Two trials of the same drug, run at the same time to the same protocol, were stopped early for futility in March 2019. Later analysis of more data made one of them positive and left the other negative.',
+        technicalDetails:
+          'EMERGE (NCT02484547) and ENGAGE (NCT02477800) were two phase 3 randomised double-blind placebo-controlled parallel-group studies at 348 sites in 20 countries, enrolling patients aged 50 to 85 with mild cognitive impairment or mild Alzheimer\'s dementia and confirmed amyloid pathology, randomised 1:1:1 to low-dose aducanumab, high-dose aducanumab or placebo every four weeks. The randomised and dosed populations were 1,638 in EMERGE and 1,647 in ENGAGE. Both were terminated for futility in March 2019. On the larger dataset available afterwards, high-dose aducanumab in EMERGE showed significant treatment effects across primary and secondary endpoints, and high-dose aducanumab in ENGAGE did not. Low-dose results were consistent across both studies, non-significant, and intermediate to the EMERGE high-dose arm.',
+        evidenceSource:
+          'Budd Haeberlein S et al. J Prev Alzheimers Dis 2022;9:197-210; Mallinckrodt C et al. J Prev Alzheimers Dis 2023;10:171-177',
+        doi: '10.14283/jpad.2022.30',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'adu-a3',
+        category: 'inferred',
+        title: 'The reconciliation of the two trials is post hoc',
+        laymanSummary:
+          'The sponsor\'s explanation for why one trial worked and the other did not was worked out after the results were known, by looking for differences that could account for the gap.',
+        technicalDetails:
+          'The published reconciliation examined four candidate explanations — baseline characteristics, amyloid-related imaging abnormalities, non-normality of the data, and dosing exposure — and concluded that ENGAGE high-dose outcomes were affected by an imbalance in a small number of patients with extremely rapid progression and by lower exposure to the 10 mg/kg target dose, factors that were confounded with each other and concentrated among early-enrolled patients. Baseline characteristics and ARIA were excluded as contributors. Every one of these analyses is post hoc, performed on unblinded data with the discordance already known. Post-hoc reconciliation is a legitimate way to generate a hypothesis for the next trial. It is not a replacement for the trial that would test it, and that trial was never completed.',
+        evidenceSource: 'Mallinckrodt C et al. J Prev Alzheimers Dis 2023;10:171-177',
+        doi: '10.14283/jpad.2023.6',
+        inferredClaim:
+          'That the post-hoc identification of rapid progressors and under-dosing in ENGAGE establishes EMERGE as the correct result',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'adu-a4',
+        category: 'conclusion_shift',
+        title: 'Approved against the unified opposition of its own advisory committee',
+        laymanSummary:
+          'The FDA\'s external expert committee did not support approval. The agency approved the drug anyway, on the amyloid measurement rather than on the cognitive results.',
+        technicalDetails:
+          'Accelerated approval was granted in June 2021 on reduction of amyloid beta plaque as a surrogate reasonably likely to predict clinical benefit, despite the unified opposition of the agency\'s advisory committee following the early termination of the two efficacy trials. Three members of the Peripheral and Central Nervous System Drugs Advisory Committee resigned afterwards. The published critique frames the central issue precisely: accelerating approval on a surrogate marker in the absence of proven efficacy creates a risk of adverse outcomes even in a devastating condition. The disagreement is not about whether amyloid fell. It is about whether a measurement that reliably tracks the drug\'s pharmacology reliably tracks the patient\'s future.',
+        evidenceSource: 'Rizk JG, Lewin JC. BMJ Evid Based Med 2023;28:78-82',
+        doi: '10.1136/bmjebm-2022-111914',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'adu-a5',
+        category: 'measured',
+        title: 'ARIA is common, and it is measurable',
+        laymanSummary:
+          'Brain swelling or small bleeds visible on MRI occurred in about a third of treated patients in the head-to-head comparison. It is monitored with scheduled scans.',
+        technicalDetails:
+          'Amyloid-related imaging abnormalities of the oedema and effusion type occurred in 34.8 per cent of aducanumab-treated participants in the randomised head-to-head study against donanemab, in which the donanemab figure was 23.9 per cent. ARIA is detected by scheduled MRI rather than by symptoms, is more frequent in APOE4 carriers, and is the reason the whole anti-amyloid class carries a surveillance imaging schedule. It is a genuinely quantified harm with a defined grading scale, which distinguishes it from the efficacy question on the same drug.',
+        evidenceSource: 'Salloway S et al. Alzheimers Dement 2025;21:e70293',
+        doi: '10.1002/alz.70293',
+        measuredMetric:
+          'Incidence of amyloid-related imaging abnormalities, oedema and effusion type, in a randomised head-to-head study',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'adu-a6',
+        category: 'failed',
+        title: 'Discontinued in 2024 with the confirmatory trial unfinished',
+        laymanSummary:
+          'Biogen stopped selling the drug and stopped the trial that was supposed to confirm whether it works. The confirming evidence was never produced.',
+        technicalDetails:
+          'Accelerated approval is granted on the condition that a confirmatory trial verifies clinical benefit. Biogen announced in January 2024 that it was discontinuing the product and the confirmatory study, and reallocating resources to lecanemab. The consequence is that the question the accelerated approval deferred — does removing amyloid slow the disease — was not answered by this drug. Coverage had already been constrained: the Centers for Medicare and Medicaid Services issued a national coverage determination in April 2022 limiting reimbursement for anti-amyloid monoclonal antibodies approved on the amyloid surrogate to patients enrolled in qualifying clinical studies, which effectively ended routine use.',
+        evidenceSource:
+          'Drugs@FDA BLA 761178 (ADUHELM, Biogen); Rizk JG, Lewin JC. BMJ Evid Based Med 2023;28:78-82',
+        doi: '10.1136/bmjebm-2022-111914',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'adu-a7',
+        category: 'inferred',
+        title: 'A head-to-head comparison settled the surrogate and not the endpoint',
+        laymanSummary:
+          'A later trial showed a competitor cleared amyloid faster and more completely. It did not show that the competitor helped patients more.',
+        technicalDetails:
+          'TRAILBLAZER-ALZ 4 (NCT05108922) randomised 148 participants with early symptomatic Alzheimer\'s disease 1:1 to donanemab or aducanumab per label, with amyloid plaque clearance below 24.1 centiloids as the endpoint. Donanemab cleared plaque in 37.9, 70.0 and 76.8 per cent at 6, 12 and 18 months against 1.6, 24.6 and 43.1 per cent for aducanumab (P < 0.001), with median time to clearance 359 versus 568 days. This is a clean comparison of two drugs on a biomarker. It contains no cognitive comparison and cannot be read as evidence that either drug helps patients more than the other — which is the same category error the aducanumab approval turned on, appearing again in the literature that followed it.',
+        evidenceSource: 'Salloway S et al. Alzheimers Dement 2025;21:e70293',
+        doi: '10.1002/alz.70293',
+        inferredClaim:
+          'That superior amyloid plaque clearance in a head-to-head study implies superior clinical benefit',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A monthly intravenous infusion, titrated up over months',
+        laymanDesc:
+          'Given as a drip once a month, starting low and increasing in steps to the target dose.',
+        molecularDetail:
+          'Intravenous infusion every four weeks with stepwise titration to a 10 mg/kg target. The titration exists to limit amyloid-related imaging abnormalities, and under-exposure to the target dose during titration is one of the factors invoked to explain the ENGAGE result.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'A small fraction crosses into the brain',
+        laymanDesc:
+          'Most of an antibody this size stays in the bloodstream; only a small percentage reaches brain tissue.',
+        molecularDetail:
+          'IgG penetration of the intact blood-brain barrier is on the order of a fraction of a per cent of plasma concentration, which is why the doses are large relative to the target burden.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds aggregated amyloid, not monomer',
+        laymanDesc:
+          'It grips the clumped form of the protein and largely ignores the free-floating single molecules.',
+        molecularDetail:
+          'Binds a linear N-terminal epitope of amyloid beta with strong conformational selectivity for fibrils and oligomers over monomer, concentrating the antibody on parenchymal plaque and on cerebral amyloid angiopathy in vessel walls.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Microglia clear the flagged plaque',
+        laymanDesc:
+          'The brain\'s resident immune cells recognise the antibody coating and engulf the plaque. Vessel-wall involvement is what produces the swelling seen on scans.',
+        molecularDetail:
+          'Fc-gamma receptor engagement on microglia drives phagocytosis of opsonised plaque. The same process at perivascular amyloid increases vessel permeability, producing ARIA-oedema, and vessel-wall fragility, producing ARIA-haemosiderin.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Plaque falls in every study; cognition slowed in one trial of two',
+        laymanDesc:
+          'Amyloid on the scan drops reliably. Whether thinking and memory decline more slowly was answered yes by one trial and no by its twin.',
+        molecularDetail:
+          'Measured: plaque clearance in 43.1 per cent at 18 months in the head-to-head study. Measured: EMERGE high dose significant on primary and secondary endpoints, ENGAGE high dose not, with low-dose arms consistent and non-significant in both. ARIA-oedema in 34.8 per cent.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT02484547',
+        phase: 'Phase 3 (EMERGE)',
+        sampleSize: 1638,
+        primaryEndpoint:
+          'Change from baseline in Clinical Dementia Rating Sum of Boxes at week 78 in early Alzheimer\'s disease',
+        endpointMet: true,
+        statisticalPValue:
+          'High-dose aducanumab showed significant treatment effects across primary and secondary endpoints; low dose non-significant and intermediate',
+        unreportedAdverseSignals:
+          'The trial was terminated for futility in March 2019 and the positive result comes from the larger dataset assembled after that stop. Its identically designed twin did not reproduce it.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT02477800',
+        phase: 'Phase 3 (ENGAGE)',
+        sampleSize: 1647,
+        primaryEndpoint:
+          'Change from baseline in Clinical Dementia Rating Sum of Boxes at week 78 in early Alzheimer\'s disease',
+        endpointMet: false,
+        statisticalPValue:
+          'High-dose aducanumab did not demonstrate a significant treatment effect; low-dose results consistent with EMERGE and non-significant',
+        unreportedAdverseSignals:
+          'The sponsor attributes the outcome to a small number of extremely rapid progressors and lower exposure to the 10 mg/kg target dose among early-enrolled patients. Both analyses are post hoc.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT05108922',
+        phase: 'Phase 3 open-label head-to-head (TRAILBLAZER-ALZ 4)',
+        sampleSize: 148,
+        primaryEndpoint:
+          'Amyloid plaque clearance below 24.1 centiloids on florbetapir PET, donanemab versus aducanumab',
+        endpointMet: true,
+        statisticalPValue:
+          'Clearance at 6, 12 and 18 months: donanemab 37.9, 70.0 and 76.8 per cent versus aducanumab 1.6, 24.6 and 43.1 per cent, P < 0.001; median time to clearance 359 versus 568 days',
+        unreportedAdverseSignals:
+          'ARIA-oedema or effusion in 34.8 per cent on aducanumab and 23.9 per cent on donanemab. The study compares a biomarker only and reports no cognitive comparison.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Dose- and time-dependent reduction of brain amyloid beta plaque on florbetapir PET',
+        'Plaque clearance below 24.1 centiloids in 1.6, 24.6 and 43.1 per cent of aducanumab patients at 6, 12 and 18 months in a randomised head-to-head study',
+        'EMERGE high dose significant across primary and secondary endpoints; ENGAGE high dose not significant; low-dose arms consistent and non-significant in both',
+        'ARIA-oedema or effusion in 34.8 per cent of aducanumab-treated participants in that head-to-head study',
+      ],
+      unsupportedInferences: [
+        'That amyloid plaque reduction predicts clinical benefit — this is the premise of the accelerated approval, and it is the proposition the confirmatory trial was meant to test',
+        'That post-hoc identification of rapid progressors and under-dosing in ENGAGE establishes EMERGE as the correct result',
+        'That faster plaque clearance by a competitor implies greater clinical benefit; the head-to-head study measured no cognitive endpoint',
+      ],
+      whatFailedInitially: [
+        'Both phase 3 trials were terminated for futility in March 2019',
+        'ENGAGE high dose did not reproduce the EMERGE high-dose result under an identical protocol',
+        'The advisory committee opposed approval and three members resigned after it was granted',
+        'Biogen discontinued the product and the confirmatory trial in January 2024, so the deferred question was never answered',
+      ],
+      realWorldOutcome: [
+        'The Centers for Medicare and Medicaid Services restricted coverage in April 2022 to patients in qualifying clinical studies, which ended routine use before the discontinuation',
+        'Lecanemab and donanemab, later anti-amyloid antibodies with non-discordant phase 3 programmes, took the indication',
+        'The episode is now the standard reference case for the limits of surrogate-endpoint approval',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion every four weeks, with stepwise titration',
+      description:
+        'One-hour intravenous infusion every four weeks, titrated over several months to a 10 mg/kg target dose. Serial MRI surveillance for amyloid-related imaging abnormalities is required throughout, and APOE genotype stratifies that risk.',
+      safetyProfile:
+        'Amyloid-related imaging abnormalities are the principal harm: oedema or effusion in 34.8 per cent of aducanumab-treated participants in a randomised head-to-head study, alongside microhaemorrhage and superficial siderosis. Most ARIA is asymptomatic and detected on scheduled imaging, but symptomatic and serious cases occur, and risk is higher in APOE4 carriers. Headache, falls, diarrhoea and confusion were reported. The product was discontinued by its sponsor in January 2024.',
+    },
+    commonQuestions: [
+      {
+        q: 'Did the drug work?',
+        a: 'It removed amyloid plaque, reliably and measurably. Whether that helped patients is the question two identically designed trials answered differently: high-dose aducanumab was significant across primary and secondary endpoints in EMERGE and was not significant in ENGAGE, with 1,638 and 1,647 patients respectively. Both trials had already been stopped for futility. The confirmatory trial that was supposed to resolve it was discontinued in 2024. So the honest answer is that the drug reliably does something to the brain that can be photographed, and the question of whether that helps is unresolved for this molecule.',
+        auditNote:
+          'The low-dose arms agreed across both studies and were non-significant in both. The discordance is confined to the high-dose arms.',
+      },
+      {
+        q: 'What does "accelerated approval on a surrogate endpoint" actually mean here?',
+        a: 'It means the FDA accepted amyloid plaque reduction as reasonably likely to predict clinical benefit, and allowed the drug to be sold while a confirmatory trial tested whether it actually does. That is a legitimate mechanism and it was designed for exactly this situation. What makes this case a reference point is that the confirmatory trial was never completed, so the bargain — sell now, prove later — was left with only its first half performed.',
+      },
+      {
+        q: 'Why did the price get so much attention?',
+        a: 'Because the launch price applied to a large population with an unresolved efficacy question, and because the infusions require ongoing MRI surveillance on top of the drug itself. The Centers for Medicare and Medicaid Services responded in April 2022 with a national coverage determination limiting reimbursement for anti-amyloid antibodies approved on the amyloid surrogate to patients in qualifying clinical studies. That decision, not the discontinuation two years later, is what ended routine use.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file does not carry a pricing block, and the product has been discontinued, so no current list price exists to state.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Budd Haeberlein S et al. Two randomized phase 3 studies of aducanumab in early Alzheimer\'s disease. J Prev Alzheimers Dis 2022;9:197-210',
+        identifier: '10.14283/jpad.2022.30',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mallinckrodt C, Tian Y, Aisen PS, et al. Investigating partially discordant results in phase 3 studies of aducanumab. J Prev Alzheimers Dis 2023;10:171-177',
+        identifier: '10.14283/jpad.2023.6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sevigny J et al. The antibody aducanumab reduces Abeta plaques in Alzheimer\'s disease. Nature 2016;537:50-56',
+        identifier: '10.1038/nature19323',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Salloway S et al. TRAILBLAZER-ALZ 4: a phase 3 trial comparing donanemab with aducanumab on amyloid plaque clearance in early, symptomatic Alzheimer\'s disease. Alzheimers Dement 2025;21:e70293',
+        identifier: '10.1002/alz.70293',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rizk JG, Lewin JC. FDA\'s dilemma with the aducanumab approval: public pressure and hope, surrogate markers and efficacy, and possible next steps. BMJ Evid Based Med 2023;28:78-82',
+        identifier: '10.1136/bmjebm-2022-111914',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT02484547 — EMERGE',
+        identifier: 'NCT02484547',
+        kind: 'nct',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT02477800 — ENGAGE',
+        identifier: 'NCT02477800',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA: ADUHELM (aducanumab-avwa), BLA 761178, Biogen Inc',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761178',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]

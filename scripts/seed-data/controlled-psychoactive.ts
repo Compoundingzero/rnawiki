@@ -5108,4 +5108,828 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       CSA_SCHEDULES_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 14. 5-MeO-DMT
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: '5-meo-dmt',
+    name: '5-MeO-DMT (5-Methoxy-N,N-dimethyltryptamine)',
+    tradeName:
+      'GH001, a vaporised synthetic formulation in clinical development; the INN assigned to the molecule is mebufotenin',
+    sponsor:
+      'GH Research (Dublin) holds the only registered clinical programme. No sponsor holds an approved product',
+    targetGene: 'HTR1A',
+    targetProtein:
+      'Serotonin 5-HT1A receptor (high-affinity agonist) with 5-HT2A agonism; substrate for monoamine oxidase A and, for its O-demethylated metabolite bufotenin, CYP2D6',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication. Placed in Schedule I of the US Controlled Substances Act by DEA final rule published 20 December 2010. A synthetic vaporised formulation completed a randomised placebo-controlled phase 2b trial in treatment-resistant depression in 2025',
+    patientFriendlyIndication:
+      'Nothing approved. A synthetic inhaled version is in trials for depression that has not responded to other drugs; the substance itself is Schedule I',
+    anatomicalSite:
+      'Cortical and limbic 5-HT1A and 5-HT2A receptors, reached within seconds of inhalation because the drug bypasses the gut and the liver entirely',
+    conditionContext: {
+      conditionExplainer:
+        'Treatment-resistant depression is major depressive disorder that has not responded to at least two adequate courses of antidepressant. It is rated on the Montgomery-Åsberg Depression Rating Scale, 0 to 60, with remission defined as a score of 10 or below.',
+      whyItMatters:
+        'In STAR*D, remission rates fell with each successive failed antidepressant — 37%, 31%, 14%, 13%. Anything that produces remission in that fourth-line population, and does it within hours rather than weeks, is measuring something the existing drugs do not reach.',
+      whoTakesThis:
+        'In the trials: adults with treatment-resistant depression, dosed once in a single supervised day. Outside the trials it is taken as a vapour, either synthetic or from dried toad secretion, in unregulated group ceremonies.',
+      clinicalGoals:
+        'Remission on the MADRS within a week of a single day of dosing, with the effect sustained through an open-label extension.',
+    },
+    oneSentenceVerdict:
+      'The fastest and shortest-acting classical psychedelic — effects begin in seconds and are over in half an hour — and a randomised placebo-controlled phase 2b in 81 patients reported a 15.5-point MADRS advantage and 57.5% remission at day 8 against 0% on placebo, in a trial that could not be blinded and was designed and analysed by the sponsor.',
+    laymanHowItWorks:
+      'Inhaled as a vapour, the molecule reaches the brain in a few seconds because it goes straight from the lungs into arterial blood. It switches on serotonin receptors, with an unusually strong pull on the 5-HT1A subtype — a different balance from LSD or psilocybin, which favour 5-HT2A. The experience is overwhelming, very short, and often has no narrative content at all. Because monoamine oxidase destroys the molecule quickly, anything that inhibits that enzyme turns a 20-minute effect into a dangerous overdose; the one published death involved exactly that combination.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 47,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(C)CCC1=CNC2=C1C=C(C=C2)OC',
+      chemicalFormula: 'C13H18N2O',
+      molecularWeight:
+        '218.29 g/mol. Clinical doses are 6 to 18 mg of the vaporised freebase; toad-secretion material has no defined content',
+      targetReceptorAffinity:
+        'Agonist at 5-HT1A with higher affinity than at 5-HT2A, which distinguishes it from LSD, psilocin and mescaline. Rapidly deaminated by monoamine oxidase A and O-demethylated by CYP2D6 to bufotenin; MAO-A inhibition raises exposure severalfold and is the documented mechanism of the fatal case.',
+      structureSource: {
+        label: 'PubChem CID 1832 (5-MeO-DMT) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/1832',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'meo-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Distinguish 5-MeO-DMT from bufotenin and DMT',
+          description:
+            'The three tryptamines differ by a methyl group and a hydroxyl position, and 5-MeO-DMT and bufotenin are isomers of one another at nominal mass. Identification therefore needs chromatographic separation with either high-resolution mass spectrometry or distinct product-ion transitions, not a mass match. Toad-derived material is a mixture, so the question is composition, not identity.',
+          reagentsAndBuffer:
+            '5-MeO-DMT, bufotenin and DMT certified reference standards, C18 or biphenyl column, formic-acid/acetonitrile gradient, electrospray positive ionisation, MRM transitions m/z 219 to 58 and 219 to 174',
+        },
+        {
+          id: 'meo-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Assay a toad-secretion sample for its non-tryptamine content',
+          description:
+            'Dried parotoid secretion from Incilius alvarius is a glandular defensive product, not a preparation of one alkaloid. Alongside 5-MeO-DMT it carries bufotenin and cardioactive bufadienolide steroids, and the ratio varies between animals. A material assayed only for 5-MeO-DMT has not been characterised for the components that determine its cardiac effect.',
+          dependsOnStepId: 'meo-w1',
+          reagentsAndBuffer:
+            'Methanolic extraction with sonication, bufotenin and bufalin reference standards, LC with diode-array and high-resolution mass detection, gravimetric recording of extract mass per animal',
+        },
+        {
+          id: 'meo-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express 5-HT1A and 5-HT2A separately for a selectivity comparison',
+          description:
+            'The pharmacological claim that separates this molecule from the other classical psychedelics is a 5-HT1A-weighted profile. That is a ratio, and a ratio needs both receptors measured in the same system with the same reference agonist, in cells that do not express either natively.',
+          dependsOnStepId: 'meo-w1',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells, separate human HTR1A and HTR2A expression plasmids, lipid transfection, DMEM with 10% fetal bovine serum and selection antibiotic',
+        },
+        {
+          id: 'meo-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Parallel binding and functional assays at both receptors',
+          description:
+            'Competition binding gives the affinity ratio; a Gi-coupled cAMP readout at 5-HT1A and a Gq-coupled calcium or inositol-phosphate readout at 5-HT2A give the efficacy at each. Running them in parallel with serotonin as the reference agonist is what converts "more 5-HT1A-selective" from a description into a number.',
+          dependsOnStepId: 'meo-w3',
+          reagentsAndBuffer:
+            '[3H]-8-OH-DPAT for 5-HT1A and [3H]-ketanserin for 5-HT2A, forskolin-stimulated cAMP HTRF kit, Fluo-4 calcium kit, Tris-HCl buffer with ascorbate, serotonin as reference agonist',
+        },
+        {
+          id: 'meo-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma pharmacokinetics with and without MAO-A inhibition',
+          description:
+            'The interaction that kills is pharmacokinetic. Shen et al. showed in a controlled animal system that harmaline, a reversible MAO-A inhibitor present in ayahuasca-style preparations, raises 5-MeO-DMT exposure and prolongs it, with CYP2D6 status modifying the result. Quantifying parent drug and bufotenin over time, with and without the inhibitor, is the assay that produces that number rather than assuming it.',
+          dependsOnStepId: 'meo-w2',
+          reagentsAndBuffer:
+            'LC-MS/MS with deuterated internal standards for 5-MeO-DMT and bufotenin, protein precipitation from plasma, harmaline dosing arm, CYP2D6-extensive and poor-metaboliser comparison',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'meo-a1',
+        category: 'measured',
+        title: 'Phase 2b: 15.5-point MADRS advantage and 57.5% remission against 0% on placebo',
+        laymanSummary:
+          'In a randomised placebo-controlled trial of 81 people whose depression had not responded to at least two other drugs, a single day of inhaled doses put more than half into remission within a week. Nobody on placebo remitted.',
+        technicalDetails:
+          'NCT05800860 was a randomised, double-blind, placebo-controlled phase 2b with an open-label extension in 81 patients with treatment-resistant depression, completed March 2025. The primary endpoint was mean change in MADRS from baseline to day 7. A single-day individualised dosing regimen of GH001 produced a least-squares mean difference of -15.5 versus placebo, effect size -2.0, with 57.5% remission (MADRS ≤ 10) at day 8 against 0% on placebo. Forty patients received GH001 in the double-blind part. In the published post hoc analysis, remission at day 8 did not correlate with the number of prior antidepressant failures (r = -0.13, p = 0.44), and remission rates were 53.9% to 63.6% across subgroups defined by 2, 3, 4 or ≥5 prior failures. Three of the six authors of that analysis are employees of the sponsor.',
+        evidenceSource:
+          'Thase ME et al. Psychopharmacol Bull 2026;56:8-21, reporting the NCT05800860 phase 2b result',
+        doi: '10.64719/pb.18507',
+        measuredMetric: 'MADRS change from baseline to day 7 and remission rate at day 8, n=81',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'meo-a2',
+        category: 'inferred',
+        title: 'A 0% placebo remission rate is a signal about the blind, not only about the drug',
+        laymanSummary:
+          'Not one person in the placebo group of the phase 2b reached remission. In depression trials, placebo response is normally large. A zero says the two groups could tell which one they were in.',
+        technicalDetails:
+          'Across antidepressant trials, placebo remission at one week is routinely non-zero and placebo response rates in the 30% range are the usual reason drug-placebo separation is hard to demonstrate. A 0% placebo remission rate in a psychedelic trial is consistent with a group who knew they had received nothing: 5-MeO-DMT produces an unmistakable effect within seconds of inhalation, so allocation is revealed at the moment of dosing to participant and observer alike. The reported effect size of -2.0 therefore contains an expectancy component of unknown size that the design cannot isolate. This is a limitation shared by every trial in this file and is not a criticism of the conduct of this one; it is the reason the record does not treat -15.5 as a pharmacological effect size.',
+        evidenceSource:
+          'NCT05800860 phase 2b design and result as reported in Thase ME et al. Psychopharmacol Bull 2026;56:8-21',
+        doi: '10.64719/pb.18507',
+        inferredClaim:
+          'That a 15.5-point MADRS separation against a 0% placebo remission rate measures a drug effect rather than a drug effect plus a fully unblinded expectancy effect',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'meo-a3',
+        category: 'measured',
+        title: 'Dose-ranging in 22 healthy volunteers established the escalating single-day regimen',
+        laymanSummary:
+          'A phase 1 gave 2, 6, 12 or 18 milligrams to healthy people. Higher doses produced stronger experiences, vital signs were unaffected, and stepping the dose up within one day produced the strongest effect of all.',
+        technicalDetails:
+          'GH001-HV-101 gave single vaporised doses of 2 mg (n=4), 6 mg (n=6), 12 mg (n=4) and 18 mg (n=4), plus an individualised dose-escalation regimen (n=4), to 22 healthy volunteers. Doses of 6, 12 and 18 mg produced significant increases over 2 mg on the Peak Experience Scale, Mystical Experience Questionnaire, Ego Dissolution Inventory and 5D-ASC, but not on the Challenging Experience Questionnaire. Maximal ratings occurred with individualised escalation. Vital signs at 1 and 3 hours were unaffected and adverse events were generally mild and self-resolving. Measures of cognition, mood and well-being were not changed. That last finding is the one usually left out of summaries: the phase 1 found the experience scaled with dose and the psychological outcome measures did not move.',
+        evidenceSource: 'Reckweg J et al. Front Pharmacol 2021;12:760671 (NCT04640831)',
+        doi: '10.3389/fphar.2021.760671',
+        measuredMetric:
+          'Dose-related change in PES, MEQ, EDI and 5D-ASC ratings, plus vital signs and cognition, n=22',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'meo-a4',
+        category: 'measured',
+        title: 'The one published death was a monoamine-oxidase interaction',
+        laymanSummary:
+          'A man died after drinking a brew that combined 5-MeO-DMT with harmala alkaloids. The alkaloids block the enzyme that normally destroys the tryptamine within minutes, so a short experience became a lethal exposure.',
+        technicalDetails:
+          'Sklerov et al. reported a fatal intoxication following ingestion of 5-MeO-DMT in an ayahuasca-style preparation, with harmala alkaloids identified in the material and in postmortem specimens. The mechanism is pharmacokinetic and reproducible: 5-MeO-DMT is deaminated by monoamine oxidase A, and Shen et al. demonstrated in a controlled system that the reversible MAO-A inhibitor harmaline raises and prolongs 5-MeO-DMT exposure, with CYP2D6 status modifying the effect through the competing O-demethylation pathway to bufotenin. This is the interaction that matters clinically, and it extends to prescribed MAO inhibitors. Inhalation without an MAO inhibitor gives an exposure lasting minutes; the same amount with one does not.',
+        evidenceSource:
+          'Sklerov J et al. J Anal Toxicol 2005;29:838-841; Shen HW et al. Drug Metab Dispos 2013;41:975-986',
+        doi: '10.1093/jat/29.8.838',
+        measuredMetric:
+          'Postmortem 5-MeO-DMT and harmala alkaloid concentrations in a fatal case, with the pharmacokinetic interaction quantified separately',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'meo-a5',
+        category: 'inferred',
+        title: 'The naturalistic survey results describe who answered the survey',
+        laymanSummary:
+          'Surveys of people who had used it in ceremonies report large improvements in depression and anxiety. Everyone in those samples chose to attend, chose to answer afterwards, and rated their own symptoms from memory.',
+        technicalDetails:
+          'Davis et al. surveyed 362 adults who had used 5-MeO-DMT in a naturalistic group setting and found self-reported improvement in depression and anxiety among those who reported having had those conditions, with improvement associated with the intensity of the mystical experience. Uthaug et al. followed participants at a single retreat and found reductions in self-rated depression, anxiety and stress alongside increased satisfaction with life. Neither has a control group, both recruit from people who sought the experience out, and the outcome is a retrospective self-rating collected in the setting that produced the experience. These studies establish that the effect is reported and that it is common enough to be worth a trial; they do not estimate its size, and the phase 1 in healthy volunteers found no change in mood or well-being measures at all.',
+        evidenceSource:
+          'Davis AK et al. Am J Drug Alcohol Abuse 2019;45:161-169; Uthaug MV et al. Psychopharmacology 2019;236:2653-2666',
+        doi: '10.1080/00952990.2018.1545024',
+        inferredClaim:
+          'That retrospective self-ratings from self-selected ceremony attendees estimate an antidepressant or anxiolytic effect size',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'meo-a6',
+        category: 'conclusion_shift',
+        title: 'Scheduled in 2010 as having no medical use, in randomised trials by 2023',
+        laymanSummary:
+          'The DEA put 5-MeO-DMT in Schedule I in December 2010. Thirteen years later a synthetic version of the same molecule was running placebo-controlled trials in depression under a name assigned by the WHO.',
+        technicalDetails:
+          'DEA published the final rule placing 5-methoxy-N,N-dimethyltryptamine into Schedule I on 20 December 2010 (75 FR 79296), after proposed rules in August and October 2009. Schedule I requires a finding of no currently accepted medical use in the United States. GH Research began registered clinical trials of a vaporised synthetic formulation in 2020, completed a phase 1/2 in treatment-resistant depression in 2023 and a randomised placebo-controlled phase 2b in 2025, and the molecule now carries the international nonproprietary name mebufotenin. Two of the company\'s phase 2 trials, in postpartum depression (NCT05804708, n=10) and bipolar II disorder (NCT05839509, n=6), were terminated. The scheduling finding and the development programme coexist because they are made by different bodies against different standards.',
+        evidenceSource:
+          'DEA final rule 75 FR 79296 (20 December 2010); ClinicalTrials.gov NCT05800860, NCT05804708, NCT05839509',
+        measuredMetric:
+          'Date of Schedule I placement versus registered trial phase for the same molecule',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'meo-a7',
+        category: 'failed',
+        title: 'Two phase 2 trials in other indications were terminated',
+        laymanSummary:
+          'The same company ran trials in postpartum depression and bipolar II depression. Both stopped early, with ten and six patients enrolled.',
+        technicalDetails:
+          'NCT05804708, a phase 2 trial of GH001 in postpartum depression, is recorded on ClinicalTrials.gov as terminated with an actual enrolment of 10. NCT05839509, a phase 2 trial in bipolar II disorder, is recorded as terminated with an actual enrolment of 6. Neither has posted results. A terminated trial with single-digit enrolment produces no efficacy information in either direction, and the record notes them because a development programme summarised only by its completed trials is a filtered one.',
+        evidenceSource: 'ClinicalTrials.gov NCT05804708 and NCT05839509, registry status records',
+        measuredMetric: 'Registered trial status and actual enrolment',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Inhaled as a vapour',
+        laymanDesc:
+          'The dose is vaporised and drawn into the lungs. Taken by mouth on its own it does almost nothing, because gut and liver enzymes destroy it before it reaches the brain.',
+        molecularDetail:
+          'Vaporised freebase, 6 to 18 mg in the clinical programme. Pulmonary absorption delivers the molecule into arterial blood without first-pass metabolism; oral bioavailability is negligible because monoamine oxidase A in gut wall and liver deaminates it, which is why oral preparations pair it with an MAO inhibitor.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the brain in seconds',
+        laymanDesc:
+          'Onset is faster than an intravenous injection because the blood goes lung to heart to brain. The full effect arrives before the person can put the device down.',
+        molecularDetail:
+          'Lipophilic tryptamine crossing the blood-brain barrier without a transporter. Time to peak subjective effect is under a minute by inhalation and the acute experience is largely over within 15 to 30 minutes, which is what makes a three-dose escalation within a single day feasible.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Activates 5-HT1A more strongly than 5-HT2A',
+        laymanDesc:
+          'It binds serotonin receptors, but with a different balance from LSD or psilocybin — pulling harder on the subtype that quietens neurons than on the one that excites them.',
+        molecularDetail:
+          'Agonist at 5-HT1A with higher affinity than at 5-HT2A. 5-HT1A is Gi-coupled and inhibitory, 5-HT2A is Gq-coupled and excitatory; the inverted affinity ratio relative to the other classical psychedelics is the standard explanation for the qualitatively different, largely contentless experience, though no human study has separated the two receptors\' contributions with an antagonist.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Destroyed by monoamine oxidase within minutes',
+        laymanDesc:
+          'An enzyme in the body strips the molecule apart almost as fast as it arrives. That is why the experience is so short — and why blocking that enzyme is dangerous.',
+        molecularDetail:
+          'Oxidative deamination by MAO-A is the principal clearance route, with CYP2D6-mediated O-demethylation to bufotenin as a competing pathway. Harmaline and other MAO-A inhibitors raise and prolong exposure; the published fatality involved that combination.',
+        iconName: 'FlaskConical',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Depression scores fall within hours, in the trials',
+        laymanDesc:
+          'In the phase 2b, more than half the treated group were in remission a week later, and most improvements were visible on day one. The drug itself was gone within the hour.',
+        molecularDetail:
+          'MADRS remission at day 8 in 57.5% versus 0% on placebo, with remissions observed from day 1 and, in the earlier phase 1/2, six of ten remissions apparent from two hours. No mechanism links a 20-minute receptor exposure to a week-long change in mood ratings; the persistence is an observation, not an explanation.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT05800860 (GH001 phase 2b, treatment-resistant depression)',
+        phase: 'Phase 2b randomised, double-blind, placebo-controlled with open-label extension',
+        sampleSize: 81,
+        primaryEndpoint: 'Mean change in MADRS from baseline to day 7',
+        endpointMet: true,
+        statisticalPValue:
+          'Least-squares mean difference -15.5 versus placebo, effect size -2.0; remission (MADRS ≤ 10) at day 8 in 57.5% versus 0% on placebo',
+        unreportedAdverseSignals:
+          'A 0% placebo remission rate is far below the placebo response usual in depression trials and is consistent with complete functional unblinding, since the drug effect is unmistakable within seconds of inhalation. The trial was sponsored, designed and analysed by the manufacturer.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT04698603 (GH001 phase 1/2, treatment-resistant depression)',
+        phase: 'Phase 1/2 open-label',
+        sampleSize: 16,
+        primaryEndpoint:
+          'Safety (phase 1 part) and proportion in remission (MADRS ≤ 10) at day 7 (phase 2 part)',
+        endpointMet: true,
+        statisticalPValue:
+          'Remission at day 7 in 7/8 (87.5%) of the individualised-dosing group, p < 0.0001; 2/4 at 12 mg and 1/4 at 18 mg in the phase 1 part',
+        unreportedAdverseSignals:
+          'Open-label, no control arm, 16 patients in total with four per single-dose group. Funder involved in study design, data analysis and manuscript preparation, as disclosed.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'NCT04640831 (GH001-HV-101 phase 1, healthy volunteers)',
+        phase: 'Phase 1 dose-ranging',
+        sampleSize: 22,
+        primaryEndpoint: 'Safety, tolerability and dose-related psychoactive effects',
+        endpointMet: true,
+        statisticalPValue:
+          'Significant increases over 2 mg on PES, MEQ, EDI and 5D-ASC at 6, 12 and 18 mg; no significant change on the Challenging Experience Questionnaire',
+        unreportedAdverseSignals:
+          'Cognition, mood and well-being measures were not affected by the drug in healthy volunteers — a null result that sits uneasily beside the naturalistic survey literature.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A least-squares mean MADRS difference of -15.5 versus placebo with 57.5% day-8 remission against 0%, in a randomised placebo-controlled phase 2b of 81 patients',
+        'A dose-related increase in psychedelic-experience ratings from 2 mg to 18 mg vaporised, with vital signs unaffected at 1 and 3 hours, in 22 healthy volunteers',
+        'No change in cognition, mood or well-being measures in that same healthy-volunteer phase 1',
+        'A fatal intoxication when 5-MeO-DMT was ingested with harmala alkaloids, with the MAO-A interaction independently quantified in a controlled pharmacokinetic study',
+      ],
+      unsupportedInferences: [
+        'That the phase 2b effect size of -2.0 is pharmacological, when the placebo arm produced zero remissions and the drug reveals its allocation within seconds',
+        'That retrospective self-ratings from ceremony attendees estimate an antidepressant effect size',
+        'That a 5-HT1A-weighted binding profile explains the qualitative difference from LSD or psilocybin — no human antagonist study has separated the receptors\' contributions',
+        'That toad-derived material and the synthetic clinical formulation are the same exposure; the secretion also contains bufotenin and cardioactive bufadienolides in undefined proportions',
+      ],
+      whatFailedInitially: [
+        'Phase 2 trials in postpartum depression (NCT05804708) and bipolar II disorder (NCT05839509) were both terminated, at enrolments of 10 and 6',
+        'The healthy-volunteer phase 1 found no effect on the mood and well-being measures it collected, despite a clear dose-response on experience intensity',
+      ],
+      realWorldOutcome: [
+        'Schedule I since the DEA final rule of 20 December 2010; there is no lawful medical route to it in the United States',
+        'Harvesting Incilius alvarius secretion for ceremonial use is a conservation and animal-welfare pressure that the synthetic clinical formulation does not create',
+      ],
+    },
+    deliverySystem: {
+      type: 'Vaporised inhalation, single supervised session, doses escalated within one day',
+      description:
+        'The clinical formulation is vaporised and inhaled in a monitored session; the individualised regimen gives up to three increasing doses within a single day, which is possible only because the acute effect resolves in under half an hour. Naturalistic use is inhalation of vapour from synthetic freebase or from dried toad secretion of unknown composition.',
+      safetyProfile:
+        'Acute effects are intense, begin within seconds and are largely over in 15 to 30 minutes. In the phase 1, vital signs at 1 and 3 hours were unaffected and adverse events were generally mild and self-resolving. The dominant documented hazard is pharmacokinetic: monoamine oxidase inhibitors, including prescribed MAOIs and harmala alkaloids in ayahuasca-style preparations, prolong and raise exposure and are implicated in the published fatality. Toad secretion additionally contains cardioactive bufadienolides. Delayed re-emergence of the experience without redosing, described in the literature as reactivation, is reported in naturalistic settings; its incidence is not established.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is this the same as DMT?',
+        a: 'No. They are different molecules with different receptor profiles and very different experiences. DMT favours 5-HT2A; 5-MeO-DMT binds 5-HT1A with higher affinity. DMT typically produces vivid visual and entity content over about fifteen minutes; 5-MeO-DMT more often produces an experience with no imagery or narrative at all. They are also scheduled separately and metabolised differently.',
+      },
+      {
+        q: 'Is toad secretion the same thing as the drug in the trials?',
+        a: 'No. The clinical formulation is a synthetic single compound at a stated milligram dose. Dried parotoid secretion from Incilius alvarius is a glandular product that also carries bufotenin and cardioactive bufadienolide steroids in proportions that vary between animals, with no defined 5-MeO-DMT content. Any statement about safety derived from the trials describes the synthetic material at a measured dose and does not transfer.',
+      },
+      {
+        q: 'Why is combining it with an MAO inhibitor so dangerous?',
+        a: 'Because monoamine oxidase A is what ends the experience. Blocking that enzyme does not extend a twenty-minute effect into a longer pleasant one at the same intensity — it raises peak exposure and holds it, and the one published death occurred with exactly that combination. Prescribed MAOIs, including some antidepressants and linezolid, carry the same interaction as the harmala alkaloids in ayahuasca-style brews.',
+        auditNote:
+          'This is one of the few claims on this page with both a fatal human case and an independent controlled pharmacokinetic study behind it, which is why it is filed as measured rather than as a precaution.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no approved product and no legal market, so there is no list price to quote. The clinical formulation is manufactured by the sponsor and its cost is not disclosed.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Thase ME et al. GH001 Efficacy is Independent of Prior Antidepressant Treatment Failures in Treatment-Resistant Depression: A Post Hoc Analysis of a Phase 2b Randomized Controlled Trial. Psychopharmacol Bull 2026;56:8-21',
+        identifier: '10.64719/pb.18507',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Reckweg JT et al. A phase 1/2 trial to assess safety and efficacy of a vaporized 5-methoxy-N,N-dimethyltryptamine formulation (GH001) in patients with treatment-resistant depression. Front Psychiatry 2023;14:1133414',
+        identifier: '10.3389/fpsyt.2023.1133414',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Reckweg J et al. A Phase 1, Dose-Ranging Study to Assess Safety and Psychoactive Effects of a Vaporized 5-MeO-DMT Formulation (GH001) in Healthy Volunteers. Front Pharmacol 2021;12:760671',
+        identifier: '10.3389/fphar.2021.760671',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Davis AK et al. 5-MeO-DMT used in a naturalistic group setting is associated with unintended improvements in depression and anxiety. Am J Drug Alcohol Abuse 2019;45:161-169',
+        identifier: '10.1080/00952990.2018.1545024',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Uthaug MV et al. A single inhalation of vapor from dried toad secretion containing 5-MeO-DMT in a naturalistic setting is related to sustained enhancement of satisfaction with life, mindfulness-related capacities, and a decrement of psychopathological symptoms. Psychopharmacology 2019;236:2653-2666',
+        identifier: '10.1007/s00213-019-05236-w',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sklerov J et al. A fatal intoxication following the ingestion of 5-methoxy-N,N-dimethyltryptamine in an ayahuasca preparation. J Anal Toxicol 2005;29:838-841',
+        identifier: '10.1093/jat/29.8.838',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Shen HW et al. Pharmacokinetic interactions between monoamine oxidase A inhibitor harmaline and 5-methoxy-N,N-dimethyltryptamine, and the impact of CYP2D6 status. Drug Metab Dispos 2013;41:975-986',
+        identifier: '10.1124/dmd.112.050724',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DEA final rule: Placement of 5-Methoxy-N,N-Dimethyltryptamine into Schedule I of the Controlled Substances Act, 75 FR 79296, 20 December 2010',
+        identifier:
+          'https://www.federalregister.gov/documents/2010/12/20/2010-31854/schedules-of-controlled-substances-placement-of-5-methoxy-nn-dimethyltryptamine-into-schedule-i-of',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'ClinicalTrials.gov NCT05800860 — GH001 phase 2b in treatment-resistant depression, n=81, completed March 2025',
+        identifier: 'NCT05800860',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 1832 — 5-MeO-DMT structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/1832',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 15. Salvinorin A (Salvia divinorum)
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'salvinorin-a',
+    name: 'Salvinorin A (Salvia divinorum)',
+    tradeName: 'No product. Sold as dried leaf and as "fortified" leaf extracts of stated multiples',
+    sponsor:
+      'No sponsor and no development programme. The human studies were investigator-initiated at Johns Hopkins and Yale; the receptor characterisation came from the NIMH Psychoactive Drug Screening Program',
+    targetGene: 'OPRK1',
+    targetProtein:
+      'κ-opioid receptor — a potent, highly efficacious and unusually selective agonist, with no measurable activity at the 5-HT2A receptor that mediates the classical hallucinogens',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication. Neither Salvia divinorum nor salvinorin A appears anywhere in 21 CFR part 1308: the substance is not federally scheduled in the United States. Roughly thirty US states control it under their own statutes, and it is controlled in Australia, Japan and much of Europe',
+    patientFriendlyIndication:
+      'Nothing. It is a research tool that became a recreational drug, and in the United States its legal status depends entirely on which state you are standing in',
+    anatomicalSite:
+      'κ-opioid receptors on cortical, claustral and vestibular circuits; the compound enters cerebrospinal fluid within minutes of inhalation',
+    conditionContext: {
+      conditionExplainer:
+        'There is no condition. Salvinorin A is included here because it is the reference agonist for the κ-opioid receptor in humans, and because a compound with this potency being federally uncontrolled is a fact readers have few reliable places to check.',
+      whyItMatters:
+        'Before 2002 the κ-opioid receptor had no selective, high-efficacy agonist that worked in people. Salvinorin A gave pharmacology one, and the resulting human studies are the reason κ-opioid antagonists are now a drug class being tested in depression.',
+      whoTakesThis:
+        'In the published studies: eight to ten healthy adults with prior hallucinogen experience, dosed in a laboratory. Outside them: recreational users, disproportionately adolescents and young adults, inhaling leaf or fortified extract.',
+      clinicalGoals: 'None. No therapeutic use of salvinorin A itself has been proposed or tested.',
+    },
+    oneSentenceVerdict:
+      'The first naturally occurring non-nitrogenous opioid-receptor-selective agonist, inactive against a panel of 50 other receptors and transporters and completely inactive at 5-HT2A, producing an intense dissociative state that peaks two minutes after inhalation and is gone in twenty — and it is not listed anywhere in the federal drug schedules.',
+    laymanHowItWorks:
+      'Salvinorin A is not a nitrogen-containing alkaloid like almost every other psychoactive plant compound; it is a terpene, chemically closer to a plant resin. It fits one receptor, the kappa opioid receptor, and essentially nothing else — screened against fifty other targets it did nothing. Kappa receptors are the ones that produce dysphoria and dissociation rather than euphoria, which is why the experience is disorienting rather than pleasant and why the drug is used repeatedly by very few people. It reaches the brain within seconds of inhalation and is cleared within about twenty minutes.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 71,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(=O)O[C@H]1C[C@H]([C@@]2(CC[C@H]3C(=O)O[C@@H](C[C@@]3([C@H]2C1=O)C)C4=COC=C4)C)C(=O)OC',
+      chemicalFormula: 'C23H28O8',
+      molecularWeight:
+        '432.5 g/mol. Laboratory doses are 0.375 to 21 µg/kg inhaled, or 8 to 12 mg absolute — micrograms per kilogram, which is why potency comparisons put it alongside LSD',
+      targetReceptorAffinity:
+        'Potent, highly efficacious and selective κ-opioid agonist. In the original screen it inhibited [3H]-bremazocine binding at cloned κ receptors and had no significant activity against a panel of 50 receptors, transporters and ion channels, including no action at 5-HT2A — the target that mediates LSD, psilocin and mescaline.',
+      structureSource: {
+        label: 'PubChem CID 128563 (salvinorin A) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/128563',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sal-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Separate salvinorin A from salvinorin B and the other neoclerodanes',
+          description:
+            'Salvia divinorum leaf contains a family of neoclerodane diterpenes. Salvinorin B, the deacetylated congener, is inactive at the κ receptor and is the largest single interferent. Identification uses chromatographic separation with mass spectrometry against reference standards for both, because a total-diterpene number does not describe activity.',
+          reagentsAndBuffer:
+            'Salvinorin A and salvinorin B certified reference standards, C18 column, water/acetonitrile gradient with formic acid, electrospray positive ionisation with ammonium adduct monitoring, diode-array detection at 210 nm',
+        },
+        {
+          id: 'sal-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify content per gram of leaf or extract',
+          description:
+            'Natural leaf carries salvinorin A at a low and variable milligram-per-gram level, and material is sold as "5x" or "10x" fortified extract with no standard defining the multiplier. Two products with the same label are not the same dose, which is the practical reason human studies use weighed synthetic-grade material at micrograms per kilogram rather than plant matter.',
+          dependsOnStepId: 'sal-w1',
+          reagentsAndBuffer:
+            'Acetone or methanol extraction with sonication, salvinorin A calibration curve across the expected range, internal standard, duplicate injections with gravimetric recording of source-material mass',
+        },
+        {
+          id: 'sal-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express κ, µ and δ opioid receptors in parallel lines',
+          description:
+            'Selectivity is the whole claim, so it has to be measured rather than asserted. Cloned human OPRK1, OPRM1 and OPRD1 are expressed separately in HEK293 cells, which is the preparation Roth et al. used alongside native κ receptors in guinea-pig brain membranes to confirm the finding was not an artefact of overexpression.',
+          dependsOnStepId: 'sal-w1',
+          reagentsAndBuffer:
+            'HEK293 cells, separate human OPRK1, OPRM1 and OPRD1 expression plasmids, lipid transfection, DMEM with 10% fetal bovine serum and G418 selection, guinea-pig brain membrane preparation as native-tissue comparator',
+        },
+        {
+          id: 'sal-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Competition binding and [35S]GTPγS functional assay across a broad panel',
+          description:
+            'Displacement of [3H]-bremazocine gives κ affinity; [35S]GTPγS incorporation gives efficacy, which is what established salvinorin A as a full rather than partial agonist. The step that matters most is the negative one: running the same compound against a panel of about fifty unrelated receptors, transporters and ion channels, including 5-HT2A, and recording that nothing moved.',
+          dependsOnStepId: 'sal-w3',
+          reagentsAndBuffer:
+            '[3H]-bremazocine, U-69,593 as reference κ agonist, norbinaltorphimine as κ antagonist, [35S]GTPγS with GDP in HEPES/MgCl2 buffer, NIMH PDSP-style broad receptor panel including [3H]-ketanserin at 5-HT2A',
+        },
+        {
+          id: 'sal-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma and cerebrospinal-fluid time course after inhalation',
+          description:
+            'The defining pharmacokinetic fact is speed: subjective effects peak at the two-minute mark, the earliest a human study can sample, and are gone by twenty minutes. Quantifying parent compound in plasma and in cerebrospinal fluid on that timescale is how the fast onset was tied to fast central entry rather than to a metabolite.',
+          dependsOnStepId: 'sal-w2',
+          reagentsAndBuffer:
+            'LC-MS/MS with deuterated salvinorin A internal standard, liquid-liquid extraction, sampling at 2-minute intervals from 0 to 60 minutes, cerebrospinal-fluid sampling in the nonhuman-primate model where that is possible',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sal-a1',
+        category: 'measured',
+        title: 'Selective for one receptor out of fifty tested, and inactive at 5-HT2A',
+        laymanSummary:
+          'Screened against fifty receptors, transporters and channels, salvinorin A hit exactly one: the kappa opioid receptor. It did nothing at the serotonin receptor that every classical psychedelic works through.',
+        technicalDetails:
+          'Roth et al. found that salvinorin A potently and selectively inhibited [3H]-bremazocine binding to cloned κ-opioid receptors and had no significant activity against a battery of 50 receptors, transporters and ion channels. Functional studies confirmed potent agonism at cloned κ receptors in HEK293 cells and at native κ receptors in guinea-pig brain. The compound had no actions at 5-HT2A, the principal molecular target of the classical hallucinogens, and its profile was distinct from LSD across the same panel. It is, to the authors\' knowledge, the first naturally occurring non-nitrogenous opioid-receptor-subtype-selective agonist — an unusual claim in that it is a negative result across a wide panel, which is stronger evidence of selectivity than any single affinity number.',
+        evidenceSource: 'Roth BL et al. Proc Natl Acad Sci USA 2002;99:11934-11939',
+        doi: '10.1073/pnas.182234399',
+        measuredMetric:
+          '[3H]-bremazocine displacement at cloned κ receptors plus a 50-target negative screen including 5-HT2A',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sal-a2',
+        category: 'measured',
+        title: 'Peaks at two minutes, gone by twenty, with no change in heart rate or blood pressure',
+        laymanSummary:
+          'A placebo-controlled study gave sixteen ascending inhaled doses to four experienced volunteers. The effect was at maximum by the first measurement, two minutes in, and had faded by about twenty. Blood pressure and pulse did not move.',
+        technicalDetails:
+          'Johnson et al. ran a double-blind, placebo-controlled study in four healthy hallucinogen-experienced adults who inhaled 16 ascending doses of salvinorin A (0.375 to 21 µg/kg) with four intermixed placebo doses, rating drug strength every two minutes for 60 minutes. Effects were orderly and dose-related, peaked at the first timepoint two minutes after inhalation, and definite subjective effects were no longer present at approximately 20 minutes. Dose-related increases appeared on the Mysticism Scale and the Hallucinogen Rating Scale. Salvinorin A did not significantly increase heart rate or blood pressure. Narratives described disruption of vestibular and interoceptive signals — changed spatial orientation, pressure on the body — rather than the visual content typical of 5-HT2A agonists.',
+        evidenceSource: 'Johnson MW et al. Drug Alcohol Depend 2011;115:150-155',
+        doi: '10.1016/j.drugalcdep.2010.11.005',
+        measuredMetric:
+          'Subject-rated drug strength every 2 minutes over 60 minutes across 16 ascending doses, with heart rate and blood pressure, n=4',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sal-a3',
+        category: 'measured',
+        title: 'Raises cortisol and prolactin, flattens the EEG, and produces no euphoria',
+        laymanSummary:
+          'In ten healthy volunteers, inhaled salvinorin A produced dissociation and perceptual changes, raised two stress hormones, reduced brainwave power — and produced no pleasurable high at all.',
+        technicalDetails:
+          'Ranganathan et al. ran a three-day double-blind, randomised, crossover, counterbalanced study of 0 mg, 8 mg and 12 mg inhaled salvinorin A in 10 healthy individuals with prior Salvia experience. The drug produced psychotomimetic effects and perceptual alterations including dissociative and somaesthetic effects, increased plasma cortisol and prolactin, and reduced resting EEG spectral power, with a rapid rise in blood levels. It did not produce euphoria, cognitive deficits or changes in vital signs, and the effects were transient and not dose-related across the two active doses tested. Administration was very well tolerated with no acute or delayed adverse effects. The cortisol and prolactin rise is the neuroendocrine signature of κ-receptor activation and is the objective correlate of an otherwise entirely subjective experience.',
+        evidenceSource: 'Ranganathan M et al. Biol Psychiatry 2012;72:871-879',
+        doi: '10.1016/j.biopsych.2012.06.012',
+        measuredMetric:
+          'Plasma cortisol and prolactin, resting EEG spectral power, and subjective and behavioural ratings at 0, 8 and 12 mg, n=10',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sal-a4',
+        category: 'measured',
+        title: 'Dose-related memory impairment, and nothing persisting at one month',
+        laymanSummary:
+          'Eight volunteers took up to sixteen ascending doses. Recall and recognition memory got worse as the dose rose. A month later there was no sign of any lasting harm.',
+        technicalDetails:
+          'MacLean et al. gave eight healthy hallucinogen-using adults up to 16 ascending inhaled doses of salvinorin A (0.375 to 21 µg/kg) under double-blind, placebo-controlled conditions, assessing physiological, behavioural and subjective effects every two minutes for 60 minutes. Effects peaked at two minutes and rapidly dissipated, replicating the earlier series. Subjective effects were intense, with maximal drug-strength ratings or unresponsiveness frequent at high doses. The drug produced dose-related dissociative effects and impairments in recall and recognition memory. At one-month follow-up there was no evidence of persisting adverse effects, and participants reported the effects were qualitatively different from other drugs.',
+        evidenceSource: 'MacLean KA et al. Psychopharmacology 2013;226:381-392',
+        doi: '10.1007/s00213-012-2912-9',
+        measuredMetric:
+          'Dose-related recall and recognition memory impairment and dissociative ratings across 16 ascending doses, with 1-month follow-up, n=8',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sal-a5',
+        category: 'conclusion_shift',
+        title: 'Not in the federal schedules at all — the control is entirely at state level',
+        laymanSummary:
+          'One of the most potent hallucinogens known does not appear anywhere in the US federal drug schedules. Around thirty states banned it separately, so whether it is legal depends on the state line.',
+        technicalDetails:
+          'Neither Salvia divinorum nor salvinorin A appears in 21 CFR 1308.11 through 1308.15, the sections listing Schedules I to V. The current eCFR text of part 1308 names ibogaine, psilocyn, mephedrone, 2C-B, the JWH synthetic cannabinoids and isotonitazene; it does not name salvinorin A. A Federal Register search of Drug Enforcement Administration documents returns no scheduling action for Salvia divinorum. DEA has listed it as a drug of concern for two decades without initiating a rulemaking. Control is therefore state-by-state — roughly thirty states have their own statutes — and international, with schedules in Australia, Japan, Italy, Belgium and elsewhere. The record here is that federal scheduling tracks legislative and administrative attention, not pharmacological potency: this compound is more selective and more potent by weight than several Schedule I substances that are listed.',
+        evidenceSource:
+          '21 CFR part 1308, current eCFR text (Schedules I-V); Federal Register search of DEA documents for "Salvia divinorum", zero scheduling actions',
+        measuredMetric:
+          'Presence or absence of the substance in the federal schedules, checked against the current regulation text',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'sal-a6',
+        category: 'inferred',
+        title: '"Low addictive potential" is a reasonable reading of ten people, not a finding',
+        laymanSummary:
+          'Because the drug produced no euphoria in a ten-person laboratory study, the authors suggested it has low addictive potential. That is an inference from an acute study, not a measurement of dependence.',
+        technicalDetails:
+          'Ranganathan et al. concluded that the perceptual-altering effects and lack of euphoric effects "would explain its intermittent use pattern" and "would also suggest a low addictive potential similar to other hallucinogens and consistent with κ opiate receptor agonism". The premise — no euphoria at 8 and 12 mg in 10 people — is measured. The conclusion is an extrapolation: abuse liability is established by self-administration, dose-escalation and withdrawal measures over time, none of which this design contains. The κ-receptor pharmacology makes the inference plausible, since κ agonists are aversive in both animal and human studies, and the epidemiology of intermittent use is consistent with it. It remains an inference, and this record files it as one.',
+        evidenceSource: 'Ranganathan M et al. Biol Psychiatry 2012;72:871-879, discussion',
+        doi: '10.1016/j.biopsych.2012.06.012',
+        inferredClaim:
+          'That absence of euphoria in an acute 10-person laboratory study establishes low abuse liability',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sal-a7',
+        category: 'measured',
+        title: 'The tool that made the κ receptor a psychiatric drug target',
+        laymanSummary:
+          'Because salvinorin A showed that switching on the kappa receptor in a person produces dissociation and distorted perception, blocking that receptor became a plausible treatment idea. That is the compound\'s main scientific legacy.',
+        technicalDetails:
+          'Roth et al. stated the implication directly in 2002: because salvinorin A is a κ-selective psychotomimetic, κ-selective antagonists may be therapeutic candidates for disorders manifesting perceptual distortion, and κ receptors evidently play a prominent role in modulating human perception. The human studies that followed supplied the objective correlates — cortisol and prolactin elevation, reduced EEG spectral power, dose-related dissociation and memory impairment — that a target-validation argument needs. This is a measured claim about what the compound demonstrated, not a claim that any κ-targeted drug works; the clinical results for κ antagonists in depression belong to those compounds\' own records, not to this one.',
+        evidenceSource:
+          'Roth BL et al. Proc Natl Acad Sci USA 2002;99:11934-11939; Roth BL et al. Trends Pharmacol Sci 2003;24:107-109',
+        doi: '10.1016/S0165-6147(03)00027-0',
+        measuredMetric:
+          'Demonstration in humans that selective κ agonism produces dissociation, perceptual alteration and a neuroendocrine response',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Inhaled, because it is destroyed if swallowed',
+        laymanDesc:
+          'The compound is vaporised and inhaled, or held in the mouth as leaf. Swallowed, it is broken down before it can act.',
+        molecularDetail:
+          'Inhaled doses of 0.375 to 21 µg/kg in the Johns Hopkins series and 8 to 12 mg in the Yale crossover. The ester groups that make the molecule a diterpene rather than an alkaloid are also what make it labile to gastrointestinal and hepatic esterases, so oral bioavailability is negligible and buccal absorption is the traditional route.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'In the brain within seconds',
+        laymanDesc:
+          'Effects are already at maximum by the earliest moment a study can measure them — two minutes.',
+        molecularDetail:
+          'Lipophilic, uncharged and low molecular weight; crosses the blood-brain barrier without a transporter. Nonhuman-primate work documents rapid entry into cerebrospinal fluid, matching the fast onset of unconditioned behavioural effects.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds the κ-opioid receptor and nothing else',
+        laymanDesc:
+          'It fits one receptor. Against fifty other targets, including the serotonin receptor every classical psychedelic uses, it did nothing measurable.',
+        molecularDetail:
+          'Full agonist at the κ-opioid receptor with no significant activity across a 50-target panel and no action at 5-HT2A. Unlike every other opioid-receptor ligand in clinical use it contains no nitrogen, so it makes none of the ionic contacts that define the classical opioid pharmacophore — the binding mode was worked out separately by mutagenesis.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Dissociation, distorted body sense, raised stress hormones',
+        laymanDesc:
+          'The experience is disorientation rather than pleasure: altered sense of where the body is, pressure on the skin, loss of contact with the room. Cortisol and prolactin rise.',
+        molecularDetail:
+          'κ activation produces dose-related dissociative effects, somaesthetic distortion and recall and recognition memory impairment, with increased plasma cortisol and prolactin and reduced resting EEG spectral power. No euphoria, no cognitive deficit outside the acute window and no vital-sign change were measured at 8 and 12 mg.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Over in twenty minutes, with nothing detectable a month later',
+        laymanDesc:
+          'Definite effects have gone by about twenty minutes. Follow-up a month after sixteen ascending doses found no lasting adverse effect.',
+        molecularDetail:
+          'Rapid ester hydrolysis to the inactive salvinorin B underlies the short duration. At one-month follow-up in the eight-participant ascending-dose study there was no evidence of persisting adverse effects; participants described the effects as qualitatively unlike other drugs.',
+        iconName: 'Timer',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Johnson et al. 2011 ascending-dose human laboratory study (Johns Hopkins)',
+        phase: 'Human laboratory, double-blind, placebo-controlled',
+        sampleSize: 4,
+        primaryEndpoint:
+          'Subject-rated drug strength every 2 minutes for 60 minutes across 16 ascending inhaled doses',
+        endpointMet: true,
+        statisticalPValue:
+          'Orderly dose- and time-related effects; peak at 2 minutes, definite effects absent by approximately 20 minutes; dose-related increases on the Mysticism Scale and Hallucinogen Rating Scale',
+        unreportedAdverseSignals:
+          'Four participants, all with prior hallucinogen experience, dosed under supportive laboratory conditions. Nothing in this design speaks to effects in unprepared or unsupervised use, which is how the drug is actually taken.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Ranganathan et al. 2012 crossover study (Yale / VA Connecticut)',
+        phase: 'Human laboratory, double-blind, randomised, counterbalanced crossover',
+        sampleSize: 10,
+        primaryEndpoint:
+          'Behavioural, subjective, cognitive, psychophysiological and endocrine effects of 0, 8 and 12 mg inhaled salvinorin A',
+        endpointMet: true,
+        statisticalPValue:
+          'Psychotomimetic and perceptual effects with increased plasma cortisol and prolactin and reduced resting EEG spectral power; effects transient and not dose-related between 8 and 12 mg',
+        unreportedAdverseSignals:
+          'No euphoria, no cognitive deficits and no vital-sign changes were observed. Effects did not separate between the two active doses, so the study characterises the state rather than a dose-response.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'MacLean et al. 2013 ascending-dose study with 1-month follow-up',
+        phase: 'Human laboratory, double-blind, placebo-controlled',
+        sampleSize: 8,
+        primaryEndpoint: 'Dose-related dissociative, hallucinogenic and memory effects',
+        endpointMet: true,
+        statisticalPValue:
+          'Dose-related dissociative effects and impairment of recall and recognition memory; effects peaked at 2 minutes and rapidly dissipated',
+        unreportedAdverseSignals:
+          'Maximal drug-strength ratings or unresponsiveness were frequent at the highest doses — an intensity that a laboratory can contain and an unsupervised setting cannot. No persisting adverse effects at 1 month.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Potent, efficacious agonism at cloned and native κ-opioid receptors with no significant activity across a 50-target panel and none at 5-HT2A',
+        'Subjective effects peaking at 2 minutes after inhalation and absent by approximately 20 minutes, replicated across three independent human laboratory studies',
+        'Increased plasma cortisol and prolactin and reduced resting EEG spectral power at 8 and 12 mg inhaled, with no change in vital signs',
+        'Dose-related impairment of recall and recognition memory, and no evidence of persisting adverse effects at 1-month follow-up',
+        'Absence of Salvia divinorum and salvinorin A from every schedule in 21 CFR part 1308',
+      ],
+      unsupportedInferences: [
+        'That the absence of euphoria in a 10-person acute study establishes low abuse liability, which requires self-administration and withdrawal measures this design does not contain',
+        'That laboratory safety in prepared, supervised, hallucinogen-experienced volunteers describes the risk of unsupervised use of fortified extract',
+        'That κ-antagonist drug candidates work because salvinorin A validated the target; those compounds carry their own trial evidence and it belongs to them',
+        'That "most potent naturally occurring hallucinogen" is a measured ranking — it is a comparison of active doses by weight, not of a common endpoint',
+      ],
+      whatFailedInitially: [
+        'No therapeutic development of salvinorin A itself has been attempted; the compound\'s use is as a pharmacological tool',
+        'The two active doses in the Yale crossover did not separate from each other, so that study produced a state description rather than a dose-response curve',
+      ],
+      realWorldOutcome: [
+        'Not federally scheduled in the United States; controlled instead by roughly thirty individual states and by several other countries',
+        'The κ-opioid receptor became a psychiatric drug target on the strength of these human studies, which is the compound\'s durable contribution',
+      ],
+    },
+    deliverySystem: {
+      type: 'Vaporised inhalation, or buccal absorption from chewed leaf',
+      description:
+        'Laboratory administration is a weighed dose vaporised and inhaled in a single breath, with ratings collected every two minutes. Traditional Mazatec use is buccal, from fresh leaf or an aqueous infusion held in the mouth, which gives a slower and much weaker exposure. Swallowing is ineffective because esterases inactivate the compound before absorption.',
+      safetyProfile:
+        'Across three controlled human studies at doses up to 21 µg/kg, salvinorin A produced no change in heart rate or blood pressure, no euphoria, no acute or delayed adverse events, and no persisting adverse effects at one-month follow-up. The measured hazards are within the acute window: profound dissociation with maximal drug-strength ratings or unresponsiveness at high doses, loss of spatial orientation, and dose-related memory impairment. The risk that follows from that is situational — falls, injury and loss of contact with surroundings during a two-to-twenty-minute period of unresponsiveness — and no controlled study is designed to measure it, because a laboratory removes exactly those hazards.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it legal?',
+        a: 'Federally, in the United States, it is not scheduled — neither Salvia divinorum nor salvinorin A appears in any schedule of 21 CFR part 1308, and DEA has never issued a scheduling rule for it. Roughly thirty states control it under their own laws, so the answer changes at the state line. Several other countries, including Australia, Japan, Italy and Belgium, do control it. Nothing about that pattern reflects a pharmacological judgement; it reflects which legislature acted.',
+      },
+      {
+        q: 'Is it a psychedelic like LSD or psilocybin?',
+        a: 'Not pharmacologically. LSD, psilocin and mescaline work through the 5-HT2A serotonin receptor; salvinorin A has no measurable activity there at all, and works through the κ-opioid receptor instead. The subjective overlap is partial — questionnaires designed for classical hallucinogens do pick up a signal — but participants in every study described the effects as qualitatively different from other drugs, and the dominant features are dissociation and distorted body sense rather than visual content.',
+        auditNote:
+          'The 50-target negative screen in the 2002 paper is the strongest evidence here, because ruling out a mechanism across a broad panel is harder to do by accident than confirming one.',
+      },
+      {
+        q: 'Why is it not addictive if it acts on an opioid receptor?',
+        a: 'Because it acts on the wrong one. The euphoria and dependence associated with opioids come from µ-receptor activation; κ activation produces dysphoria and dissociation, and κ agonists are aversive in both animal and human studies. In the ten-person crossover, no euphoria was observed at either active dose. That is a measured absence in a small acute study rather than a demonstration of low abuse liability, but it fits the receptor pharmacology and the intermittent pattern of use seen in surveys.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no approved product and no published list price. Leaf and "fortified" extracts are sold in the states where that is lawful, at prices set by sellers rather than published anywhere checkable, and the multiplier on an extract label is not defined by any standard.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Roth BL et al. Salvinorin A: a potent naturally occurring nonnitrogenous kappa opioid selective agonist. Proc Natl Acad Sci USA 2002;99:11934-11939',
+        identifier: '10.1073/pnas.182234399',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Johnson MW et al. Human psychopharmacology and dose-effects of salvinorin A, a kappa opioid agonist hallucinogen present in the plant Salvia divinorum. Drug Alcohol Depend 2011;115:150-155',
+        identifier: '10.1016/j.drugalcdep.2010.11.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ranganathan M et al. Dose-related behavioral, subjective, endocrine, and psychophysiological effects of the κ opioid agonist Salvinorin A in humans. Biol Psychiatry 2012;72:871-879',
+        identifier: '10.1016/j.biopsych.2012.06.012',
+        kind: 'doi',
+      },
+      {
+        label:
+          'MacLean KA et al. Dose-related effects of salvinorin A in humans: dissociative, hallucinogenic, and memory effects. Psychopharmacology 2013;226:381-392',
+        identifier: '10.1007/s00213-012-2912-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chavkin C et al. Salvinorin A, an active component of the hallucinogenic sage Salvia divinorum, is a highly efficacious kappa-opioid receptor agonist: structural and functional considerations. J Pharmacol Exp Ther 2004;308:1197-1203',
+        identifier: '10.1124/jpet.103.059394',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Yan F et al. Identification of the molecular mechanisms by which the diterpenoid salvinorin A binds to kappa-opioid receptors. Biochemistry 2005;44:8643-8651',
+        identifier: '10.1021/bi050490d',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Butelman ER et al. Unconditioned behavioral effects of the powerful kappa-opioid hallucinogen salvinorin A in nonhuman primates: fast onset and entry into cerebrospinal fluid. J Pharmacol Exp Ther 2009;328:588-597',
+        identifier: '10.1124/jpet.108.145342',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wu LT et al. Use of Salvia divinorum in a nationally representative sample. Am J Drug Alcohol Abuse 2012;38:108-113',
+        identifier: '10.3109/00952990.2011.600397',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 128563 — salvinorin A structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/128563',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
 ]

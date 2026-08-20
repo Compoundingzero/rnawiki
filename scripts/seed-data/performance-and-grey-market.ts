@@ -5382,4 +5382,853 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 15. Testosterone enanthate
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'testosterone-enanthate',
+    name: 'Testosterone enanthate',
+    tradeName: 'Delatestryl, Xyosted; also sold as generic testosterone enanthate injection',
+    sponsor:
+      'Delatestryl (NDA 009165, Endo); Xyosted subcutaneous autoinjector (NDA 209863, Antares Pharma); multiple ANDA generics',
+    targetGene: 'AR',
+    targetProtein: 'Androgen receptor (NR3C4)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1953,
+    indication:
+      'Testosterone replacement therapy in adult males for primary hypogonadism and hypogonadotropic hypogonadism. The label explicitly states that safety and efficacy in men with age-related hypogonadism have not been established.',
+    patientFriendlyIndication:
+      'Testosterone replacement for men whose testicles or pituitary do not make enough',
+    anatomicalSite:
+      'Androgen receptor in skeletal muscle myonuclei, prostate, bone marrow, liver and central nervous system',
+    conditionContext: {
+      conditionExplainer:
+        'Hypogonadism means the testes are not producing enough testosterone. It is primary when the testes have failed and secondary when the pituitary or hypothalamus is not signalling them. The two are told apart by measuring LH and FSH: high in primary failure, low or normal in secondary.',
+      whyItMatters:
+        'This is the reference compound for the entire anabolic steroid literature. The dose-controlled human trials that establish what androgens do to muscle, blood, sperm and mood were run with testosterone enanthate, which means this page is where the measured facts live and the rest of the class is extrapolation from it.',
+      whoTakesThis:
+        'Men with diagnosed hypogonadism on prescription. Also, at four to twenty times the replacement dose, men using it for muscle mass, in which context it is the most commonly used and most commonly counterfeited anabolic steroid in the world.',
+      clinicalGoals:
+        'Restoring serum testosterone into the mid-normal range, and correcting the symptoms attributable to deficiency. The approved indication is not performance.',
+    },
+    oneSentenceVerdict:
+      'The only anabolic steroid with a real dose-response literature in humans: 600 mg per week for ten weeks added 6.1 kg of fat-free mass with training in a randomised trial, 200 mg per week produced azoospermia with zero pregnancies across 230 person-years, and the cardiovascular outcome trial everyone cites used a gel at replacement dose, not this ester at these doses.',
+    laymanHowItWorks:
+      'Testosterone enanthate is testosterone with a seven-carbon fatty acid attached. That tail makes it oil-soluble and slow to release, so a single injection keeps testosterone in the blood for one to two weeks instead of hours. Once esterases cut the tail off, what circulates is ordinary testosterone: it binds the androgen receptor in muscle to build protein, is converted by aromatase into oestradiol, is converted by 5-alpha-reductase into dihydrotestosterone in skin and prostate, and is read by the hypothalamus and pituitary as a signal to stop making their own. That last effect is why injected testosterone shuts down sperm production, and it is the basis of the male contraceptive trials.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 82,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCCCCCC(=O)O[C@H]1CC[C@@H]2[C@@]1(CC[C@H]3[C@H]2CCC4=CC(=O)CC[C@]34C)C',
+      chemicalFormula: 'C26H40O3',
+      molecularWeight: '400.6 g/mol',
+      targetReceptorAffinity:
+        '(17beta)-17-[(1-oxoheptyl)oxy]-androst-4-en-3-one. A prodrug: the heptanoate ester at the 17beta position is hydrolysed by plasma and tissue esterases to release testosterone, which is the active ligand at the androgen receptor. The ester itself has no meaningful receptor activity; its function is to slow release from an oil depot.',
+      structureSource: {
+        label:
+          'PubChem CID 9416 (testosterone enanthate) — canonical SMILES, molecular formula and molecular weight; formula and weight independently confirmed in the Xyosted label section 11',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9416',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'te-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Ester identity in an oil ampoule',
+          description:
+            'Distinguish the enanthate from the cypionate, propionate, decanoate and undecanoate esters, and from mixtures of them. These differ only in the length of the acyl chain, they share a chromophore and a fragmentation pattern, and a product labelled as one routinely contains another. The ester determines the release profile, so the identity of the ester is the identity of the product.',
+          reagentsAndBuffer:
+            'Certified testosterone enanthate, cypionate, propionate and decanoate reference standards, testosterone-d3 internal standard, reversed-phase HPLC with diode-array detection at 245 nm, high-resolution accurate-mass ESI-MS, 1H NMR in CDCl3 for the acyl chain integral',
+        },
+        {
+          id: 'te-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content, sterility and vehicle assay',
+          description:
+            'Quantify milligrams of ester per millilitre against the label, identify the oil vehicle, and test sterility and endotoxin because the route is intramuscular or subcutaneous. In seizure studies this is the step at which the majority of products fail: wrong dose, wrong ester, or a second steroid present that is not on the label.',
+          dependsOnStepId: 'te-w1',
+          reagentsAndBuffer:
+            'Acetonitrile-saturated-with-hexane liquid-liquid partition to strip sesame or cottonseed oil, gravimetric standard addition, fatty acid methyl ester GC profile to identify the vehicle oil, limulus amoebocyte lysate endotoxin assay, membrane filtration sterility test',
+        },
+        {
+          id: 'te-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Serum extraction for total and free testosterone',
+          description:
+            'Immunoassay is not adequate at the extremes: it overestimates at low concentrations and behaves unpredictably at the supraphysiological ones reached on 600 mg weekly. Mass spectrometry after extraction is the reference method, and free testosterone is measured by equilibrium dialysis rather than calculated when the answer matters.',
+          dependsOnStepId: 'te-w2',
+          reagentsAndBuffer:
+            'Methyl tert-butyl ether liquid-liquid extraction of serum, 13C3-testosterone internal standard, equilibrium dialysis against phosphate-buffered saline at 37 C for free hormone, sex hormone binding globulin immunoassay in parallel',
+        },
+        {
+          id: 'te-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Androgen receptor reporter with aromatase and 5-alpha-reductase arms',
+          description:
+            'Testosterone is not one signal but three: itself at the androgen receptor, dihydrotestosterone after 5-alpha-reduction, and oestradiol after aromatisation at the oestrogen receptor. A reporter panel that runs all three arms in parallel is what separates effects that finasteride blocks from effects that anastrozole blocks, which is the whole basis of the off-label drugs used alongside it.',
+          dependsOnStepId: 'te-w3',
+          reagentsAndBuffer:
+            'HEK293 or CV-1 cells with human AR and ARE-luciferase, parallel plates co-expressing SRD5A2 or CYP19A1, ERE-luciferase in MCF-7 for the oestrogenic arm, finasteride and anastrozole as pathway blocks, charcoal-stripped serum in phenol-red-free medium',
+        },
+        {
+          id: 'te-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification and the T/E ratio with carbon isotope confirmation',
+          description:
+            'Quantify testosterone, epitestosterone, dihydrotestosterone and oestradiol by tandem mass spectrometry, compute the urinary testosterone-to-epitestosterone ratio for the athlete biological passport, and where that ratio is elevated, run carbon isotope ratio mass spectrometry to establish whether the testosterone was made by the body or by a factory from plant sterol.',
+          dependsOnStepId: 'te-w4',
+          reagentsAndBuffer:
+            'Beta-glucuronidase hydrolysis of urine, solid-phase extraction, deuterated testosterone and epitestosterone internal standards, C18 gradient with electrospray positive-ion multiple-reaction monitoring; for IRMS, HPLC fraction collection, acetylation, GC combustion over CuO/NiO with pregnanediol and 11-ketoetiocholanolone as endogenous reference compounds',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'te-a1',
+        category: 'measured',
+        title: 'The trial that settled whether anabolic steroids work: 6.1 kg of fat-free mass',
+        laymanSummary:
+          'Forty-three men were randomised to testosterone or placebo, with or without weight training, for ten weeks. Testosterone without any exercise beat placebo on muscle size and strength. Testosterone plus training beat everything.',
+        technicalDetails:
+          'Bhasin et al. randomised 43 normal men to four arms: placebo without exercise, testosterone without exercise, placebo plus exercise, and testosterone plus exercise. All received 600 mg of testosterone enanthate or placebo by weekly injection for 10 weeks. Fat-free mass was measured by underwater weighing and muscle size by magnetic resonance imaging. Among the non-exercising men, testosterone produced greater increases than placebo in triceps area (424 +/- 104 vs -81 +/- 109 square millimetres, P < 0.05), quadriceps area (607 +/- 123 vs -131 +/- 111 square millimetres, P < 0.05), bench press strength (9 +/- 4 vs -1 +/- 1 kg, P < 0.05) and squat (16 +/- 4 vs 3 +/- 1 kg, P < 0.05). The testosterone-plus-exercise arm gained 6.1 +/- 0.6 kg of fat-free mass, with bench press up 22 +/- 2 kg and squat up 38 +/- 4 kg. Neither mood nor behaviour was altered in any group. Before this trial the efficacy of androgens for strength was described in the medical literature as unsubstantiated.',
+        evidenceSource: 'Bhasin S et al., N Engl J Med 1996;335:1-7',
+        doi: '10.1056/NEJM199607043350101',
+        measuredMetric:
+          'Fat-free mass by underwater weighing, triceps and quadriceps cross-sectional area by MRI, and bench press and squat strength at 10 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'te-a2',
+        category: 'measured',
+        title: 'Zero pregnancies in 230 person-years of testosterone-induced azoospermia',
+        laymanSummary:
+          'A WHO study gave 399 fertile men weekly testosterone injections as a contraceptive. Among the men whose sperm counts fell to zero, no partner became pregnant across 230 person-years of exposure.',
+        technicalDetails:
+          'The WHO Task Force on Methods for the Regulation of Male Fertility ran a prospective efficacy study at 15 centres in nine countries in 399 normal fertile men requesting a male contraceptive method, using weekly intramuscular 200 mg testosterone enanthate. Four pregnancies occurred during 49.5 person-years among men suppressed only to oligozoospermia (0.1-3 million per mL), a rate of 8.1 per 100 person-years (95% CI 2.2-20.7). None occurred during 230.4 person-years among azoospermic men, a rate of 0.0 (95% CI 0.0-1.6). Suppression failed in eight men and four escaped from suppression. Thirty-five men discontinued for medical reasons (9.4%) with no serious treatment-related side effects. Sperm output recovered after stopping and fertility was demonstrated in 33 couples. This is the cleanest measurement anywhere of what exogenous testosterone does to the hypothalamic-pituitary-gonadal axis, and it is the reason infertility is a predictable consequence rather than a rare complication.',
+        evidenceSource:
+          'WHO Task Force on Methods for the Regulation of Male Fertility, Fertil Steril 1996;65:821-829 (PMID 8654646); earlier azoospermia-only report, Lancet 1990;336:955-959 (PMID 1977002)',
+        measuredMetric:
+          'Pregnancy rate per 100 person-years in couples relying solely on weekly 200 mg testosterone enanthate',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'te-a3',
+        category: 'inferred',
+        title: 'The cardiovascular safety trial used a gel at replacement dose',
+        laymanSummary:
+          'TRAVERSE is quoted as showing testosterone is safe for the heart. It studied a daily gel titrated to a normal testosterone level in men with low testosterone, not weekly injections at four to twenty times that dose.',
+        technicalDetails:
+          'TRAVERSE (NCT03518034) randomised 5,246 men aged 45-80 with pre-existing or high cardiovascular risk and two fasting testosterone levels below 300 ng/dL to daily transdermal 1.62% testosterone gel, titrated to keep testosterone between 350 and 750 ng/dL, or placebo gel. Mean treatment duration was 21.7 months and mean follow-up 33.0 months. A primary MACE event occurred in 182 (7.0%) on testosterone and 190 (7.3%) on placebo, hazard ratio 0.96 (95% CI 0.78-1.17), P < 0.001 for non-inferiority. The trial also found a higher incidence of atrial fibrillation, acute kidney injury and pulmonary embolism in the testosterone group. Every element of that design — the route, the dose, the titration target, the population — differs from supraphysiological injectable use. The trial establishes non-inferiority for replacement; it says nothing measured about 600 mg weekly.',
+        evidenceSource: 'Lincoff AM et al., N Engl J Med 2023;389:107-117 (TRAVERSE, NCT03518034)',
+        doi: '10.1056/NEJMoa2215025',
+        inferredClaim:
+          'That the TRAVERSE non-inferiority result extends to supraphysiological injectable testosterone, when the trial titrated a gel to the mid-normal range in deficient men',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'te-a4',
+        category: 'measured',
+        title: 'Suppression is reversible, and it takes 6 to 18 months',
+        laymanSummary:
+          'Men who had stopped using androgens were compared with current users and with non-users. Reproductive and heart function came back, but recovery took roughly half a year to a year and a half, and testicle volume did not fully return.',
+        technicalDetails:
+          'Shankara-Narayana et al. recruited 41 current androgen users, 31 past users (at least 3 months since last use, median 300 days) and 21 healthy eugonadal non-users, each providing history, examination, serum and semen samples, testicular ultrasound, body composition and cardiac function assessment. Current users had suppressed reproductive function and impaired cardiac systolic function and lipoprotein parameters relative to both other groups. Past users did not differ from non-users except for residual reduced testicular volume and sex hormone binding globulin. Mean time to recovery was 7.3 months for anti-Mullerian hormone and 10.7 months for luteinising hormone, 14.1 months for sperm output, and longer for FSH and inhibin B. Duration of use was the only variable associated with slower recovery of sperm output. The finding runs in both directions: the harms are real and measured in current users, and they are also reversible on a timescale of 6 to 18 months.',
+        evidenceSource: 'Shankara-Narayana N et al., J Clin Endocrinol Metab 2020;105:dgz324',
+        doi: '10.1210/clinem/dgz324',
+        measuredMetric:
+          'Time to normalisation of AMH, LH, FSH, inhibin B, sperm output and cardiac systolic function after cessation, against never-users',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'te-a5',
+        category: 'measured',
+        title: 'What the label itself warns about, at replacement dose',
+        laymanSummary:
+          'The approved product information lists raised red cell count, clots, worsening prostate enlargement, raised blood pressure and loss of sperm production as expected effects at ordinary replacement doses.',
+        technicalDetails:
+          'The Xyosted (testosterone enanthate autoinjector, NDA 209863, approved 28 September 2018) prescribing information carries warnings for polycythaemia with haematocrit monitoring approximately every three months; venous thromboembolism including deep vein thrombosis and pulmonary embolism; worsening of benign prostatic hyperplasia and potential prostate cancer risk; blood pressure increases, with the product not recommended in men with uncontrolled hypertension; abuse of testosterone, described in the label as typically occurring at doses higher than the approved indication and in combination with other anabolic androgenic steroids; azoospermia from exogenous androgen administration; and oedema. The label also states that safety and efficacy in age-related hypogonadism have not been established. These are the effects at the approved dose, in monitored patients, from the manufacturer own document.',
+        evidenceSource:
+          'XYOSTED (testosterone enanthate) injection prescribing information, Antares Pharma, NDA 209863, sections 1 and 5',
+        measuredMetric:
+          'Labelled warnings and precautions at approved replacement doses of testosterone enanthate',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'te-a6',
+        category: 'measured',
+        title: 'Testosterone esters are the most counterfeited drug in the seizure literature',
+        laymanSummary:
+          'Analyses of seized products repeatedly find that ampoules labelled as testosterone contain a different ester, a different steroid, or a different amount.',
+        technicalDetails:
+          'Weber et al. analysed 1,190 products seized at the Swiss border; labels claimed anabolic agents for 889 (75%), and fewer than 20% of all products contained the claimed substance in the claimed amount. Fabresse et al. analysed 110 products seized from the French bodybuilding black market: of the 54 containing anabolic-androgenic steroids, only 4 (7.4%) matched their label both qualitatively and quantitatively, 33% were substandard in dose and 32% were counterfeit in composition, giving 43 of 54 (80%) non-original. Because the ester determines release kinetics, an ampoule labelled enanthate that contains propionate produces an entirely different blood-level curve from the same injection schedule. This is a pharmacokinetic problem, not just a consumer-protection one.',
+        evidenceSource:
+          'Weber C et al., Subst Use Misuse 2017;52:742-753; Fabresse N et al., Forensic Sci Int 2021;322:110771',
+        doi: '10.1016/j.forsciint.2021.110771',
+        measuredMetric:
+          'Proportion of seized anabolic steroid products matching their label: under 20% of 1,190 Swiss items, 4 of 54 French AAS products',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oil depot that releases for a week or more',
+        laymanDesc:
+          'The drug is injected into muscle or under the skin as an oil, and the fatty tail on the molecule makes it leave that depot slowly.',
+        molecularDetail:
+          'Testosterone enanthate in sesame oil forms an intramuscular or subcutaneous depot. Partition out of the oil is rate-limiting, giving a terminal half-life of days rather than the roughly 10-90 minutes of free testosterone. The approved subcutaneous autoinjector delivers 50, 75 or 100 mg weekly; the trials that defined supraphysiological effects used 600 mg weekly intramuscularly.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Esterases cut the tail off',
+        laymanDesc:
+          'Enzymes in blood and tissue snip off the fatty chain, leaving plain testosterone.',
+        molecularDetail:
+          'Non-specific plasma and tissue esterases hydrolyse the 17beta-heptanoate to free testosterone and heptanoic acid. The ester is a pharmacokinetic device only; every downstream effect belongs to testosterone itself, which is why the ester chosen changes the shape of the curve and not the pharmacology.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Three signals, not one',
+        laymanDesc:
+          'Testosterone acts directly, and is also converted into a stronger androgen in skin and prostate and into oestrogen in fat. All three matter.',
+        molecularDetail:
+          'Free testosterone binds the androgen receptor directly; 5-alpha-reductase converts it to dihydrotestosterone, a higher-affinity AR ligand concentrated in skin, scalp and prostate; aromatase (CYP19A1) converts it to oestradiol, which acts at oestrogen receptors and is required for normal male bone and lipid physiology. The off-label use of aromatase inhibitors alongside injected testosterone is an attempt to interrupt the third arm.',
+        iconName: 'GitBranch',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Muscle protein synthesis up, endogenous production off',
+        laymanDesc:
+          'Muscle cells build more protein. At the same time the brain sees plenty of testosterone and stops telling the testes to make any.',
+        molecularDetail:
+          'Ligand-bound AR drives myonuclear transcription with increased satellite cell number and muscle protein synthesis; the same signal at the hypothalamus and pituitary suppresses GnRH, LH and FSH by negative feedback, collapsing intratesticular testosterone and spermatogenesis. Testosterone also suppresses hepcidin, which raises iron availability for erythropoiesis and explains the polycythaemia seen at replacement dose.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Measured gains, measured costs, both reversible',
+        laymanDesc:
+          'Muscle and strength go up in a dose-dependent way. Sperm production, HDL cholesterol and heart contractility go the other way, and they come back over six to eighteen months after stopping.',
+        molecularDetail:
+          'Fat-free mass and strength rise with dose in randomised trials. Current users show suppressed reproductive hormones, impaired cardiac systolic function and adverse lipoproteins; past users are indistinguishable from never-users except for testicular volume and SHBG, with hormone recovery in 7-11 months and sperm output in about 14 months.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Bhasin 1996 randomised four-arm trial in normal men',
+        phase: 'Randomised double-blind placebo-controlled, 10 weeks',
+        sampleSize: 43,
+        primaryEndpoint:
+          'Fat-free mass by underwater weighing, muscle cross-sectional area by MRI, bench press and squat strength',
+        endpointMet: true,
+        statisticalPValue:
+          'Testosterone without exercise vs placebo without exercise: triceps area P < 0.05, quadriceps area P < 0.05, bench press P < 0.05, squat P < 0.05; testosterone plus exercise fat-free mass +6.1 +/- 0.6 kg',
+        unreportedAdverseSignals:
+          'Neither mood nor behaviour was altered in any group, contradicting the contemporary expectation of steroid-induced aggression at this dose over this duration.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'WHO Task Force male contraceptive efficacy study',
+        phase: 'Prospective non-comparative efficacy, 15 centres in 9 countries',
+        sampleSize: 399,
+        primaryEndpoint:
+          'Pregnancy incidence in couples relying solely on weekly 200 mg intramuscular testosterone enanthate',
+        endpointMet: true,
+        statisticalPValue:
+          'Azoospermic men 0.0 pregnancies per 100 person-years (95% CI 0.0-1.6) over 230.4 person-years; oligozoospermic men 8.1 per 100 person-years (95% CI 2.2-20.7) over 49.5 person-years',
+        unreportedAdverseSignals:
+          '35 of 399 men discontinued for medical reasons (9.4%, 95% CI 6.7-13.2) with no serious treatment-related side effects reported; suppression failed in 8 men and 4 escaped suppression.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT03518034 (TRAVERSE)',
+        phase: 'Phase 4 cardiovascular safety, randomised double-blind placebo-controlled',
+        sampleSize: 5246,
+        primaryEndpoint:
+          'First occurrence of cardiovascular death, non-fatal myocardial infarction or non-fatal stroke',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 0.96 (95% CI 0.78-1.17), P < 0.001 for non-inferiority; 182 of 2,601 events on testosterone vs 190 of 2,603 on placebo',
+        unreportedAdverseSignals:
+          'Higher incidence of atrial fibrillation, acute kidney injury and pulmonary embolism in the testosterone group. The intervention was 1.62% transdermal gel titrated to 350-750 ng/dL, not injectable enanthate.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Shankara-Narayana 2020 recovery cohort',
+        phase: 'Cross-sectional observational, current users, past users and non-users',
+        sampleSize: 93,
+        primaryEndpoint:
+          'Reproductive hormones, semen variables, testicular volume, body composition and cardiac systolic function by user status',
+        endpointMet: true,
+        statisticalPValue:
+          'Past users indistinguishable from non-users except testicular volume and SHBG; mean recovery 7.3 months for AMH, 10.7 months for LH, 14.1 months for sperm output',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '600 mg weekly for 10 weeks increased fat-free mass by 6.1 kg with training and increased muscle area and strength without any training at all, against placebo, in a randomised trial of 43 men',
+        'Weekly 200 mg produced azoospermia with zero pregnancies across 230.4 person-years in 399 fertile men, and full recovery of sperm output afterwards',
+        'In men with hypogonadism and high cardiovascular risk, a titrated testosterone gel was non-inferior to placebo for major adverse cardiac events, hazard ratio 0.96, with more atrial fibrillation, acute kidney injury and pulmonary embolism',
+        'Suppressed reproductive and cardiac function in current androgen users returned to non-user values within 6 to 18 months of stopping, except testicular volume',
+      ],
+      unsupportedInferences: [
+        'That the TRAVERSE cardiovascular result applies to injectable testosterone at supraphysiological dose — different drug form, different dose, different population',
+        'That because 600 mg weekly did not alter mood in a 10-week trial, longer or higher-dose use has no psychiatric effect; the trial measured 10 weeks',
+        'That an ampoule labelled testosterone enanthate contains testosterone enanthate at the stated concentration, which in seizure analyses is the exception',
+        'That the label indication covers age-related low testosterone, which the label explicitly states has not been established',
+      ],
+      whatFailedInitially: [
+        'Before 1996 the medical literature described the efficacy of androgens for strength as unsubstantiated; the randomised trial that settled it was run because the claim had never been tested properly',
+        'Testosterone enanthate monotherapy failed as a marketable male contraceptive not on efficacy but on regimen: weekly injections and incomplete suppression in a minority of men',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States since December 1953 as Delatestryl (NDA 009165), with a subcutaneous autoinjector, Xyosted, approved 28 September 2018 (NDA 209863)',
+        'A Schedule III controlled substance in the United States as an anabolic steroid, and prohibited at all times in sport under WADA class S1.1',
+        'The reference compound for the whole anabolic steroid class: the dose-response, contraceptive and recovery data on this page are what every other steroid in this file is implicitly compared against',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intramuscular oil injection, or weekly subcutaneous autoinjector at 50, 75 or 100 mg',
+      description:
+        'A sterile solution of the ester in sesame oil. The approved subcutaneous product is a single-dose pressure-assisted autoinjector; the older intramuscular presentation is a multi-dose vial. Release from the oil depot is the rate-limiting step, giving a roughly weekly dosing interval.',
+      safetyProfile:
+        'Labelled warnings at replacement dose: polycythaemia requiring haematocrit monitoring, venous thromboembolism, worsening benign prostatic hyperplasia and potential prostate cancer risk, blood pressure increases with the product not recommended in uncontrolled hypertension, azoospermia, and oedema. At supraphysiological doses the measured additional findings are impaired cardiac systolic function, adverse lipoprotein changes and suppressed reproductive hormones in current users, all of which recovered in past users over 6 to 18 months apart from testicular volume.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does testosterone build muscle in men who already have normal levels?',
+        a: 'Yes, and the trial that showed it is unusually clean. Bhasin and colleagues randomised 43 normal men to placebo or 600 mg of testosterone enanthate weekly, with or without weight training. The men who took testosterone and did no exercise at all gained more muscle area and more bench press and squat strength than the men on placebo who did no exercise. The men who took testosterone and trained gained 6.1 kg of fat-free mass in ten weeks. This is one of the few places in this file where the anabolic claim is a measured result rather than an extrapolation.',
+        auditNote:
+          'The dose in that trial is four to six times a replacement dose. It is a demonstration of pharmacology, not a description of prescribing.',
+      },
+      {
+        q: 'Does taking testosterone make you infertile?',
+        a: 'It suppresses sperm production reliably enough that the WHO ran it as a contraceptive. In 399 fertile men on weekly 200 mg, azoospermic participants recorded zero pregnancies over 230 person-years. Sperm output recovered after stopping and fertility was demonstrated in 33 couples. A separate cohort put mean recovery of sperm output at about 14 months after cessation, with longer duration of use predicting slower recovery. So: reliably suppressive, and in the studied populations reversible, over a timescale of months to well over a year.',
+      },
+      {
+        q: 'Did TRAVERSE prove testosterone is safe for the heart?',
+        a: 'It proved something narrower. TRAVERSE randomised 5,246 men aged 45-80 with low measured testosterone and high cardiovascular risk to a daily 1.62% gel titrated into the normal range, or placebo gel. The primary MACE hazard ratio was 0.96 (95% CI 0.78-1.17), meeting non-inferiority. It also found more atrial fibrillation, acute kidney injury and pulmonary embolism on testosterone. Nothing in that design speaks to weekly injections at several times the replacement dose in men whose own levels were normal to begin with.',
+        auditNote:
+          'This is the most frequently over-extended result in the field. The trial is good and the extrapolation is not part of it.',
+      },
+      {
+        q: 'How often is a vial of testosterone actually testosterone?',
+        a: 'In seizure analyses, less often than not. Fewer than 20% of 1,190 products seized at the Swiss border contained the claimed substance in the claimed amount. In a French seizure set, 4 of 54 anabolic steroid products (7.4%) matched their label both in identity and in dose. Because the ester length sets the release rate, a mislabelled ester changes the blood-level curve as well as the dose.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label:
+          'Bhasin S et al. The effects of supraphysiologic doses of testosterone on muscle size and strength in normal men. N Engl J Med 1996;335:1-7',
+        identifier: '10.1056/NEJM199607043350101',
+        kind: 'doi',
+      },
+      {
+        label:
+          'WHO Task Force on Methods for the Regulation of Male Fertility. Contraceptive efficacy of testosterone-induced azoospermia and oligozoospermia in normal men. Fertil Steril 1996;65:821-829',
+        identifier: '8654646',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'WHO Task Force on Methods for the Regulation of Male Fertility. Contraceptive efficacy of testosterone-induced azoospermia in normal men. Lancet 1990;336:955-959',
+        identifier: '1977002',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Lincoff AM et al. Cardiovascular safety of testosterone-replacement therapy. N Engl J Med 2023;389:107-117',
+        identifier: '10.1056/NEJMoa2215025',
+        kind: 'doi',
+      },
+      {
+        label: 'TRAVERSE — cardiovascular safety of testosterone replacement therapy',
+        identifier: 'NCT03518034',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Shankara-Narayana N et al. Rate and extent of recovery from reproductive and cardiac dysfunction due to androgen abuse in men. J Clin Endocrinol Metab 2020;105:dgz324',
+        identifier: '10.1210/clinem/dgz324',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bachman E et al. Testosterone suppresses hepcidin in men: a potential mechanism for testosterone-induced erythrocytosis. J Clin Endocrinol Metab 2010;95:4743-4747',
+        identifier: '10.1210/jc.2010-0864',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Coviello AD et al. Effects of graded doses of testosterone on erythropoiesis in healthy young and older men. J Clin Endocrinol Metab 2008;93:914-919',
+        identifier: '10.1210/jc.2007-1692',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Weber C et al. Qualitative and semiquantitative analysis of doping products seized at the Swiss border. Subst Use Misuse 2017;52:742-753',
+        identifier: '10.1080/10826084.2016.1263665',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fabresse N et al. Analysis of pharmaceutical products and dietary supplements seized from the black market among bodybuilders. Forensic Sci Int 2021;322:110771',
+        identifier: '10.1016/j.forsciint.2021.110771',
+        kind: 'doi',
+      },
+      {
+        label:
+          'XYOSTED (testosterone enanthate) injection prescribing information, Antares Pharma, NDA 209863 — indications, warnings and precautions, description',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a3d204c-be26-49e0-8599-0ac12a272e81',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 9416 — testosterone enanthate structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9416',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 16. Clomiphene
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'clomiphene',
+    name: 'Clomiphene',
+    tradeName: 'Clomid, Serophene, Milophene; clomifene citrate outside the United States',
+    sponsor:
+      'Clomid (NDA 016131, Sanofi-Aventis, approved 1 February 1967); Serophene (NDA 018361, EMD Serono); multiple ANDA generics',
+    targetGene: 'ESR1',
+    targetProtein:
+      'Oestrogen receptor alpha — a mixed antagonist and partial agonist, acting at the hypothalamus and pituitary',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1967,
+    indication:
+      'Approved for the treatment of ovulatory dysfunction in women desiring pregnancy. It has no approved indication in men anywhere; use in men for hypogonadism, for fertility preservation, or after an anabolic steroid course is entirely off-label.',
+    patientFriendlyIndication:
+      'Ovulation induction in women — and, off-label, restarting testosterone production in men',
+    anatomicalSite: 'Oestrogen receptors in the hypothalamus and anterior pituitary gonadotropes',
+    conditionContext: {
+      conditionExplainer:
+        'The pituitary decides how much LH and FSH to release partly by sensing oestrogen. Block that sensing and the pituitary concludes there is too little oestrogen and pushes gonadotropins up. In a woman that recruits a follicle; in a man it tells the testes to make more testosterone and more sperm.',
+      whyItMatters:
+        'This is the mechanism behind almost all off-label "post-cycle" use. Exogenous androgens shut the axis down; clomiphene is the drug most often used to try to restart it. That specific use — restarting the axis after anabolic steroid suppression — has never been tested in a randomised trial.',
+      whoTakesThis:
+        'On label: women with anovulatory infertility. Off label: men with secondary hypogonadism who want to raise testosterone without losing fertility, men trying to restart the axis after a steroid course, and men on unlicensed supply from the same sources that sell the steroids.',
+      clinicalGoals:
+        'On label, ovulation and live birth. Off label in men, a rise in LH, FSH and total testosterone with sperm production preserved.',
+    },
+    oneSentenceVerdict:
+      'A 1967 ovulation drug that reliably raises LH, FSH and testosterone in men — pooled mean total testosterone +273.8 ng/dL against placebo — while being displaced from its own approved indication by letrozole, which produced 27.5% live births against clomiphene 19.1% in a 750-woman randomised trial.',
+    laymanHowItWorks:
+      'Clomiphene blocks oestrogen receptors in the part of the brain that monitors sex hormones. The brain reads the block as "oestrogen is low" and responds by releasing more LH and FSH. In a woman that pushes an ovary to mature and release an egg. In a man, more LH means the testes make more testosterone from scratch, and more FSH means sperm production keeps going — which is the opposite of what happens on injected testosterone, where the brain sees plenty and shuts the testes down. What is sold as one drug is actually two mirror-image molecules with different behaviour and very different clearance rates: the anti-oestrogenic one washes out in days, the other accumulates over weeks.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 62,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCN(CC)CCOC1=CC=C(C=C1)C(=C(C2=CC=CC=C2)Cl)C3=CC=CC=C3',
+      chemicalFormula: 'C26H28ClNO',
+      molecularWeight: '406.0 g/mol (free base; the citrate salt is 598.1 g/mol)',
+      targetReceptorAffinity:
+        'A triphenylethylene selective oestrogen receptor modulator, marketed as a mixture of two geometric isomers: enclomiphene (the E isomer, roughly 62%), a pure oestrogen receptor antagonist with a half-life of hours to days, and zuclomiphene (the Z isomer, roughly 38%), a partial agonist that accumulates over successive treatment cycles. The clinical effect at the hypothalamus and pituitary is antagonism; the long-lived isomer is agonist.',
+      structureSource: {
+        label:
+          'PubChem CID 2800 (clomifene) — canonical SMILES, molecular formula and molecular weight for the free base',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2800',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'clo-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Isomer ratio in the reference standard and the tablet',
+          description:
+            'Determine the E to Z ratio, not just total clomiphene. The two isomers have identical mass and nearly identical retention on a conventional column, but opposite pharmacology at the oestrogen receptor and half-lives that differ by more than an order of magnitude. A product that is nominally 50 mg of clomiphene citrate can behave very differently depending on the ratio, and enclomiphene sold on its own is a separate, unapproved compound.',
+          reagentsAndBuffer:
+            'Certified enclomiphene and zuclomiphene reference standards, clomiphene-d5 internal standard, reversed-phase HPLC on a phenyl-hexyl or pentafluorophenyl column with triethylamine-modified mobile phase to resolve the geometric isomers, UV detection at 233 nm, 1H NMR in CDCl3 for the vinyl proton',
+        },
+        {
+          id: 'clo-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a tablet or an unlicensed liquid',
+          description:
+            'Quantify clomiphene citrate against label, and screen the same extract for the compounds that co-occur in unlicensed post-cycle products: tamoxifen, anastrozole, letrozole and human chorionic gonadotropin. Antioestrogens and aromatase inhibitors made up 9% of the products seized at the Swiss border, and fewer than 20% of that whole seizure set matched their labels.',
+          dependsOnStepId: 'clo-w1',
+          reagentsAndBuffer:
+            'Methanol extraction with sonication, 0.45 um PTFE filtration, reversed-phase C18 gradient HPLC with diode-array detection, LC-high-resolution mass spectrometry screening against an antioestrogen and aromatase inhibitor library',
+        },
+        {
+          id: 'clo-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Serum extraction for isomer-specific pharmacokinetics',
+          description:
+            'Measure the two isomers separately in serum. This is what showed that zuclomiphene is undetectable on day 3 of a first cycle and then rises progressively across three consecutive cycles before plateauing, while enclomiphene is cleared between cycles. Any pharmacokinetic statement about "clomiphene" that does not separate the isomers is describing a moving average of two different drugs.',
+          dependsOnStepId: 'clo-w2',
+          reagentsAndBuffer:
+            'Liquid-liquid extraction of serum into methyl tert-butyl ether at alkaline pH, deuterated clomiphene internal standard, isomer-resolving chromatography as in step 1, low-adsorption glass vials',
+        },
+        {
+          id: 'clo-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Oestrogen receptor reporter, both isomers, both receptor subtypes',
+          description:
+            'Express oestrogen receptor alpha and beta separately with an oestrogen-response-element luciferase reporter and run enclomiphene and zuclomiphene across a concentration series in agonist mode and in antagonist mode against oestradiol. This is the assay that demonstrates the split: one isomer antagonises, the other partially agonises, and the tissue mixture of coregulators decides which behaviour dominates where.',
+          dependsOnStepId: 'clo-w3',
+          reagentsAndBuffer:
+            'MCF-7 or HEK293 cells with ERalpha or ERbeta expression plasmid and ERE-luciferase reporter, 17beta-oestradiol as reference agonist, ICI 182,780 as pure antagonist control, charcoal-stripped fetal bovine serum in phenol-red-free DMEM',
+        },
+        {
+          id: 'clo-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the gonadotropin panel',
+          description:
+            'Quantify both isomers by tandem mass spectrometry and read the pharmacodynamic output on the same samples: LH, FSH, total and free testosterone, oestradiol and sex hormone binding globulin. The pharmacodynamic panel is the point — the drug is prescribed for what it does to gonadotropins, not for its own concentration.',
+          dependsOnStepId: 'clo-w4',
+          reagentsAndBuffer:
+            'C18 gradient with formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring on a triple quadrupole, deuterated internal standards; LH and FSH by immunometric assay, testosterone and oestradiol by isotope-dilution LC-MS/MS, free testosterone by equilibrium dialysis',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'clo-a1',
+        category: 'measured',
+        title: 'In men, pooled total testosterone rose 273.8 ng/dL against placebo',
+        laymanSummary:
+          'A meta-analysis of randomised trials in men found that clomiphene or its purified isomer raised total testosterone by about 274 ng/dL more than placebo, and raised LH and FSH as well.',
+        technicalDetails:
+          'Hohl et al. searched PubMed, Embase, the Cochrane Library and ClinicalTrials.gov to July 2024 for randomised trials of SERMs — clomiphene or enclomiphene — against placebo, testosterone gel or hCG in men with functional hypogonadism. Against placebo, SERM therapy raised total testosterone by a weighted mean difference of 273.76 ng/dL (95% CI 191.87-355.66, p < 0.01, I2 = 89%), LH by 4.66 IU/L (95% CI 3.37-5.94, p < 0.01, I2 = 55%) and FSH by 4.59 IU/L (95% CI 2.88-6.30, p < 0.01, I2 = 68%). Against testosterone gel there was no significant difference in total testosterone, but LH and FSH were significantly higher on SERM. The heterogeneity is high and should be read as such: the direction and rough size of the testosterone effect are settled, the precise magnitude is not.',
+        evidenceSource: 'Hohl A et al., Arch Endocrinol Metab 2025;69:e250093',
+        doi: '10.20945/2359-4292-2025-0093',
+        measuredMetric:
+          'Weighted mean difference in total testosterone, LH and FSH versus placebo across randomised trials in men',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a2',
+        category: 'measured',
+        title:
+          'It raises testosterone like a gel does, and keeps sperm counts where a gel does not',
+        laymanSummary:
+          'Two phase 3 trials compared the anti-oestrogenic isomer against testosterone gel in overweight men with low testosterone. Both raised testosterone. Only the gel wrecked sperm counts.',
+        technicalDetails:
+          'Kim, McCullough and Kaminetsky reported two parallel randomised, double-blind, double-dummy, placebo-controlled multicentre phase 3 studies — ZA-304 (NCT01993212) and ZA-305 (NCT01993225), 120 men each — comparing two doses of enclomiphene citrate against AndroGel 1.62% in overweight men aged 18-60 with secondary hypogonadism, all with early-morning total testosterone at or below 300 ng/dL and low or normal LH on two occasions 2-10 days apart. After 16 weeks, total testosterone rose in every treatment group. FSH and LH rose in the enclomiphene groups and fell in the testosterone gel group. Enclomiphene maintained sperm concentration in the normal range; the gel group showed a marked reduction in spermatogenesis. The earlier phase 2, ZA-203 (NCT01270841, n=83), had shown the same pattern.',
+        evidenceSource:
+          'Kim ED et al., BJU Int 2016;117:677-685 (ZA-304 NCT01993212 and ZA-305 NCT01993225); Wiehle RD et al., Fertil Steril 2014;102:720-727 (ZA-203, NCT01270841)',
+        doi: '10.1111/bju.13337',
+        measuredMetric:
+          'Total testosterone, LH, FSH and sperm concentration at 16 weeks, enclomiphene versus testosterone gel versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a3',
+        category: 'conclusion_shift',
+        title: 'First-line for ovulation induction for 47 years, then beaten by letrozole',
+        laymanSummary:
+          'Clomiphene was the standard first treatment for infertility in polycystic ovary syndrome. A 750-woman randomised trial found letrozole produced more live births.',
+        technicalDetails:
+          'Legro et al. randomised 750 women with polycystic ovary syndrome 1:1 to letrozole or clomiphene for up to five treatment cycles, with live birth during the treatment period as the primary outcome. Letrozole produced more cumulative live births: 103 of 374 (27.5%) versus 72 of 376 (19.1%), P = 0.007, rate ratio 1.44 (95% CI 1.10-1.87). Cumulative ovulation was also higher, 834 of 1,352 cycles (61.7%) versus 688 of 1,425 cycles (48.3%), P < 0.001. There were no significant differences in pregnancy loss or twin pregnancy, and no significant difference in overall congenital anomalies, though there were four major anomalies in the letrozole arm against one in the clomiphene arm (P = 0.65). Clomiphene remains approved and widely used; what changed is that the drug is no longer the first choice in the population it was the first choice for.',
+        evidenceSource: 'Legro RS et al., N Engl J Med 2014;371:119-129 (PPCOS II)',
+        doi: '10.1056/NEJMoa1313517',
+        measuredMetric:
+          'Cumulative live birth rate over up to five treatment cycles, letrozole versus clomiphene',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a4',
+        category: 'measured',
+        title: 'One isomer accumulates for weeks and the other does not',
+        laymanSummary:
+          'Blood measurements across consecutive treatment cycles showed the partial-agonist isomer building up from cycle to cycle, while the antagonist isomer was cleared between cycles.',
+        technicalDetails:
+          'Young, Opsahl and Fritz measured serum enclomiphene and zuclomiphene in 14 anovulatory women receiving standardised incremental clomiphene citrate, 50-150 mg/day on cycle days 5-9, for three to six cycles, sampling on cycle days 3 and 10. Cycle day 3 zuclomiphene was below assay limits in every initial cycle, rose progressively across three consecutive cycles and then plateaued; cycle day 3 enclomiphene was uniformly undetectable. The combined maximum concentration of both isomers in practice was around 100 nmol/L. This is the pharmacokinetic basis for treating clomiphene as two drugs: the effect you want is short-lived and the isomer that persists is the partial agonist.',
+        evidenceSource: 'Young SL, Opsahl MS, Fritz MA, Fertil Steril 1999;71:639-644',
+        doi: '10.1016/s0015-0282(98)00537-8',
+        measuredMetric:
+          'Serum enclomiphene and zuclomiphene on cycle days 3 and 10 across consecutive treatment cycles',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a5',
+        category: 'failed',
+        title: 'Enclomiphene was taken through phase 3 and never approved',
+        laymanSummary:
+          'The purified antagonist isomer was developed as a separate product for men with low testosterone, completed a large phase 3 programme, and does not exist as an approved drug in the United States.',
+        technicalDetails:
+          'Repros Therapeutics ran enclomiphene citrate (Androxal) through a full development programme: phase 1 pharmacokinetics (ZA-104, ZA-105, ZA-112), phase 2 (ZA-201, ZA-202 n=102, ZA-203 n=83, ZA-204 n=60, ZA-205 n=50), and phase 3 (ZA-003 n=194, ZA-300 safety n=499, ZA-301 n=151, ZA-303 bone mineral density n=300, ZA-304 n=120, ZA-305 n=120, plus extension studies). The trials met their hormonal endpoints. Enclomiphene appears nowhere in Drugs@FDA as an approved active ingredient. Every product sold today as "enclomiphene" is an unapproved drug, and the compound is nonetheless marketed openly by online prescribers and by research-chemical vendors.',
+        evidenceSource:
+          'ClinicalTrials.gov registrations NCT01993212, NCT01993225, NCT01534208, NCT01532414, NCT01619683 and related Repros studies; absence of any enclomiphene product from the FDA Drugs@FDA database as of August 2026',
+        measuredMetric: 'Completed phase 3 programme against approved-product status in Drugs@FDA',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clo-a6',
+        category: 'inferred',
+        title: 'Post-cycle restart is the commonest use and the least studied',
+        laymanSummary:
+          'Clomiphene is most often taken by men to restart their own testosterone after a course of anabolic steroids. No trial has ever tested that.',
+        technicalDetails:
+          'Every randomised trial of clomiphene or enclomiphene in men enrolled men with functional or secondary hypogonadism who were not recovering from exogenous androgen suppression. The off-label "post-cycle therapy" use — restarting the hypothalamic-pituitary-gonadal axis after anabolic steroid administration, usually alongside hCG and an aromatase inhibitor — has no randomised evidence at all, no dose-finding study and no comparison against doing nothing. What is known about spontaneous recovery comes from an observational cohort: past androgen users were indistinguishable from never-users on reproductive hormones and cardiac function, with mean recovery of 7.3 months for anti-Mullerian hormone, 10.7 months for LH and 14.1 months for sperm output, without any stated intervention. Whether clomiphene shortens that is an open question, not a settled one.',
+        evidenceSource:
+          'Shankara-Narayana N et al., J Clin Endocrinol Metab 2020;105:dgz324 (natural recovery cohort); no randomised trial of clomiphene for post-anabolic-steroid axis recovery exists',
+        doi: '10.1210/clinem/dgz324',
+        inferredClaim:
+          'That clomiphene accelerates recovery of the hypothalamic-pituitary-gonadal axis after anabolic steroid use, which no controlled study has tested',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken by mouth as a mixture of two isomers',
+        laymanDesc:
+          'One tablet contains two mirror-image forms of the molecule in roughly a 60-40 split, and they behave differently.',
+        molecularDetail:
+          'Clomiphene citrate is approximately 62% enclomiphene (E isomer) and 38% zuclomiphene (Z isomer). Both are absorbed orally and undergo hepatic metabolism, but enclomiphene is cleared within days while zuclomiphene accumulates across consecutive cycles before plateauing.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into hypothalamic and pituitary cells',
+        laymanDesc:
+          'The oestrogen receptor is inside the cell, so the drug has to get in before it can block anything.',
+        molecularDetail:
+          'Passive diffusion into GnRH neurons of the hypothalamus and gonadotrope cells of the anterior pituitary, where it competes with 17beta-oestradiol for the ligand-binding domain of oestrogen receptor alpha.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks the oestrogen signal the brain uses to throttle back',
+        laymanDesc:
+          'With the receptor occupied by a molecule that does not switch it on, the brain concludes oestrogen is low.',
+        molecularDetail:
+          'Enclomiphene occupies ERalpha and stabilises a conformation that fails to recruit coactivators, blocking oestradiol-driven negative feedback on GnRH pulse frequency and on pituitary gonadotrope sensitivity. Zuclomiphene, acting as a partial agonist at the same receptor, opposes this to a degree that depends on how much has accumulated.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'LH and FSH rise, and the gonad responds',
+        laymanDesc:
+          'The pituitary releases more of the two hormones that drive the ovary or the testis.',
+        molecularDetail:
+          'Increased GnRH pulsatility drives LH and FSH secretion. In women this recruits a dominant follicle and triggers ovulation. In men LH stimulates Leydig cell testosterone synthesis while FSH supports Sertoli cell function and spermatogenesis — measured increases of about 4.7 IU/L for LH and 4.6 IU/L for FSH against placebo in the pooled trials.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Endogenous production, not replacement',
+        laymanDesc:
+          'The testosterone comes from the testes rather than from a syringe, which is why sperm production survives.',
+        molecularDetail:
+          'Total testosterone rises to a degree comparable with a titrated gel while LH and FSH rise instead of falling, and sperm concentration is maintained rather than suppressed. That difference — restoration of the axis versus replacement of its output — is the entire clinical argument for using a SERM in a man who wants to remain fertile.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'PPCOS II — letrozole versus clomiphene in polycystic ovary syndrome',
+        phase: 'Phase 3, double-blind, multicentre, up to five treatment cycles',
+        sampleSize: 750,
+        primaryEndpoint: 'Live birth during the treatment period',
+        endpointMet: false,
+        statisticalPValue:
+          'Clomiphene 72 of 376 (19.1%) versus letrozole 103 of 374 (27.5%), P = 0.007 in favour of letrozole; rate ratio 1.44 (95% CI 1.10-1.87)',
+        unreportedAdverseSignals:
+          'Clomiphene was associated with a higher incidence of hot flushes; letrozole with more fatigue and dizziness. Four major congenital anomalies occurred in the letrozole arm against one in the clomiphene arm (P = 0.65).',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT01993212 (ZA-304)',
+        phase: 'Phase 3, randomised double-blind double-dummy placebo-controlled, 16 weeks',
+        sampleSize: 120,
+        primaryEndpoint:
+          'Total testosterone, LH, FSH and sperm concentration in overweight men with secondary hypogonadism, enclomiphene versus testosterone gel versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Total testosterone rose in all treatment groups; LH and FSH rose on enclomiphene and fell on testosterone gel; sperm concentration maintained on enclomiphene and markedly reduced on gel',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT01993225 (ZA-305)',
+        phase: 'Phase 3, randomised double-blind double-dummy placebo-controlled, 16 weeks',
+        sampleSize: 120,
+        primaryEndpoint: 'Identical design to ZA-304, run in parallel as the confirmatory pair',
+        endpointMet: true,
+        statisticalPValue:
+          'Same direction and pattern as ZA-304 on total testosterone, LH, FSH and sperm concentration',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT01270841 (ZA-203)',
+        phase: 'Phase 2, randomised, enclomiphene versus 1% topical testosterone gel',
+        sampleSize: 83,
+        primaryEndpoint: 'Morning serum testosterone, LH, FSH and semen analysis',
+        endpointMet: true,
+        statisticalPValue:
+          'Morning testosterone, oestradiol and LH increased to levels similar to topical gel; FSH and LH increased and sperm counts were conserved on enclomiphene',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Pooled across randomised trials in men, SERM therapy raised total testosterone by 273.76 ng/dL, LH by 4.66 IU/L and FSH by 4.59 IU/L against placebo',
+        'In two parallel phase 3 trials, enclomiphene raised testosterone comparably to testosterone gel while raising rather than suppressing LH and FSH and maintaining sperm concentration',
+        'Letrozole produced more live births than clomiphene in 750 women with polycystic ovary syndrome, 27.5% versus 19.1%, P = 0.007',
+        'Zuclomiphene accumulates in serum across three consecutive treatment cycles and then plateaus, while enclomiphene is undetectable at the start of each cycle',
+      ],
+      unsupportedInferences: [
+        'That clomiphene restarts the axis faster than stopping the steroid would on its own — the commonest use, with no controlled trial behind it',
+        'That the male hormonal results equate to symptomatic or functional benefit; the trials measured hormones and sperm counts, not endpoints men care about directly',
+        'That enclomiphene sold online is equivalent to the trial product, when it is an unapproved drug with no manufacturing oversight',
+        'That the meta-analytic testosterone increase is a precise figure, when heterogeneity across the pooled trials was 89%',
+      ],
+      whatFailedInitially: [
+        'Clomiphene lost its position as first-line ovulation induction in polycystic ovary syndrome to letrozole on a live-birth endpoint in 2014',
+        'Enclomiphene completed a full phase 1 to phase 3 programme for male secondary hypogonadism and was never approved in the United States',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States since 1 February 1967 as Clomid (NDA 016131), with generics; no approved indication in men in any jurisdiction',
+        'Prohibited in sport at all times under WADA class S4 as a hormone and metabolic modulator, specifically as an antioestrogenic substance',
+        'Antioestrogens and aromatase inhibitors made up 9% of the 1,190 doping products seized at the Swiss border, a seizure set in which fewer than 20% of items matched their labels',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 50 mg clomiphene citrate; five-day courses on label, daily dosing off-label in men',
+      description:
+        'A simple immediate-release tablet. The approved regimen in women is a short course within a cycle; the off-label male regimens are continuous daily or alternate-day dosing over months, a pattern the approved product was never studied in. Unlicensed liquid preparations and purified enclomiphene are sold by the same vendors that sell SARMs.',
+      safetyProfile:
+        'On-label adverse effects in women include hot flushes, ovarian enlargement, visual disturbance and multiple pregnancy. In men the trial adverse-event profile was broadly similar to testosterone gel across the phase 3 programme, with the important difference that gonadotropins and spermatogenesis were preserved rather than suppressed. Visual symptoms are a recognised class effect and are the reason continued use is reconsidered if they appear. Long-term male safety at continuous daily dosing over years is not established, because no trial ran that long.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why do men take an ovulation drug?',
+        a: 'Because the same receptor block does the same thing in both sexes: it stops the brain sensing oestrogen, so LH and FSH go up. In a man, more LH means the testes make more of their own testosterone and more FSH means sperm production continues. Pooled randomised data put the testosterone rise at about 274 ng/dL over placebo. The contrast with injected testosterone is the point — a gel or an injection raises testosterone by supplying it, which switches the testes off, whereas this raises testosterone by switching the testes on.',
+      },
+      {
+        q: 'Is clomiphene actually two drugs?',
+        a: 'Functionally, yes. The tablet is roughly 62% enclomiphene, a pure oestrogen receptor antagonist, and 38% zuclomiphene, a partial agonist. Serum measurements across consecutive cycles found zuclomiphene undetectable at the start of the first cycle, rising across three cycles and then plateauing, while enclomiphene cleared between cycles. That is why enclomiphene was developed as a separate product: to get the antagonist effect without the accumulating agonist. It completed phase 3 and was never approved.',
+        auditNote:
+          'Enclomiphene appears nowhere in Drugs@FDA. Products sold under that name today are unapproved drugs.',
+      },
+      {
+        q: 'Does it work as post-cycle therapy after steroids?',
+        a: 'Nobody has tested it. Every randomised trial of clomiphene or enclomiphene in men enrolled men with secondary hypogonadism, not men recovering from exogenous androgen suppression. What is documented is that recovery happens anyway: in an observational cohort, past androgen users were indistinguishable from never-users, with mean recovery of about 7 months for anti-Mullerian hormone, 11 months for LH and 14 months for sperm output. Whether clomiphene shortens that interval is unstudied, and the belief that it does is an inference from the mechanism.',
+        auditNote:
+          'This is the single most common real-world use of the drug and the one with the least evidence behind it.',
+      },
+      {
+        q: 'Why is it no longer first-line for infertility?',
+        a: 'A 750-woman randomised trial compared it head to head with letrozole in polycystic ovary syndrome over up to five cycles. Letrozole produced live births in 27.5% against 19.1% for clomiphene (P = 0.007), and ovulated 61.7% of cycles against 48.3%. Clomiphene is still approved and still used, particularly where letrozole is unavailable or unsuitable, but the drug it lost to is an aromatase inhibitor working through a different route to the same gonadotropin rise.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Hohl A et al. Clomiphene or enclomiphene citrate for the treatment of male hypogonadism: a systematic review and meta-analysis of randomized controlled trials. Arch Endocrinol Metab 2025;69:e250093',
+        identifier: '10.20945/2359-4292-2025-0093',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kim ED, McCullough A, Kaminetsky J. Oral enclomiphene citrate raises testosterone and preserves sperm counts in obese hypogonadal men, unlike topical testosterone: restoration instead of replacement. BJU Int 2016;117:677-685',
+        identifier: '10.1111/bju.13337',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wiehle RD et al. Enclomiphene citrate stimulates testosterone production while preventing oligospermia: a randomized phase II clinical trial comparing topical testosterone. Fertil Steril 2014;102:720-727',
+        identifier: '10.1016/j.fertnstert.2014.06.004',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Legro RS et al. Letrozole versus clomiphene for infertility in the polycystic ovary syndrome. N Engl J Med 2014;371:119-129',
+        identifier: '10.1056/NEJMoa1313517',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Young SL, Opsahl MS, Fritz MA. Serum concentrations of enclomiphene and zuclomiphene across consecutive cycles of clomiphene citrate therapy in anovulatory infertile women. Fertil Steril 1999;71:639-644',
+        identifier: '10.1016/s0015-0282(98)00537-8',
+        kind: 'doi',
+      },
+      {
+        label: 'ZA-304 — phase 3 of enclomiphene citrate in men with secondary hypogonadism',
+        identifier: 'NCT01993212',
+        kind: 'nct',
+      },
+      {
+        label: 'ZA-305 — phase 3 of enclomiphene citrate in men with secondary hypogonadism',
+        identifier: 'NCT01993225',
+        kind: 'nct',
+      },
+      {
+        label: 'ZA-203 — phase 2 of enclomiphene citrate versus topical testosterone',
+        identifier: 'NCT01270841',
+        kind: 'nct',
+      },
+      {
+        label: 'ZA-300 — long-term safety study of enclomiphene citrate, 499 men',
+        identifier: 'NCT01534208',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Shankara-Narayana N et al. Rate and extent of recovery from reproductive and cardiac dysfunction due to androgen abuse in men. J Clin Endocrinol Metab 2020;105:dgz324',
+        identifier: '10.1210/clinem/dgz324',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Weber C et al. Qualitative and semiquantitative analysis of doping products seized at the Swiss border. Subst Use Misuse 2017;52:742-753',
+        identifier: '10.1080/10826084.2016.1263665',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA record for CLOMID (clomiphene citrate) tablets, NDA 016131, original approval 1 February 1967',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=016131',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2800 — clomifene structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2800',
+        kind: 'url',
+      },
+    ],
+  },
 ]
