@@ -15113,4 +15113,1750 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       NADAC_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 20. Rivaroxaban — non-inferior to warfarin and never superior, the only factor Xa inhibitor with
+  //     a trial it lost outright, and the subject of a documented question about its INR device.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'rivaroxaban',
+    name: 'Rivaroxaban',
+    tradeName: 'Xarelto',
+    sponsor: 'Bayer with Janssen (Johnson & Johnson)',
+    targetGene: 'F10',
+    targetProtein: 'Activated coagulation factor X (factor Xa)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2011,
+    indication:
+      'Reduction of stroke and systemic embolism risk in non-valvular atrial fibrillation; treatment of deep vein thrombosis and pulmonary embolism and reduction of recurrence; prophylaxis after hip or knee replacement; and, at 2.5 mg twice daily with aspirin, reduction of major cardiovascular events in chronic coronary or peripheral artery disease',
+    patientFriendlyIndication:
+      'Preventing stroke in an irregular heartbeat, treating and preventing clots, and reducing events in stable artery disease',
+    anatomicalSite: 'Circulating plasma and the prothrombinase complex on activated platelet membranes',
+    conditionContext: {
+      conditionExplainer:
+        'Factor Xa is the convergence point of the coagulation cascade and the step immediately before its largest amplification: one molecule of factor Xa in the prothrombinase complex produces on the order of a thousand molecules of thrombin. Inhibiting it directly throttles clot formation without touching platelets and without depending on the liver to build clotting factors, which is what separates this class from warfarin.',
+      whyItMatters:
+        'Rivaroxaban is the factor Xa inhibitor whose evidence is most mixed. It was non-inferior to warfarin and not superior in atrial fibrillation. It is the only one with a distinct low-dose vascular indication supported by a large trial. It is also the only one to have lost outright to a vitamin K antagonist in a randomised trial, and the only one whose pivotal trial has an unresolved published question about the accuracy of the device used to manage its comparator arm.',
+      whoTakesThis:
+        'Non-valvular atrial fibrillation, venous thromboembolism, post-arthroplasty prophylaxis, and — at the 2.5 mg twice-daily dose alongside aspirin — stable coronary or peripheral artery disease. It is contraindicated in mechanical heart valves and, on the INVICTUS result, is inappropriate in rheumatic mitral disease.',
+      clinicalGoals:
+        'Prevent stroke and systemic embolism, treat and prevent venous thromboembolism, and at the low vascular dose reduce cardiovascular death, stroke and myocardial infarction — with bleeding as the counterweight in every setting.',
+    },
+    oneSentenceVerdict:
+      'A once-daily factor Xa inhibitor that was non-inferior but not superior to warfarin in 14,264 patients with atrial fibrillation, that reduced cardiovascular events and deaths at a low dose alongside aspirin in 27,395 patients with stable vascular disease at the cost of a 70% relative increase in major bleeding, and that lost outright to a vitamin K antagonist in 4,565 patients with rheumatic heart disease.',
+    laymanHowItWorks:
+      'The clotting cascade converges on one enzyme just before the step that multiplies the signal a thousandfold. Rivaroxaban blocks that enzyme directly in the bloodstream, so far less thrombin is produced and clots form much more slowly. It works within hours, requires no blood test, and unlike warfarin does not depend on the liver having to build clotting factors differently.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 82,
+    substitutes: {
+      summary:
+        'Rivaroxaban costs several dollars a tablet against about nine cents for warfarin. Apixaban is the closest alternative and is the one that beat warfarin on stroke, bleeding and death simultaneously, though the two have never been compared head to head. Warfarin remains superior in rheumatic mitral disease and is the only option for mechanical valves.',
+      conventionalRx: [
+        {
+          name: 'Apixaban (Eliquis)',
+          class: 'Direct factor Xa inhibitor',
+          howItCompares:
+            'In its own trial against warfarin, apixaban was superior for stroke (hazard ratio 0.79, p=0.01), for major bleeding (0.69) and for all-cause death (0.89). Rivaroxaban in ROCKET AF was non-inferior on the per-protocol analysis and gave p=0.12 for superiority in the intention-to-treat analysis, with no difference in overall major and clinically relevant bleeding. No randomised trial has compared the two.',
+          typicalCost:
+            'US$5.52 per 5 mg ELIQUIS tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026); both are brand-only in that file',
+          prosAndCons:
+            'Pros for apixaban: superiority rather than non-inferiority against warfarin, and less bleeding. Pros for rivaroxaban: once-daily dosing, and the COMPASS vascular indication that apixaban does not have.',
+        },
+        {
+          name: 'Warfarin',
+          class: 'Vitamin K antagonist',
+          howItCompares:
+            'Sixty times cheaper, requires INR monitoring, and remains superior in specific settings. In INVICTUS, 4,565 patients with rheumatic heart disease and atrial fibrillation had more primary-outcome events and more deaths on rivaroxaban than on a dose-adjusted vitamin K antagonist, without a higher bleeding rate on the vitamin K antagonist.',
+          typicalCost:
+            'US$0.089 per 5 mg warfarin sodium tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cost, reversibility, and superiority in rheumatic valve disease and mechanical valves. Cons: monitoring, dietary interaction, and it lost on all three endpoints against apixaban.',
+        },
+        {
+          name: 'Aspirin alone, in stable atherosclerotic disease',
+          class: 'Antiplatelet monotherapy — the comparator arm in COMPASS',
+          howItCompares:
+            'In COMPASS, adding rivaroxaban 2.5 mg twice daily to aspirin reduced the composite of cardiovascular death, stroke or myocardial infarction from 5.4% to 4.1% (hazard ratio 0.76, p<0.001) and death from 4.1% to 3.4%. Major bleeding rose from 1.9% to 3.1% (hazard ratio 1.70, p<0.001). Rivaroxaban 5 mg twice daily alone did not beat aspirin and bled more.',
+          typicalCost: 'Pennies per tablet',
+          prosAndCons:
+            'Pros: minimal cost and bleeding risk. Cons: 13 more primary-outcome events per thousand patients over about two years than the combination, set against 12 more major bleeds.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Take the atrial fibrillation and venous thromboembolism doses with food',
+          action:
+            'The 15 mg and 20 mg strengths must be taken with the evening meal; the 2.5 mg and 10 mg strengths need not be.',
+          patientImpact:
+            'Rivaroxaban absorption is dissolution-limited at higher strengths: bioavailability of a 20 mg dose fasted is only about 66%, rising to essentially complete when taken with food. Taking the higher strengths on an empty stomach means taking a materially smaller effective dose without knowing it.',
+          clinicalPrecaution:
+            'This is a labelled instruction and it is one of the few places where a food rule changes exposure enough to matter clinically. Nothing routinely measures whether the drug is working.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1COCC(=O)N1C2=CC=C(C=C2)N3C[C@@H](OC3=O)CNC(=O)C4=CC=C(S4)Cl',
+      chemicalFormula: 'C19H18ClN3O5S',
+      molecularWeight: '435.9 g/mol',
+      targetReceptorAffinity:
+        'A direct, reversible, competitive inhibitor of the factor Xa active site, both free and within the prothrombinase complex, with sub-nanomolar potency and high selectivity over other serine proteases. Its distinguishing structural feature is the chlorothiophene occupying the S1 pocket in place of the basic amidine used by earlier inhibitors: the neutral chlorine makes a halogen interaction with the aromatic ring of Tyr228 rather than a salt bridge with Asp189, and removing that permanent positive charge is what gave the molecule oral bioavailability.',
+      structureSource: {
+        label:
+          'PubChem CID 9875401 (rivaroxaban) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9875401',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'riv-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Chiral control of the glycidyl phthalimide and identity of the chlorothiophene acid',
+          description:
+            'Assay the (S)-configured glycidyl phthalimide for enantiomeric excess and 5-chlorothiophene-2-carboxylic acid for the 4-chloro isomer and residual chloride. Rivaroxaban has a single stereocentre and only the (S)-enantiomer inhibits factor Xa; the chlorine position on the thiophene determines the halogen contact in the S1 pocket, and the 4-chloro isomer has the same mass and much lower affinity.',
+          reagentsAndBuffer:
+            '(S)-glycidyl phthalimide reference standard, 5-chlorothiophene-2-carboxylic acid reference standard, chiral HPLC, ion chromatography for chloride, Karl Fischer titration',
+        },
+        {
+          id: 'riv-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Oxazolidinone ring closure and amide coupling',
+          description:
+            'Open the chiral epoxide with the morpholinone-substituted aniline, close the oxazolidinone ring with a carbonyl source, then deprotect and couple the resulting primary amine to the chlorothiophene acid. The oxazolidinone core is doing conformational work rather than pharmacological work: it is the rigid spacer that holds the chlorothiophene and morpholinone arms at the fixed angle matching the distance between the S1 and S4 subsites of the enzyme.',
+          dependsOnStepId: 'riv-w1',
+          reagentsAndBuffer:
+            '4-(4-aminophenyl)morpholin-3-one, carbonyldiimidazole or phosgene equivalent for ring closure, methylamine or hydrazine for phthalimide removal, the chlorothiophene acid chloride with a tertiary amine base in tetrahydrofuran under nitrogen',
+        },
+        {
+          id: 'riv-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation with particle size and polymorph control',
+          description:
+            'Crystallise the finished compound and control both polymorph and particle size distribution. This is a release specification with direct clinical consequence: rivaroxaban is poorly soluble and absorption at the 15 mg and 20 mg strengths is dissolution-limited, which is why those strengths carry a labelled instruction to be taken with food and why milled particle size determines whether that instruction is enough.',
+          dependsOnStepId: 'riv-w2',
+          reagentsAndBuffer:
+            'Acetone/water or ethanol recrystallisation with controlled cooling, wet milling to specification, laser diffraction particle size analysis, X-ray powder diffraction and differential scanning calorimetry for form, reversed-phase HPLC against the (R)-enantiomer and the ring-opened hydrolysis impurity',
+        },
+        {
+          id: 'riv-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Combined CYP3A4 and P-glycoprotein handling',
+          description:
+            'Measure hepatic metabolic clearance and transporter-mediated efflux together. Rivaroxaban is a substrate of CYP3A4, CYP2J2 and P-glycoprotein, and because roughly a third of a dose is excreted unchanged by the kidney while the rest is metabolised, combined inhibitors of both routes raise exposure more than either alone — which is why the label lists dual inhibitors specifically rather than either class.',
+          dependsOnStepId: 'riv-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes, recombinant CYP3A4 and CYP2J2 microsomes with NADPH regenerating system, MDCK-II or Caco-2 monolayers overexpressing ABCB1, ketoconazole and ritonavir as dual-inhibitor controls, LC-MS/MS quantification',
+        },
+        {
+          id: 'riv-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Anti-factor Xa activity, prothrombin time and thrombin generation',
+          description:
+            'Measure chromogenic anti-factor Xa activity against a rivaroxaban calibrator, prothrombin time with a sensitive thromboplastin, and thrombin generation in plasma. All three are needed, and the second is why: rivaroxaban prolongs the prothrombin time in a concentration-dependent way, which means it perturbs the same assay used to derive the international normalised ratio — the measurement on which its principal comparator, warfarin, is dosed.',
+          dependsOnStepId: 'riv-w4',
+          reagentsAndBuffer:
+            'Purified human factor Xa with chromogenic substrate S-2765 or equivalent, rivaroxaban calibrator and control plasmas, Neoplastin or a comparably rivaroxaban-sensitive thromboplastin for prothrombin time, calibrated automated thrombogram with tissue factor and phospholipid trigger in platelet-poor plasma',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'riv-a1',
+        category: 'measured',
+        title: 'ROCKET AF: non-inferior to warfarin, and not superior',
+        laymanSummary:
+          'In more than fourteen thousand patients with atrial fibrillation, rivaroxaban matched warfarin for preventing stroke. In the analysis that counts everyone as randomised, the difference did not reach statistical significance.',
+        technicalDetails:
+          'ROCKET AF randomised 14,264 patients with non-valvular atrial fibrillation at increased stroke risk to rivaroxaban 20 mg daily or dose-adjusted warfarin. In the prespecified per-protocol as-treated primary analysis, stroke or systemic embolism occurred in 188 patients on rivaroxaban (1.7% per year) against 241 on warfarin (2.2% per year): hazard ratio 0.79 (95% CI 0.66 to 0.96), p<0.001 for non-inferiority. In the intention-to-treat analysis the endpoint occurred in 269 (2.1% per year) against 306 (2.4% per year): hazard ratio 0.88 (0.74 to 1.03), p<0.001 for non-inferiority and p=0.12 for superiority. Major and non-major clinically relevant bleeding occurred in 14.9% per year against 14.5%: hazard ratio 1.03 (0.96 to 1.11), p=0.44. Intracranial haemorrhage (0.5% against 0.7%, p=0.02) and fatal bleeding (0.2% against 0.5%, p=0.003) were less frequent on rivaroxaban.',
+        evidenceSource: 'Patel MR et al., ROCKET AF, N Engl J Med 2011;365:883-891 (NCT00403767)',
+        doi: '10.1056/NEJMoa1009638',
+        measuredMetric:
+          'Stroke or systemic embolism per year, per-protocol and intention-to-treat, rivaroxaban versus warfarin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'riv-a2',
+        category: 'inferred',
+        title: 'A published question about the INR device used in ROCKET AF has never been resolved',
+        laymanSummary:
+          'The point-of-care device used to manage warfarin dosing in the comparator arm was later recalled for producing falsely low readings. Whether that made warfarin look worse than it was is a question the trial data cannot settle.',
+        technicalDetails:
+          'The BMJ published an investigation in 2016 under the title "Rivaroxaban: can we trust the evidence?" documenting that the INRatio point-of-care device used to manage the warfarin arm of ROCKET AF was subject to a recall for producing INR values lower than laboratory measurement in certain patients. A falsely low reading prompts a dose increase, which could over-anticoagulate warfarin patients and inflate their bleeding rate, making the comparator look worse on safety. The trial investigators and the FDA conducted analyses and concluded the effect on the primary result was limited; the FDA maintained the approval. What the episode establishes for certain is narrower than either side has claimed: a measurement device with a documented fault was used to manage the control arm of a pivotal trial, and no reanalysis can reconstruct the INR values that would have been obtained with a working device. This entry records the dispute, not a verdict on it.',
+        evidenceSource: 'Cohen D. Rivaroxaban: can we trust the evidence? BMJ 2016;352:i575',
+        doi: '10.1136/bmj.i575',
+        inferredClaim:
+          'That the ROCKET AF safety comparison is unaffected by the recalled INR device — an assessment based on reanalysis of data the fault itself may have shaped',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'riv-a3',
+        category: 'failed',
+        title: 'INVICTUS: rivaroxaban lost outright to a vitamin K antagonist',
+        laymanSummary:
+          'In more than four and a half thousand patients with rheumatic heart valve disease and an irregular heartbeat, more people died on rivaroxaban than on warfarin, and the bleeding rate was no lower.',
+        technicalDetails:
+          'INVICTUS enrolled 4,565 patients with atrial fibrillation and echocardiographically documented rheumatic heart disease meeting at least one of a CHA2DS2-VASc score of 2 or more, mitral valve area of 2 cm2 or less, left atrial spontaneous echo contrast or left atrial thrombus, randomising to standard-dose rivaroxaban or dose-adjusted vitamin K antagonist; 4,531 were analysed. Mean age was 50.5 years and 72.3% were women. Permanent discontinuation was more common on rivaroxaban at every visit. In the intention-to-treat analysis, 560 patients on rivaroxaban and 446 on the vitamin K antagonist had a primary-outcome event of stroke, systemic embolism, myocardial infarction or death from vascular or unknown causes. Survival curves were non-proportional, so restricted mean survival time was used: 1,599 days on rivaroxaban against 1,675 days, a difference of -76 days (95% CI -121 to -31), p<0.001. Death was higher on rivaroxaban: restricted mean survival 1,608 against 1,680 days, difference -72 days (-117 to -28). Major bleeding did not differ significantly.',
+        evidenceSource: 'Connolly SJ et al., INVICTUS, N Engl J Med 2022;387:978-988 (NCT02832544)',
+        doi: '10.1056/NEJMoa2209051',
+        measuredMetric:
+          'Restricted mean survival time for a composite of vascular events or death, and for death alone, over the trial period',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'riv-a4',
+        category: 'measured',
+        title: 'COMPASS: a low vascular dose reduced events and deaths, and increased bleeding by 70%',
+        laymanSummary:
+          'Adding a small twice-daily dose of rivaroxaban to aspirin in stable artery disease cut cardiovascular events and deaths. It also caused about twelve extra major bleeds per thousand patients.',
+        technicalDetails:
+          'COMPASS randomised 27,395 participants with stable atherosclerotic vascular disease to rivaroxaban 2.5 mg twice daily plus aspirin 100 mg daily, rivaroxaban 5 mg twice daily alone, or aspirin 100 mg daily alone. The trial was stopped for superiority of the combination after a mean 23 months. The primary composite of cardiovascular death, stroke or myocardial infarction occurred in 379 (4.1%) on the combination against 496 (5.4%) on aspirin alone: hazard ratio 0.76 (95% CI 0.66 to 0.86), p<0.001. Major bleeding occurred in 288 (3.1%) against 170 (1.9%): hazard ratio 1.70 (1.40 to 2.05), p<0.001, with no significant difference in intracranial or fatal bleeding. Deaths were 313 (3.4%) against 378 (4.1%): hazard ratio 0.82 (0.71 to 0.96), p=0.01 against a prespecified significance threshold of 0.0025 — so by the trial\'s own rule the mortality result was nominal rather than significant. Rivaroxaban 5 mg twice daily alone did not improve cardiovascular outcomes over aspirin and caused more major bleeding.',
+        evidenceSource: 'Eikelboom JW et al., COMPASS, N Engl J Med 2017;377:1319-1330 (NCT01776424)',
+        doi: '10.1056/NEJMoa1709118',
+        measuredMetric:
+          'Composite of cardiovascular death, stroke or myocardial infarction, and major bleeding, over a mean 23 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'riv-a5',
+        category: 'inferred',
+        title: 'The COMPASS mortality result did not meet the trial\'s own significance threshold',
+        laymanSummary:
+          'The trial is often described as showing rivaroxaban plus aspirin reduces deaths. Its own prespecified rule required a p-value below 0.0025 for that claim, and the result was 0.01.',
+        technicalDetails:
+          'COMPASS prespecified a significance threshold of 0.0025 for the mortality comparison to account for multiplicity across the trial\'s hypotheses. All-cause death occurred in 313 of the combination group (3.4%) against 378 on aspirin alone (4.1%), hazard ratio 0.82 (95% CI 0.71 to 0.96), p=0.01 — a nominally impressive number that does not cross the bar the trial set for itself. The primary composite endpoint did cross its threshold decisively (p<0.001, z=-4.126) and is not in question. This is a distinction between a result the trial was designed to establish and one it was designed only to observe, and it is exactly the distinction multiplicity thresholds exist to preserve. The trial also stopped early for superiority of the combination, which independently inflates measured effect sizes.',
+        evidenceSource: 'Eikelboom JW et al., COMPASS, N Engl J Med 2017;377:1319-1330',
+        doi: '10.1056/NEJMoa1709118',
+        inferredClaim:
+          'That COMPASS demonstrated a mortality reduction — the observed p-value of 0.01 did not meet the trial\'s own prespecified threshold of 0.0025',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'riv-a6',
+        category: 'failed',
+        title: 'MAGELLAN: extended prophylaxis prevented clots and caused more bleeding',
+        laymanSummary:
+          'Five weeks of rivaroxaban after a medical admission prevented more clots than a ten-day course of an injected drug, and roughly doubled to tripled the bleeding rate at both time points.',
+        technicalDetails:
+          'MAGELLAN randomised 8,101 patients aged 40 or older hospitalised for acute medical illness to enoxaparin 40 mg subcutaneously for 10 plus or minus 4 days followed by oral placebo for 35 plus or minus 4 days, or to subcutaneous placebo followed by oral rivaroxaban 10 mg daily for 35 plus or minus 4 days. At day 10 the composite of asymptomatic proximal or symptomatic venous thromboembolism occurred in 78 of 2,938 (2.7%) on rivaroxaban against 82 of 2,993 (2.7%) on enoxaparin: relative risk 0.97 (95% CI 0.71 to 1.31), p=0.003 for non-inferiority. At day 35 it occurred in 131 of 2,967 (4.4%) against 175 of 3,057 (5.7%): relative risk 0.77 (0.62 to 0.96), p=0.02 — superiority for the extended course. But the principal safety outcome of major or clinically relevant non-major bleeding occurred in 111 of 3,997 (2.8%) against 49 of 4,001 (1.2%) at day 10 (p<0.001), and in 164 (4.1%) against 67 (1.7%) at day 35 (p<0.001). The efficacy gain and the bleeding cost are of comparable absolute size, which is why the extended indication was not granted on this trial.',
+        evidenceSource: 'Cohen AT et al., MAGELLAN, N Engl J Med 2013;368:513-523 (NCT00571649)',
+        doi: '10.1056/NEJMoa1111096',
+        measuredMetric:
+          'Venous thromboembolism composite and major or clinically relevant non-major bleeding at days 10 and 35',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed quickly, but only properly with food at higher strengths',
+        laymanDesc:
+          'The small doses are absorbed regardless. The larger ones are only fully absorbed when taken with a meal, because the drug dissolves poorly and needs food to help.',
+        molecularDetail:
+          'Bioavailability is essentially complete at 10 mg fasted, but only about 66% for a 20 mg dose taken fasted, rising to near-complete with food — absorption at higher strengths is dissolution-limited. Peak concentration occurs at 2 to 4 hours and the terminal half-life is 5 to 9 hours in younger adults and 11 to 13 hours in the elderly. Roughly a third is excreted unchanged renally and the remainder metabolised by CYP3A4 and CYP2J2.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It acts in the plasma, on free and clot-bound enzyme alike',
+        laymanDesc:
+          'Its target circulates in the blood and assembles on the surface of activated platelets. It also reaches enzyme already inside a formed clot, which the injected heparins cannot.',
+        molecularDetail:
+          'Factor Xa circulates free and assembles with factor Va, calcium and anionic phospholipid into the prothrombinase complex on activated platelet membranes. Rivaroxaban inhibits free, complex-bound and clot-associated factor Xa. Heparins act indirectly through antithrombin and cannot reach the clot-bound enzyme, which is the pharmacological distinction between the classes.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A chlorine atom replaces the positive charge earlier inhibitors needed',
+        laymanDesc:
+          'Earlier factor Xa blockers used a permanently charged group to grip the enzyme, and that charge stopped them being absorbed by mouth. This one uses a chlorine atom instead and can be swallowed.',
+        molecularDetail:
+          'The chlorothiophene occupies the S1 pocket, where its chlorine makes a halogen interaction with the aromatic ring of Tyr228 in place of the salt bridge to Asp189 that benzamidine-based inhibitors required. Removing the permanent cation is what conferred oral bioavailability. The morpholinone fills the S4 aryl-binding box, and the oxazolidinone core acts as the rigid spacer holding the two at the required separation.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Thrombin generation is throttled before the amplification step',
+        laymanDesc:
+          'Because each blocked enzyme molecule would have produced roughly a thousand molecules of the next, cutting the cascade here has an outsized effect on how much clotting protein is made.',
+        molecularDetail:
+          'Inhibiting the prothrombinase step reduces thrombin generation, and with it fibrin formation, thrombin-mediated platelet activation and factor XIII-driven clot stabilisation. Platelet function itself is untouched, which is why bleeding risk is additive with aspirin — the trade COMPASS quantified as a 1.70 hazard ratio for major bleeding alongside a 0.76 hazard ratio for the primary composite.',
+        iconName: 'Split',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Equivalent to warfarin in atrial fibrillation, worse in rheumatic valve disease',
+        laymanDesc:
+          'Against warfarin in ordinary atrial fibrillation the two came out the same. In rheumatic valve disease, more people died on rivaroxaban. Added to aspirin in stable artery disease it prevented events and caused bleeding.',
+        molecularDetail:
+          'ROCKET AF: 2.1% against 2.4% per year in the intention-to-treat analysis, p=0.12 for superiority. INVICTUS: restricted mean survival 1,608 against 1,680 days, a 72-day deficit for rivaroxaban. COMPASS: primary composite 4.1% against 5.4% with major bleeding 3.1% against 1.9%.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ROCKET AF (NCT00403767)',
+        phase: 'Randomised double-blind active-controlled trial',
+        sampleSize: 14264,
+        primaryEndpoint: 'Stroke or systemic embolism, rivaroxaban versus dose-adjusted warfarin',
+        endpointMet: true,
+        statisticalPValue:
+          'Per-protocol HR 0.79 (95% CI 0.66-0.96), P < 0.001 for non-inferiority; intention-to-treat HR 0.88 (0.74-1.03), P = 0.12 for superiority',
+        unreportedAdverseSignals:
+          'Overall major and clinically relevant bleeding did not differ (HR 1.03, p=0.44). A BMJ investigation documented a recall of the INR device used to manage the warfarin comparator arm.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'COMPASS (NCT01776424)',
+        phase: 'Randomised double-blind three-arm trial, stopped early for superiority, mean 23 months',
+        sampleSize: 27395,
+        primaryEndpoint: 'Composite of cardiovascular death, stroke or myocardial infarction',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.76 (95% CI 0.66-0.86), P < 0.001 for rivaroxaban plus aspirin',
+        unreportedAdverseSignals:
+          'Major bleeding rose from 1.9% to 3.1% (HR 1.70, p<0.001). The mortality result (p=0.01) did not meet the trial\'s prespecified threshold of 0.0025. Rivaroxaban 5 mg alone did not beat aspirin and bled more.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'INVICTUS (NCT02832544)',
+        phase: 'Randomised open trial in rheumatic heart disease-associated atrial fibrillation',
+        sampleSize: 4565,
+        primaryEndpoint:
+          'Composite of stroke, systemic embolism, myocardial infarction or death from vascular or unknown causes',
+        endpointMet: false,
+        statisticalPValue:
+          'Restricted mean survival time 1,599 days against 1,675 days; difference -76 days (95% CI -121 to -31), P < 0.001 favouring the vitamin K antagonist',
+        unreportedAdverseSignals:
+          'Death alone was also higher on rivaroxaban, and permanent discontinuation of trial medication was more common on rivaroxaban at every visit. Major bleeding did not differ.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'MAGELLAN (NCT00571649)',
+        phase: 'Randomised double-blind double-dummy active-controlled trial, 35 days',
+        sampleSize: 8101,
+        primaryEndpoint:
+          'Composite of asymptomatic proximal or symptomatic venous thromboembolism at day 10 (non-inferiority) and day 35 (superiority)',
+        endpointMet: true,
+        statisticalPValue:
+          'Day 10 RR 0.97 (95% CI 0.71-1.31), P = 0.003 for non-inferiority; day 35 RR 0.77 (0.62-0.96), P = 0.02',
+        unreportedAdverseSignals:
+          'Major or clinically relevant non-major bleeding was 2.8% against 1.2% at day 10 and 4.1% against 1.7% at day 35, both p<0.001 — an absolute bleeding excess comparable to the absolute efficacy gain.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Stroke or systemic embolism 2.1% against 2.4% per year on intention-to-treat in 14,264 patients, p=0.12 for superiority',
+        'Intracranial haemorrhage 0.5% against 0.7% and fatal bleeding 0.2% against 0.5% per year against warfarin',
+        'A primary composite of 4.1% against 5.4% and major bleeding of 3.1% against 1.9% in 27,395 patients with stable vascular disease',
+        'A 76-day deficit in restricted mean survival time against a vitamin K antagonist in 4,531 analysed patients with rheumatic heart disease',
+      ],
+      unsupportedInferences: [
+        'That rivaroxaban is superior to warfarin in atrial fibrillation — the intention-to-treat superiority p-value was 0.12',
+        'That COMPASS demonstrated a mortality reduction — the observed p=0.01 did not meet the trial\'s own prespecified 0.0025 threshold',
+        'That the ROCKET AF safety comparison is unaffected by the recalled INR device — no reanalysis can reconstruct the readings a working device would have given',
+        'That the factor Xa inhibitors are interchangeable — no head-to-head trial exists, and INVICTUS shows at least one setting where the class does not behave as one',
+      ],
+      whatFailedInitially: [
+        'INVICTUS: more primary-outcome events and more deaths on rivaroxaban than on a vitamin K antagonist, without a bleeding advantage',
+        'The rivaroxaban 5 mg twice-daily monotherapy arm of COMPASS did not beat aspirin and caused more major bleeding',
+        'MAGELLAN prevented more clots at day 35 and roughly tripled bleeding, and did not yield an extended prophylaxis indication',
+      ],
+      realWorldOutcome: [
+        'Among the most-prescribed anticoagulants worldwide, with a unique low-dose vascular indication no other factor Xa inhibitor holds',
+        'Brand-only in the CMS NADAC file at several dollars per tablet, against about nine cents for warfarin',
+        'INVICTUS established that the direct oral anticoagulants are not a universal replacement for vitamin K antagonists, in a disease that affects tens of millions of people',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet in four strengths, and an oral suspension',
+      description:
+        'Once daily for atrial fibrillation and for venous thromboembolism after the initial period, twice daily at the 2.5 mg vascular dose and during the first weeks of venous thromboembolism treatment. The 15 mg and 20 mg strengths must be taken with food because absorption is dissolution-limited; the 2.5 mg and 10 mg strengths need not be.',
+      safetyProfile:
+        'The US label carries two boxed warnings: increased risk of thrombotic events including stroke on premature discontinuation, and spinal or epidural haematoma with neuraxial anaesthesia or spinal puncture. Bleeding is the principal risk and is additive with antiplatelet drugs. Gastrointestinal bleeding was more frequent than with warfarin in ROCKET AF even though intracranial and fatal bleeding were less frequent. Combined strong CYP3A4 and P-glycoprotein inhibitors or inducers change exposure. It is contraindicated in mechanical prosthetic heart valves and was inferior to a vitamin K antagonist in rheumatic mitral disease.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is rivaroxaban as good as warfarin?',
+        a: 'For non-valvular atrial fibrillation, the trial showed it was not worse, and did not show it was better. ROCKET AF randomised 14,264 patients and, on the analysis that includes everyone as randomised, stroke or systemic embolism occurred at 2.1% per year on rivaroxaban against 2.4% on warfarin: hazard ratio 0.88, and p=0.12 when tested for superiority. Overall major and clinically relevant bleeding was essentially identical, at 14.9% against 14.5% per year. Where it clearly did better was bleeding into the brain (0.5% against 0.7%) and fatal bleeding (0.2% against 0.5%). Where it did worse was gastrointestinal bleeding. Note the contrast with apixaban, which in its own trial was superior to warfarin on stroke, bleeding and death simultaneously — though the two have never been compared directly.',
+      },
+      {
+        q: 'What was the problem with the ROCKET AF device?',
+        a: 'The point-of-care meter used to measure INR and adjust warfarin doses in the comparator arm was later recalled because it could return values lower than a proper laboratory measurement in some patients. A falsely low INR reading prompts a dose increase, which would over-anticoagulate those patients and make the warfarin arm bleed more than it should have — flattering rivaroxaban on safety. The investigators and the FDA reanalysed the data and concluded the primary result was not materially affected, and the approval stands. What cannot be done, by anyone, is reconstruct the INR values a working device would have produced. This page records the dispute rather than adjudicating it, because adjudicating it is not possible from the published data.',
+        auditNote:
+          'Included because it is a documented, published, unresolved question about a pivotal trial, and because leaving it out would make this page look more settled than it is.',
+      },
+      {
+        q: 'Why must I take the 20 mg tablet with food?',
+        a: 'Because without food you are effectively taking a smaller dose. Rivaroxaban dissolves poorly, and at the higher strengths absorption is limited by how much dissolves rather than by how much crosses the gut wall. A 20 mg dose taken fasting achieves about 66% bioavailability; with food it is essentially complete. At 10 mg and below, dissolution is not limiting and food makes no difference. Since there is no routine blood test that would reveal under-anticoagulation, the food instruction is one of the few things standing between correct and incorrect dosing, and it is on the label for that reason.',
+      },
+      {
+        q: 'Why is this drug not used for rheumatic heart valve disease?',
+        a: 'Because INVICTUS tested it there and it lost. The trial enrolled 4,565 patients with atrial fibrillation and echocardiographically confirmed rheumatic heart disease, mean age 50.5 and 72.3% women, randomising to rivaroxaban or a dose-adjusted vitamin K antagonist. Survival curves were non-proportional so the analysis used restricted mean survival time: 1,599 days on rivaroxaban against 1,675 on the vitamin K antagonist, a deficit of 76 days, p<0.001. Deaths were also higher on rivaroxaban, and major bleeding was no different. Patients also stopped rivaroxaban more often at every visit. That result matters far beyond this drug: rheumatic heart disease affects tens of millions of people, mostly in settings where warfarin is the affordable option anyway.',
+      },
+      {
+        q: 'What is the low-dose version with aspirin for?',
+        a: 'That is the COMPASS regimen, and it is a genuinely different use of the drug. In 27,395 patients with stable coronary or peripheral artery disease, adding rivaroxaban 2.5 mg twice daily to aspirin reduced the composite of cardiovascular death, stroke and heart attack from 5.4% to 4.1%, hazard ratio 0.76. Major bleeding rose from 1.9% to 3.1%, hazard ratio 1.70. Deaths were 3.4% against 4.1% with p=0.01, which sounds convincing until you know that the trial had set its own threshold for that comparison at 0.0025, so the mortality claim is nominal rather than established. Rivaroxaban 5 mg twice daily without aspirin was tested in the same trial and did not beat aspirin while bleeding more, so the combination is the point rather than the drug.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for rivaroxaban could be cited. It is brand-only in the CMS NADAC file at several dollars per tablet, against about nine cents for warfarin. The route runs through a chiral epoxide opening, an oxazolidinone ring closure and an amide coupling, with particle size and polymorph controlled at release because absorption at the higher strengths depends on dissolution. That is a description of the chemistry and of why the food instruction exists, not a cost figure, and this page does not convert one into the other.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Patel MR et al. Rivaroxaban versus warfarin in nonvalvular atrial fibrillation (ROCKET AF). N Engl J Med 2011;365:883-891',
+        identifier: '10.1056/NEJMoa1009638',
+        kind: 'doi',
+      },
+      {
+        label: 'Cohen D. Rivaroxaban: can we trust the evidence? BMJ 2016;352:i575',
+        identifier: '10.1136/bmj.i575',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Eikelboom JW et al. Rivaroxaban with or without aspirin in stable cardiovascular disease (COMPASS). N Engl J Med 2017;377:1319-1330',
+        identifier: '10.1056/NEJMoa1709118',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Connolly SJ et al. Rivaroxaban in rheumatic heart disease-associated atrial fibrillation (INVICTUS). N Engl J Med 2022;387:978-988',
+        identifier: '10.1056/NEJMoa2209051',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cohen AT et al. Rivaroxaban for thromboprophylaxis in acutely ill medical patients (MAGELLAN). N Engl J Med 2013;368:513-523',
+        identifier: '10.1056/NEJMoa1111096',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: XARELTO (rivaroxaban), NDA 022406, original approval 1 July 2011',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=022406',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 9875401 — rivaroxaban structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9875401',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 21. Bempedoic acid — a prodrug activated only in liver, so it cannot reach muscle, tested in
+  //     the population that reports muscle symptoms, and it reduced infarction and not death.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'bempedoic-acid',
+    name: 'Bempedoic acid',
+    tradeName: 'Nexletol (Nexlizet in combination with ezetimibe)',
+    sponsor: 'Esperion Therapeutics',
+    targetGene: 'ACLY',
+    targetProtein: 'ATP-citrate lyase',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2020,
+    indication:
+      'Reduction of the risk of myocardial infarction and coronary revascularisation in adults unable to take recommended statin therapy who have established cardiovascular disease or are at high risk for it; and as an adjunct to diet, alone or with a statin, to reduce LDL cholesterol in primary hyperlipidaemia',
+    patientFriendlyIndication:
+      'High cholesterol and cardiovascular risk in people who cannot tolerate a statin',
+    anatomicalSite: 'Hepatocyte cytoplasm (liver)',
+    conditionContext: {
+      conditionExplainer:
+        'Cholesterol synthesis runs through a chain of steps, and the statins block one of them. Bempedoic acid blocks a step two enzymes further upstream, in the same pathway. The consequence for the liver is the same — less cholesterol made, more LDL receptors put out, more LDL pulled from the blood — but the route there is different in one clinically decisive way.',
+      whyItMatters:
+        'The drug is a prodrug that requires an activating enzyme found in liver and not in skeletal muscle. That design was explicitly intended to avoid the muscle symptoms attributed to statins, and it produced the only large outcome trial ever run specifically in people who could not take statins. What the trial found is on this page, including which endpoints did not move.',
+      whoTakesThis:
+        'People with established cardiovascular disease or high risk who cannot tolerate a statin at the intensity needed, and people needing further LDL reduction on top of a statin. It has no generic anywhere.',
+      clinicalGoals:
+        'Lower LDL cholesterol and, as measured in CLEAR Outcomes, reduce major adverse cardiovascular events — a composite that moved, driven by infarction and revascularisation, with no effect on stroke or on any measure of death.',
+    },
+    oneSentenceVerdict:
+      'The first lipid-lowering drug designed around avoiding muscle, tested in 13,970 statin-intolerant patients over a median 40.6 months: the primary composite fell from 13.3% to 11.7% and myocardial infarction from 4.8% to 3.7%, while stroke, cardiovascular death and death from any cause showed no significant effect and gout and gallstones both roughly doubled in absolute terms.',
+    laymanHowItWorks:
+      'Bempedoic acid arrives inactive. An enzyme that exists in liver but not in muscle attaches a coenzyme A group to it, and only then can it block a step in cholesterol manufacture. So the drug switches itself on in the one tissue where it is meant to work and stays inert in the tissue where statin side effects are reported. The liver responds exactly as it does to a statin: more LDL receptors, more LDL cleared from the blood.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 81,
+    substitutes: {
+      summary:
+        'Bempedoic acid costs about US$13.81 a tablet at United States pharmacy acquisition cost, roughly six hundred times a generic atorvastatin tablet, and it is the only lipid-lowering drug with a dedicated outcome trial in people who cannot take statins. Ezetimibe is far cheaper and additive but has no trial in that population. A statin rechallenge, blinded, is the option the n-of-1 literature supports first.',
+      conventionalRx: [
+        {
+          name: 'A blinded statin rechallenge',
+          class: 'Not a different drug — a different way of testing the first one',
+          howItCompares:
+            'In SAMSON, 60 people who had abandoned statins recorded symptom scores of 16.3 in atorvastatin months against 15.4 in placebo months, with no statistically detectable difference (p=0.388), against 8.0 in months with no tablet. In StatinWISE, 151 people with previously severe statin-attributed muscle symptoms showed a mean difference of -0.11 points on a 0-10 scale. Half the SAMSON participants were back on a statin six months later.',
+          typicalCost:
+            'US$0.023 per 10 mg generic atorvastatin tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: the largest evidence base in cardiology, and about six hundred times cheaper. Cons: it does not help the minority whose symptoms are genuinely pharmacological, and a blinded rechallenge is not always practical.',
+        },
+        {
+          name: 'Ezetimibe (Zetia)',
+          class: 'Cholesterol absorption inhibitor',
+          howItCompares:
+            'No muscle signal, additive with bempedoic acid by a different mechanism, and a fraction of the cost. Its outcome trial, IMPROVE-IT, was conducted on top of a statin rather than in statin-intolerant patients, so it does not carry evidence for this specific population.',
+          typicalCost:
+            'US$0.067 per 10 mg generic tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: two hundred times cheaper, well tolerated, combinable. Cons: no outcome trial in people who cannot take statins, and a small absolute benefit where it was tested.',
+        },
+        {
+          name: 'Evolocumab or alirocumab',
+          class: 'PCSK9-directed monoclonal antibodies, injected',
+          howItCompares:
+            'Produce much larger LDL reductions with no muscle signal and have their own cardiovascular outcome trials. They are injections rather than tablets and their acquisition cost per unit is an order of magnitude above bempedoic acid.',
+          typicalCost:
+            'US$281.97 per mL of the 140 mg/mL REPATHA autoinjector and US$258.02 per mL of the 150 mg/mL PRALUENT pen at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: largest LDL reduction available, no muscle effect. Cons: injection, and the highest cost of any option here.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Expect uric acid to rise and report a first gout attack',
+          action: 'Mention any history of gout before starting, and report joint pain during treatment.',
+          patientImpact:
+            'In CLEAR Outcomes gout occurred in 3.1% on bempedoic acid against 2.1% on placebo, and small increases in serum uric acid, creatinine and hepatic enzymes were also more frequent. In the earlier CLEAR Harmony trial, gout occurred in 1.2% against 0.3%.',
+          clinicalPrecaution:
+            'The mechanism is competition at the renal urate transporter OAT2, which is a direct pharmacological effect rather than an idiosyncratic reaction.',
+        },
+        {
+          name: 'Tendon problems are a labelled effect',
+          action: 'Report tendon pain or swelling, particularly in the shoulder, biceps or Achilles.',
+          patientImpact:
+            'Tendon rupture is described in the US label, with cases reported within weeks to months of starting and risk increased with age, renal impairment and prior fluoroquinolone exposure.',
+          clinicalPrecaution:
+            'This page states the labelled warning. It does not give a stopping rule, which is a clinical decision.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)(CCCCCC(CCCCCC(C)(C)C(=O)O)O)C(=O)O',
+      chemicalFormula: 'C19H36O5',
+      molecularWeight: '344.5 g/mol',
+      targetReceptorAffinity:
+        'Bempedoic acid itself does not inhibit ATP-citrate lyase. It is converted to bempedoyl-CoA by very-long-chain acyl-CoA synthetase 1, encoded by ACSVL1 (SLC27A2), and that thioester is the inhibitor. The enzyme is expressed in liver and is essentially absent from skeletal muscle, so activation is tissue-restricted by design — the pharmacological answer to the muscle symptoms attributed to statins. The molecule is a symmetrical dicarboxylic acid with gem-dimethyl groups flanking a central hydroxyl, an unusual shape that reflects its origin in a series designed for hepatic selectivity rather than for target affinity.',
+      structureSource: {
+        label:
+          'PubChem CID 10472693 (bempedoic acid) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10472693',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bem-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of the gem-dimethyl ester and the dihalide linker',
+          description:
+            'Assay the isobutyrate ester equivalent and the pentamethylene dihalide for chain length distribution and residual halide. Bempedoic acid is a symmetrical molecule built by joining two identical fragments to a central linker, so a linker one carbon short or long produces a homologue with the same functional groups, similar chromatographic behaviour and different potency.',
+          reagentsAndBuffer:
+            'Methyl isobutyrate reference standard, 1,5-dibromopentane, gas chromatography with flame ionisation detection for chain length distribution, ion chromatography for halide, Karl Fischer titration',
+        },
+        {
+          id: 'bem-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Double alkylation and central ketone reduction',
+          description:
+            'Alkylate two equivalents of the gem-dimethyl ester enolate onto the dihalide linker to build the symmetrical carbon skeleton, then install and reduce the central carbonyl to the secondary alcohol. Symmetry is what makes the route short: both quaternary centres are set in the same step, and there is no stereocentre to control because the central hydroxyl-bearing carbon sits between two identical arms.',
+          dependsOnStepId: 'bem-w1',
+          reagentsAndBuffer:
+            'Lithium diisopropylamide in tetrahydrofuran at low temperature under nitrogen, 1,5-dibromopentane, sodium borohydride for the central ketone reduction, aqueous workup',
+        },
+        {
+          id: 'bem-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Ester hydrolysis and crystallisation of the diacid',
+          description:
+            'Hydrolyse both esters to the free dicarboxylic acid and crystallise. The homologue impurities from an imperfect linker are the species the release assay is written around, and they are separated here rather than earlier because the free diacid crystallises where the diester does not.',
+          dependsOnStepId: 'bem-w2',
+          reagentsAndBuffer:
+            'Aqueous sodium hydroxide in methanol, acidification and extraction, heptane/ethyl acetate recrystallisation, reversed-phase HPLC against the C14 and C16 homologue reference impurities, differential scanning calorimetry',
+        },
+        {
+          id: 'bem-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'ACSVL1-dependent activation in hepatocytes, with a myotube counter-screen',
+          description:
+            'Incubate with primary human hepatocytes and, in parallel, with differentiated human skeletal muscle myotubes, quantifying the bempedoyl-CoA thioester in both. This is the step that carries the entire clinical rationale: the drug is inert until an enzyme found in liver and not in muscle activates it, and demonstrating that the thioester forms in hepatocytes and not in myotubes is what distinguishes a designed tissue selectivity from an assumed one.',
+          dependsOnStepId: 'bem-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes and differentiated human skeletal muscle myotubes, recombinant ACSVL1 (SLC27A2) with ATP, coenzyme A and magnesium, LC-MS/MS quantification of bempedoyl-CoA against a stable-isotope internal standard',
+        },
+        {
+          id: 'bem-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'ATP-citrate lyase inhibition and LDL receptor upregulation',
+          description:
+            'Measure inhibition of recombinant ATP-citrate lyase by the thioester and, in parallel, measure fluorescent LDL uptake in hepatocytes cultured in lipoprotein-deficient serum. Both are needed for the same reason as on the statin pages: the enzyme assay shows the target is engaged, and the LDL uptake assay shows the cell responded by putting out more receptors, which is what actually lowers the blood number.',
+          dependsOnStepId: 'bem-w4',
+          reagentsAndBuffer:
+            'Recombinant human ATP-citrate lyase, citrate, coenzyme A, ATP and magnesium chloride with malate dehydrogenase-coupled NADH detection at 340 nm, HepG2 or primary hepatocytes in DMEM with lipoprotein-deficient fetal bovine serum, DiI-labelled human LDL',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bem-a1',
+        category: 'measured',
+        title: 'CLEAR Outcomes: the composite fell, driven by infarction and revascularisation',
+        laymanSummary:
+          'Nearly fourteen thousand people who could not take statins were randomised for over three years. The combined endpoint fell from 13.3% to 11.7%, and heart attacks from 4.8% to 3.7%.',
+        technicalDetails:
+          'CLEAR Outcomes randomised 13,970 statin-intolerant patients with or at high risk of cardiovascular disease: 6,992 to bempedoic acid and 6,978 to placebo, median follow-up 40.6 months. Mean baseline LDL was 139.0 mg/dL in both groups; at 6 months the reduction was 29.2 mg/dL greater on bempedoic acid, a 21.1 percentage-point difference in percent reduction. The primary composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or coronary revascularisation occurred in 819 (11.7%) against 927 (13.3%): hazard ratio 0.87 (95% CI 0.79 to 0.96), p=0.004. The three-component composite of cardiovascular death, non-fatal stroke or non-fatal infarction was 8.2% against 9.5% (0.85, 0.76 to 0.96, p=0.006). Fatal or non-fatal myocardial infarction was 3.7% against 4.8% (0.77, 0.66 to 0.91, p=0.002) and coronary revascularisation 6.2% against 7.6% (0.81, 0.72 to 0.92, p=0.001).',
+        evidenceSource:
+          'Nissen SE et al., CLEAR Outcomes, N Engl J Med 2023;388:1353-1364 (NCT02993406)',
+        doi: '10.1056/NEJMoa2215024',
+        measuredMetric:
+          'Four-component major adverse cardiovascular event composite and its components over a median 40.6 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bem-a2',
+        category: 'inferred',
+        title: 'Stroke and every measure of death showed no significant effect',
+        laymanSummary:
+          'Inside the winning composite, two of the four components did not move. Neither did cardiovascular death or death from any cause.',
+        technicalDetails:
+          'The published conclusion states plainly that bempedoic acid had no significant effects on fatal or non-fatal stroke, on death from cardiovascular causes, or on death from any cause. The composite was therefore carried by myocardial infarction (hazard ratio 0.77) and coronary revascularisation (0.81). Coronary revascularisation is a clinician-initiated procedure rather than a spontaneous event, so a composite in which it contributes substantially is partly measuring decisions as well as biology, particularly in an open lipid environment where the treating physician sees the LDL result. The absence of any mortality effect is expected for a lipid intervention of this size over this duration and is not a criticism of the trial. It is a limit on what the trial licenses being said, and it is why the approved indication names myocardial infarction and coronary revascularisation specifically rather than cardiovascular events in general.',
+        evidenceSource: 'Nissen SE et al., CLEAR Outcomes, N Engl J Med 2023;388:1353-1364',
+        doi: '10.1056/NEJMoa2215024',
+        inferredClaim:
+          'That bempedoic acid reduces cardiovascular events generally — stroke, cardiovascular death and all-cause death all showed no significant effect, and the composite was carried by infarction and revascularisation',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bem-a3',
+        category: 'measured',
+        title: 'The tissue-selectivity design is real, and it is a prodrug argument rather than a trial result',
+        laymanSummary:
+          'The drug is inert until an enzyme found in liver but not muscle switches it on. That is a genuine and deliberate design feature, and no trial has compared muscle symptoms head to head against a statin.',
+        technicalDetails:
+          'Bempedoic acid requires thioesterification to bempedoyl-CoA by very-long-chain acyl-CoA synthetase 1 (ACSVL1, gene SLC27A2) before it inhibits ATP-citrate lyase. That enzyme is expressed in liver and essentially absent from skeletal muscle, so the active species does not form in the tissue where statin-attributed symptoms are reported. In CLEAR Harmony, 2,230 patients on maximally tolerated statin therapy were randomised 2:1 to bempedoic acid or placebo for 52 weeks with safety as the primary endpoint: overall adverse events were 78.5% against 78.7% and serious adverse events 14.5% against 14.0%, though discontinuations for adverse events were higher on drug (10.9% against 7.1%) as was gout (1.2% against 0.3%). LDL fell 16.5% from baseline, a difference from placebo of -18.1 percentage points (p<0.001). What does not exist is a randomised head-to-head comparison of muscle symptoms between bempedoic acid and a statin, so the muscle claim rests on the activation biochemistry plus placebo-controlled tolerability, not on a comparison.',
+        evidenceSource:
+          'Ray KK et al., CLEAR Harmony, N Engl J Med 2019;380:1022-1032 (NCT02666664)',
+        doi: '10.1056/NEJMoa1803917',
+        measuredMetric:
+          'Adverse event and discontinuation rates over 52 weeks against placebo, and percentage LDL reduction at week 12',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bem-a4',
+        category: 'measured',
+        title: 'Gout, gallstones and biochemical changes are the price, and they are quantified',
+        laymanSummary:
+          'Gout occurred in about one in thirty-two patients against one in forty-eight on placebo, and gallstones in about one in forty-five against one in eighty-three. Uric acid, creatinine and liver enzymes all rose slightly.',
+        technicalDetails:
+          'In CLEAR Outcomes, gout occurred in 3.1% on bempedoic acid against 2.1% on placebo and cholelithiasis in 2.2% against 1.2%, alongside more frequent small increases in serum creatinine, uric acid and hepatic enzyme levels. In CLEAR Harmony the gout rates were 1.2% against 0.3% over 52 weeks and discontinuation for adverse events was 10.9% against 7.1%. The uric acid effect has a specific mechanism: bempedoic acid and its glucuronide inhibit the renal urate transporter OAT2, reducing urate excretion, which is a predictable pharmacological consequence rather than an idiosyncratic reaction. Tendon rupture is a separate labelled warning. Set against a 1.6 percentage-point absolute reduction in the primary composite over 40.6 months, these are the numbers a reader needs on the same page.',
+        evidenceSource:
+          'Nissen SE et al., N Engl J Med 2023;388:1353-1364; Ray KK et al., N Engl J Med 2019;380:1022-1032',
+        doi: '10.1056/NEJMoa2215024',
+        measuredMetric:
+          'Randomised incidence of gout, cholelithiasis and biochemical abnormalities against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bem-a5',
+        category: 'inferred',
+        title: 'The trial population was defined by self-reported statin intolerance',
+        laymanSummary:
+          'Everyone in the outcome trial was there because they said they could not take statins. Two independent n-of-1 programmes suggest most such symptoms are not caused by the drug.',
+        technicalDetails:
+          'CLEAR Outcomes enrolled patients "unable or unwilling to take statins", a definition that rests on the participant\'s and clinician\'s account rather than on a blinded rechallenge. The two randomised n-of-1 programmes on the atorvastatin page bear directly on that: SAMSON found symptom scores of 16.3 in statin months against 15.4 in placebo months in 60 people who had abandoned statins (p=0.388, nocebo ratio 0.90), and StatinWISE found a mean difference of -0.11 points across 151 people with previously severe statin-attributed muscle symptoms. Half the SAMSON participants restarted a statin within six months of seeing their own data. This does not diminish the CLEAR Outcomes result, which is a genuine randomised comparison against placebo in the population as recruited. It does mean that a substantial fraction of that population would, on the n-of-1 evidence, have tolerated a statin — and a statin costs about 2.3 cents a tablet against US$13.81 for this one.',
+        evidenceSource:
+          'Nissen SE et al., N Engl J Med 2023;388:1353-1364; Howard JP et al., J Am Coll Cardiol 2021;78:1210-1222; Herrett E et al., BMJ 2021;372:n135',
+        doi: '10.1016/j.jacc.2021.07.022',
+        inferredClaim:
+          'That everyone enrolled in CLEAR Outcomes genuinely could not tolerate a statin — the entry criterion was self-reported, and blinded n-of-1 trials find most such symptoms indistinguishable from placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bem-a6',
+        category: 'measured',
+        title: 'The LDL reduction is about half a statin\'s and the mechanism is two enzymes upstream',
+        laymanSummary:
+          'It lowers LDL by roughly a fifth, where a moderate statin dose lowers it by a third to a half. The blocked step sits above the one statins block, in the same pathway.',
+        technicalDetails:
+          'ATP-citrate lyase converts cytosolic citrate to acetyl-CoA and oxaloacetate, supplying the acetyl-CoA that feeds HMG-CoA synthase and then HMG-CoA reductase — the statin target — so bempedoic acid acts two enzymatic steps upstream in the same pathway. In CLEAR Outcomes the LDL difference at 6 months was 29.2 mg/dL, a 21.1 percentage-point difference in percent reduction from a mean baseline of 139.0 mg/dL. In CLEAR Harmony, added to maximally tolerated statin therapy, the reduction was 16.5% from baseline with a placebo-adjusted difference of -18.1 percentage points. Because the pathway is shared, the effect is partly attenuated on top of a statin and fully expressed when a statin is absent, which is consistent with the larger reduction seen in the statin-intolerant population.',
+        evidenceSource:
+          'Nissen SE et al., N Engl J Med 2023;388:1353-1364; Ray KK et al., N Engl J Med 2019;380:1022-1032',
+        doi: '10.1056/NEJMoa1803917',
+        measuredMetric:
+          'Absolute and percentage LDL cholesterol reduction against placebo, with and without background statin therapy',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed inactive, and it stays inactive everywhere except the liver',
+        laymanDesc:
+          'The tablet contains a molecule that does nothing on its own. It has to be chemically switched on, and the enzyme that does that is present in liver and essentially absent from muscle.',
+        molecularDetail:
+          'Bempedoic acid is absorbed and circulates as the free acid and its glucuronide, neither of which inhibits the target. Activation requires thioesterification to bempedoyl-CoA by very-long-chain acyl-CoA synthetase 1 (ACSVL1, SLC27A2), an enzyme expressed in liver and not meaningfully in skeletal muscle. Half-life is roughly 21 hours, supporting once-daily dosing.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It is carried into hepatocytes and converted there',
+        laymanDesc:
+          'Liver cells take it up and attach a coenzyme A group, which is the switch. Muscle cells take it up too but cannot perform that step, so nothing happens there.',
+        molecularDetail:
+          'Hepatic uptake involves OATP1B1 and OATP1B3, and conversion to the active thioester occurs in the cytoplasm. The tissue restriction is at the activation step rather than at uptake, which is the design distinction from statins: statins reach muscle in active form and depend on transporter-driven hepatic concentration to spare it, while bempedoic acid reaches muscle in a form that cannot act.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The activated form blocks a step above the statin target',
+        laymanDesc:
+          'It shuts down the enzyme that supplies the raw material for cholesterol manufacture, two steps before the point where statins act in the same chain.',
+        molecularDetail:
+          'Bempedoyl-CoA inhibits ATP-citrate lyase, which converts cytosolic citrate and coenzyme A to acetyl-CoA and oxaloacetate. Acetyl-CoA is the substrate for acetoacetyl-CoA thiolase and then HMG-CoA synthase, whose product HMG-CoA is the substrate for the reductase that statins inhibit. Blocking the supply rather than the reductase produces the same downstream sterol depletion by a different route.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The sterol-starved liver builds more LDL receptors',
+        laymanDesc:
+          'Short of cholesterol, the liver cell switches on the gene for the LDL catcher and puts more of them on its surface, pulling particles out of the blood.',
+        molecularDetail:
+          'Reduced hepatic cholesterol synthesis releases SREBP-2 through SCAP and the site-1 and site-2 proteases, raising LDLR transcription and surface receptor density, and clearance of circulating LDL increases. This is the identical downstream programme engaged by statins and by ezetimibe, which is why all three are additive with each other and why their effects on the blood number combine predictably.',
+        iconName: 'Repeat',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'LDL falls about a fifth, and heart attacks fell by about a quarter relative',
+        laymanDesc:
+          'Blood cholesterol drops by roughly a fifth. Over more than three years that produced fewer heart attacks and fewer stent procedures, and no measurable change in strokes or deaths.',
+        molecularDetail:
+          'In CLEAR Outcomes, LDL fell 29.2 mg/dL more than placebo at 6 months from a mean baseline of 139.0 mg/dL. Fatal or non-fatal myocardial infarction was 3.7% against 4.8% (hazard ratio 0.77) and coronary revascularisation 6.2% against 7.6% (0.81). Stroke, cardiovascular death and all-cause death showed no significant effect.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'CLEAR Outcomes (NCT02993406)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 40.6 months',
+        sampleSize: 13970,
+        primaryEndpoint:
+          'Composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or coronary revascularisation in statin-intolerant patients',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.87 (95% CI 0.79-0.96), P = 0.004; absolute difference 1.6 points',
+        unreportedAdverseSignals:
+          'No significant effect on fatal or non-fatal stroke, cardiovascular death or all-cause death. Gout 3.1% against 2.1% and cholelithiasis 2.2% against 1.2%. Enrolment rested on self-reported statin intolerance.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'CLEAR Harmony (NCT02666664)',
+        phase: 'Randomised double-blind placebo-controlled safety trial, 52 weeks',
+        sampleSize: 2230,
+        primaryEndpoint:
+          'Safety, with percentage change in LDL cholesterol at week 12 as the principal efficacy endpoint',
+        endpointMet: true,
+        statisticalPValue:
+          'LDL difference from placebo -18.1 percentage points (95% CI -20.0 to -16.1), P < 0.001',
+        unreportedAdverseSignals:
+          'Discontinuation for adverse events was 10.9% against 7.1% and gout 1.2% against 0.3%, despite no difference in overall or serious adverse events.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A primary composite of 11.7% against 13.3% in 13,970 statin-intolerant patients over a median 40.6 months',
+        'Fatal or non-fatal myocardial infarction 3.7% against 4.8%, and coronary revascularisation 6.2% against 7.6%',
+        'An LDL cholesterol reduction 29.2 mg/dL greater than placebo at 6 months from a mean baseline of 139.0 mg/dL',
+        'Gout 3.1% against 2.1% and cholelithiasis 2.2% against 1.2% in the same trial',
+      ],
+      unsupportedInferences: [
+        'That bempedoic acid reduces cardiovascular events generally — stroke, cardiovascular death and all-cause death all showed no significant effect',
+        'That it causes fewer muscle symptoms than a statin — the argument rests on activation biochemistry and placebo-controlled tolerability, with no head-to-head randomised comparison',
+        'That everyone in CLEAR Outcomes genuinely could not tolerate a statin — entry rested on self-report, and blinded n-of-1 trials find most such symptoms indistinguishable from placebo',
+        'That a composite containing coronary revascularisation is measuring biology alone — revascularisation is a clinician decision as well as an event',
+      ],
+      whatFailedInitially: [
+        'Stroke, one of the four components of the primary composite, showed no significant effect',
+        'Neither cardiovascular death nor death from any cause was significantly reduced over 40.6 months',
+        'CLEAR Harmony found more discontinuations for adverse events on drug than on placebo despite identical overall adverse event rates',
+      ],
+      realWorldOutcome: [
+        'The only lipid-lowering drug with a dedicated cardiovascular outcome trial conducted specifically in people who could not take statins',
+        'US$13.81 per 180 mg NEXLETOL tablet at United States pharmacy acquisition cost, effective 19 August 2026, with no generic',
+        'The approved indication names myocardial infarction and coronary revascularisation specifically, which matches what the trial actually demonstrated',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, and a fixed combination with ezetimibe',
+      description:
+        'Once daily with or without food. Half-life around 21 hours. It inhibits OATP1B1 and OATP1B3, so it raises exposure to simvastatin and pravastatin, and the label limits the doses of those statins when used together — an interaction that matters precisely because the drug is intended for people who may still be taking a low statin dose.',
+      safetyProfile:
+        'Hyperuricaemia and gout follow from inhibition of the renal urate transporter OAT2: gout occurred in 3.1% against 2.1% on placebo in CLEAR Outcomes. Cholelithiasis was 2.2% against 1.2%. Small increases in serum creatinine and hepatic enzymes are more frequent than on placebo. Tendon rupture is a labelled warning, with risk increased by age, renal impairment and prior fluoroquinolone use. The drug is not activated in skeletal muscle, which is the design rationale for its use in statin intolerance.',
+    },
+    commonQuestions: [
+      {
+        q: 'I get muscle pain on statins. Is this the answer?',
+        a: 'It is a reasonable option and the honest sequence puts something else first. The two randomised n-of-1 programmes on the atorvastatin page took people who had already abandoned statins over muscle symptoms and gave them alternating months of drug and placebo. SAMSON found symptom scores of 16.3 in statin months against 15.4 in placebo months, statistically indistinguishable, and half those participants were back on a statin six months later. StatinWISE found a mean difference of -0.11 points across 151 similar people. So the first question is whether a blinded rechallenge would settle it, because a statin costs about 2.3 cents a tablet against US$13.81 for this one. For the minority whose symptoms are genuinely pharmacological, bempedoic acid is the only drug with a cardiovascular outcome trial run specifically in this population.',
+        auditNote:
+          'The entry criterion for CLEAR Outcomes was self-reported statin intolerance. That does not weaken the randomised comparison inside the trial; it does affect who the result applies to.',
+      },
+      {
+        q: 'Why would this avoid muscle side effects when statins do not?',
+        a: 'Because it arrives inactive. Bempedoic acid does nothing until an enzyme attaches a coenzyme A group to it, and that enzyme — very-long-chain acyl-CoA synthetase 1 — is present in liver and essentially absent from skeletal muscle. A statin reaches muscle in its active form and relies on being concentrated in the liver by a transporter to spare muscle; bempedoic acid reaches muscle in a form that cannot do anything. That is a genuine and deliberate design feature rather than a marketing claim. What is worth stating precisely is that no trial has randomised anyone between bempedoic acid and a statin and compared muscle symptoms, so the evidence is the activation biochemistry plus placebo-controlled tolerability data, not a head-to-head result.',
+      },
+      {
+        q: 'Does it stop me dying?',
+        a: 'No trial has shown that, and the paper says so directly. CLEAR Outcomes reported that bempedoic acid had no significant effects on fatal or non-fatal stroke, on death from cardiovascular causes, or on death from any cause. What it did reduce was heart attacks, from 4.8% to 3.7%, and coronary revascularisation, from 7.6% to 6.2%, over a median of more than three years. Those two carried the composite. That is a real result and a limited one, and it is why the approved indication names myocardial infarction and coronary revascularisation specifically rather than making a general cardiovascular claim.',
+      },
+      {
+        q: 'Will it give me gout?',
+        a: 'It raises the risk, by a mechanism that is understood rather than mysterious. Bempedoic acid and its glucuronide inhibit OAT2, the transporter that helps the kidney excrete urate, so serum uric acid rises. In CLEAR Outcomes gout occurred in 3.1% on the drug against 2.1% on placebo over a median 40.6 months — roughly one extra case per hundred people — and in the shorter CLEAR Harmony trial the rates were 1.2% against 0.3%. Gallstones were also more common, 2.2% against 1.2%. Those numbers belong next to the 1.6 percentage-point reduction in the primary composite, because they came out of the same trial.',
+      },
+      {
+        q: 'How much does it lower cholesterol compared with a statin?',
+        a: 'Roughly half as much. In CLEAR Outcomes, in people not taking a statin, LDL fell 29.2 mg/dL more than placebo — a 21.1 percentage-point difference from a mean baseline of 139 mg/dL. A moderate-intensity statin typically lowers LDL by 30 to 50%. Added on top of maximally tolerated statin therapy in CLEAR Harmony the reduction was smaller, about 18 percentage points against placebo, which makes sense because the two act on the same pathway two enzymes apart. It combines well with ezetimibe, which acts on absorption rather than synthesis, and the two are sold as a fixed combination for that reason.',
+      },
+      {
+        q: 'Why is it so expensive?',
+        a: 'It is on patent with no generic, and the CMS NADAC file effective 19 August 2026 lists NEXLETOL at US$13.81 per 180 mg tablet — about six hundred times a 10 mg generic atorvastatin tablet and about two hundred times a generic ezetimibe tablet. No verified per-dose manufacturing cost could be cited, so this page does not state one. What can be said about the chemistry is that the molecule is symmetrical and built by joining two identical fragments to a five-carbon linker, then hydrolysing both esters — a genuinely short route with no stereocentres to control, which is unusual among the newer drugs on this site.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Nissen SE et al. Bempedoic acid and cardiovascular outcomes in statin-intolerant patients (CLEAR Outcomes). N Engl J Med 2023;388:1353-1364',
+        identifier: '10.1056/NEJMoa2215024',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ray KK et al. Safety and efficacy of bempedoic acid to reduce LDL cholesterol (CLEAR Harmony). N Engl J Med 2019;380:1022-1032',
+        identifier: '10.1056/NEJMoa1803917',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Howard JP et al. Side effect patterns in a crossover trial of statin, placebo, and no treatment (SAMSON). J Am Coll Cardiol 2021;78:1210-1222',
+        identifier: '10.1016/j.jacc.2021.07.022',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Herrett E et al. Statin treatment and muscle symptoms: series of randomised, placebo controlled n-of-1 trials (StatinWISE). BMJ 2021;372:n135',
+        identifier: '10.1136/bmj.n135',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: NEXLETOL (bempedoic acid), NDA 211616, original approval 21 February 2020',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=211616',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 10472693 — bempedoic acid structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10472693',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 22. Finerenone — a non-steroidal mineralocorticoid antagonist that succeeded where
+  //     spironolactone missed, on composites carried by their softest components.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'finerenone',
+    name: 'Finerenone',
+    tradeName: 'Kerendia',
+    sponsor: 'Bayer',
+    targetGene: 'NR3C2',
+    targetProtein: 'Mineralocorticoid receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2021,
+    indication:
+      'Reduction of the risk of sustained eGFR decline, end-stage kidney disease, cardiovascular death, non-fatal myocardial infarction and hospitalisation for heart failure in adults with chronic kidney disease associated with type 2 diabetes; and reduction of cardiovascular death and heart failure events in adults with heart failure and left ventricular ejection fraction of 40% or greater',
+    patientFriendlyIndication:
+      'Kidney disease caused by type 2 diabetes, and heart failure with a normal or near-normal pumping fraction',
+    anatomicalSite:
+      'Mineralocorticoid receptors in kidney tubule, cardiac fibroblasts and vascular tissue',
+    conditionContext: {
+      conditionExplainer:
+        'Aldosterone acts on the mineralocorticoid receptor to make the kidney retain sodium and excrete potassium, and separately drives inflammation and fibrosis in the heart, vessels and kidney. Steroidal blockers of that receptor were built from the hormone itself and inherited its off-target endocrine activity. Finerenone is not a steroid, and that changes both what it binds and where it goes.',
+      whyItMatters:
+        'Spironolactone missed its primary endpoint in heart failure with preserved ejection fraction. Finerenone hit its primary endpoint in the same territory a decade later, in more patients over more time. Whether that reflects a better molecule or a better-designed trial is a real question, and the components of the composites are where the answer has to be looked for.',
+      whoTakesThis:
+        'People with chronic kidney disease and type 2 diabetes already on maximum tolerated renin-angiotensin blockade, and people with heart failure and an ejection fraction of 40% or above. Increasingly used alongside an SGLT2 inhibitor rather than instead of one.',
+      clinicalGoals:
+        'Slow kidney disease progression and reduce heart failure events. In FIDELIO-DKD the kidney composite fell; in FIGARO-DKD the cardiovascular composite fell, driven by heart failure hospitalisation; in FINEARTS-HF the heart failure composite fell without a change in cardiovascular death.',
+    },
+    oneSentenceVerdict:
+      'A non-steroidal aldosterone blocker with three positive large trials and no demonstrated mortality benefit in any of them: the kidney composite fell 17.8% against 21.1% in 5,674 patients, the cardiovascular composite 12.4% against 14.2% in 7,352 driven mainly by heart failure hospitalisation, and the heart failure composite by a rate ratio of 0.84 in 6,001 with cardiovascular death unchanged at 8.1% against 8.7%.',
+    laymanHowItWorks:
+      'Aldosterone tells the kidney to hold salt and drives scarring in the heart and kidney. Finerenone blocks the receptor it acts on, but it is not built from a steroid skeleton, so it does not also block the male hormone receptor and it distributes evenly between heart and kidney instead of concentrating in the kidney. Less scarring, less protein leaking into the urine, and fewer heart failure admissions.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 83,
+    substitutes: {
+      summary:
+        'Finerenone is brand-only and costs orders of magnitude more per tablet than generic spironolactone. Spironolactone and eplerenone block the same receptor for pennies but have no positive trial in either indication finerenone holds. The SGLT2 inhibitors work on a different mechanism in the same populations and are used together with it rather than instead.',
+      conventionalRx: [
+        {
+          name: 'Spironolactone',
+          class: 'Steroidal mineralocorticoid receptor antagonist',
+          howItCompares:
+            'The same receptor at a tiny fraction of the price, with a 30% mortality reduction in severe heart failure with reduced ejection fraction that finerenone has never demonstrated anywhere. In heart failure with preserved ejection fraction it missed its primary endpoint in TOPCAT at p=0.14, which is the gap FINEARTS-HF was designed to fill. No head-to-head trial exists.',
+          typicalCost: 'A few cents per tablet at United States pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: cheapest by orders of magnitude, and the only mineralocorticoid antagonist with a mortality result. Cons: gynaecomastia in 10% of men in RALES, menstrual irregularity, and it missed in preserved ejection fraction and after myocardial infarction.',
+        },
+        {
+          name: 'Empagliflozin or dapagliflozin',
+          class: 'SGLT2 inhibitor',
+          howItCompares:
+            'Reduce heart failure events and slow kidney decline by an unrelated mechanism, with their own large trials across the ejection fraction range and in chronic kidney disease with and without diabetes. In current practice the two classes are combined rather than chosen between.',
+          typicalCost:
+            'US$11.19 per 10 mg JARDIANCE tablet and US$12.08 per 10 mg FARXIGA tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: additive mechanism, no hyperkalaemia. Cons: genital infections and euglycaemic ketoacidosis, and the two classes together compound the cost.',
+        },
+        {
+          name: 'Maximised renin-angiotensin blockade alone',
+          class: 'The background therapy in every finerenone trial',
+          howItCompares:
+            'All three finerenone trials in diabetic kidney disease required renin-angiotensin blockade titrated to the maximum labelled dose that was tolerated, before randomisation. Finerenone was therefore always tested as an addition, never as a replacement.',
+          typicalCost:
+            'US$0.018 per 10 mg lisinopril tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheap, established. Cons: it was the floor in every trial on this page, so the finerenone benefit is on top of it and cannot be obtained by optimising it further.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Potassium monitoring is the price of admission',
+          action:
+            'Blood potassium is checked before starting and periodically afterwards, and potassium-based salt substitutes should be avoided.',
+          patientImpact:
+            'Hyperkalaemia-related discontinuation occurred in 2.3% on finerenone against 0.9% on placebo in FIDELIO-DKD and 1.2% against 0.4% in FIGARO-DKD. Those rates are lower than the doubling of hyperkalaemia seen with spironolactone in TOPCAT, and they are not zero.',
+          clinicalPrecaution:
+            'The trials monitored potassium systematically and excluded patients whose baseline potassium was above threshold. The spironolactone page documents what happened when a trial result was rolled out without those safeguards.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CCOC1=NC=C(C2=C1[C@@H](C(=C(N2)C)C(=O)N)C3=C(C=C(C=C3)C#N)OC)C',
+      chemicalFormula: 'C21H22N4O3',
+      molecularWeight: '378.4 g/mol',
+      targetReceptorAffinity:
+        'A non-steroidal, selective mineralocorticoid receptor antagonist built on a dihydronaphthyridine scaffold rather than on a steroid nucleus. Because it shares no skeleton with aldosterone it has essentially no affinity for androgen, progesterone or glucocorticoid receptors, which removes the gynaecomastia and menstrual effects of the steroidal antagonists. Its binding mode is bulky and destabilises the receptor-coactivator interface rather than merely competing for the pocket, and unlike spironolactone it distributes roughly equally between heart and kidney instead of concentrating in the kidney.',
+      structureSource: {
+        label:
+          'PubChem CID 60150535 (finerenone) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/60150535',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fin-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of the cyanomethoxybenzaldehyde and the aminopyridine',
+          description:
+            'Assay 4-cyano-2-methoxybenzaldehyde for positional isomers and the ethoxy-methylaminopyridine fragment for regiochemistry and residual metal. The nitrile and methoxy substitution pattern on the pendant aryl ring is what fills the pocket that distinguishes mineralocorticoid from glucocorticoid receptor selectivity, and an isomer has the same formula and a different selectivity profile.',
+          reagentsAndBuffer:
+            '4-cyano-2-methoxybenzaldehyde reference standard, the ethoxy-substituted aminopyridine intermediate, HPLC with UV detection, inductively coupled plasma mass spectrometry for residual palladium, Karl Fischer titration',
+        },
+        {
+          id: 'fin-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Hantzsch-type cyclisation to the racemic dihydronaphthyridine',
+          description:
+            'Condense the aryl aldehyde, the aminopyridine and a cyanoacetamide-derived partner to build the fused dihydronaphthyridine in one operation. The reaction sets the single stereocentre without facial control, so the product is racemic and the wanted (S)-enantiomer has to be separated afterwards — the opposite of the approach used for sitagliptin, where the stereocentre is set catalytically.',
+          dependsOnStepId: 'fin-w1',
+          reagentsAndBuffer:
+            '2-cyanoacetamide with a tertiary amine base in ethanol or isopropanol at reflux under nitrogen, controlled water content, thin-layer chromatography monitoring against the oxidised aromatic naphthyridine by-product',
+        },
+        {
+          id: 'fin-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Enantiomer separation and control of the aromatised by-product',
+          description:
+            'Resolve the racemate by preparative chiral chromatography or by diastereomeric salt formation, then crystallise. Two impurities dominate the specification: the (R)-enantiomer, which has substantially lower receptor affinity, and the fully aromatised naphthyridine formed by oxidation of the dihydro ring, which is a distinct compound rather than a stereoisomer.',
+          dependsOnStepId: 'fin-w2',
+          reagentsAndBuffer:
+            'Simulated moving bed chromatography on an amylose or cellulose derivative stationary phase, ethanol/heptane eluent, ethyl acetate recrystallisation, chiral and achiral reversed-phase HPLC against the (R)-enantiomer and the aromatised naphthyridine reference standards',
+        },
+        {
+          id: 'fin-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Tissue distribution between cardiac and renal cells, and CYP3A4 handling',
+          description:
+            'Compare uptake and retention in cardiac fibroblasts and renal tubular cells, and measure clearance in CYP3A4-expressing systems. Distribution is the point rather than a formality: steroidal antagonists concentrate in kidney relative to heart, and the roughly even distribution claimed for finerenone is the proposed reason its anti-fibrotic effect on cardiac tissue is achievable at doses that do not maximally block the renal receptor.',
+          dependsOnStepId: 'fin-w3',
+          reagentsAndBuffer:
+            'Primary human cardiac fibroblasts and renal proximal tubular epithelial cells, cryopreserved hepatocytes with recombinant CYP3A4 microsomes and an NADPH regenerating system, ketoconazole as a CYP3A4 inhibitor control, LC-MS/MS quantification',
+        },
+        {
+          id: 'fin-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Mineralocorticoid antagonism with a full steroid receptor counter-screen',
+          description:
+            'Measure inhibition of aldosterone-driven transcription through a hormone response element reporter, and counter-screen against androgen, progesterone and glucocorticoid receptors. The counter-screen is the entire selectivity claim for this molecule: the clinical advantage over spironolactone is the absence of gynaecomastia and menstrual disturbance, and that is a receptor selectivity ratio rather than a clinical trial finding.',
+          dependsOnStepId: 'fin-w4',
+          reagentsAndBuffer:
+            'HEK293 or CV-1 cells transfected with human NR3C2, AR, PGR or NR3C1 plus an MMTV-luciferase reporter, aldosterone, dihydrotestosterone, progesterone and dexamethasone as respective agonists, charcoal-stripped fetal bovine serum, spironolactone and eplerenone as comparators',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fin-a1',
+        category: 'measured',
+        title: 'FIDELIO-DKD: kidney progression fell 17.8% against 21.1%',
+        laymanSummary:
+          'In more than five and a half thousand patients with diabetic kidney disease already on maximum standard therapy, finerenone reduced the combined kidney endpoint by about a sixth relative.',
+        technicalDetails:
+          'FIDELIO-DKD randomised patients with chronic kidney disease and type 2 diabetes 1:1 to finerenone or placebo. Eligibility required either a urinary albumin-to-creatinine ratio of 30 to under 300 with eGFR 25 to under 60 and diabetic retinopathy, or a ratio of 300 to 5,000 with eGFR 25 to under 75. All patients were on renin-angiotensin blockade titrated before randomisation to the maximum labelled dose that did not cause unacceptable side effects. Over a median 2.6 years the primary composite of kidney failure, a sustained decrease of at least 40% in eGFR, or death from renal causes occurred in 504 of 2,833 (17.8%) against 600 of 2,841 (21.1%): hazard ratio 0.82 (95% CI 0.73 to 0.93), p=0.001. The key secondary composite of cardiovascular death, non-fatal infarction, non-fatal stroke or heart failure hospitalisation occurred in 367 (13.0%) against 420 (14.8%): hazard ratio 0.86 (0.75 to 0.99), p=0.03. Adverse event frequency was similar overall; hyperkalaemia-related discontinuation was 2.3% against 0.9%.',
+        evidenceSource:
+          'Bakris GL et al., FIDELIO-DKD, N Engl J Med 2020;383:2219-2229 (NCT02540993)',
+        doi: '10.1056/NEJMoa2025845',
+        measuredMetric:
+          'Composite of kidney failure, sustained 40% eGFR decline or renal death over a median 2.6 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fin-a2',
+        category: 'measured',
+        title: 'FIGARO-DKD: the cardiovascular composite fell, driven by heart failure admissions',
+        laymanSummary:
+          'A second trial of more than seven thousand patients measured cardiovascular events as its main endpoint. It fell, and the paper states the benefit came mainly from fewer heart failure hospitalisations.',
+        technicalDetails:
+          'FIGARO-DKD randomised 7,437 patients with type 2 diabetes and either stage 2 to 4 chronic kidney disease with moderately elevated albuminuria or stage 1 or 2 with severely elevated albuminuria, all on maximum tolerated renin-angiotensin blockade. Over a median 3.4 years the primary composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or hospitalisation for heart failure occurred in 458 of 3,686 (12.4%) against 519 of 3,666 (14.2%): hazard ratio 0.87 (95% CI 0.76 to 0.98), p=0.03, with the paper stating the benefit was driven primarily by a lower incidence of heart failure hospitalisation (hazard ratio 0.71, 0.56 to 0.90). The first secondary composite of kidney failure, sustained 40% eGFR decline or renal death occurred in 350 (9.5%) against 395 (10.8%): hazard ratio 0.87 (0.76 to 1.01) — an interval that includes no effect. Hyperkalaemia-related discontinuation was 1.2% against 0.4%.',
+        evidenceSource:
+          'Pitt B et al., FIGARO-DKD, N Engl J Med 2021;385:2252-2263 (NCT02545049)',
+        doi: '10.1056/NEJMoa2110956',
+        measuredMetric:
+          'Composite of cardiovascular death, non-fatal infarction, non-fatal stroke or heart failure hospitalisation over a median 3.4 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fin-a3',
+        category: 'measured',
+        title: 'FINEARTS-HF: succeeded where spironolactone missed, on a total-events endpoint',
+        laymanSummary:
+          'In six thousand patients with heart failure and a normal or near-normal pumping fraction, the combined endpoint fell by about a sixth. Cardiovascular deaths were 8.1% against 8.7%, which is not a demonstrated difference.',
+        technicalDetails:
+          'FINEARTS-HF randomised patients with heart failure and left ventricular ejection fraction of 40% or greater 1:1 to finerenone at a maximum of 20 or 40 mg once daily, or placebo, on top of usual therapy. Over a median 32 months there were 1,083 primary-outcome events in 624 of 3,003 patients on finerenone against 1,283 events in 719 of 2,998 on placebo: rate ratio 0.84 (95% CI 0.74 to 0.95), p=0.007. Total worsening heart failure events were 842 against 1,024: rate ratio 0.82 (0.71 to 0.94), p=0.006. Cardiovascular death occurred in 8.1% against 8.7%: hazard ratio 0.93 (0.78 to 1.11) — an interval including no effect. Finerenone was associated with increased hyperkalaemia and reduced hypokalaemia. The primary endpoint counted total recurrent events rather than time to first, a design choice that increases statistical power and weights patients with multiple admissions more heavily.',
+        evidenceSource:
+          'Solomon SD et al., FINEARTS-HF, N Engl J Med 2024;391:1475-1485 (NCT04435626)',
+        doi: '10.1056/NEJMoa2407107',
+        measuredMetric:
+          'Total worsening heart failure events plus cardiovascular death, as a rate ratio over a median 32 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fin-a4',
+        category: 'inferred',
+        title: 'Every composite was carried by its softest component, and no trial changed mortality',
+        laymanSummary:
+          'Across three large trials the endpoints that moved were kidney function decline and heart failure admissions. Cardiovascular death never moved, and total death was never shown to.',
+        technicalDetails:
+          'FIDELIO-DKD: the primary composite is dominated by sustained 40% eGFR decline, a laboratory-defined event rather than kidney failure itself. FIGARO-DKD: the paper states the cardiovascular benefit was driven primarily by heart failure hospitalisation (hazard ratio 0.71), and its kidney secondary composite gave 0.87 with an interval reaching 1.01. FINEARTS-HF: the primary was total worsening heart failure events plus cardiovascular death, and cardiovascular death alone gave 0.93 (0.78 to 1.11). Hospitalisation is a clinician decision as well as a patient event, and a 40% eGFR decline is a threshold crossing on a blood test. None of this makes the results less real — slowing kidney decline and keeping people out of hospital are worth doing in their own right. It does mean that a summary describing finerenone as reducing cardiovascular death or mortality is describing something none of the three trials demonstrated.',
+        evidenceSource:
+          'Bakris GL et al., N Engl J Med 2020;383:2219-2229; Pitt B et al., N Engl J Med 2021;385:2252-2263; Solomon SD et al., N Engl J Med 2024;391:1475-1485',
+        doi: '10.1056/NEJMoa2110956',
+        inferredClaim:
+          'That finerenone reduces cardiovascular death or mortality — the cardiovascular death hazard ratios were 0.93 in FINEARTS-HF and never separately significant in the kidney trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fin-a5',
+        category: 'inferred',
+        title: 'Finerenone has never been compared with spironolactone, which costs a fraction as much',
+        laymanSummary:
+          'The two block the same receptor. One is a brand-only drug with three modern trials; the other is a generic costing cents with a mortality result the newer drug has never matched. No trial has compared them.',
+        technicalDetails:
+          'Every finerenone trial used placebo on a background of maximised renin-angiotensin blockade. None used spironolactone or eplerenone as a comparator, so the entire case for the non-steroidal class over the steroidal one rests on indirect comparison plus receptor-selectivity and tissue-distribution arguments. The available indirect facts point in both directions: spironolactone reduced all-cause death from 46% to 35% in severe heart failure with reduced ejection fraction, which finerenone has never demonstrated in any population; and spironolactone missed its primary endpoint in preserved ejection fraction in TOPCAT (p=0.14) and after myocardial infarction in CLEAR SYNERGY, where finerenone succeeded in the first of those. The selectivity difference is real and measurable at the receptor — no androgen antagonism, therefore no gynaecomastia — and the hyperkalaemia rates in the finerenone trials are lower than the doubling seen in TOPCAT, though across different populations and monitoring protocols. What none of this is, is a randomised comparison.',
+        evidenceSource:
+          'Bakris GL et al., N Engl J Med 2020;383:2219-2229; Pitt B et al., RALES, N Engl J Med 1999;341:709-717; Pitt B et al., TOPCAT, N Engl J Med 2014;370:1383-1392',
+        doi: '10.1056/NEJM199909023411001',
+        inferredClaim:
+          'That finerenone is superior to spironolactone — no head-to-head randomised trial exists, and spironolactone holds the only mortality result in the class',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fin-a6',
+        category: 'measured',
+        title: 'Hyperkalaemia is lower than with the steroidal antagonists and is still the limiting effect',
+        laymanSummary:
+          'About one in forty patients stopped finerenone because of high potassium in the kidney trials, against about one in a hundred on placebo. That is a smaller problem than with spironolactone, and it is the same problem.',
+        technicalDetails:
+          'Hyperkalaemia-related discontinuation of trial regimen occurred in 2.3% on finerenone against 0.9% on placebo in FIDELIO-DKD, and 1.2% against 0.4% in FIGARO-DKD; overall adverse event frequency did not differ substantially in either. FINEARTS-HF reported increased hyperkalaemia and reduced hypokalaemia. For comparison, TOPCAT recorded hyperkalaemia in 18.7% on spironolactone against 9.1% on placebo — a different measure in a different population with a different monitoring schedule, so the comparison is indicative rather than quantitative. All the finerenone trials required maximised renin-angiotensin blockade at baseline, which itself raises potassium, and all excluded patients whose baseline potassium exceeded a threshold. The spironolactone page records what happened when a mineralocorticoid antagonist result was rolled out into practice without those safeguards: hyperkalaemia hospitalisations in one Canadian province rose from 2.4 to 11.0 per 1,000 eligible patients.',
+        evidenceSource:
+          'Bakris GL et al., N Engl J Med 2020;383:2219-2229; Pitt B et al., N Engl J Med 2021;385:2252-2263; Juurlink DN et al., N Engl J Med 2004;351:543-551',
+        doi: '10.1056/NEJMoa2025845',
+        measuredMetric:
+          'Hyperkalaemia-related discontinuation rates against placebo across two randomised trials',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed completely and cleared by one liver enzyme',
+        laymanDesc:
+          'Essentially all of the tablet is absorbed, and a single liver enzyme removes it. Drugs that block that enzyme raise levels substantially.',
+        molecularDetail:
+          'Oral bioavailability is about 44% after first-pass metabolism, with essentially complete absorption. Clearance is dominated by CYP3A4 with a minor CYP2C8 contribution, and the half-life is 2 to 3 hours — short, so the sustained effect depends on receptor occupancy rather than on drug persistence. Strong CYP3A4 inhibitors are contraindicated in the label.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It distributes evenly between heart and kidney rather than concentrating in kidney',
+        laymanDesc:
+          'Steroidal blockers pile up in the kidney. This one spreads roughly evenly between kidney and heart tissue, which is the argument for why it affects cardiac scarring at doses that do not maximally block the kidney.',
+        molecularDetail:
+          'Being non-steroidal and lacking the steroid transport characteristics of spironolactone and its metabolites, finerenone shows an approximately balanced tissue distribution between cardiac and renal tissue in preclinical work, whereas the steroidal antagonists concentrate in kidney. Its target, the mineralocorticoid receptor, is a cytoplasmic nuclear-receptor-family transcription factor present in tubular epithelium, cardiac fibroblasts and myocytes, and vascular smooth muscle.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It jams the receptor open in a shape that cannot recruit its partners',
+        laymanDesc:
+          'Rather than simply competing for the pocket, its bulky shape holds the receptor in a form that cannot assemble the machinery it needs to switch genes on.',
+        molecularDetail:
+          'The bulky dihydronaphthyridine scaffold binds the ligand-binding domain and destabilises the receptor-coactivator interface, protruding into helix 12 and preventing the agonist conformation required for coactivator recruitment. Because it shares no skeleton with aldosterone, affinity for androgen, progesterone and glucocorticoid receptors is negligible, which removes the endocrine off-target effects that limit spironolactone.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Sodium retention and pro-fibrotic gene programmes both fall',
+        laymanDesc:
+          'The kidney holds less salt and keeps more potassium, and in the heart and kidney the genes driving inflammation and scarring are turned down.',
+        molecularDetail:
+          'Reduced mineralocorticoid receptor signalling lowers transcription of the epithelial sodium channel subunits and serum and glucocorticoid-regulated kinase 1, producing natriuresis and potassium retention. In cardiac fibroblasts and renal cells it reduces transcription of connective tissue growth factor, transforming growth factor beta targets, plasminogen activator inhibitor-1 and inflammatory mediators, which is the proposed basis for reduced albuminuria and slowed eGFR decline rather than for the diuretic effect.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Kidney decline slows and heart failure admissions fall; death does not change',
+        laymanDesc:
+          'Across three large trials the consistent findings are slower kidney deterioration and fewer heart failure hospitalisations. Cardiovascular deaths were not reduced in any of them.',
+        molecularDetail:
+          'FIDELIO-DKD: kidney composite 17.8% against 21.1%, hazard ratio 0.82. FIGARO-DKD: cardiovascular composite 12.4% against 14.2%, hazard ratio 0.87, driven by heart failure hospitalisation at 0.71. FINEARTS-HF: total heart failure events plus cardiovascular death, rate ratio 0.84, with cardiovascular death alone at 0.93 (0.78 to 1.11).',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'FIDELIO-DKD (NCT02540993)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 2.6 years',
+        sampleSize: 5674,
+        primaryEndpoint:
+          'Composite of kidney failure, sustained decrease of at least 40% in eGFR, or death from renal causes',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.82 (95% CI 0.73-0.93), P = 0.001',
+        unreportedAdverseSignals:
+          'The composite is dominated by a laboratory threshold (40% eGFR decline) rather than by kidney failure itself. Hyperkalaemia-related discontinuation was 2.3% against 0.9%.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'FIGARO-DKD (NCT02545049)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 3.4 years',
+        sampleSize: 7437,
+        primaryEndpoint:
+          'Composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or hospitalisation for heart failure',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.87 (95% CI 0.76-0.98), P = 0.03',
+        unreportedAdverseSignals:
+          'The paper states the benefit was driven primarily by heart failure hospitalisation (HR 0.71). The kidney secondary composite gave 0.87 with an interval reaching 1.01.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'FINEARTS-HF (NCT04435626)',
+        phase: 'Randomised double-blind placebo-controlled trial, median 32 months',
+        sampleSize: 6001,
+        primaryEndpoint:
+          'Composite of total worsening heart failure events and death from cardiovascular causes, ejection fraction ≥40%',
+        endpointMet: true,
+        statisticalPValue: 'Rate ratio 0.84 (95% CI 0.74-0.95), P = 0.007',
+        unreportedAdverseSignals:
+          'Cardiovascular death alone was 8.1% against 8.7%, HR 0.93 (0.78-1.11). The endpoint counted total recurrent events rather than time to first, which increases power and weights repeat admitters more heavily.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A kidney composite of 17.8% against 21.1% in 5,674 patients with diabetic kidney disease over a median 2.6 years',
+        'A cardiovascular composite of 12.4% against 14.2% in 7,352 analysed patients, driven by heart failure hospitalisation at a hazard ratio of 0.71',
+        'A total heart failure event rate ratio of 0.84 in 6,001 patients with ejection fraction 40% or above',
+        'Hyperkalaemia-related discontinuation of 2.3% against 0.9% and 1.2% against 0.4% in the two kidney trials',
+      ],
+      unsupportedInferences: [
+        'That finerenone reduces cardiovascular death — the hazard ratio was 0.93 (0.78 to 1.11) in FINEARTS-HF and cardiovascular death was never separately significant in the kidney trials',
+        'That finerenone is superior to spironolactone — no head-to-head trial exists, and spironolactone holds the only mortality result in the class',
+        'That the FIDELIO-DKD result represents prevented kidney failure — the composite is dominated by a 40% eGFR decline threshold rather than by dialysis or transplantation',
+        'That the balanced cardiac and renal tissue distribution explains the clinical difference from spironolactone — a mechanistic argument, not a tested one',
+      ],
+      whatFailedInitially: [
+        'The kidney secondary composite in FIGARO-DKD gave a hazard ratio of 0.87 with a confidence interval reaching 1.01',
+        'Cardiovascular death alone was not significantly reduced in FINEARTS-HF',
+        'Spironolactone, the cheap steroidal predecessor, missed in the same preserved-ejection-fraction territory that FINEARTS-HF was designed to address, and no trial has compared the two',
+      ],
+      realWorldOutcome: [
+        'Approved for diabetic kidney disease in 2021 and extended to heart failure with ejection fraction of 40% or above after FINEARTS-HF',
+        'Brand-only, at an acquisition cost orders of magnitude above generic spironolactone per tablet',
+        'Now commonly combined with an SGLT2 inhibitor and a renin-angiotensin blocker, which means three separately-priced drugs acting on overlapping outcomes with no factorial trial isolating each contribution',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet in two strengths',
+      description:
+        'Once daily with or without food. The half-life is only 2 to 3 hours, so the effect depends on receptor occupancy rather than on sustained plasma concentration. Clearance is dominated by CYP3A4, and strong inhibitors of that enzyme are contraindicated while strong inducers are to be avoided.',
+      safetyProfile:
+        'Hyperkalaemia is the defining risk and the reason potassium is checked before starting and periodically after: hyperkalaemia-related discontinuation was 2.3% against 0.9% on placebo in FIDELIO-DKD and 1.2% against 0.4% in FIGARO-DKD. It is contraindicated with strong CYP3A4 inhibitors and in adrenal insufficiency. Because it is not a steroid, it does not cause the gynaecomastia, breast pain or menstrual irregularity associated with spironolactone. All trials required maximised renin-angiotensin blockade at baseline, which itself raises potassium.',
+    },
+    commonQuestions: [
+      {
+        q: 'How is this different from spironolactone?',
+        a: 'They block the same receptor by different chemistry, and the difference shows up in two places. Spironolactone is built from a steroid skeleton, so it also blocks androgen receptors — which is why 10% of men in RALES developed breast tenderness or enlargement against 1% on placebo. Finerenone shares no skeleton with aldosterone and has negligible affinity for androgen, progesterone or glucocorticoid receptors, so that effect does not occur. It also distributes roughly evenly between heart and kidney where the steroidal drugs concentrate in kidney. What does not exist is a trial comparing them. Spironolactone costs cents and holds the only mortality result in the class, a reduction in all-cause death from 46% to 35% in severe heart failure. Finerenone is brand-priced and has three positive trials in territory where spironolactone either missed or was never tested.',
+        auditNote:
+          'Both drugs are on this site. Reading their two pages together is the closest thing available to the head-to-head trial that has not been run.',
+      },
+      {
+        q: 'Does it stop me dying?',
+        a: 'None of the three trials showed that. In FINEARTS-HF, which measured it most directly in 6,001 patients over a median of 32 months, cardiovascular death occurred in 8.1% on finerenone against 8.7% on placebo — hazard ratio 0.93, with a confidence interval from 0.78 to 1.11 that comfortably includes no effect. In the two kidney trials, cardiovascular death sat inside composites and was not separately significant. What the trials did show is slower kidney function decline and fewer heart failure hospitalisations, which are worth having on their own terms. A description of this drug as reducing cardiovascular death is describing something the evidence does not contain.',
+      },
+      {
+        q: 'What does "40% eGFR decline" mean, and does it matter?',
+        a: 'It means your measured kidney filtration rate fell by two fifths from where it started, confirmed on a repeat test. It is a laboratory threshold rather than an event a patient experiences, and it dominates the primary endpoint of FIDELIO-DKD, where kidney failure and death from renal causes were much rarer. It is a reasonable surrogate — people who cross it are substantially more likely to reach dialysis later — and it is not the same thing as preventing dialysis. When you read that finerenone reduced kidney disease progression by 18% relative, that is mostly a statement about how many people crossed a line on a blood test over two and a half years.',
+      },
+      {
+        q: 'Why do I need this if I am already on an ACE inhibitor and an SGLT2 inhibitor?',
+        a: 'Because all three finerenone trials were run on top of maximised renin-angiotensin blockade, so their results are additive to it by construction rather than by assumption. The SGLT2 inhibitors are a different matter: they act on a wholly separate mechanism and have their own large trials in overlapping populations, and the two classes are increasingly given together. What has not been done is a factorial trial isolating how much each contributes when both are present, so the combined benefit is an addition of two separately-measured effects rather than a measured combined effect. It is also three separately-priced drugs.',
+      },
+      {
+        q: 'How dangerous is the potassium problem?',
+        a: 'Smaller than with spironolactone and not negligible. In FIDELIO-DKD, 2.3% of patients on finerenone stopped the drug because of high potassium against 0.9% on placebo; in FIGARO-DKD it was 1.2% against 0.4%. Overall adverse event rates did not differ substantially in either. For contrast, TOPCAT recorded hyperkalaemia in 18.7% on spironolactone against 9.1% — a different measure in a different population, so the comparison is indicative rather than exact. What matters practically is that every finerenone trial checked potassium systematically and excluded people whose baseline level was too high. The spironolactone page documents what happened when a mineralocorticoid antagonist was rolled into practice without those safeguards, and the answer was measurable at population level.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for finerenone could be cited. It is brand-only with no generic anywhere, at an acquisition cost orders of magnitude above generic spironolactone. The route runs through a one-pot cyclisation that builds the fused ring system but sets its single stereocentre without control, so the racemate has to be resolved by chiral chromatography afterwards — a step that adds real cost and that a catalytic asymmetric route would avoid. That is process chemistry and it is not a cost figure, and this page does not turn one into the other.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Bakris GL et al. Effect of finerenone on chronic kidney disease outcomes in type 2 diabetes (FIDELIO-DKD). N Engl J Med 2020;383:2219-2229',
+        identifier: '10.1056/NEJMoa2025845',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pitt B et al. Cardiovascular events with finerenone in kidney disease and type 2 diabetes (FIGARO-DKD). N Engl J Med 2021;385:2252-2263',
+        identifier: '10.1056/NEJMoa2110956',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Solomon SD et al. Finerenone in heart failure with mildly reduced or preserved ejection fraction (FINEARTS-HF). N Engl J Med 2024;391:1475-1485',
+        identifier: '10.1056/NEJMoa2407107',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pitt B et al. The effect of spironolactone on morbidity and mortality in patients with severe heart failure (RALES). N Engl J Med 1999;341:709-717',
+        identifier: '10.1056/NEJM199909023411001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pitt B et al. Spironolactone for heart failure with preserved ejection fraction (TOPCAT). N Engl J Med 2014;370:1383-1392',
+        identifier: '10.1056/NEJMoa1313731',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: KERENDIA (finerenone), NDA 215341, original approval 9 July 2021',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=215341',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 60150535 — finerenone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/60150535',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 23. Resmetirom — the first drug approved for MASH, on a liver biopsy score under accelerated
+  //     approval, with the outcome trial that must confirm it still running.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'resmetirom',
+    name: 'Resmetirom',
+    tradeName: 'Rezdiffra',
+    sponsor: 'Madrigal Pharmaceuticals',
+    targetGene: 'THRB',
+    targetProtein: 'Thyroid hormone receptor beta',
+    modality: 'Small Molecule',
+    approvalStatus: 'Accelerated Approval',
+    approvalYear: 2024,
+    indication:
+      'Adults with non-cirrhotic non-alcoholic steatohepatitis with moderate to advanced liver fibrosis (consistent with stages F2 to F3), in conjunction with diet and exercise',
+    patientFriendlyIndication: 'Fatty liver disease with inflammation and moderate to advanced scarring',
+    anatomicalSite: 'Hepatocyte nucleus (liver)',
+    conditionContext: {
+      conditionExplainer:
+        'In metabolic dysfunction-associated steatohepatitis, fat accumulates in liver cells, provokes inflammation, and over years lays down scar tissue. The liver has its own thyroid hormone signalling system, running mainly through the beta form of the receptor, which regulates how the organ burns fat and clears cholesterol. In this disease that signalling is relatively suppressed.',
+      whyItMatters:
+        'Resmetirom is the first drug ever approved for this disease, and it was approved on a liver biopsy score rather than on any clinical event. The trial that must confirm a clinical benefit is still enrolling and following patients. That structure — approval now, confirmation later — is exactly what accelerated approval is for, and it is also what makes this the most provisional page in this group.',
+      whoTakesThis:
+        'Adults with biopsy-confirmed non-cirrhotic steatohepatitis and fibrosis at stage F2 or F3. Not indicated in cirrhosis, where it has not been shown to be safe or effective.',
+      clinicalGoals:
+        'Resolve steatohepatitis and improve fibrosis on biopsy, which is what the approval rests on. Whether that translates into fewer people progressing to cirrhosis, liver failure, transplantation or death is the question MAESTRO-NASH OUTCOMES exists to answer.',
+    },
+    oneSentenceVerdict:
+      'The first approved treatment for MASH, granted accelerated approval on histology alone: steatohepatitis resolved in 25.9% and 29.9% at two doses against 9.7% on placebo, and fibrosis improved by at least one stage in 24.2% and 25.9% against 14.2%, with no clinical outcome measured and the confirmatory trial not yet reported.',
+    laymanHowItWorks:
+      'Thyroid hormone tells the liver to burn fat and clear cholesterol, but flooding the body with thyroid hormone damages heart and bone. Resmetirom is shaped to be taken up almost entirely by the liver and to prefer the version of the thyroid receptor the liver mostly uses, so it delivers that instruction to the liver and largely nowhere else. Liver fat falls, and on biopsy inflammation and scarring improve.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    substitutes: {
+      summary:
+        'Resmetirom is the only approved drug for this disease and there is no generic. Its realistic comparators are weight loss, which has the strongest histological evidence of anything, and the GLP-1 receptor agonists, which produce large weight loss and are being studied in the same disease. None of the alternatives, and not resmetirom either, has an outcome trial that has reported.',
+      conventionalRx: [
+        {
+          name: 'Weight loss through diet and exercise',
+          class: 'The comparator built into the label',
+          howItCompares:
+            'The approved indication reads "in conjunction with diet and exercise", so weight loss is not an alternative to the drug but the background it was added to. Substantial weight loss is the intervention with the longest-standing histological evidence in this disease, and the placebo arms of the resmetirom trials were also receiving lifestyle advice.',
+          typicalCost: 'No acquisition cost',
+          prosAndCons:
+            'Pros: no drug cost, no drug risk, and it addresses the metabolic cause. Cons: sustained weight loss is difficult to achieve and to maintain, which is why a pharmacological option was sought at all.',
+        },
+        {
+          name: 'Semaglutide or another GLP-1 receptor agonist',
+          class: 'Incretin mimetic, injected or oral',
+          howItCompares:
+            'Produces large sustained weight loss and improves the metabolic substrate of the disease rather than acting on the liver directly. It has histological trials in this disease and, unlike resmetirom, an established cardiovascular outcome evidence base in adjacent populations. No head-to-head comparison exists.',
+          typicalCost: 'Brand-priced injectables and oral products, without a generic',
+          prosAndCons:
+            'Pros: addresses the underlying metabolic disorder and the cardiovascular risk that kills most of these patients. Cons: gastrointestinal effects, injection for most products, and no reported liver outcome trial either.',
+        },
+        {
+          name: 'Statin therapy for the cardiovascular risk',
+          class: 'HMG-CoA reductase inhibitor',
+          howItCompares:
+            'Does not treat the liver disease but treats what most of these patients actually die of. Cardiovascular disease, not liver failure, is the leading cause of death in this population, which is worth stating on a page about a liver drug.',
+          typicalCost:
+            'US$0.023 per 10 mg generic atorvastatin tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: large outcome evidence base, negligible cost, and safe in this population. Cons: it does nothing for the histology, which is what the resmetirom approval is about.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'The indication stops at cirrhosis',
+          action:
+            'Ask which fibrosis stage your biopsy or non-invasive testing put you at.',
+          patientImpact:
+            'The approval covers non-cirrhotic disease with fibrosis consistent with stages F2 to F3. It has not been shown to be safe or effective in cirrhosis, which is stage F4, and that is where liver-related events actually concentrate.',
+          clinicalPrecaution:
+            'This page states the licensed boundary. Where a person falls relative to it is a matter for histology or validated non-invasive assessment.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(C)C1=CC(=NNC1=O)OC2=C(C=C(C=C2Cl)N3C(=O)NC(=O)C(=N3)C#N)Cl',
+      chemicalFormula: 'C17H12Cl2N6O4',
+      molecularWeight: '435.2 g/mol',
+      targetReceptorAffinity:
+        'A liver-directed, beta-selective thyroid hormone receptor agonist. Selectivity is achieved twice over: the molecule is preferentially taken up by hepatocytes through organic anion transporting polypeptides, and within the cell it favours the beta isoform of the receptor over the alpha isoform that predominates in heart and bone. Both layers are needed, because the reason thyroid hormone itself was never usable for this purpose is that alpha-receptor activation in cardiac and skeletal tissue causes tachyarrhythmia and bone loss.',
+      structureSource: {
+        label:
+          'PubChem CID 15981237 (resmetirom) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/15981237',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'res-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of the dichlorophenol ether and the cyanoazauracil fragment',
+          description:
+            'Assay the 3,5-dichloro-substituted phenol ether precursor for chlorination pattern and the 6-azauracil carbonitrile for residual cyanide and tautomeric purity. The two flanking chlorines are what force the diaryl ether into the twisted conformation the receptor recognises, and a mono- or tri-chlorinated impurity has a different conformation and a different selectivity between receptor isoforms.',
+          reagentsAndBuffer:
+            'The dichlorophenoxy pyridazinone intermediate reference standard, 3-cyano-6-azauracil reference standard, HPLC with UV detection, ion chromatography for chloride and cyanide, Karl Fischer titration',
+        },
+        {
+          id: 'res-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Diaryl ether coupling and azauracil installation',
+          description:
+            'Form the diaryl ether linking the isopropyl-pyridazinone to the dichlorinated aryl ring, then install the cyanoazauracil head group. The pyridazinone replaces the phenolic hydroxyl of thyroid hormone and the azauracil replaces its amino acid arm; both substitutions exist to keep receptor binding while removing the transport properties that would carry the molecule to heart and bone.',
+          dependsOnStepId: 'res-w1',
+          reagentsAndBuffer:
+            'Copper or palladium catalysis with a diamine or phosphine ligand and a carbonate base in dimethylformamide or dimethylacetamide under nitrogen, controlled temperature; inductively coupled plasma mass spectrometry to track residual catalyst',
+        },
+        {
+          id: 'res-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Catalyst removal and crystallisation with regioisomer control',
+          description:
+            'Scavenge residual transition metal to the elemental impurity limit and crystallise, controlling the diaryl ether regioisomer. Metal removal is a numerical release specification for any catalytically coupled drug substance, and the regioisomer arising from coupling at the alternative phenolic position is the impurity the specification names.',
+          dependsOnStepId: 'res-w2',
+          reagentsAndBuffer:
+            'Thiol-functionalised silica scavenger and activated carbon, ethanol/water or acetonitrile recrystallisation, inductively coupled plasma mass spectrometry for residual copper and palladium, reversed-phase HPLC against the regioisomer and the des-chloro reference impurities',
+        },
+        {
+          id: 'res-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'OATP-mediated hepatocyte uptake against a cardiomyocyte counter-screen',
+          description:
+            'Measure uptake into primary human hepatocytes and into OATP1B1-transfected cells, and in parallel measure exposure in cardiomyocytes and osteoblasts. This step is the drug: thyroid hormone analogues have been abandoned repeatedly because they reached heart and bone, and the entire premise of resmetirom is that transporter-driven hepatic uptake plus beta-isoform preference keeps it out of those tissues. Demonstrating hepatic selectivity is therefore a safety experiment rather than a pharmacokinetic one.',
+          dependsOnStepId: 'res-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes, HEK293 cells transfected with SLCO1B1 and SLCO1B3, human induced pluripotent stem cell-derived cardiomyocytes and primary osteoblasts, rifamycin SV as pan-OATP inhibitor, LC-MS/MS quantification',
+        },
+        {
+          id: 'res-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'THRB versus THRA reporter selectivity and hepatic lipid readout',
+          description:
+            'Measure transcriptional activation through a thyroid hormone response element reporter in cells expressing THRB and, separately, THRA, and measure triglyceride content and beta-oxidation in lipid-loaded hepatocytes. Both halves are required: the isoform ratio is the safety claim, and the hepatic lipid measurement is the pharmacological effect that the biopsy endpoint is meant to reflect.',
+          dependsOnStepId: 'res-w4',
+          reagentsAndBuffer:
+            'HepG2 or CV-1 cells transfected with human THRB or THRA plus a DR4 thyroid hormone response element luciferase reporter, charcoal-stripped fetal bovine serum, triiodothyronine as the reference full agonist, oleate-palmitate lipid loading of primary hepatocytes, triglyceride quantification and carbon-14 palmitate oxidation assay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'res-a1',
+        category: 'measured',
+        title: 'MAESTRO-NASH: both histological endpoints beat placebo at 52 weeks',
+        laymanSummary:
+          'Roughly a quarter to three tenths of patients had their steatohepatitis resolve on the drug against one in ten on placebo, and about a quarter had their scarring improve by at least one stage against one in seven.',
+        technicalDetails:
+          'MAESTRO-NASH randomised patients 1:1:1 to once-daily resmetirom 80 mg, resmetirom 100 mg or placebo, with 966 forming the primary analysis population (322, 323 and 321 respectively). At week 52, NASH resolution — including a reduction of at least 2 points in the NAFLD activity score, which ranges from 0 to 8 — with no worsening of fibrosis was achieved in 25.9% on 80 mg and 29.9% on 100 mg against 9.7% on placebo, p<0.001 for both. Fibrosis improvement by at least one stage with no worsening of the NAFLD activity score was achieved in 24.2% and 25.9% against 14.2%, p<0.001 for both. LDL cholesterol fell 13.6% and 16.3% from baseline to week 24 against 0.1% on placebo, p<0.001 for both. Diarrhoea and nausea were more frequent on resmetirom. Serious adverse events were similar across groups: 10.9%, 12.7% and 11.5%.',
+        evidenceSource:
+          'Harrison SA et al., MAESTRO-NASH, N Engl J Med 2024;390:497-509 (NCT03900429)',
+        doi: '10.1056/NEJMoa2309000',
+        measuredMetric:
+          'NASH resolution without worsening fibrosis, and fibrosis improvement by at least one stage, on liver biopsy at week 52',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'res-a2',
+        category: 'inferred',
+        title: 'The approval rests on a biopsy score, and no clinical outcome has been measured',
+        laymanSummary:
+          'Nothing in the trial that led to approval counted a death, a liver transplant, an episode of liver failure or a case of liver cancer. The endpoints were what a pathologist saw under a microscope at one year.',
+        technicalDetails:
+          'Both primary endpoints of MAESTRO-NASH are histological readings at week 52. The NAFLD activity score is a composite of steatosis, lobular inflammation and hepatocellular ballooning scored 0 to 8 by a pathologist; fibrosis staging is a separate ordinal scale. Both are subject to sampling variability — a liver biopsy samples roughly one fifty-thousandth of the organ — and to inter-reader variability, which the trial addressed by using paired reads but cannot eliminate. What was not measured at all: progression to cirrhosis, hepatic decompensation, hepatocellular carcinoma, liver transplantation and death. The drug received accelerated approval on 14 March 2024 precisely because the surrogate was accepted as reasonably likely to predict clinical benefit, with a confirmatory requirement attached. MAESTRO-NASH OUTCOMES (NCT05500222), a trial in compensated cirrhosis with a clinical composite, is active and has not reported.',
+        evidenceSource:
+          'Harrison SA et al., N Engl J Med 2024;390:497-509; Drugs@FDA REZDIFFRA NDA 217785, approved 14 March 2024; ClinicalTrials.gov NCT05500222',
+        doi: '10.1056/NEJMoa2309000',
+        inferredClaim:
+          'That improving a liver biopsy score at one year prevents cirrhosis, liver failure or death — the premise of the accelerated approval, and the thing the confirmatory trial exists to test',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'res-a3',
+        category: 'measured',
+        title: 'The placebo response was 9.7% and 14.2%, which is why the trial had to be this large',
+        laymanSummary:
+          'Roughly one in ten placebo patients had their steatohepatitis resolve and one in seven had their scarring improve, without any drug at all. That is the background against which the drug effect has to be read.',
+        technicalDetails:
+          'In the placebo arm, NASH resolution with no worsening of fibrosis occurred in 9.7% and fibrosis improvement by at least one stage in 14.2% at 52 weeks. Both figures reflect a mixture of genuine improvement on lifestyle intervention, regression to the mean, and biopsy sampling and reading variability in an organ where disease is patchy. The absolute treatment differences are therefore 16.2 and 20.2 percentage points for resolution at the two doses, and 10.0 and 11.7 points for fibrosis improvement. Those are substantial effects for a disease with no prior approved therapy. They also mean that in the fibrosis endpoint, roughly three in five patients who improved on the 100 mg dose would have been expected to improve anyway, which is what a 14.2% placebo rate implies.',
+        evidenceSource: 'Harrison SA et al., MAESTRO-NASH, N Engl J Med 2024;390:497-509',
+        doi: '10.1056/NEJMoa2309000',
+        measuredMetric:
+          'Placebo-arm rates of NASH resolution and fibrosis improvement at week 52, and the resulting absolute treatment differences',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'res-a4',
+        category: 'measured',
+        title: 'MAESTRO-NAFLD-1: a 52-week safety trial with lipid and imaging endpoints, not histology',
+        laymanSummary:
+          'A companion trial of more than a thousand patients tested safety and measured cholesterol, liver fat by scan and liver stiffness. It did not use biopsies and did not measure inflammation or scarring directly.',
+        technicalDetails:
+          'MAESTRO-NAFLD-1 was a 52-week randomised double-blind placebo-controlled phase 3 trial with three double-blind arms — resmetirom 100 mg (n=325), 80 mg (n=327) and placebo (n=320) — plus an open-label 100 mg arm (n=171). The primary endpoint was incidence of treatment-emergent adverse events, which occurred in 86.1%, 88.4% and 81.8% of the double-blind arms and 86.5% of the open-label arm; the excess over placebo was diarrhoea and nausea at treatment initiation. Key secondary endpoints as least-squares mean differences from placebo at 80 mg and 100 mg were LDL cholesterol -11.1% and -12.6%, apolipoprotein B -15.6% and -18.0%, triglycerides -15.4% and -20.4%, 16-week hepatic fat -34.9% and -38.6% (all p<0.0001), liver stiffness -1.02 and -1.70, and 52-week hepatic fat -28.8 and -33.9. These are imaging and laboratory measures; the trial enrolled patients with presumed rather than biopsy-confirmed disease.',
+        evidenceSource:
+          'Harrison SA et al., MAESTRO-NAFLD-1, Nat Med 2023;29:2919-2928 (NCT04197479)',
+        doi: '10.1038/s41591-023-02603-1',
+        measuredMetric:
+          'Treatment-emergent adverse event incidence, and changes in LDL cholesterol, apolipoprotein B, triglycerides, hepatic fat and liver stiffness at 52 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'res-a5',
+        category: 'inferred',
+        title: 'The confirmatory outcome trial is running in a population the label excludes',
+        laymanSummary:
+          'The trial that must prove clinical benefit is enrolling patients with cirrhosis. The approved indication stops short of cirrhosis. So the confirmation, when it comes, will be in a different group.',
+        technicalDetails:
+          'MAESTRO-NASH OUTCOMES (NCT05500222) is a phase 3 trial evaluating the effect of resmetirom on clinical outcomes, with an estimated enrolment of 845 participants, listed as active and not recruiting. It enrols patients with well-compensated MASH cirrhosis. The approved indication, by contrast, covers non-cirrhotic disease with fibrosis consistent with stages F2 to F3, and the label states the drug has not been shown to be safe or effective in cirrhosis. If the outcome trial succeeds it will demonstrate clinical benefit in a population outside the current indication, and if it fails it will not directly refute the histological result in the indicated population. Either way the inference from one to the other is a bridging assumption, not a measurement. This is a factual description of two trial populations, not a criticism of the design, which is constrained by the fact that clinical events accrue too slowly at stage F2 to F3 to power a trial of reasonable size.',
+        evidenceSource:
+          'ClinicalTrials.gov NCT05500222 (MAESTRO-NASH OUTCOMES); Drugs@FDA REZDIFFRA NDA 217785',
+        inferredClaim:
+          'That the confirmatory outcome trial will confirm benefit in the indicated non-cirrhotic F2-F3 population — it is enrolling patients with compensated cirrhosis, which the label excludes',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'res-a6',
+        category: 'measured',
+        title: 'The LDL reduction is real and is not what the drug was approved for',
+        laymanSummary:
+          'Resmetirom lowers LDL cholesterol by around 13 to 16%, along with apolipoprotein B and triglycerides. That is a genuine effect on the thing most of these patients actually die of, and no trial has counted those events.',
+        technicalDetails:
+          'In MAESTRO-NASH the change in LDL cholesterol from baseline to week 24 was -13.6% on 80 mg and -16.3% on 100 mg against 0.1% on placebo, p<0.001 for both. In MAESTRO-NAFLD-1 the least-squares mean differences from placebo were LDL -11.1% and -12.6%, apolipoprotein B -15.6% and -18.0%, and triglycerides -15.4% and -20.4%. The mechanism is direct: thyroid hormone receptor beta activation in hepatocytes upregulates the LDL receptor and stimulates fatty acid oxidation, which is the same downstream programme statins and ezetimibe engage from different starting points. Cardiovascular disease rather than liver failure is the leading cause of death in this population, so a lipid effect of this size is potentially the most clinically consequential thing the drug does — and no trial has measured a cardiovascular event on this drug. A generic statin produces a larger LDL reduction for about 2.3 cents a tablet.',
+        evidenceSource:
+          'Harrison SA et al., N Engl J Med 2024;390:497-509; Harrison SA et al., Nat Med 2023;29:2919-2928',
+        doi: '10.1038/s41591-023-02603-1',
+        measuredMetric:
+          'Percentage change in LDL cholesterol, apolipoprotein B and triglycerides against placebo',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, and taken up almost entirely by the liver',
+        laymanDesc:
+          'The molecule is built so that liver cells pull it in and other tissues largely do not. That is the whole reason it can be given at all.',
+        molecularDetail:
+          'Hepatic uptake is mediated by organic anion transporting polypeptides, principally OATP1B1 and OATP1B3, giving preferential distribution to liver. Resmetirom is a substrate and inhibitor of several transporters, so the label carries interaction limits with certain statins. Earlier thyromimetics failed in development because they reached heart and bone; transporter-driven hepatic selectivity is the design response.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Inside the hepatocyte it reaches a receptor sitting on DNA',
+        laymanDesc:
+          'The target is not on the cell surface. It is a receptor already parked on the genes it controls, holding them switched off until a hormone arrives.',
+        molecularDetail:
+          'Thyroid hormone receptor beta, encoded by THRB, occupies thyroid hormone response elements as a heterodimer with the retinoid X receptor, bound to the corepressors NCoR and SMRT in the unliganded state. The beta isoform predominates in liver, while the alpha isoform predominates in heart and bone — the distinction that makes isoform selectivity a safety property.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It activates the liver isoform and largely leaves the cardiac one alone',
+        laymanDesc:
+          'The drug is shaped to fit the version of the receptor the liver uses in preference to the version the heart and bones use, which is what stops it behaving like an overdose of thyroid hormone.',
+        molecularDetail:
+          'The dichlorinated diaryl ether core preserves the twisted conformation thyroid hormone adopts in the receptor pocket, while the pyridazinone and cyanoazauracil substitutions replace the phenol and amino acid groups of triiodothyronine. Together with hepatic uptake, this produces selective THRB agonism. Full thyroid hormone action through THRA in cardiac and skeletal tissue causes tachyarrhythmia and bone loss, which is why unselective thyromimetics were never usable.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The liver burns more fat and clears more LDL',
+        laymanDesc:
+          'The activated receptor switches on genes for burning fat inside the cell and for building more LDL collection receptors on its surface. Liver fat falls and blood cholesterol falls with it.',
+        molecularDetail:
+          'Corepressor release and coactivator recruitment raise transcription of genes for mitochondrial and peroxisomal fatty acid beta-oxidation, mitochondrial biogenesis and autophagy, and upregulate LDLR and CPT1A. Hepatic triglyceride content falls, and reduced lipotoxic stress is the proposed route to less hepatocellular ballooning and lobular inflammation, and in turn to reduced fibrogenesis.',
+        iconName: 'Repeat',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Biopsy scores improve at one year, and nothing clinical has yet been counted',
+        laymanDesc:
+          'A quarter to three tenths of patients had their steatohepatitis resolve and about a quarter had their scarring improve. Whether that means fewer people go on to liver failure is not yet known.',
+        molecularDetail:
+          'At week 52, NASH resolution with no worsening of fibrosis occurred in 25.9% and 29.9% against 9.7%, and fibrosis improvement by at least one stage in 24.2% and 25.9% against 14.2%. Hepatic fat by imaging fell 28.8% and 33.9% at 52 weeks in MAESTRO-NAFLD-1. No trial has reported progression to cirrhosis, hepatic decompensation, hepatocellular carcinoma, transplantation or death.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MAESTRO-NASH (NCT03900429)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled trial, 52-week biopsy analysis',
+        sampleSize: 966,
+        primaryEndpoint:
+          'Co-primary at week 52: NASH resolution with no worsening of fibrosis, and fibrosis improvement by at least one stage with no worsening of the NAFLD activity score',
+        endpointMet: true,
+        statisticalPValue:
+          'Resolution 25.9% and 29.9% against 9.7%; fibrosis improvement 24.2% and 25.9% against 14.2%; P < 0.001 for all four comparisons',
+        unreportedAdverseSignals:
+          'Both endpoints are histological readings at one year. No clinical outcome — cirrhosis, decompensation, hepatocellular carcinoma, transplantation or death — was measured. Placebo rates were 9.7% and 14.2%, reflecting lifestyle response, regression to the mean and biopsy variability.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'MAESTRO-NAFLD-1 (NCT04197479)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled safety trial, 52 weeks',
+        sampleSize: 1143,
+        primaryEndpoint: 'Incidence of treatment-emergent adverse events over 52 weeks',
+        endpointMet: true,
+        statisticalPValue:
+          'Treatment-emergent adverse events 86.1% and 88.4% against 81.8% on placebo; secondary lipid and hepatic fat endpoints P < 0.0001',
+        unreportedAdverseSignals:
+          'Enrolled patients with presumed rather than biopsy-confirmed disease, and measured imaging and laboratory endpoints rather than histology. The excess over placebo was diarrhoea and nausea at initiation.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'MAESTRO-NASH OUTCOMES (NCT05500222)',
+        phase: 'Phase 3 clinical outcomes trial, active and not recruiting',
+        sampleSize: 845,
+        primaryEndpoint:
+          'Composite of clinical outcomes in well-compensated MASH cirrhosis — as designed, not yet reported',
+        endpointMet: false,
+        statisticalPValue:
+          'No result. The trial is active and not recruiting as of August 2026, and is the confirmatory requirement attached to the accelerated approval.',
+        unreportedAdverseSignals:
+          '`endpointMet: false` here means "no result exists yet", not "the endpoint was missed". The trial also enrols a cirrhotic population the current label excludes.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'NASH resolution without worsening fibrosis in 25.9% and 29.9% against 9.7% on placebo at 52 weeks',
+        'Fibrosis improvement by at least one stage in 24.2% and 25.9% against 14.2% at 52 weeks',
+        'LDL cholesterol reduction of 13.6% and 16.3% from baseline against 0.1% on placebo at week 24',
+        'Hepatic fat reduction by imaging of 28.8% and 33.9% at 52 weeks against placebo',
+      ],
+      unsupportedInferences: [
+        'That improving a liver biopsy score prevents cirrhosis, liver failure, liver cancer, transplantation or death — the premise of the accelerated approval and not yet tested',
+        'That the confirmatory outcome trial will validate the indicated population — it is enrolling patients with compensated cirrhosis, which the label excludes',
+        'That the LDL reduction translates into fewer cardiovascular events — no trial on this drug has counted one, in a population whose commonest cause of death is cardiovascular',
+        'That the 52-week histological effect is sustained — no longer-term biopsy comparison against placebo has been reported',
+      ],
+      whatFailedInitially: [
+        'No outcome has failed, because none has been measured — the confirmatory trial has not reported',
+        'Every earlier unselective thyromimetic was abandoned in development for cardiac and skeletal toxicity through the alpha receptor isoform',
+        'The placebo arm achieved fibrosis improvement in 14.2% of patients, which is the size of the background effect any histological trial in this disease has to beat',
+      ],
+      realWorldOutcome: [
+        'The first drug ever approved for MASH, granted accelerated approval on 14 March 2024 under NDA 217785',
+        'Brand-only with no generic; the label restricts use to non-cirrhotic disease with fibrosis consistent with stages F2 to F3',
+        'This is the most provisional entry in this group: the approval is conditional by design and the evidence that must sustain it does not yet exist',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, two strengths, dosed by body weight',
+      description:
+        'Once daily with or without food. The strength used depends on body weight because exposure scales with it. Hepatic uptake through organic anion transporting polypeptides is what confines the drug largely to liver, and those same transporters are the basis of its interaction limits with certain statins.',
+      safetyProfile:
+        'Diarrhoea and nausea were more frequent than placebo and cluster at treatment initiation. Serious adverse events in MAESTRO-NASH were 10.9% on 80 mg, 12.7% on 100 mg and 11.5% on placebo. The label carries warnings for drug-induced liver toxicity and for gallbladder-related adverse reactions, and restricts co-administered doses of certain statins because resmetirom affects the transporters that clear them. It has not been shown to be safe or effective in cirrhosis, which is outside the indication.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does this drug stop my liver disease progressing?',
+        a: 'Nobody knows yet, and saying so plainly is the honest position. MAESTRO-NASH measured two things at one year, both read from a liver biopsy: whether the steatohepatitis had resolved and whether the scarring had improved by at least one stage. On the first, 25.9% and 29.9% at the two doses against 9.7% on placebo. On the second, 24.2% and 25.9% against 14.2%. Those are real, statistically solid differences in the first approved treatment for a disease that had none. What the trial did not count is a single case of cirrhosis, liver failure, liver cancer, transplantation or death. The drug has accelerated approval, which exists precisely for this situation: the surrogate is accepted as reasonably likely to predict benefit, and a confirmatory trial is required. That trial has not reported.',
+        auditNote:
+          'This is the most provisional page in this group, and deliberately so. An accelerated approval is a conditional statement and this page reports it as one.',
+      },
+      {
+        q: 'Why did a placebo group improve too?',
+        a: 'Three things contribute and they are worth separating. Everyone in the trial received diet and exercise advice, and weight loss genuinely improves this disease histologically. Regression to the mean plays a part, because patients were enrolled on the basis of a biopsy showing active disease and disease activity fluctuates. And a liver biopsy samples roughly one fifty-thousandth of the organ in a disease that is patchy, so a repeat biopsy from a different site can read differently without anything having changed. Together those produced 9.7% resolution and 14.2% fibrosis improvement on placebo. The treatment differences are 16 to 20 points for resolution and 10 to 12 points for fibrosis, which is what the drug adds on top.',
+      },
+      {
+        q: 'Why not just give thyroid hormone?',
+        a: 'Because it would work on the liver and damage the heart and the skeleton. Thyroid hormone does exactly what is wanted in hepatocytes — burns fat, clears LDL — but the same hormone acting on the alpha form of the receptor in heart and bone causes atrial fibrillation, tachycardia and bone loss. Every earlier attempt at a thyroid hormone mimic ran into that. Resmetirom solves it twice over: the molecule is built to be taken into liver cells by specific transporters and largely not elsewhere, and once inside it prefers the beta form of the receptor that liver mostly uses over the alpha form that heart and bone use. The selectivity is the drug.',
+      },
+      {
+        q: 'Should I be taking a statin as well?',
+        a: 'That question is more important than it sounds on a page about a liver drug. In this population, cardiovascular disease rather than liver failure is the leading cause of death. Resmetirom does lower LDL cholesterol, by 13.6% and 16.3% at the two doses against 0.1% on placebo, along with apolipoprotein B and triglycerides — a real effect by a direct mechanism. But no trial of resmetirom has counted a heart attack or a stroke, whereas the statins have an outcome evidence base across 26 randomised trials and 170,000 participants and cost about 2.3 cents a tablet. One caution: resmetirom affects the transporters that clear some statins, so the label limits the doses of certain ones when they are combined.',
+      },
+      {
+        q: 'What is the difference between F2, F3 and cirrhosis, and why does it matter here?',
+        a: 'They are stages of liver scarring. F2 is moderate fibrosis, F3 is advanced fibrosis with bridging, and F4 is cirrhosis. The approved indication covers non-cirrhotic disease with fibrosis consistent with F2 to F3, and the label states the drug has not been shown to be safe or effective in cirrhosis. It matters twice over: because cirrhosis is where liver-related events actually concentrate, and because the confirmatory outcome trial required by the accelerated approval is enrolling patients with compensated cirrhosis — a population outside the current indication. Whatever that trial finds, moving its result back onto the F2 to F3 group is a bridging assumption rather than a measurement.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for resmetirom could be cited, and the drug is brand-only with no generic anywhere. What can be described is the route: a metal-catalysed diaryl ether coupling followed by installation of a cyanoazauracil head group, with residual catalyst removal as a numerical release specification. That is a more involved synthesis than most of the drugs on this site and considerably less involved than a biologic. Process complexity is not a price and neither is a price a cost, so this page states neither.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Harrison SA et al. A phase 3, randomized, controlled trial of resmetirom in NASH with liver fibrosis (MAESTRO-NASH). N Engl J Med 2024;390:497-509',
+        identifier: '10.1056/NEJMoa2309000',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Harrison SA et al. Resmetirom for nonalcoholic fatty liver disease: a randomized, double-blind, placebo-controlled phase 3 trial (MAESTRO-NAFLD-1). Nat Med 2023;29:2919-2928',
+        identifier: '10.1038/s41591-023-02603-1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'MAESTRO-NASH OUTCOMES: a phase 3 study to evaluate the effect of resmetirom on clinical outcomes in patients with well-compensated MASH cirrhosis',
+        identifier: 'NCT05500222',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: REZDIFFRA (resmetirom), NDA 217785, accelerated approval 14 March 2024',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=217785',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 15981237 — resmetirom structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/15981237',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
 ]
