@@ -2086,4 +2086,5 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         kind: 'url',
       },
     ],
-  },
+  }
+]
