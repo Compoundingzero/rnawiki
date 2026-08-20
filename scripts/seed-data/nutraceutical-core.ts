@@ -554,4 +554,545 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Vitamin D3 — the clearest case on this site of a real deficiency effect being sold as a
+  // general-population effect, against roughly 50,000 randomised participants of null results.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'vitamin-d3-cholecalciferol',
+    name: 'Vitamin D3 (cholecalciferol)',
+    sponsor:
+      'No single sponsor — a secosteroid made commercially by ultraviolet irradiation of 7-dehydrocholesterol from lanolin',
+    targetGene: 'VDR',
+    targetProtein:
+      'Vitamin D receptor, a nuclear hormone receptor. Cholecalciferol itself is inactive: it is hydroxylated by hepatic CYP2R1 to 25-hydroxyvitamin D and then by renal CYP27B1 to 1,25-dihydroxyvitamin D, which is the ligand.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement for bone, immune and general health. Nutritional vitamin D3 is not an FDA-approved drug for any disease; the prescription analogues calcitriol, doxercalciferol and paricalcitol are separate approved products for renal bone disease.',
+    patientFriendlyIndication: 'Taken for bones and immunity, tested against most of that and failed',
+    conditionContext: {
+      conditionExplainer:
+        'Vitamin D is not really a vitamin. Skin makes it from cholesterol under ultraviolet B light, the liver and then the kidney convert it into a hormone, and that hormone tells the gut to absorb calcium. Without enough of it, the gut cannot pull calcium out of food, the parathyroid glands compensate by stripping calcium from bone, and the bone that is laid down does not mineralise properly — rickets in children, osteomalacia in adults.',
+      whyItMatters:
+        'This is the most-supplemented micronutrient in the developed world and the clearest example anywhere of a real deficiency disease being used to sell a general-population product. The randomised evidence base is unusually large: roughly 50,000 participants across VITAL, D-Health and DO-HEALTH alone, and for the outcomes people actually buy it for the answer has mostly been no.',
+      whoTakesThis:
+        'Almost everyone, at some point. Also legitimately prescribed for documented deficiency, for malabsorption, after bariatric surgery, in chronic kidney disease and alongside anti-osteoporosis drugs.',
+      clinicalGoals:
+        'The trials measured incident cancer, major cardiovascular events, all-cause mortality, fractures, falls, blood pressure, physical performance, cognition, infection rates, incident type 2 diabetes and incident autoimmune disease. Almost the entire list came back null.',
+    },
+    oneSentenceVerdict:
+      'A genuine hormone precursor that genuinely cures a genuine deficiency disease, and which — tested at 2000 IU daily in 25,871 people for cancer and cardiovascular disease, in 21,315 for mortality, and in 25,871 for fractures — did not change any of them.',
+    laymanHowItWorks:
+      'Vitamin D from sun or a capsule is inert until the body activates it twice, first in the liver and then in the kidney. The finished hormone slots into a receptor inside cell nuclei and switches on the genes that let the intestine absorb calcium. If you have too little, calcium absorption fails and your parathyroid glands start dismantling your skeleton to keep blood calcium normal. Correcting that is what vitamin D unambiguously does. Adding more once the system is already saturated is a different proposition, and that is what the large trials tested.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 44,
+    anatomicalSite:
+      'Skin (synthesis), hepatocyte and renal proximal tubule (activation), intestinal enterocyte nucleus (action)',
+    substitutes: {
+      summary:
+        'For deficiency, vitamin D3 is the substitute — nothing else replaces it. For fracture prevention in the general population it has now been directly outperformed by doing nothing, since VITAL found no difference at all; the agents with fracture-outcome data are bisphosphonates and denosumab. Sunlight and oily fish supply the same molecule by the same route.',
+      conventionalRx: [
+        {
+          name: 'Calcitriol, alfacalcidol, doxercalciferol, paricalcitol',
+          class: 'Active vitamin D receptor agonists (prescription)',
+          howItCompares:
+            'These skip one or both activation steps and are used where the kidney cannot perform the final hydroxylation, principally chronic kidney disease. They are far more potent, carry a real hypercalcaemia risk and require monitoring. They are also not what is in a supplement bottle, and results with them do not transfer to cholecalciferol.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: work when the kidney cannot activate cholecalciferol. Cons: narrow therapeutic window, hypercalcaemia, prescription-only for good reason.',
+        },
+        {
+          name: 'Bisphosphonates and denosumab',
+          class: 'Antiresorptive osteoporosis drugs',
+          howItCompares:
+            'These have what vitamin D lacks: randomised fracture-outcome data in the populations they are given to. VITAL tested vitamin D3 for exactly that endpoint in 25,871 adults and found a hazard ratio of 0.98 for total fractures and 1.01 for hip fractures. Vitamin D repletion remains a prerequisite for these drugs to work, which is a supporting role, not a substitute one.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: fracture reduction demonstrated in randomised trials. Cons: rare atypical femoral fracture and osteonecrosis of the jaw, and they do nothing for deficiency itself.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Ultraviolet B exposure of skin',
+          activeCompound: 'Cholecalciferol synthesised in situ from 7-dehydrocholesterol',
+          biologicalMechanism:
+            'Identical molecule by the identical pathway, with the difference that cutaneous synthesis is self-limiting — continued exposure photodegrades previtamin D3 to inert lumisterol and tachysterol, so the skin cannot overproduce. Latitude, season, skin pigmentation, age and sunscreen all reduce the yield, and above roughly 35 degrees latitude winter sunlight carries too little UVB to make any.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'Not stated here — this page gives no exposure guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Oily fish, cod liver oil, egg yolk, fortified milk and cereal',
+          activeCompound: 'Cholecalciferol, with 25-hydroxyvitamin D3 also present in animal tissue',
+          biologicalMechanism:
+            'Dietary vitamin D is absorbed with fat into chylomicrons and enters the same hepatic 25-hydroxylation step. Food fortification, introduced in the 1930s specifically against rickets, is the intervention that actually ended the disease as a mass phenomenon in industrialised countries.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Measure the blood level before deciding anything, not after',
+          action:
+            'A serum 25-hydroxyvitamin D concentration is the only thing that distinguishes the population in whom vitamin D reliably works from the population in whom it reliably does not.',
+          patientImpact:
+            'VITAL, D-Health and DO-HEALTH all enrolled unscreened, largely replete adults, and all three were null. Chapuy enrolled 84-year-old institutionalised women with secondary hyperparathyroidism, and hip fractures fell 43%. The difference between those two results is the starting concentration, not the molecule.',
+          clinicalPrecaution:
+            'Vitamin D is fat-soluble and accumulates. The two trials of very large intermittent doses — 500,000 IU annually and 60,000 IU monthly — both produced more falls, not fewer, and three years at 4000 or 10,000 IU daily lowered radial bone density in a dose-dependent way. More is not a safer direction of error here.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@H](CCCC(C)C)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C/3\\C[C@H](CCC3=C)O)C',
+      chemicalFormula: 'C27H44O',
+      molecularWeight: '384.6 g/mol (cholecalciferol; the circulating marker 25-hydroxyvitamin D3 is 400.6 g/mol)',
+      structureSource: {
+        label: 'PubChem CID 5280795 — Cholecalciferol, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280795',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'vd3-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Assay standardisation against certified reference material',
+          description:
+            'Before any sample is run, calibrate against a certified serum reference material. Vitamin D assays disagreed so badly between laboratories that the international Vitamin D Standardization Program was created to fix it, and a large part of the older literature on "deficiency prevalence" is a record of assay drift rather than of biology.',
+          reagentsAndBuffer:
+            'NIST SRM 972a vitamin D metabolites in frozen human serum; NIST SRM 2972a calibration solutions; Vitamin D External Quality Assessment Scheme sample set',
+        },
+        {
+          id: 'vd3-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of hexadeuterated internal standards',
+          description:
+            'Prepare or source deuterium-labelled 25-hydroxyvitamin D3 and D2 and confirm isotopic purity. Both metabolites must be tracked separately because supplements and fortified foods contain either form, and a method that reports only one will under-read anyone taking ergocalciferol.',
+          dependsOnStepId: 'vd3-w1',
+          reagentsAndBuffer:
+            '25-hydroxyvitamin D3-[26,26,26,27,27,27-d6] and 25-hydroxyvitamin D2-d6 internal standards; methanol; LC-MS/MS confirmation of isotopic enrichment',
+        },
+        {
+          id: 'vd3-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Serum extraction with chromatographic resolution of the C3-epimer',
+          description:
+            'Extract serum and resolve 3-epi-25-hydroxyvitamin D3 from the parent metabolite. The epimer is isobaric, co-elutes on short columns, and is present at high proportions in infants — a method that cannot separate it reports a falsely high vitamin D status, which is the opposite of a conservative error.',
+          dependsOnStepId: 'vd3-w2',
+          reagentsAndBuffer:
+            'Zinc sulfate and methanol protein precipitation; supported liquid extraction with methyl tert-butyl ether; pentafluorophenyl or cyanopropyl stationary phase capable of baseline-resolving the C3-epimer',
+        },
+        {
+          id: 'vd3-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'VDR-responsive reporter assay in intestinal epithelial cells',
+          description:
+            'Confirm that the extracted and quantified metabolite is biologically active rather than merely present, by exposing Caco-2 intestinal epithelial cells carrying a vitamin D response element reporter to calcitriol alongside cholecalciferol and 25-hydroxyvitamin D3, which should be far less potent at the receptor.',
+          dependsOnStepId: 'vd3-w3',
+          reagentsAndBuffer:
+            'Caco-2 monolayers on Transwell inserts; CYP24A1 vitamin D response element luciferase reporter; 1,25-dihydroxyvitamin D3 positive control; charcoal-stripped fetal bovine serum to remove background sterols',
+        },
+        {
+          id: 'vd3-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification of total 25-hydroxyvitamin D, with parathyroid hormone',
+          description:
+            'Quantify 25-hydroxyvitamin D3 and D2 as the sum, since that sum is what every guideline threshold refers to, and pair it with intact parathyroid hormone. Parathyroid hormone is the functional readout: it is the suppression of secondary hyperparathyroidism, not the number itself, that Chapuy showed tracked the fracture benefit.',
+          dependsOnStepId: 'vd3-w4',
+          reagentsAndBuffer:
+            'LC-MS/MS in positive electrospray with the m/z 401 to 383 and 383 to 257 transitions; intact PTH immunoassay; serum calcium, albumin and creatinine on the same draw',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'vd3-a1',
+        category: 'measured',
+        title: 'Chapuy 1992: hip fractures fell 43% — in 84-year-old deficient women',
+        laymanSummary:
+          'In very old, frail, institutionalised French women with low vitamin D and overactive parathyroid glands, vitamin D3 with calcium cut hip fractures by nearly half. This is the real effect, in the real population.',
+        technicalDetails:
+          'Three thousand two hundred and seventy healthy ambulatory women with a mean age of 84 +/- 6 years received either 1.2 g of elemental calcium as tricalcium phosphate plus 800 IU of vitamin D3 daily, or double placebo, for 18 months. Among completers, hip fractures were 43% lower (P = 0.043) and total nonvertebral fractures 32% lower (P = 0.015). Mean serum parathyroid hormone fell 44% from baseline (P < 0.001) and 25-hydroxyvitamin D rose 162% (P < 0.001). Proximal femoral bone density rose 2.7% on treatment and fell 4.6% on placebo (P < 0.001). Every element of this result — the age, the institutional setting, the baseline secondary hyperparathyroidism, the co-administered calcium — is part of the finding and none of it transfers automatically to a replete 55-year-old.',
+        evidenceSource: 'Chapuy MC et al. N Engl J Med 1992;327:1637-1642',
+        doi: '10.1056/NEJM199212033272305',
+        measuredMetric:
+          'Radiologically confirmed hip and nonvertebral fracture incidence, serum PTH, 25(OH)D and femoral bone mineral density over 18 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vd3-a2',
+        category: 'failed',
+        title: 'VITAL: 25,871 people, 5.3 years, no effect on cancer or cardiovascular disease',
+        laymanSummary:
+          'The largest randomised test of vitamin D for the two diseases it is most often sold against found nothing. Cancer risk was unchanged. Heart attack and stroke risk was unchanged. So was death from any cause.',
+        technicalDetails:
+          'A nationwide two-by-two factorial randomised placebo-controlled trial of vitamin D3 2000 IU/day and marine n-3 fatty acids 1 g/day in 25,871 US adults (men 50 and over, women 55 and over, including 5,106 Black participants), median follow-up 5.3 years. Invasive cancer of any type: 793 cases on vitamin D against 824 on placebo, hazard ratio 0.96 (95% CI 0.88 to 1.06), P = 0.47. Major cardiovascular events: 396 against 409, hazard ratio 0.97 (95% CI 0.85 to 1.12), P = 0.69. Death from any cause across 978 deaths: hazard ratio 0.99 (95% CI 0.87 to 1.12). Secondary endpoints were uniformly null except a non-significant signal for death from cancer, hazard ratio 0.83 (95% CI 0.67 to 1.02). No excess hypercalcaemia. Participants were not selected for deficiency, which is both the trial\'s limitation and precisely the point: it tested the population that actually buys the product.',
+        evidenceSource: 'Manson JE et al. N Engl J Med 2019;380:33-44',
+        doi: '10.1056/NEJMoa1809944',
+        measuredMetric: 'Incident invasive cancer and major cardiovascular events over a median 5.3 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vd3-a3',
+        category: 'failed',
+        title: 'VITAL fractures: no effect on total, nonvertebral or hip fracture',
+        laymanSummary:
+          'Vitamin D is recommended for bone health more than for anything else. Tested for fractures in the same 25,871 people, it made no difference — including in those who started with the lowest blood levels.',
+        technicalDetails:
+          'The prespecified fracture ancillary study of VITAL confirmed 1,991 incident fractures in 1,551 participants over a median 5.3 years, adjudicated by centralised medical record review. Total fractures occurred in 769 of 12,927 on vitamin D3 and 782 of 12,944 on placebo: hazard ratio 0.98 (95% CI 0.89 to 1.08), P = 0.70. Nonvertebral fractures 0.97 (0.87 to 1.07), P = 0.50. Hip fractures 1.01 (0.70 to 1.47), P = 0.96. Critically, there was no modification of the treatment effect by baseline serum 25-hydroxyvitamin D concentration, age, sex, race or body-mass index — the subgroup rescue that is usually offered for a null vitamin D trial was tested for and was not there.',
+        evidenceSource: 'LeBoff MS et al. N Engl J Med 2022;387:299-309',
+        doi: '10.1056/NEJMoa2202106',
+        measuredMetric: 'Adjudicated incident total, nonvertebral and hip fractures',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vd3-a4',
+        category: 'failed',
+        title: 'D-Health: 21,315 people, no mortality benefit, and a cancer-death signal the wrong way',
+        laymanSummary:
+          'An Australian trial gave 21,315 older adults monthly vitamin D for five years. Deaths were not reduced. When the first two years were excluded, death from cancer was numerically higher on vitamin D.',
+        technicalDetails:
+          'A randomised double-blind placebo-controlled trial of 60,000 IU vitamin D3 monthly in 21,315 Australians aged 60 and over, median follow-up 5.7 years. Serum 25-hydroxyvitamin D reached 115 (SD 30) nmol/L on treatment against 77 (SD 25) on placebo, so the intervention plainly worked biochemically. All-cause mortality: 562 deaths (5.3%) on vitamin D against 538 (5.1%) on placebo, hazard ratio 1.04 (95% CI 0.93 to 1.18), P = 0.47. Cardiovascular mortality 0.96 (0.72 to 1.28). Cancer mortality 1.15 (0.96 to 1.39), P = 0.13. In an exploratory analysis excluding the first two years, cancer mortality was 1.24 (95% CI 1.01 to 1.54), P = 0.05. The authors wrote that the precautionary principle suggests this dosing regimen might not be appropriate in people who are already vitamin D-replete.',
+        evidenceSource: 'Neale RE et al. Lancet Diabetes Endocrinol 2022;10:120-128',
+        doi: '10.1016/S2213-8587(21)00345-4',
+        measuredMetric: 'All-cause mortality over five years of monthly dosing, plus cause-specific mortality',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vd3-a5',
+        category: 'failed',
+        title: 'DO-HEALTH: six primary endpoints in 2,157 older adults, none met',
+        laymanSummary:
+          'A European trial tested vitamin D, fish oil and strength training in every combination against six different health outcomes in older adults. Nothing worked, individually or together.',
+        technicalDetails:
+          'A double-blind placebo-controlled two-by-two-by-two factorial trial in 2,157 adults aged 70 and over without major health events in the preceding five years, randomised to 2000 IU/day vitamin D3, 1 g/day omega-3s and a home strength-training programme in eight combinations for three years. The six primary outcomes were change in systolic and diastolic blood pressure, Short Physical Performance Battery, Montreal Cognitive Assessment, and incidence rates of nonvertebral fractures and infections, with 99% confidence intervals and P < .01 required for significance. There were no statistically significant benefits of any intervention individually or in combination for any of the six endpoints. The largest observed effect was a 0.8 mm Hg difference in systolic blood pressure.',
+        evidenceSource: 'Bischoff-Ferrari HA et al. JAMA 2020;324:1855-1868',
+        doi: '10.1001/jama.2020.16909',
+        measuredMetric:
+          'Blood pressure, physical performance, cognition, nonvertebral fracture and infection incidence over three years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vd3-a6',
+        category: 'conclusion_shift',
+        title: 'The dose-response went into reverse: large intermittent doses caused falls',
+        laymanSummary:
+          'For a decade the argument for null vitamin D trials was that the dose was too small. Then trials of very large doses found more falls, more fractures and lower bone density — not fewer.',
+        technicalDetails:
+          'Sanders et al. gave 2,256 community-dwelling women aged 70 and over a single annual oral dose of 500,000 IU cholecalciferol or placebo for three to five years. The vitamin D group had 171 fractures against 135 on placebo and fell at 83.4 per 100 person-years against 72.7, incidence rate ratio 1.15 (95% CI 1.02 to 1.30, P = .03) for falls and 1.26 (95% CI 1.00 to 1.59, P = .047) for fracture, with the excess concentrated in the three months after each dose. Separately, Burt et al. randomised 311 healthy adults aged 55 to 70 with normal baseline 25(OH)D to 400, 4000 or 10,000 IU daily for three years: radial volumetric bone mineral density fell by -1.2%, -2.4% and -3.5% respectively, a significant dose-dependent loss, with no difference in bone strength. The field\'s position moved from "the dose was too low" to a documented ceiling above which the direction of effect changes.',
+        evidenceSource:
+          'Sanders KM et al. JAMA 2010;303:1815-1822; Burt LA et al. JAMA 2019;322:736-745',
+        doi: '10.1001/jama.2019.11889',
+        inferredClaim:
+          'That the null results of vitamin D trials are explained by insufficient dosing, and that higher doses would therefore have worked',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'vd3-a7',
+        category: 'measured',
+        title: 'Two things did survive: autoimmune disease and, weakly, respiratory infection',
+        laymanSummary:
+          'Out of an enormous randomised programme, two positive findings held up — a 22% reduction in new autoimmune disease, and a small reduction in respiratory infections at moderate daily doses.',
+        technicalDetails:
+          'In the VITAL autoimmune ancillary, confirmed incident autoimmune disease over a median 5.3 years occurred in 123 participants on vitamin D against 155 on placebo: hazard ratio 0.78 (95% CI 0.61 to 0.99, P = 0.05), a 22% reduction, with the omega-3 arm at 0.85 (0.67 to 1.08, P = 0.19), not significant. Separately, an aggregate-data meta-analysis of 46 randomised trials in 75,541 participants found a lower proportion of participants with one or more acute respiratory infections on vitamin D, odds ratio 0.92 (95% CI 0.86 to 0.99, 37 studies). The protection was seen with daily rather than bolus dosing (OR 0.78, 0.65 to 0.94), at 400 to 1000 IU daily equivalents (0.70, 0.55 to 0.89), and in participants aged 1 to 16 (0.71, 0.57 to 0.90) — but no significant interaction with dose, frequency or age was demonstrated, so those subgroups are hypothesis-generating rather than established. Notably, no effect was seen in any subgroup defined by baseline 25(OH)D concentration.',
+        evidenceSource:
+          'Hahn J et al. BMJ 2022;376:e066452; Jolliffe DA et al. Lancet Diabetes Endocrinol 2021;9:276-292',
+        doi: '10.1136/bmj-2021-066452',
+        measuredMetric:
+          'Medical-record-confirmed incident autoimmune disease; proportion of participants with one or more acute respiratory infections',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vd3-a8',
+        category: 'inferred',
+        title: 'The observational case rests on a marker that falls when you are ill',
+        laymanSummary:
+          'Low vitamin D is associated with almost every disease studied. That is partly because being ill, inactive, obese or indoors lowers your vitamin D — not the other way round.',
+        technicalDetails:
+          '25-hydroxyvitamin D is an acute-phase reactant that falls during systemic inflammation, is sequestered in adipose tissue so falls with obesity, and falls with reduced outdoor activity, which is itself a consequence of most chronic disease. That makes reverse causation and confounding the default explanation for any observational vitamin D association until a randomised trial says otherwise. The D2d trial supplies the cleanest worked example: 2,423 adults with prediabetes randomised to 4000 IU/day, an amount well above what observational data implied was needed, with a hazard ratio for progression to diabetes of 0.88 (95% CI 0.75 to 1.04, P = 0.12) — the direction observational work predicted, the magnitude it predicted, and not statistically significant.',
+        evidenceSource: 'Pittas AG et al. (D2d Research Group). N Engl J Med 2019;381:520-530',
+        doi: '10.1056/NEJMoa1900906',
+        inferredClaim:
+          'That the very large body of observational associations between low 25-hydroxyvitamin D and disease reflects vitamin D causing the disease rather than the disease lowering vitamin D',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Made in skin or swallowed, and inert either way',
+        laymanDesc:
+          'Ultraviolet light splits a cholesterol relative in the skin to make vitamin D3, and a capsule supplies the same molecule. Neither does anything yet.',
+        molecularDetail:
+          'UVB at 290 to 315 nm opens the B ring of 7-dehydrocholesterol to previtamin D3, which thermally isomerises to cholecalciferol. The reaction is self-limiting: continued irradiation converts previtamin D3 to inert lumisterol and tachysterol, so cutaneous synthesis cannot cause toxicity. Oral cholecalciferol is absorbed with dietary fat into chylomicrons and reaches the liver bound to vitamin D binding protein.',
+        iconName: 'Sparkles',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The liver adds the first hydroxyl, creating the storage form',
+        laymanDesc:
+          'The liver converts it into the form that circulates for weeks and that a blood test measures. This is still not the active hormone.',
+        molecularDetail:
+          'Hepatic CYP2R1, with minor contributions from CYP27A1, 25-hydroxylates cholecalciferol to 25-hydroxyvitamin D3. This step is only loosely regulated, which is why serum 25(OH)D tracks intake and why it is the status marker, with a circulating half-life of two to three weeks against hours for the active hormone.',
+        iconName: 'Filter',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The kidney adds the second, tightly controlled, hydroxyl',
+        laymanDesc:
+          'The kidney makes the final active hormone, and it does this only when parathyroid hormone tells it to. That control step is why swallowing more does not simply produce more hormone.',
+        molecularDetail:
+          'Renal proximal tubule CYP27B1 1-alpha-hydroxylates 25(OH)D3 to 1,25-dihydroxyvitamin D3. It is upregulated by parathyroid hormone and suppressed by FGF23 and by the product itself, while CYP24A1 simultaneously inactivates both substrate and product to 24,25- and 1,24,25-forms. The whole step is a homeostat, and a homeostat is exactly the kind of system that flattens a supplement dose-response.',
+        iconName: 'Gauge',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The hormone binds a nuclear receptor and turns on calcium transport genes',
+        laymanDesc:
+          'The finished hormone slots into a receptor inside the cell nucleus, which then switches on the genes the intestine needs to pull calcium out of food.',
+        molecularDetail:
+          '1,25-dihydroxyvitamin D3 binds the vitamin D receptor, which heterodimerises with retinoid X receptor and occupies vitamin D response elements. Induced genes include TRPV6 (apical calcium entry), CALB1 (cytosolic calcium ferrying), ATP2B1 (basolateral extrusion) and CYP24A1 (its own catabolism). The receptor is expressed in far more tissues than intestine and bone, which is the origin of essentially every extra-skeletal hypothesis on this page.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Calcium absorption rises, parathyroid hormone falls, bone mineralises',
+        laymanDesc:
+          'With calcium absorption restored, the parathyroid glands stop stripping the skeleton, and new bone mineralises properly. That is the whole demonstrated benefit.',
+        molecularDetail:
+          'Restored intestinal calcium absorption raises ionised calcium, suppressing PTH secretion through the calcium-sensing receptor and halting osteoclastic resorption. Chapuy measured this directly: PTH fell 44% and femoral bone density rose 2.7% against a 4.6% fall on placebo. Where baseline PTH is already normal, as in VITAL and D-Health, there is no secondary hyperparathyroidism to suppress and no measured benefit follows.',
+        iconName: 'Bone',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Chapuy 1992 (Decalyos) — vitamin D3 800 IU plus calcium in elderly women',
+        phase: 'Randomised double-blind placebo-controlled',
+        sampleSize: 3270,
+        primaryEndpoint: 'Radiologically confirmed hip and nonvertebral fractures over 18 months',
+        endpointMet: true,
+        statisticalPValue: 'P = 0.043 for hip fracture (43% lower); P = 0.015 for nonvertebral fracture',
+        unreportedAdverseSignals:
+          'Vitamin D3 was given with 1.2 g of elemental calcium, so the trial cannot separate the two. Mean age was 84 and participants were institutionalised with baseline secondary hyperparathyroidism.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'NCT01169259 — VITAL, vitamin D3 2000 IU/day for cancer and cardiovascular disease',
+        phase: 'Phase 3',
+        sampleSize: 25871,
+        primaryEndpoint: 'Invasive cancer of any type, and major cardiovascular events',
+        endpointMet: false,
+        statisticalPValue: 'Cancer HR 0.96 (0.88-1.06), P = 0.47; major CVD HR 0.97 (0.85-1.12), P = 0.69',
+        unreportedAdverseSignals:
+          'No excess hypercalcaemia or other adverse events. Participants were not selected for vitamin D deficiency, so the trial answers the general-population question rather than the deficiency question.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT01704859 — VITAL fracture ancillary',
+        phase: 'Phase 3 ancillary',
+        sampleSize: 25871,
+        primaryEndpoint: 'Incident total, nonvertebral and hip fractures, centrally adjudicated',
+        endpointMet: false,
+        statisticalPValue: 'Total HR 0.98 (0.89-1.08) P = 0.70; hip HR 1.01 (0.70-1.47) P = 0.96',
+        unreportedAdverseSignals:
+          'No effect modification by baseline 25(OH)D, age, sex, race or BMI — the subgroup that a null vitamin D trial is usually rescued by was looked for and was absent.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'ACTRN12613000743763 — D-Health, 60,000 IU monthly for mortality',
+        phase: 'Phase 3',
+        sampleSize: 21315,
+        primaryEndpoint: 'All-cause mortality over five years',
+        endpointMet: false,
+        statisticalPValue: 'HR 1.04 (95% CI 0.93-1.18), P = 0.47',
+        unreportedAdverseSignals:
+          'Cancer mortality HR 1.15 (0.96-1.39); excluding the first two years of follow-up, 1.24 (1.01-1.54), P = 0.05. The authors invoked the precautionary principle against this regimen in replete people.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT01745263 — DO-HEALTH, vitamin D3, omega-3 and exercise in older adults',
+        phase: 'Phase 3',
+        sampleSize: 2157,
+        primaryEndpoint:
+          'Six co-primary endpoints: systolic and diastolic blood pressure, SPPB, MoCA, nonvertebral fractures, infection rate',
+        endpointMet: false,
+        statisticalPValue: 'No endpoint reached the prespecified P < .01 with 99% confidence intervals',
+        unreportedAdverseSignals:
+          'A three-way factorial design across eight arms means each pairwise comparison is modestly powered, but no endpoint showed a signal in any direction.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT01900860 — Calgary dose-ranging trial of volumetric bone density',
+        phase: 'Randomised double-blind dose-comparison',
+        sampleSize: 311,
+        primaryEndpoint:
+          'Total volumetric bone mineral density and bone strength at radius and tibia over three years',
+        endpointMet: false,
+        statisticalPValue:
+          'Radial vBMD change -1.2% (400 IU), -2.4% (4000 IU), -3.5% (10,000 IU); no significant difference in failure load',
+        unreportedAdverseSignals:
+          'The higher doses were significantly worse than 400 IU on the co-primary density endpoint. Bone strength did not differ, so the clinical meaning of the density loss is unsettled.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Vitamin D3 with calcium cut hip fractures 43% in 84-year-old institutionalised women with secondary hyperparathyroidism',
+        'Serum 25-hydroxyvitamin D rises reliably and dose-dependently on supplementation, to 115 nmol/L on monthly dosing in D-Health',
+        'Parathyroid hormone falls 44% and femoral bone density rises when deficiency is corrected',
+        'Incident autoimmune disease fell 22% over 5.3 years in VITAL (HR 0.78, 0.61-0.99)',
+        'A small reduction in acute respiratory infection across 46 trials and 75,541 participants (OR 0.92, 0.86-0.99)',
+      ],
+      unsupportedInferences: [
+        'That vitamin D prevents cancer — 25,871 randomised participants, HR 0.96, P = 0.47',
+        'That it prevents cardiovascular events — same trial, HR 0.97, P = 0.69',
+        'That it prevents fractures in the general population — HR 0.98 total, 1.01 hip, with no subgroup effect by baseline level',
+        'That it reduces mortality — 21,315 randomised participants, HR 1.04',
+        'That the enormous observational literature reflects causation rather than 25(OH)D falling with illness, obesity and inactivity',
+      ],
+      whatFailedInitially: [
+        'The "the dose was too low" defence: 500,000 IU annually increased falls and fractures, and three years at 4000 or 10,000 IU daily lowered radial bone density dose-dependently',
+        'Assay comparability, which was bad enough that the Vitamin D Standardization Program had to be created and which contaminates the older prevalence literature',
+        'The prediabetes hypothesis: D2d found HR 0.88 (0.75-1.04) at 4000 IU/day, in the predicted direction and not significant',
+      ],
+      realWorldOutcome: [
+        'Vitamin D remains a genuine treatment for a genuine deficiency disease, and food fortification is one of the most successful public health interventions ever run',
+        'For a replete adult buying it for cancer, heart disease, fractures or longevity, the randomised answer is now available and it is no',
+        'The two survivors — autoimmune disease and respiratory infection — are modest, and the respiratory effect was not modified by baseline vitamin D status, which is difficult to reconcile with a repletion mechanism',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule, softgel, tablet or oil drops, cholecalciferol (D3) or ergocalciferol (D2)',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA with no premarket efficacy review, and simultaneously present as a mandatory or voluntary fortificant in milk, cereal and margarine in most industrialised countries. D3 raises and maintains serum 25(OH)D more effectively than D2. It is fat-soluble, so absorption depends on a fat-containing meal and on intact bile flow.',
+      safetyProfile:
+        'At ordinary intakes, well tolerated: VITAL found no excess hypercalcaemia at 2000 IU/day across 25,871 participants over five years. The risks appear at the extremes and in intermittent dosing. A single 500,000 IU annual dose increased falls (RR 1.15) and fractures (RR 1.26). Three years at 4000 or 10,000 IU daily lowered radial bone density dose-dependently. True toxicity — hypercalcaemia, hypercalciuria, nephrocalcinosis — requires sustained very high intake or a CYP24A1 loss-of-function mutation, and cannot be caused by sunlight, because cutaneous synthesis is self-limiting.',
+    },
+    commonQuestions: [
+      {
+        q: 'Vitamin D is essential, so how can the trials be negative?',
+        a: 'Because "essential" and "beneficial as a supplement" are different claims, and this page keeps them apart deliberately. Vitamin D deficiency causes rickets and osteomalacia, and correcting it works — Chapuy cut hip fractures 43% in deficient 84-year-olds. Adding more to someone who already has enough is a separate question, and when it was asked in 25,871 people for cancer and heart disease, in 25,871 for fractures and in 21,315 for death, every answer came back null. The nutrient is essential. The extra capsule, in a replete person, is not doing what the bottle implies.',
+        auditNote:
+          'A deficiency effect is not a supplement effect. This confusion built the entire category.',
+      },
+      {
+        q: 'Were the trials just underdosed?',
+        a: 'That was the standard objection for about a decade, and it has been tested. A single annual 500,000 IU dose produced more falls and more fractures than placebo, with the excess concentrated in the three months after dosing. Three years of 4000 or 10,000 IU daily lowered radial bone density in a dose-dependent way against 400 IU. D-Health reached serum levels of 115 nmol/L, comfortably in the range advocates argue for, and found a mortality hazard ratio of 1.04. The dose-response above repletion is flat at best and, in the intermittent high-dose trials, points the wrong way.',
+      },
+      {
+        q: 'Should I get my level tested?',
+        a: 'That is a clinical decision this page will not make for you, but the evidence does say why the number matters: it is the only thing separating the population where vitamin D reliably works from the population where it reliably does not. Bear in mind that assay standardisation was poor enough historically that the Vitamin D Standardization Program was created to fix it, and that the C3-epimer can inflate a result on a method that does not resolve it. A number is only as good as the laboratory that produced it.',
+      },
+      {
+        q: 'Did anything positive survive?',
+        a: 'Two things, and they should be stated as plainly as the failures. Incident autoimmune disease fell 22% over 5.3 years in VITAL, hazard ratio 0.78 with a confidence interval reaching 0.99 — a real but borderline result from an ancillary endpoint. And a meta-analysis of 46 trials in 75,541 people found a small reduction in acute respiratory infections, odds ratio 0.92. Both deserve replication and neither is what most vitamin D is bought for.',
+        auditNote:
+          'The respiratory effect showed no subgroup difference by baseline 25(OH)D, which is hard to square with a straightforward repletion mechanism.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Chapuy MC et al. Vitamin D3 and calcium to prevent hip fractures in elderly women. N Engl J Med 1992;327:1637-1642',
+        identifier: '10.1056/NEJM199212033272305',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sanders KM et al. Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial. JAMA 2010;303:1815-1822',
+        identifier: '10.1001/jama.2010.594',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Manson JE et al. Vitamin D supplements and prevention of cancer and cardiovascular disease. N Engl J Med 2019;380:33-44',
+        identifier: '10.1056/NEJMoa1809944',
+        kind: 'doi',
+      },
+      {
+        label: 'VITAL trial registration — vitamin D and omega-3 for cancer and cardiovascular disease',
+        identifier: 'NCT01169259',
+        kind: 'nct',
+      },
+      {
+        label:
+          'LeBoff MS et al. Supplemental vitamin D and incident fractures in midlife and older adults. N Engl J Med 2022;387:299-309',
+        identifier: '10.1056/NEJMoa2202106',
+        kind: 'doi',
+      },
+      {
+        label: 'VITAL fracture ancillary trial registration',
+        identifier: 'NCT01704859',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Neale RE et al. The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality. Lancet Diabetes Endocrinol 2022;10:120-128',
+        identifier: '10.1016/S2213-8587(21)00345-4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bischoff-Ferrari HA et al. Effect of vitamin D supplementation, omega-3 fatty acid supplementation, or a strength-training exercise program on clinical outcomes in older adults: the DO-HEALTH randomized clinical trial. JAMA 2020;324:1855-1868',
+        identifier: '10.1001/jama.2020.16909',
+        kind: 'doi',
+      },
+      {
+        label: 'DO-HEALTH trial registration',
+        identifier: 'NCT01745263',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Burt LA et al. Effect of high-dose vitamin D supplementation on volumetric bone density and bone strength: a randomized clinical trial. JAMA 2019;322:736-745',
+        identifier: '10.1001/jama.2019.11889',
+        kind: 'doi',
+      },
+      {
+        label: 'Calgary vitamin D dose-ranging bone density trial registration',
+        identifier: 'NCT01900860',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Pittas AG et al. Vitamin D supplementation and prevention of type 2 diabetes (D2d). N Engl J Med 2019;381:520-530',
+        identifier: '10.1056/NEJMoa1900906',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hahn J et al. Vitamin D and marine omega 3 fatty acid supplementation and incident autoimmune disease: VITAL randomized controlled trial. BMJ 2022;376:e066452',
+        identifier: '10.1136/bmj-2021-066452',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jolliffe DA et al. Vitamin D supplementation to prevent acute respiratory infections: a systematic review and meta-analysis of aggregate data from randomised controlled trials. Lancet Diabetes Endocrinol 2021;9:276-292',
+        identifier: '10.1016/S2213-8587(21)00051-6',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 5280795 — Cholecalciferol',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280795',
+        kind: 'url',
+      },
+    ],
+  },
 ]

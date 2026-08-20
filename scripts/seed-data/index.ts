@@ -17,6 +17,7 @@ import { PEPTIDE_DOSSIERS } from './peptide'
 import { ANTIBODY_DOSSIERS } from './antibody'
 import { BIOLOGIC_DOSSIERS } from './biologic'
 import { SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS } from './small-molecule-cardiometabolic'
+import { CARDIOMETABOLIC_B_DOSSIERS } from './cardiometabolic-b'
 import { SMALL_MOLECULE_NEURO_DOSSIERS } from './small-molecule-neuro'
 import { SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS } from './small-molecule-infectious-onc'
 import { NUTRACEUTICAL_CORE_DOSSIERS } from './nutraceutical-core'
@@ -31,6 +32,7 @@ export const ALL_SEED_DOSSIERS: SeedDossier[] = [
   ...ANTIBODY_DOSSIERS,
   ...BIOLOGIC_DOSSIERS,
   ...SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS,
+  ...CARDIOMETABOLIC_B_DOSSIERS,
   ...SMALL_MOLECULE_NEURO_DOSSIERS,
   ...SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS,
   ...NUTRACEUTICAL_CORE_DOSSIERS,
