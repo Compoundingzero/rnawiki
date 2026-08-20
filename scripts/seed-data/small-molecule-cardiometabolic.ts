@@ -3,6 +3,17 @@ import type { SeedDossier } from '@/lib/seed-types'
 /**
  * Curated flagship dossiers — the small molecules of cardiometabolic medicine.
  *
+ * SIX SUPPLEMENT DOSSIERS SIT IN THIS FILE AND DO NOT BELONG TO THIS GROUP: magnesium glycinate,
+ * zinc, vitamin C, melatonin, caffeine and whey protein, each present twice. A concurrent agent
+ * writing the core-supplement group lost its place and appended them here, then restored the same
+ * batch again after a git operation reverted its own file. All copies are byte-identical to the
+ * authoritative ones in nutraceutical-core.ts, and scripts/seed-data/index.ts dedupes by slug
+ * before anything reaches the database, so the site is unaffected.
+ *
+ * They are left in place deliberately. Excising twelve objects from a 1.5 MB file of template
+ * literals and prose needs real lexing, an attempt at it corrupted the file once already, and the
+ * only thing it buys is tidiness. Remove them by hand, one at a time, or leave them.
+ *
  * These are the most-prescribed drugs on earth. Metformin, atorvastatin, lisinopril, amlodipine and
  * levothyroxine each account for tens of millions of prescriptions a year in the United States
  * alone, so these pages will be the most-read on this site and are the ones a reader is most likely
