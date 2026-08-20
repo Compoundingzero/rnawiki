@@ -176,6 +176,27 @@ function MissingInline({ line, onAdd }: { line: string; onAdd: () => void }) {
   )
 }
 
+/**
+ * The cost pill is a fixed-width chip beside a name, and the reference fills it with "$12 – $20 /
+ * month". A contributor who has no published figure to cite writes so instead — which is the right
+ * answer, and which as a full sentence in a `shrink-0 whitespace-nowrap` chip squeezed the
+ * alternative's name into four wrapped lines.
+ *
+ * The chip takes the figure or a short marker; the full sentence stays reachable on hover and in
+ * the accessible name, so nothing is hidden, only laid out.
+ */
+const COST_FIGURE = /\$[\d,.]+(?:\s*[–—-]\s*\$?[\d,.]+)?(?:\s*(?:per|\/)\s*[a-z-]+)?/i
+
+function costChip(value: string): { label: string; muted: boolean } {
+  const trimmed = value.trim()
+  if (trimmed.length <= 22) return { label: trimmed, muted: !COST_FIGURE.test(trimmed) }
+
+  const figure = COST_FIGURE.exec(trimmed)?.[0]
+  if (figure) return { label: figure.trim(), muted: false }
+
+  return { label: 'Not priced', muted: true }
+}
+
 export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
   const router = useRouter()
   const { currentUser, requireAuth } = useApp()
@@ -1012,11 +1033,22 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
                     >
                       <div className="flex items-start sm:items-center justify-between gap-3 flex-wrap sm:flex-nowrap">
                         <h4 className="text-sm font-bold text-emerald-950">{item.name}</h4>
-                        {hasText(item.monthlyCost) && (
-                          <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-100/60 px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap">
-                            {item.monthlyCost}
-                          </span>
-                        )}
+                        {hasText(item.monthlyCost) &&
+                          (() => {
+                            const chip = costChip(item.monthlyCost)
+                            return (
+                              <span
+                                title={item.monthlyCost}
+                                className={`text-xs font-mono font-bold px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap ${
+                                  chip.muted
+                                    ? 'text-emerald-900/60 bg-emerald-100/40'
+                                    : 'text-emerald-800 bg-emerald-100/60'
+                                }`}
+                              >
+                                {chip.label}
+                              </span>
+                            )
+                          })()}
                       </div>
 
                       <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
@@ -1051,11 +1083,20 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
                     >
                       <div className="flex items-start sm:items-center justify-between gap-3 flex-wrap sm:flex-nowrap">
                         <h4 className="text-sm font-bold text-[#1D1D1F]">{item.name}</h4>
-                        {hasText(item.typicalCost) && (
-                          <span className="text-xs font-mono font-bold text-[#0071E3] bg-blue-50 px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap">
-                            {item.typicalCost}
-                          </span>
-                        )}
+                        {hasText(item.typicalCost) &&
+                          (() => {
+                            const chip = costChip(item.typicalCost)
+                            return (
+                              <span
+                                title={item.typicalCost}
+                                className={`text-xs font-mono font-bold px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap ${
+                                  chip.muted ? 'text-[#0071E3]/60 bg-blue-50/60' : 'text-[#0071E3] bg-blue-50'
+                                }`}
+                              >
+                                {chip.label}
+                              </span>
+                            )
+                          })()}
                       </div>
 
                       <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
