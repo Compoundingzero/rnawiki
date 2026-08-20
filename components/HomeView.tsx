@@ -53,9 +53,41 @@ function hasText(value: string | null | undefined): boolean {
  * `.split('(')[0]?.trim()`; under `noUncheckedIndexedAccess` that element is possibly undefined,
  * so falling back to the whole string is explicit.
  */
+/**
+ * The compact price panel has two narrow columns and the reference fills them with short figures —
+ * "$18 – $32 per dose", "$3,250 / injection". A curated dossier legitimately records more than
+ * that: adalimumab's cost field cites the published cost-of-goods range AND the pen's drug-substance
+ * mass, because a bare number nobody can check is worth less than a sourced one.
+ *
+ * So the panel shows the figure and the dossier page shows the sentence. This pulls the leading
+ * monetary figure out; if there is none it falls back to a short clause, and never to a paragraph
+ * set in monospace, which is what pushed the card to twice its height.
+ */
+const MONEY_FIGURE =
+  /\$[\d,.]+(?:\s*[–—-]\s*\$?[\d,.]+)?(?:\s*(?:per|\/)\s*[a-z-]+(?:\s+[a-z-]+)?)?/i
+
 function priceHeadline(value: string): string {
-  const head = value.split('(')[0]
-  return (head ?? value).trim()
+  const head = (value.split('(')[0] ?? value).trim()
+  if (head.length <= 34) return head
+
+  const figure = MONEY_FIGURE.exec(head)?.[0]
+  if (figure) return figure.trim()
+
+  const clause = head.split(/[;,]/)[0]?.trim() ?? head
+  return clause.length <= 44 ? clause : `${clause.slice(0, 42).trimEnd()}…`
+}
+
+/**
+ * Biosimilars mean a modern biologic can carry a dozen brand names. The reference's heading assumed
+ * one short one, and the full list wrapped the medicine's own name onto a second line.
+ */
+function tradeNameHeadline(tradeName: string, limit = 2): string {
+  const names = tradeName
+    .split('/')
+    .map((name) => name.trim())
+    .filter(Boolean)
+  if (names.length <= limit) return names.join(' / ')
+  return `${names.slice(0, limit).join(' / ')} +${names.length - limit} more`
 }
 
 export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
@@ -65,7 +97,7 @@ export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
   const showCorpusLine = corpusStats.total > 0
 
   const synthesisCost = hasText(featured?.pricing?.synthesisCostPerDose)
-    ? featured?.pricing?.synthesisCostPerDose
+    ? priceHeadline(featured?.pricing?.synthesisCostPerDose ?? '')
     : null
   const retailPrice = hasText(featured?.pricing?.retailPricePerDoseOrYear)
     ? priceHeadline(featured?.pricing?.retailPricePerDoseOrYear ?? '')
@@ -117,8 +149,11 @@ export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
                     <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1D1D1F] tracking-tight group-hover:text-[#0071E3] transition">
                       {featured.name}{' '}
                       {featured.tradeName && (
-                        <span className="text-lg text-[#86868B] font-normal">
-                          ({featured.tradeName})
+                        <span
+                          className="text-lg text-[#86868B] font-normal"
+                          title={featured.tradeName}
+                        >
+                          ({tradeNameHeadline(featured.tradeName)})
                         </span>
                       )}
                     </h2>
