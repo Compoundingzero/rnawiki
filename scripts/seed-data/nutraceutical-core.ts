@@ -8706,5 +8706,457 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Alpha-lipoic acid — a five-week symptom trial that looked convincing, a four-year trial that
+  // missed its primary endpoint with more serious adverse events on treatment, and a 2021 Kidney
+  // International report of biopsy-proven membranous nephropathy in a trial's treatment arm.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'alpha-lipoic-acid',
+    name: 'Alpha-lipoic acid',
+    tradeName: 'Also called thioctic acid or lipoic acid; sold as racemic ALA or as R-lipoic acid',
+    sponsor:
+      'No single sponsor — a dithiolane fatty acid, sold as a dietary supplement in the United States and as a prescription medicine for diabetic neuropathy in Germany and several other countries.',
+    targetGene: 'DLAT',
+    targetProtein:
+      'Endogenous lipoic acid is a covalently bound cofactor of the E2 subunits of the mitochondrial dehydrogenase complexes — pyruvate dehydrogenase (DLAT), alpha-ketoglutarate dehydrogenase and the glycine cleavage system. Supplemental free alpha-lipoic acid is not incorporated into those enzymes. It acts as a free redox-active dithiol, which makes the supplement a different pharmacological entity from the cofactor it is named after.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for diabetic neuropathy, blood sugar, antioxidant support and weight loss. Not FDA-approved for anything; it is an approved prescription medicine for symptomatic diabetic polyneuropathy in Germany, where most of the clinical trial programme was designed.',
+    patientFriendlyIndication:
+      'Taken for nerve pain in diabetes, for blood sugar, and as a general antioxidant',
+    conditionContext: {
+      conditionExplainer:
+        'Diabetic distal symmetric polyneuropathy produces burning, stabbing, tingling and numbness in the feet, and it progresses. It has two separable dimensions: the symptoms a patient feels, and the measurable damage to nerve function. A treatment can move one without moving the other, and this distinction decides how the lipoic acid literature reads.',
+      whyItMatters:
+        'Alpha-lipoic acid is the antioxidant supplement with the most serious clinical trial programme behind it — multicentre, randomised, and running out to four years — and the results split cleanly along that symptom-versus-damage line. It is also the entry in this file with the newest identified harm: a distinct form of kidney disease found in the treatment arm of a clinical trial.',
+      whoTakesThis:
+        'People with diabetic neuropathy, particularly in Germany where it is prescribed, people taking it for blood glucose or weight, and a general antioxidant market.',
+      clinicalGoals:
+        'Trials measured the Total Symptom Score for stabbing pain, burning pain, paraesthesia and numbness; the Neuropathy Impairment Score and its lower-limb subscale; nerve conduction and quantitative sensory testing; body weight and BMI; and in the harm literature, proteinuria and renal biopsy findings.',
+    },
+    oneSentenceVerdict:
+      'Five weeks of oral alpha-lipoic acid reduced diabetic neuropathy symptom scores by about half against a third on placebo, but the four-year NATHAN 1 trial missed its primary composite endpoint at P = 0.105 with serious adverse events in 38.1% on treatment against 28.0% on placebo, and in 2021 five cases of NELL1-associated membranous nephropathy were traced to lipoic acid supplementation.',
+    laymanHowItWorks:
+      'Lipoic acid is a small sulphur-containing molecule that your mitochondria make and then permanently attach to a handful of enzymes, where it acts as a swinging arm passing chemical groups between reaction sites. Crucially, the lipoic acid in a capsule does not get attached to those enzymes — the attachment happens during enzyme assembly, from lipoic acid made inside the mitochondrion. What a supplement provides is free lipoic acid circulating in the body, which is a reactive sulphur compound that can be reduced and re-oxidised. That is a genuine chemistry, and it is not the chemistry the molecule is famous for.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 43,
+    anatomicalSite:
+      'Absorbed in the small intestine and distributed widely; endogenous lipoyl groups are covalently bound to mitochondrial dehydrogenase complexes, which supplemental lipoic acid does not join',
+    substitutes: {
+      summary:
+        'For painful diabetic neuropathy, duloxetine, pregabalin and amitriptyline have larger and better-established effects and are guideline treatments. For glycaemic control, nothing in this category competes with glucose-lowering therapy. Lipoic acid\'s distinct position is a favourable side-effect profile relative to those drugs, which is a real consideration and not an efficacy argument.',
+      conventionalRx: [
+        {
+          name: 'Duloxetine and pregabalin for painful diabetic neuropathy',
+          class: 'Guideline first-line neuropathic pain agents',
+          howItCompares:
+            'Both have larger randomised evidence bases and regulatory approvals for this indication in most jurisdictions. Lipoic acid\'s five-week trial produced a 51% symptom reduction against 32% on placebo, which is a real difference on a subjective scale over a short period.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros of lipoic acid: better tolerated than the standard agents in short-term use. Cons: the four-year trial recorded serious adverse events in 38.1% on treatment against 28.0% on placebo, so the tolerability advantage does not obviously persist.',
+        },
+        {
+          name: 'Glycaemic control itself',
+          class: 'The intervention that addresses the cause',
+          howItCompares:
+            'Diabetic polyneuropathy is driven by hyperglycaemia, and improving glycaemic control is the only intervention with evidence of slowing the underlying nerve damage rather than modifying the symptom.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: addresses the mechanism. Cons: hard to achieve, and does not relieve established symptoms quickly, which is exactly the gap symptomatic agents fill.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Spinach, broccoli, organ meat and yeast',
+          activeCompound: 'Protein-bound lipoyllysine, not free lipoic acid',
+          biologicalMechanism:
+            'Dietary lipoic acid occurs almost entirely as lipoyllysine covalently attached to protein, and is released only in small amounts by digestion. Food therefore delivers a tiny fraction of a supplemental dose, and this is the clearest indication that the supplement is a pharmacological intervention rather than a nutritional one.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the trials used 600 to 1,800 mg per day, which is orders of magnitude above any dietary intake.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Separate symptom relief from disease modification',
+          action:
+            'Check whether a neuropathy endpoint is a symptom score the patient reports or a measurement of nerve function.',
+          patientImpact:
+            'SYDNEY 2 measured the Total Symptom Score over five weeks and found a 51% reduction against 32% on placebo. NATHAN 1 measured a composite of the Neuropathy Impairment Score in the lower limbs plus seven neurophysiologic tests over four years, and found no significant difference (P = 0.105).',
+          clinicalPrecaution:
+            'Both results are real. They answer different questions, and only the first is the one the supplement is sold on.',
+        },
+        {
+          name: 'Know that a form of kidney disease has been traced to it',
+          action:
+            'High-grade proteinuria appeared unexpectedly in the treatment arm of a clinical trial of lipoic acid in multiple sclerosis, and led investigators to look for more cases.',
+          patientImpact:
+            'Four biopsy-proven cases and one suspected case of NELL1-associated membranous nephropathy following lipoic acid supplementation were reported in Kidney International in 2021. Discontinuation and supportive therapy resulted in remission.',
+          clinicalPrecaution:
+            'This is a small case series, not an incidence estimate. It is nonetheless a specific, biopsy-confirmed, reversible kidney lesion linked to a widely sold supplement, and it is not on any label.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CSSC1CCCCC(=O)O',
+      chemicalFormula: 'C8H14O2S2',
+      molecularWeight:
+        '206.3 g/mol. The naturally occurring and enzymatically active enantiomer is R-lipoic acid; most supplements and most trial material are the racemic mixture of R and S forms, and the S enantiomer does not occur in biology. Products sold as "R-lipoic acid" are a different chemical entity from the material the trials used.',
+      structureSource: {
+        label: 'PubChem CID 864 — Alpha-lipoic acid, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/864',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ala-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric composition and polymerisation check',
+          description:
+            'Two quality questions decide what a lipoic acid product actually is. Racemic material contains an S enantiomer that does not occur in nature and is not the substrate of any enzyme, so the R fraction determines how much of the dose corresponds to the natural molecule. Separately, free lipoic acid polymerises on exposure to heat and light through its strained dithiolane ring, and polymerised material is neither absorbed nor active.',
+          reagentsAndBuffer:
+            'Chiral HPLC on a polysaccharide-based stationary phase resolving R- and S-lipoic acid against authenticated single-enantiomer standards; size-exclusion chromatography or differential scanning calorimetry to detect polymer; storage stability testing under accelerated heat and light',
+        },
+        {
+          id: 'ala-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of labelled lipoic acid and dihydrolipoic acid standards',
+          description:
+            'The pharmacologically relevant species is not the parent compound alone but its reduced form, dihydrolipoic acid, and its beta-oxidation metabolites. Distinguishing them requires labelled standards, and dihydrolipoic acid oxidises rapidly in air, so it must be prepared and handled under inert conditions.',
+          dependsOnStepId: 'ala-w1',
+          reagentsAndBuffer:
+            'Deuterated R-lipoic acid internal standard; dihydrolipoic acid prepared by sodium borohydride reduction under argon; bisnorlipoic and tetranorlipoic acid metabolite standards; N-ethylmaleimide thiol-trapping reagent to stabilise the reduced form at sampling',
+        },
+        {
+          id: 'ala-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma extraction with immediate thiol trapping',
+          description:
+            'Lipoic acid has a short plasma half-life measured in tens of minutes and its reduced form oxidises during sample handling, so a plasma concentration obtained without immediate thiol trapping systematically misrepresents the redox distribution. This is the step that separates a real pharmacokinetic measurement from an artefact of the tube.',
+          dependsOnStepId: 'ala-w2',
+          reagentsAndBuffer:
+            'Immediate addition of N-ethylmaleimide to whole blood at the bedside; acidified extraction with EDTA; centrifugation at 4 degrees C within 10 minutes; LC-MS/MS quantification of lipoic acid, dihydrolipoic acid and the norlipoate metabolites; documented freeze-thaw stability',
+        },
+        {
+          id: 'ala-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Test whether supplemental lipoate joins the enzyme complexes at all',
+          description:
+            'This is the mechanistic question the marketing assumes and the literature does not answer. Endogenous lipoyl groups are attached to E2 subunits by lipoyltransferase from mitochondrially synthesised octanoate; free exogenous lipoic acid is not obviously a substrate for that process in mammals. Expose cells to labelled lipoic acid and look for label in the lipoyl-lysine residues of the dehydrogenase complexes.',
+          dependsOnStepId: 'ala-w3',
+          reagentsAndBuffer:
+            'Human myotubes and hepatocytes; 13C-labelled R-lipoic acid; immunoprecipitation of pyruvate dehydrogenase E2 and alpha-ketoglutarate dehydrogenase E2; anti-lipoic acid antibody immunoblotting; LC-MS/MS of tryptic lipoyl-lysine peptides for label incorporation; LIAS knockdown as the endogenous-synthesis control',
+        },
+        {
+          id: 'ala-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Symptom score and nerve function measured together, with proteinuria monitoring',
+          description:
+            'Report the patient-reported symptom score and the objective neurophysiological composite side by side, because the literature\'s central finding is that these diverged. Add urinary protein monitoring as a safety endpoint, which is not standard in this field and is exactly how the membranous nephropathy signal was found.',
+          dependsOnStepId: 'ala-w4',
+          reagentsAndBuffer:
+            'Total Symptom Score capturing stabbing pain, burning pain, paraesthesia and numbness; Neuropathy Impairment Score and lower-limb subscale; nerve conduction studies and quantitative sensory testing to a standardised protocol; urine protein-to-creatinine ratio at each visit with prespecified biopsy referral thresholds',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ala-a1',
+        category: 'measured',
+        title: 'SYDNEY 2: symptoms improved 51% against 32% on placebo, over five weeks',
+        laymanSummary:
+          'In 181 people with diabetic nerve pain, five weeks of oral lipoic acid roughly halved symptom scores, against about a third on placebo. All three doses worked equally.',
+        technicalDetails:
+          'SYDNEY 2 randomised 181 diabetic patients in Russia and Israel to once-daily oral alpha-lipoic acid at 600 mg (n = 45), 1,200 mg (n = 47) or 1,800 mg (n = 46), or placebo (n = 43), for five weeks after a one-week placebo run-in. The primary outcome was change in the Total Symptom Score covering stabbing pain, burning pain, paraesthesia and numbness of the feet. Mean Total Symptom Score fell by 4.9 points (51%) on 600 mg, 4.5 (48%) on 1,200 mg and 4.7 (52%) on 1,800 mg, against 2.9 points (32%) on placebo, all P < 0.05 versus placebo. Response rates, defined as a 50% or greater reduction, were 62%, 50%, 56% and 26% respectively. Significant improvements also appeared for stabbing and burning pain, the Neuropathy Symptoms and Change score and patients\' global assessment. The Neuropathy Impairment Score — the objective measure — was only numerically reduced. Note the dose-response: three doses spanning a threefold range produced essentially identical effects, which is not the shape of a dose-dependent pharmacological action and is compatible with a ceiling reached at the lowest dose or with a substantial non-specific component.',
+        evidenceSource: 'Ziegler D et al. Diabetes Care 2006;29:2365-2370',
+        doi: '10.2337/dc06-1216',
+        measuredMetric:
+          'Change from baseline in Total Symptom Score, and proportion achieving a 50% or greater reduction',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ala-a2',
+        category: 'failed',
+        title: 'NATHAN 1: four years, 460 patients, primary endpoint missed at P = 0.105',
+        laymanSummary:
+          'The long trial designed to show that lipoic acid slows nerve damage rather than just easing symptoms did not meet its main endpoint over four years.',
+        technicalDetails:
+          'NATHAN 1 was a multicentre randomised double-blind parallel-group trial in 460 diabetic patients with mild-to-moderate distal symmetric sensorimotor polyneuropathy, assigned to 600 mg of oral alpha-lipoic acid once daily (n = 233) or placebo (n = 227) for four years. The primary endpoint was a composite of the Neuropathy Impairment Score in the lower limbs plus seven neurophysiologic tests. Change in that primary endpoint from baseline to four years showed no significant difference between groups (P = 0.105). Several secondary measures favoured lipoic acid: the Neuropathy Impairment Score (P = 0.028), NIS-lower limbs (P = 0.05) and the NIS-LL muscular weakness subscore (P = 0.045), with more patients showing clinically meaningful improvement and fewer showing progression on NIS (P = 0.013) and NIS-LL (P = 0.025). Nerve conduction and quantitative sensory test results did not significantly worsen on placebo, which the authors flag — a trial designed to detect slowed deterioration cannot succeed if the control group does not deteriorate. The finding that matters most for a consumer is elsewhere in the paper: serious adverse events were higher on alpha-lipoic acid at 38.1% than on placebo at 28.0%.',
+        evidenceSource: 'Ziegler D et al. Diabetes Care 2011;34:2054-2060',
+        doi: '10.2337/dc11-0503',
+        measuredMetric:
+          'Composite of Neuropathy Impairment Score lower limbs plus seven neurophysiologic tests over four years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ala-a3',
+        category: 'failed',
+        title: 'Lipoic acid supplementation traced to a specific form of kidney disease',
+        laymanSummary:
+          'Unexpected heavy protein loss in the urine appeared in the treatment arm of a lipoic acid trial. Biopsies identified a distinct kidney lesion, and it went away when the supplement was stopped.',
+        technicalDetails:
+          'Investigators running a clinical trial of lipoic acid supplementation in multiple sclerosis observed high-grade proteinuria as an unexpected adverse event specific to the treatment arm. That observation led them to identify similar patients in their nephrology practice, and they reported four biopsy-proven cases and a fifth suspected case of neural epidermal growth factor-like 1 (NELL1)-associated membranous nephropathy following lipoic acid supplementation. Discontinuation of lipoic acid together with supportive therapy resulted in remission. NELL1-associated membranous nephropathy is a recently characterised subtype, and identifying an exposure that appears to cause a reversible form of it is a substantive finding. Five cases is a case series and supports no incidence estimate whatever. What it does establish is that a widely sold over-the-counter antioxidant, under investigation in multiple sclerosis, diabetes and schizophrenia, produced a biopsy-confirmed glomerular lesion in the treatment arm of a controlled study — and that nobody had been looking for it.',
+        evidenceSource:
+          'Spain R et al. Lipoic acid supplementation associated with NELL1-associated membranous nephropathy. Kidney Int 2021;100:1208-1213',
+        doi: '10.1016/j.kint.2021.10.010',
+        measuredMetric:
+          'Biopsy-proven NELL1-associated membranous nephropathy and proteinuria after lipoic acid supplementation, with remission on discontinuation',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ala-a4',
+        category: 'inferred',
+        title: 'The supplement is not the cofactor it is named after',
+        laymanSummary:
+          'Lipoic acid is famous as an essential piece of the enzymes that burn fuel in mitochondria. The lipoic acid in a capsule does not become part of those enzymes.',
+        technicalDetails:
+          'Endogenous lipoic acid is synthesised inside the mitochondrion by lipoyl synthase, acting on an octanoyl group already attached to the target protein, and it exists in biology almost exclusively as lipoyl-lysine covalently bound to the E2 subunits of pyruvate dehydrogenase, alpha-ketoglutarate dehydrogenase, branched-chain ketoacid dehydrogenase and the glycine cleavage system. Free lipoic acid is not a normal metabolite at meaningful concentrations, and mammalian cells do not efficiently attach exogenous free lipoate to those complexes. Supplemental alpha-lipoic acid therefore acts as something else: a free, redox-active dithiol that is reduced to dihydrolipoic acid, regenerates other cellular reductants, chelates transition metals, and is rapidly beta-oxidised and cleared with a plasma half-life measured in tens of minutes. That is a legitimate pharmacology, and it is a different one from the cofactor role that supplies the molecule\'s reputation. Dietary lipoic acid, which occurs as protein-bound lipoyllysine, is delivered in amounts orders of magnitude below the 600 to 1,800 mg used in the trials.',
+        evidenceSource: 'Ziegler D et al. Diabetes Care 2011;34:2054-2060',
+        doi: '10.2337/dc11-0503',
+        inferredClaim:
+          'That supplemental alpha-lipoic acid supports the mitochondrial dehydrogenase complexes for which lipoic acid is the named cofactor',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ala-a5',
+        category: 'inferred',
+        title: 'The weight loss effect is 1.27 kilograms',
+        laymanSummary:
+          'Pooling ten randomised double-blind trials, lipoic acid produced about 1.3 kilograms more weight loss than placebo, and the dose made no difference.',
+        technicalDetails:
+          'Kucukgoncu and colleagues meta-analysed ten randomised, double-blind, placebo-controlled studies and found lipoic acid treatment associated with 1.27 kg greater mean weight loss than placebo (95% CI 0.25 to 2.29) and a mean BMI difference of -0.43 kg/m2 (95% CI -0.82 to -0.03). Meta-regression showed no significance of lipoic acid dose on either BMI or weight change, while study duration significantly affected BMI change but not weight change. The authors describe the effect as small and short-term and call for research on different doses and long-term benefit. Two features undercut a pharmacological reading. A weight loss effect with no dose-response across the studied range is difficult to attribute to the compound, and 1.27 kg with a confidence interval reaching 0.25 kg is within the range that dietary co-intervention and adherence effects readily produce in supplement trials.',
+        evidenceSource: 'Kucukgoncu S, Zhou E, Lucas KB, Tek C. Obes Rev 2017;18:594-601',
+        doi: '10.1111/obr.12528',
+        measuredMetric:
+          'Mean difference in body weight and body mass index between lipoic acid and placebo groups',
+        inferredClaim:
+          'That alpha-lipoic acid is a weight-loss agent, on a 1.27 kg pooled difference with no dose-response',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ala-a6',
+        category: 'conclusion_shift',
+        title: 'The programme moved from symptoms to disease modification, and the answer changed',
+        laymanSummary:
+          'Short trials showed lipoic acid eases how diabetic nerve damage feels. The long trial designed to show it slows the damage itself did not succeed.',
+        technicalDetails:
+          'The sequence is unusually clean. Five-week SYDNEY 2 measured a patient-reported symptom score and found roughly half of symptoms relieved against a third on placebo, with response rates of 50 to 62% against 26%. Four-year NATHAN 1 measured a composite of objective impairment and neurophysiology and did not meet it (P = 0.105), while several impairment secondaries did move. Read together, the honest summary is that alpha-lipoic acid is better supported as a symptomatic agent over weeks than as a disease-modifying one over years, and that its symptomatic evidence rests on subjective endpoints with no dose-response across a threefold dose range. The safety arithmetic changed too: a compound that was well tolerated over five weeks recorded serious adverse events in 38.1% of treated patients against 28.0% on placebo over four years.',
+        evidenceSource:
+          'Ziegler D et al. Diabetes Care 2006;29:2365-2370; Ziegler D et al. Diabetes Care 2011;34:2054-2060',
+        doi: '10.2337/dc11-0503',
+        inferredClaim:
+          'That short-term symptom relief in diabetic neuropathy implies slowed progression of the underlying nerve damage',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed fast, cleared fast',
+        laymanDesc:
+          'Lipoic acid is taken up quickly from the gut and disappears from the blood within about an hour, which is why trials give it once or twice daily at large doses.',
+        molecularDetail:
+          'Oral bioavailability is modest and reduced by food, with a plasma half-life on the order of tens of minutes and rapid beta-oxidation to bisnorlipoate and tetranorlipoate. The very short exposure window is a genuine pharmacological constraint and is rarely mentioned alongside claims about sustained antioxidant protection.',
+        iconName: 'Timer',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It is reduced inside cells to a two-thiol form',
+        laymanDesc:
+          'Once inside cells, the ring in lipoic acid is opened to give two free sulphur groups. That reduced form is the chemically active species.',
+        molecularDetail:
+          'Lipoic acid is reduced to dihydrolipoic acid by lipoamide dehydrogenase, glutathione reductase and thioredoxin reductase. Dihydrolipoic acid is a strong reductant that can regenerate ascorbate and glutathione and chelate transition metals — the properties that support the antioxidant framing, and which apply to the free molecule rather than to the bound cofactor.',
+        iconName: 'Recycle',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'What it does not do is join the enzyme complexes',
+        laymanDesc:
+          'The famous role of lipoic acid is as a permanently attached arm on mitochondrial enzymes. That attachment happens inside the mitochondrion during assembly, using lipoic acid the cell makes itself.',
+        molecularDetail:
+          'Lipoyl synthase installs the sulphurs onto an octanoyl group already amide-linked to the E2 lysine, so the cofactor is made in place rather than captured from the pool. Mammalian cells do not efficiently ligate exogenous free lipoate onto pyruvate dehydrogenase or alpha-ketoglutarate dehydrogenase. The supplement and the cofactor share a name and a structure and not a job.',
+        iconName: 'Unlink',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The measured clinical effect is on how neuropathy feels',
+        laymanDesc:
+          'Over five weeks, symptom scores for stabbing pain, burning, tingling and numbness fell by about half, against about a third on placebo.',
+        molecularDetail:
+          'SYDNEY 2 recorded Total Symptom Score reductions of 51%, 48% and 52% at 600, 1,200 and 1,800 mg against 32% on placebo, with response rates of 62%, 50% and 56% against 26%. Three doses spanning a threefold range produced indistinguishable effects, which is not the profile of a dose-dependent pharmacological action.',
+        iconName: 'Activity',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Over four years, the objective composite did not move, and harms rose',
+        laymanDesc:
+          'The long trial measuring actual nerve function found no significant difference. Serious adverse events were more common on lipoic acid than on placebo.',
+        molecularDetail:
+          'NATHAN 1 primary composite P = 0.105 over four years in 460 patients, with several impairment secondaries favouring treatment. Serious adverse events occurred in 38.1% on alpha-lipoic acid against 28.0% on placebo. Separately, five cases of NELL1-associated membranous nephropathy were traced to lipoic acid supplementation, with remission on discontinuation.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SYDNEY 2 — oral alpha-lipoic acid in symptomatic diabetic polyneuropathy',
+        phase: 'Multicentre randomised double-blind placebo-controlled dose-ranging, 5 weeks',
+        sampleSize: 181,
+        primaryEndpoint: 'Change from baseline in Total Symptom Score',
+        endpointMet: true,
+        statisticalPValue:
+          'TSS reduced 51% at 600 mg, 48% at 1,200 mg, 52% at 1,800 mg versus 32% on placebo, all P < 0.05; response rates 62%, 50%, 56% versus 26%',
+        unreportedAdverseSignals:
+          'Three doses across a threefold range produced essentially identical effects, which is not a dose-response. The Neuropathy Impairment Score, the objective measure, was only numerically reduced. Five weeks is short for a chronic progressive condition.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NATHAN 1 — alpha-lipoic acid over four years in diabetic polyneuropathy',
+        phase: 'Multicentre randomised double-blind parallel-group, 4 years',
+        sampleSize: 460,
+        primaryEndpoint:
+          'Composite of Neuropathy Impairment Score lower limbs plus seven neurophysiologic tests',
+        endpointMet: false,
+        statisticalPValue:
+          'No significant difference in the primary composite, P = 0.105; secondaries NIS P = 0.028, NIS-LL P = 0.05, NIS-LL muscular weakness P = 0.045',
+        unreportedAdverseSignals:
+          'Serious adverse events were higher on alpha-lipoic acid at 38.1% than on placebo at 28.0%. Nerve conduction and quantitative sensory tests did not significantly worsen on placebo, so the trial had little deterioration to slow.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Kucukgoncu 2017 meta-analysis of alpha-lipoic acid for weight loss',
+        phase: 'Meta-analysis of 10 randomised double-blind placebo-controlled studies',
+        sampleSize: 10,
+        primaryEndpoint: 'Mean difference in body weight and BMI versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Weight -1.27 kg (95% CI 0.25 to 2.29); BMI -0.43 kg/m2 (95% CI -0.82 to -0.03)',
+        unreportedAdverseSignals:
+          'Meta-regression found no effect of dose on either outcome. A weight effect without a dose-response is hard to attribute to the compound. Sample size counts studies, not participants.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Spain 2021 — NELL1-associated membranous nephropathy after lipoic acid',
+        phase: 'Case series arising from a clinical trial treatment arm',
+        sampleSize: 5,
+        primaryEndpoint: 'Renal biopsy findings and proteinuria after lipoic acid supplementation',
+        endpointMet: false,
+        statisticalPValue:
+          'Four biopsy-proven and one suspected case of NELL1-associated membranous nephropathy; remission after discontinuation and supportive therapy',
+        unreportedAdverseSignals:
+          'High-grade proteinuria was an unexpected adverse event specific to the treatment arm of a multiple sclerosis trial. Five cases support no incidence estimate, and nobody had been monitoring urinary protein in lipoic acid users.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Five weeks of oral alpha-lipoic acid reduced diabetic neuropathy Total Symptom Score by 48 to 52% against 32% on placebo',
+        'Four years of 600 mg daily did not meet the primary composite of impairment plus neurophysiology, P = 0.105',
+        'Serious adverse events over four years were 38.1% on alpha-lipoic acid against 28.0% on placebo',
+        'Pooled weight loss was 1.27 kg with no dose-response across ten randomised double-blind trials',
+        'Four biopsy-proven cases of NELL1-associated membranous nephropathy followed lipoic acid supplementation, remitting on discontinuation',
+      ],
+      unsupportedInferences: [
+        'That supplemental lipoic acid supports the mitochondrial enzymes whose cofactor it is named for, which it does not join',
+        'That short-term symptom relief implies slowing of the underlying nerve damage',
+        'That a 1.27 kg pooled weight difference with no dose-response is a pharmacological weight-loss effect',
+        'That a compound well tolerated over five weeks is well tolerated over years',
+      ],
+      whatFailedInitially: [
+        'The four-year disease-modification endpoint in diabetic polyneuropathy, missed at P = 0.105',
+        'The assumption that this compound has no serious harms, which a nephrology case series overturned in 2021',
+      ],
+      realWorldOutcome: [
+        'Alpha-lipoic acid has the most serious trial programme of any antioxidant supplement in this file, running to four years',
+        'Its symptomatic effect in diabetic neuropathy is real, subjective, and shows no dose-response across a threefold range',
+        'It is a prescription medicine for this indication in Germany and an unmonitored supplement in the United States',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule or tablet, as racemic alpha-lipoic acid or as R-lipoic acid',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA with no pre-market review, and licensed as a prescription medicine for symptomatic diabetic polyneuropathy in Germany and several other countries — the same molecule under two regulatory regimes. Nearly all trial material is racemic; the naturally occurring enantiomer is R-lipoic acid, and products sold as pure R-lipoic acid are not the material the trials used. Free lipoic acid polymerises on exposure to heat and light, so storage conditions affect what is actually in a capsule. Absorption is reduced by food and the plasma half-life is on the order of tens of minutes.',
+      safetyProfile:
+        'Nausea, rash and, at high doses, hypoglycaemia are the commonly reported effects, and the compound is insulin-mimetic enough that people on glucose-lowering therapy should be aware of it. Over four years, serious adverse events occurred in 38.1% of treated patients against 28.0% on placebo, which is the most consequential safety figure in this literature and comes from the trial that missed its primary endpoint. Five cases of NELL1-associated membranous nephropathy, four biopsy-proven, have been traced to lipoic acid supplementation, presenting with high-grade proteinuria and remitting on discontinuation. Alpha-lipoic acid is also one of only two medications — the other being methimazole — that a 2020 review of insulin autoimmune syndrome classifies as having a high-strength association with triggering that condition, in which autoantibodies to endogenous insulin cause recurrent hypoglycaemia; the same review notes the association has been increasing over the last decade and that the originally proposed HLA-DRB1*0406 restriction was not confirmed in Caucasians or in other Asian populations.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it help diabetic nerve pain?',
+        a: 'Over five weeks, yes, on symptom scores. In 181 patients, Total Symptom Score fell by about half on lipoic acid against about a third on placebo, and roughly 50 to 62 percent of treated patients achieved at least a 50 percent reduction against 26 percent on placebo. Two things temper that. The objective impairment score was only numerically reduced. And three doses spanning a threefold range produced essentially identical results, which is not what a dose-dependent drug effect looks like.',
+      },
+      {
+        q: 'Does it slow the nerve damage itself?',
+        a: 'The trial designed to answer that did not show it. NATHAN 1 followed 460 patients for four years on 600 mg daily and its primary composite endpoint — impairment score plus seven neurophysiological tests — showed no significant difference, P = 0.105. Several secondary impairment measures did favour treatment. The authors also note that nerve conduction and sensory testing did not significantly worsen in the placebo group, which leaves a trial about slowing deterioration with little deterioration to slow.',
+        auditNote:
+          'The same paper reports serious adverse events in 38.1% on treatment against 28.0% on placebo.',
+      },
+      {
+        q: 'Is it the same as the lipoic acid in my mitochondria?',
+        a: 'It is the same molecule doing a different job, and this is the most widely misunderstood thing about it. Biological lipoic acid is built inside the mitochondrion directly onto the enzyme it will serve, and it exists almost entirely as a permanently attached arm on a handful of dehydrogenase complexes. Free lipoic acid from a capsule does not get attached to those enzymes. What it does instead is circulate briefly as a redox-active dithiol. That is real chemistry, but it is not the cofactor role the reputation comes from.',
+      },
+      {
+        q: 'Will it help me lose weight?',
+        a: 'By about 1.3 kilograms, on pooled evidence, and probably not for the reason implied. Ten randomised double-blind trials gave a mean difference of 1.27 kg and a BMI difference of 0.43 kg/m². The awkward detail is that meta-regression found no relationship between dose and effect on either outcome. An effect that does not scale with dose across the studied range is hard to attribute to the compound rather than to the circumstances of taking it.',
+      },
+      {
+        q: 'Are there any real risks?',
+        a: 'One recently identified and specific. Investigators running a lipoic acid trial in multiple sclerosis found unexpected heavy protein loss in the urine confined to the treatment arm, and traced four biopsy-proven cases and one suspected case of NELL1-associated membranous nephropathy to lipoic acid supplementation; stopping the supplement led to remission. That is five cases, so it supports no estimate of how often it happens. It does establish that a common over-the-counter antioxidant produced a confirmed kidney lesion that nobody had been watching for.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Ziegler D et al. Oral treatment with alpha-lipoic acid improves symptomatic diabetic polyneuropathy: the SYDNEY 2 trial. Diabetes Care 2006;29:2365-2370',
+        identifier: '10.2337/dc06-1216',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ziegler D et al. Efficacy and safety of antioxidant treatment with alpha-lipoic acid over 4 years in diabetic polyneuropathy: the NATHAN 1 trial. Diabetes Care 2011;34:2054-2060',
+        identifier: '10.2337/dc11-0503',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kucukgoncu S, Zhou E, Lucas KB, Tek C. Alpha-lipoic acid (ALA) as a supplementation for weight loss: results from a meta-analysis of randomized controlled trials. Obes Rev 2017;18:594-601',
+        identifier: '10.1111/obr.12528',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lipoic acid supplementation associated with neural epidermal growth factor-like 1 (NELL1)-associated membranous nephropathy. Kidney Int 2021;100:1208-1213',
+        identifier: '10.1016/j.kint.2021.10.010',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cappellani D, Macchia E, Falorni A, Marchetti P. Insulin autoimmune syndrome (Hirata disease): a comprehensive review fifty years after its first description. Diabetes Metab Syndr Obes 2020;13:963-978',
+        identifier: '10.2147/dmso.s219438',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 864 — Alpha-lipoic acid',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/864',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
