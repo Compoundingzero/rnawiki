@@ -71,7 +71,12 @@ const nextConfig = {
       // the dossier that replaced them rather than dropping the traffic on a 404.
       { source: '/r/:slug', destination: '/d/:slug', permanent: true },
       { source: '/compounds', destination: '/browse', permanent: true },
-      { source: '/evidence', destination: '/methodology', permanent: true },
+      { source: '/evidence', destination: '/how-it-works', permanent: true },
+      // /methodology and /how-editing-works split one explanation in two and answered it twice at
+      // different reading levels. Merged into /how-it-works; both paths are indexed and linked
+      // from dossier pages, so they redirect rather than 404.
+      { source: '/methodology', destination: '/how-it-works', permanent: true },
+      { source: '/how-editing-works', destination: '/how-it-works', permanent: true },
     ]
   },
 }

@@ -40,8 +40,7 @@ const siteUrl = process.env.SITE_URL ?? 'https://rnawiki.com'
 const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${siteUrl}/`, changeFrequency: 'daily', priority: 1 },
   { url: `${siteUrl}/browse`, changeFrequency: 'daily', priority: 0.8 },
-  { url: `${siteUrl}/how-editing-works`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${siteUrl}/methodology`, changeFrequency: 'monthly', priority: 0.6 },
+  { url: `${siteUrl}/how-it-works`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${siteUrl}/review-queue`, changeFrequency: 'hourly', priority: 0.4 },
 ]
 

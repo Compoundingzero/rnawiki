@@ -9,7 +9,7 @@
 //
 //  1. A single row of navigation the wireframe did not need. It was a two-view demo where every
 //     page was reachable from the header; this is a routed site with pages — /browse,
-//     /review-queue, /methodology — that otherwise have no permanent way in.
+//     /review-queue, /how-it-works — that otherwise have no permanent way in.
 //  2. One line of medical disclaimer. A wireframe holding six fake drugs owed nobody a warning. A
 //     public record of real medicines, read by real patients, does.
 //
@@ -21,13 +21,11 @@
 // dependency and no state.
 
 import Link from 'next/link'
-import { GuideLink } from '@/components/GuideLink'
 
 const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: '/browse', label: 'Browse all medicines' },
   { href: '/review-queue', label: 'Review queue' },
-  { href: '/how-editing-works', label: 'How editing works' },
-  { href: '/methodology', label: 'How verification works' },
+  { href: '/how-it-works', label: 'How this works' },
 ]
 
 export function SiteFooter() {
@@ -52,7 +50,6 @@ export function SiteFooter() {
               {link.label}
             </Link>
           ))}
-          <GuideLink />
         </nav>
 
         <p className="text-[11px] leading-relaxed text-[#86868B]">

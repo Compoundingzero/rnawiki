@@ -114,9 +114,16 @@ export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
             in <span className="text-[#0071E3]">10 seconds</span>.
           </h1>
 
+          {/* The reference's line was "All drugs operate through RNA", which is not true: a modern
+              class of medicines targets RNA directly, and most drugs work by entirely different
+              mechanisms. What survives is the real premise — RNA carries the instructions the body
+              runs on, so a drug either acts on them or acts on something they built — plus the
+              reason the site exists, which is that the evidence and the cost belong to the person
+              taking the drug rather than to whoever sells it. */}
           <p className="text-sm sm:text-base text-[#6E6E73] max-w-md mx-auto leading-relaxed">
-            All drugs operate through RNA. We publish the chemical formulas, clinical proof, and
-            real manufacturing costs.
+            Your body runs on RNA, and every medicine works through it — directly, or through what
+            it built. We publish the proof, the real cost, and the gaps, so you decide instead of
+            being told.
           </p>
         </div>
 
