@@ -2913,4 +2913,789 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Olpasiran — a near-total biomarker reduction with no outcome data, in a target that has burned
+  // the field before.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'olpasiran',
+    name: 'Olpasiran',
+    tradeName: 'AMG 890 (investigational)',
+    sponsor: 'Amgen',
+    targetGene: 'LPA',
+    targetProtein: 'Apolipoprotein(a)',
+    modality: 'siRNA (Small Interfering RNA)',
+    approvalStatus: 'Phase 3 Clinical Trial',
+    indication:
+      'Investigational: reduction of lipoprotein(a) in adults with established atherosclerotic cardiovascular disease and elevated lipoprotein(a)',
+    patientFriendlyIndication: 'High lipoprotein(a) — an inherited cardiovascular risk factor with no approved treatment',
+    conditionContext: {
+      conditionExplainer:
+        'Lipoprotein(a) is an LDL particle with an extra protein, apolipoprotein(a), bolted onto it. How much of it a person carries is set almost entirely by the LPA gene they inherited, it barely moves with diet or exercise, and about one adult in five carries a level considered high.',
+      whyItMatters:
+        'Genetic studies place lipoprotein(a) upstream of atherosclerosis and aortic stenosis, and it is the commonest inherited cardiovascular risk factor for which no approved treatment exists. Statins do not lower it.',
+      whoTakesThis:
+        'In trials so far, adults with established atherosclerotic cardiovascular disease and a lipoprotein(a) concentration above 150 nmol/L, almost all of them already on a statin.',
+      clinicalGoals:
+        'The trial goal has been to remove lipoprotein(a) from circulation. Whether removing it prevents events is the question the phase 3 trial exists to answer, and it has not answered it yet.',
+    },
+    oneSentenceVerdict:
+      'Silences apolipoprotein(a) production so completely that placebo-adjusted lipoprotein(a) fell by 97% to 101% at week 36 in phase 2 — a biomarker that no drug has yet been shown to lower to any clinical benefit.',
+    laymanHowItWorks:
+      'Lipoprotein(a) is a cholesterol particle with an extra protein attached, and how much you have is decided by the genes you were born with. Olpasiran is a short RNA with a liver-targeting sugar tag; it tells liver cells to destroy the instructions for that extra protein, so the particle cannot be assembled. In the phase 2 trial the level fell essentially to the floor of the assay. Whether that prevents heart attacks is being tested now in 7,297 people, and the answer is not expected before 2028.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 52,
+    anatomicalSite: 'Hepatocyte cytoplasm (liver)',
+    substitutes: {
+      summary:
+        'Nothing approved lowers lipoprotein(a) meaningfully. Lipoprotein apheresis removes it mechanically. Everything else on this list is a way of reducing the rest of a patient\'s cardiovascular risk, which is currently the only evidence-based response to a high lipoprotein(a) result.',
+      conventionalRx: [
+        {
+          name: 'Intensive LDL lowering (high-intensity statin plus ezetimibe)',
+          class: 'HMG-CoA reductase inhibitor plus NPC1L1 inhibitor',
+          howItCompares:
+            'Does not lower lipoprotein(a). It lowers the rest of the atherogenic particle burden, which is the only intervention with outcome evidence available to a patient with a high lipoprotein(a) today.',
+          typicalCost:
+            'US$0.042 per 40 mg atorvastatin tablet and US$0.074 per 10 mg ezetimibe tablet at pharmacy acquisition cost (CMS NADAC, effective 17 December 2025) — under US$4 a month combined',
+          prosAndCons:
+            'Pros: cheap, and it is the option with completed outcome trials. Cons: it does not touch the risk factor in question.',
+        },
+        {
+          name: 'Lipoprotein apheresis',
+          class: 'Extracorporeal removal of apoB-containing lipoproteins',
+          howItCompares:
+            'Physically removes lipoprotein(a) from the circulation rather than stopping its synthesis. Used in specialist centres for severe refractory cases.',
+          typicalCost: 'Not priced here — no published figure to cite',
+          prosAndCons:
+            'Pros: acts immediately and does not depend on a genetic pathway. Cons: repeated sessions, vascular access, and availability limited to a small number of centres.',
+        },
+        {
+          name: 'Extended-release niacin',
+          class: 'Nicotinic acid derivative',
+          howItCompares:
+            'The cautionary precedent for this whole page. Niacin moved every lipid marker in the direction the field wanted and produced no reduction in vascular events in two large outcome trials.',
+          typicalCost:
+            'US$0.275 per 1,000 mg extended-release tablet at pharmacy acquisition cost (CMS NADAC, effective 17 December 2025)',
+          prosAndCons:
+            'Pros: cheap, and instructive. Cons: AIM-HIGH was stopped early for lack of efficacy and HPS2-THRIVE found no significant effect on major vascular events in 25,673 patients.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Have lipoprotein(a) measured once, in nmol/L',
+          action:
+            'Ask for a single lipoprotein(a) measurement reported in nmol/L rather than mg/dL, and keep the result.',
+          patientImpact:
+            'The level is largely genetic and stable through life, so one measurement usually settles the question for good. Reporting units matter: nmol/L counts particles and mg/dL weighs mass, and apolipoprotein(a) varies enormously in size between people, so the two are not reliably interconvertible.',
+          clinicalPrecaution:
+            'A high result does not currently lead to a lipoprotein(a)-lowering treatment, because none is approved. It changes how aggressively the rest of the risk profile is treated.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      laboratoryWorkflow: [
+        {
+          id: 'olp-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite and GalNAc support release testing',
+          description:
+            'Release-test amidites and the GalNAc support. No nucleotide sequence, molecular formula or mass has been published for olpasiran in a source this file could verify, so the record here describes the process class rather than asserting the molecule.',
+          reagentsAndBuffer:
+            "2'-F and 2'-OMe A/C/G/U phosphoramidites, triantennary GalNAc CPG support, anhydrous acetonitrile, 31P NMR, HPLC purity, Karl Fischer titration",
+        },
+        {
+          id: 'olp-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase phosphoramidite assembly of both strands',
+          description:
+            'Assemble the sense strand on the conjugated support and the antisense strand separately, with sulfurisation at the terminal linkages, then cleave and deprotect.',
+          dependsOnStepId: 'olp-w1',
+          reagentsAndBuffer:
+            '5-(ethylthio)-1H-tetrazole in acetonitrile; 3% dichloroacetic acid in toluene; acetic anhydride / N-methylimidazole capping; 0.02 M iodine in THF/pyridine/water; phenylacetyl disulfide; concentrated aqueous ammonia',
+        },
+        {
+          id: 'olp-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange HPLC and desalting',
+          description:
+            'Resolve full-length product from truncations and exchange into water for injection.',
+          dependsOnStepId: 'olp-w2',
+          reagentsAndBuffer:
+            'Strong anion-exchange resin; 20 mM sodium phosphate pH 8.5 with 20% acetonitrile and a sodium bromide gradient; 3 kDa tangential-flow ultrafiltration',
+        },
+        {
+          id: 'olp-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Free uptake into primary human hepatocytes',
+          description:
+            'Dose hepatocytes without transfection reagent so entry depends on the asialoglycoprotein receptor, with an asialofetuin block as the specificity control.',
+          dependsOnStepId: 'olp-w3',
+          reagentsAndBuffer:
+            "Cryopreserved primary human hepatocytes, Williams' E medium with GlutaMAX, collagen-coated plates, asialofetuin competitor",
+        },
+        {
+          id: 'olp-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LPA knockdown and apolipoprotein(a) secretion',
+          description:
+            'Quantify LPA transcript by RT-qPCR and secreted apolipoprotein(a) by an isoform-independent immunoassay, because apolipoprotein(a) size varies widely between donors and a mass-based assay would confound knockdown with isoform size.',
+          dependsOnStepId: 'olp-w4',
+          reagentsAndBuffer:
+            'TaqMan Fast Advanced Master Mix with an LPA FAM probe and a GAPDH VIC control; isoform-independent apolipoprotein(a) immunoassay calibrated in nmol/L',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'olp-a1',
+        category: 'measured',
+        title: 'OCEAN(a)-DOSE: placebo-adjusted lipoprotein(a) reduction of 97% to 101% at week 36',
+        laymanSummary:
+          'Lipoprotein(a) fell essentially to nothing at the higher doses, in patients whose baseline level was more than three times the threshold considered high.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled dose-finding trial in 281 patients with established atherosclerotic cardiovascular disease and lipoprotein(a) above 150 nmol/L. Median baseline lipoprotein(a) 260.3 nmol/L; median LDL-C 67.5 mg/dL; 88% on a statin, 52% on ezetimibe, 23% on a PCSK9 inhibitor. Placebo-adjusted mean percent change at week 36: -70.5% (10 mg every 12 weeks), -97.4% (75 mg every 12 weeks), -101.1% (225 mg every 12 weeks) and -100.5% (225 mg every 24 weeks). Injection-site reactions, mostly pain, were the most common drug-related adverse events.',
+        evidenceSource: "O'Donoghue ML et al., N Engl J Med 2022;387:1855-1864",
+        doi: '10.1056/NEJMoa2211023',
+        measuredMetric: 'Placebo-adjusted mean percent change in lipoprotein(a) at week 36',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'olp-a2',
+        category: 'inferred',
+        title: 'No trial has shown that lowering lipoprotein(a) prevents anything',
+        laymanSummary:
+          'Genetics say lipoprotein(a) causes heart disease. No drug has yet shown that removing it prevents heart attacks, and olpasiran\'s outcome trial does not finish until 2028.',
+        technicalDetails:
+          'OCEAN(a)-Outcomes (NCT05581303) is a phase 3 cardiovascular outcome trial with 7,297 participants enrolled, currently active but not recruiting, with a primary completion date of 31 March 2028. The phase 2 trial\'s own conclusion states that "longer and larger trials will be necessary to determine the effect of olpasiran therapy on cardiovascular disease". Until that reports, the causal argument rests on Mendelian randomisation and epidemiology, not on a randomised drug trial.',
+        evidenceSource:
+          "O'Donoghue ML et al., N Engl J Med 2022;387:1855-1864; OCEAN(a)-Outcomes registry record",
+        doi: '10.1056/NEJMoa2211023',
+        inferredClaim:
+          'That near-complete removal of lipoprotein(a) will reduce myocardial infarction, stroke or cardiovascular death',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'olp-a3',
+        category: 'failed',
+        title: 'The precedent: niacin moved every lipid marker and prevented nothing',
+        laymanSummary:
+          'The last drug class to be added on top of statins because it improved a blood measurement was niacin. Two large trials found no benefit, and one was stopped early for futility.',
+        technicalDetails:
+          'AIM-HIGH randomised 3,414 patients to extended-release niacin or placebo on background simvastatin and was stopped after a mean 3 years for lack of efficacy, despite raising HDL-C from 35 to 42 mg/dL and lowering triglycerides and LDL-C. HPS2-THRIVE randomised 25,673 patients to extended-release niacin with laropiprant or placebo; over a median 3.9 years the niacin arm had LDL-C 10 mg/dL lower and HDL-C 6 mg/dL higher, with major vascular events in 13.2% versus 13.7%, rate ratio 0.96. This is why a 100% biomarker reduction is not the same as a treatment.',
+        evidenceSource:
+          'AIM-HIGH, N Engl J Med 2011;365:2255-2267; HPS2-THRIVE, N Engl J Med 2014;371:203-212',
+        doi: '10.1056/NEJMoa1300955',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'olp-a4',
+        category: 'measured',
+        title: 'A placebo-adjusted reduction above 100% is arithmetic, not a miracle',
+        laymanSummary:
+          'One dose group shows -101.1%. That does not mean lipoprotein(a) went below zero. It means the placebo group\'s level rose while the treated group\'s fell to the bottom of the assay.',
+        technicalDetails:
+          'Lipoprotein(a) increased by a mean of 3.6% in the placebo group over 36 weeks. A placebo-adjusted change is the treated change minus the placebo change, so a treated reduction approaching 100% against a rising comparator produces a figure past -100%. Reading -101.1% as more than complete elimination is a units error, and it is the kind of number that gets quoted without its denominator.',
+        evidenceSource: "O'Donoghue ML et al., N Engl J Med 2022;387:1855-1864",
+        doi: '10.1056/NEJMoa2211023',
+        measuredMetric: 'Placebo-adjusted percent change, where the placebo arm rose 3.6%',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'olp-a5',
+        category: 'measured',
+        title: 'The effect persists for about a year after the last dose',
+        laymanSummary:
+          'Nearly a year after their final injection, patients still had lipoprotein(a) roughly 40% below where they started. That is durability, and it is also irreversibility.',
+        technicalDetails:
+          'In the OCEAN(a)-DOSE extension, 276 of 281 participants entered off-treatment follow-up after the last dose at week 36. For the 225 mg every-12-weeks group, placebo-adjusted mean percent change from baseline was -84.4%, -61.6%, -52.2% and -36.4% at weeks 60, 72, 84 and 96 respectively, all P<0.001. No new safety concerns were identified. Participants on doses of 75 mg or above sustained a 40% to 50% reduction close to one year after the last dose.',
+        evidenceSource: "O'Donoghue ML et al., J Am Coll Cardiol 2024;84:790-797",
+        doi: '10.1016/j.jacc.2024.05.058',
+        measuredMetric: 'Off-treatment placebo-adjusted percent change in lipoprotein(a)',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Subcutaneous injection every 12 weeks with a liver tag',
+        laymanDesc:
+          'An injection under the skin once every three months. The sugar tag makes liver cells absorb it, which matters because the liver is the only place lipoprotein(a) is made.',
+        molecularDetail:
+          'A GalNAc-conjugated duplex binds hepatocyte ASGPR. Doses of 75 mg and above every 12 weeks produced the near-complete reductions in phase 2; a 225 mg every-24-weeks arm performed comparably at week 36.',
+        iconName: 'Target',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Receptor-mediated uptake into the hepatocyte',
+        laymanDesc:
+          'The liver cell pulls the drug inside and retains a slowly released reservoir, which is why the effect outlasts the drug by many months.',
+        molecularDetail:
+          'ASGPR-mediated endocytosis routes the conjugate to the endosome; a fraction escapes into the cytoplasm and the remainder forms the depot responsible for the year-long off-treatment persistence measured in the extension study.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Guide strand loaded into Argonaute 2',
+        laymanDesc:
+          'The active strand is loaded into the cell\'s silencing machinery. No sequence has been published for this drug, so this page describes the mechanism, not the letters.',
+        molecularDetail:
+          'The antisense strand loads into Argonaute 2 within RISC and directs it to LPA transcripts. No nucleotide sequence for olpasiran has been published in a verifiable source, so none is recorded here and the structure carries no machine-verification badge.',
+        iconName: 'Cpu',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'LPA messenger RNA is cut and apolipoprotein(a) is never made',
+        laymanDesc:
+          'The complex destroys the instructions for the extra protein. Without it the lipoprotein(a) particle cannot be assembled at all.',
+        molecularDetail:
+          'Argonaute 2 cleaves LPA mRNA, preventing translation of apolipoprotein(a). Lipoprotein(a) assembly requires a disulfide link between apolipoprotein(a) and the apolipoprotein B-100 of an LDL particle, so with no apolipoprotein(a) available the particle is not formed rather than being cleared faster.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Circulating lipoprotein(a) approaches the assay floor',
+        laymanDesc:
+          'The measured level drops essentially to nothing at the higher doses, and stays far below baseline for about a year after the last injection.',
+        molecularDetail:
+          'Placebo-adjusted reductions of 97.4% to 101.1% at week 36, from a median baseline of 260.3 nmol/L. Whether that produces a clinical benefit is unknown: the phase 3 outcome trial has 7,297 participants and a primary completion date of March 2028.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'OCEAN(a)-DOSE (NCT04270760)',
+        phase: 'Phase 2',
+        sampleSize: 281,
+        primaryEndpoint:
+          'Placebo-adjusted mean percent change in lipoprotein(a) from baseline to week 36',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001 for all dose comparisons with baseline',
+        unreportedAdverseSignals:
+          'A dose-finding trial with a biomarker endpoint. It was neither designed nor powered to detect a difference in clinical events.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'OCEAN(a)-Outcomes (NCT05581303)',
+        phase: 'Phase 3 cardiovascular outcome trial',
+        sampleSize: 7297,
+        primaryEndpoint: 'Major adverse cardiovascular events',
+        endpointMet: false,
+        statisticalPValue: 'Not reported — primary completion date 31 March 2028',
+        unreportedAdverseSignals:
+          'The trial has not reported. `endpointMet: false` here means "no result exists yet", not "the endpoint was missed".',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Placebo-adjusted lipoprotein(a) reduction of 70.5% to 101.1% at week 36 across four dose groups',
+        'A 40% to 50% reduction still present close to one year after the last dose',
+        'Injection-site reactions, principally pain, as the most common drug-related adverse event',
+      ],
+      unsupportedInferences: [
+        'That lowering lipoprotein(a) reduces cardiovascular events — the trial designed to test this reports in 2028',
+        'That -101.1% means more than total elimination; it is a placebo-adjusted figure against a comparator arm that rose 3.6%',
+        'That a Mendelian randomisation argument for causality is evidence that a drug intervention works',
+      ],
+      whatFailedInitially: [
+        'Niacin, the previous lipid biomarker added on top of statins, failed in AIM-HIGH and in 25,673 patients in HPS2-THRIVE',
+      ],
+      realWorldOutcome: [
+        'No lipoprotein(a)-lowering therapy is approved anywhere, so a high result currently changes how aggressively other risk factors are treated and nothing else',
+        'The year-long persistence after the last dose is an efficiency argument and a safety consideration at the same time: the effect cannot be withdrawn quickly',
+      ],
+    },
+    deliverySystem: {
+      type: 'GalNAc-conjugated siRNA, subcutaneous injection (investigational)',
+      description:
+        'Subcutaneous administration every 12 weeks in the doses that produced near-complete reductions, with a 24-weekly arm also studied. No approved presentation exists.',
+      safetyProfile:
+        'In phase 2 the overall incidence of adverse events was similar across trial groups, and the most common drug-related events were injection-site reactions, primarily pain. The extension study identified no new safety concerns over a median 86 weeks of study exposure. There is no FDA label, so there is no labelled warning set.',
+    },
+    commonQuestions: [
+      {
+        q: 'If it removes almost all of my lipoprotein(a), does that make me safer?',
+        a: 'Nobody knows. That is not hedging — it is the actual state of the evidence. The phase 2 trial measured a blood level and said so in its own conclusion: longer and larger trials will be necessary to determine the effect on cardiovascular disease. OCEAN(a)-Outcomes, with 7,297 participants, has a primary completion date of March 2028.',
+        auditNote:
+          'Every drug on this page that lowers a number has this question. Olpasiran is the one where the answer is furthest away.',
+      },
+      {
+        q: 'Why does one dose group show a reduction of more than 100%?',
+        a: 'Because the figure is placebo-adjusted and lipoprotein(a) rose 3.6% in the placebo group. Subtract a rise from a near-total fall and you get a number past -100%. It does not mean the level went below zero, and quoting it without the placebo change attached makes it sound like something it is not.',
+      },
+      {
+        q: 'Can I lower lipoprotein(a) with diet?',
+        a: 'Not meaningfully, and this page cites no dietary option because there is none to cite. Lipoprotein(a) is set almost entirely by the LPA gene and is stable through adult life. That is precisely why an siRNA against LPA was worth building.',
+      },
+      {
+        q: 'What happens if I stop?',
+        a: 'The level comes back slowly. In the extension study, patients on 225 mg every 12 weeks were still 84.4% below baseline at week 60 and 36.4% below at week 96, roughly a year after their last injection. That durability is convenient and it also means the effect cannot be reversed quickly if a reason to reverse it emerged.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          "O'Donoghue ML et al. Small Interfering RNA to Reduce Lipoprotein(a) in Cardiovascular Disease (OCEAN(a)-DOSE). N Engl J Med 2022;387:1855-1864",
+        identifier: '10.1056/NEJMoa2211023',
+        kind: 'doi',
+      },
+      {
+        label:
+          "O'Donoghue ML et al. The Off-Treatment Effects of Olpasiran on Lipoprotein(a) Lowering. J Am Coll Cardiol 2024;84:790-797",
+        identifier: '10.1016/j.jacc.2024.05.058',
+        kind: 'doi',
+      },
+      { label: 'OCEAN(a)-DOSE', identifier: 'NCT04270760', kind: 'nct' },
+      { label: 'OCEAN(a)-Outcomes', identifier: 'NCT05581303', kind: 'nct' },
+      {
+        label:
+          'AIM-HIGH. Niacin in patients with low HDL cholesterol levels receiving intensive statin therapy. N Engl J Med 2011;365:2255-2267',
+        identifier: '10.1056/NEJMoa1107579',
+        kind: 'doi',
+      },
+      {
+        label:
+          'HPS2-THRIVE. Effects of extended-release niacin with laropiprant in high-risk patients. N Engl J Med 2014;371:203-212',
+        identifier: '10.1056/NEJMoa1300955',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC), 2026 file, prices effective 17 December 2025',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Zilebesiran — the effect that cannot be switched off, and the one that shrinks when the
+  // background therapy already blocks the same pathway.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'zilebesiran',
+    name: 'Zilebesiran',
+    tradeName: 'ALN-AGT01 (investigational)',
+    sponsor: 'Alnylam Pharmaceuticals (with Roche)',
+    targetGene: 'AGT',
+    targetProtein: 'Angiotensinogen',
+    modality: 'siRNA (Small Interfering RNA)',
+    approvalStatus: 'Phase 2 Investigational',
+    indication:
+      'Investigational: hypertension, studied as monotherapy and as add-on to standard antihypertensive therapy',
+    patientFriendlyIndication: 'High blood pressure, dosed twice a year instead of daily',
+    conditionContext: {
+      conditionExplainer:
+        'The renin-angiotensin system is a cascade: the liver makes angiotensinogen, renin cuts it, and further processing produces angiotensin II, which constricts blood vessels and retains salt. Almost every blood pressure drug that targets this system acts somewhere downstream. Zilebesiran removes the raw material at the top.',
+      whyItMatters:
+        'Roughly half of treated hypertensive patients never reach target, and the commonest reason is that daily tablets are not taken daily. An injection given twice a year removes adherence from the equation entirely.',
+      whoTakesThis:
+        'In trials so far, adults with mild to moderate hypertension after antihypertensive washout, and adults whose blood pressure remains uncontrolled on one or more standard agents.',
+      clinicalGoals:
+        'Sustained reduction in 24-hour ambulatory systolic blood pressure from a single injection, on a dosing interval of three to six months.',
+    },
+    oneSentenceVerdict:
+      'Silences hepatic angiotensinogen at the top of the blood-pressure cascade, lowering 24-hour ambulatory systolic pressure by 14 to 17 mmHg against placebo at three months from a single injection — with hyperkalaemia and acute kidney injury signals, and an effect that cannot be switched off for six months.',
+    laymanHowItWorks:
+      'Your body makes a hormone chain that tightens blood vessels, and it starts with a protein the liver produces called angiotensinogen. Most blood pressure pills interrupt that chain somewhere in the middle. Zilebesiran stops the liver making the starting material at all. One injection lowers blood pressure for three to six months, which solves the problem of forgotten tablets and creates a new one: if the pressure needs to come back up quickly, there is no way to make that happen.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 55,
+    anatomicalSite: 'Hepatocyte cytoplasm (liver)',
+    substitutes: {
+      summary:
+        'The three drugs zilebesiran was tested on top of in KARDIA-2 are generic and cost a few dollars a month between them. That trial is also where the honest comparison lives: added to a diuretic the extra reduction was 12.1 mmHg, and added to an angiotensin receptor blocker acting on the same pathway it was 4.5 mmHg.',
+      conventionalRx: [
+        {
+          name: 'Amlodipine (generic)',
+          class: 'Dihydropyridine calcium channel blocker',
+          howItCompares:
+            'Acts on vascular smooth muscle, a completely different pathway. In KARDIA-2, zilebesiran added 9.7 mmHg on top of it.',
+          typicalCost:
+            'US$0.011 per 5 mg tablet at pharmacy acquisition cost (CMS NADAC, effective 17 December 2025) — about US$0.33 for a 30-day supply',
+          prosAndCons:
+            'Pros: pennies, decades of outcome data, oral. Cons: taken daily, and ankle oedema is common.',
+        },
+        {
+          name: 'Indapamide (generic)',
+          class: 'Thiazide-like diuretic',
+          howItCompares:
+            'Reduces volume rather than vasoconstriction, and activates the renin-angiotensin system as a counter-regulatory response — which is why zilebesiran added the most on top of it, 12.1 mmHg.',
+          typicalCost:
+            'US$0.119 per 2.5 mg tablet at pharmacy acquisition cost (CMS NADAC, effective 17 December 2025) — about US$3.56 for a 30-day supply',
+          prosAndCons:
+            'Pros: cheap, and mechanistically complementary. Cons: electrolyte monitoring, and combining a diuretic with angiotensinogen silencing is exactly the setting where hyperkalaemia and kidney injury need watching.',
+        },
+        {
+          name: 'Olmesartan (generic)',
+          class: 'Angiotensin II receptor blocker',
+          howItCompares:
+            'Blocks the same pathway at the receptor rather than at the source. In KARDIA-2 the added benefit of zilebesiran on top of it was 4.5 mmHg, the smallest of the three cohorts.',
+          typicalCost:
+            'US$0.123 per 40 mg tablet at pharmacy acquisition cost (CMS NADAC, effective 17 December 2025) — about US$3.68 for a 30-day supply',
+          prosAndCons:
+            'Pros: cheap, outcome evidence, reversible within days if it needs to stop. Cons: taken daily.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Dietary sodium reduction',
+          activeCompound: 'Sodium (reduction rather than supplementation)',
+          biologicalMechanism:
+            'Lower sodium intake reduces extracellular volume and lowers blood pressure. It also interacts directly with this drug: in the phase 1 study the antihypertensive effect of zilebesiran was attenuated on a high-salt diet and augmented by an angiotensin receptor blocker.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'EFSA considers a sodium intake of 2.0 g/day the level at which there is sufficient confidence in a reduced cardiovascular risk in the general adult population (EFSA Journal, 2019)',
+          monthlyCost: 'No cost — this is a reduction, not a purchase',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Measure at home, not only in the clinic',
+          action:
+            'Use a validated upper-arm home monitor and record readings over a week, or ask for 24-hour ambulatory monitoring.',
+          patientImpact:
+            'Every efficacy figure in KARDIA-1 and KARDIA-2 is a 24-hour ambulatory measurement, not an office reading. KARDIA-3 used office systolic pressure and produced a much smaller number. Comparing across those two kinds of measurement is not valid.',
+          clinicalPrecaution:
+            'Home readings inform the conversation with the clinician; they do not replace it, and no dose should change on the strength of them alone.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      laboratoryWorkflow: [
+        {
+          id: 'zil-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite and GalNAc support release testing',
+          description:
+            'Release-test amidites and the GalNAc support. No nucleotide sequence, molecular formula or mass has been published for zilebesiran in a source this file could verify, so nothing about the molecule itself is asserted here.',
+          reagentsAndBuffer:
+            "2'-F and 2'-OMe A/C/G/U phosphoramidites, triantennary GalNAc CPG support, anhydrous acetonitrile, 31P NMR, HPLC purity, Karl Fischer titration",
+        },
+        {
+          id: 'zil-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase phosphoramidite assembly of both strands',
+          description:
+            'Assemble the conjugated sense strand and the antisense strand, with sulfurisation at the terminal linkages, then cleave and deprotect.',
+          dependsOnStepId: 'zil-w1',
+          reagentsAndBuffer:
+            '5-(ethylthio)-1H-tetrazole in acetonitrile; 3% dichloroacetic acid in toluene; acetic anhydride / N-methylimidazole capping; 0.02 M iodine in THF/pyridine/water; phenylacetyl disulfide; concentrated aqueous ammonia',
+        },
+        {
+          id: 'zil-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange HPLC and desalting',
+          description:
+            'Resolve full-length product from truncations and exchange into water for injection.',
+          dependsOnStepId: 'zil-w2',
+          reagentsAndBuffer:
+            'Strong anion-exchange resin; 20 mM sodium phosphate pH 8.5 with 20% acetonitrile and a sodium bromide gradient; 3 kDa tangential-flow ultrafiltration',
+        },
+        {
+          id: 'zil-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Free uptake into primary human hepatocytes',
+          description:
+            'Dose hepatocytes without transfection reagent so uptake is ASGPR-dependent, with an asialofetuin block as the specificity control.',
+          dependsOnStepId: 'zil-w3',
+          reagentsAndBuffer:
+            "Cryopreserved primary human hepatocytes, Williams' E medium with GlutaMAX, collagen-coated plates, asialofetuin competitor",
+        },
+        {
+          id: 'zil-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'AGT knockdown and serum angiotensinogen',
+          description:
+            'Quantify AGT transcript by RT-qPCR and secreted angiotensinogen by immunoassay. Serum angiotensinogen is the pharmacodynamic marker used clinically, and in the phase 1 study its reduction correlated with dose.',
+          dependsOnStepId: 'zil-w4',
+          reagentsAndBuffer:
+            'TaqMan Fast Advanced Master Mix with an AGT FAM probe and a GAPDH VIC control; human angiotensinogen sandwich ELISA',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'zil-a1',
+        category: 'measured',
+        title: 'KARDIA-1: 14 to 17 mmHg placebo-adjusted reduction from a single injection',
+        laymanSummary:
+          'One injection lowered 24-hour average systolic pressure by about 15 mmHg more than placebo at three months, across every dose tested.',
+        technicalDetails:
+          'Phase 2, randomised, double-blind, dose-ranging, 78 sites in 4 countries, 394 randomised and 377 in the full analysis set. Least-squares mean differences versus placebo in change from baseline to month 3 in 24-hour mean ambulatory systolic pressure: -14.1 mmHg (150 mg every 6 months), -16.7 mmHg (300 mg every 3 or 6 months) and -15.7 mmHg (600 mg every 6 months), all P<.001. Over 6 months, adverse events occurred in 60.9% of zilebesiran patients versus 50.7% of placebo, serious adverse events in 3.6% versus 6.7%, and non-serious drug-related events in 16.9% versus 8.0%, principally injection-site reactions and mild hyperkalaemia.',
+        evidenceSource: 'Bakris GL et al., JAMA 2024;331:740-749',
+        doi: '10.1001/jama.2024.0728',
+        measuredMetric: '24-hour mean ambulatory systolic blood pressure at month 3',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zil-a2',
+        category: 'measured',
+        title: 'KARDIA-2: the added effect shrinks to 4.5 mmHg on top of an ARB',
+        laymanSummary:
+          'On top of a diuretic, zilebesiran added 12.1 mmHg. On top of a calcium channel blocker, 9.7. On top of a drug already blocking the same hormone pathway, only 4.5.',
+        technicalDetails:
+          'Phase 2, 150 sites in 8 countries. 1,491 patients entered an open-label run-in on indapamide 2.5 mg, amlodipine 5 mg or olmesartan 40 mg; 663 with 24-hour ambulatory systolic pressure of 130 to 160 mmHg were randomised 1:1 to a single subcutaneous 600 mg dose of zilebesiran or placebo. Least-squares mean differences at 3 months: -12.1 mmHg (indapamide, 95% CI -16.5 to -7.6, P<.001), -9.7 mmHg (amlodipine, 95% CI -12.9 to -6.6, P<.001) and -4.5 mmHg (olmesartan, 95% CI -8.2 to -0.8, P=.02). Hyperkalaemia occurred in 5.5% versus 1.8%, hypotension in 4.3% versus 2.1% and acute kidney failure in 4.9% versus 1.5%.',
+        evidenceSource: 'Desai AS et al., JAMA 2025;334:46-55',
+        doi: '10.1001/jama.2025.6681',
+        measuredMetric:
+          '24-hour mean ambulatory systolic blood pressure at 3 months, by background agent',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zil-a3',
+        category: 'inferred',
+        title: 'No cardiovascular outcome has been measured, and the phase 3 trial has not reported',
+        laymanSummary:
+          'Everything measured so far is blood pressure. Whether that translates into fewer strokes and heart attacks is the point of a trial that was only announced in August 2025.',
+        technicalDetails:
+          'All completed zilebesiran studies are phase 1 or phase 2 with blood pressure endpoints. Roche and Alnylam announced in August 2025 that ZENITH, a cardiovascular outcome trial of approximately 11,000 patients comparing zilebesiran 300 mg every six months against placebo in uncontrolled hypertension with established or high cardiovascular risk on two or more antihypertensives including a diuretic, would proceed. Blood pressure reduction has a strong outcome track record across drug classes, but it has never been established for this class.',
+        evidenceSource:
+          'Roche media release, 30 August 2025; Bakris GL et al., JAMA 2024;331:740-749',
+        inferredClaim:
+          'That a 15 mmHg ambulatory systolic reduction from an siRNA reduces cardiovascular events as it does from a daily tablet',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'zil-a4',
+        category: 'failed',
+        title: 'The dosing interval is also the problem: the effect cannot be withdrawn',
+        laymanSummary:
+          'A pill can be stopped today. An injection that works for six months cannot. If a patient becomes dehydrated, septic or hypotensive, the drug is still working.',
+        technicalDetails:
+          'Zilebesiran produces sustained angiotensinogen suppression from a single dose, with blood-pressure effects consistent through the diurnal cycle and sustained at 24 weeks in the phase 1 study. A 2026 review frames the unresolved clinical question directly: how acute illness should be managed when upstream renin-angiotensin suppression cannot be rapidly attenuated. The safety signals that make this concrete are already visible — hyperkalaemia in 5.5%, hypotension in 4.3% and acute kidney failure in 4.9% of KARDIA-2 patients, against 1.8%, 2.1% and 1.5% on placebo.',
+        evidenceSource:
+          'Zilebesiran in Hypertension: Reversibility, Acute Illness, and Therapeutic Flexibility. Am J Cardiovasc Drugs 2026; Desai AS et al., JAMA 2025;334:46-55',
+        doi: '10.1007/s40256-026-00823-7',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'zil-a5',
+        category: 'measured',
+        title: 'The effect depends on dietary salt and on background therapy',
+        laymanSummary:
+          'A high-salt diet blunts the drug and an angiotensin blocker amplifies it. This is a treatment whose size depends on what else the patient is doing.',
+        technicalDetails:
+          'The phase 1 study enrolled 107 patients across single ascending doses of 10 to 800 mg. Part B assessed the 800 mg dose under low- and high-salt diets and Part E in combination with irbesartan; the results were consistent with attenuation of the blood-pressure effect by a high-salt diet and augmentation by coadministration with an angiotensin receptor blocker. Serum angiotensinogen reduction correlated with dose (r = -0.56 at week 8; 95% CI -0.69 to -0.39).',
+        evidenceSource: 'Desai AS et al., N Engl J Med 2023;389:228-238',
+        doi: '10.1056/NEJMoa2208391',
+        measuredMetric:
+          'Change in 24-hour ambulatory blood pressure under low- and high-salt conditions and with irbesartan',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zil-a6',
+        category: 'conclusion_shift',
+        title: 'The number gets smaller as the population gets harder',
+        laymanSummary:
+          'Sixteen millimetres of mercury in patients washed off their medication. Four and a half on top of an ARB. Five in a higher-risk group on multiple drugs, with a p-value of 0.043.',
+        technicalDetails:
+          'KARDIA-1 measured 24-hour ambulatory systolic pressure after antihypertensive washout and reported differences of 14.1 to 16.7 mmHg. KARDIA-2 measured the same endpoint on top of a single background agent and reported 12.1, 9.7 and 4.5 mmHg depending on which. Roche and Alnylam reported that KARDIA-3, in patients with established or high cardiovascular risk on two or more antihypertensives, produced a placebo-adjusted office systolic reduction of -5.0 mmHg at the month-3 primary endpoint (p=0.0431) in a cohort of 270 randomised patients. Note that KARDIA-3 reports an office measurement while KARDIA-1 and KARDIA-2 report 24-hour ambulatory measurements, so the three numbers are not directly comparable.',
+        evidenceSource:
+          'Bakris GL et al., JAMA 2024; Desai AS et al., JAMA 2025; Roche media release, 30 August 2025',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One subcutaneous injection every three to six months',
+        laymanDesc:
+          'A single injection under the skin. The sugar tag sends it to the liver, which is where the starting material for the blood-pressure hormone chain is made.',
+        molecularDetail:
+          'A GalNAc-conjugated duplex binds hepatocyte ASGPR. Doses of 150 to 600 mg have been studied at three- and six-monthly intervals; the phase 3 outcome trial uses 300 mg every six months.',
+        iconName: 'Target',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Uptake into the hepatocyte and a months-long reservoir',
+        laymanDesc:
+          'The liver cell absorbs the drug and holds a store that releases slowly, which is why one dose lasts half a year.',
+        molecularDetail:
+          'ASGPR-mediated endocytosis routes the conjugate to the endosome; a fraction escapes to the cytoplasm and the endolysosomal depot sustains angiotensinogen suppression for months after plasma clearance.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Guide strand loaded into Argonaute 2',
+        laymanDesc:
+          'The active strand enters the cell\'s silencing machinery. No sequence has been published for this drug, so this page describes the mechanism rather than the letters.',
+        molecularDetail:
+          'The antisense strand loads into Argonaute 2 within RISC and directs it to AGT transcripts. No nucleotide sequence for zilebesiran has been published in a verifiable source, so none is recorded and the structure carries no machine-verification badge.',
+        iconName: 'Cpu',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'AGT messenger RNA is cut and the cascade loses its substrate',
+        laymanDesc:
+          'The complex destroys the instructions for angiotensinogen. Renin can still work, but it has nothing left to work on.',
+        molecularDetail:
+          'Argonaute 2 cleaves AGT mRNA, reducing hepatic angiotensinogen secretion. Angiotensinogen is the sole precursor of every angiotensin peptide, so removing it depletes the cascade at its source rather than blocking one enzyme or one receptor downstream. Serum angiotensinogen reduction correlated with dose in the phase 1 study.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Blood pressure falls for months, and cannot be raised back quickly',
+        laymanDesc:
+          'Twenty-four-hour average pressure dropped by about 15 mmHg more than placebo and stayed down. The same durability means there is no way to switch the effect off if it becomes unwanted.',
+        molecularDetail:
+          'Sustained angiotensinogen depletion produced placebo-adjusted 24-hour ambulatory systolic reductions of 14.1 to 16.7 mmHg at month 3, consistent through the diurnal cycle and sustained to 24 weeks. Hyperkalaemia, hypotension and acute kidney failure were each roughly three times more common than placebo in KARDIA-2, and none of them can be addressed by stopping the drug.',
+        iconName: 'Gauge',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Phase 1 (NCT03934307)',
+        phase: 'Phase 1',
+        sampleSize: 107,
+        primaryEndpoint: 'Safety, pharmacokinetics and pharmacodynamics of single ascending doses',
+        endpointMet: true,
+        statisticalPValue:
+          'Dose correlation with serum angiotensinogen reduction r = -0.56 (95% CI -0.69 to -0.39) at week 8',
+        unreportedAdverseSignals:
+          'Five patients had mild transient injection-site reactions. No hypotension, hyperkalaemia or renal deterioration requiring intervention at this stage — signals that did appear in the larger phase 2 studies.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'KARDIA-1 (NCT04936035)',
+        phase: 'Phase 2',
+        sampleSize: 394,
+        primaryEndpoint:
+          'Between-group difference in change from baseline to month 3 in 24-hour mean ambulatory systolic blood pressure',
+        endpointMet: true,
+        statisticalPValue: 'P < .001 for all dose groups',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'KARDIA-2 (NCT05103332)',
+        phase: 'Phase 2',
+        sampleSize: 663,
+        primaryEndpoint:
+          'Difference versus placebo in change from baseline to 3 months in 24-hour mean ambulatory systolic blood pressure, within each background-therapy cohort',
+        endpointMet: true,
+        statisticalPValue: 'P < .001 (indapamide and amlodipine cohorts); P = .02 (olmesartan cohort)',
+        unreportedAdverseSignals:
+          'Hyperkalaemia 5.5% versus 1.8%, hypotension 4.3% versus 2.1% and acute kidney failure 4.9% versus 1.5% against placebo.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Placebo-adjusted 24-hour ambulatory systolic reductions of 14.1 to 16.7 mmHg at month 3 from a single injection',
+        'Added reductions of 12.1, 9.7 and 4.5 mmHg on top of indapamide, amlodipine and olmesartan respectively',
+        'Hyperkalaemia, hypotension and acute kidney failure each roughly three times more frequent than placebo in KARDIA-2',
+        'Attenuation of the blood-pressure effect by a high-salt diet and augmentation by an angiotensin receptor blocker',
+      ],
+      unsupportedInferences: [
+        'That the blood pressure reduction reduces strokes, heart attacks or death — no outcome trial has reported',
+        'That the KARDIA-1 monotherapy effect size applies to patients already on renin-angiotensin blockade; KARDIA-2 shows it does not',
+        'That KARDIA-3\'s office systolic reduction can be compared with KARDIA-1\'s ambulatory figures — they are different measurements',
+      ],
+      whatFailedInitially: [
+        'The effect size fell from roughly 16 mmHg after washout to 4.5 mmHg on top of an angiotensin receptor blocker, because both act on the same pathway',
+      ],
+      realWorldOutcome: [
+        'Twice-yearly dosing removes non-adherence, which is the commonest reason treated hypertension stays uncontrolled',
+        'The same durability creates a management problem with no precedent in hypertension: an antihypertensive that cannot be stopped when a patient becomes acutely unwell',
+      ],
+    },
+    deliverySystem: {
+      type: 'GalNAc-conjugated siRNA, subcutaneous injection (investigational)',
+      description:
+        'A single subcutaneous injection, studied at 150 mg, 300 mg and 600 mg every six months and 300 mg every three months. The announced phase 3 outcome trial uses 300 mg every six months. No approved presentation exists.',
+      safetyProfile:
+        'No FDA label and therefore no labelled warning set. In KARDIA-1, adverse events occurred in 60.9% of zilebesiran patients versus 50.7% on placebo, with serious events less frequent on drug (3.6% versus 6.7%). In the larger KARDIA-2 study hyperkalaemia (5.5% versus 1.8%), hypotension (4.3% versus 2.1%) and acute kidney failure (4.9% versus 1.5%) were all more common than placebo, though most episodes were described as mild and resolved without medical intervention.',
+    },
+    commonQuestions: [
+      {
+        q: 'Two injections a year instead of daily pills — what is the catch?',
+        a: 'That it cannot be undone. A tablet stops working within a day or two of stopping it. A single zilebesiran dose suppresses angiotensinogen for months, so if a patient develops sepsis, severe dehydration, kidney injury or hypotension, the drug is still working and there is no antidote and no washout. A 2026 review names this as the central unresolved question for the class.',
+        auditNote:
+          'The hyperkalaemia, hypotension and acute kidney failure rates in KARDIA-2 are what make this concrete rather than theoretical.',
+      },
+      {
+        q: 'Why was the effect so much smaller in KARDIA-2?',
+        a: 'Because of what patients were already taking. Zilebesiran removes the substrate at the top of the renin-angiotensin cascade. If a patient is already on an angiotensin receptor blocker, the pathway is already blocked downstream and there is less left to gain — 4.5 mmHg, against 12.1 mmHg on top of a diuretic, which actually activates the pathway and therefore leaves more room.',
+      },
+      {
+        q: 'Does it prevent strokes and heart attacks?',
+        a: 'Unknown. Every completed trial has measured blood pressure. Lowering blood pressure has a very strong outcome record across older drug classes, which is the basis for optimism, but it is an extrapolation. The ZENITH outcome trial of roughly 11,000 patients was announced in August 2025 and has not reported.',
+      },
+      {
+        q: 'Does my salt intake change how well it works?',
+        a: 'Yes, measurably. In the phase 1 study the blood-pressure effect was attenuated on a high-salt diet and augmented when combined with an angiotensin receptor blocker. That makes dietary sodium a genuine variable in how much benefit a given patient gets, which is unusual among blood pressure drugs.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Bakris GL et al. RNA Interference With Zilebesiran for Mild to Moderate Hypertension: The KARDIA-1 Randomized Clinical Trial. JAMA 2024;331:740-749',
+        identifier: '10.1001/jama.2024.0728',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Desai AS et al. Add-On Treatment With Zilebesiran for Inadequately Controlled Hypertension: The KARDIA-2 Randomized Clinical Trial. JAMA 2025;334:46-55',
+        identifier: '10.1001/jama.2025.6681',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Desai AS et al. Zilebesiran, an RNA Interference Therapeutic Agent for Hypertension. N Engl J Med 2023;389:228-238',
+        identifier: '10.1056/NEJMoa2208391',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Zilebesiran in Hypertension: Reversibility, Acute Illness, and Therapeutic Flexibility. Am J Cardiovasc Drugs 2026',
+        identifier: '10.1007/s40256-026-00823-7',
+        kind: 'doi',
+      },
+      { label: 'KARDIA-1', identifier: 'NCT04936035', kind: 'nct' },
+      { label: 'KARDIA-2', identifier: 'NCT05103332', kind: 'nct' },
+      { label: 'KARDIA-3', identifier: 'NCT06272487', kind: 'nct' },
+      {
+        label:
+          'Roche and Alnylam advance zilebesiran into global phase III cardiovascular outcomes trial, 30 August 2025 — KARDIA-3 results and the ZENITH design',
+        identifier: 'https://www.roche.com/media/releases/med-cor-2025-08-30',
+        kind: 'url',
+      },
+      {
+        label: 'EFSA NDA Panel. Dietary reference values for sodium. EFSA Journal 2019',
+        identifier: '10.2903/j.efsa.2019.5778',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC), 2026 file, prices effective 17 December 2025',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
 ]

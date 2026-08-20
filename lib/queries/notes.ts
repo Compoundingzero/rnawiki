@@ -120,7 +120,23 @@ export async function listNotesForDrug(
   viewerUserId?: string,
 ): Promise<CommunityNote[]> {
   const rows = await db
-    .select({ ...noteColumns, viewerUpvoteUserId: noteUpvotes.userId })
+    .select({
+      ...noteColumns,
+      viewerUpvoteUserId: noteUpvotes.userId,
+      // The author's CURRENT verification state, joined live.
+      //
+      // The snapshot columns on the note are the right default: a note keeps the credentials it
+      // was signed with, so an author who later changes specialty does not silently rewrite what
+      // hundreds of old notes claim. But revocation is different. If a steward withdraws
+      // verification -- because the licence lapsed, or because it was never real -- every note that
+      // account ever posted would otherwise keep displaying "MD ✓" for ever, and those are exactly
+      // the notes the revocation was meant to stop vouching for.
+      //
+      // So the badge needs BOTH: the snapshot says this note was signed as a physician, and the
+      // live column says the account still is one. A null author (deleted account) fails the
+      // second test, which is the right answer too.
+      authorVerificationState: users.verificationState,
+    })
     .from(communityNotes)
     .leftJoin(
       noteUpvotes,
@@ -129,11 +145,15 @@ export async function listNotesForDrug(
         eq(noteUpvotes.userId, viewerUserId ?? ''),
       ),
     )
+    .leftJoin(users, eq(users.id, communityNotes.authorUserId))
     .where(and(eq(communityNotes.drugId, drugId), eq(communityNotes.status, 'published')))
     .orderBy(desc(communityNotes.createdAt), desc(communityNotes.id))
 
-  return rows.map(({ viewerUpvoteUserId, ...row }) =>
-    toCommunityNote(row, viewerUpvoteUserId !== null),
+  return rows.map(({ viewerUpvoteUserId, authorVerificationState, ...row }) =>
+    toCommunityNote(
+      { ...row, isVerifiedDoctor: row.isVerifiedDoctor && authorVerificationState === 'verified' },
+      viewerUpvoteUserId !== null,
+    ),
   )
 }
 

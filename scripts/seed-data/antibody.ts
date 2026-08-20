@@ -4438,4 +4438,366 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       MAB_COGS_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 13. Donanemab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'donanemab',
+    name: 'Donanemab',
+    tradeName: 'Kisunla',
+    sponsor: 'Eli Lilly and Company',
+    targetGene: 'APP',
+    targetProtein: 'N-terminal pyroglutamate-modified amyloid beta (AbetaP3-42), found only in deposited plaque',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2024,
+    indication:
+      'Alzheimer disease in patients with mild cognitive impairment or mild dementia stage, with confirmed amyloid pathology',
+    patientFriendlyIndication: 'Early Alzheimer disease, with treatment stopped once the plaque is cleared',
+    anatomicalSite: 'Brain parenchyma and cerebral vasculature',
+    conditionContext: {
+      conditionExplainer:
+        'Deposited amyloid plaque contains a chemically modified form of amyloid beta with a pyroglutamate cap on its third residue. That modified form exists only in plaque, never in circulating monomer, which makes it a target found nowhere except where the disease has already deposited it.',
+      whyItMatters:
+        'Donanemab is the first Alzheimer therapy designed to be stopped. Treatment ends when amyloid PET shows the plaque is gone, which converts a chronic infusion into a finite course and makes the question of whether removing amyloid changes the disease answerable in a way continuous dosing does not.',
+      whoTakesThis:
+        'People with mild cognitive impairment or mild dementia due to Alzheimer disease with confirmed amyloid pathology, who can attend monthly infusions and repeated MRI and PET imaging.',
+      clinicalGoals:
+        'Clear amyloid plaque to below the positivity threshold, stop treatment, and slow decline on the iADRS and CDR-SB while managing ARIA.',
+    },
+    oneSentenceVerdict:
+      'An antibody against plaque-specific pyroglutamate amyloid beta that slowed CDR-SB decline by 0.70 points over 76 weeks in 1,736 patients, cleared enough plaque to stop treatment in 69% of them by week 76, and caused brain swelling in 24%.',
+    laymanHowItWorks:
+      'Amyloid plaque contains a chemically altered version of the amyloid protein that exists nowhere else in the body. Donanemab recognises only that altered form, so it binds plaque and ignores the circulating protein. Immune cells in the brain then strip the plaque away. When scans show the plaque has gone, treatment stops, which no other Alzheimer drug does.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 60,
+    pricing: {
+      synthesisCostPerDose:
+        'Published best-practice cost of goods for antibody drug substance is $10-$100 per gram; a 1,400 mg maintenance dose is 1.4 g, given monthly',
+      retailPricePerDoseOrYear: 'US list price of approximately $32,000 for a 12-month course',
+      markupEstimate:
+        'Drug substance at published best-practice cost of goods accounts for a small fraction of the course price; PET, MRI and ApoE genotyping add substantial system cost',
+      openPatentNotes: 'Developed in-house at Eli Lilly from the mE8 antibody series. Under patent with no biosimilar pathway open.',
+      synthesisComplexity: 'High',
+      costSource: MAB_COGS_SOURCE,
+      priceSource: {
+        label: 'Eli Lilly US launch pricing for Kisunla, July 2024, widely reported at $32,000 for a 12-month course',
+        identifier: 'https://news.northeastern.edu/2024/07/12/new-alzheimers-drug-cost/',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Lecanemab is the other approved amyloid antibody, with a smaller CDR-SB difference and a lower ARIA rate, given continuously rather than to a stopping rule. Cholinesterase inhibitors and memantine remain the cheap symptomatic options. Vascular risk factor control and hearing correction reduce dementia incidence at population level but do not treat established disease.',
+      conventionalRx: [
+        {
+          name: 'Lecanemab (Leqembi)',
+          class: 'Anti-amyloid protofibril monoclonal antibody',
+          howItCompares:
+            'CDR-SB difference of 0.45 points over 18 months against 0.70 over 76 weeks for donanemab, with ARIA-E in 13% against 24%. Given fortnightly and continued indefinitely rather than stopped on a clearance rule.',
+          typicalCost: 'Approximately $26,500 / year US list',
+          prosAndCons:
+            'Pros: lower ARIA rate, subcutaneous maintenance option. Cons: no defined stopping point, so cost and monitoring continue.',
+        },
+        {
+          name: 'Donepezil, rivastigmine or galantamine',
+          class: 'Cholinesterase inhibitor',
+          howItCompares: 'Symptomatic benefit only, with no effect on amyloid or on the disease course.',
+          typicalCost: '$5 - $25 / month generic',
+          prosAndCons:
+            'Pros: oral, inexpensive, no imaging requirement. Cons: does not alter pathology; nausea and bradycardia are common.',
+        },
+        {
+          name: 'Memantine',
+          class: 'NMDA receptor antagonist',
+          howItCompares: 'Symptomatic, licensed for moderate-to-severe disease, frequently combined with a cholinesterase inhibitor.',
+          typicalCost: '$8 - $30 / month generic',
+          prosAndCons: 'Pros: cheap and well tolerated. Cons: modest effect and a later disease stage than donanemab treats.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Modifiable dementia risk factor management',
+          action:
+            'Treat hypertension, diabetes and hearing loss, maintain aerobic exercise and social engagement, stop smoking, limit alcohol and treat depression.',
+          patientImpact:
+            'These carry the largest attributable population risk for dementia in the Lancet Commission analyses. The evidence supports reducing incidence across populations, not modifying established amyloid pathology.',
+          clinicalPrecaution:
+            'Complementary to, not a substitute for, approved therapy in a person already diagnosed with amyloid-confirmed Alzheimer disease.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Humanised IgG1-kappa produced in mammalian cell culture',
+      molecularWeight: 'Approximately 145 kDa',
+      structureSource: {
+        label: 'KISUNLA US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761248',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'don-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'Mammalian cell expression of the humanised IgG1',
+          description:
+            'Express the humanised descendant of the murine mE8 antibody series in a fed-batch mammalian production process.',
+          reagentsAndBuffer: 'Chemically defined medium, controlled feed and temperature profile for glycan consistency',
+        },
+        {
+          id: 'don-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and viral inactivation',
+          description: 'Affinity capture, low-pH elution and validated viral inactivation hold.',
+          reagentsAndBuffer: 'Protein A resin, acetate pH 3.5 elution, Tris neutralisation',
+          dependsOnStepId: 'don-syn',
+        },
+        {
+          id: 'don-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Polishing, nanofiltration and vial formulation',
+          description:
+            'Remove aggregate and process residuals, filter for viral clearance and formulate at 350 mg per 20 mL vial for dilution before infusion.',
+          reagentsAndBuffer: 'Ion exchange polishing, 20 nm virus filter, histidine, sucrose, polysorbate 80',
+          dependsOnStepId: 'don-cap',
+        },
+        {
+          id: 'don-epi',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Pyroglutamate epitope specificity assay',
+          description:
+            'Confirm the lot binds N-terminally truncated pyroglutamate-modified AbetaP3-42 and does not bind full-length amyloid beta monomer, since the plaque restriction of this epitope is the entire safety and selectivity rationale.',
+          reagentsAndBuffer:
+            'Synthetic AbetaP3-42 and full-length Abeta1-42 peptides, competition ELISA, surface plasmon resonance cross-reactivity panel',
+          dependsOnStepId: 'don-pol',
+        },
+        {
+          id: 'don-tis',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Ex vivo plaque binding and phagocytosis assay',
+          description:
+            'Verify binding to deposited plaque on human Alzheimer brain sections and FcgammaR-dependent microglial removal of that plaque in an ex vivo assay.',
+          reagentsAndBuffer:
+            'Fixed human Alzheimer cortical sections, primary microglia or BV-2 cells, immunofluorescence and plaque area quantification',
+          dependsOnStepId: 'don-epi',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'don-1',
+        category: 'measured',
+        title: 'TRAILBLAZER-ALZ 2: iADRS difference of 3.25 points and 23 of 24 gated outcomes significant',
+        laymanSummary:
+          'In 1,736 people with early symptomatic Alzheimer disease, donanemab slowed decline on the trial primary scale by 3.25 points on a 144-point range in the low-tau group, and nearly every prespecified outcome favoured the drug.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled 18-month phase 3 trial at 277 sites in 8 countries, 860 to donanemab and 876 to placebo, with two prespecified analysis populations defined by tau PET. Least-squares mean iADRS change at 76 weeks was -6.02 versus -9.27 in the low/medium tau population, difference 3.25 (95% CI 1.88-4.62), P < 0.001; the combined population difference was 2.92. Of 24 gated outcomes, 23 were statistically significant. Statistical alpha was split, 0.04 to the low/medium tau population and 0.01 to the combined population.',
+        evidenceSource: 'Sims et al., JAMA 2023 (TRAILBLAZER-ALZ 2, NCT04437511)',
+        doi: '10.1001/jama.2023.13239',
+        measuredMetric: 'iADRS difference 3.25 (95% CI 1.88-4.62) on a 0-144 scale, P < 0.001',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'don-2',
+        category: 'measured',
+        title: 'CDR-SB slowed by 0.70 points, or 29%, in the combined population',
+        laymanSummary:
+          'On the same 18-point disability scale used for lecanemab, donanemab-treated patients declined by 1.72 points against 2.42 on placebo over 76 weeks.',
+        technicalDetails:
+          'From the label, combined population, mixed model for repeated measures: adjusted mean CDR-SB change from baseline at week 76 was 1.72 on donanemab and 2.42 on placebo, a difference of -0.70 or 29% slowing, P < 0.0001, from mean baselines of 3.92 and 3.89. ADAS-Cog13 difference was -1.33 (20%, P = 0.0006) and ADCS-iADL difference 1.70 (28%, P = 0.0001).',
+        evidenceSource: 'KISUNLA US Prescribing Information, Clinical Studies, Table 9',
+        measuredMetric: 'CDR-SB 1.72 versus 2.42, difference -0.70 (29% slowing), P < 0.0001',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'don-3',
+        category: 'measured',
+        title: 'Treatment stops when the plaque is gone, and 69% qualified to stop by week 76',
+        laymanSummary:
+          'Unlike every other Alzheimer drug, donanemab has a finish line built into the protocol. Patients whose amyloid scans fell below threshold were switched to placebo, and by 76 weeks most had.',
+        technicalDetails:
+          'Patients were eligible to switch to placebo if amyloid was below 11 centiloids on a single PET scan or 11 to under 25 centiloids on two consecutive scans. The proportion eligible to switch was 17% at week 24, 47% at week 52 and 69% at week 76. This design makes the treatment a finite course rather than an indefinite one. The label states plainly that amyloid PET values may rise again after donanemab is stopped, and that there are no data beyond 76 weeks to guide whether further dosing is needed.',
+        evidenceSource: 'KISUNLA US Prescribing Information, Clinical Studies',
+        measuredMetric: '17%, 47% and 69% of patients eligible to stop treatment at weeks 24, 52 and 76',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'don-4',
+        category: 'measured',
+        title: 'ARIA in 36% of patients, with brain swelling in 24% and fatal haemorrhage reported',
+        laymanSummary:
+          'More than one patient in three developed amyloid-related imaging abnormalities, nearly one in four had brain swelling and nearly one in three had microbleeding. Fatal brain haemorrhages have occurred.',
+        technicalDetails:
+          'From the label, Study 1 with the original dosing regimen: ARIA of any kind in 36%, ARIA-E in 24% and ARIA-H in 31% of donanemab patients, against 14%, 2% and 13% on placebo. Symptomatic ARIA-E in 6%, resolving clinically in about 85%. Intracerebral haemorrhage larger than 1 cm in 0.5% versus 0.2%, with fatal events observed. In ApoE e4 homozygotes ARIA occurred in 55% versus 22% on placebo. A modified titration regimen tested in Study 2 reduced ARIA-E to 16% at 12 months and is now the recommended dosing.',
+        evidenceSource: 'KISUNLA US Prescribing Information, boxed warning and Warnings and Precautions 5.1',
+        measuredMetric: 'ARIA 36%, ARIA-E 24%, ARIA-H 31% versus 14%, 2%, 13% on placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'don-5',
+        category: 'inferred',
+        title: 'The tau-stratified design makes the headline number the best of two populations',
+        laymanSummary:
+          'The trial defined two analysis populations by how much tau protein each patient had, and gave most of its statistical budget to the low-tau group where the effect was larger. The number most often quoted comes from that group, not from everybody enrolled.',
+        technicalDetails:
+          'Statistical alpha was allocated 0.04 to the low/medium tau population and 0.01 to the combined population. The headline iADRS difference of 3.25 is the low/medium tau figure; the combined population figure is 2.92. This is a prespecified and legitimate design, and it also means the widely quoted result describes 68% of enrolled patients rather than all of them. The high-tau third, who have more advanced pathology, showed smaller effects.',
+        evidenceSource: 'Sims et al., JAMA 2023, prespecified statistical analysis plan',
+        inferredClaim: 'That the headline efficacy figure applies to everyone who would receive the drug in practice',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'don-6',
+        category: 'conclusion_shift',
+        title: 'Amyloid removal is now measurably necessary but demonstrably not sufficient',
+        laymanSummary:
+          'Donanemab removes plaque faster and more completely than any previous antibody. Decline still continues at roughly seven-tenths of the placebo rate. Whatever else drives Alzheimer disease, it is not fully stopped by clearing amyloid.',
+        technicalDetails:
+          'Amyloid clearance below the PET positivity threshold in most patients within a year produced a 29% slowing on CDR-SB and a 20% slowing on ADAS-Cog13. The tau-stratified design itself encodes the shift: tau burden predicted treatment effect, which places the amyloid cascade upstream of a tau-driven process that continues after amyloid is gone. The field has moved from testing whether amyloid matters to asking how much of the remaining decline is tau, inflammation or synaptic loss.',
+        evidenceSource: 'Tau stratification results in Sims et al., JAMA 2023, and the KISUNLA label Clinical Studies section',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Monthly infusion with a slow titration',
+        laymanDesc:
+          'A half-hour drip once a month, starting at a lower dose for the first few months because raising the dose too fast increases the risk of brain swelling.',
+        molecularDetail:
+          'The recommended regimen titrates over the first three infusions before reaching the 1,400 mg maintenance dose every four weeks. The slower titration tested in Study 2 cut the ARIA-E rate from 24% to 16% at 12 months without evident loss of amyloid clearance.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crossing the blood-brain barrier at low efficiency',
+        laymanDesc:
+          'Only a tiny fraction of the antibody reaches the brain, which is why the doses are large and the infusions repeated.',
+        molecularDetail:
+          'IgG central nervous system penetration is on the order of 0.1-0.3% of plasma concentration. This limitation, common to the whole class, sets the dose rather than any property of the target.',
+        iconName: 'Fence',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binding an epitope that exists only in plaque',
+        laymanDesc:
+          'It recognises a chemically modified form of the amyloid protein created only after the protein has already been deposited. Circulating amyloid is invisible to it.',
+        molecularDetail:
+          'Binds N-terminally truncated amyloid beta bearing a pyroglutamate at position 3, AbetaP3-42, generated by aminopeptidase truncation and glutaminyl cyclase cyclisation within deposited plaque. Full-length monomeric amyloid beta is not bound, which concentrates the entire antibody dose onto deposited material.',
+        iconName: 'Fingerprint',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Rapid microglial plaque removal, and ARIA as its by-product',
+        laymanDesc:
+          'The brain immune cells strip the tagged plaque away over months. Where plaque sits in vessel walls, the same process weakens them and lets fluid or blood leak out.',
+        molecularDetail:
+          'FcgammaR-mediated microglial phagocytosis clears opsonised plaque. Clearance of cerebral amyloid angiopathy deposits transiently compromises vascular wall integrity, producing ARIA-E and ARIA-H. The speed of clearance correlates with the ARIA rate, which is why slower titration lowers it.',
+        iconName: 'Recycle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Plaque clears, treatment stops, decline continues more slowly',
+        laymanDesc:
+          'Most patients reach a negative amyloid scan within a year and stop treatment. Decline carries on at roughly seven-tenths of the untreated rate.',
+        molecularDetail:
+          'Amyloid falls below 11 to 25 centiloids in most patients by week 76. CDR-SB decline is slowed by 0.70 points, 29%, over the same period. Amyloid may re-accumulate after stopping, and no data exist beyond 76 weeks to say whether re-treatment is needed.',
+        iconName: 'CircleStop',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'TRAILBLAZER-ALZ 2 (NCT04437511)',
+        phase: 'Phase 3',
+        sampleSize: 1736,
+        primaryEndpoint:
+          'Change from baseline in iADRS at 76 weeks, in the low/medium tau population and in the combined population',
+        endpointMet: true,
+        statisticalPValue:
+          'Low/medium tau difference 3.25 (95% CI 1.88-4.62), P < 0.001; combined population difference 2.92; 23 of 24 gated outcomes significant',
+        unreportedAdverseSignals:
+          'Deaths considered treatment related occurred in the donanemab group, in the context of ARIA. Only 76% of randomised participants completed the trial.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'iADRS difference of 3.25 points on a 0-144 scale in the low/medium tau population, 2.92 in the combined population',
+        'CDR-SB decline of 1.72 versus 2.42 over 76 weeks, a difference of 0.70 points or 29% slowing',
+        '69% of patients eligible to stop treatment on amyloid PET criteria by week 76',
+        'ARIA in 36%, ARIA-E in 24% and ARIA-H in 31% on the original dosing regimen',
+        'ARIA-E reduced to 16% at 12 months with the slower titration now recommended',
+      ],
+      unsupportedInferences: [
+        'That the headline iADRS figure describes everyone who would receive the drug; it is the low/medium tau population, 68% of those enrolled',
+        'That stopping treatment after clearance is durable; the label states amyloid may re-accumulate and no data exist beyond 76 weeks',
+        'That a 0.70-point CDR-SB difference is a change a family would perceive; the minimal clinically important difference is not established at that magnitude',
+      ],
+      whatFailedInitially: [
+        'The original dosing regimen produced ARIA-E in 24% of patients and was replaced by a slower titration that halved that rate',
+        'Effects were smaller in the high-tau third of the enrolled population, who have the most advanced pathology and the greatest need',
+      ],
+      realWorldOutcome: [
+        'Delivery requires amyloid PET or cerebrospinal fluid confirmation, ApoE genotyping, monthly infusion, serial MRI and repeat amyloid PET to decide when to stop, which restricts it to specialist centres',
+        'The stopping rule makes total cost per patient finite, which is a genuinely different economic proposition from indefinite therapy',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion over approximately 30 minutes, once every four weeks',
+      description:
+        'Titrated over the first infusions to a 1,400 mg maintenance dose every four weeks, with treatment stopped when amyloid PET confirms clearance.',
+      safetyProfile:
+        'Boxed warning for amyloid related imaging abnormalities, which can be fatal, and for higher incidence in ApoE e4 homozygotes. MRI before the second, third, fourth and seventh infusions is required. Infusion-related reactions are common and premedication is often used.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it better than lecanemab?',
+        a: 'Nobody has measured that. There is no head-to-head trial. The CDR-SB difference was 0.70 points over 76 weeks for donanemab and 0.45 over 18 months for lecanemab, but in different trials with different populations and different scales as primary endpoints. Donanemab clears plaque faster and causes ARIA-E in 24% against 13%. It also stops, which lecanemab does not.',
+        auditNote: 'A cross-trial comparison that is made constantly and is not supported by any direct experiment.',
+      },
+      {
+        q: 'What happens after I stop?',
+        a: 'The label is unusually candid about this. Amyloid PET values may increase again after donanemab is stopped, and there are no data beyond the 76-week trial to say whether further dosing is needed for continued benefit. Stopping is a design feature whose long-term consequences have not been measured.',
+      },
+      {
+        q: 'The trial reported 3.25 points of benefit. Does that apply to me?',
+        a: 'It depends on your tau burden. That figure comes from the low/medium tau population, which was 68% of those enrolled, and the trial gave most of its statistical budget to that group. In the combined population including high-tau patients the difference was 2.92, and effects in the high-tau third were smaller.',
+      },
+      {
+        q: 'A quarter of patients got brain swelling. Is that acceptable?',
+        a: 'That is a judgement, not a fact, and it is the judgement the drug asks patients and families to make. Most ARIA is asymptomatic and found only on the required MRIs, symptomatic brain swelling occurred in 6%, and fatal haemorrhages have occurred. The recommended slower titration cut ARIA-E from 24% to 16%. ApoE e4 homozygotes had ARIA in 55%.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Sims et al., Donanemab in Early Symptomatic Alzheimer Disease (TRAILBLAZER-ALZ 2), JAMA 2023',
+        identifier: '10.1001/jama.2023.13239',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov, TRAILBLAZER-ALZ 2',
+        identifier: 'NCT04437511',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA, KISUNLA BLA 761248, original approval 2 July 2024',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761248',
+        kind: 'regulatory',
+      },
+      MAB_COGS_SOURCE,
+    ],
+  },
 ]

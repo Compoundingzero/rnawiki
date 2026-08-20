@@ -2548,4 +2548,352 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       { label: 'TRIUMPH-1 trial record, completed 30 April 2026, no results posted', identifier: 'NCT05929066', kind: 'nct' },
     ],
   },
+
+  // -------------------------------------------------------------------------------------------
+  // Survodutide
+  // -------------------------------------------------------------------------------------------
+  {
+    slug: 'survodutide',
+    name: 'Survodutide',
+    tradeName: 'BI 456906 (no trade name; not approved)',
+    sponsor: 'Boehringer Ingelheim and Zealand Pharma',
+    targetGene: 'GCGR / GLP1R',
+    targetProtein: 'Glucagon Receptor and Glucagon-Like Peptide-1 Receptor',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Phase 3 Clinical Trial',
+    indication:
+      'Under investigation for obesity and for metabolic dysfunction-associated steatohepatitis with fibrosis. Not approved for any indication.',
+    patientFriendlyIndication: 'Obesity and fatty liver disease, still in trials',
+    conditionContext: {
+      conditionExplainer:
+        'Survodutide pairs GLP-1 receptor agonism, which reduces appetite, with glucagon receptor agonism, which increases energy expenditure and drives fat out of the liver. The liver arm is why the most interesting result in this programme is a biopsy trial rather than a weight trial.',
+      whyItMatters:
+        'This dossier is the clearest illustration on the site of what happens between phase 2 and phase 3. The dose-finding trial reported 14.9% weight loss. The pivotal trial reported 13.0%, against a placebo arm that lost 5.4%.',
+      whoTakesThis:
+        'Trial participants with obesity, or with biopsy-confirmed steatohepatitis and fibrosis stage F1 to F3.',
+      clinicalGoals:
+        'In obesity, percentage weight reduction at 76 weeks. In steatohepatitis, histological improvement without worsening of fibrosis.',
+    },
+    oneSentenceVerdict:
+      'A dual glucagon and GLP-1 receptor agonist whose phase 3 obesity trial produced 13.0% weight loss against 5.4% on placebo at 76 weeks, and whose phase 2 liver-biopsy trial improved steatohepatitis in 62% of participants against 14% on placebo.',
+    laymanHowItWorks:
+      'One half of the molecule is a familiar appetite signal that makes you eat less. The other half switches on glucagon, the hormone that tells the liver to release and burn stored fuel. Together they are meant to work on both sides of the energy balance. The liver arm is also why this drug has a fatty-liver programme that most of its competitors do not.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    anatomicalSite: 'Hepatocyte, hypothalamus, pancreatic islet, adipose tissue',
+    substitutes: {
+      summary:
+        'Survodutide is not approved, so these are the treatments rather than the alternatives. For obesity, tirzepatide and semaglutide are licensed and have published pivotal data. For steatohepatitis, resmetirom is the approved option and semaglutide has liver data of its own.',
+      conventionalRx: [
+        {
+          name: 'Tirzepatide (Zepbound)',
+          class: 'Dual GIP and GLP-1 receptor agonist, approved',
+          howItCompares:
+            'Approved, 20.9% weight loss at 72 weeks in its pivotal trial, and a completed cardiovascular outcome trial.',
+          typicalCost: 'About $1,052 per month (US NADAC)',
+          prosAndCons: 'Pros: licensed with published pivotal data. Cons: no liver-biopsy endpoint programme.',
+        },
+        {
+          name: 'Semaglutide (Wegovy)',
+          class: 'Selective GLP-1 receptor agonist, approved',
+          howItCompares:
+            'Approved for weight and for cardiovascular risk reduction, with its own steatohepatitis programme.',
+          typicalCost: 'About $1,307 per month (US NADAC)',
+          prosAndCons: 'Pros: the largest outcome dataset in the class. Cons: smaller weight effect than the multi-agonists.',
+        },
+        {
+          name: 'Resmetirom',
+          class: 'Thyroid hormone receptor beta agonist, approved for steatohepatitis',
+          howItCompares:
+            'Oral, approved on histological endpoints in non-cirrhotic steatohepatitis with fibrosis, and does not reduce body weight meaningfully.',
+          typicalCost: 'US list price is in the region of $47,000 per year',
+          prosAndCons:
+            'Pros: approved specifically for this indication. Cons: no weight benefit, and its own monitoring requirements.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Coffee, caffeinated or decaffeinated',
+          activeCompound: 'Chlorogenic acids and diterpenes',
+          biologicalMechanism:
+            'Regular coffee intake is associated with lower liver fat and lower fibrosis markers in cohort studies, an association robust enough to appear in hepatology guidance, though not established causally.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: '2 to 3 cups daily',
+          monthlyCost: '$15 to $30 per month',
+        },
+        {
+          name: 'Mediterranean dietary pattern',
+          activeCompound: 'Monounsaturated fat, polyphenols, dietary fibre',
+          biologicalMechanism:
+            'Reduces hepatic steatosis measured by imaging independently of weight loss, through changes in de novo lipogenesis and insulin sensitivity.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'Adopted as an overall eating pattern rather than a supplement',
+          monthlyCost: 'Cost-neutral to $60 per month above a standard diet',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Removing alcohol while liver fat is being treated',
+          action: 'Stop alcohol intake during any period of active treatment or investigation for fatty liver disease.',
+          patientImpact:
+            'Alcohol and metabolic steatohepatitis damage the liver through overlapping routes, and continued intake confounds both the disease and any assessment of treatment.',
+          clinicalPrecaution:
+            'Anyone with established cirrhosis or a history of dependence needs supervised withdrawal rather than an abrupt stop.',
+        },
+        {
+          name: 'Steady weight loss rather than rapid loss',
+          action: 'Aim for gradual, sustained energy deficit rather than very rapid loss.',
+          patientImpact:
+            'Roughly 7 to 10% sustained weight loss is the threshold at which histological improvement in steatohepatitis becomes common; very rapid loss has historically been associated with worsening inflammation.',
+          clinicalPrecaution:
+            'Weight-loss targets in liver disease should be set with a clinician who can monitor liver enzymes and nutritional status.',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'surv-1',
+        category: 'measured',
+        title: 'Phase 2 obesity: 14.9% weight loss at 46 weeks on the top dose',
+        laymanSummary:
+          'In 387 adults, weight fell 14.9% on the 4.8 mg dose against 2.8% on placebo. Only 60% of participants completed the 46 weeks.',
+        technicalDetails:
+          'Dose-finding phase 2 across 43 centres in 12 countries. Mean weight change from baseline to week 46: -6.2% (0.6 mg), -12.5% (2.4 mg), -13.2% (3.6 mg), -14.9% (4.8 mg), -2.8% (placebo). 233 of 386 treated participants (60.4%) completed. Adverse events in 91% on survodutide versus 75% on placebo, primarily gastrointestinal in 75% versus 42%.',
+        evidenceSource: 'le Roux CW et al. Lancet Diabetes Endocrinol 2024;12:162-173 (NCT04667377)',
+        doi: '10.1016/S2213-8587(23)00356-X',
+        measuredMetric: 'Mean percentage change in body weight at week 46',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'surv-2',
+        category: 'conclusion_shift',
+        title: 'Phase 3 delivered 13.0%, and the placebo arm lost 5.4%',
+        laymanSummary:
+          'The pivotal trial in 725 people gave 12.2% and 13.0% weight loss for the two doses. Placebo lost 5.4%. The gap over placebo shrank from about 12 points in phase 2 to about 7.6 in phase 3.',
+        technicalDetails:
+          'SYNCHRONIZE-1, phase 3, double-blind, 76 weeks. Treatment-regimen estimand mean weight change -12.2% (95% CI -13.6 to -10.8) on 3.6 mg, -13.0% (95% CI -14.4 to -11.6) on 6.0 mg, and -5.4% (95% CI -6.9 to -4.0) on placebo. Weight reduction of at least 5% in 72.6%, 71.9% and 46.3%. The estimand incorporates early discontinuation, use of prohibited obesity medications and prolonged escalation, which is a more conservative analysis than the phase 2 reporting.',
+        evidenceSource: 'Survodutide Once Weekly for the Treatment of Adults with Obesity. NEJM 2026 (NCT06066515)',
+        doi: '10.1056/NEJMoa2600751',
+        measuredMetric: 'Percentage change in body weight at week 76 under the treatment-regimen estimand',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'surv-3',
+        category: 'measured',
+        title: 'Phase 2 steatohepatitis: 62% histological improvement against 14% on placebo',
+        laymanSummary:
+          'In 293 people with biopsy-confirmed fatty liver inflammation, the middle dose improved the disease on a second biopsy in 62% of participants, against 14% on placebo.',
+        technicalDetails:
+          '48-week phase 2, biopsy-confirmed MASH with fibrosis F1 to F3, four arms. Improvement in MASH without worsening of fibrosis in 47% (2.4 mg), 62% (4.8 mg) and 43% (6.0 mg) versus 14% placebo, P<0.001 for the quadratic dose-response model. Fibrosis improvement by at least one stage in 34%, 36%, 34% and 22%. Nausea 66% versus 23%, vomiting 41% versus 4%.',
+        evidenceSource: 'Sanyal AJ et al. N Engl J Med 2024;391:311-319 (NCT04771273)',
+        doi: '10.1056/NEJMoa2401755',
+        measuredMetric: 'Histological improvement in MASH without worsening of fibrosis at week 48',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'surv-4',
+        category: 'inferred',
+        title: 'That the fibrosis result is as strong as the steatohepatitis result',
+        laymanSummary:
+          'The inflammation endpoint separated clearly from placebo. Fibrosis improvement was 34 to 36% on treatment against 22% on placebo, a much narrower gap, and fibrosis is the part that predicts outcomes.',
+        technicalDetails:
+          'Improvement in fibrosis by at least one stage was a secondary endpoint at 34%, 36% and 34% versus 22% on placebo. The trial was powered for the primary histological endpoint, not for fibrosis, and phase 2 histology in liver disease has a documented history of not reproducing at phase 3 scale.',
+        evidenceSource: 'Sanyal AJ et al. N Engl J Med 2024;391:311-319',
+        doi: '10.1056/NEJMoa2401755',
+        inferredClaim: 'That survodutide reverses liver fibrosis',
+        measuredMetric: 'At least one-stage fibrosis improvement, 34 to 36% versus 22%',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'surv-5',
+        category: 'failed',
+        title: 'Tolerability is the constraint, and it shows up in the completion rates',
+        laymanSummary:
+          'Four in ten phase 2 participants did not finish. In phase 3, gastrointestinal side effects affected 81% to 90% of the treated groups against 48% on placebo.',
+        technicalDetails:
+          'Phase 2: 60.4% completed the 46-week treatment period, with gastrointestinal adverse events in 75% of survodutide recipients. Phase 3 SYNCHRONIZE-1: gastrointestinal symptoms in 80.9% of the 3.6 mg group and 89.7% of the 6.0 mg group versus 47.9% on placebo. No deaths were reported in phase 3.',
+        evidenceSource: 'le Roux CW et al. Lancet Diabetes Endocrinol 2024; SYNCHRONIZE-1, NEJM 2026',
+        doi: '10.1056/NEJMoa2600751',
+        measuredMetric: 'Trial completion and gastrointestinal adverse event rates',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'surv-6',
+        category: 'inferred',
+        title: 'That the cardiovascular safety trial has answered the outcome question',
+        laymanSummary:
+          'SYNCHRONIZE-CVOT enrolled 5,531 people and is listed as completed. It is a cardiovascular safety trial, which is a different question from whether the drug prevents heart attacks.',
+        technicalDetails:
+          'NCT06077864 is described as a study to test the effect of survodutide on cardiovascular safety, phase 3, enrolment 5,531, status COMPLETED. A safety trial is designed to exclude harm above a margin, not to demonstrate benefit; treating a met safety endpoint as evidence of cardiovascular protection is a category error.',
+        evidenceSource: 'ClinicalTrials.gov record NCT06077864 (SYNCHRONIZE-CVOT)',
+        inferredClaim: 'That survodutide reduces cardiovascular events',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weekly subcutaneous injection with a long dose escalation',
+        laymanDesc:
+          'One injection a week, built up gradually over months because the gastrointestinal effects are severe if the dose rises quickly.',
+        molecularDetail:
+          'An acylated dual agonist peptide with a half-life supporting weekly dosing. The phase 3 protocol allowed a prolonged escalation period, which the primary estimand explicitly accounts for.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Two receptors with opposite effects on glucose',
+        laymanDesc:
+          'GLP-1 lowers blood sugar. Glucagon raises it. The molecule is tuned so the first outweighs the second.',
+        molecularDetail:
+          'Balanced agonism at GLP-1R and GCGR, both Gs-coupled. The potency ratio is the central design parameter, because unopposed glucagon receptor agonism raises hepatic glucose output.',
+        iconName: 'Layers',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'GLP-1 arm: appetite and insulin',
+        laymanDesc: 'The appetite side does what every drug in this class does, reducing intake and slowing the stomach.',
+        molecularDetail:
+          'Central GLP-1R signalling in the hypothalamus and hindbrain reduces energy intake; peripheral signalling potentiates glucose-stimulated insulin secretion.',
+        iconName: 'Brain',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Glucagon arm: the liver empties its fat',
+        laymanDesc:
+          'The glucagon side tells the liver to burn and export stored fat, which is why the liver-biopsy results are the most interesting part of this programme.',
+        molecularDetail:
+          'Hepatic GCGR agonism raises fatty acid oxidation, reduces de novo lipogenesis and increases energy expenditure. Preclinical work with hepatocyte-specific GCGR deletion indicates the hepatic receptor is required for the superior metabolic effect.',
+        iconName: 'Flame',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Weight down 13%, steatohepatitis improved in 62%',
+        laymanDesc:
+          'In the pivotal obesity trial, 13.0% weight loss against 5.4% on placebo. In the liver trial, disease improvement on a second biopsy in 62% against 14%.',
+        molecularDetail:
+          'SYNCHRONIZE-1 treatment-regimen estimand -13.0% at week 76; phase 2 MASH histological improvement without worsening fibrosis in 62% at the 4.8 mg dose versus 14% on placebo.',
+        iconName: 'Droplet',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Phase 2 obesity dose-finding (NCT04667377)',
+        phase: 'Phase 2',
+        sampleSize: 387,
+        primaryEndpoint: 'Percentage change in body weight at week 46',
+        endpointMet: true,
+        statisticalPValue: 'Dose-dependent separation from placebo across all doses',
+        unreportedAdverseSignals:
+          'Only 60.4% of treated participants completed the 46-week treatment period, which limits what the mean change describes',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'SYNCHRONIZE-1 (NCT06066515)',
+        phase: 'Phase 3',
+        sampleSize: 725,
+        primaryEndpoint: 'Percentage change in body weight and at least 5% reduction at week 76',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001 for all comparisons with placebo',
+        unreportedAdverseSignals:
+          'Gastrointestinal symptoms in 80.9% and 89.7% of the treated groups versus 47.9% on placebo',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Phase 2 MASH biopsy trial (NCT04771273)',
+        phase: 'Phase 2',
+        sampleSize: 293,
+        primaryEndpoint: 'Histological improvement in MASH with no worsening of fibrosis at week 48',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001 for the quadratic dose-response model',
+        unreportedAdverseSignals: 'Vomiting in 41% versus 4% on placebo',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'SYNCHRONIZE-CVOT (NCT06077864)',
+        phase: 'Phase 3',
+        sampleSize: 5531,
+        primaryEndpoint: 'Cardiovascular safety',
+        endpointMet: true,
+        statisticalPValue: 'Listed as completed; results not yet in the peer-reviewed record at this audit',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '13.0% weight loss at 76 weeks versus 5.4% on placebo under a conservative estimand (SYNCHRONIZE-1, n=725)',
+        '62% histological improvement in MASH without worsening fibrosis versus 14% on placebo (n=293)',
+        'Gastrointestinal symptoms in 81% to 90% of treated participants in phase 3',
+      ],
+      unsupportedInferences: [
+        'That the 14.9% phase 2 figure is the effect size of this drug; the pivotal trial reported 13.0% against a 5.4% placebo response',
+        'That it reverses fibrosis; the fibrosis endpoint was secondary and the placebo arm reached 22%',
+        'That a completed cardiovascular safety trial demonstrates cardiovascular benefit',
+      ],
+      whatFailedInitially: [
+        'Glucagon-containing co-agonists as a class were held back by glucagon-driven hyperglycaemia, which the potency ratio in this molecule is engineered around',
+        'Tolerability at the highest phase 2 dose, where four in ten participants left before the end',
+      ],
+      realWorldOutcome: [
+        'Not approved in any jurisdiction as of this audit',
+        'The phase 3 obesity result is published and lower than the phase 2 result that shaped expectations',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous once-weekly injection, investigational',
+      description:
+        'Weekly subcutaneous dosing with a long stepwise escalation, at maintenance doses of 3.6 mg and 6.0 mg in the phase 3 obesity trial. No licensed presentation exists.',
+      safetyProfile:
+        'Gastrointestinal events dominate and are more frequent than with selective GLP-1 agonists: nausea 66% and vomiting 41% in the liver trial, and gastrointestinal symptoms in up to 89.7% of the phase 3 obesity groups. No deaths were reported in SYNCHRONIZE-1. Long-term safety is not established.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why did the phase 3 number come out lower than phase 2?',
+        a: 'Two reasons, and both are visible in the papers. The phase 3 primary analysis used a treatment-regimen estimand that counts people who stopped early or used other obesity medication, which is more conservative than the phase 2 reporting. And the phase 3 placebo arm lost 5.4%, against 2.8% in phase 2, which halves the apparent gap on its own.',
+        auditNote: 'Both numbers are measured. The difference is design, not deception.',
+      },
+      {
+        q: 'Is it better for the liver than the other drugs?',
+        a: 'It has a biopsy trial that most competitors do not, and the result on inflammation was strong. Fibrosis, the part that predicts liver outcomes, improved in 34 to 36% against 22% on placebo, which is a much narrower margin and was a secondary endpoint.',
+        auditNote: 'Steatohepatitis improvement is measured and primary. Fibrosis benefit is secondary and modest.',
+      },
+      {
+        q: 'How bad are the side effects?',
+        a: 'Worse than the selective GLP-1 agonists on the published numbers. Vomiting affected 41% in the liver trial against 4% on placebo, and in phase 3 gastrointestinal symptoms reached 89.7% at the higher dose. Four in ten phase 2 participants did not complete.',
+      },
+      {
+        q: 'Has it been shown to prevent heart attacks?',
+        a: 'No. A 5,531-person cardiovascular safety trial has completed, and a safety trial asks whether harm can be excluded, not whether benefit exists. Nothing in the public record supports a cardiovascular prevention claim.',
+        auditNote: 'Unknown, and structurally different from what the trial was designed to measure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'le Roux CW et al. Glucagon and GLP-1 receptor dual agonist survodutide for obesity, phase 2. Lancet Diabetes Endocrinol 2024',
+        identifier: '10.1016/S2213-8587(23)00356-X',
+        kind: 'doi',
+      },
+      {
+        label: 'Survodutide Once Weekly for the Treatment of Adults with Obesity (SYNCHRONIZE-1). NEJM 2026',
+        identifier: '10.1056/NEJMoa2600751',
+        kind: 'doi',
+      },
+      {
+        label: 'Sanyal AJ et al. A Phase 2 Randomized Trial of Survodutide in MASH and Fibrosis. NEJM 2024',
+        identifier: '10.1056/NEJMoa2401755',
+        kind: 'doi',
+      },
+      { label: 'Phase 2 obesity dose-finding trial record', identifier: 'NCT04667377', kind: 'nct' },
+      { label: 'SYNCHRONIZE-1 trial record', identifier: 'NCT06066515', kind: 'nct' },
+      { label: 'Phase 2 MASH biopsy trial record', identifier: 'NCT04771273', kind: 'nct' },
+      { label: 'SYNCHRONIZE-CVOT trial record', identifier: 'NCT06077864', kind: 'nct' },
+    ],
+  },
 ]

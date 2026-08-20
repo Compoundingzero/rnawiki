@@ -3212,4 +3212,478 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 8. Alteplase
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'alteplase',
+    name: 'Alteplase',
+    tradeName: 'Activase / Cathflo Activase',
+    sponsor: 'Genentech',
+    targetGene: 'PLG',
+    targetProtein: 'Plasminogen (converted to plasmin at the fibrin surface)',
+    modality: 'Recombinant Protein / Biologic',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1987,
+    indication:
+      'Acute ischaemic stroke, acute ST-elevation myocardial infarction, acute massive pulmonary embolism, and restoration of function to central venous access devices',
+    patientFriendlyIndication: 'Emergency clot-dissolving treatment for stroke, heart attack and major pulmonary embolism',
+    anatomicalSite: 'The fibrin surface of an occluding thrombus within the arterial circulation',
+    conditionContext: {
+      conditionExplainer:
+        'An ischaemic stroke is a clot blocking an artery in the brain. Downstream of the block, brain tissue has minutes to hours before it dies. Around the dead core sits a penumbra of tissue that is not working but is still alive, and that penumbra is what a clot-dissolving drug is trying to save.',
+      whyItMatters:
+        'Roughly two million neurons are lost per minute in a large-vessel stroke. This is the only common medical emergency where the treatment window is measured in minutes and where the difference between arriving at 90 minutes and at 270 minutes changes the odds of independent living.',
+      whoTakesThis:
+        'Patients with disabling ischaemic stroke presenting within 4.5 hours of a known onset time, after haemorrhage has been excluded on imaging, and who meet a long exclusion list built around bleeding risk.',
+      clinicalGoals:
+        'Reopen the artery early enough that the penumbra survives, accepting a measured and quantified increase in fatal brain haemorrhage as the price.',
+    },
+    oneSentenceVerdict:
+      'A recombinant copy of the human enzyme that activates clot dissolution only where fibrin is present; in the trial that made it standard of care it raised the odds of minimal or no disability at three months by 70%, while increasing symptomatic intracerebral haemorrhage from 0.6% to 6.4% and leaving mortality unchanged.',
+    laymanHowItWorks:
+      'Your blood carries an inactive enzyme called plasminogen everywhere, all the time. Something has to switch it on, and the natural switch is a protein released by the lining of blood vessels. Alteplase is a copy of that switch. Crucially, it only works properly when it is sitting on fibrin, the mesh that holds a clot together, so it activates dissolution mostly at the clot rather than everywhere in the bloodstream at once. That selectivity is partial, not absolute, which is why bleeding is the main risk.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 76,
+    substitutes: {
+      summary:
+        'This is an emergency drug and there is no dietary or lifestyle alternative to it during a stroke. The real alternatives are tenecteplase, which is now non-inferior and simpler to give, mechanical clot retrieval for large-vessel occlusion, and aspirin plus supportive care where thrombolysis is contraindicated. The single most valuable non-drug action is recognising a stroke fast enough to be eligible at all.',
+      conventionalRx: [
+        {
+          name: 'Tenecteplase',
+          class: 'Genetically modified tissue plasminogen activator',
+          howItCompares:
+            'Three amino acid substitutions give longer half-life, greater fibrin specificity and resistance to PAI-1, so it is given as a single bolus rather than a bolus plus a 60-minute infusion. Non-inferior to alteplase in a 1,600-patient pragmatic randomised trial.',
+          typicalCost: 'Broadly comparable to alteplase per treated patient',
+          prosAndCons:
+            'Pros: one push instead of an hour-long infusion, which matters enormously during transfer for thrombectomy. Cons: non-inferiority is not superiority, and the safety profile is very similar.',
+        },
+        {
+          name: 'Mechanical thrombectomy',
+          class: 'Endovascular clot retrieval',
+          howItCompares:
+            'Physically removes a large-vessel clot. Effect sizes in large-vessel occlusion are far larger than thrombolysis achieves, and the two are often used together.',
+          typicalCost: 'Procedure cost far above any drug cost; restricted to comprehensive stroke centres',
+          prosAndCons:
+            'Pros: the largest measured benefit in acute stroke care. Cons: needs a catheter laboratory, an interventionalist and a large-vessel occlusion, so it is unavailable to most stroke patients worldwide.',
+        },
+        {
+          name: 'Streptokinase',
+          class: 'Bacterial plasminogen activator',
+          howItCompares:
+            'The comparator alteplase beat in GUSTO-I for myocardial infarction, by 0.9 to 1.1 absolute percentage points of 30-day mortality. Not used in stroke, where it caused excess harm in earlier trials.',
+          typicalCost: 'A small fraction of alteplase cost where still marketed',
+          prosAndCons:
+            'Pros: cheap, and still used for myocardial infarction in some health systems. Cons: antigenic, cannot be repeated, and not an option in stroke.',
+        },
+        {
+          name: 'Aspirin and supportive stroke unit care',
+          class: 'Antiplatelet therapy and organised care',
+          howItCompares:
+            'What patients receive when thrombolysis is contraindicated or the window has closed. Organised stroke unit care has one of the largest and most robust effect sizes in the whole field.',
+          typicalCost: 'Pennies per dose for aspirin',
+          prosAndCons:
+            'Pros: available everywhere, very low risk, benefits every stroke patient. Cons: does not reopen the artery.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Recognising stroke and calling emergency services immediately',
+          action:
+            'Face drooping, arm weakness, speech difficulty: call an ambulance at once and note the exact time the symptoms started.',
+          patientImpact:
+            'Benefit falls steeply with delay. In the pooled individual-patient meta-analysis, treatment within 3 hours gave a good outcome in 32.9% versus 23.1% of controls (odds ratio 1.75), while treatment beyond 4.5 hours gave 32.6% versus 30.6% (odds ratio 1.15, confidence interval crossing 1).',
+          clinicalPrecaution:
+            'Do not drive the person yourself and do not wait to see if it improves. The last known well time is the single most consequential piece of information the hospital will ask for.',
+        },
+        {
+          name: 'Keeping an accurate, current medication list',
+          action: 'Carry an up-to-date list of anticoagulants and recent surgery or bleeding history.',
+          patientImpact:
+            'Most thrombolysis exclusions are about bleeding risk. Ambiguity about whether someone is on an anticoagulant can cost the treatment window while it is resolved.',
+          clinicalPrecaution:
+            'This is preparation, not treatment. It changes eligibility, not outcome, and only if it is available when the ambulance arrives.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3:
+        'SYQVICRDEKTQMIYQQHQSWLRPVLRSNRVEYCWCNSGRAQCHSVPVKSCSEPRCFNGGTCQQALYFSDFVCQCPEGFAGKCCEIDTRATCYEDQGISYRGTWSTAESGAECTNWNSSALAQKPYSGRRPDAIRLGLGNHNYCRNPDRDSKPWCYVFKAGKYSSEFCSTPACSEGNSDCYFGNGSAYRGTHSLTESGASCLPWNSMILIGKVYTAQNPSAQALGLGKHNYCRNPDGDAKPWCHVLKNRRLTWEYCDVPSCSTCGLRQYSQPQFRIKGGLFADIASHPWQAAIFAKHRRSPGERFLCGGILISSCWILSAAHCFQERFPPHHLTVILGRTYRVVPGEEEQKFEVEKYIVHKEFDDDTYDNDIALLQLKSDSSRCAQESSVVRTVCLPPADLQLPDWTECELSGYGKHEALSPFYSERLKEAHVRLYPSSRCTSQHLLNRTVTDNMLCAGDTRSGGPQANLHDACQGDSGGPLVCLNDGRMTLVGIISWGLGCGQKDVPGVYTKVTNYLDWIRDNMRP',
+      targetReceptorAffinity:
+        'Catalytic efficiency for plasminogen activation rises by orders of magnitude in the presence of fibrin, which is the entire basis of its clot selectivity',
+      structureSource: {
+        label:
+          'ACTIVASE US prescribing information (Description: sterile purified glycoprotein of 527 amino acids) with the mature 527-residue chain sequence from UniProt P00750',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=91ecdef2-95ff-42dd-a31c-c8a09cab3ad9',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'al-1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'CHO cell bank release and glycoform baseline',
+          description:
+            'Release the Chinese hamster ovary working cell bank carrying the human t-PA cDNA. Alteplase carries three N-glycosylation sites of which one is variably occupied, producing type I and type II glycoforms with different clearance, so the glycoform ratio is a controlled attribute from the cell bank onwards.',
+          reagentsAndBuffer:
+            'Gene copy qPCR, adventitious agent panels, pilot-scale glycoform ratio by RP-HPLC and mass spectrometry',
+        },
+        {
+          id: 'al-2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Mammalian cell culture expression of secreted single-chain t-PA',
+          description:
+            'Express secreted t-PA in fed-batch or perfusion culture. Culture conditions determine the single-chain to two-chain ratio, which matters because plasmin cleavage at Arg275 converts the molecule to the two-chain form with different fibrin dependence.',
+          reagentsAndBuffer:
+            'Chemically defined serum-free medium, controlled dissolved oxygen and pH, protease inhibitors in the harvest to limit uncontrolled single-chain conversion',
+          dependsOnStepId: 'al-1',
+        },
+        {
+          id: 'al-3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Lysine affinity capture and orthogonal viral clearance',
+          description:
+            'Capture through the kringle domains on immobilised lysine, exploiting the same lysine-binding sites the molecule uses to dock onto fibrin, then polish and run dedicated viral inactivation and nanofiltration steps.',
+          reagentsAndBuffer:
+            'Lysine-Sepharose with epsilon-aminocaproic acid elution, hydrophobic interaction polish, low-pH hold, 20 nm virus filter',
+          dependsOnStepId: 'al-2',
+        },
+        {
+          id: 'al-4',
+          stepNumber: 4,
+          phase: 'Purification',
+          name: 'Arginine formulation and lyophilisation',
+          description:
+            'Formulate with a large excess of L-arginine and lyophilise. The 100 mg vial contains 3.5 g of L-arginine; without it the protein is effectively insoluble at therapeutic concentration, which is why the excipient outweighs the drug by 35 to 1.',
+          reagentsAndBuffer:
+            'L-arginine 3.5 g per 100 mg vial, phosphoric acid, polysorbate 80 10 mg, lyophilisation under vacuum',
+          dependsOnStepId: 'al-3',
+        },
+        {
+          id: 'al-5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Fibrin-dependent clot lysis potency assay',
+          description:
+            'Determine biological potency in International Units by an in vitro clot lysis assay, as the label specifies. A 100 mg vial is 58 million IU. The assay must be run in the presence of fibrin, because activity without fibrin is not the property being sold.',
+          reagentsAndBuffer:
+            'Human fibrinogen and thrombin clot matrix, Glu-plasminogen, WHO t-PA international standard, turbidimetric lysis time readout',
+          dependsOnStepId: 'al-4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'al-a1',
+        category: 'measured',
+        title: 'NINDS: 30% more likely to have minimal or no disability at three months',
+        laymanSummary:
+          'The trial that made this drug standard of care in stroke showed better function at three months, at the cost of a tenfold increase in dangerous brain bleeding, and with no change in the death rate.',
+        technicalDetails:
+          'Two-part randomised, double-blind trial of intravenous t-PA within three hours of stroke onset, 291 patients in part 1 and 333 in part 2. In part 1 there was no significant difference in neurological improvement at 24 hours. In part 2 the global odds ratio for a favourable outcome at three months was 1.7 (95% CI 1.2-2.6); patients were at least 30% more likely to have minimal or no disability across four assessment scales. Symptomatic intracerebral haemorrhage within 36 hours occurred in 6.4% of t-PA patients versus 0.6% of placebo patients (p < 0.001). Mortality at three months was 17% versus 21% (p = 0.30).',
+        evidenceSource: 'The NINDS rt-PA Stroke Study Group. N Engl J Med 1995;333:1581-1587',
+        doi: '10.1056/NEJM199512143332401',
+        measuredMetric: 'Global odds ratio 1.7 (95% CI 1.2-2.6) for favourable outcome; symptomatic ICH 6.4% versus 0.6%',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'al-a2',
+        category: 'measured',
+        title: 'ECASS III extended the window to 4.5 hours, with a smaller effect',
+        laymanSummary:
+          'Treating between three and four and a half hours still helped, but the margin was narrower: 52.4% versus 45.2% with little or no disability, and the confidence interval nearly touched no effect.',
+        technicalDetails:
+          'Randomised, double-blind trial in 821 patients treated between 3 and 4.5 hours after onset, median administration time 3 hours 59 minutes. Favourable outcome, modified Rankin 0 or 1 at 90 days, in 52.4% versus 45.2%; odds ratio 1.34 (95% CI 1.02-1.76), p = 0.04. Global outcome analysis odds ratio 1.28 (95% CI 1.00-1.65), p < 0.05. Any intracranial haemorrhage 27.0% versus 17.6% (p = 0.001), symptomatic 2.4% versus 0.2% (p = 0.008). Mortality 7.7% versus 8.4% (p = 0.68).',
+        evidenceSource: 'Hacke W et al. N Engl J Med 2008;359:1317-1329',
+        doi: '10.1056/NEJMoa0804656',
+        measuredMetric: 'Modified Rankin 0-1 at 90 days: 52.4% versus 45.2%, odds ratio 1.34 (95% CI 1.02-1.76), p = 0.04',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'al-a3',
+        category: 'inferred',
+        title: 'It improves function, and it does not save lives',
+        laymanSummary:
+          'Pooling 6,756 patients from nine randomised trials, alteplase increased disability-free survival by about 10 percentage points and increased fatal brain haemorrhage sevenfold. Overall death at 90 days was slightly higher, not lower.',
+        technicalDetails:
+          'Prespecified individual-patient-data meta-analysis of nine completed randomised phase 3 trials. Good outcome, modified Rankin 0 or 1, with treatment within 3 hours: 32.9% versus 23.1% (odds ratio 1.75, 95% CI 1.35-2.27); 3 to 4.5 hours: 35.3% versus 30.1% (odds ratio 1.26); beyond 4.5 hours: 32.6% versus 30.6% (odds ratio 1.15, 95% CI 0.95-1.40). Symptomatic intracranial haemorrhage 6.8% versus 1.3% (odds ratio 5.55) and fatal intracranial haemorrhage within seven days 2.7% versus 0.4% (odds ratio 7.14, p < 0.0001). Mortality at 90 days was 17.9% versus 16.5%, hazard ratio 1.11 (95% CI 0.99-1.25), p = 0.07.',
+        evidenceSource: 'Emberson J et al. Lancet 2014;384:1929-1935',
+        doi: '10.1016/S0140-6736(14)60584-5',
+        inferredClaim: 'That a treatment which improves function in stroke also reduces death from stroke',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'al-a4',
+        category: 'failed',
+        title: 'IST-3 missed its primary endpoint and the debate never fully closed',
+        laymanSummary:
+          'The largest single stroke thrombolysis trial ever run enrolled 3,035 patients, over half of them older than 80. Its primary endpoint was not met, though a secondary analysis of the same data was positive.',
+        technicalDetails:
+          'International, multicentre, randomised, open-treatment trial of rt-PA within 6 hours. At six months 554 of 1,515 (37%) in the rt-PA group versus 534 of 1,520 (35%) in the control group were alive and independent, adjusted odds ratio 1.13 (95% CI 0.95-1.35), p = 0.181, a non-significant absolute increase of 14 per 1,000. A prespecified ordinal analysis of the same outcome scale was positive, common odds ratio 1.27 (95% CI 1.10-1.47, p = 0.001). Fatal or non-fatal symptomatic intracranial haemorrhage within seven days occurred in 7% versus 1%, adjusted odds ratio 6.94, an absolute excess of 58 per 1,000. Deaths within seven days were higher with rt-PA (11% versus 7%, p = 0.001), and by six months total deaths were equal. A published graphical reanalysis of the earlier NINDS data had already argued that baseline stroke severity imbalance made that trial result less secure than usually presented.',
+        evidenceSource:
+          'IST-3 collaborative group. Lancet 2012;379:2352-2363; Hoffman JR, Schriger DL. Ann Emerg Med 2009;54:329-336',
+        doi: '10.1016/S0140-6736(12)60768-5',
+        measuredMetric: 'Primary endpoint adjusted odds ratio 1.13 (95% CI 0.95-1.35), p = 0.181',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'al-a5',
+        category: 'measured',
+        title: 'In heart attack, the benefit over streptokinase was one life per hundred treated',
+        laymanSummary:
+          'The 41,021-patient trial that established alteplase in myocardial infarction found 30-day mortality of 6.3% against 7.2% and 7.4% for streptokinase, alongside a small excess of bleeding strokes.',
+        technicalDetails:
+          'GUSTO-I randomised 41,021 patients across 1,081 hospitals in 15 countries to four thrombolytic strategies. 30-day mortality was 7.2% for streptokinase plus subcutaneous heparin, 7.4% for streptokinase plus intravenous heparin, 6.3% for accelerated t-PA plus intravenous heparin, and 7.0% for the combination. Accelerated t-PA gave a 14% relative mortality reduction versus streptokinase alone (95% CI 5.9-21.3, p = 0.001). Haemorrhagic stroke rates were 0.49%, 0.54%, 0.72% and 0.94%, a significant excess for accelerated t-PA (p = 0.03). The composite of death or disabling stroke was 6.9% versus 7.8% (p = 0.006).',
+        evidenceSource: 'The GUSTO Investigators. N Engl J Med 1993;329:673-682',
+        doi: '10.1056/NEJM199309023291001',
+        measuredMetric: '30-day mortality 6.3% versus 7.2-7.4%; absolute benefit approximately 1 per 100 treated',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'al-a6',
+        category: 'conclusion_shift',
+        title: 'Tenecteplase is displacing it, on a non-inferiority result',
+        laymanSummary:
+          'A pragmatic Canadian trial in 1,600 patients showed a single-push alternative works as well. Practice has moved, and the reason is workflow rather than a better outcome.',
+        technicalDetails:
+          'The AcT trial randomised 1,600 patients across 22 Canadian stroke centres to tenecteplase 0.25 mg/kg as a single bolus or alteplase 0.9 mg/kg as bolus plus 60-minute infusion. Modified Rankin 0-1 at 90-120 days occurred in 296 of 802 (36.9%) versus 266 of 765 (34.8%); unadjusted risk difference 2.1% (95% CI -2.6 to 6.9), meeting the prespecified non-inferiority threshold of -5%. Symptomatic intracerebral haemorrhage at 24 hours was 3.4% versus 3.2% and 90-day mortality 15.3% versus 15.4%. The practical advantage is that a bolus can be given before or during transfer for thrombectomy, where a 60-minute infusion cannot.',
+        evidenceSource: 'Menon BK et al. Lancet 2022;400:161-169',
+        doi: '10.1016/S0140-6736(22)01054-6',
+        measuredMetric: 'Risk difference 2.1% (95% CI -2.6 to 6.9), non-inferiority threshold -5% met',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given intravenously, against the clock',
+        laymanDesc:
+          'A bolus followed by an hour-long infusion into a vein, started as soon as a brain scan has ruled out bleeding.',
+        molecularDetail:
+          'Plasma half-life is under five minutes because hepatic clearance through the mannose receptor and low-density lipoprotein receptor-related protein is rapid, which is why an infusion rather than a single injection is required.',
+        iconName: 'Timer',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Kringle domains dock onto the clot surface',
+        laymanDesc:
+          'Loop-shaped regions of the molecule recognise the fibrin mesh of the clot and stick to it, concentrating the drug where the clot is.',
+        molecularDetail:
+          'The finger domain and kringle 2 bind lysine residues exposed on the fibrin surface. This is the same interaction exploited in manufacturing, where lysine-Sepharose is the capture resin.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'Fibrin acts as a template that switches the enzyme on',
+        laymanDesc:
+          'On its own the enzyme is sluggish. Sitting on fibrin next to its substrate, it becomes hundreds of times more active. That is what keeps most of the effect at the clot.',
+        molecularDetail:
+          'Fibrin forms a ternary template that co-localises alteplase and plasminogen and raises catalytic efficiency by two to three orders of magnitude. The selectivity is relative, not absolute: circulating plasminogen is still activated, producing a systemic lytic state that is the source of extracranial bleeding.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Plasminogen is cleaved to plasmin',
+        laymanDesc:
+          'The enzyme makes a single cut that converts the inactive precursor into plasmin, the protein-cutting enzyme that actually dissolves clots.',
+        molecularDetail:
+          'The serine protease domain cleaves the Arg561-Val562 bond of plasminogen, generating the two-chain active plasmin. Alpha-2-antiplasmin neutralises free plasmin within seconds in the circulation but cannot reach plasmin bound within the fibrin network, which is a second layer of localisation.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Plasmin cuts the fibrin mesh apart',
+        laymanDesc:
+          'Plasmin chews through the fibrin scaffold holding the clot together, and the clot breaks up.',
+        molecularDetail:
+          'Plasmin hydrolyses fibrin at multiple sites, releasing D-dimer and other degradation products and destabilising the thrombus until flow is restored. It also degrades fibrinogen, factor V and factor VIII, which is the systemic coagulopathy component.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'Perfusion restored, penumbra saved, and a real risk of bleeding',
+        laymanDesc:
+          'If the artery reopens in time, the at-risk brain tissue survives and the person has less disability. Around one in fifteen patients has a serious bleed into the brain instead.',
+        molecularDetail:
+          'Reperfusion of the penumbra before infarction completes is the mechanism of benefit. The mechanism of harm is bleeding into already ischaemic tissue with a disrupted blood-brain barrier: symptomatic intracranial haemorrhage 6.8% versus 1.3% and fatal intracranial haemorrhage 2.7% versus 0.4% in the pooled meta-analysis.',
+        iconName: 'Brain',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NINDS rt-PA Stroke Study (1995; predates ClinicalTrials.gov registration)',
+        phase: 'Phase 3',
+        sampleSize: 624,
+        primaryEndpoint: 'Global outcome across four disability scales at three months',
+        endpointMet: true,
+        statisticalPValue: 'Global odds ratio 1.7 (95% CI 1.2-2.6)',
+        unreportedAdverseSignals:
+          'Baseline stroke severity was imbalanced between arms, which a published graphical reanalysis argued weakens the result more than the original report conveyed.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ECASS III (NCT00153036)',
+        phase: 'Phase 3',
+        sampleSize: 821,
+        primaryEndpoint: 'Modified Rankin scale 0 or 1 at 90 days, treated 3 to 4.5 hours after onset',
+        endpointMet: true,
+        statisticalPValue: 'p = 0.04 (odds ratio 1.34, 95% CI 1.02-1.76)',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'IST-3 (ISRCTN25765518)',
+        phase: 'Phase 3',
+        sampleSize: 3035,
+        primaryEndpoint: 'Alive and independent, Oxford Handicap Score 0-2, at six months',
+        endpointMet: false,
+        statisticalPValue: 'p = 0.181 (adjusted odds ratio 1.13, 95% CI 0.95-1.35)',
+        unreportedAdverseSignals:
+          'Deaths within seven days were higher with rt-PA (11% versus 7%, p = 0.001) and equalised only by six months.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'GUSTO-I (1993; predates ClinicalTrials.gov registration)',
+        phase: 'Phase 3',
+        sampleSize: 41021,
+        primaryEndpoint: '30-day mortality after acute myocardial infarction',
+        endpointMet: true,
+        statisticalPValue: 'p = 0.001 (14% relative reduction versus streptokinase, 95% CI 5.9-21.3)',
+        unreportedAdverseSignals:
+          'Haemorrhagic stroke was significantly more common with accelerated t-PA than with streptokinase alone (0.72% versus 0.49-0.54%, p = 0.03).',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'AcT (NCT03889249)',
+        phase: 'Phase 3',
+        sampleSize: 1600,
+        primaryEndpoint: 'Modified Rankin 0-1 at 90-120 days, tenecteplase versus alteplase',
+        endpointMet: true,
+        statisticalPValue: 'Non-inferiority met (risk difference 2.1%, 95% CI -2.6 to 6.9, margin -5%)',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'NINDS: global odds ratio 1.7 for a favourable outcome at three months; symptomatic ICH 6.4% versus 0.6%',
+        'ECASS III at 3 to 4.5 hours: modified Rankin 0-1 in 52.4% versus 45.2%, odds ratio 1.34',
+        'Pooled 6,756 patients: fatal intracranial haemorrhage 2.7% versus 0.4%, odds ratio 7.14',
+        'GUSTO-I: 30-day mortality 6.3% versus 7.2-7.4% for streptokinase in myocardial infarction',
+      ],
+      unsupportedInferences: [
+        'That alteplase reduces death from stroke — pooled 90-day mortality was 17.9% versus 16.5%, hazard ratio 1.11',
+        'That benefit extends usefully beyond 4.5 hours; beyond that window the pooled odds ratio was 1.15 with a confidence interval crossing 1',
+        'That the NINDS effect size is secure; IST-3 missed its primary endpoint and a published reanalysis contested the baseline balance',
+      ],
+      whatFailedInitially: [
+        'IST-3 did not meet its primary endpoint of alive and independent at six months',
+        'Earlier streptokinase stroke trials were stopped for excess harm, which is why streptokinase is not used in stroke',
+      ],
+      realWorldOutcome: [
+        'Stroke care was reorganised around the clock: prehospital notification, imaging on arrival and door-to-needle time targets exist because of this drug',
+        'Tenecteplase is displacing alteplase on the strength of a non-inferiority trial and a simpler single-bolus administration',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion after reconstitution of a lyophilised powder',
+      description:
+        'Supplied as 50 mg and 100 mg lyophilised vials, reconstituted with sterile water. The 100 mg vial contains 58 million International Units of biological potency and 3.5 g of L-arginine as solubiliser. A separate 2 mg presentation, Cathflo Activase, is used to clear blocked central venous catheters.',
+      safetyProfile:
+        'Bleeding is the dominant risk and is the reason for a long contraindication list: recent intracranial haemorrhage, recent intracranial or intraspinal surgery, severe uncontrolled hypertension, known bleeding diathesis, and in stroke any evidence of haemorrhage on imaging. Angioedema, particularly with concomitant ACE inhibitor use, is a labelled risk that can obstruct the airway.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does this drug save lives after a stroke?',
+        a: 'On the pooled randomised evidence, no. It increases the chance of surviving without disability by roughly ten percentage points when given early, and it increases fatal brain haemorrhage sevenfold, and those two effects cancel out on the death rate. Ninety-day mortality across nine trials was 17.9% treated versus 16.5% control. The benefit is in what kind of life a survivor has, not in whether they survive.',
+        auditNote:
+          'Emberson 2014 (doi:10.1016/S0140-6736(14)60584-5) states this directly, and it is the most commonly misrepresented fact about the drug.',
+      },
+      {
+        q: 'Why does the time window matter so much?',
+        a: 'Because the benefit shrinks steeply with delay while the bleeding risk does not. Treated within three hours, 32.9% had a good outcome against 23.1% of controls. Beyond 4.5 hours it was 32.6% against 30.6%, with a confidence interval crossing no effect. The excess of fatal haemorrhage stayed roughly the same throughout.',
+      },
+      {
+        q: 'Is the evidence for stroke thrombolysis actually settled?',
+        a: 'Less than the guidelines imply. IST-3, the largest trial ever run, missed its primary endpoint, though a prespecified ordinal analysis of the same data was positive. A published graphical reanalysis argued the original NINDS trial had a baseline severity imbalance that weakened its result. The pooled individual-patient meta-analysis supports a functional benefit with early treatment. Reasonable people have read this literature differently, and that disagreement is real rather than fringe.',
+      },
+      {
+        q: 'Why is tenecteplase replacing it?',
+        a: 'Not because it works better. In a 1,600-patient randomised trial it was non-inferior, with essentially identical haemorrhage and mortality rates. It wins on logistics: a single bolus can be given in a rural hospital and during transfer to a thrombectomy centre, where a one-hour infusion cannot travel with the patient.',
+      },
+      {
+        q: 'Nobody has measured what?',
+        a: 'Whether alteplase adds anything on top of mechanical thrombectomy in patients with a large-vessel occlusion who can reach a thrombectomy centre directly. Several trials have addressed this and have not produced a consistent answer, so guidelines currently keep both. It is one of the live questions in acute stroke care rather than a settled one.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'The NINDS rt-PA Stroke Study Group. Tissue plasminogen activator for acute ischemic stroke. N Engl J Med 1995;333:1581-1587',
+        identifier: '10.1056/NEJM199512143332401',
+        kind: 'doi',
+      },
+      {
+        label: 'Hacke W et al. Thrombolysis with alteplase 3 to 4.5 hours after acute ischemic stroke (ECASS III). N Engl J Med 2008;359:1317-1329',
+        identifier: '10.1056/NEJMoa0804656',
+        kind: 'doi',
+      },
+      {
+        label:
+          'IST-3 collaborative group. The benefits and harms of intravenous thrombolysis with recombinant tissue plasminogen activator within 6 h of acute ischaemic stroke. Lancet 2012;379:2352-2363',
+        identifier: '10.1016/S0140-6736(12)60768-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Emberson J et al. Effect of treatment delay, age, and stroke severity on the effects of intravenous thrombolysis with alteplase for acute ischaemic stroke: a meta-analysis of individual patient data. Lancet 2014;384:1929-1935',
+        identifier: '10.1016/S0140-6736(14)60584-5',
+        kind: 'doi',
+      },
+      {
+        label: 'The GUSTO Investigators. An international randomized trial comparing four thrombolytic strategies for acute myocardial infarction. N Engl J Med 1993;329:673-682',
+        identifier: '10.1056/NEJM199309023291001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Menon BK et al. Intravenous tenecteplase compared with alteplase for acute ischaemic stroke in Canada (AcT). Lancet 2022;400:161-169',
+        identifier: '10.1016/S0140-6736(22)01054-6',
+        kind: 'doi',
+      },
+      {
+        label: 'Hoffman JR, Schriger DL. A graphic reanalysis of the NINDS Trial. Ann Emerg Med 2009;54:329-336',
+        identifier: '10.1016/j.annemergmed.2009.03.019',
+        kind: 'doi',
+      },
+      { label: 'ECASS III trial registration', identifier: 'NCT00153036', kind: 'nct' },
+      { label: 'AcT trial registration', identifier: 'NCT03889249', kind: 'nct' },
+      {
+        label: 'ACTIVASE (alteplase) for injection — US prescribing information, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=91ecdef2-95ff-42dd-a31c-c8a09cab3ad9',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: ACTIVASE, BLA 103172, original approval 13 November 1987; efficacy supplement 1055 (acute ischaemic stroke) approved 18 June 1996',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103172',
+        kind: 'regulatory',
+      },
+      {
+        label: 'UniProt P00750 — human tissue-type plasminogen activator, mature 527-residue chain',
+        identifier: 'https://rest.uniprot.org/uniprotkb/P00750',
+        kind: 'url',
+      },
+    ],
+  },
 ]

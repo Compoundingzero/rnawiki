@@ -3176,4 +3176,777 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       { label: 'ATLAS presymptomatic trial registration', identifier: 'NCT04856982', kind: 'nct' },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // Mipomersen
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'mipomersen',
+    name: 'Mipomersen',
+    tradeName: 'Kynamro',
+    sponsor: 'Ionis Pharmaceuticals / Genzyme, later Kastle Therapeutics',
+    targetGene: 'APOB',
+    targetProtein: 'Apolipoprotein B-100',
+    modality: 'ASO (Antisense Oligonucleotide)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2013,
+    indication:
+      'Homozygous familial hypercholesterolaemia as an adjunct to lipid-lowering therapy; sales discontinued in 2018 and the US approval withdrawn in 2019',
+    patientFriendlyIndication: 'Homozygous Familial Hypercholesterolaemia (withdrawn)',
+    anatomicalSite: 'Liver hepatocyte',
+    conditionContext: {
+      conditionExplainer:
+        'In homozygous familial hypercholesterolaemia both copies of the LDL receptor gene are defective, so the liver cannot clear LDL from the blood. Untreated LDL cholesterol runs above 500 mg/dL from childhood.',
+      whyItMatters:
+        'Coronary disease appears in childhood or adolescence. Statins work poorly because they act by raising LDL receptor numbers, and these patients have almost none that work.',
+      whoTakesThis:
+        'It was used in adults with HoFH on maximally tolerated lipid-lowering therapy. It is no longer marketed anywhere and the US approval has been withdrawn.',
+      clinicalGoals:
+        'Lower LDL by cutting production of the apolipoprotein that every LDL particle is built around, rather than by trying to clear particles through receptors that do not work.',
+    },
+    oneSentenceVerdict:
+      'An antisense drug that lowered LDL cholesterol by 25 percent in 34 patients with homozygous familial hypercholesterolaemia by shutting down apolipoprotein B production, was refused by European regulators for hepatic steatosis, and had its US approval withdrawn in 2019 after sales ceased.',
+    laymanHowItWorks:
+      'Every particle of bad cholesterol is built around one copy of a scaffolding protein called apolipoprotein B, and the liver makes it. Mipomersen shut down that production so fewer particles could be assembled and exported. The problem was what happened to the fat that could no longer leave: it stayed in the liver. Hepatic fat rose by ten percentage points in six months, and that is what ended the drug.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 26,
+    substitutes: {
+      summary:
+        'Two later drugs act on the same problem without the liver-fat trade-off, and lipoprotein apheresis remains the mechanical fallback for the most severe patients. Diet and plant sterols make a marginal difference in a disease driven by receptor failure.',
+      conventionalRx: [
+        {
+          name: 'Lomitapide (Juxtapid)',
+          class: 'Microsomal triglyceride transfer protein inhibitor',
+          howItCompares:
+            'Blocks lipoprotein assembly a step earlier than mipomersen. It reduced LDL cholesterol by roughly half in a single-arm HoFH trial, and it causes the same hepatic steatosis problem.',
+          typicalCost: 'Branded orphan pricing in the hundreds of thousands of dollars per year',
+          prosAndCons:
+            'Pros: oral, larger LDL reduction. Cons: hepatic fat accumulation and a restricted prescribing programme, so it shares the flaw that sank mipomersen.',
+        },
+        {
+          name: 'Evinacumab (Evkeeza)',
+          class: 'Monoclonal antibody against ANGPTL3',
+          howItCompares:
+            'Lowered LDL cholesterol by about half in a randomised placebo-controlled HoFH trial, by a receptor-independent route, and without hepatic steatosis.',
+          typicalCost: 'Branded orphan pricing in the hundreds of thousands of dollars per year',
+          prosAndCons:
+            'Pros: randomised evidence, works with null LDL receptors, no liver fat signal. Cons: intravenous infusion every four weeks and orphan pricing.',
+        },
+        {
+          name: 'Lipoprotein apheresis',
+          class: 'Extracorporeal LDL removal, not a drug',
+          howItCompares:
+            'Physically filters LDL from plasma every one to two weeks. It remains the fallback when drugs are insufficient, which in true receptor-negative HoFH is common.',
+          typicalCost: 'Per-session procedure cost, typically funded through specialist lipid services',
+          prosAndCons:
+            'Pros: works regardless of receptor status. Cons: vascular access, hours per session, and LDL rebounds between treatments.',
+        },
+        {
+          name: 'High-intensity statin with ezetimibe',
+          class: 'HMG-CoA reductase inhibitor plus cholesterol absorption inhibitor',
+          howItCompares:
+            'The background therapy every HoFH trial is layered on. Effect depends on residual LDL receptor activity, so it is much weaker here than in ordinary hypercholesterolaemia.',
+          typicalCost: 'Generic; typically under $25 / month combined in the US',
+          prosAndCons:
+            'Pros: cheap, decades of outcome evidence in other populations. Cons: mechanistically limited in receptor-negative patients.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Plant sterols and stanols',
+          activeCompound: 'Beta-sitosterol and sitostanol',
+          biologicalMechanism:
+            'Compete with cholesterol for incorporation into intestinal micelles, reducing absorption. The effect is receptor-independent, which is why it is not entirely wasted in HoFH, but it is small against an untreated LDL above 500 mg/dL.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Around 2 g daily from fortified spreads or supplements, taken with meals',
+          monthlyCost: '$12 to $20 / month',
+        },
+        {
+          name: 'Soluble viscous fibre',
+          activeCompound: 'Psyllium husk beta-glucan and arabinoxylan',
+          biologicalMechanism:
+            'Binds bile acids in the gut so the liver must convert more cholesterol into bile salts to replace them. Again receptor-independent and again modest.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'About 10 g of soluble fibre daily, taken with plenty of water',
+          monthlyCost: '$8 to $15 / month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Cascade screening of first-degree relatives',
+          action:
+            'Testing parents, siblings and children of anyone diagnosed with familial hypercholesterolaemia.',
+          patientImpact:
+            'Every homozygote has two heterozygous parents and, on average, half of their siblings and children carry a variant. Screening finds people decades before symptoms.',
+          clinicalPrecaution:
+            'Genetic counselling should accompany testing. This is a family diagnosis, not an individual one.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'GCCUCAGTCTGCTTCGCACC',
+      chemicalFormula: 'C230H305N67O122P19S19Na19 (sodium salt)',
+      molecularWeight: '7,594.9 g/mol (sodium salt)',
+      targetReceptorAffinity:
+        'Binds the apoB-100 coding region at positions 3249 to 3268; 5-10-5 MOE gapmer recruiting RNase H',
+      structureSource: {
+        label:
+          'KYNAMRO US prescribing information section 11, which prints the 20-mer sequence with its 2-prime-MOE and 5-methyl positions marked',
+        identifier: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2013/203568s000lbl.pdf',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 's1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite qualification for a first-generation gapmer',
+          description:
+            'Release-test the five MOE amidites for each wing and the ten deoxy amidites for the gap. Mipomersen is an unconjugated design, so purity is the only lever on tissue distribution.',
+          reagentsAndBuffer:
+            'MOE and deoxy phosphoramidites including 5-methyl-dC, Karl Fischer titration, anhydrous acetonitrile',
+        },
+        {
+          id: 's2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase 5-10-5 gapmer assembly with full sulfurisation',
+          description:
+            'Twenty cycles with sulfurisation at every linkage. Full phosphorothioate content maximises tissue half-life and also maximises the protein binding that drives injection-site and hepatic effects.',
+          reagentsAndBuffer:
+            'Dichloroacetic acid detritylation, 5-(ethylthio)-1H-tetrazole, phenylacetyl disulfide, acetic anhydride cap',
+          dependsOnStepId: 's1',
+        },
+        {
+          id: 's3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange purification and sodium-salt exchange',
+          description:
+            'Separate the 20-mer from n-1 species and from partially oxidised diester impurities, then exchange to the sodium salt and lyophilise.',
+          reagentsAndBuffer:
+            'Ammonia cleavage, Source 30Q resin, sodium bromide gradient in 20 mM sodium hydroxide, tangential flow diafiltration',
+          dependsOnStepId: 's2',
+        },
+        {
+          id: 's4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Gymnotic uptake into HepG2 and primary human hepatocytes',
+          description:
+            'Free uptake without transfection reagent into hepatoma lines and primary hepatocytes, the models the label cites for in vitro pharmacology.',
+          reagentsAndBuffer:
+            'HepG2 and Hep3B cells, primary human and cynomolgus hepatocytes, Williams E medium, no lipofection reagent',
+          dependsOnStepId: 's3',
+        },
+        {
+          id: 's5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'ApoB mRNA and secreted apoB protein, with intracellular lipid staining',
+          description:
+            'Quantify apoB transcript and secreted protein, and stain for intracellular neutral lipid. The last measurement is the one that predicted the clinical hepatic steatosis.',
+          reagentsAndBuffer:
+            'TaqMan APOB probe set, apoB-100 immunoassay on culture supernatant, Oil Red O or BODIPY 493/503 lipid stain',
+          dependsOnStepId: 's4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mip-1',
+        category: 'measured',
+        title: 'LDL cholesterol fell 24.7 percent against 3.3 percent on placebo',
+        laymanSummary:
+          'In 51 patients with the most severe inherited cholesterol disorder, treated patients dropped their LDL by about a quarter over 26 weeks.',
+        technicalDetails:
+          'NCT00607373 randomised 34 patients to mipomersen and 17 to placebo on top of maximally tolerated lipid-lowering therapy. Mean percentage change in LDL cholesterol was -24.7 percent (95 percent CI -31.6 to -17.7) with mipomersen against -3.3 percent (95 percent CI -12.1 to 5.5) with placebo, p=0.0003. The FDA label reports the same trial as -25 percent mean and -19 percent median, with a treatment difference against placebo of -21 percent.',
+        evidenceSource: 'Raal et al., The Lancet 2010',
+        doi: '10.1016/S0140-6736(10)60284-X',
+        measuredMetric: 'LDL cholesterol -24.7 percent versus -3.3 percent, p=0.0003',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mip-2',
+        category: 'failed',
+        title: 'Hepatic fat rose by a median of 10 percentage points in 26 weeks',
+        laymanSummary:
+          'Blocking the export of fat from the liver left the fat in the liver. On MRI, liver fat went from zero to about ten percent in half a year.',
+        technicalDetails:
+          'The boxed warning records a median absolute increase in hepatic fat of 10 percent after 26 weeks of treatment, from 0 percent at baseline, measured by magnetic resonance imaging, in the heterozygous FH and hyperlipidaemia trials. Alanine aminotransferase rose to at least three times the upper limit of normal in 4 of 34 treated HoFH patients (12 percent) against none on placebo. Hepatic steatosis is a risk factor for steatohepatitis and cirrhosis, and the long-term consequence was never established.',
+        evidenceSource: 'KYNAMRO US prescribing information, boxed warning',
+        measuredMetric: 'Median absolute hepatic fat increase 10 percentage points at 26 weeks; ALT at least 3x ULN in 12 percent',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mip-3',
+        category: 'inferred',
+        title: 'LDL lowering was treated as cardiovascular benefit, which was never tested',
+        laymanSummary:
+          'No trial ever asked whether mipomersen prevented heart attacks. The approval rested entirely on the cholesterol number.',
+        technicalDetails:
+          'The pivotal trial was 26 weeks long with a lipid primary endpoint in 51 patients. No cardiovascular outcome trial was conducted before or after approval. LDL reduction is one of the best-supported surrogates in medicine, but that support comes from trials of drugs that lower LDL by increasing receptor-mediated clearance, not by trapping lipid in the liver. The mechanism matters to whether the surrogate transfers.',
+        evidenceSource: 'KYNAMRO US prescribing information, section 14',
+        doi: '10.1016/S0140-6736(10)60284-X',
+        inferredClaim:
+          'That a 25 percent LDL reduction achieved by blocking apoB synthesis reduces cardiovascular events',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'mip-4',
+        category: 'failed',
+        title: 'The European Medicines Agency refused authorisation, twice',
+        laymanSummary:
+          'European regulators looked at the same data in 2012 and said the risks outweighed the benefit. They said the same again on re-examination in 2013.',
+        technicalDetails:
+          'The CHMP adopted a negative opinion on 13 December 2012 and confirmed the refusal on re-examination on 21 March 2013. Mipomersen was therefore approved in the United States and never authorised in the European Union, one of two drugs in this file where the two regulators diverged on the same dossier.',
+        evidenceSource: 'European Medicines Agency, Kynamro refusal of marketing authorisation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mip-5',
+        category: 'failed',
+        title: 'Sales stopped in 2018 and the approval was withdrawn in 2019',
+        laymanSummary:
+          'The drug passed through three owners, never sold, was pulled from the market in May 2018, and the FDA formally withdrew its approval the following year.',
+        technicalDetails:
+          'Kynamro moved from Genzyme back to Ionis and then to Kastle Therapeutics. Sales were discontinued on 31 May 2018 and the new drug application was among those withdrawn by the FDA in 2019. Restricted distribution under a REMS, weekly injection-site reactions in 84 percent of patients and flu-like symptoms in 30 percent left it with almost no prescribing base once lomitapide and later evinacumab arrived.',
+        evidenceSource:
+          'FDA Federal Register notice, Withdrawal of Approval of 11 New Drug Applications, 2019; KYNAMRO label sections 5.3 and 5.4',
+        measuredMetric: 'Injection-site reactions in 84 percent and flu-like symptoms in 30 percent of patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mip-6',
+        category: 'conclusion_shift',
+        title: 'The field moved from blocking assembly to a receptor-independent antibody',
+        laymanSummary:
+          'Both drugs that stopped the liver exporting fat caused fatty liver. The lasting answer for this disease came from a different mechanism entirely.',
+        technicalDetails:
+          'Mipomersen and lomitapide both block lipoprotein assembly and both cause hepatic steatosis, which now looks like a mechanistic consequence rather than an accident of either molecule. Evinacumab, an ANGPTL3 antibody, lowered LDL by about half in a randomised placebo-controlled HoFH trial without that trade-off. The apoB antisense idea itself has not returned in this indication.',
+        evidenceSource: 'Raal et al., Evinacumab for Homozygous Familial Hypercholesterolemia, NEJM 2020',
+        doi: '10.1056/NEJMoa2004215',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weekly subcutaneous injection',
+        laymanDesc: 'A weekly injection under the skin, which caused a local reaction in most patients.',
+        molecularDetail:
+          'Unconjugated full-phosphorothioate 20-mer, 200 mg weekly. Injection-site reactions occurred in 84 percent of patients, a direct consequence of high local phosphorothioate concentration.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Uptake into hepatocytes without a targeting ligand',
+        laymanDesc:
+          'Liver cells take the strand in on their own, but so do kidney and immune cells, because nothing directs it.',
+        molecularDetail:
+          'Phosphorothioate-driven adsorptive endocytosis. Without a GalNAc ligand, hepatocyte delivery is a matter of pharmacokinetic preference rather than targeting, which is why the required dose was high.',
+        iconName: 'ArrowDown',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Hybridising to apoB-100 messenger RNA',
+        laymanDesc: 'It pairs with the instructions for the scaffolding protein of every LDL particle.',
+        molecularDetail:
+          'Watson-Crick binding within the apoB coding region at positions 3249 to 3268. The label records that the effect was shown to be highly sequence-specific in hepatoma cells and primary hepatocytes.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'RNase H destroys the transcript',
+        laymanDesc: 'A cellular enzyme cuts up the paired instructions so the protein is never translated.',
+        molecularDetail:
+          'RNase H-mediated degradation of the apoB mRNA at the deoxynucleotide gap, inhibiting translation of apoB-100 and therefore assembly of VLDL, the metabolic precursor of LDL.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'LDL falls, and triglyceride accumulates in the liver',
+        laymanDesc:
+          'Fewer cholesterol particles circulate, because the liver can no longer package fat for export. The fat stays behind.',
+        molecularDetail:
+          'Reduced VLDL secretion lowers plasma LDL by about a quarter. The triglyceride that would have been exported accumulates as hepatic steatosis, measured as a median 10 percentage point absolute increase in liver fat at 26 weeks. The therapeutic effect and the toxicity are two readings of the same event.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Mipomersen HoFH phase 3 (NCT00607373)',
+        phase: 'Phase 3',
+        sampleSize: 51,
+        primaryEndpoint: 'Percentage change in LDL cholesterol from baseline to week 26',
+        endpointMet: true,
+        statisticalPValue: 'p=0.0003',
+        unreportedAdverseSignals:
+          'Alanine aminotransferase at least 3x upper limit of normal in 12 percent of treated patients and none on placebo; four discontinuations for adverse events, all in the mipomersen arm; hepatic fat accumulation measured only in the companion HeFH and hyperlipidaemia trials',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'LDL cholesterol -24.7 percent versus -3.3 percent on placebo over 26 weeks, p=0.0003',
+        'Median absolute hepatic fat increase of 10 percentage points at 26 weeks by MRI',
+        'ALT at least three times the upper limit of normal in 12 percent of treated HoFH patients',
+        'Injection-site reactions in 84 percent and flu-like symptoms in 30 percent',
+      ],
+      unsupportedInferences: [
+        'That the LDL reduction translates into fewer cardiovascular events; no outcome trial was ever run',
+        'That the LDL surrogate transfers across mechanisms, when the mechanism here traps lipid in the liver',
+      ],
+      whatFailedInitially: [
+        'Hepatic steatosis proved to be a consequence of the mechanism, not a manageable side effect',
+        'The EMA refused authorisation in December 2012 and confirmed the refusal in March 2013',
+        'Sales were discontinued on 31 May 2018 and the US approval was withdrawn in 2019',
+      ],
+      realWorldOutcome: [
+        'No longer available anywhere; the approval no longer exists',
+        'Its failure, alongside lomitapide, redirected homozygous FH therapy toward receptor-independent antibodies',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection of an unconjugated full-phosphorothioate 2-prime-MOE gapmer',
+      description:
+        'Single-use vials or prefilled syringes delivering 200 mg weekly, distributed only through a restricted REMS programme because of hepatotoxicity risk. No targeting ligand of any kind.',
+      safetyProfile:
+        'Boxed warning for hepatotoxicity, with transaminase and bilirubin monitoring before and during treatment and mandatory dose interruption at three times the upper limit of normal. Injection-site reactions in 84 percent, flu-like symptoms in 30 percent, nausea and headache common.',
+    },
+    commonQuestions: [
+      {
+        q: 'Can I still get mipomersen?',
+        a: 'No. Sales stopped on 31 May 2018 and the FDA withdrew the approval in 2019. It was never authorised in the European Union at all.',
+      },
+      {
+        q: 'Why did a drug that lowered LDL by 25 percent fail?',
+        a: 'Because the way it lowered LDL was by preventing the liver from exporting fat, and the fat then stayed in the liver. Median liver fat rose by ten percentage points in six months. A cholesterol number that improves while the organ doing the work deteriorates is not a net benefit anyone could demonstrate.',
+        auditNote: 'The hepatic steatosis appears in the boxed warning, not in a post-marketing footnote.',
+      },
+      {
+        q: 'Did it prevent heart attacks?',
+        a: 'Nobody measured that. The trial was 26 weeks long with a cholesterol endpoint in 51 patients, and no cardiovascular outcome trial was ever conducted.',
+      },
+      {
+        q: 'What do patients with homozygous FH use now?',
+        a: 'Lomitapide, evinacumab and lipoprotein apheresis on top of statins and ezetimibe. Evinacumab is the one that lowers LDL substantially without the liver-fat trade-off that mipomersen and lomitapide share.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'KYNAMRO (mipomersen sodium) US prescribing information, 2013',
+        identifier: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2013/203568s000lbl.pdf',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Raal et al., Mipomersen, an apolipoprotein B synthesis inhibitor, for lowering of LDL cholesterol in homozygous familial hypercholesterolaemia, The Lancet 2010',
+        identifier: '10.1016/S0140-6736(10)60284-X',
+        kind: 'doi',
+      },
+      {
+        label: 'Kynamro refusal of marketing authorisation, European Medicines Agency',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/kynamro',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Raal et al., Evinacumab for Homozygous Familial Hypercholesterolemia, NEJM 2020',
+        identifier: '10.1056/NEJMoa2004215',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cuchel et al., Efficacy and safety of a microsomal triglyceride transfer protein inhibitor in homozygous familial hypercholesterolaemia, The Lancet 2013',
+        identifier: '10.1016/S0140-6736(12)61731-0',
+        kind: 'doi',
+      },
+      { label: 'Mipomersen HoFH phase 3 registration', identifier: 'NCT00607373', kind: 'nct' },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // Volanesorsen
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'volanesorsen',
+    name: 'Volanesorsen',
+    tradeName: 'Waylivra',
+    sponsor: 'Ionis Pharmaceuticals / Akcea Therapeutics',
+    targetGene: 'APOC3',
+    targetProtein: 'Apolipoprotein C-III',
+    modality: 'ASO (Antisense Oligonucleotide)',
+    approvalStatus: 'EMA Approved',
+    approvalYear: 2019,
+    indication:
+      'Familial chylomicronaemia syndrome in adults, as an adjunct to diet; conditionally authorised in the European Union and refused in the United States',
+    patientFriendlyIndication: 'Familial Chylomicronaemia Syndrome (very high triglycerides)',
+    anatomicalSite: 'Liver hepatocyte',
+    conditionContext: {
+      conditionExplainer:
+        'In familial chylomicronaemia syndrome the enzyme that strips fat out of the bloodstream, lipoprotein lipase, does not work. Triglycerides run above 1,000 mg/dL and the blood can look like milk.',
+      whyItMatters:
+        'The consequence is recurrent acute pancreatitis, which is agonising, unpredictable and sometimes fatal. Before volanesorsen there was no drug therapy at all, only a near-fat-free diet.',
+      whoTakesThis:
+        'Adults with genetically confirmed FCS and severe hypertriglyceridaemia in whom diet and other agents have failed, in countries where it is authorised.',
+      clinicalGoals:
+        'Cut triglycerides far enough to reduce pancreatitis risk, without dropping platelets to a level that causes bleeding.',
+    },
+    oneSentenceVerdict:
+      'An antisense drug that cut triglycerides by 77 percent in familial chylomicronaemia syndrome and dropped platelet counts below 100,000 per microlitre in 15 of 33 treated patients, which is why the FDA refused it and the EMA authorised it conditionally.',
+    laymanHowItWorks:
+      'Apolipoprotein C-III sits on fat-carrying particles and blocks the enzyme that clears them. Volanesorsen stops the liver making it, so clearance improves through routes that do not need the broken enzyme. In the trial triglycerides fell by more than three quarters. Nearly half the treated patients also had their platelet count fall below the safe threshold, and two fell below a quarter of it.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 48,
+    substitutes: {
+      summary:
+        'A very low fat diet remains the foundation of care and is the comparator every drug is added to. A GalNAc-conjugated successor against the same target was approved in the United States in 2024 without the platelet problem.',
+      conventionalRx: [
+        {
+          name: 'Olezarsen (Tryngolza)',
+          class: 'GalNAc-conjugated antisense oligonucleotide against APOC3',
+          howItCompares:
+            'The same target and the same base sequence with a liver-targeting sugar cluster attached, dosed monthly. Approved in the United States in December 2024 for FCS as an adjunct to diet.',
+          typicalCost: 'Branded orphan pricing; monthly subcutaneous injection',
+          prosAndCons:
+            'Pros: no equivalent platelet signal, monthly dosing, US approval. Cons: no head-to-head randomised comparison with volanesorsen.',
+        },
+        {
+          name: 'Fibrates, omega-3 fatty acids and statins',
+          class: 'Conventional triglyceride-lowering drugs',
+          howItCompares:
+            'All act through pathways that require functioning lipoprotein lipase, so they are largely ineffective in genuine FCS. They are usually tried first and usually fail.',
+          typicalCost: 'Generic; typically under $30 / month in the US',
+          prosAndCons:
+            'Pros: cheap and widely available. Cons: mechanistically mismatched to a disease of lipase deficiency.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Very low fat diet',
+          activeCompound: 'Restriction of long-chain triglycerides',
+          biologicalMechanism:
+            'Chylomicrons are made from dietary long-chain fat. If lipoprotein lipase cannot clear them, the only lever left is to make fewer of them, which means restricting the fat that forms them.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Long-chain fat restricted to roughly 15 to 20 g per day, dietitian-supervised, with fat-soluble vitamin monitoring',
+          monthlyCost: 'No product cost; specialist dietitian input required',
+        },
+        {
+          name: 'Medium-chain triglyceride oil',
+          activeCompound: 'C8 and C10 fatty acids',
+          biologicalMechanism:
+            'Medium-chain fats are absorbed into the portal vein directly rather than packaged into chylomicrons, so they supply calories without adding to the particle load that cannot be cleared.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Used as the main added fat within a dietitian-set daily allowance',
+          monthlyCost: '$20 to $40 / month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Complete alcohol avoidance',
+          action: 'No alcohol at all, including in cooking and in medicines.',
+          patientImpact:
+            'Alcohol drives hepatic VLDL output and is one of the commonest precipitants of an acute pancreatitis episode in FCS.',
+          clinicalPrecaution:
+            'Also relevant to any oestrogen-containing medication, which raises triglycerides sharply in this population.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'AGCTTCTTGTCCAGCTTTAT',
+      chemicalFormula: 'C230H320N63O125P19S19',
+      molecularWeight: '7,165.21 Da',
+      targetReceptorAffinity:
+        '5-10-5 MOE gapmer with a full phosphorothioate backbone; recruits RNase H1 to APOC3 mRNA',
+      structureSource: {
+        label:
+          'Yu et al., Mol Ther Nucleic Acids 2017, Table 1 (ISIS 304801, 20-mer, 7,165.21 Da, hypertriglyceridaemia); molecular formula from PubChem CID 121494123',
+        identifier: '10.1016/j.omtn.2017.08.012',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 's1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite qualification and sequence identity confirmation',
+          description:
+            'Release-test MOE and deoxy amidites and confirm the 20-mer identity, which is shared with the later GalNAc-conjugated compound against the same target.',
+          reagentsAndBuffer:
+            'MOE and deoxy phosphoramidites, Karl Fischer titration, anhydrous acetonitrile, intact-mass LC-MS identity check',
+        },
+        {
+          id: 's2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase 5-10-5 gapmer assembly with full sulfurisation',
+          description:
+            'Twenty cycles with sulfurisation at every linkage, giving the unconjugated phosphorothioate design whose systemic exposure is the origin of the platelet signal.',
+          reagentsAndBuffer:
+            'Dichloroacetic acid detritylation, 5-(ethylthio)-1H-tetrazole, phenylacetyl disulfide, acetic anhydride cap',
+          dependsOnStepId: 's1',
+        },
+        {
+          id: 's3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange purification and sodium-salt exchange',
+          description:
+            'Resolve the full-length species from shortmers and partially oxidised impurities, then desalt into the injectable sodium salt form.',
+          reagentsAndBuffer:
+            'Ammonia cleavage, Source 30Q resin, sodium bromide gradient, tangential flow diafiltration',
+          dependsOnStepId: 's2',
+        },
+        {
+          id: 's4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Gymnotic uptake into primary human hepatocytes, with a platelet co-culture control',
+          description:
+            'Free uptake into hepatocytes for the pharmacology, run alongside a platelet-activation readout, because platelet effects were the finding that decided this drug regulatory fate.',
+          reagentsAndBuffer:
+            'Primary human hepatocytes in Williams E medium, washed human platelets, anti-CD62P (P-selectin) flow cytometry panel',
+          dependsOnStepId: 's3',
+        },
+        {
+          id: 's5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'APOC3 knockdown and post-heparin lipolysis readout',
+          description:
+            'Quantify APOC3 transcript and secreted apoC-III, then measure triglyceride hydrolysis in the presence and absence of apoC-III to confirm the clearance mechanism.',
+          reagentsAndBuffer:
+            'TaqMan APOC3 probe set, apoC-III immunoassay, fluorogenic lipase substrate with recombinant lipoprotein lipase',
+          dependsOnStepId: 's4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'vol-1',
+        category: 'measured',
+        title: 'Triglycerides fell 77 percent, a mean drop of 1,712 mg/dL',
+        laymanSummary:
+          'Treated patients lost more than three quarters of their circulating triglycerides in three months, while the placebo group went up.',
+        technicalDetails:
+          'APPROACH (NCT02211209) randomised 66 patients with FCS 1:1 for 52 weeks. At three months mean triglycerides fell 77 percent with volanesorsen, a mean decrease of 1,712 mg/dL (95 percent CI 1,330 to 2,094), against an 18 percent increase on placebo, p<0.001. Plasma apoC-III fell 84 percent against a 6.1 percent increase on placebo, p<0.001. At three months 77 percent of treated patients were below 750 mg/dL against 10 percent of placebo patients.',
+        evidenceSource: 'Witztum et al., New England Journal of Medicine 2019 (APPROACH)',
+        doi: '10.1056/NEJMoa1715944',
+        measuredMetric: 'Triglycerides -77 percent versus +18 percent, p<0.001',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vol-2',
+        category: 'failed',
+        title: 'Platelets dropped below 100,000 per microlitre in 15 of 33 treated patients',
+        laymanSummary:
+          'Nearly half the treated patients had a clinically important fall in platelet count, and two fell below 25,000, a level at which spontaneous bleeding becomes a real risk. Nobody on placebo did.',
+        technicalDetails:
+          'In APPROACH, 15 of 33 volanesorsen patients had platelet counts below 100,000 per microlitre, including 2 below 25,000, against 0 of 33 on placebo. After enhanced platelet monitoring was introduced mid-trial no patient fell below 50,000. Injection-site reactions occurred in 20 of 33 treated patients and none on placebo.',
+        evidenceSource: 'Witztum et al., NEJM 2019, results section',
+        doi: '10.1056/NEJMoa1715944',
+        measuredMetric: 'Platelets below 100,000/microlitre in 15 of 33 treated versus 0 of 33 placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vol-3',
+        category: 'failed',
+        title: 'The FDA refused approval after its own advisory committee voted in favour',
+        laymanSummary:
+          'An expert panel voted 12 to 8 to recommend approval. Three months later the agency issued a complete response letter and refused it anyway.',
+        technicalDetails:
+          'The FDA advisory committee voted 12-8 in favour in May 2018. A complete response letter was issued on 27 August 2018. The advisory committee vote is advisory, and the divergence is a useful reminder that a favourable panel is not a decision. Volanesorsen has never been approved in the United States.',
+        evidenceSource: 'Akcea and Ionis complete response letter announcement, 27 August 2018',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'vol-4',
+        category: 'conclusion_shift',
+        title: 'The EMA authorised it conditionally on the same dossier the FDA refused',
+        laymanSummary:
+          'Europe approved it with conditions in 2019, restricted to patients whose diet and other drugs have failed. The United States did not approve it at all.',
+        technicalDetails:
+          'Waylivra received a conditional marketing authorisation in the European Union in 2019 for genetically confirmed FCS in adults at high risk of pancreatitis in whom response to diet and triglyceride-lowering therapy has been inadequate. Conditional authorisation carries an obligation to supply further data. Two regulators weighed the same 77 percent triglyceride reduction against the same platelet signal and reached opposite conclusions.',
+        evidenceSource: 'Waylivra EPAR, European Medicines Agency',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'vol-5',
+        category: 'inferred',
+        title: 'Pancreatitis prevention was inferred, not measured',
+        laymanSummary:
+          'The reason FCS matters is pancreatitis. The trial measured triglycerides, and it was not built to count pancreatitis attacks.',
+        technicalDetails:
+          'The APPROACH primary endpoint was the percentage change in fasting triglycerides at three months. With 66 patients over 52 weeks in a disease where attacks are episodic, the trial had no power to demonstrate a reduction in pancreatitis events. The inference from triglyceride level to pancreatitis risk is biologically well supported and it is still an inference.',
+        evidenceSource: 'Witztum et al., NEJM 2019, methods',
+        doi: '10.1056/NEJMoa1715944',
+        inferredClaim: 'That volanesorsen was shown in APPROACH to prevent episodes of acute pancreatitis',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vol-6',
+        category: 'conclusion_shift',
+        title: 'The same sequence with a GalNAc ligand cleared the bar volanesorsen could not',
+        laymanSummary:
+          'Attaching a liver-targeting sugar to the same antisense strand removed the platelet problem, and that version was approved in the United States in 2024.',
+        technicalDetails:
+          'Olezarsen carries the identical 20-mer base sequence conjugated to a triantennary GalNAc ligand, which was catalogued in the Ionis comparative programme as ISIS 678354. It was approved in the United States in December 2024 for FCS as an adjunct to diet. The same lesson appears in this file with inotersen and eplontersen: the toxicity that defined the first-generation drug was largely a consequence of how much drug had to be given, not of what the sequence does.',
+        evidenceSource:
+          'Crooke et al., Nucleic Acid Therapeutics 2019, Table 1 (ISIS 678354, ApoC3); Ionis announcement of US approval of olezarsen, December 2024',
+        doi: '10.1089/nat.2018.0753',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weekly subcutaneous injection',
+        laymanDesc:
+          'A weekly injection under the skin, which produced a local reaction in most treated patients.',
+        molecularDetail:
+          'Unconjugated full-phosphorothioate 20-mer, 285 mg weekly in a prefilled syringe. Injection-site reactions occurred in 20 of 33 treated patients in APPROACH and in none on placebo.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Uptake into hepatocytes, and into everything else',
+        laymanDesc:
+          'The liver takes most of it up, but with nothing directing the drug it also reaches other tissues, including cells that interact with platelets.',
+        molecularDetail:
+          'Phosphorothioate-driven adsorptive endocytosis without a targeting ligand. The high weekly dose required for hepatic knockdown is also the exposure that produced the platelet and injection-site findings.',
+        iconName: 'ArrowDown',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Hybridising to APOC3 messenger RNA',
+        laymanDesc: 'It pairs with the liver instructions for apolipoprotein C-III.',
+        molecularDetail:
+          'Watson-Crick duplex formation at the deoxynucleotide gap with the APOC3 transcript, with 2-prime-MOE wings providing affinity and nuclease resistance.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'RNase H1 degrades the transcript',
+        laymanDesc: 'A cellular enzyme cuts the paired instructions so apoC-III is not made.',
+        molecularDetail:
+          'RNase H1 cleaves the RNA strand of the heteroduplex. Plasma apoC-III fell 84 percent from baseline at three months, confirming target engagement in patients.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Triglyceride-rich particles clear by lipase-independent routes',
+        laymanDesc:
+          'Without apoC-III blocking the way, the body clears fat particles through pathways that do not need the enzyme these patients are missing.',
+        molecularDetail:
+          'Loss of apoC-III relieves inhibition of lipoprotein lipase and, importantly in FCS where lipase activity is absent, enhances hepatic receptor-mediated uptake of triglyceride-rich remnants. That second route is why the drug works in patients whose lipase does not.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'APPROACH (NCT02211209)',
+        phase: 'Phase 3',
+        sampleSize: 66,
+        primaryEndpoint: 'Percentage change in fasting triglyceride level from baseline to month 3',
+        endpointMet: true,
+        statisticalPValue: 'p<0.001',
+        unreportedAdverseSignals:
+          'Platelet counts below 100,000 per microlitre in 15 of 33 treated patients, including 2 below 25,000, against none on placebo; injection-site reactions in 20 of 33 treated patients',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Fasting triglycerides -77 percent at three months against +18 percent on placebo, p<0.001',
+        'Plasma apoC-III -84 percent against +6.1 percent on placebo, p<0.001',
+        '77 percent of treated patients below 750 mg/dL at three months, against 10 percent on placebo',
+        'Platelets below 100,000 per microlitre in 15 of 33 treated patients',
+      ],
+      unsupportedInferences: [
+        'That the trial demonstrated a reduction in acute pancreatitis events; it was not powered for that endpoint',
+        'That the favourable advisory committee vote implied approval was likely',
+      ],
+      whatFailedInitially: [
+        'Thrombocytopenia in nearly half of treated patients, with two below 25,000 per microlitre',
+        'The FDA issued a complete response letter in August 2018 despite a 12-8 advisory committee vote in favour',
+      ],
+      realWorldOutcome: [
+        'Conditionally authorised in the European Union in 2019, never approved in the United States',
+        'A GalNAc-conjugated successor against the same target was approved in the United States in December 2024',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection of an unconjugated full-phosphorothioate 2-prime-MOE gapmer',
+      description:
+        'Prefilled syringe containing 285 mg for weekly self-injection, with mandatory platelet monitoring. No targeting ligand; hepatic exposure comes from the pharmacokinetics of the chemistry alone.',
+      safetyProfile:
+        'Thrombocytopenia is the defining risk and requires regular platelet counts with dose interruption rules. Injection-site reactions are very common. The European authorisation is conditional and restricted to patients who have failed diet and other therapy.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was volanesorsen shown to prevent pancreatitis?',
+        a: 'No. APPROACH measured triglycerides at three months in 66 patients. Pancreatitis attacks are episodic and the trial had no power to count them. The link from very high triglycerides to pancreatitis is strong biology, but it was not the thing measured.',
+        auditNote: 'The primary endpoint was percentage change in fasting triglycerides, not an event count.',
+      },
+      {
+        q: 'Why did Europe approve it and the United States refuse it?',
+        a: 'Both regulators saw a 77 percent triglyceride reduction and a thrombocytopenia signal in nearly half of treated patients. The EMA granted a conditional authorisation restricted to patients who had failed diet and other drugs; the FDA issued a complete response letter, three months after its own advisory committee had voted 12 to 8 in favour.',
+      },
+      {
+        q: 'Is diet still necessary on treatment?',
+        a: 'Yes. The European authorisation is explicitly as an adjunct to diet. A very low fat diet is the foundation of FCS care because it reduces the number of chylomicrons formed in the first place, and no drug removes that requirement.',
+      },
+      {
+        q: 'How does olezarsen differ?',
+        a: 'It is the same base sequence with a triantennary GalNAc cluster attached, which delivers it into liver cells efficiently enough that far less drug is needed. It is dosed monthly, does not carry the same platelet problem, and was approved in the United States in December 2024.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Witztum et al., Volanesorsen and Triglyceride Levels in Familial Chylomicronemia Syndrome, NEJM 2019 (APPROACH)',
+        identifier: '10.1056/NEJMoa1715944',
+        kind: 'doi',
+      },
+      {
+        label: 'Waylivra EPAR and product information, European Medicines Agency',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/waylivra',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Yu et al., Mol Ther Nucleic Acids 2017, Table 1 (ISIS 304801 sequence and mass)',
+        identifier: '10.1016/j.omtn.2017.08.012',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Crooke et al., Integrated Assessment of the Clinical Performance of GalNAc3-Conjugated 2-prime-MOE ASOs, Nucleic Acid Therapeutics 2019 (ISIS 678354, same APOC3 sequence)',
+        identifier: '10.1089/nat.2018.0753',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem compound record for volanesorsen (CID 121494123)',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/121494123',
+        kind: 'url',
+      },
+      { label: 'APPROACH trial registration', identifier: 'NCT02211209', kind: 'nct' },
+    ],
+  },
 ]
