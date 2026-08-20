@@ -5932,4 +5932,1242 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       CSA_SCHEDULES_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 16. GHB (gamma-hydroxybutyric acid) — Schedule I as a substance, Schedule III as a medicine
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ghb',
+    name: 'GHB (Gamma-Hydroxybutyric Acid)',
+    tradeName:
+      'Xyrem (sodium oxybate, approved 2002); Xywav (calcium, magnesium, potassium and sodium oxybates, 2020); Lumryz (once-nightly sodium oxybate, 2023)',
+    sponsor:
+      'Jazz Pharmaceuticals holds Xyrem (NDA 021196) and Xywav (NDA 212690); Avadel CNS holds Lumryz (NDA 214755)',
+    targetGene: 'GABBR1 / GABBR2',
+    targetProtein:
+      'GABA-B receptor — a low-potency agonist at the receptor that carries essentially all of the measured pharmacological effect; the separate high-affinity GHB binding site persists in GABA-B-deficient animals but produces no drug effect',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2002,
+    indication:
+      'Cataplexy and excessive daytime sleepiness in narcolepsy (Xyrem, Lumryz), and additionally idiopathic hypersomnia in adults (Xywav). The same molecule, when it is not an FDA-approved drug product, is Schedule I',
+    patientFriendlyIndication:
+      'Prescribed as a nightly liquid for narcolepsy with cataplexy and for idiopathic hypersomnia. The identical chemical, obtained any other way, is in the same legal category as heroin',
+    anatomicalSite:
+      'GABA-B receptors on cortical and thalamic neurons; the therapeutic effect is on the architecture of night-time sleep rather than on daytime wakefulness directly',
+    conditionContext: {
+      conditionExplainer:
+        'Cataplexy is a sudden loss of muscle tone triggered by emotion, occurring in narcolepsy type 1, which is caused by loss of hypocretin-producing neurons. Idiopathic hypersomnia is excessive daytime sleepiness with long night-time sleep and severe sleep inertia. Both are rated with the Epworth Sleepiness Scale, 0 to 24, where above 10 is abnormal.',
+      whyItMatters:
+        'Before oxybate, cataplexy was treated with antidepressants used off-label, and idiopathic hypersomnia had no approved treatment at all until August 2021. Oxybate consolidates night-time sleep, and the daytime improvement follows from that.',
+      whoTakesThis:
+        'Adults and children aged 7 and over with narcolepsy, and adults with idiopathic hypersomnia, dispensed through a restricted programme. Separately, GHB and its precursors are taken recreationally and used in drug-facilitated assault.',
+      clinicalGoals:
+        'Fewer weekly cataplexy attacks and a lower Epworth score, sustained on nightly dosing, without the respiratory depression the same molecule causes in overdose.',
+    },
+    oneSentenceVerdict:
+      'The same molecule occupies two federal drug schedules at once — Schedule I under 21 CFR 1308.11(e)(6) as gamma-hydroxybutyric acid, and Schedule III under 1308.13(c)(6) when it is a drug product approved under section 505 — and the trial evidence for the approved product is as strong as the emergency-department evidence for the unapproved one.',
+    laymanHowItWorks:
+      'GHB is a small molecule the brain already makes in tiny amounts. Given as a drug it acts on the GABA-B receptor, the same receptor baclofen uses, and deepens slow-wave sleep. In narcolepsy that consolidated night-time sleep translates into fewer cataplexy attacks and less daytime sleepiness. The problem is the dose-response curve: the interval between a dose that sedates and a dose that stops breathing is short, it varies with tolerance, and alcohol shortens it further. That is why the medicine is dispensed through a restricted programme and taken lying down in bed.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 82,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C(CC(=O)O)CO',
+      chemicalFormula: 'C4H8O3',
+      molecularWeight:
+        '104.10 g/mol as the free acid. Prescribed doses are grams per night — 4.5 to 9 g of oxybate salts, divided — which is three to five orders of magnitude above a typical CNS drug dose',
+      targetReceptorAffinity:
+        'Agonist at the GABA-B receptor with low potency, requiring high-micromolar to millimolar concentrations, which is why the dose is measured in grams. A separate high-affinity GHB binding site exists and is retained in GABA-B(1)-deficient mice, but those animals lose the pharmacological effects of GHB entirely — so the high-affinity site is not what the drug acts through.',
+      structureSource: {
+        label:
+          'PubChem CID 10413 (gamma-hydroxybutyric acid) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10413',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ghb-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Quantify GHB against an endogenous background',
+          description:
+            'GHB is a normal metabolite present in blood and urine without any exposure, and postmortem concentrations rise with time and with the sampling site. Every forensic and clinical measurement therefore needs a validated decision threshold above the endogenous range, and a result below that threshold is not evidence of no exposure — it is a result within background. This is the single most misread number in GHB casework.',
+          reagentsAndBuffer:
+            'GC-MS with deuterated GHB (GHB-d6) internal standard after derivatisation, or enzymatic assay for rapid screening, sodium fluoride preservative tubes to limit post-collection generation, matrix-matched calibrators spanning the endogenous range',
+        },
+        {
+          id: 'ghb-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Distinguish GHB from its precursors GBL and 1,4-butanediol',
+          description:
+            'Gamma-butyrolactone converts to GHB in aqueous solution and in the body, and 1,4-butanediol is oxidised to it by alcohol dehydrogenase. A sample assayed only for GHB cannot say which was taken, and the difference matters for onset and for how much is delivered. GBL is a List I chemical under 21 CFR 1310.02, placed there by DEA rule in April 2000 for exactly this reason.',
+          dependsOnStepId: 'ghb-w1',
+          reagentsAndBuffer:
+            'Separate GBL and 1,4-butanediol reference standards, headspace or direct-injection GC-MS with a lactone-stable pathway, controlled pH to prevent interconversion during preparation, alcohol dehydrogenase inhibition control',
+        },
+        {
+          id: 'ghb-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Prepare GABA-B(1)-deficient and wild-type neuronal tissue in parallel',
+          description:
+            'The experiment that settled the mechanism was a genetic subtraction. Neurons and brain membranes from mice lacking the GABA-B(1) subunit are prepared alongside wild-type controls, so that binding and function can be measured in a system where the GABA-B receptor is simply absent rather than pharmacologically blocked.',
+          dependsOnStepId: 'ghb-w1',
+          reagentsAndBuffer:
+            'GABA-B(1)-deficient and wild-type mouse brain membrane preparations and primary cortical cultures, Neurobasal medium with B27 supplement, genotyping by PCR on every animal used',
+        },
+        {
+          id: 'ghb-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Separate the high-affinity GHB site from the GABA-B receptor',
+          description:
+            'Radioligand binding with a labelled GHB ligand and, in parallel, with a GABA-B-selective antagonist ligand, run on both genotypes. Kaupmann et al. found the specific GHB binding sites still present in GABA-B(1)-deficient tissue while every pharmacological effect of GHB was lost — which is how a binding site was shown not to be a drug target.',
+          dependsOnStepId: 'ghb-w3',
+          reagentsAndBuffer:
+            '[3H]-GHB or [3H]-NCS-382 for the high-affinity site, [3H]-CGP54626 for GABA-B, unlabelled GHB and baclofen competition series, Tris-HCl/CaCl2 assay buffer, filtration harvest and scintillation counting',
+        },
+        {
+          id: 'ghb-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Concentration-effect mapping against clinical observation',
+          description:
+            'The clinical fact that needs a number is how steeply effect rises with concentration. Abid et al. measured blood GHB in 75 emergency-department cases and compared comatose with somnolent and awake patients; the relationship was only moderate and the concentration ranges overlapped, because tolerance and co-ingestion move the curve. An assay that reports a concentration without that context invites a false inference about a specific patient.',
+          dependsOnStepId: 'ghb-w2',
+          reagentsAndBuffer:
+            'Quantitative GC-MS on paired blood and urine, documented sampling time relative to ingestion, structured recording of Glasgow Coma Scale and co-detected substances, tolerance history where obtainable',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ghb-a1',
+        category: 'conclusion_shift',
+        title: 'One molecule, two federal schedules, decided by who made it',
+        laymanSummary:
+          'Gamma-hydroxybutyric acid is Schedule I — the category for drugs with no accepted medical use. A drug product containing the identical molecule, approved by the FDA, is Schedule III. Both entries are in the same regulation.',
+        technicalDetails:
+          '21 CFR 1308.11(e)(6) lists "gamma-hydroxybutyric acid (some other names include GHB; gamma-hydroxybutyrate; 4-hydroxybutyrate; 4-hydroxybutanoic acid; sodium oxybate; sodium oxybutyrate)" in Schedule I under DEA code 2010. 21 CFR 1308.13(c)(6) lists "Any drug product containing gamma hydroxybutyric acid, including its salts, isomers, and salts of isomers, for which an application is approved under section 505 of the Federal Food, Drug, and Cosmetic Act" in Schedule III under DEA code 2012. The Schedule I entry names sodium oxybate explicitly; the Schedule III entry captures the same chemical when it arrives as an approved product. GHB was added to Schedule I by DEA rule effective March 2000 (65 FR 13235), which was written to accommodate the then-pending drug application. This is the clearest instance in the schedules of a classification that describes provenance rather than pharmacology, and it is worth stating plainly because the phrase "no currently accepted medical use" is doing no chemical work here at all.',
+        evidenceSource:
+          '21 CFR 1308.11(e)(6) and 21 CFR 1308.13(c)(6), current eCFR text; DEA final rule 65 FR 13235 (13 March 2000)',
+        measuredMetric:
+          'Schedule assignment of the same chemical entity under two provisions of the same regulation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ghb-a2',
+        category: 'measured',
+        title: 'Pivotal trial: cataplexy attacks fell at 9 g, and only clearly at 9 g',
+        laymanSummary:
+          'A 136-patient trial gave three different nightly doses. The highest dose cut weekly cataplexy attacks and daytime sleepiness convincingly. The middle dose just missed, and the lowest did not separate.',
+        technicalDetails:
+          'A multicentre, double-blind, placebo-controlled trial randomised 136 narcolepsy patients with 3 to 249 (median 21) weekly cataplexy attacks to 3 g, 6 g or 9 g of sodium oxybate nightly, or placebo, in two divided doses at bedtime and 2.5 to 4 hours later, for four weeks. Anticataplectic medication was withdrawn before baseline; stable stimulant doses were allowed. Against placebo, weekly cataplexy attacks fell at 6 g (p = 0.0529) and significantly at 9 g (p = 0.0008). The Epworth Sleepiness Scale improved at all doses and reached significance at 9 g (p = 0.0001); the Clinical Global Impression of Change was dose-related and significant at 9 g (p = 0.0002); inadvertent naps and sleep attacks (p = 0.0122) and nighttime awakenings (p = 0.0035) followed the same pattern. Nausea, headache, dizziness and enuresis were the commonest adverse events.',
+        evidenceSource: 'US Xyrem Multicenter Study Group. Sleep 2002;25:42-49',
+        measuredMetric:
+          'Change from baseline in weekly cataplexy attacks and Epworth Sleepiness Scale across three doses, n=136',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ghb-a3',
+        category: 'measured',
+        title: 'Randomised withdrawal in idiopathic hypersomnia: 6.5 Epworth points',
+        laymanSummary:
+          'Everyone was first stabilised on the drug in the open. Then half were secretly switched to placebo. The placebo group got sleepier again and the treated group did not, by six and a half Epworth points.',
+        technicalDetails:
+          'Dauvilliers et al. enrolled 154 adults with idiopathic hypersomnia at 50 sleep centres across six EU countries and the USA. Epworth scores fell from a mean of 15.7 (SD 3.8) at baseline to 6.1 (4.0) after 10 to 14 weeks of open-label titration plus a two-week stable-dose period. 115 participants were then randomised 1:1 to continue lower-sodium oxybate (n=56) or switch to matched placebo (n=59) for a two-week double-blind withdrawal. Epworth scores worsened on placebo and remained stable on drug: least-squares mean difference -6.5 (95% CI -8.0 to -5.0), p < 0.0001. Treatment-emergent adverse events were nausea 22%, headache 18%, dizziness 12%, anxiety 11% and vomiting 11% of 154; no deaths. The randomised-withdrawal design is the reason this result is stronger than a parallel-group trial of the same size: everyone had already responded, so the comparison is of maintained versus withdrawn effect rather than of responders versus non-responders. FDA approved lower-sodium oxybate for idiopathic hypersomnia in August 2021.',
+        evidenceSource: 'Dauvilliers Y et al. Lancet Neurol 2022;21:53-65 (NCT03533114)',
+        doi: '10.1016/S1474-4422(21)00368-9',
+        measuredMetric:
+          'Change in Epworth Sleepiness Scale over a 2-week double-blind randomised withdrawal, n=115 modified ITT',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ghb-a4',
+        category: 'measured',
+        title: 'Seventy-five overdoses: the coma and awake concentration ranges overlap',
+        laymanSummary:
+          'Blood levels from 75 emergency-department patients showed only a moderate relationship between how much GHB was in the blood and how unconscious the person was. Some awake patients had levels similar to comatose ones.',
+        technicalDetails:
+          'Abid et al. reviewed 75 GHB intoxication cases presenting to emergency departments in Hamburg and surrounding hospitals, with blood and urine concentrations by GC-MS. 72% were male. Mean blood GHB was 248 mg/L, range 21.5 to 1,418 mg/L. Among the 18 cases with detailed clinical information, the 10 comatose patients averaged 244 mg/L (range 136 to 403), higher than somnolent and awake patients but with substantial overlap. Seven of the 10 comatose patients (70%) had used one or more other substances, cocaine most often (n=5). Acidosis, hypotension and heart-rate effects were common. The authors describe the dose-effect relationship as moderate, with overlap between awake and comatose concentration ranges. That overlap is the clinically important finding: a blood concentration does not predict an individual\'s conscious level, because tolerance and co-ingestion shift the curve.',
+        evidenceSource: 'Abid M et al. J Forensic Sci 2022;67:416-427',
+        doi: '10.1111/1556-4029.14880',
+        measuredMetric:
+          'Blood GHB concentration against clinical conscious level in 75 emergency-department presentations',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ghb-a5',
+        category: 'measured',
+        title: 'Withdrawal can require intubation',
+        laymanSummary:
+          'Stopping regular heavy GHB use produces a withdrawal syndrome that in severe cases includes delirium, unstable blood pressure and muscle breakdown, and has needed ventilation and multiple sedatives to control.',
+        technicalDetails:
+          'Borelli et al. describe two patients with severe GHB withdrawal complicated by delirium, haemodynamic lability and rhabdomyolysis. The first was managed with a benzodiazepine taper plus symptom-triggered benzodiazepines and adjunctive baclofen. The second required intubation with midazolam and dexmedetomidine infusions, phenobarbital, baclofen and a benzodiazepine taper. The syndrome was first characterised in the emergency-medicine literature in 2001. Baclofen is used as an adjunct because it is a GABA-B agonist, which is the receptor GHB acts through — the same pharmacological logic that explains the withdrawal explains the treatment. This is a small case series and does not establish incidence; what it establishes is severity, and it is the reason GHB dependence is managed as an inpatient problem rather than an outpatient taper in heavy users.',
+        evidenceSource:
+          'Borelli CM et al. Am J Addict 2025;34:361-365; Dyer JE et al. Ann Emerg Med 2001;37:147-153',
+        doi: '10.1111/ajad.70013',
+        measuredMetric:
+          'Clinical course and treatment requirement in two cases of severe GHB withdrawal',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ghb-a6',
+        category: 'measured',
+        title: 'A binding site that turned out not to be the target',
+        laymanSummary:
+          'GHB has its own high-affinity binding site in the brain, which for years was assumed to be how it works. Mice engineered without the GABA-B receptor still have that site — and GHB does nothing to them.',
+        technicalDetails:
+          'Kaupmann et al. examined GABA-B(1)-deficient mice and found specific GHB binding sites preserved, while the pharmacological effects of GHB were lost. The conclusion is a clean dissociation: the high-affinity GHB site is real and is not the receptor through which the drug produces sedation, hypothermia, EEG changes and the rest of its measured effects; the low-potency action at GABA-B is. This is why the therapeutic dose is in grams rather than milligrams, why baclofen has partial cross-tolerance, and why a high-affinity ligand for the GHB site is not a GHB-like drug. It is also a useful general lesson filed here as measured: a saturable, specific, high-affinity binding site is evidence of binding, not evidence of mechanism.',
+        evidenceSource: 'Kaupmann K et al. Eur J Neurosci 2003;18:2722-2730',
+        doi: '10.1111/j.1460-9568.2003.03013.x',
+        measuredMetric:
+          'Retention of specific GHB binding sites with loss of GHB pharmacological effects in GABA-B(1)-deficient mice',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ghb-a7',
+        category: 'failed',
+        title: 'Sold as a bodybuilding supplement until the poisonings started',
+        laymanSummary:
+          'GHB was sold openly in US health-food shops in the 1980s as a growth-hormone releaser and sleep aid. It came off the shelves after poisoning reports, and ended up in Schedule I a decade later.',
+        technicalDetails:
+          'GHB was marketed in the United States as a dietary supplement — promoted for growth-hormone release, sleep and bodybuilding — before FDA action removed it from open sale following reports of poisoning. DEA subsequently placed gamma-hydroxybutyric acid in Schedule I by final rule published 13 March 2000 (65 FR 13235), with corrections and an extension of the ordering requirements later that year, under authority from the Hillory J. Farias and Samantha Reid Date-Rape Drug Prohibition Act of 2000. Gamma-butyrolactone, which converts to GHB in the body, was placed in List I of the Controlled Substances Act on 24 April 2000 (65 FR 21645) and appears at 21 CFR 1310.02. The supplement era is the failure recorded here: a compound sold on an unmeasured endocrine claim, withdrawn on measured toxicity, and later approved for an indication nobody was marketing it for.',
+        evidenceSource:
+          'DEA final rule 65 FR 13235 (13 March 2000); DEA rule 65 FR 21645 (24 April 2000) placing gamma-butyrolactone in List I',
+        measuredMetric:
+          'Sequence of regulatory actions from open supplement sale to Schedule I listing',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ghb-a8',
+        category: 'inferred',
+        title: 'A negative GHB test does not mean no GHB',
+        laymanSummary:
+          'The body makes GHB naturally and it also forms in a sample after collection, so labs need a threshold. Below that threshold the test cannot tell exposure from background — and GHB leaves the blood within hours.',
+        technicalDetails:
+          'GHB is an endogenous metabolite present in blood and urine without exposure, concentrations rise in stored and postmortem specimens, and elimination after a single dose is rapid. Analytical practice therefore uses a validated decision threshold above the endogenous range, and results below it are uninterpretable rather than negative. The common inference — that a negative result in a suspected drug-facilitated assault excludes GHB — does not follow, because the sample is usually collected well outside the detection window. The inference in the other direction is equally unsafe: a low positive result in a postmortem specimen may reflect endogenous production and post-collection generation rather than exposure. This record files the claim as inferred in both directions because the analytical facts constrain what a single number can support.',
+        evidenceSource:
+          'Abid M et al. J Forensic Sci 2022;67:416-427, analytical methods and discussion of endogenous background',
+        doi: '10.1111/1556-4029.14880',
+        inferredClaim:
+          'That a GHB result below the analytical decision threshold demonstrates absence of exposure, or that a low postmortem result demonstrates presence of it',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken as a liquid, in grams, lying down',
+        laymanDesc:
+          'The prescribed form is a salty liquid taken at bedtime and again a few hours later, in gram quantities. Onset is fast enough that the patient must already be in bed.',
+        molecularDetail:
+          'Oral oxybate salts, 4.5 to 9 g per night in divided doses in the narcolepsy programme and 2.5 to 9 g per night in the idiopathic hypersomnia study. Absorption is rapid and food markedly reduces it, which is why dosing is separated from meals. Lumryz delivers a single once-nightly dose instead of two.',
+        iconName: 'Beaker',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into the brain by a transporter',
+        laymanDesc:
+          'Being a small acid, it does not simply dissolve through membranes; it is carried across, and that carrier can saturate.',
+        molecularDetail:
+          'Monocarboxylate transporter-mediated uptake across the blood-brain barrier. Saturable transport and saturable metabolism together give non-linear pharmacokinetics: a proportionally larger increase in exposure follows an increase in dose, which is one reason the margin between sedation and respiratory depression narrows as the dose rises.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Weakly activates the GABA-B receptor',
+        laymanDesc:
+          'It switches on the same receptor as baclofen, but so weakly that grams are needed. The separate high-affinity site it also binds turns out not to do anything.',
+        molecularDetail:
+          'GABA-B agonism at high-micromolar to millimolar concentrations. In GABA-B(1)-deficient mice the specific high-affinity GHB binding sites remain but every pharmacological effect is lost, establishing GABA-B as the effector receptor and the high-affinity site as pharmacologically silent.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Slow-wave sleep deepens and consolidates',
+        laymanDesc:
+          'The drug does not act on daytime alertness. It reorganises the night — deeper slow-wave sleep, fewer awakenings — and the daytime benefit follows from that.',
+        molecularDetail:
+          'GABA-B-mediated increase in slow-wave sleep with reduced nocturnal awakenings. In the pivotal narcolepsy trial the reduction in nighttime awakenings was significant at 9 g (p = 0.0035), alongside the reduction in cataplexy attacks and inadvertent daytime naps.',
+        iconName: 'Moon',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Or, at a dose not much higher, breathing stops',
+        laymanDesc:
+          'The interval between a sedating dose and a dose that suppresses breathing is short and moves with tolerance. Adding alcohol or another depressant closes it.',
+        molecularDetail:
+          'GABA-B-mediated respiratory depression and coma. In 75 emergency-department cases, comatose patients averaged 244 mg/L blood GHB against a whole-series mean of 248 mg/L, with concentration ranges overlapping between awake and comatose patients and co-ingestion present in 70% of the comatose group. Non-linear kinetics mean the exposure rises faster than the dose.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'US Xyrem Multicenter Study Group 2002 (narcolepsy with cataplexy)',
+        phase: 'Phase 3 randomised, double-blind, placebo-controlled, three-dose',
+        sampleSize: 136,
+        primaryEndpoint: 'Change from baseline in weekly cataplexy attacks',
+        endpointMet: true,
+        statisticalPValue:
+          'Cataplexy attacks: 9 g p = 0.0008, 6 g p = 0.0529, 3 g not significant. Epworth p = 0.0001 and CGI-c p = 0.0002 at 9 g',
+        unreportedAdverseSignals:
+          'Only the highest of three doses separated clearly on the primary endpoint, and the 6 g arm missed at p = 0.0529. Enuresis appeared among the commonest adverse events, which is not a trivial finding in the population the drug is prescribed to.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT03533114 (lower-sodium oxybate in idiopathic hypersomnia)',
+        phase: 'Phase 3 double-blind, placebo-controlled, randomised withdrawal',
+        sampleSize: 154,
+        primaryEndpoint:
+          'Change in Epworth Sleepiness Scale from end of stable-dose period to end of double-blind randomised withdrawal',
+        endpointMet: true,
+        statisticalPValue: 'Least-squares mean difference -6.5, 95% CI -8.0 to -5.0, p < 0.0001',
+        unreportedAdverseSignals:
+          'Randomised-withdrawal designs enrol only responders, so the effect estimate applies to people who already tolerated and responded to the drug, not to everyone with the diagnosis. 39 of the 154 enrolled did not reach randomisation. Nausea in 22% and vomiting in 11%.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Abid et al. 2022 emergency-department intoxication series (Hamburg)',
+        phase: 'Retrospective clinical toxicology case series',
+        sampleSize: 75,
+        primaryEndpoint: 'Relationship between blood GHB concentration and clinical conscious level',
+        endpointMet: false,
+        statisticalPValue:
+          'Moderate dose-effect relationship only; comatose mean 244 mg/L (range 136-403) versus whole-series mean 248 mg/L (range 21.5-1418), with overlapping ranges between awake and comatose patients',
+        unreportedAdverseSignals:
+          'Co-use of other substances in 70% of comatose patients, cocaine most frequent. Acidosis, hypotension and heart-rate effects were common. Detailed clinical data existed for only 18 of the 75 cases.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A significant reduction in weekly cataplexy attacks at 9 g nightly (p = 0.0008) in 136 narcolepsy patients, with the 6 g arm at p = 0.0529',
+        'A 6.5-point Epworth advantage over placebo in a 2-week double-blind randomised withdrawal in 115 adults with idiopathic hypersomnia',
+        'Blood GHB concentrations in 75 emergency presentations with overlapping ranges between awake and comatose patients and co-ingestion in 70% of the comatose group',
+        'Loss of every pharmacological effect of GHB in GABA-B(1)-deficient mice despite retention of the high-affinity GHB binding site',
+        'Listing of the identical chemical in Schedule I at 21 CFR 1308.11(e)(6) and in Schedule III at 1308.13(c)(6)',
+      ],
+      unsupportedInferences: [
+        'That a blood GHB concentration predicts an individual patient\'s conscious level — tolerance and co-ingestion shift the relationship and the ranges overlap',
+        'That a result below the analytical decision threshold rules out exposure, or that a low postmortem result establishes it',
+        'That the high-affinity GHB binding site is a drug target, which the knockout experiment specifically refutes',
+        'That the safety record of the prescribed product transfers to the same molecule taken outside it — the dose is measured, the timing is fixed, the patient is in bed and no other depressant is present',
+      ],
+      whatFailedInitially: [
+        'GHB was sold as a dietary supplement on growth-hormone claims until poisoning reports removed it from open sale, a decade before it was scheduled',
+        'The 3 g arm of the pivotal narcolepsy trial did not separate from placebo on cataplexy, and the 6 g arm missed significance',
+      ],
+      realWorldOutcome: [
+        'Three approved oxybate products as of 2026: Xyrem (2002), Xywav (2020, with the idiopathic hypersomnia indication added in 2021) and Lumryz (2023)',
+        'The unapproved molecule remains Schedule I, and its precursor gamma-butyrolactone is a List I chemical under 21 CFR 1310.02',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral solution taken at bedtime, dispensed through a restricted distribution programme',
+      description:
+        'The approved products are oral solutions taken in bed, historically as two doses per night separated by 2.5 to 4 hours, and since 2023 also as a single once-nightly dose. Distribution is through a restricted programme with a single central pharmacy rather than ordinary retail, which is a direct consequence of the abuse and diversion history rather than of the drug\'s handling requirements.',
+      safetyProfile:
+        'In the pivotal narcolepsy trial the commonest adverse events were nausea, headache, dizziness and enuresis; in the idiopathic hypersomnia study, nausea 22%, headache 18%, dizziness 12%, anxiety 11% and vomiting 11% of 154, with no deaths. The dose-limiting hazard is central nervous system and respiratory depression, which is the same pharmacology that produces the therapeutic effect. Non-linear kinetics mean exposure rises faster than dose. Concurrent alcohol or other CNS depressants compound the effect, and in the emergency series 70% of comatose patients had taken something else. Physical dependence develops with regular heavy use, and severe withdrawal has required intubation, phenobarbital and multiple infusions. The sodium load of the original product is the reason a low-sodium version was developed for patients where that matters.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can the same chemical be Schedule I and Schedule III at once?',
+        a: 'Because the two entries classify different things. 21 CFR 1308.11(e)(6) schedules the substance gamma-hydroxybutyric acid; 21 CFR 1308.13(c)(6) schedules "any drug product containing gamma hydroxybutyric acid ... for which an application is approved under section 505". The chemical is identical. The distinction is entirely one of provenance and approval, and it is the sharpest illustration in the schedules that "no currently accepted medical use" is a legal finding about a product pathway rather than a statement about a molecule.',
+      },
+      {
+        q: 'Is the prescribed drug the same as the street drug?',
+        a: 'Chemically, yes. Practically, four things differ and all of them are the difference between a therapy and a poisoning: the dose is weighed rather than estimated from a capful, the timing is fixed and separated from food, the patient is already lying in bed when it takes effect, and no alcohol or other depressant is present. The overdose series shows what happens when those conditions do not hold — and it shows that concentration alone does not predict who ends up comatose, because tolerance and co-ingestion move the curve.',
+        auditNote:
+          'This is the clearest approved-versus-illicit split on the site after heroin, and unlike heroin the split is written into the text of the regulation itself.',
+      },
+      {
+        q: 'Why is it dispensed through a special pharmacy?',
+        a: 'Because of the abuse and diversion history rather than anything about handling the liquid. Restricted distribution through a single central pharmacy, with prescriber and patient enrolment, was part of the original approval package in 2002 and is the reason a Schedule I substance could be approved as a Schedule III medicine at all.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'Approved oxybate products carry list prices, but this file does not publish a per-dose cost of production it cannot verify line by line against a citable source, and it applies that rule uniformly across the group rather than for a subset. There is no price at all for the unapproved substance.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'US Xyrem Multicenter Study Group. A randomized, double blind, placebo-controlled multicenter trial comparing the effects of three doses of orally administered sodium oxybate with placebo for the treatment of narcolepsy. Sleep 2002;25:42-49',
+        identifier: '11833860',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Dauvilliers Y et al. Safety and efficacy of lower-sodium oxybate in adults with idiopathic hypersomnia: a phase 3, placebo-controlled, double-blind, randomised withdrawal study. Lancet Neurol 2022;21:53-65',
+        identifier: '10.1016/S1474-4422(21)00368-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Abid M et al. Characteristics and dose-effect relationship of clinical gamma-hydroxybutyrate intoxication: A case series. J Forensic Sci 2022;67:416-427',
+        identifier: '10.1111/1556-4029.14880',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kaupmann K et al. Specific gamma-hydroxybutyrate-binding sites but loss of pharmacological effects of gamma-hydroxybutyrate in GABA(B)(1)-deficient mice. Eur J Neurosci 2003;18:2722-2730',
+        identifier: '10.1111/j.1460-9568.2003.03013.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Borelli CM et al. Severe gamma-hydroxybutyrate withdrawal with delirium, hemodynamic lability, and rhabdomyolysis: A case series. Am J Addict 2025;34:361-365',
+        identifier: '10.1111/ajad.70013',
+        kind: 'doi',
+      },
+      {
+        label: 'Dyer JE et al. Gamma-hydroxybutyrate withdrawal syndrome. Ann Emerg Med 2001;37:147-153',
+        identifier: '10.1067/mem.2001.112985',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DEA final rule: Schedules of Controlled Substances: Addition of Gamma-Hydroxybutyric Acid to Schedule I, 65 FR 13235, 13 March 2000',
+        identifier:
+          'https://www.federalregister.gov/documents/2000/03/13/00-5925/schedules-of-controlled-substances-addition-of-gamma-hydroxybutyric-acid-to-schedule-i',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'DEA rule: Placement of Gamma-Butyrolactone in List I of the Controlled Substances Act, 65 FR 21645, 24 April 2000',
+        identifier:
+          'https://www.federalregister.gov/documents/2000/04/24/00-9988/placement-of-gamma-butyrolactone-in-list-i-of-the-controlled-substances-act-21-usc-80234',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          '21 CFR 1308.13 — Schedule III, including paragraph (c)(6), any approved drug product containing gamma hydroxybutyric acid',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-II/part-1308/section-1308.13',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA — Xyrem NDA 021196 approved 17 July 2002; Xywav NDA 212690 approved 21 July 2020; Lumryz NDA 214755 approved 1 May 2023',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021196',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 10413 — gamma-hydroxybutyric acid structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10413',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 17. Nitrous oxide
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'nitrous-oxide',
+    name: 'Nitrous Oxide',
+    tradeName:
+      'Nitrous Oxide USP, approved as a prescription medical gas under several NDAs including NDA 205704 (2013). Entonox is the 50:50 nitrous oxide / oxygen mixture used for labour and procedural analgesia',
+    sponsor:
+      'Multiple industrial gas manufacturers hold the medical-gas applications, including Air Liquide, Matheson Tri-Gas and Nitrous Oxide Corp. The same molecule is sold unrestricted as a food-grade propellant',
+    targetGene: 'GRIN1',
+    targetProtein:
+      'NMDA glutamate receptor (non-competitive antagonist), with opioid-mediated analgesia and irreversible oxidation of the cobalt centre of cobalamin, which inactivates methionine synthase',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2013,
+    indication:
+      'Inhalational anaesthetic adjunct and analgesic, in continuous medical use since 1844 and holding formal FDA medical-gas approvals since 2013. It is not scheduled under the Controlled Substances Act: nitrous oxide appears nowhere in 21 CFR part 1308',
+    patientFriendlyIndication:
+      'Used in operating theatres, dentistry and childbirth as a fast-on, fast-off anaesthetic and painkiller. The identical gas is sold in cream-charger cartridges with no restriction, and inhaling it repeatedly destroys vitamin B12',
+    anatomicalSite:
+      'NMDA receptors throughout the central nervous system, and the cobalamin cofactor of methionine synthase in every dividing cell — the second of which is where the lasting damage happens',
+    conditionContext: {
+      conditionExplainer:
+        'In anaesthesia, nitrous oxide is an adjunct: it reduces how much volatile anaesthetic is needed and provides analgesia. In depression research, it has been tested as a rapid-acting NMDA antagonist on the same logic as ketamine, rated on the 21-item Hamilton Depression Rating Scale.',
+      whyItMatters:
+        'It is the only drug on this site that is simultaneously an approved medicine given to women in labour, an anaesthetic used millions of times a year, and a completely unrestricted consumer product. The pharmacology is identical in all three settings; only the exposure differs.',
+      whoTakesThis:
+        'Surgical and dental patients, women in labour, and — in the case series — adolescents and young adults inhaling from cartridges or tanks over weeks to months.',
+      clinicalGoals:
+        'Analgesia and anaesthetic sparing with rapid recovery, without accumulating the cobalamin oxidation that produces spinal-cord and peripheral-nerve damage.',
+    },
+    oneSentenceVerdict:
+      'A 7,112-patient randomised trial found no increase in death or cardiovascular complications from adding it to anaesthesia, overturning a smaller trial that had; and the same molecule, inhaled repeatedly from unrestricted cartridges, irreversibly oxidises vitamin B12 and produces a myeloneuropathy with posterior-column changes on MRI in 89% of reported adolescent cases.',
+    laymanHowItWorks:
+      'Nitrous oxide blocks the NMDA receptor, the same target ketamine acts on, which is why it produces dissociation and analgesia and why it has been tested in depression. Its lasting harm has nothing to do with that receptor. The gas oxidises the cobalt atom at the centre of vitamin B12, and a B12 molecule that has been oxidised cannot serve the enzyme methionine synthase. Without that enzyme the body cannot make myelin properly, and the sheath on the sensory columns at the back of the spinal cord degenerates. That is a chemical reaction, not a dose-dependent toxicity in the usual sense: every exposure inactivates some B12, and repeated exposure outruns the body\'s ability to replace it.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 84,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: '[N-]=[N+]=O',
+      chemicalFormula: 'N2O',
+      molecularWeight:
+        '44.013 g/mol. Clinical use is at 50% to 70% inspired concentration; the depression trials used 25% and 50% for one hour',
+      targetReceptorAffinity:
+        'Non-competitive NMDA-receptor antagonist — the action Jevtović-Todorović et al. identified, alongside both neuroprotective and neurotoxic effects in the same paper. Analgesia additionally involves endogenous opioid mechanisms. The toxicologically decisive reaction is not receptor binding at all: it is irreversible oxidation of the cobalt centre of cob(I)alamin, which inactivates methionine synthase.',
+      structureSource: {
+        label: 'PubChem CID 948 (nitrous oxide) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/948',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'n2o-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Verify gas purity and identify contaminants',
+          description:
+            'Medical-grade and food-grade nitrous oxide are both nominally the same gas, but the specification differs and the contaminants that matter — higher nitrogen oxides such as NO and NO2, formed during manufacture — are directly toxic to the lung. Identity and purity are established by infrared spectroscopy and gas chromatography against the USP monograph rather than by supplier declaration.',
+          reagentsAndBuffer:
+            'FTIR gas cell, gas chromatography with thermal-conductivity and chemiluminescence detection for NO and NO2, certified nitrous oxide reference cylinder, USP monograph limits for nitrogen oxides, carbon monoxide and moisture',
+        },
+        {
+          id: 'n2o-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Measure the biochemical exposure markers, not the gas',
+          description:
+            'Nitrous oxide is exhaled within minutes and is undetectable by the time a patient with neurological symptoms reaches hospital. The exposure is therefore measured through its biochemical footprint: homocysteine and methylmalonic acid rise when methionine synthase is inactivated, and they rise even when serum B12 is normal. In the pooled adolescent series, B12 was low in 45% but homocysteine or methylmalonic acid was raised in 92% — the second number is the test that works.',
+          dependsOnStepId: 'n2o-w1',
+          reagentsAndBuffer:
+            'Plasma total homocysteine by LC-MS/MS or immunoassay on EDTA samples separated within one hour, serum methylmalonic acid by GC-MS or LC-MS/MS, serum B12 and holotranscobalamin, folate as a confounder control',
+        },
+        {
+          id: 'n2o-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Expose a cobalamin-dependent cell system to controlled gas mixtures',
+          description:
+            'The mechanism is a chemical reaction on a cofactor, so it is reproduced in culture rather than inferred from patients. Cells dependent on methionine synthase are grown in a sealed chamber perfused with defined nitrous oxide and oxygen mixtures at controlled duration, which separates concentration from exposure time — the two variables that clinical case reports confound.',
+          dependsOnStepId: 'n2o-w1',
+          reagentsAndBuffer:
+            'Sealed gas-perfusion incubator with mass-flow controllers, defined N2O/O2/CO2 mixtures, methionine-free and methionine-replete media, hydroxocobalamin supplementation arm, cell lines with intact MTR expression',
+        },
+        {
+          id: 'n2o-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Assay methionine synthase activity and the folate cycle',
+          description:
+            'Enzyme activity in lysate from the exposed cells, expressed against unexposed controls, converts the mechanism from a plausible story into a measured inactivation curve. Running the methylfolate trap alongside — 5-methyltetrahydrofolate accumulating because it cannot be demethylated — records the downstream consequence in the same experiment.',
+          dependsOnStepId: 'n2o-w3',
+          reagentsAndBuffer:
+            'Radiometric or LC-MS methionine synthase assay with 5-methyltetrahydrofolate and homocysteine substrates, S-adenosylmethionine, folate species quantified by LC-MS/MS, hydroxocobalamin rescue comparison',
+        },
+        {
+          id: 'n2o-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Correlate biochemistry with imaging and nerve conduction',
+          description:
+            'The clinical endpoint is structural. In the adolescent series, MRI showed long posterior-column signal change in 89% and nerve conduction studies showed a predominantly axonal sensorimotor peripheral neuropathy in 88%. Pairing those with the homocysteine and methylmalonic acid values is what ties an inhalation history to a spinal-cord lesion in an individual case.',
+          dependsOnStepId: 'n2o-w2',
+          reagentsAndBuffer:
+            'Spinal MRI with sagittal and axial T2 sequences of the cervical and thoracic cord, nerve conduction studies with sensory and motor protocols, structured exposure history, repeat biochemistry after hydroxocobalamin replacement',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'n2o-a1',
+        category: 'conclusion_shift',
+        title: 'One trial said avoid it, a trial three times larger said it is safe',
+        laymanSummary:
+          'A 2,050-patient trial found fewer complications when nitrous oxide was left out of the anaesthetic, and concluded routine use should be questioned. A 7,112-patient trial designed to test that found no difference at all in death or cardiovascular events.',
+        technicalDetails:
+          'ENIGMA (Myles et al. 2007) randomised 2,050 patients having major surgery to nitrous-oxide-free (80% oxygen, 20% nitrogen) or nitrous-oxide-based (70% N2O, 30% oxygen) anaesthesia. The nitrous-oxide-free group had significantly lower rates of major complications (OR 0.71, 95% CI 0.56-0.89, p = 0.003) and severe nausea and vomiting (OR 0.40, 95% CI 0.31-0.51, p < 0.001), though median hospital stay did not differ (7.0 vs 7.1 days, p = 0.06). The authors concluded routine use should be questioned. ENIGMA-II (Myles et al. 2014) then randomised 7,112 patients aged 45 or over with known or suspected coronary artery disease having major non-cardiac surgery. The primary composite of death, non-fatal myocardial infarction, stroke, pulmonary embolism or cardiac arrest within 30 days occurred in 283 of 3,483 (8%) with nitrous oxide and 296 of 3,509 (8%) without: relative risk 0.96, 95% CI 0.83-1.12, p = 0.64. Surgical site infection did not differ (9% vs 9%, p = 0.61). Severe nausea and vomiting was higher with nitrous oxide (15% vs 11%, p < 0.0001), replicating the one ENIGMA finding that held. The two trials differed in comparator oxygen concentration as well as in size, which is part of why the first result did not reproduce.',
+        evidenceSource:
+          'Myles PS et al. Anesthesiology 2007;107:221-231; Myles PS et al. Lancet 2014;384:1446-1454 (ENIGMA-II, NCT00430989)',
+        doi: '10.1016/S0140-6736(14)60893-X',
+        measuredMetric:
+          'Composite of death and cardiovascular complications at 30 days, 7,112 randomised, versus major-complication rate in the 2,050-patient predecessor',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'n2o-a2',
+        category: 'measured',
+        title: 'It destroys vitamin B12 by chemistry, not by dose-dependent toxicity',
+        laymanSummary:
+          'Nitrous oxide oxidises the cobalt atom at the centre of vitamin B12. An oxidised B12 cannot run the enzyme that maintains myelin, so the sensory columns at the back of the spinal cord degenerate.',
+        technicalDetails:
+          'Nitrous oxide irreversibly oxidises the cobalt centre of cob(I)alamin, inactivating methionine synthase, the enzyme that converts homocysteine to methionine using 5-methyltetrahydrofolate as the methyl donor. The consequences are measurable within a single long anaesthetic — plasma homocysteine rises — and cumulative with repeated exposure. Downstream, folate is trapped as 5-methyltetrahydrofolate, S-adenosylmethionine-dependent methylation of myelin basic protein falls, and subacute combined degeneration of the dorsal and lateral columns follows. ENIGMA\'s authors flagged the B12, folate and DNA-synthesis interference in 2007 while noting the clinical consequences were unclear; the recreational case series since have made them clear. This is a stoichiometric chemical reaction with a cofactor rather than a receptor interaction, which is why a single dental exposure is harmless and daily cartridge use is not.',
+        evidenceSource:
+          'Myles PS et al. Anesthesiology 2007;107:221-231, background; Lan SY et al. Brain Dev 2019;41:428-435',
+        doi: '10.1016/j.braindev.2018.12.003',
+        measuredMetric:
+          'Methionine synthase inactivation via cobalamin oxidation, with plasma homocysteine and methylmalonic acid as the clinical markers',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'n2o-a3',
+        category: 'measured',
+        title: 'Fifty-nine adolescents: posterior-column MRI change in 89%, full recovery in 27%',
+        laymanSummary:
+          'Pooling new cases with everything published, 59 teenagers with nerve damage from inhaling nitrous oxide were reviewed. Nearly nine in ten had visible spinal-cord changes on MRI. With B12 treatment, most improved but only about a quarter recovered fully.',
+        technicalDetails:
+          'Cohen-Vig et al. combined five new adolescent cases admitted to three tertiary centres in 2024 with 54 cases from a systematic review of Embase, MEDLINE, Scopus and PubMed covering 2011 to 2026 — 59 patients aged 14 to 18 in total. All presented with neurological complaints, predominantly sensory. Vitamin B12 was low in 45%, but elevated homocysteine or methylmalonic acid was present in 92%, so a normal B12 does not exclude the diagnosis. MRI showed long posterior-column changes in 89% and nerve conduction studies showed a predominantly axonal sensorimotor peripheral neuropathy in 88%. Intracranial pressure was raised in two of the new patients. With B12 treatment, 27% recovered and 61% improved — meaning roughly one in eight did neither, and a majority of those who improved retained deficits.',
+        evidenceSource: 'Cohen-Vig L et al. Eur J Pediatr 2026;185:591',
+        doi: '10.1007/s00431-026-07258-x',
+        measuredMetric:
+          'MRI posterior-column involvement, nerve conduction findings, biochemical markers and recovery rate in 59 adolescents',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'n2o-a4',
+        category: 'measured',
+        title: 'A quarter-strength dose works as well as a half-strength one in depression',
+        laymanSummary:
+          'Twenty-four people with severe treatment-resistant depression breathed 25% nitrous oxide, 50% nitrous oxide, or air, an hour each on separate occasions. Both concentrations beat air, neither beat the other, and side effects fell sharply at the lower one.',
+        technicalDetails:
+          'Nagele et al. ran a phase 2 crossover trial (NCT03283670) in 24 patients with severe treatment-resistant major depression, each receiving a single one-hour inhalation of 50% nitrous oxide, 25% nitrous oxide, and placebo (air/oxygen), in randomised order. The primary outcome was change on the 21-item Hamilton Depression Rating Scale. Nitrous oxide improved symptoms versus placebo overall (p = 0.01) with no difference between 25% and 50% (p = 0.58). Against placebo, 25% gave -0.75 points at 2 hours (p = 0.73), -1.41 at 24 hours (p = 0.52), -4.35 at week 1 (p = 0.05) and -5.19 at week 2 (p = 0.02); 50% gave -0.87 at 2 hours (p = 0.69), -1.93 at 24 hours (p = 0.37), -2.44 at week 1 (p = 0.25) and -7.00 at week 2 (p = 0.001). Adverse events declined substantially with dose (p < 0.001). The pattern worth noting is that nothing separated at 2 or 24 hours — the separation appears at one and two weeks, long after the gas has gone.',
+        evidenceSource: 'Nagele P et al. Sci Transl Med 2021;13:eabe1376 (NCT03283670)',
+        doi: '10.1126/scitranslmed.abe1376',
+        measuredMetric: 'HDRS-21 change at 2 hours, 24 hours, 1 week and 2 weeks, crossover, n=24',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'n2o-a5',
+        category: 'inferred',
+        title: 'A one-hour inhalation of a dissociative gas is not a blindable comparison',
+        laymanSummary:
+          'The depression trials compared nitrous oxide with air. Anyone breathing nitrous oxide for an hour knows it, and so does the person watching.',
+        technicalDetails:
+          'Both the 2015 proof-of-concept crossover and the 2021 phase 2 used air/oxygen as the comparator. Nitrous oxide at 25% or 50% produces immediate, unmistakable dissociation, euphoria and altered proprioception; the placebo produces nothing. That the treatment periods are separated by weeks and the outcome is measured at one and two weeks mitigates but does not remove the expectancy contribution, because the participant rates their own mood knowing which sessions were active. The trial\'s own most useful internal control is the null contrast between 25% and 50%: if intensity of the acute experience drove the antidepressant rating, the stronger dose should have scored better, and it did not. That comparison is the strongest argument against a purely expectancy account, and it is an argument rather than a measurement.',
+        evidenceSource: 'Nagele P et al. Sci Transl Med 2021;13:eabe1376, trial design and results',
+        doi: '10.1126/scitranslmed.abe1376',
+        inferredClaim:
+          'That the week-1 and week-2 HDRS separation from an air comparator is a pharmacological antidepressant effect rather than a pharmacological effect plus expectancy',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'n2o-a6',
+        category: 'measured',
+        title: 'It is not a controlled substance anywhere in the federal schedules',
+        laymanSummary:
+          'Nitrous oxide does not appear in any US drug schedule. It is a prescription medical gas on one hand and an unrestricted food-grade propellant on the other, and the two are the same molecule.',
+        technicalDetails:
+          'Nitrous oxide appears nowhere in 21 CFR part 1308, Schedules I through V. Its medical use runs through prescription medical-gas applications approved by FDA — Nitrous Oxide USP under NDA 205704 (Air Liquide, June 2013) and several others — which came out of the medical-gas provisions of the FDA Safety and Innovation Act. Its non-medical availability runs through food-grade cartridges sold as whipped-cream propellant with no scheduling restriction. The result is a substance for which the same chemical is simultaneously a prescription drug, an industrial gas and a grocery item, distinguished only by the label on the cylinder. This record notes it as a measured regulatory fact because readers frequently assume that unrestricted availability implies an established absence of harm, and the myeloneuropathy series show it does not.',
+        evidenceSource:
+          '21 CFR part 1308, current eCFR text; Drugs@FDA NDA 205704 (Nitrous Oxide USP, approved 16 June 2013)',
+        measuredMetric:
+          'Absence from all five federal schedules alongside active prescription medical-gas approvals',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'n2o-a7',
+        category: 'measured',
+        title: 'Both neuroprotective and neurotoxic, in the same 1998 paper',
+        laymanSummary:
+          'The study that identified nitrous oxide as an NMDA blocker also showed it could damage neurons in rat brain, in the same way other NMDA blockers do. Both findings were published together.',
+        technicalDetails:
+          'Jevtović-Todorović et al. established that nitrous oxide acts as a non-competitive NMDA-receptor antagonist and reported, in the same paper, both neuroprotective and neurotoxic consequences of that action — the pattern already known for ketamine and MK-801, in which NMDA blockade protects neurons against excitotoxic injury while producing vacuolar injury in specific cortical neurons. The finding matters here for two reasons: it is the mechanistic basis for testing the gas in depression alongside ketamine, and it means the NMDA action and the cobalamin action are two independent hazards with different time courses. The neurotoxic findings are rodent data at anaesthetic exposures and have not been shown to correspond to human injury.',
+        evidenceSource:
+          'Jevtović-Todorović V et al. Nitrous oxide (laughing gas) is an NMDA antagonist, neuroprotectant and neurotoxin. Nat Med 1998;4:460-463',
+        doi: '10.1038/nm0498-460',
+        measuredMetric:
+          'NMDA-receptor antagonism with both neuroprotective and neurotoxic effects in rodent brain',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Breathed in as a gas',
+        laymanDesc:
+          'It goes straight from the lungs into the blood. Effects begin within a couple of breaths and end within a couple of minutes of stopping.',
+        molecularDetail:
+          'Inspired concentrations of 50% to 70% in anaesthesia, 50% in Entonox, and 25% or 50% for one hour in the depression trials. Low blood-gas solubility gives very rapid equilibration and equally rapid washout, and almost no metabolism — the gas is exhaled essentially unchanged.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Distributes into the brain within seconds',
+        laymanDesc:
+          'A small uncharged gas crosses into the brain immediately. There is no transporter and no delay.',
+        molecularDetail:
+          'Free diffusion across the blood-brain barrier. Because it is not metabolised, the brain concentration tracks the inspired concentration almost in real time, which is what makes titration during a procedure possible and what makes recovery immediate.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks the NMDA receptor',
+        laymanDesc:
+          'It sits in the same glutamate receptor ketamine blocks, producing analgesia and dissociation.',
+        molecularDetail:
+          'Non-competitive NMDA-receptor antagonism, with endogenous opioid mechanisms contributing to analgesia. In rodent brain the same action is both neuroprotective against excitotoxicity and, at anaesthetic exposures, neurotoxic to specific cortical neurons.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'And oxidises the cobalt atom in vitamin B12',
+        laymanDesc:
+          'Separately and permanently, it reacts with vitamin B12 and inactivates it. This has nothing to do with the receptor and does not wear off when the gas is exhaled.',
+        molecularDetail:
+          'Irreversible oxidation of cob(I)alamin inactivates methionine synthase, raising homocysteine, trapping folate as 5-methyltetrahydrofolate and reducing S-adenosylmethionine-dependent methylation. The biochemical signal appears after a single long anaesthetic and accumulates with repeated exposure.',
+        iconName: 'FlaskConical',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Which, with enough exposure, degenerates the spinal cord',
+        laymanDesc:
+          'The sensory columns at the back of the spinal cord lose their myelin. Numbness and unsteadiness follow, and vitamin B12 treatment fully reverses it in about a quarter of reported cases.',
+        molecularDetail:
+          'Subacute combined degeneration of the dorsal and lateral columns with an axonal sensorimotor peripheral neuropathy. In 59 pooled adolescent cases, MRI posterior-column change in 89%, neuropathy on nerve conduction in 88%, raised homocysteine or methylmalonic acid in 92% against low B12 in only 45%, and 27% full recovery with 61% improvement on B12 treatment.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT00430989 (ENIGMA-II, nitrous oxide in major non-cardiac surgery)',
+        phase: 'Phase 4 randomised, assessor-blinded, international',
+        sampleSize: 7112,
+        primaryEndpoint:
+          'Composite of death, non-fatal myocardial infarction, stroke, pulmonary embolism or cardiac arrest within 30 days',
+        endpointMet: true,
+        statisticalPValue: '283/3483 (8%) versus 296/3509 (8%), relative risk 0.96, 95% CI 0.83-1.12, p = 0.64',
+        unreportedAdverseSignals:
+          'Severe nausea and vomiting was significantly higher with nitrous oxide, 15% versus 11%, p < 0.0001. Attending anaesthetists knew the allocation; patients and outcome assessors did not.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'ENIGMA (Myles et al. 2007, avoidance of nitrous oxide in major surgery)',
+        phase: 'Randomised controlled trial, patient- and observer-blinded',
+        sampleSize: 2050,
+        primaryEndpoint: 'Duration of hospital stay',
+        endpointMet: false,
+        statisticalPValue:
+          'Median stay 7.0 versus 7.1 days, p = 0.06 (primary endpoint not met). Major complications OR 0.71, 95% CI 0.56-0.89, p = 0.003 and severe nausea and vomiting OR 0.40, 95% CI 0.31-0.51, p < 0.001, both secondary',
+        unreportedAdverseSignals:
+          'The headline conclusion rested on secondary endpoints; the primary endpoint of hospital stay did not separate. The comparator arm also received 80% oxygen, so the trial compared two things at once.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT03283670 (nitrous oxide in treatment-resistant major depression)',
+        phase: 'Phase 2 randomised crossover, placebo-controlled',
+        sampleSize: 24,
+        primaryEndpoint: 'Change on the 21-item Hamilton Depression Rating Scale',
+        endpointMet: true,
+        statisticalPValue:
+          'Nitrous oxide versus placebo p = 0.01 overall; 25% versus 50% p = 0.58; 50% versus placebo -7.00 points at week 2, p = 0.001',
+        unreportedAdverseSignals:
+          'No separation from placebo at 2 hours or 24 hours in either arm — the effect appears only at weeks 1 and 2. The comparator was air, which cannot mask a dissociative gas.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'No difference in 30-day death or cardiovascular complications with or without nitrous oxide in 7,112 at-risk surgical patients (RR 0.96, 95% CI 0.83-1.12)',
+        'Higher severe nausea and vomiting with nitrous oxide in both large trials — 15% versus 11% in ENIGMA-II',
+        'Posterior-column MRI change in 89% and axonal sensorimotor neuropathy in 88% of 59 pooled adolescent myeloneuropathy cases, with raised homocysteine or methylmalonic acid in 92%',
+        'Equal antidepressant effect at 25% and 50% inspired concentration (p = 0.58) with substantially fewer adverse events at the lower one',
+        'Absence of nitrous oxide from all five schedules of 21 CFR part 1308',
+      ],
+      unsupportedInferences: [
+        'That the week-2 HDRS separation from an air comparator in 24 patients is purely pharmacological',
+        'That a normal serum B12 excludes nitrous-oxide neurotoxicity — it was normal in 55% of the adolescent series',
+        'That rodent NMDA-antagonist neurotoxicity at anaesthetic exposures corresponds to human injury; that has not been shown',
+        'That unrestricted legal availability implies established safety of repeated inhalation',
+      ],
+      whatFailedInitially: [
+        'ENIGMA missed its own primary endpoint of hospital stay and drew its conclusion from secondary endpoints; the major-complication finding did not survive a trial three times larger',
+        'Neither depression trial arm separated from placebo at 2 or 24 hours, despite the acute drug effect being unmistakable at those timepoints',
+      ],
+      realWorldOutcome: [
+        'Nitrous oxide remains in routine anaesthetic, dental and obstetric use, with approved medical-gas applications held by several industrial gas suppliers',
+        'The same molecule is sold without restriction as a cream-charger propellant, and the adolescent myeloneuropathy case literature has grown steadily since 2011',
+      ],
+    },
+    deliverySystem: {
+      type: 'Inhaled gas, from an anaesthetic machine, a demand valve, or an unregulated cartridge',
+      description:
+        'Medical delivery is from a calibrated flowmeter or, for Entonox, a 50:50 fixed mixture through a demand valve the patient triggers themselves, which limits over-delivery by design. Non-medical delivery is from 8-gram cream chargers or, increasingly, large catering cylinders, discharged into a balloon and inhaled — a route with no oxygen mixed in and no upper limit on repetition.',
+      safetyProfile:
+        'Acute risks are hypoxia when the gas is inhaled without added oxygen, and expansion of any closed gas space — bowel, middle ear, pneumothorax — because nitrous oxide diffuses into such spaces faster than nitrogen leaves. Nausea and vomiting is the commonest adverse effect in both large surgical trials. The cumulative risk is cobalamin oxidation with methionine synthase inactivation, producing subacute combined degeneration of the spinal cord and peripheral neuropathy; in the pooled adolescent series only 27% recovered fully with B12 treatment. Cold injury from rapidly expanding gas leaving a cylinder is a documented additional hazard of large-cylinder use. Occupational exposure of theatre and dental staff is controlled by scavenging systems for the same cobalamin reason.',
+    },
+    commonQuestions: [
+      {
+        q: 'If it is safe enough for childbirth, why is repeated use dangerous?',
+        a: 'Because the harm is cumulative chemistry, not acute toxicity. Each exposure oxidises some vitamin B12 irreversibly; a labour or a dental procedure uses up an amount the body replaces without difficulty. Daily use over weeks outruns replacement, methionine synthase stays inactivated, and the myelin of the spinal cord\'s sensory columns degenerates. The gas itself is out of the body in minutes either way, which is precisely why people underestimate it.',
+        auditNote:
+          'This is the clearest case on the site of a harm that is invisible to the usual dose-response intuition: the acute effect and the lasting effect run through completely different mechanisms.',
+      },
+      {
+        q: 'Would a blood test show it?',
+        a: 'Not the gas — that is exhaled within minutes. What shows is the biochemical footprint: homocysteine and methylmalonic acid rise when methionine synthase is inactivated. In the pooled adolescent series those markers were raised in 92% of cases while serum B12 itself was low in only 45%, so a normal B12 result does not rule the diagnosis out, and testing B12 alone is the commonest way it is missed.',
+      },
+      {
+        q: 'Does it treat depression?',
+        a: 'Two small trials from the same group found improvement on the Hamilton scale at one and two weeks after a single one-hour inhalation, with 25% working as well as 50%. Nothing separated at two or twenty-four hours. The comparator was air, which cannot blind a dissociative gas, so an expectancy contribution cannot be excluded — though the fact that the stronger dose did not produce a stronger antidepressant response argues against expectancy being the whole story. It is a 24-patient crossover, and it has not been replicated outside the originating group.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'Medical-gas products carry list prices and cream chargers carry retail prices, but this file does not publish a per-dose cost of production it cannot verify against a citable source, and it applies that rule uniformly across this group.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Myles PS et al. The safety of addition of nitrous oxide to general anaesthesia in at-risk patients having major non-cardiac surgery (ENIGMA-II): a randomised, single-blind trial. Lancet 2014;384:1446-1454',
+        identifier: '10.1016/S0140-6736(14)60893-X',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Myles PS et al. Avoidance of nitrous oxide for patients undergoing major surgery: a randomized controlled trial. Anesthesiology 2007;107:221-231',
+        identifier: '10.1097/01.anes.0000270723.30772.da',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nagele P et al. A phase 2 trial of inhaled nitrous oxide for treatment-resistant major depression. Sci Transl Med 2021;13:eabe1376',
+        identifier: '10.1126/scitranslmed.abe1376',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nagele P et al. Nitrous Oxide for Treatment-Resistant Major Depression: A Proof-of-Concept Trial. Biol Psychiatry 2015;78:10-18',
+        identifier: '10.1016/j.biopsych.2014.11.016',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jevtović-Todorović V et al. Nitrous oxide (laughing gas) is an NMDA antagonist, neuroprotectant and neurotoxin. Nat Med 1998;4:460-463',
+        identifier: '10.1038/nm0498-460',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cohen-Vig L et al. Recreational nitrous oxide-related myeloneuropathy in adolescents: a multicenter retrospective case series and systematic literature review. Eur J Pediatr 2026;185:591',
+        identifier: '10.1007/s00431-026-07258-x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lan SY et al. Recreational nitrous oxide abuse related subacute combined degeneration of the spinal cord in adolescents - A case series and literature review. Brain Dev 2019;41:428-435',
+        identifier: '10.1016/j.braindev.2018.12.003',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT00430989 — ENIGMA-II, n=7112',
+        identifier: 'NCT00430989',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA — Nitrous Oxide USP, NDA 205704 (Air Liquide America Specialty Gases), approved 16 June 2013',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=205704',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 948 — nitrous oxide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/948',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 18. Dextromethorphan
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'dextromethorphan',
+    name: 'Dextromethorphan',
+    tradeName:
+      'Sold over the counter in hundreds of cough products. Prescription combinations: Nuedexta (with quinidine, NDA 021879, 2010) and Auvelity (with bupropion, NDA 215430, 2022)',
+    sponsor:
+      'No single sponsor for the OTC ingredient, which sits in the FDA antitussive monograph at 21 CFR 341.14(a)(3). Otsuka America holds Nuedexta; Axsome Therapeutics holds Auvelity',
+    targetGene: 'SIGMAR1 / GRIN1',
+    targetProtein:
+      'Sigma-1 receptor agonist and non-competitive NMDA-receptor antagonist, with serotonin and norepinephrine transporter inhibition; metabolised by CYP2D6 to dextrorphan, a more potent NMDA blocker',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1958,
+    indication:
+      'Cough suppression, as a monograph over-the-counter ingredient. In fixed combinations: pseudobulbar affect (with quinidine, 2010) and major depressive disorder (with bupropion, 2022). Not scheduled under the Controlled Substances Act',
+    patientFriendlyIndication:
+      'The cough suppressant in most supermarket cough syrups. At many times that dose it is a dissociative, and the same molecule is now half of a prescription antidepressant',
+    anatomicalSite:
+      'Medullary cough centre at antitussive doses; NMDA receptors and sigma-1 chaperone sites throughout the central nervous system at the doses used for depression and abused recreationally',
+    conditionContext: {
+      conditionExplainer:
+        'Pseudobulbar affect is uncontrollable laughing or crying out of proportion to feeling, occurring after stroke, in multiple sclerosis and in motor neurone disease. Major depressive disorder is rated on the Montgomery-Åsberg Depression Rating Scale, 0 to 60.',
+      whyItMatters:
+        'Dextromethorphan is the cleanest example on this site of a drug whose class depends entirely on its dose and its co-formulation: a monograph cough ingredient at 30 mg, a dissociative at ten times that, and a glutamatergic antidepressant when paired with an enzyme inhibitor that stops the liver clearing it.',
+      whoTakesThis:
+        'Almost everyone, at some point, in a cough product. In the depression trials, adults with major depressive disorder. In the poison-centre data, predominantly adolescents aged 14 to 17.',
+      clinicalGoals:
+        'Cough suppression at monograph doses; a MADRS reduction sustained over six weeks in the combination product.',
+    },
+    oneSentenceVerdict:
+      'The same molecule is an unscheduled supermarket cough suppressant, a dissociative whose abuse calls to US poison centres peaked at 143.8 per million adolescents in 2006, and — once a CYP2D6 inhibitor is bolted on to stop the liver destroying it — an FDA-approved antidepressant with a 3.87-point MADRS advantage over placebo.',
+    laymanHowItWorks:
+      'At the dose in a cough syrup, dextromethorphan quietens the cough reflex in the brainstem. The liver enzyme CYP2D6 clears it very efficiently, so ordinary doses never build up. At much higher doses, and in people whose CYP2D6 works poorly, enough survives to block the NMDA glutamate receptor, which is what ketamine and PCP do — hence the dissociation. The prescription antidepressant exploits that same bottleneck deliberately: bupropion inhibits CYP2D6, so a modest dose of dextromethorphan reaches concentrations it otherwise could not, and stays there.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 76,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1CC[C@@]23CCCC[C@@H]2[C@@H]1CC4=C3C=C(C=C4)OC',
+      chemicalFormula: 'C18H25NO',
+      molecularWeight:
+        '271.4 g/mol as the free base; products contain the hydrobromide. Antitussive dosing is tens of milligrams; the Auvelity tablet contains 45 mg dextromethorphan hydrobromide with 105 mg bupropion',
+      targetReceptorAffinity:
+        'Sigma-1 receptor agonist and non-competitive NMDA-receptor antagonist, with inhibition of the serotonin and norepinephrine transporters and of nicotinic acetylcholine receptors. CYP2D6 O-demethylates it to dextrorphan, which is the more potent NMDA-channel blocker; CYP3A4 handles a minor N-demethylation route. The pharmacology a person experiences therefore depends on their CYP2D6 genotype and on anything inhibiting that enzyme.',
+      structureSource: {
+        label: 'PubChem CID 5360696 (dextromethorphan) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5360696',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dxm-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Separate dextromethorphan from dextrorphan and from levomethorphan',
+          description:
+            'Three compounds have to be told apart. Dextrorphan is the active metabolite and the stronger NMDA blocker; levomethorphan is the enantiomer of a Schedule II opioid and is a controlled substance while its mirror image is a grocery item. Achiral chromatography cannot distinguish the last pair, so a chiral separation is required for any forensic conclusion.',
+          reagentsAndBuffer:
+            'Dextromethorphan, dextrorphan and levorphanol certified reference standards, chiral stationary phase for the enantiomer separation, reversed-phase C18 for the parent-metabolite pair, LC-MS/MS with MRM transitions m/z 272 to 215 and 258 to 201',
+        },
+        {
+          id: 'dxm-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify the parent-to-metabolite ratio and phenotype the metaboliser',
+          description:
+            'The dextromethorphan to dextrorphan ratio in urine is the classic CYP2D6 phenotyping probe and predates its use as a toxicology measurement. A high ratio identifies a poor metaboliser, which is the group in which an ordinary antitussive dose can produce dissociation and in which a co-prescribed CYP2D6 inhibitor has the largest effect.',
+          dependsOnStepId: 'dxm-w1',
+          reagentsAndBuffer:
+            'Timed urine collection after a probe dose, deuterated dextromethorphan and dextrorphan internal standards, β-glucuronidase hydrolysis to release conjugated dextrorphan, CYP2D6 genotyping panel covering *3, *4, *5, *6, *10, *17 and copy number',
+        },
+        {
+          id: 'dxm-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express NMDA receptors and sigma-1 for parallel target work',
+          description:
+            'The two targets that matter are pharmacologically unrelated: an ion channel and an endoplasmic-reticulum chaperone. Expressing GRIN1/GRIN2 subunit combinations and SIGMAR1 in separate systems is what allows the parent and the metabolite to be compared at each, since the clinical claim is that dextrorphan carries most of the NMDA block while the parent carries the sigma-1 activity.',
+          dependsOnStepId: 'dxm-w1',
+          reagentsAndBuffer:
+            'HEK293 cells with GRIN1 plus GRIN2A or GRIN2B expression plasmids, separate SIGMAR1-expressing line, lipid transfection, glutamate and glycine in Mg-free external solution for channel recording',
+        },
+        {
+          id: 'dxm-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Compare parent and metabolite potency at each target',
+          description:
+            'Whole-cell recording of NMDA currents gives the channel-block potency for dextromethorphan and dextrorphan side by side; [3H]-(+)-pentazocine displacement gives sigma-1 affinity. Running both compounds through both assays is what turns "dextrorphan is the active metabolite" from a textbook sentence into a ratio.',
+          dependsOnStepId: 'dxm-w3',
+          reagentsAndBuffer:
+            'Whole-cell patch clamp with glutamate/glycine application, MK-801 as reference channel blocker, [3H]-(+)-pentazocine with haloperidol for non-specific binding, [3H]-citalopram and [3H]-nisoxetine for transporter counter-screens',
+        },
+        {
+          id: 'dxm-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma pharmacokinetics with and without CYP2D6 inhibition',
+          description:
+            'This is the assay the approved combination products are built on. Measuring dextromethorphan and dextrorphan exposure with and without a CYP2D6 inhibitor — quinidine in Nuedexta, bupropion in Auvelity — quantifies how large the deliberate interaction is, and by the same measurement shows what happens accidentally when someone taking an SSRI that inhibits CYP2D6 takes a cough syrup.',
+          dependsOnStepId: 'dxm-w2',
+          reagentsAndBuffer:
+            'Serial plasma sampling with LC-MS/MS quantification of both analytes, quinidine and bupropion inhibitor arms, CYP2D6-genotyped extensive and poor metaboliser groups, area-under-curve ratio as the reported outcome',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dxm-a1',
+        category: 'measured',
+        title: 'Phase 3 in 327 patients: a 3.87-point MADRS advantage',
+        laymanSummary:
+          'Adding dextromethorphan to bupropion beat placebo in a six-week depression trial. The drug group improved by 15.9 MADRS points and the placebo group by 12.0 — a difference of just under four points.',
+        technicalDetails:
+          'GEMINI was a double-blind phase 3 trial run between June and December 2019, randomising 327 patients with DSM-5 major depressive disorder 1:1 to dextromethorphan-bupropion 45 mg/105 mg or placebo, once daily for three days then twice daily, for six weeks. Baseline MADRS was 33.6 and 33.2. Least-squares mean change to week 6 was -15.9 with the combination and -12.0 with placebo: least-squares mean difference -3.87, 95% CI -1.39 to -6.36, p = 0.002. Separation was significant at week 1 (p = 0.007) and week 2 (p < 0.001). Remission (MADRS ≤ 10) reached 39.5% versus 17.3% (difference 22.2 points, 95% CI 11.7 to 32.7, p < 0.001) and response 54.0% versus 34.0% (difference 20.0 points, 95% CI 8.4 to 31.6, p < 0.001). The trial was designed, funded and largely authored by the sponsor. The 3.87-point difference on a 60-point scale is at the low end of what is usually called clinically meaningful, while the remission gap is large — both numbers come from the same trial and this record prints both.',
+        evidenceSource: 'Iosifescu DV et al. J Clin Psychiatry 2022;83:21m14345 (GEMINI)',
+        doi: '10.4088/JCP.21m14345',
+        measuredMetric: 'Change in MADRS total score from baseline to week 6, n=327',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dxm-a2',
+        category: 'measured',
+        title: 'The approved products work by deliberately blocking the drug\'s own clearance',
+        laymanSummary:
+          'Dextromethorphan is destroyed so fast by a liver enzyme that on its own it cannot reach useful brain concentrations. Both prescription products solve that by adding a second drug whose job is to block that enzyme.',
+        technicalDetails:
+          'CYP2D6 O-demethylates dextromethorphan to dextrorphan with high efficiency, so oral bioavailability of the parent compound is low and variable and depends on genotype. Nuedexta (NDA 021879, approved 29 October 2010) pairs 20 mg dextromethorphan with 10 mg quinidine, a dose of quinidine far below any antiarrhythmic effect and present solely as a CYP2D6 inhibitor. Auvelity (NDA 215430, approved 18 August 2022) pairs 45 mg dextromethorphan with 105 mg bupropion, which is both an antidepressant in its own right and a CYP2D6 inhibitor. In each case the second ingredient is a pharmacokinetic enabler. The same interaction happens unintentionally: CYP2D6 poor metabolisers, and people taking CYP2D6-inhibiting antidepressants such as paroxetine or fluoxetine, reach far higher dextromethorphan concentrations from an ordinary cough dose than the label anticipates.',
+        evidenceSource:
+          'Drugs@FDA NDA 021879 (Nuedexta, 29 October 2010) and NDA 215430 (Auvelity, 18 August 2022); Iosifescu DV et al. J Clin Psychiatry 2022;83:21m14345',
+        doi: '10.4088/JCP.21m14345',
+        measuredMetric:
+          'Approved fixed-dose combinations in which the second ingredient is present as a CYP2D6 inhibitor',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dxm-a3',
+        category: 'measured',
+        title: 'Abuse calls tripled to 2006, then fell by more than half',
+        laymanSummary:
+          'FDA researchers counted poison-centre calls for deliberate dextromethorphan abuse from 2000 to 2015. The rate tripled, peaked in 2006 among 14-to-17-year-olds, then dropped 56% over the next decade.',
+        technicalDetails:
+          'Karami et al., working at FDA\'s Office of Surveillance and Epidemiology, analysed single-substance dextromethorphan intentional-abuse exposure calls in the National Poison Data System from 2000 to 2015. The annual rate tripled between 2000 and 2006 and then plateaued through 2015. The highest rate was among adolescents aged 14 to 17, averaging 1,761 calls per year, or 103.6 calls per million population. Within that group the rate fell 56.3% between 2006 and 2015, from 143.8 to 80.9 calls per million. The authors attribute the decline to public-health efforts to curtail OTC abuse and call for evaluation of state-level sales restrictions. This is exposure-call data, not incidence: it counts calls made, and a fall in calls is consistent with less abuse, with fewer calls per episode, or with both.',
+        evidenceSource: 'Karami S et al. Clin Toxicol 2018;56:656-663',
+        doi: '10.1080/15563650.2017.1416124',
+        measuredMetric:
+          'Single-substance intentional-abuse exposure calls per million population, by age group, 2000-2015',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dxm-a4',
+        category: 'measured',
+        title: 'It is an over-the-counter monograph ingredient and is not scheduled',
+        laymanSummary:
+          'Dextromethorphan appears in the FDA list of permitted over-the-counter cough suppressants and appears nowhere in the federal drug schedules — unlike codeine, which sits three lines above it in the same regulation.',
+        technicalDetails:
+          '21 CFR 341.14(a) lists the permitted oral antitussive active ingredients: chlophedianol hydrochloride, codeine ingredients, dextromethorphan, dextromethorphan hydrobromide, diphenhydramine citrate and diphenhydramine hydrochloride. The codeine entry carries an explicit cross-reference to 21 CFR 1308.15(c), the Schedule V listing; the dextromethorphan entries carry no such reference, and dextromethorphan appears nowhere in 21 CFR part 1308. The contrast within a single paragraph of one regulation is the cleanest available statement of the drug\'s legal position: a permitted OTC ingredient, uncontrolled federally, whose abuse is managed through retail-level and state-level measures rather than through scheduling.',
+        evidenceSource:
+          '21 CFR 341.14(a)(3) and (a)(4), current eCFR text; 21 CFR part 1308, Schedules I-V',
+        measuredMetric:
+          'Presence in the OTC antitussive monograph and absence from all federal drug schedules',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dxm-a5',
+        category: 'inferred',
+        title: 'Which ingredient produced the antidepressant effect is not established',
+        laymanSummary:
+          'Auvelity beat placebo. But the comparison was against placebo, not against bupropion alone at the same dose — so how much of the benefit came from the dextromethorphan is a separate question the pivotal trial did not answer.',
+        technicalDetails:
+          'GEMINI compared dextromethorphan-bupropion with placebo. Bupropion is itself an approved antidepressant, and at 105 mg twice daily it is at a therapeutic dose. A placebo-controlled result therefore establishes that the combination works, not that adding dextromethorphan to bupropion works. The sponsor ran a separate trial with a bupropion comparator arm, and the regulatory package rests on both; but the trial reported here, which is the one usually cited for the effect size, cannot decompose it. The mechanistic story — NMDA antagonism plus sigma-1 agonism producing rapid glutamatergic antidepressant action — is plausible and is the reason the combination was built, and it is not what a placebo-controlled trial measures.',
+        evidenceSource: 'Iosifescu DV et al. J Clin Psychiatry 2022;83:21m14345, trial design',
+        doi: '10.4088/JCP.21m14345',
+        inferredClaim:
+          'That the 3.87-point MADRS advantage over placebo is attributable to dextromethorphan rather than to the bupropion component of the same tablet',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dxm-a6',
+        category: 'measured',
+        title: 'Its enantiomer is a Schedule II opioid; this one is not an opioid at all',
+        laymanSummary:
+          'Dextromethorphan is the mirror image of a morphine-like painkiller. The mirror image has no opioid activity, and a routine drug test cannot tell the two apart.',
+        technicalDetails:
+          'Dextromethorphan is the dextrorotatory enantiomer of the methyl ether of levorphanol. Levomethorphan, its mirror image, is a controlled opioid; dextromethorphan has no meaningful mu-opioid activity and no analgesic effect at antitussive doses, and its psychoactivity comes from NMDA-channel block and sigma-1 agonism instead. Because achiral chromatography cannot separate enantiomers, distinguishing the two in a forensic sample requires a chiral method — a practical consequence of a stereochemical fact, and the reason the analytical workflow on this page begins with a chiral separation rather than a mass measurement.',
+        evidenceSource:
+          '21 CFR part 1308 schedules for levomethorphan and levorphanol; PubChem CID 5360696 stereochemistry',
+        measuredMetric:
+          'Enantiomeric relationship between an uncontrolled antitussive and a scheduled opioid',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dxm-a7',
+        category: 'measured',
+        title: 'Fixed-dose combination products are the main acute hazard',
+        laymanSummary:
+          'Most cough syrups contain other drugs alongside dextromethorphan. Taking enough of the syrup to get a dissociative effect means taking many times the safe dose of whatever else is in the bottle.',
+        technicalDetails:
+          'The abuse pattern measured by the National Poison Data System involves cough and cold products, not the isolated ingredient. Those products commonly contain paracetamol, antihistamines such as chlorphenamine or doxylamine, and sympathomimetics such as phenylephrine or pseudoephedrine. A dose of syrup carrying enough dextromethorphan for a dissociative effect carries a correspondingly multiplied dose of every other active ingredient, and for paracetamol that crosses the hepatotoxic threshold well before the dextromethorphan itself becomes life-threatening. The serotonergic interaction is separate and additive: dextromethorphan inhibits serotonin reuptake, so combination with a monoamine oxidase inhibitor or a serotonergic antidepressant is the documented route to serotonin toxicity.',
+        evidenceSource:
+          'Karami S et al. Clin Toxicol 2018;56:656-663, brand and product analysis of NPDS abuse calls',
+        doi: '10.1080/15563650.2017.1416124',
+        measuredMetric:
+          'Product-level composition of the cough and cold preparations involved in intentional-abuse exposure calls',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, usually as a syrup',
+        laymanDesc:
+          'The antitussive dose is tens of milligrams. The prescription antidepressant tablet contains 45 milligrams alongside bupropion.',
+        molecularDetail:
+          'Oral dextromethorphan hydrobromide. Absorption is rapid, but systemic exposure to the parent compound is low and highly variable because of extensive first-pass metabolism, and varies with CYP2D6 genotype more than with the dose taken.',
+        iconName: 'Beaker',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Destroyed by CYP2D6 — unless something blocks it',
+        laymanDesc:
+          'A liver enzyme clears it almost completely on the first pass. Both prescription products include a second drug whose purpose is to stop that enzyme working.',
+        molecularDetail:
+          'CYP2D6-mediated O-demethylation to dextrorphan, with minor CYP3A4 N-demethylation to 3-methoxymorphinan. Quinidine at 10 mg in Nuedexta and bupropion at 105 mg in Auvelity are present as CYP2D6 inhibitors. Poor metabolisers and users of paroxetine or fluoxetine reach the same raised concentrations without intending to.',
+        iconName: 'FlaskConical',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Quietens the cough reflex at ordinary doses',
+        laymanDesc: 'In the brainstem it raises the threshold for coughing. That is the whole approved OTC effect.',
+        molecularDetail:
+          'Central antitussive action at the medullary cough centre, distinct from the opioid antitussive mechanism of codeine, which is why the two sit in the same monograph paragraph with completely different scheduling.',
+        iconName: 'Wind',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Blocks the NMDA receptor at high concentrations',
+        laymanDesc:
+          'Once enough survives the liver, it plugs the same glutamate receptor channel that ketamine and PCP block, and dissociation follows.',
+        molecularDetail:
+          'Non-competitive NMDA-channel block, more potent for dextrorphan than for the parent, with sigma-1 receptor agonism and inhibition of serotonin and norepinephrine transporters. The transporter action is why serotonergic co-medication is the documented interaction hazard.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Cough suppression, dissociation, or an antidepressant response',
+        laymanDesc:
+          'Which of the three you get is decided by the dose, by your liver genotype, and by whether something else is blocking that enzyme.',
+        molecularDetail:
+          'At monograph doses, antitussive effect only. At many times that dose, or in a poor metaboliser, dissociation and the abuse pattern recorded in poison-centre data. At 45 mg with bupropion, a MADRS reduction of 15.9 points against 12.0 on placebo over six weeks. One molecule, three clinical categories, separated by pharmacokinetics rather than pharmacology.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'GEMINI (AXS-05 dextromethorphan-bupropion in major depressive disorder)',
+        phase: 'Phase 3 randomised, double-blind, placebo-controlled',
+        sampleSize: 327,
+        primaryEndpoint: 'Change from baseline to week 6 in MADRS total score',
+        endpointMet: true,
+        statisticalPValue:
+          'Least-squares mean difference -3.87, 95% CI -1.39 to -6.36, p = 0.002; remission 39.5% versus 17.3%, p < 0.001',
+        unreportedAdverseSignals:
+          'The comparator was placebo, not bupropion alone, so the trial cannot attribute the effect to the dextromethorphan component. The placebo arm improved by 12.0 MADRS points, which is a large placebo response and compresses the measurable drug effect.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Karami et al. 2018 National Poison Data System analysis (FDA)',
+        phase: 'National surveillance analysis, 2000-2015',
+        sampleSize: 1761,
+        primaryEndpoint:
+          'Annual rate of single-substance dextromethorphan intentional-abuse exposure calls per million population',
+        endpointMet: true,
+        statisticalPValue:
+          'Rate tripled 2000-2006 then plateaued; adolescents 14-17 fell 56.3% from 143.8 to 80.9 calls per million between 2006 and 2015',
+        unreportedAdverseSignals:
+          'Poison-centre calls measure calls, not exposures. A decline is consistent with reduced abuse, with reduced calling, or with both, and the analysis cannot separate them.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A 3.87-point MADRS advantage over placebo at week 6 in 327 patients, with remission in 39.5% versus 17.3%',
+        'A tripling of adolescent abuse-exposure calls to 2006 followed by a 56.3% decline to 2015, from FDA analysis of the National Poison Data System',
+        'Presence of dextromethorphan in the OTC antitussive monograph at 21 CFR 341.14(a) and absence from all five federal drug schedules',
+        'CYP2D6 O-demethylation to dextrorphan as the dominant clearance route, exploited deliberately in both approved combination products',
+      ],
+      unsupportedInferences: [
+        'That the GEMINI effect is attributable to dextromethorphan rather than to the bupropion in the same tablet, which a placebo-controlled trial cannot establish',
+        'That OTC availability implies low risk at high doses — the poison-centre series measures the opposite',
+        'That the antitussive efficacy of dextromethorphan at monograph doses is itself firmly established; the ingredient predates modern efficacy standards and the cough literature is contested',
+        'That a routine immunoassay distinguishes dextromethorphan from its scheduled enantiomer; it does not, and a chiral method is required',
+      ],
+      whatFailedInitially: [
+        'Dextromethorphan alone has repeatedly failed to reach useful systemic exposure, which is why every approved central indication uses it in a fixed combination with a CYP2D6 inhibitor',
+        'Attempts to manage abuse without scheduling have relied on retail age restrictions and state law rather than federal control, and the abuse-call rate remained above its 2000 level throughout the surveillance period',
+      ],
+      realWorldOutcome: [
+        'Available without prescription in hundreds of products while also being half of an approved antidepressant, with no federal scheduling in either role',
+        'The parent-to-metabolite ratio remains a standard CYP2D6 phenotyping probe in clinical pharmacology',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral — syrup, gel capsule, or fixed-dose tablet with a CYP2D6 inhibitor',
+      description:
+        'Over-the-counter delivery is a syrup or capsule, almost always combined with other actives. Prescription delivery is a fixed-dose tablet in which the second ingredient exists to raise dextromethorphan exposure: 10 mg quinidine in Nuedexta, 105 mg bupropion in Auvelity. The combination is the delivery system.',
+      safetyProfile:
+        'At monograph doses the ingredient is well tolerated. The dose-related hazards are dissociation, agitation, tachycardia, hypertension and, at extreme exposures, respiratory depression. Serotonin toxicity is the documented interaction, through the drug\'s own serotonin-reuptake inhibition combined with monoamine oxidase inhibitors or serotonergic antidepressants; those same antidepressants may also inhibit CYP2D6 and raise the exposure at the same time. In abuse, the co-formulated ingredients are frequently the greater acute danger, paracetamol above all. CYP2D6 poor metabolisers, roughly a twelfth of people of European ancestry, reach substantially higher parent-drug concentrations from a standard dose. Bupropion carries its own seizure risk, which the combination product inherits.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can a cough syrup ingredient be an antidepressant?',
+        a: 'Because the obstacle was never the pharmacology, it was the liver. Dextromethorphan blocks NMDA receptors and activates sigma-1 receptors — a profile with a plausible antidepressant rationale — but CYP2D6 clears it so efficiently that oral dosing cannot reach those concentrations reliably. Auvelity adds bupropion, which inhibits CYP2D6, so the same molecule reaches and holds a concentration it otherwise could not. Nuedexta had used the same trick with quinidine twelve years earlier.',
+        auditNote:
+          'The comparator in the pivotal trial was placebo rather than bupropion alone, so this page does not claim the dextromethorphan component is what produced the effect.',
+      },
+      {
+        q: 'Why is it not a controlled substance?',
+        a: 'Because no scheduling action has been taken, not because a finding of low risk was made. It sits in the FDA over-the-counter antitussive monograph at 21 CFR 341.14(a) alongside codeine, and where the codeine entry cross-references the Schedule V listing, the dextromethorphan entries reference nothing. Abuse has been addressed through retail age restrictions and state-level law instead. The poison-centre data show the abuse is real and measurable.',
+      },
+      {
+        q: 'What actually makes an overdose dangerous?',
+        a: 'Usually the other ingredients. The products involved in abuse calls are combination cough and cold preparations, and taking enough of one to get a dissociative dose of dextromethorphan means taking a multiplied dose of the paracetamol, antihistamine or decongestant in the same bottle — paracetamol reaching hepatotoxic amounts first. The other documented danger is serotonin toxicity when the drug is combined with an MAO inhibitor or a serotonergic antidepressant, which some people are taking without connecting it to a cough remedy.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'Both the OTC products and the branded prescription combinations carry list prices, but this file does not publish a per-dose cost of production it cannot verify against a citable source, and applies that rule uniformly across this group.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Iosifescu DV et al. Efficacy and Safety of AXS-05 (Dextromethorphan-Bupropion) in Patients With Major Depressive Disorder: A Phase 3 Randomized Clinical Trial (GEMINI). J Clin Psychiatry 2022;83:21m14345',
+        identifier: '10.4088/JCP.21m14345',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Karami S et al. Trends in dextromethorphan cough and cold products: 2000-2015 National Poison Data System intentional abuse exposure calls. Clin Toxicol 2018;56:656-663',
+        identifier: '10.1080/15563650.2017.1416124',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Majeed A et al. Dextromethorphan-Bupropion for the Treatment of Depression: A Systematic Review of Efficacy and Safety in Clinical Trials. CNS Drugs 2023;37:867-881',
+        identifier: '10.1007/s40263-023-01032-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 341.14 — Over-the-counter antitussive active ingredients, listing dextromethorphan and dextromethorphan hydrobromide',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-341/section-341.14',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA — Auvelity (dextromethorphan/bupropion), NDA 215430, approved 18 August 2022',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=215430',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA — Nuedexta (dextromethorphan/quinidine), NDA 021879, approved 29 October 2010',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021879',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'PubChem CID 5360696 — dextromethorphan structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5360696',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
 ]

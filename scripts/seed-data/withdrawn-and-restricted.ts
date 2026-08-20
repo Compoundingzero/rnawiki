@@ -7427,4 +7427,1212 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 19. Propoxyphene — an opioid whose metabolite blocks the cardiac sodium channel
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'propoxyphene',
+    name: 'Propoxyphene',
+    tradeName: 'Darvon, Darvocet-N (with paracetamol); co-proxamol in the United Kingdom',
+    sponsor:
+      'Eli Lilly originally; latterly Xanodyne Pharmaceuticals and aaiPharma (NDA 010997 Darvon, NDA 017122 Darvocet-N)',
+    targetGene: 'OPRM1 and SCN5A',
+    targetProtein:
+      'Mu opioid receptor (analgesic target); cardiac voltage-gated sodium channel Nav1.5 (toxicity target, via norpropoxyphene)',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1957,
+    indication:
+      'Mild to moderate pain, alone or combined with paracetamol or aspirin. Withdrawn from the United Kingdom market between 2005 and 2008 and from the United States market in November 2010 at the FDA\'s request.',
+    patientFriendlyIndication: 'A weak opioid painkiller for mild to moderate pain',
+    anatomicalSite:
+      'Central nervous system mu opioid receptors; the toxicity site is the cardiac conduction system',
+    conditionContext: {
+      conditionExplainer:
+        'Mild to moderate pain is the largest prescribing category in medicine, so a drug in it is taken by enormous numbers of people, many of them elderly and many for long periods.',
+      whyItMatters:
+        'The harm here is not shared with the opioid class. It belongs to a metabolite that blocks the cardiac sodium channel, which is a property of this molecule and not of opioid receptor agonism.',
+      whoTakesThis:
+        'Nobody by prescription in the United States or United Kingdom. Propoxyphene appears in 21 CFR 216.24 as withdrawn for reasons of safety or effectiveness.',
+      clinicalGoals:
+        'Analgesia comparable to paracetamol or aspirin, which is the comparison that ultimately settled the benefit side of the argument.',
+    },
+    oneSentenceVerdict:
+      'A weak opioid marketed for over fifty years whose metabolite norpropoxyphene produces use-dependent block of the cardiac sodium current with a recovery time constant of about 21 seconds, withdrawn on cardiac conduction grounds in 2010 — and whose earlier United Kingdom withdrawal was followed by roughly 500 fewer suicide deaths over six years with no measurable displacement to other analgesics.',
+    laymanHowItWorks:
+      'Propoxyphene relieves pain by acting on the same receptors as morphine, but weakly — trials put its analgesia in the same range as paracetamol or aspirin. The body converts it into a second compound, norpropoxyphene, which sticks to the sodium channels the heart uses to conduct each beat and lets go of them very slowly. The electrical signal spreads through the heart more slowly, the QRS complex on an electrocardiogram widens, and in overdose the rhythm can collapse.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 87,
+    substitutes: {
+      summary:
+        'The comparison that mattered was never against other opioids. It was against paracetamol and aspirin, which is where propoxyphene\'s analgesia sits, and which carry neither the sodium-channel metabolite nor the opioid liability.',
+      conventionalRx: [
+        {
+          name: 'Paracetamol (acetaminophen)',
+          class: 'Non-opioid analgesic and antipyretic',
+          howItCompares:
+            'Reviews of the analgesic literature equate propoxyphene\'s effect with that of paracetamol or aspirin alone. Propoxyphene was most often prescribed combined with paracetamol, which makes the separation of the two contributions the central efficacy question.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: no cardiac conduction effect, no opioid liability. Cons: hepatotoxicity in overdose, a narrow margin in the malnourished or chronically alcohol-exposed.',
+        },
+        {
+          name: 'Codeine or co-codamol',
+          class: 'Weak opioid, alone or with paracetamol',
+          howItCompares:
+            'The principal substitute prescribed in England and Wales after co-proxamol was withdrawn. No sodium-channel-blocking metabolite, though CYP2D6 polymorphism makes the morphine conversion highly variable.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: no cardiac conduction toxicity. Cons: unpredictable metabolism, constipation, dependence.',
+        },
+        {
+          name: 'Ibuprofen or naproxen',
+          class: 'Non-steroidal anti-inflammatory drugs',
+          howItCompares:
+            'Better analgesia than propoxyphene for most inflammatory and musculoskeletal pain, with a completely different risk profile.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: superior analgesia in inflammatory pain, no opioid liability. Cons: gastrointestinal bleeding, renal impairment, cardiovascular risk.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCC(=O)O[C@](CC1=CC=CC=C1)(C2=CC=CC=C2)[C@H](C)CN(C)C',
+      chemicalFormula: 'C22H29NO2',
+      molecularWeight: '339.5 g/mol',
+      targetReceptorAffinity:
+        'A weak mu opioid receptor agonist structurally related to methadone. The clinically decisive property belongs to its N-demethylated metabolite norpropoxyphene, which is a local-anaesthetic-type blocker of the cardiac sodium current. In rabbit atrial myocytes propoxyphene produced use-dependent block of the inward sodium current recovering with a time constant of 20.8 plus or minus 3.9 seconds, against 2 to 3 seconds for lidocaine — the slow unbinding is what makes the block accumulate beat to beat.',
+      structureSource: {
+        label: 'PubChem CID 10100 (propoxyphene) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10100',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'pro-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and stereochemistry — the enantiomer is the whole drug',
+          description:
+            'Confirm the propionate ester, the dimethylaminomethyl side chain and both stereocentres. Only the alpha-d enantiomer, dextropropoxyphene, is the analgesic; the levo enantiomer is an antitussive with a separate identity. A chiral method is mandatory, not optional.',
+          reagentsAndBuffer:
+            'Dextropropoxyphene hydrochloride and napsylate certified reference standards, chiral stationary phase HPLC, proton NMR in deuterated chloroform, LC-MS electrospray positive mode at m/z 340',
+        },
+        {
+          id: 'pro-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Salt form, combination assay and ester hydrolysis products',
+          description:
+            'Distinguish hydrochloride from napsylate, which differ substantially in mass per unit of base, and quantify propoxyphene against paracetamol or aspirin in combination products. Profile the propionate ester hydrolysis product, which is the principal degradant.',
+          dependsOnStepId: 'pro-w1',
+          reagentsAndBuffer:
+            'C18 column with phosphate or formate buffered acetonitrile gradient, photodiode array detection at 220 and 254 nm, paracetamol and salicylate reference standards, acid and base forced degradation samples',
+        },
+        {
+          id: 'pro-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Isolated cardiac myocyte preparation for sodium current recording',
+          description:
+            'Isolate atrial or ventricular myocytes and establish whole-cell patch clamp with a pulse-train protocol, which is the configuration that reveals use-dependent block. A single-pulse protocol underestimates this compound\'s effect by design, because the block accumulates only with repeated depolarisation.',
+          reagentsAndBuffer:
+            'Enzymatically dissociated rabbit atrial or guinea pig ventricular myocytes, Tyrode solution, low-sodium external and caesium-based internal pipette solutions, borosilicate patch pipettes, temperature-controlled bath',
+        },
+        {
+          id: 'pro-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Use-dependent sodium current block and recovery kinetics',
+          description:
+            'Measure steady-state block during pulse trains at varying interval, and fit the recovery time constant. The published values are the quantitative core of this drug\'s toxicology: propoxyphene block recovered with a time constant of 20.8 plus or minus 3.9 seconds against 2 to 3 seconds for lidocaine, and in the mixture the half-time fell to 1.6 plus or minus 0.9 seconds from 14.3 plus or minus 2.9 seconds.',
+          dependsOnStepId: 'pro-w3',
+          reagentsAndBuffer:
+            'Propoxyphene and norpropoxyphene at 60 micromolar, lidocaine at 80 micromolar as the competing fast-off blocker, pulse-train stimulation protocols with variable interpulse interval, double-exponential recovery fitting',
+        },
+        {
+          id: 'pro-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Parent and metabolite quantification in plasma and post-mortem blood',
+          description:
+            'Simultaneous LC-MS/MS assay for propoxyphene and norpropoxyphene, with the metabolite reported separately. Norpropoxyphene has a much longer half-life than the parent and accumulates on repeated dosing, so a parent-only assay misrepresents the cardiac exposure. This is the analysis that forensic post-mortem work depends on.',
+          dependsOnStepId: 'pro-w4',
+          reagentsAndBuffer:
+            'Plasma or post-mortem whole blood, deuterated propoxyphene internal standard, solid-phase extraction, LC-MS/MS with separate multiple reaction monitoring transitions for parent and N-demethyl metabolite',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'pro-a1',
+        category: 'measured',
+        title: 'Use-dependent sodium channel block with a 21-second recovery constant',
+        laymanSummary:
+          'In isolated heart cells, propoxyphene blocked the sodium channels that carry each heartbeat and released them roughly ten times more slowly than lidocaine, so the block builds up beat after beat.',
+        technicalDetails:
+          'Whole-cell recordings in rabbit atrial myocytes showed that propoxyphene at 60 micromolar produces use-dependent block of the inward sodium current during pulse-train stimulation, recovering with a time constant of 20.8 plus or minus 3.9 seconds. Lidocaine block recovers with a time constant of 2 to 3 seconds. During exposure to the mixture, recovery followed a double exponential with a half-time of 1.6 plus or minus 0.9 seconds against 14.3 plus or minus 2.9 seconds for propoxyphene alone, and less steady-state block accumulated at interpulse intervals above 0.95 seconds. Both drugs compete for a common receptor and lidocaine dissociates faster, which explains the clinically observed paradox of lidocaine reversing propoxyphene-induced QRS widening.',
+        evidenceSource: 'Whitcomb DC, Gilliam FR, Starmer CF, Grant AO. J Clin Invest 1989;84:1629-1636',
+        doi: '10.1172/JCI114340',
+        measuredMetric:
+          'Recovery time constant of use-dependent inward sodium current block in isolated atrial myocytes',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a2',
+        category: 'measured',
+        title: 'Withdrawal in the UK was followed by about 500 fewer suicide deaths in six years',
+        laymanSummary:
+          'After co-proxamol was withdrawn in Britain, poisoning deaths involving it fell by more than sixty per cent, and deaths involving other painkillers did not rise to take their place.',
+        technicalDetails:
+          'Interrupted time-series analysis of prescribing and mortality in England and Wales, comparing 2005 to 2010 with 1998 to 2004, using NHS prescribing data and Office for National Statistics mortality data. Withdrawal of co-proxamol was associated with a reduction of 21 deaths per quarter receiving verdicts of suicide or undetermined cause (95% CI -34 to -8), approximately 500 fewer such deaths over six years, a 61 per cent reduction; including accidental poisoning the figure was 25 fewer per quarter (95% CI -38 to -12), about 600 deaths, a 62 per cent reduction. Prescribing of co-codamol, paracetamol, codeine, co-dydramol, tramadol, oxycodone and morphine all rose, and there was little change in deaths involving those analgesics apart from a small increase in oxycodone poisonings.',
+        evidenceSource: 'Hawton K et al. PLoS Med 2012;9:e1001213',
+        doi: '10.1371/journal.pmed.1001213',
+        measuredMetric:
+          'Change in quarterly deaths from single-analgesic poisoning after co-proxamol withdrawal, interrupted time series',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a3',
+        category: 'conclusion_shift',
+        title: 'Substitution was the objection, and it was tested rather than assumed',
+        laymanSummary:
+          'The main argument against withdrawing the drug was that people would simply overdose on something else. Six years of data showed they largely did not.',
+        technicalDetails:
+          'The standard objection to removing a drug used in suicidal poisoning is displacement: the method changes and the death rate does not. The six-year follow-up tested this directly by tracking deaths involving each substituted analgesic over the same period. Prescribing of seven alternative analgesics rose, and deaths involving them showed little observed change apart from an increase in oxycodone poisonings on small numbers. The authors note the limitation that the analysis covers deaths involving single drugs alone and could not assess changes in deaths involving prescribed morphine. This is one of the few places in this file where the counterfactual objection to a withdrawal was measured rather than argued.',
+        evidenceSource:
+          'Hawton K et al. PLoS Med 2012;9:e1001213; Hawton K et al. BMJ 2009;338:b2270',
+        doi: '10.1371/journal.pmed.1001213',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a4',
+        category: 'failed',
+        title: 'The analgesia was never better than paracetamol or aspirin',
+        laymanSummary:
+          'Reviews of the trial literature put propoxyphene\'s pain relief at about the level of plain paracetamol or aspirin, which is the reason the risk was never worth carrying.',
+        technicalDetails:
+          'A critical review of the analgesic literature concludes that propoxyphene\'s analgesia was equated with that of paracetamol or aspirin taken independently, and that its adverse effects — cardiotoxicity, seizures — outweighed the therapeutic benefit. It was most often prescribed in fixed combination with paracetamol or aspirin, which makes attributing the observed analgesia to the opioid component difficult and was itself part of the problem: a combination product can carry a weak opioid for decades on the strength of the non-opioid component\'s effect. The toxicity is attributed in part to norpropoxyphene, described as a non-opioid cardiotoxic metabolite.',
+        evidenceSource: 'Barkin RL, Barkin SJ, Barkin DS. Am J Ther 2006;13:534-542',
+        doi: '10.1097/01.mjt.0000253850.86480.fb',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a5',
+        category: 'measured',
+        title: 'The metabolite outlasts the parent, so exposure accumulates',
+        laymanSummary:
+          'The cardiotoxic breakdown product hangs around much longer than the drug itself, so repeated dosing builds it up — particularly in older people.',
+        technicalDetails:
+          'Norpropoxyphene has a substantially longer elimination half-life than propoxyphene and accumulates with repeated administration, which is why the review literature specifically advises against use in the elderly on pharmacokinetic and pharmacodynamic grounds. Propoxyphene is also a CYP2D6 inhibitor, generating a list of interacting drugs, and a documented interaction with metoprolol producing profound bradycardia has been reported. The clinical consequence of the metabolite\'s kinetics is that a plasma propoxyphene concentration, taken alone, understates the cardiac exposure — which is why a laboratory assay for this compound must report parent and metabolite separately.',
+        evidenceSource:
+          'Barkin RL, Barkin SJ, Barkin DS. Am J Ther 2006;13:534-542; Whitcomb DC et al. J Clin Invest 1989;84:1629-1636',
+        doi: '10.1097/01.mjt.0000253850.86480.fb',
+        measuredMetric:
+          'Norpropoxyphene elimination half-life relative to parent, and accumulation on repeated dosing',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a6',
+        category: 'conclusion_shift',
+        title: 'Fifty-three years between introduction and withdrawal, and the case was public throughout',
+        laymanSummary:
+          'The drug came to market in 1957 and left in 2010. The evidence about the metabolite\'s effect on heart cells was published in 1989.',
+        technicalDetails:
+          'Propoxyphene was introduced in the United States in 1957. The mechanism of its cardiac toxicity was characterised in isolated myocytes in 1989. A critical review calling for it to remain in antiquity appeared in 2006. The United Kingdom withdrew it in stages between 2005 and 2008. The United States withdrawal came in November 2010, and the formal withdrawal of eight new drug applications and forty-six abbreviated applications was published in the Federal Register in March 2014. Propoxyphene now appears in 21 CFR 216.24 as a drug product withdrawn for reasons of safety or effectiveness. The gap between the mechanism being known and the drug being removed is twenty-one years.',
+        evidenceSource:
+          'Federal Register, 10 March 2014 — Xanodyne Pharmaceuticals et al., withdrawal of approval of 8 NDAs and 46 ANDAs; 21 CFR 216.24',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a7',
+        category: 'inferred',
+        title: 'It is filed as an opioid harm, and the decisive harm is not opioid',
+        laymanSummary:
+          'Propoxyphene is usually grouped with opioid withdrawals. The property that killed people belongs to a metabolite acting on heart sodium channels, not to opioid receptors.',
+        technicalDetails:
+          'Grouping this withdrawal with the opioid safety actions obscures the mechanism. Respiratory depression from mu agonism is a class effect and is dose-related and reversible with naloxone. Norpropoxyphene\'s use-dependent sodium channel block is not an opioid effect, is not reversed by naloxone, and produces QRS widening and conduction failure rather than hypoventilation. The clinical management differs accordingly, which is why the case reports on sodium bicarbonate and lidocaine reversal exist. A summary that reads "a weak opioid withdrawn for overdose deaths" is true and omits the part that distinguishes this drug from every other weak opioid.',
+        evidenceSource:
+          'Whitcomb DC et al. J Clin Invest 1989;84:1629-1636; Barkin RL et al. Am J Ther 2006;13:534-542',
+        doi: '10.1172/JCI114340',
+        inferredClaim:
+          'That propoxyphene\'s fatal toxicity is an opioid class effect shared with codeine and tramadol',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oral tablet, usually combined with paracetamol',
+        laymanDesc:
+          'Taken by mouth, most often as a fixed combination with paracetamol or aspirin rather than alone.',
+        molecularDetail:
+          'Oral dextropropoxyphene hydrochloride or napsylate, most commonly co-formulated with paracetamol (Darvocet-N, co-proxamol) or aspirin. Extensive first-pass metabolism.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'N-demethylated in the liver to norpropoxyphene',
+        laymanDesc:
+          'The liver converts a large fraction of it into a second compound that lasts much longer in the body.',
+        molecularDetail:
+          'Hepatic N-demethylation produces norpropoxyphene, which has a substantially longer elimination half-life than the parent and accumulates on repeated dosing. Propoxyphene also inhibits CYP2D6.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Two targets: mu opioid receptors and cardiac sodium channels',
+        laymanDesc:
+          'The parent drug weakly activates the receptors that relieve pain. The metabolite binds the sodium channels the heart uses to conduct each beat.',
+        molecularDetail:
+          'Weak mu opioid receptor agonism gives analgesia comparable to paracetamol or aspirin. Norpropoxyphene binds the cardiac sodium channel at the local-anaesthetic site with slow unbinding kinetics, producing use-dependent block.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Block accumulates beat by beat',
+        laymanDesc:
+          'Because it lets go of the channel so slowly, each heartbeat adds more block than the interval between beats can undo.',
+        molecularDetail:
+          'Recovery from block has a time constant of about 21 seconds, an order of magnitude slower than lidocaine. At physiological heart rates the interpulse interval is far shorter than the recovery constant, so steady-state block accumulates during pulse trains and conduction velocity falls.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Modest analgesia; QRS widening, seizures and conduction collapse in overdose',
+        laymanDesc:
+          'Pain relief about equal to paracetamol. In overdose the electrocardiogram widens, seizures occur, and the rhythm can fail.',
+        molecularDetail:
+          'Measured: analgesia equated with paracetamol or aspirin alone. Measured: use-dependent sodium current block with 20.8 second recovery constant, producing QRS widening reversible with lidocaine or sodium bicarbonate. Population-level: about 500 fewer suicide deaths over six years after UK withdrawal, without displacement to other analgesics.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Co-proxamol withdrawal, England and Wales, three-year analysis (Hawton et al. 2009)',
+        phase: 'Population-level interrupted time-series analysis, 1998-2007',
+        sampleSize: 349,
+        primaryEndpoint:
+          'Prescriptions and deaths from drug poisoning involving single analgesics — suicides, open verdicts and accidental poisonings — after the January 2005 withdrawal announcement',
+        endpointMet: true,
+        statisticalPValue:
+          'Co-proxamol prescriptions fell by 859,000 per quarter (95% CI 653,000 to 1,065,000), about 59%; an estimated 295 fewer suicides and 349 fewer deaths including accidental poisonings, with no statistical evidence of an increase in deaths involving other analgesics or other drugs',
+        unreportedAdverseSignals:
+          'Prescribing of co-codamol, paracetamol, co-dydramol and codeine rose significantly over the same period, which is the displacement the mortality analysis was designed to detect.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Co-proxamol withdrawal, England and Wales, six-year follow-up (Hawton et al. 2012)',
+        phase: 'Population-level interrupted time-series analysis, 1998-2004 versus 2005-2010',
+        sampleSize: 600,
+        primaryEndpoint:
+          'Quarterly deaths from poisoning involving single analgesics, with suicide, undetermined and accidental verdicts, before and after withdrawal',
+        endpointMet: true,
+        statisticalPValue:
+          'Suicide and undetermined verdicts: -21 deaths per quarter (95% CI -34 to -8), about 500 fewer over six years, -61%; including accidental poisoning: -25 per quarter (95% CI -38 to -12), about 600 deaths, -62%',
+        unreportedAdverseSignals:
+          'The analysis covers deaths involving single drugs alone and could not assess changes in deaths involving prescribed morphine. Oxycodone poisonings rose, on small numbers.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Use-dependent block of cardiac inward sodium current recovering with a time constant of 20.8 ± 3.9 seconds, against 2 to 3 seconds for lidocaine',
+        'Reversal of block by lidocaine through competition at a shared receptor with faster dissociation, half-time falling to 1.6 ± 0.9 seconds',
+        'About 500 fewer suicide and undetermined-verdict poisoning deaths over six years after United Kingdom withdrawal (-21 per quarter, 95% CI -34 to -8)',
+        'Little change in deaths involving substituted analgesics apart from a small increase in oxycodone poisonings',
+      ],
+      unsupportedInferences: [
+        'That the fatal toxicity is an opioid class effect — it belongs to a non-opioid metabolite acting on the cardiac sodium channel and is not naloxone-reversible',
+        'That analgesia from a propoxyphene-paracetamol combination demonstrates analgesia from propoxyphene',
+      ],
+      whatFailedInitially: [
+        'Introduced in the United States in 1957; the myocyte mechanism was published in 1989; withdrawal came in 2010',
+        'Withdrawn in the United Kingdom in stages between 2005 and 2008 over overdose deaths',
+        'Approval of 8 new drug applications and 46 abbreviated applications formally withdrawn in the Federal Register in March 2014',
+        'Listed in 21 CFR 216.24 as withdrawn for reasons of safety or effectiveness',
+      ],
+      realWorldOutcome: [
+        'Paracetamol, codeine combinations and the non-steroidal anti-inflammatory drugs absorbed the prescribing',
+        'The substitution objection to withdrawing a poisoning agent was tested empirically here, and largely did not hold',
+        'Sodium bicarbonate and lidocaine remain the described interventions for propoxyphene-induced QRS widening',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet or capsule, alone or fixed-combination with paracetamol or aspirin',
+      description:
+        'Oral dextropropoxyphene as the hydrochloride or napsylate salt, the two differing in mass per unit of base. Extensive hepatic N-demethylation to norpropoxyphene, which has a much longer half-life than the parent and accumulates with repeated dosing.',
+      safetyProfile:
+        'Withdrawn from the United States market in November 2010 and from the United Kingdom between 2005 and 2008. The decisive harm is cardiac: norpropoxyphene produces use-dependent block of the cardiac sodium current with a recovery time constant of about 21 seconds, causing QRS widening, conduction block, and in overdose circulatory collapse, together with seizures. This is not naloxone-reversible; lidocaine and sodium bicarbonate are the described interventions. Standard opioid effects — respiratory depression, sedation, constipation, dependence — apply as well. Propoxyphene inhibits CYP2D6, and accumulation of the metabolite makes the elderly particularly exposed.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was it withdrawn because it is an opioid?',
+        a: 'No, and this is the part most summaries lose. Respiratory depression from opioid receptor agonism is a class effect, dose-related and reversible with naloxone. What distinguishes propoxyphene is a metabolite, norpropoxyphene, that blocks the cardiac sodium channel with slow unbinding kinetics — a local-anaesthetic-type action with nothing to do with opioid receptors. It widens the QRS complex, is not reversed by naloxone, and responds instead to lidocaine or sodium bicarbonate. Codeine and tramadol do not do this.',
+        auditNote:
+          'The myocyte measurements that established this were published in 1989, twenty-one years before the United States withdrawal.',
+      },
+      {
+        q: 'Did people just overdose on something else after it was withdrawn?',
+        a: 'Largely not, and this was measured rather than assumed. Over the six years after the United Kingdom withdrawal, prescribing of seven other analgesics rose while deaths involving them showed little change, apart from a small increase in oxycodone poisonings on small numbers. Deaths involving co-proxamol itself fell by about 61 per cent, roughly 500 suicide and undetermined-verdict deaths over six years. The analysis covers single-drug deaths only and could not assess prescribed morphine, which the authors state as a limitation.',
+      },
+      {
+        q: 'How good a painkiller was it?',
+        a: 'About as good as paracetamol or aspirin taken alone, on the review literature. Most prescriptions were for a fixed combination with paracetamol, so the analgesia patients experienced was substantially the paracetamol\'s. That combination structure is part of why the drug survived so long: the product worked, and the component carrying the cardiac risk was contributing little to why it worked.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because the drug has had no legal market in the United States since 2010 and is listed in 21 CFR 216.24 as withdrawn for reasons of safety or effectiveness. There is no list price to cite.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Whitcomb DC, Gilliam FR 3rd, Starmer CF, Grant AO. Marked QRS complex abnormalities and sodium channel blockade by propoxyphene reversed with lidocaine. J Clin Invest 1989;84:1629-1636',
+        identifier: '10.1172/JCI114340',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hawton K, Bergen H, Simkin S, et al. Six-year follow-up of impact of co-proxamol withdrawal in England and Wales on prescribing and deaths: time-series study. PLoS Med 2012;9:e1001213',
+        identifier: '10.1371/journal.pmed.1001213',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hawton K et al. Effect of withdrawal of co-proxamol on prescribing and deaths from drug poisoning in England and Wales: time series analysis. BMJ 2009;338:b2270',
+        identifier: '10.1136/bmj.b2270',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Barkin RL, Barkin SJ, Barkin DS. Propoxyphene (dextropropoxyphene): a critical review of a weak opioid analgesic that should remain in antiquity. Am J Ther 2006;13:534-542',
+        identifier: '10.1097/01.mjt.0000253850.86480.fb',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Federal Register, 10 March 2014 — Xanodyne Pharmaceuticals, Inc., et al.; withdrawal of approval of 8 new drug applications and 46 abbreviated new drug applications',
+        identifier:
+          'https://www.federalregister.gov/documents/2014/03/10/2014-05063/xanodyne-pharmaceuticals-inc-et-al-withdrawal-of-approval-of-8-new-drug-applications-and-46',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          '21 CFR 216.24 — Drug products withdrawn or removed from the market for reasons of safety or effectiveness (entry: propoxyphene)',
+        identifier: 'https://www.ecfr.gov/current/title-21/section-216.24',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: DARVON (propoxyphene hydrochloride), NDA 010997, Xanodyne — Discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=010997',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 10100 — propoxyphene structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10100',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 20. Phenylpropanolamine — one case-control study, and an entire OTC category gone
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'phenylpropanolamine',
+    name: 'Phenylpropanolamine',
+    tradeName: 'Dexatrim, Acutrim (appetite suppressants); Triaminic, Dimetapp, Contac (decongestants)',
+    sponsor:
+      'Multiple over-the-counter manufacturers; there was no single sponsor, which is part of why the withdrawal took the form it did',
+    targetGene: 'ADRA1A',
+    targetProtein:
+      'Alpha-1 adrenergic receptors, with indirect release of noradrenaline from sympathetic nerve terminals',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1976,
+    indication:
+      'Nasal decongestion in cough and cold preparations, and appetite suppression in over-the-counter weight-loss products. Removed from the United States market from November 2000 following an FDA public health advisory.',
+    patientFriendlyIndication:
+      'A decongestant and over-the-counter diet pill, sold without prescription for decades',
+    anatomicalSite:
+      'Nasal mucosal vasculature and systemic arterioles; the toxicity site is the cerebral vasculature',
+    conditionContext: {
+      conditionExplainer:
+        'Nasal congestion is swelling of the blood vessels lining the nose. Constricting those vessels shrinks the tissue and opens the airway. The same constriction acts on every other arteriole in the body.',
+      whyItMatters:
+        'This drug was in ordinary supermarket cough syrup and ordinary supermarket diet pills, taken by tens of millions of people without a prescription. The evidence that removed it is a single case-control study of 702 patients, and its central estimate carries a confidence interval spanning two orders of magnitude.',
+      whoTakesThis:
+        'Nobody, in human medicine in the United States. Phenylpropanolamine appears in 21 CFR 216.24 as a drug product withdrawn for reasons of safety or effectiveness. It remains in veterinary use for urinary sphincter incompetence in dogs.',
+      clinicalGoals:
+        'Decongestion, or a modest reduction in appetite. Neither is a goal that tolerates a stroke risk of any size.',
+    },
+    oneSentenceVerdict:
+      'An over-the-counter sympathomimetic removed from the United States market in 2000 on a single case-control study of 702 haemorrhagic stroke patients and 1,376 controls, which found an adjusted odds ratio of 16.58 for appetite-suppressant use in women — a figure whose 95 per cent confidence interval runs from 1.51 to 182.21.',
+    laymanHowItWorks:
+      'Phenylpropanolamine narrows blood vessels by acting on the same receptors adrenaline uses, and by pushing the body\'s own noradrenaline out of nerve endings. In the nose that shrinks swollen tissue and clears the airway. Everywhere else it raises blood pressure. In a small number of people, the sudden pressure rise appears to be enough to rupture a vessel in the brain.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    substitutes: {
+      summary:
+        'Pseudoephedrine took the decongestant market and remains available, moved behind the pharmacy counter in 2006 for a completely unrelated reason. Phenylephrine took the open-shelf slot, and its oral efficacy has itself since been challenged.',
+      conventionalRx: [
+        {
+          name: 'Pseudoephedrine',
+          class: 'Sympathomimetic decongestant',
+          howItCompares:
+            'The direct replacement, structurally a close relative, and effective orally. Its later move behind the counter under the Combat Methamphetamine Epidemic Act of 2005 was about precursor diversion, not about stroke risk.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: genuinely effective oral decongestant. Cons: raises blood pressure, insomnia, purchase-quantity limits and identification requirements.',
+        },
+        {
+          name: 'Phenylephrine (oral)',
+          class: 'Alpha-1 adrenergic agonist',
+          howItCompares:
+            'Occupied the open shelf after pseudoephedrine moved behind the counter. Its oral bioavailability is low and its efficacy as an oral decongestant has been the subject of a separate and unresolved regulatory argument.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: available without restriction. Cons: an efficacy question of its own; the nasal spray formulation is a different matter from the tablet.',
+        },
+        {
+          name: 'Oxymetazoline nasal spray',
+          class: 'Topical alpha adrenergic agonist',
+          howItCompares:
+            'Applied directly to the nasal mucosa, which delivers the intended vasoconstriction with far less systemic exposure than any oral sympathomimetic.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: rapid, local, minimal systemic effect. Cons: rebound congestion with use beyond three days.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@@H]([C@@H](C1=CC=CC=C1)O)N',
+      chemicalFormula: 'C9H13NO',
+      molecularWeight: '151.21 g/mol',
+      targetReceptorAffinity:
+        'A phenylethylamine and a positional relative of amphetamine, ephedrine and pseudoephedrine, differing from ephedrine only by the absence of the N-methyl group. It acts both directly at alpha-1 adrenergic receptors and indirectly by displacing noradrenaline from sympathetic nerve terminals. Four stereoisomers exist; the marketed product was the racemic norephedrine pair, and the phenylpropanolamine and norpseudoephedrine diastereomers are distinct compounds with distinct regulatory status.',
+      structureSource: {
+        label:
+          'PubChem CID 10297 (phenylpropanolamine) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10297',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ppa-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Diastereomer and enantiomer resolution',
+          description:
+            'Separate norephedrine from norpseudoephedrine and resolve the enantiomers of each. These four compounds share a molecular formula and a nominal mass, differ in pharmacology, and differ in controlled-substance status, so a method that reports only total mass is inadequate for identification.',
+          reagentsAndBuffer:
+            'Phenylpropanolamine hydrochloride certified reference standard alongside ephedrine, pseudoephedrine and cathine standards, chiral stationary phase HPLC or GC after chiral derivatisation, proton NMR in deuterium oxide',
+        },
+        {
+          id: 'ppa-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content uniformity in multi-ingredient and modified-release products',
+          description:
+            'Quantify phenylpropanolamine against the antihistamines, antitussives and analgesics it was co-formulated with, and against the polistirex resin complex used in extended-release preparations, where release rate rather than total content governs the peak plasma concentration.',
+          dependsOnStepId: 'ppa-w1',
+          reagentsAndBuffer:
+            'Ion-pair reversed-phase HPLC with ultraviolet detection at 210 to 257 nm, chlorpheniramine and dextromethorphan reference standards, USP dissolution apparatus with simulated gastric and intestinal media for resin complexes',
+        },
+        {
+          id: 'ppa-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Isolated vascular ring preparation',
+          description:
+            'Mount cerebral, mesenteric and nasal mucosal artery rings in organ baths and measure contractile responses across a concentration range, with and without cocaine or desipramine to block noradrenaline reuptake. This preparation separates the direct receptor effect from the indirect releasing effect, which are not the same pharmacology and do not scale together.',
+          reagentsAndBuffer:
+            'Isolated middle cerebral, mesenteric and nasal mucosal artery rings, Krebs-Henseleit buffer gassed with 95% oxygen and 5% carbon dioxide at 37 degrees, isometric force transducers, prazosin as alpha-1 antagonist, desipramine to block uptake-1',
+        },
+        {
+          id: 'ppa-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Alpha-adrenergic receptor binding and releasing-agent characterisation',
+          description:
+            'Radioligand displacement at alpha-1A, alpha-1B, alpha-1D and alpha-2 receptors, followed by a monoamine release assay in synaptosomes to quantify the indirect component. Expressing the two mechanisms separately is what allows a comparison with pseudoephedrine and ephedrine on the same scale.',
+          dependsOnStepId: 'ppa-w3',
+          reagentsAndBuffer:
+            'Membranes expressing human ADRA1A, ADRA1B, ADRA1D and alpha-2 subtypes, [3H]-prazosin and [3H]-rauwolscine radioligands, rat brain synaptosomes with tritiated noradrenaline for release assay, ephedrine and pseudoephedrine as comparators',
+        },
+        {
+          id: 'ppa-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma quantification and pressor response characterisation',
+          description:
+            'LC-MS/MS assay for phenylpropanolamine in plasma with chiral separation, paired with continuous blood pressure recording, to relate peak plasma concentration to the magnitude and time course of the pressor response. The proposed mechanism of the stroke signal is an acute pressure rise, so the relevant measurement is peak rather than average exposure.',
+          dependsOnStepId: 'ppa-w4',
+          reagentsAndBuffer:
+            'Plasma with deuterated internal standard, solid-phase extraction, chiral LC-MS/MS, continuous beat-to-beat blood pressure monitoring, immediate-release and polistirex extended-release formulations compared head to head',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ppa-a1',
+        category: 'measured',
+        title: 'Adjusted odds ratio 16.58 for appetite suppressants in women — interval 1.51 to 182.21',
+        laymanSummary:
+          'A case-control study of 702 stroke patients found women who had taken a phenylpropanolamine diet pill were far more likely to have had a brain haemorrhage. The estimate is very uncertain.',
+        technicalDetails:
+          'The Hemorrhagic Stroke Project recruited men and women aged 18 to 49 from 43 United States hospitals, requiring a subarachnoid or intracerebral haemorrhage within 30 days of enrolment and no previously diagnosed brain lesion, with two random-digit-dialled matched controls per patient: 702 patients and 1,376 controls. In women, the adjusted odds ratio for appetite suppressants containing phenylpropanolamine was 16.58 (95% CI 1.51 to 182.21, P = 0.02), and for first use of any phenylpropanolamine-containing product 3.13 (95% CI 0.86 to 11.46, P = 0.08). All first uses involved cough or cold remedies. For men and women combined the odds ratio for any phenylpropanolamine product was 1.49 (95% CI 0.84 to 2.64, P = 0.17), for cough and cold remedies 1.23 (95% CI 0.68 to 2.24, P = 0.49), and for appetite suppressants 15.92 (95% CI 1.38 to 184.13, P = 0.03). No men reported appetite suppressant use.',
+        evidenceSource: 'Kernan WN et al., Hemorrhagic Stroke Project. N Engl J Med 2000;343:1826-1832',
+        doi: '10.1056/NEJM200012213432501',
+        measuredMetric:
+          'Adjusted odds ratio for haemorrhagic stroke by phenylpropanolamine product type and sex',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ppa-a2',
+        category: 'inferred',
+        title: 'The interval spans two orders of magnitude, and the point estimate is what was quoted',
+        laymanSummary:
+          'An odds ratio of 16.58 sounds precise. The range of values compatible with the data runs from 1.5 to 182, which is a very different statement.',
+        technicalDetails:
+          'The appetite-suppressant estimate in women rests on a small number of exposed cases, which is why the 95 per cent confidence interval runs from 1.51 to 182.21. The lower bound excludes 1, so the association is statistically significant; the width means the data are compatible with a risk increase of 50 per cent and with one of eighteen thousand per cent. Reporting the point estimate as "sixteen times the risk" states one value from that range as though the study had resolved it. The cough and cold estimate, which covered by far the larger exposed population, did not reach significance in women (P = 0.08) or in the combined analysis (P = 0.49), and men showed no increased risk with cough and cold remedies at all.',
+        evidenceSource: 'Kernan WN et al. N Engl J Med 2000;343:1826-1832',
+        doi: '10.1056/NEJM200012213432501',
+        inferredClaim:
+          'That phenylpropanolamine multiplies haemorrhagic stroke risk approximately sixteenfold in women',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ppa-a3',
+        category: 'conclusion_shift',
+        title: 'The whole category went, not just the diet pills',
+        laymanSummary:
+          'The strong finding was for diet pills. The cough and cold products, where the evidence was much weaker, were removed too.',
+        technicalDetails:
+          'The two exposures behaved differently in the data. Appetite suppressants: adjusted odds ratio 16.58 in women, P = 0.02, significant. Cough and cold remedies: 1.23 combined, P = 0.49, not significant, and no increased risk in men. The regulatory response covered both, on the reasoning that all first uses associated with stroke involved cough or cold products, that the first-use estimate in women was 3.13 with P = 0.08, and that the benefit of an over-the-counter decongestant is small enough that even a poorly resolved risk outweighs it. That reasoning is defensible and it is a benefit-risk judgement rather than a finding. The evidentiary basis for removing the decongestants is materially weaker than the basis for removing the appetite suppressants, and the record should say so.',
+        evidenceSource: 'Kernan WN et al. N Engl J Med 2000;343:1826-1832; 21 CFR 216.24',
+        doi: '10.1056/NEJM200012213432501',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ppa-a4',
+        category: 'measured',
+        title: 'The same study group also implicated other over-the-counter sympathomimetics',
+        laymanSummary:
+          'The same investigators went on to look at ephedra products and at pharmaceutical caffeine and nicotine, and found associations there too.',
+        technicalDetails:
+          'The Hemorrhagic Stroke Project team published further analyses from the same case-control infrastructure: an association between ephedra-containing products and haemorrhagic stroke, and, in the subarachnoid haemorrhage subset of 312 aneurysmal cases and 618 matched controls, independent associations with current smoking (adjusted odds ratio 3.73, 95% CI 2.67 to 5.21), hypertension (2.21, 1.48 to 3.29), cocaine use within three days (bivariate exact odds ratio 24.97), and caffeine in pharmaceutical products (2.48, 95% CI 1.19 to 5.20). This matters for interpreting the phenylpropanolamine result: the exposure sits inside a cluster of correlated over-the-counter stimulant exposures in a young population, and the adjustment model has to separate them.',
+        evidenceSource:
+          'Broderick JP et al., Hemorrhagic Stroke Project Investigators. Stroke 2003;34:1375-1381; Morgenstern LB et al. Neurology 2003;60:132-135',
+        doi: '10.1161/01.STR.0000074572.91827.F4',
+        measuredMetric:
+          'Adjusted odds ratios for aneurysmal subarachnoid haemorrhage by modifiable risk factor in the same case-control cohort',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ppa-a5',
+        category: 'conclusion_shift',
+        title: 'A whole class of products vanished on an advisory, without a formal ban',
+        laymanSummary:
+          'The FDA issued a public health advisory in November 2000 and asked manufacturers to reformulate. The products disappeared without a prohibition order.',
+        technicalDetails:
+          'Phenylpropanolamine was not a single-sponsor prescription drug with an application to withdraw. It was an over-the-counter ingredient in hundreds of products from dozens of manufacturers. The FDA issued a public health advisory in November 2000 and requested voluntary reformulation, and the ingredient left the market within months. The formal codification followed: phenylpropanolamine now appears in 21 CFR 216.24 as "all drug products containing phenylpropanolamine". This is a different mechanism from every prescription withdrawal in this file — market removal by advisory rather than by order — and it is what makes an over-the-counter safety signal act faster than a prescription one, not slower.',
+        evidenceSource: '21 CFR 216.24, current as of August 2026',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ppa-a6',
+        category: 'measured',
+        title: 'It is still a medicine, for dogs',
+        laymanSummary:
+          'Phenylpropanolamine remains a standard veterinary treatment for urinary incontinence in dogs, where the same vessel-and-sphincter tightening is exactly what is wanted.',
+        technicalDetails:
+          'Phenylpropanolamine is used in veterinary medicine for urethral sphincter mechanism incompetence in dogs, where alpha-adrenergic tone at the internal urethral sphincter is the therapeutic target. The 21 CFR 216.24 listing addresses human drug products. As with pergolide elsewhere in this file, the same molecule is unacceptable in one species and standard in another, because the alternatives, the life expectancy and the baseline stroke risk are all different. A withdrawal is a judgement about a specific benefit-risk trade in a specific population.',
+        evidenceSource:
+          '21 CFR 216.24 — human drug products containing phenylpropanolamine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ppa-a7',
+        category: 'failed',
+        title: 'Twenty-four years on the shelf, and the study that ended it was commissioned by industry',
+        laymanSummary:
+          'Case reports linking the drug to brain haemorrhage had accumulated for years. The definitive study was funded by the manufacturers themselves and took five years to run.',
+        technicalDetails:
+          'Case reports linking phenylpropanolamine-containing products to haemorrhagic stroke, often after a first dose, had accumulated well before the Hemorrhagic Stroke Project was designed. The project enrolled between 1994 and 1999 across 43 hospitals and published in December 2000, and the FDA advisory followed within weeks of publication. The interval between a recognised signal and a resolving study is the recurring pattern in this file: the signal is cheap and ambiguous, the study is expensive and slow, and the product stays on sale throughout. Here the product was on open supermarket shelves for that entire period.',
+        evidenceSource: 'Kernan WN et al. N Engl J Med 2000;343:1826-1832',
+        doi: '10.1056/NEJM200012213432501',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An over-the-counter tablet, capsule or syrup',
+        laymanDesc:
+          'Bought without a prescription in a supermarket or pharmacy, as a cold remedy or a diet pill.',
+        molecularDetail:
+          'Oral phenylpropanolamine hydrochloride, immediate-release or as a polistirex resin complex for extended release, usually combined with an antihistamine or antitussive in cold preparations and given alone in appetite suppressants.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed and distributed systemically',
+        laymanDesc:
+          'It is absorbed well from the gut and travels everywhere, not just to the nose.',
+        molecularDetail:
+          'Well absorbed orally with limited metabolism and substantial renal excretion of unchanged drug. Crosses into the central nervous system, which is the basis of the appetite-suppressant effect.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Two adrenergic actions at once',
+        laymanDesc:
+          'It switches on the receptors that tighten blood vessels, and separately pushes the body\'s own adrenaline-like signal out of nerve endings.',
+        molecularDetail:
+          'Direct alpha-1 adrenergic receptor agonism combined with indirect displacement of noradrenaline from sympathetic nerve terminals. The indirect component means the effect depends on the patient\'s own sympathetic stores and is not straightforwardly dose-proportional.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Vasoconstriction in the nose — and everywhere else',
+        laymanDesc:
+          'Nasal tissue shrinks and the airway opens. Every other small artery narrows too, and blood pressure rises.',
+        molecularDetail:
+          'Alpha-1-mediated contraction of nasal mucosal vasculature reduces mucosal blood volume and relieves congestion. Systemic arteriolar constriction raises peripheral resistance and blood pressure, with cerebral vessels exposed to the same pressor effect.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Congestion relieved; a haemorrhagic stroke signal in young women',
+        laymanDesc:
+          'Blocked noses cleared and appetite fell slightly. In a study of young stroke patients, diet-pill use in women was strongly associated with brain haemorrhage.',
+        molecularDetail:
+          'Measured: adjusted odds ratio 16.58 (95% CI 1.51 to 182.21) for appetite suppressants in women, 3.13 (0.86 to 11.46) for first use of any phenylpropanolamine product, 1.23 (0.68 to 2.24) for cough and cold remedies combined across sexes.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Hemorrhagic Stroke Project (Kernan et al.)',
+        phase: 'Multicentre case-control study, 43 United States hospitals, 1994-1999',
+        sampleSize: 2078,
+        primaryEndpoint:
+          'Association between phenylpropanolamine-containing products and subarachnoid or intracerebral haemorrhage in adults aged 18 to 49',
+        endpointMet: true,
+        statisticalPValue:
+          'Women, appetite suppressants: adjusted odds ratio 16.58 (95% CI 1.51 to 182.21), P = 0.02; women, first use of any PPA product: 3.13 (0.86 to 11.46), P = 0.08; combined, cough and cold remedies: 1.23 (0.68 to 2.24), P = 0.49',
+        unreportedAdverseSignals:
+          'The appetite-suppressant confidence interval spans two orders of magnitude on a small number of exposed cases. No men reported appetite suppressant use, and men showed no increased risk with cough and cold remedies.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Hemorrhagic Stroke Project, aneurysmal subarachnoid haemorrhage analysis (Broderick et al.)',
+        phase: 'Case-control analysis within the same cohort, 44 hospitals',
+        sampleSize: 930,
+        primaryEndpoint:
+          'Independent risk factors for aneurysmal subarachnoid haemorrhage in adults aged 18 to 49',
+        endpointMet: true,
+        statisticalPValue:
+          'Current smoking adjusted odds ratio 3.73 (95% CI 2.67 to 5.21); hypertension 2.21 (1.48 to 3.29); caffeine in pharmaceutical products 2.48 (1.19 to 5.20); cocaine within 3 days bivariate exact odds ratio 24.97',
+        unreportedAdverseSignals:
+          'Several over-the-counter stimulant exposures are associated with the same outcome in the same population, which is the confounding structure any single-exposure estimate has to survive.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Adjusted odds ratio 16.58 (95% CI 1.51 to 182.21, P = 0.02) for appetite suppressants containing phenylpropanolamine and haemorrhagic stroke in women',
+        'Adjusted odds ratio 3.13 (95% CI 0.86 to 11.46, P = 0.08) for first use of any phenylpropanolamine product in women; all first uses were cough or cold remedies',
+        'Combined-sex odds ratio 1.23 (95% CI 0.68 to 2.24, P = 0.49) for cough and cold remedies; no increased risk in men',
+        '702 patients and 1,376 random-digit-dialled matched controls, aged 18 to 49, from 43 United States hospitals',
+      ],
+      unsupportedInferences: [
+        'That the risk in women is approximately sixteenfold — the data are equally compatible with 1.5 and with 182',
+        'That the cough and cold products carried demonstrated stroke risk; those estimates did not reach significance',
+        'That the estimate is clean of confounding by other over-the-counter stimulants, which the same cohort separately associated with the same outcome',
+      ],
+      whatFailedInitially: [
+        'On open sale for roughly a quarter of a century while case reports of first-dose haemorrhagic stroke accumulated',
+        'Removed by FDA public health advisory in November 2000 and voluntary reformulation, not by a prohibition order',
+        'Codified in 21 CFR 216.24 as "all drug products containing phenylpropanolamine"',
+      ],
+      realWorldOutcome: [
+        'Pseudoephedrine took the decongestant market and was later moved behind the counter for precursor control, not for stroke risk',
+        'Oral phenylephrine took the open-shelf slot and now faces an efficacy question of its own',
+        'Phenylpropanolamine remains standard veterinary treatment for urethral sphincter incompetence in dogs',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, capsule or syrup, sold over the counter',
+      description:
+        'Immediate-release or polistirex extended-release oral phenylpropanolamine, alone in appetite suppressants and combined with antihistamines and antitussives in cold preparations. Well absorbed, largely excreted unchanged in urine.',
+      safetyProfile:
+        'Removed from the United States market from November 2000 and listed in 21 CFR 216.24. The decisive finding is an adjusted odds ratio of 16.58 (95% CI 1.51 to 182.21) for haemorrhagic stroke with appetite-suppressant use in women aged 18 to 49; the estimates for cough and cold products did not reach significance. Expected sympathomimetic effects include hypertension, tachycardia, palpitations, insomnia, restlessness and headache, and blood pressure elevation is the proposed mechanism of the stroke association. Interaction with monoamine oxidase inhibitors is the classic severe pressor interaction for this class.',
+    },
+    commonQuestions: [
+      {
+        q: 'How strong was the evidence, really?',
+        a: 'One well-designed case-control study, and it is a mixed picture. The appetite-suppressant finding in women is statistically significant with an odds ratio of 16.58, but the confidence interval runs from 1.51 to 182.21, which means the study located an effect without resolving its size. The cough and cold findings, which covered the far larger exposed population, did not reach significance in women or in the combined analysis, and showed nothing in men. The study has not been replicated, because after November 2000 there was no exposed population left to study.',
+        auditNote:
+          'The same investigators separately associated ephedra products and pharmaceutical caffeine with haemorrhagic stroke in the same young population, which is the confounding structure the adjustment had to handle.',
+      },
+      {
+        q: 'Why remove the cold medicines if the evidence was mostly about diet pills?',
+        a: 'Because of the asymmetry in what was at stake. Every first use associated with a stroke in the study involved a cough or cold product, the first-use estimate in women was 3.13 with P = 0.08, and the benefit of an over-the-counter decongestant is a few days of a clearer nose. When the benefit is that small, a risk that has not been ruled out is enough to act on, even when it has not been established either. That is a benefit-risk judgement, and describing it as a finding would overstate the data.',
+      },
+      {
+        q: 'Is pseudoephedrine the same thing?',
+        a: 'They are close chemical relatives with similar pharmacology, and pseudoephedrine remains available. It was not implicated in the Hemorrhagic Stroke Project findings, and its later move behind the pharmacy counter in the United States was about methamphetamine precursor diversion, not about stroke. Two restrictions on adjacent sympathomimetics for entirely unrelated reasons, six years apart, are easy to run together and should not be.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because the ingredient has had no human market in the United States since 2000 and appears in 21 CFR 216.24. Veterinary preparations are priced, but that is a different product for a different species.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Kernan WN, Viscoli CM, Brass LM, et al. Phenylpropanolamine and the risk of hemorrhagic stroke. N Engl J Med 2000;343:1826-1832',
+        identifier: '10.1056/NEJM200012213432501',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Broderick JP, Viscoli CM, Brott T, et al. Major risk factors for aneurysmal subarachnoid hemorrhage in the young are modifiable. Stroke 2003;34:1375-1381',
+        identifier: '10.1161/01.STR.0000074572.91827.F4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Morgenstern LB, Viscoli CM, Kernan WN, et al. Use of Ephedra-containing products and risk for hemorrhagic stroke. Neurology 2003;60:132-135',
+        identifier: '10.1212/01.wnl.0000042092.20411.5b',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 216.24 — Drug products withdrawn or removed from the market for reasons of safety or effectiveness (entry: phenylpropanolamine)',
+        identifier: 'https://www.ecfr.gov/current/title-21/section-216.24',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 10297 — phenylpropanolamine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10297',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 21. Ranitidine — a stability failure, not a pharmacology failure
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ranitidine',
+    name: 'Ranitidine',
+    tradeName: 'Zantac',
+    sponsor:
+      'Glaxo originally; by 2019 a generic market of dozens of manufacturers plus over-the-counter brands',
+    targetGene: 'HRH2',
+    targetProtein: 'Histamine H2 receptor on the gastric parietal cell',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1983,
+    indication:
+      'Duodenal and gastric ulcer, gastro-oesophageal reflux disease, erosive oesophagitis and pathological hypersecretory conditions; also sold over the counter for heartburn. All ranitidine products were requested off the United States market on 1 April 2020 because the molecule degrades to N-nitrosodimethylamine on storage.',
+    patientFriendlyIndication: 'A heartburn and ulcer tablet, sold on prescription and over the counter',
+    anatomicalSite: 'Gastric parietal cell basolateral membrane in the stomach lining',
+    conditionContext: {
+      conditionExplainer:
+        'Acid reflux and peptic ulcer are treated by reducing gastric acid secretion. The parietal cell secretes acid in response to histamine, gastrin and acetylcholine; blocking the histamine H2 receptor removes one of the three inputs.',
+      whyItMatters:
+        'Nothing was ever found wrong with ranitidine\'s pharmacology. What went wrong is that the molecule contains both a nitro group and a dimethylamine, and under some solid-state conditions those two parts react to make a probable human carcinogen inside the tablet. This is a chemistry problem in the bottle, not a biology problem in the patient — and no other page in this file has that shape.',
+      whoTakesThis:
+        'Nobody in the United States. Patients moved to famotidine, which has no dimethylamine group, or to the proton pump inhibitors.',
+      clinicalGoals:
+        'Suppression of gastric acid secretion sufficient to heal ulcers and relieve reflux symptoms. Ranitidine achieved this reliably for nearly forty years.',
+    },
+    oneSentenceVerdict:
+      'An H2 receptor antagonist withdrawn worldwide in 2020 not for anything it does in the body but because the molecule degrades in the container to N-nitrosodimethylamine, a degradation now shown to be driven by solid-state reactive species introduced during crystallisation, milling and grinding — with cryoground material degrading up to two orders of magnitude faster than unprocessed drug.',
+    laymanHowItWorks:
+      'Stomach cells make acid when histamine docks on a receptor on their surface. Ranitidine blocks that receptor, so less acid is made and ulcers heal. The problem is the molecule\'s own shape: it carries a nitro group at one end and a dimethylamine at the other, and in the solid tablet those two parts can react with each other over time to produce NDMA, a compound classed as a probable human carcinogen. The drug that reaches the receptor was never the issue. The drug sitting in the bottle was.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 79,
+    substitutes: {
+      summary:
+        'Famotidine does the same job at the same receptor and has no dimethylamine group to nitrosate, which is why it survived the recall untouched. The proton pump inhibitors act one step further down the pathway and suppress acid more completely.',
+      conventionalRx: [
+        {
+          name: 'Famotidine',
+          class: 'Histamine H2 receptor antagonist',
+          howItCompares:
+            'Same target, same clinical role, and a thiazole-guanidine structure with no dimethylamine and no nitro group. It absorbed essentially the entire ranitidine market and was not implicated in the nitrosamine recalls.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: same efficacy class, no nitrosamine liability, inexpensive. Cons: renal dose adjustment, tolerance on continuous use as with all H2 antagonists.',
+        },
+        {
+          name: 'Omeprazole or esomeprazole',
+          class: 'Proton pump inhibitor',
+          howItCompares:
+            'Blocks the final common step, the gastric H+/K+ ATPase, rather than one of three upstream signals. More complete acid suppression and better ulcer healing rates than any H2 antagonist.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: superior acid suppression, once-daily. Cons: hypomagnesaemia, enteric infection risk, rebound hypersecretion on withdrawal, CYP2C19 interactions.',
+        },
+        {
+          name: 'Cimetidine',
+          class: 'Histamine H2 receptor antagonist',
+          howItCompares:
+            'The first drug of the class. Still available, but a potent inhibitor of several cytochrome P450 enzymes and an anti-androgen at higher doses, which is why famotidine rather than cimetidine took the vacated market.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: long history, effective. Cons: extensive drug interactions, gynaecomastia at higher doses.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN/C(=C\\[N+](=O)[O-])/NCCSCC1=CC=C(O1)CN(C)C',
+      chemicalFormula: 'C13H22N4O3S',
+      molecularWeight: '314.41 g/mol',
+      targetReceptorAffinity:
+        'A competitive antagonist at the histamine H2 receptor, built on a furan ring rather than the imidazole of cimetidine. Two structural features matter for the recall rather than for the pharmacology: a dimethylaminomethyl group on the furan, and a nitroethenediamine on the other end of the chain. A dimethylamine adjacent to a nitro group in the same molecule is the substrate and the nitrosating source for NDMA formation, which is why famotidine, lacking both, was never implicated.',
+      structureSource: {
+        label: 'PubChem CID 3001055 (ranitidine) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3001055',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ran-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, salt form and solid-state characterisation',
+          description:
+            'Confirm the furan-nitroethenediamine structure and the hydrochloride salt, then characterise the solid form. Ranitidine hydrochloride has more than one crystal form and the recall literature ties degradation rate to crystal morphology and to defects, so a solid-state characterisation is a stability-critical test rather than a formality.',
+          reagentsAndBuffer:
+            'Ranitidine hydrochloride certified reference standard, powder X-ray diffraction, differential scanning calorimetry, solid-state nuclear magnetic resonance, proton NMR in deuterium oxide, LC-MS electrospray positive mode at m/z 315',
+        },
+        {
+          id: 'ran-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'NDMA quantification by LC-HRMS, deliberately without heat',
+          description:
+            'Quantify N-nitrosodimethylamine at nanogram level using liquid chromatography with high-resolution mass spectrometry. The method choice is the substance of the whole episode: a gas chromatographic method with a heated inlet can generate NDMA from intact ranitidine during the analysis itself, so an apparently higher result may be an artefact of the assay. Any NDMA figure for this drug is uninterpretable without its method.',
+          dependsOnStepId: 'ran-w1',
+          reagentsAndBuffer:
+            'Isotopically labelled NDMA-d6 internal standard, LC-HRMS with electrospray or atmospheric pressure chemical ionisation, ambient-temperature sample preparation, method blanks and heated-inlet comparison runs to demonstrate absence of in-analysis formation',
+        },
+        {
+          id: 'ran-w3',
+          stepNumber: 3,
+          phase: 'QC',
+          name: 'Accelerated stability with controlled solid-state reactive species',
+          description:
+            'Store drug substance and finished tablets at defined temperature and humidity and follow NDMA over time, with material deliberately processed to vary the level of solid-state reactive species. In the published work, cryogenic milling introduced these species systematically, and cryoground samples degraded up to two orders of magnitude faster than unprocessed material at 60 degrees and 0 per cent relative humidity.',
+          dependsOnStepId: 'ran-w2',
+          reagentsAndBuffer:
+            'Cryogenic mill for controlled defect introduction, stability chambers at 60 degrees and 0 per cent relative humidity alongside 25 and 40 degree conditions, tablets manufactured from both processed and unprocessed substance, sequential LC-HRMS timepoints',
+        },
+        {
+          id: 'ran-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Parietal cell acid secretion preparation',
+          description:
+            'Isolated gastric glands or parietal cell preparations stimulated with histamine, measuring aminopyrine accumulation or acid output as the functional readout of H2 blockade. This is the assay that establishes what the drug does, and it is worth running precisely because it is the part of ranitidine that was never in question.',
+          reagentsAndBuffer:
+            'Isolated rabbit or human gastric glands, histamine and dibutyryl cyclic AMP stimulation, [14C]-aminopyrine accumulation assay, famotidine and cimetidine as class comparators, omeprazole as a downstream control',
+        },
+        {
+          id: 'ran-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'H2 receptor binding affinity and gastric pH pharmacodynamics',
+          description:
+            'Radioligand displacement at the recombinant human histamine H2 receptor to establish potency, alongside ambulatory intragastric pH monitoring as the in-vivo pharmacodynamic endpoint. Recording these next to the NDMA data is the point: a drug can be entirely satisfactory at its receptor and still be unfit to sell.',
+          dependsOnStepId: 'ran-w4',
+          reagentsAndBuffer:
+            'Membranes expressing human HRH2, [3H]-tiotidine radioligand, cyclic AMP accumulation for functional antagonism, 24-hour ambulatory intragastric pH probe, famotidine as active comparator',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ran-a1',
+        category: 'measured',
+        title: 'NDMA forms inside the product, and manufacturing defects drive the rate',
+        laymanSummary:
+          'Ranitidine turns into NDMA over time in the bottle. How fast depends on damage introduced to the crystals during manufacturing — grinding a sample made it degrade up to a hundred times faster.',
+        technicalDetails:
+          'Ranitidine hydrochloride degrades to N-nitrosodimethylamine on storage, and earlier work linked the rate to crystal morphology. A controlled study identified solid-state reactive species introduced during crystallisation, milling and grinding as the primary driver. Cryogenic milling was used to introduce these species systematically, and stability testing at 60 degrees and 0 per cent relative humidity showed a clear relationship between the amount of solid-state reactive species present and the amount of NDMA formed, with cryoground samples degrading at rates up to two orders of magnitude higher than unprocessed samples. Tablets manufactured with increased solid-state reactive species also showed accelerated formation. The variable is the processing history of the powder, not the identity of the drug.',
+        evidenceSource: 'Xu J, Huls NJ, Jannasch AS, Munson EJ. J Pharm Sci 2025;114:103960',
+        doi: '10.1016/j.xphs.2025.103960',
+        measuredMetric:
+          'NDMA formation rate against solid-state reactive species content in ranitidine hydrochloride under accelerated storage',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a2',
+        category: 'measured',
+        title: 'Recrystallisation stops it, which confirms where the problem lives',
+        laymanSummary:
+          'Recrystallising the drug — undoing the crystal damage — stops the NDMA forming. That is the clearest proof that the fault is in how the powder was made, not in the molecule\'s function.',
+        technicalDetails:
+          'Subsequent work reports that recrystallisation of ranitidine hydrochloride can stop nitrosamine formation, and separate work reports mitigation by spray-drying co-precipitation. Both are interventions on the solid form rather than on the molecular structure. This is the decisive category evidence for the whole page: an intervention that changes nothing about what ranitidine does at the H2 receptor, and everything about whether it makes NDMA in the container, resolves the problem. It follows that the 2020 withdrawal was a judgement about a supply chain and its manufacturing controls rather than about a pharmacological hazard.',
+        evidenceSource:
+          'Recrystallization can stop nitrosamine formation in ranitidine hydrochloride. J Pharm Sci 2026;115:104400',
+        doi: '10.1016/j.xphs.2026.104400',
+        measuredMetric:
+          'Nitrosamine formation after recrystallisation of ranitidine hydrochloride versus untreated material',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a3',
+        category: 'conclusion_shift',
+        title: 'The measured cancer signal in patients has not matched the chemical signal',
+        laymanSummary:
+          'Cohort studies comparing ranitidine users with users of other heartburn drugs of the same class have not found a higher cancer rate.',
+        technicalDetails:
+          'A cohort study using the South Korean National Health Insurance Service National Sample Cohort (2002 to 2015) compared new users of ranitidine with new users of other histamine H2 receptor antagonists as an active comparator, in patients aged 40 or over with no H2 antagonist prescription in the prior two years, with lag times up to six years. After exclusions and propensity score matching, 25,360 patients were analysed. Ranitidine use was not associated with overall cancer risk — incidence 2.9 against 3.0 per 1000 person-years, adjusted hazard ratio 0.98 (95% CI 0.81 to 1.20) — nor with major individual cancers, and higher cumulative exposure did not raise risk. The authors state the limitation directly: the follow-up period is insufficient for a carcinogenic endpoint with a long latency. A null result at this duration constrains the size of any effect; it does not exclude one.',
+        evidenceSource: 'Joung KI, Hwang JE, Oh IS, Cho SI, Shin JY. Sci Rep 2022;12:22396',
+        doi: '10.1038/s41598-022-26691-0',
+        measuredMetric:
+          'Adjusted hazard ratio for incident cancer, ranitidine versus other H2 receptor antagonists, in 25,360 propensity-matched patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a4',
+        category: 'inferred',
+        title: 'A measured NDMA number means nothing without its analytical method',
+        laymanSummary:
+          'Some early testing heated the samples, and heating ranitidine makes NDMA during the test itself. The headline numbers and the regulatory numbers were not measured the same way.',
+        technicalDetails:
+          'Ranitidine can generate NDMA under heat, which is the property that makes an analytical method choice into a scientific dispute. A gas chromatographic method with a heated inlet can convert intact ranitidine to NDMA inside the instrument, so a result obtained that way conflates the NDMA present in the product with NDMA created during the analysis. Liquid chromatography with high-resolution mass spectrometry at ambient temperature avoids this. The consequence for a reader is concrete: any statement of the form "ranitidine contained N nanograms of NDMA" is uninterpretable without knowing which method produced it, and figures from different methods are not comparable to each other or to an acceptable intake limit.',
+        evidenceSource:
+          'Xu J et al. J Pharm Sci 2025;114:103960 — degradation of ranitidine to NDMA under thermal stress',
+        doi: '10.1016/j.xphs.2025.103960',
+        inferredClaim:
+          'That NDMA figures reported for ranitidine products are comparable across analytical methods',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ran-a5',
+        category: 'conclusion_shift',
+        title: 'The withdrawal removed a whole molecule and left the drug class intact',
+        laymanSummary:
+          'Every ranitidine product went. Famotidine, which does exactly the same thing at the same receptor, was untouched.',
+        technicalDetails:
+          'The 2020 action covered all ranitidine products, prescription and over the counter, brand and generic. Famotidine, a histamine H2 receptor antagonist with the same target and the same clinical indications, was unaffected and absorbed the market. The structural reason is direct: NDMA formation requires a dimethylamine and a nitrosating source, and ranitidine carries both in one molecule while famotidine carries neither. That a therapeutic class survives intact when one member is removed for a chemical property peculiar to that member is the cleanest available demonstration that the harm did not belong to the pharmacology. Every other withdrawal in this file removed a mechanism; this one removed a molecule.',
+        evidenceSource:
+          'Drugs@FDA ranitidine hydrochloride application records; Joung KI et al. Sci Rep 2022;12:22396',
+        doi: '10.1038/s41598-022-26691-0',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a6',
+        category: 'measured',
+        title: 'It works, and that was never disputed',
+        laymanSummary:
+          'Ranitidine was an effective acid-reducing drug for nearly forty years. No part of the withdrawal contests that.',
+        technicalDetails:
+          'Ranitidine was approved in the United States in 1983 and became one of the most widely prescribed drugs in the world, healing duodenal and gastric ulcers, controlling reflux oesophagitis, and available over the counter for heartburn. The withdrawal documents make no efficacy claim against it. This distinguishes it sharply from most of this file: rofecoxib, troglitazone and pergolide all worked and were removed because of what they did to patients, and ranitidine worked and was removed because of what it did to itself on a shelf. The correct summary is that a satisfactory drug became an unsatisfactory product.',
+        evidenceSource:
+          'Drugs@FDA ranitidine hydrochloride application records, marketing status Discontinued',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a7',
+        category: 'measured',
+        title: 'The episode reset nitrosamine control across the whole industry',
+        laymanSummary:
+          'What began with a blood pressure drug and continued with ranitidine changed how every manufacturer tests for this class of impurity.',
+        technicalDetails:
+          'Nitrosamine impurities were first found in sartan blood pressure drugs in 2018, then in ranitidine and nizatidine in 2019 and 2020, then in metformin. The industry response is now a permanent one: risk assessment for nitrosamine formation across drug substances and products, control strategies at the level of the manufacturing process rather than the final assay, and the body of work on solid-state reactive species, recrystallisation and spray-drying co-precipitation that this page cites. Ranitidine is the case that made a process control a regulatory expectation rather than good practice.',
+        evidenceSource:
+          'Xu J et al. J Pharm Sci 2025;114:103960; Mitigation of N-nitrosamine formation in ranitidine hydrochloride by spray drying co-precipitation. J Pharm Sci 2025;114:103864',
+        doi: '10.1016/j.xphs.2025.103864',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oral tablet, prescription or over the counter',
+        laymanDesc: 'Taken by mouth once or twice a day, or as needed for heartburn.',
+        molecularDetail:
+          'Oral ranitidine hydrochloride, 150 mg twice daily or 300 mg at night for ulcer healing, with lower over-the-counter strengths for heartburn. Roughly 50 per cent oral bioavailability with a two to three hour half-life.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the parietal cells of the stomach lining',
+        laymanDesc:
+          'Absorbed from the gut and carried in the blood to the acid-producing cells in the stomach wall.',
+        molecularDetail:
+          'Distributes to the gastric mucosa and reaches the basolateral membrane of parietal cells, where the histamine H2 receptor sits. Largely renally cleared, so dose reduction is needed in renal impairment.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Competitively blocks the histamine H2 receptor',
+        laymanDesc:
+          'It occupies the docking site histamine would use, so the acid-producing signal never gets through.',
+        molecularDetail:
+          'Competitive, reversible antagonism at the H2 receptor, a Gs-coupled receptor. Occupancy prevents histamine-driven adenylate cyclase activation and the rise in intracellular cyclic AMP.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The proton pump is not activated',
+        laymanDesc:
+          'Without that signal, the molecular pumps that push acid into the stomach are not switched on.',
+        molecularDetail:
+          'Reduced cyclic AMP means reduced protein kinase A signalling and less trafficking and activation of the H+/K+ ATPase at the secretory canaliculus. Gastrin and acetylcholine inputs remain, which is why H2 blockade suppresses acid less completely than a proton pump inhibitor.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Acid falls and ulcers heal — and NDMA accumulates in the bottle',
+        laymanDesc:
+          'The drug did its job for forty years. The reason it is gone is a reaction happening inside the tablet, not inside the patient.',
+        molecularDetail:
+          'Measured: reliable gastric acid suppression and ulcer healing since 1983, with no efficacy claim contested at withdrawal. Measured: NDMA formation on storage driven by solid-state reactive species, with cryoground material degrading up to two orders of magnitude faster than unprocessed drug substance.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'National Health Insurance Service-National Sample Cohort, South Korea (Joung et al.)',
+        phase: 'Active-comparator new-user cohort study, 2002-2015',
+        sampleSize: 25360,
+        primaryEndpoint:
+          'Incident cancer risk in new ranitidine users versus new users of other histamine H2 receptor antagonists, with lag times up to six years',
+        endpointMet: false,
+        statisticalPValue:
+          'Overall cancer incidence 2.9 versus 3.0 per 1000 person-years; adjusted hazard ratio 0.98 (95% CI 0.81 to 1.20); no dose-response with higher cumulative exposure',
+        unreportedAdverseSignals:
+          'The authors state that the follow-up period is insufficient for an endpoint with the latency of chemical carcinogenesis, so the null result constrains rather than excludes an effect.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Ranitidine hydrochloride degrades to NDMA on storage, at a rate driven by solid-state reactive species introduced during crystallisation, milling and grinding',
+        'Cryoground material degraded up to two orders of magnitude faster than unprocessed material at 60 degrees and 0 per cent relative humidity',
+        'Recrystallisation of the drug substance can stop nitrosamine formation',
+        'Adjusted hazard ratio 0.98 (95% CI 0.81 to 1.20) for overall cancer in 25,360 propensity-matched patients against other H2 antagonists',
+      ],
+      unsupportedInferences: [
+        'That NDMA figures from different analytical methods are comparable — heated-inlet gas chromatography can create NDMA from ranitidine during the analysis',
+        'That the null cohort result establishes safety; the authors identify the follow-up as insufficient for a long-latency carcinogenic endpoint',
+        'That the withdrawal implies anything about the H2 antagonist class, which continues unchanged in famotidine',
+      ],
+      whatFailedInitially: [
+        'Approved 1983, and all ranitidine products were requested off the United States market from 1 April 2020',
+        'The failure is a manufacturing and stability failure: the same molecule can be made to degrade quickly or barely at all depending on processing',
+        'Drugs@FDA records for ranitidine hydrochloride applications carry Discontinued marketing status',
+      ],
+      realWorldOutcome: [
+        'Famotidine, which has neither a dimethylamine nor a nitro group, absorbed the market and was never implicated',
+        'Nitrosamine risk assessment became a standing regulatory expectation across the pharmaceutical industry',
+        'Solid-form interventions — recrystallisation, spray-drying co-precipitation, defect control — are now an active research literature created by this recall',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, effervescent tablet, syrup and injection',
+      description:
+        'Ranitidine hydrochloride given orally at 150 mg twice daily or 300 mg nightly for ulcer healing, with lower strengths sold over the counter, plus a syrup and an intravenous formulation. Roughly 50 per cent bioavailable with a two to three hour half-life and substantial renal clearance.',
+      safetyProfile:
+        'The pharmacological safety profile was unremarkable across nearly four decades: headache, dizziness, constipation or diarrhoea, rare hepatitis, and rare thrombocytopenia, with dose reduction required in renal impairment. The withdrawal is not about any of that. All ranitidine products were requested off the United States market from 1 April 2020 because the molecule degrades to N-nitrosodimethylamine, classified as a probable human carcinogen, at rates that increase with temperature, time, and the defect content of the crystalline drug substance. Cohort data against other H2 antagonists have not so far shown an increase in cancer incidence, on follow-up the authors describe as insufficient.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was ranitidine contaminated, or does it make NDMA itself?',
+        a: 'It makes it itself. Contamination implies something got in from outside — a solvent, a reagent, a shared production line. Here the ranitidine molecule carries a dimethylamine group and a nitro group, and under the right solid-state conditions those parts react to produce NDMA inside the intact product. That distinction has practical consequences: a contaminant can be filtered out, whereas a molecule that degrades into a carcinogen has to be either reformulated so it does not, or removed.',
+        auditNote:
+          'The controlled experiment is the proof: introducing crystal defects by cryogenic milling raised the degradation rate by up to a hundredfold, and recrystallising the material stops formation.',
+      },
+      {
+        q: 'Did people who took it for years get cancer?',
+        a: 'Cohort studies comparing ranitidine users with users of other H2 antagonists have not found an increase. In the South Korean national cohort, 25,360 propensity-matched patients showed overall cancer incidence of 2.9 versus 3.0 per 1000 person-years and an adjusted hazard ratio of 0.98 with a confidence interval from 0.81 to 1.20. The authors state plainly that the follow-up is not long enough for an endpoint with the latency of chemical carcinogenesis. So the accurate statement is that no excess has been detected at the durations studied so far, which is a narrower claim than safety.',
+      },
+      {
+        q: 'Why is famotidine still on sale?',
+        a: 'Because the problem is structural and famotidine does not have the structure. NDMA formation needs a dimethylamine and a nitrosating source; ranitidine carries both within one molecule and famotidine carries neither. Both drugs block the same receptor for the same conditions, which is precisely why the survival of one and the removal of the other demonstrates that the pharmacology was never at issue.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because ranitidine has had no United States market since 2020 and there is no current list price to cite.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Xu J, Huls NJ, Jannasch AS, Munson EJ. Crystal defects cause nitrosamine formation in ranitidine under accelerated storage conditions. J Pharm Sci 2025;114:103960',
+        identifier: '10.1016/j.xphs.2025.103960',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Recrystallization can stop nitrosamine formation in ranitidine hydrochloride. J Pharm Sci 2026;115:104400',
+        identifier: '10.1016/j.xphs.2026.104400',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mitigation of N-nitrosamine formation in ranitidine hydrochloride by spray drying co-precipitation. J Pharm Sci 2025;114:103864',
+        identifier: '10.1016/j.xphs.2025.103864',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Joung KI, Hwang JE, Oh IS, Cho SI, Shin JY. Association between ranitidine use with potential NDMA impurities and risk of cancer in Korea. Sci Rep 2022;12:22396',
+        identifier: '10.1038/s41598-022-26691-0',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: ranitidine hydrochloride, ANDA 077405 (Pharmaceutical Associates) — Discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=077405',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3001055 — ranitidine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3001055',
+        kind: 'url',
+      },
+    ],
+  },
 ]

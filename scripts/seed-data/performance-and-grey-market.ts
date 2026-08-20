@@ -6231,4 +6231,1267 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 17. Anastrozole in men (off-label)
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'anastrozole',
+    name: 'Anastrozole',
+    tradeName: 'Arimidex',
+    sponsor:
+      'Originally AstraZeneca; Arimidex NDA 020541, now ANI Pharmaceuticals, approved 27 December 1995. Numerous generics',
+    targetGene: 'CYP19A1',
+    targetProtein:
+      'Aromatase (cytochrome P450 19A1) — a reversible, non-steroidal competitive inhibitor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1995,
+    indication:
+      'Approved only for hormone-receptor-positive breast cancer in postmenopausal women — adjuvant, first-line advanced, and second-line after tamoxifen. It has no approved indication in men in any jurisdiction. All male use is off-label.',
+    patientFriendlyIndication:
+      'A breast cancer drug in women; used off-label in men to cut oestrogen and raise testosterone',
+    anatomicalSite:
+      'Aromatase in adipose tissue, muscle, liver, bone and Leydig cells; downstream at the hypothalamus and pituitary',
+    conditionContext: {
+      conditionExplainer:
+        'Men make oestradiol by converting testosterone with the enzyme aromatase, mostly in fat tissue. That oestradiol is not a by-product: it is the signal the male skeleton depends on for bone density, and it is a large part of the negative feedback that tells the pituitary to slow down.',
+      whyItMatters:
+        'Blocking aromatase in a man raises testosterone reliably, because removing oestradiol removes the brake on LH. Whether that is a good thing depends entirely on what the oestradiol was doing, and in bone the answer is measured: taking it away lowers spinal bone density.',
+      whoTakesThis:
+        'On label, postmenopausal women with breast cancer. Off label, men who want higher testosterone without an injection, men trying to control oestrogen-related effects during anabolic steroid use, men with obesity-associated low testosterone, and subfertile men with a low testosterone-to-oestradiol ratio.',
+      clinicalGoals:
+        'In the male off-label trials the stated goals were raising total and bioavailable testosterone, lowering oestradiol, improving the testosterone-to-oestradiol ratio, and improving sperm parameters.',
+    },
+    oneSentenceVerdict:
+      'It does exactly what it is taken for — 1 mg daily raised total testosterone from 343 to 572 ng/dL in elderly men — and in the trials that measured what happened next, quality of life and erectile function did not change and lumbar spine bone mineral density fell against placebo.',
+    laymanHowItWorks:
+      'Aromatase is the enzyme that turns testosterone into oestrogen. Anastrozole sits in its active site and stops it working. Two things follow. Oestradiol falls, and because the brain was using oestradiol as its main signal that there is enough sex hormone around, it stops holding back: LH rises and the testes make more testosterone. So the drug raises testosterone by removing a brake rather than by supplying hormone. The catch is that male bone needs oestradiol more than it needs testosterone, so the same block that raises the number a man is watching also lowers the density of his spine.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 44,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)(C#N)C1=CC(=CC(=C1)CN2C=NC=N2)C(C)(C)C#N',
+      chemicalFormula: 'C17H19N5',
+      molecularWeight: '293.4 g/mol',
+      targetReceptorAffinity:
+        'A non-steroidal triazole. The triazole nitrogen coordinates the haem iron of aromatase, competitively and reversibly blocking the final aromatisation step that converts androstenedione and testosterone to oestrone and oestradiol. Unlike exemestane it does not inactivate the enzyme covalently, so the effect tracks plasma concentration.',
+      structureSource: {
+        label:
+          'PubChem CID 2187 (anastrozole) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2187',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ana-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity against the other aromatase inhibitors',
+          description:
+            'Separate anastrozole from letrozole and exemestane. The first two are both non-steroidal triazoles of similar mass and polarity, they are sold interchangeably by unlicensed vendors, and exemestane is a steroid that behaves differently because it inactivates the enzyme irreversibly. Getting the identity wrong changes the duration of the block, not just the potency.',
+          reagentsAndBuffer:
+            'Certified anastrozole, letrozole and exemestane reference standards, anastrozole-d12 internal standard, reversed-phase C18 HPLC with diode-array detection at 215 nm, high-resolution accurate-mass ESI-MS, 1H NMR in DMSO-d6',
+        },
+        {
+          id: 'ana-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a tablet or an unlicensed liquid',
+          description:
+            'Quantify against the 1 mg label. Unlicensed liquid aromatase inhibitors sold alongside SARMs are dosed by dropper and are a common source of unintentional over-suppression, which matters because the oestradiol floor rather than the testosterone ceiling is what causes harm here.',
+          dependsOnStepId: 'ana-w1',
+          reagentsAndBuffer:
+            'Methanol extraction with sonication, 0.45 um PTFE filtration, reversed-phase gradient HPLC with UV quantification against a calibration series, LC-high-resolution mass spectrometry screening for co-formulated SERMs and steroids',
+        },
+        {
+          id: 'ana-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Serum preparation for low-range oestradiol',
+          description:
+            'Male oestradiol sits at 15-30 pg/mL and falls to around 12 pg/mL on treatment. Ordinary clinical immunoassays are not reliable in that range and read high through cross-reactivity, which makes an immunoassay oestradiol result on an aromatase-inhibited man close to uninterpretable. Extraction followed by isotope-dilution mass spectrometry is the only method that supports a conclusion.',
+          dependsOnStepId: 'ana-w2',
+          reagentsAndBuffer:
+            'Methyl tert-butyl ether liquid-liquid extraction, 13C3-oestradiol and 13C3-testosterone internal standards, dansyl chloride or picolinoyl derivatisation to raise ionisation efficiency, low-adsorption glassware',
+        },
+        {
+          id: 'ana-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Aromatase inhibition in a cell-based conversion assay',
+          description:
+            'Measure enzyme inhibition where the enzyme actually is. Human placental microsomes give the classic tritiated-water-release IC50, and an aromatase-expressing cell line converting androstenedione to oestrone gives the same number in a membrane-bounded system, which is the comparison that shows whether cell permeability is limiting.',
+          dependsOnStepId: 'ana-w3',
+          reagentsAndBuffer:
+            'Human placental microsomes or CYP19A1-transfected cells, [1beta-3H]-androstenedione for the tritiated water release assay, NADPH regenerating system, letrozole and exemestane as comparator inhibitors, charcoal-dextran separation',
+        },
+        {
+          id: 'ana-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS steroid panel with gonadotropins and bone turnover markers',
+          description:
+            'Quantify anastrozole and the full steroid panel — total and bioavailable testosterone, oestradiol, oestrone, androstenedione — with LH and FSH, and add bone turnover markers and DXA because the skeletal consequence is the measured harm in this population. Reporting a testosterone rise without an oestradiol and bone readout describes half the drug.',
+          dependsOnStepId: 'ana-w4',
+          reagentsAndBuffer:
+            'C18 gradient with formic acid and acetonitrile, positive-ion multiple-reaction monitoring on a triple quadrupole, deuterated internal standards; LH and FSH by immunometric assay, P1NP and CTX for bone turnover, dual-energy X-ray absorptiometry of lumbar spine and total hip',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ana-a1',
+        category: 'measured',
+        title: 'It raises testosterone into the youthful normal range',
+        laymanSummary:
+          'In elderly men with low testosterone, 1 mg daily raised total testosterone from an average of 343 to 572 ng/dL over 12 weeks, and LH rose too.',
+        technicalDetails:
+          'Leder et al. randomised 37 men aged 62-74 with screening testosterone below 350 ng/dL to anastrozole 1 mg daily (n=12), anastrozole 1 mg twice weekly (n=11) or placebo (n=14) for 12 weeks. Bioavailable testosterone rose from 99 +/- 31 to 207 +/- 65 ng/dL on daily dosing and from 115 +/- 37 to 178 +/- 55 ng/dL on twice-weekly dosing (both P < 0.001 versus placebo). Total testosterone rose from 343 +/- 61 to 572 +/- 139 ng/dL and from 397 +/- 106 to 520 +/- 91 ng/dL respectively (both P < 0.001 versus placebo). Oestradiol fell from about 26 to 17 pg/mL in both active groups (P < 0.001 versus placebo) but stayed within the normal male range. LH rose from 5.1 to 7.9 U/L on daily dosing (P = 0.007 versus placebo). The authors closed by stating that the physiological consequences of these changes remained to be determined — a caveat that later trials answered rather than confirmed.',
+        evidenceSource: 'Leder BZ et al., J Clin Endocrinol Metab 2004;89:1174-1180',
+        doi: '10.1210/jc.2003-031467',
+        measuredMetric:
+          'Total and bioavailable testosterone, oestradiol and LH at 12 weeks against placebo in men aged 62-74',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ana-a2',
+        category: 'failed',
+        title: 'The hormones moved and the symptoms did not',
+        laymanSummary:
+          'In the same trial, quality of life scores, erectile function scores, urinary symptom scores and haematocrit were unchanged despite testosterone rising by roughly two-thirds.',
+        technicalDetails:
+          'Leder et al. measured, alongside the hormone panel, the MOS Short-Form Health Survey, the International Index of Erectile Function, the American Urological Association Symptom Index and haematocrit. None changed. Serum prostate-specific antigen rose in the twice-weekly group only, from 1.7 +/- 1.0 to 2.2 +/- 1.5 ng/mL (P = 0.031 versus placebo). This is the pattern that recurs through the whole male off-label literature: the biochemical endpoint responds strongly and reproducibly, and the endpoints a man would notice do not follow it. A drug that reliably moves a number is not the same as a drug that reliably does something.',
+        evidenceSource: 'Leder BZ et al., J Clin Endocrinol Metab 2004;89:1174-1180',
+        doi: '10.1210/jc.2003-031467',
+        measuredMetric:
+          'MOS SF-36, International Index of Erectile Function, AUA Symptom Index and haematocrit at 12 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ana-a3',
+        category: 'conclusion_shift',
+        title: 'Raising testosterone this way lowers spinal bone density',
+        laymanSummary:
+          'A one-year randomised trial in 69 older men found that anastrozole raised testosterone as expected and reduced bone density at the spine compared with placebo.',
+        technicalDetails:
+          'Burnett-Bowie et al. ran a one-year double-blind randomised placebo-controlled trial in 69 men aged 60 and over with borderline or low testosterone and hypogonadal symptoms, using anastrozole 1 mg daily. Mean serum testosterone rose from 319 +/- 93 ng/dL at baseline to 524 +/- 139 ng/dL at month 3 (P < 0.0001), settling at 474 +/- 145 ng/dL at one year. Oestradiol fell from 15 +/- 4 to 12 +/- 4 pg/mL (P < 0.0001). Posterior-anterior lumbar spine bone mineral density decreased in the anastrozole group relative to placebo (P = 0.0014): from 1.121 +/- 0.141 to 1.102 +/- 0.138 g/cm2 on drug, while placebo rose from 1.180 +/- 0.145 to 1.189 +/- 0.146 g/cm2. Bone turnover markers were unaffected. The authors concluded that aromatase inhibition does not improve skeletal health in ageing men with low or low-normal testosterone. The Arimidex label carries the same signal in its approved population: a bone mineral density decrease at lumbar spine and total hip in the ATAC substudy.',
+        evidenceSource:
+          'Burnett-Bowie SA et al., J Clin Endocrinol Metab 2009;94:4785-4792; ARIMIDEX prescribing information section 5.2, ATAC bone substudy',
+        doi: '10.1210/jc.2009-0739',
+        inferredClaim:
+          'That raising testosterone by blocking aromatase gives the skeletal benefit of raising testosterone, when oestradiol is the dominant sex steroid for male bone and this route removes it',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ana-a4',
+        category: 'measured',
+        title: 'Head to head against a testosterone gel, only the gel helped bone',
+        laymanSummary:
+          'Forty-three older men were randomised to testosterone gel, anastrozole or placebo for a year. Both raised testosterone above 500 ng/dL. Only the gel improved spine bone density; only anastrozole increased lean body mass.',
+        technicalDetails:
+          'Dias et al. ran a proof-of-concept randomised, double-blind, placebo-controlled, parallel-group single-centre trial in 43 men aged 65-82 with total testosterone below 350 ng/dL, assigned to 5 g transdermal testosterone gel (n=16), anastrozole 1 mg daily (n=14) or placebo (n=13) for 12 months, with lumbar spine bone mineral density as the primary outcome. Both active arms raised total testosterone above 500 ng/dL (P < 0.05 versus baseline) and held it stable. At 12 months testosterone gel improved lumbar spine BMD (P < 0.01) and anastrozole did not. Both improved knee strength (P < 0.05), but lean body mass increased only in the anastrozole group, by 1.49 +/- 0.38 kg at 6 months and 1.24 +/- 0.39 kg at 12 months. Testosterone gel improved fast gait speed at 3 and 12 months; anastrozole did not. The authors read this as direct evidence that aromatisation of testosterone is required both for maintaining male bone density and for the gait speed effect.',
+        evidenceSource: 'Dias JP et al., Andrology 2016;4:33-40',
+        doi: '10.1111/andr.12126',
+        measuredMetric:
+          'Lumbar spine bone mineral density, lean body mass, knee strength and fast gait speed at 12 months across three arms',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ana-a5',
+        category: 'failed',
+        title: 'It failed its own manufacturer trial in pubertal gynaecomastia',
+        laymanSummary:
+          'AstraZeneca ran a randomised trial of anastrozole in 80 boys with pubertal breast enlargement. The response rate was 38.5% on drug and 31.4% on placebo, a difference that was not significant.',
+        technicalDetails:
+          'Plourde et al., writing from AstraZeneca, randomised 80 boys aged 11-18 with pubertal gynaecomastia that had not reduced over a preceding 3-month interval to anastrozole 1 mg or placebo once daily for 6 months. Response was defined as a 50% or greater reduction in calculated combined breast volume by ultrasonography. Response occurred in 38.5% on anastrozole and 31.4% on placebo, odds ratio 1.513 (95% CI 0.496-4.844), P = 0.47. The hormonal endpoint moved decisively: median percent change in the testosterone-to-oestradiol ratio was 166% on drug against 39% on placebo. Treatment was well tolerated. This is the cleanest available demonstration that in this drug, a large change in the testosterone-to-oestradiol ratio does not guarantee a change in the tissue it was supposed to act on.',
+        evidenceSource: 'Plourde PV et al., J Clin Endocrinol Metab 2004;89:4428-4433',
+        doi: '10.1210/jc.2004-0082',
+        measuredMetric:
+          'Proportion of boys with 50% or greater reduction in ultrasonographic breast volume at 6 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ana-a6',
+        category: 'inferred',
+        title: 'In male infertility it beats baseline and not the comparators',
+        laymanSummary:
+          'Pooled trials show aromatase inhibitors improve sperm counts and hormones compared with where the man started. Against the drugs they are usually compared with, the advantage disappears.',
+        technicalDetails:
+          'Guo et al. pooled 10 studies of letrozole or anastrozole in 666 men with infertility. Against baseline, treatment significantly increased sperm concentration, total sperm count, LH, FSH, testosterone and the testosterone-to-oestradiol ratio, and reduced oestradiol. Against control groups receiving selective oestrogen receptor modulators or hCG, there was no significant effect on sperm concentration, motility or morphology, except that aromatase inhibitors had less effect on motility than the controls, weighted mean difference -2.55 (95% CI -4.11 to -1.00, p = 0.001). The authors call the evidence base controversial and ask for larger randomised trials. A before-and-after improvement in an untreated infertile cohort is a weak design in a condition with substantial spontaneous variation, and it is most of what exists here.',
+        evidenceSource: 'Guo B et al., Andrology 2022;10:894-909 (10 studies, 666 patients)',
+        doi: '10.1111/andr.13185',
+        inferredClaim:
+          'That aromatase inhibitors improve male fertility outcomes, when the pooled data show change from baseline but no advantage over SERMs or hCG and a small disadvantage on motility',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A once-daily oral tablet with near-complete absorption',
+        laymanDesc:
+          'One 1 mg tablet a day is enough to suppress most oestrogen production for a full day.',
+        molecularDetail:
+          'Anastrozole is well absorbed orally with a terminal half-life supporting once-daily dosing. At the approved 1 mg dose it suppresses whole-body oestrogen production by more than 90% in the approved population. Because inhibition is competitive and reversible, the block tracks plasma concentration rather than persisting after clearance.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches aromatase inside adipose, muscle and gonadal cells',
+        laymanDesc:
+          'The enzyme sits inside cells, mostly in fat tissue, so the drug has to enter those cells to reach it.',
+        molecularDetail:
+          'Passive distribution into aromatase-expressing tissue — adipose, skeletal muscle, liver, bone and Leydig cells. In men, peripheral adipose conversion is the dominant source of circulating oestradiol, which is why obesity raises oestradiol and lowers testosterone and why the off-label male indication clusters in obese men.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Coordinates the haem iron and stops the reaction',
+        laymanDesc:
+          'A nitrogen atom in the drug grips the iron at the heart of the enzyme, which is exactly where the reaction needs to happen.',
+        molecularDetail:
+          'A triazole nitrogen coordinates the haem iron of CYP19A1, competitively blocking the three-step oxidative aromatisation of the steroid A ring. Androstenedione is no longer converted to oestrone and testosterone is no longer converted to oestradiol; substrate accumulates upstream.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Oestradiol falls, the pituitary brake comes off, LH rises',
+        laymanDesc:
+          'With less oestrogen reaching the brain, the pituitary pushes harder on the testes.',
+        molecularDetail:
+          'Oestradiol is the principal negative-feedback signal on GnRH and LH in men. Removing it raises LH — measured at 5.1 to 7.9 U/L on 1 mg daily — which drives Leydig cell testosterone synthesis. Total testosterone rises by roughly 50-70% from baseline in the elderly-male trials while oestradiol stays within, but at the bottom of, the male reference range.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The number improves; the skeleton does not',
+        laymanDesc:
+          'Testosterone measurements go up. Bone density at the spine goes down, and the symptom scores stay where they were.',
+        molecularDetail:
+          'Across the male randomised trials: lumbar spine BMD fell against placebo over one year at 1 mg daily, and in a three-arm comparison only the testosterone gel arm improved spine BMD. Quality of life, erectile function and urinary symptom scores were unchanged at 12 weeks. Lean body mass rose by about 1.2-1.5 kg on anastrozole in the one-year trial. Oestradiol in men is the dominant sex steroid for bone, and this mechanism removes it by design.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Leder 2004 randomised trial in elderly men with low testosterone',
+        phase: 'Randomised double-blind placebo-controlled, 12 weeks',
+        sampleSize: 37,
+        primaryEndpoint:
+          'Bioavailable and total testosterone, oestradiol and LH, with quality of life, erectile function, prostate symptom score and PSA as secondary measures',
+        endpointMet: true,
+        statisticalPValue:
+          'Total testosterone 343 to 572 ng/dL on 1 mg daily, P < 0.001 versus placebo; oestradiol 26 to 17 pg/mL, P < 0.001; LH 5.1 to 7.9 U/L, P = 0.007',
+        unreportedAdverseSignals:
+          'MOS SF-36, International Index of Erectile Function, AUA Symptom Index and haematocrit were unchanged. PSA rose in the twice-weekly group only, 1.7 to 2.2 ng/mL, P = 0.031 versus placebo.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Burnett-Bowie 2009 one-year bone trial in older men',
+        phase: 'Randomised double-blind placebo-controlled, 12 months',
+        sampleSize: 69,
+        primaryEndpoint: 'Bone mineral density and bone turnover markers with hormone levels',
+        endpointMet: false,
+        statisticalPValue:
+          'Testosterone 319 to 524 ng/dL at month 3, P < 0.0001; oestradiol 15 to 12 pg/mL, P < 0.0001; posterior-anterior spine BMD decreased versus placebo, P = 0.0014',
+        unreportedAdverseSignals:
+          'Bone turnover markers were not affected, so the density loss was not accompanied by a measurable turnover signal at one year.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Dias 2016 three-arm trial: testosterone gel versus anastrozole versus placebo',
+        phase: 'Randomised double-blind placebo-controlled proof of concept, 12 months',
+        sampleSize: 43,
+        primaryEndpoint: 'Lumbar spine bone mineral density',
+        endpointMet: false,
+        statisticalPValue:
+          'Testosterone gel improved lumbar spine BMD at 12 months (P < 0.01); anastrozole did not, despite both arms raising total testosterone above 500 ng/dL. Lean body mass rose only on anastrozole, 1.49 +/- 0.38 kg at 6 months (P < 0.01)',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Plourde 2004 pubertal gynaecomastia trial',
+        phase: 'Randomised double-blind placebo-controlled, 6 months',
+        sampleSize: 80,
+        primaryEndpoint:
+          'Proportion of boys with 50% or greater reduction in combined breast volume by ultrasonography',
+        endpointMet: false,
+        statisticalPValue:
+          'Anastrozole 38.5% versus placebo 31.4%; odds ratio 1.513 (95% CI 0.496-4.844), P = 0.47. Median change in testosterone-to-oestradiol ratio 166% versus 39%',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Anastrozole 1 mg daily raised total testosterone from 343 to 572 ng/dL and bioavailable testosterone from 99 to 207 ng/dL in men aged 62-74, with LH rising and oestradiol falling',
+        'Over one year in 69 older men, lumbar spine bone mineral density fell on anastrozole and rose on placebo, P = 0.0014',
+        'In a three-arm year-long trial, testosterone gel improved spine bone density and fast gait speed while anastrozole did not, though anastrozole alone increased lean body mass by about 1.2-1.5 kg',
+        'In 80 boys with pubertal gynaecomastia, response rates were 38.5% on anastrozole and 31.4% on placebo, P = 0.47, despite a 166% median rise in the testosterone-to-oestradiol ratio',
+      ],
+      unsupportedInferences: [
+        'That a higher testosterone level obtained by blocking aromatase carries the benefits of a higher testosterone level obtained any other way — the bone data specifically contradict this',
+        'That controlling the testosterone-to-oestradiol ratio controls gynaecomastia, which the manufacturer own randomised trial failed to show',
+        'That aromatase inhibitors improve male fertility outcomes, when pooled trials show no advantage over SERMs or hCG and slightly worse motility',
+        'That "oestrogen control" during anabolic steroid use is a studied practice; no randomised trial of an aromatase inhibitor alongside exogenous androgens exists',
+      ],
+      whatFailedInitially: [
+        'The pubertal gynaecomastia trial, run by the manufacturer, missed its primary endpoint outright',
+        'The one-year bone trial reversed the expected direction: aromatase inhibition lowered spinal bone density instead of raising it',
+        'The symptom, sexual function and urinary endpoints in the elderly-male trial were flat despite a large hormonal response',
+      ],
+      realWorldOutcome: [
+        'Approved since 27 December 1995 (NDA 020541) for hormone-receptor-positive breast cancer in postmenopausal women only; no male indication anywhere',
+        'The label itself warns of decreased bone mineral density, increased total cholesterol, and in women with pre-existing ischaemic heart disease an increased incidence of ischaemic cardiovascular events, 17% on anastrozole versus 10% on tamoxifen in ATAC',
+        'Prohibited in sport at all times under WADA class S4 as an aromatase inhibitor, and present in the antioestrogen and aromatase inhibitor fraction that made up 9% of doping products seized at the Swiss border',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 1 mg once daily',
+      description:
+        'A small immediate-release tablet, well absorbed, dosed once daily. Off-label male regimens run from 1 mg daily down to 0.5 mg twice weekly, and unlicensed liquid preparations dosed by dropper are sold alongside SARMs, where inaccurate dosing pushes oestradiol below the male range rather than into it.',
+      safetyProfile:
+        'Labelled risks in the approved population: decreased bone mineral density at lumbar spine and total hip, increased total cholesterol, and in women with pre-existing ischaemic heart disease an increased rate of ischaemic cardiovascular events. In men the measured findings are a fall in lumbar spine bone mineral density over one year against placebo, no change in quality of life, erectile function or urinary symptoms at 12 weeks, and a PSA rise in one dosing arm. Long-term male safety data do not exist because no male trial ran beyond one year.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it raise testosterone in men?',
+        a: 'Reliably and substantially. In 37 men aged 62-74, 1 mg daily for 12 weeks raised total testosterone from 343 to 572 ng/dL and bioavailable testosterone from 99 to 207 ng/dL, both P < 0.001 against placebo, with LH rising from 5.1 to 7.9 U/L. A separate one-year trial reproduced it: 319 to 524 ng/dL by month 3. The hormonal effect is one of the better-replicated findings in this whole file. What is not established is that it does anything a man would notice.',
+      },
+      {
+        q: 'Why would lowering oestrogen be bad for a man?',
+        a: 'Because male bone runs on oestradiol, not on testosterone. Over one year in 69 older men, anastrozole raised testosterone and lowered lumbar spine bone mineral density against placebo, P = 0.0014. In a three-arm trial, a testosterone gel improved spine density and anastrozole did not, despite both arms reaching the same testosterone level. The trial authors concluded directly that aromatisation of testosterone is required to maintain bone density in older men. The approved label carries the same warning for the approved population.',
+        auditNote:
+          'This is the clearest conclusion shift on the page: the drug does the thing it is taken for and produces the opposite of the expected downstream effect in bone.',
+      },
+      {
+        q: 'Does it treat gynaecomastia?',
+        a: 'The manufacturer tested exactly that and did not show it. Eighty boys aged 11-18 with persistent pubertal gynaecomastia received anastrozole 1 mg or placebo daily for six months. A 50% or greater reduction in ultrasound-measured breast volume occurred in 38.5% on drug and 31.4% on placebo, odds ratio 1.513 (95% CI 0.496-4.844), P = 0.47 — while the testosterone-to-oestradiol ratio rose by a median 166% on drug against 39% on placebo. The hormone target moved and the tissue did not.',
+      },
+      {
+        q: 'Is using it alongside anabolic steroids studied?',
+        a: 'No. There is no randomised trial of an aromatase inhibitor given with exogenous androgens for any endpoint. Every male trial cited on this page enrolled men who were not taking androgens. The practice is an extrapolation from the enzyme mechanism, and the one thing the male trials establish about pushing oestradiol down is that the skeleton pays for it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Leder BZ et al. Effects of aromatase inhibition in elderly men with low or borderline-low serum testosterone levels. J Clin Endocrinol Metab 2004;89:1174-1180',
+        identifier: '10.1210/jc.2003-031467',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Burnett-Bowie SA et al. Effects of aromatase inhibition on bone mineral density and bone turnover in older men with low testosterone levels. J Clin Endocrinol Metab 2009;94:4785-4792',
+        identifier: '10.1210/jc.2009-0739',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dias JP et al. Effects of aromatase inhibition vs. testosterone in older men with low testosterone: randomized-controlled trial. Andrology 2016;4:33-40',
+        identifier: '10.1111/andr.12126',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Plourde PV et al. Safety and efficacy of anastrozole for the treatment of pubertal gynecomastia: a randomized, double-blind, placebo-controlled trial. J Clin Endocrinol Metab 2004;89:4428-4433',
+        identifier: '10.1210/jc.2004-0082',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Guo B et al. Efficacy and safety of letrozole or anastrozole in the treatment of male infertility with low testosterone-estradiol ratio: a meta-analysis and systematic review. Andrology 2022;10:894-909',
+        identifier: '10.1111/andr.13185',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dougherty RH et al. Effect of aromatase inhibition on lipids and inflammatory markers of cardiovascular disease in elderly men with low testosterone levels. Clin Endocrinol (Oxf) 2005;62:228-235',
+        identifier: '10.1111/j.1365-2265.2005.02205.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Yang C et al. Clinical application of aromatase inhibitors to treat male infertility. Hum Reprod Update 2021;28:30-50',
+        identifier: '10.1093/humupd/dmab036',
+        kind: 'doi',
+      },
+      {
+        label:
+          'ARIMIDEX (anastrozole) tablets prescribing information, NDA 020541 — indications, warnings and precautions including the ATAC bone substudy and ischaemic cardiovascular event data',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020541',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Weber C et al. Qualitative and semiquantitative analysis of doping products seized at the Swiss border. Subst Use Misuse 2017;52:742-753',
+        identifier: '10.1080/10826084.2016.1263665',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 2187 — anastrozole structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2187',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 18. Clenbuterol
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'clenbuterol',
+    name: 'Clenbuterol',
+    tradeName: 'Ventipulmin (veterinary, United States); Spiropent, Broncoterol and others abroad',
+    sponsor:
+      'Originally Boehringer Ingelheim. In the United States the only approved product is a veterinary syrup for horses under 21 CFR 520.452; several other countries license human bronchodilator tablets',
+    targetGene: 'ADRB2',
+    targetProtein: 'Beta-2 adrenergic receptor — a long-acting, high-affinity agonist',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No human indication in the United States. Approved there only as an oral syrup for horses with airway obstruction. Licensed as a human bronchodilator in several European, Asian and Latin American countries. Its use as a growth promoter in food animals is banned in the United States, the European Union and China.',
+    patientFriendlyIndication:
+      'A horse asthma drug in the United States, taken by people for fat loss',
+    anatomicalSite:
+      'Beta-2 adrenergic receptors on bronchial smooth muscle, skeletal muscle fibres, adipocytes and cardiac myocytes',
+    conditionContext: {
+      conditionExplainer:
+        'Beta-2 receptors relax airway smooth muscle, which is why beta-2 agonists treat asthma. The same receptors on fat cells drive lipolysis and on skeletal muscle drive protein accretion, which is why the drug was used to fatten livestock lean and why people take it to lose fat.',
+      whyItMatters:
+        'Clenbuterol is the reason a whole category of doping cases exists. It accumulates in the liver and muscle of illegally treated cattle, so eating a meal can put it in a urine sample at picogram concentrations, and eating enough of it can put a person in an emergency department.',
+      whoTakesThis:
+        'Veterinarians treating horses. Outside that, people using it for fat loss, often cycled in two-week blocks, and athletes who ingest it involuntarily from contaminated meat. It also turns up as an adulterant in illicit heroin.',
+      clinicalGoals:
+        'There is no human goal defined by any regulator in the United States. In the countries where it is licensed for people, the goal is bronchodilation.',
+    },
+    oneSentenceVerdict:
+      'A long-acting beta-2 agonist that increases lean mass and decreases endurance in the one randomised human trial that measured both, poisons people who eat contaminated liver, and produced clenbuterol in 52% of 208 doping control samples at a football tournament in a country where 30% of the meat sampled was contaminated.',
+    laymanHowItWorks:
+      'Adrenaline works through several receptor subtypes. Clenbuterol selectively switches on the beta-2 subtype, which relaxes airways, releases fat from fat cells, and — over weeks — makes skeletal muscle fibres bigger. Unlike salbutamol it stays bound for a long time, so a single dose acts for many hours and it accumulates in tissue. That last property is why it was used illegally to make cattle leaner and heavier, and why the residue survives into the liver and meat of the animal. The same receptor is present on heart muscle, so the effects people report — pounding heart, tremor, low potassium — are not side effects in the sense of being off-target. They are the target, in another organ.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 30,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)(C)NCC(C1=CC(=C(C(=C1)Cl)N)Cl)O',
+      chemicalFormula: 'C12H18Cl2N2O',
+      molecularWeight: '277.19 g/mol',
+      targetReceptorAffinity:
+        '4-amino-3,5-dichloro-alpha-[[(1,1-dimethylethyl)amino]methyl]benzenemethanol. A phenylethanolamine beta-2 adrenergic agonist. The two ring chlorines and the free aromatic amine confer resistance to catechol-O-methyltransferase and to sulfation, which is why its duration of action is measured in tens of hours rather than the few hours of salbutamol, and why it accumulates in the liver and muscle of treated animals.',
+      structureSource: {
+        label:
+          'PubChem CID 2783 (clenbuterol) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2783',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'clen-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity against the other beta-agonist repartitioning agents',
+          description:
+            'Separate clenbuterol from ractopamine, salbutamol, cimaterol, mabuterol and brombuterol. They are used interchangeably as illegal growth promoters, several share fragment ions, and residue surveillance methods are only as good as their ability to tell them apart. The 2013 Taiwanese food poisoning outbreak was traced to a leanness-enhancing agent, not to clenbuterol specifically.',
+          reagentsAndBuffer:
+            'Certified clenbuterol, ractopamine, salbutamol and brombuterol reference standards, clenbuterol-d9 internal standard, reversed-phase C18 UHPLC, high-resolution accurate-mass ESI-MS with chlorine isotope pattern confirmation, 1H NMR in DMSO-d6',
+        },
+        {
+          id: 'clen-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a tablet, liquid or seized powder',
+          description:
+            'Quantify against label in microgram units. Human licensed tablets contain 20 micrograms; unlicensed liquids sold for fat loss are dosed by dropper and quantifying them is the only way to know what a dose actually was. The same extract is screened for the other stimulants that co-occur in these products.',
+          dependsOnStepId: 'clen-w1',
+          reagentsAndBuffer:
+            'Methanol extraction with sonication, 0.45 um PTFE filtration, reversed-phase gradient HPLC with UV detection at 244 nm, LC-high-resolution mass spectrometry screening against a stimulant and beta-agonist library',
+        },
+        {
+          id: 'clen-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Trace enrichment from urine, plasma, meat and liver',
+          description:
+            'The concentrations that matter here span six orders of magnitude: 1 pg/mL in a doping control sample from a contaminated meal, 12,500 ng/mL in urine after a clenbuterol-adulterated heroin exposure. A single method cannot cover both, so the enrichment step is chosen to the question — mixed-mode extraction and large injection volumes for the picogram end, simple dilution for the poisoning end. Tissue work requires enzymatic digestion because residues are partly protein-bound.',
+          dependsOnStepId: 'clen-w2',
+          reagentsAndBuffer:
+            'Mixed-mode cation-exchange solid-phase extraction, subtilisin or protease digestion for liver and muscle tissue, deuterated clenbuterol internal standard, silanised glassware, ammoniated methanol elution',
+        },
+        {
+          id: 'clen-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Beta-adrenergic receptor subtype selectivity panel',
+          description:
+            'Express beta-1, beta-2 and beta-3 adrenergic receptors separately and measure cyclic AMP accumulation across a concentration series. This is the experiment that explains the clinical picture: the bronchodilation, the lipolysis and the muscle hypertrophy all come from beta-2, and the tachycardia comes from beta-2 on cardiac tissue plus loss of selectivity at the concentrations reached in overdose.',
+          dependsOnStepId: 'clen-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells stably expressing each human beta-adrenergic receptor subtype, cyclic AMP accumulation by homogeneous time-resolved fluorescence, isoprenaline as reference full agonist, propranolol and ICI 118,551 as antagonist controls, IBMX to inhibit phosphodiesterase',
+        },
+        {
+          id: 'clen-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the metabolic and cardiac readout',
+          description:
+            'Quantify clenbuterol by tandem mass spectrometry against the deuterated standard, and read the pharmacodynamic consequences on the same subject: serum potassium, phosphate, glucose, lactate and troponin. The toxicity of this drug is a metabolic and cardiac picture, and a concentration without those measurements does not describe a case.',
+          dependsOnStepId: 'clen-w4',
+          reagentsAndBuffer:
+            'C18 gradient with formic acid and acetonitrile, electrospray positive-ion multiple-reaction monitoring on a triple quadrupole at m/z 277 with the chlorine isotope cluster, deuterated internal standard; potassium, phosphate, glucose and lactate on a clinical chemistry analyser, high-sensitivity cardiac troponin immunoassay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'clen-a1',
+        category: 'measured',
+        title: 'Contaminated meat put clenbuterol in half the urine samples at a World Cup',
+        laymanSummary:
+          'After five Mexican players tested positive, FIFA tested 208 doping samples and 47 meat samples during the 2011 U-17 World Cup. Clenbuterol was in 52% of the urine samples and 30% of the meat.',
+        technicalDetails:
+          'Thevis et al. reported the investigation triggered by five adverse analytical findings for clenbuterol in the Mexican national team in out-of-competition controls in May 2011. During the FIFA U-17 World Cup in Mexico, 208 regular doping control samples were analysed by highly sensitive mass spectrometry and 47 meat samples were collected from team hotels and sent to RIKILT. Clenbuterol was detected in 14 of 47 meat samples (30%) at 0.06 to 11 micrograms per kilogram. Clenbuterol was found in 109 of 208 urine samples (52%) at 1 to 1,556 picograms per millilitre. Only 5 of 24 teams provided samples entirely free of it, and at least one of those was reportedly on a strict no-meat diet because the contamination problem was already known. No player was sanctioned. This is the reference case for inadvertent doping from food.',
+        evidenceSource: 'Thevis M et al., Drug Test Anal 2013;5:372-376',
+        doi: '10.1002/dta.1471',
+        measuredMetric:
+          'Proportion of doping control urine samples and of hotel meat samples containing clenbuterol, with concentration ranges',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clen-a2',
+        category: 'measured',
+        title: 'It poisons people who eat contaminated liver',
+        laymanSummary:
+          'Outbreaks in Spain and Italy hospitalised people hours after a meal, with tremor, palpitations, headache, low potassium and high blood sugar lasting days.',
+        technicalDetails:
+          'Salleras et al. investigated 113 cases of clenbuterol poisoning in Catalonia in 1992. More than half had nervousness, tachycardia, muscle tremors, myalgia and headache. Incubation ranged from 15 minutes to 6 hours and symptoms lasted 90 minutes to 6 days. Clenbuterol was detected in 47 urine samples at 11 to 486 parts per billion, with none detectable in serum. The association between eating veal liver and falling ill was significant at P < 0.0001. No deaths occurred. Brambilla et al. described a separate Italian outbreak of 15 people after eating meat, with nine hospitalised: distal tremor, palpitations, headache, tachypnoea and dyspnoea, moderate hyperglycaemia, hypokalaemia and leucocytosis beginning 0.5-3 hours after the meal and resolving over 3-5 days. Mean urinary clenbuterol was 28 ng/mL at 36 hours, from meat containing 1,140-1,480 ng/g. The first report of the phenomenon was a 1990 Lancet letter on illicit beta-agonist in liver.',
+        evidenceSource:
+          'Salleras L et al., Public Health Rep 1995;110:338-342 (PMID 7610227); Brambilla G et al., Toxicol Lett 2000;114:47-53; Martinez-Navarro JF, Lancet 1990;336:1311',
+        doi: '10.1016/s0378-4274(99)00270-2',
+        measuredMetric:
+          'Case counts, symptom frequencies, incubation and duration, and urinary clenbuterol concentrations in food-borne outbreaks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clen-a3',
+        category: 'measured',
+        title: 'Documented cardiac injury in the heroin adulteration outbreak',
+        laymanSummary:
+          'When clenbuterol was used to cut heroin along the US East Coast, 34 people presented to emergency departments and six had laboratory evidence of heart muscle injury.',
+        technicalDetails:
+          'Hoffman et al. reported an outbreak of clenbuterol-adulterated heroin identified across five US states over six months through poison-centre collaboration. Thirty-four probable or confirmed emergency department presentations were identified; 13 met criteria for confirmed exposure and clenbuterol was found in blood or urine in 12 of those 13, at 2.4-26 ng/mL in blood and 9.4-12,526 ng/mL in urine. Symptoms were nausea, chest pain, palpitations, dyspnoea and tremor. Findings included significant tachycardia, hypotension, hyperglycaemia, hypokalaemia and raised lactate. Six patients had biochemical evidence of myocardial injury. Ten received beta-adrenergic antagonists without adverse effect. An earlier single-case report documented prolonged tachycardia with hypokalaemia and hypophosphataemia confirmed by quantitative levels. Case reports of clenbuterol cardiac toxicity and of paediatric poisoning have continued since.',
+        evidenceSource:
+          'Hoffman RS et al., Ann Emerg Med 2008;52:548-553; Hoffman RJ et al., J Toxicol Clin Toxicol 2001;39:339-344; Barry AR, Graham MM, J Cardiol Cases 2013;8:131-133',
+        doi: '10.1016/j.annemergmed.2008.04.026',
+        measuredMetric:
+          'Blood and urine clenbuterol concentrations, electrolyte and lactate abnormalities, and biochemical myocardial injury in 13 confirmed exposures',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clen-a4',
+        category: 'conclusion_shift',
+        title: 'It added lean mass and made endurance worse',
+        laymanSummary:
+          'In the one randomised trial in patients, clenbuterol increased lean mass and the lean-to-fat ratio, and endurance and exercise duration went down rather than up.',
+        technicalDetails:
+          'Kamalakkannan et al. ran a small randomised controlled study of clenbuterol in patients with chronic heart failure, measuring skeletal muscle function, cardiac function and exercise capacity. Clenbuterol was well tolerated and produced a significant increase in both lean mass and the lean-to-fat ratio. Maximal strength increased significantly in both arms — 27% on clenbuterol and 14% on placebo. Endurance and exercise duration decreased after clenbuterol. An accompanying commentary in the same journal was titled "Clenbuterol impairs muscle quality and is potentially dangerous". The compound raises the amount of muscle and, on this measurement, lowers what the muscle can sustain. That dissociation is the same one seen with the SARMs, arrived at from a completely different receptor.',
+        evidenceSource:
+          'Kamalakkannan G et al., J Heart Lung Transplant 2008;27:457-461; commentary Habedank D et al., J Heart Lung Transplant 2008;27:934-935',
+        doi: '10.1016/j.healun.2008.01.013',
+        inferredClaim:
+          'That a beta-2 agonist which increases lean mass improves functional capacity, when the randomised measurement showed endurance and exercise duration falling',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'clen-a5',
+        category: 'inferred',
+        title: 'The human fat-loss claim has no controlled trial',
+        laymanSummary:
+          'The reason most people take clenbuterol — losing body fat — has never been tested in a randomised human trial at the doses used.',
+        technicalDetails:
+          'The lipolytic and thermogenic argument rests on beta-2 receptor pharmacology and on livestock repartitioning studies, where clenbuterol was given to cattle, pigs and sheep to shift carcass composition towards lean tissue. In humans, the trials that exist studied bronchodilation, or muscle mass in patients with heart failure and left ventricular assist devices. None was designed to measure fat loss in healthy people, none used the intermittent high-dose regimens used outside medicine, and none ran long enough to describe what repeated cycles do. Recent reviews of beta-2 adrenergic agonism as an anti-obesity target treat the human question as open rather than answered.',
+        evidenceSource:
+          'Hostrup M, Onslev J, J Physiol 2022;600:1209-1227 (review of beta-2 adrenergic agonism for obesity and leanness); George I et al., J Heart Lung Transplant 2006;25:1084-1090 (clenbuterol during left ventricular assist device support)',
+        doi: '10.1113/JP281819',
+        inferredClaim:
+          'That clenbuterol produces meaningful fat loss in humans at the doses used outside medicine, which no randomised trial has measured',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'clen-a6',
+        category: 'measured',
+        title: 'In the United States it is approved for one species, and it is not a horse owner',
+        laymanSummary:
+          'The only US approval is an oral syrup for horses with airway obstruction. There is no approved human product, and using it in food animals is illegal.',
+        technicalDetails:
+          '21 CFR 520.452 provides for clenbuterol syrup at 72.5 micrograms of clenbuterol hydrochloride per millilitre, indicated for the management of horses affected with airway obstruction such as occurs in chronic obstructive pulmonary disease, with a 30-day treatment limit and a stepwise dose escalation to identify non-responders. Nothing in the United States authorises human use. Use as a growth promoter in food-producing animals is prohibited in the United States, the European Union and China, and the residue surveillance programmes that exist in all three are a direct consequence of the poisoning outbreaks. Several other countries license 20-microgram human bronchodilator tablets, which is why the compound is straightforwardly obtainable and why its legal status differs completely depending on where the reader is standing.',
+        evidenceSource:
+          '21 CFR 520.452, Clenbuterol syrup — specifications, sponsor and conditions of use; European and Chinese prohibitions on beta-agonist growth promoters',
+        measuredMetric:
+          'Approved species, indication and treatment duration limit in the United States veterinary regulation',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed orally and cleared slowly',
+        laymanDesc:
+          'Taken as a tablet or a liquid, it is well absorbed and stays in the body far longer than an asthma inhaler drug.',
+        molecularDetail:
+          'Oral bioavailability is high. The 3,5-dichloro-4-amino ring blocks the catechol-O-methyltransferase and sulfotransferase routes that clear salbutamol quickly, giving an elimination half-life on the order of a day and tissue accumulation on repeated dosing. That accumulation is what makes residues in animal liver and muscle a public health problem rather than an analytical curiosity.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches beta-2 receptors on the cell surface',
+        laymanDesc:
+          'Unlike a steroid, it does not need to get inside the cell — its target sits on the outside of the membrane.',
+        molecularDetail:
+          'Beta-2 adrenergic receptors are G protein-coupled receptors on the plasma membrane of bronchial smooth muscle, adipocytes, skeletal myocytes and cardiac myocytes. No cellular entry is required; the drug binds the orthosteric pocket from the extracellular face.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Locks on and drives cyclic AMP up',
+        laymanDesc:
+          'Binding switches on a chain of signals inside the cell that ends with a rise in a universal messenger molecule.',
+        molecularDetail:
+          'Agonist binding couples the receptor to Gs, activating adenylyl cyclase and raising intracellular cyclic AMP, which activates protein kinase A. The slow off-rate of clenbuterol is why the signal is sustained where salbutamol is transient.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Different consequences in different tissues at the same time',
+        laymanDesc:
+          'Airways relax, fat cells release fat, muscle fibres grow, potassium moves into cells and the heart beats faster and harder.',
+        molecularDetail:
+          'Protein kinase A relaxes bronchial smooth muscle, phosphorylates hormone-sensitive lipase to drive lipolysis, stimulates the sodium-potassium ATPase so serum potassium falls, promotes glycogenolysis and gluconeogenesis so glucose and lactate rise, and over weeks shifts skeletal muscle towards hypertrophy. In cardiac myocytes it raises rate and contractility. The measured poisoning picture — tachycardia, tremor, hypokalaemia, hyperglycaemia, raised lactate — is this list read in a single patient.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'More lean mass, less endurance, and a cardiac cost',
+        laymanDesc:
+          'The body composition change is real. The functional gain is not, and six of thirteen confirmed poisoning cases had blood markers of heart muscle damage.',
+        molecularDetail:
+          'In the randomised heart failure trial, lean mass and the lean-to-fat ratio rose while endurance and exercise duration fell. In the heroin adulteration outbreak, 6 of 13 confirmed exposures had biochemical evidence of myocardial injury. Chronic beta-adrenergic stimulation is a recognised driver of cardiac remodelling, and the human dose-response for that at fat-loss doses is not characterised.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Kamalakkannan 2008 randomised trial in chronic heart failure',
+        phase: 'Small randomised controlled trial',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Skeletal muscle function, cardiac function and exercise capacity, with body composition',
+        endpointMet: false,
+        statisticalPValue:
+          'Significant increase in lean mass and lean-to-fat ratio; maximal strength rose 27% on clenbuterol and 14% on placebo; endurance and exercise duration decreased after clenbuterol',
+        unreportedAdverseSignals:
+          'An accompanying editorial in the same journal argued the trial showed impaired muscle quality and characterised the compound as potentially dangerous.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'FIFA U-17 World Cup 2011 food contamination investigation',
+        phase: 'Observational analytical investigation, doping control and food samples',
+        sampleSize: 208,
+        primaryEndpoint:
+          'Prevalence and concentration of clenbuterol in athlete urine and in meat sampled from team hotels',
+        endpointMet: true,
+        statisticalPValue:
+          '109 of 208 urine samples (52%) positive at 1-1,556 pg/mL; 14 of 47 meat samples (30%) positive at 0.06-11 ug/kg; 19 of 24 teams had at least one positive sample',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Catalonia 1992 clenbuterol poisoning outbreak investigation',
+        phase: 'Epidemiological outbreak investigation',
+        sampleSize: 113,
+        primaryEndpoint: 'Symptom frequency, incubation period and source attribution',
+        endpointMet: true,
+        statisticalPValue:
+          'Association between veal liver consumption and illness P < 0.0001; clenbuterol detected in 47 urine samples at 11-486 ppb; no deaths',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'US East Coast clenbuterol-adulterated heroin outbreak',
+        phase: 'Multi-state poison centre case series over six months',
+        sampleSize: 34,
+        primaryEndpoint: 'Clinical and laboratory features of confirmed clenbuterol exposure',
+        endpointMet: true,
+        statisticalPValue:
+          '13 confirmed cases, clenbuterol detected in 12; blood 2.4-26 ng/mL, urine 9.4-12,526 ng/mL; 6 of 13 with biochemical myocardial injury',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clenbuterol was present in 52% of 208 doping control urine samples and 30% of 47 hotel meat samples at the 2011 FIFA U-17 World Cup in Mexico',
+        'In a 113-case outbreak in Catalonia, veal liver consumption was associated with illness at P < 0.0001, with urinary clenbuterol of 11-486 ppb and symptoms lasting up to six days',
+        '6 of 13 confirmed exposures in the clenbuterol-adulterated heroin outbreak had biochemical evidence of myocardial injury, with hypokalaemia, hyperglycaemia and raised lactate',
+        'In a randomised trial in chronic heart failure, lean mass and lean-to-fat ratio rose while endurance and exercise duration fell',
+      ],
+      unsupportedInferences: [
+        'That clenbuterol produces meaningful fat loss in healthy humans, which no randomised trial has measured at the doses used',
+        'That an increase in lean mass means an increase in what the muscle can do, which the one trial measuring both contradicted',
+        'That a positive doping test for clenbuterol identifies deliberate use, when half the samples at one tournament were positive from food',
+        'That because it is a licensed bronchodilator somewhere, it has a characterised safety profile at fat-loss doses; the licensed human dose is 20 micrograms',
+      ],
+      whatFailedInitially: [
+        'Clenbuterol was never developed as a human anabolic or fat-loss agent; the human trials that exist studied bronchodilation and muscle wasting in cardiac patients',
+        'Its use as a livestock repartitioning agent was banned in the United States, the European Union and China after repeated human poisoning outbreaks traced to residues',
+      ],
+      realWorldOutcome: [
+        'In the United States the only approval is a veterinary oral syrup for horses with airway obstruction, 21 CFR 520.452, limited to 30-day treatment periods',
+        'Prohibited at all times in sport under WADA class S1.2 as an other anabolic agent, with meat contamination now a recognised route to an adverse analytical finding',
+        'Residue surveillance for beta-agonists in food animals exists in the United States, the European Union and China as a direct result of the poisoning outbreaks',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet (20 micrograms where licensed for humans), oral syrup (veterinary), unlicensed liquids',
+      description:
+        'Where licensed for people, a 20-microgram tablet. In the United States, a 72.5 microgram per millilitre veterinary syrup for horses. Outside both, unlicensed liquid preparations sold by dropper alongside SARMs and stimulants, where the label microgram figure has no analytical backing. The involuntary route — contaminated meat and adulterated heroin — accounts for the best-documented human exposures.',
+      safetyProfile:
+        'Documented human effects: tachycardia, tremor, palpitations, headache, nausea, chest pain, dyspnoea, hypokalaemia, hypophosphataemia, hyperglycaemia, raised lactate and biochemical myocardial injury. In the poison-centre series, 6 of 13 confirmed exposures had myocardial injury markers and beta-blockade was given in 10 without adverse effect. Food-borne exposures produced symptoms lasting 90 minutes to six days with no deaths in the reported outbreaks. Paediatric ingestions have been reported. There is no long-term human safety dataset at any dose used for fat loss.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can eating a steak fail a drug test?',
+        a: 'Because clenbuterol accumulates in the liver and muscle of illegally treated cattle, and doping-control mass spectrometry detects picograms per millilitre. At the 2011 FIFA U-17 World Cup in Mexico, 109 of 208 doping control samples (52%) contained clenbuterol at 1 to 1,556 pg/mL, and 14 of 47 meat samples collected in team hotels (30%) contained it at 0.06 to 11 micrograms per kilogram. Only 5 of 24 teams were entirely clean, and at least one of those was avoiding meat on purpose. No player was sanctioned. The same contamination has caused frank poisoning outbreaks in Spain, Italy, Portugal and China.',
+        auditNote:
+          'This is why an adverse analytical finding for clenbuterol is adjudicated rather than assumed, and it is one of the few doping compounds where that is true.',
+      },
+      {
+        q: 'Does it actually burn fat in people?',
+        a: 'No randomised trial has measured that. The lipolytic argument comes from beta-2 receptor pharmacology and from livestock studies where clenbuterol was fed to cattle and pigs to shift carcass composition. The human trials that exist studied bronchodilation, or lean mass in patients with heart failure and left ventricular assist devices. The one randomised trial that measured both mass and function found lean mass up and endurance and exercise duration down. What the drug does to fat mass in a healthy person taking it in two-week cycles is unmeasured.',
+      },
+      {
+        q: 'What does an overdose look like?',
+        a: 'It looks like the receptor doing its job everywhere at once. In the multi-state series of clenbuterol-adulterated heroin, confirmed cases presented with nausea, chest pain, palpitations, dyspnoea and tremor, with significant tachycardia, hypotension, hyperglycaemia, hypokalaemia and raised lactate; 6 of 13 had biochemical evidence of myocardial injury. Ten patients received beta-blockers without adverse effect. In the food outbreaks, symptoms started 15 minutes to 6 hours after the meal and lasted from 90 minutes to 6 days.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no legal human market in the United States and therefore no list price to cite. This site prints acquisition costs from published sources. A grey-market asking price is not a published figure, and printing one would amount to sourcing information.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Thevis M et al. Adverse analytical findings with clenbuterol among U-17 soccer players attributed to food contamination issues. Drug Test Anal 2013;5:372-376',
+        identifier: '10.1002/dta.1471',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Salleras L et al. Epidemiologic study of an outbreak of clenbuterol poisoning in Catalonia, Spain. Public Health Rep 1995;110:338-342',
+        identifier: '7610227',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Brambilla G et al. Clinical and pharmacological profile in a clenbuterol epidemic poisoning of contaminated beef meat in Italy. Toxicol Lett 2000;114:47-53',
+        identifier: '10.1016/s0378-4274(99)00270-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Martinez-Navarro JF. Food poisoning related to consumption of illicit beta-agonist in liver. Lancet 1990;336:1311',
+        identifier: '10.1016/0140-6736(90)92990-y',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hoffman RS et al. A descriptive study of an outbreak of clenbuterol-containing heroin. Ann Emerg Med 2008;52:548-553',
+        identifier: '10.1016/j.annemergmed.2008.04.026',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hoffman RJ et al. Clenbuterol ingestion causing prolonged tachycardia, hypokalemia, and hypophosphatemia with confirmation by quantitative levels. J Toxicol Clin Toxicol 2001;39:339-344',
+        identifier: '10.1081/clt-100105152',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kamalakkannan G et al. Clenbuterol increases lean muscle mass but not endurance in patients with chronic heart failure. J Heart Lung Transplant 2008;27:457-461',
+        identifier: '10.1016/j.healun.2008.01.013',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Habedank D et al. Clenbuterol impairs muscle quality and is potentially dangerous. J Heart Lung Transplant 2008;27:934-935',
+        identifier: '10.1016/j.healun.2008.05.002',
+        kind: 'doi',
+      },
+      {
+        label:
+          'George I et al. Effect of clenbuterol on cardiac and skeletal muscle function during left ventricular assist device support. J Heart Lung Transplant 2006;25:1084-1090',
+        identifier: '10.1016/j.healun.2006.06.017',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hostrup M, Onslev J. The beta2-adrenergic receptor — a re-emerging target to combat obesity and induce leanness? J Physiol 2022;600:1209-1227',
+        identifier: '10.1113/JP281819',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Walpurgis K et al. Dietary supplement and food contaminations and their implications for doping controls. Foods 2020;9:1012',
+        identifier: '10.3390/foods9081012',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Barry AR, Graham MM. Case report and review of clenbuterol cardiac toxicity. J Cardiol Cases 2013;8:131-133',
+        identifier: '10.1016/j.jccase.2013.07.004',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 520.452 — Clenbuterol syrup, the only clenbuterol product approved in the United States, for horses with airway obstruction',
+        identifier:
+          'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-E/part-520/section-520.452',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2783 — clenbuterol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2783',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 19. TB-500 (thymosin beta-4)
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tb-500',
+    name: 'TB-500 (thymosin beta-4)',
+    tradeName:
+      'Sold as TB-500. The full peptide is thymosin beta-4, developed as RGN-259 (eye drops) and NL005 (recombinant injection)',
+    sponsor:
+      'RegeneRx Biopharmaceuticals and its licensees for RGN-259; Beijing Northland Biotech for recombinant NL005. Nobody sponsors TB-500 — it is a research-chemical product name',
+    targetGene: 'TMSB4X',
+    targetProtein:
+      'Monomeric globular actin (G-actin) — thymosin beta-4 is the principal actin-sequestering protein of mammalian cells',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Phase 3 Clinical Trial',
+    indication:
+      'No approved indication anywhere. Thymosin beta-4 has been taken through phase 3 as an ophthalmic solution for dry eye and neurotrophic keratopathy, and through phase 1 and 2 as an injectable for acute myocardial infarction and chronic wounds. TB-500 itself has never been in a human trial of any kind.',
+    patientFriendlyIndication:
+      'Sold for injury repair — nothing containing it is approved anywhere',
+    anatomicalSite:
+      'Cytoplasmic G-actin pool in migrating cells: corneal epithelium, keratinocytes, endothelium, cardiomyocytes',
+    conditionContext: {
+      conditionExplainer:
+        'Actin exists in two forms: free single molecules and long polymers that give a cell its skeleton and let it crawl. Thymosin beta-4 binds the free form and holds it in reserve, which controls how fast a cell can build and dismantle that skeleton. Cells that need to migrate — into a wound, across a scratched cornea — depend on that reserve.',
+      whyItMatters:
+        'This is the most-studied peptide in the injury-repair grey market and the gap between what has been tested and what is sold is unusually wide. The trials used eye drops or intravenous infusion of the whole 43-residue peptide. The product sold is a seven-residue fragment given by subcutaneous injection.',
+      whoTakesThis:
+        'In trials: patients with dry eye, neurotrophic keratopathy, pressure and venous ulcers, and acute myocardial infarction. Outside trials: people with tendon, ligament and muscle injuries, and horses, where doping-control methods for TB-500 were developed first.',
+      clinicalGoals:
+        'In the ophthalmic programme, reduction in corneal fluorescein staining and in ocular discomfort. There is no defined goal for the injectable grey-market use.',
+    },
+    oneSentenceVerdict:
+      'The full peptide is real, well characterised and in phase 3; the product sold as TB-500 is its seven-residue fragment Ac-LKKTETQ, which has never been given to a human in a trial, and the largest completed phase 3 of the parent molecule missed both co-primary endpoints with the drug arm numerically worse than placebo.',
+    laymanHowItWorks:
+      'Every cell contains a scaffolding protein called actin that it constantly builds and takes apart in order to change shape and move. Thymosin beta-4 is the molecule that holds the spare actin subunits, so it sets how much building material is immediately available. Adding more of it makes cells migrate faster, which is why it speeds up healing of a scratched cornea in the laboratory and why it was developed as an eye drop. The product sold online is not this molecule. It is a seven-amino-acid piece of it, the stretch that grips actin, made by peptide synthesis and sold in a vial. Whether a fragment that short does anything in a person has not been tested.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 22,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: '(Ac)SDKPDMAEIEKFDKSKLKKTETQEKNPLPSKETIEQEKQAGES',
+      chemicalFormula: 'C212H350N56O78S',
+      molecularWeight:
+        '4963 g/mol (full peptide); the Ac-LKKTETQ fragment in TB-500 is 889.0 g/mol',
+      targetReceptorAffinity:
+        'A 43-residue, N-terminally acetylated, intrinsically disordered peptide with no receptor in the classical sense. It binds monomeric G-actin in a 1:1 complex through the central helix and the actin-binding motif LKKTETQ at residues 17-23, sequestering the monomer and preventing its addition to a filament end. The fragment sold as TB-500 is that motif alone, N-terminally acetylated.',
+      structureSource: {
+        label:
+          'UniProt P62328 (TYB4_HUMAN) for the sequence, given here without the initiator methionine that is removed in the mature acetylated peptide; PubChem CID 45382195 for formula and molecular weight',
+        identifier: 'https://www.uniprot.org/uniprotkb/P62328',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tb4-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Is the vial the peptide or the fragment?',
+          description:
+            'This is the first and most consequential question for any product labelled TB-500, because the two answers differ by 36 residues and about 4,000 daltons. Mass spectrometry settles it immediately: the full peptide gives a multiply charged envelope around 4,963 Da, the acetylated 17-23 fragment a single species at 889 Da. The published characterisation of a commercial TB-500 product identified Ac-LKKTETQ, not thymosin beta-4.',
+          reagentsAndBuffer:
+            'Certified thymosin beta-4 and synthetic Ac-LKKTETQ reference standards, high-resolution accurate-mass ESI-MS on an Orbitrap-class instrument, MS/MS b and y ion sequencing, reversed-phase C18 HPLC with 0.1% trifluoroacetic acid and acetonitrile',
+        },
+        {
+          id: 'tb4-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Peptide content, related substances and endotoxin',
+          description:
+            'Determine actual peptide content rather than the nominal milligram figure on a lyophilised vial, which usually overstates it once counterions and residual water are counted, and screen for the deletion and epimerised sequences solid-phase synthesis leaves behind. Because the grey-market route is injection, endotoxin is part of the assay.',
+          dependsOnStepId: 'tb4-w1',
+          reagentsAndBuffer:
+            'Amino acid analysis after vapour-phase 6 M hydrochloric acid hydrolysis, reversed-phase HPLC with UV detection at 214 nm for related substances, ion chromatography for acetate and trifluoroacetate, Karl Fischer titration for water, limulus amoebocyte lysate for endotoxin',
+        },
+        {
+          id: 'tb4-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and urine extraction for exposure confirmation',
+          description:
+            'Both analytes are hydrophilic, poorly retained on conventional reversed phase and present at low concentration, and thymosin beta-4 is also endogenous — it is one of the most abundant peptides in the cell — so a confirmation has to distinguish administered from native material by concentration and by the presence of the fragment. The equine methods were published first because TB-500 reached horse racing before it reached human sport.',
+          dependsOnStepId: 'tb4-w2',
+          reagentsAndBuffer:
+            'Acidified plasma with protease inhibitors, mixed-mode cation-exchange or hydrophilic-interaction solid-phase extraction, stable-isotope-labelled internal standards for both the full peptide and the fragment, low-binding polypropylene throughout',
+        },
+        {
+          id: 'tb4-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Actin sequestration and cell migration assay',
+          description:
+            'Measure what the molecule is supposed to do. Pyrene-labelled actin polymerisation gives the biochemical readout — sequestration slows filament assembly in a concentration-dependent way — and a scratch-wound assay on corneal epithelial cells gives the cellular one. Running the full peptide and the seven-residue fragment side by side in the same assay is the experiment the grey market has never published.',
+          dependsOnStepId: 'tb4-w3',
+          reagentsAndBuffer:
+            'Pyrene-labelled rabbit skeletal muscle G-actin, F-buffer with KCl, MgCl2 and ATP, fluorimeter at 365 nm excitation and 407 nm emission; human corneal epithelial cells or HaCaT keratinocytes for scratch-wound closure with live-cell imaging, cytochalasin D as polymerisation control',
+        },
+        {
+          id: 'tb4-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification of peptide and fragment',
+          description:
+            'Quantify thymosin beta-4 and Ac-LKKTETQ separately by tandem mass spectrometry against labelled internal standards. Reporting a single "TB-500 concentration" without saying which species was measured is uninterpretable, since a positive for the fragment implies administration and a positive for the full peptide may not.',
+          dependsOnStepId: 'tb4-w4',
+          reagentsAndBuffer:
+            'C18 or biphenyl column with 0.1% formic acid and acetonitrile gradient, electrospray positive-ion multiple-reaction monitoring on the doubly and triply charged precursors for the full peptide and the singly charged precursor for the fragment, stable-isotope-labelled internal standards',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tb4-a1',
+        category: 'measured',
+        title: 'The product sold as TB-500 is a seven-residue fragment, not the peptide',
+        laymanSummary:
+          'A doping control laboratory bought a TB-500 product and identified what was in it: a seven-amino-acid piece of thymosin beta-4 with an acetyl cap, not the whole 43-residue molecule.',
+        technicalDetails:
+          'Esposito et al. at the Ghent doping control laboratory analysed the formulation TB-500 by high-performance liquid chromatography with high-resolution mass spectrometry on an Orbitrap Exactive and identified the N-terminally acetylated 17-23 fragment of human thymosin beta-4, Ac-LKKTETQ. They then synthesised Ac-LKKTETQ by solid-phase peptide synthesis to confirm the identification and proposed a triple-quadrupole method for detecting it in plasma and urine. This is the single most important fact on the page: the clinical literature on thymosin beta-4 is about a 4,963-dalton peptide and the product is an 889-dalton fragment of it. Read that clinical literature as evidence about TB-500 and you are attributing to a fragment the results obtained with the whole molecule.',
+        evidenceSource: 'Esposito S et al., Drug Test Anal 2012;4:733-738',
+        doi: '10.1002/dta.1402',
+        measuredMetric:
+          'Identity of the active species in a commercially sold TB-500 formulation by high-resolution mass spectrometry',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tb4-a2',
+        category: 'failed',
+        title: 'ARISE-2 missed both co-primary endpoints, numerically behind placebo',
+        laymanSummary:
+          'The 601-patient phase 3 trial of thymosin beta-4 eye drops for dry eye posted its results. On both main measures the drug group did slightly worse than placebo.',
+        technicalDetails:
+          'ARISE-2 (NCT02974907) was a multicentre, randomised, double-masked, placebo-controlled phase 3 study of 0.1% RGN-259 ophthalmic solution in 601 patients with dry eye, completed March 2018, with two co-primary endpoints at day 29: ocular discomfort on the Ora Calibra 6-point scale and corneal fluorescein staining on the Ora Calibra 5-point scale, both as change from baseline. The posted results give ocular discomfort change of +0.07 on RGN-259 against -0.04 on placebo, and corneal fluorescein staining change of +0.07 on RGN-259 against -0.01 on placebo. On these scales a lower score is better and a negative change is improvement, so both co-primary endpoints favoured placebo numerically. A trial with co-primary endpoints that misses both is a failed trial.',
+        evidenceSource:
+          'ClinicalTrials.gov posted results, NCT02974907 (ARISE-2), primary outcome measures at day 29',
+        measuredMetric:
+          'Change from baseline at day 29 in ocular discomfort and corneal fluorescein staining, RGN-259 0.1% versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tb4-a3',
+        category: 'measured',
+        title: 'The small phase 2 in severe dry eye did separate from placebo',
+        laymanSummary:
+          'A nine-patient trial found meaningful improvements in eye discomfort and corneal damage on the drops, which is what justified taking it into phase 3.',
+        technicalDetails:
+          'Sosne et al. ran a small multicentre randomised double-masked placebo-controlled 56-day phase 2 trial (NCT01393132) at two US sites, treating nine patients with severe dry eye, including disease associated with graft-versus-host disease, with 0.1% RGN-259 or vehicle six times daily for 28 days. At day 56 the RGN-259 group (12 eyes) had a 35.1% reduction in ocular discomfort against vehicle (6 eyes), P = 0.0141, and a 59.1% reduction in total corneal fluorescein staining, P = 0.0108, with improvements also in tear film break-up time and tear volume. The trial was safe and well tolerated. It is also nine patients, unblinded to nothing but analysed as eyes, and its effect sizes did not survive into a 601-patient replication. That sequence — a striking small trial followed by a null large one — is the most common shape in this entire file.',
+        evidenceSource: 'Sosne G et al., Cornea 2015;34:491-496 (NCT01393132)',
+        doi: '10.1097/ICO.0000000000000379',
+        measuredMetric:
+          'Percentage reduction in ocular discomfort and total corneal fluorescein staining at day 56 versus vehicle',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tb4-a4',
+        category: 'measured',
+        title: 'Intravenous recombinant thymosin beta-4 was tolerated in 84 healthy volunteers',
+        laymanSummary:
+          'A first-in-human study gave recombinant thymosin beta-4 by vein to 84 healthy Chinese volunteers across single and repeated doses with no serious adverse events.',
+        technicalDetails:
+          'Wang et al. ran a randomised, double-blind, placebo-controlled phase 1 of recombinant human thymosin beta-4 (NL005). Seven cohorts totalling 54 subjects received single intravenous doses of 0.05, 0.25, 0.5, 2.0, 5.0, 12.5 or 25.0 micrograms per kilogram and were observed for 28 days. A further 30 subjects in three cohorts received 0.5, 2.0 or 5.0 micrograms per kilogram once daily for 10 days with 28-day observation. Adverse events were mild to moderate, with no dose-limiting toxicities and no serious adverse events. Cmax and AUC rose with dose, terminal clearance was consistent across cohorts, and there was no accumulation on repeated dosing. This is the only systematic human safety and pharmacokinetic dataset for the molecule, it used the full recombinant peptide intravenously, and the doses are in micrograms per kilogram.',
+        evidenceSource: 'Wang X et al., J Cell Mol Med 2021;25:8222-8228',
+        doi: '10.1111/jcmm.16693',
+        measuredMetric:
+          'Adverse events, Cmax, AUC and anti-drug antibodies across seven single-dose and three multiple-dose cohorts',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tb4-a5',
+        category: 'inferred',
+        title: 'Tendon and ligament repair is the selling point and has no human data',
+        laymanSummary:
+          'TB-500 is sold for healing tendons, ligaments and muscle. No human trial has ever tested it for any of those.',
+        technicalDetails:
+          'The registered human programme for thymosin beta-4 covers ophthalmic surface disease (dry eye, neurotrophic keratopathy), chronic skin wounds (pressure ulcers NCT00382174 n=72, venous stasis ulcers NCT00832091 n=72, epidermolysis bullosa NCT00311766 terminated at n=30), and cardiac indications (acute myocardial infarction, phase 1 and 2). There is no registered trial of thymosin beta-4 or of Ac-LKKTETQ for tendon, ligament, muscle or joint injury in humans. The tendon claim rests on rodent and equine work and on the actin-sequestration mechanism, which is a plausible mechanism and not a result. The injectable formulation studied in a phase 2 for chronic wounds, NCT01311518, was withdrawn before enrolling anybody.',
+        evidenceSource:
+          'ClinicalTrials.gov registrations for thymosin beta-4: NCT00382174, NCT00832091, NCT00311766, NCT01311518, NCT05984134; no registered trial exists for tendon, ligament or muscle injury',
+        inferredClaim:
+          'That TB-500 accelerates tendon, ligament or muscle repair in humans — the entire basis on which it is sold, with no human trial of the compound for those tissues',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tb4-a6',
+        category: 'measured',
+        title: 'Detection methods for TB-500 were written for racehorses first',
+        laymanSummary:
+          'The first published method for finding TB-500 in a body was developed for equine urine and plasma, because it reached horse racing before it reached human sport.',
+        technicalDetails:
+          'Ho et al. published a liquid chromatography-mass spectrometry method for the doping control analysis of TB-500 in equine urine and plasma, describing it explicitly as a synthetic version of an active region of thymosin beta-4. The Ghent group followed with a plasma and urine strategy for human samples. Thymosin beta-4 and its fragments are prohibited at all times in human sport under WADA class S2, growth factors and related substances. The analytical problem is that thymosin beta-4 is endogenous and abundant, so a confirmation for the parent peptide is difficult, while the seven-residue fragment is not endogenous and its presence is unambiguous — which means the grey-market product is easier to detect than the real drug would be.',
+        evidenceSource:
+          'Ho EN et al., J Chromatogr A 2012;1265:57-69; Esposito S et al., Drug Test Anal 2012;4:733-738',
+        doi: '10.1016/j.chroma.2012.09.043',
+        measuredMetric:
+          'Analytical detection of TB-500 and Ac-LKKTETQ in equine urine and plasma and in human plasma and urine',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given as drops, as an infusion, or by subcutaneous injection',
+        laymanDesc:
+          'The tested routes are eye drops and a drip into a vein. The route people actually use is a needle under the skin.',
+        molecularDetail:
+          'RGN-259 is a 0.1% ophthalmic solution used six times daily; NL005 is an intravenous recombinant preparation dosed in micrograms per kilogram. TB-500 is sold as a lyophilised powder for reconstitution and subcutaneous or intramuscular injection, a route for which no pharmacokinetic data exist for either the peptide or the fragment.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters cells without a receptor',
+        laymanDesc:
+          'There is no lock on the cell surface for this molecule to fit. It has to get inside, where its target is.',
+        molecularDetail:
+          'Thymosin beta-4 has no identified classical cell-surface receptor. It is small, highly charged and intrinsically disordered, and its target — monomeric actin — is cytoplasmic. Internalisation is one of the least well characterised steps in its pharmacology and the point at which extrapolation from in vitro results to an injected dose is weakest.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Grips a free actin subunit and holds it',
+        laymanDesc:
+          'It clamps onto a loose actin building block so that block cannot be added to the growing scaffold.',
+        molecularDetail:
+          'The central helix and the LKKTETQ motif at residues 17-23 form a 1:1 complex with ATP-G-actin, occluding the surfaces used for nucleotide exchange and for addition to the barbed end. The intracellular pool of thymosin beta-4 is what sets how much polymerisation-competent actin a cell holds in reserve. Ac-LKKTETQ is that motif in isolation.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Cells rearrange their skeleton faster and migrate',
+        laymanDesc:
+          'With a bigger reserve of building blocks, cells can take apart and rebuild their internal scaffolding quickly, which is what crawling into a wound requires.',
+        molecularDetail:
+          'Raising available sequestered monomer accelerates the treadmilling cycle that drives lamellipodial protrusion. In corneal epithelial and dermal models this shows up as faster scratch-wound closure, reduced inflammatory cytokine expression and reduced apoptosis. These are the measurements behind the ophthalmic development programme.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A convincing small trial, a null large one, no approval',
+        laymanDesc:
+          'A nine-patient study looked strong. A 601-patient study of the same drops came out slightly behind placebo on both main measures. Nothing containing this molecule is approved anywhere.',
+        molecularDetail:
+          'ARISE-2 posted change-from-baseline at day 29 of +0.07 on drug versus -0.04 on placebo for ocular discomfort, and +0.07 versus -0.01 for corneal fluorescein staining. Development continues in neurotrophic keratopathy. No thymosin beta-4 product holds a marketing authorisation in any jurisdiction, and the fragment sold as TB-500 has never entered a human trial.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT02974907 (ARISE-2)',
+        phase: 'Phase 3, multicentre randomised double-masked placebo-controlled',
+        sampleSize: 601,
+        primaryEndpoint:
+          'Co-primary: change from baseline at day 29 in ocular discomfort and in corneal fluorescein staining',
+        endpointMet: false,
+        statisticalPValue:
+          'Ocular discomfort change +0.07 on RGN-259 versus -0.04 on placebo; corneal fluorescein staining change +0.07 versus -0.01. Lower is better on both scales, so both co-primaries favoured placebo',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT01393132 (phase 2 in severe dry eye)',
+        phase: 'Phase 2, randomised double-masked placebo-controlled, 56 days',
+        sampleSize: 9,
+        primaryEndpoint: 'Ocular discomfort and corneal fluorescein staining',
+        endpointMet: true,
+        statisticalPValue:
+          '35.1% reduction in ocular discomfort versus vehicle at day 56 (P = 0.0141) and 59.1% reduction in total corneal fluorescein staining (P = 0.0108), analysed as 12 treated eyes against 6 control eyes',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT03937882 (ARISE-3)',
+        phase: 'Phase 3, multicentre randomised double-masked placebo-controlled',
+        sampleSize: 700,
+        primaryEndpoint: 'Co-primary: corneal staining and ocular discomfort on a 6-point scale',
+        endpointMet: false,
+        statisticalPValue:
+          'Completed October 2021. No results posted to ClinicalTrials.gov and no product approval has followed in any jurisdiction',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Wang 2021 first-in-human phase 1 of recombinant thymosin beta-4 (NL005)',
+        phase: 'Phase 1, randomised double-blind, single and multiple ascending intravenous doses',
+        sampleSize: 84,
+        primaryEndpoint:
+          'Safety, tolerability, pharmacokinetics and anti-drug antibodies in healthy volunteers',
+        endpointMet: true,
+        statisticalPValue:
+          'Adverse events mild to moderate; no dose-limiting toxicity and no serious adverse events across 0.05 to 25.0 ug/kg single doses and 0.5 to 5.0 ug/kg daily for 10 days; dose-proportional Cmax and AUC with no accumulation',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A commercially sold TB-500 formulation was shown by high-resolution mass spectrometry to contain the N-terminally acetylated 17-23 fragment Ac-LKKTETQ, not thymosin beta-4',
+        'ARISE-2, 601 patients, posted change from baseline at day 29 of +0.07 on drug versus -0.04 on placebo for ocular discomfort and +0.07 versus -0.01 for corneal staining, missing both co-primary endpoints',
+        'A 9-patient phase 2 of the same drops reported 35.1% less ocular discomfort (P = 0.0141) and 59.1% less corneal staining (P = 0.0108) than vehicle at day 56',
+        'Intravenous recombinant thymosin beta-4 was tolerated in 84 healthy volunteers up to 25 ug/kg single dose with no serious adverse events and no accumulation over 10 days',
+      ],
+      unsupportedInferences: [
+        'That results obtained with the 43-residue peptide describe the 7-residue fragment that is actually sold',
+        'That TB-500 accelerates tendon, ligament or muscle healing in people, which no trial has tested in any species-appropriate human design',
+        'That an intravenous microgram-per-kilogram safety dataset covers milligram subcutaneous self-injection of a different molecule',
+        'That a positive small ophthalmic trial predicted the large one, when the 601-patient replication came out numerically behind placebo',
+      ],
+      whatFailedInitially: [
+        'ARISE-2 missed both co-primary endpoints with the active arm numerically worse than placebo on each',
+        'The neurotrophic keratopathy phase 3 RGN-NK-301 (NCT02600429) was terminated after 18 patients for a stated business decision',
+        'A phase 2 of injectable thymosin beta-4 for chronic wounds (NCT01311518) was withdrawn before enrolling a single participant',
+      ],
+      realWorldOutcome: [
+        'No thymosin beta-4 product is approved in any jurisdiction; development continues in neurotrophic keratopathy (NCT05555589) and in acute myocardial infarction in China',
+        'Thymosin beta-4 and its fragments are prohibited at all times in sport under WADA class S2, growth factors and related substances',
+        'Doping-control detection methods for TB-500 were published for equine urine and plasma before human methods, because the product reached horse racing first',
+      ],
+    },
+    deliverySystem: {
+      type: 'Ophthalmic solution 0.1% and intravenous infusion in trials; lyophilised powder for subcutaneous injection outside them',
+      description:
+        'The tested formulations are an eye drop used six times daily and an intravenous recombinant preparation dosed in micrograms per kilogram. What is sold is a lyophilised vial of synthetic Ac-LKKTETQ for reconstitution with bacteriostatic water and subcutaneous injection, typically in milligram quantities. No pharmacokinetic study exists for that route, that molecule, or that dose range.',
+      safetyProfile:
+        'The full peptide was well tolerated as eye drops across a phase 2 and phase 3 programme and intravenously in 84 healthy volunteers, with no serious adverse events and no dose-limiting toxicity up to 25 micrograms per kilogram. Nothing is known about the safety of the seven-residue fragment in humans at any dose, because it has never been studied in a person. The general concerns applying to any unlicensed injectable peptide — endotoxin, deletion sequences, sterility, immunogenicity — apply here and are not addressed by the trial data on the parent molecule.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is TB-500 the same thing as thymosin beta-4?',
+        a: 'No, and this is the central fact about the product. Thymosin beta-4 is a 43-residue peptide of about 4,963 daltons that has been through phase 3 trials as an eye drop and phase 1 as an intravenous infusion. When a doping control laboratory analysed a commercial TB-500 formulation on a high-resolution mass spectrometer, what it contained was Ac-LKKTETQ, the acetylated 17-23 fragment, about 889 daltons. That fragment is the actin-binding motif, so the choice is not arbitrary, but it is a different molecule and it has never been given to a human being in a trial.',
+        auditNote:
+          'Every clinical result quoted for TB-500 by a vendor was obtained with the full peptide. None was obtained with what is in the vial.',
+      },
+      {
+        q: 'Does it heal tendons?',
+        a: 'There is no human trial of it for tendon, ligament, muscle or joint injury — not of the peptide and not of the fragment. The registered human programme covers dry eye, neurotrophic keratopathy, pressure and venous ulcers, and acute myocardial infarction. The tendon claim comes from rodent and equine work plus the actin-sequestration mechanism. That mechanism is real and well described; it is not a clinical result, and this page does not treat it as one.',
+      },
+      {
+        q: 'What happened in the big trial?',
+        a: 'ARISE-2 randomised 601 patients with dry eye to 0.1% RGN-259 eye drops or placebo, with two co-primary endpoints at day 29. The posted results give an ocular discomfort change of +0.07 on drug against -0.04 on placebo, and a corneal staining change of +0.07 against -0.01. On both scales a negative change is improvement, so the drug arm finished slightly behind placebo on both. The nine-patient phase 2 that preceded it had reported 35% and 59% relative improvements. That is the shape of the evidence: a striking small study that did not survive a large one.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because nothing containing this molecule is approved anywhere, so there is no list price to cite. This site prints acquisition costs from published sources. A research-chemical vendor asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Esposito S et al. Synthesis and characterization of the N-terminal acetylated 17-23 fragment of thymosin beta 4 identified in TB-500, a product suspected to possess doping potential. Drug Test Anal 2012;4:733-738',
+        identifier: '10.1002/dta.1402',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ho EN et al. Doping control analysis of TB-500, a synthetic version of an active region of thymosin beta-4, in equine urine and plasma by liquid chromatography-mass spectrometry. J Chromatogr A 2012;1265:57-69',
+        identifier: '10.1016/j.chroma.2012.09.043',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sosne G et al. Thymosin beta-4 significantly improves signs and symptoms of severe dry eye in a phase 2 randomized trial. Cornea 2015;34:491-496',
+        identifier: '10.1097/ICO.0000000000000379',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wang X et al. A first-in-human, randomized, double-blind, single- and multiple-dose, phase I study of recombinant human thymosin beta-4 in healthy Chinese volunteers. J Cell Mol Med 2021;25:8222-8228',
+        identifier: '10.1111/jcmm.16693',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sosne G, Ousler GW. Thymosin beta 4 ophthalmic solution for dry eye: a randomized, placebo-controlled, phase II clinical trial conducted using the controlled adverse environment model. Clin Ophthalmol 2015;9:877-884',
+        identifier: '10.2147/OPTH.S80954',
+        kind: 'doi',
+      },
+      {
+        label: 'ARISE-2 — phase 3 of RGN-259 ophthalmic solution for dry eye, posted results',
+        identifier: 'NCT02974907',
+        kind: 'nct',
+      },
+      {
+        label: 'ARISE-3 — phase 3 of RGN-259 ophthalmic solution for dry eye',
+        identifier: 'NCT03937882',
+        kind: 'nct',
+      },
+      {
+        label: 'ARISE-1 — phase 2/3 of RGN-259 ophthalmic solution for dry eye',
+        identifier: 'NCT02597803',
+        kind: 'nct',
+      },
+      {
+        label:
+          'RGN-NK-301 — phase 3 of RGN-259 in neurotrophic keratopathy, terminated at 18 participants for a stated business decision',
+        identifier: 'NCT02600429',
+        kind: 'nct',
+      },
+      {
+        label: 'Phase 2 of thymosin beta 4 in venous stasis ulcers',
+        identifier: 'NCT00832091',
+        kind: 'nct',
+      },
+      {
+        label: 'Phase 2 of thymosin beta 4 in pressure ulcers',
+        identifier: 'NCT00382174',
+        kind: 'nct',
+      },
+      {
+        label: 'UniProt P62328 (TYB4_HUMAN) — thymosin beta-4 sequence',
+        identifier: 'https://www.uniprot.org/uniprotkb/P62328',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 45382195 — thymosin beta-4 molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/45382195',
+        kind: 'url',
+      },
+    ],
+  },
 ]
