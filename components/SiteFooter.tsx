@@ -21,6 +21,7 @@
 // dependency and no state.
 
 import Link from 'next/link'
+import { GuideLink } from '@/components/GuideLink'
 
 const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: '/browse', label: 'Browse all medicines' },
@@ -50,6 +51,7 @@ export function SiteFooter() {
               {link.label}
             </Link>
           ))}
+          <GuideLink />
         </nav>
 
         <p className="text-[11px] leading-relaxed text-[#86868B]">

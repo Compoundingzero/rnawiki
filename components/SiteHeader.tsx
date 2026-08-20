@@ -162,10 +162,13 @@ export function SiteHeader() {
 
           {/* 3. Right: Doctor / Contributor Log-in */}
           <div className="flex items-center gap-2 shrink-0">
+            {/* Signed in, this control is the way to the account panel -- the reference pointed all
+                three states at the same modal, which for a signed-in reader meant clicking their own
+                name reopened the sign-in form. Only the signed-out state opens sign-in. */}
             {isVerifiedPhysician(currentUser) && currentUser ? (
               <button
                 type="button"
-                onClick={() => setOpenModal('auth')}
+                onClick={() => setOpenModal('account')}
                 className="flex items-center gap-1.5 text-xs font-semibold text-[#0071E3] bg-[#0071E3]/10 hover:bg-[#0071E3]/15 px-3 py-1.5 rounded-full border border-[#0071E3]/20 transition cursor-pointer whitespace-nowrap shrink-0"
                 aria-label={`Account for ${currentUser.name}, verified physician`}
               >
@@ -176,7 +179,7 @@ export function SiteHeader() {
             ) : currentUser ? (
               <button
                 type="button"
-                onClick={() => setOpenModal('auth')}
+                onClick={() => setOpenModal('account')}
                 className="flex items-center gap-1.5 text-xs font-semibold text-[#1D1D1F] bg-black/[0.04] hover:bg-black/[0.08] px-3 py-1.5 rounded-full transition cursor-pointer whitespace-nowrap shrink-0"
                 aria-label={`Account for ${currentUser.name}`}
               >
