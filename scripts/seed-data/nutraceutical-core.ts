@@ -6463,5 +6463,469 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Taurine — a genuine, curable deficiency disease in cats, a 2023 Science paper that made it an
+  // anti-ageing product overnight, and two 2025 papers finding circulating taurine does not fall
+  // with age in humans at all.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'taurine',
+    name: 'Taurine',
+    tradeName: '2-aminoethanesulfonic acid; the largest consumer route is energy drinks',
+    sponsor:
+      'No single sponsor — a sulphonic acid analogue of an amino acid, synthesised industrially from ethylene oxide and sodium bisulphite. It is not an amino acid in the protein-building sense and is not incorporated into any protein.',
+    targetGene: 'CDO1',
+    targetProtein:
+      'Taurine has no receptor. Its established roles are as an osmolyte, as the conjugating partner in taurine-conjugated bile acids, and as the substrate for the mitochondrial tRNA modification 5-taurinomethyluridine, which is required for correct decoding of certain codons in mitochondrially encoded proteins. Human synthesis runs through cysteine dioxygenase (CDO1) and cysteine sulphinic acid decarboxylase, the latter of which is essentially absent in cats.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for energy, exercise performance, cardiovascular health and, since 2023, longevity. Not approved by the FDA or EMA for any of them. Taurine is a mandatory addition to infant formula and to cat food, both for genuine deficiency reasons, and those are the only settings where its necessity is established.',
+    patientFriendlyIndication:
+      'Taken in energy drinks and pre-workout formulas, and increasingly for anti-ageing',
+    conditionContext: {
+      conditionExplainer:
+        'Taurine is unusual: it is abundant in tissue, is not built into proteins, and most mammals make their own. Cats cannot, because they lack the enzyme, and a cat fed a taurine-poor diet develops dilated cardiomyopathy and retinal degeneration that reverse on supplementation. That is a real deficiency disease with a real cure.',
+      whyItMatters:
+        'In June 2023 a Science paper reported that taurine declines with age across species and that supplementing it extended health span in mice and monkeys, and taurine became a longevity product within weeks. In 2025 two independent groups reported that circulating taurine does not decline with age in humans at all. This is the fastest complete reversal in this file, and it happened while the product was already on shelves.',
+      whoTakesThis:
+        'Energy drink consumers, who make up the overwhelming majority; athletes taking it for endurance; and a rapidly growing longevity market. Infants receive it in formula and cats in every commercial cat food, both by regulation.',
+      clinicalGoals:
+        'Studies measured left ventricular function in cats, circulating taurine concentration against chronological age in humans and primates, endurance time-to-exhaustion, and exercise time, metabolic equivalents and distance in a small heart failure trial.',
+    },
+    oneSentenceVerdict:
+      'Taurine cures a real and fatal deficiency disease in cats and is genuinely required in infant formula, and a 2018 meta-analysis found a small endurance benefit (Hedges g 0.40) — but the anti-ageing claim that built the current market rests on a 2023 Science paper whose central human premise, that taurine falls with age, was contradicted in 2025 by longitudinal data from three human cohorts.',
+    laymanHowItWorks:
+      'Taurine is not built into proteins and does not act on a receptor. It does three quieter jobs: it helps cells manage their water balance, it is attached to bile acids so they can do their work in the gut, and it chemically modifies a piece of the machinery that mitochondria use to read their own genes. Most people make enough from cysteine. Cats cannot make it at all, which is why cat food is fortified and why a taurine-starved cat develops heart failure that supplementation reverses. The question that matters for a human supplement is whether anyone is actually short of it, and the recent human data say most people are not.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 39,
+    anatomicalSite:
+      'Highest concentrations in retina, skeletal and cardiac muscle, leukocytes and brain; conjugated to bile acids in hepatocytes',
+    substitutes: {
+      summary:
+        'For a genuine deficiency — cats, some infants, long-term parenteral nutrition — taurine is not substitutable. For a healthy adult who synthesises it and eats meat or fish, the honest comparator is nothing, and the endurance effect is small enough that caffeine in the same energy drink is a more plausible explanation for how the drink feels.',
+      conventionalRx: [
+        {
+          name: 'Taurine fortification of infant formula and cat food',
+          class: 'Mandated nutrient addition',
+          howItCompares:
+            'The two settings where taurine\'s necessity is established rather than argued. Cats lack cysteine sulphinic acid decarboxylase and cannot synthesise it; human neonates have limited synthetic capacity. Both are fortification decisions made because deficiency produced disease.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: an unambiguous, mechanistically explained requirement with a documented disease when unmet. Cons: it is regularly cited as though it demonstrated something about a healthy adult, which it does not.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Shellfish, fish, and dark poultry meat',
+          activeCompound: 'Taurine, at far higher concentrations than in plant foods',
+          biologicalMechanism:
+            'Taurine is concentrated in animal tissue and essentially absent from plants, so dietary intake tracks animal food consumption closely. Endogenous synthesis from cysteine covers the rest in adults, which is why no human dietary requirement has ever been set.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the meta-analysed endurance trials used 1 to 6 g per day, and a typical energy drink contains around 1 g.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Cysteine-containing protein, as the synthetic precursor',
+          activeCompound: 'L-cysteine, converted through cysteine sulphinic acid to taurine',
+          biologicalMechanism:
+            'Cysteine dioxygenase and cysteine sulphinic acid decarboxylase convert cysteine to hypotaurine and then taurine. Adults with adequate sulphur amino acid intake synthesise taurine continuously, which is the reason no recommended intake exists and the reason the deficiency framing in the longevity marketing needs evidence it has not produced.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Ask whether the headline claim survived replication',
+          action:
+            'For taurine specifically, check the date. The claim that made it a longevity product is from 2023; the human data contradicting its central premise are from 2025.',
+          patientImpact:
+            'The 2023 Science paper reported that circulating taurine declines with age in mice, monkeys and humans. In 2025, a Science group measuring longitudinally in three geographically distinct human cohorts, plus nonhuman primates and mice, found taurine increased or was unchanged with age.',
+          clinicalPrecaution:
+            'A separate 2025 Aging Cell study in 137 men aged 20 to 93 found no association between circulating taurine and age, muscle mass, strength, physical performance or mitochondrial function.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C(CS(=O)(=O)O)N',
+      chemicalFormula: 'C2H7NO3S',
+      molecularWeight:
+        '125.15 g/mol. Note the sulphonic acid group where an amino acid would carry a carboxylic acid — this is why taurine cannot form a peptide bond and appears in no protein.',
+      structureSource: {
+        label: 'PubChem CID 1123 — Taurine, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/1123',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tau-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, and separation from the compounds it is sold beside',
+          description:
+            'Taurine itself is a cheap, high-purity commodity and rarely misstated. The analytical problem is attribution: taurine is almost always consumed inside an energy drink alongside caffeine, glucuronolactone, B vitamins and sugar, and any effect attributed to it must first be separated from those. Quantify every co-ingredient in the actual product before running anything.',
+          reagentsAndBuffer:
+            'HPLC with pre-column o-phthalaldehyde derivatisation and fluorescence detection for taurine; parallel quantification of caffeine, D-glucurono-gamma-lactone, niacin, pyridoxine and total sugars; hypotaurine reference standard to detect incomplete oxidation in the raw material',
+        },
+        {
+          id: 'tau-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the labelled tracer for a tissue-loading study',
+          description:
+            'Plasma taurine is a poor proxy for tissue taurine, which is where every proposed mechanism operates and which is held at concentrations orders of magnitude higher. A labelled tracer is the only way to distinguish administered taurine from the very large resident pool, and this distinction is exactly what the ageing-biomarker dispute turns on.',
+          dependsOnStepId: 'tau-w1',
+          reagentsAndBuffer:
+            '1,2-13C2-taurine or 15N-taurine; sterile preparation for oral and intravenous arms; isotope-ratio confirmation by LC-MS/MS; baseline natural-abundance measurement in plasma and, where available, muscle',
+        },
+        {
+          id: 'tau-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Muscle biopsy extraction with the bile acid conjugates separated out',
+          description:
+            'Total taurine in a tissue extract includes free taurine, taurine-conjugated bile acids and taurinomethyluridine-modified tRNA, and these are three different biological quantities. Reporting them together is how a taurine measurement becomes uninterpretable, and it is a plausible contributor to the disagreement between the 2023 and 2025 human datasets.',
+          dependsOnStepId: 'tau-w2',
+          reagentsAndBuffer:
+            'Freeze-dried vastus lateralis biopsy; perchloric acid extraction with neutralisation; solid-phase extraction to separate free taurine from taurocholate and taurochenodeoxycholate; tRNA isolation and nucleoside digestion for LC-MS/MS quantification of 5-taurinomethyluridine',
+        },
+        {
+          id: 'tau-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Mitochondrial translation readout in taurine-depleted cells',
+          description:
+            'Test the one mechanism with a defined molecular target. Deplete cells of taurine by inhibiting the taurine transporter, measure loss of the tRNA taurine modification, and see whether mitochondrially encoded protein synthesis and respiration fail — and whether repletion restores them. An effect that only appears after depletion is a deficiency effect, not a supplement effect.',
+          dependsOnStepId: 'tau-w3',
+          reagentsAndBuffer:
+            'Human myotubes or fibroblasts; beta-alanine as a competitive taurine transporter inhibitor; SLC6A6 knockdown as the genetic control; 5-taurinomethyluridine quantification by LC-MS/MS; 35S-methionine mitochondrial translation assay with cytoplasmic translation blocked by emetine; Seahorse oxygen consumption measurement',
+        },
+        {
+          id: 'tau-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Longitudinal taurine against age, in the same people repeatedly',
+          description:
+            'This is the step that decided the ageing question and it is worth stating as a method. Cross-sectional sampling compares different people at different ages and confounds age with cohort. Longitudinal sampling measures the same individuals repeatedly. The 2025 Science analysis did both, in three geographically distinct human cohorts plus primates and mice, and found taurine increased or was unchanged with age.',
+          dependsOnStepId: 'tau-w4',
+          reagentsAndBuffer:
+            'Repeat plasma sampling from an established longitudinal ageing cohort; identical assay platform and lot across timepoints; batch-randomised sample ordering with blinded age; parallel cross-sectional cohort for direct comparison; grip strength, gait speed and body composition measured at each visit',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tau-a1',
+        category: 'measured',
+        title: 'The cat cardiomyopathy result is real, and it is a deficiency disease',
+        laymanSummary:
+          'Cats fed too little taurine develop heart failure. Giving them taurine restores normal heart function. This is the strongest taurine finding in existence, and it is about a species that cannot make it.',
+        technicalDetails:
+          'Pion and colleagues reported in Science that low plasma taurine concentrations with echocardiographic evidence of myocardial failure were observed in 21 cats fed commercial cat foods and in 2 of 11 cats fed a purified diet containing marginally low taurine for four years. Oral taurine supplementation raised plasma taurine and was associated with normalisation of left ventricular function in both groups. Because myocardial taurine concentration is directly related to plasma concentration, the authors proposed a direct link between myocardial taurine depletion and reduced mechanical function. The finding changed commercial cat food formulation worldwide and effectively eliminated taurine-deficiency cardiomyopathy in cats. It is also a textbook deficiency result in an obligate carnivore that lacks cysteine sulphinic acid decarboxylase and therefore cannot synthesise taurine at all. Humans can. Citing this study in support of a human supplement is the exact error this file exists to name: a deficiency effect is not a supplement effect.',
+        evidenceSource: 'Pion PD, Kittleson MD, Rogers QR, Morris JG. Science 1987;237:764-768',
+        doi: '10.1126/science.3616607',
+        measuredMetric:
+          'Plasma taurine concentration and echocardiographic left ventricular function before and after supplementation in cats',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tau-a2',
+        category: 'conclusion_shift',
+        title: 'The 2023 ageing claim, and the 2025 human data that contradicted its premise',
+        laymanSummary:
+          'A 2023 Science paper said taurine falls with age and that replacing it extended healthy life in mice and monkeys. In 2025, measuring the same people repeatedly over time, another Science group found taurine goes up or stays flat with age in humans.',
+        technicalDetails:
+          'Singh et al. reported in Science in 2023 that circulating taurine declines with age in mice, monkeys and humans, that supplementation increased health span in mice and monkeys and life span in mice, and that mechanistically taurine reduced cellular senescence, protected against telomerase deficiency, suppressed mitochondrial dysfunction, decreased DNA damage and attenuated inflammaging. They concluded that "taurine deficiency may be a driver of aging" and that clinical trials in humans "seem warranted." In 2025 a Science report titled "Is taurine an aging biomarker?" found that circulating taurine concentrations increased or remained unchanged with age in three geographically distinct human cohorts as well as in nonhuman primates and mice, measured both longitudinally and cross-sectionally, with considerable variability in associations between taurine and age-related outcomes for gross motor function and energy homeostasis. Their conclusion: changes in circulating taurine "are not a universal feature of aging." Independently, an Aging Cell study of 137 physically inactive and physically active men aged 20 to 93 found no association between circulating taurine and age, muscle mass, strength, physical performance or mitochondrial function. The animal intervention results in the 2023 paper are not overturned by any of this. The human premise on which the product was sold is.',
+        evidenceSource:
+          'Singh P et al. Science 2023;380:eabn9257; Fernandez et al. Science 2025 (Is taurine an aging biomarker?); Aging Cell 2025;24:e70191',
+        doi: '10.1126/science.adl2116',
+        measuredMetric:
+          'Circulating taurine concentration against chronological age, measured longitudinally and cross-sectionally in human, primate and mouse cohorts',
+        inferredClaim:
+          'That circulating taurine declines with age in humans, and that supplementing it therefore addresses a deficiency',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'tau-a3',
+        category: 'measured',
+        title: 'The endurance effect is real and small, and dose did not matter',
+        laymanSummary:
+          'Pooling ten trials, taurine produced a small improvement in endurance performance. Taking more of it, or taking it for longer, did not make the effect bigger.',
+        technicalDetails:
+          'Waldron and colleagues meta-analysed ten peer-reviewed studies of isolated oral taurine and endurance performance, with a sub-analysis of seven time-to-exhaustion trials, using doses from 1 to 6 g per day given acutely or for up to two weeks. Taurine improved overall endurance performance with a Hedges g of 0.40 (95% CI 0.12 to 0.67, P = 0.004), and similarly in time-to-exhaustion trials (g 0.43, 95% CI 0.12 to 0.75, P = 0.007). Meta-regression found no difference between acute and chronic supplementation for the full sample (P = 0.897) or the time-to-exhaustion group (P = 0.896), and the dose did not moderate the effect (P > 0.05). A small positive effect with no dose-response and no time-course is an uncomfortable combination: a genuine pharmacological effect would usually show at least one of the two. Ten studies is also a small evidence base for a meta-analysis, and the isolated-taurine requirement excludes the way almost everyone actually consumes it, which is alongside caffeine and sugar.',
+        evidenceSource: 'Waldron M, Patterson SD, Tallent J, Jeffries O. Sports Med 2018;48:1247-1253',
+        doi: '10.1007/s40279-018-0896-2',
+        measuredMetric:
+          'Hedges g for endurance performance and time to exhaustion, with dose and duration as meta-regression moderators',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tau-a4',
+        category: 'inferred',
+        title: 'The energy drink attribution problem: caffeine is in the same can',
+        laymanSummary:
+          'Almost all taurine consumed comes in energy drinks, where it sits alongside caffeine and sugar. Nothing in that experience can be attributed to the taurine.',
+        technicalDetails:
+          'EFSA examined the use of taurine and D-glucurono-gamma-lactone as constituents of so-called energy drinks and published a scientific opinion on their safety in 2009. The scientific point for a reader is one of attribution rather than toxicity: a typical energy drink contains roughly a gram of taurine alongside caffeine at a dose with a large, replicated, independently established effect on alertness and performance. Any subjective effect from the can is therefore attributable to a compound that is already known to produce it. The taurine meta-analysis deliberately restricted itself to isolated taurine for exactly this reason, and found a small effect with no dose-response. Marketing that describes taurine as the "energy" component of an energy drink is assigning to the ingredient with weak evidence a result produced by the ingredient with strong evidence.',
+        evidenceSource:
+          'EFSA Panel on Food Additives and Nutrient Sources. The use of taurine and D-glucurono-gamma-lactone as constituents of the so-called energy drinks. EFSA Journal 2009;7(2):935',
+        doi: '10.2903/j.efsa.2009.935',
+        inferredClaim:
+          'That taurine is responsible for the stimulant effect of an energy drink that also contains a substantial caffeine dose',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tau-a5',
+        category: 'inferred',
+        title: 'The heart failure trial is 29 patients, two weeks, and single-blind',
+        laymanSummary:
+          'The human cardiac evidence most often cited is a two-week trial in 29 heart failure patients in which only the participants, not the investigators, were blinded.',
+        technicalDetails:
+          'Beyranvand and colleagues ran a randomised single-blind placebo-controlled trial in 29 patients with heart failure, left ventricular ejection fraction below 50% and NYHA class II or III, giving 15 patients taurine 500 mg three times daily and 14 patients placebo for two weeks, with exercise tolerance testing before and after. Mean age was 60.57 +/- 6.54 years, 26 of 29 were male, and mean ejection fraction was 29.27 +/- 6.97%. Exercise time, metabolic equivalents and exercise distance all increased significantly within the taurine group (P < 0.0001 for all) and did not increase significantly in the placebo group. The design limits are severe: 29 patients, two weeks, single-blind, and a within-group significance framing rather than a between-group comparison of change. That last point matters most — a within-group P value in a 15-patient arm on a learning-affected exercise test is close to uninformative. This trial is nonetheless routinely cited as evidence that taurine helps the failing human heart.',
+        evidenceSource: 'Beyranvand MR et al. J Cardiol 2011;57:333-337',
+        doi: '10.1016/j.jjcc.2011.01.007',
+        inferredClaim:
+          'That taurine improves cardiac function in humans, on the basis of within-group changes in a 29-patient single-blind two-week trial',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tau-a6',
+        category: 'measured',
+        title: 'The one mechanism with a molecular target: mitochondrial tRNA modification',
+        laymanSummary:
+          'Taurine chemically modifies part of the machinery mitochondria use to read their own genes. Without that modification, certain mitochondrial proteins are built wrong.',
+        technicalDetails:
+          'Taurine is the substrate for 5-taurinomethyluridine, a modification at the wobble position of specific mitochondrial transfer RNAs that is required for accurate decoding of the codons those tRNAs read. Loss of the modification impairs synthesis of mitochondrially encoded respiratory chain subunits, and it is the accepted molecular basis of the mitochondrial disease MELAS, where the underlying mutation prevents the modification from being installed. This is by a wide margin the best-defined thing taurine does, and it is the mechanism the 2023 ageing paper leaned on when it reported that taurine "suppressed mitochondrial dysfunction". The gap to a supplement claim is the same one that recurs throughout this file: the modification requires taurine to be present, not abundant, and no evidence establishes that a replete adult\'s mitochondrial tRNAs are under-modified or that adding taurine modifies them further.',
+        evidenceSource: 'Singh P et al. Science 2023;380:eabn9257',
+        doi: '10.1126/science.abn9257',
+        measuredMetric:
+          'Presence of the 5-taurinomethyluridine modification on mitochondrial tRNA and consequent mitochondrial translation fidelity',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Most people make their own; cats cannot',
+        laymanDesc:
+          'Humans build taurine from a sulphur-containing amino acid. Cats lack the enzyme entirely, which is why cat food is fortified and human food is not.',
+        molecularDetail:
+          'Cysteine dioxygenase (CDO1) oxidises cysteine to cysteine sulphinic acid, which cysteine sulphinic acid decarboxylase converts toward hypotaurine and then taurine. Feline activity of the decarboxylase is negligible, making taurine dietarily essential for cats. No human recommended intake exists because adult synthesis plus animal-food intake covers requirement, which is precisely why a human deficiency claim needs evidence rather than analogy.',
+        iconName: 'Dna',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'A dedicated transporter concentrates it inside cells',
+        laymanDesc:
+          'Taurine is pumped into cells and held at levels far above the blood, where it helps the cell manage its water balance.',
+        molecularDetail:
+          'SLC6A6, the sodium- and chloride-dependent taurine transporter, concentrates taurine intracellularly by one to two orders of magnitude, with the highest tissue concentrations in retina, cardiac and skeletal muscle, leukocytes and brain. Beta-alanine competes for the same transporter, which is why chronic beta-alanine supplementation lowers muscle taurine — a genuine interaction between two products often sold together.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It modifies mitochondrial tRNA so genes are read correctly',
+        laymanDesc:
+          'Taurine is chemically attached to a piece of the mitochondrial reading machinery. Without it, some mitochondrial proteins get built with the wrong amino acids.',
+        molecularDetail:
+          '5-taurinomethyluridine at the wobble position of specific mitochondrial tRNAs is required for accurate codon decoding; its absence underlies the translation defect in MELAS. This is the only taurine function with a defined molecular target and a defined disease when it fails, and it is a presence requirement rather than an abundance requirement.',
+        iconName: 'Cpu',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It conjugates bile acids and buffers cell volume',
+        laymanDesc:
+          'Taurine is stuck onto bile acids so they stay soluble in the gut, and inside cells it acts as ballast that keeps water balance stable.',
+        molecularDetail:
+          'Bile acid-CoA:amino acid N-acyltransferase conjugates taurine to cholic and chenodeoxycholic acid, giving taurocholate and taurochenodeoxycholate. Separately, taurine is one of the principal organic osmolytes in mammalian cells, released or accumulated in response to volume change. Neither function has been shown to be limiting in a healthy adult.',
+        iconName: 'Droplets',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The human outcome data are small and now contradictory',
+        laymanDesc:
+          'Endurance improved slightly across ten trials, with no dose-response. The ageing claim rested on taurine falling with age, and in humans measured over time, it does not.',
+        molecularDetail:
+          'Waldron et al. found Hedges g 0.40 for endurance with no moderation by dose or duration. The 2025 Science analysis found circulating taurine increased or was unchanged with age across three human cohorts, primates and mice, measured longitudinally and cross-sectionally, and the Aging Cell study found no association with age, muscle mass, strength, performance or mitochondrial function in 137 men aged 20 to 93.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Pion 1987 — taurine depletion and myocardial failure in cats',
+        phase: 'Controlled feline feeding study with echocardiography and supplementation',
+        sampleSize: 32,
+        primaryEndpoint:
+          'Left ventricular function on echocardiography against plasma taurine, before and after supplementation',
+        endpointMet: true,
+        statisticalPValue:
+          'Low plasma taurine with echocardiographic myocardial failure in 21 cats on commercial food and 2 of 11 on a marginally low purified diet; left ventricular function normalised on supplementation',
+        unreportedAdverseSignals:
+          'A study in an obligate carnivore that cannot synthesise taurine. It establishes a deficiency disease and its cure, and says nothing about a species that makes its own.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Waldron 2018 meta-analysis of oral taurine and endurance performance',
+        phase: 'Meta-analysis of 10 peer-reviewed studies with a 7-trial time-to-exhaustion sub-analysis',
+        sampleSize: 10,
+        primaryEndpoint: 'Effect of isolated oral taurine on endurance performance',
+        endpointMet: true,
+        statisticalPValue:
+          'Hedges g 0.40 (95% CI 0.12 to 0.67), P = 0.004; time-to-exhaustion g 0.43 (95% CI 0.12 to 0.75), P = 0.007',
+        unreportedAdverseSignals:
+          'No moderation by dose (P > 0.05) or by acute versus chronic supplementation (P = 0.897) — a positive effect with neither a dose-response nor a time-course. Sample size counts studies, not participants.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Singh 2023 — taurine deficiency as a driver of aging',
+        phase: 'Multi-species intervention and observational study in mice, monkeys, worms and humans',
+        sampleSize: 0,
+        primaryEndpoint: 'Health span and life span after taurine supplementation, and taurine against age',
+        endpointMet: true,
+        statisticalPValue:
+          'Increased health span in mice and monkeys and life span in mice and worms; circulating taurine reported to decline with age across species',
+        unreportedAdverseSignals:
+          'The human component was observational and correlational. Sample size is recorded as zero because no human intervention was performed. The authors themselves wrote that clinical trials in humans "seem warranted", which the market treated as though they had already been run.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Science 2025 — Is taurine an aging biomarker?',
+        phase: 'Longitudinal and cross-sectional cohort analysis in humans, nonhuman primates and mice',
+        sampleSize: 0,
+        primaryEndpoint: 'Circulating taurine concentration against chronological age',
+        endpointMet: false,
+        statisticalPValue:
+          'Taurine increased or remained unchanged with age in three geographically distinct human cohorts, in nonhuman primates and in mice, measured both longitudinally and cross-sectionally',
+        unreportedAdverseSignals:
+          'Considerable variability was found in associations between taurine and age-related outcomes for gross motor function and energy homeostasis. Sample size recorded as zero because this was cohort analysis rather than an enrolled trial.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Beyranvand 2011 — taurine and exercise capacity in heart failure',
+        phase: 'Randomised single-blind placebo-controlled, two weeks',
+        sampleSize: 29,
+        primaryEndpoint: 'Exercise time, metabolic equivalents and exercise distance on exercise tolerance testing',
+        endpointMet: true,
+        statisticalPValue:
+          'Within-group increases in exercise time, METs and distance on taurine, P < 0.0001 for all; no significant increase within the placebo group',
+        unreportedAdverseSignals:
+          'Single-blind, 29 patients, two weeks, and reported as within-group changes rather than a between-group comparison of change — the weakest analytic framing for an exercise test subject to learning effects.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Taurine depletion causes reversible dilated cardiomyopathy in cats, which cannot synthesise it',
+        'Isolated oral taurine improved endurance performance with Hedges g 0.40, without any dose or duration response',
+        'Circulating taurine increased or was unchanged with age in three human cohorts, primates and mice measured longitudinally',
+        'No association was found between circulating taurine and age, muscle mass, strength, performance or mitochondrial function in 137 men aged 20 to 93',
+        'Taurine is required for the 5-taurinomethyluridine modification of mitochondrial tRNA',
+      ],
+      unsupportedInferences: [
+        'That taurine declines with age in humans, which longitudinal data contradict',
+        'That the cat cardiomyopathy result implies anything about a human who synthesises taurine',
+        'That taurine is responsible for the effect of an energy drink that also contains caffeine',
+        'That within-group improvements in a 29-patient single-blind trial establish a cardiac benefit',
+      ],
+      whatFailedInitially: [
+        'The human premise of the 2023 ageing paper, contradicted by two independent 2025 datasets',
+        'Any dose-response for the endurance effect, which meta-regression found absent in both dose and duration',
+      ],
+      realWorldOutcome: [
+        'Taurine is genuinely essential in cats and in infant formula, and those requirements are settled science',
+        'The 2023 animal health-span results stand; the human deficiency framing built on top of them does not',
+        'Almost all taurine consumed arrives in a can that also contains the compound with the real stimulant evidence',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral powder or capsule; overwhelmingly consumed as an energy drink ingredient',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, and used as a food ingredient in energy drinks at roughly a gram per serving. Taurine is a cheap, high-purity commodity and content misstatement is rare. The relevant delivery problem is not purity but company: it is nearly always consumed alongside caffeine and sugar, which makes consumer attribution of any effect to taurine unreliable. Because beta-alanine competes with taurine for the SLC6A6 transporter, chronic beta-alanine use lowers muscle taurine — a genuine interaction between two supplements frequently sold in the same pre-workout formula.',
+      safetyProfile:
+        'Well tolerated at gram doses with no consistent adverse effect pattern in the trial literature, and EFSA has examined its use in energy drinks. The realistic hazards are contextual rather than intrinsic: energy drinks deliver taurine with substantial caffeine and sugar, and the adverse events attributed to those drinks are consistent with caffeine. Long-term safety of gram-scale daily taurine taken for longevity purposes over years has not been studied, which matters now that it is being sold on a premise that human data do not support.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does taurine slow ageing?',
+        a: 'The claim is currently in retreat. A 2023 Science paper reported that taurine declines with age in mice, monkeys and humans and that supplementation extended health span in mice and monkeys, and taurine became a longevity product within weeks. In 2025 a Science analysis measuring the same individuals repeatedly across three human cohorts, plus primates and mice, found taurine increased or stayed the same with age. A separate 2025 study in 137 men aged 20 to 93 found no association between taurine and age, muscle mass, strength, performance or mitochondrial function. The animal intervention data are not overturned; the human deficiency premise is.',
+        auditNote:
+          'The 2023 authors wrote that human clinical trials "seem warranted". The market treated that as though the trials had been done.',
+      },
+      {
+        q: 'But taurine deficiency causes heart failure — I read the cat study.',
+        a: 'It does, in cats, and that study is excellent. Cats lack the enzyme that converts cysteine toward taurine and cannot make any of their own, so a taurine-poor diet depletes them and produces dilated cardiomyopathy that supplementation reverses. Humans have that enzyme and synthesise taurine continuously, which is why no human dietary requirement has ever been set. A deficiency effect in a species that cannot synthesise a nutrient tells you nothing about supplementing a species that can.',
+      },
+      {
+        q: 'Is the taurine in my energy drink doing anything?',
+        a: 'Nothing you could distinguish from the caffeine sitting beside it. A typical can has around a gram of taurine and a caffeine dose with a large, replicated, independently established effect on alertness and performance. The taurine meta-analysis deliberately excluded combination products for exactly this reason and, in isolated form, found a small endurance effect with no dose-response and no difference between a single dose and two weeks of dosing.',
+      },
+      {
+        q: 'Does it help exercise performance at all?',
+        a: 'A little, on the pooled evidence. Ten trials gave an overall endurance effect size of 0.40, which is small but statistically clear. The awkward detail is that neither the dose, from 1 to 6 grams, nor the duration, from a single dose to two weeks, changed the size of the effect. A genuine pharmacological effect normally shows a response to at least one of those, and this one shows neither.',
+      },
+      {
+        q: 'Should I take it with beta-alanine?',
+        a: 'Be aware they compete. Beta-alanine and taurine use the same transporter, SLC6A6, to enter cells, so chronic beta-alanine supplementation lowers muscle taurine. This is a real, mechanistically established interaction between two ingredients routinely combined in the same pre-workout formula, and it is not usually mentioned on the label.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Pion PD, Kittleson MD, Rogers QR, Morris JG. Myocardial failure in cats associated with low plasma taurine: a reversible cardiomyopathy. Science 1987;237:764-768',
+        identifier: '10.1126/science.3616607',
+        kind: 'doi',
+      },
+      {
+        label:
+          'EFSA Panel on Food Additives and Nutrient Sources Added to Food. The use of taurine and D-glucurono-gamma-lactone as constituents of the so-called energy drinks. EFSA Journal 2009;7(2):935',
+        identifier: '10.2903/j.efsa.2009.935',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Beyranvand MR et al. Effect of taurine supplementation on exercise capacity of patients with heart failure. J Cardiol 2011;57:333-337',
+        identifier: '10.1016/j.jjcc.2011.01.007',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Waldron M, Patterson SD, Tallent J, Jeffries O. The effects of an oral taurine dose and supplementation period on endurance exercise performance in humans: a meta-analysis. Sports Med 2018;48:1247-1253',
+        identifier: '10.1007/s40279-018-0896-2',
+        kind: 'doi',
+      },
+      {
+        label: 'Singh P et al. Taurine deficiency as a driver of aging. Science 2023;380:eabn9257',
+        identifier: '10.1126/science.abn9257',
+        kind: 'doi',
+      },
+      {
+        label: 'Is taurine an aging biomarker? Science 2025',
+        identifier: '10.1126/science.adl2116',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Experimental evidence against taurine deficiency as a driver of aging in humans. Aging Cell 2025;24:e70191',
+        identifier: '10.1111/acel.70191',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 1123 — Taurine',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/1123',
+        kind: 'url',
+      },
+    ],
+  },
   // MARKER_APPEND_POINT
 ]
