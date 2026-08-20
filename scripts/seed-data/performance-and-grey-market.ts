@@ -7494,4 +7494,1209 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 20. CJC-1295
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'cjc-1295',
+    name: 'CJC-1295',
+    tradeName:
+      'CJC-1295 with DAC. The product sold as "CJC-1295 without DAC" is a different molecule, modified GRF(1-29)',
+    sponsor:
+      'ConjuChem Biotechnologies, Montreal. Development stopped after a single registered phase 2; no company has taken it further',
+    targetGene: 'GHRHR',
+    targetProtein: 'Growth hormone-releasing hormone receptor on pituitary somatotrophs',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Phase 2 Investigational',
+    indication:
+      'None approved anywhere. The only registered clinical trial was a phase 2 in HIV-associated visceral obesity, which was terminated. Every other human dataset is a phase 1 pharmacology study in healthy volunteers.',
+    patientFriendlyIndication:
+      'Raises growth hormone for a week per injection — no approved use anywhere',
+    anatomicalSite: 'GHRH receptors on anterior pituitary somatotrophs; albumin in plasma',
+    conditionContext: {
+      conditionExplainer:
+        'The hypothalamus releases growth hormone-releasing hormone in pulses; the pituitary answers with pulses of growth hormone; the liver answers with IGF-1. Natural GHRH lasts minutes, which is what made it useless as a drug. CJC-1295 solves that by chemically welding itself to a circulating albumin molecule.',
+      whyItMatters:
+        'This is the compound that made week-long GHRH stimulation possible, and the human pharmacology was published in two good papers in 2006. What did not follow was any clinical outcome. The only registered efficacy trial was terminated and nothing has been registered since.',
+      whoTakesThis:
+        'In trials: healthy adults aged 21-61, and patients with HIV-associated visceral obesity. Outside trials: people injecting it, usually alongside a ghrelin-receptor agonist such as ipamorelin, in the expectation of body composition and recovery effects.',
+      clinicalGoals:
+        'The published human endpoints are plasma growth hormone and IGF-1 concentrations and their time course. No clinical outcome has ever been reported for this compound.',
+    },
+    oneSentenceVerdict:
+      'A GHRH analogue that binds covalently to albumin and raises growth hormone 2- to 10-fold for six days and IGF-1 for nine to eleven days from a single subcutaneous injection, with a measured half-life of 5.8-8.1 days, one terminated phase 2 and no clinical outcome data of any kind.',
+    laymanHowItWorks:
+      'Growth hormone-releasing hormone is the signal the brain sends to make the pituitary release growth hormone. The natural version is destroyed within minutes. CJC-1295 is a redesigned version with four amino acid substitutions that block the enzymes that chew it up, plus a chemical hook on the end. That hook reacts with a free sulfur atom on albumin, the most abundant protein in blood, and forms a permanent covalent bond. The drug is now carried around attached to a protein that circulates for weeks, so one injection keeps stimulating the pituitary for days. The pituitary keeps its natural pulsing rhythm; what rises is the level between pulses.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 26,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3:
+        'Y(D-Ala)DAIFTQSYRKVLAQLSARKLLQDILSRK(maleimidopropionyl on Lys30, forms a covalent adduct with albumin Cys34)',
+      chemicalFormula: 'C165H269N47O46',
+      molecularWeight: '3647.2 g/mol',
+      targetReceptorAffinity:
+        'A 30-residue analogue of human GHRH(1-29) carrying four substitutions — D-Ala at position 2, Gln at 8, Ala at 15 and Leu at 27 — that block dipeptidyl peptidase IV cleavage and oxidative and deamidation degradation, plus a C-terminal lysine bearing a maleimidopropionyl group. That maleimide reacts with the free thiol of albumin cysteine 34 in vivo, producing a bioconjugate with the circulating half-life of albumin. Agonist at the GHRH receptor. The four backbone substitutions alone, without the lysine and maleimide, are what is sold as "CJC-1295 without DAC" or modified GRF(1-29).',
+      structureSource: {
+        label:
+          'PubChem CID 91971820 (CJC-1295) — molecular formula and molecular weight. The one-letter string gives the backbone; the D-alanine and the maleimidopropionyl group are shown in parentheses because the engine validates standard residues',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/91971820',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cjc-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'With DAC or without? The 280-dalton question',
+          description:
+            'Two entirely different molecules are sold under this name. CJC-1295 with the drug affinity complex carries the Lys30-maleimidopropionyl group and weighs 3,647 Da; the product marketed as "CJC-1295 without DAC" is modified GRF(1-29) at about 3,367 Da and behaves like a short-acting peptide. The pharmacology differs by a factor of hundreds in duration, and mass spectrometry resolves it in one injection.',
+          reagentsAndBuffer:
+            'Certified CJC-1295 and modified GRF(1-29) reference standards, high-resolution accurate-mass ESI-MS with charge-state deconvolution, MS/MS b and y ion sequencing to confirm the four substitutions, reversed-phase C18 HPLC with 0.1% trifluoroacetic acid and acetonitrile',
+        },
+        {
+          id: 'cjc-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Maleimide integrity, peptide content and endotoxin',
+          description:
+            'The maleimide is the functional part and it hydrolyses on storage to an unreactive maleamic acid, which converts a week-long drug into a short-acting one without changing the label. Quantify peptide content by amino acid analysis rather than trusting the nominal milligram figure, and test endotoxin because the route is injection.',
+          dependsOnStepId: 'cjc-w1',
+          reagentsAndBuffer:
+            'Ellman assay with a thiol reagent to titrate reactive maleimide, amino acid analysis after vapour-phase 6 M hydrochloric acid hydrolysis, reversed-phase HPLC with UV detection at 214 and 280 nm for related substances, Karl Fischer for water, limulus amoebocyte lysate for endotoxin',
+        },
+        {
+          id: 'cjc-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma preparation with albumin capture',
+          description:
+            'Because the drug is covalently bound to albumin in circulation, the usual protein-precipitation step throws the analyte away. The albumin fraction is the sample. Enrichment therefore runs the opposite way from most peptide work: capture albumin, then digest or release the conjugate before chromatography.',
+          dependsOnStepId: 'cjc-w2',
+          reagentsAndBuffer:
+            'Anti-albumin or Cibacron blue affinity capture, or immunoaffinity magnetic beads directed at the GHRH sequence, tryptic or Glu-C digestion of the captured fraction, stable-isotope-labelled signature peptide internal standard, low-binding polypropylene throughout',
+        },
+        {
+          id: 'cjc-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'GHRH receptor activation in a pituitary or reporter system',
+          description:
+            'Measure receptor agonism directly. Primary rat pituitary cells give growth hormone release as the physiological readout; a GHRHR-transfected line with a cyclic AMP readout isolates the receptor. Running the compound with and without albumin present is the experiment that shows what conjugation costs in potency, which is the trade-off the whole design rests on.',
+          dependsOnStepId: 'cjc-w3',
+          reagentsAndBuffer:
+            'Primary rat anterior pituitary cell culture or HEK293 cells expressing human GHRHR, cyclic AMP accumulation by homogeneous time-resolved fluorescence, native GHRH(1-44) as reference agonist, human serum albumin at physiological concentration in the parallel arm, growth hormone immunoassay for the pituitary readout',
+        },
+        {
+          id: 'cjc-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-HRMS quantification with the GH and IGF-1 time course',
+          description:
+            'Quantify the conjugate by high-resolution mass spectrometry after immunopurification, and read the pharmacodynamics on the same subject: growth hormone by frequent sampling over an overnight period, and IGF-1 daily. Frequent sampling matters here because the published finding is specifically about trough growth hormone rising while pulse frequency and amplitude stay the same, which a single morning draw cannot see.',
+          dependsOnStepId: 'cjc-w4',
+          reagentsAndBuffer:
+            'NanoLC or microflow C18 with formic acid and acetonitrile gradient, quadrupole-Orbitrap high-resolution MS/MS, stable-isotope-labelled internal standards; 20-minute-interval overnight growth hormone sampling by immunoassay, IGF-1 by mass spectrometry or validated immunoassay with IGFBP dissociation',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cjc-a1',
+        category: 'measured',
+        title: 'One injection raised growth hormone for six days and IGF-1 for nine to eleven',
+        laymanSummary:
+          'In healthy adults, a single subcutaneous injection raised average growth hormone two- to tenfold for six days or more, and IGF-1 by one and a half to three times for nine to eleven days.',
+        technicalDetails:
+          'Teichman et al. ran two randomised, placebo-controlled, double-blind ascending-dose trials of 28 and 49 days at two sites in healthy subjects aged 21-61. CJC-1295 or placebo was given subcutaneously as one of four ascending single doses in the first study and as two or three weekly or biweekly doses in the second. After a single injection there were dose-dependent increases in mean plasma growth hormone of 2- to 10-fold lasting six days or more, and in mean plasma IGF-1 of 1.5- to 3-fold lasting nine to eleven days. The estimated half-life was 5.8-8.1 days. After multiple doses mean IGF-1 stayed above baseline for up to 28 days, showing a cumulative effect. No serious adverse reactions were reported, and the authors identified 30 and 60 micrograms per kilogram as the better-tolerated doses.',
+        evidenceSource: 'Teichman SL et al., J Clin Endocrinol Metab 2006;91:799-805',
+        doi: '10.1210/jc.2005-1536',
+        measuredMetric:
+          'Peak concentration and area under the curve of growth hormone and IGF-1, and pharmacokinetic half-life, after single and repeated subcutaneous doses',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cjc-a2',
+        category: 'measured',
+        title: 'Pulsatility survived; what rose was the trough',
+        laymanSummary:
+          'Overnight sampling every 20 minutes showed that the natural rhythm of growth hormone pulses was unchanged. The level between pulses rose 7.5-fold, and that is what drove IGF-1 up.',
+        technicalDetails:
+          'Ionescu and Frohman sampled blood every 20 minutes across an overnight 12-hour period in healthy men aged 20-40 before and one week after a single injection of 60 or 90 micrograms per kilogram of CJC-1295. Growth hormone secretion increased with pulsatility preserved: the frequency and magnitude of secretory pulses were unaltered. Basal trough growth hormone rose 7.5-fold (P < 0.0001), mean growth hormone rose 46% (P < 0.01) and IGF-1 rose 45% (P < 0.001). There was no significant difference between the two doses. The IGF-1 increases did not correlate with any parameter of growth hormone secretion. This is the study that settled the mechanistic objection to continuous GHRH stimulation — that it would flatten the pulses the hormone depends on — and it settled it in the drug favour.',
+        evidenceSource: 'Ionescu M, Frohman LA, J Clin Endocrinol Metab 2006;91:4792-4797',
+        doi: '10.1210/jc.2006-1702',
+        measuredMetric:
+          'Growth hormone pulse frequency, pulse amplitude, trough and mean concentrations by 20-minute overnight sampling, with IGF-1',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cjc-a3',
+        category: 'failed',
+        title: 'The only registered efficacy trial was terminated with no results',
+        laymanSummary:
+          'A 120-patient phase 2 in HIV-associated visceral obesity started at the end of 2005, stopped in 2006, and never posted results or a stated reason.',
+        technicalDetails:
+          'NCT00267527 was a multicentre, randomised, placebo-controlled, double-blind phase 2 study to evaluate the efficacy and safety of CJC-1295 administered for 12 weeks in HIV-infected patients with HIV-associated visceral obesity, sponsored by ConjuChem, with a planned enrolment of 120. It began in December 2005 and its record shows a completion date of September 2006 with a status of terminated and no reason given. No results are posted. It is the only registered trial of CJC-1295 for any clinical endpoint anywhere, and it is twenty years old. The phase 1 pharmacology remains the entire human evidence base for this compound.',
+        evidenceSource:
+          'ClinicalTrials.gov record NCT00267527, ConjuChem, status terminated, no results posted and no reason stated',
+        measuredMetric:
+          'Registered clinical trials of CJC-1295 with a clinical efficacy endpoint: one, terminated, unreported',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cjc-a4',
+        category: 'conclusion_shift',
+        title: 'What is sold as CJC-1295 is usually not CJC-1295',
+        laymanSummary:
+          'Most vendors sell "CJC-1295 without DAC", which is a different peptide that lasts about half an hour rather than a week. The two are marketed as versions of the same product.',
+        technicalDetails:
+          'The entire point of CJC-1295 is the drug affinity complex: the C-terminal lysine bearing a maleimidopropionyl group that forms a covalent bond with albumin cysteine 34 and gives the 5.8-8.1 day half-life. Remove it and what remains is modified GRF(1-29), a 29-residue peptide with the same four substitutions but no albumin anchor, whose duration is that of an ordinary short-acting GHRH analogue. Every pharmacokinetic and pharmacodynamic result quoted on a vendor page — the six-day growth hormone elevation, the eleven-day IGF-1 elevation, the eight-day half-life — was obtained with the conjugating version. Applying them to the non-conjugating version is a category error, and it is the standard framing in which the product is sold.',
+        evidenceSource:
+          'Teichman SL et al., J Clin Endocrinol Metab 2006;91:799-805 for the conjugated compound; Dominikowski A et al., Front Endocrinol 2026;17:1822475, review of GH-IGF1 axis peptides and self-administration practices',
+        doi: '10.3389/fendo.2026.1822475',
+        inferredClaim:
+          'That the published CJC-1295 pharmacokinetics describe the "without DAC" product, when the albumin conjugation is the only reason those kinetics exist',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cjc-a5',
+        category: 'inferred',
+        title: 'Every body composition claim is an inference from IGF-1',
+        laymanSummary:
+          'No trial has measured what CJC-1295 does to fat, muscle, strength, sleep or recovery in a human being.',
+        technicalDetails:
+          'The published human endpoints for this compound are plasma growth hormone concentration, plasma IGF-1 concentration, pulse architecture and pharmacokinetic parameters. There is no reported measurement of lean body mass, fat mass, muscle strength, exercise performance, sleep architecture, wound healing or any patient-reported outcome. The reasoning that supports its use — growth hormone rises, IGF-1 rises, therefore body composition improves — skips the step where somebody measures body composition. The one trial that would have measured a clinical endpoint, in HIV-associated visceral obesity, was terminated without reporting.',
+        evidenceSource:
+          'Complete set of published human studies of CJC-1295: Teichman SL et al., J Clin Endocrinol Metab 2006;91:799-805; Ionescu M and Frohman LA, J Clin Endocrinol Metab 2006;91:4792-4797; terminated NCT00267527',
+        doi: '10.1210/jc.2005-1536',
+        inferredClaim:
+          'That sustained elevation of growth hormone and IGF-1 by CJC-1295 produces measurable changes in body composition or recovery, which no human study has measured',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cjc-a6',
+        category: 'measured',
+        title: 'Detection methods exist, and were written for horses too',
+        laymanSummary:
+          'Confirmation methods for CJC-1295 have been published for human and equine plasma, and it is prohibited in sport at all times.',
+        technicalDetails:
+          'Timms et al. published an LC-MS/MS method for confirming CJC-1295 abuse in equine plasma. Human work has developed antibody-free ultrafiltration and immunopurification approaches with nanoLC and high-resolution mass spectrometry capable of detecting GHRH analogues in urine at low picogram-per-millilitre concentrations, and blood-based screening for peptidic drugs in the 2-10 kDa range. GHRH and its analogues, including CJC-1295, sermorelin and tesamorelin, are prohibited at all times in sport under WADA class S2, peptide hormones, growth factors, related substances and mimetics. The analytical challenge specific to this compound is that the circulating form is an albumin adduct, so a method optimised for free peptide will under-recover it.',
+        evidenceSource:
+          'Timms M et al., Drug Test Anal 2019;11:1248-1257; Coppieters G et al., J Pharm Biomed Anal 2022;214:114726; Thomas A et al., Anal Sci Adv 2022;3:235-243',
+        doi: '10.1002/dta.2599',
+        measuredMetric:
+          'Analytical confirmation of CJC-1295 in equine plasma and of GHRH analogues in human urine at low pg/mL',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected under the skin as a free peptide',
+        laymanDesc:
+          'It goes in as an ordinary small peptide injection, and the interesting part happens after it reaches the bloodstream.',
+        molecularDetail:
+          'Subcutaneous administration; the doses used in the published human studies were 30, 60 and 90 micrograms per kilogram. The four backbone substitutions protect it from dipeptidyl peptidase IV and from the oxidation and deamidation that destroy native GHRH within minutes, keeping it intact long enough to find its target protein.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Welds itself to albumin',
+        laymanDesc:
+          'A chemical hook on the end of the peptide reacts with the single free sulfur atom on the most abundant protein in blood, and the bond does not come undone.',
+        molecularDetail:
+          'The maleimidopropionyl group on Lys30 undergoes Michael addition to the free thiol of albumin cysteine 34, forming a stable thioether. The peptide now shares albumin pharmacokinetics: a circulating half-life measured in days rather than minutes, and a volume of distribution confined largely to plasma. Measured half-life in humans was 5.8-8.1 days.',
+        iconName: 'Link',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The bound conjugate still activates the receptor',
+        laymanDesc:
+          'Even carrying a large protein passenger, the peptide end still fits the pituitary receptor.',
+        molecularDetail:
+          'The GHRH pharmacophore is at the N-terminus and the conjugation site is at the C-terminus, so the albumin adduct retains agonist activity at the GHRH receptor on anterior pituitary somatotrophs. Receptor occupancy is now near-continuous rather than pulsatile, which was the design question the second human study was run to answer.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Trough growth hormone rises; the pulses stay',
+        laymanDesc:
+          'The pituitary keeps its natural rhythm. What changes is the baseline between pulses, which rises more than sevenfold.',
+        molecularDetail:
+          'Continuous GHRH receptor stimulation raised basal trough growth hormone 7.5-fold (P < 0.0001) with pulse frequency and amplitude unaltered, giving a 46% rise in mean growth hormone. The failure to flatten pulsatility is the pharmacologically interesting result, because pulsatile delivery is thought to matter for many of the hormone downstream effects.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'IGF-1 rises for over a week, and the story stops there',
+        laymanDesc:
+          'Liver IGF-1 goes up by about half and stays up for nine to eleven days. No study has looked at what happens to the body after that.',
+        molecularDetail:
+          'IGF-1 rose 45% at one week after a single dose and 1.5- to 3-fold across the ascending-dose programme, remaining above baseline for up to 28 days on repeated dosing. IGF-1 increases did not correlate with any measured parameter of growth hormone secretion. Beyond IGF-1, no human outcome has been measured for this compound: not body composition, not strength, not sleep, not a patient-reported outcome.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Teichman 2006 ascending-dose phase 1 programme (two trials, 28 and 49 days)',
+        phase: 'Phase 1, randomised placebo-controlled double-blind ascending dose',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Peak concentration and area under the curve of growth hormone and IGF-1, with standard pharmacokinetic parameters for CJC-1295',
+        endpointMet: true,
+        statisticalPValue:
+          'Growth hormone up 2- to 10-fold for 6 days or more and IGF-1 up 1.5- to 3-fold for 9-11 days after a single dose; half-life 5.8-8.1 days; IGF-1 above baseline up to 28 days after multiple doses',
+        unreportedAdverseSignals:
+          'No serious adverse reactions reported; the authors singled out 30 and 60 ug/kg as the better tolerated doses, which implies tolerability differences at the higher ones.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Ionescu 2006 overnight pulsatility study',
+        phase:
+          'Phase 1 pharmacodynamic, 20-minute sampling over 12 hours before and one week after dosing',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Growth hormone pulse frequency and amplitude, trough and mean growth hormone, and IGF-1, at 60 or 90 ug/kg',
+        endpointMet: true,
+        statisticalPValue:
+          'Trough growth hormone up 7.5-fold (P < 0.0001), mean growth hormone up 46% (P < 0.01), IGF-1 up 45% (P < 0.001); pulse frequency and magnitude unaltered; no significant difference between doses',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT00267527 — phase 2 in HIV-associated visceral obesity',
+        phase: 'Phase 2, multicentre randomised placebo-controlled double-blind, 12 weeks',
+        sampleSize: 120,
+        primaryEndpoint:
+          'Efficacy and safety of CJC-1295 over 12 weeks in HIV-infected patients with visceral obesity',
+        endpointMet: false,
+        statisticalPValue:
+          'Terminated. Started December 2005, record completion September 2006. No results posted and no reason for termination stated',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A single subcutaneous dose raised mean plasma growth hormone 2- to 10-fold for six days or more and IGF-1 1.5- to 3-fold for nine to eleven days in healthy adults',
+        'Half-life in humans of 5.8-8.1 days, consistent with covalent conjugation to circulating albumin',
+        'Trough growth hormone rose 7.5-fold with pulse frequency and amplitude unchanged; mean growth hormone rose 46% and IGF-1 45%',
+        'Repeated dosing kept IGF-1 above baseline for up to 28 days, demonstrating accumulation',
+      ],
+      unsupportedInferences: [
+        'That raising growth hormone and IGF-1 for a week improves body composition, recovery or sleep — none of which has been measured in any human study of this compound',
+        'That the published kinetics apply to the "without DAC" product sold under the same name, when the albumin conjugation is what produces them',
+        'That the absence of serious adverse reactions in a 49-day phase 1 describes the safety of repeated use over months or years',
+        'That an unlicensed vial contains an intact maleimide; hydrolysis of that group silently converts the drug into a short-acting one',
+      ],
+      whatFailedInitially: [
+        'The only registered efficacy trial, a phase 2 in HIV-associated visceral obesity, was terminated in 2006 with no posted results and no stated reason',
+        'No sponsor has registered a trial of CJC-1295 in the twenty years since, in any indication, in any country',
+      ],
+      realWorldOutcome: [
+        'No approval anywhere; the compound exists clinically only as two phase 1 papers from 2006 and one terminated phase 2',
+        'Prohibited at all times in sport under WADA class S2 as a peptide hormone and growth factor, with confirmation methods published for both human and equine samples',
+        'Sold widely as a research chemical, most often as the non-conjugating modified GRF(1-29) and usually paired with a ghrelin-receptor agonist such as ipamorelin',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection of a reconstituted lyophilised powder; weekly or twice-weekly in the published studies',
+      description:
+        'A lyophilised peptide reconstituted before injection. The published human dosing was 30, 60 or 90 micrograms per kilogram subcutaneously, weekly or biweekly. Outside trials the same presentation is sold as a research chemical, frequently as the shorter non-conjugating peptide under the same product name, with no assurance that the maleimide group that defines the drug is still intact.',
+      safetyProfile:
+        'No serious adverse reactions were reported across the 28-day and 49-day phase 1 studies, and the authors identified 30 and 60 micrograms per kilogram as the better-tolerated doses. Nothing is known beyond 49 days in humans. The expected class effects of sustained growth hormone and IGF-1 elevation — fluid retention, arthralgia and myalgia, carpal tunnel symptoms, insulin resistance — are documented for growth hormone itself rather than measured for this compound, and the theoretical mitogenic concern that attends chronic IGF-1 elevation has never been examined here because no study ran long enough.',
+    },
+    commonQuestions: [
+      {
+        q: 'What is the difference between CJC-1295 with and without DAC?',
+        a: 'They are different molecules. CJC-1295 with the drug affinity complex carries a maleimide group on a C-terminal lysine that forms a permanent covalent bond with albumin, giving a measured human half-life of 5.8 to 8.1 days. "CJC-1295 without DAC" is modified GRF(1-29): the same four amino acid substitutions, no lysine, no maleimide, and no albumin anchor, so it behaves like an ordinary short-acting GHRH analogue. Every published pharmacokinetic figure quoted for this compound was obtained with the conjugating version.',
+        auditNote:
+          'A vendor page that quotes the six-day growth hormone elevation next to a product without the DAC group is describing a molecule it is not selling.',
+      },
+      {
+        q: 'Does it actually raise growth hormone?',
+        a: 'Yes, and that part is well measured. In randomised placebo-controlled ascending-dose studies in healthy adults, a single subcutaneous injection raised mean plasma growth hormone 2- to 10-fold for six days or more and IGF-1 1.5- to 3-fold for nine to eleven days. Overnight 20-minute sampling showed the natural pulse pattern preserved with trough levels up 7.5-fold. What has never been measured is what those hormone changes do to a person.',
+      },
+      {
+        q: 'Why did development stop?',
+        a: 'The public record does not say. ConjuChem registered one phase 2, in HIV-associated visceral obesity with a planned 120 patients, starting December 2005. The trial record shows termination, no posted results and no stated reason. Nothing further has been registered by anyone in the twenty years since. This page reports the record and does not speculate about what is not in it.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no approved product anywhere and therefore no list price to cite. This site prints acquisition costs from published sources. A research-chemical asking price is not a published figure and would in any case be a price for whichever of the two molecules the vendor happened to ship.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Teichman SL et al. Prolonged stimulation of growth hormone and insulin-like growth factor I secretion by CJC-1295, a long-acting analog of GH-releasing hormone, in healthy adults. J Clin Endocrinol Metab 2006;91:799-805',
+        identifier: '10.1210/jc.2005-1536',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ionescu M, Frohman LA. Pulsatile secretion of growth hormone persists during continuous stimulation by CJC-1295, a long-acting GH-releasing hormone analog. J Clin Endocrinol Metab 2006;91:4792-4797',
+        identifier: '10.1210/jc.2006-1702',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Phase 2 of CJC-1295 in HIV-associated visceral obesity, ConjuChem — terminated, no results posted',
+        identifier: 'NCT00267527',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Timms M et al. A method for confirming CJC-1295 abuse in equine plasma samples by LC-MS/MS. Drug Test Anal 2019;11:1248-1257',
+        identifier: '10.1002/dta.2599',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Coppieters G et al. An antibody-free, ultrafiltration-based assay for the detection of growth hormone-releasing hormones in urine at low pg/mL concentrations using nanoLC-HRMS/MS. J Pharm Biomed Anal 2022;214:114726',
+        identifier: '10.1016/j.jpba.2022.114726',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thomas A et al. Probing for peptidic drugs (2-10 kDa) in doping control blood samples. Anal Sci Adv 2022;3:235-243',
+        identifier: '10.1002/ansa.202200027',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Memdouh S et al. Advances in the detection of growth hormone releasing hormone synthetic analogs. Drug Test Anal 2021;13:1871-1887',
+        identifier: '10.1002/dta.3183',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dominikowski A et al. The emerging landscape of performance-enhancing peptides modulating the GH-IGF1 axis: bridging the gap between clinical evidence and patient self-administration. Front Endocrinol 2026;17:1822475',
+        identifier: '10.3389/fendo.2026.1822475',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 91971820 — CJC-1295 molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/91971820',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 21. Ipamorelin
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ipamorelin',
+    name: 'Ipamorelin',
+    tradeName: 'Also written NNC 26-0161. No trade name; never marketed',
+    sponsor:
+      'Discovered at Novo Nordisk, Malov. Licensed to Helsinn Therapeutics, which ran two phase 2 trials in post-operative ileus and stopped',
+    targetGene: 'GHSR',
+    targetProtein: 'Growth hormone secretagogue receptor 1a — the ghrelin receptor',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Phase 2 Investigational',
+    indication:
+      'No approved indication anywhere. Two completed phase 2 trials in recovery of gastrointestinal function after bowel surgery; neither posted results and development stopped.',
+    patientFriendlyIndication:
+      'A growth hormone releaser designed to leave cortisol alone — never approved',
+    anatomicalSite:
+      'Growth hormone secretagogue receptor on anterior pituitary somatotrophs and in the hypothalamic arcuate nucleus',
+    conditionContext: {
+      conditionExplainer:
+        'Ghrelin is the stomach hormone that tells the brain to eat and tells the pituitary to release growth hormone. Its receptor is a separate switch from the GHRH receptor, and pressing both at once releases more growth hormone than pressing either alone.',
+      whyItMatters:
+        'The earlier drugs in this class released growth hormone and also released ACTH and cortisol and raised prolactin, which made them unusable. Ipamorelin was the first that did not, and that selectivity is the single measured fact the compound is famous for.',
+      whoTakesThis:
+        'In trials: healthy male volunteers in the phase 1, and patients recovering from small or large bowel resection in the two phase 2 studies. Outside trials: people injecting it, almost always paired with a GHRH analogue such as CJC-1295 or sermorelin.',
+      clinicalGoals:
+        'The phase 1 endpoint was growth hormone release and pharmacokinetics. The phase 2 endpoint was recovery of gastrointestinal function after bowel surgery. Neither is the reason people take it.',
+    },
+    oneSentenceVerdict:
+      'A pentapeptide ghrelin-receptor agonist that releases growth hormone as potently as GHRP-6 while leaving ACTH and cortisol untouched at 200 times the effective dose — a genuinely clean selectivity result in animals, followed by a two-hour half-life in humans, two silent phase 2 trials and no approval.',
+    laymanHowItWorks:
+      'The pituitary has two separate buttons for releasing growth hormone. One is pressed by the brain hormone GHRH; the other is pressed by ghrelin, the hunger hormone from the stomach. Ipamorelin presses the ghrelin button. Earlier drugs that did this also switched on the stress hormone axis and pushed up cortisol and prolactin, which made them unusable as medicines. Ipamorelin was built by stripping two amino acids out of an older compound, and the result released growth hormone just as strongly while leaving cortisol alone even at doses two hundred times higher than needed. In a person the effect is one sharp pulse of growth hormone that peaks at about forty minutes and is gone within hours.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 28,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: '(Aib)H(D-2-Nal)(D-Phe)K(NH2)',
+      chemicalFormula: 'C38H49N9O5',
+      molecularWeight: '711.9 g/mol',
+      targetReceptorAffinity:
+        'Aib-His-D-2-Nal-D-Phe-Lys-NH2, a C-terminally amidated pentapeptide. Identified within a series lacking the central Ala-Trp dipeptide of GHRP-1. Agonist at the growth hormone secretagogue receptor 1a: EC50 1.3 +/- 0.4 nmol/L with Emax 85 +/- 5% in primary rat pituitary cells, against 2.2 +/- 0.3 nmol/L and 100% for GHRP-6. Antagonist profiling with GHRP and GHRH blockers placed the action at the GHRP-like receptor, not the GHRH receptor.',
+      structureSource: {
+        label:
+          'PubChem CID 9831659 (ipamorelin) — molecular formula and molecular weight; the one-letter string gives the backbone with the aminoisobutyric acid, D-2-naphthylalanine, D-phenylalanine and C-terminal amide in parentheses',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9831659',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ipa-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, including the two D-amino acids',
+          description:
+            'Confirm the sequence and, critically, the stereochemistry. Two of the five residues are D-enantiomers and one is the non-proteinogenic aminoisobutyric acid; an all-L impurity has the same mass and a different pharmacology, and mass spectrometry alone will not see it. Chiral amino acid analysis after hydrolysis is the step that does.',
+          reagentsAndBuffer:
+            'Certified ipamorelin reference standard, high-resolution accurate-mass ESI-MS with MS/MS b and y ion sequencing, chiral GC or LC amino acid analysis after 6 M hydrochloric acid hydrolysis and Marfey reagent derivatisation, reversed-phase C18 HPLC with 0.1% trifluoroacetic acid',
+        },
+        {
+          id: 'ipa-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Peptide content, related substances and endotoxin',
+          description:
+            'Establish actual peptide content rather than the nominal figure on a lyophilised vial, screen for deletion and epimerised sequences from solid-phase synthesis, and test endotoxin because the route is injection. A five-residue peptide is cheap to synthesise badly, which is why the impurity profile matters more here than the assay value.',
+          dependsOnStepId: 'ipa-w1',
+          reagentsAndBuffer:
+            'Amino acid analysis after vapour-phase hydrolysis for absolute content, reversed-phase HPLC with UV detection at 220 nm and at 280 nm for the naphthyl chromophore, ion chromatography for acetate and trifluoroacetate counterions, Karl Fischer for water, limulus amoebocyte lysate for endotoxin',
+        },
+        {
+          id: 'ipa-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma extraction for a short-lived analyte',
+          description:
+            'The human terminal half-life is two hours and the volume of distribution is 0.22 L/kg, so sampling has to be dense and early and the extraction has to be fast. Small amidated peptides adsorb badly to glass and to pipette tips, which is a larger source of error at these concentrations than the chromatography.',
+          dependsOnStepId: 'ipa-w2',
+          reagentsAndBuffer:
+            'Acidified plasma with protease inhibitors on ice, mixed-mode cation-exchange solid-phase extraction, stable-isotope-labelled ipamorelin internal standard, low-binding polypropylene tubes and tips throughout',
+        },
+        {
+          id: 'ipa-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'The selectivity experiment: GH against ACTH, cortisol and prolactin',
+          description:
+            'This is the assay that defines the compound. Primary pituitary cells give growth hormone release; the same preparation and the same animals give ACTH, cortisol, prolactin, LH, FSH and TSH. Ipamorelin distinguished itself from GHRP-6 and GHRP-2 not on growth hormone potency, where they are comparable, but on everything else it did not do.',
+          dependsOnStepId: 'ipa-w3',
+          reagentsAndBuffer:
+            'Primary rat anterior pituitary cell culture, or HEK293 cells expressing human GHSR1a with inositol phosphate or calcium-flux readout, GHRP-6 and GHRP-2 as comparator agonists, GHRP and GHRH receptor antagonists to assign the pathway, immunoassays for growth hormone, ACTH, cortisol, prolactin, LH, FSH and TSH run in parallel',
+        },
+        {
+          id: 'ipa-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with an indirect-response growth hormone model',
+          description:
+            'Quantify ipamorelin by tandem mass spectrometry and fit the growth hormone time course with an indirect response model rather than reporting a single peak value. The published human characterisation used a zero-order release rate over a finite duration to capture the episodic nature of the response, and found the between-subject variability in the pharmacodynamics larger than in the pharmacokinetics.',
+          dependsOnStepId: 'ipa-w4',
+          reagentsAndBuffer:
+            'C18 or biphenyl column with 0.1% formic acid and acetonitrile gradient, electrospray positive-ion multiple-reaction monitoring, stable-isotope-labelled internal standard; growth hormone by immunometric assay with dense early sampling, population pharmacokinetic-pharmacodynamic fitting',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ipa-a1',
+        category: 'measured',
+        title: 'It released growth hormone without touching ACTH or cortisol',
+        laymanSummary:
+          'In pigs, ipamorelin released growth hormone as strongly as the older drugs in its class but, unlike them, did not raise ACTH or cortisol — even at doses more than two hundred times higher than needed.',
+        technicalDetails:
+          'Raun et al. at Novo Nordisk characterised ipamorelin, a pentapeptide identified within a series lacking the central Ala-Trp dipeptide of GHRP-1. In primary rat pituitary cells it released growth hormone with EC50 1.3 +/- 0.4 nmol/L and Emax 85 +/- 5%, against 2.2 +/- 0.3 nmol/L and 100% for GHRP-6. In pentobarbital-anaesthetised rats, ED50 was 80 +/- 42 nmol/kg with Emax 1,545 +/- 250 ng/mL against 115 +/- 36 nmol/kg and 1,167 +/- 120 ng/mL for GHRP-6. In conscious swine, ED50 was 2.3 +/- 0.03 nmol/kg with Emax 65 +/- 0.2 ng/mL. No secretagogue tested affected FSH, LH, prolactin or TSH. GHRP-6 and GHRP-2 both raised ACTH and cortisol; ipamorelin did not, at doses more than 200-fold above its ED50 for growth hormone release. The authors describe it as the first GHRP-receptor agonist with selectivity for growth hormone comparable to GHRH itself.',
+        evidenceSource: 'Raun K et al., Eur J Endocrinol 1998;139:552-561',
+        doi: '10.1530/eje.0.1390552',
+        measuredMetric:
+          'EC50, ED50 and Emax for growth hormone release, with parallel ACTH, cortisol, prolactin, LH, FSH and TSH measurements in rat and swine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ipa-a2',
+        category: 'measured',
+        title: 'In humans: one pulse, peaking at 40 minutes, gone in hours',
+        laymanSummary:
+          'A dose-escalation study in 40 healthy men found a two-hour half-life and a single burst of growth hormone peaking about forty minutes after infusion, falling back to negligible levels at every dose tested.',
+        technicalDetails:
+          'Gobburu et al. studied ipamorelin in healthy male volunteers at five infusion rates — 4.21, 14.02, 42.13, 84.27 and 140.45 nmol/kg over 15 minutes — with eight subjects at each level. Pharmacokinetics were dose-proportional with a terminal half-life of 2 hours, clearance of 0.078 L/h/kg and steady-state volume of distribution of 0.22 L/kg. The growth hormone response was a single episode peaking at 0.67 hours and declining exponentially to negligible concentrations at all doses. The concentration producing half-maximal growth hormone stimulation was 214 nmol/L and the maximal growth hormone production rate 694 mIU/L/h. Between-subject variability in the pharmacodynamic parameters exceeded that in the pharmacokinetic parameters, which is the practical reason a fixed dose produces very different responses in different people.',
+        evidenceSource: 'Gobburu JV, Agerso H, Jusko WJ, Pharm Res 1999;16:1412-1416',
+        doi: '10.1023/a:1018955126402',
+        measuredMetric:
+          'Terminal half-life, clearance, volume of distribution, SC50 and maximal growth hormone production rate across five ascending infusion rates',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ipa-a3',
+        category: 'failed',
+        title: 'Two completed phase 2 trials, no posted results, no third trial',
+        laymanSummary:
+          'Helsinn ran ipamorelin in 117 and then 320 patients recovering from bowel surgery. Both trials completed. Neither posted results, and nothing followed.',
+        technicalDetails:
+          'NCT00672074 was a phase 2, double-blind, placebo-controlled, multiple-dose study of ipamorelin versus placebo for the management of post-operative ileus, 117 participants, completed December 2009, primary endpoint recovery of gastrointestinal function, no results posted. NCT01280344 was a phase 2 double-blind placebo-controlled dose-finding study of ipamorelin versus placebo for recovery of gastrointestinal function in patients following small or large bowel resection, 320 participants, completed May 2014, same primary endpoint, no results posted. No phase 3 was registered and no product exists. The indication is worth noting: ghrelin-receptor agonism accelerates gastric emptying, so the clinical hypothesis was gut motility, not body composition.',
+        evidenceSource:
+          'ClinicalTrials.gov records NCT00672074 (completed December 2009, n=117) and NCT01280344 (completed May 2014, n=320), Helsinn Therapeutics, neither with posted results',
+        measuredMetric:
+          'Registered phase 2 trials with a clinical endpoint: two, both completed, neither reported',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ipa-a4',
+        category: 'inferred',
+        title: 'Stacking with a GHRH analogue is the standard practice and is untested',
+        laymanSummary:
+          'Ipamorelin is almost always injected alongside CJC-1295 or sermorelin on the theory that two switches beat one. No human study has tested that combination.',
+        technicalDetails:
+          'The physiological argument is sound as far as it goes: GHRH-receptor and ghrelin-receptor agonism act through separate pathways on the somatotroph, and co-administration of a GHRH analogue with a growth hormone secretagogue produces a larger growth hormone response than either alone. That is established for other pairs. It has never been studied for ipamorelin with CJC-1295 or with sermorelin in a registered human trial, at any dose, for any endpoint. What is being extrapolated is not only the pharmacodynamic sum but the safety of chronic combined stimulation, which is a different question again and one that no dataset addresses.',
+        evidenceSource:
+          'Complete set of registered human trials of ipamorelin: NCT00672074 and NCT01280344, both monotherapy; Dominikowski A et al., Front Endocrinol 2026;17:1822475, review contrasting clinical evidence with online self-administration practice',
+        doi: '10.3389/fendo.2026.1822475',
+        inferredClaim:
+          'That combining ipamorelin with a GHRH analogue is safe and effective over months of use, when no human trial of the combination exists',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ipa-a5',
+        category: 'measured',
+        title: 'The selectivity result is real and it is an animal result',
+        laymanSummary:
+          'The famous claim that ipamorelin does not raise cortisol comes from rats and pigs. Human ACTH and cortisol were not the endpoint of the human study.',
+        technicalDetails:
+          'Raun et al. measured ACTH and cortisol in conscious swine and found no significant elevation, at doses above 200-fold the growth hormone ED50 — a well-designed and unambiguous experiment in that species. The human study that followed characterised ipamorelin pharmacokinetics and the growth hormone response across five infusion rates; its reported outcomes are ipamorelin and growth hormone concentrations. This page states the selectivity finding where it was measured and does not upgrade it to a human result, because doing so is exactly the kind of substitution the audit exists to catch.',
+        evidenceSource:
+          'Raun K et al., Eur J Endocrinol 1998;139:552-561 (swine ACTH and cortisol); Gobburu JV et al., Pharm Res 1999;16:1412-1416 (human endpoints: ipamorelin and growth hormone concentrations)',
+        doi: '10.1530/eje.0.1390552',
+        measuredMetric:
+          'ACTH and cortisol response to ipamorelin in conscious swine at over 200 times the growth hormone ED50',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ipa-a6',
+        category: 'measured',
+        title: 'Prohibited in sport, and detectable',
+        laymanSummary:
+          'Growth hormone secretagogues are banned at all times in sport, and laboratory methods for finding them in blood and urine are published.',
+        technicalDetails:
+          'Ipamorelin belongs to the growth hormone secretagogue class prohibited at all times under WADA class S2, peptide hormones, growth factors, related substances and mimetics, alongside the GHRPs, the GHRH analogues and ibutamoren. Doping control methods for peptidic drugs in the 2-10 kDa range in blood, and immunopurification and nanoLC high-resolution mass spectrometry approaches for small peptide hormones, cover this class. Ipamorelin is at the small end of that range — 712 daltons — which makes it analytically closer to a small molecule than to the GHRH analogues, and correspondingly easier to confirm.',
+        evidenceSource:
+          'Thomas A et al., Anal Sci Adv 2022;3:235-243; Memdouh S et al., Drug Test Anal 2021;13:1871-1887',
+        doi: '10.1002/ansa.202200027',
+        measuredMetric:
+          'Analytical detection of small peptide hormones and secretagogues in doping control blood and urine samples',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected under the skin as a small peptide',
+        laymanDesc:
+          'Five amino acids in a vial of powder, reconstituted and injected. It reaches the bloodstream fast and leaves fast.',
+        molecularDetail:
+          'Subcutaneous or intravenous administration. Human pharmacokinetics from a 15-minute intravenous infusion: dose-proportional exposure, terminal half-life 2 hours, clearance 0.078 L/h/kg, steady-state volume of distribution 0.22 L/kg. The C-terminal amide and the two D-residues protect against exopeptidase cleavage.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the pituitary and the arcuate nucleus',
+        laymanDesc:
+          'Its target is on the outside surface of pituitary cells, so it does not need to get inside anything.',
+        molecularDetail:
+          'The growth hormone secretagogue receptor 1a is a G protein-coupled receptor on the plasma membrane of anterior pituitary somatotrophs and on neurons of the hypothalamic arcuate nucleus. The circumventricular access of the pituitary to circulating peptides is why a small peripherally injected peptide can act there without crossing a tight blood-brain barrier.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Presses the ghrelin button, not the GHRH button',
+        laymanDesc:
+          'It fits the receptor that the hunger hormone normally uses, which is a different receptor from the one the brain growth signal uses.',
+        molecularDetail:
+          'Agonism at GHSR1a couples through Gq to phospholipase C, inositol trisphosphate and intracellular calcium release. Antagonist profiling with GHRP and GHRH blockers assigned the effect to the GHRP-like receptor. EC50 in primary rat pituitary cells was 1.3 nmol/L, comparable to GHRP-6.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'One burst of growth hormone, and nothing else moves',
+        laymanDesc:
+          'Growth hormone comes out in a single pulse. Cortisol, prolactin and the reproductive hormones stay where they were.',
+        molecularDetail:
+          'The human growth hormone response is a single episode peaking at 0.67 hours with exponential decline to negligible concentrations, modelled with a zero-order release rate over a finite duration. In swine, FSH, LH, prolactin and TSH were unaffected, and unlike GHRP-6 and GHRP-2 there was no ACTH or cortisol response even at more than 200 times the growth hormone ED50.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A clean pharmacology with nothing on the other end',
+        laymanDesc:
+          'The mechanism does what it says. Two phase 2 trials in surgical patients finished a decade ago and their results were never made public.',
+        molecularDetail:
+          'Two completed phase 2 studies in post-operative gastrointestinal recovery, 117 and 320 patients, report no outcomes on the trial registry. No phase 3 was registered. Beyond growth hormone concentration, no human endpoint — body composition, IGF-1 over time, strength, recovery, sleep — has been published for ipamorelin.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Gobburu 1999 dose-escalation study in healthy male volunteers',
+        phase: 'Phase 1, five ascending 15-minute infusion rates, eight subjects per level',
+        sampleSize: 40,
+        primaryEndpoint:
+          'Ipamorelin and growth hormone concentrations, and pharmacokinetic parameters',
+        endpointMet: true,
+        statisticalPValue:
+          'Dose-proportional pharmacokinetics; half-life 2 h, clearance 0.078 L/h/kg, Vss 0.22 L/kg; growth hormone peak at 0.67 h; SC50 214 nmol/L; maximal growth hormone production rate 694 mIU/L/h',
+        unreportedAdverseSignals:
+          'Between-subject variability in the pharmacodynamic parameters exceeded that in the pharmacokinetic parameters, so a given dose produced substantially different growth hormone responses across individuals.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT00672074 — phase 2 in post-operative ileus',
+        phase: 'Phase 2, double-blind placebo-controlled multiple-dose',
+        sampleSize: 117,
+        primaryEndpoint: 'Recovery of gastrointestinal function',
+        endpointMet: false,
+        statisticalPValue:
+          'Completed December 2009. No results posted to ClinicalTrials.gov and no publication identified',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT01280344 — phase 2 dose-finding after bowel resection',
+        phase: 'Phase 2, double-blind placebo-controlled dose-finding',
+        sampleSize: 320,
+        primaryEndpoint:
+          'Recovery of gastrointestinal function after small or large bowel resection',
+        endpointMet: false,
+        statisticalPValue:
+          'Completed May 2014. No results posted to ClinicalTrials.gov and no phase 3 registered since',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Raun 1998 preclinical characterisation in rat and swine',
+        phase: 'Preclinical, primary pituitary cells, anaesthetised rats and conscious swine',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Growth hormone release potency and efficacy against GHRP-6 and GHRP-2, with ACTH, cortisol, prolactin, LH, FSH and TSH selectivity',
+        endpointMet: true,
+        statisticalPValue:
+          'EC50 1.3 +/- 0.4 nmol/L in rat pituitary cells; swine ED50 2.3 +/- 0.03 nmol/kg; no ACTH or cortisol release at over 200-fold the growth hormone ED50, where GHRP-6 and GHRP-2 raised both',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Growth hormone release with EC50 1.3 nmol/L in rat pituitary cells and ED50 2.3 nmol/kg in conscious swine, comparable to GHRP-6',
+        'No ACTH or cortisol release in swine at more than 200 times the growth hormone ED50, where GHRP-6 and GHRP-2 raised both; FSH, LH, prolactin and TSH unaffected',
+        'In humans, dose-proportional kinetics with a 2-hour terminal half-life and a single growth hormone pulse peaking at 0.67 hours at every dose tested',
+        'Two phase 2 trials in post-operative gastrointestinal recovery, 117 and 320 patients, completed in 2009 and 2014 with no results posted',
+      ],
+      unsupportedInferences: [
+        'That the cortisol selectivity measured in swine has been demonstrated in humans, where ACTH and cortisol were not reported endpoints',
+        'That combining ipamorelin with CJC-1295 or sermorelin is safe or effective, which no human trial has examined',
+        'That a single two-hour growth hormone pulse translates into sustained IGF-1 elevation or body composition change, neither of which has been measured for this compound',
+        'That an unlicensed vial contains the correct stereoisomers; two of the five residues are D-amino acids and mass spectrometry alone cannot detect an all-L impurity',
+      ],
+      whatFailedInitially: [
+        'Both registered phase 2 trials completed without posting results, and no phase 3 followed either',
+        'Development for post-operative ileus, the only clinical indication ever pursued, was abandoned after the 320-patient dose-finding study',
+      ],
+      realWorldOutcome: [
+        'Never approved in any jurisdiction, and no sponsor has registered a trial since 2014',
+        'Prohibited at all times in sport under WADA class S2 as a growth hormone secretagogue, with published detection methods for small peptide hormones in blood and urine',
+        'Sold widely as a research chemical, almost always paired with a GHRH analogue, a combination with no human trial behind it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection of a reconstituted lyophilised powder; intravenous infusion in the phase 1',
+      description:
+        'A lyophilised pentapeptide reconstituted before injection. The human characterisation used 15-minute intravenous infusions at 4.21 to 140.45 nmol/kg. Outside trials it is sold as a research-chemical vial for subcutaneous injection, typically alongside a GHRH analogue, with no assurance about stereochemical purity or endotoxin.',
+      safetyProfile:
+        'The selectivity that defines the compound — no ACTH, cortisol, prolactin, LH, FSH or TSH response at over 200 times the growth hormone ED50 — was established in swine. In humans the reported phase 1 outcomes are pharmacokinetic and growth hormone concentrations; adverse events were not the focus. Two phase 2 trials in 437 surgical patients between them generated safety data that has never been published. What is known about chronic growth hormone secretagogue exposure comes from the ibutamoren literature, not from this compound.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it true that ipamorelin does not raise cortisol?',
+        a: 'In pigs, yes, and the experiment was a good one. Raun and colleagues gave ipamorelin at doses more than 200 times the dose needed for half-maximal growth hormone release and saw no ACTH or cortisol response, while GHRP-6 and GHRP-2 raised both. FSH, LH, prolactin and TSH were also unaffected. That is why the paper is titled "the first selective growth hormone secretagogue". The human study that followed reported ipamorelin and growth hormone concentrations; it did not report ACTH or cortisol, so the selectivity claim in humans is an extension rather than a measurement.',
+        auditNote:
+          'Stating where a result was obtained is not a way of discounting it. The swine data are clean; they are swine data.',
+      },
+      {
+        q: 'How long does one dose work for?',
+        a: 'Hours, not days. In healthy men, the terminal half-life was 2 hours and the growth hormone response was a single pulse peaking at about 40 minutes and declining exponentially to negligible concentrations at every dose tested. That is the opposite of CJC-1295 with DAC, which produces a six-day elevation from one injection. The two are frequently combined precisely because their time courses differ, though that combination has never been tested in a human trial.',
+      },
+      {
+        q: 'Why was it never approved?',
+        a: 'The public record shows two completed phase 2 trials in a gut indication and then silence. Helsinn ran ipamorelin against placebo for recovery of gastrointestinal function after bowel surgery: 117 patients completing in December 2009, then a 320-patient dose-finding study completing in May 2014. Neither posted results. No phase 3 was registered. This page reports what the registry shows and does not infer a reason from the silence.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no approved product anywhere and therefore no list price to cite. This site prints acquisition costs from published sources. A research-chemical asking price is not a published figure and varies by seller and week.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Raun K et al. Ipamorelin, the first selective growth hormone secretagogue. Eur J Endocrinol 1998;139:552-561',
+        identifier: '10.1530/eje.0.1390552',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gobburu JV, Agerso H, Jusko WJ. Pharmacokinetic-pharmacodynamic modeling of ipamorelin, a growth hormone releasing peptide, in human volunteers. Pharm Res 1999;16:1412-1416',
+        identifier: '10.1023/a:1018955126402',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Phase 2 of ipamorelin for management of post-operative ileus, Helsinn Therapeutics — completed December 2009, no results posted',
+        identifier: 'NCT00672074',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Phase 2 dose-finding study of ipamorelin for recovery of gastrointestinal function after bowel resection — completed May 2014, no results posted',
+        identifier: 'NCT01280344',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Venkova K et al. Efficacy of ipamorelin, a novel ghrelin mimetic, in a rodent model of postoperative ileus. J Pharmacol Exp Ther 2009;329:1110-1116',
+        identifier: '10.1124/jpet.108.149211',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Andersen NB et al. The growth hormone secretagogue ipamorelin counteracts glucocorticoid-induced decrease in bone formation of adult rats. Growth Horm IGF Res 2001;11:266-272',
+        identifier: '10.1054/ghir.2001.0239',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thomas A et al. Probing for peptidic drugs (2-10 kDa) in doping control blood samples. Anal Sci Adv 2022;3:235-243',
+        identifier: '10.1002/ansa.202200027',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dominikowski A et al. The emerging landscape of performance-enhancing peptides modulating the GH-IGF1 axis. Front Endocrinol 2026;17:1822475',
+        identifier: '10.3389/fendo.2026.1822475',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 9831659 — ipamorelin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9831659',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 22. Sermorelin
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'sermorelin',
+    name: 'Sermorelin',
+    tradeName: 'Geref, Geref Diagnostic (both discontinued)',
+    sponsor:
+      'Serono, now EMD Serono. NDA 019863 approved 28 December 1990 and NDA 020443 approved 26 September 1997; both products are listed as discontinued in Drugs@FDA',
+    targetGene: 'GHRHR',
+    targetProtein: 'Growth hormone-releasing hormone receptor on pituitary somatotrophs',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1990,
+    indication:
+      'Approved in the United States for diagnostic evaluation of pituitary growth hormone secretory capacity and, from 1997, for treatment of idiopathic growth hormone deficiency in children with growth failure. Both products are discontinued. Present-day supply is compounded, for indications no regulator has assessed.',
+    patientFriendlyIndication:
+      'A childhood growth drug that was approved, then pulled — now compounded for anti-ageing',
+    anatomicalSite: 'GHRH receptors on anterior pituitary somatotrophs',
+    conditionContext: {
+      conditionExplainer:
+        'Growth hormone deficiency in a child can come from the pituitary itself or from the hypothalamus above it failing to send the releasing signal. Only the second kind can be fixed by supplying the releasing signal, because only in that case is the pituitary still able to answer.',
+      whyItMatters:
+        'Sermorelin is the exact 29-amino-acid active fragment of the natural hypothalamic hormone. It is the reference GHRH analogue, it is what most grey-market GHRH peptides are copies or variants of, and unlike almost everything else in this file it was actually approved and marketed. Then it was discontinued.',
+      whoTakesThis:
+        'On label, when it was available: children with idiopathic growth hormone deficiency, and patients undergoing a provocative pituitary test. Now: adults receiving compounded sermorelin from wellness clinics for indications that were never studied, and people buying it as a research chemical.',
+      clinicalGoals:
+        'The approved treatment goal was height velocity in growth-failing children. The approved diagnostic goal was a growth hormone response to a single intravenous dose. Neither is the goal of current use.',
+    },
+    oneSentenceVerdict:
+      'The only compound in this group that was approved, marketed and then discontinued: it raised height velocity in growth-hormone-deficient children from 4.1 to 8.0 cm per year at six months, raised it less than growth hormone did at the same dose, never established an effect on final adult height, and now exists only as a compounded product for uses no regulator has looked at.',
+    laymanHowItWorks:
+      'The hypothalamus makes a 44-amino-acid hormone that tells the pituitary to release growth hormone. The first 29 amino acids are the part that does the work, and sermorelin is exactly those 29 with a chemical cap on the end. Injected at bedtime it produces a pulse of growth hormone from the child own pituitary, which is why it only helps when the pituitary is intact and the problem is upstream. That is also the reason it never displaced growth hormone itself: giving the signal depends on a working factory, while giving the hormone does not. Its natural half-life is minutes, which is the limitation every later GHRH analogue in this file was designed to solve.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 48,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: 'YADAIFTNSYRKVLGQLSARKLLQDIMSR(NH2)',
+      chemicalFormula: 'C149H246N44O42S',
+      molecularWeight: '3357.9 g/mol',
+      targetReceptorAffinity:
+        'GHRH(1-29)-NH2: the N-terminal 29 residues of human growth hormone-releasing hormone with a C-terminal amide, supplied as the acetate salt. It retains full agonist activity at the GHRH receptor — the 15 C-terminal residues of the native 44-mer are dispensable — and is cleaved rapidly by dipeptidyl peptidase IV at the Ala2-Asp3 bond, giving a plasma half-life of minutes. Every substitution in CJC-1295 and in tesamorelin exists to defend against that cleavage.',
+      structureSource: {
+        label:
+          'PubChem CID 16132413 (sermorelin) — sequence, molecular formula and molecular weight; the C-terminal amide is shown in parentheses because the engine validates standard residues',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/16132413',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ser-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Sequence identity against the modified analogues',
+          description:
+            'Confirm the peptide is native GHRH(1-29)-NH2 and not one of the substituted analogues sold under adjacent names. Modified GRF(1-29) differs at four positions and CJC-1295 adds a lysine and a maleimide; the mass differences are small relative to a 3,358-dalton peptide but the pharmacology differs by orders of magnitude in duration. Sequencing, not intact mass alone, is the test.',
+          reagentsAndBuffer:
+            'Certified sermorelin acetate and modified GRF(1-29) reference standards, high-resolution accurate-mass ESI-MS with charge-state deconvolution, MS/MS b and y ion sequencing across positions 2, 8, 15 and 27, reversed-phase C18 HPLC with 0.1% trifluoroacetic acid and acetonitrile',
+        },
+        {
+          id: 'ser-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content, deamidation, oxidation and endotoxin',
+          description:
+            'Sermorelin carries an asparagine at position 8 and a methionine at 27, the two residues that deamidate and oxidise on storage. Those are the exact positions the later analogues substitute away, so a degraded sermorelin vial and a designed analogue differ by which end of the same chemistry you are on. Endotoxin is part of the assay because the route is injection.',
+          dependsOnStepId: 'ser-w1',
+          reagentsAndBuffer:
+            'Amino acid analysis after vapour-phase 6 M hydrochloric acid hydrolysis for absolute peptide content, reversed-phase HPLC with UV detection at 220 and 280 nm resolving the Asn8 deamidation and Met27 sulfoxide peaks, ion chromatography for counterions, Karl Fischer for water, limulus amoebocyte lysate for endotoxin',
+        },
+        {
+          id: 'ser-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma extraction for a minutes-long analyte',
+          description:
+            'The half-life is minutes and dipeptidyl peptidase IV keeps cleaving in the tube after the blood is drawn, so a DPP-IV inhibitor in the collection tube is not optional. Measuring the 3-29 cleavage product alongside the intact peptide is what distinguishes a low result from a badly collected one.',
+          dependsOnStepId: 'ser-w2',
+          reagentsAndBuffer:
+            'Blood collected into EDTA with a dipeptidyl peptidase IV inhibitor and aprotinin on ice, mixed-mode cation-exchange or immunoaffinity solid-phase extraction, stable-isotope-labelled sermorelin internal standard, low-binding polypropylene throughout',
+        },
+        {
+          id: 'ser-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'GHRH receptor agonism in pituitary cells',
+          description:
+            'Measure receptor activation where it happens. Primary anterior pituitary cells give growth hormone release directly; a GHRHR-transfected line with a cyclic AMP readout isolates the receptor from everything else in a pituitary. Running sermorelin against the modified analogues in the same plate is the comparison that shows the substitutions cost nothing in potency and buy everything in duration.',
+          dependsOnStepId: 'ser-w3',
+          reagentsAndBuffer:
+            'Primary rat anterior pituitary cell culture or HEK293 cells expressing human GHRHR, cyclic AMP accumulation by homogeneous time-resolved fluorescence, native GHRH(1-44) as reference agonist, growth hormone immunoassay for the pituitary readout, IBMX to inhibit phosphodiesterase',
+        },
+        {
+          id: 'ser-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification with the provocative-test readout',
+          description:
+            'Quantify sermorelin and its 3-29 metabolite by tandem mass spectrometry, and read the pharmacodynamic endpoint the approved product was actually used for: peak growth hormone after a single 1 microgram per kilogram intravenous dose, sampled densely over the first hour. The clinically important limitation is built into that test — a normal response does not exclude deficiency of hypothalamic origin.',
+          dependsOnStepId: 'ser-w4',
+          reagentsAndBuffer:
+            'C18 or biphenyl column with 0.1% formic acid and acetonitrile gradient, electrospray positive-ion multiple-reaction monitoring on the multiply charged precursor, stable-isotope-labelled internal standard; growth hormone by immunometric assay at frequent intervals after dosing, IGF-1 in parallel',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ser-a1',
+        category: 'measured',
+        title: 'Height velocity nearly doubled in growth-hormone-deficient children',
+        laymanSummary:
+          'In 110 previously untreated children with growth hormone deficiency, a bedtime injection raised growth from 4.1 cm a year to 8.0 cm a year at six months, with 74% classed as good responders.',
+        technicalDetails:
+          'Thorner et al., for the Geref International Study Group, treated 110 previously untreated prepubertal growth-hormone-deficient children in a multicentre open-label study with 30 micrograms per kilogram per day of GHRH(1-29) subcutaneously at bedtime for up to one year; 86 were eligible for efficacy analysis. Mean height velocity rose from 4.1 +/- 0.9 cm/yr at baseline to 8.0 +/- 1.5 cm/yr at six months and 7.2 +/- 1.3 cm/yr at twelve. At six months, 74% were considered good responders. The ratio of change in bone age to change in height age was not significantly different from unity at twelve months (1.04 +/- 0.58, P = 0.63), meaning skeletal maturation did not run ahead of growth. No adverse changes in biochemical or hormonal analyses were seen, no change in fasting glucose, and no excessive IGF-1 generation.',
+        evidenceSource:
+          'Thorner M et al. for the Geref International Study Group, J Clin Endocrinol Metab 1996;81:1189-1196',
+        doi: '10.1210/jcem.81.3.8772599',
+        measuredMetric:
+          'Height velocity in cm per year at baseline, 6 months and 12 months, with bone age to height age ratio',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ser-a2',
+        category: 'conclusion_shift',
+        title: 'It worked, and growth hormone worked better at the same dose',
+        laymanSummary:
+          'Giving the releasing signal raised growth less than giving growth hormone itself, and only the growth hormone arm improved height relative to bone age.',
+        technicalDetails:
+          'The published review of sermorelin states directly that increases in height velocity with subcutaneous sermorelin 30 micrograms per kilogram per day, given by continuous infusion or in three divided doses, were less than those in children receiving once-daily subcutaneous somatropin at the same 30 micrograms per kilogram, and that the effects at the recommended dose were never compared head to head with somatropin. Neyzi et al. randomised 43 prepubertal children with growth hormone deficiency of hypothalamic origin to low-dose GHRH(1-29) at 30 micrograms per kilogram per day, high-dose at 60, or growth hormone at 0.1 IU per kilogram per day for six months. Height velocity was lowest in the low-dose arm and comparable between high-dose GHRH and growth hormone, but an increase in height standard deviation score for bone age occurred only in the growth hormone group. The releasing-hormone route works and, on the measurements that were taken, it works less well.',
+        evidenceSource:
+          'Prakash A, Goa KL, BioDrugs 1999;12:139-157; Neyzi O et al., Acta Paediatr Suppl 1993;388:16-21',
+        doi: '10.2165/00063030-199912020-00007',
+        inferredClaim:
+          'That stimulating endogenous growth hormone is equivalent to replacing it — the comparisons that exist favour replacement',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ser-a3',
+        category: 'failed',
+        title: 'The effect on adult height was never determined',
+        laymanSummary:
+          'Sermorelin was approved to treat growth failure in children and no study ever established what it did to final adult height.',
+        technicalDetails:
+          'The efficacy record consists of one-year height velocity data in 86 evaluable children, with sustained effect reported in a small number followed to 36 months. The published review states plainly that the effect of long-term once-daily subcutaneous sermorelin at 30 micrograms per kilogram on final adult height is yet to be determined. Height velocity in the first year of treatment is a surrogate: it is a real measurement and it is not the outcome the treatment exists to change. Both Geref products are now listed as discontinued in Drugs@FDA, so the question will not be answered by the approved product.',
+        evidenceSource:
+          'Prakash A, Goa KL, BioDrugs 1999;12:139-157; Drugs@FDA records NDA 019863 and NDA 020443, both marketing status Discontinued',
+        measuredMetric: 'Trials reporting final adult height after sermorelin treatment: none',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ser-a4',
+        category: 'measured',
+        title: 'As a diagnostic test, a normal result does not rule the disease out',
+        laymanSummary:
+          'Sermorelin was approved as a pituitary test, and the label limitation is that a normal growth hormone response does not exclude deficiency caused by a problem in the hypothalamus.',
+        technicalDetails:
+          'The approved diagnostic use is a single intravenous 1 microgram per kilogram dose with growth hormone sampled afterwards, used alongside conventional provocative tests. The recognised limitation is structural rather than technical: sermorelin bypasses the hypothalamus and tests the pituitary directly, so a hypothalamic cause of deficiency produces a normal response. A subnormal response to other provocative tests is required to confirm disease in those patients. Adding arginine to intravenous sermorelin was reported to make the test more specific. This is an unusually honest piece of diagnostic labelling and it is worth reading next to the marketing of GHRH peptides as general pituitary stimulants.',
+        evidenceSource: 'Prakash A, Goa KL, BioDrugs 1999;12:139-157',
+        doi: '10.2165/00063030-199912020-00007',
+        measuredMetric:
+          'Growth hormone response to a single intravenous 1 ug/kg dose, and its interpretation limits in hypothalamic deficiency',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ser-a5',
+        category: 'conclusion_shift',
+        title: 'Approved, marketed, discontinued — and then reborn as a wellness product',
+        laymanSummary:
+          'Both approved sermorelin products were taken off the market. It is now sold by compounding pharmacies for adult anti-ageing, an indication no regulator ever reviewed.',
+        technicalDetails:
+          'Drugs@FDA lists NDA 019863 (approved 28 December 1990, with supplements through 2001) and NDA 020443 (approved 26 September 1997), both sponsored by EMD Serono, both with all products in marketing status Discontinued. The approved indications were diagnostic pituitary testing and treatment of idiopathic growth hormone deficiency in children with growth failure. Neither approval covered adults, body composition, sleep quality, recovery, or ageing. The current supply is compounded, and the indications it is compounded for have no approved-product evidence base at all. A product that once had an FDA label and now does not is not a product with a stronger evidence base than the unapproved peptides beside it; it is the same evidence base, minus the marketing authorisation.',
+        evidenceSource:
+          'Drugs@FDA application records NDA 019863 and NDA 020443 (EMD Serono), marketing status Discontinued for all listed products',
+        inferredClaim:
+          'That a historical FDA approval for childhood growth failure supports adult use for ageing, body composition or recovery',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ser-a6',
+        category: 'inferred',
+        title: 'The adult use has no controlled trial at all',
+        laymanSummary:
+          'The reason adults are prescribed sermorelin today — better sleep, more lean mass, feeling younger — has never been tested against placebo in a trial of this drug.',
+        technicalDetails:
+          'The registered and published human efficacy literature for sermorelin is in children with growth hormone deficiency or idiopathic short stature, plus provocative pituitary testing and radiation-induced growth hormone deficiency. There is no placebo-controlled trial of sermorelin in healthy or ageing adults for body composition, sleep architecture, exercise capacity or quality of life. GHRH analogues have been studied in adults in other contexts — tesamorelin is approved for HIV-associated lipodystrophy — but tesamorelin is a different molecule with a different label, and its results are not sermorelin results.',
+        evidenceSource:
+          'Published sermorelin efficacy literature: Thorner M et al., J Clin Endocrinol Metab 1996;81:1189-1196; Kirk JM et al., Clin Endocrinol 1994;41:487-493; Ogilvy-Stuart AL et al., Clin Endocrinol 1997;46:571-578 — all in children or in radiation-induced deficiency',
+        doi: '10.1046/j.1365-2265.1997.1790998.x',
+        inferredClaim:
+          'That sermorelin improves body composition, sleep or wellbeing in adults, an indication with no controlled trial of this compound',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected under the skin, usually at bedtime',
+        laymanDesc:
+          'A once-daily injection timed for night, because that is when the body normally releases most of its growth hormone.',
+        molecularDetail:
+          'The approved paediatric regimen was 30 micrograms per kilogram per day subcutaneously at bedtime, chosen to align an exogenous GHRH pulse with the endogenous nocturnal surge. The diagnostic use was a single 1 microgram per kilogram intravenous dose.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the pituitary before enzymes destroy it',
+        laymanDesc:
+          'An enzyme in blood clips this peptide apart within minutes, so the dose has to be large enough to get there first.',
+        molecularDetail:
+          'Dipeptidyl peptidase IV cleaves the Ala2-Asp3 bond, giving a plasma half-life of minutes. The anterior pituitary sits outside the blood-brain barrier and is reached directly from the circulation. This single vulnerability is why every subsequent GHRH analogue substitutes position 2.',
+        iconName: 'Timer',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds the GHRH receptor on somatotrophs',
+        laymanDesc:
+          'It fits the same receptor the natural brain hormone uses, because it is the working part of that hormone.',
+        molecularDetail:
+          'Full agonist at the GHRH receptor, a class B G protein-coupled receptor coupled to Gs, adenylyl cyclase and cyclic AMP. The 15 C-terminal residues of native GHRH(1-44) contribute nothing to receptor activation, which is why the 1-29 fragment is the drug.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The pituitary releases its own growth hormone',
+        laymanDesc:
+          'The hormone comes from the child own gland, so the normal feedback controls still apply and it cannot be pushed arbitrarily high.',
+        molecularDetail:
+          'Cyclic AMP-driven exocytosis of stored growth hormone from somatotroph granules, with the response constrained by somatostatin tone and by pituitary reserve. In the one-year paediatric study this produced no excessive IGF-1 generation and no change in fasting glucose — the ceiling imposed by physiological feedback is the mechanistic reason for that.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Real growth, less growth than the hormone itself, no adult-height answer',
+        laymanDesc:
+          'Children grew faster. They grew faster still on growth hormone. Nobody measured what either did to final height in this programme.',
+        molecularDetail:
+          'Height velocity 4.1 to 8.0 cm/yr at six months and 7.2 cm/yr at twelve, with 74% good responders and bone age advancing in step with height age. Head-to-head at the same microgram-per-kilogram dose, somatropin produced larger height velocity increases, and only the somatropin arm improved height standard deviation score for bone age. Final adult height was never determined for sermorelin.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Geref International Study Group, one-year multicentre open-label study',
+        phase: 'Multicentre open-label, up to 12 months',
+        sampleSize: 110,
+        primaryEndpoint:
+          'Linear growth enhancement (height velocity), bone age progression and safety',
+        endpointMet: true,
+        statisticalPValue:
+          'Height velocity 4.1 +/- 0.9 cm/yr at baseline to 8.0 +/- 1.5 at 6 months and 7.2 +/- 1.3 at 12 months; 74% good responders at 6 months; bone age to height age ratio 1.04 +/- 0.58 (P = 0.63 versus unity)',
+        unreportedAdverseSignals:
+          'Open-label with no placebo arm, and 24 of 110 enrolled children were not eligible for the efficacy analysis. No adverse biochemical or hormonal changes, no change in fasting glucose, no excessive IGF-1 generation.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Neyzi 1993 three-arm randomised comparison against growth hormone',
+        phase: 'Randomised three-arm, 6 months',
+        sampleSize: 43,
+        primaryEndpoint:
+          'Height velocity, height standard deviation score for bone age, and IGF-1, comparing GHRH(1-29) 30 and 60 ug/kg/day against growth hormone 0.1 IU/kg/day',
+        endpointMet: false,
+        statisticalPValue:
+          'Height velocity lowest in the low-dose GHRH arm and comparable between high-dose GHRH and growth hormone; an increase in height SDS for bone age occurred only in the growth hormone group',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Kirk 1994 study in idiopathic short stature',
+        phase: 'Open-label treatment study in children without growth hormone deficiency',
+        sampleSize: 0,
+        primaryEndpoint: 'Growth velocity over sustained GHRH(1-29)NH2 treatment',
+        endpointMet: true,
+        statisticalPValue:
+          'A sustained increase in growth velocity was reported in children with idiopathic short stature, a population outside the approved indication',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Ogilvy-Stuart 1997 study in radiation-induced growth hormone deficiency',
+        phase: 'Open-label treatment study in children after cranial irradiation',
+        sampleSize: 0,
+        primaryEndpoint: 'Growth response to GHRH in deficiency of hypothalamic origin',
+        endpointMet: true,
+        statisticalPValue:
+          'Growth hormone-releasing hormone produced a growth response in radiation-induced deficiency, the setting where the lesion is above the pituitary and the pituitary remains responsive',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Height velocity rose from 4.1 to 8.0 cm/yr at six months and 7.2 cm/yr at twelve in 86 evaluable growth-hormone-deficient children on 30 ug/kg/day at bedtime, with 74% good responders',
+        'Bone age advanced in step with height age at twelve months, ratio 1.04 (P = 0.63 against unity)',
+        'At the same microgram-per-kilogram dose, somatropin produced larger height velocity increases than sermorelin, and only the somatropin arm improved height SDS for bone age',
+        'Both approved Geref products, NDA 019863 and NDA 020443, are listed as discontinued in Drugs@FDA',
+      ],
+      unsupportedInferences: [
+        'That a first-year height velocity gain predicts a gain in final adult height, which was never determined for this drug',
+        'That a historical approval in children supports adult use for ageing, body composition, sleep or recovery — indications with no controlled trial of sermorelin',
+        'That a normal growth hormone response to sermorelin excludes growth hormone deficiency, which it specifically does not when the lesion is hypothalamic',
+        'That results from tesamorelin, an approved and differently substituted GHRH analogue, transfer to sermorelin',
+      ],
+      whatFailedInitially: [
+        'Sermorelin never demonstrated an effect on final adult height, the outcome the indication exists for',
+        'Both approved products were discontinued, ending the only regulated supply of a GHRH analogue for growth failure',
+        'The head-to-head comparisons that exist favour growth hormone replacement over GHRH stimulation',
+      ],
+      realWorldOutcome: [
+        'Approved 28 December 1990 (NDA 019863) and 26 September 1997 (NDA 020443), both now discontinued',
+        'Prohibited at all times in sport under WADA class S2 as a growth hormone-releasing factor, alongside CJC-1295 and tesamorelin',
+        'Currently supplied through compounding pharmacies and research-chemical vendors for adult indications that no regulator has evaluated',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection, 30 micrograms per kilogram once daily at bedtime; single 1 ug/kg intravenous dose for the diagnostic use',
+      description:
+        'Supplied as sermorelin acetate for reconstitution. The therapeutic regimen was a bedtime subcutaneous injection timed to the nocturnal growth hormone surge; the diagnostic use was a single intravenous dose with timed growth hormone sampling. Present-day compounded vials follow no approved specification, and the asparagine at position 8 and methionine at position 27 make storage-related deamidation and oxidation a real quality question rather than a theoretical one.',
+      safetyProfile:
+        'In the one-year paediatric study, no adverse changes in general biochemical or hormonal analyses, no change in fasting glucose and no excessive IGF-1 generation. The commonest reported adverse events across single intravenous and repeated subcutaneous dosing were transient facial flushing and injection-site pain. Because the growth hormone released is the patient own and remains under somatostatin feedback, the acromegalic risks of supraphysiological exogenous growth hormone do not apply in the same way. There is no safety dataset for adult use over months or years, because no such trial was run.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was sermorelin ever an approved medicine?',
+        a: 'Yes, twice. Geref was approved on 28 December 1990 under NDA 019863 for diagnostic evaluation of pituitary growth hormone secretory capacity, and a second application, NDA 020443, was approved on 26 September 1997 for treatment of idiopathic growth hormone deficiency in children with growth failure. Drugs@FDA now lists every product under both applications as discontinued. That history is real and it does not extend to any adult indication, because neither approval ever covered one.',
+      },
+      {
+        q: 'Does it work as well as growth hormone?',
+        a: 'On the comparisons that exist, no. At the same 30 micrograms per kilogram per day, increases in height velocity with sermorelin were smaller than with somatropin. In a randomised three-arm study, height velocity on high-dose GHRH was comparable to growth hormone but an improvement in height standard deviation score for bone age occurred only in the growth hormone group. The mechanistic reason is straightforward: sermorelin works by asking the pituitary, and the pituitary can decline. That constraint is also why it produced no excessive IGF-1 and no glucose change.',
+      },
+      {
+        q: 'Why is it prescribed to adults now?',
+        a: 'Through compounding, for indications that were never approved and never trialled. The entire published efficacy literature for sermorelin is in children with growth hormone deficiency or short stature, plus provocative pituitary testing. There is no placebo-controlled trial of sermorelin in adults for body composition, sleep, recovery or wellbeing. A discontinued approval for a different population in a different age group is not evidence for the use it is currently put to.',
+        auditNote:
+          'Tesamorelin is an approved GHRH analogue with an adult indication. It is a different molecule with different substitutions, and its label does not transfer.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because both approved products are discontinued, so there is no current list price to cite. This site prints acquisition costs from published sources such as the CMS National Average Drug Acquisition Cost file, and a discontinued product does not appear there. Compounding pharmacy pricing is not a published figure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Thorner M et al. Once daily subcutaneous growth hormone-releasing hormone therapy accelerates growth in growth hormone-deficient children during the first year of therapy. Geref International Study Group. J Clin Endocrinol Metab 1996;81:1189-1196',
+        identifier: '10.1210/jcem.81.3.8772599',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Prakash A, Goa KL. Sermorelin: a review of its use in the diagnosis and treatment of children with idiopathic growth hormone deficiency. BioDrugs 1999;12:139-157',
+        identifier: '10.2165/00063030-199912020-00007',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Neyzi O et al. Growth response to growth hormone-releasing hormone(1-29)-NH2 compared with growth hormone. Acta Paediatr Suppl 1993;388:16-21',
+        identifier: '10.1111/j.1651-2227.1993.tb12828.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kirk JM et al. Treatment with GHRH(1-29)NH2 in children with idiopathic short stature induces a sustained increase in growth velocity. Clin Endocrinol (Oxf) 1994;41:487-493',
+        identifier: '10.1111/j.1365-2265.1994.tb02580.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ogilvy-Stuart AL et al. Treatment of radiation-induced growth hormone deficiency with growth hormone-releasing hormone. Clin Endocrinol (Oxf) 1997;46:571-578',
+        identifier: '10.1046/j.1365-2265.1997.1790998.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wilton P et al. Pharmacokinetics of growth hormone-releasing hormone(1-29)-NH2 and stimulation of growth hormone secretion in healthy subjects after intravenous or intranasal administration. Acta Paediatr Suppl 1993;388:10-15',
+        identifier: '10.1111/j.1651-2227.1993.tb12827.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA record for GEREF (sermorelin acetate) injectable, NDA 019863, approved 28 December 1990, all products discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019863',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA record for GEREF (sermorelin acetate) injectable, NDA 020443, approved 26 September 1997, all products discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020443',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Memdouh S et al. Advances in the detection of growth hormone releasing hormone synthetic analogs. Drug Test Anal 2021;13:1871-1887',
+        identifier: '10.1002/dta.3183',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 16132413 — sermorelin sequence, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/16132413',
+        kind: 'url',
+      },
+    ],
+  },
 ]

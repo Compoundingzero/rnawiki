@@ -7170,4 +7170,827 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       CSA_SCHEDULES_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 19. Kratom (Mitragyna speciosa) and mitragynine
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'kratom',
+    name: 'Kratom (Mitragyna speciosa) and Mitragynine',
+    tradeName:
+      'No approved product. Sold as leaf powder, capsules, extracts and, since about 2023, as concentrated 7-hydroxymitragynine tablets, gummies and sublingual films',
+    sponsor:
+      'No sponsor. The pharmacology has been characterised largely by academic groups at the University of Florida, Columbia and Memorial Sloan Kettering',
+    targetGene: 'OPRM1',
+    targetProtein:
+      'µ-opioid receptor. Mitragynine itself is a low-affinity, low-efficacy ligand that behaved as an antagonist in a G-protein activation assay; its oxidised metabolite 7-hydroxymitragynine is a µ partial agonist and carries the opioid effect',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'No approved indication. Sold openly across much of the United States and used for pain, for opioid withdrawal and as a stimulant at low doses. DEA moved to place mitragynine and 7-hydroxymitragynine in Schedule I in August 2016 and withdrew the notice six weeks later; in July 2026 it issued a fresh notice of intent covering 7-hydroxymitragynine above a specified concentration threshold',
+    patientFriendlyIndication:
+      'Nothing approved. It is sold in petrol stations and smoke shops, is used by around two million American adults a year, and works partly through the same receptor as morphine',
+    anatomicalSite:
+      'µ-opioid receptors in the central nervous system and gut, reached after CYP3A4 in the liver converts mitragynine into the metabolite that actually does the work',
+    conditionContext: {
+      conditionExplainer:
+        'People take kratom for chronic pain, for opioid withdrawal and for energy. None of those is an approved indication, and no randomised trial has tested it for any of them.',
+      whyItMatters:
+        'It is the clearest case in this file of a substance whose legal status and pharmacological status point in opposite directions: sold without restriction in most of the United States, and acting through the receptor that defines the opioid class. That combination is why the case series and the postmortem data matter more than usual.',
+      whoTakesThis:
+        'An estimated 0.8% of US adults in the past year — about two million people — with users younger than average, 61% male, and over-represented among students and health-care workers.',
+      clinicalGoals:
+        'None established. Users report analgesia, reduced opioid withdrawal and stimulation; no controlled trial has measured any of them.',
+    },
+    oneSentenceVerdict:
+      'Mitragynine is not the opioid — its oxidised metabolite is, and the concentrated 7-hydroxymitragynine products that appeared after 2023 deliver up to 700 mg of that metabolite in one dose, which is why DEA is now trying to schedule the metabolite above a concentration threshold rather than the plant.',
+    laymanHowItWorks:
+      'Kratom leaf contains mitragynine, which on its own binds the µ-opioid receptor weakly and in a laboratory assay actually blocked it rather than switching it on. The liver then converts some of it into 7-hydroxymitragynine, which does switch the receptor on. So the leaf is a slow, self-limiting delivery system for a metabolite — and the concentrated 7-hydroxymitragynine products now on sale skip the leaf and the liver entirely, delivering the active compound directly at doses the plant could never produce. That is the whole difference between the traditional material and the current retail market.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 52,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC[C@@H]1CN2CCC3=C([C@@H]2C[C@@H]1/C(=C\\OC)/C(=O)OC)NC4=C3C(=CC=C4)OC',
+      chemicalFormula: 'C23H30N2O4',
+      molecularWeight:
+        '398.5 g/mol for mitragynine. The active metabolite 7-hydroxymitragynine is C23H30N2O5, 414.5 g/mol — one oxygen atom heavier and pharmacologically a different drug',
+      targetReceptorAffinity:
+        'At the human µ-opioid receptor in vitro, mitragynine has low affinity and behaved as an antagonist in a [35S]GTPγS assay, while 7-hydroxymitragynine is a partial agonist with an Emax of 41.3%. In rats, 7-hydroxymitragynine produced antinociception and mitragynine did not, and naltrexone reversed the effects of both morphine and 7-hydroxymitragynine. Mitragynine also carries activity at non-opioid targets including adrenergic and serotonergic receptors, which is the usual explanation for the stimulant character of low doses.',
+      structureSource: {
+        label:
+          'PubChem CID 3034396 (mitragynine) and CID 44301524 (7-hydroxymitragynine) — SMILES, formulae and molecular weights',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3034396',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'krt-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Quantify mitragynine and 7-hydroxymitragynine separately in the product',
+          description:
+            'A total-alkaloid figure is useless here, because the two alkaloids that matter have opposite functional profiles at the same receptor. The measurement that decides both pharmacology and, from 2026, legal status is the percentage of 7-hydroxymitragynine — DEA\'s proposed threshold is 0.050% on a dry-weight basis for botanical material, or 0.050% or 1.00 mg per article for extracts and processed forms.',
+          reagentsAndBuffer:
+            'Mitragynine and 7-hydroxymitragynine certified reference standards, C18 reversed-phase column, ammonium formate/acetonitrile gradient, LC-MS/MS with separate MRM transitions for m/z 399 and m/z 415, dry-weight determination on the botanical material',
+        },
+        {
+          id: 'krt-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Distinguish plant material from a processed or synthetic article',
+          description:
+            '7-hydroxymitragynine occurs only in trace amounts in the plant but can be made from mitragynine in a single chemical step, and thermal or chemical processing of leaf converts one into the other. The alkaloid profile of the whole extract — the presence and ratio of speciociliatine, paynantheine, speciogynine and mitragynine pseudoindoxyl — is what distinguishes a leaf preparation from a concentrated or semi-synthetic article carrying the same headline compound.',
+          dependsOnStepId: 'krt-w1',
+          reagentsAndBuffer:
+            'Full alkaloid panel with reference standards for the minor Mitragyna alkaloids, high-resolution mass spectrometry for elemental composition, isotope-ratio or impurity-profile comparison where a synthetic origin is in question',
+        },
+        {
+          id: 'krt-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express µ, κ and δ opioid receptors for a functional comparison',
+          description:
+            'The central finding — that the parent alkaloid and its metabolite behave differently at the same receptor — is only visible if both are run in the same functional system. Cloned human OPRM1, OPRK1 and OPRD1 are expressed separately, so that affinity and efficacy can be reported per receptor rather than pooled.',
+          dependsOnStepId: 'krt-w1',
+          reagentsAndBuffer:
+            'CHO or HEK293 cells with cloned human OPRM1, OPRK1 and OPRD1, lipid transfection, membrane preparation for radioligand and GTPγS work, DAMGO and morphine as reference µ agonists',
+        },
+        {
+          id: 'krt-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Binding affinity and [35S]GTPγS efficacy for parent and metabolite',
+          description:
+            'Competition binding gives affinity; [35S]GTPγS stimulation gives efficacy, and it is the efficacy assay that produced the surprising result — mitragynine behaving as an antagonist while 7-hydroxymitragynine behaved as a partial agonist with an Emax of 41.3%. Reporting only affinity would have concealed the distinction entirely.',
+          dependsOnStepId: 'krt-w3',
+          reagentsAndBuffer:
+            '[3H]-DAMGO for µ, [3H]-U69,593 for κ, [3H]-DPDPE for δ, [35S]GTPγS with GDP in HEPES/MgCl2/NaCl buffer, naloxone for non-specific binding, DAMGO as the 100% efficacy reference',
+        },
+        {
+          id: 'krt-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'CYP3A4 metabolism and postmortem quantification',
+          description:
+            'Human liver microsome incubations identify the enzymes converting mitragynine to 7-hydroxymitragynine and the other metabolites, which is what makes CYP3A4 inhibitors a plausible interaction. Postmortem casework then asks a different question with the same instrument: DEA\'s toxicology programme reports an average 7-hydroxymitragynine concentration of 463.23 ng/mL across 85 identified cases since 2019, of which 55 were fatal.',
+          dependsOnStepId: 'krt-w2',
+          reagentsAndBuffer:
+            'Pooled human liver microsomes with NADPH regenerating system, selective CYP inhibitors and recombinant isoform panel, LC-MS/MS with deuterated internal standards, postmortem blood with sodium fluoride preservative',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'krt-a1',
+        category: 'measured',
+        title: 'Mitragynine is not the opioid — the metabolite is',
+        laymanSummary:
+          'In a laboratory assay of receptor activation, mitragynine blocked the µ-opioid receptor rather than switching it on. Its liver metabolite switched it on. In rats, only the metabolite produced pain relief.',
+        technicalDetails:
+          'Obeng et al. compared mitragynine and 7-hydroxymitragynine at the human µ-opioid receptor. In [35S]GTPγS stimulation, mitragynine was an antagonist while 7-hydroxymitragynine was a partial agonist with Emax 41.3%. In rats trained to discriminate morphine, mitragynine produced a maximum of 72.3% morphine-lever responding and 7-hydroxymitragynine 99.7%; 7-hydroxymitragynine produced antinociception and mitragynine did not. Naltrexone antagonised all the effects of morphine and 7-hydroxymitragynine, and antagonised the discriminative-stimulus effects of mitragynine but not its rate-decreasing effects. On affinity, the paper\'s significance statement records 7-hydroxymitragynine as having roughly 9-fold higher µ-opioid affinity than mitragynine; the two Ki values quoted in the abstract, 77.9 and 709 nM, are presented in the order opposite to that statement, and a correction was published in J Pharmacol Exp Ther 2022;383:250. This record therefore reports the direction of the difference and the functional results, which are unambiguous, and assigns no Ki value to either compound.',
+        evidenceSource:
+          'Obeng S et al. J Pharmacol Exp Ther 2021;376:410-427, with correction at J Pharmacol Exp Ther 2022;383:250',
+        doi: '10.1124/jpet.120.000189',
+        measuredMetric:
+          '[35S]GTPγS efficacy at the µ-opioid receptor, drug-discrimination substitution and antinociception in rats, for parent and metabolite separately',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'krt-a2',
+        category: 'measured',
+        title: 'CDC: 152 overdose deaths with kratom detected, 91 with kratom as a cause',
+        laymanSummary:
+          'Across 27 states over eighteen months, kratom showed up in the toxicology of 152 of 27,338 overdose deaths. A medical examiner named it as a cause in 91 of those — and in 65% of them fentanyl was also a listed cause.',
+        technicalDetails:
+          'CDC analysed the State Unintentional Drug Overdose Reporting System for July 2016 to December 2017: 27,338 overdose deaths were entered, and 152 (0.56%) tested positive for kratom on postmortem toxicology. A medical examiner or coroner determined kratom to be a cause of death in 91 of the 152 (59.9%), including seven for whom kratom was the only substance detected — though the report notes additional substances cannot be ruled out. Fentanyl and its analogues were the most frequent co-occurring substances: any fentanyl was a listed cause of death for 65.1% of kratom-positive and 56.0% of kratom-involved decedents. Heroin followed at 32.9%, benzodiazepines 22.4%, prescription opioids 19.7% and cocaine 18.4%. About 80% had a documented history of substance misuse and about 90% had no evidence of medically supervised pain treatment. Testing protocols were not documented and varied between and within states, so the denominator for kratom testing is not the full 27,338.',
+        evidenceSource: 'Olsen EO et al. MMWR Morb Mortal Wkly Rep 2019;68:326-327',
+        doi: '10.15585/mmwr.mm6814a2',
+        measuredMetric:
+          'Kratom-positive and kratom-involved overdose deaths with co-detected substances, 27 states, July 2016-December 2017',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'krt-a3',
+        category: 'conclusion_shift',
+        title: 'DEA moved to ban it in 2016, withdrew six weeks later, and is back in 2026',
+        laymanSummary:
+          'In August 2016 the DEA announced it would place kratom\'s two main alkaloids in Schedule I. In October 2016 it withdrew the notice — an almost unheard-of reversal. In July 2026 it issued a new notice aimed only at concentrated 7-hydroxymitragynine.',
+        technicalDetails:
+          'DEA published a notice of intent to temporarily place mitragynine and 7-hydroxymitragynine into Schedule I on 31 August 2016 (81 FR 59929), then published a withdrawal of that notice on 13 October 2016 (81 FR 70652) following public and congressional response. On 6 July 2026 DEA issued a new notice of intent (91 FR 40917, docket DEA-1570) proposing temporary Schedule I placement of 7-hydroxymitragynine above a specified threshold: more than 0.050% of 7-hydroxymitragynine on a dry-weight basis in botanical Mitragyna speciosa, or more than 0.050% by weight or volume, or more than 1.00 mg per article, in synthetic material and in extracts, concentrates, edibles or pressed pills. HHS was notified by letter of 24 February 2026, and the temporary order was to publish on or after 5 August 2026. A parallel notice the same day (91 FR 40909) covers mitragynine pseudoindoxyl, MGM-15 and MGM-16. The shift recorded here is in the object of regulation: from the plant and its alkaloids in 2016 to a concentration of one metabolite in 2026.',
+        evidenceSource:
+          'DEA 81 FR 59929 (31 August 2016); 81 FR 70652 (13 October 2016); 91 FR 40917 (6 July 2026, docket DEA-1570)',
+        measuredMetric:
+          'Sequence and scope of federal scheduling actions on mitragynine and 7-hydroxymitragynine',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'krt-a4',
+        category: 'measured',
+        title: 'The retail market moved from leaf to metabolite, at up to 700 mg a dose',
+        laymanSummary:
+          'A survey of 250 products sold between late 2024 and early 2025 found 7-hydroxymitragynine content ranging from 1 mg to 700 mg in a single serving. The plant itself contains only traces of it.',
+        technicalDetails:
+          'The DEA notice of intent summarises an investigation identifying 250 products sold between September 2024 and February 2025, most commonly chewable or sublingual tablets, marketed for general wellbeing and focus. 7-hydroxymitragynine content ranged from 1 mg to 700 mg per dose or serving, with an average cost of about $3.97 per dose. DEA notes that 7-hydroxymitragynine occurs only in trace amounts in Mitragyna speciosa, that it can be made from mitragynine in a single chemical step, and that synthetic and naturally occurring 7-hydroxymitragynine are chemically identical, so the pharmacology does not depend on the source. Separately, the DEA TOX programme has identified 7-hydroxymitragynine in 85 cases since 2019 — 55 fatal, 30 non-fatal, median age 36, average concentration 463.23 ng/mL — frequently alongside fentanyl, benzodiazepines such as bromazolam, or ketamine. The market described here did not exist when the 2016 scheduling attempt was withdrawn.',
+        evidenceSource:
+          'DEA notice of intent, 91 FR 40917 (6 July 2026), product-survey and DEA TOX sections',
+        measuredMetric:
+          '7-hydroxymitragynine content per serving across 250 surveyed products, and postmortem and clinical case counts from the DEA TOX programme',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'krt-a5',
+        category: 'measured',
+        title: 'About two million American adults used it in a year',
+        laymanSummary:
+          'A weighted national survey of nearly sixty thousand adults put past-year kratom use at 0.8% — roughly two million people — with lifetime use at 1.3%.',
+        technicalDetails:
+          'Schimmel et al. analysed the Survey of Non-Medical Use of Prescription Drugs programme, a validated non-probability online survey, across the third quarter of 2018 and the first quarter of 2019, with 59,714 respondents aged 18 or over weighted to represent 252,063,800 US adults. Past-year kratom use was 0.8% (95% CI 0.7-0.9), representing 2,031,803 adults; lifetime use was 1.3% (95% CI 1.2-1.4), or 3,353,624 adults. Users were younger (mean 35 years, p < 0.001), more often male (61.0% versus 48.6%, p < 0.001), more often students (14.1% versus 7.5%) and health-care professionals (9.7% versus 4.5%), and less often degree holders (33.4% versus 42.6%). This is a non-probability internet panel weighted to the population, which is a weaker design than a household probability sample, and the estimate should be read with that limitation attached.',
+        evidenceSource: 'Schimmel J et al. Addiction 2021;116:176-181',
+        doi: '10.1111/add.15082',
+        measuredMetric: 'Weighted past-year and lifetime prevalence of kratom use in US adults, n=59,714',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'krt-a6',
+        category: 'inferred',
+        title: 'Traditional-use safety arguments do not describe the current products',
+        laymanSummary:
+          'Kratom leaf has been chewed in Southeast Asia for a very long time with little recorded harm. That history says nothing about a sublingual tablet delivering hundreds of milligrams of the active metabolite.',
+        technicalDetails:
+          'The most common argument for kratom\'s safety is its long history of use as chewed or brewed leaf in Thailand, Malaysia and Indonesia. Leaf contains mitragynine, which is not itself a µ-opioid agonist in the functional assays, plus trace 7-hydroxymitragynine, and delivers both slowly with self-limiting nausea. The products DEA surveyed in 2024 and 2025 deliver up to 700 mg of 7-hydroxymitragynine sublingually, bypassing both the leaf matrix and first-pass metabolism, and DEA states that synthetic and plant-derived 7-hydroxymitragynine are pharmacologically identical. Extrapolating a safety record from the first exposure to the second is a category error, and this record files it as an inference in the traditional-use direction while noting the same error is made in reverse when the postmortem series is used to characterise leaf.',
+        evidenceSource:
+          'DEA notice of intent 91 FR 40917 (6 July 2026), comparison of botanical and concentrated articles',
+        inferredClaim:
+          'That the safety record of traditional leaf preparations describes the risk of concentrated 7-hydroxymitragynine products, or that the postmortem series describes the risk of leaf',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'krt-a7',
+        category: 'measured',
+        title: 'CYP3A4 makes the active metabolite, so interactions are pharmacokinetic',
+        laymanSummary:
+          'The liver enzyme CYP3A4 converts mitragynine into the compound that acts on the opioid receptor. Anything that changes that enzyme changes how much opioid effect a given amount of leaf produces.',
+        technicalDetails:
+          'Metabolite profiling in human liver microsomes and recombinant enzyme systems identified the cytochrome P450 isoforms responsible for mitragynine metabolism, with CYP3A4 the principal contributor to the oxidation that yields 7-hydroxymitragynine among other products. Kratom alkaloids were separately shown to inhibit several cytochrome P450 enzymes in vitro, so the interaction potential runs in both directions. The practical consequence is that the opioid effect of a fixed dose of leaf is not fixed: it depends on hepatic enzyme activity and on co-administered inhibitors and inducers. This is the same metabolic-activation pattern as codeine, where the parent is weak and a CYP-generated metabolite carries the µ-opioid effect, and it produces the same variability between people.',
+        evidenceSource:
+          'Kamble SH et al. Xenobiotica 2019;49:1279-1288; Kamble SH et al. Toxicol Lett 2020;319:148-154',
+        doi: '10.1080/00498254.2018.1552819',
+        measuredMetric:
+          'Cytochrome P450 isoform contributions to mitragynine metabolism and inhibition of CYP enzymes by kratom alkaloids in vitro',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken as leaf, extract, or a concentrated tablet',
+        laymanDesc:
+          'Traditionally the leaf is chewed or brewed. The current retail market is powders, capsules, gummies and sublingual films, and some of those contain the active metabolite directly.',
+        molecularDetail:
+          'Oral leaf powder or extract, delivering mitragynine with trace 7-hydroxymitragynine. Products surveyed by DEA in 2024-2025 carried 1 mg to 700 mg of 7-hydroxymitragynine per serving, most commonly as chewable or sublingual tablets, which bypasses first-pass metabolism entirely.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The liver turns mitragynine into the active compound',
+        laymanDesc:
+          'Cytochrome enzymes, chiefly CYP3A4, oxidise mitragynine into 7-hydroxymitragynine. This is a metabolic activation, the same pattern as codeine becoming morphine.',
+        molecularDetail:
+          'CYP3A4-dominated oxidation of mitragynine yields 7-hydroxymitragynine among other metabolites. Kratom alkaloids also inhibit several P450 isoforms in vitro, so the conversion rate varies with co-medication as well as with genotype.',
+        iconName: 'FlaskConical',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The metabolite activates the µ-opioid receptor',
+        laymanDesc:
+          'The parent alkaloid binds the receptor without switching it on. The metabolite switches it partly on — enough for analgesia, euphoria and respiratory depression.',
+        molecularDetail:
+          'Partial agonism at µ with Emax 41.3% in [35S]GTPγS, against mitragynine\'s antagonist behaviour in the same assay. In rats 7-hydroxymitragynine fully substituted for morphine in drug discrimination and produced antinociception; mitragynine did neither reliably. Naltrexone reverses both.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Non-opioid targets add the stimulant character',
+        laymanDesc:
+          'At low doses people describe kratom as stimulating rather than sedating, which the opioid receptor does not explain.',
+        molecularDetail:
+          'Mitragynine carries additional activity at adrenergic and serotonergic targets, and naltrexone failed to reverse its rate-decreasing effects in rats while reversing its discriminative-stimulus effects — direct evidence that part of its in-vivo action is not opioid-mediated.',
+        iconName: 'Network',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Dependence, withdrawal and, in the case series, death',
+        laymanDesc:
+          'Regular use produces opioid-type dependence and withdrawal. In postmortem casework kratom is usually one of several substances, and in a minority of cases it was the only one found.',
+        molecularDetail:
+          'Kratom was a listed cause of death in 91 of 152 kratom-positive overdose deaths across 27 states, with any fentanyl also listed in 56.0% of those and kratom the sole detected substance in seven. DEA TOX reports 55 fatal and 30 non-fatal 7-hydroxymitragynine cases since 2019 at an average concentration of 463.23 ng/mL.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Obeng et al. 2021 receptor and behavioural pharmacology (University of Florida)',
+        phase: 'Preclinical in vitro and rat in vivo',
+        sampleSize: 0,
+        primaryEndpoint:
+          'µ-opioid receptor affinity and [35S]GTPγS efficacy for mitragynine and 7-hydroxymitragynine, with drug discrimination and antinociception in rats',
+        endpointMet: true,
+        statisticalPValue:
+          'Mitragynine an antagonist in [35S]GTPγS; 7-hydroxymitragynine a partial agonist, Emax 41.3%. Morphine-lever substitution 72.3% for mitragynine, 99.7% for 7-hydroxymitragynine',
+        unreportedAdverseSignals:
+          'The Ki values in the abstract are presented in the order opposite to the paper\'s own significance statement, and a correction was published in 2022. No human data.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'CDC SUDORS analysis, 27 states, July 2016-December 2017',
+        phase: 'Surveillance analysis of medical-examiner and coroner records',
+        sampleSize: 27338,
+        primaryEndpoint:
+          'Overdose deaths with kratom detected on postmortem toxicology, and those with kratom determined to be a cause of death',
+        endpointMet: true,
+        statisticalPValue:
+          '152 of 27,338 (0.56%) kratom-positive; kratom a cause of death in 91 of 152 (59.9%), sole substance detected in 7',
+        unreportedAdverseSignals:
+          'Postmortem toxicology protocols were undocumented and varied between and within states, so the number tested for kratom is unknown and the 0.56% is not an exposure rate. Fentanyl was a listed cause in 65.1% of kratom-positive decedents.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Schimmel et al. 2021 NMURx prevalence survey',
+        phase: 'Cross-sectional weighted survey',
+        sampleSize: 59714,
+        primaryEndpoint: 'Past-year and lifetime prevalence of kratom use in US adults',
+        endpointMet: true,
+        statisticalPValue:
+          'Past-year 0.8% (95% CI 0.7-0.9), about 2,031,803 adults; lifetime 1.3% (95% CI 1.2-1.4), about 3,353,624 adults',
+        unreportedAdverseSignals:
+          'A non-probability online panel weighted to the adult population, not a household probability sample. Self-report only, with no biological confirmation.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Mitragynine behaved as an antagonist and 7-hydroxymitragynine as a partial agonist (Emax 41.3%) at the human µ-opioid receptor in the same [35S]GTPγS assay',
+        '7-hydroxymitragynine produced antinociception in rats and mitragynine did not; naltrexone reversed the effects of both morphine and the metabolite',
+        '152 of 27,338 overdose deaths across 27 states were kratom-positive, with kratom a listed cause in 91 and fentanyl a listed cause in 65.1% of the kratom-positive group',
+        'Past-year use by 0.8% of US adults, about two million people, in a weighted survey of 59,714 respondents',
+        '7-hydroxymitragynine content of 1 mg to 700 mg per serving across 250 retail products surveyed September 2024 to February 2025',
+      ],
+      unsupportedInferences: [
+        'That kratom is an opioid in the simple sense — the parent alkaloid is not a µ agonist in functional assay; the metabolite is',
+        'That the traditional leaf safety record describes concentrated 7-hydroxymitragynine products, or that the postmortem series describes leaf',
+        'That 91 kratom-involved deaths represent a rate; the number of people tested for kratom, and the number exposed, are both unknown',
+        'That kratom treats opioid withdrawal — it is widely used for that and no controlled trial has tested it',
+      ],
+      whatFailedInitially: [
+        'DEA\'s 2016 attempt to place mitragynine and 7-hydroxymitragynine in Schedule I was withdrawn six weeks after it was announced',
+        'No randomised controlled trial of kratom or mitragynine has been completed for pain, for opioid withdrawal, or for anything else',
+      ],
+      realWorldOutcome: [
+        'Sold without federal restriction across most of the United States, with a retail market that shifted after 2023 from leaf toward concentrated 7-hydroxymitragynine tablets and films',
+        'A DEA notice of intent published 6 July 2026 proposes Schedule I placement of 7-hydroxymitragynine above 0.050% dry weight, or above 1.00 mg per article in processed forms',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral leaf powder, capsules and extracts; increasingly sublingual tablets and films of the isolated metabolite',
+      description:
+        'Traditional preparation is chewed fresh leaf or a brewed decoction, which delivers mitragynine slowly and is self-limiting through nausea. The current US retail market is dominated by powders, capsules, gummies and — in the DEA product survey — chewable and sublingual tablets designed for rapid absorption, which deliver 7-hydroxymitragynine directly and bypass the metabolic step the plant relies on.',
+      safetyProfile:
+        'Regular use produces opioid-type physical dependence with a withdrawal syndrome, and case reports document dependence severe enough to require inpatient medically managed withdrawal. Acute risks are those of a µ-opioid partial agonist: sedation, respiratory depression and, in reported cases, cardiopulmonary arrest reversed by naloxone. Hepatotoxicity with a cholestatic pattern is reported. In postmortem casework kratom is usually one of several substances, with fentanyl the commonest co-detection. Because the opioid effect depends on CYP-mediated conversion of mitragynine, exposure varies with hepatic enzyme activity and co-medication. Concentrated 7-hydroxymitragynine products remove that variability by delivering the active compound directly, at doses reported up to 700 mg.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is kratom an opioid?',
+        a: 'The plant is not, in the strict pharmacological sense, and its main alkaloid behaves as an antagonist rather than an agonist in the standard functional assay at the µ-opioid receptor. What acts as an opioid is 7-hydroxymitragynine, the metabolite the liver makes from mitragynine — a partial agonist that produced antinociception in rats and was reversed by naltrexone. So the honest answer is that kratom is a delivery system for an opioid metabolite, and the concentrated products now on sale skip that step and deliver the opioid directly.',
+        auditNote:
+          'This distinction is why DEA\'s 2026 proposal targets a concentration of 7-hydroxymitragynine rather than the plant or mitragynine, which is a materially different regulatory object from the 2016 attempt.',
+      },
+      {
+        q: 'How many people have died from it?',
+        a: 'The largest systematic count is CDC\'s: across 27 states between July 2016 and December 2017, kratom was detected in 152 overdose deaths and was named a cause in 91, with fentanyl also a listed cause in about two thirds of the kratom-positive group and kratom the only detected substance in seven cases. DEA\'s toxicology programme separately reports 55 fatal 7-hydroxymitragynine cases since 2019. Neither number is a rate: nobody knows how many samples were tested for kratom, and nobody knows the exposed population precisely.',
+      },
+      {
+        q: 'Why was it nearly banned in 2016 and then not?',
+        a: 'DEA published a notice of intent on 31 August 2016 to place mitragynine and 7-hydroxymitragynine temporarily in Schedule I, and withdrew that notice on 13 October 2016 after public and congressional response — a reversal that is rare in scheduling practice. The 2026 notice is narrower and aimed at a different target: concentrated 7-hydroxymitragynine above a stated threshold, which is a class of product that did not exist in 2016.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no approved product and no published list price. The one costing figure this record cites — an average of about $3.97 per dose across 250 surveyed 7-hydroxymitragynine products — comes from an investigation summarised in the DEA notice of intent, and it belongs in the audit trail as a market observation rather than in a price field.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Obeng S et al. Pharmacological Comparison of Mitragynine and 7-Hydroxymitragynine: In Vitro Affinity and Efficacy for μ-Opioid Receptor and Opioid-Like Behavioral Effects in Rats. J Pharmacol Exp Ther 2021;376:410-427',
+        identifier: '10.1124/jpet.120.000189',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Correction to "Pharmacological Comparison of Mitragynine and 7-Hydroxymitragynine". J Pharmacol Exp Ther 2022;383:250',
+        identifier: '10.1124/jpet.120.000189err',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Olsen EO et al. Notes from the Field: Unintentional Drug Overdose Deaths with Kratom Detected - 27 States, July 2016-December 2017. MMWR Morb Mortal Wkly Rep 2019;68:326-327',
+        identifier: '10.15585/mmwr.mm6814a2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Schimmel J et al. Prevalence and description of kratom (Mitragyna speciosa) use in the United States: a cross-sectional study. Addiction 2021;116:176-181',
+        identifier: '10.1111/add.15082',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kruegel AC et al. Synthetic and Receptor Signaling Explorations of the Mitragyna Alkaloids: Mitragynine as an Atypical Molecular Framework for Opioid Receptor Modulators. J Am Chem Soc 2016;138:6754-6764',
+        identifier: '10.1021/jacs.6b00360',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kamble SH et al. Metabolite profiling and identification of enzymes responsible for the metabolism of mitragynine, the major alkaloid of Mitragyna speciosa (kratom). Xenobiotica 2019;49:1279-1288',
+        identifier: '10.1080/00498254.2018.1552819',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kamble SH et al. Exploration of cytochrome P450 inhibition mediated drug-drug interaction potential of kratom alkaloids. Toxicol Lett 2020;319:148-154',
+        identifier: '10.1016/j.toxlet.2019.11.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DEA notice of intent: Temporary Placement of Mitragynine and 7-Hydroxymitragynine Into Schedule I, 81 FR 59929, 31 August 2016',
+        identifier:
+          'https://www.federalregister.gov/documents/2016/08/31/2016-20803/schedules-of-controlled-substances-temporary-placement-of-mitragynine-and-7-hydroxymitragynine-into',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'DEA withdrawal of notice of intent, 81 FR 70652, 13 October 2016',
+        identifier:
+          'https://www.federalregister.gov/documents/2016/10/13/2016-24659/withdrawal-of-notice-of-intent-to-temporarily-place-mitragynine-and-7-hydroxymitragynine-into',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'DEA notice of intent: Temporary Placement of 7-Hydroxymitragynine Above a Specified Threshold in Schedule I, 91 FR 40917, 6 July 2026 (docket DEA-1570)',
+        identifier:
+          'https://www.federalregister.gov/documents/2026/07/06/2026-13580/schedules-of-controlled-substance-temporary-placement-of-7-hydroxymitragynine-above-a-specified',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3034396 — mitragynine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3034396',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 44301524 — 7-hydroxymitragynine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/44301524',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 20. Tianeptine
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tianeptine',
+    name: 'Tianeptine',
+    tradeName:
+      'Stablon, Coaxil, Tatinol — prescription antidepressant brands in Europe, Asia and Latin America. In the United States it is sold unapproved as a "nootropic" under names such as Zaza and Neptune\'s Fix',
+    sponsor:
+      'Originally Société de Recherche Industrielle / Servier. No US sponsor, no FDA application, and no legal US pharmaceutical market',
+    targetGene: 'OPRM1',
+    targetProtein:
+      'µ-opioid receptor — a full agonist with Ki 383 ± 183 nM and EC50 194 ± 70 nM for human G-protein activation. Also a full δ-opioid agonist at roughly 200-fold lower potency, and inactive at κ',
+    modality: 'Small Molecule',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Approved and prescribed as an antidepressant in France and around 60 other countries. In the United States it is neither approved nor scheduled federally, and is sold in petrol stations and smoke shops as a supplement',
+    patientFriendlyIndication:
+      'A prescription antidepressant elsewhere in the world. In the United States it is sold over a counter as a nootropic, and it is a full agonist at the same receptor as morphine',
+    anatomicalSite:
+      'µ-opioid receptors in the central nervous system; the antidepressant-like behavioural effects in mice are abolished in animals lacking that receptor',
+    conditionContext: {
+      conditionExplainer:
+        'Tianeptine is licensed abroad for major depressive disorder. In the United States the clinical question is not efficacy but toxicity: poison-centre calls, withdrawal presentations and hospital admissions from products sold as supplements.',
+      whyItMatters:
+        'For thirty years tianeptine was described in textbooks as a serotonin reuptake enhancer — a mechanism that made it look like nothing else in psychiatry. In 2014 it was shown to be a full µ-opioid agonist. Very few drugs have had their mechanism reassigned that completely after three decades of prescribing.',
+      whoTakesThis:
+        'Abroad: patients with depression, on prescription, at conventional doses. In the US poison-centre series: predominantly men (82.3%) aged 21 to 40 (56.8%), taking it deliberately and often alongside phenibut.',
+      clinicalGoals:
+        'Where it is licensed, remission of depressive symptoms. In the United States there is no clinical goal, because there is no lawful clinical use.',
+    },
+    oneSentenceVerdict:
+      'An antidepressant prescribed in around sixty countries that turned out, in 2014, to be a full µ-opioid receptor agonist — and which in the United States is unapproved, unscheduled, sold over a counter, and behind a rise in poison-centre calls from five in 2014 to 81 in 2017.',
+    laymanHowItWorks:
+      'Tianeptine binds and fully activates the µ-opioid receptor, the receptor morphine works through, at sub-micromolar concentrations. Everything else about it — the antidepressant effect, the euphoria, the dependence, the withdrawal — follows from that. It was prescribed for three decades before anyone tested it against opioid receptors, which is the single most striking fact on this page. Its half-life is short, which is why people who misuse it take it many times a day and why withdrawal arrives quickly.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 68,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1C2=CC=CC=C2C(C3=C(S1(=O)=O)C=C(C=C3)Cl)NCCCCCCC(=O)O',
+      chemicalFormula: 'C21H25ClN2O4S',
+      molecularWeight:
+        '437.0 g/mol. The licensed antidepressant dose abroad is 12.5 mg three times daily; products sold in the United States have been found to contain many multiples of that per serving',
+      targetReceptorAffinity:
+        'Full µ-opioid receptor agonist: Ki 383 ± 183 nM at the human receptor, EC50 194 ± 70 nM for human G-protein activation and 641 ± 120 nM for mouse. Full δ-opioid agonist at much lower potency (EC50 37.4 ± 11.2 µM human, 14.5 ± 6.6 µM mouse), and inactive at κ in both human and rat. Its principal metabolite MC5 has a longer half-life and reproduces the behavioural effects in a µ-dependent way.',
+      structureSource: {
+        label: 'PubChem CID 68870 (tianeptine) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/68870',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tia-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm identity and measure content per serving',
+          description:
+            'Products sold as supplements state no reliable content. The measurement that matters is milligrams of tianeptine per capsule or bottle against the 12.5 mg unit dose of the licensed pharmaceutical, because that ratio is the difference between a therapeutic exposure and an opioid one.',
+          reagentsAndBuffer:
+            'Tianeptine sodium certified reference standard, C18 reversed-phase column, formic-acid/acetonitrile gradient, LC-MS/MS with MRM transitions for m/z 437, gravimetric determination of unit content across multiple units of the same lot',
+        },
+        {
+          id: 'tia-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Screen the product for undeclared co-formulants',
+          description:
+            'The New Jersey cluster of severe illness in 2023 was traced to a tianeptine product that also contained synthetic cannabinoids. A tianeptine assay alone would have found tianeptine and missed the cause. Any product-level investigation therefore needs a broad untargeted screen rather than a targeted confirmation.',
+          dependsOnStepId: 'tia-w1',
+          reagentsAndBuffer:
+            'High-resolution mass spectrometry with data-independent acquisition, synthetic cannabinoid and novel psychoactive substance spectral libraries, phenibut and gabapentinoid reference standards, blank matrix controls',
+        },
+        {
+          id: 'tia-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express µ, δ and κ opioid receptors in matched cell lines',
+          description:
+            'The 2014 reassignment rested on testing tianeptine against receptors nobody had previously tried. Human and mouse µ, δ and κ receptors are expressed in matched lines so that potency can be reported per receptor and per species — the species comparison mattered, because the mouse EC50 is roughly threefold higher than the human one.',
+          dependsOnStepId: 'tia-w1',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells with human and rodent OPRM1, OPRD1 and OPRK1 constructs, BRET biosensor constructs for G-protein activation, lipid transfection, DMEM with 10% fetal bovine serum',
+        },
+        {
+          id: 'tia-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Radioligand binding plus BRET G-protein and cAMP readouts',
+          description:
+            'Binding gives affinity; bioluminescence resonance energy transfer for G-protein activation and a cAMP accumulation assay give efficacy and potency. Running all three is what allowed tianeptine to be classified as a full agonist rather than merely a binder, and it is the step that overturned three decades of textbook mechanism.',
+          dependsOnStepId: 'tia-w3',
+          reagentsAndBuffer:
+            '[3H]-DAMGO for µ and [3H]-DPDPE for δ, naloxone for non-specific binding, BRET G-protein activation sensors, forskolin-stimulated cAMP accumulation assay, DAMGO as full-agonist reference',
+        },
+        {
+          id: 'tia-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Quantify tianeptine and its MC5 metabolite in clinical samples',
+          description:
+            'Tianeptine has a short half-life and its principal metabolite MC5 a longer one, and MC5 reproduces the behavioural effects through the same receptor. A clinical or postmortem assay measuring only the parent compound underestimates exposure, particularly in a person dosing repeatedly through the day.',
+          dependsOnStepId: 'tia-w2',
+          reagentsAndBuffer:
+            'LC-MS/MS with deuterated tianeptine internal standard and an MC5 reference standard, protein precipitation from plasma, documented sampling time relative to last dose, urine and blood run in parallel',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tia-a1',
+        category: 'conclusion_shift',
+        title: 'A thirty-year-old antidepressant turned out to be an opioid',
+        laymanSummary:
+          'Tianeptine had been prescribed since the 1980s and described as working by enhancing serotonin reuptake — a mechanism unlike any other antidepressant. In 2014 it was tested against opioid receptors for the first time and turned out to be a full agonist at the morphine receptor.',
+        technicalDetails:
+          'Gassaway et al. characterised tianeptine as an efficacious µ-opioid receptor agonist using radioligand binding and cell-based functional assays including BRET-based G-protein activation and cAMP accumulation: Ki 383 ± 183 nM at the human receptor, EC50 194 ± 70 nM for human and 641 ± 120 nM for mouse G-protein activation. It was also a full δ-opioid agonist at far lower potency (EC50 37.4 ± 11.2 µM human) and inactive at κ in both human and rat. The authors note that despite three decades of basic and clinical investigation the molecular target had remained elusive. Samuels et al. then showed that both the acute and the chronic antidepressant-like behavioural effects in mice require the µ-opioid receptor, that tianeptine also produces analgesia and reward, and that its principal metabolite MC5 mimics its behavioural effects in a µ-dependent fashion. The conclusion shift recorded here is unusually complete: not a refinement of a mechanism but its replacement, after the drug had been in clinical use for a generation.',
+        evidenceSource:
+          'Gassaway MM et al. Transl Psychiatry 2014;4:e411; Samuels BA et al. Neuropsychopharmacology 2017;42:2052-2063',
+        doi: '10.1038/tp.2014.30',
+        measuredMetric:
+          'Ki and EC50 at human and rodent µ, δ and κ opioid receptors, with µ-receptor knockout confirmation of the behavioural effects',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tia-a2',
+        category: 'measured',
+        title: 'Poison-centre calls rose from five in 2014 to 81 in 2017',
+        laymanSummary:
+          'US poison centres logged eleven tianeptine calls in the whole of 2000 to 2013. Then five in 2014, 38 in 2015, 83 in 2016 and 81 in 2017.',
+        technicalDetails:
+          'CDC analysed all tianeptine exposure calls in the National Poison Data System from 2000 to 2017: 218 calls in total. The first fourteen years produced 11 calls between them; from 2014 to 2017 the increase in both total exposure calls and intentional abuse or misuse calls was statistically significant (p < 0.001 for each), rising from 5 in 2014 to 38, 83 and 81 in the following three years. 91.2% of calls came from health-care providers. Callers were 82.3% male, with 56.8% aged 21 to 40 and a mean age of 35. Exposure was intentional in 54.6% and specifically a withdrawal presentation in 13.3%. Among the 83 calls reporting co-exposures, the most common was phenibut (31.3%), then ethanol (15.7%), benzodiazepines (12.0%) and opioids (12.0%). Among 114 tianeptine-only exposures excluding withdrawal calls, clinical effects were neurologic in 48.3%, cardiovascular in 32.5% and gastrointestinal in 10.5%; 25 of 105 with a recorded level of care (24%) were admitted to critical care, and 50 of 93 with a known outcome (54%) had a moderate outcome. No deaths were reported in this dataset.',
+        evidenceSource: 'MMWR Morb Mortal Wkly Rep 2018;67:815-818',
+        doi: '10.15585/mmwr.mm6730a2',
+        measuredMetric:
+          'Tianeptine exposure calls to US poison control centres by year, with demographics, co-exposures, clinical effects and level of care, 2000-2017',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tia-a3',
+        category: 'measured',
+        title: 'Systematic review: half of individual cases present in withdrawal',
+        laymanSummary:
+          'A 2026 systematic review pooled every published human report of tianeptine misuse. Of the individual case reports, half were people in withdrawal and just under half were overdoses.',
+        technicalDetails:
+          'Anand et al. searched MEDLINE, Embase, Cochrane, PsycInfo and Scopus from inception through July 2025 following PRISMA 2020, for human studies describing tianeptine misuse, toxicity, withdrawal or overdose. Fifty-three publications met inclusion criteria — 48 case reports and 5 retrospective series, N = 1,055 in total. Among the 52 individual cases with extractable detail, 26 (50%) presented with withdrawal and 23 (44%) with overdose. A literature dominated by case reports cannot establish incidence and is subject to publication bias in both directions, but the ratio of withdrawal to overdose presentations is itself informative: it describes a drug people are taking regularly enough to become dependent on, not one taken once.',
+        evidenceSource: 'Anand A et al. Drug Alcohol Depend 2026;285:113196',
+        doi: '10.1016/j.drugalcdep.2026.113196',
+        measuredMetric:
+          'Presentation type across 52 extractable individual cases from 53 included publications (N=1,055)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tia-a4',
+        category: 'failed',
+        title: 'A severe-illness cluster caused by what else was in the bottle',
+        laymanSummary:
+          'In New Jersey in 2023, a group of people became seriously ill after taking a tianeptine product. The cause was not only the tianeptine — the product also contained synthetic cannabinoids.',
+        technicalDetails:
+          'CDC reported a cluster of severe illness linked to the tianeptine product Neptune\'s Fix in New Jersey between June and November 2023, in which synthetic cannabinoids were identified in the product alongside tianeptine. The episode demonstrates a failure mode specific to unregulated supplement-channel drugs: the labelled active ingredient is not the whole exposure, and clinicians treating an apparent tianeptine toxidrome were dealing with something else as well. It also demonstrates why the analytical workflow on this page includes an untargeted screen rather than a targeted tianeptine confirmation — a targeted assay would have returned a correct result and the wrong answer.',
+        evidenceSource: 'MMWR Morb Mortal Wkly Rep 2024;73:89-90',
+        doi: '10.15585/mmwr.mm7304a5',
+        measuredMetric:
+          'Identification of synthetic cannabinoids alongside tianeptine in a product linked to a severe-illness cluster',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tia-a5',
+        category: 'measured',
+        title: 'Not scheduled federally, and not approved either',
+        laymanSummary:
+          'Tianeptine appears nowhere in the US federal drug schedules and has no FDA approval. It occupies the gap between the two: legal to sell as a supplement, illegal to sell as a medicine.',
+        technicalDetails:
+          'Tianeptine appears in no schedule of 21 CFR part 1308. It also holds no FDA approval, and CDC described it in 2018 as "not approved by the Food and Drug Administration for medical use and an unscheduled pharmaceutical agent". That combination — a licensed pharmaceutical abroad, an unapproved unscheduled substance domestically — is what allows it to be sold in the United States through the supplement and "nootropic" retail channel. Control has been enacted at state level instead, which produces the same patchwork the salvinorin A record describes. This is filed as measured because it is a checkable regulatory fact, and because readers routinely infer approval from availability.',
+        evidenceSource:
+          '21 CFR part 1308, current eCFR text; MMWR Morb Mortal Wkly Rep 2018;67:815-818, background',
+        doi: '10.15585/mmwr.mm6730a2',
+        measuredMetric:
+          'Absence from the federal drug schedules combined with absence of any FDA approval',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tia-a6',
+        category: 'inferred',
+        title: 'The mouse finding of no tolerance or withdrawal does not describe the case series',
+        laymanSummary:
+          'In mice, tianeptine produced opioid-like analgesia and reward but not tolerance or withdrawal. In humans it plainly produces both, and half the published case reports are withdrawal presentations.',
+        technicalDetails:
+          'Samuels et al. reported that while tianeptine produces opiate-like behavioural effects including analgesia and reward in mice, it did not lead to tolerance or withdrawal in their experiments. That finding is often quoted as evidence that tianeptine carries a lower dependence liability than conventional opioids. The human record does not support extending it: 13.3% of US poison-centre exposure calls were specifically withdrawal presentations, and 26 of 52 extractable individual cases in the 2026 systematic review presented in withdrawal. The discrepancy is most plausibly explained by dose and dosing frequency — licensed human use is 12.5 mg three times daily, while the misuse pattern involves far larger and more frequent doses — but that explanation is itself an inference, and the mouse result should not be carried across as a safety claim.',
+        evidenceSource:
+          'Samuels BA et al. Neuropsychopharmacology 2017;42:2052-2063; MMWR 2018;67:815-818; Anand A et al. Drug Alcohol Depend 2026;285:113196',
+        doi: '10.1038/npp.2017.60',
+        inferredClaim:
+          'That the absence of tolerance and withdrawal in mice indicates a low dependence liability in humans',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tia-a7',
+        category: 'measured',
+        title: 'Phenibut is the commonest thing taken alongside it',
+        laymanSummary:
+          'Of the tianeptine poison-centre calls that recorded another substance, the most frequent was phenibut — another drug sold in the same shops and also unscheduled.',
+        technicalDetails:
+          'Among the 83 tianeptine exposure calls reporting co-exposures in the CDC analysis, phenibut was the commonest at 26 calls (31.3%), ahead of ethanol (15.7%), benzodiazepines (12.0%) and opioids (12.0%). Both tianeptine and phenibut are unapproved, unscheduled and sold through the same supplement and smoke-shop channel, and both produce dependence with a withdrawal syndrome; phenibut has its own record on this site. The pairing is a property of the retail channel rather than of the pharmacology, and it matters clinically because the two withdrawal syndromes are managed differently — an opioid-type withdrawal and a GABA-B-type withdrawal presenting in the same patient.',
+        evidenceSource:
+          'MMWR Morb Mortal Wkly Rep 2018;67:815-818, co-exposure table (n=83 calls with recorded co-exposure)',
+        doi: '10.15585/mmwr.mm6730a2',
+        measuredMetric: 'Co-exposure frequencies among tianeptine poison-centre calls',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed — 12.5 mg abroad, far more in the US products',
+        laymanDesc:
+          'The licensed antidepressant dose is 12.5 milligrams three times a day. Products sold as supplements have contained many multiples of that in a single serving.',
+        molecularDetail:
+          'Oral tianeptine sodium. Rapid absorption with a short elimination half-life for the parent compound, which is why the licensed regimen is three times daily and why misuse patterns involve frequent redosing through the day.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the brain and is converted to a longer-lived metabolite',
+        laymanDesc:
+          'The parent drug clears quickly; a metabolite called MC5 lasts longer and does the same thing at the same receptor.',
+        molecularDetail:
+          'Beta-oxidation of the heptanoic acid side chain produces MC5, the principal metabolite, which has a longer half-life and reproduces tianeptine\'s behavioural effects in a µ-opioid-receptor-dependent manner in mice.',
+        iconName: 'FlaskConical',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Fully activates the µ-opioid receptor',
+        laymanDesc:
+          'It switches on the morphine receptor completely, not partially. That is the finding that rewrote the drug\'s pharmacology in 2014.',
+        molecularDetail:
+          'Full µ agonist, Ki 383 ± 183 nM and EC50 194 ± 70 nM for human G-protein activation. Full δ agonist at roughly 200-fold lower potency, inactive at κ. Antidepressant-like behavioural effects are abolished in µ-opioid receptor knockout mice.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Antidepressant effect, analgesia and reward — all through the same receptor',
+        laymanDesc:
+          'The mood effect and the opioid effects are not separate. Removing the receptor removes both.',
+        molecularDetail:
+          'Both acute and chronic antidepressant-like effects in mice require µ. The same receptor mediates the analgesia and reward the drug also produces. This is a single-target pharmacology, which is why it is not possible to describe tianeptine as an antidepressant that happens to have opioid side effects.',
+        iconName: 'Network',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Dependence, withdrawal and critical-care admissions',
+        laymanDesc:
+          'People taking large doses repeatedly become dependent, and withdrawal is a common reason for presenting to hospital.',
+        molecularDetail:
+          'Withdrawal accounted for 13.3% of US poison-centre exposure calls and 26 of 52 extractable individual cases in the 2026 systematic review. Among tianeptine-only exposures with a recorded level of care, 24% were admitted to critical care; clinical effects were neurologic in 48.3% and cardiovascular in 32.5%.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Gassaway et al. 2014 receptor characterisation (Columbia University)',
+        phase: 'In vitro pharmacology',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Binding affinity and functional potency of tianeptine at µ, δ and κ opioid receptors',
+        endpointMet: true,
+        statisticalPValue:
+          'µ: Ki 383 ± 183 nM, EC50 194 ± 70 nM (human) and 641 ± 120 nM (mouse); δ: EC50 37.4 ± 11.2 µM (human); κ: inactive',
+        unreportedAdverseSignals:
+          'The result reassigns the mechanism of a drug that had already been prescribed for three decades. No clinical study preceded it, and none of the licensing decisions abroad were made with this information.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'CDC National Poison Data System analysis, 2000-2017',
+        phase: 'National surveillance analysis',
+        sampleSize: 218,
+        primaryEndpoint: 'Characteristics and trend of tianeptine exposure calls',
+        endpointMet: true,
+        statisticalPValue:
+          'Statistically significant increase in exposure calls and in intentional abuse or misuse calls from 2014 to 2017 (p < 0.001 for each); 5 calls in 2014 rising to 81 in 2017',
+        unreportedAdverseSignals:
+          'No deaths were recorded in this dataset, which reflects the reporting system rather than the drug — poison-centre data capture calls made, and fatal cases are frequently identified through medical-examiner systems instead.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Anand et al. 2026 systematic review of tianeptine misuse',
+        phase: 'PRISMA 2020 systematic review',
+        sampleSize: 1055,
+        primaryEndpoint: 'Clinical presentation and management of tianeptine misuse, toxicity and withdrawal',
+        endpointMet: true,
+        statisticalPValue:
+          '53 publications included (48 case reports, 5 retrospective series); of 52 extractable individual cases, 26 (50%) withdrawal and 23 (44%) overdose',
+        unreportedAdverseSignals:
+          'A case-report-dominated evidence base cannot estimate incidence and carries publication bias. Study quality was assessed with Joanna Briggs Institute tools and findings synthesised narratively rather than pooled.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Full µ-opioid receptor agonism with Ki 383 ± 183 nM and EC50 194 ± 70 nM for human G-protein activation; full δ agonism at ~200-fold lower potency; inactive at κ',
+        'Abolition of both acute and chronic antidepressant-like behavioural effects in µ-opioid receptor knockout mice',
+        'A rise in US poison-centre exposure calls from 11 across 2000-2013 to 81 in 2017 alone, with 24% of tianeptine-only exposures admitted to critical care',
+        'Withdrawal as the presenting problem in 13.3% of poison-centre calls and in 26 of 52 extractable published cases',
+        'Identification of synthetic cannabinoids alongside tianeptine in the product behind a 2023 New Jersey severe-illness cluster',
+      ],
+      unsupportedInferences: [
+        'That the absence of tolerance and withdrawal in mice indicates a low human dependence liability',
+        'That approval as a prescription antidepressant abroad implies the exposure obtained from a US supplement-channel product is comparable',
+        'That "no deaths reported" in the poison-centre dataset means no deaths have occurred; that dataset counts calls, not fatalities',
+        'That the serotonin-reuptake-enhancement mechanism described in the pre-2014 literature is a partial account rather than a superseded one',
+      ],
+      whatFailedInitially: [
+        'Three decades of pharmacological investigation failed to identify the drug\'s molecular target, because opioid receptors were not among those tested',
+        'A targeted tianeptine assay would have found tianeptine in the New Jersey cluster and missed the synthetic cannabinoids that were also present',
+      ],
+      realWorldOutcome: [
+        'Prescribed as an antidepressant in around sixty countries, unapproved and unscheduled in the United States, and sold there through supplement and smoke-shop retail',
+        'FDA has warned about tianeptine products repeatedly, and control has been enacted at the level of individual states rather than federally',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet or capsule; abroad a 12.5 mg prescription tablet, in the US an unregulated supplement serving',
+      description:
+        'The licensed pharmaceutical is a 12.5 mg tablet taken three times daily. The products driving the US case literature are capsules, tablets and liquid shots sold as nootropics with no verified content, sometimes containing undeclared additional psychoactive substances. The delivery system is the retail channel as much as the dosage form.',
+      safetyProfile:
+        'Because it is a full µ-opioid agonist, the acute toxidrome is an opioid one: sedation, miosis and respiratory depression, with naloxone the relevant antidote. In US poison-centre data, tianeptine-only exposures produced neurologic effects in 48.3% and cardiovascular effects in 32.5%, with fluids, benzodiazepines and oxygen the commonest treatments and 24% of those with a recorded level of care admitted to critical care. Physical dependence develops with regular use and withdrawal is a common presentation. Co-exposure is frequent, phenibut most often. Products from the unregulated channel have contained undeclared synthetic cannabinoids. At licensed doses and under prescription abroad, the drug has an established tolerability record that does not describe any of the above.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is tianeptine an antidepressant or an opioid?',
+        a: 'Both, through one receptor. It is licensed as an antidepressant in around sixty countries and it is a full agonist at the µ-opioid receptor, and in mice its antidepressant-like effects disappear entirely when that receptor is removed. So it is not an antidepressant with opioid side effects; the antidepressant action and the opioid action are the same action. That is what makes the 2014 finding a mechanism replacement rather than a mechanism refinement.',
+        auditNote:
+          'The knockout experiment is what raises this from correlation to mechanism: remove the receptor and the behavioural effect goes with it.',
+      },
+      {
+        q: 'How is it legal to sell in the United States?',
+        a: 'Because it falls between two regimes. It has no FDA approval, so it cannot lawfully be sold as a medicine; it appears in no schedule of 21 CFR part 1308, so it is not a controlled substance either. That gap is where the supplement and "nootropic" retail channel operates. FDA has issued warnings and individual states have enacted their own controls, which is why availability varies by state rather than by any federal decision.',
+      },
+      {
+        q: 'What does withdrawal look like?',
+        a: 'An opioid withdrawal syndrome, and it is common: 13.3% of US poison-centre tianeptine calls were withdrawal presentations, and half of the extractable individual cases in the 2026 systematic review. The short half-life of the parent compound means people misusing it dose many times a day, and withdrawal arrives correspondingly quickly. Co-use of phenibut, which is the commonest co-exposure, adds a second and pharmacologically unrelated withdrawal syndrome on top.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no US-approved product, so there is no list price. The retail products are sold at prices set by individual sellers rather than published anywhere checkable, and this file does not print numbers it cannot source to a document.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Gassaway MM et al. The atypical antidepressant and neurorestorative agent tianeptine is a μ-opioid receptor agonist. Transl Psychiatry 2014;4:e411',
+        identifier: '10.1038/tp.2014.30',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Samuels BA et al. The Behavioral Effects of the Antidepressant Tianeptine Require the Mu-Opioid Receptor. Neuropsychopharmacology 2017;42:2052-2063',
+        identifier: '10.1038/npp.2017.60',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Characteristics of Tianeptine Exposures Reported to the National Poison Data System - United States, 2000-2017. MMWR Morb Mortal Wkly Rep 2018;67:815-818',
+        identifier: '10.15585/mmwr.mm6730a2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Notes from the Field: Cluster of Severe Illness from Neptune\'s Fix Tianeptine Linked to Synthetic Cannabinoids - New Jersey, June-November 2023. MMWR Morb Mortal Wkly Rep 2024;73:89-90',
+        identifier: '10.15585/mmwr.mm7304a5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Anand A et al. Tianeptine misuse and addiction: A systematic review of withdrawal, toxicity, and clinical management. Drug Alcohol Depend 2026;285:113196',
+        identifier: '10.1016/j.drugalcdep.2026.113196',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 68870 — tianeptine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/68870',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
 ]

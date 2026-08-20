@@ -8635,4 +8635,1691 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 22. Rosiglitazone — restricted, then unrestricted, on a readjudication that changed nothing
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'rosiglitazone',
+    name: 'Rosiglitazone',
+    tradeName: 'Avandia',
+    sponsor: 'GlaxoSmithKline, later Woodward Pharma Services (NDA 021071)',
+    targetGene: 'PPARG',
+    targetProtein: 'Peroxisome proliferator-activated receptor gamma',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1999,
+    indication:
+      'Type 2 diabetes mellitus, as an adjunct to diet and exercise to improve glycaemic control. Placed under a restricted access programme in 2010 after a meta-analysis found an excess of myocardial infarction; the restrictions were removed in 2013 and the programme eliminated in 2015.',
+    patientFriendlyIndication: 'A tablet for type 2 diabetes that makes the body more sensitive to insulin',
+    anatomicalSite:
+      'Adipocyte nucleus, principally subcutaneous adipose tissue, with secondary effects in skeletal muscle and liver',
+    conditionContext: {
+      conditionExplainer:
+        'In type 2 diabetes, tissues stop responding properly to insulin. Rosiglitazone acts on a nuclear receptor in fat cells that reprogrammes them to store fat more effectively, which pulls lipid out of muscle and liver and restores insulin sensitivity there.',
+      whyItMatters:
+        'This drug reversed direction twice in six years, both times on cardiovascular evidence, and the second reversal came from a readjudication that produced almost exactly the same hazard ratios as the analysis it replaced. The interesting question is not which answer is right. It is what changed if the numbers did not.',
+      whoTakesThis:
+        'Very few people. The restrictions were lifted, but prescribing never recovered, and the alternatives that arrived afterwards are better. Rosiglitazone is recorded in Drugs@FDA with Avandia products discontinued.',
+      clinicalGoals:
+        'Lower haemoglobin A1c durably, and, on the evidence that eventually accumulated, do so without increasing cardiovascular events — while accepting a confirmed increase in heart failure and fractures.',
+    },
+    oneSentenceVerdict:
+      'A PPAR-gamma agonist restricted in 2010 after a meta-analysis of 42 trials found an odds ratio of 1.43 for myocardial infarction, and released in 2013 after an independent readjudication of the RECORD trial returned a hazard ratio of 0.95 against the original 0.93 — while the harms that were never in dispute, a doubling of heart failure hospitalisation and an excess of fractures in women, remained exactly as first reported.',
+    laymanHowItWorks:
+      'Rosiglitazone switches on a master control gene inside fat cells. Those cells then become better at storing fat, which pulls fat out of muscle and liver where it interferes with insulin signalling. Blood sugar falls and stays down. The same reprogramming makes the body retain salt and water, which is why heart failure gets worse, and shifts bone marrow stem cells towards making fat instead of bone, which is why fractures increase.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 66,
+    substitutes: {
+      summary:
+        'Pioglitazone is the same class with a different lipid profile and no comparable myocardial infarction signal, and the classes that arrived afterwards — the SGLT2 inhibitors and GLP-1 receptor agonists — demonstrated cardiovascular benefit rather than merely absence of harm.',
+      conventionalRx: [
+        {
+          name: 'Pioglitazone',
+          class: 'PPAR-gamma agonist (thiazolidinedione)',
+          howItCompares:
+            'Same nuclear receptor, same insulin-sensitising mechanism, and it was never subject to the myocardial infarction restriction. It shares the heart failure and fracture liabilities, which are class effects, and carries a separate bladder cancer question of its own.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: durable glycaemic control, favourable triglyceride effect. Cons: fluid retention and heart failure, fractures, weight gain.',
+        },
+        {
+          name: 'Empagliflozin',
+          class: 'SGLT2 inhibitor',
+          howItCompares:
+            'Removed the argument entirely by demonstrating cardiovascular and heart failure benefit rather than non-inferiority. The rosiglitazone episode is a direct cause of the cardiovascular outcome trials that produced that evidence.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: reduces heart failure hospitalisation and renal progression. Cons: genital mycotic infection, euglycaemic ketoacidosis, volume depletion.',
+        },
+        {
+          name: 'Metformin',
+          class: 'Biguanide',
+          howItCompares:
+            'The comparator arm in RECORD and the standing first-line agent. No heart failure signal, no fracture signal, and decades of use.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: inexpensive, weight-neutral, long record. Cons: gastrointestinal intolerance, B12 depletion, caution in renal impairment.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(CCOC1=CC=C(C=C1)CC2C(=O)NC(=O)S2)C3=CC=CC=N3',
+      chemicalFormula: 'C18H19N3O3S',
+      molecularWeight: '357.4 g/mol',
+      targetReceptorAffinity:
+        'A thiazolidinedione and a high-affinity agonist at PPAR-gamma, a ligand-activated nuclear transcription factor that heterodimerises with the retinoid X receptor and binds peroxisome proliferator response elements. Rosiglitazone is substantially more potent and more selective at PPAR-gamma than pioglitazone, which also has meaningful PPAR-alpha activity — the structural difference that gives pioglitazone its distinct effect on triglycerides.',
+      structureSource: {
+        label: 'PubChem CID 77999 (rosiglitazone) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/77999',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ros-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, maleate salt and thiazolidinedione stereochemistry',
+          description:
+            'Confirm the pyridinylaminoethoxy-benzyl thiazolidinedione structure and the maleate salt. The thiazolidinedione C-5 stereocentre racemises rapidly in solution, so the drug is handled as a racemate and a chiral purity specification would be meaningless — a point worth recording because it is not true of most chiral drugs.',
+          reagentsAndBuffer:
+            'Rosiglitazone maleate certified reference standard, reversed-phase HPLC with ultraviolet detection at 245 nm, proton and carbon NMR in deuterated dimethyl sulfoxide, LC-MS electrospray positive mode at m/z 358',
+        },
+        {
+          id: 'ros-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Related substances and hydrolytic degradation profile',
+          description:
+            'Profile the thiazolidinedione ring-opening hydrolysis products and the ether cleavage products under acid, base, oxidative, thermal and photolytic stress, and confirm maleate stoichiometry separately from the base assay.',
+          dependsOnStepId: 'ros-w1',
+          reagentsAndBuffer:
+            'C18 column with acetonitrile and ammonium acetate gradient, photodiode array detection, forced degradation samples across the five ICH stress conditions, ion chromatography for maleate',
+        },
+        {
+          id: 'ros-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Preadipocyte differentiation assay',
+          description:
+            'Treat 3T3-L1 preadipocytes or primary human preadipocytes and measure differentiation into mature adipocytes by lipid accumulation and adipogenic gene induction. This is the functional cellular readout of PPAR-gamma agonism, and it is the same event that underlies both the insulin sensitisation and the fat-versus-bone lineage shift implicated in the fracture signal.',
+          reagentsAndBuffer:
+            '3T3-L1 or primary human preadipocytes, differentiation cocktail of insulin, dexamethasone and isobutylmethylxanthine, Oil Red O staining with quantitative elution, quantitative PCR for adiponectin, FABP4 and GLUT4, pioglitazone as class comparator',
+        },
+        {
+          id: 'ros-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'PPAR-gamma binding, transactivation and subtype selectivity',
+          description:
+            'Competitive binding to the PPAR-gamma ligand-binding domain with a transactivation reporter for functional potency, counter-screened at PPAR-alpha and PPAR-delta. The alpha selectivity ratio is what separates rosiglitazone from pioglitazone, and separating the two on the same plate is the only way to make that comparison quantitative.',
+          dependsOnStepId: 'ros-w3',
+          reagentsAndBuffer:
+            'Recombinant PPAR-gamma, PPAR-alpha and PPAR-delta ligand-binding domains, fluorescence polarisation or scintillation proximity competitive binding, GAL4-PPAR chimeric luciferase reporter in transfected cells, pioglitazone and a PPAR-alpha fibrate as comparators',
+        },
+        {
+          id: 'ros-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Sodium retention and osteoblast-adipocyte lineage assays',
+          description:
+            'Quantify epithelial sodium channel expression and amiloride-sensitive sodium transport in collecting duct cells, and separately measure the osteoblast-to-adipocyte lineage shift in mesenchymal stem cells. These two assays measure the harms that were never disputed at any point in this drug\'s regulatory history, while the myocardial infarction question was reversed twice.',
+          dependsOnStepId: 'ros-w4',
+          reagentsAndBuffer:
+            'Renal collecting duct cell line with amiloride-sensitive short-circuit current measurement, quantitative PCR for ENaC subunits, human mesenchymal stem cells with alkaline phosphatase and Oil Red O dual staining, RUNX2 and PPARG expression readouts',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ros-a1',
+        category: 'measured',
+        title: 'Meta-analysis of 42 trials: odds ratio 1.43 for myocardial infarction',
+        laymanSummary:
+          'A 2007 analysis pooling 42 trials found people on rosiglitazone had about 43 per cent higher odds of a heart attack, and a borderline increase in cardiovascular death.',
+        technicalDetails:
+          'Nissen and Wolski searched the published literature, the FDA website and the manufacturer\'s trial registry, including studies of more than 24 weeks with a randomised control group not receiving rosiglitazone and available outcome data. Of 116 potentially relevant studies, 42 met criteria. Mean subject age was about 56 and mean baseline glycated haemoglobin about 8.2 per cent. Combined by a fixed-effects model, the odds ratio for myocardial infarction was 1.43 (95% CI 1.03 to 1.98, P = 0.03) and for death from cardiovascular causes 1.64 (95% CI 0.98 to 2.74, P = 0.06). The authors state their own principal limitation: no access to original source data, so no time-to-event analysis was possible.',
+        evidenceSource: 'Nissen SE, Wolski K. N Engl J Med 2007;356:2457-2471',
+        doi: '10.1056/NEJMoa072761',
+        measuredMetric:
+          'Pooled odds ratio for myocardial infarction and for cardiovascular death across 42 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ros-a2',
+        category: 'measured',
+        title: 'RECORD: non-inferior on the primary endpoint, and heart failure doubled',
+        laymanSummary:
+          'A dedicated 4,447-patient trial found no overall cardiovascular excess, but hospitalisation or death from heart failure occurred in 61 patients on rosiglitazone against 29 on the comparison treatment.',
+        technicalDetails:
+          'RECORD (NCT00379769) randomised 4,447 patients with type 2 diabetes on metformin or sulfonylurea monotherapy, mean HbA1c 7.9 per cent, to added rosiglitazone (2,220) or to metformin plus sulfonylurea (2,227), in a multicentre open-label design with a non-inferiority margin of 1.20. Over a mean 5.5 years, 321 rosiglitazone and 323 control patients reached the primary endpoint of cardiovascular hospitalisation or death, hazard ratio 0.99 (95% CI 0.85 to 1.16), meeting non-inferiority. Component hazard ratios were 0.84 (0.59 to 1.18) for cardiovascular death, 1.14 (0.80 to 1.63) for myocardial infarction and 0.72 (0.49 to 1.06) for stroke. Heart failure causing hospitalisation or death occurred in 61 against 29 patients, hazard ratio 2.10 (1.35 to 3.27), risk difference 2.6 per 1000 person-years (1.1 to 4.1). Upper and distal lower limb fractures were increased mainly in women.',
+        evidenceSource: 'Home PD et al., RECORD Study Team. Lancet 2009;373:2125-2135',
+        doi: '10.1016/S0140-6736(09)60953-3',
+        measuredMetric:
+          'Hazard ratios for cardiovascular hospitalisation or death, and for heart failure, over 5.5 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ros-a3',
+        category: 'conclusion_shift',
+        title: 'The readjudication produced 0.95 where the original produced 0.93',
+        laymanSummary:
+          'An independent group re-reviewed every death, heart attack and stroke in RECORD using the original records. The answer came out essentially unchanged.',
+        technicalDetails:
+          'The FDA required a reevaluation of cardiovascular outcomes in RECORD, carried out at the Duke Clinical Research Institute. Original data were used to systematically identify all potential deaths, myocardial infarctions and strokes; site investigators were approached for additional source documents and information on participants lost to follow-up; suspected events were readjudicated under standard procedures. Follow-up for mortality totalled 25,833 person-years including 328 additional person-years found during the effort. The readjudication identified 184 cardiovascular or unknown-cause deaths (88 rosiglitazone, 96 comparator), 128 participants with myocardial infarction (68 versus 60) and 113 with stroke (50 versus 63). The hazard ratio for cardiovascular or unknown-cause death, myocardial infarction or stroke was 0.95 (95% CI 0.78 to 1.17), against 0.93 (95% CI 0.74 to 1.15) originally. Myocardial infarction was 1.13 (0.80 to 1.59) and mortality 0.86 (0.68 to 1.08), the same as before. Analyses under new FDA endpoint definitions were similar.',
+        evidenceSource: 'Mahaffey KW et al. Am Heart J 2013;166:240-249.e1',
+        doi: '10.1016/j.ahj.2013.05.004',
+        measuredMetric:
+          'Hazard ratio for the composite of cardiovascular death, myocardial infarction or stroke, readjudicated versus original',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ros-a4',
+        category: 'conclusion_shift',
+        title: 'Restrictions removed in 2013 on an analysis that confirmed the previous one',
+        laymanSummary:
+          'The 2010 access restrictions were lifted after the readjudication. But the readjudication agreed with the original result, which had already existed in 2009 when the restrictions were imposed.',
+        technicalDetails:
+          'The sequence is: 2007 meta-analysis finds an odds ratio of 1.43 for myocardial infarction; 2009 RECORD reports a primary-endpoint hazard ratio of 0.99 and a readjudicated composite of 0.93; 2010 the FDA imposes a restricted access programme; 2013 the Duke readjudication returns 0.95 for the same composite and the restrictions are removed; 2015 the programme is eliminated entirely. The 2013 number is not new information about the drug — the readjudicators say so, noting only a modest number of additional person-years ascertained. What changed between 2010 and 2013 is confidence in the RECORD result rather than the RECORD result itself, because the trial\'s open-label design and sponsor adjudication were the objections, and an independent readjudication answered those objections without altering the estimate. That is a legitimate reason to change a regulatory position and it is not the same thing as new evidence.',
+        evidenceSource:
+          'Mahaffey KW et al. Am Heart J 2013;166:240-249.e1; Home PD et al. Lancet 2009;373:2125-2135',
+        doi: '10.1016/j.ahj.2013.05.004',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ros-a5',
+        category: 'measured',
+        title: 'Heart failure and fractures were never in dispute at any stage',
+        laymanSummary:
+          'While the heart attack question reversed twice, the doubling of heart failure hospitalisation and the excess of fractures in women were consistent throughout and never contested.',
+        technicalDetails:
+          'RECORD confirmed a hazard ratio of 2.10 (95% CI 1.35 to 3.27) for heart failure causing hospitalisation or death, a risk difference of 2.6 per 1000 person-years, and an increase in upper and distal lower limb fractures mainly in women. Both are mechanistically explained: PPAR-gamma agonism upregulates epithelial sodium channel expression in the renal collecting duct, causing sodium and fluid retention, and shifts mesenchymal stem cell commitment from osteoblast towards adipocyte, reducing bone formation. Neither finding was reversed by the readjudication, because neither was ever the subject of it. The public argument concentrated entirely on the disputed endpoint and left the undisputed ones almost unmentioned, which is a common and instructive distortion.',
+        evidenceSource: 'Home PD et al. Lancet 2009;373:2125-2135',
+        doi: '10.1016/S0140-6736(09)60953-3',
+        measuredMetric:
+          'Hazard ratio 2.10 for heart failure hospitalisation or death; excess limb fractures in women',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ros-a6',
+        category: 'inferred',
+        title: 'RECORD was not powered for myocardial infarction and its interpretation says so',
+        laymanSummary:
+          'The trial that cleared the drug of an overall cardiovascular excess explicitly said its data were inconclusive about heart attacks specifically.',
+        technicalDetails:
+          'The RECORD investigators wrote that the data are inconclusive about any possible effect on myocardial infarction, while concluding that rosiglitazone does not increase overall cardiovascular morbidity or mortality against standard glucose-lowering drugs. The myocardial infarction hazard ratio was 1.14 with a confidence interval of 0.80 to 1.63 originally and 1.13 (0.80 to 1.59) on readjudication — intervals that comfortably contain both no effect and the 1.43 point estimate from the meta-analysis. So the meta-analysis and the trial are not in contradiction on this endpoint; the trial simply lacks the events to resolve it. Reading RECORD as a refutation of Nissen and Wolski asks a non-inferiority trial on a composite endpoint to settle a component it was never designed to settle.',
+        evidenceSource:
+          'Home PD et al. Lancet 2009;373:2125-2135; Mahaffey KW et al. Am Heart J 2013;166:240-249.e1',
+        doi: '10.1016/S0140-6736(09)60953-3',
+        inferredClaim: 'That RECORD refuted the myocardial infarction signal in the 2007 meta-analysis',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ros-a7',
+        category: 'conclusion_shift',
+        title: 'The lasting consequence is a rule, not a verdict on the drug',
+        laymanSummary:
+          'The episode changed how every diabetes drug is approved. Cardiovascular outcome trials became a requirement, and that is why the later classes have outcome data at all.',
+        technicalDetails:
+          'The rosiglitazone controversy produced a durable change in what a glucose-lowering drug has to demonstrate: cardiovascular safety as an explicit outcome, in dedicated trials, rather than as an assumption inherited from glycaemic control. Every SGLT2 inhibitor and GLP-1 receptor agonist cardiovascular outcome trial exists downstream of that requirement, and several of them found benefit rather than mere non-inferiority. The drug that triggered this now has an unrestricted label almost nobody uses. The regulatory settlement outlived the argument that caused it, which is the most durable outcome any entry in this file has produced.',
+        evidenceSource:
+          'Nissen SE, Wolski K. N Engl J Med 2007;356:2457-2471; Mahaffey KW et al. Am Heart J 2013;166:240-249.e1',
+        doi: '10.1056/NEJMoa072761',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oral tablet, once or twice daily',
+        laymanDesc: 'Taken by mouth, alone or alongside metformin or a sulfonylurea.',
+        molecularDetail:
+          'Oral rosiglitazone maleate 4 to 8 mg daily, as monotherapy or in combination. Nearly complete absorption, high plasma protein binding, metabolised principally by CYP2C8.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Enters the fat cell and reaches the nucleus',
+        laymanDesc:
+          'It crosses into fat cells and travels to the nucleus, where the genetic instructions are kept.',
+        molecularDetail:
+          'Lipophilic enough to cross the plasma and nuclear membranes, reaching the PPAR-gamma ligand-binding domain in the adipocyte nucleus, with lower expression in muscle and liver.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds and activates PPAR-gamma',
+        laymanDesc:
+          'It docks into a master control protein that decides which genes a fat cell switches on.',
+        molecularDetail:
+          'High-affinity agonism at PPAR-gamma, which heterodimerises with the retinoid X receptor, releases corepressors, recruits coactivators, and binds peroxisome proliferator response elements in target gene promoters.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Fat cells are reprogrammed — and so are kidney and bone',
+        laymanDesc:
+          'Fat cells become better at storing fat, pulling it away from muscle and liver. The same switch tells kidney tubules to retain salt and marrow stem cells to become fat rather than bone.',
+        molecularDetail:
+          'Transcriptional reprogramming increases adipocyte differentiation, adiponectin secretion and GLUT4 expression, lowering ectopic lipid in muscle and liver. The same receptor upregulates epithelial sodium channel expression in the collecting duct and shifts mesenchymal lineage commitment from osteoblast to adipocyte.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Durable glucose control; heart failure doubled, and a contested infarction signal',
+        laymanDesc:
+          'Blood sugar falls and stays down for years. Heart failure hospitalisation roughly doubles and fractures rise in women. The heart-attack question was answered differently three times.',
+        molecularDetail:
+          'Measured: HbA1c lower at 5 years than the comparator. Measured: heart failure hospitalisation or death hazard ratio 2.10 (1.35 to 3.27). Contested: myocardial infarction odds ratio 1.43 (1.03 to 1.98) in meta-analysis, hazard ratio 1.14 (0.80 to 1.63) in RECORD, 1.13 (0.80 to 1.59) readjudicated.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Nissen and Wolski meta-analysis of 42 randomised trials',
+        phase: 'Meta-analysis of trials longer than 24 weeks with a randomised non-rosiglitazone control',
+        sampleSize: 42,
+        primaryEndpoint:
+          'Pooled odds ratio for myocardial infarction and for death from cardiovascular causes',
+        endpointMet: true,
+        statisticalPValue:
+          'Myocardial infarction odds ratio 1.43 (95% CI 1.03 to 1.98), P = 0.03; cardiovascular death 1.64 (95% CI 0.98 to 2.74), P = 0.06',
+        unreportedAdverseSignals:
+          'The authors state their principal limitation directly: no access to original source data, so no time-to-event analysis was possible. The analysis pools trials designed for glycaemic endpoints.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'NCT00379769',
+        phase: 'Phase 3/4 multicentre open-label non-inferiority trial (RECORD)',
+        sampleSize: 4447,
+        primaryEndpoint:
+          'Cardiovascular hospitalisation or cardiovascular death, with a non-inferiority margin of 1.20, over a mean 5.5 years',
+        endpointMet: true,
+        statisticalPValue:
+          'Primary endpoint hazard ratio 0.99 (95% CI 0.85 to 1.16); myocardial infarction 1.14 (0.80 to 1.63); heart failure hospitalisation or death 2.10 (1.35 to 3.27)',
+        unreportedAdverseSignals:
+          'Open-label design and sponsor adjudication were the objections that led to the FDA-required readjudication. The investigators describe the myocardial infarction data as inconclusive.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Duke Clinical Research Institute readjudication of RECORD',
+        phase: 'Independent readjudication of cardiovascular endpoints in the original trial data',
+        sampleSize: 4447,
+        primaryEndpoint:
+          'Cardiovascular or unknown-cause death, myocardial infarction or stroke, readjudicated under standard and new FDA endpoint definitions',
+        endpointMet: true,
+        statisticalPValue:
+          'Composite hazard ratio 0.95 (95% CI 0.78 to 1.17) against 0.93 (0.74 to 1.15) originally; myocardial infarction 1.13 (0.80 to 1.59); mortality 0.86 (0.68 to 1.08)',
+        unreportedAdverseSignals:
+          'Only 328 additional person-years of follow-up were ascertained across 25,833 person-years, so the exercise tested the adjudication rather than extending the data.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Pooled odds ratio 1.43 (95% CI 1.03 to 1.98, P = 0.03) for myocardial infarction across 42 trials; cardiovascular death 1.64 (0.98 to 2.74, P = 0.06)',
+        'RECORD primary endpoint hazard ratio 0.99 (95% CI 0.85 to 1.16) in 4,447 patients over 5.5 years, meeting non-inferiority at a 1.20 margin',
+        'Heart failure hospitalisation or death hazard ratio 2.10 (1.35 to 3.27), risk difference 2.6 per 1000 person-years',
+        'Readjudicated composite hazard ratio 0.95 (0.78 to 1.17) against 0.93 (0.74 to 1.15) originally, with 328 additional person-years ascertained',
+      ],
+      unsupportedInferences: [
+        'That RECORD refuted the meta-analysis on myocardial infarction — its interval, 0.80 to 1.63, contains both no effect and the meta-analytic estimate',
+        'That the 2013 readjudication constituted new evidence; it produced almost identical hazard ratios and added 328 person-years',
+        'That removal of the restrictions implies the drug was exonerated; the heart failure and fracture harms were confirmed throughout',
+      ],
+      whatFailedInitially: [
+        'A restricted access programme was imposed in 2010, four years before the readjudication that led to its removal',
+        'The trial designed to settle cardiovascular safety was open-label and sponsor-adjudicated, which is why its result was not accepted at the time',
+        'Prescribing never recovered after the restrictions were lifted; Avandia products are recorded as discontinued in Drugs@FDA',
+      ],
+      realWorldOutcome: [
+        'Restrictions removed in 2013 and the risk evaluation and mitigation strategy eliminated in 2015',
+        'Cardiovascular outcome trials became an expectation for glucose-lowering drugs, which is how the SGLT2 inhibitor and GLP-1 agonist outcome data came to exist',
+        'Pioglitazone continued in the same class without the myocardial infarction restriction and with the same heart failure and fracture liabilities',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 4 to 8 mg daily',
+      description:
+        'Oral rosiglitazone maleate, once or twice daily, alone or in fixed combination with metformin or glimepiride. Nearly complete absorption, high plasma protein binding, hepatic metabolism principally by CYP2C8 with no active metabolites of consequence.',
+      safetyProfile:
+        'Heart failure is the confirmed and undisputed harm: hazard ratio 2.10 (95% CI 1.35 to 3.27) for hospitalisation or death from heart failure, driven by PPAR-gamma-mediated sodium and fluid retention, with a boxed warning against use in symptomatic heart failure. Upper and distal lower limb fractures are increased, mainly in women. Weight gain, oedema and macular oedema occur. The myocardial infarction signal remains formally unresolved: 1.43 (1.03 to 1.98) by meta-analysis, 1.14 (0.80 to 1.63) in RECORD, 1.13 (0.80 to 1.59) on independent readjudication. Access restrictions imposed in 2010 were removed in 2013 and the programme eliminated in 2015.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does rosiglitazone cause heart attacks or not?',
+        a: 'The evidence does not resolve it, and every party to the argument has been working from the same ambiguity. The meta-analysis gives an odds ratio of 1.43 with an interval from 1.03 to 1.98, which is significant but pooled from trials designed for glucose endpoints and without source data. RECORD gives a hazard ratio of 1.14 with an interval from 0.80 to 1.63, and the investigators themselves describe the myocardial infarction data as inconclusive. The readjudication gives 1.13 (0.80 to 1.59). Those intervals overlap heavily. The correct summary is that the question was never settled in either direction, and the regulatory position moved because confidence in the trial\'s conduct moved.',
+        auditNote:
+          'The readjudication added 328 person-years to 25,833 and returned a composite hazard ratio of 0.95 against 0.93. It tested the adjudication, not the drug.',
+      },
+      {
+        q: 'If the numbers barely changed, why were the restrictions lifted?',
+        a: 'Because the objection to RECORD was never primarily about its numbers. It was open-label, and its cardiovascular endpoints were adjudicated under the sponsor\'s process, so its reassuring result could not be relied on. An independent readjudication using the original source documents, with additional records chased from investigators and new FDA endpoint definitions applied, addressed exactly that objection. It came back the same. That is a legitimate reason to change a regulatory position, and it is worth being precise that what changed was the credibility of an existing estimate rather than the estimate itself.',
+      },
+      {
+        q: 'What was never in doubt?',
+        a: 'Heart failure and fractures. RECORD found heart failure hospitalisation or death in 61 rosiglitazone patients against 29 controls, a hazard ratio of 2.10, and an excess of upper and distal lower limb fractures concentrated in women. Both have clear mechanisms in the same receptor that produces the benefit: sodium channel upregulation in the kidney, and a shift of marrow stem cells from bone-forming to fat-forming. Neither was reversed at any point, and neither featured much in the public argument.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file does not carry a pricing block, and Avandia products are recorded in Drugs@FDA as discontinued.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Nissen SE, Wolski K. Effect of rosiglitazone on the risk of myocardial infarction and death from cardiovascular causes. N Engl J Med 2007;356:2457-2471',
+        identifier: '10.1056/NEJMoa072761',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Home PD, Pocock SJ, Beck-Nielsen H, et al. Rosiglitazone evaluated for cardiovascular outcomes in oral agent combination therapy for type 2 diabetes (RECORD): a multicentre, randomised, open-label trial. Lancet 2009;373:2125-2135',
+        identifier: '10.1016/S0140-6736(09)60953-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mahaffey KW, Hafley G, Dickerson S, et al. Results of a reevaluation of cardiovascular outcomes in the RECORD trial. Am Heart J 2013;166:240-249.e1',
+        identifier: '10.1016/j.ahj.2013.05.004',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT00379769 — RECORD',
+        identifier: 'NCT00379769',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA: AVANDIA (rosiglitazone maleate), NDA 021071 — Discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021071',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 77999 — rosiglitazone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/77999',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 23. Lorcaserin — the trial that proved cardiac safety found a cancer signal instead
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'lorcaserin',
+    name: 'Lorcaserin',
+    tradeName: 'Belviq, Belviq XR',
+    sponsor: 'Arena Pharmaceuticals, marketed by Eisai (NDA 022529, NDA 205777)',
+    targetGene: 'HTR2C',
+    targetProtein: 'Serotonin 5-HT2C receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 2012,
+    indication:
+      'Chronic weight management in adults with a body mass index of 30 or more, or 27 or more with a weight-related comorbidity, as an adjunct to diet and exercise. Withdrawal requested by the FDA on 13 February 2020 after a cancer imbalance in its cardiovascular safety trial.',
+    patientFriendlyIndication: 'A twice-daily weight-loss tablet',
+    anatomicalSite:
+      'Hypothalamic arcuate nucleus; 5-HT2C receptors on pro-opiomelanocortin neurons, with brainstem GLP-1 neurons also implicated',
+    conditionContext: {
+      conditionExplainer:
+        'Appetite is regulated by neurons in the hypothalamus that integrate hormonal and neural signals about energy stores. Serotonin acting at the 5-HT2C receptor on those neurons suppresses food intake.',
+      whyItMatters:
+        'Lorcaserin was designed specifically to avoid the mistake that destroyed fenfluramine: selectivity for 5-HT2C over 5-HT2B, the valve receptor. The design worked. The drug was removed for something nobody was looking for, found by the very trial run to prove the cardiac point.',
+      whoTakesThis:
+        'Nobody. Approval of both applications was withdrawn in September 2020, and the FDA determined in March 2021 that the products were not withdrawn for reasons of safety or effectiveness in the sense that governs generic approval.',
+      clinicalGoals:
+        'Weight loss of at least 5 per cent of body weight at one year, and maintenance of that loss, alongside diet and exercise.',
+    },
+    oneSentenceVerdict:
+      'A selective 5-HT2C agonist that achieved at least 5 per cent weight loss in 38.7 per cent of patients against 17.4 per cent on placebo and passed its cardiovascular safety trial cleanly, then was withdrawn in 2020 because that same trial found cancer in 476 of 10,342 treated patients against 438 of 9,429 on placebo across the pooled programme — a relative risk of 1.08 with a confidence interval from 0.96 to 1.23.',
+    laymanHowItWorks:
+      'Certain neurons in the appetite centre of the brain make you feel full. Serotonin switches them on through one particular receptor, and lorcaserin was engineered to hit that receptor and avoid its close relatives — especially the one on heart valves that ended fenfluramine. It worked: appetite fell, weight came off, and the valves were fine. The reason it is gone is a small excess of cancers found in the long safety trial, and that imbalance has never been resolved either way.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 55,
+    substitutes: {
+      summary:
+        'The GLP-1 receptor agonists replaced this entire category. Semaglutide and tirzepatide produce weight loss several times larger than lorcaserin\'s and carry cardiovascular outcome data showing benefit rather than absence of harm.',
+      conventionalRx: [
+        {
+          name: 'Semaglutide (weight-management dose)',
+          class: 'GLP-1 receptor agonist',
+          howItCompares:
+            'Far larger weight loss than any 5-HT2C agonist achieved, with cardiovascular outcome evidence of benefit. Notably, lorcaserin\'s own mechanism turned out to involve brainstem GLP-1 neurons, so the two are less distant than they appear.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: large sustained weight loss, cardiovascular benefit. Cons: gastrointestinal effects, cost, weight regain on discontinuation.',
+        },
+        {
+          name: 'Phentermine-topiramate',
+          class: 'Sympathomimetic plus anticonvulsant combination',
+          howItCompares:
+            'A pre-GLP-1 alternative with greater weight loss than lorcaserin but a sympathomimetic profile and teratogenic risk requiring a pregnancy programme.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: greater efficacy than lorcaserin. Cons: teratogenicity, tachycardia, cognitive effects, controlled status.',
+        },
+        {
+          name: 'Orlistat',
+          class: 'Gastrointestinal lipase inhibitor',
+          howItCompares:
+            'Acts in the gut lumen rather than the brain, so it has no central or receptor-mediated systemic pharmacology at all. Modest efficacy, and the only over-the-counter option in some markets.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: negligible systemic exposure. Cons: steatorrhoea, fat-soluble vitamin depletion, modest effect.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@H]1CNCCC2=C1C=C(C=C2)Cl',
+      chemicalFormula: 'C11H14ClN',
+      molecularWeight: '195.69 g/mol',
+      targetReceptorAffinity:
+        'A chlorinated benzazepine and a selective agonist at the serotonin 5-HT2C receptor, with reported selectivity of roughly 15-fold over 5-HT2A and around 100-fold over 5-HT2B at the receptors. That 5-HT2B margin is the entire design rationale: fenfluramine\'s metabolite norfenfluramine is a 5-HT2B agonist and caused valvular fibrosis, and lorcaserin was built to separate the appetite receptor from the valve receptor. Serial echocardiography in the phase 3 programme found no increase in valvulopathy, so the design objective was met.',
+      structureSource: {
+        label: 'PubChem CID 11658860 (lorcaserin) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11658860',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lor-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, enantiomeric purity and hydrochloride hemihydrate form',
+          description:
+            'Confirm the chlorinated benzazepine skeleton and the R configuration at the single stereocentre, and identify the hydrochloride hemihydrate solid form used in the marketed product. The enantiomer is inactive at the target, so a chiral purity specification is a potency specification.',
+          reagentsAndBuffer:
+            'Lorcaserin hydrochloride hemihydrate certified reference standard, chiral stationary phase HPLC, powder X-ray diffraction and Karl Fischer titration for hydrate state, proton NMR in deuterated methanol, LC-MS at m/z 196',
+        },
+        {
+          id: 'lor-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Related substances and extended-release dissolution',
+          description:
+            'Profile dechlorinated and ring-opened degradants and residual synthetic intermediates, and characterise dissolution of the once-daily extended-release tablet separately from the immediate-release form, since the two products carry separate applications.',
+          dependsOnStepId: 'lor-w1',
+          reagentsAndBuffer:
+            'C18 column with acetonitrile and phosphate buffer gradient, ultraviolet detection at 225 nm, USP apparatus 2 dissolution in pH 1.2, 4.5 and 6.8 media, forced degradation under acid, base, oxidative, thermal and photolytic stress',
+        },
+        {
+          id: 'lor-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Hypothalamic and brainstem neuron preparation',
+          description:
+            'Acute hypothalamic and brainstem slices with electrophysiological recording from identified pro-opiomelanocortin and preproglucagon neurons, measuring firing rate response to the compound. This preparation is where the mechanism is actually observable, and it is where the later finding that lorcaserin activates brainstem GLP-1 neurons was made.',
+          reagentsAndBuffer:
+            'Acute coronal brain slices in artificial cerebrospinal fluid, whole-cell current clamp recording, reporter mice with labelled POMC and preproglucagon neurons, selective 5-HT2C antagonist SB-242084 as mechanism control',
+        },
+        {
+          id: 'lor-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: '5-HT2C potency with mandatory 5-HT2B and 5-HT2A counter-screen',
+          description:
+            'Functional agonism at recombinant human 5-HT2C measured as calcium mobilisation or inositol phosphate accumulation, run in parallel with 5-HT2B and 5-HT2A on the same plate. Fenfluramine, norfenfluramine and pergolide belong in the comparison, because the selectivity ratio is the claim the drug was designed around and a ratio is only meaningful against a common reference.',
+          dependsOnStepId: 'lor-w3',
+          reagentsAndBuffer:
+            'Cells stably expressing human HTR2C, HTR2B and HTR2A, Fluo-4 calcium flux or IP-One HTRF accumulation assay, serotonin as reference full agonist, norfenfluramine and pergolide as positive 5-HT2B comparators',
+        },
+        {
+          id: 'lor-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Clonal expansion and valve interstitial cell assays',
+          description:
+            'Two independent safety readouts. Error-corrected sequencing of cancer-driver mutations in target tissue to detect clonal expansion — the approach that identified lorcaserin-associated expansion of PIK3CA H1047R mutant clones in rat mammary tissue. Separately, valve interstitial cell proliferation with a 5-HT2B antagonist rescue arm, the assay the whole design was meant to pass.',
+          dependsOnStepId: 'lor-w4',
+          reagentsAndBuffer:
+            'Rodent mammary and other target tissue, error-corrected next-generation sequencing panels for cancer driver hotspots including PIK3CA, primary human valve interstitial cells with bromodeoxyuridine incorporation, selective 5-HT2B antagonist as rescue control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lor-a1',
+        category: 'measured',
+        title: '38.7 per cent lost at least 5 per cent of body weight, against 17.4 per cent on placebo',
+        laymanSummary:
+          'In a 12,000-patient trial, nearly four in ten people on lorcaserin lost at least a twentieth of their body weight at one year, against fewer than two in ten on placebo.',
+        technicalDetails:
+          'CAMELLIA-TIMI 61 (NCT02019264) randomised 12,000 overweight or obese patients with atherosclerotic cardiovascular disease or multiple cardiovascular risk factors to lorcaserin 10 mg twice daily or placebo. At one year, weight loss of at least 5 per cent had occurred in 1,986 of 5,135 patients (38.7 per cent) on lorcaserin against 883 of 5,083 (17.4 per cent) on placebo, odds ratio 3.01 (95% CI 2.74 to 3.30, P < 0.001). Patients on lorcaserin had slightly better blood pressure, heart rate, glycaemic control and lipids. The earlier BLOOM trial (NCT00395135) in 3,182 patients had reported 47.5 per cent against 20.3 per cent at one year, mean loss 5.8 plus or minus 0.2 kg against 2.2 plus or minus 0.1 kg (P < 0.001).',
+        evidenceSource:
+          'Bohula EA et al., CAMELLIA-TIMI 61. N Engl J Med 2018;379:1107-1117; Smith SR et al. N Engl J Med 2010;363:245-256',
+        doi: '10.1056/NEJMoa1808721',
+        measuredMetric: 'Proportion achieving at least 5 per cent weight loss at one year',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lor-a2',
+        category: 'measured',
+        title: 'The cardiovascular safety question was answered cleanly',
+        laymanSummary:
+          'Over 3.3 years the rate of heart attacks, strokes and cardiovascular deaths was the same on the drug as on placebo. That was the question the trial was designed to answer.',
+        technicalDetails:
+          'Over a median 3.3 years of follow-up, the primary safety outcome — a composite of cardiovascular death, myocardial infarction or stroke — occurred at 2.0 per cent per year on lorcaserin against 2.1 per cent per year on placebo, hazard ratio 0.99 (95% CI 0.85 to 1.14, P < 0.001 for non-inferiority against a boundary of 1.4). Extended major cardiovascular events, adding heart failure, hospitalisation for unstable angina and coronary revascularisation, occurred at 4.1 against 4.2 per cent per year, hazard ratio 0.97 (0.87 to 1.07, P = 0.55). Adverse events of special interest were uncommon and similar between groups apart from more serious hypoglycaemia on lorcaserin (13 against 4, P = 0.04). Serial echocardiography in the earlier programme, in 2,472 patients at one year and 1,127 at two years, found no increase in cardiac valvulopathy.',
+        evidenceSource:
+          'Bohula EA et al. N Engl J Med 2018;379:1107-1117; Smith SR et al. N Engl J Med 2010;363:245-256',
+        doi: '10.1056/NEJMoa1808721',
+        measuredMetric:
+          'Annualised rate of major adverse cardiovascular events and echocardiographic valvulopathy rate',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lor-a3',
+        category: 'conclusion_shift',
+        title: 'The trial that cleared the heart found a cancer imbalance nobody was testing for',
+        laymanSummary:
+          'The FDA reviewed the long-term follow-up of the safety trial and found more cancers on lorcaserin than on placebo. The drug was withdrawn in February 2020.',
+        technicalDetails:
+          'The FDA reported in February 2020 an increased risk of cancer with lorcaserin in the follow-up of CAMELLIA-TIMI 61 and requested withdrawal on 13 February 2020, with the agency\'s own review published as a perspective in the New England Journal of Medicine in September 2020. Cancer was not a prespecified endpoint of the trial. It was a safety trial for cardiovascular outcomes, designed and powered against a non-inferiority boundary of 1.4 for major adverse cardiovascular events, and it delivered a clean answer on that question. The finding that ended the drug came from the same dataset and was not what the dataset was assembled to examine, which places it in exactly the category — an unprespecified imbalance in a large trial — that is hardest to interpret in either direction.',
+        evidenceSource:
+          'Sharretts J, Galescu O, Gomatam S, Andraca-Carrera E, Hampp C, Yanoff L. N Engl J Med 2020;383:1000-1002',
+        doi: '10.1056/NEJMp2003873',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'lor-a4',
+        category: 'inferred',
+        title: 'The pooled relative risk is 1.08, with an interval crossing 1',
+        laymanSummary:
+          'A systematic review pooling every trial found 476 cancers among 10,342 treated patients and 438 among 9,429 on placebo — a relative risk of 1.08 whose range includes no effect.',
+        technicalDetails:
+          'A systematic review and meta-analysis searched MEDLINE, Embase and CENTRAL for randomised trials comparing lorcaserin with other interventions or no treatment. From 11 trials comprising 21,299 individuals, four reported new cancer cases and were meta-analysed: 476 cases among 10,342 lorcaserin subjects against 438 among 9,429 on placebo, relative risk 1.08 (95% CI 0.96 to 1.23). The result was heavily influenced by CAMELLIA-TIMI 61, in which the lorcaserin group had higher risk of lung and pancreatic but not colon cancer. Overall risk of bias was low and quality of evidence moderate. The authors conclude that current evidence does not confirm an increased cancer risk but suggests a trend in that direction. That is the honest statement, and it is neither a finding of harm nor a clearance.',
+        evidenceSource:
+          'de Andrade Mesquita L, Fagundes Piccoli G, Richter da Natividade G, Frison Spiazzi B, Colpani V, Gerchman F. Obes Rev 2021;22:e13170',
+        doi: '10.1111/obr.13170',
+        inferredClaim:
+          'That the pooled trial data establish lorcaserin as carcinogenic in humans',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lor-a5',
+        category: 'measured',
+        title: 'A mechanistic signal was later found in rodent tissue',
+        laymanSummary:
+          'Later laboratory work found that lorcaserin expanded populations of cells carrying a known cancer-driving mutation in rat breast tissue.',
+        technicalDetails:
+          'Error-corrected sequencing applied to rat mammary tissue detected lorcaserin-associated clonal expansion of PIK3CA H1047R mutant cells. This is a mechanistic observation in a rodent tissue rather than a demonstration of human carcinogenesis, and clonal expansion of a driver mutation is an intermediate step rather than a tumour. Its evidential value is that it moves the finding from a bare statistical imbalance toward a candidate mechanism, which is the direction of travel a contested safety signal needs. It does not close the question, and the human pooled relative risk remains 1.08 with an interval from 0.96 to 1.23.',
+        evidenceSource:
+          'CarcSeq detection of lorcaserin-induced clonal expansion of Pik3ca H1047R mutants in rat mammary tissue. Toxicol Sci 2024;201:129-144',
+        doi: '10.1093/toxsci/kfae070',
+        measuredMetric:
+          'Clonal expansion of PIK3CA H1047R mutant cells in rat mammary tissue by error-corrected sequencing',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lor-a6',
+        category: 'conclusion_shift',
+        title: 'It was built to avoid fenfluramine\'s failure, and it succeeded at that',
+        laymanSummary:
+          'Lorcaserin was specifically engineered to avoid the receptor that made fenfluramine damage heart valves. Echocardiography in thousands of patients confirmed the design worked.',
+        technicalDetails:
+          'Fenfluramine was withdrawn in 1997 because its metabolite norfenfluramine agonises the 5-HT2B receptor on cardiac valve interstitial cells, producing fibrotic valve disease. Lorcaserin was designed for selectivity at 5-HT2C over 5-HT2B, and the registration programme tested the point directly with serial echocardiography in 2,472 patients at one year and 1,127 at two years, finding no increase in valvulopathy. The design objective was achieved and independently confirmed. What removed the drug was a hazard that no part of that design programme was aimed at, arising in a trial run to address a third question entirely. Solving the known problem of a class does not narrow the space of unknown ones.',
+        evidenceSource: 'Smith SR et al. N Engl J Med 2010;363:245-256',
+        doi: '10.1056/NEJMoa0909809',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lor-a7',
+        category: 'failed',
+        title: 'The formal record says it was not withdrawn for safety or effectiveness',
+        laymanSummary:
+          'Approval was withdrawn in September 2020. Then in March 2021 the FDA formally determined the products were not withdrawn for reasons of safety or effectiveness — a technical finding that permits generic applications.',
+        technicalDetails:
+          'The Federal Register of 17 September 2020 records Eisai\'s withdrawal of approval of the two new drug applications for BELVIQ and BELVIQ XR. The Federal Register of 4 March 2021 then records a determination that BELVIQ (lorcaserin hydrochloride) tablets 10 mg and BELVIQ XR were not withdrawn from sale for reasons of safety or effectiveness. That determination is a specific technical finding governing whether abbreviated new drug applications may reference the listed drug; it is not a statement that the cancer imbalance was disproved. A reader consulting the Federal Register and a reader consulting the 2020 safety communication reach opposite impressions, and both documents are accurate about what they address.',
+        evidenceSource:
+          'Federal Register 17 September 2020, withdrawal of approval of two NDAs for BELVIQ and BELVIQ XR; Federal Register 4 March 2021, determination on withdrawal from sale',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A tablet twice daily, or an extended-release tablet once daily',
+        laymanDesc: 'Swallowed twice a day, or once a day in the extended-release form.',
+        molecularDetail:
+          'Oral lorcaserin hydrochloride 10 mg twice daily, or 20 mg once daily as the extended-release product under a separate application. Well absorbed with extensive hepatic metabolism.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into the brain and reaches the appetite centre',
+        laymanDesc:
+          'It enters the brain and reaches the hypothalamus, the region that regulates hunger and fullness.',
+        molecularDetail:
+          'Crosses the blood-brain barrier and reaches the hypothalamic arcuate nucleus and brainstem nuclei. Peripheral exposure is unavoidable, which is why the 5-HT2B selectivity margin matters for heart valves.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Selective agonist at 5-HT2C, sparing 5-HT2B',
+        laymanDesc:
+          'It switches on the serotonin receptor that suppresses appetite, while largely avoiding the closely related one found on heart valves.',
+        molecularDetail:
+          'Agonism at 5-HT2C, a Gq-coupled receptor, with roughly 100-fold selectivity over 5-HT2B and about 15-fold over 5-HT2A at the receptor level — the margin that separates it from norfenfluramine.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Satiety neurons fire; food intake falls',
+        laymanDesc:
+          'The neurons that signal fullness become more active, so meals end sooner and less is eaten.',
+        molecularDetail:
+          'Activation of 5-HT2C on pro-opiomelanocortin neurons in the arcuate nucleus increases alpha-MSH release onto melanocortin-4 receptors, suppressing food intake. Later work shows lorcaserin also activates brainstem preproglucagon neurons, engaging endogenous GLP-1 signalling.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Weight falls, valves are unaffected, and cancers are slightly more frequent',
+        laymanDesc:
+          'Nearly four in ten patients lost at least five per cent of their weight, and the heart valve problem was avoided. The reason it is gone is a small cancer excess.',
+        molecularDetail:
+          'Measured: 38.7 per cent versus 17.4 per cent achieving at least 5 per cent weight loss, odds ratio 3.01. Measured: major adverse cardiovascular events 2.0 versus 2.1 per cent per year, hazard ratio 0.99. Contested: pooled cancer relative risk 1.08 (95% CI 0.96 to 1.23), 476 of 10,342 against 438 of 9,429.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT02019264',
+        phase: 'Phase 4 cardiovascular safety trial (CAMELLIA-TIMI 61)',
+        sampleSize: 12000,
+        primaryEndpoint:
+          'Major cardiovascular events — cardiovascular death, myocardial infarction or stroke — assessed against a non-inferiority boundary of 1.4, over a median 3.3 years',
+        endpointMet: true,
+        statisticalPValue:
+          '2.0 versus 2.1 per cent per year, hazard ratio 0.99 (95% CI 0.85 to 1.14), P < 0.001 for non-inferiority; extended MACE 4.1 versus 4.2 per cent per year, hazard ratio 0.97 (0.87 to 1.07), P = 0.55',
+        unreportedAdverseSignals:
+          'Serious hypoglycaemia was more frequent on lorcaserin (13 versus 4, P = 0.04). Cancer was not a prespecified endpoint, and the imbalance that ended the drug emerged from follow-up of this trial.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT00395135',
+        phase: 'Phase 3 (BLOOM)',
+        sampleSize: 3182,
+        primaryEndpoint:
+          'Weight loss at one year and maintenance of weight loss at two years, with serial echocardiography for FDA-defined valvulopathy',
+        endpointMet: true,
+        statisticalPValue:
+          '47.5 per cent versus 20.3 per cent lost at least 5 per cent of body weight at one year (P < 0.001); mean loss 5.8 ± 0.2 kg versus 2.2 ± 0.1 kg; no increase in valvulopathy in 2,472 patients at one year and 1,127 at two years',
+        unreportedAdverseSignals:
+          'Retention was 55.4 per cent on lorcaserin and 45.1 per cent on placebo at one year, so the one-year comparison rests on a substantially incomplete cohort in both arms.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Systematic review and meta-analysis of cancer incidence (de Andrade Mesquita et al.)',
+        phase: 'Systematic review and meta-analysis of randomised trials',
+        sampleSize: 21299,
+        primaryEndpoint:
+          'Incidence of new cancer with lorcaserin against other interventions or no treatment',
+        endpointMet: false,
+        statisticalPValue:
+          '476 cases in 10,342 lorcaserin subjects against 438 in 9,429 on placebo; relative risk 1.08 (95% CI 0.96 to 1.23)',
+        unreportedAdverseSignals:
+          'The pooled estimate is heavily influenced by CAMELLIA-TIMI 61, in which lung and pancreatic but not colon cancer were more frequent. Risk of bias was low and evidence quality moderate.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'At least 5 per cent weight loss at one year in 38.7 per cent versus 17.4 per cent, odds ratio 3.01 (95% CI 2.74 to 3.30), in 12,000 patients',
+        'Major adverse cardiovascular events 2.0 versus 2.1 per cent per year, hazard ratio 0.99 (0.85 to 1.14), over a median 3.3 years',
+        'No increase in echocardiographic valvulopathy in 2,472 patients at one year and 1,127 at two years',
+        'Pooled cancer incidence 476 of 10,342 against 438 of 9,429, relative risk 1.08 (95% CI 0.96 to 1.23)',
+      ],
+      unsupportedInferences: [
+        'That the pooled data establish lorcaserin as carcinogenic — the interval crosses 1 and the reviewers state the evidence does not confirm an increase',
+        'That the 2021 Federal Register determination of "not withdrawn for safety or effectiveness" contradicts the 2020 safety finding; the two documents answer different questions',
+        'That clonal expansion of PIK3CA mutants in rat mammary tissue demonstrates human carcinogenesis',
+      ],
+      whatFailedInitially: [
+        'Withdrawal requested 13 February 2020, eight years after approval, on a signal that was not a prespecified endpoint of any trial',
+        'Approval of both new drug applications formally withdrawn in September 2020',
+        'The trial that produced the fatal finding was designed and powered for a different question, which it answered successfully',
+      ],
+      realWorldOutcome: [
+        'The GLP-1 receptor agonists replaced the entire pharmacological weight-management category with far larger effects',
+        'Lorcaserin\'s own mechanism was later shown to involve brainstem GLP-1 neurons, connecting the two classes',
+        'The 5-HT2C over 5-HT2B selectivity strategy that this drug validated remains sound; it was simply not sufficient',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 10 mg twice daily, or 20 mg extended-release once daily',
+      description:
+        'Oral lorcaserin hydrochloride hemihydrate, immediate-release twice daily or extended-release once daily under a separate application. Well absorbed with extensive hepatic metabolism and renal excretion of metabolites.',
+      safetyProfile:
+        'Withdrawal was requested on 13 February 2020 on a cancer imbalance in the follow-up of CAMELLIA-TIMI 61; pooled across randomised trials the relative risk is 1.08 (95% CI 0.96 to 1.23), driven by lung and pancreatic but not colon cancer in that trial. Cardiovascular safety was demonstrated cleanly, with major adverse cardiovascular events at 0.99 hazard ratio, and serial echocardiography showed no valvulopathy excess. Common adverse effects were headache, dizziness and nausea. Serious hypoglycaemia was more frequent on lorcaserin in diabetic patients (13 versus 4, P = 0.04). Serotonin syndrome is a theoretical risk with concomitant serotonergic drugs.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does lorcaserin cause cancer?',
+        a: 'The evidence has not settled it, and the people who reviewed it say so explicitly. Pooling the randomised trials gives 476 cancers among 10,342 treated patients against 438 among 9,429 on placebo, a relative risk of 1.08 with a confidence interval from 0.96 to 1.23 — an interval that includes no effect. The systematic reviewers conclude that the evidence does not confirm an increased risk but suggests a trend in that direction. Cancer was never a prespecified endpoint in any of these trials. Withdrawing a weight-loss drug on an unresolved signal of this kind is a defensible benefit-risk decision, and it is not the same as a demonstration of harm.',
+        auditNote:
+          'The pooled estimate is dominated by CAMELLIA-TIMI 61, where lung and pancreatic but not colon cancer were more frequent on lorcaserin.',
+      },
+      {
+        q: 'Was this the same problem as fenfluramine?',
+        a: 'No, and that is the point of the drug. Fenfluramine\'s valve damage came from 5-HT2B agonism by its metabolite. Lorcaserin was engineered for selectivity at 5-HT2C over 5-HT2B, and the registration programme tested that directly with serial echocardiography in 2,472 patients at one year and 1,127 at two years, finding no increase in valvulopathy. The design worked. It was removed for something entirely unrelated, found in a trial run to address a third question.',
+      },
+      {
+        q: 'Why does one federal document say it was not withdrawn for safety reasons?',
+        a: 'Because that determination answers a narrow administrative question: whether a generic manufacturer may reference the listed drug in an abbreviated application. The Federal Register of 4 March 2021 makes that finding for BELVIQ and BELVIQ XR. It does not overturn the February 2020 safety communication or the cancer analysis. Two current federal records point in different directions because they are answering different questions, and reading either one as the whole story would be a mistake.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because approval of both applications was withdrawn in September 2020 and there is no current list price to cite.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Bohula EA, Wiviott SD, McGuire DK, et al. Cardiovascular safety of lorcaserin in overweight or obese patients. N Engl J Med 2018;379:1107-1117',
+        identifier: '10.1056/NEJMoa1808721',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Smith SR, Weissman NJ, Anderson CM, et al. Multicenter, placebo-controlled trial of lorcaserin for weight management. N Engl J Med 2010;363:245-256',
+        identifier: '10.1056/NEJMoa0909809',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sharretts J, Galescu O, Gomatam S, Andraca-Carrera E, Hampp C, Yanoff L. Cancer risk associated with lorcaserin — the FDA\'s review of the CAMELLIA-TIMI 61 trial. N Engl J Med 2020;383:1000-1002',
+        identifier: '10.1056/NEJMp2003873',
+        kind: 'doi',
+      },
+      {
+        label:
+          'de Andrade Mesquita L, Fagundes Piccoli G, Richter da Natividade G, Frison Spiazzi B, Colpani V, Gerchman F. Is lorcaserin really associated with increased risk of cancer? A systematic review and meta-analysis. Obes Rev 2021;22:e13170',
+        identifier: '10.1111/obr.13170',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CarcSeq detection of lorcaserin-induced clonal expansion of Pik3ca H1047R mutants in rat mammary tissue. Toxicol Sci 2024;201:129-144',
+        identifier: '10.1093/toxsci/kfae070',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT02019264 — CAMELLIA-TIMI 61',
+        identifier: 'NCT02019264',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Federal Register, 17 September 2020 — Eisai, Inc.; withdrawal of approval of two new drug applications for BELVIQ (lorcaserin hydrochloride) and BELVIQ XR',
+        identifier:
+          'https://www.federalregister.gov/documents/2020/09/17/2020-20458/eisai-inc-withdrawal-of-approval-of-two-new-drug-application-for-belviq-lorcaserin-hydrochloride-and',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Federal Register, 4 March 2021 — determination that BELVIQ and BELVIQ XR were not withdrawn from sale for reasons of safety or effectiveness',
+        identifier:
+          'https://www.federalregister.gov/documents/2021/03/04/2021-04449/determination-that-belviq-lorcaserin-hydrochloride-tablets-10-milligrams-and-belviq-xr-lorcaserin',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 11658860 — lorcaserin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11658860',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 24. Hydroxyprogesterone caproate — accelerated approval, and the confirmatory trial said no
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'hydroxyprogesterone-caproate',
+    name: 'Hydroxyprogesterone caproate',
+    tradeName: 'Makena',
+    sponsor: 'Covis Pharma, formerly AMAG Pharmaceuticals and KV Pharmaceutical (NDA 021945)',
+    targetGene: 'PGR',
+    targetProtein: 'Progesterone receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 2011,
+    indication:
+      'Reduction of the risk of preterm birth in women with a singleton pregnancy and a history of singleton spontaneous preterm birth. Granted accelerated approval in February 2011 and withdrawn by final decision of the FDA Commissioner in April 2023 after the confirmatory trial failed.',
+    patientFriendlyIndication:
+      'A weekly injection in pregnancy intended to prevent a repeat premature birth',
+    anatomicalSite: 'Myometrium and cervix; progesterone receptors in uterine smooth muscle',
+    conditionContext: {
+      conditionExplainer:
+        'A woman who has had one spontaneous preterm birth has a substantially raised risk in her next pregnancy. Preterm birth is the leading cause of neonatal death and of long-term neurodevelopmental harm, and there is very little that reliably prevents it.',
+      whyItMatters:
+        'This is the accelerated-approval bargain carried through to its end. A surrogate-supported approval was granted in 2011, the confirmatory trial reported a null result in 2019, and the approval was withdrawn in 2023 after a formal hearing. Almost no other drug in this file completed that sequence.',
+      whoTakesThis:
+        'Nobody, as Makena or its generics. Vaginal progesterone remains in use for a different population — women with a short cervix — on separate evidence.',
+      clinicalGoals:
+        'Reduce recurrent preterm birth before 35 weeks and reduce a composite of neonatal morbidity. Those were the co-primary endpoints of the confirmatory trial, and neither was met.',
+    },
+    oneSentenceVerdict:
+      'A weekly progestin injection approved in 2011 on a 463-woman trial that found recurrent preterm birth before 37 weeks in 36.3 per cent against 54.9 per cent on placebo, and withdrawn in 2023 after a 1,708-woman confirmatory trial found preterm birth before 35 weeks in 11.0 per cent against 11.5 per cent — relative risk 0.95, confidence interval 0.71 to 1.26.',
+    laymanHowItWorks:
+      'Progesterone keeps the uterus quiet during pregnancy, and the drop in its activity is part of what starts labour. Hydroxyprogesterone caproate is a long-acting synthetic version, injected weekly, intended to hold that quieting effect in place and delay labour. The first trial suggested it did. The confirmatory trial, run in a different and lower-risk population, found no difference at all.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 41,
+    substitutes: {
+      summary:
+        'Vaginal progesterone remains in use for women with a short cervix, which is a different indication with a different evidence base. Cervical cerclage addresses a mechanical cause. Neither is a replacement for the population Makena was approved for.',
+      conventionalRx: [
+        {
+          name: 'Vaginal progesterone',
+          class: 'Natural progesterone, locally administered',
+          howItCompares:
+            'Different route, different molecule, and a different indicated population — women with a sonographically short cervix rather than women with a prior spontaneous preterm birth. Its evidence base was not affected by the Makena withdrawal.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: local delivery, no injection, retained in guidelines for short cervix. Cons: the population overlaps only partly with Makena\'s.',
+        },
+        {
+          name: 'Cervical cerclage',
+          class: 'Surgical procedure',
+          howItCompares:
+            'Addresses a structural cause of mid-trimester loss rather than a hormonal one, in women with cervical insufficiency or a short cervix and a prior preterm birth.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: addresses a mechanical mechanism directly. Cons: operative and anaesthetic risk, membrane rupture, infection.',
+        },
+        {
+          name: 'Low-dose aspirin',
+          class: 'Antiplatelet agent',
+          howItCompares:
+            'Used in pregnancy for pre-eclampsia prevention in at-risk women, with secondary effects on preterm birth reported. A different mechanism and a different primary purpose.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: inexpensive, well tolerated, established for pre-eclampsia prevention. Cons: preterm birth is not its primary indication.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CCCCCC(=O)O[C@@]1(CC[C@@H]2[C@@]1(CC[C@H]3[C@H]2CCC4=CC(=O)CC[C@]34C)C)C(=O)C',
+      chemicalFormula: 'C27H40O4',
+      molecularWeight: '428.6 g/mol',
+      targetReceptorAffinity:
+        'A synthetic progestin: 17-alpha-hydroxyprogesterone esterified with caproic acid. The caproate ester is the reason for weekly dosing — it makes the molecule sufficiently lipophilic to form an intramuscular depot in castor oil that releases slowly over days. It is a distinct molecule from natural progesterone, and the vaginal progesterone used for short cervix is not the same drug by a different route.',
+      structureSource: {
+        label:
+          'PubChem CID 169870 (hydroxyprogesterone caproate) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/169870',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'hpc-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and steroid stereochemical confirmation',
+          description:
+            'Confirm the pregn-4-ene-3,20-dione skeleton, the 17-alpha configuration of the ester linkage and the caproate chain length. The 17-alpha and 17-beta esters and the shorter-chain homologues are separate compounds with different depot behaviour, so chain length and stereochemistry are identity attributes rather than purity attributes.',
+          reagentsAndBuffer:
+            'Hydroxyprogesterone caproate certified reference standard, reversed-phase HPLC with ultraviolet detection at 240 nm, proton and carbon NMR in deuterated chloroform, LC-MS electrospray positive mode at m/z 429',
+        },
+        {
+          id: 'hpc-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Oil vehicle, preservative and compounded-product testing',
+          description:
+            'Assay the castor oil vehicle, the benzyl benzoate co-solvent and benzyl alcohol preservative, and test sterility and endotoxin. This drug was widely compounded before and after the branded product existed, so batch-to-batch content uniformity of compounded preparations is a real analytical question rather than a hypothetical one.',
+          dependsOnStepId: 'hpc-w1',
+          reagentsAndBuffer:
+            'Gas chromatography for benzyl benzoate and benzyl alcohol, USP sterility and bacterial endotoxin testing, viscosity and particulate matter testing, multi-dose vial content uniformity across the labelled withdrawal sequence',
+        },
+        {
+          id: 'hpc-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Myometrial smooth muscle contractility preparation',
+          description:
+            'Human myometrial strips from term or preterm biopsies mounted in organ baths, measuring spontaneous and oxytocin-stimulated contractile activity with and without the progestin. This is the functional preparation in which a tocolytic hypothesis is actually testable, and it is the layer of evidence that sits between receptor binding and a clinical trial result.',
+          reagentsAndBuffer:
+            'Human myometrial strips in Krebs-Henseleit solution gassed with 95% oxygen and 5% carbon dioxide at 37 degrees, isometric force transducers, oxytocin challenge, mifepristone as progesterone receptor antagonist control, natural progesterone as comparator',
+        },
+        {
+          id: 'hpc-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Progesterone receptor binding with steroid receptor counter-screen',
+          description:
+            'Competitive binding at progesterone receptor isoforms A and B, counter-screened at the glucocorticoid, mineralocorticoid and androgen receptors. Progestins vary widely in off-target steroid receptor activity, and a synthetic ester is not interchangeable with natural progesterone on that profile.',
+          dependsOnStepId: 'hpc-w3',
+          reagentsAndBuffer:
+            'Recombinant human progesterone receptor A and B ligand-binding domains, [3H]-progesterone or [3H]-R5020 radioligand, glucocorticoid, mineralocorticoid and androgen receptor panels, transactivation reporter assays, natural progesterone and medroxyprogesterone acetate as comparators',
+        },
+        {
+          id: 'hpc-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma pharmacokinetics of the weekly depot',
+          description:
+            'LC-MS/MS quantification of hydroxyprogesterone caproate and its hydrolysis product across a weekly dosing interval, to establish whether trough concentrations sustain receptor occupancy for the full seven days. Pharmacokinetic variability across populations is one of the candidate explanations offered for why the two pivotal trials disagreed, so this measurement bears directly on the central dispute.',
+          dependsOnStepId: 'hpc-w4',
+          reagentsAndBuffer:
+            'Maternal plasma with deuterated internal standard, liquid-liquid or solid-phase extraction, LC-MS/MS with separate transitions for intact ester and free 17-hydroxyprogesterone, sampling across the full weekly interval including trough',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'hpc-a1',
+        category: 'measured',
+        title: 'Meis trial: preterm birth before 37 weeks in 36.3 per cent against 54.9 per cent',
+        laymanSummary:
+          'The trial that led to approval enrolled 463 women with a previous premature birth. Just over a third on the drug delivered early, against more than half on placebo.',
+        technicalDetails:
+          'A double-blind placebo-controlled trial in pregnant women with a documented history of spontaneous preterm delivery, enrolled at 19 clinical centres at 16 to 20 weeks and randomised 2:1 to weekly 250 mg 17-alpha-hydroxyprogesterone caproate or inert oil placebo until delivery or 36 weeks. Among 310 women on progestin and 153 on placebo, delivery before 37 weeks occurred in 36.3 per cent against 54.9 per cent (relative risk 0.66, 95% CI 0.54 to 0.81); before 35 weeks in 20.6 against 30.7 per cent (0.67, 0.48 to 0.93); before 32 weeks in 11.4 against 19.6 per cent (0.58, 0.37 to 0.91). Infants of treated women had lower rates of necrotising enterocolitis, intraventricular haemorrhage and need for supplemental oxygen.',
+        evidenceSource: 'Meis PJ et al., NICHD MFMU Network. N Engl J Med 2003;348:2379-2385',
+        doi: '10.1056/NEJMoa035140',
+        measuredMetric:
+          'Incidence of delivery before 37, 35 and 32 weeks, 17-OHPC versus placebo, in 463 women',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'hpc-a2',
+        category: 'failed',
+        title: 'PROLONG: 11.0 per cent against 11.5 per cent, in 1,708 women',
+        laymanSummary:
+          'The confirmatory trial was nearly four times larger and found no difference at all on either of its two main outcomes.',
+        technicalDetails:
+          'PROLONG (NCT01004029) was a double-blind placebo-controlled international trial enrolling women with a previous singleton spontaneous preterm birth at 93 centres — 41 in the United States and 52 outside — at 16 0/7 to 20 6/7 weeks, randomised 2:1 to weekly intramuscular 250 mg 17-OHPC or inert oil placebo until delivery or 36 weeks. Co-primary outcomes were preterm birth before 35 weeks and a neonatal morbidity composite. Among 1,130 women on 17-OHPC and 578 on placebo, preterm birth before 35 weeks occurred in 11.0 against 11.5 per cent (relative risk 0.95, 95% CI 0.71 to 1.26), and the neonatal morbidity index in 5.6 against 5.0 per cent (1.12, 0.68 to 1.61). Fetal or early infant death was 1.7 against 1.9 per cent (0.87, 0.4 to 1.81). The planned sample of 1,707 provided 98 per cent power to detect a 30 per cent reduction in preterm birth before 35 weeks.',
+        evidenceSource: 'Blackwell SC et al. Am J Perinatol 2020;37:127-136',
+        doi: '10.1055/s-0039-3400227',
+        measuredMetric:
+          'Preterm birth before 35 weeks and neonatal morbidity composite, 17-OHPC versus placebo, in 1,708 women',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'hpc-a3',
+        category: 'conclusion_shift',
+        title: 'The two trials enrolled populations at very different baseline risk',
+        laymanSummary:
+          'In the first trial, more than half the placebo group delivered before 37 weeks. In the second, only about one in nine placebo patients delivered before 35 weeks. The two groups were not comparable.',
+        technicalDetails:
+          'The placebo-arm event rates differ substantially. In the Meis trial, 54.9 per cent of placebo patients delivered before 37 weeks and 30.7 per cent before 35 weeks. In PROLONG, 11.5 per cent of placebo patients delivered before 35 weeks — under half the Meis placebo rate at the same threshold. PROLONG was 87 per cent Caucasian, 89 per cent married or living with a partner, 7 per cent smokers, and 12 per cent had more than one prior spontaneous preterm birth, with 52 of 93 centres outside the United States. In the United States subgroup of 391 women, preterm birth before 35 weeks was higher than in the overall study at 15.6 against 17.6 per cent, but with no significant difference between groups (relative risk 0.88, 95% CI 0.55 to 1.40). A treatment effect can be real in a high-risk population and undetectable in a low-risk one, and this is the strongest available explanation for the discordance. It is also, as of the withdrawal decision, an explanation rather than a demonstration.',
+        evidenceSource:
+          'Blackwell SC et al. Am J Perinatol 2020;37:127-136; Meis PJ et al. N Engl J Med 2003;348:2379-2385',
+        doi: '10.1055/s-0039-3400227',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'hpc-a4',
+        category: 'inferred',
+        title: 'The original trial was stopped early, which inflates an apparent effect',
+        laymanSummary:
+          'The trial that led to approval was stopped ahead of schedule because the benefit looked large. Trials stopped early for benefit systematically overstate how large the benefit is.',
+        technicalDetails:
+          'The PROLONG investigators note directly that the only prior large United States trial comparing 17-OHPC with placebo was stopped early due to a large treatment benefit. Early stopping for benefit is a recognised source of effect overestimation: the decision to stop is triggered by a random high excursion in the accumulating estimate, so the estimate at the stopping point is upward-biased by construction. This does not make the Meis result wrong, and it does mean that a relative risk of 0.66 obtained at an early stop is not the same evidential object as a relative risk of 0.66 obtained at planned completion. It also means the accelerated approval of 2011 rested on a figure whose expected value was above the truth.',
+        evidenceSource:
+          'Blackwell SC et al. Am J Perinatol 2020;37:127-136; Meis PJ et al. N Engl J Med 2003;348:2379-2385',
+        doi: '10.1055/s-0039-3400227',
+        inferredClaim:
+          'That a relative risk of 0.66 from a trial stopped early for benefit is an unbiased estimate of the effect',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'hpc-a5',
+        category: 'conclusion_shift',
+        title: 'Twelve years between accelerated approval and withdrawal, with a hearing in between',
+        laymanSummary:
+          'The confirmatory trial reported in 2019. The approval was not withdrawn until a formal decision in 2023, after the sponsor requested and received a public hearing.',
+        technicalDetails:
+          'Accelerated approval was granted in February 2011. PROLONG reported in 2019. The FDA proposed withdrawal, the sponsor requested a hearing, and the Federal Register of 17 August 2022 records the proposal to withdraw approval of Makena and the granting of that hearing. The final decision, published on 15 May 2023, withdrew approval of Makena and eight abbreviated new drug applications for hydroxyprogesterone caproate injection. The four-year interval between the failed confirmatory trial and the withdrawal is the cost of due process, and it is a real cost: the product remained on sale throughout. Set against aducanumab, where the confirmatory trial was abandoned and the sponsor simply exited, this is what completing the accelerated-approval bargain actually looks like.',
+        evidenceSource:
+          'Federal Register, 15 May 2023 — final decision on withdrawal of Makena (hydroxyprogesterone caproate) and eight abbreviated new drug applications',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'hpc-a6',
+        category: 'measured',
+        title: 'No safety signal was the reason — the reason was that it did not work',
+        laymanSummary:
+          'Nothing harmful was found. Fetal and infant death rates were the same in both arms. It was withdrawn because the confirmatory trial found no benefit.',
+        technicalDetails:
+          'PROLONG found no difference in fetal or early infant death — 1.7 per cent on 17-OHPC against 1.9 per cent on placebo, relative risk 0.87 (95% CI 0.4 to 1.81) — and maternal outcomes were similar between groups. The trial was powered at 82.8 per cent to rule out a doubling of fetal or early infant death risk. The authors conclude that 17-OHPC did not decrease recurrent preterm birth and was not associated with increased fetal or early infant death. This distinguishes the entry sharply from the rest of this file: rofecoxib, cerivastatin, pergolide and propoxyphene were removed for harm, and this one was removed for absence of benefit. Efficacy withdrawal is much rarer than safety withdrawal, and it is the mechanism accelerated approval was designed to provide.',
+        evidenceSource: 'Blackwell SC et al. Am J Perinatol 2020;37:127-136',
+        doi: '10.1055/s-0039-3400227',
+        measuredMetric:
+          'Fetal and early infant death and maternal outcomes, 17-OHPC versus placebo, in 1,708 women',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'hpc-a7',
+        category: 'inferred',
+        title: 'Vaginal progesterone is a different drug for a different population',
+        laymanSummary:
+          'Progesterone given vaginally to women with a short cervix was not affected by this withdrawal, and conflating the two is easy and wrong.',
+        technicalDetails:
+          'Three things differ between the withdrawn product and vaginal progesterone: the molecule — a caproate ester of 17-alpha-hydroxyprogesterone against natural progesterone; the route — a weekly intramuscular depot against daily local administration; and the indicated population — a history of spontaneous preterm birth against a sonographically short cervix. The Makena withdrawal addresses one specific product in one specific population and says nothing about the others. Statements of the form "progesterone does not prevent preterm birth" collapse three separate evidence bases into one, and are not supported by the trial that produced this withdrawal.',
+        evidenceSource:
+          'Blackwell SC et al. Am J Perinatol 2020;37:127-136 — population, molecule and route as specified in the trial protocol',
+        doi: '10.1055/s-0039-3400227',
+        inferredClaim:
+          'That the Makena withdrawal implies vaginal progesterone is ineffective for short cervix',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A weekly intramuscular injection in oil',
+        laymanDesc:
+          'Given as an injection into the muscle once a week, starting between 16 and 20 weeks of pregnancy and continuing to 36 weeks.',
+        molecularDetail:
+          'Weekly intramuscular 250 mg hydroxyprogesterone caproate in castor oil with benzyl benzoate, initiated at 16 0/7 to 20 6/7 weeks and continued until delivery or 36 weeks.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The oil depot releases the ester slowly',
+        laymanDesc:
+          'The oil holds the drug at the injection site and lets it out gradually, which is what makes weekly dosing possible.',
+        molecularDetail:
+          'The caproate ester and oil vehicle form an intramuscular depot with slow release over days. The ester is progressively hydrolysed, and trough concentrations across the weekly interval are a recognised source of pharmacokinetic variability between populations.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds the progesterone receptor in the uterus',
+        laymanDesc:
+          'It docks onto the same receptor natural progesterone uses in the muscle of the womb.',
+        molecularDetail:
+          'Binds nuclear progesterone receptor isoforms in myometrium and cervix, acting as a ligand-activated transcription factor rather than through a membrane signalling cascade.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Uterine quiescence is intended to be maintained',
+        laymanDesc:
+          'The idea is to keep the womb muscle quiet and delay the changes that start labour.',
+        molecularDetail:
+          'Progesterone receptor activation is proposed to suppress myometrial gap junction formation, oxytocin receptor expression and inflammatory gene programmes, maintaining quiescence and delaying cervical ripening.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A large benefit in one trial and none in the other',
+        laymanDesc:
+          'The first trial found preterm birth fell from 54.9 to 36.3 per cent. The confirmatory trial found 11.0 per cent against 11.5 per cent — no difference.',
+        molecularDetail:
+          'Measured: preterm birth before 37 weeks 36.3 versus 54.9 per cent, relative risk 0.66 (0.54 to 0.81) in 463 women. Measured: preterm birth before 35 weeks 11.0 versus 11.5 per cent, relative risk 0.95 (0.71 to 1.26) in 1,708 women. No difference in fetal or early infant death in either direction.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NICHD MFMU Network trial of 17-OHPC (Meis et al.)',
+        phase: 'Phase 3 double-blind placebo-controlled trial, 19 centres',
+        sampleSize: 463,
+        primaryEndpoint: 'Preterm delivery before 37 weeks of gestation, by intention to treat',
+        endpointMet: true,
+        statisticalPValue:
+          '36.3 versus 54.9 per cent, relative risk 0.66 (95% CI 0.54 to 0.81); before 35 weeks 20.6 versus 30.7 per cent (0.67, 0.48 to 0.93); before 32 weeks 11.4 versus 19.6 per cent (0.58, 0.37 to 0.91)',
+        unreportedAdverseSignals:
+          'The trial was stopped early for benefit, which systematically biases the effect estimate upward. The placebo-arm preterm birth rate of 54.9 per cent is far above that of the later confirmatory population.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT01004029',
+        phase: 'Phase 3 international double-blind placebo-controlled confirmatory trial (PROLONG)',
+        sampleSize: 1708,
+        primaryEndpoint:
+          'Co-primary: preterm birth before 35 weeks, and a neonatal morbidity composite index including neonatal death, grade 3 or 4 intraventricular haemorrhage, respiratory distress syndrome, bronchopulmonary dysplasia, necrotising enterocolitis or proven sepsis',
+        endpointMet: false,
+        statisticalPValue:
+          'Preterm birth before 35 weeks 11.0 versus 11.5 per cent, relative risk 0.95 (95% CI 0.71 to 1.26); neonatal morbidity index 5.6 versus 5.0 per cent (1.12, 0.68 to 1.61)',
+        unreportedAdverseSignals:
+          'Only 23 per cent of patients were enrolled in the United States, and the population differed markedly from the original trial in baseline risk, ethnicity and social circumstance.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Meis trial: preterm delivery before 37 weeks in 36.3 versus 54.9 per cent, relative risk 0.66 (95% CI 0.54 to 0.81), in 463 women',
+        'PROLONG: preterm birth before 35 weeks in 11.0 versus 11.5 per cent, relative risk 0.95 (95% CI 0.71 to 1.26), in 1,708 women',
+        'PROLONG neonatal morbidity composite 5.6 versus 5.0 per cent, relative risk 1.12 (0.68 to 1.61)',
+        'Fetal or early infant death 1.7 versus 1.9 per cent, relative risk 0.87 (0.4 to 1.81)',
+      ],
+      unsupportedInferences: [
+        'That a relative risk of 0.66 from a trial stopped early for benefit is an unbiased effect estimate',
+        'That the two trials are directly comparable — placebo-arm preterm birth before 35 weeks was 30.7 per cent in one and 11.5 per cent in the other',
+        'That the withdrawal implies vaginal progesterone is ineffective for short cervix; different molecule, route and population',
+      ],
+      whatFailedInitially: [
+        'Accelerated approval February 2011; confirmatory trial reported 2019; approval withdrawn by final decision in April 2023 after a requested public hearing',
+        'The Federal Register final decision of 15 May 2023 withdrew Makena and eight abbreviated new drug applications',
+        'The product remained on the market for the four years between the failed confirmatory trial and the withdrawal',
+      ],
+      realWorldOutcome: [
+        'This is one of the few completed accelerated-approval withdrawals for lack of efficacy rather than for harm',
+        'Vaginal progesterone remains in use for short cervix on a separate evidence base',
+        'The unresolved question is whether a treatment effect exists in a genuinely high-risk population of the kind the first trial enrolled',
+      ],
+    },
+    deliverySystem: {
+      type: 'Weekly intramuscular injection, 250 mg in oil, from 16 to 36 weeks',
+      description:
+        'Hydroxyprogesterone caproate 250 mg in castor oil with benzyl benzoate, injected intramuscularly once weekly, beginning at 16 0/7 to 20 6/7 weeks of gestation and continuing until delivery or 36 weeks. The caproate ester and oil vehicle create the depot that makes weekly dosing possible.',
+      safetyProfile:
+        'The withdrawal was for lack of demonstrated efficacy, not for harm. In the confirmatory trial, fetal or early infant death was 1.7 per cent against 1.9 per cent on placebo (relative risk 0.87, 95% CI 0.4 to 1.81) and maternal outcomes were similar. Injection-site pain, swelling and pruritus were the common effects, with urticaria, nausea and diarrhoea reported. The oil vehicle and benzyl benzoate contribute to local reactions.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why did the two trials disagree so completely?',
+        a: 'The most likely reason is that they enrolled different populations. In the first trial, 54.9 per cent of placebo patients delivered before 37 weeks and 30.7 per cent before 35 weeks. In the confirmatory trial only 11.5 per cent of placebo patients delivered before 35 weeks — under half the rate at the same threshold. Most of the confirmatory trial ran outside the United States, in a cohort that was 87 per cent Caucasian and 89 per cent partnered, with only 7 per cent smokers. A drug can produce a real effect in a very high-risk group and none that a trial can detect in a lower-risk one. Note that this is a candidate explanation, offered after the fact, and not something either trial demonstrated.',
+        auditNote:
+          'The original trial was also stopped early for benefit, which biases its effect estimate upward independently of any population difference.',
+      },
+      {
+        q: 'Was it withdrawn because it was dangerous?',
+        a: 'No. Nothing harmful was found. Fetal or early infant death was 1.7 per cent on the drug against 1.9 per cent on placebo, and maternal outcomes were similar; the trial was powered at nearly 83 per cent to rule out a doubling of fetal or infant death risk. It was withdrawn because the confirmatory trial found no benefit on either co-primary endpoint. That is unusual: almost every other page in this file records a withdrawal for harm, and withdrawal for absence of benefit is exactly what accelerated approval is supposed to make possible.',
+      },
+      {
+        q: 'Does this mean progesterone does not prevent preterm birth?',
+        a: 'No, and the distinction is important. What was withdrawn is one specific molecule — a caproate ester of 17-alpha-hydroxyprogesterone — given by weekly intramuscular injection, for one specific population, women with a prior spontaneous preterm birth. Vaginal progesterone is natural progesterone, given daily by a different route, for women with a sonographically short cervix, and rests on its own trials. That evidence base was not tested by PROLONG and was not affected by the withdrawal.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because approval of Makena and eight abbreviated applications was withdrawn in 2023 and there is no current list price to cite.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Meis PJ, Klebanoff M, Thom E, et al. Prevention of recurrent preterm delivery by 17 alpha-hydroxyprogesterone caproate. N Engl J Med 2003;348:2379-2385',
+        identifier: '10.1056/NEJMoa035140',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Blackwell SC, Gyamfi-Bannerman C, Biggio JR Jr, et al. 17-OHPC to prevent recurrent preterm birth in singleton gestations (PROLONG study): a multicenter, international, randomized double-blind trial. Am J Perinatol 2020;37:127-136',
+        identifier: '10.1055/s-0039-3400227',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT01004029 — PROLONG',
+        identifier: 'NCT01004029',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Federal Register, 15 May 2023 — final decision on withdrawal of MAKENA (hydroxyprogesterone caproate) and eight abbreviated new drug applications',
+        identifier:
+          'https://www.federalregister.gov/documents/2023/05/15/2023-10264/final-decision-on-withdrawal-of-makena-hydroxyprogesterone-caproate-and-eight-abbreviated-new-drug',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Federal Register, 17 August 2022 — proposal to withdraw approval of MAKENA; hearing',
+        identifier:
+          'https://www.federalregister.gov/documents/2022/08/17/2022-17715/proposal-to-withdraw-approval-of-makena-hearing',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'PubChem CID 169870 — hydroxyprogesterone caproate structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/169870',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 25. Bevacizumab — one indication withdrawn, the drug kept
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'bevacizumab',
+    name: 'Bevacizumab',
+    tradeName: 'Avastin, with biosimilars including Mvasi, Zirabev, Alymsys and Vegzelma',
+    sponsor: 'Genentech, a member of the Roche group (BLA 125085)',
+    targetGene: 'VEGFA',
+    targetProtein: 'Vascular endothelial growth factor A',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Metastatic colorectal cancer, non-squamous non-small cell lung cancer, recurrent glioblastoma, metastatic renal cell carcinoma, cervical cancer, and epithelial ovarian, fallopian tube and primary peritoneal cancer. The metastatic breast cancer indication, granted accelerated approval in 2008, was withdrawn by final decision of the FDA Commissioner in November 2011.',
+    patientFriendlyIndication:
+      'An infusion that starves tumours of blood supply, used in several cancers but no longer in breast cancer in the United States',
+    anatomicalSite: 'Tumour vasculature; circulating VEGF-A and its receptors on endothelial cells',
+    conditionContext: {
+      conditionExplainer:
+        'A tumour beyond a few millimetres needs new blood vessels. VEGF-A is the principal signal it uses to recruit them, and an antibody that mops up circulating VEGF-A removes that signal.',
+      whyItMatters:
+        'This is the only entry in this file where a single indication was withdrawn and the drug stayed on the market for everything else. The evidence base did not collapse. What collapsed was the argument that the endpoint the accelerated approval rested on meant what it was taken to mean.',
+      whoTakesThis:
+        'Patients with colorectal, lung, kidney, cervical, ovarian and brain cancers, in the United States and elsewhere. In Europe the breast cancer indication with paclitaxel was retained, so the same evidence supports different labels in different jurisdictions.',
+      clinicalGoals:
+        'Delay disease progression and, where the evidence supports it, extend survival. The breast cancer case turns entirely on the difference between those two goals.',
+    },
+    oneSentenceVerdict:
+      'A VEGF-A antibody whose breast cancer indication was granted on a doubling of progression-free survival from 5.9 to 11.8 months with no survival benefit (26.7 against 25.2 months, P = 0.16), and withdrawn in 2011 after two confirmatory trials reproduced smaller progression benefits and again no survival difference — while every other indication for the same drug remained in place.',
+    laymanHowItWorks:
+      'Tumours grow their own blood vessels by releasing a growth signal into the surrounding tissue. Bevacizumab is an antibody that binds that signal in the bloodstream before it can reach the cells that would build the vessels. New vessel growth slows, existing tumour vessels normalise, and the tumour has a harder time getting bigger. The same signal is used by normal tissue to heal wounds and keep blood pressure regulated, which is where the side effects come from.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 72,
+    substitutes: {
+      summary:
+        'In metastatic breast cancer the alternatives are the chemotherapy backbones the trials used with or without bevacizumab, and, in the years since, antibody-drug conjugates and CDK4/6 inhibitors that produced overall survival benefits rather than progression-free ones.',
+      conventionalRx: [
+        {
+          name: 'Paclitaxel alone',
+          class: 'Taxane chemotherapy',
+          howItCompares:
+            'The control arm in the trial that produced the accelerated approval. Median overall survival 25.2 months against 26.7 months with bevacizumab added, hazard ratio 0.88, P = 0.16, and none of the grade 3 or 4 hypertension, proteinuria or cerebrovascular ischaemia the combination added.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: no antiangiogenic toxicity, same overall survival in that trial. Cons: shorter time to progression, lower objective response rate.',
+        },
+        {
+          name: 'CDK4/6 inhibitors with endocrine therapy',
+          class: 'Cyclin-dependent kinase 4/6 inhibitors',
+          howItCompares:
+            'For hormone-receptor-positive disease, this class produced overall survival benefits in several trials, which is the endpoint the bevacizumab breast programme never reached.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: overall survival benefit demonstrated. Cons: neutropenia, restricted to hormone-receptor-positive disease.',
+        },
+        {
+          name: 'Bevacizumab biosimilars',
+          class: 'Anti-VEGF-A biosimilar antibodies',
+          howItCompares:
+            'The same molecule from other manufacturers for the retained indications. Their existence is itself the demonstration that the drug was not withdrawn — only one of its indications was.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: multiple supply sources for the retained indications. Cons: identical toxicity profile, and none carries the breast cancer indication in the United States.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Humanised IgG1 kappa monoclonal antibody',
+      molecularWeight: 'Approximately 149 kDa',
+      targetReceptorAffinity:
+        'A humanised IgG1 that binds circulating VEGF-A and prevents it engaging VEGFR-1 and VEGFR-2 on endothelial cells. It is a ligand trap rather than a receptor blocker, which distinguishes it from the small-molecule tyrosine kinase inhibitors that act on the receptor side of the same axis, and explains why its toxicity profile — hypertension, proteinuria, impaired wound healing, haemorrhage, gastrointestinal perforation — reads as a catalogue of the physiological jobs VEGF-A does in healthy tissue.',
+      structureSource: {
+        label:
+          'Miller K et al. Paclitaxel plus bevacizumab versus paclitaxel alone for metastatic breast cancer. N Engl J Med 2007;357:2666-2676 — agent and target description',
+        identifier: '10.1056/NEJMoa072113',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bev-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, aggregate content and glycan profile',
+          description:
+            'Confirm the humanised IgG1 kappa sequence by peptide mapping and intact mass, and quantify high molecular weight species and charge variants. With multiple biosimilars on the market, these are also the comparability attributes on which biosimilarity is judged.',
+          reagentsAndBuffer:
+            'Trypsin and Lys-C digestion with LC-MS/MS peptide mapping, size-exclusion chromatography with multi-angle light scattering, imaged capillary isoelectric focusing, released N-glycan HILIC-fluorescence',
+        },
+        {
+          id: 'bev-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'VEGF-A binding affinity and isoform coverage',
+          description:
+            'Surface plasmon resonance against VEGF-A isoforms including VEGF121, VEGF165 and VEGF189, confirming binding across the isoform range, with a counter-screen against VEGF-B, VEGF-C and placental growth factor to establish selectivity within the family.',
+          dependsOnStepId: 'bev-w1',
+          reagentsAndBuffer:
+            'Recombinant human VEGF-A isoforms, VEGF-B, VEGF-C and PlGF, CM5 sensor chip, HBS-EP running buffer, ELISA plates for orthogonal confirmation, isotype-matched control IgG1',
+        },
+        {
+          id: 'bev-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Endothelial proliferation and tube formation assay',
+          description:
+            'Human umbilical vein or microvascular endothelial cells stimulated with VEGF-A, measuring proliferation, migration and tube formation on basement membrane extract with and without antibody. This is the functional preparation that establishes the antiangiogenic mechanism, and the potency assay for lot release and for biosimilar comparability.',
+          reagentsAndBuffer:
+            'Human umbilical vein endothelial cells, recombinant VEGF165 stimulation, basement membrane matrix for tube formation, bromodeoxyuridine proliferation assay, scratch or transwell migration assay, isotype control antibody',
+        },
+        {
+          id: 'bev-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Free and total VEGF-A quantification in serum',
+          description:
+            'Immunoassay for free VEGF-A alongside total VEGF-A, plus trough bevacizumab concentration. The distinction is essential and often mishandled: an antibody that binds a ligand raises measured total ligand while suppressing free ligand, so an assay that does not distinguish them reports the opposite of the pharmacology.',
+          dependsOnStepId: 'bev-w3',
+          reagentsAndBuffer:
+            'Serum with defined handling to prevent platelet VEGF release, validated free-VEGF and total-VEGF immunoassays with non-competing capture antibodies, validated trough bevacizumab immunoassay, anti-drug antibody screening',
+        },
+        {
+          id: 'bev-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Tumour vessel density and perfusion imaging correlates',
+          description:
+            'Microvessel density by CD31 immunohistochemistry on tumour tissue, with dynamic contrast-enhanced magnetic resonance imaging as the in-vivo perfusion correlate. This is the pharmacodynamic layer between target engagement and clinical outcome, and it is precisely the layer that predicts progression-free survival better than it predicts overall survival.',
+          dependsOnStepId: 'bev-w4',
+          reagentsAndBuffer:
+            'Formalin-fixed tumour sections with CD31 or CD34 immunohistochemistry and quantitative image analysis, dynamic contrast-enhanced MRI with Ktrans quantification, pre- and post-treatment paired sampling',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bev-a1',
+        category: 'measured',
+        title: 'E2100: progression-free survival doubled, overall survival unchanged',
+        laymanSummary:
+          'Adding bevacizumab to paclitaxel doubled the time before the cancer grew, from 5.9 to 11.8 months. It did not change how long patients lived.',
+        technicalDetails:
+          'E2100 (NCT00028990) was an open-label randomised phase 3 trial of paclitaxel 90 mg/m2 on days 1, 8 and 15 every four weeks, alone or with bevacizumab 10 mg/kg on days 1 and 15, as initial treatment for metastatic breast cancer; 722 patients were enrolled from December 2001 through May 2004. The combination significantly prolonged progression-free survival, median 11.8 against 5.9 months, hazard ratio 0.60, P < 0.001, and raised objective response from 21.2 to 36.9 per cent (P < 0.001). Overall survival was similar: median 26.7 against 25.2 months, hazard ratio 0.88, P = 0.16. Grade 3 or 4 hypertension occurred in 14.8 against 0.0 per cent (P < 0.001), proteinuria 3.6 against 0.0 (P < 0.001), headache 2.2 against 0.0 (P = 0.008), cerebrovascular ischaemia 1.9 against 0.0 (P = 0.02), and infection 9.3 against 2.9 per cent (P < 0.001).',
+        evidenceSource: 'Miller K et al. N Engl J Med 2007;357:2666-2676',
+        doi: '10.1056/NEJMoa072113',
+        measuredMetric:
+          'Median progression-free and overall survival, paclitaxel plus bevacizumab versus paclitaxel alone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bev-a2',
+        category: 'measured',
+        title: 'AVADO and RIBBON-1 reproduced the direction and shrank the size',
+        laymanSummary:
+          'The two confirmatory trials found the same kind of benefit but much smaller — one to three months of delayed progression — and again no survival difference.',
+        technicalDetails:
+          'AVADO randomised 736 patients with HER2-negative locally recurrent or metastatic breast cancer to docetaxel 100 mg/m2 with placebo or bevacizumab at 7.5 or 15 mg/kg every three weeks. Unstratified median progression-free survival was 8.2 months on placebo, 9.0 months at 7.5 mg/kg (hazard ratio 0.86, P = 0.12) and 10.1 months at 15 mg/kg (0.77, P = 0.006). RIBBON-1 enrolled 1,237 patients randomised 2:1 to investigator-chosen capecitabine, taxane or anthracycline chemotherapy with bevacizumab 15 mg/kg or placebo. Median progression-free survival rose from 5.7 to 8.6 months in the capecitabine cohort (hazard ratio 0.69, 95% CI 0.56 to 0.84, P < 0.001) and from 8.0 to 9.2 months in the taxane/anthracycline cohort (0.64, 0.52 to 0.80, P < 0.001). No statistically significant overall survival differences were observed in either trial.',
+        evidenceSource:
+          'Miles DW et al. J Clin Oncol 2010;28:3239-3247; Robert NJ et al. J Clin Oncol 2011;29:1252-1260',
+        doi: '10.1200/JCO.2008.21.6457',
+        measuredMetric:
+          'Median progression-free survival gain and overall survival difference in the two confirmatory trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bev-a3',
+        category: 'conclusion_shift',
+        title: 'The indication was withdrawn and the drug was not',
+        laymanSummary:
+          'In November 2011 the FDA removed breast cancer from the label after a public hearing. Every other cancer indication stayed, and the drug is still widely used.',
+        technicalDetails:
+          'Accelerated approval for metastatic breast cancer was granted in February 2008 on the E2100 progression-free survival result. The FDA proposed withdrawal, the sponsor requested a hearing, and the Federal Register of 11 May 2011 records the proposal and the hearing grant. The final decision, announced in November 2011 and published in the Federal Register of 27 February 2012, withdrew the breast cancer indication. Bevacizumab retained its colorectal, lung, renal, glioblastoma, cervical and ovarian indications throughout, and Drugs@FDA records BLA 125085 in Prescription marketing status today with multiple biosimilars approved since. No other entry in this file has this shape: the object withdrawn was a claim, not a product.',
+        evidenceSource:
+          'Federal Register, 27 February 2012 — final decision on withdrawal of the breast cancer indication for Avastin; Drugs@FDA BLA 125085',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bev-a4',
+        category: 'inferred',
+        title: 'Progression-free survival was treated as a proxy for benefit, and it did not hold',
+        laymanSummary:
+          'A longer time before a scan shows growth is not the same as living longer or feeling better. The withdrawal turned on that distinction.',
+        technicalDetails:
+          'Across three randomised trials in over 2,600 patients, bevacizumab reliably and reproducibly delayed radiographic progression: hazard ratios of 0.60, 0.77 and 0.69 or 0.64 depending on the chemotherapy backbone, all statistically robust. Across the same three trials it did not produce a statistically significant overall survival difference. It did produce grade 3 or 4 hypertension in 14.8 per cent, proteinuria in 3.6 per cent and cerebrovascular ischaemia in 1.9 per cent where the control arms produced none. The inference the accelerated approval rested on is that delayed progression predicts patient benefit. In this indication that inference was tested against survival and toxicity and did not hold. It holds in other tumour types for the same drug, which is why the same molecule keeps its other labels.',
+        evidenceSource:
+          'Miller K et al. N Engl J Med 2007;357:2666-2676; Miles DW et al. J Clin Oncol 2010;28:3239-3247',
+        doi: '10.1056/NEJMoa072113',
+        inferredClaim:
+          'That a progression-free survival benefit in metastatic breast cancer establishes clinical benefit to the patient',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bev-a5',
+        category: 'conclusion_shift',
+        title: 'Europe kept the indication the United States removed',
+        laymanSummary:
+          'The European regulator looked at the same trials and retained bevacizumab with paclitaxel for breast cancer. Two regulators, one dataset, two answers.',
+        technicalDetails:
+          'The European Medicines Agency retained bevacizumab in combination with paclitaxel for first-line metastatic breast cancer while removing the docetaxel combination, on the same body of evidence from which the FDA withdrew the indication entirely. Nothing separates the two decisions at the level of data. What separates them is how much weight a progression-free survival gain of several months carries against a toxicity profile in the absence of a survival signal, and that is a value judgement about what counts as benefit. Recording only one jurisdiction\'s answer would misrepresent the state of the evidence as more settled than it is.',
+        evidenceSource:
+          'European Medicines Agency, Avastin (bevacizumab) European public assessment report; Federal Register, 27 February 2012',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'bev-a6',
+        category: 'measured',
+        title: 'The toxicity was real and was measured against a zero baseline',
+        laymanSummary:
+          'Serious high blood pressure occurred in about one in seven patients on the combination and in nobody on chemotherapy alone. Several other serious effects showed the same pattern.',
+        technicalDetails:
+          'In E2100 several grade 3 or 4 events occurred in the combination arm and in none of the control arm: hypertension 14.8 against 0.0 per cent (P < 0.001), proteinuria 3.6 against 0.0 (P < 0.001), headache 2.2 against 0.0 (P = 0.008) and cerebrovascular ischaemia 1.9 against 0.0 (P = 0.02). Infection was 9.3 against 2.9 per cent (P < 0.001), while febrile neutropenia remained under 1 per cent overall. A comparison against a zero-event control arm is the cleanest form of attribution available in a randomised trial, and it is what makes the benefit-risk arithmetic tractable: the harms are attributable with confidence, and the benefit is confined to an endpoint that did not translate into survival.',
+        evidenceSource: 'Miller K et al. N Engl J Med 2007;357:2666-2676',
+        doi: '10.1056/NEJMoa072113',
+        measuredMetric:
+          'Grade 3 or 4 adverse event rates, paclitaxel plus bevacizumab versus paclitaxel alone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bev-a7',
+        category: 'measured',
+        title: 'Biosimilars were approved after the indication was withdrawn',
+        laymanSummary:
+          'Several manufacturers now make copies of bevacizumab, approved for the indications it kept. The drug\'s standing was not damaged by the breast cancer decision.',
+        technicalDetails:
+          'Bevacizumab biosimilars including bevacizumab-awwb, bevacizumab-bvzr, bevacizumab-maly, bevacizumab-adcd, bevacizumab-nwgd, bevacizumab-tnjn and bevacizumab-vikg are recorded in Drugs@FDA, and the reference product BLA 125085 remains in Prescription marketing status. A biosimilar programme is a substantial commercial and regulatory commitment, and it is made against the indications the reference product holds. That several were undertaken after 2011 is a direct measure of how narrowly the withdrawal cut: it removed one claim from one label and left the molecule\'s standing in oncology intact.',
+        evidenceSource: 'Drugs@FDA BLA 125085 (AVASTIN, Genentech) — Prescription, with biosimilars',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An intravenous infusion every two or three weeks',
+        laymanDesc: 'Given as a drip, usually alongside chemotherapy, every two to three weeks.',
+        molecularDetail:
+          'Intravenous bevacizumab, dosed at 5 to 15 mg/kg depending on indication and chemotherapy backbone, every two or three weeks. Terminal half-life around 20 days, so steady state takes roughly 100 days.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Stays in the bloodstream and reaches the tumour bed',
+        laymanDesc:
+          'It circulates in the blood and reaches the fluid around the tumour, where the growth signal is released.',
+        molecularDetail:
+          'Confined largely to the vascular and interstitial compartments as a 149 kDa IgG. Tumour interstitial penetration is limited by the raised interstitial pressure characteristic of solid tumours.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binds and neutralises VEGF-A before it reaches its receptor',
+        laymanDesc:
+          'It captures the growth signal in the fluid, so it never docks with the cells that would build new vessels.',
+        molecularDetail:
+          'Binds VEGF-A isoforms and prevents engagement of VEGFR-1 and VEGFR-2 on endothelial cells. A ligand trap rather than a receptor antagonist, so free VEGF-A falls while measured total VEGF-A rises.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'New vessel growth stops and existing vessels normalise',
+        laymanDesc:
+          'The tumour stops building new blood vessels and its existing leaky ones tighten up, which also affects healthy tissues that use the same signal.',
+        molecularDetail:
+          'Reduced endothelial proliferation, migration and tube formation lowers microvessel density; transient vascular normalisation reduces interstitial pressure and can improve chemotherapy delivery. The same axis maintains renal glomerular endothelium, blood pressure regulation and wound healing.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Progression delayed reproducibly; survival unchanged in breast cancer',
+        laymanDesc:
+          'Scans showed the cancer took longer to grow, consistently across three trials. Patients did not live longer, and serious side effects appeared that the control arms did not have.',
+        molecularDetail:
+          'Measured: progression-free survival hazard ratios 0.60 (E2100), 0.77 (AVADO 15 mg/kg) and 0.69 or 0.64 (RIBBON-1 cohorts). Measured: overall survival 26.7 versus 25.2 months, hazard ratio 0.88, P = 0.16, with no significant difference in either confirmatory trial. Measured: grade 3 or 4 hypertension 14.8 versus 0.0 per cent.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT00028990',
+        phase: 'Phase 3 open-label randomised trial (E2100)',
+        sampleSize: 722,
+        primaryEndpoint:
+          'Progression-free survival with paclitaxel plus bevacizumab versus paclitaxel alone as initial treatment for metastatic breast cancer',
+        endpointMet: true,
+        statisticalPValue:
+          'Median progression-free survival 11.8 versus 5.9 months, hazard ratio 0.60, P < 0.001; objective response 36.9 versus 21.2 per cent, P < 0.001; overall survival 26.7 versus 25.2 months, hazard ratio 0.88, P = 0.16',
+        unreportedAdverseSignals:
+          'Grade 3 or 4 hypertension 14.8 versus 0.0 per cent, proteinuria 3.6 versus 0.0, cerebrovascular ischaemia 1.9 versus 0.0, infection 9.3 versus 2.9 per cent. The trial was open-label, and progression assessment in an open-label trial is the endpoint most exposed to that.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'AVADO (bevacizumab with docetaxel)',
+        phase: 'Phase 3 three-arm placebo-controlled trial',
+        sampleSize: 736,
+        primaryEndpoint:
+          'Progression-free survival with docetaxel plus bevacizumab at 7.5 or 15 mg/kg versus docetaxel plus placebo in HER2-negative disease',
+        endpointMet: true,
+        statisticalPValue:
+          'Unstratified median progression-free survival 8.2 months placebo, 9.0 months at 7.5 mg/kg (hazard ratio 0.86, P = 0.12), 10.1 months at 15 mg/kg (0.77, P = 0.006)',
+        unreportedAdverseSignals:
+          'The 7.5 mg/kg arm did not reach significance in the unstratified analysis. The gain at the effective dose is under two months, against E2100\'s near six.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'RIBBON-1',
+        phase: 'Phase 3 randomised double-blind placebo-controlled trial with two independent cohorts',
+        sampleSize: 1237,
+        primaryEndpoint:
+          'Progression-free survival with capecitabine, taxane or anthracycline chemotherapy plus bevacizumab 15 mg/kg versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Capecitabine cohort 5.7 to 8.6 months, hazard ratio 0.69 (95% CI 0.56 to 0.84), P < 0.001; taxane/anthracycline cohort 8.0 to 9.2 months, hazard ratio 0.64 (0.52 to 0.80), P < 0.001',
+        unreportedAdverseSignals:
+          'No statistically significant overall survival differences were observed in either cohort. Safety was consistent with prior bevacizumab trials.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'E2100: median progression-free survival 11.8 versus 5.9 months, hazard ratio 0.60, P < 0.001, in 722 patients',
+        'E2100: median overall survival 26.7 versus 25.2 months, hazard ratio 0.88, P = 0.16',
+        'AVADO: 10.1 versus 8.2 months at 15 mg/kg, hazard ratio 0.77, P = 0.006; RIBBON-1: 8.6 versus 5.7 and 9.2 versus 8.0 months',
+        'Grade 3 or 4 hypertension 14.8 versus 0.0 per cent, proteinuria 3.6 versus 0.0, cerebrovascular ischaemia 1.9 versus 0.0',
+      ],
+      unsupportedInferences: [
+        'That a reproducible progression-free survival gain in metastatic breast cancer constitutes clinical benefit to the patient',
+        'That the withdrawal reflects a failure of the drug rather than of one specific inference about one specific endpoint in one specific tumour type',
+        'That the United States decision settles the question; the European regulator retained the paclitaxel combination on the same evidence',
+      ],
+      whatFailedInitially: [
+        'Accelerated approval February 2008 on E2100; breast cancer indication withdrawn by final decision in November 2011 after a requested public hearing',
+        'The confirmatory trials reproduced the direction of effect at roughly a third the magnitude and did not produce a survival benefit',
+        'The surrogate endpoint that supported the approval did not translate into the outcome it was taken to predict',
+      ],
+      realWorldOutcome: [
+        'Bevacizumab retains colorectal, lung, renal, glioblastoma, cervical and ovarian indications, and BLA 125085 remains in Prescription status',
+        'Multiple biosimilars have been approved since the withdrawal, for the retained indications',
+        'Europe retained the paclitaxel combination for breast cancer, so the same evidence supports different labels in different jurisdictions',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion, 5 to 15 mg/kg every two to three weeks',
+      description:
+        'Intravenous humanised IgG1, dosed by weight according to indication and chemotherapy backbone, with the first infusion given over 90 minutes and subsequent ones shortened if tolerated. Terminal half-life around 20 days.',
+      safetyProfile:
+        'The antiangiogenic toxicities follow directly from what VEGF-A does in healthy tissue: hypertension, proteinuria and nephrotic syndrome, impaired wound healing, haemorrhage, arterial and venous thromboembolism, and gastrointestinal perforation. In E2100, grade 3 or 4 hypertension occurred in 14.8 per cent against 0.0 per cent on chemotherapy alone, proteinuria in 3.6 against 0.0, and cerebrovascular ischaemia in 1.9 against 0.0. Infection was more common at 9.3 against 2.9 per cent, while febrile neutropenia stayed under 1 per cent. Surgery requires an interval either side of dosing because of the wound-healing effect.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was bevacizumab withdrawn?',
+        a: 'No. One indication was. The metastatic breast cancer indication was removed from the United States label in November 2011, and the drug retained its colorectal, lung, renal, glioblastoma, cervical and ovarian indications throughout. Drugs@FDA records the original application in Prescription status today and several biosimilars have been approved since. This is the only entry in this file where the thing withdrawn was a claim rather than a product, and it is worth being exact about, because "Avastin was withdrawn" is both widely repeated and false.',
+        auditNote:
+          'The European Medicines Agency retained bevacizumab with paclitaxel for breast cancer on the same evidence, while removing the docetaxel combination.',
+      },
+      {
+        q: 'If the drug delayed progression in every trial, why remove the indication?',
+        a: 'Because delayed radiographic progression is not by itself a benefit to a patient; it is a proxy for one. Across three trials in more than 2,600 patients the progression benefit was consistent and real. Across the same three trials there was no statistically significant survival difference, and the combination produced grade 3 or 4 hypertension in 14.8 per cent, proteinuria in 3.6 per cent and cerebrovascular ischaemia in 1.9 per cent where the control arms produced none of these. Given a certain toxicity and an unproven benefit, the decision went against the proxy. In other tumour types the same drug earned and kept full approval, so this was a judgement about one indication rather than about the surrogate in general.',
+      },
+      {
+        q: 'How can two regulators reach opposite conclusions on the same trials?',
+        a: 'Because the disagreement is not about the numbers. Both agencies had E2100, AVADO and RIBBON-1, and neither disputes the progression-free survival hazard ratios or the absence of a survival signal. What differs is how much a delay of one to six months in radiographic progression is worth when set against a defined toxicity burden and no demonstrated survival gain. That is a value judgement about what counts as benefit for a patient, and it is not the kind of question more data settles.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because this file does not carry a pricing block. Bevacizumab is currently marketed with multiple biosimilars, and its price varies by product, indication, dose per kilogram and payer in ways a single number would misrepresent.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Miller K, Wang M, Gralow J, et al. Paclitaxel plus bevacizumab versus paclitaxel alone for metastatic breast cancer. N Engl J Med 2007;357:2666-2676',
+        identifier: '10.1056/NEJMoa072113',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Miles DW, Chan A, Dirix LY, et al. Phase III study of bevacizumab plus docetaxel compared with placebo plus docetaxel for the first-line treatment of human epidermal growth factor receptor 2-negative metastatic breast cancer. J Clin Oncol 2010;28:3239-3247',
+        identifier: '10.1200/JCO.2008.21.6457',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Robert NJ, Dieras V, Glaspy J, et al. RIBBON-1: randomized, double-blind, placebo-controlled, phase III trial of chemotherapy with or without bevacizumab for first-line treatment of human epidermal growth factor receptor 2-negative, locally recurrent or metastatic breast cancer. J Clin Oncol 2011;29:1252-1260',
+        identifier: '10.1200/JCO.2010.28.0982',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT00028990 — E2100',
+        identifier: 'NCT00028990',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Federal Register, 27 February 2012 — final decision on withdrawal of the breast cancer indication for AVASTIN (bevacizumab) following public hearing',
+        identifier:
+          'https://www.federalregister.gov/documents/2012/02/27/2012-4424/final-decision-on-withdrawal-of-breast-cancer-indication-for-avastin-bevacizumab-following-public',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Federal Register, 11 May 2011 — proposal to withdraw approval for the breast cancer indication for bevacizumab; hearing',
+        identifier:
+          'https://www.federalregister.gov/documents/2011/05/11/2011-11539/proposal-to-withdraw-approval-for-the-breast-cancer-indication-for-bevacizumab-hearing',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: AVASTIN (bevacizumab), BLA 125085, Genentech — Prescription',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125085',
+        kind: 'regulatory',
+      },
+      {
+        label: 'European Medicines Agency — Avastin (bevacizumab) European public assessment report',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/avastin',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]
