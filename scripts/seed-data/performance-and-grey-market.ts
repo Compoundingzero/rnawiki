@@ -3835,7 +3835,8 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
     sponsor:
       'Originally Organon. United States generic applications were held by Watson Laboratories, Abraxis, Epic Pharma, Quad Pharmaceuticals and others',
     targetGene: 'AR',
-    targetProtein: 'Androgen receptor; the parent 19-nortestosterone also binds the progesterone receptor',
+    targetProtein:
+      'Androgen receptor; the parent 19-nortestosterone also binds the progesterone receptor',
     modality: 'Small Molecule',
     approvalStatus: 'Withdrawn from Market',
     indication:
@@ -4007,7 +4008,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Nandrolone genuinely becomes weaker rather than stronger in tissues that carry 5-alpha-reductase, which is the reverse of testosterone. That explains a lower prostate and scalp effect and says nothing about the heart.',
         technicalDetails:
-          'Testosterone is converted by 5-alpha-reductase into dihydrotestosterone, which binds the androgen receptor more strongly, amplifying androgenic effects in prostate and skin. Nandrolone is converted by the same enzyme into 5alpha-dihydronandrolone, which binds more weakly. That inversion is well established and it is the mechanistic basis for the drug\'s comparatively favourable prostate and scalp profile. It has no bearing on the cardiac literature, where rodent studies show adverse myocardial proteome changes and cardiac tissue effects when nandrolone is combined with resistance training, or on the profound and often prolonged suppression of the hypothalamic-pituitary-gonadal axis that follows a long-acting injectable androgen.',
+          "Testosterone is converted by 5-alpha-reductase into dihydrotestosterone, which binds the androgen receptor more strongly, amplifying androgenic effects in prostate and skin. Nandrolone is converted by the same enzyme into 5alpha-dihydronandrolone, which binds more weakly. That inversion is well established and it is the mechanistic basis for the drug's comparatively favourable prostate and scalp profile. It has no bearing on the cardiac literature, where rodent studies show adverse myocardial proteome changes and cardiac tissue effects when nandrolone is combined with resistance training, or on the profound and often prolonged suppression of the hypothalamic-pituitary-gonadal axis that follows a long-acting injectable androgen.",
         evidenceSource:
           'Steroids 2021;175:108916 on myocardial proteome; Steroids 2025;214:109559 on cardiac tissue with resistance training',
         doi: '10.1016/j.steroids.2021.108916',
@@ -4030,7 +4031,8 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       {
         step: 2,
         title: 'Enters cells throughout the body',
-        laymanDesc: 'The freed steroid diffuses into cells everywhere and reaches the receptor inside.',
+        laymanDesc:
+          'The freed steroid diffuses into cells everywhere and reaches the receptor inside.',
         molecularDetail:
           'Passive membrane diffusion of free 19-nortestosterone; binding to the cytoplasmic androgen receptor with high affinity, and to the progesterone receptor with meaningful affinity.',
         iconName: 'ArrowDownToLine',
@@ -4130,7 +4132,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why is it "safer for the prostate" than testosterone?',
-        a: 'Because of an inversion that is genuinely unusual. Testosterone is converted by 5-alpha-reductase into dihydrotestosterone, which binds the androgen receptor more strongly — so testosterone is amplified in the prostate and scalp, where that enzyme is abundant. Nandrolone is converted by the same enzyme into 5alpha-dihydronandrolone, which binds more weakly. The tissues that amplify testosterone attenuate nandrolone. That is a real mechanism with a real consequence, and it applies to the prostate and the hairline. It does not apply to the heart, the lipid profile or the shutdown of the body\'s own testosterone.',
+        a: "Because of an inversion that is genuinely unusual. Testosterone is converted by 5-alpha-reductase into dihydrotestosterone, which binds the androgen receptor more strongly — so testosterone is amplified in the prostate and scalp, where that enzyme is abundant. Nandrolone is converted by the same enzyme into 5alpha-dihydronandrolone, which binds more weakly. The tissues that amplify testosterone attenuate nandrolone. That is a real mechanism with a real consequence, and it applies to the prostate and the hairline. It does not apply to the heart, the lipid profile or the shutdown of the body's own testosterone.",
       },
       {
         q: 'Why can I not get it in the United States?',
@@ -4138,7 +4140,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why do laboratories look for 19-norandrosterone rather than nandrolone?',
-        a: 'Because that metabolite is what survives long enough in urine to be found. It brings a complication with it: very small amounts can arise endogenously and from certain foods and supplements, so the test is threshold-based rather than simply present-or-absent, and borderline results are resolved with isotope-ratio mass spectrometry that distinguishes pharmaceutical carbon from the body\'s own. Newer methods measure the intact ester in dried blood spots, which settles the question outright, because an ester of a steroid cannot be made by a human body.',
+        a: "Because that metabolite is what survives long enough in urine to be found. It brings a complication with it: very small amounts can arise endogenously and from certain foods and supplements, so the test is threshold-based rather than simply present-or-absent, and borderline results are resolved with isotope-ratio mass spectrometry that distinguishes pharmaceutical carbon from the body's own. Newer methods measure the intact ester in dried blood spots, which settles the question outright, because an ester of a steroid cannot be made by a human body.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -4182,13 +4184,1200 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label: '21 CFR 1308.13(f) — Schedule III anabolic steroids, nandrolone among the named substances',
+        label:
+          '21 CFR 1308.13(f) — Schedule III anabolic steroids, nandrolone among the named substances',
         identifier: 'https://www.ecfr.gov/current/title-21/chapter-II/part-1308/section-1308.13',
         kind: 'regulatory',
       },
       {
         label: 'PubChem CID 9904 — nandrolone structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9904',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 12. 2,4-Dinitrophenol (DNP)
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: '2-4-dinitrophenol',
+    name: '2,4-Dinitrophenol',
+    tradeName:
+      'Marketed in the United States from 1933 under many names, including Formula 281 and Nitromet; sold online today as DNP',
+    sponsor:
+      'No sponsor. Its clinical use was introduced by Tainter, Cutting and Stockton at Stanford in 1933; it is now manufactured as an industrial chemical',
+    targetGene: 'None — DNP has no protein target',
+    targetProtein:
+      'None. DNP is a protonophore: it shuttles protons across the inner mitochondrial membrane itself, acting on the lipid bilayer rather than on a receptor, enzyme or transporter',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1933,
+    indication:
+      'Sold as a weight-loss agent in the United States from 1933 and withdrawn in the 1930s after an outbreak of cataracts and reports of death. It has no approved medical use anywhere and is banned for human consumption.',
+    patientFriendlyIndication:
+      'Weight loss — the drug works and the same mechanism is what kills people',
+    anatomicalSite: 'Inner mitochondrial membrane, in every cell in the body',
+    conditionContext: {
+      conditionExplainer:
+        'Every cell makes ATP by pumping protons out across the inner mitochondrial membrane and letting them back in through one specific turbine. The gradient is the battery and ATP synthase is the motor it drives.',
+      whyItMatters:
+        'DNP puts a hole in the battery. Protons come back across the membrane without passing through the motor, and the energy that would have become ATP becomes heat instead. The cell responds by burning more fuel to try to restore the gradient, which produces more heat, and so on.',
+      whoTakesThis:
+        'In the 1930s, an estimated large number of Americans, on prescription. Today, bodybuilders and people seeking rapid fat loss, buying it as a yellow powder online.',
+      clinicalGoals:
+        'There are none, because there is no approved use. The reason people take it is that it produces weight loss reliably, which is the one thing about DNP nobody disputes.',
+    },
+    oneSentenceVerdict:
+      'The clearest case in medicine of a drug whose efficacy and whose lethality are the same fact: it uncouples oxidative phosphorylation, which is why it burns fat and why it kills by hyperthermia, with no antidote and a mitochondrial functional half-life measured at 4.9 days.',
+    laymanHowItWorks:
+      'Think of the mitochondrion as a dam. The cell pumps protons uphill behind the wall, and the only way back down is through a turbine that makes ATP. DNP is a molecule that can carry a proton across the wall directly, bypassing the turbine. The energy that would have been captured as ATP is released as heat instead. The cell, sensing that it is short of ATP, burns more fuel — which makes more heat, not more ATP. That is why it causes weight loss, and it is why an overdose produces a body temperature that will not come down. There is no drug that removes DNP or blocks its effect. Everything a hospital can do is supportive.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 88,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC(=C(C=C1[N+](=O)[O-])[N+](=O)[O-])O',
+      chemicalFormula: 'C6H4N2O5',
+      molecularWeight: '184.11 g/mol',
+      targetReceptorAffinity:
+        'None. DNP is a weak acid, pKa around 4, whose protonated and deprotonated forms are both lipid-soluble enough to cross a membrane. That is the entire pharmacology: it picks up a proton on the acidic side of the inner mitochondrial membrane, diffuses across, releases it on the alkaline side, and returns. There is no binding site and therefore no receptor to block.',
+      structureSource: {
+        label:
+          'PubChem CID 1493 (2,4-dinitrophenol) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/1493',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dnp-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and purity of a seized yellow powder',
+          description:
+            'DNP is a bright yellow crystalline solid and is one of the easier substances on this site to identify: the ultraviolet-visible spectrum shifts dramatically with pH because of the phenol, and the nitro groups give a characteristic infrared signature. Distinguishing 2,4-dinitrophenol from other dinitrophenol isomers and from picric acid is the actual analytical task.',
+          reagentsAndBuffer:
+            'Certified 2,4-dinitrophenol reference standard, deuterated internal standard, UV-visible spectrophotometry at acidic and alkaline pH, FTIR for asymmetric and symmetric nitro stretches, 1H and 13C NMR in DMSO-d6, differential scanning calorimetry noting the explosion hazard of dry nitroaromatics',
+        },
+        {
+          id: 'dnp-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantification of capsule or powder content',
+          description:
+            'Determine how much DNP a capsule contains. This matters more than for anything else here, because the gap between a dose people describe as effective and a dose that has been fatal is small and the products are unmeasured.',
+          dependsOnStepId: 'dnp-w1',
+          reagentsAndBuffer:
+            'Methanol or acetonitrile extraction, reversed-phase C18 HPLC with diode-array detection at 360 nm in alkaline mobile phase where the phenolate absorbs strongly, external calibration against the certified standard',
+        },
+        {
+          id: 'dnp-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Blood and hair preparation for exposure timeline',
+          description:
+            'Blood concentration establishes acute exposure; segmental hair analysis distinguishes a single ingestion from months of use, which was the point at issue in the fatal bodybuilder case where hair segments ranged from 5.1 to 25.5 ng/mg. Interpretation of hair results for DNP has its own published caveats.',
+          dependsOnStepId: 'dnp-w2',
+          reagentsAndBuffer:
+            'Protein precipitation of blood with acetonitrile; hair decontamination in dichloromethane, segmentation, pulverisation and incubation in acidified methanol; liquid-liquid extraction into ethyl acetate at acid pH',
+        },
+        {
+          id: 'dnp-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'High-resolution respirometry in intact cells',
+          description:
+            "The functional assay for an uncoupler is oxygen consumption, not receptor binding. Platelet or peripheral blood mononuclear cell respirometry measures uncoupled respiration directly, and in one published poisoning it tracked the patient's recovery, giving a functional half-life of 4.9 days.",
+          dependsOnStepId: 'dnp-w3',
+          reagentsAndBuffer:
+            'Freshly isolated platelets or peripheral blood mononuclear cells, high-resolution oxygraph chambers, digitonin for selective permeabilisation, sequential titration of oligomycin to define leak respiration and FCCP to define maximal uncoupled capacity, rotenone and antimycin A for residual oxygen consumption',
+        },
+        {
+          id: 'dnp-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification of DNP and its reduced metabolites',
+          description:
+            'Quantify 2,4-dinitrophenol and its nitroreduction products — 2-amino-4-nitrophenol and 4-amino-2-nitrophenol — in blood and hair. Metabolite identification matters in post-mortem work, where the parent may have been partly reduced, and it was the subject of a 2026 paper on an unexpected death.',
+          dependsOnStepId: 'dnp-w4',
+          reagentsAndBuffer:
+            'C18 analytical column with formic acid and acetonitrile gradient, electrospray negative-ion multiple-reaction monitoring for the phenolate, deuterated 2,4-dinitrophenol internal standard, and high-resolution accurate mass for the amino metabolites',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dnp-a1',
+        category: 'measured',
+        title: 'The mechanism is not disputed and has been understood since the 1930s',
+        laymanSummary:
+          'DNP carries protons across the mitochondrial membrane, short-circuiting the process that makes ATP. The energy comes out as heat instead. This is textbook biochemistry, not a hypothesis.',
+        technicalDetails:
+          'DNP is the archetypal protonophoric uncoupler of oxidative phosphorylation. As a weak acid with a pKa near 4, both its protonated and deprotonated forms partition into the inner mitochondrial membrane, allowing it to shuttle protons down the electrochemical gradient without passing through ATP synthase. The proton-motive force collapses, ATP synthesis falls, and the electron transport chain accelerates to compensate, dissipating substrate energy as heat. Because the compound has no binding site, there is no antagonist and no receptor-level intervention: this is a physical mechanism, and it is the reason DNP is used as the standard positive control for maximal uncoupled respiration in mitochondrial research.',
+        evidenceSource:
+          'Molecular mechanisms of mitochondrial uncoupling: focus on 2,4-dinitrophenol. Eur Biophys J 2026',
+        doi: '10.1007/s00249-026-01827-6',
+        measuredMetric:
+          'Collapse of the proton-motive force and increase in uncoupled oxygen consumption',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dnp-a2',
+        category: 'measured',
+        title: 'It works — that was never the problem',
+        laymanSummary:
+          'DNP was introduced as a weight-loss drug in 1933 on the basis that it raised metabolic rate and produced weight loss. It did. The clinical survey published the following year assessed the results critically and the efficacy was not what came into question.',
+        technicalDetails:
+          'Tainter, Cutting and Stockton published a critical survey of clinical results with dinitrophenol in nutritional disorders in 1934, following its introduction at Stanford the previous year. Contemporary work also measured the metabolic consequences directly, including the relationship between raised metabolism from dinitrophenol and blood cholesterol. The compound raises basal metabolic rate in a dose-dependent way by a mechanism that cannot fail to raise it, and weight loss follows. Every subsequent account, including modern toxicology reviews, accepts this. The distinctive feature of DNP among weight-loss agents is that its efficacy has never been the contested part.',
+        evidenceSource:
+          'Tainter ML, Cutting WC, Stockton AB. Use of dinitrophenol in nutritional disorders: a critical survey of clinical results. Am J Public Health Nations Health 1934;24:1045-1053',
+        doi: '10.2105/ajph.24.10.1045',
+        measuredMetric: 'Basal metabolic rate and body weight during dinitrophenol administration',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dnp-a3',
+        category: 'measured',
+        title: 'Sixty-two published deaths by 2011, and a characteristic terminal picture',
+        laymanSummary:
+          'A 2011 review counted 62 deaths in the medical literature attributed to DNP. The pattern is always the same: high temperature, fast heart rate, drenching sweat, rapid breathing, then death.',
+        technicalDetails:
+          'Grundlingh et al. reviewed DNP toxicity and counted 62 published deaths attributed to it in the medical literature up to 2011, with fatalities reported since the turn of the twentieth century. The classic symptom complex is hyperthermia, tachycardia, diaphoresis and tachypnoea, progressing to death. The review notes that the compound is sold mostly over the internet under a range of names as a slimming aid. That count is now well over a decade old and further deaths have been published since, including in the two case reports cited on this page; the figure is a floor, not a current total.',
+        evidenceSource: 'Grundlingh J et al., J Med Toxicol 2011;7:205-212',
+        doi: '10.1007/s13181-011-0162-6',
+        measuredMetric:
+          'Published fatalities attributed to DNP exposure, and the terminal symptom complex',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dnp-a4',
+        category: 'measured',
+        title: 'Runaway uncoupling: the toxicity amplifies itself, and it took hours',
+        laymanSummary:
+          'In two Swedish intensive care cases, the fatal one went from ingestion to respiratory acidosis, hyperthermia, dangerously high potassium and rigidity within hours. The surviving patient stayed hypermetabolic for more than a week.',
+        technicalDetails:
+          'Lindeman et al. described two cases managed in Swedish intensive care with serial mitochondrial respirometry and gas exchange analysis. The fatal case, after suicidal ingestion, progressed within hours to respiratory acidosis, hyperthermia, severe hyperkalaemia and peri-mortem rigidity consistent with catastrophic ATP depletion. The non-fatal case showed the same physiology reversibly, with sustained but manageable hypermetabolism lasting more than a week. Serial platelet respirometry showed a marked initial rise in uncoupled respiration followed by progressive decline with a functional half-life of 4.9 days. The authors propose a self-amplifying feedback loop: excessive CO2 production from uncoupling causes local acidosis, which increases mitochondrial uptake of DNP, which increases uncoupling. Glucose supplementation and hyperkalaemia management were essential; active cooling and high minute ventilation may blunt the loop.',
+        evidenceSource: 'Lindeman E et al., Toxicol Rep 2026;16:102183',
+        doi: '10.1016/j.toxrep.2025.102183',
+        measuredMetric:
+          'Serial platelet uncoupled respiration, arterial blood gases, temperature and potassium through intensive care',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dnp-a5',
+        category: 'measured',
+        title: 'A fatal case with the full exposure history recoverable from hair',
+        laymanSummary:
+          'A 21-year-old bodybuilder died of multi-organ failure after taking 2 grams, having used DNP repeatedly for six months. His blood level was 88 mg/L and hair analysis reconstructed the whole six months.',
+        technicalDetails:
+          'Hermetet et al. report a 21-year-old bodybuilder, also using anabolic steroids, who died after ingesting 2 grams of 2,4-DNP following six months of repeated consumption. He had shown the triad of tachycardia, tachypnoea and profuse sweating for six months before death and had been hospitalised with multiple organ failure four months earlier, an episode staff attributed to DNP. He denied continuing use to his general practitioner, who investigated endocrine and tumour causes for the persisting triad. Autopsy showed diffuse visceral congestion and yellow discolouration of the integument. Blood DNP was 88 mg/L; segmental hair concentrations ran from 5.1 to 25.5 ng/mg, and anabolic steroids were also identified in hair. The authors frame the case around muscle dysmorphia and around the difficulty primary care has in recognising a toxidrome that mimics thyrotoxicosis or phaeochromocytoma.',
+        evidenceSource: 'Hermetet C et al., Front Public Health 2024;12:1452196',
+        doi: '10.3389/fpubh.2024.1452196',
+        measuredMetric:
+          'Post-mortem blood concentration and segmental hair concentrations across six months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dnp-a6',
+        category: 'conclusion_shift',
+        title: 'The cataract outbreak of 1935, and what actually removed it from the market',
+        laymanSummary:
+          'DNP caused an outbreak of cataracts in 1935. The commonly told story is that the 1938 Food, Drug and Cosmetic Act banned it; the historical review says medical opinion probably drove a voluntary withdrawal first.',
+        technicalDetails:
+          "Margo and Harman reviewed the 1935 cataract outbreak caused by DNP, the active ingredient of popular diet pills, and set it in the context of the fight over consumer protection legislation. Their assessment is that the outbreak was conspicuous in the medical literature during the New Deal but probably had little impact on the eventual passage of the Federal Food, Drug, and Cosmetic Act of 1938, and that medical opinion about DNP's safety may have contributed to a voluntary withdrawal of the drug from the market. Modern toxicology reviews describe it more briskly as banned by the FDA in the 1930s after reports of severe toxicity. Both accounts agree on the outcome. The distinction matters because the neat story — regulator sees harm, regulator bans drug — is the one usually told, and the historical record is messier than that.",
+        evidenceSource:
+          'Margo CE, Harman LE. Diet pills and the cataract outbreak of 1935. Surv Ophthalmol 2014;59:568-573',
+        doi: '10.1016/j.survophthal.2014.02.005',
+        inferredClaim:
+          'That the 1938 Act banned DNP directly, when the historical review attributes the withdrawal principally to medical opinion and a voluntary market exit',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed as a yellow powder',
+        laymanDesc:
+          'Absorbed rapidly from the gut. It also passes through skin, which is why industrial handling has caused poisoning too.',
+        molecularDetail:
+          'Rapid gastrointestinal absorption, with significant dermal absorption as well. It is a small, lipophilic weak acid, so it distributes into every tissue. Elimination is slow relative to the onset of toxicity, and the functional effect on mitochondria in one measured case declined with a half-life of 4.9 days.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into the mitochondrion',
+        laymanDesc:
+          'It slips through the cell membrane and then through the mitochondrial membranes, because both its charged and uncharged forms are greasy enough to pass.',
+        molecularDetail:
+          'Both the protonated phenol and the deprotonated phenolate partition into lipid bilayers, which is the unusual property that makes protonophoric shuttling possible. Uptake into mitochondria increases as local pH falls, which is the basis of the self-amplifying loop described in the intensive-care cases.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Short-circuits the proton gradient — no receptor involved',
+        laymanDesc:
+          'It carries protons back across the membrane directly, bypassing the ATP-making turbine. There is nothing to bind and therefore nothing to block.',
+        molecularDetail:
+          'The protonated form crosses to the matrix side, releases its proton into the alkaline matrix, and the resulting phenolate crosses back to be reprotonated. The cycle dissipates the proton-motive force. Because the target is the membrane rather than a protein, no antagonist is possible and there is no antidote.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The cell burns more fuel and makes heat instead of ATP',
+        laymanDesc:
+          'Sensing a shortage of ATP, the cell accelerates the electron transport chain. That burns substrate faster, produces more heat, and still does not make ATP.',
+        molecularDetail:
+          'Electron transport accelerates towards maximal uncoupled capacity while ATP synthesis falls. Substrate energy is dissipated as heat, oxygen consumption and CO2 production rise steeply, and glycolysis is driven hard to compensate — which is why glucose supplementation is a supportive measure and why hyperkalaemia develops as cellular ion pumps fail.',
+        iconName: 'Flame',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Weight loss, or hyperthermia and death, by the identical route',
+        laymanDesc:
+          'At a low enough exposure the extra heat is just lost and fat is burned. Past a threshold the body cannot shed the heat, the temperature climbs, ATP runs out and the person dies.',
+        molecularDetail:
+          'The therapeutic and the lethal effect differ in degree and not in kind. The fatal case in the Swedish series reached respiratory acidosis, hyperthermia, severe hyperkalaemia and peri-mortem rigidity within hours, a picture consistent with catastrophic ATP depletion. Historically, cataract was the chronic toxicity that ended its medical use.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Tainter 1934 critical survey of clinical results',
+        phase: 'Clinical case series and survey, pre-regulatory era',
+        sampleSize: 0,
+        primaryEndpoint: 'Metabolic rate and weight change during dinitrophenol administration',
+        endpointMet: true,
+        statisticalPValue:
+          'Published in 1934, before randomisation and formal statistical testing were standard; reported as a critical survey of clinical results',
+        unreportedAdverseSignals:
+          'Cataract, the chronic toxicity that emerged as an outbreak in 1935, was not apparent in the initial clinical reports.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Lindeman 2026 intensive care case pair with serial respirometry',
+        phase: 'Clinical case series with mitochondrial respirometry',
+        sampleSize: 2,
+        primaryEndpoint:
+          'Uncoupled respiration, gas exchange and ventilatory dynamics through intensive care in one fatal and one surviving poisoning',
+        endpointMet: true,
+        statisticalPValue:
+          'Descriptive: functional half-life of uncoupled respiration 4.9 days; fatal case progressed to respiratory acidosis, hyperthermia and severe hyperkalaemia within hours',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'No modern clinical trial exists or could be conducted',
+        phase: 'None',
+        sampleSize: 0,
+        primaryEndpoint:
+          'No randomised trial of DNP has ever been conducted and none would receive ethical approval',
+        endpointMet: false,
+        statisticalPValue: 'Not applicable',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Protonophoric uncoupling of oxidative phosphorylation — a physical mechanism with no protein target and therefore no possible antagonist',
+        'Increased basal metabolic rate and weight loss in the 1930s clinical literature',
+        'Sixty-two published deaths attributed to DNP in the medical literature up to 2011',
+        'A fatal case progressing to respiratory acidosis, hyperthermia, severe hyperkalaemia and peri-mortem rigidity within hours',
+        'Functional half-life of uncoupled respiration measured at 4.9 days by serial platelet respirometry in a surviving patient',
+        'A fatal post-mortem blood concentration of 88 mg/L with segmental hair concentrations of 5.1 to 25.5 ng/mg over six months of use',
+      ],
+      unsupportedInferences: [
+        'That there is a safe dose — no modern dose-finding exists, the products are unmeasured, and the published fatal exposures overlap with doses people describe as ordinary',
+        'That the risk can be managed by cooling or by stopping when symptoms appear, when the intensive-care data describe a self-amplifying loop and a mitochondrial effect that persists for days after the last dose',
+        'That a hospital can reverse it — there is no antidote, and every intervention described in the literature is supportive',
+      ],
+      whatFailedInitially: [
+        'Its medical use ended within about five years of introduction, after an outbreak of cataracts in 1935',
+        'The historical review concludes that medical opinion, rather than the 1938 Act, principally drove its withdrawal — the regulatory system of the time could not act quickly',
+      ],
+      realWorldOutcome: [
+        'Sold online as a weight-loss agent despite having no approved medical use anywhere and being banned for human consumption',
+        'Deaths continue to be published, including in bodybuilders using it chronically and in deliberate overdose',
+        'It remains the standard laboratory positive control for maximal uncoupled respiration, which is a fair summary of what it does to a person',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule or loose yellow powder; also absorbed through skin',
+      description:
+        'Bought as a bright yellow crystalline powder, sometimes encapsulated. Capsule content is not measured by anyone, which matters more here than for any other substance on this site because the interval between an exposure people call ordinary and a published fatal exposure is narrow. It is also absorbed dermally, so handling the powder is itself an exposure route.',
+      safetyProfile:
+        'The toxidrome is hyperthermia, tachycardia, profuse sweating and tachypnoea, progressing to respiratory acidosis, hyperkalaemia, rigidity and death from catastrophic ATP depletion. There is no antidote and no receptor-level intervention, because the compound acts on a membrane rather than on a protein. Reported management is supportive: aggressive active cooling, high minute ventilation, glucose supplementation and correction of hyperkalaemia. The mitochondrial effect persists after the last dose, with a measured functional half-life of 4.9 days, so a patient who has stopped taking it is not out of danger. Cataract is the documented chronic toxicity from the 1930s.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does DNP actually work for fat loss?',
+        a: 'Yes, and this page is not going to pretend otherwise. It raises metabolic rate by a mechanism that cannot fail to raise it: protons leak back across the mitochondrial membrane without making ATP, so the cell burns substrate to produce heat. Weight loss follows. That was established in the 1930s and no one has disputed it since. What makes DNP different from every other substance on this site is that its efficacy and its lethality are not two properties to be weighed against each other. They are the same property observed at different intensities.',
+      },
+      {
+        q: 'Is there an antidote?',
+        a: 'No, and there cannot be one in the ordinary sense. An antidote usually works by occupying a receptor, inhibiting an enzyme or binding the drug. DNP has no protein target — it is a small acid that physically carries protons across a lipid membrane. There is nothing to block. Published intensive care management is entirely supportive: active cooling, high minute ventilation to handle the CO2 load, glucose supplementation, and management of hyperkalaemia. In the fatal Swedish case that sequence was underway and the patient still progressed to death within hours.',
+        auditNote:
+          'The absence of an antidote is a structural consequence of the mechanism, not a gap in medical knowledge that further research might fill.',
+      },
+      {
+        q: 'How long after stopping is someone safe?',
+        a: "Longer than the drug's presence in blood would suggest. In one surviving patient, serial platelet respirometry tracked uncoupled respiration and found it declined with a functional half-life of 4.9 days, with sustained hypermetabolism lasting more than a week. The same paper describes a self-amplifying loop in which the CO2 produced by uncoupling acidifies the local environment, which increases mitochondrial uptake of the drug, which increases uncoupling further. A person who feels hot and is breathing hard has a physiological process running that stopping the tablets does not immediately halt.",
+      },
+      {
+        q: 'Why does this page not warn more?',
+        a: 'Because the facts do the work and repetition weakens them. What is on this page is what was measured: the mechanism, the 62 published deaths counted to 2011, the fatal case that reached rigidity within hours, the blood concentration of 88 mg/L in a 21-year-old, the 4.9-day mitochondrial half-life, the 1935 cataract outbreak. A reader who wants to know what DNP does is better served by those numbers than by adjectives attached to them.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label:
+          'Grundlingh J, Dargan PI, El-Zanfaly M, Wood DM. 2,4-dinitrophenol (DNP): a weight loss agent with significant acute toxicity and risk of death. J Med Toxicol 2011;7:205-212',
+        identifier: '10.1007/s13181-011-0162-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lindeman E et al. Runaway uncoupling in 2,4-dinitrophenol poisoning: clinical and mitochondrial observations from two cases. Toxicol Rep 2026;16:102183',
+        identifier: '10.1016/j.toxrep.2025.102183',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hermetet C et al. Case report: fatal long-term intoxication by 2,4-dinitrophenol and anabolic steroids in a young bodybuilder with muscle dysmorphia. Front Public Health 2024;12:1452196',
+        identifier: '10.3389/fpubh.2024.1452196',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Tainter ML, Cutting WC, Stockton AB. Use of dinitrophenol in nutritional disorders: a critical survey of clinical results. Am J Public Health Nations Health 1934;24:1045-1053',
+        identifier: '10.2105/ajph.24.10.1045',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Margo CE, Harman LE. Diet pills and the cataract outbreak of 1935: reflections on the evolution of consumer protection legislation. Surv Ophthalmol 2014;59:568-573',
+        identifier: '10.1016/j.survophthal.2014.02.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Molecular mechanisms of mitochondrial uncoupling: focus on 2,4-dinitrophenol. Eur Biophys J 2026',
+        identifier: '10.1007/s00249-026-01827-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Managing a deliberate 2,4-dinitrophenol overdose: a case report. Anaesth Intensive Care 2026;54:293-297',
+        identifier: '10.1177/0310057X251381375',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Testing for 2,4-dinitrophenol in human hair by LC-MS/MS and interpretation issues. J Pharm Biomed Anal 2024;237:115795',
+        identifier: '10.1016/j.jpba.2023.115795',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 1493 — 2,4-dinitrophenol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/1493',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 13. Melanotan II
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'melanotan-ii',
+    name: 'Melanotan II',
+    tradeName: 'No trade name; sold as MT-II or MT2, by injection and as a nasal spray',
+    sponsor:
+      'Originally synthesised at the University of Arizona by Hadley and colleagues. No company holds a marketing authorisation for it anywhere',
+    targetGene: 'MC1R',
+    targetProtein: 'Melanocortin receptors — a non-selective agonist at MC1R, MC3R, MC4R and MC5R',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'None. Melanotan II is unlicensed in every jurisdiction. Its close relative bremelanotide, which differs by one terminal group, is approved; melanotan II itself never completed development.',
+    patientFriendlyIndication: 'Tanning without sun — unlicensed everywhere, with no approved use',
+    anatomicalSite:
+      'Melanocortin receptors on epidermal melanocytes, and MC3R and MC4R in the hypothalamus',
+    conditionContext: {
+      conditionExplainer:
+        'Skin darkens when melanocytes are told to make eumelanin, and the signal that tells them is alpha-melanocyte-stimulating hormone acting on the MC1R receptor. Melanotan II is a synthetic, cyclic, protease-resistant version of that hormone.',
+      whyItMatters:
+        'It works. Injecting it produces tanning without sun exposure, which is why it is used. It is also non-selective across the melanocortin receptor family, which is why it produces erections, nausea, appetite suppression and blood pressure effects that nobody asked for.',
+      whoTakesThis:
+        'People wanting a tan, particularly younger people attending gyms, and men using it for its erectile effect. It is sold as a lyophilised powder for reconstitution and injection, and increasingly as a nasal spray.',
+      clinicalGoals:
+        'There are none. There is no approved indication and no completed development programme for this molecule.',
+    },
+    oneSentenceVerdict:
+      'A non-selective melanocortin agonist that darkens skin exactly as advertised, is unlicensed in every country, and appears in published case reports of melanoma, eruptive atypical naevi, rhabdomyolysis, renal infarction, priapism and posterior reversible encephalopathy syndrome.',
+    laymanHowItWorks:
+      'Sunlight damages DNA in skin cells; the cells respond by releasing a hormone that tells the pigment cells to make more melanin. Melanotan II is a laboratory-built copy of that hormone, redesigned as a ring so that enzymes cannot chew it up. Injected, it produces the tanning signal without the sun. The problem is that the body has five receptors in this family and this molecule hits four of them. The one in the skin makes pigment. The ones in the brain control appetite, blood pressure and sexual arousal, and they are switched on at the same time. Almost every reported side effect is one of those other receptors doing its job.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 20,
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: '(Ac)(Nle)DH(D-)FRWK(NH2, lactam bridge Asp to Lys)',
+      chemicalFormula: 'C50H69N15O9',
+      molecularWeight: '1024.2 g/mol',
+      targetReceptorAffinity:
+        'Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-NH2. A cyclic lactam analogue of alpha-melanocyte-stimulating hormone in which a bridge between the aspartate and lysine side chains locks the message sequence into its active conformation and makes it resistant to proteases. It is a potent but non-selective agonist across MC1R, MC3R, MC4R and MC5R, and the non-selectivity is the source of most of its effects.',
+      structureSource: {
+        label:
+          'PubChem CID 92432 (melanotan II) — sequence, molecular formula and molecular weight. The one-letter string above gives the backbone only; the acetyl, norleucine, D-phenylalanine, C-terminal amide and lactam bridge are shown in parentheses because the engine validates standard residues',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/92432',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mt2-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of a lyophilised vial, and the cyclisation check',
+          description:
+            'Confirm that the powder is melanotan II and not bremelanotide, its C-terminal acid analogue, which differs by one dalton in the head-to-head comparison and by a great deal in what it is. Confirm also that the lactam bridge is actually closed, because a linear precursor has different receptor pharmacology and the same nominal composition minus water.',
+          reagentsAndBuffer:
+            'Certified melanotan II and bremelanotide reference standards, high-resolution accurate-mass ESI-MS with isotope pattern, MS/MS sequencing of the b and y ion series, analytical reversed-phase HPLC on a C18 column with 0.1% trifluoroacetic acid in water and acetonitrile',
+        },
+        {
+          id: 'mt2-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Peptide content, related substances and endotoxin',
+          description:
+            'Quantify actual peptide content, which in a lyophilised vial is usually well below the labelled milligram figure once counterions and residual water are accounted for, and screen for the deletion and epimerised sequences that solid-phase synthesis leaves behind. Because the product is injected, endotoxin is part of the assay and not an optional extra.',
+          dependsOnStepId: 'mt2-w1',
+          reagentsAndBuffer:
+            'Amino acid analysis after 6 M hydrochloric acid vapour-phase hydrolysis for absolute peptide content, reversed-phase HPLC with UV detection at 220 nm for related substances, ion chromatography for acetate and trifluoroacetate counterions, Karl Fischer for water, limulus amoebocyte lysate for endotoxin',
+        },
+        {
+          id: 'mt2-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Plasma and urine extraction for exposure confirmation',
+          description:
+            'Cyclic peptides are difficult analytes: they adsorb to surfaces, ionise variably and are present at low concentration. Extraction uses a mixed-mode sorbent and silanised glassware, and the internal standard should be a stable-isotope-labelled version of the peptide rather than a structural analogue.',
+          dependsOnStepId: 'mt2-w2',
+          reagentsAndBuffer:
+            'Acidified plasma, mixed-mode cation-exchange solid-phase extraction, elution in ammoniated methanol, silanised low-binding vials, stable-isotope-labelled melanotan II internal standard',
+        },
+        {
+          id: 'mt2-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Melanocortin receptor selectivity panel — all five subtypes',
+          description:
+            'Express MC1R, MC2R, MC3R, MC4R and MC5R separately and measure cyclic AMP accumulation against the same concentration series. This is the experiment that shows why melanotan II does what it does: the tanning comes from one receptor and the nausea, flushing, appetite suppression, priapism and blood pressure changes come from the others.',
+          dependsOnStepId: 'mt2-w3',
+          reagentsAndBuffer:
+            'HEK293 cells stably expressing each human melanocortin receptor subtype, cyclic AMP accumulation assay by homogeneous time-resolved fluorescence, forskolin positive control, alpha-MSH and NDP-alpha-MSH as reference agonists, IBMX to inhibit phosphodiesterase',
+        },
+        {
+          id: 'mt2-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LC-MS/MS quantification and melanin output readout',
+          description:
+            'Quantify the peptide by tandem mass spectrometry against the labelled internal standard, and separately measure the pharmacodynamic endpoint in a melanocyte model: melanin content and tyrosinase activity, which is the readout that corresponds to what the user is trying to achieve.',
+          dependsOnStepId: 'mt2-w4',
+          reagentsAndBuffer:
+            'C18 column with 0.1% formic acid and acetonitrile gradient, electrospray positive-ion multiple-reaction monitoring on the doubly charged precursor, stable-isotope internal standard; B16 or normal human epidermal melanocytes with spectrophotometric melanin quantification at 405 nm and L-DOPA oxidation for tyrosinase activity',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mt2-a1',
+        category: 'measured',
+        title: 'Melanoma reported three months after a four-week course',
+        laymanSummary:
+          'A 20-year-old woman with pale skin was found to have a melanoma on her buttock three months after a three-to-four-week course of self-injected melanotan II alongside sunbed use.',
+        technicalDetails:
+          'Hjuler and Lorentzen reported a 20-year-old woman with Fitzpatrick skin type II referred with a suspicious black melanocytic lesion in the left gluteal region and universally intensely pigmented skin. Histology confirmed melanoma. Three months before excision she had completed a three- to four-week course of MT-II self-injections intended to augment sunbed tanning. The authors are careful about what this shows: melanocyte stimulation by MT-II combined with sunbed use coincided with melanoma, in a single patient. They state that because the drug is unlicensed and incompletely tested, the extent and types of adverse effect are unknown. A 2026 case report describes five primary melanomas in situ in a patient with recent tanning bed use, melanotan exposure and anabolic hormone use, and a 2025 report raises melanotan II nasal spray as a possible risk factor for oral mucosal melanoma.',
+        evidenceSource:
+          'Hjuler KF, Lorentzen HF. Dermatology 2014;228:34-36; Vadner DJ, Smith S. JAAD Case Rep 2026;73:111-114; Int J Oral Maxillofac Surg 2025;54:806-808',
+        doi: '10.1159/000356389',
+        measuredMetric:
+          'Histologically confirmed melanoma following documented melanotan II exposure',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mt2-a2',
+        category: 'measured',
+        title: 'Systemic toxicity with rhabdomyolysis after injection',
+        laymanSummary:
+          'A 2012 report in Clinical Toxicology described systemic toxicity including muscle breakdown after melanotan II injection, and it generated correspondence in the journal.',
+        technicalDetails:
+          'A case published in Clinical Toxicology in 2012 described melanotan II injection resulting in systemic toxicity and rhabdomyolysis, and drew a letter to the editor with a published response the following year — the exchange itself is a useful record of how contested attribution is for an unlicensed injectable of unknown content. Rhabdomyolysis with melanotan II is subsequently cited in the nephrology literature as an established association, alongside a reported case of renal infarction in which the authors consider both a thrombotic pharmacological influence and a possible direct toxic effect on renal parenchyma.',
+        evidenceSource:
+          'Melanotan II injection resulting in systemic toxicity and rhabdomyolysis. Clin Toxicol (Phila) 2012;50:1169-1173; Peters B et al., CEN Case Rep 2020;9:159-161',
+        doi: '10.3109/15563650.2012.740637',
+        measuredMetric: 'Creatine kinase and renal function following melanotan II injection',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mt2-a3',
+        category: 'measured',
+        title: 'Priapism, renal infarction and posterior reversible encephalopathy syndrome',
+        laymanSummary:
+          'Published cases include prolonged painful erection requiring treatment, a kidney infarction, and a brain syndrome associated with sudden blood pressure changes.',
+        technicalDetails:
+          'Priapism after melanotan is documented in at least two independent case reports, in BMJ Case Reports and in Sexual Medicine. Renal infarction attributed to melanotan II is reported with a literature review in CEN Case Reports. Posterior reversible encephalopathy syndrome associated with melanotan was reported in Annals of Internal Medicine in 2013. These are mechanistically coherent rather than random: MC4R agonism in the hypothalamus drives erectile response — which is precisely the effect that bremelanotide was approved to produce — and melanocortin agonism has documented cardiovascular effects on blood pressure and sympathetic outflow. The side effects are the drug working, on the receptors nobody was aiming at.',
+        evidenceSource:
+          'Melanotan-induced priapism: a hard-earned tan. BMJ Case Rep 2019; Melanotan tanning injection: a rare cause of priapism. Sex Med 2021;9:100298; Melanotan and the posterior reversible encephalopathy syndrome. Ann Intern Med 2013;158:707-708',
+        doi: '10.1136/bcr-2018-227644',
+        measuredMetric:
+          'Documented cases of priapism, renal infarction and PRES following melanotan use',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mt2-a4',
+        category: 'measured',
+        title: 'Eruptive atypical naevi and pigment changes',
+        laymanSummary:
+          'Injecting melanotan can make existing moles darker and new atypical moles appear, which is a problem in itself: it makes skin cancer harder to spot.',
+        technicalDetails:
+          'Atypical melanocytic naevi following melanotan injection were reported in the Irish Medical Journal in 2013, and melanotan appears in reviews of eruptive melanocytic naevi as a recognised trigger. Reports also describe depigmented facial and neck patches following melanotan use, and changes in oral mucosa associated with melanotan II injections. The clinical consequence is second-order and easy to miss: a drug that darkens existing naevi and produces new ones degrades the visual criteria dermatologists use to identify melanoma early, in exactly the population most likely to be using sunbeds at the same time.',
+        evidenceSource:
+          'Atypical melanocytic naevi following melanotan injection. Ir Med J 2013;106:148-149; Eruptive melanocytic nevi: a review. Am J Clin Dermatol 2019;20:669-682; Changes in oral mucosa associated with melanotan II injections. Life (Basel) 2026;16:265',
+        doi: '10.1007/s40257-019-00444-8',
+        measuredMetric:
+          'Appearance of new atypical naevi and darkening of existing naevi after exposure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mt2-a5',
+        category: 'inferred',
+        title: 'A tan from melanotan is not sun protection',
+        laymanSummary:
+          'The pigment produced is real, but nobody has measured how much ultraviolet protection it gives, and the people using it are typically using sunbeds at the same time.',
+        technicalDetails:
+          'The implied argument for melanotan II is that induced pigmentation substitutes for sun exposure and therefore reduces ultraviolet damage. No study has measured the sun protection factor conferred by melanotan-induced pigmentation in humans, and the case reports describe concurrent sunbed use rather than substitution — the 20-year-old with melanoma was using MT-II specifically to augment sunbed tanning. A related compound, afamelanotide, is licensed for erythropoietic protoporphyria, but its evidence base and its indication are its own and do not transfer. This page records the absence of any measured photoprotection rather than assuming a direction.',
+        evidenceSource:
+          'Hjuler KF, Lorentzen HF. Dermatology 2014;228:34-36; Sunbeds, dihydroxyacetone fake tan, and melanotan injections: a history of "safe" tanning technologies, 2025',
+        doi: '10.1159/000356389',
+        inferredClaim:
+          'That melanotan-induced pigmentation is photoprotective, a claim never measured in humans and undercut by the concurrent sunbed use described in the case series',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mt2-a6',
+        category: 'conclusion_shift',
+        title: 'The molecule next to it got approved; this one did not',
+        laymanSummary:
+          'Bremelanotide differs from melanotan II by a single chemical group at one end, and it is an FDA-approved drug. Melanotan II was never developed, and the difference is instructive.',
+        technicalDetails:
+          'Bremelanotide is Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-OH; melanotan II is the same peptide with a C-terminal amide instead of the free acid. Bremelanotide completed two identical phase 3 trials in 1,267 women, was approved by the FDA in 2019 as Vyleesi under NDA 210557, and carries a label describing its dose, its contraindications and its adverse effects. Melanotan II has no completed programme, no registered phase 3, no label and no dose. The same core pharmacology therefore exists in two forms, one of which a reader can look up in a prescribing information document and one of which is a powder in an unmarked vial. The relevant lesson is not that melanotan II must be dangerous because it was not developed, but that everything a label would tell you about it is simply absent.',
+        evidenceSource:
+          'Kingsberg SA et al., Obstet Gynecol 2019;134:899-908 (RECONNECT); openFDA Drugs@FDA NDA 210557 (VYLEESI)',
+        doi: '10.1097/AOG.0000000000003500',
+        inferredClaim:
+          'That the two peptides can be treated as interchangeable because they differ by one terminal group, when one has a completed phase 3 programme and a label and the other has neither',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected subcutaneously after reconstitution',
+        laymanDesc:
+          'It comes as a freeze-dried powder that the user mixes with water and injects under the skin. It is also sold as a nasal spray.',
+        molecularDetail:
+          'Lyophilised peptide reconstituted with bacteriostatic or sterile water and injected subcutaneously. The cyclic lactam confers resistance to proteases, giving a longer duration than native alpha-MSH. Nasal administration is increasingly reported and has its own case literature.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches melanocortin receptors on skin and in the brain',
+        laymanDesc:
+          'It travels in the blood to the pigment cells in the skin and also reaches receptors in the brain that control appetite, arousal and blood pressure.',
+        molecularDetail:
+          'Distributes to epidermal melanocytes expressing MC1R and to hypothalamic neurons expressing MC3R and MC4R. It also engages MC5R in exocrine tissue. The only melanocortin receptor it does not meaningfully engage is MC2R, the adrenal ACTH receptor.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Activates four of the five melanocortin receptors',
+        laymanDesc:
+          'It is not selective. One receptor gives the tan; the others give nausea, appetite loss, erections and blood pressure changes.',
+        molecularDetail:
+          'Potent agonism at MC1R, MC3R, MC4R and MC5R, all Gs-coupled, raising intracellular cyclic AMP. MC1R activation on melanocytes is the intended effect. MC4R activation in the hypothalamus produces the appetite suppression and the erectile response, the latter being the effect bremelanotide was licensed for.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Melanocytes switch to making eumelanin',
+        laymanDesc:
+          'Cyclic AMP rises inside the pigment cell, tyrosinase is switched on, and the cell starts making the dark form of melanin.',
+        molecularDetail:
+          'MC1R-driven cyclic AMP raises MITF expression and tyrosinase activity, shifting melanogenesis from pheomelanin towards eumelanin and increasing melanosome transfer to keratinocytes. Existing naevi darken along with the surrounding skin, and new melanocytic lesions have been reported to erupt.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A tan, and a case literature of everything else',
+        laymanDesc:
+          'The skin darkens as intended. The published harms are melanoma, new atypical moles, muscle breakdown, kidney infarction, prolonged erection and a blood-pressure-related brain syndrome.',
+        molecularDetail:
+          'Pigmentation is the reliable, intended outcome. The reported adverse events map onto the non-MC1R receptors and onto the pigment change itself: melanoma and atypical naevi from melanocyte stimulation, priapism from MC4R, rhabdomyolysis and renal infarction from mechanisms the nephrology literature describes as thrombotic or directly toxic, and PRES from blood pressure lability.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'No completed clinical development programme exists for melanotan II',
+        phase: 'None completed',
+        sampleSize: 0,
+        primaryEndpoint:
+          'No registered phase 3 trial, no approved label and no established dose exist for this molecule in any jurisdiction',
+        endpointMet: false,
+        statisticalPValue: 'Not applicable',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Published case reports, 2012 to 2026',
+        phase: 'Case reports and case series',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Adverse events temporally associated with melanotan II use: melanoma, atypical naevi, rhabdomyolysis, renal infarction, priapism, PRES, oral mucosal change',
+        endpointMet: true,
+        statisticalPValue:
+          'Descriptive. Case reports establish that events occur and give no denominator, so no rate can be calculated',
+        unreportedAdverseSignals:
+          'Product content is unverified in every published case, so attribution is to "a product sold as melanotan II" rather than to a measured quantity of the peptide.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Potent non-selective agonism at MC1R, MC3R, MC4R and MC5R',
+        'Reliable induction of cutaneous pigmentation, which is the effect users seek and obtain',
+        'Histologically confirmed melanoma three months after a documented four-week course, alongside sunbed use',
+        'Published cases of rhabdomyolysis, renal infarction, priapism and posterior reversible encephalopathy syndrome',
+        'Eruptive atypical melanocytic naevi and darkening of existing naevi',
+      ],
+      unsupportedInferences: [
+        'That induced pigmentation is photoprotective — never measured in humans, and the documented pattern is concurrent sunbed use rather than substitution',
+        'That the case reports establish a rate of harm; they establish occurrence with no denominator, and this page gives no rate',
+        'That approval of bremelanotide implies anything about melanotan II beyond shared core pharmacology',
+      ],
+      whatFailedInitially: [
+        'No development programme was ever completed; there is no registered phase 3, no label and no established dose anywhere in the world',
+        'Product content is unverified in every published case, so even the exposure in the case literature is nominal rather than measured',
+      ],
+      realWorldOutcome: [
+        'Unlicensed in every jurisdiction and widely sold online as a lyophilised powder and as a nasal spray',
+        'Dermatology journals continue to publish on it, including a 2026 report framing unregulated melanotan use promoted via social media as an emerging public health risk',
+        'Its close analogue bremelanotide is an approved drug with a label, which makes the absence of one here easy to see',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection of reconstituted lyophilised peptide; also sold as a nasal spray',
+      description:
+        'Supplied as a freeze-dried powder in an unmarked vial, reconstituted by the user with water and injected subcutaneously. The labelled milligram figure on such vials refers to gross fill weight rather than peptide content, which is typically lower once counterions and residual water are accounted for, so nobody using it knows their dose even approximately. Nasal spray preparations have their own case literature including a report on oral mucosal melanoma.',
+      safetyProfile:
+        'No safety database exists because no development programme was completed. The published harms are melanoma and eruptive atypical naevi, rhabdomyolysis, renal infarction, priapism, posterior reversible encephalopathy syndrome, oral mucosal pigment change and depigmented patches. Nausea, flushing and appetite suppression follow from MC4R agonism and are near-universal in reports; the same effects appear as the commonest adverse events in the phase 3 trials of the approved analogue bremelanotide, where nausea, flushing and headache each occurred in 10% or more of treated participants.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it actually tan you?',
+        a: 'Yes. It is a potent agonist at the MC1R receptor on melanocytes, and MC1R activation is the physiological signal that produces a tan. Injected, it raises cyclic AMP in pigment cells, switches on tyrosinase and shifts melanin production towards the dark eumelanin form. The pigmentation is real, it is generalised across the body, and it happens without sun exposure. Nothing on this page disputes that; the case literature is about everything else the same molecule does.',
+      },
+      {
+        q: 'Is it safer than a sunbed?',
+        a: 'That comparison has never been tested and the published cases do not describe people making it. In the melanoma case report the patient was using melanotan II specifically to augment sunbed tanning, not to replace it, and the same combination appears in the 2026 report of five primary melanomas in situ. No study has measured the sun protection factor of melanotan-induced pigmentation in a human being. What is documented is that the drug darkens existing moles and can trigger new atypical ones, which makes early melanoma harder to see at exactly the time it matters most.',
+        auditNote:
+          'The photoprotection argument is the central claim made for this compound and it has never been measured. That absence is the finding.',
+      },
+      {
+        q: 'Why does it cause erections and nausea?',
+        a: 'Because it activates four of the five melanocortin receptors and only one of them is in skin. MC4R in the hypothalamus mediates erectile response, appetite suppression and nausea. This is not a quirk: bremelanotide, which differs from melanotan II only by a terminal group, is an approved drug precisely for a sexual desire indication, and in its phase 3 trials nausea, flushing and headache each affected 10% or more of women who took it. The side effects of melanotan II are the intended effects of its licensed cousin.',
+      },
+      {
+        q: 'How much am I injecting?',
+        a: 'Nobody knows, including the seller. A vial labelled 10 mg gives a gross fill figure, not a peptide content; actual peptide is lower once acetate or trifluoroacetate counterions and residual water are subtracted, and the difference is not small. Compounding that, no analysis has established what fraction of vials sold as melanotan II contain melanotan II rather than the linear precursor, a deletion sequence, or bremelanotide. This page prints no dose because there is no dose to print.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Hjuler KF, Lorentzen HF. Melanoma associated with the use of melanotan-II. Dermatology 2014;228:34-36',
+        identifier: '10.1159/000356389',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Melanotan II injection resulting in systemic toxicity and rhabdomyolysis. Clin Toxicol (Phila) 2012;50:1169-1173',
+        identifier: '10.3109/15563650.2012.740637',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Peters B et al. Melanotan II: a possible cause of renal infarction — review of the literature and case report. CEN Case Rep 2020;9:159-161',
+        identifier: '10.1007/s13730-020-00447-z',
+        kind: 'doi',
+      },
+      {
+        label: 'Melanotan-induced priapism: a hard-earned tan. BMJ Case Rep 2019;12:e227644',
+        identifier: '10.1136/bcr-2018-227644',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Melanotan and the posterior reversible encephalopathy syndrome. Ann Intern Med 2013;158:707-708',
+        identifier: '10.7326/0003-4819-158-9-201305070-00020',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vadner DJ, Smith S. Five primary melanomas in situ in a patient with recent tanning bed use, melanotan exposure, and anabolic hormone use. JAAD Case Rep 2026;73:111-114',
+        identifier: '10.1016/j.jdcr.2026.05.009',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Melanotan II nasal spray: a possible risk factor for oral mucosal malignant melanoma? Int J Oral Maxillofac Surg 2025;54:806-808',
+        identifier: '10.1016/j.ijom.2025.03.014',
+        kind: 'doi',
+      },
+      {
+        label: 'Eruptive melanocytic nevi: a review. Am J Clin Dermatol 2019;20:669-682',
+        identifier: '10.1007/s40257-019-00444-8',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Unregulated melanotan use promoted via social media: emerging dermatologic and public health risks. Clin Exp Dermatol 2026',
+        identifier: '10.1111/ijd.70286',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 92432 — melanotan II sequence, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/92432',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 14. Boldenone
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'boldenone',
+    name: 'Boldenone',
+    tradeName: 'Equipoise, Boldebal, Ganabol; sold as boldenone undecylenate ("EQ")',
+    sponsor:
+      'Originally a Ciba steroid programme compound. Now made only as a veterinary product and by unlicensed manufacturers; no company holds a human marketing authorisation anywhere',
+    targetGene: 'AR',
+    targetProtein: 'Androgen receptor (NR3C4)',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No human indication in any country. Boldenone undecylenate is licensed in several jurisdictions as an injectable veterinary anabolic for horses. In the European Union its administration to food-producing cattle has been banned since 1981.',
+    patientFriendlyIndication: 'A horse steroid used by people — no human approval anywhere',
+    anatomicalSite: 'Androgen receptor in skeletal muscle myonuclei, prostate and liver',
+    conditionContext: {
+      conditionExplainer:
+        'Boldenone is testosterone with one extra double bond in the A ring — the 1,2 position. That single change slows aromatisation to oestrogen and slows clearance, and it changes what 5-alpha-reductase makes out of the molecule.',
+      whyItMatters:
+        'The extra double bond is also why boldenone is the hardest anabolic steroid in the world to test for. Cattle, horses and some humans make small amounts of it without ever being given any, so a positive result is not by itself proof of administration. Two decades of analytical chemistry have gone into telling the two apart.',
+      whoTakesThis:
+        'Veterinarians treating horses, where it is a licensed product. Outside that, men using it in long injectable courses because the undecylenate ester keeps blood levels up for weeks, and because it has a reputation for causing less water retention than testosterone.',
+      clinicalGoals:
+        'None exist. There has never been a controlled human efficacy trial of boldenone for any endpoint.',
+    },
+    oneSentenceVerdict:
+      'A veterinary anabolic steroid with no human trial literature at all, whose 5-alpha-reduced metabolite was measured to be as androgenic as testosterone propionate, and whose defining analytical problem is that untreated bulls, horses and some athletes excrete it endogenously.',
+    laymanHowItWorks:
+      'Boldenone binds the androgen receptor, the same switch testosterone uses, and turns on the same muscle and bone gene programmes. Two structural details matter. Its long undecylenate ester means one injection releases drug slowly for weeks, so blood levels are flat rather than spiky. And when the body reduces it the way it reduces testosterone, the product is 1-testosterone, a compound that in a rat assay was as strong an androgen as testosterone itself and, unlike testosterone, increased liver weight. Everything else about boldenone is a testing story: bacteria in the gut of cattle and horses convert plant sterols into boldenone, so the drug shows up in animals that were never given it.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 24,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2O)CCC4=CC(=O)C=C[C@]34C',
+      chemicalFormula: 'C19H26O2',
+      molecularWeight: '286.4 g/mol',
+      targetReceptorAffinity:
+        'Androsta-1,4-dien-17beta-ol-3-one — testosterone with an additional 1,2 double bond. An androgen receptor agonist; the 1,2 unsaturation reduces the rate of aromatisation to oestrogen relative to testosterone and redirects 5-alpha-reduction towards 1-testosterone rather than dihydrotestosterone. The injected form is the undecylenate ester, a prodrug hydrolysed by plasma esterases.',
+      structureSource: {
+        label:
+          'PubChem CID 13308 (boldenone) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/13308',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bold-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Reference-standard identity and epimer separation',
+          description:
+            'Establish that the reference material is beta-boldenone and not the alpha epimer. This is not pedantry: in European residue control the alpha epimer is treated as endogenous and tolerated up to a threshold, while conjugated beta-boldenone is the epimer that is supposed to be absent. An achiral method that cannot resolve them cannot support either conclusion.',
+          reagentsAndBuffer:
+            'Certified alpha- and beta-boldenone reference standards, boldenone-d3 internal standard, reversed-phase UHPLC on a sub-2-micron C18 column, 1H NMR in CDCl3, high-resolution accurate-mass ESI-MS',
+        },
+        {
+          id: 'bold-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Content assay of a seized oil-based injectable',
+          description:
+            'Determine what an oily ampoule labelled boldenone undecylenate actually contains and at what concentration. The ester, not the free steroid, is the analyte, and the oil vehicle has to be removed before chromatography. This is the assay behind the seizure studies in which most products did not match their labels.',
+          dependsOnStepId: 'bold-w1',
+          reagentsAndBuffer:
+            'Liquid-liquid partition of the oil vehicle into acetonitrile saturated with hexane, boldenone undecylenate reference standard, reversed-phase HPLC with diode-array detection at 245 nm for the enone chromophore, GC-MS after derivatisation for the screening pass',
+        },
+        {
+          id: 'bold-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Urine preparation for conjugate-specific confirmation',
+          description:
+            'Boldenone is excreted mainly as glucuronide and sulfate conjugates, and which conjugate is present is itself the evidence. A method that hydrolyses everything before extraction destroys the distinction between the sulfate and glucuronide fractions that residue control depends on, so the conjugates are isolated intact and measured separately.',
+          dependsOnStepId: 'bold-w2',
+          reagentsAndBuffer:
+            'Solid-phase extraction on a polymeric reversed-phase sorbent, separate beta-glucuronidase and arylsulfatase incubations run in parallel on split aliquots, 0.2 M acetate buffer pH 5.2, immunoaffinity column clean-up for the bile and tissue matrices',
+        },
+        {
+          id: 'bold-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Androgen receptor transactivation with a 5-alpha-reductase-competent line',
+          description:
+            'Measure androgen receptor activation by boldenone and, separately, by its 5-alpha-reduced product 1-testosterone. Running the assay in a line that expresses 5-alpha-reductase and again in one that does not separates what the parent compound does from what its metabolite does, which is the whole pharmacological question for this molecule.',
+          dependsOnStepId: 'bold-w3',
+          reagentsAndBuffer:
+            'HEK293 or CV-1 cells with a human AR expression plasmid and an ARE-luciferase reporter, parallel plates with and without SRD5A2 co-transfection, finasteride as reductase control, charcoal-stripped fetal bovine serum in phenol-red-free DMEM',
+        },
+        {
+          id: 'bold-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'GC-C-IRMS carbon isotope ratio and LC-MS/MS quantification',
+          description:
+            'Quantify boldenone and its main metabolite 5beta-androst-1-en-17beta-ol-3-one by tandem mass spectrometry, then determine their 13C/12C ratios by gas chromatography-combustion-isotope ratio mass spectrometry against endogenous reference steroids from the same specimen. Synthetic steroid made from soy or yam phytosterol carries a lighter carbon signature than steroid the body built from cholesterol; the isotope ratio is the only measurement that separates the two.',
+          dependsOnStepId: 'bold-w4',
+          reagentsAndBuffer:
+            'Deuterated boldenone internal standard, C18 column with formic acid and acetonitrile gradient, positive-ion multiple-reaction monitoring on a triple quadrupole; for IRMS, HPLC fraction collection, acetylation, GC combustion at 850 C over CuO/NiO, pregnanediol and androsterone as endogenous reference compounds',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bold-a1',
+        category: 'measured',
+        title: 'Its 5-alpha-reduced metabolite is as androgenic as testosterone propionate',
+        laymanSummary:
+          'When the body reduces boldenone it produces 1-testosterone. In a rat assay, an equal dose of 1-testosterone grew the prostate, seminal vesicles and muscle as much as testosterone did — and, unlike testosterone, it enlarged the liver.',
+        technicalDetails:
+          'Friedel et al. characterised 17beta-hydroxy-5alpha-androst-1-en-3-one, the 5alpha-reduced product of boldenone, sold on its own as a prohormone. It bound the androgen receptor with high selectivity and strongly stimulated AR-dependent transactivation. In vivo an equimolar dose had the same potency as testosterone propionate at stimulating growth of the prostate, the seminal vesicles and the androgen-sensitive levator ani muscle. Administration of 1-testosterone, in contrast to testosterone propionate, produced a significant increase in liver weight. The authors conclude it is a typical anabolic steroid without needing further metabolism. This is the closest thing to a pharmacological characterisation boldenone has, and it is an animal study of a metabolite.',
+        evidenceSource: 'Friedel A et al., Toxicol Lett 2006;165:149-155',
+        doi: '10.1016/j.toxlet.2006.03.001',
+        measuredMetric:
+          'Levator ani, prostate and seminal vesicle weight and liver weight in the rat Hershberger assay, equimolar against testosterone propionate',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bold-a2',
+        category: 'conclusion_shift',
+        title: 'Boldenone in bull urine stopped being proof of treatment',
+        laymanSummary:
+          'European residue control treated the active form of boldenone in cattle urine as evidence of illegal hormone use. Then a study of 56 untreated bulls found it in most of them.',
+        technicalDetails:
+          'Administration of boldenone to bovines has been banned in the EU since 1981. Alpha-boldenone conjugates were accepted as pseudoendogenous and tolerated up to 2 ng/mL, while conjugated beta-boldenone — the anabolically active epimer — was required to be absent, making it the candidate biomarker of illicit treatment. Chiesa et al. sampled urine from 56 young bulls under official veterinary control for five months, under non-stress conditions, after transport stress, and after slaughter stress. In untreated animals at the farm, beta-boldenone sulphate was found in 78% and the glucuronide in 46%. Detection was inversely related to stress and absent at the slaughterhouse. Histopathology of the bulbourethral and prostate glands showed no significant lesions. The authors conclude the metabolites were of endogenous origin and that beta-boldenone sulphate can serve as a treatment biomarker only in samples taken at slaughter.',
+        evidenceSource:
+          'Chiesa L et al., Food Addit Contam Part A 2015;32:825-832 (56 untreated young bulls)',
+        doi: '10.1080/19440049.2015.1027965',
+        measuredMetric:
+          'Frequency of beta-boldenone sulphate (78%) and glucuronide (46%) in urine from untreated young bulls at the farm',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bold-a3',
+        category: 'measured',
+        title:
+          'Nearly half of human doping samples with boldenone had an endogenous carbon signature',
+        laymanSummary:
+          'Carbon isotope testing can tell steroid the body made from steroid made in a factory. Of 23 human doping samples containing boldenone, 11 carried the signature of the body, not the factory.',
+        technicalDetails:
+          'Piper et al. developed a GC/C/IRMS method measuring 13C/12C ratios of boldenone, its main metabolite 5beta-androst-1-en-17beta-ol-3-one, and the endogenous reference steroids pregnanediol, androsterone, etiocholanolone and testosterone from a single urine specimen. Validity was established on urine fortified at 2-50 ng/mL. Of 23 doping control samples investigated over four years, 11 gave 13C/12C ratios inconsistent with an exogenous origin. Two of those came from the same athlete a month apart, which the authors read as strong evidence of endogenous boldenone production in that individual. Boldenone is on the WADA prohibited list and has never been approved for human clinical use, so the false-positive risk is not a theoretical concern.',
+        evidenceSource: 'Piper T et al., Drug Test Anal 2010;2:217-224',
+        doi: '10.1002/dta.124',
+        measuredMetric:
+          '13C/12C ratio of urinary boldenone and 5beta-androst-1-en-17beta-ol-3-one against endogenous reference compounds, 23 samples',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bold-a4',
+        category: 'measured',
+        title: 'Horses make boldenone out of testosterone',
+        laymanSummary:
+          'Equine drug testing found that boldenone appears as a minor breakdown product of the horse own testosterone, which is a problem for a sport that bans it.',
+        technicalDetails:
+          'Wong et al. presented evidence that boldenone, nandrolone, 5(10)-estrene-3beta,17alpha-diol and 4-estrene-3,17-dione occur as minor metabolites of testosterone in the horse. Separately, Decloedt et al. used an in vitro simulation of the equine hindgut to show that microbial conversion of dietary phytosterols contributes to the excretion of anabolic-androgenic steroids in horses. Both findings point the same way: in the species boldenone is actually licensed for, a positive test can arise from the animal metabolism or its feed. The population-threshold approach used for cattle in the UK, in which characteristic metabolite concentrations in untreated steers and heifers are used to set statistical confirmation thresholds, exists because of exactly this problem.',
+        evidenceSource:
+          'Wong JKY et al., Drug Test Anal 2017;9:1337-1348; Decloedt AI et al., J Steroid Biochem Mol Biol 2015;152:180-192; Scarth JP et al., Food Addit Contam Part A 2011;28:44-61',
+        doi: '10.1002/dta.2192',
+        measuredMetric:
+          'Boldenone identified as a minor metabolite of administered testosterone in equine urine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bold-a5',
+        category: 'measured',
+        title: 'Fewer than one in five seized doping products contained what the label said',
+        laymanSummary:
+          'Swiss customs handed 1,190 seized doping products to an anti-doping laboratory. Under 20% contained the labelled substance in the labelled amount.',
+        technicalDetails:
+          'Weber et al. analysed 1,190 products seized at the Swiss border by liquid chromatography-high resolution mass spectrometry, gel electrophoresis with in-gel tryptic digestion for peptides, and electrochemiluminescence immunoassay. Labels claimed anabolic agents for 889 items (75%), peptide hormones or growth factors for 146 (12%), and antioestrogens, aromatase inhibitors or other metabolic modulators for 113 (9%). Non-approved substances were detected, and fewer than 20% of products contained the claimed substance in the claimed amount. Fabresse et al. reached the same conclusion on a smaller French seizure set: of 54 seized products containing anabolic-androgenic steroids, only 4 (7.4%) matched their label qualitatively and quantitatively, and 43 of 54 (80%) were non-original — 33% substandard in dose and 32% outright counterfeit in composition.',
+        evidenceSource:
+          'Weber C et al., Subst Use Misuse 2017;52:742-753; Fabresse N et al., Forensic Sci Int 2021;322:110771',
+        doi: '10.1080/10826084.2016.1263665',
+        measuredMetric:
+          'Proportion of seized doping products whose analysed content matched the label: under 20% of 1,190 Swiss items; 4 of 54 French AAS products',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bold-a6',
+        category: 'inferred',
+        title: 'The "less oestrogenic than testosterone" claim rests on no human measurement',
+        laymanSummary:
+          'Boldenone is described as converting to oestrogen at about half the rate of testosterone. No published human study has measured that.',
+        technicalDetails:
+          'The reputation of boldenone as a low-oestrogen anabolic comes from the structural argument that the 1,2 double bond hinders aromatase and from in vitro comparisons, not from any trial that measured serum oestradiol in people given boldenone. There is no published human pharmacokinetic study, no dose-ranging study and no controlled efficacy study of boldenone for any endpoint in any population. What is documented in animals is toxicity: boldenone undecylenate produced cardiac injury in rats through NADPH oxidase activation with increased NOX2 and NOX4 expression, and chronic administration dysregulated cardiac troponin I gene expression alongside inflammatory-cytokine-driven oxidative stress. Those are rat findings and this page does not extrapolate a human incidence from them.',
+        evidenceSource:
+          'Tousson E et al., Oxid Med Cell Longev 2018;2018:9434385; El-Shamarka MEA et al., Biomarkers 2023;28:401-408',
+        doi: '10.1155/2018/9434385',
+        inferredClaim:
+          'That boldenone aromatises at roughly half the rate of testosterone in humans — a structural inference with no human serum oestradiol measurement behind it',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected as an ester in oil and released over weeks',
+        laymanDesc:
+          'The drug is attached to a long fatty chain and dissolved in oil, so one injection keeps releasing it for a long time rather than all at once.',
+        molecularDetail:
+          'Boldenone undecylenate is an 11-carbon ester in an oil vehicle. Depot release from the intramuscular site is slow and rate-limiting; plasma and tissue esterases hydrolyse the ester to free boldenone. The long tail is also why detection windows after the last injection are measured in months rather than days.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Diffuses into the cell to reach a receptor that lives inside',
+        laymanDesc:
+          'The androgen receptor sits inside cells, not on their surface, so the steroid has to cross the membrane first.',
+        molecularDetail:
+          'Passive diffusion across the plasma membrane; free boldenone binds the ligand-binding domain of the androgen receptor, displacing heat-shock chaperone complexes and permitting nuclear translocation.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Reduction makes something stronger than the parent',
+        laymanDesc:
+          'In tissues rich in the reducing enzyme, boldenone is converted into 1-testosterone, which binds the receptor harder than boldenone does.',
+        molecularDetail:
+          '5-alpha-reductase converts boldenone to 17beta-hydroxy-5alpha-androst-1-en-3-one (1-testosterone). Where testosterone is amplified to dihydrotestosterone, boldenone is amplified to 1-testosterone, a compound shown to bind AR with high selectivity and to match testosterone propionate on androgenic and anabolic endpoints in the rat.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Switches on the anabolic transcription programme',
+        laymanDesc:
+          'The receptor carries the steroid into the nucleus and turns on the genes that build muscle protein.',
+        molecularDetail:
+          'Ligand-bound AR dimerises, binds androgen response elements and drives transcription in myonuclei, with parallel activity in prostate and hepatic tissue. The hepatic component is the one that distinguished 1-testosterone from testosterone propionate in the rat assay, where liver weight rose significantly.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Anabolic effect assumed; only the analytical chemistry is measured',
+        laymanDesc:
+          'What is genuinely documented about boldenone in people is how to detect it, not what it does to them.',
+        molecularDetail:
+          'There is no human efficacy or safety trial of boldenone. The published human literature is doping-control analytical chemistry — metabolite profiles, detection windows, carbon isotope ratios — plus animal toxicology showing cardiac oxidative injury and troponin I gene dysregulation in rats. The anabolic claim in humans is an extrapolation from receptor pharmacology and from the wider anabolic steroid literature.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'Friedel 2006 rat characterisation of 1-testosterone, the 5alpha-reduced metabolite',
+        phase: 'Preclinical, castrated male rats, Hershberger assay',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Levator ani, prostate and seminal vesicle weight against testosterone propionate at equimolar dose, with AR binding and transactivation in vitro',
+        endpointMet: true,
+        statisticalPValue:
+          'Equipotent with testosterone propionate on all three organ weights; significant increase in liver weight not seen with testosterone propionate',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Chiesa 2015 residue study in untreated young bulls',
+        phase: 'Observational residue study, 56 animals under official veterinary control',
+        sampleSize: 56,
+        primaryEndpoint:
+          'Presence of beta-boldenone sulphate and glucuronide conjugates in urine of animals that received no boldenone',
+        endpointMet: true,
+        statisticalPValue:
+          'Sulphate conjugate detected in 78% and glucuronide in 46% of farm samples; neither detected in samples taken after slaughter stress',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Piper 2010 GC/C/IRMS series of human doping control samples',
+        phase: 'Analytical case series, four years of routine samples',
+        sampleSize: 23,
+        primaryEndpoint:
+          'Whether the 13C/12C ratio of urinary boldenone or its main metabolite is consistent with exogenous administration',
+        endpointMet: true,
+        statisticalPValue:
+          '11 of 23 samples gave ratios inconsistent with an exogenous origin; two were from one athlete one month apart',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'The 5alpha-reduced metabolite 1-testosterone matched testosterone propionate on prostate, seminal vesicle and levator ani weight at equimolar dose in the rat, and raised liver weight where testosterone propionate did not',
+        'Beta-boldenone sulphate was present in 78% and the glucuronide in 46% of urine samples from 56 untreated young bulls held under official veterinary control',
+        '11 of 23 human doping control samples containing boldenone had carbon isotope ratios inconsistent with an exogenous source',
+        'Fewer than 20% of 1,190 doping products seized at the Swiss border contained the claimed substance in the claimed amount',
+      ],
+      unsupportedInferences: [
+        'That boldenone aromatises about half as much as testosterone in humans — a structural argument with no human oestradiol measurement supporting it',
+        'That a detected boldenone residue proves administration, which the untreated-bull and equine-metabolism data specifically contradict',
+        'That the veterinary licence implies a characterised human safety profile; the licensed species is the horse and the dossier behind it is a veterinary one',
+        'That an ampoule labelled boldenone undecylenate contains boldenone undecylenate, which in seizure analyses is the minority case',
+      ],
+      whatFailedInitially: [
+        'Beta-boldenone sulphate was proposed as the unambiguous biomarker of illicit treatment in cattle and did not survive testing against untreated animals, surviving only for samples collected at slaughter',
+        'Boldenone was never developed for human medicine and has no completed human trial of any phase',
+      ],
+      realWorldOutcome: [
+        'Boldenone is a Schedule III anabolic steroid in the United States, listed at 21 CFR 1308.13(f)(11) as 17beta-hydroxyandrost-1,4-diene-3-one',
+        'It is prohibited at all times in sport under WADA class S1.1 as an exogenous anabolic androgenic steroid, with carbon isotope ratio analysis used to adjudicate contested findings',
+        'Its administration to food-producing bovines has been banned in the European Union since 1981, and residue surveillance for it is a standing programme rather than a historical one',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intramuscular oil-based injection of boldenone undecylenate; no oral form of consequence',
+      description:
+        'A viscous oil solution given by deep intramuscular injection. The undecylenate ester makes the depot long-acting, which is the reason for its popularity and also the reason the detection window runs to months. Seizure analyses find these ampoules frequently misfilled, under-dosed or containing an entirely different steroid.',
+      safetyProfile:
+        'No human safety dataset exists. Documented animal findings include cardiac oxidative injury with increased NOX2 and NOX4 expression and dysregulated troponin I gene expression in rats. The class-level effects expected from any androgen receptor agonist — suppression of endogenous testosterone and gonadotropins by negative feedback, reduced HDL cholesterol, erythrocytosis — have not been quantified for boldenone specifically in humans. The liver-weight signal seen with its 5alpha-reduced metabolite in rats has no human counterpart measurement.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can a banned steroid turn up in an animal that never received it?',
+        a: 'Gut microbes convert plant sterols in feed into steroid skeletons, and boldenone is one of the products. It also arises as a minor metabolite of the animal own testosterone. Chiesa and colleagues sampled 56 young bulls that had been under official veterinary control for five months and found beta-boldenone sulphate in 78% of farm urine samples and the glucuronide in 46%. In horses, an in vitro hindgut simulation reproduced the phytosterol route directly. This is why residue control uses population thresholds and carbon isotope ratios rather than simple detection.',
+        auditNote:
+          'The same mechanism applies to humans, which is why 11 of 23 human doping samples with boldenone carried an endogenous carbon signature.',
+      },
+      {
+        q: 'What has boldenone been shown to do in people?',
+        a: 'Nothing has been measured. There is no published human pharmacokinetic study, no dose-ranging study, no efficacy trial and no safety cohort for boldenone. The entire human literature is analytical: how to detect it, how long it stays detectable, and how to tell administered drug from endogenous drug. Its anabolic reputation is an extrapolation from androgen receptor pharmacology, from the rat data on its 5alpha-reduced metabolite, and from the general anabolic steroid literature.',
+      },
+      {
+        q: 'Is it legal because vets can prescribe it?',
+        a: 'The veterinary licence covers horses. For humans, boldenone is a Schedule III controlled substance in the United States under 21 CFR 1308.13(f)(11), possession without a prescription is an offence, and no prescription for human use can lawfully be written because there is no approved human product. In the European Union its administration to food-producing cattle has been prohibited since 1981.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because there is no legal human market and therefore no list price to cite. This site prints acquisition costs from published sources. A grey-market asking price is not a published figure, it varies by seller and week, and printing one would amount to sourcing information.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Friedel A et al. 17beta-hydroxy-5alpha-androst-1-en-3-one (1-testosterone) is a potent androgen with anabolic properties. Toxicol Lett 2006;165:149-155',
+        identifier: '10.1016/j.toxlet.2006.03.001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chiesa L et al. Pseudoendogenous presence of beta-boldenone sulphate and glucuronide in untreated young bulls from the food chain. Food Addit Contam Part A 2015;32:825-832',
+        identifier: '10.1080/19440049.2015.1027965',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Piper T et al. Determination of 13C/12C ratios of urinary excreted boldenone and its main metabolite 5beta-androst-1-en-17beta-ol-3-one. Drug Test Anal 2010;2:217-224',
+        identifier: '10.1002/dta.124',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wong JKY et al. Evidence of boldenone, nandrolone, 5(10)-estrene-3beta-17alpha-diol and 4-estrene-3,17-dione as minor metabolites of testosterone in equine. Drug Test Anal 2017;9:1337-1348',
+        identifier: '10.1002/dta.2192',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Decloedt AI et al. In vitro simulation of the equine hindgut as a tool to study the influence of phytosterol consumption on the excretion of anabolic-androgenic steroids in horses. J Steroid Biochem Mol Biol 2015;152:180-192',
+        identifier: '10.1016/j.jsbmb.2015.06.001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Scarth JP et al. Detection of endogenous steroid abuse in cattle: results from population studies in the UK. Food Addit Contam Part A 2011;28:44-61',
+        identifier: '10.1080/19440049.2010.539628',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Weber C et al. Qualitative and semiquantitative analysis of doping products seized at the Swiss border. Subst Use Misuse 2017;52:742-753',
+        identifier: '10.1080/10826084.2016.1263665',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fabresse N et al. Analysis of pharmaceutical products and dietary supplements seized from the black market among bodybuilders. Forensic Sci Int 2021;322:110771',
+        identifier: '10.1016/j.forsciint.2021.110771',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Tousson E et al. Grape seed proanthocyanidin ameliorates cardiac toxicity induced by boldenone undecylenate through inhibition of NADPH oxidase and reduction in the expression of NOX2 and NOX4. Oxid Med Cell Longev 2018;2018:9434385',
+        identifier: '10.1155/2018/9434385',
+        kind: 'doi',
+      },
+      {
+        label:
+          'El-Shamarka MEA et al. In vivo assessment of inflammatory cytokines induced oxidative stress signalling, and troponin I gene dysregulation in cardiac tissue associated with chronic administration of boldenone and tramadol. Biomarkers 2023;28:401-408',
+        identifier: '10.1080/1354750X.2023.2193357',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 1308.13(f) — Schedule III anabolic steroids, entry (11) boldenone (17beta-hydroxyandrost-1,4-diene-3-one)',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-II/part-1308/section-1308.13',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 13308 — boldenone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/13308',
         kind: 'url',
       },
     ],

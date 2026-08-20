@@ -4957,4 +4957,790 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 13. Valdecoxib
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'valdecoxib',
+    name: 'Valdecoxib',
+    tradeName: 'Bextra',
+    sponsor: 'G.D. Searle / Pharmacia, then Pfizer (NDA 021341)',
+    targetGene: 'PTGS2',
+    targetProtein: 'Prostaglandin G/H synthase 2 (cyclooxygenase-2, COX-2)',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 2001,
+    indication:
+      'Osteoarthritis, adult rheumatoid arthritis and primary dysmenorrhoea. Withdrawn from the United States market in April 2005 and listed by the FDA among drug products withdrawn for reasons of safety or effectiveness (81 FR 69668).',
+    patientFriendlyIndication: 'An arthritis and period-pain tablet designed to spare the stomach',
+    anatomicalSite: 'Inflamed synovium and vascular endothelium; the skin is the second injury site',
+    conditionContext: {
+      conditionExplainer:
+        'Valdecoxib is the third coxib and the one that carried two separate liabilities. It shares the prostacyclin-thromboxane imbalance of the class with rofecoxib, and it adds something the class does not share: a sulfonamide group.',
+      whyItMatters:
+        'The sulfonamide is what makes this page different from the rofecoxib page. Stevens-Johnson syndrome and toxic epidermal necrolysis were reported at roughly 25 times the background rate and 8 to 9 times the rate for celecoxib, which is also a sulfonamide but a weaker signal, while non-sulfonamide rofecoxib was lower still.',
+      whoTakesThis:
+        'Nobody. Its intravenous prodrug parecoxib remains available in some countries outside the United States.',
+      clinicalGoals:
+        'Analgesia and anti-inflammatory effect with fewer gastrointestinal complications. It was withdrawn on two grounds at once: cardiovascular events and serious skin reactions.',
+    },
+    oneSentenceVerdict:
+      'A COX-2 inhibitor withdrawn in 2005 on two independent grounds — a 3.7-fold cardiovascular risk ratio after coronary bypass surgery, and Stevens-Johnson syndrome and toxic epidermal necrolysis reported at about 25 times the background rate.',
+    laymanHowItWorks:
+      'Valdecoxib blocks the enzyme that makes the prostaglandins of inflammation and pain, and leaves the enzyme that protects the stomach lining alone. That is the coxib idea and it works. Two problems came with it. The first is shared with the class: blocking the vessel-wall enzyme without touching the platelet one tilts blood towards clotting. The second is specific to this molecule: it contains a sulfonamide group, the chemical feature associated with the severe skin reactions that sulfa drugs cause.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 90,
+    substitutes: {
+      summary:
+        'Celecoxib is the surviving coxib and, though also a sulfonamide, had a Stevens-Johnson reporting rate 8 to 9 times lower than valdecoxib in the same FDA analysis. Naproxen carries the least cardiovascular signal among traditional anti-inflammatories. Neither is a sulfonamide-free equivalent of valdecoxib with the same potency profile.',
+      conventionalRx: [
+        {
+          name: 'Celecoxib',
+          class: 'COX-2 selective NSAID, sulfonamide',
+          howItCompares:
+            'Also a sulfonamide coxib, but with a Stevens-Johnson and toxic epidermal necrolysis reporting rate of 6 per million person-years in the first two years of marketing against valdecoxib\'s 49. It is the only coxib with a large prospective cardiovascular outcome trial.',
+          typicalCost: 'Generic; not priced here',
+          prosAndCons:
+            'Pros: PRECISION cardiovascular data, much lower serious-skin-reaction reporting rate. Cons: still a sulfonamide, still a COX-2 inhibitor with the class prostacyclin effect.',
+        },
+        {
+          name: 'Naproxen',
+          class: 'Non-selective NSAID',
+          howItCompares:
+            'Not a sulfonamide and not COX-2 selective. It has the smallest cardiovascular signal of the traditional NSAIDs and the full COX-1 gastrointestinal risk.',
+          typicalCost: 'Generic and over the counter; not priced here',
+          prosAndCons:
+            'Pros: no sulfonamide, smallest cardiovascular signal in its class. Cons: gastrointestinal ulceration and bleeding, which is the problem coxibs were built to solve.',
+        },
+        {
+          name: 'Meloxicam',
+          class: 'Oxicam NSAID with relative COX-2 preference',
+          howItCompares:
+            'The comparator in the FDA skin-reaction analysis, chosen because it reached the market at a similar time. It generated no Stevens-Johnson or toxic epidermal necrolysis reports at all in that dataset.',
+          typicalCost: 'Generic; not priced here',
+          prosAndCons:
+            'Pros: no serious-skin-reaction reports in the FDA comparison. Cons: COX-2 preference is relative rather than absolute, so gastrointestinal risk is reduced rather than removed.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(C(=NO1)C2=CC=CC=C2)C3=CC=C(C=C3)S(=O)(=O)N',
+      chemicalFormula: 'C16H14N2O3S',
+      molecularWeight: '314.4 g/mol',
+      targetReceptorAffinity:
+        'A COX-2 selective isoxazole. The benzenesulfonamide group occupies the COX-2 side pocket that COX-1 lacks, giving the selectivity — and it is the same sulfonamide moiety associated with severe cutaneous adverse reactions. Rofecoxib, which uses a methylsulfonyl group instead, produced far fewer such reports. Parecoxib is the injectable prodrug that hydrolyses to valdecoxib.',
+      structureSource: {
+        label: 'PubChem CID 119607 (valdecoxib) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/119607',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'val-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity confirmation of the isoxazole and the free sulfonamide',
+          description:
+            'Confirm the 4,5-diaryl isoxazole core and, specifically, the primary benzenesulfonamide. Distinguishing a free sulfonamide from the N-substituted sulfonamides and methylsulfones used in other coxibs is not a formality here — that distinction is the structural basis of the skin-reaction difference across the class.',
+          reagentsAndBuffer:
+            'Valdecoxib certified reference standard, proton and carbon-13 NMR in deuterated DMSO showing the exchangeable sulfonamide protons, infrared spectroscopy for the S=O stretch, LC-MS at m/z 315',
+        },
+        {
+          id: 'val-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Parecoxib hydrolysis and purity assay',
+          description:
+            'Where the injectable prodrug is in use, quantify parecoxib and its hydrolysis to valdecoxib. The prodrug is a propionyl amide of the sulfonamide nitrogen and converts enzymatically in the liver, so an assay must resolve both species and characterise the conversion rate.',
+          dependsOnStepId: 'val-w1',
+          reagentsAndBuffer:
+            'C18 column, acetonitrile with formic acid gradient, UV detection at 250 nm, LC-MS/MS confirmation, human liver microsomes or plasma for hydrolysis kinetics',
+        },
+        {
+          id: 'val-w3',
+          stepNumber: 3,
+          phase: 'Assay_Quantification',
+          name: 'COX-1 and COX-2 whole-blood selectivity assay',
+          description:
+            'Serum thromboxane B2 generation during whole-blood clotting as the COX-1 readout, and lipopolysaccharide-stimulated prostaglandin E2 in the same donor blood as the COX-2 readout, with the ratio of IC50 values reported as the selectivity index. Run valdecoxib alongside celecoxib and a non-selective comparator so the number means something.',
+          dependsOnStepId: 'val-w2',
+          reagentsAndBuffer:
+            'Fresh heparinised and native human whole blood, lipopolysaccharide from E. coli, aspirin in the stimulated arm, thromboxane B2 and prostaglandin E2 enzyme immunoassay kits',
+        },
+        {
+          id: 'val-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Reactive-metabolite and HLA-association work for the sulfonamide liability',
+          description:
+            'Screen for bioactivation of the arylsulfonamide to reactive species in human liver microsomes with glutathione trapping, and genotype affected-case cohorts for HLA class I associations. Severe cutaneous adverse reactions to sulfonamides are immune-mediated and HLA-restricted, so the mechanistic assay here is immunogenetic rather than purely chemical.',
+          dependsOnStepId: 'val-w3',
+          reagentsAndBuffer:
+            'Pooled human liver microsomes with NADPH regenerating system and reduced glutathione, LC-MS/MS neutral-loss scanning for adducts, high-resolution HLA class I typing in case and control cohorts',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'val-a1',
+        category: 'failed',
+        title: 'After coronary bypass surgery, cardiovascular events were 2.0% against 0.5%',
+        laymanSummary:
+          'In 1,671 patients recovering from heart bypass surgery, serious cardiovascular events were nearly four times more common on the drug than on placebo.',
+        technicalDetails:
+          'Randomised, double-blind trial with 10 days of treatment and 30 days of follow-up in 1,671 patients after coronary-artery bypass grafting, assigned to intravenous parecoxib for at least three days followed by oral valdecoxib through day 10, intravenous placebo followed by oral valdecoxib, or placebo for 10 days, all with access to standard opioids. The primary endpoint was the frequency of predefined adverse events including cardiovascular events, renal failure or dysfunction, gastroduodenal ulceration and wound-healing complications. Both active groups had a higher proportion of patients with at least one confirmed adverse event — 7.4% in each against 4.0% on placebo, risk ratio 1.9 (95% CI 1.1 to 3.2, p=0.02 for each comparison). Cardiovascular events specifically, comprising myocardial infarction, cardiac arrest, stroke and pulmonary embolism, occurred in 2.0% of the parecoxib-plus-valdecoxib group against 0.5% on placebo, risk ratio 3.7 (95% CI 1.0 to 13.5, p=0.03).',
+        evidenceSource: 'Nussmeier NA et al., N Engl J Med 2005;352:1081-1091',
+        doi: '10.1056/NEJMoa050330',
+        measuredMetric:
+          'Frequency of predefined adverse events and of cardiovascular events after CABG',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a2',
+        category: 'measured',
+        title: 'Stevens-Johnson syndrome reported at 49 cases per million person-years',
+        laymanSummary:
+          'The FDA compared four anti-inflammatory drugs. Valdecoxib produced severe skin reactions at about twenty-five times the background rate, eight to nine times celecoxib\'s rate, and meloxicam produced none.',
+        technicalDetails:
+          'The FDA reviewed all United States Adverse Event Reporting System cases of Stevens-Johnson syndrome and toxic epidermal necrolysis for celecoxib, rofecoxib, valdecoxib and meloxicam since first marketing. Up to the end of March 2004 there were 63 cases with valdecoxib, 43 with celecoxib, 17 with rofecoxib — the non-sulfonamide coxib — and none with meloxicam. Reporting rates over the first two years of marketing were 49 cases per million person-years for valdecoxib, 6 for celecoxib and 3 for rofecoxib, against a background incidence of 1.9 cases per million population per year taken from the literature. The valdecoxib rate is 8 to 9 times that of celecoxib and approximately 25 times background. The authors\' conclusion names the chemistry: a strong association between these reactions and the sulfonamide COX-2 inhibitors, particularly valdecoxib.',
+        evidenceSource: 'La Grenade L et al., Drug Saf 2005;28:917-924',
+        doi: '10.2165/00002018-200528100-00008',
+        measuredMetric:
+          'Reported cases of Stevens-Johnson syndrome and toxic epidermal necrolysis per million person-years of use',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a3',
+        category: 'conclusion_shift',
+        title: 'Two independent grounds, either of which would have been enough',
+        laymanSummary:
+          'Most withdrawn drugs have one problem. Valdecoxib had two unrelated ones: a class cardiovascular effect and a chemistry-specific skin reaction.',
+        technicalDetails:
+          'The cardiovascular signal arises from COX-2 selectivity itself — suppressed endothelial prostacyclin with platelet thromboxane intact — and is shared with rofecoxib. The severe cutaneous reactions arise from the benzenesulfonamide group and are not shared with rofecoxib, which uses a methylsulfonyl group and had a reporting rate of 3 per million person-years against valdecoxib\'s 49. Two mechanistically independent liabilities in one molecule is unusual, and it is why the withdrawal in April 2005 was less contested than rofecoxib\'s. Valdecoxib appears in the FDA\'s codified withdrawn-for-safety list at 81 FR 69668 as "all drug products containing valdecoxib".',
+        evidenceSource:
+          'Nussmeier NA et al., N Engl J Med 2005;352:1081-1091; La Grenade L et al., Drug Saf 2005;28:917-924; FDA final rule 81 FR 69668',
+        doi: '10.2165/00002018-200528100-00008',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'val-a4',
+        category: 'inferred',
+        title: 'A CABG population is the wrong denominator for the ordinary arthritis patient',
+        laymanSummary:
+          'The cardiovascular trial studied people who had just had heart surgery. That is a group at exceptional risk, and the numbers do not transfer directly to someone taking the drug for arthritis.',
+        technicalDetails:
+          'The Nussmeier trial enrolled patients in the 10 days after coronary-artery bypass grafting — a period of maximal thrombotic risk, in patients with established coronary disease, on a background of surgical inflammation. The 3.7 risk ratio has a 95% confidence interval running from 1.0 to 13.5, which is wide, and the absolute difference is 2.0% versus 0.5% over 30 days. Applying that directly to a 60-year-old taking valdecoxib for osteoarthritis overstates the risk to that person. What it does establish, unambiguously, is a contraindication after cardiac surgery, and — read alongside the rofecoxib data — that the class effect is real rather than idiosyncratic to one molecule.',
+        evidenceSource: 'Nussmeier NA et al., N Engl J Med 2005;352:1081-1091',
+        doi: '10.1056/NEJMoa050330',
+        inferredClaim:
+          'That a 3.7-fold cardiovascular risk ratio measured in the 30 days after coronary bypass grafting is the risk faced by an outpatient taking valdecoxib for arthritis',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'val-a5',
+        category: 'inferred',
+        title: 'Spontaneous reporting rates are not incidence, and the comparison is what carries the weight',
+        laymanSummary:
+          'The 49-per-million figure counts reports, not cases, and reporting is influenced by publicity. What makes it convincing is that all four drugs were counted the same way at the same time.',
+        technicalDetails:
+          'The FDA analysis uses spontaneous reports with drug-use data as a denominator, which yields a reporting rate rather than an incidence rate. Spontaneous reporting under-captures events by an unknown factor and is subject to stimulated reporting after publicity, so 49 cases per million person-years is a floor of unknown depth rather than a measurement of true incidence. The design compensates by comparing four drugs from the same database, over the same first-two-years-of-marketing window, with meloxicam deliberately chosen because it reached the market at a similar time. The internal comparison — 49 versus 6 versus 3 versus zero — is far more robust than any single number in it.',
+        evidenceSource: 'La Grenade L et al., Drug Saf 2005;28:917-924',
+        doi: '10.2165/00002018-200528100-00008',
+        inferredClaim:
+          'That 49 reported cases per million person-years is the incidence of Stevens-Johnson syndrome on valdecoxib',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'val-a6',
+        category: 'measured',
+        title: 'The non-sulfonamide coxib had the lowest skin-reaction rate of the three',
+        laymanSummary:
+          'Rofecoxib, which was withdrawn for heart risk, had the fewest severe skin reactions of the three coxibs — because it is the one without a sulfonamide group.',
+        technicalDetails:
+          'In the same FDA dataset, rofecoxib — explicitly identified as the non-sulfonamide coxib — accounted for 17 Stevens-Johnson syndrome or toxic epidermal necrolysis cases and a first-two-years reporting rate of 3 per million person-years, against celecoxib\'s 6 and valdecoxib\'s 49. This is a clean structure-activity observation running across three drugs with the same therapeutic target: the cardiovascular liability tracks the pharmacology and is shared, while the cutaneous liability tracks the sulfonamide substituent and is not. Two drugs in the same class can fail for entirely different chemical reasons, and this dataset shows both at once.',
+        evidenceSource: 'La Grenade L et al., Drug Saf 2005;28:917-924',
+        doi: '10.2165/00002018-200528100-00008',
+        measuredMetric:
+          'Serious cutaneous adverse reaction reporting rate by coxib, stratified by sulfonamide status',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oral tablet, or an injection of its prodrug',
+        laymanDesc:
+          'Taken as a tablet, or given as an injection of a related compound that the body converts into it.',
+        molecularDetail:
+          'Oral valdecoxib 10 and 20 mg. Parecoxib sodium is a water-soluble injectable prodrug, an N-propionyl amide of the sulfonamide, hydrolysed enzymatically in the liver to valdecoxib.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches inflamed joint tissue and vascular endothelium',
+        laymanDesc:
+          'It spreads into the inflamed joint where it relieves pain, and also into the lining of blood vessels.',
+        molecularDetail:
+          'Distributes into synovial tissue and vascular endothelium. COX-2 is inducible in inflamed synovium and constitutively expressed in endothelial cells, which is the anatomical basis of the split between benefit and harm.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The sulfonamide occupies the COX-2 side pocket',
+        laymanDesc:
+          'A sulfur-containing group fits into a small cavity that COX-2 has and COX-1 does not, which is what makes the drug selective — and is also the chemical group that sulfa allergies react to.',
+        molecularDetail:
+          'The benzenesulfonamide binds the hydrophilic side pocket created by the Val523-for-Ile523 substitution in COX-2. The same free arylsulfonamide is the moiety associated with severe cutaneous adverse reactions in the sulfonamide drug class.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Prostacyclin falls; separately, an immune reaction can start in the skin',
+        laymanDesc:
+          'Vessel walls stop making the substance that keeps platelets apart, tilting blood towards clotting. Independently, the sulfonamide can trigger an immune attack on the skin.',
+        molecularDetail:
+          'Suppressed endothelial COX-2-derived prostacyclin with platelet COX-1 thromboxane intact leaves unopposed prothrombotic tone. Severe cutaneous adverse reactions to arylsulfonamides are immune-mediated, HLA-restricted, and mechanistically unrelated to prostaglandin synthesis.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Pain relieved; cardiovascular events and skin failure raised',
+        laymanDesc:
+          'The analgesic effect was real. After heart surgery, cardiovascular events quadrupled. Severe skin reactions ran at about twenty-five times background.',
+        molecularDetail:
+          'Measured endpoints: at least one confirmed adverse event in 7.4% versus 4.0% after CABG (RR 1.9, 95% CI 1.1 to 3.2); cardiovascular events 2.0% versus 0.5% (RR 3.7, 95% CI 1.0 to 13.5); Stevens-Johnson syndrome and toxic epidermal necrolysis reported at 49 per million person-years against a background of 1.9 per million population per year.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Parecoxib/valdecoxib after CABG (Nussmeier et al.)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled safety trial',
+        sampleSize: 1671,
+        primaryEndpoint:
+          'Frequency of predefined adverse events — cardiovascular, renal, gastroduodenal ulceration and wound healing — over 10 days of treatment and 30 days of follow-up after coronary-artery bypass grafting',
+        endpointMet: false,
+        statisticalPValue:
+          'At least one confirmed adverse event 7.4% versus 4.0%, RR 1.9 (95% CI 1.1 to 3.2), P = 0.02; cardiovascular events 2.0% versus 0.5%, RR 3.7 (95% CI 1.0 to 13.5), P = 0.03',
+        unreportedAdverseSignals:
+          'The cardiovascular confidence interval runs from 1.0 to 13.5, so the point estimate is imprecise. The population is at exceptional thrombotic risk and does not represent the outpatient arthritis population the drug was licensed for.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'FDA AERS serious cutaneous reaction comparison (La Grenade et al.)',
+        phase: 'Spontaneous adverse event report analysis with drug-use denominators',
+        sampleSize: 123,
+        primaryEndpoint:
+          'Reporting rates of Stevens-Johnson syndrome and toxic epidermal necrolysis for celecoxib, rofecoxib, valdecoxib and meloxicam over the first two years of marketing',
+        endpointMet: true,
+        statisticalPValue:
+          'Valdecoxib 49, celecoxib 6, rofecoxib 3 cases per million person-years, meloxicam none; background 1.9 cases per million population per year',
+        unreportedAdverseSignals:
+          'Reporting rates are not incidence rates: spontaneous reporting under-captures events by an unknown factor and is affected by publicity. The four-drug internal comparison is what carries the conclusion.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'At least one confirmed adverse event in 7.4% versus 4.0% of 1,671 patients after coronary bypass grafting, risk ratio 1.9',
+        'Cardiovascular events in 2.0% versus 0.5%, risk ratio 3.7 (95% CI 1.0 to 13.5)',
+        '63 reported Stevens-Johnson syndrome or toxic epidermal necrolysis cases, a reporting rate of 49 per million person-years in the first two years of marketing',
+        'Rofecoxib, the non-sulfonamide coxib, reported at 3 per million person-years and meloxicam at zero over the same window',
+      ],
+      unsupportedInferences: [
+        'That a 3.7-fold cardiovascular risk ratio measured after cardiac surgery is the risk facing an outpatient taking the drug for arthritis',
+        'That 49 reported cases per million person-years is the true incidence of Stevens-Johnson syndrome rather than a floor set by reporting behaviour',
+      ],
+      whatFailedInitially: [
+        'The dedicated post-CABG safety trial found more cardiovascular events on active treatment than on placebo',
+        'Withdrawn from the United States market in April 2005 and codified in the FDA withdrawn-for-safety list at 81 FR 69668',
+      ],
+      realWorldOutcome: [
+        'Drugs@FDA records NDA 021341 (BEXTRA, G.D. Searle) as Discontinued',
+        'The coxib class survived in celecoxib, which was later tested prospectively for cardiovascular outcomes in PRECISION',
+        'The comparison across three coxibs separated a shared pharmacological liability from a molecule-specific chemical one, which is a template for reading class-effect questions rather than assuming them',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet (10 and 20 mg); intravenous parecoxib as a prodrug in some countries',
+      description:
+        'Once- or twice-daily oral tablet. Parecoxib sodium is a water-soluble injectable prodrug hydrolysed to valdecoxib in the liver, developed for perioperative use — which is how a coxib came to be tested in patients recovering from cardiac surgery in the first place.',
+      safetyProfile:
+        'Withdrawn in April 2005 on two grounds. Cardiovascular: at least one confirmed adverse event in 7.4% versus 4.0% and cardiovascular events in 2.0% versus 0.5% in the 30 days after coronary bypass grafting. Cutaneous: Stevens-Johnson syndrome and toxic epidermal necrolysis reported at 49 cases per million person-years, approximately 25 times the background rate and 8 to 9 times the celecoxib rate. The cutaneous risk is attributed to the sulfonamide group and is not a property of COX-2 inhibition.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was valdecoxib withdrawn for the same reason as rofecoxib?',
+        a: 'Partly, and the difference is the interesting half. Both share the class cardiovascular liability that comes from suppressing endothelial prostacyclin while leaving platelet thromboxane intact, and valdecoxib\'s trial after coronary bypass surgery found cardiovascular events in 2.0% against 0.5% on placebo. Valdecoxib also carried a second, unrelated problem: it is a sulfonamide, and Stevens-Johnson syndrome and toxic epidermal necrolysis were reported at 49 cases per million person-years, about 25 times the background rate. Rofecoxib, which is not a sulfonamide, reported at 3 per million person-years. One class effect, one chemistry effect, in the same molecule.',
+        auditNote:
+          'The FDA analysis deliberately included meloxicam, a non-coxib that reached the market at a similar time, as a reference. It generated no such reports at all.',
+      },
+      {
+        q: 'Does the cardiovascular result apply to ordinary arthritis patients?',
+        a: 'Not directly, and the trial design is the reason to be careful. Patients were enrolled in the 10 days after coronary-artery bypass grafting, which is a period of maximal thrombotic risk in people with established coronary disease and a large surgical inflammatory load. The risk ratio was 3.7 with a confidence interval from 1.0 to 13.5, and the absolute difference was 2.0% against 0.5% over 30 days. That establishes a firm contraindication after cardiac surgery and, alongside the rofecoxib data, confirms the class effect is real. It does not give the number an outpatient with osteoarthritis is facing, and no trial of that population was ever run for this drug.',
+      },
+      {
+        q: 'If I am allergic to sulfa drugs, does that mean celecoxib is dangerous too?',
+        a: 'The data say the risk differs by a large margin within the sulfonamide coxibs rather than being uniform. In the FDA comparison, valdecoxib reported at 49 cases per million person-years and celecoxib at 6 — an 8 to 9 fold difference between two drugs that both carry a sulfonamide group. Both are above the 1.9 per million background. That is a genuine signal for the class and a much smaller one for celecoxib specifically. It is a question for a prescriber who knows the individual history, and the numbers here are reporting rates rather than personal risks.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because the drug has had no market since April 2005, Drugs@FDA records NDA 021341 as Discontinued, and it is codified in the FDA withdrawn-for-safety list at 81 FR 69668. There is no current list price to cite and no verified per-dose manufacturing cost.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Nussmeier NA et al. Complications of the COX-2 inhibitors parecoxib and valdecoxib after cardiac surgery. N Engl J Med 2005;352:1081-1091',
+        identifier: '10.1056/NEJMoa050330',
+        kind: 'doi',
+      },
+      {
+        label:
+          'La Grenade L et al. Comparison of reporting of Stevens-Johnson syndrome and toxic epidermal necrolysis in association with selective COX-2 inhibitors. Drug Saf 2005;28:917-924',
+        identifier: '10.2165/00002018-200528100-00008',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Layton D, Marshall V, Boshier A, Friedmann P, Shakir SA. Serious skin reactions and selective COX-2 inhibitors: a case series from prescription-event monitoring in England. Drug Saf 2006;29:687-696',
+        identifier: '10.2165/00002018-200629080-00005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA final rule 81 FR 69668, 7 October 2016 — "Valdecoxib: All drug products containing valdecoxib"',
+        identifier:
+          'https://www.federalregister.gov/documents/2016/10/07/2016-24333/additions-and-modifications-to-the-list-of-drug-products-that-have-been-withdrawn-or-removed-from',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: BEXTRA (valdecoxib), NDA 021341, G.D. Searle — Discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021341',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 119607 — valdecoxib structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/119607',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 14. Pergolide
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'pergolide',
+    name: 'Pergolide',
+    tradeName: 'Permax',
+    sponsor: 'Eli Lilly, later Valeant Pharmaceuticals International (NDA 019385)',
+    targetGene: 'DRD2 and HTR2B',
+    targetProtein:
+      'Dopamine D1 and D2 receptors (therapeutic target); serotonin 5-HT2B receptor (toxicity target)',
+    modality: 'Small Molecule',
+    approvalStatus: 'Withdrawn from Market',
+    approvalYear: 1988,
+    indication:
+      'Adjunctive treatment of Parkinson\'s disease with levodopa and carbidopa. Withdrawn from the United States market in March 2007 and listed by the FDA among drug products withdrawn for reasons of safety or effectiveness (81 FR 69668). It remains in veterinary use for equine pituitary pars intermedia dysfunction.',
+    patientFriendlyIndication: 'A Parkinson\'s disease tablet taken alongside levodopa',
+    anatomicalSite:
+      'Striatal dopamine receptors; the toxicity site is the 5-HT2B receptor on cardiac valve fibroblasts',
+    conditionContext: {
+      conditionExplainer:
+        'Pergolide is an ergot derivative, and ergot alkaloids have been known to cause fibrotic valve disease since the 1960s. Its dopamine agonism treated Parkinson\'s disease; its off-target agonism at the 5-HT2B receptor thickened heart valves.',
+      whyItMatters:
+        'This is the second time on this page that 5-HT2B agonism destroyed a drug. Fenfluramine was withdrawn for it in 1997; pergolide was withdrawn for it in 2007, ten years later, in a different therapeutic class. The receptor does not care what the drug was for.',
+      whoTakesThis:
+        'No human patient in the United States. Pergolide remains widely used in veterinary medicine for equine pituitary pars intermedia dysfunction, where the risk calculus differs.',
+      clinicalGoals:
+        'Reduce off time and motor fluctuations in Parkinson\'s disease alongside levodopa. The non-ergot dopamine agonists achieve the same goal, and in the key echocardiographic study produced no valvular regurgitation at all.',
+    },
+    oneSentenceVerdict:
+      'An ergot-derived dopamine agonist withdrawn in 2007 after two independent studies published in the same journal issue found a 7.1-fold incidence-rate ratio for new valve regurgitation and clinically important regurgitation in 23.4% of treated patients against 5.6% of controls — while non-ergot agonists produced none.',
+    laymanHowItWorks:
+      'Pergolide stimulates the dopamine receptors that Parkinson\'s disease depletes, which improves movement. It is built on an ergot skeleton, and ergot compounds also stimulate a serotonin receptor found on heart valve tissue. Stimulating that receptor tells valve cells to grow and stiffen, so the valve thickens and stops closing properly. The dopamine agonists that are not built on an ergot skeleton do the first thing and not the second.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 92,
+    substitutes: {
+      summary:
+        'The non-ergot dopamine agonists are the direct replacements and were the internal control in both 2007 studies: pramipexole, ropinirole and rotigotine. In the Italian echocardiographic study, clinically important regurgitation occurred in 0% of patients on non-ergot agonists.',
+      conventionalRx: [
+        {
+          name: 'Pramipexole',
+          class: 'Non-ergot dopamine D2/D3 receptor agonist',
+          howItCompares:
+            'Same therapeutic role, no ergot skeleton, no 5-HT2B agonism. In the Zanettini echocardiographic study, patients on non-ergot agonists had 0% clinically important valve regurgitation against 23.4% on pergolide.',
+          typicalCost: 'Generic; not priced here',
+          prosAndCons:
+            'Pros: no valvular signal, effective in Parkinson\'s disease and restless legs syndrome. Cons: impulse control disorders, sudden onset of sleep, orthostatic hypotension.',
+        },
+        {
+          name: 'Ropinirole',
+          class: 'Non-ergot dopamine D2/D3 receptor agonist',
+          howItCompares:
+            'The other principal non-ergot alternative, with the same absence of ergot-related fibrotic risk.',
+          typicalCost: 'Generic; not priced here',
+          prosAndCons:
+            'Pros: no valvular or retroperitoneal fibrosis signal. Cons: nausea, somnolence, impulse control disorders.',
+        },
+        {
+          name: 'Rotigotine transdermal patch',
+          class: 'Non-ergot dopamine agonist',
+          howItCompares:
+            'Delivers continuous dopaminergic stimulation through the skin, avoiding both the ergot chemistry and the peaks and troughs of oral dosing.',
+          typicalCost: 'Not priced here',
+          prosAndCons:
+            'Pros: continuous delivery, no ergot liability. Cons: application-site reactions, and the same class impulse-control risk.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCCN1C[C@@H](C[C@H]2[C@H]1CC3=CNC4=CC=CC2=C34)CSC',
+      chemicalFormula: 'C19H26N2S',
+      molecularWeight: '314.5 g/mol',
+      targetReceptorAffinity:
+        'An ergoline with agonist activity at dopamine D1 and D2 receptors, which is the therapeutic mechanism. The ergoline scaffold also confers agonism at the serotonin 5-HT2B receptor, the same receptor through which fenfluramine\'s metabolite norfenfluramine causes valve fibrosis. Non-ergot dopamine agonists lack this activity entirely.',
+      structureSource: {
+        label: 'PubChem CID 47811 (pergolide) — canonical SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/47811',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'per-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and stereochemical confirmation of the ergoline',
+          description:
+            'Confirm the tetracyclic ergoline skeleton and all three stereocentres, plus the methylthiomethyl side chain and N-propyl substituent. Ergolines epimerise at C-8 under mild conditions, so a chiral or diastereomer-resolving method is required rather than a simple assay.',
+          reagentsAndBuffer:
+            'Pergolide mesylate certified reference standard, chiral or diastereomer-resolving HPLC, proton NMR in deuterated methanol, LC-MS with electrospray in positive mode at m/z 315',
+        },
+        {
+          id: 'per-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Purity, oxidation products and veterinary formulation testing',
+          description:
+            'Profile the sulfoxide and sulfone oxidation products of the thioether side chain and the indole oxidation products. Pergolide is compounded for equine use, so content uniformity and stability of compounded preparations is now the routine assay context.',
+          dependsOnStepId: 'per-w1',
+          reagentsAndBuffer:
+            'C18 column, acetonitrile with ammonium acetate gradient, photodiode array detection with the indole chromophore monitored, forced oxidative degradation samples, light-protected handling throughout',
+        },
+        {
+          id: 'per-w3',
+          stepNumber: 3,
+          phase: 'Assay_Quantification',
+          name: '5-HT2B functional assay — the valvulopathy screen',
+          description:
+            'Measure inositol phosphate accumulation or calcium mobilisation at recombinant human 5-HT2B, running pergolide and cabergoline alongside pramipexole and ropinirole. This assay is exactly what separates the withdrawn drugs from the surviving ones, and it is the same screen that the fenfluramine episode established.',
+          dependsOnStepId: 'per-w2',
+          reagentsAndBuffer:
+            'CHO or HEK293 cells stably expressing human HTR2B, IP-One HTRF accumulation assay or Fluo-4 calcium flux, serotonin as reference full agonist, non-ergot dopamine agonists as negative comparators',
+        },
+        {
+          id: 'per-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Dopamine receptor binding and functional selectivity',
+          description:
+            'Radioligand displacement at D1 and D2 receptors to establish therapeutic potency, then express the result as a ratio against the 5-HT2B potency from the previous step. A dopamine agonist whose 5-HT2B potency is comparable to its D2 potency has no usable therapeutic window against valve fibrosis.',
+          dependsOnStepId: 'per-w3',
+          reagentsAndBuffer:
+            'Membranes from cells expressing human DRD1 and DRD2, [3H]-SCH-23390 and [3H]-spiperone radioligands, Tris-HCl binding buffer with magnesium, glass-fibre filtration and scintillation counting',
+        },
+        {
+          id: 'per-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Valve interstitial cell proliferation assay',
+          description:
+            'Expose primary human cardiac valve interstitial cells to pergolide and measure mitogenesis, transforming growth factor beta signalling and glycosaminoglycan deposition, with a 5-HT2B antagonist rescue arm. This reproduces in a dish the leaflet stiffening that the echocardiographic mitral tenting area measures in patients.',
+          dependsOnStepId: 'per-w4',
+          reagentsAndBuffer:
+            'Primary human mitral or aortic valve interstitial cells, bromodeoxyuridine incorporation assay, TGF-beta and alpha-smooth muscle actin immunoblot, selective 5-HT2B antagonist as rescue control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'per-a1',
+        category: 'measured',
+        title: 'Incidence-rate ratio 7.1 for new valve regurgitation in 11,417 patients',
+        laymanSummary:
+          'In a UK primary care database covering over eleven thousand people on Parkinson\'s drugs, new valve leakage was seven times more likely in those currently taking pergolide.',
+        technicalDetails:
+          'Population-based cohort from the United Kingdom General Practice Research Database: 11,417 subjects aged 40 to 80 prescribed antiparkinsonian drugs between 1988 and 2005, with a nested case-control analysis matching each patient with newly diagnosed cardiac-valve regurgitation to up to 25 controls by age, sex and year of cohort entry. Of 31 case patients, 6 were currently exposed to pergolide, 6 to cabergoline, and 19 had not been exposed to any dopamine agonist in the previous year. The incidence-rate ratio was 7.1 for current pergolide use (95% CI 2.3 to 22.3) and 4.9 for cabergoline (95% CI 1.5 to 15.6). Current use of other dopamine agonists showed no increase.',
+        evidenceSource: 'Schade R et al., N Engl J Med 2007;356:29-38',
+        doi: '10.1056/NEJMoa062222',
+        measuredMetric:
+          'Incidence-rate ratio for newly diagnosed cardiac-valve regurgitation by dopamine agonist',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'per-a2',
+        category: 'measured',
+        title: 'Echocardiography: 23.4% clinically important regurgitation, against 0% on non-ergot agonists',
+        laymanSummary:
+          'Scanning 155 patients directly, about a quarter of those on pergolide had moderate or severe valve leakage. Among those on the non-ergot alternatives, not one did.',
+        technicalDetails:
+          'Echocardiographic prevalence study in 155 patients taking dopamine agonists for Parkinson\'s disease — pergolide 64, cabergoline 49, non-ergot agonists 42 — and 90 control subjects, with regurgitation graded by American Society of Echocardiography criteria. Clinically important regurgitation (moderate to severe, grade 3 to 4) in any valve occurred in 23.4% on pergolide and 28.6% on cabergoline, against 0% on non-ergot-derived agonists and 5.6% in controls. Relative risks in the pergolide group were 6.3 for mitral regurgitation (p=0.008), 4.2 for aortic (p=0.01) and 5.6 for tricuspid (p=0.16); in the cabergoline group 4.6 (p=0.09), 7.3 (p<0.001) and 5.5 (p=0.12).',
+        evidenceSource: 'Zanettini R et al., N Engl J Med 2007;356:39-46',
+        doi: '10.1056/NEJMoa054830',
+        measuredMetric:
+          'Prevalence of grade 3 to 4 valve regurgitation on echocardiography, by dopamine agonist class',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'per-a3',
+        category: 'measured',
+        title: 'A cumulative-dose relationship, and a quantitative index of leaflet stiffening',
+        laymanSummary:
+          'Patients with the worst valve leakage had taken more of the drug in total, and a direct measurement of how stiff the valve leaflets were tracked the severity.',
+        technicalDetails:
+          'Zanettini and colleagues measured mitral-valve tenting area as a quantitative index of leaflet stiffening and apical displacement of leaflet coaptation. Mean tenting area was significantly greater in ergot-treated patients and showed a linear relationship with the severity of mitral regurgitation. Separately, ergot-treated patients with grade 3 to 4 regurgitation of any valve had received a significantly higher mean cumulative dose of pergolide or cabergoline than those with lower grades. A dose-response relationship plus a continuous structural measurement that tracks the graded outcome is a substantially stronger causal case than the regurgitation grades alone.',
+        evidenceSource: 'Zanettini R et al., N Engl J Med 2007;356:39-46',
+        doi: '10.1056/NEJMoa054830',
+        measuredMetric:
+          'Mitral-valve tenting area against regurgitation severity, and cumulative dose against regurgitation grade',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'per-a4',
+        category: 'conclusion_shift',
+        title: 'Two independent designs, same journal issue, withdrawal within months',
+        laymanSummary:
+          'A database study and a direct scanning study, done by different groups in different countries, were published together in January 2007. The drug was withdrawn in March.',
+        technicalDetails:
+          'The Schade nested case-control study drew on 11,417 UK primary care records and measured clinically diagnosed regurgitation; the Zanettini study scanned 155 Italian patients and 90 controls and measured echocardiographic grade and a structural index. The two designs have almost non-overlapping weaknesses — the first has a real denominator and depends on clinical diagnosis, the second detects subclinical disease and has a small sample — and they agreed. Both appeared in the New England Journal of Medicine on 4 January 2007. Pergolide was withdrawn from the United States market in March 2007 and appears in the FDA\'s codified withdrawn-for-safety list at 81 FR 69668 as "all drug products containing pergolide mesylate".',
+        evidenceSource:
+          'Schade R et al., N Engl J Med 2007;356:29-38; Zanettini R et al., N Engl J Med 2007;356:39-46; FDA final rule 81 FR 69668',
+        doi: '10.1056/NEJMoa062222',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'per-a5',
+        category: 'conclusion_shift',
+        title: 'The same receptor that ended fenfluramine, ten years later, in a different class',
+        laymanSummary:
+          'Fenfluramine was withdrawn in 1997 for valve damage caused by a specific serotonin receptor. Pergolide was withdrawn in 2007 for valve damage caused by the same receptor.',
+        technicalDetails:
+          'Fenfluramine\'s valvulopathy was traced to 5-HT2B agonism by its metabolite norfenfluramine, and the lesion was histopathologically identical to carcinoid and ergotamine valve disease. Pergolide is an ergoline and carries 5-HT2B agonism as a property of that scaffold. The non-ergot dopamine agonists do not, and produced 0% clinically important regurgitation in the echocardiographic study. So the pattern that was established for one indication in 1997 recurred in an entirely different indication a decade later, in a drug that had been marketed since 1988. The 5-HT2B counter-screen that the fenfluramine episode created is now applied to any candidate with serotonergic or ergoline chemistry, and it exists precisely because this failure repeats across classes.',
+        evidenceSource:
+          'Zanettini R et al., N Engl J Med 2007;356:39-46; Connolly HM et al., N Engl J Med 1997;337:581-588',
+        doi: '10.1056/NEJMoa054830',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'per-a6',
+        category: 'inferred',
+        title: 'Fibrotic risk was assumed to belong to ergots generally, and clinically it does not divide that cleanly',
+        laymanSummary:
+          'Both ergot-derived agonists caused valve damage, but not identically — pergolide hit the mitral valve hardest and cabergoline the aortic. Grouping them as one risk loses information a patient might need.',
+        technicalDetails:
+          'The two ergot agonists differed by valve in the echocardiographic study. Pergolide relative risks were 6.3 for mitral (p=0.008), 4.2 for aortic (p=0.01) and 5.6 for tricuspid (p=0.16); cabergoline were 4.6 for mitral (p=0.09), 7.3 for aortic (p<0.001) and 5.5 for tricuspid (p=0.12). Only some of these reach significance, and the tricuspid estimates in both groups do not, on 64 and 49 patients respectively. Reporting "ergot agonists cause valve disease" is correct as a class statement and flattens a pattern in which the significant findings differ by drug and by valve, on samples small enough that the non-significant estimates are uninformative rather than negative.',
+        evidenceSource: 'Zanettini R et al., N Engl J Med 2007;356:39-46',
+        doi: '10.1056/NEJMoa054830',
+        inferredClaim:
+          'That the ergot dopamine agonists carry an identical, interchangeable valvular risk profile',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'per-a7',
+        category: 'measured',
+        title: 'It is still in use — in horses',
+        laymanSummary:
+          'Pergolide remains a standard veterinary treatment for a pituitary disorder in horses, where the same dopamine agonism is what is wanted and the risk calculus is different.',
+        technicalDetails:
+          'Pergolide is used in equine medicine for pituitary pars intermedia dysfunction, where D2 agonism suppresses the pars intermedia melanotrope hyperactivity that drives the condition. The withdrawal recorded at 81 FR 69668 applies to human drug products. This is a straightforward illustration of the point the whole file makes: a withdrawal is a judgement about a specific benefit-risk trade in a specific population, not a statement that a molecule is inherently unfit. Change the species, the alternatives available and the life expectancy of the patient, and the arithmetic changes with them.',
+        evidenceSource:
+          'FDA final rule 81 FR 69668, 7 October 2016 — human drug products containing pergolide mesylate',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oral tablet, titrated slowly upward',
+        laymanDesc:
+          'Taken by mouth several times a day, with the dose built up gradually alongside levodopa.',
+        molecularDetail:
+          'Oral tablets titrated over weeks as an adjunct to levodopa and carbidopa. Extensively metabolised, with a plasma half-life of roughly 27 hours.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crosses into the brain and reaches the striatum',
+        laymanDesc:
+          'It enters brain tissue and reaches the region whose dopamine-producing cells are dying in Parkinson\'s disease.',
+        molecularDetail:
+          'Lipophilic ergoline with good central nervous system penetration, reaching postsynaptic dopamine receptors in the striatum. It also circulates to cardiac valve tissue, which has no barrier equivalent.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Agonist at dopamine D1 and D2 — and at 5-HT2B',
+        laymanDesc:
+          'It switches on the dopamine receptors that improve movement. The ergot skeleton also switches on a serotonin receptor found on heart valve cells.',
+        molecularDetail:
+          'Direct agonism at dopamine D1 and D2 receptors substitutes for lost endogenous dopaminergic tone. The ergoline scaffold confers agonism at 5-HT2B, a Gq-coupled receptor expressed on cardiac valve interstitial cells and largely absent from adult myocardium.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Motor symptoms improve; valve leaflets thicken and stiffen',
+        laymanDesc:
+          'Movement gets better. Meanwhile, valve tissue is being told to grow, so leaflets thicken, stiffen and stop meeting properly, and blood leaks backwards.',
+        molecularDetail:
+          'Striatal dopamine receptor stimulation reduces off time and motor fluctuation. At the valve, 5-HT2B-driven mitogenesis and TGF-beta signalling in interstitial cells cause plaque-like leaflet thickening and apical displacement of coaptation, measurable as increased mitral tenting area with a linear relationship to regurgitation severity.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Parkinson symptoms controlled; a quarter of patients develop significant valve leak',
+        laymanDesc:
+          'The drug worked for Parkinson\'s disease. On echocardiography, 23.4% of patients had moderate or severe valve leakage against 5.6% of controls and none on the non-ergot alternatives.',
+        molecularDetail:
+          'Measured endpoints: clinically important regurgitation in 23.4% on pergolide versus 5.6% of controls and 0% on non-ergot agonists; incidence-rate ratio 7.1 (95% CI 2.3 to 22.3) for newly diagnosed regurgitation in an 11,417-patient cohort.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'UK General Practice Research Database nested case-control (Schade et al.)',
+        phase: 'Population-based cohort with nested case-control analysis',
+        sampleSize: 11417,
+        primaryEndpoint:
+          'Incidence-rate ratio for newly diagnosed cardiac-valve regurgitation with current use of individual dopamine agonists, 1988 to 2005',
+        endpointMet: true,
+        statisticalPValue:
+          'Pergolide incidence-rate ratio 7.1 (95% CI 2.3 to 22.3); cabergoline 4.9 (1.5 to 15.6); no increase with other dopamine agonists',
+        unreportedAdverseSignals:
+          'Only 31 case patients were identified across the whole cohort, so the confidence intervals are wide and the analysis detects clinically diagnosed regurgitation rather than subclinical disease.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Echocardiographic prevalence study (Zanettini et al.)',
+        phase: 'Cross-sectional echocardiographic prevalence study with controls',
+        sampleSize: 245,
+        primaryEndpoint:
+          'Prevalence of grade 3 to 4 valve regurgitation on echocardiography in patients on pergolide, cabergoline or non-ergot agonists versus controls',
+        endpointMet: true,
+        statisticalPValue:
+          '23.4% on pergolide and 28.6% on cabergoline versus 0% on non-ergot agonists and 5.6% in controls; mitral relative risk 6.3, P = 0.008; aortic 4.2, P = 0.01',
+        unreportedAdverseSignals:
+          'Tricuspid estimates did not reach significance in either ergot group (P = 0.16 and P = 0.12) on 64 and 49 patients, so those figures are uninformative rather than negative.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Incidence-rate ratio 7.1 (95% CI 2.3 to 22.3) for newly diagnosed valve regurgitation with current pergolide use in an 11,417-patient cohort',
+        'Clinically important regurgitation on echocardiography in 23.4% on pergolide, 28.6% on cabergoline, 0% on non-ergot agonists and 5.6% of controls',
+        'Mitral relative risk 6.3 (P = 0.008) and aortic 4.2 (P = 0.01) in the pergolide group',
+        'Mitral tenting area greater in ergot-treated patients with a linear relationship to regurgitation severity, and higher cumulative dose in those with grade 3 to 4 disease',
+      ],
+      unsupportedInferences: [
+        'That the two ergot dopamine agonists carry interchangeable valvular risk — the significant findings differ by drug and by valve',
+        'That non-significant tricuspid estimates on 64 and 49 patients constitute evidence of no tricuspid effect',
+      ],
+      whatFailedInitially: [
+        'Marketed from 1988 and withdrawn in March 2007, nineteen years later, for a mechanism the ergot literature had described since the 1960s',
+        'Codified in the FDA withdrawn-for-safety list at 81 FR 69668 as "all drug products containing pergolide mesylate"',
+      ],
+      realWorldOutcome: [
+        'Non-ergot dopamine agonists — pramipexole, ropinirole, rotigotine — took the indication and carry no valvular signal',
+        'Cabergoline survived at the much lower doses used in hyperprolactinaemia, where cumulative exposure is a fraction of the Parkinson\'s dose, with echocardiographic monitoring recommended',
+        'Pergolide remains in veterinary use for equine pituitary pars intermedia dysfunction',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, three times daily, titrated over weeks',
+      description:
+        'Oral ergoline given as an adjunct to levodopa and carbidopa, titrated slowly from a low starting dose to limit nausea and orthostatic hypotension. Plasma half-life around 27 hours with extensive hepatic metabolism.',
+      safetyProfile:
+        'Withdrawn from the United States market in March 2007 for cardiac valvulopathy. The measured harms are an incidence-rate ratio of 7.1 for newly diagnosed valve regurgitation and clinically important regurgitation in 23.4% of treated patients on echocardiography, both against a background where non-ergot dopamine agonists produced none. Risk increases with cumulative dose. Ergolines also carry retroperitoneal, pleural and pericardial fibrosis risk, and the class-wide dopamine agonist effects — impulse control disorders, sudden onset of sleep, orthostatic hypotension, hallucinations — apply as well.',
+    },
+    commonQuestions: [
+      {
+        q: 'How did a drug marketed since 1988 take nineteen years to be withdrawn?',
+        a: 'Because the harm is silent until it is severe. Valve regurgitation develops slowly, produces no symptoms for years, and requires an echocardiogram to detect — and echocardiograms are not routinely performed on Parkinson\'s patients. The clinically diagnosed cases were few enough that the UK cohort of 11,417 patients yielded only 31 in total. What broke the case open was scanning patients who had no cardiac complaint, and finding that 23.4% of those on pergolide had moderate to severe regurgitation against 5.6% of controls. Once someone looked with the right instrument, the answer took one cross-sectional study.',
+        auditNote:
+          'The two 2007 papers appeared in the same journal issue with different designs in different countries. That agreement is what made the withdrawal quick once the evidence existed.',
+      },
+      {
+        q: 'Does this apply to all dopamine agonists?',
+        a: 'No, and the studies were designed to answer exactly that. Both included non-ergot dopamine agonists as an internal comparison group. In the UK cohort, current use of dopamine agonists other than pergolide and cabergoline showed no increase in valve regurgitation. In the echocardiographic study, clinically important regurgitation occurred in 0% of the 42 patients on non-ergot agonists, against 23.4% on pergolide. The liability tracks the ergoline scaffold and its 5-HT2B agonism, not dopamine agonism. Pramipexole, ropinirole and rotigotine remain in wide use.',
+      },
+      {
+        q: 'Why is cabergoline still available if it was implicated too?',
+        a: 'Because dose and duration differ enormously between its indications. In Parkinson\'s disease, cabergoline was given daily at doses in the milligram range for years, and the echocardiographic study found 28.6% with clinically important regurgitation and a significant relationship between cumulative dose and severity. In hyperprolactinaemia it is given at a small fraction of that, often weekly, so cumulative exposure is far lower. Cabergoline remains licensed for hyperprolactinaemia with echocardiographic monitoring recommended, and is not used for Parkinson\'s disease in most countries. The withdrawal decision was about a dose regime, not the molecule alone.',
+      },
+      {
+        q: 'Why does this page not show a price?',
+        a: 'Because pergolide has had no human market in the United States since March 2007 and is codified in the FDA withdrawn-for-safety list at 81 FR 69668. Veterinary preparations are priced, but that is a different product for a different species and not a figure this page would present as a human drug price.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Schade R, Andersohn F, Suissa S, Haverkamp W, Garbe E. Dopamine agonists and the risk of cardiac-valve regurgitation. N Engl J Med 2007;356:29-38',
+        identifier: '10.1056/NEJMoa062222',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Zanettini R, Antonini A, Gatto G, Gentile R, Tesei S, Pezzoli G. Valvular heart disease and the use of dopamine agonists for Parkinson\'s disease. N Engl J Med 2007;356:39-46',
+        identifier: '10.1056/NEJMoa054830',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Connolly HM et al. Valvular heart disease associated with fenfluramine-phentermine. N Engl J Med 1997;337:581-588',
+        identifier: '10.1056/NEJM199708283370901',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA final rule 81 FR 69668, 7 October 2016 — "Pergolide mesylate: All drug products containing pergolide mesylate"',
+        identifier:
+          'https://www.federalregister.gov/documents/2016/10/07/2016-24333/additions-and-modifications-to-the-list-of-drug-products-that-have-been-withdrawn-or-removed-from',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: PERMAX (pergolide mesylate), NDA 019385, Valeant — Discontinued',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019385',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 47811 — pergolide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/47811',
+        kind: 'url',
+      },
+    ],
+  },
 ]

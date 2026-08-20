@@ -4080,7 +4080,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
           name: 'Heterologous 5-HT2A and MAO-A preparations',
           description:
             'Human HTR2A expressed in a cell line for receptor work, and recombinant human monoamine oxidase A for the metabolic work. Both halves are needed, because DMT\'s defining pharmacological property is the interaction between its receptor agonism and its rate of enzymatic destruction.',
-          dependsOnStepId: 'dmt-w3',
+          dependsOnStepId: 'dmt-w2',
           reagentsAndBuffer:
             'HEK293 or CHO cells with human HTR2A, recombinant human MAO-A and MAO-B preparations, clorgyline and selegiline as isoform-selective reference inhibitors',
         },
@@ -4358,6 +4358,751 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         label:
           'PubChem CID 5280953 — harmine, one of the beta-carboline MAO-A inhibitors that make ayahuasca orally active',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280953',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 12. Mescaline
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'mescaline',
+    name: 'Mescaline',
+    tradeName:
+      'No marketed product. The principal alkaloid of peyote (Lophophora williamsii) and San Pedro (Trichocereus / Echinopsis species)',
+    sponsor: 'None. No sponsor holds an IND or an approval for mescaline',
+    targetGene: 'HTR2A',
+    targetProtein: 'Serotonin 5-HT2A receptor, with activity at 5-HT2C and 5-HT1A',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication and no completed controlled clinical trial. Schedule I in the United States, with a standing regulatory exemption at 21 CFR 1307.31 for the non-drug use of peyote in bona fide religious ceremonies of the Native American Church',
+    patientFriendlyIndication:
+      'Nothing. Mescaline is the only classic psychedelic in this group with no modern randomised trial at all',
+    anatomicalSite: 'Cortical 5-HT2A receptors',
+    conditionContext: {
+      conditionExplainer:
+        'Mescaline is the oldest documented psychedelic in continuous human use and the least studied of the classic four in modern clinical terms. It is a phenethylamine rather than a tryptamine — structurally closer to amphetamine and to the 2C series than to LSD or psilocybin — and it reaches the same receptor by a different structural route.',
+      whyItMatters:
+        'The evidence base is survey data and 1950s literature. That is a real gap and it is worth stating plainly rather than filling with the psilocybin data by analogy, because the compounds differ in potency by three orders of magnitude and in duration by a factor of two.',
+      whoTakesThis:
+        'Members of the Native American Church, under a federal regulatory exemption for ceremonial peyote. Otherwise, people using peyote or San Pedro cactus or synthetic mescaline outside any medical or legal framework.',
+      clinicalGoals:
+        'None defined, because no controlled clinical trial of mescaline for any indication has been completed.',
+    },
+    oneSentenceVerdict:
+      'The classic psychedelic with the longest documented human use and the thinnest modern evidence base: no completed randomised trial, a survey literature of 452 respondents, and a federal exemption that protects the cactus rather than the molecule.',
+    laymanHowItWorks:
+      'Mescaline reaches the same serotonin receptor as LSD and psilocybin, but it belongs to a different chemical family — it is built on the same skeleton as amphetamine, with three methoxy groups added to the ring. Those groups are what convert a stimulant scaffold into a psychedelic one. It is roughly a thousand times weaker than LSD by weight, so the amount needed is measured in hundreds of milligrams rather than micrograms, and the experience runs ten to twelve hours.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 38,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'COC1=CC(=CC(=C1OC)OC)CCN',
+      chemicalFormula: 'C11H17NO3',
+      molecularWeight:
+        '211.26 g/mol (free base). Peyote and San Pedro contain mescaline together with a range of minor phenethylamine and tetrahydroisoquinoline alkaloids; the structure shown is the marker constituent, not the cactus',
+      targetReceptorAffinity:
+        'Agonist at 5-HT2A with additional 5-HT2C and 5-HT1A activity. Its affinity at 5-HT2A is roughly three orders of magnitude lower than LSD\'s, which is the direct explanation for the difference in active dose. It is a 3,4,5-trimethoxy-substituted phenethylamine, the parent structure of the 2C series and of DOM and DOI.',
+      structureSource: {
+        label: 'PubChem CID 4076 (mescaline) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4076',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mes-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Alkaloid profiling of cactus material',
+          description:
+            'Mescaline content in Lophophora williamsii and Trichocereus species varies widely with species, age, growing conditions and which part of the plant was taken, and the material contains a range of minor alkaloids alongside it. Quantifying mescaline in dried plant material against a certified standard is the only way to convert a botanical description into a pharmacological quantity.',
+          reagentsAndBuffer:
+            'Mescaline hydrochloride certified reference standard, mescaline-d9 internal standard, acidified methanol extraction with sonication, C18 column with formic acid/acetonitrile gradient, diode-array detection at 210 and 280 nm',
+        },
+        {
+          id: 'mes-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Separation from the substituted-phenethylamine family',
+          description:
+            'Mescaline sits in a family of ring-substituted phenethylamines that includes the 2C series, the DO series and the NBOMes, and several share fragment ions. Because those compounds differ from mescaline in active dose by two to three orders of magnitude, distinguishing them is not a formality — a mescaline identification on a phenethylamine-positive sample must be made against authenticated standards.',
+          dependsOnStepId: 'mes-w1',
+          reagentsAndBuffer:
+            'Mescaline, 2C-B, 2C-I, DOM and 25I-NBOMe reference standards, GC-MS with retention-index confirmation, LC-MS/MS with compound-specific MRM transitions',
+        },
+        {
+          id: 'mes-w3',
+          stepNumber: 3,
+          phase: 'Assay_Quantification',
+          name: 'Plasma mescaline over a twelve-hour window',
+          description:
+            'The duration is the analytical constraint here, in the opposite direction from DMT: mescaline produces effects for ten to twelve hours, so a pharmacokinetic study needs sampling across a full working day and beyond, and elimination is substantially renal with unchanged drug appearing in urine.',
+          dependsOnStepId: 'mes-w2',
+          reagentsAndBuffer:
+            'Mescaline-d9 internal standard, sampling across 12 to 24 hours, solid-phase extraction, UHPLC-MS/MS, paired urine collection for unchanged drug and the 3,4,5-trimethoxyphenylacetic acid metabolite',
+        },
+        {
+          id: 'mes-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Heterologous 5-HT2A expression',
+          description:
+            'Human HTR2A expressed in a cell line lacking the native receptor, so that mescaline\'s affinity can be measured directly rather than inferred from its behavioural potency.',
+          dependsOnStepId: 'mes-w2',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells with human HTR2A, lipid transfection reagent, DMEM with 10% fetal bovine serum and selection antibiotic',
+        },
+        {
+          id: 'mes-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Comparative binding against LSD and psilocin in one system',
+          description:
+            'Run mescaline, LSD and psilocin side by side in the same competition-binding and functional assays. The three-order-of-magnitude affinity gap this reveals is the entire explanation for why active doses differ from micrograms to hundreds of milligrams, and it is the number that makes cross-compound dose comparison possible at all.',
+          dependsOnStepId: 'mes-w4',
+          reagentsAndBuffer:
+            '[3H]-ketanserin as 5-HT2A radioligand, LSD and psilocin as comparator ligands, Tris-HCl buffer with ascorbate, IP-One HTRF or calcium mobilisation for functional efficacy',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mes-a1',
+        category: 'failed',
+        title: 'No completed randomised controlled trial of mescaline exists',
+        laymanSummary:
+          'LSD, psilocybin and MDMA all have modern randomised trials. Mescaline has none. The evidence is 1950s literature and two online surveys.',
+        technicalDetails:
+          'Of the four classic psychedelics, mescaline is the only one with no completed modern randomised controlled trial for any clinical indication. The mid-twentieth-century literature is substantial but predates modern trial standards, randomisation, blinded outcome assessment and adverse-event reporting. The contemporary evidence consists of retrospective self-report surveys. This absence has a mundane explanation — mescaline\'s ten-to-twelve-hour duration, its lack of a commercial sponsor, its low potency relative to the compounds attracting investment, and the ethical and supply constraints around peyote — and no scientific one. What it means for a reader is that this page contains no efficacy claim, because there is no efficacy measurement to report.',
+        evidenceSource:
+          'Cassels BK, Sáez-Briones P. Dark Classics in Chemical Neuroscience: Mescaline. ACS Chem Neurosci 2018;9:2448-2458',
+        doi: '10.1021/acschemneuro.8b00215',
+        measuredMetric:
+          'Number of completed randomised controlled trials of mescaline for a clinical indication: zero',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mes-a2',
+        category: 'inferred',
+        title: '452 people answered a survey; that is the modern therapeutic literature',
+        laymanSummary:
+          'Two studies of the same 452-person online survey found most respondents said their depression or anxiety improved. Everyone in it had chosen to take mescaline and chose to answer.',
+        technicalDetails:
+          'An anonymous online questionnaire of 452 adults reporting naturalistic mescaline use asked about self-reported mental health benefits. Among respondents reporting histories of depression, anxiety, PTSD, alcohol use disorder or drug use disorder, 68 to 86% reported subjective improvement following their most memorable mescaline experience. Those reporting improvement rated acute mystical-type, psychological-insight and ego-dissolution effects significantly higher than those who did not, with Cohen\'s d from 0.7 to 1.5. Between 35 and 50% rated the experience among the five most spiritually significant of their lives. A companion analysis of the same survey found most respondents used mescaline once a year or less, 74% for spiritual exploration or connection with nature, with 9% reporting craving, 1% legal problems, 1% psychological problems and none seeking medical attention. Every one of these numbers is retrospective self-report from a self-selected sample of people who chose to use the drug and chose to answer questions about it, with no control group and no verification of what was taken. The authors of both papers say so.',
+        evidenceSource:
+          'Agin-Liebes G et al., ACS Pharmacol Transl Sci 2021;4:543-552; Uthaug MV et al., J Psychopharmacol 2022;36:309-320',
+        doi: '10.1021/acsptsci.1c00018',
+        inferredClaim:
+          'That self-reported improvement in a self-selected online sample estimates a treatment effect — it estimates what people who liked the experience say about it afterwards',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mes-a3',
+        category: 'conclusion_shift',
+        title: 'The exemption protects a ceremony, not a molecule',
+        laymanSummary:
+          'Federal regulation exempts ceremonial peyote use by the Native American Church from Schedule I. Mescaline itself, and San Pedro cactus, and synthetic mescaline, are not covered.',
+        technicalDetails:
+          '21 CFR 1307.31 states that the listing of peyote as a Schedule I controlled substance does not apply to the non-drug use of peyote in bona fide religious ceremonies of the Native American Church, and that members so using peyote are exempt from registration; anyone manufacturing or distributing peyote to the Church must register annually and comply with all other requirements. The exemption is written around a plant, a religious body and a ceremonial context. It does not cover isolated mescaline, other mescaline-containing cacti, or use outside that context. This is the same structural pattern as the DMT exemption upheld in Gonzales v. O Centro Espírita: an exception to enforcement granted on religious-freedom grounds, with the scheduling of the substance left entirely intact.',
+        evidenceSource: '21 CFR 1307.31, Native American Church, current eCFR text',
+        measuredMetric: 'Scope of the federal regulatory exemption for peyote',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mes-a4',
+        category: 'measured',
+        title: 'Three orders of magnitude weaker than LSD, and that is a receptor fact',
+        laymanSummary:
+          'An active mescaline dose is measured in hundreds of milligrams; an active LSD dose in tens of micrograms. The difference comes straight from how tightly each binds the receptor.',
+        technicalDetails:
+          'Mescaline is a 3,4,5-trimethoxyphenethylamine — the parent compound of the substituted-phenethylamine psychedelics including the 2C and DO series. Its affinity at 5-HT2A is roughly a thousand-fold lower than LSD\'s, which accounts directly for the difference in active dose without invoking any difference in mechanism. Duration is 10 to 12 hours, comparable to LSD and roughly double psilocybin. The practical consequence is that mescaline is not a plausible target for the microdosing and short-session formats being commercialised for other psychedelics, and that potency comparisons between psychedelics are meaningful only when normalised to receptor occupancy rather than to milligrams.',
+        evidenceSource: 'Cassels BK, Sáez-Briones P. ACS Chem Neurosci 2018;9:2448-2458',
+        doi: '10.1021/acschemneuro.8b00215',
+        measuredMetric: '5-HT2A receptor affinity of mescaline relative to LSD',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mes-a5',
+        category: 'inferred',
+        title: 'Peyote is a slow-growing wild plant, and demand is a conservation question',
+        laymanSummary:
+          'Peyote takes many years to reach a harvestable size and does not survive careless harvesting. Rising interest in mescaline is a supply pressure on a wild population that already supplies a religious community.',
+        technicalDetails:
+          'Lophophora williamsii is a slow-growing cactus with a limited natural range in south Texas and northern Mexico; individual plants take years to reach maturity, and harvesting technique determines whether the root survives to regrow. The plant is the sacrament of the Native American Church, whose supply is legally protected and practically finite. San Pedro and related Trichocereus species grow far faster and are widely cultivated, and synthetic mescaline is chemically straightforward, so neither the ceremonial supply nor the wild population is a necessary source for research or for recreational demand. This is a resource claim rather than a pharmacological one, and it is on the page because a drug reference that discusses mescaline without it is describing a molecule and ignoring where it comes from.',
+        evidenceSource:
+          'Uthaug MV et al., J Psychopharmacol 2022;36:309-320 — most respondents reported using peyote or San Pedro rather than synthetic mescaline',
+        doi: '10.1177/02698811211013583',
+        inferredClaim:
+          'That growing interest in mescaline can be met from cactus material without affecting a wild population that is also a protected religious supply',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, as dried cactus or as the isolated alkaloid',
+        laymanDesc:
+          'Taken by mouth. Effects begin within an hour or two and continue for most of a day. Nausea and vomiting early in the experience are the rule rather than the exception.',
+        molecularDetail:
+          'Oral administration of dried cactus material or mescaline salt. Onset within 45 to 90 minutes, peak at 2 to 4 hours, total duration 10 to 12 hours. Gastrointestinal upset early in the time course is characteristic and is attributed both to mescaline and to the other cactus constituents.',
+        iconName: 'Leaf',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Distributes into the brain and is largely excreted unchanged',
+        laymanDesc:
+          'It reaches the brain and a large share of it leaves the body intact in urine rather than being broken down.',
+        molecularDetail:
+          'A substantial fraction of an oral dose is excreted unchanged in urine, with 3,4,5-trimethoxyphenylacetic acid as the principal metabolite from monoamine oxidase-mediated deamination. The long duration reflects slow clearance rather than slow receptor dissociation.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Activates 5-HT2A, weakly',
+        laymanDesc:
+          'It reaches the same receptor as LSD but grips it about a thousand times less tightly, which is why the dose is a thousand times larger.',
+        molecularDetail:
+          'Agonist at 5-HT2A with additional 5-HT2C and 5-HT1A activity. The roughly thousand-fold lower affinity relative to LSD is the direct determinant of the milligram dose, and the mechanism is otherwise the same as the other classic psychedelics.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Cortical processing changes for ten to twelve hours',
+        laymanDesc:
+          'The same broad reorganisation the other psychedelics produce, sustained across most of a day.',
+        molecularDetail:
+          'Gq-coupled 5-HT2A signalling in cortical pyramidal neurons, as with LSD, psilocin and DMT. Human functional imaging of mescaline specifically is very limited; the mechanistic account here is largely extrapolated from the better-studied compounds in the class, and this page marks that as extrapolation.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'No measured clinical outcome',
+        laymanDesc:
+          'There is no trial endpoint to report. What exists is what people said afterwards in a survey.',
+        molecularDetail:
+          'No randomised clinical endpoint exists for mescaline. The available outcome data are retrospective self-reports from 452 survey respondents, in which 68 to 86% of those with a psychiatric history reported subjective improvement, with no control group and no verification of the substance taken.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Naturalistic mescaline use survey (Agin-Liebes et al. / Uthaug et al.)',
+        phase: 'Retrospective anonymous online survey, not a trial',
+        sampleSize: 452,
+        primaryEndpoint:
+          'Self-reported improvement in depression, anxiety, PTSD, alcohol use disorder and drug use disorder after the most memorable mescaline experience',
+        endpointMet: true,
+        statisticalPValue:
+          '68 to 86% of respondents with a relevant history reported subjective improvement; Cohen\'s d 0.7 to 1.5 for acute-effect ratings between improvers and non-improvers',
+        unreportedAdverseSignals:
+          'Self-selected sample, no control group, no verification of substance identity or dose, and recall of a single self-nominated "most memorable" experience. 9% reported craving; 1% reported psychological problems.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Agonism at 5-HT2A with roughly three orders of magnitude lower affinity than LSD, accounting for the milligram-scale active dose',
+        'A 10 to 12 hour duration of action with substantial renal excretion of unchanged drug',
+        'A standing federal exemption at 21 CFR 1307.31 for non-drug ceremonial peyote use by the Native American Church',
+        'Self-reported improvement in 68 to 86% of survey respondents with a psychiatric history, in a sample of 452',
+      ],
+      unsupportedInferences: [
+        'That survey self-report from people who chose to take mescaline estimates a treatment effect',
+        'That the psilocybin and LSD trial results transfer to mescaline by class analogy, when the compounds differ by a thousand-fold in potency and by a factor of two in duration',
+        'That the peyote exemption extends to mescaline, San Pedro or ceremonial use outside the Native American Church',
+      ],
+      whatFailedInitially: [
+        'No modern randomised controlled trial of mescaline for any indication has been completed, which is the central fact about its evidence base',
+        'The mid-twentieth-century clinical literature predates randomisation, blinded outcome assessment and systematic adverse-event reporting, and cannot substitute for one',
+      ],
+      realWorldOutcome: [
+        'Mescaline remains Schedule I with no clinical development programme and no commercial sponsor',
+        'Ceremonial peyote use continues under a regulatory exemption while wild peyote remains a slow-growing and finite resource',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral — dried cactus material, a decoction, or the isolated salt',
+      description:
+        'Taken by mouth in every documented context. Dried peyote buttons and San Pedro preparations deliver a dose that depends on the alkaloid content of that specific plant material, which varies with species, age and growing conditions, so the delivered dose from plant material is not knowable without an assay.',
+      safetyProfile:
+        'Nausea and vomiting early in the time course are characteristic. Acute effects include sympathomimetic changes — raised blood pressure, heart rate and pupil diameter — with a 10 to 12 hour course of perceptual and cognitive change. In the survey of 452 naturalistic users, 9% reported drug craving or desire, 1% reported legal problems, 1% reported psychological problems, and none reported seeking medical attention; that is self-report from a self-selected sample and should be read as such. As with the other classic psychedelics, personal or family history of psychosis is the risk that matters and there is no controlled data on it here. Mescaline does not produce physical dependence, and tolerance develops rapidly with repeated dosing.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why is there so much less evidence for mescaline than for psilocybin?',
+        a: 'Because nobody has run the trials. Mescaline lasts ten to twelve hours, which makes a supervised session expensive; it has no commercial sponsor; it is far less potent than the compounds attracting investment; and the best-known source plant is a slow-growing cactus that is also a protected religious sacrament. None of those is a scientific finding about the drug. The consequence is that this page carries no efficacy claim at all, and any statement that mescaline "works" for a psychiatric condition is currently an extrapolation from other compounds in the class or from survey self-report.',
+      },
+      {
+        q: 'Is peyote legal?',
+        a: 'For one specific use. Federal regulation exempts the non-drug use of peyote in bona fide religious ceremonies of the Native American Church, and members using it that way are exempt from registration; anyone supplying peyote to the Church must register annually. The exemption is drawn around the plant, the religious body and the ceremonial context. It does not cover isolated mescaline, San Pedro cactus, or peyote used outside that setting, all of which remain Schedule I.',
+      },
+      {
+        q: 'How does a mescaline dose compare with an LSD dose?',
+        a: 'By weight, roughly a thousand-fold larger, and that ratio comes straight from receptor binding rather than from any difference in what the two drugs do. Both are 5-HT2A agonists; LSD binds about three orders of magnitude more tightly. That is why LSD is dosed in micrograms and mescaline in hundreds of milligrams, and it is a useful general point: comparing psychedelics by milligrams tells you about their affinity, not about their effects.',
+      },
+      {
+        q: 'Why does the page mention cactus conservation?',
+        a: 'Because peyote is where most people who take mescaline get it — most respondents in the survey reported using peyote or San Pedro rather than synthetic material — and Lophophora williamsii is a slow-growing wild plant with a limited range that also supplies a religious community with a legally protected claim on it. San Pedro grows far faster and is widely cultivated, and synthetic mescaline is chemically straightforward. So the pressure on the wild population is a consequence of choice rather than necessity, and a reference that describes the molecule without saying where it comes from is describing half the subject.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no legal market and therefore no published price, no cost of production this file could verify, and no approved product. A street price is not a sourceable figure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Cassels BK, Sáez-Briones P. Dark Classics in Chemical Neuroscience: Mescaline. ACS Chem Neurosci 2018;9:2448-2458',
+        identifier: '10.1021/acschemneuro.8b00215',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Agin-Liebes G et al. Naturalistic Use of Mescaline Is Associated with Self-Reported Psychiatric Improvements and Enduring Positive Life Changes. ACS Pharmacol Transl Sci 2021;4:543-552',
+        identifier: '10.1021/acsptsci.1c00018',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Uthaug MV et al. The epidemiology of mescaline use: pattern of use, motivations for consumption, and perceived consequences, benefits, and acute and enduring subjective effects. J Psychopharmacol 2022;36:309-320',
+        identifier: '10.1177/02698811211013583',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 1307.31 — Native American Church exemption for non-drug ceremonial use of peyote',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-II/part-1307/section-1307.31',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4076 — mescaline structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4076',
+        kind: 'url',
+      },
+      CSA_SCHEDULES_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 13. Ibogaine
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ibogaine',
+    name: 'Ibogaine',
+    tradeName: 'No marketed product. Historically sold in France as Lambarène, a Tabernanthe extract tonic, until 1966',
+    sponsor:
+      'No commercial sponsor holds an approved product. Development history runs through a NIDA-funded programme in the 1990s that was not carried to trial, DemeRx and its noribogaine work, private clinics in Mexico and New Zealand, and a Texas state consortium created by Senate Bill 2308 in June 2025',
+    targetGene: 'CHRNA3 / CHRNB4',
+    targetProtein:
+      'α3β4 nicotinic acetylcholine receptor (noncompetitive antagonist), with NMDA-receptor channel block, κ- and μ-opioid activity, SERT inhibition, and off-target hERG (Kv11.1) potassium-channel block',
+    modality: 'Small Molecule',
+    approvalStatus: 'Controlled / No Approved Use',
+    indication:
+      'No approved medical indication anywhere. Schedule I in the United States. Used in unregulated clinics in Mexico, Costa Rica and elsewhere, and lawfully by prescription-holding providers in New Zealand and Brazil, for opioid withdrawal and post-detoxification abstinence',
+    patientFriendlyIndication:
+      'Nothing approved. People travel to clinics outside the United States to take it for opioid withdrawal, and the published observational studies of those clinics are the entire clinical evidence base',
+    anatomicalSite:
+      'Medial habenula and interpeduncular nucleus, where α3β4 nicotinic receptors are densest; ventral tegmental area; and cardiac ventricular myocardium, where the hERG channel sits',
+    conditionContext: {
+      conditionExplainer:
+        'Opioid withdrawal is the physical syndrome that follows stopping a mu-opioid agonist in a dependent person: pain, vomiting, diarrhoea, insomnia and craving, peaking over two to four days. It is rated on the Subjective Opioid Withdrawal Scale, a 16-item self-report running 0 to 64.',
+      whyItMatters:
+        'The approved treatments are methadone and buprenorphine, which work by replacing the opioid, and the relapse rate after any detoxification without them is high. A single dose that ends withdrawal and is followed by weeks of reduced use would be a different mechanism from anything approved, which is why the observational reports attracted attention despite their design.',
+      whoTakesThis:
+        'In the published series: adults with long opioid-use histories and an average of three previous failed treatment episodes, who paid to attend clinics outside the United States. No randomised trial in opioid use disorder has been completed.',
+      clinicalGoals:
+        'Suppression of the withdrawal syndrome within about 24 hours of a single dose, followed by an interval of abstinence or reduced use that the person can build on.',
+    },
+    oneSentenceVerdict:
+      'A single dose reduced Subjective Opioid Withdrawal Scale scores from 31 to 14 in an uncontrolled series of 30 people, and the same molecule blocks the hERG cardiac potassium channel at the same low-micromolar concentrations at which it hits its brain targets — 19 deaths within 1.5 to 76 hours of ingestion have been catalogued.',
+    laymanHowItWorks:
+      'Ibogaine blocks a specific nicotinic receptor found in a small pair of brain structures that sit between the emotional and reward circuits, and it also blocks the NMDA receptor and acts at opioid receptors. Nobody has isolated which of those actions ends opioid withdrawal. It stays in the body for days as a long-lived metabolite, noribogaine, which is why one dose has an effect measured in weeks. The same molecule also plugs a potassium channel that resets the heartbeat, which lengthens the QT interval and is the mechanism behind the recorded deaths.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 41,
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC[C@H]1C[C@@H]2C[C@@H]3[C@H]1N(C2)CCC4=C3NC5=C4C=C(C=C5)OC',
+      chemicalFormula: 'C20H26N2O',
+      molecularWeight:
+        '310.4 g/mol (free base). Clinic and case-series doses are quoted as ibogaine hydrochloride; total-alkaloid root-bark extract is a different material with a different ibogaine content',
+      targetReceptorAffinity:
+        'Noncompetitive antagonist at α3β4 nicotinic acetylcholine receptors, NMDA-receptor channel blocker, κ-opioid agonist with additional μ-opioid activity, and serotonin-transporter inhibitor. Off-target hERG block occurs in the low micromolar range — the same concentrations at which it engages several of its brain targets, which is the reason the cardiac effect is not separable from the psychoactive dose.',
+      structureSource: {
+        label: 'PubChem CID 197060 (ibogaine) — SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/197060',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ibo-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identify the alkaloid and separate it from its congeners',
+          description:
+            'Tabernanthe iboga root bark contains ibogaine alongside ibogaline, ibogamine and tabernanthine, which share a mass and fragment similarly. Identification is by chromatographic separation with mass spectrometry against certified reference standards for each alkaloid, not by total-alkaloid assay, because a sample sold as ibogaine may be any point on the range from purified hydrochloride to crude extract.',
+          reagentsAndBuffer:
+            'Ibogaine hydrochloride certified reference standard plus ibogaline and ibogamine standards, C18 reversed-phase column, ammonium acetate/acetonitrile gradient, electrospray positive ionisation, diode-array detection at 226 nm',
+        },
+        {
+          id: 'ibo-w2',
+          stepNumber: 2,
+          phase: 'QC',
+          name: 'Quantify ibogaine content in the presented material',
+          description:
+            'The number a clinic or a coroner needs is milligrams of ibogaine per gram of the material actually taken. Total-alkaloid extract ("TA") from root bark typically carries well under half the ibogaine content of the hydrochloride salt by mass, so a dose calculated as though the two were interchangeable is not the dose delivered. Alper et al. list uninformed use of ethnopharmacological forms among the risk factors in the fatality series.',
+          dependsOnStepId: 'ibo-w1',
+          reagentsAndBuffer:
+            'Calibration curve in matrix across the expected range, deuterated ibogaine internal standard, methanolic extraction with sonication, external-standard quantification with duplicate injections',
+        },
+        {
+          id: 'ibo-w3',
+          stepNumber: 3,
+          phase: 'Cellular_Delivery',
+          name: 'Express hERG in a mammalian line for patch-clamp work',
+          description:
+            'The cardiac liability is measured, not assumed. Human KCNH2 (hERG) is expressed in tsA-201 or HEK293 cells so that the potassium current recorded belongs to that one channel. Thurner et al. used exactly this preparation, and added the Y652A and F656A pore mutants to locate the binding site inside the inner cavity.',
+          dependsOnStepId: 'ibo-w1',
+          reagentsAndBuffer:
+            'tsA-201 or HEK293 cells, human KCNH2 expression plasmid plus Y652A and F656A pore mutants, calcium-phosphate or lipid transfection, DMEM with 10% fetal bovine serum, external bath solution with 4 mM K+',
+        },
+        {
+          id: 'ibo-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Whole-cell patch clamp for hERG, Nav1.5 and Cav1.2 block',
+          description:
+            'Concentration-response curves for tail-current inhibition give the potency of hERG block; the same panel run against Nav1.5 sodium and Cav1.2 calcium channels is what showed ibogaine also reduces those currents at higher concentrations. Koenig et al. found the calcium block partly offsets the action-potential prolongation in guinea-pig myocytes, which is why an in-vitro action-potential recording alone understates the human QT risk and a human ventricular model was used instead.',
+          dependsOnStepId: 'ibo-w3',
+          reagentsAndBuffer:
+            'Whole-cell voltage clamp, borosilicate pipettes 2-4 MΩ, intracellular KCl/EGTA/HEPES solution, extracellular Tyrode solution, ibogaine and 18-methoxycoronaridine dilution series, dofetilide as positive control',
+        },
+        {
+          id: 'ibo-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Plasma ibogaine and noribogaine with CYP2D6 genotype',
+          description:
+            'Ibogaine is O-demethylated to noribogaine by CYP2D6, an enzyme with common loss-of-function variants. Two people given the same milligram dose therefore reach different parent-drug concentrations and hold them for different lengths of time, which matters because the parent compound is the stronger hERG blocker. Quantifying both analytes alongside a genotype is the only way to attribute an ECG finding to an exposure.',
+          dependsOnStepId: 'ibo-w2',
+          reagentsAndBuffer:
+            'LC-MS/MS with deuterated ibogaine and noribogaine internal standards, protein precipitation from EDTA plasma, CYP2D6 genotyping panel covering *3, *4, *5, *6 and copy-number variants, serial sampling to at least 96 hours',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ibo-a1',
+        category: 'measured',
+        title: 'Withdrawal scores more than halved in 30 people, with no control group',
+        laymanSummary:
+          'Thirty people with opioid dependence took a single large dose at a Mexican clinic. Their withdrawal scores fell from 31 to 14 over about three days, and half of them reported no opioid use in the following month.',
+        technicalDetails:
+          'Brown and Alper ran a prospective observational study of 30 subjects (25 male, 5 female) with DSM-IV opioid dependence who received a mean total dose of 1,540 ± 920 mg ibogaine hydrochloride. Subjects were using oxycodone (n=21, 250 ± 180 mg/day) and/or heroin (n=18, 1.3 ± 0.94 g/day) and averaged 3.1 ± 2.6 previous treatment episodes. Subjective Opioid Withdrawal Scale scores fell from 31.0 ± 11.6 pretreatment to 14.0 ± 9.8 at 76.5 ± 30 hours (t = 7.07, df = 26, p < 0.001). At one month, 15 of 30 (50%) reported no opioid use in the previous 30 days; Addiction Severity Index composite scores for drug use, legal and family/social status were improved at every timepoint out to 12 months (p < 0.001), with the drug-use effect maximal at one month and smaller thereafter. There was no control arm, no blinding and no randomisation: the comparison is against each subject\'s own baseline.',
+        evidenceSource: 'Brown TK, Alper K. Am J Drug Alcohol Abuse 2018;44:24-36',
+        doi: '10.1080/00952990.2017.1320802',
+        measuredMetric:
+          'SOWS change from pretreatment to 76.5 hours, and 30-day self-reported opioid abstinence, n=30',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ibo-a2',
+        category: 'measured',
+        title: 'Nineteen deaths within 1.5 to 76 hours of ingestion',
+        laymanSummary:
+          'A forensic review collected every known death outside West Central Africa linked in time to ibogaine between 1990 and 2008. There were nineteen. In most of them a pre-existing heart problem or another drug explained or contributed to the death.',
+        technicalDetails:
+          'Alper, Stajić and Gill systematically reviewed all available autopsy, toxicological and investigative reports for the consecutive series of known fatalities temporally related to ibogaine use from 1990 through 2008, excluding West Central Africa. Nineteen individuals died — 15 men and four women, aged 24 to 54 — within 1.5 to 76 hours of taking it. The clinical and postmortem findings did not suggest a characteristic neurotoxic syndrome. In 12 of the 14 cases with adequate postmortem data, advanced pre-existing comorbidity, mainly cardiovascular, and/or one or more commonly abused substances explained or contributed to the death. Additional identified risk factors were seizures on withdrawal from alcohol or benzodiazepines, and uninformed use of ethnopharmacological (root-bark) preparations. The denominator is unknown, so this series establishes a mechanism and a risk profile, not an incidence.',
+        evidenceSource: 'Alper KR, Stajić M, Gill JR. J Forensic Sci 2012;57:398-412',
+        doi: '10.1111/j.1556-4029.2011.02008.x',
+        measuredMetric:
+          'Consecutive fatality case series, n=19, with time from ingestion to death and postmortem findings',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ibo-a3',
+        category: 'measured',
+        title: 'The cardiac channel is blocked at the same concentrations as the brain targets',
+        laymanSummary:
+          'Ibogaine plugs the potassium channel that lets heart muscle reset between beats, at the same strength at which it acts on the brain receptors it is taken for. That is the mechanism of the QT prolongation seen in patients.',
+        technicalDetails:
+          'Koenig et al. showed that heterologously expressed hERG currents are reduced by ibogaine at low micromolar concentrations — the same range as its affinity for several known brain targets — and that at higher concentrations it also reduces human Nav1.5 sodium and Cav1.2 calcium currents. In guinea-pig cardiomyocytes the action potential was not prolonged at low micromolar concentrations, and was shortened above 10 µM, because calcium-channel block partly offsets the hERG effect; implementing the measured human channel data in a human ventricular myocyte model, by contrast, predicted action-potential prolongation. Thurner et al. then localised the block: ibogaine reaches the channel from the cytosolic side, binds preferentially to the open and inactivated states, and loses potency against the Y652A and F656A pore mutants. The congener 18-methoxycoronaridine blocked the same currents with lower potency.',
+        evidenceSource:
+          'Koenig X et al. Toxicol Appl Pharmacol 2013;273:259-268; Thurner P et al. J Pharmacol Exp Ther 2014;348:346-358',
+        doi: '10.1016/j.taap.2013.05.012',
+        measuredMetric:
+          'hERG, Nav1.5 and Cav1.2 current inhibition by whole-cell patch clamp, with pore-mutant mapping of the binding site',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ibo-a4',
+        category: 'inferred',
+        title: 'Effect sizes above 2.0 from an open-label study of 30 self-selected veterans',
+        laymanSummary:
+          'A Stanford team followed thirty special-operations veterans who had already decided to fly to Mexico for ibogaine. Their trauma, depression and anxiety scores improved enormously. There was no comparison group and no blinding, and the effect sizes are larger than almost any controlled psychiatric trial reports.',
+        technicalDetails:
+          'Cherian et al. reported a prospective observational study of the Magnesium-Ibogaine Stanford Traumatic Injury to the CNS protocol in 30 male Special Operations Forces veterans with predominantly mild traumatic brain injury, delivered with complementary treatment modalities at a clinic in Mexico (NCT04313712). WHODAS disability improved immediately after treatment (P corrected < 0.001, d = 0.74) and at one month (d = 2.20); CAPS-5 PTSD improved at one month (d = 2.54), MADRS depression (d = 2.80) and HAM-A anxiety (d = 2.13). No unexpected or serious adverse events occurred. The authors state plainly that controlled trials are needed. The design cannot separate drug effect from the expectancy of a cohort who self-funded international travel for the treatment, from the complementary modalities delivered alongside it, or from regression to the mean in a group enrolled at a personal low point. Several authors hold patent applications on the protocol and three are shareholders in the company that provides the treatment, which the paper discloses.',
+        evidenceSource: 'Cherian KN et al. Nat Med 2024;30:373-381 (NCT04313712)',
+        doi: '10.1038/s41591-023-02705-w',
+        inferredClaim:
+          'That effect sizes of d = 2.2 to 2.8 in an uncontrolled, unblinded, self-selected cohort receiving several interventions at once estimate the effect of ibogaine',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ibo-a5',
+        category: 'measured',
+        title: 'A 12-month follow-up of 14 legal treatments, one of which was fatal',
+        laymanSummary:
+          'New Zealand allows ibogaine treatment by a registered provider, so researchers could follow patients for a year. Fourteen took part, eight completed every interview, drug-use scores fell and stayed down — and one of the fourteen died during treatment.',
+        technicalDetails:
+          'Noller, Frampton and Yazar-Klosinski measured Addiction Severity Index-Lite scores in 14 participants (50% female) over 12 months after a single legal ibogaine treatment by one of two New Zealand providers. Among the eight who completed all interviews, the ASI-Lite drug-use composite fell significantly from baseline to 12 months (Friedman test, p = 0.002) and BDI-II depression scores fell (p < 0.001). Subjective Opioid Withdrawal Scale scores fell acutely after treatment across all 14 (p = 0.015). One patient enrolled in the study died during treatment. That is one death in a prospective sample of 14, reported by the investigators in the same paper as the efficacy result, and it is the reason this record carries the fatality series alongside the outcome series rather than in a separate section.',
+        evidenceSource: 'Noller GE, Frampton CM, Yazar-Klosinski B. Am J Drug Alcohol Abuse 2018;44:37-46',
+        doi: '10.1080/00952990.2017.1310218',
+        measuredMetric:
+          'ASI-Lite drug-use composite and BDI-II at 12 months (n=8 completers of 14 enrolled), with one on-treatment death',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ibo-a6',
+        category: 'conclusion_shift',
+        title: 'A Schedule I drug that a US state has now legislated to put through FDA trials',
+        laymanSummary:
+          'Ibogaine is in the strictest US drug schedule, defined as having no accepted medical use. In June 2025 Texas passed a law creating a consortium specifically to run FDA drug-development trials on it.',
+        technicalDetails:
+          'Ibogaine is listed in Schedule I of the Controlled Substances Act, the category defined by high abuse potential, no currently accepted medical use in the United States and a lack of accepted safety under medical supervision. Texas Senate Bill 2308 of the 89th Legislature, signed by the governor and effective 11 June 2025, establishes a consortium to conduct FDA drug-development clinical trials with ibogaine for opioid use disorder, co-occurring substance use disorder and other conditions for which it demonstrates efficacy. The companion House bill, HB 3717, was laid on the table on 12 May 2025 with SB 2308 considered in its place. This does not change the drug\'s schedule and does not make it prescribable: it funds the trials that a rescheduling petition would eventually need. The gap between the statutory finding of "no accepted medical use" and a state statute funding the trials is the record here.',
+        evidenceSource:
+          'Texas SB 2308, 89th Legislature (2025), effective 11 June 2025; 21 CFR 1308.11(d)',
+        measuredMetric:
+          'Federal scheduling status versus enacted state legislation funding FDA trials on the same molecule',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ibo-a7',
+        category: 'inferred',
+        title: 'The GDNF mechanism is a rat result being used to explain a human one',
+        laymanSummary:
+          'The best-known explanation for why one dose has lasting effects is that ibogaine raises a nerve growth factor in a reward-circuit brain region. That was shown in rats drinking alcohol. It has not been demonstrated in a person.',
+        technicalDetails:
+          'He et al. showed in rats that ibogaine reduces alcohol self-administration and that this depends on glial cell line-derived neurotrophic factor in the ventral tegmental area: ibogaine increased GDNF expression there, intra-VTA GDNF reproduced the reduction in drinking, and blocking GDNF signalling prevented ibogaine\'s effect. That is a well-constructed causal chain in a rodent alcohol model. It is routinely quoted as the mechanism for durable human anti-addictive effects across opioids, stimulants and nicotine, which the experiment does not address. No human study has measured GDNF, and the α3β4 nicotinic antagonism, NMDA block and κ-opioid agonism are alternative candidate mechanisms that have not been separated in people.',
+        evidenceSource: 'He DY et al. J Neurosci 2005;25:619-628',
+        doi: '10.1523/JNEUROSCI.3959-04.2005',
+        inferredClaim:
+          'That VTA GDNF induction, demonstrated in a rat alcohol model, is the mechanism of the durable effects reported in human opioid case series',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed as a single large dose',
+        laymanDesc:
+          'Doses in the published series are around a gram and a half, taken once, with the acute effects running most of a day and the after-effects days longer.',
+        molecularDetail:
+          'Oral ibogaine hydrochloride; the Brown and Alper series used a mean total dose of 1,540 ± 920 mg. Absorption and first-pass metabolism are variable, and the material itself varies: purified hydrochloride and total-alkaloid root-bark extract are not equivalent by mass.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Converted by a liver enzyme into a long-lived metabolite',
+        laymanDesc:
+          'The liver strips a methyl group off, producing noribogaine, which lingers for days. How fast this happens depends on a gene that varies between people.',
+        molecularDetail:
+          'CYP2D6-mediated O-demethylation to noribogaine. Loss-of-function CYP2D6 variants raise and prolong parent-drug exposure, which matters because ibogaine is the more potent hERG blocker of the two. Noribogaine\'s long half-life is the pharmacokinetic basis for effects lasting beyond the acute session.',
+        iconName: 'FlaskConical',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocks nicotinic, NMDA and opioid receptors at once',
+        laymanDesc:
+          'Rather than acting on one target, it acts weakly on several — a nicotinic receptor concentrated in a small relay between the emotional and reward circuits, the NMDA glutamate receptor, and opioid receptors.',
+        molecularDetail:
+          'Noncompetitive antagonism at α3β4 nicotinic acetylcholine receptors, densest in the medial habenula and interpeduncular nucleus; NMDA-receptor channel block; κ-opioid agonism with additional μ-opioid activity; serotonin-transporter inhibition. No single action has been shown to be necessary for the anti-withdrawal effect in humans.',
+        iconName: 'Network',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The withdrawal syndrome stops',
+        laymanDesc:
+          'Within a day, the physical withdrawal from opioids is largely gone. This is the most consistent observation across every published series, and it is also the one most likely to be exaggerated by the absence of a control group.',
+        molecularDetail:
+          'SOWS fell from 31.0 to 14.0 at 76.5 hours in the 30-subject Mexico series and fell significantly across all 14 New Zealand participants. Both are within-subject comparisons in people who expected the effect; opioid withdrawal also resolves on its own over a similar interval, which an uncontrolled design cannot subtract.',
+        iconName: 'Activity',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And the QT interval lengthens',
+        laymanDesc:
+          'At the same time and at the same concentrations, the drug is slowing the electrical reset of the heart. This is not a rare idiosyncratic reaction; it is the expected pharmacology of the dose.',
+        molecularDetail:
+          'hERG (Kv11.1) block from the cytosolic side, state-dependent and localised to Y652 and F656 in the inner cavity. A human ventricular myocyte model incorporating the measured channel data predicts action-potential prolongation. Nineteen catalogued deaths occurred 1.5 to 76 hours after ingestion, most with cardiovascular comorbidity or co-ingested drugs.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Brown & Alper 2018 Mexico observational series (opioid use disorder)',
+        phase: 'Prospective observational, uncontrolled',
+        sampleSize: 30,
+        primaryEndpoint:
+          'SOWS change from pretreatment to 76.5 hours, with ASI composite scores to 12 months',
+        endpointMet: true,
+        statisticalPValue: 'SOWS 31.0 ± 11.6 to 14.0 ± 9.8, t = 7.07, df = 26, p < 0.001',
+        unreportedAdverseSignals:
+          'No control arm, no blinding, no randomisation. Self-reported abstinence was not corroborated by toxicology. Opioid withdrawal resolves spontaneously over a similar interval, and the design cannot subtract that.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Noller et al. 2018 New Zealand 12-month follow-up',
+        phase: 'Prospective observational, uncontrolled',
+        sampleSize: 14,
+        primaryEndpoint: 'ASI-Lite drug-use composite at 12 months',
+        endpointMet: true,
+        statisticalPValue:
+          'ASI-Lite drug use p = 0.002 and BDI-II p < 0.001 among 8 completers; SOWS p = 0.015 acutely across all 14',
+        unreportedAdverseSignals:
+          'One of the 14 enrolled patients died during treatment. Six of 14 did not complete all interviews, and the primary analysis is on the 8 who did.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'NCT04313712 (MISTIC, magnesium-ibogaine in veterans with TBI)',
+        phase: 'Open-label prospective observational',
+        sampleSize: 30,
+        primaryEndpoint: 'Change in WHODAS 2.0 disability score immediately after treatment',
+        endpointMet: true,
+        statisticalPValue:
+          'WHODAS P corrected < 0.001, d = 0.74 immediately and d = 2.20 at 1 month; CAPS-5 d = 2.54, MADRS d = 2.80, HAM-A d = 2.13 at 1 month',
+        unreportedAdverseSignals:
+          'No unexpected or serious adverse events reported. No control group, no blinding, complementary treatments delivered alongside, and a self-selected cohort who had already chosen to travel for treatment. Author patent applications and shareholdings in the treatment provider are disclosed in the paper.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A fall in SOWS from 31.0 to 14.0 at 76.5 hours after a single mean dose of 1,540 mg in 30 subjects, and 50% self-reported 30-day abstinence at one month',
+        'Nineteen deaths within 1.5 to 76 hours of ingestion between 1990 and 2008, with cardiovascular comorbidity or co-ingestants explaining or contributing in 12 of 14 evaluable cases',
+        'hERG potassium-current block at low micromolar concentrations, state-dependent, mapped to Y652 and F656 in the channel\'s inner cavity',
+        'One on-treatment death among 14 prospectively enrolled New Zealand patients, reported by the investigators alongside their efficacy result',
+      ],
+      unsupportedInferences: [
+        'That effect sizes of d = 2.2 to 2.8 from an uncontrolled, unblinded, self-selected veteran cohort receiving multiple concurrent interventions estimate the drug\'s effect',
+        'That GDNF induction in the rat ventral tegmental area is the mechanism of durable human anti-addictive effects',
+        'That the 19 catalogued deaths represent a rate — the number of exposures worldwide is unknown, so no incidence can be calculated in either direction',
+        'That co-administered magnesium makes the cardiac risk acceptable; the claim rests on a proposed mitigation and an uncontrolled series with no comparator, not on a measured reduction in arrhythmia',
+      ],
+      whatFailedInitially: [
+        'The NIDA-funded development programme of the 1990s did not carry ibogaine into a controlled human trial',
+        'Every published human study of ibogaine in addiction to date is observational; no randomised, controlled efficacy trial in opioid use disorder has been completed',
+      ],
+      realWorldOutcome: [
+        'Treatment continues in unregulated clinics outside the United States, and lawfully through registered providers in New Zealand, which is how the follow-up data exist at all',
+        'Texas Senate Bill 2308, effective 11 June 2025, created a state consortium to fund FDA drug-development trials; the federal Schedule I listing is unchanged',
+      ],
+    },
+    deliverySystem: {
+      type: 'Single oral dose in a supervised session lasting 24 to 72 hours',
+      description:
+        'Administration in the published series is a single oral dose of the hydrochloride, given at a clinic with the person monitored through an acute phase of roughly 24 hours and a subsequent day or two of insomnia and residual effects. Continuous cardiac monitoring, pre-treatment ECG and electrolyte correction are the stated precautions in protocols that report them; there is no regulatory standard because there is no regulated product.',
+      safetyProfile:
+        'Ataxia, vomiting, tremor and profound bradycardia are usual during the acute phase. QT prolongation is expected pharmacology rather than an idiosyncratic reaction, and torsades de pointes is the mechanism implicated in the fatality series: 19 deaths 1.5 to 76 hours after ingestion, 12 of 14 evaluable cases with cardiovascular comorbidity or co-ingested drugs. Seizures on withdrawal from alcohol or benzodiazepines, hepatic injury, and the use of root-bark preparations of unknown ibogaine content are additional documented risk factors. CYP2D6 poor metabolisers hold higher parent-drug concentrations for longer. Co-administered QT-prolonging drugs, methadone in particular, compound the effect.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it actually stop opioid withdrawal?',
+        a: 'Every published series says the withdrawal score falls sharply within a day or so, and the effect sizes are large. None of those series had a control group. Opioid withdrawal also resolves by itself over three to five days, and the people in these studies had paid to travel for a treatment they expected to work. So the honest statement is: a consistent, large, within-subject reduction has been measured repeatedly, and no study has yet measured it against anything.',
+        auditNote:
+          'The 76.5-hour timepoint in the Brown and Alper series is roughly when untreated withdrawal would also be improving. That is the specific reason a controlled trial is needed rather than another case series.',
+      },
+      {
+        q: 'How dangerous is the heart problem?',
+        a: 'The mechanism is established: ibogaine blocks the hERG potassium channel at the same low-micromolar concentrations at which it hits its brain targets, so QT prolongation is expected at any psychoactive dose rather than being a rare reaction. Nineteen deaths within 1.5 to 76 hours of ingestion were catalogued for 1990 to 2008, and in most of the evaluable cases pre-existing cardiovascular disease or another drug contributed. What cannot be stated is a rate, because nobody knows how many people have taken it.',
+      },
+      {
+        q: 'Does magnesium make it safe?',
+        a: 'That is the premise of the Stanford MISTIC protocol, and it is a proposal supported by magnesium\'s general role in managing torsades de pointes — not a measured reduction in arrhythmia with ibogaine. The 30-veteran study reported no serious adverse events, but with no comparator arm, 30 participants and screening that excluded cardiac risk, it cannot distinguish an effective mitigation from a low event rate in a healthy sample.',
+      },
+      {
+        q: 'Why does this page show no price?',
+        a: 'There is no approved product and therefore no list price. Clinics outside the United States charge fees that are commercial arrangements, not published prices, and this site does not print numbers it cannot source to a document.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Brown TK, Alper K. Treatment of opioid use disorder with ibogaine: detoxification and drug use outcomes. Am J Drug Alcohol Abuse 2018;44:24-36',
+        identifier: '10.1080/00952990.2017.1320802',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Noller GE, Frampton CM, Yazar-Klosinski B. Ibogaine treatment outcomes for opioid dependence from a twelve-month follow-up observational study. Am J Drug Alcohol Abuse 2018;44:37-46',
+        identifier: '10.1080/00952990.2017.1310218',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Alper KR, Stajić M, Gill JR. Fatalities temporally associated with the ingestion of ibogaine. J Forensic Sci 2012;57:398-412',
+        identifier: '10.1111/j.1556-4029.2011.02008.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Koenig X et al. Anti-addiction drug ibogaine inhibits voltage-gated ionic currents: a study to assess the drug\'s cardiac ion channel profile. Toxicol Appl Pharmacol 2013;273:259-268',
+        identifier: '10.1016/j.taap.2013.05.012',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thurner P et al. Mechanism of hERG channel block by the psychoactive indole alkaloid ibogaine. J Pharmacol Exp Ther 2014;348:346-358',
+        identifier: '10.1124/jpet.113.209643',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cherian KN et al. Magnesium-ibogaine therapy in veterans with traumatic brain injuries. Nat Med 2024;30:373-381',
+        identifier: '10.1038/s41591-023-02705-w',
+        kind: 'doi',
+      },
+      {
+        label:
+          'He DY et al. Glial cell line-derived neurotrophic factor mediates the desirable actions of the anti-addiction drug ibogaine against alcohol consumption. J Neurosci 2005;25:619-628',
+        identifier: '10.1523/JNEUROSCI.3959-04.2005',
+        kind: 'doi',
+      },
+      {
+        label: 'Alper KR. Ibogaine: a review. Alkaloids Chem Biol 2001;56:1-38',
+        identifier: '10.1016/s0099-9598(01)56005-8',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov NCT04313712 — MISTIC, magnesium-ibogaine in veterans',
+        identifier: 'NCT04313712',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Texas Senate Bill 2308, 89th Legislature (2025) — ibogaine clinical trial consortium, signed 11 June 2025',
+        identifier: 'https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=SB2308',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 197060 — ibogaine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/197060',
         kind: 'url',
       },
       CSA_SCHEDULES_SOURCE,
