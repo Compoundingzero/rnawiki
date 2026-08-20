@@ -1630,4 +1630,3018 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Magnesium glycinate — a real but small blood-pressure effect, a negative Cochrane review for
+  // the cramps everyone buys it for, and a "superior form" claim resting on twelve patients.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'magnesium-glycinate',
+    name: 'Magnesium glycinate',
+    tradeName: 'Sold as magnesium bisglycinate or magnesium diglycinate chelate',
+    sponsor:
+      'No single sponsor — magnesium bis-glycinate chelate, manufactured by reacting a magnesium salt with two equivalents of glycine, sold by many supplement brands',
+    targetGene: 'TRPM6',
+    targetProtein:
+      'TRPM6, the transient receptor potential melastatin channel-kinase that carries active transcellular magnesium absorption in the distal small intestine and colon and reabsorption in the renal distal convoluted tubule. Magnesium itself has no single protein target: it is a cofactor for hundreds of ATP-dependent enzymes, a physiological blocker of the NMDA receptor pore and a calcium antagonist at vascular smooth muscle.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement for sleep, anxiety, muscle cramps, migraine and blood pressure. Not approved by the FDA or EMA for any of them. Magnesium sulphate given intravenously is a genuine drug with genuine approvals — for eclampsia and for torsades de pointes — and that is a different product taken by a different route for a different reason.',
+    patientFriendlyIndication:
+      'Taken for sleep, cramps and stress, on the belief that the glycinate form absorbs better',
+    conditionContext: {
+      conditionExplainer:
+        'Magnesium is the fourth most abundant cation in the body and roughly half of it is locked in bone. Most of the rest is inside cells, bound to ATP. Less than one percent circulates in serum, which is why a normal serum magnesium result tells you very little about whether the tissue pool is full.',
+      whyItMatters:
+        'Because the status test is weak, almost anyone can be told they are deficient. Survey data showing average intakes below the recommended allowance are then read as a population-wide deficiency, and the supplement is sold against symptoms — poor sleep, cramps, anxiety — that are common enough that most buyers will improve on their own.',
+      whoTakesThis:
+        'Adults buying it for sleep or stress, athletes buying it for cramps, and people with genuine depletion from proton pump inhibitors, loop or thiazide diuretics, chronic alcohol use, uncontrolled diabetes or intestinal resection. Only the last group has a documented reason.',
+      clinicalGoals:
+        'The randomised trials measured systolic and diastolic blood pressure, cramp frequency per week, insomnia severity index scores, PHQ-9 depression scores and, in the intravenous cardiology programme, 28- and 30-day all-cause mortality.',
+    },
+    oneSentenceVerdict:
+      'Oral magnesium lowers blood pressure by about 2 mmHg in a 34-trial meta-analysis, which is real and small, while the two claims that sell it — cramps and sleep — rest respectively on a Cochrane review that found nothing and a single 46-person trial in which total sleep time did not differ between groups.',
+    laymanHowItWorks:
+      'Magnesium is a mineral your enzymes cannot work without, and it also sits inside the pore of a brain receptor that carries excitatory signals, plugging it until the cell is stimulated enough to push the magnesium out. Those two facts are the whole basis of the sleep and relaxation marketing. What supplementation actually does is top up a body pool that, in most people eating an ordinary diet, is already close to full — and the glycinate form is sold on the idea that it is absorbed better than the cheap oxide, which one small trial in twelve patients half-supports.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 41,
+    anatomicalSite:
+      'Intestinal enterocyte brush border for absorption; thereafter intracellular ATP-magnesium complexes in every tissue, with bone as the reservoir',
+    substitutes: {
+      summary:
+        'For a documented deficiency, magnesium is not optional and food or a supplement will both work. For everything else the honest comparison is with the interventions that beat it on their own outcome: sleep hygiene and CBT-I for insomnia, and for blood pressure a 2 mmHg mineral effect sits far below what dietary sodium reduction or a first-line antihypertensive achieves.',
+      conventionalRx: [
+        {
+          name: 'Intravenous magnesium sulphate for eclampsia and torsades de pointes',
+          class: 'Parenteral electrolyte, genuine emergency drug',
+          howItCompares:
+            'This is the one setting where magnesium is unambiguously a drug that saves lives, and it is given by infusion under monitoring in an obstetric or coronary care unit. It is not evidence for a capsule. The same programme that established magnesium in eclampsia failed twice in myocardial infarction.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: large, replicated mortality and morbidity benefit in its own indication. Cons: entirely irrelevant to an oral supplement, and routinely cited as though it were not.',
+        },
+        {
+          name: 'Magnesium oxide, the cheap comparator',
+          class: 'Inorganic magnesium salt',
+          howItCompares:
+            'Firoz and Graber measured fractional absorption of magnesium oxide at about 4 percent against significantly higher and mutually equivalent absorption from magnesium chloride, lactate and aspartate. That study is the source of most "oxide is poorly absorbed" marketing. It did not test glycinate.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: cheapest form, and its poor absorption is exactly why it works as a laxative. Cons: the 4 percent figure is one small urinary-excretion study in normal volunteers, and it is being used to sell a form it never compared against.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Legumes, nuts, seeds, whole grains and dark leafy greens',
+          activeCompound: 'Magnesium, chiefly as the central ion of chlorophyll in green leaves',
+          biologicalMechanism:
+            'Dietary magnesium is absorbed by the same two routes as the supplement: a saturable TRPM6-dependent transcellular path that dominates at low intake, and a passive paracellular path that dominates at high intake. Nothing about a capsule bypasses either.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the trials pooled by Zhang et al. used a median supplemental dose of 368 mg per day, which is roughly the whole daily reference intake for an adult.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Hard tap water and mineral water',
+          activeCompound: 'Dissolved magnesium and calcium salts',
+          biologicalMechanism:
+            'Magnesium in water is already dissociated and needs no digestion, and in populations drinking hard water it is a non-trivial share of total intake. It is also the reason intake surveys that count only food underestimate what people actually get.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Ask which form was actually tested before believing a magnesium result',
+          action:
+            'For any magnesium finding, check the salt. The blood-pressure meta-analysis pooled many forms, the depression trial used magnesium chloride, the insomnia trial used a generic 500 mg tablet, and the cardiology trials used intravenous sulphate.',
+          patientImpact:
+            'Almost none of the magnesium literature was generated with bisglycinate. Buying the glycinate and citing the chloride trial is the standard move in this category.',
+          clinicalPrecaution:
+            'Oral magnesium causes diarrhoea, and did so measurably: across the four Cochrane cramp trials that reported it, minor adverse events ran from 11 to 37 percent on magnesium against 10 to 14 percent on placebo. In renal impairment magnesium accumulates and can become dangerous, because the kidney is the only meaningful route out.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C(C(=O)[O-])N.C(C(=O)[O-])N.[Mg+2]',
+      chemicalFormula: 'C4H8MgN2O4',
+      molecularWeight: '172.42 g/mol, of which 24.31 g/mol — about 14 percent — is elemental magnesium',
+      structureSource: {
+        label: 'PubChem CID 84645 — Magnesium glycinate, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mgg-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Elemental magnesium assay and confirmation that the chelate is actually a chelate',
+          description:
+            'A product labelled bisglycinate can be a true chelate, a physical blend of magnesium oxide with free glycine, or anything in between, and an elemental magnesium assay passes all three identically. The discriminating test is spectroscopic: in the chelate the carboxylate stretch shifts and the amine nitrogen coordinates, which free glycine mixed with oxide does not show.',
+          reagentsAndBuffer:
+            'ICP-MS against a certified magnesium standard for elemental content; FTIR with attenuated total reflectance comparing carboxylate asymmetric stretch positions against authentic magnesium bisglycinate, glycine and magnesium oxide references; loss on drying',
+        },
+        {
+          id: 'mgg-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the stable-isotope-labelled tracer',
+          description:
+            'Magnesium absorption cannot be measured against the endogenous pool without a tracer, because the pool is enormous and serum barely moves. Synthesise the bisglycinate from isotopically enriched magnesium so that absorbed magnesium is distinguishable from body magnesium by mass rather than by concentration.',
+          dependsOnStepId: 'mgg-w1',
+          reagentsAndBuffer:
+            'Magnesium-26 enriched magnesium oxide or carbonate; glycine, two molar equivalents; deionised water at controlled pH; isotopic enrichment confirmed by ICP-MS 26Mg to 24Mg ratio',
+        },
+        {
+          id: 'mgg-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Removal of free glycine and unreacted inorganic magnesium',
+          description:
+            'Unreacted magnesium oxide and free glycine both carry through the reaction and both confound an absorption study, since free glycine has its own transport route and oxide has its own dissolution behaviour. Separate them before any human or cell exposure, and quantify what is left.',
+          dependsOnStepId: 'mgg-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from aqueous ethanol; cation-exchange chromatography; ninhydrin assay for residual free glycine; ion chromatography for residual chloride or sulphate counter-ions',
+        },
+        {
+          id: 'mgg-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Caco-2 transport with a peptide-transporter block, testing the intact-uptake claim',
+          description:
+            'The commercial case for glycinate is that the chelate is absorbed intact through a dipeptide route rather than as a free ion, which Schuette et al. suggested but did not demonstrate in cells. Apply labelled bisglycinate to differentiated Caco-2 monolayers with and without a PepT1 inhibitor, and separately with TRPM6 knocked down, and see which block abolishes transport.',
+          dependsOnStepId: 'mgg-w3',
+          reagentsAndBuffer:
+            'Caco-2 monolayers on Transwell inserts, transepithelial electrical resistance above 300 ohm cm2; Hanks balanced salt solution at apical pH 6.0; 26Mg-bisglycinate; glycyl-sarcosine as competitive PepT1 substrate; TRPM6 siRNA and scrambled control; mannitol as paracellular leak marker',
+        },
+        {
+          id: 'mgg-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Isotope-ratio quantification of true fractional absorption',
+          description:
+            'Report fractional absorption as the recovered fraction of the administered isotope, not as a change in serum magnesium, because serum is buffered by bone and by renal handling and moves too little to resolve a difference between forms. This is the step where most published form-comparison claims stop short.',
+          dependsOnStepId: 'mgg-w4',
+          reagentsAndBuffer:
+            'Complete 24-hour urine collections; ICP-MS isotope-ratio analysis of 26Mg to 24Mg; creatinine normalisation; paired oral and intravenous tracer administration for the double-isotope correction',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mgg-a1',
+        category: 'measured',
+        title: 'Zhang 2016: blood pressure fell 2.00 over 1.78 mmHg across 34 trials',
+        laymanSummary:
+          'Pooling 34 double-blind placebo-controlled trials, magnesium lowered blood pressure. The size of the effect was about two points on the top number.',
+        technicalDetails:
+          'A meta-analysis of 34 randomised, double-blind, placebo-controlled trials involving 2,028 participants, searched to February 2016. At a median dose of 368 mg per day for a median of three months, magnesium supplementation reduced systolic blood pressure by 2.00 mmHg (95% CI 0.43 to 3.58) and diastolic by 1.78 mmHg (95% CI 0.73 to 2.82), accompanied by a 0.05 mmol/L (95% CI 0.03 to 0.07) rise in serum magnesium. A restricted cubic spline suggested 300 mg per day or one month was sufficient to move both. Serum magnesium was negatively associated with diastolic but not systolic pressure. The authors noted residual heterogeneity persisting after stratification and called for further well-designed trials. Two millimetres of mercury is a genuine effect that no reader should mistake for an antihypertensive.',
+        evidenceSource: 'Zhang X et al. Hypertension 2016;68:324-333',
+        doi: '10.1161/HYPERTENSIONAHA.116.07664',
+        measuredMetric:
+          'Weighted mean difference in systolic and diastolic blood pressure versus placebo, mmHg',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mgg-a2',
+        category: 'failed',
+        title: 'Cochrane 2020: no cramp benefit in older adults, and the certainty was high',
+        laymanSummary:
+          'The single most common reason people buy magnesium is night cramps. A Cochrane review of eleven trials found the difference against placebo was about a fifth of one cramp per week, which is nothing.',
+        technicalDetails:
+          'Eleven randomised trials enrolling 735 people, five in pregnancy-associated leg cramps and five in idiopathic cramps in older adults (mean ages 61.6 to 69.3 years). For idiopathic cramps the difference from placebo in the number of cramps per week at four weeks was -0.18 (95% CI -0.84 to 0.49; five studies, 307 participants; moderate-certainty evidence), and the percentage change from baseline in cramps per week was -9.59% (95% CI -23.14% to 3.97%; three studies, 177 participants). The proportion achieving at least a 25% reduction in cramp rate gave a risk ratio of 1.04 (95% CI 0.84 to 1.29) and was graded HIGH certainty. Heterogeneity was 0 to 12%. Minor adverse events, mostly diarrhoea, were more common on magnesium (RR 1.51, 95% CI 0.98 to 2.33). The authors wrote that it is unlikely magnesium supplementation provides clinically meaningful cramp prophylaxis to older adults.',
+        evidenceSource: 'Garrison SR et al. Cochrane Database Syst Rev 2020;9:CD009402',
+        doi: '10.1002/14651858.CD009402.pub3',
+        measuredMetric:
+          'Number of cramps per week at four weeks, and proportion achieving a 25% or greater reduction from baseline',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mgg-a3',
+        category: 'inferred',
+        title: 'The glycinate advantage rests on twelve patients with surgically shortened bowels',
+        laymanSummary:
+          'The one human trial comparing magnesium glycinate against the cheap oxide form found no overall difference in absorption. It was run in twelve people who had had part of their intestine removed.',
+        technicalDetails:
+          'Schuette, Lashner and Janghorbani ran a double-blind randomised crossover in twelve patients with ileal resections, comparing a 100 mg dose of 26Mg-labelled magnesium diglycinate against 26Mg-labelled magnesium oxide. For the group as a whole, absorption was low and not different between the two forms: 23.5% for the chelate against 22.8% for the oxide. A difference emerged only in the four patients with the worst oxide absorption (23.5% against 11.8%, P < .05). Peak isotope enrichment came earlier after the chelate (mean difference 3.2 +/- 1.3 hours, P < .05) and the area under the enrichment curve was greater. The authors concluded that some portion of the diglycinate is probably absorbed intact by a dipeptide pathway and that it may be a good alternative in patients with intestinal resection — a conclusion about surgical patients that the retail category has generalised to everyone. Separately, Firoz and Graber\'s much-cited bioavailability comparison of US commercial preparations tested oxide, chloride, lactate and aspartate. It did not include glycinate at all.',
+        evidenceSource:
+          'Schuette SA, Lashner BA, Janghorbani M. JPEN J Parenter Enteral Nutr 1994;18:430-435; Firoz M, Graber M. Magnes Res 2001;14:257-262',
+        doi: '10.1177/0148607194018005430',
+        inferredClaim:
+          'That magnesium bisglycinate is meaningfully better absorbed than other magnesium salts in people with normal intestines, and that trials run with other magnesium salts therefore transfer to it',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mgg-a4',
+        category: 'inferred',
+        title: 'The sleep trial: 46 people, and total sleep time did not differ',
+        laymanSummary:
+          'The trial behind "magnesium for sleep" had 46 elderly participants. Questionnaire scores improved. The amount of time people actually slept was no different from placebo.',
+        technicalDetails:
+          'Abbasi et al. randomised 46 elderly subjects with primary insomnia to 500 mg magnesium or placebo for eight weeks. Between-group improvements were reported for insomnia severity index score (P = 0.006), sleep efficiency (P = 0.03), sleep onset latency (P = 0.02), serum renin (P < 0.001), melatonin (P = 0.007) and cortisol (P = 0.008). But total sleep time showed no significant between-group difference (P = 0.37), early morning awakening was only marginal (P = 0.08), and — the detail that undercuts the mechanism — the between-group difference in serum magnesium concentration itself was only marginally significant (P = 0.06). A supplement that did not clearly raise the analyte it delivers, in 46 people, is the entire randomised basis for one of the largest supplement marketing claims in the category.',
+        evidenceSource: 'Abbasi B et al. J Res Med Sci 2012;17:1161-1169',
+        measuredMetric:
+          'Insomnia severity index, sleep onset latency, sleep efficiency and total sleep time over eight weeks',
+        inferredClaim:
+          'That magnesium is an established sleep aid in adults generally, on the strength of a 46-person trial whose total sleep time endpoint was null',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mgg-a5',
+        category: 'conclusion_shift',
+        title: 'The cardiology reversal: a 24% mortality benefit that 6,213 patients erased',
+        laymanSummary:
+          'In 1992 a trial of 2,316 heart attack patients reported that magnesium cut deaths by a quarter. Two much larger trials, one with 58,050 patients and one with 6,213, did not confirm it, and the treatment was abandoned.',
+        technicalDetails:
+          'LIMIT-2 randomised 2,316 patients with suspected acute myocardial infarction to intravenous magnesium sulphate or saline and reported 28-day all-cause mortality of 7.8% against 10.3% (2p = 0.04), a relative reduction of 24% (95% CI 1 to 43%), with left ventricular failure in the coronary care unit down 25% (7 to 39%, 2p = 0.009). The authors wrote that magnesium\'s efficacy in reducing early mortality was comparable to, but independent of, thrombolytic or antiplatelet therapy. ISIS-4 then randomised 58,050 patients in a 2x2x2 factorial design including 24 hours of intravenous magnesium sulphate versus open control. By 2002 the MAGIC investigators recorded in their own background section that "conflicting results have been reported in clinical trials," and settled it: 6,213 patients, 30-day all-cause mortality 475 (15.3%) on magnesium against 472 (15.2%) on placebo, odds ratio 1.0 (95% CI 0.9 to 1.2, p = 0.96), with no benefit or harm in eight prespecified and fifteen exploratory subgroups. Their conclusion was that there is no indication for routine intravenous magnesium in STEMI. The mechanism was never wrong — magnesium really is a vasodilator, platelet inhibitor and antiarrhythmic — it simply did not produce the outcome.',
+        evidenceSource:
+          'Woods KL et al. Lancet 1992;339:1553-1558; ISIS-4 Collaborative Group. Lancet 1995;345:669-685; MAGIC Trial Investigators. Lancet 2002;360:1189-1196',
+        doi: '10.1016/S0140-6736(02)11278-5',
+        measuredMetric: '28-day and 30-day all-cause mortality after acute myocardial infarction',
+        inferredClaim:
+          'That a plausible mechanism plus a positive medium-sized trial establishes a clinical effect',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mgg-a6',
+        category: 'inferred',
+        title: 'The depression result is large, fast, and completely unblinded',
+        laymanSummary:
+          'An often-cited trial reported that magnesium improved depression scores by six points in two weeks. Nobody was blinded, there was no placebo, and participants knew exactly when they were taking it.',
+        technicalDetails:
+          'Tarleton et al. ran an open-label, blocked, randomised crossover trial in 126 adults with PHQ-9 scores of 5 to 19, comparing six weeks of 248 mg elemental magnesium as magnesium chloride against six weeks of no treatment. Net improvement in PHQ-9 was -6.0 points (95% CI -7.9 to -4.2, P < 0.001) and in GAD-7 -4.5 points (95% CI -6.6 to -2.4, P < 0.001), with effects appearing within two weeks and no dependence on baseline magnesium level. The design is the problem: an open-label crossover against no treatment in a self-reported symptom score is the configuration that maximises expectancy effects, and a six-point PHQ-9 swing exceeds what several licensed antidepressants achieve over placebo in blinded trials. Note also the salt: this was magnesium chloride, not glycinate.',
+        evidenceSource: 'Tarleton EK et al. PLoS One 2017;12:e0180067',
+        doi: '10.1371/journal.pone.0180067',
+        inferredClaim:
+          'That magnesium has an antidepressant effect of the size this trial reports, when the trial had no blind and no placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mgg-a7',
+        category: 'measured',
+        title: 'The deficiency test is weak, which is what makes the category sellable',
+        laymanSummary:
+          'The blood test used to call people magnesium-deficient measures less than one percent of the body\'s magnesium, and the normal range it is judged against was never set from health outcomes.',
+        technicalDetails:
+          'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, which is the honest half of the marketing claim. And no ordinary test can confirm the depletion either, which means a supplement sold against it can never be shown to have been unnecessary.',
+        evidenceSource: 'Costello RB et al. Adv Nutr 2016;7:977-993',
+        doi: '10.3945/an.116.012765',
+        measuredMetric:
+          'Serum magnesium reference interval and its relationship to total body magnesium status',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Two absorption routes, and the efficient one shuts down as intake rises',
+        laymanDesc:
+          'The gut has an active pump for magnesium that works hardest when you have least, plus a passive leak between cells that handles the rest. Take more and a smaller fraction of it gets in.',
+        molecularDetail:
+          'Transcellular uptake through TRPM6 in the distal small intestine and colon is saturable and dominates at low luminal concentration; paracellular diffusion through claudin-2 and claudin-12 tight junctions dominates at high concentration and is not regulated. Fractional absorption therefore falls as dose rises, which is why any form comparison must state the dose it was run at. Firoz and Graber measured about 4 percent fractional absorption for magnesium oxide at roughly 21 mEq per day.',
+        iconName: 'ArrowDown',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The glycinate claim: absorbed as a whole molecule, or taken apart first',
+        laymanDesc:
+          'The premium form is sold on the idea that magnesium bound to two glycine molecules slips through a different door, the one used for digested protein fragments. One small trial hinted at this.',
+        molecularDetail:
+          'Schuette et al. inferred intact dipeptide-pathway absorption from an earlier peak isotope enrichment (3.2 +/- 1.3 hours sooner) and a greater area under the enrichment curve for the diglycinate against the oxide, in ileal-resection patients. Total fractional absorption was not different (23.5% against 22.8%). Earlier and higher is a kinetic observation; a distinct transporter is an inference from it, and no cell-level demonstration accompanies the claim.',
+        iconName: 'DoorOpen',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Into the cell, where it spends its life stuck to ATP',
+        laymanDesc:
+          'Almost no magnesium floats free. Inside cells it is bound to the energy molecule ATP, and it is that complex, not ATP alone, that enzymes actually use.',
+        molecularDetail:
+          'The biologically active substrate of most kinases, ATPases and polymerases is Mg-ATP, not ATP. Intracellular free magnesium is held near 0.5 to 1.0 mmol/L against a total cellular content roughly twenty times higher, and the bone reservoir buffers the extracellular pool. This buffering is exactly why serum magnesium moved only 0.05 mmol/L across the 34 trials in Zhang\'s meta-analysis.',
+        iconName: 'Battery',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Plugging the NMDA receptor, which is the whole basis of the calm claim',
+        laymanDesc:
+          'Magnesium physically sits inside the pore of an excitatory brain receptor and blocks it until the cell is strongly stimulated. That is the pharmacological story behind selling it for anxiety and sleep.',
+        molecularDetail:
+          'Extracellular magnesium occupies the NMDA receptor channel in a voltage-dependent manner and is expelled on depolarisation, making the receptor a coincidence detector. The step from that to a clinical anxiolytic effect requires brain extracellular magnesium to change measurably with oral intake, which is bounded by the same homeostasis that keeps serum flat. The randomised evidence for the endpoint is the 46-person Abbasi trial and the unblinded Tarleton crossover.',
+        iconName: 'Brain',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'What comes out the other end, measurably',
+        laymanDesc:
+          'The kidney is the only real exit, so magnesium status is set by how much the kidney lets go — and whatever the gut does not absorb pulls water into the bowel on its way out.',
+        molecularDetail:
+          'The distal convoluted tubule reabsorbs magnesium through TRPM6 and sets the whole-body set point, which is why renal impairment turns a harmless supplement into an accumulating one. Unabsorbed luminal magnesium is osmotically active: across the Cochrane cramp trials, minor adverse events, mostly diarrhoea, ran 11 to 37 percent on magnesium against 10 to 14 percent on control, risk ratio 1.51 (95% CI 0.98 to 2.33).',
+        iconName: 'Droplets',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Zhang 2016 meta-analysis of 34 double-blind placebo-controlled magnesium trials',
+        phase: 'Meta-analysis of randomised double-blind placebo-controlled trials',
+        sampleSize: 2028,
+        primaryEndpoint: 'Change in systolic and diastolic blood pressure versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Systolic -2.00 mmHg (95% CI 0.43 to 3.58); diastolic -1.78 mmHg (95% CI 0.73 to 2.82)',
+        unreportedAdverseSignals:
+          'Residual heterogeneity persisted after stratification by trial quality and dropout rate. Serum magnesium rose only 0.05 mmol/L, so the effect is not traceable to a large change in the measured analyte.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane CD009402 — magnesium for skeletal muscle cramps',
+        phase: 'Cochrane systematic review of 11 randomised trials',
+        sampleSize: 735,
+        primaryEndpoint: 'Percentage change from baseline in number of cramps per week at four weeks',
+        endpointMet: false,
+        statisticalPValue:
+          'MD -9.59% (95% CI -23.14 to 3.97); cramps per week MD -0.18 (95% CI -0.84 to 0.49); 25% responder RR 1.04 (95% CI 0.84 to 1.29), high certainty',
+        unreportedAdverseSignals:
+          'More minor adverse events on magnesium than control, RR 1.51 (95% CI 0.98 to 2.33). No randomised trials at all were found for exercise-associated cramps, which is a large part of the market.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Schuette 1994 — 26Mg-labelled diglycinate versus oxide in ileal resection',
+        phase: 'Double-blind randomised crossover stable-isotope study',
+        sampleSize: 12,
+        primaryEndpoint: 'Fractional absorption of a 100 mg 26Mg-labelled dose',
+        endpointMet: false,
+        statisticalPValue:
+          'No group difference: 23.5% chelate versus 22.8% oxide; subgroup of four poorest absorbers 23.5% versus 11.8% (P < .05)',
+        unreportedAdverseSignals:
+          'Twelve patients, all with surgically shortened bowels, is the entire direct human evidence base for the form that dominates the retail market.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Abbasi 2012 — magnesium for primary insomnia in the elderly',
+        phase: 'Double-blind randomised placebo-controlled',
+        sampleSize: 46,
+        primaryEndpoint: 'Insomnia severity index and sleep log measures over eight weeks',
+        endpointMet: true,
+        statisticalPValue:
+          'ISI P = 0.006, sleep onset latency P = 0.02, sleep efficiency P = 0.03; total sleep time P = 0.37 (not significant)',
+        unreportedAdverseSignals:
+          'The between-group difference in serum magnesium itself reached only P = 0.06, and total sleep time — arguably the endpoint a buyer cares about — was null.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'MAGIC — intravenous magnesium in ST-elevation myocardial infarction',
+        phase: 'Randomised double-blind placebo-controlled',
+        sampleSize: 6213,
+        primaryEndpoint: '30-day all-cause mortality',
+        endpointMet: false,
+        statisticalPValue: 'Odds ratio 1.0 (95% CI 0.9 to 1.2), p = 0.96',
+        unreportedAdverseSignals:
+          'No benefit or harm in eight prespecified and fifteen exploratory subgroups. The trial exists because a 2,316-patient predecessor had reported a 24% mortality reduction that larger studies did not sustain.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Systolic blood pressure fell 2.00 mmHg and diastolic 1.78 mmHg across 34 double-blind trials in 2,028 people',
+        'Serum magnesium rose by only 0.05 mmol/L across those same trials, because bone and kidney buffer the pool',
+        'Fractional absorption of magnesium oxide was about 4 percent in normal volunteers, lower than chloride, lactate and aspartate',
+        'Oral magnesium reliably increases minor gastrointestinal adverse events, RR 1.51 in the Cochrane pooled analysis',
+      ],
+      unsupportedInferences: [
+        'That bisglycinate is better absorbed in people with normal intestines — the one comparative trial found no group difference in twelve ileal-resection patients',
+        'That magnesium prevents muscle cramps, which Cochrane rated as high-certainty no in older adults and untested in exercise',
+        'That magnesium is an established sleep aid, when the trial behind the claim was null for total sleep time in 46 people',
+        'That a 6-point PHQ-9 improvement in an open-label, no-placebo crossover measures a drug effect rather than expectancy',
+      ],
+      whatFailedInitially: [
+        'Intravenous magnesium in myocardial infarction: a 24% mortality reduction in 2,316 patients that 6,213 patients later flattened to an odds ratio of 1.0',
+        'The idea that serum magnesium can adjudicate deficiency, which the reference interval was never built to do',
+      ],
+      realWorldOutcome: [
+        'Magnesium is genuinely required, genuinely depleted by common drugs including proton pump inhibitors and diuretics, and genuinely under-consumed relative to reference intakes',
+        'None of that establishes the specific retail claims, and the specific retail form has almost no trial literature of its own',
+        'The one unambiguous consumer-facing effect of taking too much is diarrhoea, which is also how magnesium salts work as laxatives',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule or tablet, magnesium bis-glycinate chelate',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy or safety before sale. Elemental magnesium is only about 14 percent of the bisglycinate molecule by mass, so a 1,000 mg capsule of "magnesium glycinate" delivers on the order of 140 mg of magnesium — a labelling distinction that decides whether a product is comparable to the trials at all. Products may also be blends of magnesium oxide with free glycine rather than true chelates, which an elemental assay cannot detect.',
+      safetyProfile:
+        'Diarrhoea and abdominal cramping are dose-related and are the mechanism by which magnesium salts act as laxatives. Magnesium is cleared almost entirely by the kidney, so in chronic kidney disease supplemental magnesium accumulates and hypermagnesaemia — bradycardia, hypotension, respiratory depression at high levels — becomes a real risk. Oral magnesium also chelates tetracycline and fluoroquinolone antibiotics and bisphosphonates in the gut, reducing their absorption.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is glycinate really better absorbed than the cheap magnesium oxide?',
+        a: 'The honest answer is that the direct comparison has been run once, in twelve patients who had had part of their ileum surgically removed, and it found no difference for the group as a whole: 23.5 percent absorption for the glycinate against 22.8 percent for the oxide. The glycinate was absorbed faster and reached a higher peak, and it did better in the four patients who absorbed the oxide worst. That is a reasonable basis for preferring it in intestinal disease. It is not a basis for the claim printed on the tub.',
+        auditNote:
+          'The Firoz and Graber bioavailability study that most "oxide is poorly absorbed" copy points to did not test glycinate.',
+      },
+      {
+        q: 'Does magnesium stop night cramps?',
+        a: 'A Cochrane review of eleven trials in 735 people says no, and it graded one of those null results as high certainty. In older adults with idiopathic night cramps the difference against placebo was about a fifth of one cramp per week. For pregnancy-associated cramps the trials genuinely conflict and the review would not pool them. For exercise cramps there are no randomised trials at all, which is worth knowing before reading any confident claim about them.',
+      },
+      {
+        q: 'What about magnesium for sleep and anxiety?',
+        a: 'The mechanism is real and interesting: magnesium physically blocks the pore of the NMDA receptor. The clinical evidence is thinner than the marketing suggests. The insomnia trial had 46 elderly participants, improved questionnaire scores, and found no significant difference in total sleep time. The depression and anxiety trial had no blind and no placebo and used magnesium chloride, not glycinate. Neither is worthless; neither supports the confidence with which the claim is sold.',
+        auditNote:
+          'Glycine, the other half of the molecule, has its own small sleep literature and is a separate record on this site.',
+      },
+      {
+        q: 'How would I know if I am actually deficient?',
+        a: 'You largely would not, and that is the structural problem in this category. Serum magnesium is under one percent of the body\'s magnesium and is buffered by bone, so it falls late and recovers fast, and the reference interval it is judged against was set from population distributions rather than from outcomes. A normal result does not rule out depletion. It also means a supplement sold against invisible depletion can never be shown to have been unnecessary, which is a commercially useful property.',
+      },
+      {
+        q: 'Who has a documented reason to take it?',
+        a: 'People with real, mechanistically explained losses: long-term proton pump inhibitor use, loop and thiazide diuretics, chronic alcohol use, poorly controlled diabetes, and intestinal resection or malabsorption. The FDA has warned specifically about hypomagnesaemia with prolonged proton pump inhibitor therapy. That population is well defined and is not the population the retail category is aimed at.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Woods KL, Fletcher S, Roffe C, Haider Y. Intravenous magnesium sulphate in suspected acute myocardial infarction: results of the second Leicester Intravenous Magnesium Intervention Trial (LIMIT-2). Lancet 1992;339:1553-1558',
+        identifier: '10.1016/0140-6736(92)91828-V',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Schuette SA, Lashner BA, Janghorbani M. Bioavailability of magnesium diglycinate vs magnesium oxide in patients with ileal resection. JPEN J Parenter Enteral Nutr 1994;18:430-435',
+        identifier: '10.1177/0148607194018005430',
+        kind: 'doi',
+      },
+      {
+        label:
+          'ISIS-4 Collaborative Group. ISIS-4: a randomised factorial trial assessing early oral captopril, oral mononitrate, and intravenous magnesium sulphate in 58,050 patients with suspected acute myocardial infarction. Lancet 1995;345:669-685',
+        identifier: '10.1016/S0140-6736(95)90865-X',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Firoz M, Graber M. Bioavailability of US commercial magnesium preparations. Magnes Res 2001;14:257-262',
+        identifier: '11794633',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Magnesium in Coronaries (MAGIC) Trial Investigators. Early administration of intravenous magnesium to high-risk patients with acute myocardial infarction in the MAGIC Trial: a randomised controlled trial. Lancet 2002;360:1189-1196',
+        identifier: '10.1016/S0140-6736(02)11278-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Abbasi B et al. The effect of magnesium supplementation on primary insomnia in elderly: a double-blind placebo-controlled clinical trial. J Res Med Sci 2012;17:1161-1169',
+        identifier: '23853635',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Zhang X et al. Effects of magnesium supplementation on blood pressure: a meta-analysis of randomized double-blind placebo-controlled trials. Hypertension 2016;68:324-333',
+        identifier: '10.1161/HYPERTENSIONAHA.116.07664',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Costello RB et al. Perspective: the case for an evidence-based reference interval for serum magnesium: the time has come. Adv Nutr 2016;7:977-993',
+        identifier: '10.3945/an.116.012765',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Tarleton EK, Littenberg B, MacLean CD, Kennedy AG, Daley C. Role of magnesium supplementation in the treatment of depression: a randomized clinical trial. PLoS One 2017;12:e0180067',
+        identifier: '10.1371/journal.pone.0180067',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Garrison SR et al. Magnesium for skeletal muscle cramps. Cochrane Database Syst Rev 2020;9:CD009402',
+        identifier: '10.1002/14651858.CD009402.pub3',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 84645 — Magnesium glycinate',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/84645',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Zinc — a real but dose-and-salt-dependent effect on cold duration, and two harms the category
+  // does not print on the label: permanent anosmia from the nasal route, and copper depletion.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'zinc',
+    name: 'Zinc',
+    tradeName:
+      'Sold as zinc gluconate, acetate, picolinate, citrate or oxide; the prescription zinc acetate product for Wilson disease is Galzin',
+    sponsor:
+      'No single sponsor — an essential trace element sold as several salts by many manufacturers. Zinc acetate is also an FDA-approved prescription drug under NDA 020458.',
+    targetGene: 'SLC39A4',
+    targetProtein:
+      'ZIP4 (SLC39A4), the apical enterocyte zinc importer whose loss-of-function mutations cause acrodermatitis enteropathica. The counterpart that explains most of zinc\'s harms is metallothionein, a cysteine-rich cytosolic chelator that zinc itself induces in the enterocyte and that binds copper more tightly than zinc, trapping it for excretion in shed cells.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold over the counter for the common cold, immunity, skin and testosterone. Zinc acetate is separately an FDA-approved prescription drug for maintenance therapy in Wilson disease, and oral zinc is a WHO- and UNICEF-recommended treatment for acute childhood diarrhoea. Those two are genuine, evidenced indications, and neither is why most zinc is bought.',
+    patientFriendlyIndication:
+      'Taken at the first sign of a cold, and daily for immune support',
+    conditionContext: {
+      conditionExplainer:
+        'The common cold is a self-limiting viral illness that resolves on its own in about a week. Any treatment for it is therefore competing with spontaneous recovery, and any trial has to separate a real shortening from the ordinary variation in how long colds last. This is why the zinc literature is so noisy: the effect being chased is a day or two against a background that already ends by itself.',
+      whyItMatters:
+        'Zinc is one of the very few over-the-counter cold remedies with a positive randomised signal, and the reason it took thirty years to make sense of is that the dose and the chemical salt both matter. It is also the supplement with the clearest documented ability to cause lasting harm: permanent loss of smell by one route, and copper deficiency with anaemia and spinal cord damage by another.',
+      whoTakesThis:
+        'Adults taking lozenges at cold onset, people on daily multivitamins containing zinc, children in low-income settings treated for diarrhoea under WHO guidance, patients with Wilson disease on prescription zinc acetate, and people with genuine deficiency from malabsorption, vegetarian diets high in phytate, or acrodermatitis enteropathica.',
+      clinicalGoals:
+        'Trials measured cold duration in days, proportion still symptomatic at follow-up, global symptom severity, diarrhoea duration in hours, progression to advanced macular degeneration, and — in the harm literature — olfactory threshold testing, serum copper, ceruloplasmin and neutrophil counts.',
+    },
+    oneSentenceVerdict:
+      'Zinc lozenges probably do shorten a cold, but only above about 75 mg per day and best as the acetate salt, which is why half the trials found nothing; the prevention claim is null across 1,449 participants, and the two documented harms — permanent anosmia from nasal gels and copper deficiency from sustained high oral intake — are real and undersold.',
+    laymanHowItWorks:
+      'Zinc is a structural component of thousands of proteins, so a genuine shortage disables enzymes and immune cells across the body. What a lozenge does is different and local: it releases free zinc ions into the throat, where they appear to interfere with the rhinovirus replication cycle and with the receptor the virus uses to enter cells. That only happens if the lozenge actually releases free ionic zinc, which depends on what the zinc is bound to and how much of it there is. Swallowed daily at high doses, the same element blocks copper absorption, and copper deficiency is not a subtle condition.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 54,
+    anatomicalSite:
+      'Oropharyngeal mucosa for the lozenge effect; duodenal and jejunal enterocyte for absorption and for the copper interaction',
+    substitutes: {
+      summary:
+        'For an acute cold there is no comparator that clearly beats zinc, because there is no established treatment for the common cold at all — the Cochrane authors say so in the first paragraph of their background. For deficiency, food and prescription zinc both work. For the nasal route there is no acceptable substitute discussion, because that route should not be used.',
+      conventionalRx: [
+        {
+          name: 'Zinc acetate as prescription therapy for Wilson disease',
+          class: 'Copper absorption blocker, FDA-approved under NDA 020458',
+          howItCompares:
+            'The same salt, prescribed precisely because it induces intestinal metallothionein and stops copper being absorbed. The mechanism regulators approved as the therapeutic action is identical to the mechanism that makes high-dose zinc supplementation dangerous in a person with normal copper handling.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: a clean, approved, mechanistically transparent use. Cons: it is also the clearest possible warning label for the supplement, and it is almost never presented as one.',
+        },
+        {
+          name: 'Oral zinc for acute childhood diarrhoea, per WHO and UNICEF',
+          class: 'Public-health mineral supplementation',
+          howItCompares:
+            'This is the strongest efficacy evidence zinc has anywhere. In children over six months, 33 trials in 10,841 children found diarrhoea shortened by about eleven hours, and in malnourished children by about a day, graded high certainty.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: large, replicated, and in the population where baseline zinc deficiency is common. Cons: in children under six months the same review found no effect, and the trials were run mostly in Asian settings at high risk of deficiency, so it is a repletion result rather than a general antiviral one.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Oysters, red meat, shellfish and organ meat',
+          activeCompound: 'Zinc, in a form unencumbered by phytate',
+          biologicalMechanism:
+            'Animal-source zinc is absorbed far more efficiently than plant-source zinc because it is not bound to phytic acid, which chelates zinc in the gut lumen and blocks ZIP4-mediated uptake. Oysters carry more zinc per gram than any other common food by a wide margin.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the Cochrane cold-treatment trials used zinc gluconate lozenges at 45 to 276 mg per day, which is many times any dietary intake.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Legumes and whole grains, as the phytate problem',
+          activeCompound: 'Zinc bound to phytic acid',
+          biologicalMechanism:
+            'Phytate forms insoluble complexes with zinc in the intestinal lumen, which is why populations eating unleavened high-phytate staples have measurably higher rates of zinc deficiency despite adequate total zinc intake. Soaking, sprouting and leavening degrade phytate and raise absorption.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Never put zinc up your nose',
+          action:
+            'Distinguish the lozenge from the nasal gel or nasal swab. They are different products with different risk profiles, and only one of them has caused permanent injury.',
+          patientImpact:
+            'Twenty-five patients presenting to a single nasal dysfunction clinic with acute anosmia after homeopathic intranasal zinc gluconate gel were enough to satisfy all nine Bradford Hill criteria for causation. Zinc ions are directly toxic to olfactory epithelium.',
+          clinicalPrecaution:
+            'The loss was long-lasting or permanent in some cases. The authors of that analysis called for increased FDA oversight of homeopathic medications on the strength of it.',
+        },
+        {
+          name: 'If a daily zinc habit is long-term, copper is the thing to watch',
+          action:
+            'Sustained high-dose zinc induces intestinal metallothionein, which binds copper and carries it out in shed enterocytes. The result is a copper deficiency that presents haematologically or neurologically, often without the zinc being suspected.',
+          patientImpact:
+            'Willis et al. reported three cases first recognised on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of them with progressive peripheral neuropathy. Kumar\'s Mayo Clinic series describes a copper deficiency myelopathy with spastic gait and sensory ataxia that mimics vitamin B12 subacute combined degeneration.',
+          clinicalPrecaution:
+            'Copper replacement resolves the anaemia and neutropenia promptly and completely. The neurological damage often does not recover; supplementation mainly prevents further deterioration. AREDS included 2 mg of copper alongside its 80 mg of zinc for exactly this reason.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(=O)[O-].CC(=O)[O-].[Zn+2]',
+      chemicalFormula: 'C4H6O4Zn',
+      molecularWeight:
+        '183.5 g/mol for zinc acetate, of which 65.4 g/mol is elemental zinc. The marker salt here is the acetate because it is the form that produced the largest cold-duration effect in Hemila\'s dose-stratified analysis, and the form approved as a prescription drug.',
+      structureSource: {
+        label: 'PubChem CID 11192 — Zinc acetate, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11192',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'zn-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Elemental zinc content and cadmium and lead screen on the raw salt',
+          description:
+            'Zinc ores carry cadmium and lead, and both follow zinc through refining. A label states elemental zinc; it does not state what came along with it. Assay both the declared element and the contaminants before anything is formulated, because a lozenge is dosed at many times dietary intake and so multiplies any contaminant proportionally.',
+          reagentsAndBuffer:
+            'Microwave acid digestion in nitric acid and hydrogen peroxide; ICP-MS against certified zinc, cadmium and lead standards; NIST-traceable reference material as the accuracy control; loss on drying and residue on ignition',
+        },
+        {
+          id: 'zn-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Formulation of lozenges with and without free-ion-quenching excipients',
+          description:
+            'The active species in the throat is the free zinc ion, and common lozenge excipients bind it. Citric acid, tartaric acid, sorbitol and mannitol chelate zinc and abolish ionic release, which is the most likely reason many early lozenge trials were flatly negative. Prepare matched lozenges that differ only in whether a chelating excipient is present.',
+          dependsOnStepId: 'zn-w1',
+          reagentsAndBuffer:
+            'Zinc acetate dihydrate and zinc gluconate; glycine as a non-quenching buffer; citric acid, tartaric acid, sorbitol and mannitol as the deliberate negative-control excipients; hard-candy base compressed without heat degradation',
+        },
+        {
+          id: 'zn-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Measurement of free ionic zinc release into simulated saliva',
+          description:
+            'Separate total zinc from free ionic zinc. A lozenge can dissolve completely and release almost no free Zn2+ if the counter-ion or excipient holds it, and total-zinc assays cannot tell the two situations apart. This is the step that converts a formulation into a testable dose of the actual active species.',
+          dependsOnStepId: 'zn-w2',
+          reagentsAndBuffer:
+            'Simulated saliva at pH 7.4 with mucin and salivary electrolytes at 37 degrees C; zinc-selective fluorescent probe (FluoZin-3) calibrated against zinc-EGTA buffers; ion-selective electrode as an orthogonal method; ultrafiltration to separate bound from free zinc',
+        },
+        {
+          id: 'zn-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Rhinovirus replication in human airway epithelium under defined free-zinc exposure',
+          description:
+            'Expose differentiated primary human nasal or bronchial epithelial cultures at air-liquid interface to rhinovirus and to the free-zinc concentrations actually achieved in step three, not to a nominal salt concentration. Include a metallothionein induction readout, because the same exposure that inhibits virus also starts the copper-binding process that causes the systemic harm.',
+          dependsOnStepId: 'zn-w3',
+          reagentsAndBuffer:
+            'Primary human airway epithelial cells at air-liquid interface; rhinovirus serotype 14 and serotype 1B; zinc-buffered media at defined free Zn2+; TPEN as a membrane-permeant zinc chelator control; qPCR for MT2A induction; ICAM-1 surface staining',
+        },
+        {
+          id: 'zn-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Viral titre alongside a copper-status panel, reported together',
+          description:
+            'Quantify viral RNA copies and infectious titre, and in any in vivo arm report serum copper, ceruloplasmin, neutrophil count and serum zinc from the same subjects at the same visits. Reporting efficacy without the copper panel is how zinc-induced copper deficiency stayed a case-report finding for decades rather than a trial finding.',
+          dependsOnStepId: 'zn-w4',
+          reagentsAndBuffer:
+            'Rhinovirus RT-qPCR standard curve; TCID50 titration on HeLa-H1 cells; ICP-MS serum copper and zinc; immunoturbidimetric ceruloplasmin; automated differential white cell count',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'zn-a1',
+        category: 'measured',
+        title: 'Cochrane 2024: about two days off a cold, at low certainty, and nothing for prevention',
+        laymanSummary:
+          'Thirty-four trials in 8,526 people. Taking zinc once a cold has started may shorten it by roughly two days. Taking it to avoid catching one does nothing.',
+        technicalDetails:
+          'Thirty-four randomised trials (15 prevention, 19 treatment) in 8,526 participants, 22 in adults and 12 in children. For treatment, mean duration of cold fell by 2.37 days (95% CI -4.21 to -0.53) across 8 studies and 972 participants, but with I-squared of 97% and graded LOW certainty. Whether zinc reduced the risk of still having a cold at end of follow-up was uncertain (RR 0.52, 95% CI 0.21 to 1.27, very low certainty), and global symptom severity showed nothing (SMD -0.03, 95% CI -0.56 to 0.50). For prevention there may be little or no reduction in the risk of developing a cold (RR 0.93, 95% CI 0.85 to 1.01; 9 studies, 1,449 participants; low certainty) and little or no reduction in the number of colds over 5 to 18 months. Non-serious adverse events were probably increased by treatment zinc (RR 1.34, 95% CI 1.15 to 1.55; 16 studies, 2,084 participants; moderate certainty) — the highest certainty grade attached to any treatment finding in the review is the harm, not the benefit.',
+        evidenceSource: 'Nault D et al. Cochrane Database Syst Rev 2024;5:CD014914',
+        doi: '10.1002/14651858.CD014914.pub2',
+        measuredMetric:
+          'Mean duration of cold in days, proportion developing a cold, and rate of non-serious adverse events',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zn-a2',
+        category: 'conclusion_shift',
+        title: 'Hemila 2011 explained thirty years of contradiction: the dose and the salt',
+        laymanSummary:
+          'Zinc trials had contradicted each other for decades. Splitting them by how much zinc was given resolved it: below a threshold, every trial found nothing; above it, they found a large effect.',
+        technicalDetails:
+          'Hemila pooled thirteen placebo-controlled comparisons of zinc lozenges in natural colds. Five trials using a total daily zinc dose below 75 mg uniformly found no effect. Three trials using zinc acetate above 75 mg per day pooled to a 42% reduction in cold duration (95% CI 35% to 48%). Five trials using zinc salts other than acetate above 75 mg per day pooled to a 20% reduction (95% CI 12% to 28%). The conclusion is that the lozenge effect is heterogeneous by design rather than by chance: the negative trials were not failed replications, they were tests of a dose that could not work. The chemistry underneath is that only free ionic zinc is active, and common lozenge excipients such as citric acid, tartaric acid, sorbitol and mannitol chelate it. This is the cleanest example on this site of a field changing its mind not about whether something works but about what "it" was.',
+        evidenceSource: 'Hemila H. Open Respir Med J 2011;5:51-58',
+        doi: '10.2174/1874306401105010051',
+        measuredMetric:
+          'Pooled percentage reduction in common cold duration, stratified by total daily zinc dose and by zinc salt',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zn-a3',
+        category: 'failed',
+        title: 'COVID A to Z: 214 patients, stopped early, zinc did nothing',
+        laymanSummary:
+          'A randomised trial of high-dose zinc and vitamin C in outpatients with COVID-19 was halted early because there was no sign either was working.',
+        technicalDetails:
+          'A multicentre open-label factorial randomised trial at Cleveland Clinic sites in Ohio and Florida enrolled 214 outpatients with PCR-confirmed SARS-CoV-2 between April and October 2020, allocated 1:1:1:1 to ten days of zinc gluconate 50 mg, ascorbic acid 8,000 mg, both, or usual care. The primary endpoint was days to a 50% reduction in a four-symptom severity score. The study was stopped for low conditional power for benefit. Usual care reached 50% symptom reduction at a mean of 6.7 (SD 4.4) days, against 5.9 (4.9) days for zinc, 5.5 (3.7) for ascorbic acid and 5.5 (3.4) for both — overall P = .45, with no significant difference in any secondary outcome. The trial is open-label and was not designed to detect a small effect, but it is the direct randomised test of the exact combination that was being bought by the million during the pandemic.',
+        evidenceSource: 'Thomas S et al. JAMA Netw Open 2021;4:e210369',
+        doi: '10.1001/jamanetworkopen.2021.0369',
+        measuredMetric: 'Days to 50% reduction in a composite fever, cough, dyspnoea and fatigue score',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zn-a4',
+        category: 'failed',
+        title: 'Intranasal zinc gluconate causes anosmia, and the causation analysis is formal',
+        laymanSummary:
+          'A homeopathic zinc nasal gel sold for colds destroyed people\'s sense of smell. In some cases it never came back.',
+        technicalDetails:
+          'Jafek, Linschoten and Murrow reported a case series of severe hyposmia and anosmia following intranasal zinc gluconate, concluding that zinc ions are toxic to olfactory epithelium and that the loss appeared long-lasting or permanent in some cases, with the mechanism attributed to direct action of the divalent zinc ion on the olfactory receptor cell. Davidson and Smith later applied all nine Bradford Hill criteria — strength, consistency, specificity, temporality, biological gradient, plausibility, coherence, experimental evidence and analogy — to 25 patients presenting to the University of California San Diego Nasal Dysfunction Clinic with acute-onset anosmia after intranasal homeopathic zinc gluconate gel, and concluded that the clinical, biological and experimental data support causation. Their stated conclusion was that increased FDA oversight of homeopathic medications is needed. This is a harm caused by route, not by element: the same zinc in a lozenge does not do this.',
+        evidenceSource:
+          'Jafek BW, Linschoten MR, Murrow BW. Am J Rhinol 2004;18:137-141; Davidson TM, Smith WM. Arch Otolaryngol Head Neck Surg 2010;136:673-676',
+        doi: '10.1001/archoto.2010.111',
+        measuredMetric: 'Olfactory function after intranasal zinc gluconate exposure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zn-a5',
+        category: 'inferred',
+        title: 'Copper depletion: the approved drug action, sold as a side effect nobody mentions',
+        laymanSummary:
+          'High-dose zinc blocks copper absorption. That is not a rare quirk — it is the reason the FDA approved zinc as a prescription drug for a copper-overload disease. In people without that disease it causes anaemia, low white cells and spinal cord damage.',
+        technicalDetails:
+          'Zinc induces metallothionein in the enterocyte; metallothionein binds copper with higher affinity than zinc and holds it until the cell is shed, so copper never reaches the circulation. The FDA approved zinc acetate under NDA 020458 for maintenance therapy in Wilson disease on exactly this mechanism. In people with normal copper handling, Willis et al. reported three cases of zinc-induced copper deficiency first suspected on bone marrow examination: sideroblastic anaemia and severe neutropenia, two of the three with progressive peripheral neuropathy, one of them arising from zinc taken for acrodermatitis enteropathica. Kumar\'s Mayo Clinic review of copper deficiency myelopathy describes a spastic gait with prominent sensory ataxia that mirrors vitamin B12 subacute combined degeneration, lists excess zinc ingestion among the established causes, and records the crucial asymmetry: copper replacement resolves the anaemia and neutropenia promptly and completely, while neurological improvement is often only subjective and mainly prevents further deterioration.',
+        evidenceSource:
+          'Willis MS et al. Am J Clin Pathol 2005;123:125-131; Kumar N. Mayo Clin Proc 2006;81:1371-1384',
+        doi: '10.1309/V6GVYW2QTYD5C5PJ',
+        inferredClaim:
+          'That daily high-dose zinc is a benign long-term habit, when the same mechanism is licensed as a copper-blocking drug and its failure mode includes irreversible myelopathy',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'zn-a6',
+        category: 'measured',
+        title: 'AREDS: the eye result everyone cites, where zinc alone missed significance',
+        laymanSummary:
+          'The famous eye trial that put zinc in millions of supplements found the full antioxidant-plus-zinc formula worked. Zinc on its own did not reach the significance bar in the whole group.',
+        technicalDetails:
+          'The Age-Related Eye Disease Study randomised 3,640 participants aged 55 to 80 to antioxidants (vitamin C 500 mg, vitamin E 400 IU, beta carotene 15 mg), zinc 80 mg as zinc oxide with copper 2 mg as cupric oxide, both, or placebo, with average follow-up of 6.3 years and a prespecified significance level of .01. Against placebo, antioxidants plus zinc reduced the odds of progression to advanced AMD (OR 0.72, 99% CI 0.52 to 0.98). Zinc alone gave OR 0.75 (99% CI 0.55 to 1.03) and antioxidants alone OR 0.80 (99% CI 0.59 to 1.09) — neither crossing the threshold in the full cohort. Excluding the 1,063 lowest-risk participants, whose five-year probability of progression was only 1.3%, zinc alone reached OR 0.71 (99% CI 0.52 to 0.99). The only significant reduction in at least moderate visual acuity loss was in the combined arm (OR 0.73, 99% CI 0.54 to 0.99). Two facts the supplement aisle rarely carries forward: the benefit was confined to people already at high risk, and copper was included in the formulation specifically to offset zinc-induced copper deficiency.',
+        evidenceSource:
+          'Age-Related Eye Disease Study Research Group. AREDS Report No. 8. Arch Ophthalmol 2001;119:1417-1436',
+        doi: '10.1001/archopht.119.10.1417',
+        measuredMetric:
+          'Odds of photographic progression to advanced AMD and of at least 15-letter visual acuity loss over 6.3 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zn-a7',
+        category: 'measured',
+        title: 'Childhood diarrhoea: the strongest zinc evidence anywhere, and it is age-limited',
+        laymanSummary:
+          'In children over six months old, zinc shortens acute diarrhoea by about half a day, and by a full day in malnourished children. In babies under six months it does nothing.',
+        technicalDetails:
+          'Thirty-three trials in 10,841 children, mostly in Asian settings at high risk of zinc deficiency. In children older than six months, zinc shortened mean diarrhoea duration by 11.46 hours (95% CI -19.72 to -3.19; 2,581 children, 9 trials, low certainty) and probably reduced the proportion whose diarrhoea persisted to day seven (RR 0.73, 95% CI 0.61 to 0.88; 3,865 children, 6 trials, moderate certainty). In children with signs of malnutrition the effect was larger and the certainty higher: 26.39 hours shorter (95% CI -36.54 to -16.23; 419 children, 5 trials, HIGH certainty). In children younger than six months the evidence suggests no effect on mean duration. There was not enough evidence to say whether zinc reduces death or hospitalisation. The pattern is the same one that runs through this whole file: the effect is largest where the deficiency is real, and disappears where it is not.',
+        evidenceSource: 'Lazzerini M, Wanzira H. Cochrane Database Syst Rev 2016;12:CD005436',
+        doi: '10.1002/14651858.CD005436.pub5',
+        measuredMetric:
+          'Mean duration of acute diarrhoea in hours, and proportion with diarrhoea persisting to day seven',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'The lozenge only matters if it lets the zinc ion go',
+        laymanDesc:
+          'A zinc lozenge is not a dose of zinc — it is a dose of whatever free zinc it releases in your mouth. Many common sweeteners and acids grab the zinc and never let go, and a lozenge like that does nothing.',
+        molecularDetail:
+          'The proposed antiviral species is free Zn2+ released in the oropharynx. Citric acid, tartaric acid, sorbitol and mannitol chelate zinc and suppress ionic release. Hemila\'s dose stratification is the observable consequence: below 75 mg per day, five trials found nothing at all, while zinc acetate above 75 mg pooled to a 42% duration reduction.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Free zinc meets the airway epithelium the virus is replicating in',
+        laymanDesc:
+          'Rhinovirus enters cells lining the nose and throat through a specific docking protein. Zinc ions in that space appear to interfere both with the docking and with the virus assembling copies of itself.',
+        molecularDetail:
+          'Rhinovirus major-group serotypes enter through ICAM-1. Proposed zinc actions include interference with the viral 3C protease cleavage of the polyprotein and with capsid assembly, plus upregulation of interferon responses. None of these has been demonstrated in vivo at achievable mucosal free-zinc concentrations, which is why the Cochrane certainty grade for the duration effect is low despite the effect being real in the pooled estimate.',
+        iconName: 'ShieldAlert',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'Swallowed zinc takes a different path entirely, through ZIP4',
+        laymanDesc:
+          'Zinc that goes down rather than staying in the throat is absorbed in the small intestine by a dedicated importer, the same one that is broken in a rare inherited disease of zinc deficiency.',
+        molecularDetail:
+          'ZIP4 (SLC39A4) on the apical enterocyte membrane carries most dietary zinc uptake and is upregulated during deficiency. Loss-of-function mutations cause acrodermatitis enteropathica, the disease that established zinc as essential. Luminal phytate chelates zinc and blocks this step, which is the mechanistic basis of zinc deficiency in high-phytate diets.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Zinc induces the protein that traps copper, and copper never gets in',
+        laymanDesc:
+          'Inside gut cells zinc switches on a small binding protein. That protein prefers copper. Copper gets stuck to it, the cell is shed into the gut a few days later, and the copper leaves with it.',
+        molecularDetail:
+          'Metallothionein induction by zinc is dose-dependent, and metallothionein binds Cu(I) with higher affinity than Zn(II). Copper is sequestered in the enterocyte and lost on cell turnover. This is the licensed pharmacology of zinc acetate in Wilson disease under NDA 020458, and it is the same event that produces sideroblastic anaemia, neutropenia and myelopathy in people who do not have Wilson disease.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Two outcomes from one element, separated only by dose and duration',
+        laymanDesc:
+          'Short bursts at cold onset may take a day or two off a cold. Sustained high daily intake quietly strips copper, and the first sign of that is often a blood count or a change in the way someone walks.',
+        molecularDetail:
+          'The therapeutic window is defined by time, not just amount. Cochrane found treatment courses of 4.5 to 21 days, over which copper depletion does not develop. Willis\'s three cases and Kumar\'s myelopathy series arose from sustained intake. Anaemia and neutropenia reverse completely on copper replacement; the neurological deficit generally does not.',
+        iconName: 'GitBranch',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane CD014914 — zinc for prevention and treatment of the common cold',
+        phase: 'Cochrane systematic review of 34 randomised trials',
+        sampleSize: 8526,
+        primaryEndpoint:
+          'Proportion developing a cold (prevention) and mean duration of cold in days (treatment)',
+        endpointMet: true,
+        statisticalPValue:
+          'Treatment duration MD -2.37 days (95% CI -4.21 to -0.53), I2 = 97%, low certainty; prevention RR 0.93 (95% CI 0.85 to 1.01), low certainty',
+        unreportedAdverseSignals:
+          'Non-serious adverse events probably increased with treatment zinc, RR 1.34 (95% CI 1.15 to 1.55), moderate certainty — a higher certainty grade than any efficacy finding in the review. No treatment study reported serious adverse events at all.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Hemila 2011 dose-stratified pooling of 13 zinc lozenge comparisons',
+        phase: 'Systematic review with dose stratification',
+        sampleSize: 13,
+        primaryEndpoint: 'Percentage reduction in common cold duration by total daily zinc dose',
+        endpointMet: true,
+        statisticalPValue:
+          'Zinc acetate above 75 mg/day: 42% reduction (95% CI 35% to 48%); other salts above 75 mg/day: 20% (95% CI 12% to 28%); below 75 mg/day: uniformly no effect',
+        unreportedAdverseSignals:
+          'Sample size here counts trial comparisons, not participants. High-dose zinc lozenges taste unpleasant, which makes blinding hard, and the review could not exclude unblinding as a contributor.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT04342728 — COVID A to Z, zinc and ascorbic acid in ambulatory COVID-19',
+        phase: 'Randomised open-label factorial',
+        sampleSize: 214,
+        primaryEndpoint: 'Days to a 50% reduction in composite symptom severity score',
+        endpointMet: false,
+        statisticalPValue: 'Overall P = .45 across the four arms',
+        unreportedAdverseSignals:
+          'Stopped early for low conditional power for benefit. Open-label with a subjective primary endpoint, so it was biased toward finding an effect and still found none.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'AREDS Report No. 8 — antioxidants and zinc for age-related macular degeneration',
+        phase: 'Randomised double-masked placebo-controlled',
+        sampleSize: 3640,
+        primaryEndpoint:
+          'Photographic progression to advanced AMD and at least 15-letter visual acuity loss',
+        endpointMet: true,
+        statisticalPValue:
+          'Antioxidants plus zinc OR 0.72 (99% CI 0.52 to 0.98); zinc alone OR 0.75 (99% CI 0.55 to 1.03), not significant at the prespecified .01 level',
+        unreportedAdverseSignals:
+          'Benefit was confined to participants already at high risk; the 1,063 lowest-risk participants had only a 1.3% five-year progression probability. The formulation included 2 mg copper to offset zinc-induced copper deficiency, and the beta carotene component was later removed after lung cancer signals in smokers.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Cochrane CD005436 — oral zinc for acute diarrhoea in children',
+        phase: 'Cochrane systematic review of 33 randomised trials',
+        sampleSize: 10841,
+        primaryEndpoint: 'Duration and severity of diarrhoea',
+        endpointMet: true,
+        statisticalPValue:
+          'Over six months: MD -11.46 hours (95% CI -19.72 to -3.19), low certainty; malnourished children MD -26.39 hours (95% CI -36.54 to -16.23), high certainty',
+        unreportedAdverseSignals:
+          'No effect in children under six months. Not enough evidence to say whether zinc reduces death or hospitalisation. Trials were concentrated in populations at high baseline risk of zinc deficiency.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Zinc lozenges above 75 mg per day shortened colds; zinc acetate pooled to a 42% duration reduction and other salts to 20%',
+        'Below 75 mg per day, five placebo-controlled trials uniformly found no effect at all',
+        'Zinc did not prevent colds across 9 studies and 1,449 participants, RR 0.93 (95% CI 0.85 to 1.01)',
+        'In children over six months, zinc shortened acute diarrhoea by about 11 hours, and by 26 hours in malnourished children at high certainty',
+        'Intranasal zinc gluconate causes hyposmia and anosmia, sometimes permanently, satisfying all nine Bradford Hill criteria',
+      ],
+      unsupportedInferences: [
+        'That daily zinc supports immunity in a replete adult — the prevention arm of the Cochrane review is null',
+        'That the cold benefit transfers across salts and doses, when the entire effect is confined to high-dose acetate and near-acetate formulations',
+        'That the AREDS eye result licenses zinc for the general population, when zinc alone missed the prespecified significance level in the full cohort',
+        'That long-term high-dose zinc is harmless, when the same mechanism is an approved copper-blocking drug',
+      ],
+      whatFailedInitially: [
+        'Zinc and vitamin C in outpatient COVID-19: 214 patients, stopped early, P = .45',
+        'The first two decades of zinc lozenge trials, which were testing doses and formulations that could not release free zinc',
+        'Intranasal zinc as a cold remedy, which caused permanent olfactory loss and was withdrawn from the US market in 2009',
+      ],
+      realWorldOutcome: [
+        'Zinc is one of very few over-the-counter cold treatments with any positive randomised signal, and the signal is genuine within its dose and salt window',
+        'The best-evidenced use of oral zinc anywhere is childhood diarrhoea in populations where deficiency is common — a repletion effect, not an antiviral one',
+        'Copper deficiency from sustained zinc is under-recognised because it presents to haematology or neurology, not to the person selling the zinc',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral lozenge, tablet, capsule or syrup; formerly also an intranasal gel',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy or safety before sale. The lozenge and the swallowed capsule are pharmacologically different interventions: the lozenge acts locally in the oropharynx through free ionic zinc, the capsule acts systemically after ZIP4-mediated absorption, and evidence for one does not transfer to the other. The intranasal route is a third thing again and caused permanent injury. Elemental zinc is a minority of every salt by mass — 36% of zinc acetate, 14% of zinc gluconate — so label doses are not comparable unless the elemental figure is given.',
+      safetyProfile:
+        'Unpleasant taste, nausea and mouth irritation are common with high-dose lozenges and probably compromised blinding in some trials; Cochrane found non-serious adverse events probably increased with treatment zinc at RR 1.34. Sustained high-dose oral zinc induces intestinal metallothionein and causes copper deficiency, presenting as sideroblastic anaemia, neutropenia, or a myelopathy with spastic gait and sensory ataxia in which the haematology reverses on copper replacement and the neurology often does not. Zinc reduces absorption of tetracycline and fluoroquinolone antibiotics and of penicillamine. Intranasal zinc gluconate is directly toxic to olfactory epithelium and should not be used.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does zinc actually shorten a cold?',
+        a: 'Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila\'s earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.',
+        auditNote:
+          'Free ionic zinc is the active species, and citric acid, tartaric acid, sorbitol and mannitol in a lozenge chelate it away.',
+      },
+      {
+        q: 'Should I take zinc every day to avoid getting colds?',
+        a: 'The prevention evidence is null. Across nine trials and 1,449 participants the risk ratio for developing a cold was 0.93 with a confidence interval that crosses one, graded low certainty. Meanwhile daily long-term zinc is the exposure that causes copper depletion, and copper depletion is not a mild condition. Prevention is the use with the weakest evidence and the greatest cumulative exposure, which is an unfavourable combination.',
+      },
+      {
+        q: 'How can zinc cause a copper deficiency?',
+        a: 'Because it is supposed to. Zinc switches on metallothionein inside gut cells, metallothionein binds copper harder than it binds zinc, and the trapped copper leaves the body when the cell is shed a few days later. The FDA licensed zinc acetate as a prescription drug for Wilson disease on precisely this mechanism, because in Wilson disease blocking copper is the goal. In anyone else, sustained high-dose zinc has produced sideroblastic anaemia, severe neutropenia and a spinal cord syndrome resembling B12 deficiency. The blood problems fix completely with copper. The neurological ones frequently do not.',
+        auditNote:
+          'AREDS put 2 mg of copper into its formula alongside 80 mg of zinc for exactly this reason.',
+      },
+      {
+        q: 'What happened with zinc nasal sprays?',
+        a: 'They destroyed people\'s sense of smell. Jafek and colleagues described a series of severe hyposmia and anosmia after intranasal zinc gluconate and concluded that zinc ions are directly toxic to olfactory epithelium, with loss that was long-lasting or permanent in some cases. Davidson and Smith later ran the full nine Bradford Hill causation criteria over 25 such patients and found causation supported. The products were withdrawn from the US market in 2009. Nothing about that finding applies to a lozenge, and nothing about lozenge evidence excused the nasal product.',
+      },
+      {
+        q: 'Is the zinc in my multivitamin doing anything?',
+        a: 'If you are not zinc-deficient, most likely nothing you would notice, and it is far below the lozenge doses that shortened colds. If you are deficient — through malabsorption, a very high-phytate diet, or acrodermatitis enteropathica — then zinc is genuinely essential and repletion matters a great deal. The pattern across the whole zinc literature, from childhood diarrhoea to cold duration, is that the effect is biggest where the deficiency is real and vanishes where it is not.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Age-Related Eye Disease Study Research Group. A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8. Arch Ophthalmol 2001;119:1417-1436',
+        identifier: '10.1001/archopht.119.10.1417',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jafek BW, Linschoten MR, Murrow BW. Anosmia after intranasal zinc gluconate use. Am J Rhinol 2004;18:137-141',
+        identifier: '15283486',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Willis MS et al. Zinc-induced copper deficiency: a report of three cases initially recognized on bone marrow examination. Am J Clin Pathol 2005;123:125-131',
+        identifier: '10.1309/V6GVYW2QTYD5C5PJ',
+        kind: 'doi',
+      },
+      {
+        label: 'Kumar N. Copper deficiency myelopathy (human swayback). Mayo Clin Proc 2006;81:1371-1384',
+        identifier: '10.4065/81.10.1371',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Davidson TM, Smith WM. The Bradford Hill criteria and zinc-induced anosmia: a causality analysis. Arch Otolaryngol Head Neck Surg 2010;136:673-676',
+        identifier: '10.1001/archoto.2010.111',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hemila H. Zinc lozenges may shorten the duration of colds: a systematic review. Open Respir Med J 2011;5:51-58',
+        identifier: '10.2174/1874306401105010051',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lazzerini M, Wanzira H. Oral zinc for treating diarrhoea in children. Cochrane Database Syst Rev 2016;12:CD005436',
+        identifier: '10.1002/14651858.CD005436.pub5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thomas S et al. Effect of high-dose zinc and ascorbic acid supplementation vs usual care on symptom length and reduction among ambulatory patients with SARS-CoV-2 infection: the COVID A to Z randomized clinical trial. JAMA Netw Open 2021;4:e210369',
+        identifier: '10.1001/jamanetworkopen.2021.0369',
+        kind: 'doi',
+      },
+      {
+        label: 'COVID A to Z trial registration',
+        identifier: 'NCT04342728',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Nault D et al. Zinc for prevention and treatment of the common cold. Cochrane Database Syst Rev 2024;5:CD014914',
+        identifier: '10.1002/14651858.CD014914.pub2',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA — NDA 020458, GALZIN (zinc acetate) capsules for Wilson disease',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020458',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 11192 — Zinc acetate',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11192',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Vitamin C — an 8% shorter cold, a Nobel laureate's cancer claim that two randomised trials
+  // buried, and a sepsis trial in which intravenous vitamin C made patients measurably worse.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'vitamin-c-ascorbic-acid',
+    name: 'Vitamin C',
+    tradeName: 'Ascorbic acid; L-ascorbate',
+    sponsor:
+      'No single sponsor — L-ascorbic acid, manufactured industrially from glucose by the Reichstein process or by two-step bacterial fermentation, sold by many manufacturers',
+    targetGene: 'P4HA1',
+    targetProtein:
+      'The Fe(II)- and 2-oxoglutarate-dependent dioxygenases, above all prolyl 4-hydroxylase (P4HA1) and lysyl hydroxylase, which hydroxylate collagen and cannot complete their catalytic cycle without ascorbate to re-reduce the active-site iron. Transport into cells is by the sodium-dependent vitamin C transporters SVCT1 (SLC23A1) and SVCT2 (SLC23A2).',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold for colds, immunity, skin and antioxidant protection. Not approved by the FDA or EMA for any of those. Ascorbic acid is separately a genuine treatment for scurvy, which is a real and rapidly fatal disease that vitamin C cures completely.',
+    patientFriendlyIndication: 'Taken to prevent or shorten colds, and for general immune support',
+    conditionContext: {
+      conditionExplainer:
+        'Humans are among the few mammals that cannot make vitamin C, because the gene for the last enzyme in the synthesis pathway, L-gulonolactone oxidase, is a broken pseudogene in our species. Without dietary ascorbate, collagen cannot be hydroxylated, connective tissue fails, and scurvy kills. That is the deficiency disease, and it is completely reversed by small amounts.',
+      whyItMatters:
+        'The gap between "essential nutrient whose absence kills" and "supplement that does something useful in a person who already has enough" is the widest in this file for vitamin C, and it was opened deliberately. Linus Pauling, a double Nobel laureate, spent the last decades of his life arguing that gram doses prevented colds and treated cancer. The randomised answer to the first is a small effect and to the second is no effect at all.',
+      whoTakesThis:
+        'Almost everyone at some point, usually at the first sneeze. Also people with genuinely low intake — smokers, people with very restricted diets, patients on dialysis or with malabsorption — and, for a period after 2017, critically ill patients in intensive care units that adopted an intravenous protocol.',
+      clinicalGoals:
+        'Trials measured incidence and duration of colds, cardiovascular events, cancer incidence, organ failure scores in sepsis, 28-day mortality, and incident kidney stones.',
+    },
+    oneSentenceVerdict:
+      'Regular vitamin C shortens colds by about 8% in adults and does not prevent them in the general population, except in people under extreme physical stress where it halves incidence; the cancer claim failed two randomised trials, and in 872 septic ICU patients intravenous vitamin C increased death or persistent organ dysfunction.',
+    laymanHowItWorks:
+      'Vitamin C is not an antioxidant in the way the label implies. Its actual job is to keep the iron atom inside a family of enzymes in the right chemical state so those enzymes can keep working — most importantly the ones that build collagen, which is why running out causes teeth to loosen and old wounds to reopen. Once those enzymes have what they need, extra vitamin C has nothing to do. Above a certain intake the gut simply stops absorbing it and the kidney dumps the rest, which is why the plasma level is nearly flat across a very wide range of doses.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 46,
+    anatomicalSite:
+      'Cytosol of every cell via SVCT2, with the highest concentrations in adrenal cortex, pituitary, brain and neutrophils; absorption is SVCT1-mediated in the small intestine',
+    substitutes: {
+      summary:
+        'For scurvy, vitamin C is not substitutable and works within days. For colds, the honest comparator is nothing, since 8% of a seven-day cold is about half a day. For sepsis the comparator turned out to be placebo, and placebo won.',
+      conventionalRx: [
+        {
+          name: 'Ascorbic acid as treatment for scurvy',
+          class: 'Nutrient replacement for a defined deficiency disease',
+          howItCompares:
+            'Complete and rapid cure of a disease that is otherwise fatal, established well before controlled trials existed. It is the strongest possible evidence that vitamin C is essential, and it says nothing whatever about the effect of extra vitamin C in someone who is not deficient.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: unambiguous, mechanistically understood, fast. Cons: routinely used as rhetorical cover for claims about replete adults, which is the central error this file exists to name.',
+        },
+        {
+          name: 'Intravenous vitamin C in sepsis, as the cautionary comparator',
+          class: 'Investigational critical-care intervention, now negative',
+          howItCompares:
+            'Between 2017 and 2022 this went from a widely adopted ICU protocol to a randomised finding of harm. LOVIT found death or persistent organ dysfunction at day 28 in 44.5% on vitamin C against 38.5% on placebo, risk ratio 1.21 (95% CI 1.04 to 1.40, P = 0.01).',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: none demonstrated. Cons: a randomised signal of harm, from a trial designed to look for benefit.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Citrus, capsicum, blackcurrant, broccoli and potatoes',
+          activeCompound: 'L-ascorbic acid, chemically identical to the synthetic form',
+          biologicalMechanism:
+            'Dietary and synthetic ascorbate are the same molecule and use the same SVCT1 transporter. The only meaningful difference is dose: food delivers amounts in the range where absorption is near-complete, whereas gram doses fall on the saturated part of the curve and are largely excreted.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the Cochrane review excluded any trial using less than 0.2 g per day, and its adult duration effect came from regimens at or above that.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Vitamin C taken with a plant-source iron meal',
+          activeCompound: 'Ascorbate as a non-haem iron reductant and chelator',
+          biologicalMechanism:
+            'Ascorbate reduces dietary Fe(III) to Fe(II) and forms a soluble chelate that survives the alkaline duodenum, substantially increasing non-haem iron absorption. This is one of the few supplemental vitamin C effects that is mechanistically direct, measurable, and useful in ordinary people.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Check whether a vitamin C result was prevention or treatment',
+          action:
+            'The Cochrane review separates regular daily supplementation from taking it once symptoms start. The two gave different answers, and the popular claim conflates them.',
+          patientImpact:
+            'Regular supplementation shortened colds by 8% in adults and 14% in children. Taking vitamin C after symptoms began produced no consistent effect on duration or severity in the therapeutic trials.',
+          clinicalPrecaution:
+            'Doses above roughly a gram exceed absorptive capacity and cause osmotic diarrhoea, and in a Swedish cohort of 23,355 men supplement users had roughly twice the incidence of kidney stones.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C([C@@H]([C@@H]1C(=C(C(=O)O1)O)O)O)O',
+      chemicalFormula: 'C6H8O6',
+      molecularWeight: '176.12 g/mol',
+      targetReceptorAffinity:
+        'Not a receptor ligand. It is a co-substrate: it reduces the Fe(III) that accumulates at the active site of 2-oxoglutarate-dependent dioxygenases back to Fe(II), restoring catalytic competence.',
+      structureSource: {
+        label: 'PubChem CID 54670067 — L-Ascorbic acid, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/54670067',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'vitc-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Assay for intact ascorbate against its oxidation product',
+          description:
+            'Ascorbate oxidises to dehydroascorbate in air, in light, and in neutral aqueous solution, and dehydroascorbate is not what any of the biology needs. A total-vitamin-C assay reports both together and will pass a degraded preparation. Discriminate them before anything else happens, and re-check at the point of use rather than only at manufacture.',
+          reagentsAndBuffer:
+            'HPLC with electrochemical detection at low potential; metaphosphoric acid with EDTA as the stabilising extraction medium; tris(2-carboxyethyl)phosphine reduction step run in parallel to give total versus reduced ascorbate; amber glassware and argon headspace',
+        },
+        {
+          id: 'vitc-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the 13C-labelled tracer for a saturation-kinetics study',
+          description:
+            'Because plasma ascorbate is tightly controlled by intestinal saturation and renal threshold, a dose-response study needs a tracer to separate newly absorbed vitamin from the existing body pool. This is the step that produced the finding that plasma concentration is nearly flat above a modest oral intake.',
+          dependsOnStepId: 'vitc-w1',
+          reagentsAndBuffer:
+            '13C6-L-ascorbic acid; deoxygenated water; nitrogen-purged dissolution; LC-MS/MS confirmation of isotopic enrichment and absence of the dehydro form',
+        },
+        {
+          id: 'vitc-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Sample handling that does not destroy the analyte before measurement',
+          description:
+            'More published vitamin C measurements have been ruined by sample handling than by any assay problem. Whole blood must be acidified and frozen fast; ascorbate in plasma left at room temperature is measurably gone within hours. Establish the handling protocol as a validated step, not an afterthought.',
+          dependsOnStepId: 'vitc-w2',
+          reagentsAndBuffer:
+            'Immediate 1:1 dilution into 10% metaphosphoric acid with 1 mM EDTA and 1 mM dithiothreitol; centrifugation at 4 degrees C within 30 minutes; storage at -80 degrees C; documented freeze-thaw stability curve',
+        },
+        {
+          id: 'vitc-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'SVCT2-dependent uptake and the pro-oxidant crossover at pharmacological concentration',
+          description:
+            'At oral doses ascorbate is an electron donor that keeps enzyme iron reduced. At the millimolar plasma concentrations only intravenous infusion can reach, it reduces free transition metals and generates hydrogen peroxide, which is the proposed anticancer mechanism and also the most plausible explanation for harm in critically ill patients whose free iron is elevated. Run both concentration regimes in the same system.',
+          dependsOnStepId: 'vitc-w3',
+          reagentsAndBuffer:
+            'SVCT2-expressing and SVCT2-knockdown cell lines; sodium-free choline buffer as the transporter specificity control; ascorbate at 50 micromolar and at 5 millimolar; catalase to quench extracellular hydrogen peroxide; Amplex Red peroxide assay; calcein-AM labile iron pool measurement',
+        },
+        {
+          id: 'vitc-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Prolyl hydroxylation as the functional readout, not an antioxidant proxy',
+          description:
+            'Report the enzymatic consequence, since that is what the vitamin actually does. Measure 4-hydroxyproline content of newly synthesised collagen and the hydroxylation status of HIF-1alpha, which are direct outputs of ascorbate-dependent dioxygenases. Total antioxidant capacity assays measure a chemical property of the sample and predict nothing clinical.',
+          dependsOnStepId: 'vitc-w4',
+          reagentsAndBuffer:
+            'Amino acid analysis for 4-hydroxyproline in acid-hydrolysed collagen; HIF-1alpha hydroxyproline-402/564 specific antibodies; proline hydroxylase activity assay with 2-oxoglutarate and Fe(II); ascorbate-depleted Gulo-knockout mouse fibroblasts as the deficiency control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'vitc-a1',
+        category: 'measured',
+        title: 'Cochrane: no prevention in the general public, 8% shorter colds in adults',
+        laymanSummary:
+          'Across 11,306 people, daily vitamin C did not reduce how often adults caught colds. It did make colds slightly shorter — about eight percent, or roughly half a day.',
+        technicalDetails:
+          'Twenty-nine trial comparisons in 11,306 participants contributed to the incidence analysis. In general-community trials covering 10,708 participants the pooled risk ratio for developing a cold was 0.97 (95% CI 0.94 to 1.00) — a boundary result at best. Thirty-one comparisons covering 9,745 cold episodes examined duration: colds were 8% shorter in adults (95% CI 3% to 12%) and 14% shorter in children (95% CI 7% to 21%), with 1 to 2 g per day in children shortening colds by 18%. Trials using less than 0.2 g per day and trials without a placebo were excluded, so this is the higher-dose literature. The therapeutic trials, in which vitamin C was started after symptoms began, showed no consistent effect. The distinction between regular prophylaxis and treatment-at-onset is where nearly all popular confusion about vitamin C lives.',
+        evidenceSource: 'Hemila H, Chalker E. Cochrane Database Syst Rev 2013;1:CD000980',
+        doi: '10.1002/14651858.CD000980.pub4',
+        measuredMetric:
+          'Risk ratio for developing at least one cold, and percentage reduction in mean cold duration',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vitc-a2',
+        category: 'measured',
+        title: 'The one population where it halved cold incidence: extreme physical stress',
+        laymanSummary:
+          'In marathon runners, skiers and soldiers on subarctic exercises, vitamin C cut the number of colds by half. In everyone else it did nothing.',
+        technicalDetails:
+          'Five trials in a total of 598 marathon runners, skiers and soldiers undertaking subarctic exercises pooled to a risk ratio of 0.48 (95% CI 0.35 to 0.64) for developing a cold, against 0.97 (95% CI 0.94 to 1.00) in the 10,708 general-community participants. This is one of the sharpest subgroup separations anywhere in the supplement literature, and it is not a subgroup fished from a single trial: it is a prespecified population category with five independent trials pointing the same way. The interpretation is genuinely unsettled. It may be a repletion effect in people whose intake cannot keep up with turnover under extreme exertion, or a specific effect of oxidative stress at that intensity. Either way, the honest statement is that the population in which vitamin C halves cold incidence is one almost nobody buying it belongs to.',
+        evidenceSource: 'Hemila H, Chalker E. Cochrane Database Syst Rev 2013;1:CD000980',
+        doi: '10.1002/14651858.CD000980.pub4',
+        measuredMetric:
+          'Pooled risk ratio for developing a cold in subjects under extreme short-term physical stress',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vitc-a3',
+        category: 'conclusion_shift',
+        title: 'Pauling\'s cancer claim, and the two Mayo trials that ended it',
+        laymanSummary:
+          'A double Nobel laureate spent decades arguing that high-dose vitamin C treated advanced cancer. Two randomised double-blind trials found no benefit whatsoever.',
+        technicalDetails:
+          'Moertel and colleagues at the Mayo Clinic randomised 100 patients with advanced colorectal cancer, none of whom had received any prior cytotoxic drugs — the precise population in which the claim was said to hold — to 10 g of vitamin C daily or placebo, double-blind. There was no advantage over placebo in time from start of treatment to disease progression or in survival, and among patients with measurable disease none had objective improvement. The authors wrote that on the basis of this and their previous randomised study, high-dose vitamin C is not effective against advanced malignant disease regardless of prior chemotherapy. The scientific residue of the episode is instructive: Pauling\'s original supporting data came from a non-randomised comparison against historical controls at a hospital where patients entering the vitamin C group were selected differently. The mechanism was never absurd — ascorbate at millimolar concentration does generate hydrogen peroxide near tumour cells — but that mechanism was tested and did not produce the outcome.',
+        evidenceSource: 'Moertel CG et al. N Engl J Med 1985;312:137-141',
+        doi: '10.1056/NEJM198501173120301',
+        measuredMetric:
+          'Interval from start of treatment to disease progression, survival, and objective tumour response',
+        inferredClaim:
+          'That a plausible biochemical mechanism plus an eminent advocate plus a favourable non-randomised series establishes a treatment effect',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vitc-a4',
+        category: 'failed',
+        title: 'LOVIT: intravenous vitamin C made septic patients worse',
+        laymanSummary:
+          'In 872 intensive-care patients with sepsis, those given intravenous vitamin C were more likely to die or still be on organ support at 28 days than those given placebo.',
+        technicalDetails:
+          'LOVIT randomised 872 adults who had been in the ICU no longer than 24 hours with proven or suspected infection as the main diagnosis and who were receiving a vasopressor, to vitamin C 50 mg/kg or matched placebo every 6 hours for up to 96 hours. The composite primary outcome of death or persistent organ dysfunction at day 28 occurred in 191 of 429 (44.5%) on vitamin C against 167 of 434 (38.5%) on placebo — risk ratio 1.21 (95% CI 1.04 to 1.40, P = 0.01). Death alone was 35.4% against 31.6% (RR 1.17, 95% CI 0.98 to 1.40) and persistent organ dysfunction 9.1% against 6.9% (RR 1.30, 95% CI 0.83 to 2.05). One vitamin C patient had a severe hypoglycaemic episode and another a serious anaphylaxis event. Organ dysfunction scores, biomarkers, six-month survival and quality of life were similar. This is a randomised finding of harm from a trial powered and designed to detect benefit, and it is the single most important vitamin C result of the last decade.',
+        evidenceSource: 'Lamontagne F et al. N Engl J Med 2022;386:2387-2398',
+        doi: '10.1056/NEJMoa2200644',
+        measuredMetric:
+          'Composite of death or persistent organ dysfunction at day 28 in septic ICU patients on vasopressors',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vitc-a5',
+        category: 'conclusion_shift',
+        title: 'The sepsis protocol that spread from a 47-patient before-after study',
+        laymanSummary:
+          'A single small retrospective study reported that a vitamin C protocol cut sepsis deaths from 40 percent to 8 percent. Intensive care units adopted it worldwide. The randomised trials that followed found nothing, then found harm.',
+        technicalDetails:
+          'Marik and colleagues published a retrospective before-after study of 47 treated and 47 historical control patients, reporting hospital mortality of 8.5% against 40.4% (P < .001) and a propensity-adjusted odds ratio for mortality of 0.13 (95% CI 0.04 to 0.48). The design is the weakest one that can produce a number: no randomisation, no blinding, sequential time periods, and a control group assembled from the preceding seven months. Adoption nevertheless outran the evidence by years. CITRIS-ALI then randomised 167 patients with sepsis and ARDS and found no difference in the primary endpoints — modified SOFA score change from baseline to 96 hours differed by -0.10 (95% CI -1.23 to 1.03, P = .86), C-reactive protein P = .33. The VITAMINS trial compared vitamin C, hydrocortisone and thiamine against hydrocortisone alone in septic shock and found no difference in time alive and free of vasopressors. LOVIT then found harm. CHEST published an Editor\'s Note attached to the original 2017 paper in 2023.',
+        evidenceSource:
+          'Marik PE et al. Chest 2017;151:1229-1238; Fowler AA et al. JAMA 2019;322:1261-1270; Fujii T et al. JAMA 2020;323:423-431',
+        doi: '10.1001/jama.2019.11825',
+        measuredMetric:
+          'Hospital mortality (retrospective), modified SOFA score change to 96 hours, and time alive and free of vasopressor support',
+        inferredClaim:
+          'That a before-after study with historical controls can establish a mortality benefit large enough to change practice before randomisation',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'vitc-a6',
+        category: 'failed',
+        title: 'Physicians\' Health Study II: 14,641 men, eight years, no cardiovascular effect',
+        laymanSummary:
+          'A long randomised trial gave 500 mg of vitamin C a day to nearly fifteen thousand male doctors for eight years. It made no difference to heart attacks, strokes or cardiovascular death.',
+        technicalDetails:
+          'The Physicians\' Health Study II randomised 14,641 male physicians aged 50 or older to vitamin C 500 mg daily, vitamin E 400 IU every other day, both, or placebo, in a factorial design with a mean follow-up of eight years. Neither vitamin C nor vitamin E reduced the composite of major cardiovascular events, and neither reduced total mortality. Vitamin E was associated with an increased risk of haemorrhagic stroke. The companion cancer analysis from the same cohort found neither vitamin reduced prostate cancer or total cancer incidence. Eight years of randomised supplementation in a well-nourished population is exactly the design that should have detected an antioxidant benefit if one existed at that dose, and it detected none.',
+        evidenceSource: 'Sesso HD et al. JAMA 2008;300:2123-2133',
+        doi: '10.1001/jama.2008.600',
+        measuredMetric:
+          'Composite of nonfatal myocardial infarction, nonfatal stroke and cardiovascular death over eight years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vitc-a7',
+        category: 'inferred',
+        title: 'Kidney stones: roughly double the incidence in supplement users',
+        laymanSummary:
+          'In a cohort of 23,355 Swedish men followed for eleven years, those taking vitamin C supplements developed kidney stones at about twice the rate of non-users.',
+        technicalDetails:
+          'Thomas and colleagues followed 23,355 men in the Cohort of Swedish Men from 1998 to 2009 and identified 436 first incident kidney stones: 31 among ascorbic acid supplement users and 405 among non-users. The multivariable-adjusted relative risk for ascorbic-acid-only supplement users against non-users was 1.92 (95% CI 1.33 to 2.77), with a dose gradient — men taking seven or more tablets weekly had a relative risk of 2.23 (95% CI 1.28 to 3.88). The mechanism is direct: oxalate is a terminal metabolite of ascorbate, and urinary oxalate is the dominant driver of calcium oxalate stone formation. This is observational, so confounding by indication cannot be excluded, and the absolute numbers are small. It is nonetheless the most concrete harm signal attached to ordinary consumer use of vitamin C, and it is not on any label.',
+        evidenceSource: 'Thomas LDK et al. JAMA Intern Med 2013;173:386-388',
+        doi: '10.1001/jamainternmed.2013.2296',
+        measuredMetric:
+          'Incidence of first kidney stone over 11 years in ascorbic acid supplement users versus non-users',
+        inferredClaim:
+          'That high-dose vitamin C is harmless because the excess is excreted — the excess is excreted as oxalate, through the kidney',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A broken gene is why we need it at all',
+        laymanDesc:
+          'Most animals make their own vitamin C. Humans carry the gene for the final step of the pathway, but it is broken, so we have to eat it.',
+        molecularDetail:
+          'L-gulonolactone oxidase (GULO) is a non-functional pseudogene in haplorrhine primates, guinea pigs and some bats. Every other step of the glucose-to-ascorbate pathway is intact in humans. The consequence is that ascorbate is a vitamin for us and a metabolite for a rat, which is why rodent models of vitamin C biology require the Gulo-knockout mouse to be informative at all.',
+        iconName: 'Dna',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorption saturates, and the kidney does the rest',
+        laymanDesc:
+          'The gut can only take up so much at a time, and once blood levels pass a threshold the kidney simply excretes the surplus. This is why a gram and ten grams end up looking nearly the same in the bloodstream.',
+        molecularDetail:
+          'SVCT1 (SLC23A1) mediates saturable sodium-dependent absorption in the small intestine and reabsorption in the renal proximal tubule. Fractional absorption falls steeply with dose while the renal threshold caps plasma concentration, producing a near-flat plasma dose-response above a modest intake. This pharmacokinetic ceiling is the single most important fact about oral vitamin C and the reason intravenous administration was pursued at all.',
+        iconName: 'Filter',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Its real job: resetting the iron inside collagen-building enzymes',
+        laymanDesc:
+          'Vitamin C is not mopping up damage. It is a repair crew for a specific set of enzymes whose iron atom gets stuck in the wrong state after each reaction and cannot work again until something resets it.',
+        molecularDetail:
+          'Prolyl 4-hydroxylase and lysyl hydroxylase are Fe(II)- and 2-oxoglutarate-dependent dioxygenases. Uncoupled turnover leaves Fe(III) at the active site; ascorbate reduces it back to Fe(II). Without that reset, procollagen is under-hydroxylated, the triple helix is unstable, and connective tissue fails. The same enzyme family includes the HIF prolyl hydroxylases and several DNA and histone demethylases, which is why ascorbate has effects on gene regulation that have nothing to do with antioxidant chemistry.',
+        iconName: 'Wrench',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'At intravenous concentrations it stops being an antioxidant',
+        laymanDesc:
+          'At the enormous concentrations only a drip can produce, vitamin C flips character and starts generating hydrogen peroxide. That was the hoped-for anticancer mechanism, and it is also the most likely reason it hurt septic patients.',
+        molecularDetail:
+          'At millimolar extracellular concentration ascorbate reduces catalytically available transition metals, driving Fenton chemistry and generating extracellular hydrogen peroxide. Critically ill patients have elevated free iron and impaired antioxidant defences, which is the condition under which that chemistry does damage rather than good. LOVIT\'s risk ratio of 1.21 for death or persistent organ dysfunction is the clinical form of this step.',
+        iconName: 'Flame',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'What leaves the body, and where it goes on the way out',
+        laymanDesc:
+          'The vitamin C you do not use is broken down partly into oxalate and passed in urine — which is the chemical that forms the most common kind of kidney stone.',
+        molecularDetail:
+          'Ascorbate degrades through dehydroascorbate and 2,3-diketogulonate to oxalate, which is excreted renally and is the anion in calcium oxalate stones. In the Cohort of Swedish Men, ascorbic-acid-only supplement users had a multivariable relative risk of first kidney stone of 1.92 (95% CI 1.33 to 2.77) with a dose gradient to 2.23 at seven or more tablets weekly.',
+        iconName: 'Droplets',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane CD000980 — vitamin C for preventing and treating the common cold',
+        phase: 'Cochrane systematic review of placebo-controlled trials',
+        sampleSize: 11306,
+        primaryEndpoint: 'Incidence and duration of the common cold under regular supplementation',
+        endpointMet: false,
+        statisticalPValue:
+          'General community incidence RR 0.97 (95% CI 0.94 to 1.00); adult duration reduced 8% (95% CI 3% to 12%); children 14% (95% CI 7% to 21%)',
+        unreportedAdverseSignals:
+          'Trials using less than 0.2 g/day were excluded, so this is not evidence about ordinary multivitamin doses. Therapeutic administration at symptom onset showed no consistent effect, which is the way most people actually use it.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Moertel 1985 — high-dose vitamin C in advanced colorectal cancer',
+        phase: 'Randomised double-blind placebo-controlled',
+        sampleSize: 100,
+        primaryEndpoint: 'Time to disease progression and survival on 10 g/day vitamin C',
+        endpointMet: false,
+        statisticalPValue:
+          'No advantage over placebo for time to progression or survival; no objective response among patients with measurable disease',
+        unreportedAdverseSignals:
+          'This was the second Mayo Clinic randomised trial to test the claim, and it was run specifically in chemotherapy-naive patients because that was the population the claim had retreated to after the first.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Physicians\' Health Study II — vitamin C and vitamin E in cardiovascular prevention',
+        phase: 'Randomised double-blind placebo-controlled factorial',
+        sampleSize: 14641,
+        primaryEndpoint:
+          'Composite of nonfatal myocardial infarction, nonfatal stroke and cardiovascular death',
+        endpointMet: false,
+        statisticalPValue: 'No significant effect of vitamin C on the composite endpoint over eight years',
+        unreportedAdverseSignals:
+          'Vitamin E in the same trial was associated with an increased risk of haemorrhagic stroke. The companion analysis found no reduction in prostate or total cancer.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'CITRIS-ALI — intravenous vitamin C in sepsis with acute respiratory failure',
+        phase: 'Randomised double-blind placebo-controlled multicentre',
+        sampleSize: 167,
+        primaryEndpoint:
+          'Change in modified SOFA score from baseline to 96 hours, plus CRP and thrombomodulin',
+        endpointMet: false,
+        statisticalPValue:
+          'Modified SOFA difference -0.10 (95% CI -1.23 to 1.03), P = .86; CRP P = .33',
+        unreportedAdverseSignals:
+          'Only 103 of 167 patients (62%) completed follow-up to day 60. Secondary mortality analyses from this trial were widely quoted as positive despite the primary endpoints being null.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'LOVIT — intravenous vitamin C in adults with sepsis in the ICU',
+        phase: 'Randomised placebo-controlled',
+        sampleSize: 872,
+        primaryEndpoint: 'Composite of death or persistent organ dysfunction at day 28',
+        endpointMet: false,
+        statisticalPValue: 'Risk ratio 1.21 (95% CI 1.04 to 1.40), P = 0.01 — favouring placebo',
+        unreportedAdverseSignals:
+          'One severe hypoglycaemic episode and one serious anaphylaxis event in the vitamin C group. High-dose ascorbate also interferes with point-of-care glucose meters, which is a documented cause of dangerous mismanagement.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Regular vitamin C shortened colds by 8% in adults and 14% in children across 9,745 cold episodes',
+        'It did not reduce cold incidence in the general community, RR 0.97 (95% CI 0.94 to 1.00) in 10,708 participants',
+        'It halved cold incidence in marathon runners, skiers and soldiers on subarctic exercises, RR 0.48 across five trials',
+        'Intravenous vitamin C increased death or persistent organ dysfunction in septic ICU patients, RR 1.21 (P = 0.01)',
+        'Supplement users in a 23,355-man cohort had roughly double the incidence of kidney stones, with a dose gradient',
+      ],
+      unsupportedInferences: [
+        'That vitamin C prevents colds in ordinary people, which the largest pooled estimate rules out to within a few percent',
+        'That taking it once symptoms start helps, which the therapeutic trials do not support',
+        'That high-dose vitamin C treats cancer, tested twice at the Mayo Clinic and negative both times',
+        'That because the excess is excreted, more is harmless — the excess is excreted partly as oxalate',
+      ],
+      whatFailedInitially: [
+        'Pauling\'s cancer programme, which rested on a non-randomised comparison against historical controls',
+        'The Marik sepsis protocol, adopted worldwide from a 47-patient before-after study and then negative in CITRIS-ALI, VITAMINS and LOVIT',
+        'Vitamin C as cardiovascular prevention, null across 14,641 men and eight years in Physicians\' Health Study II',
+      ],
+      realWorldOutcome: [
+        'Vitamin C is unambiguously essential, and scurvy is a real disease that it cures completely and quickly',
+        'The measurable supplement effects in replete people are small: about half a day off a cold, and better absorption of non-haem iron',
+        'The clearest large effects in the modern literature are in the wrong direction — harm in sepsis, and stones in the community',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, capsule, powder or effervescent; intravenous infusion in the critical-care literature',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy or safety before sale. The oral and intravenous routes are not the same intervention: intestinal saturation caps oral plasma concentrations in the tens of micromolar, while infusion reaches millimolar, which is a different chemistry with a different risk profile. Liposomal and "buffered" formulations are marketed on the premise of beating the absorption ceiling; the ceiling is transporter-mediated and renal, and claims to have circumvented it need transporter-level evidence, not a plasma curve from a single small study.',
+      safetyProfile:
+        'Osmotic diarrhoea and abdominal cramping above roughly a gram, which is a direct consequence of unabsorbed ascorbate in the lumen. Increased urinary oxalate and, in a large prospective cohort, roughly double the incidence of kidney stones in supplement users. High-dose ascorbate causes falsely elevated readings on many point-of-care glucose meters, a documented hazard in hospitalised patients. In glucose-6-phosphate dehydrogenase deficiency, very high intravenous doses have precipitated haemolysis. In sepsis, intravenous administration increased death or persistent organ dysfunction in a randomised trial.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does vitamin C stop me getting colds?',
+        a: 'No, not if you are an ordinary person eating an ordinary diet. Across 10,708 people in general-community trials the risk ratio was 0.97 with a confidence interval reaching 1.00. The one striking exception is people under extreme short-term physical stress — marathon runners, skiers, soldiers on subarctic exercises — where five trials in 598 subjects pooled to a risk ratio of 0.48. That is a real and unusual finding, and it describes a population most buyers are not in.',
+      },
+      {
+        q: 'Will it make my cold shorter if I take it now?',
+        a: 'Probably not. The 8% shortening in adults comes from trials where people took vitamin C every day, before they got ill. Trials that started vitamin C once symptoms had already begun did not show a consistent effect on duration or severity. So the version of the habit almost everyone practises — reaching for it at the first sneeze — is the version with the weakest support.',
+        auditNote:
+          'Eight percent of a seven-day cold is about half a day, even in the prophylactic trials.',
+      },
+      {
+        q: 'What happened with vitamin C and sepsis?',
+        a: 'It is one of the clearest cautionary tales in modern critical care. A 47-patient retrospective before-after study in 2017 reported mortality falling from 40 percent to 8.5 percent, and units around the world adopted the protocol. CITRIS-ALI then randomised 167 patients and found no difference in its primary endpoints. The VITAMINS trial found no difference in time alive and free of vasopressors. Then LOVIT randomised 872 patients and found death or persistent organ dysfunction in 44.5 percent on vitamin C against 38.5 percent on placebo, risk ratio 1.21, P = 0.01. The sequence took five years and went from spectacular benefit to measurable harm.',
+        auditNote:
+          'CHEST attached an Editor\'s Note to the original 2017 paper in 2023.',
+      },
+      {
+        q: 'Is there any downside to taking a lot?',
+        a: 'Two documented ones. Above about a gram the gut cannot absorb it and the surplus draws water into the bowel, causing diarrhoea. And ascorbate is metabolised partly to oxalate, the anion in the commonest type of kidney stone: in 23,355 Swedish men followed eleven years, supplement users had a relative risk of first stone of 1.92, rising to 2.23 in those taking seven or more tablets weekly. High doses also make many hospital glucose meters read falsely high, which has led to real mismanagement.',
+      },
+      {
+        q: 'Why is a nutrient that cures scurvy so weak as a supplement?',
+        a: 'Because those are two different questions, and this is the cleanest example of the difference in the whole supplement aisle. Scurvy is what happens when a specific set of iron-dependent enzymes cannot complete their catalytic cycle. Restore enough ascorbate for those enzymes and they work; add more and there is nothing further for it to do, because the enzymes are already saturated and the kidney excretes the surplus. A deficiency effect is not a supplement effect, and vitamin C is the case that proves it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Moertel CG et al. High-dose vitamin C versus placebo in the treatment of patients with advanced cancer who have had no prior chemotherapy: a randomized double-blind comparison. N Engl J Med 1985;312:137-141',
+        identifier: '10.1056/NEJM198501173120301',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sesso HD et al. Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians\' Health Study II randomized controlled trial. JAMA 2008;300:2123-2133',
+        identifier: '10.1001/jama.2008.600',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hemila H, Chalker E. Vitamin C for preventing and treating the common cold. Cochrane Database Syst Rev 2013;1:CD000980',
+        identifier: '10.1002/14651858.CD000980.pub4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thomas LDK, Elinder CG, Tiselius HG, Wolk A, Akesson A. Ascorbic acid supplements and kidney stone incidence among men: a prospective study. JAMA Intern Med 2013;173:386-388',
+        identifier: '10.1001/jamainternmed.2013.2296',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Marik PE et al. Hydrocortisone, vitamin C, and thiamine for the treatment of severe sepsis and septic shock: a retrospective before-after study. Chest 2017;151:1229-1238',
+        identifier: '10.1016/j.chest.2016.11.036',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fowler AA et al. Effect of vitamin C infusion on organ failure and biomarkers of inflammation and vascular injury in patients with sepsis and severe acute respiratory failure: the CITRIS-ALI randomized clinical trial. JAMA 2019;322:1261-1270',
+        identifier: '10.1001/jama.2019.11825',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fujii T et al. Effect of vitamin C, hydrocortisone, and thiamine vs hydrocortisone alone on time alive and free of vasopressor support among patients with septic shock: the VITAMINS randomized clinical trial. JAMA 2020;323:423-431',
+        identifier: '10.1001/jama.2019.22176',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lamontagne F et al. Intravenous vitamin C in adults with sepsis in the intensive care unit. N Engl J Med 2022;386:2387-2398',
+        identifier: '10.1056/NEJMoa2200644',
+        kind: 'doi',
+      },
+      {
+        label: 'CHEST Editor\'s Note attached to Marik PE et al. Chest 2017;151:1229-1238',
+        identifier: '10.1016/j.chest.2023.04.021',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 54670067 — L-Ascorbic acid',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/54670067',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Melatonin — the sleep-onset effect is real and it is seven minutes, the dose people take is ten
+  // times physiological, and in 25 US gummy brands the melatonin ranged from 74% to 347% of label.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'melatonin',
+    name: 'Melatonin',
+    tradeName:
+      'Prolonged-release melatonin is a prescription medicine in the EU as Circadin (EMEA/H/C/000695); in the US the same molecule is an unregulated dietary supplement',
+    sponsor:
+      'No single sponsor for the supplement — N-acetyl-5-methoxytryptamine, synthesised industrially. The EU prolonged-release product is held by RAD Neurim Pharmaceuticals.',
+    targetGene: 'MTNR1A',
+    targetProtein:
+      'MT1 (MTNR1A) and MT2 (MTNR1B), Gi-coupled seven-transmembrane receptors. MT1 in the suprachiasmatic nucleus acutely suppresses neuronal firing, and MT2 mediates the phase-shifting of the circadian clock. The effect is chronobiotic before it is hypnotic: melatonin tells the clock what time it is rather than sedating the brain.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold over the counter in the US for insomnia, jet lag and children\'s sleep. In the European Union the same molecule requires a prescription, and prolonged-release melatonin is authorised only as short-term monotherapy for primary insomnia in patients aged 55 or over. The regulatory gap between the two jurisdictions is the largest for any substance in this file.',
+    patientFriendlyIndication: 'Taken to fall asleep faster, and to reset the clock after flying',
+    conditionContext: {
+      conditionExplainer:
+        'Melatonin is not a sedative. It is the hormone the pineal gland releases when it gets dark, and its job is to tell every clock-bearing cell in the body that night has begun. Taking it is closer to moving the hands of a clock than to switching off a light, which is why timing matters more than dose and why it works far better for a circadian problem than for ordinary insomnia.',
+      whyItMatters:
+        'It is the most-consumed sleep aid in the United States and the substance children are most often poisoned by. US sales rose from 285 million dollars in 2016 to 821 million in 2020, and over the same decade paediatric ingestions reported to poison centres rose 530 percent. Meanwhile the product is unregulated for content, and analyses keep finding that what is in the bottle is not what is on the label.',
+      whoTakesThis:
+        'Adults with insomnia, shift workers, travellers crossing time zones, people with delayed sleep-wake phase disorder, blind people with non-24-hour rhythms, and — increasingly and without good evidence for long-term use — children, often given it by parents.',
+      clinicalGoals:
+        'Trials measured sleep onset latency in minutes, total sleep time in minutes, sleep efficiency as a percentage of time in bed, subjective sleep quality scores, and circadian phase by dim-light melatonin onset.',
+    },
+    oneSentenceVerdict:
+      'Melatonin genuinely shortens sleep onset, by about seven minutes across 19 trials and 1,683 people, and genuinely shifts circadian phase, which is a different and better-supported claim — but the typical retail dose is roughly ten times the physiological one, and in 25 US gummy brands the measured content ran from 74% to 347% of what the label said, with one containing no melatonin at all.',
+    laymanHowItWorks:
+      'When the light fades, a gland in your brain releases melatonin into the blood, and receptors on the master clock read that as the signal that night has started. Swallowing melatonin adds that signal at whatever hour you take it, which nudges the clock — forward if taken in the evening, backward if taken in the morning. It also has a mild direct drowsiness effect at the right moment in the evening. What it does not do is sedate you the way a sleeping pill does, which is why people who expect a knockout are disappointed and people who use it to move a body clock across time zones tend not to be.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    anatomicalSite:
+      'Suprachiasmatic nucleus of the hypothalamus, where MT1 and MT2 receptors are densest; also retina, pars tuberalis and peripheral vasculature',
+    substitutes: {
+      summary:
+        'For chronic insomnia, cognitive behavioural therapy for insomnia is the first-line treatment in every major guideline and outperforms melatonin substantially. For a circadian problem — jet lag, delayed sleep phase, shift work — correctly timed melatonin and correctly timed bright light are the two interventions with a mechanism that matches the problem.',
+      conventionalRx: [
+        {
+          name: 'Prolonged-release melatonin 2 mg (Circadin), EU prescription medicine',
+          class: 'Melatonin receptor agonist, authorised medicine',
+          howItCompares:
+            'The regulated version of the same molecule, assessed by the EMA and authorised in 2007 for short-term monotherapy in primary insomnia in patients aged 55 or over. Across three trials in 681 patients, 32% on Circadin (86 of 265) reported significant symptom improvement at three weeks against 19% on placebo (51 of 272).',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: known content, known release profile, a defined indication and an age restriction. Cons: a 13-percentage-point responder difference is modest, and the authorisation is deliberately narrow in a way the US supplement market simply is not.',
+        },
+        {
+          name: 'Cognitive behavioural therapy for insomnia (CBT-I)',
+          class: 'Behavioural therapy, first-line in guidelines',
+          howItCompares:
+            'Directly addresses the conditioned arousal and time-in-bed behaviours that maintain chronic insomnia. Its effect sizes on sleep onset latency and sleep efficiency are substantially larger than melatonin\'s and, unlike melatonin, persist after treatment stops.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: durable, no pharmacology, no content-variability problem. Cons: requires weeks of effort and access to a clinician or a structured programme, which is why a gummy wins on convenience every time.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Darkness in the two hours before bed',
+          activeCompound: 'Endogenous melatonin, released when retinal light input falls',
+          biologicalMechanism:
+            'Melanopsin-containing retinal ganglion cells signal light directly to the suprachiasmatic nucleus, which suppresses pineal melatonin release. Short-wavelength light in the evening is the most potent suppressor. Removing that light restores the body\'s own signal at the correct time and correct amplitude, which no tablet can reproduce.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. The mechanistic point is that this is the same signal the supplement imitates, delivered by the system that knows the right dose.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Morning bright light, for the opposite direction',
+          activeCompound: 'High-illuminance broad-spectrum light on the retina',
+          biologicalMechanism:
+            'Light in the early biological morning advances circadian phase, which is the intervention that pairs with evening melatonin for delayed sleep-wake phase disorder. The phase-response curves for light and for melatonin run in roughly opposite directions, which is why the two are used together and why timing errors make either one useless or counterproductive.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no timing or intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Treat melatonin as a clock signal, not a sedative',
+          action:
+            'Ask whether the sleep problem is a timing problem or an inability to sleep at a normal hour. Melatonin has a real mechanism for the first and a weak one for the second.',
+          patientImpact:
+            'For jet lag, a Cochrane review of ten randomised trials found melatonin remarkably effective. For primary insomnia, the pooled sleep onset benefit is about seven minutes.',
+          clinicalPrecaution:
+            'Melatonin was the substance most frequently ingested by children reported to US poison control centres in 2020. Over 2012 to 2021 there were 260,435 paediatric ingestions, a 530 percent increase, with five children requiring mechanical ventilation and two deaths.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(=O)NCCC1=CNC2=C1C=C(C=C2)OC',
+      chemicalFormula: 'C13H16N2O2',
+      molecularWeight: '232.28 g/mol',
+      targetReceptorAffinity:
+        'Sub-nanomolar affinity at MT1 and MT2, both Gi-coupled. The relevant comparison is physiological: night-time plasma melatonin peaks in the tens to low hundreds of picomolar, while a 3 to 10 mg oral dose produces plasma concentrations one to two orders of magnitude above that, sustained for hours.',
+      structureSource: {
+        label: 'PubChem CID 896 — Melatonin, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/896',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mel-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Content assay and screen for serotonin in the finished retail product',
+          description:
+            'This step is not routine here — it is the finding. Melatonin supplements are not tested for content before sale in the United States, and independent analyses find both gross content deviation and the presence of serotonin, a related indoleamine that has no business in a sleep gummy. Any study using a commercial product must assay the actual lot it used.',
+          reagentsAndBuffer:
+            'Ultra-performance liquid chromatography with electrochemical detection for melatonin quantification; UPLC-MS confirmation for serotonin identity; melatonin and 5-hydroxytryptamine reference standards; separate assays on multiple lots of the same product to capture lot-to-lot variance',
+        },
+        {
+          id: 'mel-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the deuterated internal standard for plasma pharmacokinetics',
+          description:
+            'Endogenous melatonin is present in the same samples at picomolar concentration, so exogenous melatonin cannot be quantified against it without a mass-distinguishable standard. This is what makes it possible to state that a retail dose produces plasma levels far above the physiological night-time peak rather than merely restoring it.',
+          dependsOnStepId: 'mel-w1',
+          reagentsAndBuffer:
+            'Melatonin-d4 internal standard; deuterium-labelled 6-sulphatoxymelatonin for the urinary metabolite; isotopic purity confirmation by LC-MS/MS; amber vials, because melatonin is light-sensitive in solution',
+        },
+        {
+          id: 'mel-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Dim-light sample collection and extraction for melatonin onset timing',
+          description:
+            'Dim-light melatonin onset is the reference standard for circadian phase, and it is destroyed by the room lights. Samples must be collected under fewer than 10 lux with the subject awake, seated and unexposed to screens, then extracted immediately. A phase measurement taken under normal indoor lighting is not a phase measurement.',
+          dependsOnStepId: 'mel-w2',
+          reagentsAndBuffer:
+            'Saliva collection under sub-10-lux red-filtered lighting at 30- to 60-minute intervals; solid-phase extraction on C18 cartridges; methanol elution and nitrogen evaporation; salivary melatonin radioimmunoassay or LC-MS/MS cross-validated against plasma',
+        },
+        {
+          id: 'mel-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'MT1 and MT2 receptor engagement and desensitisation at supraphysiological exposure',
+          description:
+            'Test the receptors at both physiological and retail-dose concentrations in the same system. MT2 internalises and desensitises on sustained agonist exposure, which is the mechanistic reason a large dose held high all night is not simply a bigger version of the natural signal — it may be a worse one.',
+          dependsOnStepId: 'mel-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 cells stably expressing human MT1 or MT2; cAMP accumulation assay with forskolin stimulation; luzindole as a non-selective antagonist and 4-P-PDOT as an MT2-selective antagonist; beta-arrestin recruitment assay; melatonin at 100 picomolar and at 10 nanomolar to bracket physiological and retail exposure',
+        },
+        {
+          id: 'mel-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Polysomnography with a phase-shift readout, reported separately',
+          description:
+            'Report the hypnotic effect and the chronobiotic effect as two different results, because they are two different claims with different evidence. Polysomnographic sleep onset latency answers "did it make sleep come faster tonight"; the shift in dim-light melatonin onset across days answers "did it move the clock". Studies that report only a questionnaire answer neither.',
+          dependsOnStepId: 'mel-w4',
+          reagentsAndBuffer:
+            'Full polysomnography with EEG, EOG and chin EMG scored to AASM criteria; wrist actigraphy for the free-living arm; serial salivary dim-light melatonin onset before and after intervention; placebo matched for taste and appearance',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mel-a1',
+        category: 'measured',
+        title: 'Seven minutes faster to sleep, eight minutes longer asleep',
+        laymanSummary:
+          'Across nineteen randomised trials in 1,683 people, melatonin cut the time to fall asleep by about seven minutes and added about eight minutes of total sleep.',
+        technicalDetails:
+          'Ferracioli-Oda and colleagues pooled 19 randomised placebo-controlled trials in 1,683 subjects with primary sleep disorders. Melatonin reduced sleep onset latency by a weighted mean difference of 7.06 minutes (95% CI 4.37 to 9.75, Z = 5.15, P < 0.001) and increased total sleep time by 8.25 minutes (95% CI 1.74 to 14.75, Z = 2.48, P = 0.013). Overall sleep quality improved with a standardised mean difference of 0.22 (95% CI 0.12 to 0.32, P < 0.001). Meta-regression found longer trials and higher doses produced larger effects on latency and total sleep time, but no dose or duration effect on sleep quality. The authors stated plainly that the absolute benefit is smaller than that of other pharmacological treatments for insomnia, while noting the effect did not appear to dissipate with continued use — which is a genuine advantage over hypnotics that lose effect. The earlier Brzezinski meta-analysis of 17 studies in 284 subjects found the same picture at a smaller scale: sleep onset latency down 4.0 minutes (95% CI 2.5 to 5.4), sleep efficiency up 2.2% (95% CI 0.2 to 4.2), total sleep duration up 12.8 minutes (95% CI 2.9 to 22.8).',
+        evidenceSource:
+          'Ferracioli-Oda E, Qawasmi A, Bloch MH. PLoS One 2013;8:e63773; Brzezinski A et al. Sleep Med Rev 2005;9:41-50',
+        doi: '10.1371/journal.pone.0063773',
+        measuredMetric:
+          'Weighted mean difference in sleep onset latency and total sleep time, in minutes, versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mel-a2',
+        category: 'failed',
+        title: 'Label accuracy: 74% to 347% of the stated dose, and one gummy with none at all',
+        laymanSummary:
+          'Researchers bought 25 melatonin gummy products in the US and measured what was actually in them. Only three matched the label within ten percent. One contained no melatonin.',
+        technicalDetails:
+          'Cohen and colleagues analysed 25 melatonin gummy brands sold in the United States. The actual quantity of melatonin ranged from 74% to 347% of the labelled quantity. Only three of the 25 (12%) contained melatonin within plus or minus 10% of the declared amount. One product contained no detectable melatonin at all but did contain 31.3 mg of CBD. Among the five products containing CBD, CBD content was accurate — 104% to 118% of label — which makes the melatonin failure harder to attribute to general analytical difficulty. Erland and Saxena had found the same problem earlier in 31 supplements: melatonin content ranged from -83% to +478% of label, lot-to-lot variation within a single product reached 465%, more than 71% of supplements missed their label by more than 10%, and serotonin was identified in eight of them at 1 to 75 micrograms. This is the defining fact about the retail category, and it means a person taking "5 mg" may be taking anywhere from under 1 mg to over 17 mg.',
+        evidenceSource:
+          'Cohen PA et al. JAMA 2023;329:1401-1402; Erland LAE, Saxena PK. J Clin Sleep Med 2017;13:275-281',
+        doi: '10.1001/jama.2023.2296',
+        measuredMetric:
+          'Measured melatonin content as a percentage of the labelled quantity, across commercial products',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mel-a3',
+        category: 'conclusion_shift',
+        title: 'The physiological dose worked; the pharmacological dose worked and overshot',
+        laymanSummary:
+          'A dose-ranging study found that a small dose matching the body\'s own night-time level restored sleep efficiency. A ten-times-larger dose also worked, but dropped body temperature and left melatonin circulating into the next day.',
+        technicalDetails:
+          'Zhdanova and colleagues ran a double-blind placebo-controlled crossover in 30 subjects over 50 — 15 with actigraphically confirmed reduced sleep efficiency and 15 normal sleepers — giving placebo and 0.1, 0.3 and 3.0 mg melatonin 30 minutes before bed for a week each, with polysomnography on the last three nights of each period. The physiological dose of 0.3 mg restored sleep efficiency (P < 0.0001), acting principally in the middle third of the night, and raised plasma melatonin to the normal nocturnal range (P < 0.0008). The pharmacological 3.0 mg dose also improved sleep, but induced hypothermia and caused plasma melatonin to remain elevated into the daylight hours. The 0.1 mg dose also improved sleep. Crucially, control subjects with equally low melatonin levels showed no sleep effect at any dose. Retail products in the US are commonly sold at 3, 5 and 10 mg, which is ten to thirty times the dose that this study showed sufficed, and the surplus does not simply vanish: it keeps signalling night into the following morning, which is the opposite of what a circadian intervention should do.',
+        evidenceSource: 'Zhdanova IV et al. J Clin Endocrinol Metab 2001;86:4727-4730',
+        doi: '10.1210/jcem.86.10.7901',
+        measuredMetric:
+          'Polysomnographic sleep efficiency and plasma melatonin profile across 0.1, 0.3 and 3.0 mg doses',
+        inferredClaim:
+          'That more melatonin is more effective, when the dose-ranging data show the physiological amount was sufficient and the larger amount extended the signal into the next day',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mel-a4',
+        category: 'measured',
+        title: 'Jet lag is the strong indication, and it is a different mechanism',
+        laymanSummary:
+          'For jet lag — a genuine mismatch between the body clock and local time — a Cochrane review of ten randomised trials found melatonin remarkably effective. This is the use with the best evidence and the least marketing.',
+        technicalDetails:
+          'Herxheimer and Petrie identified ten randomised trials in airline passengers, staff and military personnel, all comparing melatonin with placebo and one additionally with the hypnotic zolpidem. Jet lag is the one condition where the pharmacology and the pathology match exactly: the problem is that the internal clock is set to the departure time zone, and melatonin is the signal that moves it. The evidence is coherent for eastward travel across several time zones, where the required phase advance is the harder direction. Adverse event reports were searched systematically outside the randomised trials as well, in Side Effects of Drugs, Reactions Weekly, MEDLINE, and the WHO Uppsala Monitoring Centre and FDA adverse reaction databases. The contrast with the insomnia literature is the point of this audit: the same molecule has a strong indication with a matching mechanism and a weak indication without one, and the weak one is what the aisle sells.',
+        evidenceSource: 'Herxheimer A, Petrie KJ. Cochrane Database Syst Rev 2002;2:CD001520',
+        doi: '10.1002/14651858.CD001520',
+        measuredMetric:
+          'Subjective jet lag ratings and related components after eastward and westward transmeridian flight',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mel-a5',
+        category: 'failed',
+        title: 'Paediatric ingestions rose 530 percent, with two deaths',
+        laymanSummary:
+          'As melatonin gummies spread, so did children eating them. Over ten years US poison centres logged more than a quarter of a million paediatric melatonin ingestions, five children needed ventilators and two died.',
+        technicalDetails:
+          'Lelak and colleagues analysed the American Association of Poison Control Centers National Poison Data System for isolated melatonin ingestions in people aged 19 or under from 2012 to 2021. There were 260,435 paediatric melatonin ingestions over the decade and the annual number rose 530%. Melatonin accounted for 4.9% of all paediatric ingestions reported in 2021 against 0.6% in 2012, and in 2020 it became the substance most frequently ingested by children reported to poison centres. Hospitalisations and serious outcomes increased, driven mainly by unintentional ingestion in children aged five or under. Five children required mechanical ventilation and two died. US sales rose from 285 million dollars in 2016 to 821 million in 2020 over the same period. A sweet, brightly coloured, unregulated product with no child-resistant requirement and no reliable content standard is the direct explanation, and the content variability audit above compounds it: a child eating a handful of gummies may be receiving several times more melatonin per gummy than the label implies.',
+        evidenceSource: 'Lelak K et al. MMWR Morb Mortal Wkly Rep 2022;71:725-729',
+        doi: '10.15585/mmwr.mm7122a1',
+        measuredMetric:
+          'Annual paediatric melatonin ingestions reported to US poison control centres, and associated outcomes',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mel-a6',
+        category: 'inferred',
+        title: 'The regulated version exists, and its authorised claim is much narrower',
+        laymanSummary:
+          'In Europe melatonin is a prescription drug. Regulators approved it only for short-term use in people over 55, and the trial result behind that approval was 32 percent responding against 19 percent on placebo.',
+        technicalDetails:
+          'The EMA authorised Circadin, prolonged-release melatonin 2 mg, on 29 June 2007 under EMEA/H/C/000695, as monotherapy for the short-term treatment of primary insomnia characterised by poor quality of sleep in patients aged 55 or over, available only on prescription and for up to 13 weeks. Across three main studies in 681 patients, 32% of Circadin patients (86 of 265) reported significant improvement in sleep quality and next-day functioning at three weeks against 19% on placebo (51 of 272). Everything in that sentence is a restriction the US supplement carries none of: a specific formulation, a specific dose, an age floor, a duration cap and a prescription requirement. The inference to audit is the reverse of the usual one — American consumers routinely treat the availability of melatonin without a prescription as evidence that it is mild and broadly indicated, when the jurisdiction that assessed it concluded the opposite about scope while agreeing it is safe enough to prescribe.',
+        evidenceSource:
+          'European Medicines Agency, Circadin EPAR summary, marketing authorisation issued 29 June 2007',
+        measuredMetric:
+          'Proportion reporting significant improvement in sleep quality and next-day functioning at three weeks',
+        inferredClaim:
+          'That over-the-counter availability in the US reflects a wider evidence-supported indication than the one European regulators actually granted',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Darkness starts the signal, and light stops it',
+        laymanDesc:
+          'Special cells in the retina report ambient light straight to the body\'s master clock. When light falls, the clock releases the brake on the pineal gland and melatonin rises.',
+        molecularDetail:
+          'Melanopsin-expressing intrinsically photosensitive retinal ganglion cells project through the retinohypothalamic tract to the suprachiasmatic nucleus, which controls pineal melatonin synthesis through a multisynaptic pathway ending in sympathetic input to the pineal. Evening short-wavelength light suppresses release. Dim-light melatonin onset, measured under sub-10-lux conditions, is the reference standard for circadian phase precisely because it is the least contaminated marker available.',
+        iconName: 'Moon',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Swallowed melatonin overshoots the natural peak by a wide margin',
+        laymanDesc:
+          'Night-time melatonin in the blood is a very small quantity. A typical retail tablet produces far more than that, and keeps producing it for hours.',
+        molecularDetail:
+          'Physiological nocturnal plasma melatonin peaks in the tens to low hundreds of picomolar. Zhdanova showed that 0.3 mg was sufficient to restore that range and restore sleep efficiency in older insomniacs, while 3.0 mg induced hypothermia and left plasma melatonin elevated into daylight hours. Oral melatonin also undergoes extensive first-pass CYP1A2 metabolism, which is highly variable between individuals and is inhibited by fluvoxamine and by caffeine.',
+        iconName: 'TrendingUp',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It binds two receptors on the clock itself',
+        laymanDesc:
+          'Melatonin docks onto two specific receptors concentrated in the small cluster of cells that runs the body\'s daily timing. One quietens those cells; the other moves the clock.',
+        molecularDetail:
+          'MT1 (MTNR1A) and MT2 (MTNR1B) are Gi-coupled receptors densely expressed in the suprachiasmatic nucleus. MT1 activation acutely suppresses SCN neuronal firing; MT2 mediates phase shifts. Both inhibit adenylyl cyclase and lower cAMP. MT2 internalises and desensitises under sustained agonist exposure, which is why a large dose held high for many hours is not a scaled-up version of the physiological pulse.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The clock moves in a direction that depends entirely on when you took it',
+        laymanDesc:
+          'Evening melatonin pulls the clock earlier. Morning melatonin pushes it later. Take it at the wrong hour and it makes the problem worse rather than better.',
+        molecularDetail:
+          'The melatonin phase-response curve is roughly opposite in shape to the light phase-response curve. Administration in the hours before habitual dim-light melatonin onset advances phase; administration in the late night or early morning delays it. This is why the jet lag evidence is strong and direction-specific, and why an insomnia trial that ignores timing is measuring a hypnotic effect that melatonin barely has instead of a chronobiotic effect it clearly does.',
+        iconName: 'Clock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The measurable result is minutes, not hours',
+        laymanDesc:
+          'Pooled across nineteen trials, melatonin got people to sleep about seven minutes sooner and kept them asleep about eight minutes longer. That is a real effect and a small one.',
+        molecularDetail:
+          'Weighted mean difference in sleep onset latency 7.06 minutes (95% CI 4.37 to 9.75) and total sleep time 8.25 minutes (95% CI 1.74 to 14.75), with a sleep quality standardised mean difference of 0.22. The authors of that meta-analysis noted that the absolute benefit is smaller than other pharmacological insomnia treatments but does not dissipate with continued use — an unusual and genuinely favourable property.',
+        iconName: 'Timer',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Ferracioli-Oda 2013 meta-analysis of melatonin in primary sleep disorders',
+        phase: 'Meta-analysis of 19 randomised placebo-controlled trials',
+        sampleSize: 1683,
+        primaryEndpoint: 'Sleep onset latency, total sleep time and sleep quality versus placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Sleep latency WMD -7.06 min (95% CI 4.37 to 9.75), P < 0.001; total sleep time +8.25 min (95% CI 1.74 to 14.75), P = 0.013; sleep quality SMD 0.22, P < 0.001',
+        unreportedAdverseSignals:
+          'The authors state the absolute benefit is smaller than that of other pharmacological insomnia treatments. Effects were dose- and duration-dependent for latency but not for sleep quality, which argues the quality finding is not a pharmacological dose-response.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Brzezinski 2005 meta-analysis of exogenous melatonin on sleep',
+        phase: 'Meta-analysis of 17 studies',
+        sampleSize: 284,
+        primaryEndpoint: 'Sleep onset latency, total sleep duration and sleep efficiency',
+        endpointMet: true,
+        statisticalPValue:
+          'Sleep onset latency -4.0 min (95% CI 2.5 to 5.4); sleep efficiency +2.2% (95% CI 0.2 to 4.2); total sleep duration +12.8 min (95% CI 2.9 to 22.8)',
+        unreportedAdverseSignals:
+          'The included studies were highly heterogeneous in inclusion criteria, insomnia measures, dose and route, which the authors state explicitly as the reason the field had been unable to agree.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Zhdanova 2001 — dose-ranging melatonin in age-related insomnia',
+        phase: 'Double-blind placebo-controlled randomised crossover with polysomnography',
+        sampleSize: 30,
+        primaryEndpoint: 'Polysomnographic sleep efficiency across 0.1, 0.3 and 3.0 mg doses',
+        endpointMet: true,
+        statisticalPValue:
+          'Sleep efficiency restored at 0.3 mg, P < 0.0001; plasma melatonin normalised at 0.3 mg, P < 0.0008',
+        unreportedAdverseSignals:
+          'The 3.0 mg dose induced hypothermia and left plasma melatonin elevated into daylight hours. Normal-sleeping controls with equally low melatonin levels showed no benefit at any dose, which argues the effect is repletion in a specific phenotype rather than a general hypnotic action.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Circadin EU registration programme (EMEA/H/C/000695)',
+        phase: 'Three randomised placebo-controlled trials supporting marketing authorisation',
+        sampleSize: 681,
+        primaryEndpoint:
+          'Proportion reporting significant improvement in sleep quality and next-day functioning at three weeks',
+        endpointMet: true,
+        statisticalPValue: '32% on Circadin (86/265) versus 19% on placebo (51/272)',
+        unreportedAdverseSignals:
+          'The authorised indication is deliberately narrow: monotherapy, short-term, primary insomnia, age 55 or over, prescription only, up to 13 weeks. None of those restrictions exist for the identical molecule sold over the counter in the United States.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cohen 2023 — quantity of melatonin and CBD in US melatonin gummies',
+        phase: 'Analytical survey of marketed products',
+        sampleSize: 25,
+        primaryEndpoint: 'Measured melatonin content as a percentage of labelled quantity',
+        endpointMet: false,
+        statisticalPValue:
+          'Melatonin content 74% to 347% of label; only 3 of 25 within plus or minus 10%; one product contained no melatonin and 31.3 mg CBD',
+        unreportedAdverseSignals:
+          'CBD content in the five CBD-containing products was accurate at 104% to 118% of label, which removes analytical difficulty as an explanation for the melatonin failures.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Sleep onset latency fell by 7.06 minutes and total sleep time rose by 8.25 minutes across 19 trials in 1,683 people',
+        'A 0.3 mg physiological dose restored polysomnographic sleep efficiency in older insomniacs; 3.0 mg induced hypothermia and prolonged the signal into daylight',
+        'Melatonin content in 25 US gummy products ranged from 74% to 347% of label, with only 3 within 10%',
+        'Paediatric melatonin ingestions reported to US poison centres rose 530% over 2012 to 2021, totalling 260,435, with two deaths',
+      ],
+      unsupportedInferences: [
+        'That melatonin is a sedative — it is a circadian signal, and the pooled hypnotic effect is minutes',
+        'That a larger dose is a better dose, when 0.3 mg sufficed and 3.0 mg overshot into the next morning',
+        'That over-the-counter availability in the US implies a broad evidence-supported indication, when the EU authorisation is restricted to short-term use in people 55 and over',
+        'That a labelled dose is the dose received, which is false in 88% of the gummy products tested',
+      ],
+      whatFailedInitially: [
+        'Insomnia trials that ignored administration timing, which measured a hypnotic effect melatonin barely has instead of the chronobiotic effect it clearly does',
+        'The US supplement content control regime, which permitted a 4.7-fold spread around label across a single product category',
+      ],
+      realWorldOutcome: [
+        'The strongest evidence is for jet lag and circadian phase disorders, where mechanism and pathology actually match',
+        'The effect on ordinary insomnia is real, replicated, and small — and unusually, it does not fade with continued use',
+        'The largest practical risk is not the pharmacology but the packaging: sweet, unregulated, and now the substance children are most often poisoned by',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, capsule, gummy, liquid or spray; prolonged-release tablet as an EU prescription medicine',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. In the European Union, the United Kingdom, Australia, Canada and Japan the same molecule is a medicine requiring a prescription or pharmacist supply. Immediate-release and prolonged-release products are pharmacokinetically different interventions and their trial evidence is not interchangeable. Gummy formats are the fastest-growing and the worst-characterised: they are the format at the centre of both the content-accuracy failure and the paediatric ingestion epidemic.',
+      safetyProfile:
+        'Short-term tolerability is good and the EMA lists most adverse effects at frequencies between 1 and 10 per 1,000, including irritability, restlessness, abnormal dreams, headache, dizziness and daytime somnolence. Doses well above physiological leave melatonin circulating into the morning, which produces grogginess and, in principle, works against the circadian correction being sought. Melatonin is metabolised by CYP1A2, so fluvoxamine markedly raises exposure and smoking lowers it. Long-term safety in children, including any effect on pubertal timing, has not been established by adequate trials, which matters given how widely it is now given to them. In 2020 melatonin became the substance most frequently ingested by children reported to US poison control centres.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does melatonin actually work?',
+        a: 'Yes, and the size of the effect is the part worth knowing. Across nineteen randomised trials in 1,683 people it shortened the time to fall asleep by about seven minutes and added about eight minutes of sleep. The authors of that analysis said outright that the absolute benefit is smaller than other insomnia drugs. They also noted something unusual in its favour: the effect did not fade with continued use, which is not true of most hypnotics.',
+      },
+      {
+        q: 'Am I taking too much?',
+        a: 'Probably, if you are taking a typical US retail product. A dose-ranging study with full polysomnography found 0.3 mg restored sleep efficiency in older insomniacs and brought plasma melatonin to the normal night-time range. The 3 mg dose also worked but caused hypothermia and left melatonin circulating into the following day. Products are commonly sold at 3, 5 and 10 mg. Extending a night signal into the morning is the opposite of what a circadian intervention is meant to do.',
+        auditNote:
+          'And because content accuracy is poor, the actual dose received may be several times the number printed on the bottle.',
+      },
+      {
+        q: 'Is what is in the bottle what is on the label?',
+        a: 'Frequently not. In 25 melatonin gummy brands sold in the US, measured melatonin ran from 74% to 347% of the labelled amount and only three products were within ten percent. One contained no melatonin at all, though it did contain 31.3 mg of CBD. An earlier analysis of 31 supplements found a range of -83% to +478%, lot-to-lot variation within one product of up to 465%, and serotonin present in eight of them. In the same 2023 study the CBD content was accurate, so this is a quality-control failure specific to melatonin, not an analytical limitation.',
+      },
+      {
+        q: 'Is it safe to give to children?',
+        a: 'That question has not been properly answered, and the exposure data are alarming. US poison centres logged 260,435 paediatric melatonin ingestions between 2012 and 2021, a 530 percent rise; five children required mechanical ventilation and two died. In 2020 melatonin became the substance children most often ingested. Long-term trials in children, including any effect on the timing of puberty, do not exist at adequate scale. The combination of a sweet unregulated format, inaccurate labelling and no child-resistant requirement is the mechanism here, and it is not a pharmacological one.',
+      },
+      {
+        q: 'What is it genuinely good for?',
+        a: 'Problems of timing rather than problems of sleep drive. Jet lag is the clearest case — a Cochrane review of ten randomised trials found it effective, and the mechanism matches the pathology exactly, since the complaint is that the internal clock is set to the wrong time zone and melatonin is the signal that moves clocks. Delayed sleep-wake phase disorder and non-24-hour rhythm in blind people are the same category. For someone who simply cannot fall asleep at a normal hour for behavioural reasons, cognitive behavioural therapy for insomnia is the first-line treatment and outperforms it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Zhdanova IV, Wurtman RJ, Regan MM, Taylor JA, Shi JP, Leclair OU. Melatonin treatment for age-related insomnia. J Clin Endocrinol Metab 2001;86:4727-4730',
+        identifier: '10.1210/jcem.86.10.7901',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Herxheimer A, Petrie KJ. Melatonin for the prevention and treatment of jet lag. Cochrane Database Syst Rev 2002;2:CD001520',
+        identifier: '10.1002/14651858.CD001520',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Brzezinski A et al. Effects of exogenous melatonin on sleep: a meta-analysis. Sleep Med Rev 2005;9:41-50',
+        identifier: '10.1016/j.smrv.2004.06.004',
+        kind: 'doi',
+      },
+      {
+        label:
+          'European Medicines Agency. Circadin (prolonged-release melatonin 2 mg), EMEA/H/C/000695, marketing authorisation issued 29 June 2007',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/circadin',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Ferracioli-Oda E, Qawasmi A, Bloch MH. Meta-analysis: melatonin for the treatment of primary sleep disorders. PLoS One 2013;8:e63773',
+        identifier: '10.1371/journal.pone.0063773',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Erland LAE, Saxena PK. Melatonin natural health products and supplements: presence of serotonin and significant variability of melatonin content. J Clin Sleep Med 2017;13:275-281',
+        identifier: '10.5664/jcsm.6462',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lelak K et al. Pediatric melatonin ingestions — United States, 2012-2021. MMWR Morb Mortal Wkly Rep 2022;71:725-729',
+        identifier: '10.15585/mmwr.mm7122a1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cohen PA, Avula B, Wang Y, Katragunta K, Khan I. Quantity of melatonin and CBD in melatonin gummies sold in the US. JAMA 2023;329:1401-1402',
+        identifier: '10.1001/jama.2023.2296',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 896 — Melatonin',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/896',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Caffeine — the strongest evidence in this entire file. An umbrella review of 21 meta-analyses,
+  // an FDA-approved neonatal drug that cut cerebral palsy, and one honest catch: withdrawal.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'caffeine',
+    name: 'Caffeine',
+    tradeName:
+      'Caffeine anhydrous in supplements; caffeine citrate is an FDA-approved prescription drug for apnea of prematurity (Cafcit, NDA 020793)',
+    sponsor:
+      'No single sponsor — 1,3,7-trimethylxanthine, obtained from coffee decaffeination or synthesised from urea and dimethylurea, sold by many manufacturers',
+    targetGene: 'ADORA2A',
+    targetProtein:
+      'Adenosine receptors A1 (ADORA1) and A2A (ADORA2A), both G-protein-coupled. Caffeine is a competitive, non-selective antagonist at both at ordinary human doses. Every other proposed mechanism — phosphodiesterase inhibition, ryanodine receptor sensitisation, GABA-A antagonism — requires concentrations that a person drinking coffee never reaches.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement and as an ingredient in coffee, tea, energy drinks and pre-workout formulas, for alertness and exercise performance. Caffeine citrate is separately an approved prescription drug under NDA 020793 for apnea of prematurity in very-low-birth-weight infants, where it reduced bronchopulmonary dysplasia and, at 18 months, death or neurodevelopmental disability.',
+    patientFriendlyIndication: 'Taken for alertness, and before training or competition for performance',
+    conditionContext: {
+      conditionExplainer:
+        'Adenosine accumulates in the brain across a waking day and, by acting on its receptors, is one of the signals that produces the feeling of sleepiness. Caffeine occupies those receptors without activating them. It does not add energy; it blocks the message that you are tired, and the adenosine keeps accumulating underneath.',
+      whyItMatters:
+        'This is the page in this file where the evidence is strongest, and saying so plainly is what makes the sceptical pages elsewhere worth reading. Caffeine is ergogenic across aerobic endurance, muscular strength, muscular endurance, power, jumping and speed, substantiated by 21 meta-analyses, and it is one of very few substances here that is also a licensed drug with a mortality-adjacent randomised benefit in a real disease.',
+      whoTakesThis:
+        'Roughly most adults on earth, mostly as coffee and tea. Also athletes taking measured doses before competition, shift workers, students, and — under prescription and by a completely different route — premature infants with apnea.',
+      clinicalGoals:
+        'Trials measured time-trial completion time, one-repetition maximum, repetitions to failure, peak power, jump height, ratings of perceived exertion, polysomnographic total sleep time, and in the neonatal programme bronchopulmonary dysplasia and neurodevelopmental disability at 18 to 21 months.',
+    },
+    oneSentenceVerdict:
+      'Caffeine is the best-evidenced performance substance in this file and one of the best-evidenced in existence — ergogenic across six distinct exercise domains in 21 meta-analyses, and a licensed neonatal drug that cut death or neurodevelopmental disability from 46.2% to 40.2% — with the honest caveat that half of habitual users get a withdrawal headache on stopping, so part of the daily lift is the reversal of a deficit the habit created.',
+    laymanHowItWorks:
+      'A molecule called adenosine builds up in your brain the longer you are awake, and when it docks onto its receptors you feel tired. Caffeine is shaped enough like adenosine to sit in those receptors without switching them on, so the tiredness signal cannot be delivered. Nothing has been added; a brake has been released. Because the adenosine is still piling up behind the blockade, the tiredness returns when caffeine clears — and if you have been doing this daily, the brain has grown extra receptors to compensate, which is why missing a morning coffee produces a real headache rather than an imagined one.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 88,
+    anatomicalSite:
+      'Central nervous system, principally striatal and cortical adenosine A1 and A2A receptors; also skeletal muscle, adipose tissue and the renal afferent arteriole',
+    substitutes: {
+      summary:
+        'For alertness the only intervention that genuinely beats caffeine is sleep, and it beats it decisively because it clears the adenosine rather than masking it. For exercise performance there is no legal, cheap, orally available substance with a comparable evidence base — which is the honest verdict this page exists to record.',
+      conventionalRx: [
+        {
+          name: 'Caffeine citrate (Cafcit) for apnea of prematurity',
+          class: 'Methylxanthine respiratory stimulant, FDA-approved under NDA 020793',
+          howItCompares:
+            'The same molecule as a licensed drug, given to very-low-birth-weight infants. In the 2,006-infant CAP trial it reduced bronchopulmonary dysplasia and, at 18 to 21 months corrected age, reduced death or neurodevelopmental disability from 46.2% to 40.2% and cerebral palsy from 7.3% to 4.4%.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: a genuine randomised benefit on hard neurological outcomes in a real disease, from a substance most people meet as a beverage. Cons: it tells you nothing about the coffee you drank this morning, and it is regularly cited as if it did.',
+        },
+        {
+          name: 'Adequate sleep',
+          class: 'The mechanism-matching comparator',
+          howItCompares:
+            'Sleep clears accumulated adenosine; caffeine occupies the receptor while the adenosine keeps accumulating. That difference is why caffeine reliably improves performance on a rested athlete and cannot substitute for sleep across days. It is also why 400 mg six hours before bed measurably reduces total sleep time.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: removes the underlying signal rather than blocking it, with no tolerance and no withdrawal. Cons: cannot be bought, which is precisely why the caffeine market exists.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Coffee',
+          activeCompound: 'Caffeine, plus chlorogenic acids and diterpenes that anhydrous caffeine lacks',
+          biologicalMechanism:
+            'The caffeine in coffee and the caffeine in a capsule are the same molecule acting at the same receptors, and coffee has been used successfully in ergogenic trials. The differences are dose precision and the accompanying compounds: unfiltered coffee carries cafestol and kahweol, which raise LDL cholesterol, and filtered coffee does not.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: Goncalves\'s time-trial study used 6 mg per kilogram of body mass, and Drake\'s sleep study used a fixed 400 mg.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Tea',
+          activeCompound: 'Caffeine at lower concentration, with L-theanine',
+          biologicalMechanism:
+            'Tea delivers less caffeine per serving alongside L-theanine, an amino acid that crosses the blood-brain barrier and is frequently combined with caffeine in supplement products on the claim that it smooths the stimulant effect. The receptor pharmacology of the caffeine is unchanged.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Separate the lift from the withdrawal reversal',
+          action:
+            'Notice whether the first dose of the day restores you to normal or takes you above it. In a habitual user those are different things, and only one of them is a drug effect on a neutral baseline.',
+          patientImpact:
+            'Juliano and Griffiths found headache in 50% of experimental caffeine-withdrawal subjects and clinically significant distress or functional impairment in 13%, with symptoms appearing from daily doses as low as 100 mg.',
+          clinicalPrecaution:
+            'Withdrawal onset is typically 12 to 24 hours after abstinence, peaks at 20 to 51 hours, and lasts 2 to 9 days. Expectancy is not the prime determinant — this was tested.',
+        },
+        {
+          name: 'Count the hours before bed, not the cups',
+          action:
+            'Caffeine has a half-life of roughly five hours in a healthy adult, which is doubled by oral contraceptives and roughly halved in smokers.',
+          patientImpact:
+            'A fixed 400 mg dose taken six hours before bedtime significantly disrupted sleep against placebo, measured both by self-report and by a validated portable sleep monitor.',
+          clinicalPrecaution:
+            'That finding is the empirical basis of the standard advice to stop caffeine at least six hours before bed. Losing sleep to gain alertness is a bad trade at the level of adenosine, which is the thing caffeine is blocking.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1C=NC2=C1C(=O)N(C(=O)N2C)C',
+      chemicalFormula: 'C8H10N4O2',
+      molecularWeight: '194.19 g/mol',
+      targetReceptorAffinity:
+        'Competitive antagonist at adenosine A1 and A2A with affinities in the low micromolar range, which is the concentration ordinary human consumption actually produces in plasma. Phosphodiesterase inhibition and ryanodine receptor effects require concentrations one to two orders of magnitude higher and are not the mechanism in a person.',
+      structureSource: {
+        label: 'PubChem CID 2519 — Caffeine, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2519',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'caf-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Caffeine content and undeclared-stimulant screen on pre-workout products',
+          description:
+            'Caffeine itself is easy to assay and rarely misstated, but the products it is sold inside are the most adulterated category in the supplement market. Screen for the synthetic stimulants that have repeatedly been found in pre-workout and weight-loss formulas, because a performance effect attributed to caffeine may not be caffeine at all.',
+          reagentsAndBuffer:
+            'Reversed-phase HPLC-UV at 273 nm against a caffeine reference standard; LC-MS/MS screen for 1,3-dimethylamylamine, 1,4-dimethylamylamine, higenamine, octopamine and synephrine; proprietary-blend products assayed for total caffeine including from guarana, yerba mate and green tea extract',
+        },
+        {
+          id: 'caf-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of labelled caffeine and paraxanthine standards',
+          description:
+            'CYP1A2 activity varies several-fold between individuals and is the reason two people report opposite experiences of the same cup. Phenotyping requires quantifying caffeine against its primary metabolite, which needs both compounds as isotopically distinguishable standards.',
+          dependsOnStepId: 'caf-w1',
+          reagentsAndBuffer:
+            'Caffeine-d9 and paraxanthine-d6 internal standards; theobromine and theophylline reference standards for the parallel demethylation routes; LC-MS/MS confirmation of isotopic purity',
+        },
+        {
+          id: 'caf-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Salivary extraction for the paraxanthine-to-caffeine ratio',
+          description:
+            'Saliva tracks free plasma caffeine closely and can be collected without venepuncture, which makes serial sampling practical. The paraxanthine to caffeine ratio at a fixed interval after a standard dose is the accepted CYP1A2 phenotype metric, and it is what a genotype alone cannot give you.',
+          dependsOnStepId: 'caf-w2',
+          reagentsAndBuffer:
+            'Timed saliva collection with a plain cotton swab, not a citric-acid-stimulated one; solid-phase extraction on a mixed-mode cartridge; methanol elution; LC-MS/MS quantification of caffeine and paraxanthine; parallel CYP1A2 rs762551 genotyping by restriction fragment length polymorphism PCR',
+        },
+        {
+          id: 'caf-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'A1 and A2A receptor occupancy, and upregulation after chronic exposure',
+          description:
+            'Confirm competitive antagonism at both receptors at achievable concentrations, then run the chronic arm, because receptor upregulation is the substrate of tolerance and withdrawal and it does not appear in an acute experiment. This is the step that distinguishes a drug effect on a naive brain from the restoration of a habituated one.',
+          dependsOnStepId: 'caf-w3',
+          reagentsAndBuffer:
+            'CHO cells stably expressing human A1 or A2A; [3H]DPCPX and [3H]ZM241385 radioligand binding; cAMP accumulation assay; caffeine at 1 to 50 micromolar to span human plasma exposure; 14-day continuous exposure arm with receptor density quantified by saturation binding at washout',
+        },
+        {
+          id: 'caf-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Time-trial performance with perceived exertion and a sleep readout',
+          description:
+            'Report the performance outcome, the perceived-exertion outcome and the subsequent night\'s sleep from the same subjects. Doherty and Smith showed that exertion ratings account for roughly 29% of the variance in performance improvement, and Drake showed that a moderate dose six hours before bed disrupts sleep. A trial that reports only the time trial is reporting a third of the effect.',
+          dependsOnStepId: 'caf-w4',
+          reagentsAndBuffer:
+            'Cycle ergometer simulated time trial with a validated protocol; Borg 6-20 rating of perceived exertion at fixed intervals; capillary blood lactate; matched placebo capsule plus a no-supplement control arm to detect placebo response; validated portable sleep monitor for the following night',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'caf-a1',
+        category: 'measured',
+        title: 'Twenty-one meta-analyses, six exercise domains, all ergogenic',
+        laymanSummary:
+          'Researchers reviewed every published meta-analysis of caffeine and exercise. Caffeine improved endurance, strength, muscular endurance, power, jumping and speed. This is not a marginal result.',
+        technicalDetails:
+          'Grgic and colleagues conducted an umbrella review across twelve databases, identifying eleven reviews containing 21 separate meta-analyses, all of moderate or high methodological quality by AMSTAR 2. Caffeine was ergogenic for aerobic endurance, muscle strength, muscle endurance, power, jumping performance and exercise speed. Using GRADE, the quality of evidence for muscle endurance, muscle strength, anaerobic power and aerobic endurance was moderate, coming from moderate-to-high quality systematic reviews; for the other outcomes the underlying evidence was low or very low. Two caveats are stated by the authors and belong here: not all analyses gave a definite direction of effect once the 95% prediction interval was considered, and most individual studies were conducted among young men. This is the strongest performance evidence base for any substance on this site, and it still carries a generalisability limit that the marketing does not mention.',
+        evidenceSource: 'Grgic J et al. Br J Sports Med 2020;54:681-688',
+        doi: '10.1136/bjsports-2018-100278',
+        measuredMetric:
+          'Pooled effect of caffeine across aerobic endurance, muscle strength, muscle endurance, power, jumping and speed',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'caf-a2',
+        category: 'measured',
+        title: 'It makes hard work feel easier, and that explains part of why it works',
+        laymanSummary:
+          'Across 21 studies caffeine made a given workload feel about six percent easier, and performance improved eleven percent. The two are linked.',
+        technicalDetails:
+          'Doherty and Smith pooled 21 studies yielding 109 effect sizes for ratings of perceived exertion. Against placebo, caffeine reduced RPE during constant-load exercise by 5.6% (95% CI -4.5% to -6.7%), an effect size of -0.47 (95% CI -0.35 to -0.59). Crucially, RPE at the point of exhaustion did not differ at all (0.01% change, 95% CI -1.9 to 2.0) — people stopped at the same subjective ceiling, they just reached more work before hitting it. Exercise performance improved by 11.2% (95% CI 4.6 to 17.8%), and regression showed that the reduction in RPE during exercise accounted for approximately 29% of the variance in performance improvement. This is a rare case of a supplement having a partly identified mechanism of action at the behavioural level, not just the molecular one.',
+        evidenceSource: 'Doherty M, Smith PM. Scand J Med Sci Sports 2005;15:69-78',
+        doi: '10.1111/j.1600-0838.2005.00445.x',
+        measuredMetric:
+          'Percentage change in rating of perceived exertion during constant-load exercise and in exercise performance',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'caf-a3',
+        category: 'measured',
+        title: 'CAP: 2,006 premature infants, less lung disease and less cerebral palsy',
+        laymanSummary:
+          'In the largest randomised trial ever run on caffeine, very premature babies given it needed less oxygen support and, at eighteen months, were less likely to have died or developed a disability.',
+        technicalDetails:
+          'The Caffeine for Apnea of Prematurity trial randomised 2,006 infants with birth weights of 500 to 1,250 g within the first ten days of life to caffeine or placebo until therapy for apnea was no longer needed. At 36 weeks postmenstrual age, 350 of 963 caffeine infants (36%) still required supplemental oxygen against 447 of 954 placebo infants (47%), adjusted odds ratio 0.63 (95% CI 0.52 to 0.76, P < 0.001), and positive airway pressure was discontinued a week earlier. Caffeine temporarily reduced weight gain, greatest at two weeks (mean difference -23 g, 95% CI -32 to -13, P < 0.001). At 18 to 21 months corrected age, the composite of death, cerebral palsy, cognitive delay, deafness or blindness occurred in 377 of 937 caffeine infants (40.2%) against 431 of 932 (46.2%) on placebo, adjusted odds ratio 0.77 (95% CI 0.64 to 0.93, P = 0.008). Cerebral palsy fell from 7.3% to 4.4% (aOR 0.58, 95% CI 0.39 to 0.87, P = 0.009) and cognitive delay from 38.3% to 33.8% (aOR 0.81, 95% CI 0.66 to 0.99, P = 0.04). Caffeine citrate holds an FDA approval for this indication under NDA 020793.',
+        evidenceSource:
+          'Schmidt B et al. N Engl J Med 2006;354:2112-2121; Schmidt B et al. N Engl J Med 2007;357:1893-1902',
+        doi: '10.1056/NEJMoa073679',
+        measuredMetric:
+          'Bronchopulmonary dysplasia at 36 weeks postmenstrual age, and death or neurodevelopmental disability at 18 to 21 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'caf-a4',
+        category: 'inferred',
+        title: 'Half of habitual users get a withdrawal headache, from doses as low as 100 mg a day',
+        laymanSummary:
+          'Caffeine withdrawal is a real, validated syndrome with ten confirmed symptoms. Half of people get a headache, and it can be triggered by a daily habit as small as one cup.',
+        technicalDetails:
+          'Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user\'s morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.',
+        evidenceSource: 'Juliano LM, Griffiths RR. Psychopharmacology (Berl) 2004;176:1-29',
+        doi: '10.1007/s00213-004-2000-x',
+        measuredMetric:
+          'Incidence, onset, peak and duration of validated caffeine withdrawal symptoms after abstinence',
+        inferredClaim:
+          'That the alertness a habitual user feels after their first coffee measures caffeine acting on a normal baseline, rather than the reversal of an overnight withdrawal',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'caf-a5',
+        category: 'conclusion_shift',
+        title: 'The habituation myth: heavy coffee drinkers get the same performance benefit',
+        laymanSummary:
+          'For years athletes were told to abstain from caffeine before competition so it would work better. A controlled study across low, moderate and heavy habitual users found their daily intake made no difference to the benefit.',
+        technicalDetails:
+          'Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher\'s exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.',
+        evidenceSource: 'Goncalves LS et al. J Appl Physiol (1985) 2017;123:213-220',
+        doi: '10.1152/japplphysiol.00260.2017',
+        measuredMetric:
+          'Simulated cycling time-trial completion time by habitual caffeine intake tertile',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'caf-a6',
+        category: 'inferred',
+        title: 'CYP1A2 genotype: opposite heart-attack associations in slow and fast metabolisers',
+        laymanSummary:
+          'In a large case-control study, people who break caffeine down slowly had a higher risk of heart attack with heavy coffee intake. People who break it down quickly did not.',
+        technicalDetails:
+          'Cornelis and colleagues genotyped 2,014 cases with a first acute nonfatal myocardial infarction and 2,014 matched population controls in Costa Rica between 1994 and 2004. Among carriers of the slow CYP1A2*1F allele — 55% of cases and 54% of controls — the multivariate odds ratios for nonfatal MI at less than one, one, two to three, and four or more cups of coffee daily were 1.00, 0.99 (0.69 to 1.44), 1.36 (1.01 to 1.83) and 1.64 (1.14 to 2.34). Among rapid *1A/*1A metabolisers the corresponding odds ratios were 1.00, 0.75 (0.51 to 1.12), 0.78 (0.56 to 1.09) and 0.99 (0.66 to 1.48), with a gene-by-coffee interaction of P = .04. This is the most-cited evidence that individual caffeine responses are genetically stratified, and it must be read for what it is: a single-population observational case-control study with a modest interaction p-value, not a randomised result. Subsequent attempts to replicate the CYP1A2 interaction for cardiovascular outcomes have been inconsistent, and consumer genetic tests that report a caffeine sensitivity result on this basis are extrapolating well past what one case-control study supports.',
+        evidenceSource: 'Cornelis MC, El-Sohemy A, Kabagambe EK, Campos H. JAMA 2006;295:1135-1141',
+        doi: '10.1001/jama.295.10.1135',
+        inferredClaim:
+          'That a CYP1A2 genotype result can tell an individual how much coffee is safe for their heart',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'caf-a7',
+        category: 'measured',
+        title: 'Four hundred milligrams six hours before bed measurably wrecks sleep',
+        laymanSummary:
+          'A controlled study gave people a moderate caffeine dose at bedtime, three hours before, and six hours before. All three disrupted sleep, including the one taken six hours ahead.',
+        technicalDetails:
+          'Drake and colleagues compared a fixed 400 mg caffeine dose administered at 0, 3 and 6 hours before habitual bedtime against placebo, with self-reported sleep and objective monitoring by a validated portable sleep monitor in the home. All three timings produced significant sleep disturbance relative to placebo (P < 0.05 for all). The authors concluded that the magnitude of reduction in total sleep time means caffeine taken six hours before bed has important disruptive effects, and that this provides the empirical basis for the standard sleep hygiene recommendation to stop caffeine at least six hours before bedtime. The result matters mechanistically and not just practically: caffeine works by blocking the adenosine signal that sleep exists to clear, so using it late costs the very recovery it is compensating for.',
+        evidenceSource: 'Drake C, Roehrs T, Shambroom J, Roth T. J Clin Sleep Med 2013;9:1195-1200',
+        doi: '10.5664/jcsm.3170',
+        measuredMetric:
+          'Self-reported and objectively monitored sleep disturbance after 400 mg caffeine at 0, 3 and 6 hours before bedtime',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed almost completely, and in the brain within an hour',
+        laymanDesc:
+          'Caffeine is small, fat-soluble and absorbed essentially in full. It crosses into the brain freely, which is why the effect arrives fast and does not depend on any transporter.',
+        molecularDetail:
+          'Oral bioavailability approaches 100% with peak plasma concentration typically 30 to 60 minutes after ingestion. Caffeine crosses the blood-brain barrier by passive diffusion and is not a substrate for efflux pumps at relevant concentrations, so brain concentration tracks plasma closely — an unusual property that removes most of the pharmacokinetic uncertainty that clouds other supplements in this file.',
+        iconName: 'ArrowDown',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It occupies the tiredness receptor without switching it on',
+        laymanDesc:
+          'Adenosine builds up while you are awake and, when it docks, tells the brain to slow down. Caffeine fits the same dock and blocks it. Nothing is added; a signal is silenced.',
+        molecularDetail:
+          'Caffeine is a competitive, non-selective antagonist at adenosine A1 and A2A receptors with low-micromolar affinity, which is the range achieved by ordinary consumption. A2A antagonism in the striatum, where A2A forms heteromers with dopamine D2 receptors, accounts for most of the psychostimulant effect. Phosphodiesterase inhibition and ryanodine receptor sensitisation require concentrations far above human exposure and are not the operative mechanism.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The same workload starts to feel easier',
+        laymanDesc:
+          'The clearest measured consequence during exercise is not more force. It is that a given effort registers as less hard, so more work gets done before the same subjective ceiling is reached.',
+        molecularDetail:
+          'Doherty and Smith measured a 5.6% reduction in rating of perceived exertion during constant-load exercise with no change at all in RPE at exhaustion, and an 11.2% improvement in performance, with the RPE reduction accounting for about 29% of the performance variance. The endpoint moves because the perceptual cost of the work falls, not because the ceiling rises.',
+        iconName: 'Gauge',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'CYP1A2 clears it, at very different speeds in different people',
+        laymanDesc:
+          'One liver enzyme does most of the work of breaking caffeine down, and how fast it runs varies several-fold between people, which is why identical cups produce opposite experiences.',
+        molecularDetail:
+          'CYP1A2 performs the initial N3-demethylation to paraxanthine, which accounts for roughly 80% of caffeine clearance. Half-life in a healthy adult is around five hours but is roughly doubled by oral contraceptives and in pregnancy, roughly halved by smoking, and modified by the rs762551 polymorphism that defines the *1A and *1F alleles. Cornelis found opposite directions of coffee-associated myocardial infarction risk in slow and rapid metabolisers, with a gene-by-coffee interaction of P = .04.',
+        iconName: 'Filter',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 5,
+        title: 'Daily use builds more receptors, and stopping exposes them',
+        laymanDesc:
+          'Under a permanent blockade the brain adds more adenosine receptors. When the caffeine clears, all of them receive the accumulated signal at once, which is a genuine headache rather than a psychological one.',
+        molecularDetail:
+          'Chronic caffeine exposure upregulates adenosine receptor density, which is the physical substrate of tolerance and of withdrawal. Juliano and Griffiths validated ten withdrawal symptoms, with headache incidence of 50%, functional impairment in 13%, onset at 12 to 24 hours, peak at 20 to 51 hours and duration of 2 to 9 days, from doses as low as 100 mg per day. Notably, Goncalves found the ergogenic response was unaffected by habitual intake — tolerance for alertness does not simply transfer to tolerance for performance.',
+        iconName: 'RefreshCw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Grgic 2020 umbrella review of 21 meta-analyses of caffeine and exercise',
+        phase: 'Umbrella review of 11 systematic reviews containing 21 meta-analyses',
+        sampleSize: 21,
+        primaryEndpoint:
+          'Effect of caffeine ingestion on aerobic endurance, muscle strength, muscle endurance, power, jumping and speed',
+        endpointMet: true,
+        statisticalPValue:
+          'Ergogenic across all six domains; GRADE moderate for muscle endurance, muscle strength, anaerobic power and aerobic endurance',
+        unreportedAdverseSignals:
+          'Not all analyses gave a definite direction of effect once the 95% prediction interval was considered, and most individual studies were conducted among young men. Sample size here counts meta-analyses, not participants.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Doherty 2005 meta-analysis of caffeine and rating of perceived exertion',
+        phase: 'Meta-analysis of 21 studies yielding 109 effect sizes',
+        sampleSize: 21,
+        primaryEndpoint: 'Change in rating of perceived exertion and in exercise performance',
+        endpointMet: true,
+        statisticalPValue:
+          'RPE during exercise -5.6% (95% CI -4.5 to -6.7), effect size -0.47; performance +11.2% (95% CI 4.6 to 17.8)',
+        unreportedAdverseSignals:
+          'RPE at exhaustion was completely unchanged (0.01%, 95% CI -1.9 to 2.0), which means caffeine does not raise the subjective ceiling — it delays arrival at it.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT00182312 — CAP, caffeine for apnea of prematurity',
+        phase: 'Randomised double-blind placebo-controlled multicentre',
+        sampleSize: 2006,
+        primaryEndpoint:
+          'Composite of death, cerebral palsy, cognitive delay, deafness or blindness at 18 to 21 months corrected age',
+        endpointMet: true,
+        statisticalPValue:
+          '40.2% caffeine versus 46.2% placebo, adjusted OR 0.77 (95% CI 0.64 to 0.93), P = 0.008; cerebral palsy 4.4% versus 7.3%, aOR 0.58, P = 0.009',
+        unreportedAdverseSignals:
+          'Caffeine temporarily reduced weight gain, greatest at two weeks (mean difference -23 g, P < 0.001). Rates of death, ultrasonographic brain injury and necrotising enterocolitis did not differ in the short-term analysis.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Goncalves 2017 — habitual caffeine intake and the acute ergogenic response',
+        phase: 'Double-blind randomised crossover, counterbalanced, with a no-supplement control arm',
+        sampleSize: 40,
+        primaryEndpoint: 'Simulated cycling time-trial completion time stratified by habitual intake',
+        endpointMet: true,
+        statisticalPValue:
+          'Caffeine 29.92 min versus placebo 30.81 and control 31.14, P = 0.0002; habitual intake as covariate P = 0.47; between-tertile difference P = 0.75',
+        unreportedAdverseSignals:
+          'Twenty of 40 cyclists improved beyond the test variation, meaning half did not respond meaningfully. All participants were male endurance-trained cyclists.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Drake 2013 — caffeine 400 mg at 0, 3 and 6 hours before bedtime',
+        phase: 'Randomised placebo-controlled crossover with objective home sleep monitoring',
+        sampleSize: 12,
+        primaryEndpoint: 'Self-reported and objectively monitored sleep disturbance',
+        endpointMet: true,
+        statisticalPValue: 'Significant sleep disturbance at all three timings versus placebo, P < 0.05',
+        unreportedAdverseSignals:
+          'A small sample, but the six-hour finding is the empirical basis of the standard sleep-hygiene recommendation and had not previously been tested directly in the home environment.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Caffeine is ergogenic for aerobic endurance, muscle strength, muscle endurance, power, jumping and speed across 21 meta-analyses',
+        'It reduces rating of perceived exertion during exercise by 5.6% and improves performance by 11.2%, with the two statistically linked',
+        'In 2,006 premature infants it reduced death or neurodevelopmental disability from 46.2% to 40.2% and cerebral palsy from 7.3% to 4.4%',
+        'The ergogenic response did not vary across low, moderate and high habitual consumers in a controlled crossover',
+        'Four hundred milligrams six hours before bed significantly disrupted objectively monitored sleep',
+      ],
+      unsupportedInferences: [
+        'That the daily lift a habitual user feels is a drug effect on a neutral baseline rather than partly withdrawal reversal',
+        'That a consumer CYP1A2 genotype result can tell an individual how much coffee is cardiovascularly safe',
+        'That the neonatal cerebral palsy result says anything about caffeine in adults, which it does not',
+        'That an ergogenic effect measured almost entirely in young men generalises unchanged to everyone',
+      ],
+      whatFailedInitially: [
+        'The two-decade sports-nutrition practice of pre-competition caffeine abstinence, which a controlled crossover found unnecessary',
+        'The pre-1990s belief that phosphodiesterase inhibition was the mechanism, which requires concentrations no human reaches',
+      ],
+      realWorldOutcome: [
+        'This is the strongest evidence base in this file and the page says so without hedging',
+        'The effect is genuine but not universal: half the cyclists in the habituation study did not improve beyond test variation',
+        'Withdrawal is a validated syndrome with a 50% headache incidence, triggered by habits as small as 100 mg a day',
+      ],
+    },
+    deliverySystem: {
+      type: 'Beverage, tablet, capsule, gum, powder or energy drink; intravenous or oral caffeine citrate as a neonatal prescription drug',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA when in supplement form, and regulated as a food additive in beverages. Absorption is near-complete and rapid by any oral route, and caffeine gum is absorbed buccally and faster still. The problematic format is bulk anhydrous powder, where a teaspoon can contain a dose several times what a person would ever consume as coffee and domestic scales cannot weigh accurately at the required precision. Pre-workout formulas are the most adulterated supplement category, and a performance effect from one of them is not necessarily a caffeine effect.',
+      safetyProfile:
+        'Anxiety, tremor, palpitations, gastro-oesophageal reflux and diuresis at higher intakes. Sleep disruption is measurable from a moderate dose taken six hours before bed. Withdrawal is a validated syndrome: 50% headache incidence, 13% clinically significant impairment, onset 12 to 24 hours, duration 2 to 9 days, from habits as small as 100 mg per day. Clearance is roughly halved in smokers and roughly doubled by oral contraceptives and in pregnancy. Caffeine markedly raises exposure to and is raised by CYP1A2 interactions including fluvoxamine and ciprofloxacin. In slow CYP1A2 metabolisers a case-control study found higher myocardial infarction odds at four or more cups daily, which is observational and inconsistently replicated. Acute overdose from concentrated powder is the one genuinely lethal presentation.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does caffeine actually improve performance, or is that marketing?',
+        a: 'It works, and this page will not hedge it. An umbrella review of eleven systematic reviews containing 21 meta-analyses found caffeine ergogenic for aerobic endurance, muscle strength, muscle endurance, power, jumping and speed, with GRADE-moderate evidence for four of those. The mechanism is partly identified: it reduces how hard a given workload feels by about 5.6% without changing the effort level at which people quit, so more work happens before the same ceiling. That is a better-supported claim than anything else in this file.',
+        auditNote:
+          'The stated limits are worth keeping: most trials were in young men, and half the cyclists in one controlled study did not respond beyond test variation.',
+      },
+      {
+        q: 'Do I need to stop caffeine before a race for it to work?',
+        a: 'On the best available evidence, no. Forty trained cyclists split into low, moderate and high habitual consumers all improved their time trials with caffeine, and habitual intake had no influence on the size of the response as a covariate, across tertiles, or as a correlation. The abstinence protocols that dominated sports nutrition advice for two decades were built on an assumption rather than a test, and when the test was run it did not hold.',
+      },
+      {
+        q: 'Is the morning coffee doing anything, or just fixing withdrawal?',
+        a: 'Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user\'s pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.',
+      },
+      {
+        q: 'How late is too late?',
+        a: 'A controlled study gave people 400 mg at bedtime, three hours before bed, and six hours before bed, and measured sleep both by report and by a validated home monitor. All three timings significantly disrupted sleep, including the six-hour one. The authors said the magnitude of total sleep time lost at six hours was large enough to justify the standard advice to stop at least six hours before bed. The mechanism makes this worse than it sounds: caffeine blocks the very adenosine signal that sleep exists to clear.',
+      },
+      {
+        q: 'Is caffeine ever a real medicine?',
+        a: 'Yes, and it is one of the more remarkable results in neonatology. In 2,006 infants weighing 500 to 1,250 g at birth, caffeine reduced the need for supplemental oxygen at 36 weeks from 47% to 36%, and at 18 to 21 months reduced the composite of death or neurodevelopmental disability from 46.2% to 40.2%, with cerebral palsy falling from 7.3% to 4.4%. Caffeine citrate holds an FDA approval for apnea of prematurity. None of that transfers to an adult drinking coffee, and it is regularly quoted as though it did.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label:
+          'Juliano LM, Griffiths RR. A critical review of caffeine withdrawal: empirical validation of symptoms and signs, incidence, severity, and associated features. Psychopharmacology (Berl) 2004;176:1-29',
+        identifier: '10.1007/s00213-004-2000-x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Doherty M, Smith PM. Effects of caffeine ingestion on rating of perceived exertion during and after exercise: a meta-analysis. Scand J Med Sci Sports 2005;15:69-78',
+        identifier: '10.1111/j.1600-0838.2005.00445.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Schmidt B et al. Caffeine therapy for apnea of prematurity. N Engl J Med 2006;354:2112-2121',
+        identifier: '10.1056/NEJMoa054065',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cornelis MC, El-Sohemy A, Kabagambe EK, Campos H. Coffee, CYP1A2 genotype, and risk of myocardial infarction. JAMA 2006;295:1135-1141',
+        identifier: '10.1001/jama.295.10.1135',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Schmidt B et al. Long-term effects of caffeine therapy for apnea of prematurity. N Engl J Med 2007;357:1893-1902',
+        identifier: '10.1056/NEJMoa073679',
+        kind: 'doi',
+      },
+      {
+        label: 'CAP trial registration — caffeine for apnea of prematurity',
+        identifier: 'NCT00182312',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drake C, Roehrs T, Shambroom J, Roth T. Caffeine effects on sleep taken 0, 3, or 6 hours before going to bed. J Clin Sleep Med 2013;9:1195-1200',
+        identifier: '10.5664/jcsm.3170',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Goncalves LS et al. Dispelling the myth that habitual caffeine consumption influences the performance response to acute caffeine supplementation. J Appl Physiol (1985) 2017;123:213-220',
+        identifier: '10.1152/japplphysiol.00260.2017',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Grgic J et al. Wake up and smell the coffee: caffeine supplementation and exercise performance — an umbrella review of 21 published meta-analyses. Br J Sports Med 2020;54:681-688',
+        identifier: '10.1136/bjsports-2018-100278',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA — NDA 020793, CAFCIT (caffeine citrate) for apnea of prematurity',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020793',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2519 — Caffeine',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2519',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Whey protein — the supplement effect is real, replicated, and 0.30 kg of fat-free mass. Above
+  // 1.62 g/kg/day of total protein it stops entirely, and the anabolic window did not survive
+  // controlling for total intake.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'whey-protein',
+    name: 'Whey protein',
+    tradeName:
+      'Sold as whey concentrate, whey isolate and whey hydrolysate — three processing grades of the same starting material',
+    sponsor:
+      'No single sponsor — the soluble protein fraction of milk, a by-product of cheese manufacture, filtered and dried by many manufacturers',
+    targetGene: 'MTOR',
+    targetProtein:
+      'mTOR complex 1, the nutrient-sensing kinase that switches on muscle protein synthesis. The specific input is leucine, sensed by Sestrin2 upstream of GATOR2, which relieves inhibition of mTORC1 at the lysosome. Whey matters because of how much leucine it delivers and how fast, not because whey protein is itself anabolic.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement for muscle gain, recovery and satiety. Not approved by the FDA or EMA for any indication. Hydrolysed whey formulas are separately used clinically as hypoallergenic infant feeds and in enteral nutrition, which is a different product for a different purpose.',
+    patientFriendlyIndication:
+      'Taken after training to build muscle, and generally to hit a daily protein target',
+    conditionContext: {
+      conditionExplainer:
+        'Muscle is in constant turnover. Resistance training raises the rate at which muscle protein is broken down and the rate at which it is built, and net gain over months depends on the balance. Eating protein raises the building rate for a few hours, and the amino acid leucine is the specific chemical trigger the cell reads.',
+      whyItMatters:
+        'Whey is the biggest-selling supplement category in the world and the one where the underlying science is most solid — and where the marketing has nonetheless invented several things the science does not support. Whey does raise muscle protein synthesis more than casein or soy. Adding it to a training programme does add muscle. The amount it adds, and the point at which adding more stops doing anything, are both known and both smaller than the aisle implies.',
+      whoTakesThis:
+        'Lifters and athletes, older adults being treated for sarcopenia, hospital patients on enteral nutrition, and a very large number of people who simply find a shake more convenient than cooking.',
+      clinicalGoals:
+        'Trials measured fractional rates of mixed muscle protein synthesis by stable-isotope infusion, one-repetition maximum strength, fat-free mass by DXA, muscle fibre cross-sectional area from biopsy, mid-femur cross-sectional area, and glomerular filtration rate in the safety literature.',
+    },
+    oneSentenceVerdict:
+      'Across 49 trials in 1,863 people, protein supplementation added 0.30 kg of fat-free mass and 2.49 kg of one-repetition maximum on top of resistance training — a real, replicated, modest effect that stops entirely once total protein intake passes 1.62 g/kg/day, and the post-workout anabolic window disappeared once total daily intake was controlled for.',
+    laymanHowItWorks:
+      'Whey is the watery part of milk left behind when cheese is made, dried into a powder. It is digested unusually fast and is unusually rich in leucine, an amino acid that acts as a switch: when enough of it arrives in the blood at once, a sensor inside the muscle cell turns on the machinery that builds new protein. That switch stays on for a few hours and then turns off regardless of how much more protein you eat, which is why a very large dose is not proportionally better than a moderate one — the surplus is simply burned for energy.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 78,
+    anatomicalSite:
+      'Skeletal muscle fibre cytoplasm, at the lysosomal surface where mTORC1 is activated; digestion and absorption in the proximal small intestine',
+    substitutes: {
+      summary:
+        'Whey has no advantage over food that survives contact with the meta-analysis. It is faster and more leucine-dense per gram than most whole foods, which matters acutely; over a training block, total daily protein is what predicts hypertrophy, and food supplies that perfectly well.',
+      conventionalRx: [
+        {
+          name: 'Extensively hydrolysed whey infant formula',
+          class: 'Medical nutrition, hypoallergenic feed',
+          howItCompares:
+            'The same starting material cut into peptides small enough to avoid triggering cow\'s milk protein allergy. A genuine clinical product with a genuine indication. It is not evidence for anything about muscle.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: solves a defined clinical problem. Cons: the word "hydrolysate" on a sports tub borrows credibility from this use, and hydrolysing whey for an adult buys speed of digestion, not a different biology.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Milk, cheese, yoghurt and any complete protein food',
+          activeCompound: 'Leucine — about 10 to 11 percent of whey protein by weight',
+          biologicalMechanism:
+            'The cell senses leucine, not whey. Any food that delivers enough leucine in one sitting triggers the same mTORC1 response. Whey does it faster and with less volume, which is a convenience advantage and, in older adults with blunted anabolic sensitivity, sometimes a real one.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here as advice. For scale only: Moore et al. found 20 g of whole egg protein maximally stimulated muscle protein synthesis after resistance exercise, and 40 g did not do more.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Soy protein isolate, as the tested comparator',
+          activeCompound: 'Lower leucine content, still rapidly digested',
+          biologicalMechanism:
+            'Tang et al. measured it directly. After resistance exercise, muscle protein synthesis on whey was about 31% greater than on soy and about 122% greater than on casein, with soy sitting between the two — an ordering that tracks digestion speed and leucine delivery rather than any unique property of dairy.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Add up total daily protein before buying anything',
+          action:
+            'The meta-regression that established the supplement effect also established where it stops: beyond a total intake of 1.62 g per kg of body mass per day, additional protein produced no further training-induced gain in fat-free mass.',
+          patientImpact:
+            'Someone already eating above that threshold from food is buying a supplement whose measured incremental effect on fat-free mass is zero, at any dose.',
+          clinicalPrecaution:
+            'The same analysis found the benefit shrinks with age and is larger in people already resistance-trained, which is the opposite of the pattern most marketing assumes.',
+        },
+        {
+          name: 'The post-workout window is not a window',
+          action:
+            'Check whether a protein-timing claim controlled for total daily protein intake. The pooled effect looks real until it does, and then it is not there.',
+          patientImpact:
+            'In a meta-regression of 20 strength studies and 23 hypertrophy studies, a simple pooled analysis showed a small-to-moderate hypertrophy effect of protein timing. In the full model controlling for covariates, no significant difference remained for strength or hypertrophy, and total protein intake was the strongest predictor of effect size.',
+          clinicalPrecaution:
+            'This is a clean example of a confounded pooled result: timing groups ate more protein, and it was the protein doing the work.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)C[C@@H](C(=O)O)N',
+      chemicalFormula: 'C6H13NO2',
+      molecularWeight:
+        '131.17 g/mol. This is L-leucine, not whey. Whey protein is a mixture of hundreds of proteins — beta-lactoglobulin, alpha-lactalbumin, immunoglobulins, serum albumin, lactoferrin — with no single molecule to draw. Leucine is the marker the literature actually tracks, because it is the amino acid the muscle cell senses, and whey is distinguished from other proteins chiefly by how much of it whey delivers and how quickly.',
+      structureSource: {
+        label: 'PubChem CID 6106 — L-Leucine, canonical SMILES and computed properties',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6106',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'whey-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amino acid profile and nitrogen-spiking check, plus a heavy metal panel',
+          description:
+            'Protein content on a supplement label is usually derived from total nitrogen, and total nitrogen can be inflated by adding cheap nitrogen-rich compounds that are not protein. The only assay that catches this is a full amino acid profile, which also gives the leucine content that actually determines the biological effect. Run a heavy metal panel in the same pass, because independent testing has repeatedly found arsenic, cadmium, mercury and lead in this product category.',
+          reagentsAndBuffer:
+            'Acid hydrolysis in 6 M HCl at 110 degrees C for 24 h; amino acid analysis by ion-exchange chromatography with ninhydrin detection; separate performic acid oxidation for cysteine and methionine; Kjeldahl nitrogen for comparison against the amino acid sum; ICP-MS for arsenic, cadmium, mercury and lead against certified standards',
+        },
+        {
+          id: 'whey-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Preparation of the stable-isotope tracer infusion',
+          description:
+            'Muscle protein synthesis is a rate, not a quantity, and it can only be measured by tracking a labelled amino acid into muscle protein over time. This is the technique that produced every number in this dossier about whey versus casein versus soy, and it is why those numbers are trustworthy in a way that scale weight is not.',
+          dependsOnStepId: 'whey-w1',
+          reagentsAndBuffer:
+            'L-[ring-13C6]phenylalanine for the primed constant infusion; [1-13C]leucine for the parallel oxidation measurement; sterile pyrogen-free preparation; priming dose calculated from the subject\'s estimated pool size; background enrichment sampled before infusion',
+        },
+        {
+          id: 'whey-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Muscle biopsy processing and isolation of the mixed muscle protein fraction',
+          description:
+            'Separate the bound protein pool from the free intracellular amino acid pool, because tracer in the free pool is the precursor and tracer in the bound pool is the product. Confusing the two is the commonest way a synthesis rate comes out wrong, and it is why the biopsy handling is a validated step rather than a technicality.',
+          dependsOnStepId: 'whey-w2',
+          reagentsAndBuffer:
+            'Vastus lateralis needle biopsy under local anaesthesia; homogenisation in ice-cold perchloric acid; separation of intracellular free amino acids from the protein pellet; repeated washing of the pellet; acid hydrolysis of the mixed muscle protein fraction; derivatisation for GC-combustion-isotope ratio mass spectrometry',
+        },
+        {
+          id: 'whey-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Leucine sensing at the lysosome, with the Sestrin2 arm',
+          description:
+            'Test whether the anabolic signal is leucine-specific rather than protein-specific by supplying matched essential amino acids with and without leucine, and by disrupting the sensor. If mTORC1 activation tracks leucine and not total protein, then the entire whey-versus-casein-versus-soy ordering has a single explanation.',
+          dependsOnStepId: 'whey-w3',
+          reagentsAndBuffer:
+            'C2C12 myotubes and primary human myotubes; amino-acid-free DMEM baseline; leucine add-back at graded concentrations; Sestrin2 knockdown by siRNA; rapamycin and Torin1 as mTORC1 inhibitors; phospho-p70S6K Thr389 and phospho-4E-BP1 immunoblotting; lysosomal mTOR co-localisation by immunofluorescence',
+        },
+        {
+          id: 'whey-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Fractional synthetic rate alongside a long-term body composition endpoint',
+          description:
+            'Report the acute synthesis rate and the chronic composition change together, because they do not agree as often as the field implies. Whey raises the acute rate substantially more than casein; the chronic supplementation meta-analysis finds 0.30 kg of fat-free mass across all protein types. An acute mechanistic win is not a training outcome.',
+          dependsOnStepId: 'whey-w4',
+          reagentsAndBuffer:
+            'GC-combustion-IRMS for tracer enrichment in the bound protein pool; fractional synthetic rate expressed as percent per hour; DXA for fat-free mass with a standardised hydration and fasting protocol; muscle fibre cross-sectional area by immunohistochemistry on the same biopsy',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'whey-a1',
+        category: 'measured',
+        title: 'The supplement effect is real, replicated, and 0.30 kg of fat-free mass',
+        laymanSummary:
+          'Across 49 randomised trials in 1,863 people, adding protein to a training programme produced measurably more muscle and strength than training alone. The amount was about a third of a kilogram of lean mass.',
+        technicalDetails:
+          'Morton and colleagues meta-analysed randomised controlled trials with at least six weeks of resistance training plus protein supplementation. Across 49 studies and 1,863 participants, protein supplementation significantly increased one-repetition-maximum strength by 2.49 kg (95% CI 0.64 to 4.33), fat-free mass by 0.30 kg (95% CI 0.09 to 0.52), muscle fibre cross-sectional area by 310 square micrometres (95% CI 51 to 570) and mid-femur cross-sectional area by 7.2 square millimetres (95% CI 0.20 to 14.30). Every one of those is statistically significant and every one is small. Two meta-regression findings matter as much as the headline: the effect on fat-free mass fell with increasing age (-0.01 kg per year, P = 0.002) and was larger in people already resistance-trained (+0.75 kg, P = 0.03). The population most often sold protein for sarcopenia is the population in which the supplement effect is weakest.',
+        evidenceSource: 'Morton RW et al. Br J Sports Med 2018;52:376-384',
+        doi: '10.1136/bjsports-2017-097608',
+        measuredMetric:
+          'Change in fat-free mass, one-repetition maximum, muscle fibre cross-sectional area and mid-femur cross-sectional area',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'whey-a2',
+        category: 'measured',
+        title: 'It stops working above 1.62 g per kg per day, and the analysis says so exactly',
+        laymanSummary:
+          'The same meta-analysis found the point where extra protein stops adding anything: once total daily intake passes about 1.6 grams per kilogram of body weight, more protein produced no further muscle gain.',
+        technicalDetails:
+          'A two-phase break point analysis across the 49 included studies determined that protein supplementation beyond a total protein intake of 1.62 g/kg/day resulted in no further resistance-training-induced gains in fat-free mass. This is not an opinion or a rule of thumb — it is a break point estimated from the pooled data, and it defines the exact boundary of the product\'s usefulness. A person already eating above that from food is, on the best available evidence, buying a supplement with a measured incremental effect of zero on fat-free mass, no matter how much of it they take. The finding also reframes the whole category: whey is not a muscle-building agent, it is a convenient way to reach a threshold, and past the threshold it is protein-flavoured food.',
+        evidenceSource: 'Morton RW et al. Br J Sports Med 2018;52:376-384',
+        doi: '10.1136/bjsports-2017-097608',
+        measuredMetric:
+          'Two-phase break point in the relationship between total protein intake and change in fat-free mass',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'whey-a3',
+        category: 'measured',
+        title: 'Whey does beat casein and soy acutely, by 122% and 31%',
+        laymanSummary:
+          'A stable-isotope study measured muscle protein synthesis directly after equal amounts of essential amino acids from whey, casein or soy. Whey produced by far the biggest response.',
+        technicalDetails:
+          'Tang and colleagues gave three groups of six healthy young men drinks matched for essential amino acid content at 10 g, as whey hydrolysate, micellar casein or soy protein isolate, after unilateral leg resistance exercise, with mixed muscle protein synthesis measured by primed constant infusion of L-[ring-13C6]phenylalanine. Whey produced larger increases in blood essential amino acids, branched-chain amino acids and leucine than either comparator (P < 0.05). At rest, mixed muscle protein synthesis was 0.091 +/- 0.015 %/h on whey, 0.078 +/- 0.014 on soy and 0.047 +/- 0.008 on casein — whey approximately 93% greater than casein (P < 0.01) and 18% greater than soy (P = 0.067). After exercise the ordering held: whey approximately 122% greater than casein (P < 0.01) and 31% greater than soy (P < 0.05). This is a genuine, mechanistically clean advantage for whey, and it is an acute synthesis rate in six men per group, not a training outcome. The chronic meta-analysis that measured training outcomes did not separate protein sources.',
+        evidenceSource: 'Tang JE, Moore DR, Kujbida GW, Tarnopolsky MA, Phillips SM. J Appl Physiol 2009;107:987-992',
+        doi: '10.1152/japplphysiol.00076.2009',
+        measuredMetric:
+          'Fractional rate of mixed muscle protein synthesis, percent per hour, at rest and after resistance exercise',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'whey-a4',
+        category: 'conclusion_shift',
+        title: 'The anabolic window vanished when total protein was controlled for',
+        laymanSummary:
+          'The belief that protein must be taken within an hour of training looked supported until researchers accounted for the fact that the timing groups also ate more protein overall. Then the effect disappeared.',
+        technicalDetails:
+          'Schoenfeld, Aragon and Krieger ran a multi-level meta-regression of randomised controlled trials of protein timing. The strength analysis comprised 478 subjects and 96 effect sizes nested within 41 groups and 20 studies; the hypertrophy analysis comprised 525 subjects and 132 effect sizes nested within 47 groups and 23 studies. A simple pooled analysis without controlling for covariates showed a small-to-moderate effect of protein timing on hypertrophy and no significant effect on strength. In the full meta-regression model controlling for all covariates, no significant difference was found between treatment and control for either strength or hypertrophy, and the reduced model did not differ from the full model. Total protein intake was the strongest predictor of hypertrophy effect size. The authors wrote that these results refute the commonly held belief that timing of protein intake around a training session is critical. It is one of the cleanest published demonstrations that an apparently real effect was a confounder wearing a mechanism.',
+        evidenceSource: 'Schoenfeld BJ, Aragon AA, Krieger JW. J Int Soc Sports Nutr 2013;10:53',
+        doi: '10.1186/1550-2783-10-53',
+        measuredMetric:
+          'Effect size for muscle strength and hypertrophy attributable to protein timing, before and after covariate control',
+        inferredClaim:
+          'That protein consumed close to a training session produces adaptations beyond those explained by total daily protein intake',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'whey-a5',
+        category: 'inferred',
+        title: 'Twenty grams maxed out the response, and the surplus was oxidised',
+        laymanSummary:
+          'A dose-response study found muscle protein synthesis peaked at 20 grams of protein after training. Forty grams did not build more; it was burned for energy instead.',
+        technicalDetails:
+          'Moore and colleagues had six healthy young men perform intense leg resistance exercise on five separate occasions and consume, in randomised order, drinks containing 0, 5, 10, 20 or 40 g of whole egg protein, with protein synthesis and whole-body leucine oxidation measured over four hours by primed constant infusion of [1-13C]leucine. Muscle protein synthesis showed a dose response and was maximally stimulated at 20 g. Albumin synthesis also plateaued at 20 g. Leucine oxidation increased significantly after 20 and 40 g — that is, protein consumed above the threshold was demonstrably burned rather than incorporated. Phosphorylation of p70S6K, ribosomal protein S6 and eIF2B-epsilon was unaffected by any dose, which the authors read as evidence that the stimulation depends on amino acid availability rather than on further signalling amplification. Six men and whole egg protein is a narrow base, and larger doses matter more in older adults and after whole-body training. But the shape of the curve — a plateau with oxidation of the excess — is the single most useful fact about protein dosing and the one the 50-gram serving scoop ignores.',
+        evidenceSource: 'Moore DR et al. Am J Clin Nutr 2009;89:161-168',
+        doi: '10.3945/ajcn.2008.26401',
+        measuredMetric:
+          'Muscle and albumin protein synthesis and whole-body leucine oxidation across 0, 5, 10, 20 and 40 g protein doses',
+        inferredClaim:
+          'That a larger protein serving produces a proportionally larger anabolic response, when synthesis plateaued at 20 g and the surplus was oxidised',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'whey-a6',
+        category: 'conclusion_shift',
+        title: 'The kidney warning did not survive the meta-analysis',
+        laymanSummary:
+          'High-protein diets were long said to damage kidneys. Pooling 28 randomised trials in healthy adults found no difference in the change in kidney filtration rate.',
+        technicalDetails:
+          'Devries and colleagues systematically reviewed randomised controlled trials longer than four days comparing higher-protein intakes (at least 1.5 g/kg body weight, or at least 20% of energy, or at least 100 g/day) against normal or lower protein intakes, in adults without kidney disease, with glomerular filtration rate as the outcome. Twenty-eight trials with 1,358 participants were analysed. The post-intervention comparison showed a trivial effect for GFR to be higher after higher-protein intakes (standardised mean difference 0.19, 95% CI 0.07 to 0.31, P = 0.002), while the change in GFR from pre- to post-intervention did not differ between interventions (SMD 0.11, 95% CI -0.05 to 0.27, P = 0.16). There was a linear relation between protein intake and post-intervention GFR (r = 0.332, P = 0.03) but not between protein intake and the change in GFR (r = 0.184, P = 0.33). The physiological reading is that a higher protein load raises filtration as an adaptive response, not as an injury. The caveat that belongs on the record: these are healthy adults, and the trials are short relative to a lifetime of habitual intake.',
+        evidenceSource: 'Devries MC et al. J Nutr 2018;148:1760-1775',
+        doi: '10.1093/jn/nxy197',
+        measuredMetric:
+          'Glomerular filtration rate, post-intervention and as change from baseline, on higher versus normal or lower protein intakes',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'whey-a7',
+        category: 'inferred',
+        title: 'Heavy metals: found repeatedly, then assessed as safe by industry-adjacent consultants',
+        laymanSummary:
+          'Consumer testing found arsenic, cadmium, mercury and lead in protein powders, with 40 percent of 133 products elevated. A follow-up risk assessment concluded the exposures were below regulatory thresholds. Its three authors all worked for the same litigation-support consultancy.',
+        technicalDetails:
+          'Bandara, Towle and Monnot performed a human health risk assessment responding to a Consumer Reports analysis of 15 protein powders, which had found that average heavy metal amounts in three servings per day exceeded the maximum limits proposed by the US Pharmacopeia, and to a follow-up study reporting that 40% of 133 protein powder products tested had elevated heavy metal levels. Using US EPA reference doses for arsenic and cadmium, the EPA screening level for mercury, and the EPA Adult Lead Methodology model, they calculated hazard quotients and a cumulative hazard index for each product at one and three servings per day. All hazard indices were below 1 and all modelled blood lead levels were below the CDC guidance value of 5 micrograms per decilitre. The highest hazard indices, approaching 1, were in mass-gain products; the lowest were in whey protein powders. Their conclusion was that typical intake would not result in adverse health effects. Two facts belong alongside that conclusion. First, all three authors were affiliated with Cardno ChemRisk, a consultancy whose work is frequently commissioned in product-liability contexts. Second, "hazard index below 1" is a regulatory screening threshold, not a demonstration of no effect, and the underlying contamination finding — that the metals are present, and elevated in a substantial minority of products — is not in dispute.',
+        evidenceSource: 'Bandara SB, Towle KM, Monnot AD. Toxicol Rep 2020;7:1255-1262',
+        doi: '10.1016/j.toxrep.2020.08.001',
+        inferredClaim:
+          'That a hazard index below the regulatory screening threshold, calculated by industry-adjacent consultants, closes the question of heavy metal contamination in protein powders',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Digested fast, which is the whole point of whey',
+        laymanDesc:
+          'Whey stays liquid in the stomach instead of clotting, so it empties quickly and floods the bloodstream with amino acids within about half an hour. Casein does the opposite.',
+        molecularDetail:
+          'Whey proteins remain soluble at gastric pH while casein micelles precipitate into a curd, producing a much faster gastric emptying and a sharper plasma aminoacidaemia. Tang et al. measured the consequence: blood essential amino acid, branched-chain amino acid and leucine concentrations all rose more after whey than after casein or soy (P < 0.05). Hydrolysing whey further accelerates this without changing the amino acids delivered.',
+        iconName: 'Zap',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Leucine is the signal, not protein in general',
+        laymanDesc:
+          'The muscle cell is not counting grams of protein. It is watching for one amino acid, and when enough of it arrives at once, a switch flips.',
+        molecularDetail:
+          'Leucine binds Sestrin2, releasing its inhibition of GATOR2, which permits mTORC1 activation at the lysosomal surface. Whey is roughly 10 to 11 percent leucine by weight, higher than casein and considerably higher than most plant proteins, which is the single best explanation for the whey-over-soy-over-casein ordering in acute synthesis measurements.',
+        iconName: 'ToggleRight',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'mTORC1 switches on the protein-building machinery',
+        laymanDesc:
+          'Once triggered, a master kinase turns on the cellular machinery that reads genetic instructions into new muscle protein. It stays on for a few hours.',
+        molecularDetail:
+          'Activated mTORC1 phosphorylates p70S6K and 4E-BP1, relieving translational repression and increasing translation initiation. Notably, Moore et al. found phosphorylation of p70S6K Thr389, ribosomal protein S6 Ser240/244 and eIF2B-epsilon Ser539 was unaffected across protein doses from 0 to 40 g, which argues the dose-response in synthesis is driven by substrate availability rather than by graded signalling.',
+        iconName: 'Cpu',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The response saturates, and the surplus is burned',
+        laymanDesc:
+          'Past about twenty grams the building rate stops rising. Extra protein does not sit around waiting; it gets oxidised for energy.',
+        molecularDetail:
+          'Moore et al. found muscle protein synthesis and albumin synthesis both maximally stimulated at 20 g of whole egg protein after resistance exercise, with whole-body leucine oxidation rising significantly at 20 and 40 g. The plateau is a property of the anabolic response, not of absorption — the amino acids are absorbed either way, they are simply deaminated and the carbon skeletons oxidised.',
+        iconName: 'Flame',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Over months this compounds into about a third of a kilogram',
+        laymanDesc:
+          'Repeated across a training block, the extra synthesis adds up to a small but genuine amount of additional muscle over training alone.',
+        molecularDetail:
+          'Across 49 randomised trials and 1,863 participants, protein supplementation added 0.30 kg of fat-free mass (95% CI 0.09 to 0.52), 2.49 kg of one-repetition maximum (95% CI 0.64 to 4.33) and 310 square micrometres of muscle fibre cross-sectional area (95% CI 51 to 570) beyond training alone — with the whole effect conditional on total protein intake being below 1.62 g/kg/day.',
+        iconName: 'TrendingUp',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Morton 2018 meta-analysis of protein supplementation and resistance training',
+        phase: 'Meta-analysis and meta-regression of 49 randomised controlled trials',
+        sampleSize: 1863,
+        primaryEndpoint: 'Change in fat-free mass and one-repetition-maximum strength',
+        endpointMet: true,
+        statisticalPValue:
+          'FFM +0.30 kg (95% CI 0.09 to 0.52); 1RM +2.49 kg (95% CI 0.64 to 4.33); break point at 1.62 g/kg/day total protein, beyond which no further FFM gain',
+        unreportedAdverseSignals:
+          'Effect on fat-free mass declined with age (-0.01 kg per year, P = 0.002) and was larger in already-trained individuals (+0.75 kg, P = 0.03) — the reverse of the pattern implied by marketing aimed at beginners and older adults.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Tang 2009 — whey hydrolysate versus micellar casein versus soy isolate',
+        phase: 'Randomised parallel-group stable-isotope infusion study',
+        sampleSize: 18,
+        primaryEndpoint:
+          'Fractional rate of mixed muscle protein synthesis at rest and after resistance exercise',
+        endpointMet: true,
+        statisticalPValue:
+          'After exercise, whey approximately 122% greater than casein (P < 0.01) and 31% greater than soy (P < 0.05); at rest 93% greater than casein (P < 0.01) and 18% greater than soy (P = 0.067)',
+        unreportedAdverseSignals:
+          'Six men per group and a single acute measurement. The resting whey-versus-soy comparison did not reach significance. Acute synthesis rates and long-term hypertrophy diverge often enough that this cannot be read as a training result.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Moore 2009 — ingested protein dose response after resistance exercise',
+        phase: 'Randomised within-subject dose-response with stable-isotope infusion',
+        sampleSize: 6,
+        primaryEndpoint:
+          'Muscle and albumin protein synthesis across 0, 5, 10, 20 and 40 g protein doses',
+        endpointMet: true,
+        statisticalPValue:
+          'Maximal stimulation of muscle and albumin protein synthesis at 20 g; leucine oxidation significantly increased at 20 and 40 g',
+        unreportedAdverseSignals:
+          'Six young men, whole egg protein, single-limb exercise. The 20 g plateau is widely generalised to older adults and whole-body training, where the evidence suggests a higher threshold.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Schoenfeld 2013 meta-regression of protein timing',
+        phase: 'Multi-level meta-regression of randomised controlled trials',
+        sampleSize: 525,
+        primaryEndpoint: 'Muscle strength and hypertrophy effect size attributable to protein timing',
+        endpointMet: false,
+        statisticalPValue:
+          'Simple pooled analysis showed a small-to-moderate hypertrophy effect; in the full model controlling for covariates, no significant difference for strength or hypertrophy',
+        unreportedAdverseSignals:
+          'Total protein intake was the strongest predictor of hypertrophy effect size, meaning the apparent timing effect was a total-intake effect in disguise.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Devries 2018 meta-analysis of higher-protein intake and kidney function',
+        phase: 'Systematic review and meta-analysis of 28 randomised controlled trials',
+        sampleSize: 1358,
+        primaryEndpoint: 'Glomerular filtration rate on higher versus normal or lower protein intake',
+        endpointMet: false,
+        statisticalPValue:
+          'Post-intervention GFR SMD 0.19 (95% CI 0.07 to 0.31), P = 0.002; change in GFR SMD 0.11 (95% CI -0.05 to 0.27), P = 0.16',
+        unreportedAdverseSignals:
+          'Restricted to adults without kidney disease, and trials were short relative to habitual lifetime intake. Post-intervention GFR was higher on high protein, which is read as adaptive hyperfiltration rather than injury — a reading, not a measurement.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Protein supplementation added 0.30 kg fat-free mass and 2.49 kg one-repetition maximum across 49 trials in 1,863 people',
+        'The break point was 1.62 g/kg/day total protein, beyond which no further fat-free mass gain occurred',
+        'Whey raised post-exercise muscle protein synthesis approximately 122% above casein and 31% above soy',
+        'Muscle protein synthesis plateaued at 20 g of protein, with leucine oxidation rising at 20 and 40 g',
+        'Change in glomerular filtration rate did not differ between higher and lower protein intakes across 28 trials',
+      ],
+      unsupportedInferences: [
+        'That protein must be taken in a window around training, which vanished when total daily intake was controlled for',
+        'That a larger serving produces a proportionally larger response, when the response plateaued at 20 g',
+        'That whey\'s acute superiority over casein and soy translates into superior long-term hypertrophy, which no chronic trial has separated',
+        'That heavy metal contamination is a closed question because one industry-adjacent risk assessment computed a hazard index below 1',
+      ],
+      whatFailedInitially: [
+        'The anabolic window, refuted in a meta-regression of 43 study groups once total protein was entered as a covariate',
+        'The high-protein kidney warning, which did not survive 28 randomised trials in healthy adults',
+      ],
+      realWorldOutcome: [
+        'Whey works, the mechanism is understood down to the amino acid, and this page says so without hedging',
+        'The effect is small, is conditional on being below a total-intake threshold, and shrinks with age',
+        'Protein powder is a convenience product for reaching a number, and above that number its measured incremental effect is zero',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral powder reconstituted in liquid; concentrate, isolate or hydrolysate',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy, safety or content before sale. The three grades differ by processing rather than by biology: concentrate retains more lactose and fat, isolate is filtered further to a higher protein percentage, and hydrolysate is pre-cleaved into peptides for faster absorption. All three deliver the same amino acids, and leucine content per gram of protein is nearly identical between them. Label protein content is usually derived from total nitrogen, which is inflatable by nitrogen-rich non-protein additives, so a full amino acid profile is the only assay that verifies the claim.',
+      safetyProfile:
+        'Bloating, flatulence and diarrhoea in lactose-intolerant users of concentrate, which isolate largely avoids. Cow\'s milk protein allergy is a genuine contraindication and is not the same as lactose intolerance. Higher protein intake does not change glomerular filtration rate in healthy adults across 28 randomised trials, but that evidence does not extend to existing chronic kidney disease, where protein restriction remains standard. Independent testing has repeatedly found arsenic, cadmium, mercury and lead in this product category, with plant-based and mass-gain formulas worse than whey; a subsequent risk assessment by industry-adjacent consultants calculated hazard indices below the regulatory screening threshold.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does protein powder actually build muscle?',
+        a: 'Yes, and the number is worth carrying. Across 49 randomised trials in 1,863 people, adding protein to at least six weeks of resistance training produced 0.30 kg more fat-free mass and 2.49 kg more on one-repetition maximum than training alone. Those are statistically significant and physically small. The important companion finding is the break point: beyond a total protein intake of 1.62 g per kilogram per day, additional protein produced no further gain in fat-free mass at all.',
+        auditNote:
+          'Whey is a convenient way to reach that threshold, not a separate anabolic agent.',
+      },
+      {
+        q: 'Do I need to drink it right after training?',
+        a: 'No. A meta-regression across 20 strength studies and 23 hypertrophy studies found that a simple pooled analysis suggested a timing effect, but once total protein intake and other covariates were entered into the model, no significant difference remained for strength or hypertrophy. Total protein intake was the strongest predictor of hypertrophy. The timing groups in those studies were eating more protein, and it was the protein doing the work.',
+      },
+      {
+        q: 'Is whey better than casein or plant protein?',
+        a: 'Acutely, yes, and by a lot: after resistance exercise, muscle protein synthesis on whey was about 122 percent higher than on casein and 31 percent higher than on soy in a stable-isotope study. The reason is leucine delivery and digestion speed, not anything unique to dairy. What has not been shown is that this acute advantage produces more muscle over a training block — the chronic meta-analysis that measured actual hypertrophy did not separate protein sources, and its effect size was the same modest 0.30 kg.',
+      },
+      {
+        q: 'Will a big scoop work better than a small one?',
+        a: 'Not for the anabolic response. A dose-response study found muscle protein synthesis maximally stimulated at 20 grams after resistance exercise, with no further increase at 40 grams, and leucine oxidation rising significantly at both — meaning the excess was measurably burned rather than built into muscle. That study used six young men and single-limb exercise, and the threshold is probably higher for older adults and whole-body sessions. But a plateau exists, and serving sizes are not set by it.',
+      },
+      {
+        q: 'Is it bad for my kidneys?',
+        a: 'Not in healthy adults, on the current evidence. Twenty-eight randomised trials in 1,358 participants without kidney disease found no difference in the change in glomerular filtration rate between higher and lower protein intakes. Post-intervention filtration was slightly higher on high protein, which is generally read as an adaptive response to a bigger nitrogen load rather than as damage. That reading is an interpretation, the trials are short, and none of it applies to someone who already has chronic kidney disease, where protein restriction remains standard care.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Moore DR et al. Ingested protein dose response of muscle and albumin protein synthesis after resistance exercise in young men. Am J Clin Nutr 2009;89:161-168',
+        identifier: '10.3945/ajcn.2008.26401',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Tang JE, Moore DR, Kujbida GW, Tarnopolsky MA, Phillips SM. Ingestion of whey hydrolysate, casein, or soy protein isolate: effects on mixed muscle protein synthesis at rest and following resistance exercise in young men. J Appl Physiol 2009;107:987-992',
+        identifier: '10.1152/japplphysiol.00076.2009',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Schoenfeld BJ, Aragon AA, Krieger JW. The effect of protein timing on muscle strength and hypertrophy: a meta-analysis. J Int Soc Sports Nutr 2013;10:53',
+        identifier: '10.1186/1550-2783-10-53',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Morton RW et al. A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults. Br J Sports Med 2018;52:376-384',
+        identifier: '10.1136/bjsports-2017-097608',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Devries MC et al. Changes in kidney function do not differ between healthy adults consuming higher- compared with lower- or normal-protein diets: a systematic review and meta-analysis. J Nutr 2018;148:1760-1775',
+        identifier: '10.1093/jn/nxy197',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bandara SB, Towle KM, Monnot AD. A human health risk assessment of heavy metal ingestion among consumers of protein powder supplements. Toxicol Rep 2020;7:1255-1262',
+        identifier: '10.1016/j.toxrep.2020.08.001',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 6106 — L-Leucine, the marker amino acid tracked in the whey literature',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6106',
+        kind: 'url',
+      },
+    ],
+  },
+  // MARKER_APPEND_POINT
 ]
