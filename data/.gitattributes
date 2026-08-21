@@ -1,0 +1,5 @@
+# Generated export. Marking it keeps 14 MB of data out of language statistics and out of the diff
+# view by default, where it is unreadable and buries the code changes in a pull request.
+*.ndjson linguist-generated=true -diff
+*.csv linguist-generated=true -diff
+manifest.json linguist-generated=true

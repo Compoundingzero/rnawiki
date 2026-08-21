@@ -54,6 +54,25 @@ checkable DOI, PMID, NCT number or regulatory URL, verified at research time.
 
 ---
 
+## The data is open
+
+Every medicine on the site is published as data in [`data/`](data/), regenerated from the live
+database daily by [a scheduled job](.github/workflows/publish-dataset.yml). Newline-delimited JSON
+plus a flat CSV, with a SHA-256 for every file in [`data/manifest.json`](data/manifest.json).
+
+**CC BY-SA 4.0.** Take it, check it, re-run the sums, disagree, publish. A claim you cannot check
+is not evidence, and that directory is what makes the rest of this checkable.
+
+`data/` is a snapshot and is overwritten wholesale on every export, so pull requests against it are
+closed unread. Every edit goes through the automatic check and, for most contributors, a human
+reviewer — and the only place that happens is rnawiki.com. A second way in through GitHub would be
+an unchecked one. To change what is in the dataset, [edit the page](https://rnawiki.com/browse).
+
+Corrections to the pipeline itself are very welcome as pull requests. That is code, and it lives
+outside `data/`.
+
+Field-by-field notes: [`data/dictionary.md`](data/dictionary.md).
+
 ## Contributing
 
 1. Sign in and edit any dossier.

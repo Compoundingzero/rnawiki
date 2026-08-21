@@ -22,7 +22,8 @@
     "ingest:download": "tsx scripts/ingest/download.ts",
     "ingest:structures": "tsx scripts/ingest/build-structures.ts",
     "ingest": "tsx scripts/ingest/run.ts",
-    "enrich": "tsx scripts/enrich/run.ts"
+    "enrich": "tsx scripts/enrich/run.ts",
+    "export:dataset": "tsx scripts/export/dataset.ts"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",

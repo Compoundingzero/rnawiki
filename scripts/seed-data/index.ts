@@ -22,6 +22,16 @@ import { SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS } from './small-molecule-infecti
 import { NUTRACEUTICAL_CORE_DOSSIERS } from './nutraceutical-core'
 import { NUTRACEUTICAL_BOTANICAL_DOSSIERS } from './nutraceutical-botanical'
 import { WITHDRAWN_AND_RESTRICTED_DOSSIERS } from './withdrawn-and-restricted'
+import { ENRICHED_BATCH_10_DOSSIERS } from './enriched-batch-10'
+import { ENRICHED_BATCH_9_DOSSIERS } from './enriched-batch-9'
+import { ENRICHED_BATCH_8_DOSSIERS } from './enriched-batch-8'
+import { ENRICHED_BATCH_7_DOSSIERS } from './enriched-batch-7'
+import { ENRICHED_BATCH_6_DOSSIERS } from './enriched-batch-6'
+import { ENRICHED_BATCH_5_DOSSIERS } from './enriched-batch-5'
+import { ENRICHED_BATCH_4_DOSSIERS } from './enriched-batch-4'
+import { ENRICHED_BATCH_3_DOSSIERS } from './enriched-batch-3'
+import { ENRICHED_BATCH_2_DOSSIERS } from './enriched-batch-2'
+import { ENRICHED_BATCH_1_DOSSIERS } from './enriched-batch-1'
 import { PERFORMANCE_AND_GREY_MARKET_DOSSIERS } from './performance-and-grey-market'
 import { CONTROLLED_PSYCHOACTIVE_DOSSIERS } from './controlled-psychoactive'
 
@@ -39,6 +49,16 @@ export const ALL_SEED_DOSSIERS: SeedDossier[] = [
   ...NUTRACEUTICAL_CORE_DOSSIERS,
   ...NUTRACEUTICAL_BOTANICAL_DOSSIERS,
   ...WITHDRAWN_AND_RESTRICTED_DOSSIERS,
+  ...ENRICHED_BATCH_10_DOSSIERS,
+  ...ENRICHED_BATCH_9_DOSSIERS,
+  ...ENRICHED_BATCH_8_DOSSIERS,
+  ...ENRICHED_BATCH_7_DOSSIERS,
+  ...ENRICHED_BATCH_6_DOSSIERS,
+  ...ENRICHED_BATCH_5_DOSSIERS,
+  ...ENRICHED_BATCH_4_DOSSIERS,
+  ...ENRICHED_BATCH_3_DOSSIERS,
+  ...ENRICHED_BATCH_2_DOSSIERS,
+  ...ENRICHED_BATCH_1_DOSSIERS,
   ...PERFORMANCE_AND_GREY_MARKET_DOSSIERS,
   ...CONTROLLED_PSYCHOACTIVE_DOSSIERS,
 ]
