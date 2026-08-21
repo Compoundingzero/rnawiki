@@ -140,6 +140,7 @@ async function main(): Promise<void> {
       indication: drugs.indication,
       modality: drugs.modality,
       depth: drugs.dossierDepth,
+      approvalStatus: drugs.approvalStatus,
       targetGene: drugs.targetGene,
       laymanHowItWorks: drugs.laymanHowItWorks,
       conditionContext: drugs.conditionContext,
@@ -342,7 +343,12 @@ async function main(): Promise<void> {
             firstApprovalYear: substance.firstApprovalYear,
           }
         : null
-      const context = substanceContext(row.name, literature, record)
+      const context = substanceContext(
+        row.name,
+        literature,
+        record,
+        row.approvalStatus === 'Non-FDA / Dietary Supplement',
+      )
       if (context) {
         patch.conditionContext = context.conditionContext
         provenance = mergeProvenance(provenance, context.sources)

@@ -2789,4 +2789,475 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Benzonatate — approved in February 1958, four years before proof of efficacy became a legal
+  //    requirement, and still the only non-narcotic prescription antitussive in American practice.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'benzonatate',
+    name: 'Benzonatate',
+    tradeName: 'Tessalon',
+    sponsor:
+      'Pfizer holds NDA 011210 (Tessalon), original approval 10 February 1958; the capsules dispensed today are almost entirely generic under abbreviated applications dating from 1993 onwards',
+    targetGene: 'None established',
+    targetProtein:
+      'No molecular target has been demonstrated. The label states an action on stretch receptors in the airways, lungs and pleura; the toxicology literature attributes the drug’s systemic effects to voltage-gated sodium channel blockade by a tetracaine-like metabolite',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1958,
+    indication: 'Symptomatic relief of cough',
+    patientFriendlyIndication: 'A cough, of any cause',
+    anatomicalSite:
+      'Stated on the label as the stretch receptors of the respiratory passages, lungs and pleura — a site asserted in 1958 and not confirmed by direct human measurement since',
+    conditionContext: {
+      conditionExplainer:
+        'Coughing is a reflex. Sensors in the airway wall detect stretch, irritation or chemicals, send a signal up the vagus nerve to the brainstem, and the brainstem orders the cough. A drug can interrupt that loop at the sensor, at the nerve, or at the brainstem.',
+      whyItMatters:
+        'Benzonatate is the only non-narcotic prescription cough medicine in routine American use, which is why it is reached for constantly. It is also the clearest case in this batch of a drug whose approval predates the requirement to prove that a medicine works, and a 2023 systematic review said so in those words.',
+      whoTakesThis:
+        'Adults and children over ten, on prescription. It must never be within reach of a young child: accidental ingestion has killed children under ten within an hour.',
+      clinicalGoals:
+        'Less coughing. There is no adequately powered randomised trial establishing that it achieves this, which is the central finding of the only systematic review of the drug.',
+    },
+    oneSentenceVerdict:
+      'A liquid polyethylene-glycol ester of a para-aminobenzoic acid — chemically a relative of tetracaine — approved on 10 February 1958 on the stated mechanism of anaesthetising airway stretch receptors, whose only systematic review found 37 studies comprising 21 cohorts, 5 experimental studies and 11 case reports with high risk of bias throughout, and concluded that its approval "is founded upon evidence that would not stand up to current regulatory review"; the label meanwhile records death in children under ten within one hour of accidental ingestion.',
+    laymanHowItWorks:
+      'The idea is that the drug is a numbing agent, chemically close to the ones a dentist uses, and that swallowing it lets it reach the sensors in your airways and deaden them, so they stop sending the signal that triggers a cough. That is what the label says and it is what has been said since 1958. What has never been done is a measurement in a person showing those sensors being deadened, or a properly sized trial showing that people cough less on it than on a dummy capsule.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 31,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        '$0.0688 per unit, median across 39 listed products (CMS National Average Drug Acquisition Cost, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      synthesisComplexity: 'Low',
+      openPatentNotes:
+        'NDA 011210 was approved on 10 February 1958 and the 200 mg Tessalon capsule now carries a Federal Register determination that it was not discontinued or withdrawn for safety or effectiveness reasons. Generic entry began with an abbreviated application approved on 29 January 1993 and the CMS survey now lists 39 products. It remains prescription-only in the United States despite being an over-the-counter category ingredient in some other jurisdictions, which is a consequence of its 1958 approval pathway rather than of a later safety decision.',
+      costSource: {
+        label:
+          'No published cost-of-production study exists for benzonatate; the field is left empty rather than estimated',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'url',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 39 listed benzonatate products',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'regulatory',
+      },
+    },
+    substitutes: {
+      summary:
+        'The comparison here is unusually stark because the incumbent has no randomised evidence at all. Every alternative listed has more, and one of them — honey — is the only intervention that beat placebo in the paediatric section of the Cochrane review of the whole cough shelf.',
+      conventionalRx: [
+        {
+          name: 'Dextromethorphan',
+          class: 'Central antitussive acting at the brainstem cough centre',
+          howItCompares:
+            'Interrupts the same reflex arc higher up. The Cochrane review of over-the-counter cough medicines found variable results across six adult antitussive trials and no benefit over placebo in the paediatric data, but those are trials against placebo, which benzonatate does not have.',
+          typicalCost:
+            'No median acquisition cost is listed for dextromethorphan alone in the CMS survey; it appears in combination products',
+          prosAndCons:
+            'Pros: an actual placebo-controlled trial literature, however mixed, and available without prescription. Cons: higher adverse effect counts across the cough trials, and a recognised pattern of adolescent misuse.',
+        },
+        {
+          name: 'Codeine',
+          class: 'Opioid antitussive',
+          howItCompares:
+            'The reference antitussive that benzonatate was developed to replace without narcotic properties. It carries respiratory depression risk, dependence liability and controlled-substance handling, all of which benzonatate genuinely avoids — which is the strongest argument for benzonatate and is an argument about safety rather than efficacy.',
+          typicalCost:
+            '$0.2757 per unit at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: an established antitussive mechanism. Cons: respiratory depression, dependence, contraindicated in children, and controlled-substance scheduling.',
+        },
+        {
+          name: 'Honey',
+          class: 'Demulcent',
+          howItCompares:
+            'The only intervention that beat placebo in the paediatric section of the Cochrane review of 29 placebo-controlled cough trials, where antitussives, antihistamines and antihistamine-decongestant combinations all failed to separate from placebo.',
+          typicalCost: 'No drug acquisition cost; sold as food',
+          prosAndCons:
+            'Pros: the best-supported paediatric option in the review, and no poisoning risk of the kind benzonatate carries. Cons: one trial, three days of follow-up, and never for infants under one year because of botulism risk.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Swallow the capsule whole — this is the most important line on the label',
+          action:
+            'Never break, chew, dissolve, cut or crush the capsule, and do not let it sit in the mouth.',
+          patientImpact:
+            'Releasing the liquid contents in the mouth produces rapid local anaesthesia of the throat, which can cause choking. The label records severe hypersensitivity reactions including bronchospasm, laryngospasm and cardiovascular collapse, possibly related to local anaesthesia from sucking or chewing the capsule, some requiring vasopressor agents.',
+          clinicalPrecaution:
+            'If numbness or tingling of the tongue, mouth, throat or face occurs, the label directs the patient to refrain from food and liquid until it resolves. A numb throat cannot protect the airway.',
+        },
+        {
+          name: 'Keep it physically out of reach of children',
+          action:
+            'Store it where a child cannot get it, and treat any suspected ingestion as an emergency immediately rather than watching and waiting.',
+          patientImpact:
+            'The label states that accidental ingestion resulting in death has been reported in children below age 10, that signs of overdose have been reported within 15 to 20 minutes, and that death has been reported within one hour. The capsules are soft, glossy and yellow.',
+          clinicalPrecaution:
+            'Overdose produces oropharyngeal anaesthesia, then restlessness and tremor, then convulsions, then profound central nervous system depression, cerebral oedema and cardiac arrest. The label explicitly directs that central nervous system stimulants must not be used in treatment.',
+        },
+        {
+          name: 'Ask what the cough is',
+          action:
+            'Establish whether the cough has a cause that has its own treatment before treating the cough itself.',
+          patientImpact:
+            'Benzonatate is indicated for "the symptomatic relief of cough" with no qualification of cause. Asthma, reflux, upper airway cough syndrome, heart failure and ACE inhibitors each produce cough and each has a specific answer that suppressing the reflex does not provide.',
+          clinicalPrecaution:
+            'A cough lasting more than a few weeks, or with fever, breathlessness, weight loss or blood, needs assessment rather than suppression.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCCCNC1=CC=C(C=C1)C(=O)OCCOCCOCCOCCOCCOCCOCCOCCOCCOC',
+      chemicalFormula: 'C30H53NO11',
+      molecularWeight: '603.70 g/mol',
+      targetReceptorAffinity:
+        'No binding constant exists, because no target has been identified. The label describes the drug as chemically related to anaesthetic agents of the para-aminobenzoic acid class such as procaine and tetracaine, and attributes its antitussive action to anaesthetising stretch receptors in the respiratory passages, lungs and pleura, with onset in 15 to 20 minutes and duration of 3 to 8 hours. The chemical name in the label — 2,5,8,11,14,17,20,23,26-nonaoxaoctacosan-28-yl p-(butylamino) benzoate — describes a nine-unit polyethylene glycol chain esterified to a butylaminobenzoic acid, which is why the molecule is an oily liquid held inside a soft gelatin capsule rather than a powder in a tablet.',
+      structureSource: {
+        label: 'PubChem CID 7699 (benzonatate) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/7699',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bnz-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Polyethylene glycol chain-length distribution',
+          description:
+            'Establish the distribution of ethylene oxide units before anything is esterified. Benzonatate is not a single compound in the ordinary sense: it is a mixture centred on a nine-unit chain, and the pharmacopoeial identity is a distribution rather than a molecular weight. This is the reason the drug has no clean structure-activity relationship and no crystallography.',
+          reagentsAndBuffer:
+            'Monomethoxy-polyethylene glycol reference standard, gel permeation chromatography, MALDI-TOF mass spectrometry for oligomer distribution, hydroxyl value titration',
+        },
+        {
+          id: 'bnz-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Esterification of p-(butylamino)benzoic acid onto the glycol chain',
+          description:
+            'Couple 4-(butylamino)benzoic acid, or its acid chloride, to the terminal hydroxyl of the methoxy-nonaethylene glycol. The aromatic amine end is the pharmacophore that makes this a para-aminobenzoate anaesthetic; the glycol tail is what makes it orally usable rather than a topical agent, and it is the tail, not the head, that distinguishes the drug from tetracaine.',
+          dependsOnStepId: 'bnz-w1',
+          reagentsAndBuffer:
+            '4-(butylamino)benzoic acid or its acyl chloride, methoxy-nonaethylene glycol, dicyclohexylcarbodiimide with dimethylaminopyridine or acid catalysis with azeotropic water removal, toluene, nitrogen atmosphere',
+        },
+        {
+          id: 'bnz-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Removal of free aminobenzoic acid and unreacted glycol',
+          description:
+            'Wash out the unreacted acid and glycol and set the specification on residual free p-(butylamino)benzoic acid. Free aromatic amine is the impurity that matters: para-aminobenzoate anaesthetics are a recognised cause of hypersensitivity, and the label attributes severe reactions including bronchospasm, laryngospasm and cardiovascular collapse to this chemical class.',
+          dependsOnStepId: 'bnz-w2',
+          reagentsAndBuffer:
+            'Aqueous bicarbonate wash, brine, reversed-phase HPLC with ultraviolet detection at 300 nm for free amine content, refractive index and viscosity as identity checks on the oil',
+        },
+        {
+          id: 'bnz-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Vagal afferent recording in an isolated airway preparation',
+          description:
+            'Apply the compound to an isolated airway with intact vagal innervation and record slowly and rapidly adapting stretch receptor firing. This is the experiment that would demonstrate the mechanism the label asserts, and it is the missing experiment: the claim that the drug anaesthetises airway stretch receptors has been carried in labelling since 1958 without a modern human or ex vivo confirmation of the firing rate it is supposed to change.',
+          dependsOnStepId: 'bnz-w3',
+          reagentsAndBuffer:
+            'Isolated perfused lung or trachea-vagus preparation, Krebs-Henseleit buffer gassed with 95% oxygen and 5% carbon dioxide, extracellular electrode recording from the vagus, capsaicin and citric acid as afferent stimuli, tetracaine as the positive anaesthetic control',
+        },
+        {
+          id: 'bnz-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Cough challenge in humans against a matched placebo capsule',
+          description:
+            'Count coughs after a standardised tussive challenge on drug and on an identical placebo capsule. Matching the capsule matters more here than for most drugs: the contents produce oral numbness if any leaks, which unblinds a trial instantly, and blinding failure is one candidate explanation for the entire clinical impression of this medicine.',
+          dependsOnStepId: 'bnz-w4',
+          reagentsAndBuffer:
+            'Capsaicin or citric acid dose-response cough challenge, sound-isolated recording with automated cough counting, identical soft gelatin placebo capsules, C5 endpoint determination and 24-hour ambulatory cough monitoring',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bnz-a1',
+        category: 'failed',
+        title:
+          'The only systematic review of the drug says its approval would not survive current review',
+        laymanSummary:
+          'Researchers searched four databases for every study of this drug published since 1956. They found thirty-seven, none of them a properly sized randomised trial, and most of them small, old or case reports. Their conclusion was that the evidence behind its approval would not stand up today.',
+        technicalDetails:
+          'A systematic review searched PubMed, Embase, the Cochrane Library and Scopus for original research on the effectiveness, tolerability and safety of benzonatate from January 1956 through August 2022. Screening yielded 37 articles: 21 cohort studies, 5 experimental studies and 11 case studies or series. The authors record that initial clinical studies exploring therapeutic benefit collected data from very small populations in limited clinical settings, that safety is primarily assessed in terms of overdose or inappropriate use rather than in trials, and that quality assessment raised concerns for high degrees of bias related to limited sample size, data collection, generalisability and study design. Their stated conclusion is that rising safety concerns should bring closer scrutiny upon the prescription of benzonatate, "whose approval is founded upon evidence that would not stand up to current regulatory review."',
+        evidenceSource:
+          'Costantino RC, Leonard J, Gorman EF, Ventura D, Baltz A, Gressler LE. Ann Pharmacother 2023;57:1221-1236',
+        doi: '10.1177/10600280221135750',
+        measuredMetric:
+          'Systematic search of four databases, 1956 to 2022 — count and design of all identified studies',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'bnz-a2',
+        category: 'failed',
+        title: 'Accidental ingestion has killed children under ten within an hour',
+        laymanSummary:
+          'The capsules are soft, shiny and yellow, and a small child who swallows them can be dead within an hour. Symptoms start in fifteen to twenty minutes. This is written on the label.',
+        technicalDetails:
+          'The Warnings section of the label states that accidental ingestion of benzonatate resulting in death has been reported in children below age 10, that signs and symptoms of overdose have been reported within 15 to 20 minutes, and that death has been reported within one hour of ingestion. The Overdosage section describes the sequence: rapid oropharyngeal anaesthesia with choking and airway compromise if capsules are chewed or dissolved, then central nervous system stimulation with restlessness and tremors proceeding to clonic convulsions, then profound central nervous system depression, with convulsions, coma, cerebral oedema and cardiac arrest leading to death reported within one hour. Treatment is supportive and the label directs explicitly that central nervous system stimulants must not be used. A published case describes a 13-year-old presenting with coma, seizures, hypotension, prolonged QT interval and metabolic acidosis after overdose, and records that the FDA issued a Drug Safety Communication warning of increased risk of death from accidental ingestion in children under 10 and added that information to the Warnings and Precautions section.',
+        evidenceSource:
+          'Benzonatate prescribing information, Warnings and Overdosage sections (NDA 011210 and generics); Thimann DA, Huang CJ, Goto CS, Feng SY. J Pediatr Pharmacol Ther 2012;17:270-273',
+        doi: '10.5863/1551-6776-17.3.270',
+        measuredMetric:
+          'Time from ingestion to symptom onset and to death, as recorded in labelling',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bnz-a3',
+        category: 'measured',
+        title: 'Twenty years of poison centre calls: severe in deliberate overdose, rarely otherwise',
+        laymanSummary:
+          'A regional poison centre reviewed every call about this drug over twenty years. Among people who took it deliberately, more than one in five had a seizure, a heart rhythm change, coma or died. Among accidental exposures, including seventy-seven in children, almost none did.',
+        technicalDetails:
+          'A retrospective review of all benzonatate exposures reported to the Wisconsin Poison Center from 1 January 2000 to 31 December 2019 identified 313 calls, of which 265 had complete records. Median age was 19 years and 61% were female. Of 106 intentional exposures (40%), 23 (22%) experienced at least one serious adverse effect — defined as seizure, electrocardiogram change, coma or central nervous system depression, or death — and 40 (38%) were hospitalised. Of 143 unintentional exposures (54%), one (0.7%) had a serious adverse effect and three (2%) were hospitalised. Among 77 unintentional paediatric exposures, none had a serious adverse effect and two (3%) were hospitalised. Two deaths occurred over the twenty years, both after intentional exposure. No therapeutic intervention beyond supportive care was consistently used, and the authors note that no standard treatment guideline for benzonatate toxicity exists.',
+        evidenceSource:
+          'Cicci CD, Theobald J, Stanton M, Feldman R. Clin Toxicol 2025;63:488-494',
+        doi: '10.1080/15563650.2025.2512817',
+        measuredMetric:
+          'Rate of seizure, ECG change, coma or death by intent of exposure, across 265 poison centre cases',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bnz-a4',
+        category: 'inferred',
+        title: 'The mechanism on the label has been asserted since 1958 and never demonstrated',
+        laymanSummary:
+          'The label says the drug numbs the stretch sensors in your airways. That sentence has been in the labelling for nearly seventy years. Nobody has published a measurement of those sensors quietening in a person who has taken it.',
+        technicalDetails:
+          'The Clinical Pharmacology section states in full: "Benzonatate acts peripherally by anesthetizing the stretch receptors located in the respiratory passages, lungs, and pleura by dampening their activity and thereby reducing the cough reflex at its source. It begins to act within 15 to 20 minutes and its effect lasts for 3 to 8 hours." There is no Clinical Studies section in the label. The chemical rationale is stated in Precautions — the drug is related to anaesthetics of the para-aminobenzoic acid class such as procaine and tetracaine — and the toxicology literature independently describes sodium channel blocking properties and local anaesthetic effects attributed to a tetracaine-like metabolite. What is absent is any published recording of airway afferent activity, or any human pharmacodynamic measure such as a cough challenge threshold, confirming the effect the label names.',
+        evidenceSource:
+          'Benzonatate prescribing information, Clinical Pharmacology and Precautions sections; Thimann DA et al., J Pediatr Pharmacol Ther 2012;17:270-273',
+        inferredClaim:
+          'That the drug anaesthetises airway stretch receptors and reduces the cough reflex at its source — a mechanism asserted in labelling since 1958, chemically plausible from the tetracaine relationship, and never confirmed by a published measurement of the receptors or the reflex',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'bnz-a5',
+        category: 'failed',
+        title: 'Chewing the capsule can cause laryngospasm and cardiovascular collapse',
+        laymanSummary:
+          'The liquid inside the capsule is a numbing agent. If it gets into the mouth it deadens the throat within minutes, and severe reactions have followed — the airway closing, the circulation collapsing, needing drugs to restore blood pressure.',
+        technicalDetails:
+          'The Warnings section records severe hypersensitivity reactions including bronchospasm, laryngospasm and cardiovascular collapse, described as possibly related to local anaesthesia from sucking or chewing the capsule instead of swallowing it, with severe reactions requiring intervention with vasopressor agents and supportive measures. The same section records isolated instances of bizarre behaviour including mental confusion and visual hallucinations in patients taking benzonatate with other prescribed drugs. Precautions add that release of the contents in the mouth can produce temporary local anaesthesia of the oral mucosa and that choking could occur, and instruct patients to avoid food and liquid until any numbness of tongue, mouth, throat or face has resolved.',
+        evidenceSource:
+          'Benzonatate prescribing information, Warnings and Precautions sections (NDA 011210 and generics)',
+        measuredMetric:
+          'Labelled adverse reactions attributed to release of capsule contents in the mouth',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bnz-a6',
+        category: 'conclusion_shift',
+        title:
+          'It was approved four years before proof of efficacy became law, and never revisited',
+        laymanSummary:
+          'The drug was approved in February 1958. In 1962 Congress required, for the first time, that a manufacturer prove a medicine works before selling it. Benzonatate was already on the market, and the standard that would have applied to a new drug was never applied to it.',
+        technicalDetails:
+          'NDA 011210 was approved on 10 February 1958. The Kefauver-Harris amendment of 1962 introduced the requirement for substantial evidence of effectiveness. The 200 mg Tessalon capsule now carries a Federal Register determination that it was not discontinued or withdrawn for safety or effectiveness reasons, which is a statement about why it left the market rather than about whether it works. Generic entry began in 1993 under abbreviated applications, which establish bioequivalence to the reference product and do not re-examine efficacy. The 2023 systematic review found no randomised controlled trial of adequate size in sixty-six years of literature and concluded that the evidence base underlying approval would not survive current regulatory review.',
+        evidenceSource:
+          'Drugs@FDA, NDA 011210 (TESSALON), original approval 10 February 1958; Costantino RC et al., Ann Pharmacother 2023;57:1221-1236',
+        doi: '10.1177/10600280221135750',
+        inferredClaim:
+          'That continued marketing and prescription status reflect a maintained judgement that the drug is effective — the approval predates the efficacy requirement, and no subsequent regulatory step has re-tested it',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An oil inside a soft capsule',
+        laymanDesc:
+          'Unlike most tablets, this drug is a liquid. It is held inside a gelatin shell that has to reach the stomach intact, because if it leaks in the mouth it numbs the throat.',
+        molecularDetail:
+          'Benzonatate is a nine-unit polyethylene glycol ester of p-(butylamino)benzoic acid, an oily liquid formulated in soft gelatin capsules of 100 or 200 mg. The label instructs that capsules be swallowed whole and never broken, chewed, dissolved, cut or crushed.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed and distributed within about a quarter of an hour',
+        laymanDesc:
+          'The label puts onset at fifteen to twenty minutes and duration at three to eight hours. That is also, exactly, how quickly a poisoned child becomes symptomatic.',
+        molecularDetail:
+          'The label states onset within 15 to 20 minutes and effect lasting 3 to 8 hours, and notes that drugs of the para-aminobenzoate anaesthetic type are generally well absorbed after ingestion. The same 15-to-20-minute figure appears in the Overdosage section as the time to first signs of poisoning.',
+        iconName: 'Clock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The asserted step: numbing the airway stretch sensors',
+        laymanDesc:
+          'The label says the drug reaches the sensors in the airways, lungs and lining of the chest and dampens their activity, so the cough reflex is stopped at its source. No published measurement shows this happening.',
+        molecularDetail:
+          'The Clinical Pharmacology section asserts peripheral anaesthesia of stretch receptors in the respiratory passages, lungs and pleura. No recording of slowly or rapidly adapting airway afferent firing on benzonatate has been published, and the label carries no Clinical Studies section.',
+        iconName: 'HelpCircle',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'What the chemistry actually predicts',
+        laymanDesc:
+          'The active end of the molecule is the same chemical family as dental anaesthetics. Those work by blocking the sodium channels nerves use to fire, and that is what happens in overdose — first excitation, then seizures, then collapse.',
+        molecularDetail:
+          'The label places the drug in the para-aminobenzoic acid anaesthetic class alongside procaine and tetracaine. Toxicology attributes its systemic effects to voltage-gated sodium channel blockade by a tetracaine-like metabolite, which accounts for the reported sequence in overdose: central nervous system stimulation, clonic convulsions, then profound depression, with prolonged QT interval, ventricular dysrhythmias and cardiac arrest.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The clinical result nobody has measured against a placebo',
+        laymanDesc:
+          'People are prescribed it for cough and many say it helps. In sixty-six years of literature, a systematic search of four databases found no adequately sized randomised comparison against a dummy capsule.',
+        molecularDetail:
+          'The 2023 systematic review identified 37 articles from 1956 to 2022 — 21 cohort studies, 5 experimental studies and 11 case studies or series — with quality assessment flagging high risk of bias from limited sample size, data collection, generalisability and study design throughout.',
+        iconName: 'Ban',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The safety profile that exists is the poisoning profile',
+        laymanDesc:
+          'Because there are no trials, what is known about its harms comes almost entirely from overdose reports and poison centre records rather than from controlled comparison.',
+        molecularDetail:
+          'The systematic review notes that safety is primarily assessed in terms of toxicity due to overdose or inappropriate use. Twenty years of one poison centre’s records give 22% serious adverse effects among 106 intentional exposures against 0.7% among 143 unintentional ones, with two deaths, both intentional.',
+        iconName: 'Skull',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Costantino 2023 systematic review (Ann Pharmacother 57:1221-1236)',
+        phase: 'Systematic review of four databases, January 1956 to August 2022',
+        sampleSize: 37,
+        primaryEndpoint:
+          'Effectiveness, tolerability and safety of benzonatate across all identified original research',
+        endpointMet: false,
+        statisticalPValue:
+          'No pooled estimate. 21 cohort studies, 5 experimental studies and 11 case studies or series; quality assessment flagged high risk of bias throughout',
+        unreportedAdverseSignals:
+          'The sample size given here is the number of studies, not participants. No adequately powered randomised placebo-controlled trial was identified in sixty-six years of literature.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Cicci 2025 poison centre review (Clin Toxicol 63:488-494)',
+        phase: 'Retrospective single-centre case review, 2000 to 2019',
+        sampleSize: 265,
+        primaryEndpoint:
+          'Rate of serious adverse effects — seizure, ECG change, coma or CNS depression, or death',
+        endpointMet: true,
+        statisticalPValue:
+          '22% of 106 intentional exposures had at least one serious adverse effect and 38% were hospitalised, against 0.7% and 2% of 143 unintentional exposures; 0 of 77 unintentional paediatric exposures had a serious effect; 2 deaths, both intentional',
+        unreportedAdverseSignals:
+          'Single regional poison centre, so ascertainment is partial and the denominator of total exposures is unknown. No standard treatment guideline for benzonatate toxicity exists.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '37 studies identified in a four-database search from 1956 to 2022, none an adequately powered randomised trial',
+        '22% serious adverse effects among 106 intentional poison centre exposures against 0.7% among 143 unintentional ones',
+        'Zero serious adverse effects among 77 unintentional paediatric poison centre exposures over twenty years',
+        'Onset of effect and onset of poisoning symptoms both stated at 15 to 20 minutes in the label',
+      ],
+      unsupportedInferences: [
+        'That the drug anaesthetises airway stretch receptors — asserted in labelling since 1958 with no published measurement of those receptors',
+        'That it relieves cough better than a matched placebo capsule — no adequately sized randomised comparison exists',
+        'That continued prescription-only marketing reflects a maintained regulatory judgement of efficacy',
+        'That the tetracaine chemical relationship establishes the airway mechanism rather than merely the toxicology',
+      ],
+      whatFailedInitially: [
+        'The only systematic review concluded the approval rests on evidence that would not survive current regulatory review',
+        'Accidental ingestion has killed children under ten, with death reported within one hour, and the FDA added this to the label',
+        'Chewing or sucking the capsule has caused bronchospasm, laryngospasm and cardiovascular collapse requiring vasopressors',
+        'No paediatric or adult placebo-controlled cough-count trial has ever been published for a drug approved sixty-eight years ago',
+      ],
+      realWorldOutcome: [
+        'Approved 10 February 1958 under NDA 011210 and still the only non-narcotic prescription antitussive in routine American use',
+        'Generic since 1993, with 39 products in the CMS acquisition survey at a median $0.0688 per unit',
+        'Carries labelled warnings for death from accidental ingestion in children under 10 and for hypersensitivity from chewing the capsule',
+        'Its 2023 systematic review called for large observational studies or randomised trials to characterise its role, which have not been done',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral soft gelatin capsule (100 mg and 200 mg) containing the drug as a liquid',
+      description:
+        'Must be swallowed whole. The contents are an oily local anaesthetic; releasing them in the mouth produces rapid oropharyngeal numbness and can cause choking. The label instructs patients not to break, chew, dissolve, cut or crush the capsule, and not to take two doses at once if one is missed.',
+      safetyProfile:
+        'Severe hypersensitivity reactions including bronchospasm, laryngospasm and cardiovascular collapse have been reported, possibly related to local anaesthesia from sucking or chewing the capsule, some requiring vasopressors. Isolated reports of bizarre behaviour, mental confusion and visual hallucinations in patients taking it with other drugs. Accidental ingestion has caused death in children below age 10, with symptoms at 15 to 20 minutes and death within one hour; overdose produces convulsions, coma, cerebral oedema and cardiac arrest, and central nervous system stimulants must not be used in treatment. The label caps a single dose at 200 mg and a total daily amount at 600 mg, and states that fatal overdose can occur in adults. Pregnancy Category C with no animal reproduction studies conducted.',
+    },
+    commonQuestions: [
+      {
+        q: 'Has anyone shown that it works?',
+        a: 'Not to a modern standard. In 2023 a team searched PubMed, Embase, the Cochrane Library and Scopus for every original study of benzonatate published between January 1956 and August 2022. They found thirty-seven articles: twenty-one cohort studies, five experimental studies and eleven case reports or series. The early clinical studies used very small numbers in limited settings, and quality assessment flagged high risk of bias throughout on sample size, data collection, generalisability and design. Their conclusion, in their words, was that its approval "is founded upon evidence that would not stand up to current regulatory review", and that large observational studies or randomised trials are needed to characterise its role.',
+        auditNote:
+          'Absence of a trial is not evidence that a drug does not work. It is evidence that nobody knows, which for a medicine on the market since 1958 is the more surprising finding.',
+      },
+      {
+        q: 'Why does the label insist so hard on swallowing it whole?',
+        a: 'Because the capsule contains a liquid anaesthetic. If it is chewed, sucked or split, the contents numb the mouth and throat within minutes. The label records severe hypersensitivity reactions — bronchospasm, laryngospasm and cardiovascular collapse — described as possibly related to that local anaesthesia, with some cases requiring drugs to restore blood pressure. It also warns that choking can occur, and that if numbness of the tongue, mouth, throat or face develops you should not eat or drink until it has passed. A numb throat cannot protect an airway.',
+      },
+      {
+        q: 'How dangerous is it if a child gets hold of it?',
+        a: 'Genuinely dangerous, and fast. The label states that accidental ingestion resulting in death has been reported in children below age 10, that signs of overdose appear within fifteen to twenty minutes, and that death has been reported within one hour. The sequence described is numbness of the throat, then restlessness and tremor, then convulsions, then deep unconsciousness, cerebral swelling and cardiac arrest. The capsules are soft, glossy and coloured. Against that, a twenty-year poison centre review found that of seventy-seven unintentional paediatric exposures, none produced a serious adverse effect — so most accidental exposures do not end badly. Both facts are true and the first is the one that dictates how it should be stored.',
+      },
+      {
+        q: 'How does it actually stop a cough?',
+        a: 'The label says it numbs the stretch sensors in the airways, lungs and lining of the chest, dampening their activity and stopping the cough reflex at its source, with onset at fifteen to twenty minutes and duration of three to eight hours. That sentence has been in the labelling since 1958. What does not exist is a published measurement of those sensors firing less in anyone who has taken it, or a human cough-challenge threshold study. The chemistry is suggestive: the active end of the molecule belongs to the same family as procaine and tetracaine, and toxicologists attribute its overdose effects to sodium channel blockade by a tetracaine-like metabolite. That explains the poisoning. It does not by itself establish the airway mechanism.',
+      },
+      {
+        q: 'Why is it prescription-only if it is this old and this weak?',
+        a: 'Because of the route it took, not because of a later decision. It was approved on 10 February 1958 as a prescription product. The 1962 Kefauver-Harris amendment introduced the requirement to prove efficacy, and applied to new approvals. Generic versions entered from 1993 under abbreviated applications, which demonstrate bioequivalence to the original product and do not re-examine whether the original works. Nothing in that sequence involved a fresh look at efficacy, and nothing triggered a switch to over-the-counter sale — which, given the paediatric ingestion warnings, is probably just as well.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Costantino RC, Leonard J, Gorman EF, Ventura D, Baltz A, Gressler LE. Benzonatate safety and effectiveness: a systematic review of the literature. Ann Pharmacother 2023;57:1221-1236',
+        identifier: '10.1177/10600280221135750',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cicci CD, Theobald J, Stanton M, Feldman R. Outcomes of benzonatate exposures reported to a single United States poison center: a 20-year review. Clin Toxicol 2025;63:488-494',
+        identifier: '10.1080/15563650.2025.2512817',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thimann DA, Huang CJ, Goto CS, Feng SY. Benzonatate toxicity in a teenager resulting in coma, seizures, and severe metabolic acidosis. J Pediatr Pharmacol Ther 2012;17:270-273',
+        identifier: '10.5863/1551-6776-17.3.270',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: TESSALON (benzonatate) capsules, NDA 011210, Pfizer — original approval 10 February 1958',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=011210',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Benzonatate capsules prescribing information — Clinical Pharmacology, Warnings, Precautions and Overdosage sections, via openFDA drug labelling',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22benzonatate%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 7699 — benzonatate structure, formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/7699',
+        kind: 'url',
+      },
+    ],
+  },
 ]

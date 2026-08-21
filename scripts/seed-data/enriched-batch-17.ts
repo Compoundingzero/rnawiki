@@ -3102,4 +3102,512 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Ranibizumab — the antibody fragment that turned wet macular degeneration from a blinding
+  //    disease into a treatable one, priced at forty times a molecule proved to work as well.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ranibizumab',
+    name: 'Ranibizumab',
+    tradeName: 'Lucentis',
+    sponsor: 'Genentech (a member of the Roche Group)',
+    targetGene: 'VEGFA — the human vascular endothelial growth factor A gene',
+    targetProtein:
+      'Vascular endothelial growth factor A, all active isoforms, neutralised in the vitreous before it reaches its receptors',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2006,
+    indication:
+      'Neovascular (wet) age-related macular degeneration, macular oedema following retinal vein occlusion, diabetic macular oedema, diabetic retinopathy, and myopic choroidal neovascularisation',
+    patientFriendlyIndication:
+      'Leaking abnormal blood vessels growing under the centre of the retina',
+    anatomicalSite:
+      'The vitreous cavity and the retina, reached by a needle through the white of the eye',
+    conditionContext: {
+      conditionExplainer:
+        'In wet macular degeneration, new blood vessels grow under the centre of the retina where none belong. They are badly built, so they leak fluid and blood into the layer of retina responsible for reading and recognising faces. The vessels grow because the retina, starved of oxygen or otherwise stressed, releases a growth signal called VEGF.',
+      whyItMatters:
+        'Before 2006 the standard treatments slowed vision loss at best. In the trial that supported approval, average vision improved rather than merely holding steady — the first time that had happened in this disease — and 94.6% of treated patients kept their vision against 62.2% on sham injections.',
+      whoTakesThis:
+        'Adults with wet macular degeneration and several related retinal diseases. Treatment is by injection into the eye, repeated indefinitely, often monthly at first.',
+      clinicalGoals:
+        'Letters read on a standard eye chart at 12 months. The primary endpoint in the pivotal trials was the proportion losing fewer than 15 letters, which is a definition of not going noticeably blind rather than of seeing well.',
+    },
+    oneSentenceVerdict:
+      'A humanised antibody fragment engineered to bind every active form of VEGF-A and small enough to penetrate the retina, which kept 94.6% of 716 patients within 15 letters of their starting vision against 62.2% on sham injections in MARINA — and which two publicly funded randomised trials, CATT in 1,208 patients and IVAN in 610, then showed to be no better than an off-label cancer antibody costing about a fortieth as much per dose.',
+    laymanHowItWorks:
+      'Abnormal vessels grow under the retina because a signalling protein tells them to. Ranibizumab is a fragment of an antibody built to grab that protein and hold it, so it never reaches the receptors on the vessel walls that would tell them to grow and leak. It is injected into the jelly of the eye, spreads through the retina, mops up the signal, and is cleared within weeks — which is why the injection has to be repeated.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 88,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'Approximately US$2,000 per dose, the per-dose cost stated in the CATT trial protocol, against approximately US$50 for bevacizumab; CATT calculated first-year drug costs of US$23,400 for monthly ranibizumab against US$385 for as-needed bevacizumab',
+      markupEstimate: '',
+      openPatentNotes:
+        'Ranibizumab is a physician-administered biologic and does not appear in the CMS pharmacy acquisition-cost survey used for the drops on this site, so the price quoted here is the figure a publicly funded randomised trial used in its own protocol. Bevacizumab, the comparator, is the full-length antibody from which ranibizumab was derived, sold for cancer at a dose hundreds of times larger and repackaged by compounding pharmacies into eye-sized aliquots. Biosimilar ranibizumab arrived from 2021 onwards, fifteen years after approval.',
+      synthesisComplexity: 'High',
+      costSource: {
+        label:
+          'No published cost-of-manufacture study exists for ranibizumab. The nearest analysis in this therapeutic area is the CATT trial itself, which states its per-dose and annual drug costs directly: CATT Research Group, N Engl J Med 2011;364:1897-1908, Outcome Measures and Table 2.',
+        identifier: '10.1056/NEJMoa1102673',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CATT Research Group. Ranibizumab and bevacizumab for neovascular age-related macular degeneration. N Engl J Med 2011;364:1897-1908 — per-dose cost approximately US$2,000 for ranibizumab and US$50 for bevacizumab',
+        identifier: '10.1056/NEJMoa1102673',
+        kind: 'doi',
+      },
+    },
+    substitutes: {
+      summary:
+        'The substitutes for ranibizumab are unusually well characterised, because two governments paid for head-to-head trials the manufacturers had no reason to run. Bevacizumab is equivalent on vision and costs a fortieth as much. Aflibercept works at longer intervals. Biosimilar ranibizumab is the same molecule from a different maker. Nothing taken by mouth treats this disease.',
+      conventionalRx: [
+        {
+          name: 'Bevacizumab (Avastin), used off-label',
+          class: 'Full-length humanised anti-VEGF-A monoclonal antibody',
+          howItCompares:
+            'In CATT, 1,208 patients randomised, bevacizumab monthly gained 8.0 letters against ranibizumab monthly’s 8.5, and as-needed 5.9 against 6.8 — equivalent within a 5-letter non-inferiority limit. In IVAN, 610 patients, the two-year difference was -1.37 letters (95% CI -3.75 to 1.01, p=0.26).',
+          typicalCost:
+            'Approximately US$50 per dose against ranibizumab’s US$2,000, and US$385 against US$23,400 for the first year on an as-needed and monthly schedule respectively (CATT)',
+          prosAndCons:
+            'Pros: equivalent vision outcomes at roughly a fortieth of the per-dose cost. Cons: it is not approved for the eye, so it must be repackaged from oncology vials by a compounding pharmacy, which introduces a sterility risk that a licensed single-use presentation does not have. CATT also found more serious systemic adverse events, 24.1% against 19.0%.',
+        },
+        {
+          name: 'Aflibercept (Eylea)',
+          class: 'VEGF receptor decoy fusion protein',
+          howItCompares:
+            'In the VIEW 1 and VIEW 2 trials, 2,419 patients, aflibercept given every two months after three loading doses matched monthly ranibizumab on the proportion maintaining vision at week 52 — 95.1% and 95.6% against 94.4% — and all aflibercept regimens fell within 0.5 letters of ranibizumab on mean acuity change.',
+          typicalCost:
+            'Not stated in the CATT protocol, which predates aflibercept’s approval; aflibercept is a physician-administered biologic outside the CMS pharmacy survey used elsewhere on this site',
+          prosAndCons:
+            'Pros: matched monthly ranibizumab at half the injection frequency, and binds placental growth factor and VEGF-B in addition to VEGF-A. Cons: no established advantage on vision, and the VIEW comparison was against ranibizumab rather than against bevacizumab.',
+        },
+        {
+          name: 'Ranibizumab biosimilars (Byooviz, Cimerli and others)',
+          class: 'Biosimilar versions of the same antibody fragment',
+          howItCompares:
+            'The same molecule from different manufacturers, approved on comparative analytical and clinical evidence rather than on fresh pivotal trials. The first arrived in 2021, fifteen years after the originator.',
+          typicalCost:
+            'Not listed in the CMS pharmacy acquisition-cost survey used for the drops on this site — these are physician-administered biologics',
+          prosAndCons:
+            'Pros: price competition in a market that had none for fifteen years. Cons: still a licensed biologic priced far above the bevacizumab comparator that CATT and IVAN found equivalent.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report pain, redness or sudden vision loss after an injection immediately',
+          action:
+            'Treat new eye pain, light sensitivity, increasing redness or a sudden drop in vision in the days after an injection as urgent rather than as expected soreness.',
+          patientImpact:
+            'Presumed endophthalmitis — infection inside the eye — occurred in 5 of the ranibizumab patients in MARINA (1.0%) over 24 months and 2 of 140 in the ANCHOR 0.5 mg group (1.4%). It is rare per injection and the injections are repeated indefinitely, so the cumulative exposure is what matters.',
+          clinicalPrecaution:
+            'Endophthalmitis after intravitreal injection is treatable and the outcome depends heavily on how quickly it is recognised. Waiting to see whether it settles is the failure mode.',
+        },
+        {
+          name: 'Ask what happens if you miss appointments',
+          action:
+            'Ask specifically how the schedule will be decided, and what the plan is if you cannot attend for a period.',
+          patientImpact:
+            'IVAN found that reducing retreatment frequency cost a small amount of vision regardless of which drug was used, and that safety was worse when treatment was given discontinuously — mortality was lower with continuous than discontinuous treatment (odds ratio 0.47, 95% CI 0.22 to 1.03, p=0.05).',
+          clinicalPrecaution:
+            'That mortality finding sits at the edge of conventional significance in a secondary safety outcome and should not be over-read. What it does establish is that "as needed" is a real clinical decision with measurable consequences, not an administrative one.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula:
+        'Recombinant humanised IgG1-kappa antigen-binding fragment (Fab), produced in Escherichia coli, with no Fc region',
+      molecularWeight: 'Approximately 48 kDa',
+      targetReceptorAffinity:
+        'Binds and neutralises all active isoforms of VEGF-A and their biologically active degradation products, preventing interaction with VEGFR-1 and VEGFR-2 on endothelial cells. Ranibizumab was affinity-matured from the same murine parent antibody as bevacizumab, and the two differ in two respects that were both deliberate: ranibizumab has a substantially higher affinity for VEGF-A, and it lacks the Fc region entirely. Removing the Fc makes the molecule about a third the mass, which was intended to improve retinal penetration, and removes Fc-mediated recycling, which shortens systemic half-life. Expression in E. coli rather than mammalian cells is possible precisely because a Fab needs no glycosylation.',
+      structureSource: {
+        label:
+          'LUCENTIS (ranibizumab injection) US prescribing information, Description section (BLA 125156)',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125156',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ran-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, endotoxin and host cell protein clearance for an E. coli product',
+          description:
+            'Confirm the Fab sequence and, critically for a bacterial expression system, demonstrate clearance of endotoxin and host cell protein to limits appropriate for direct injection into the eye. A mammalian-cell biologic has no endotoxin problem to solve. A product grown in E. coli and injected into the vitreous has the strictest version of one.',
+          reagentsAndBuffer:
+            'Reference standard, peptide mapping by LC-MS, limulus amebocyte lysate endotoxin assay, host cell protein ELISA, size-exclusion chromatography for aggregate content',
+        },
+        {
+          id: 'ran-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Periplasmic expression of the Fab in Escherichia coli',
+          description:
+            'Express the heavy and light chain fragments and direct them to the periplasm, where the oxidising environment allows the interchain disulfide to form correctly. This is the step the whole molecule was designed around: a Fab has no glycans, so it does not need a mammalian cell, and bacterial fermentation is faster and cheaper than cell culture.',
+          dependsOnStepId: 'ran-w1',
+          reagentsAndBuffer:
+            'Engineered E. coli strain with a periplasmic signal sequence, defined fermentation medium, inducer, controlled dissolved oxygen and temperature, periplasmic extraction buffer',
+        },
+        {
+          id: 'ran-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Affinity capture, polishing and aggregate removal',
+          description:
+            'Capture on an affinity resin, then polish by ion exchange and size exclusion to remove aggregates and fragments. Aggregate control is disproportionately important for an intravitreal product: aggregated protein injected into the eye is a plausible cause of the sterile intraocular inflammation that has troubled this whole drug class.',
+          dependsOnStepId: 'ran-w2',
+          reagentsAndBuffer:
+            'Protein L or equivalent affinity resin, ion exchange and size-exclusion columns, histidine buffer with trehalose and polysorbate 20, 0.22 micron sterile filtration',
+        },
+        {
+          id: 'ran-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Vitreous and retinal penetration in an ex vivo eye model',
+          description:
+            'Inject into the vitreous of an excised eye and measure how far and how fast the Fab reaches the retina and choroid. The entire rationale for removing the Fc was penetration, so a distribution measurement is not a supporting study here but the test of the design hypothesis.',
+          dependsOnStepId: 'ran-w3',
+          reagentsAndBuffer:
+            'Excised eye held at physiological temperature, fluorescently or radiolabelled Fab, serial vitreous and retinal sampling, ELISA or scintillation quantification, full-length antibody as a size comparator',
+        },
+        {
+          id: 'ran-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'VEGF-A neutralisation potency and endothelial proliferation bioassay',
+          description:
+            'Measure binding affinity across the VEGF-A isoforms by surface plasmon resonance, then confirm functional neutralisation in a VEGF-driven endothelial cell proliferation assay. Binding alone is insufficient: the claim on the label is that all active isoforms and their active degradation products are neutralised, and only a functional assay tests the second half of that.',
+          dependsOnStepId: 'ran-w4',
+          reagentsAndBuffer:
+            'Surface plasmon resonance instrument with immobilised VEGF-A isoforms, human umbilical vein endothelial cells, VEGF-165 as stimulus, proliferation readout, bevacizumab as comparator antibody',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ran-a1',
+        category: 'measured',
+        title: 'MARINA: 94.6% kept their vision against 62.2% on sham injections',
+        laymanSummary:
+          'Seven hundred and sixteen patients were randomised to monthly injections of the drug or monthly sham injections, for two years, with nobody knowing which. Nineteen in twenty on the drug kept their vision. Six in ten did on sham. Average vision improved on the drug and fell sharply without it.',
+        technicalDetails:
+          'MARINA was a multicentre, two-year, double-blind, sham-controlled study in patients with minimally classic or occult choroidal neovascularisation, randomised to 24 monthly intravitreal injections of ranibizumab 0.3 mg or 0.5 mg, or sham injections. At 12 months, 94.5% of the 0.3 mg group and 94.6% of the 0.5 mg group lost fewer than 15 letters against 62.2% of sham (P<0.001 for both). Visual acuity improved by 15 letters or more in 24.8% and 33.8% against 5.0% (P<0.001). Mean visual acuity increased by 6.5 and 7.2 letters against a decrease of 10.4 letters on sham (P<0.001). Benefit was maintained at 24 months. Over 24 months, presumed endophthalmitis occurred in 5 patients (1.0%) and serious uveitis in 6 (1.3%).',
+        evidenceSource:
+          'Rosenfeld PJ et al., N Engl J Med 2006;355:1419-1431 (MARINA, NCT00056836)',
+        doi: '10.1056/NEJMoa054481',
+        measuredMetric:
+          'Proportion losing fewer than 15 letters at 12 months, against matched sham injections',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a2',
+        category: 'measured',
+        title: 'ANCHOR: mean vision improved by 11.3 letters where the old treatment lost 9.5',
+        laymanSummary:
+          'Against photodynamic therapy, the treatment it replaced, ranibizumab did not merely slow decline. Average vision went up by more than eleven letters while the comparison group lost nearly ten.',
+        technicalDetails:
+          'ANCHOR randomised 423 patients with predominantly classic neovascular age-related macular degeneration 1:1:1 to monthly intravitreal ranibizumab 0.3 mg or 0.5 mg plus sham verteporfin, or monthly sham injections plus active verteporfin photodynamic therapy. At 12 months, 94.3% and 96.4% lost fewer than 15 letters against 64.3% on verteporfin (P<0.001 for each). Visual acuity improved by 15 letters or more in 35.7% and 40.3% against 5.6% (P<0.001). Mean visual acuity increased by 8.5 and 11.3 letters against a decrease of 9.5 letters (P<0.001). Among 140 patients on 0.5 mg, presumed endophthalmitis occurred in 2 (1.4%) and serious uveitis in 1 (0.7%).',
+        evidenceSource: 'Brown DM et al., N Engl J Med 2006;355:1432-1444 (ANCHOR, NCT00061594)',
+        doi: '10.1056/NEJMoa062655',
+        measuredMetric:
+          'Proportion losing fewer than 15 letters and mean acuity change at 12 months, against verteporfin photodynamic therapy',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a3',
+        category: 'conclusion_shift',
+        title: 'CATT: a drug costing a fortieth as much worked just as well',
+        laymanSummary:
+          'The United States National Eye Institute paid for a trial nobody selling either drug wanted. Twelve hundred patients got ranibizumab or bevacizumab, an off-label cancer antibody. On the same schedule, vision outcomes were equivalent. One dose costs about two thousand dollars and the other about fifty.',
+        technicalDetails:
+          'CATT was a multicentre, single-blind, non-inferiority trial in which 1,208 patients with neovascular age-related macular degeneration were randomly assigned to ranibizumab or bevacizumab, monthly or as needed with monthly evaluation. The primary outcome was mean change in visual acuity at one year with a non-inferiority limit of 5 letters. Bevacizumab monthly was equivalent to ranibizumab monthly, with 8.0 and 8.5 letters gained. Bevacizumab as needed was equivalent to ranibizumab as needed, with 5.9 and 6.8 letters. Ranibizumab as needed was equivalent to ranibizumab monthly. The bevacizumab as-needed against bevacizumab monthly comparison was inconclusive. Mean decrease in central retinal thickness was greater with monthly ranibizumab (196 micrometres) than the other groups (152 to 168, P=0.03 by analysis of variance). Rates of death, myocardial infarction and stroke were similar (P>0.20). Serious systemic adverse events, primarily hospitalisations, were more frequent with bevacizumab, 24.1% against 19.0% (risk ratio 1.29, 95% CI 1.01 to 1.66), broadly distributed across disease categories not previously flagged. The trial protocol states per-dose costs of approximately US$2,000 and US$50.',
+        evidenceSource: 'CATT Research Group, N Engl J Med 2011;364:1897-1908 (NCT00593450)',
+        doi: '10.1056/NEJMoa1102673',
+        inferredClaim:
+          'That the affinity maturation and Fc removal engineered into ranibizumab produce a clinically better drug than the parent antibody — a design rationale that a 1,208-patient randomised trial found no visual benefit for',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a4',
+        category: 'measured',
+        title: 'IVAN replicated it in a different country with a different design',
+        laymanSummary:
+          'A British trial reached the same place by a different route: over two years, the two drugs differed by 1.37 letters, which is nothing. It also found that spacing injections out cost a little vision whichever drug was used.',
+        technicalDetails:
+          'IVAN was a multicentre 2×2 factorial non-inferiority randomised trial at 23 UK hospitals. Six hundred and twenty-eight patients were randomised and 610 received study drugs — 314 ranibizumab, 296 bevacizumab — in continuous monthly or discontinuous as-needed regimens. The primary outcome was best corrected visual acuity at two years with a non-inferiority limit of 3.5 letters. Bevacizumab was neither non-inferior nor inferior to ranibizumab, mean difference -1.37 letters (95% CI -3.75 to 1.01, p=0.26). Discontinuous treatment was neither non-inferior nor inferior to continuous, -1.63 letters (-4.01 to 0.75, p=0.18). Arterial thrombotic events or heart failure admissions did not differ by drug, 20 of 314 (6%) against 12 of 296 (4%), odds ratio 1.69 (95% CI 0.80 to 3.57, p=0.16). Mortality was lower with continuous than discontinuous treatment, odds ratio 0.47 (95% CI 0.22 to 1.03, p=0.05), and did not differ by drug. The authors conclude that the choice of anti-VEGF strategy is less straightforward than previously thought.',
+        evidenceSource:
+          'Chakravarthy U et al., Lancet 2013;382:1258-1267 (IVAN, ISRCTN92166560)',
+        doi: '10.1016/S0140-6736(13)61501-9',
+        measuredMetric:
+          'Best corrected visual acuity at two years, ranibizumab against bevacizumab in a 2×2 factorial design',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ran-a5',
+        category: 'failed',
+        title: 'The sustained-release implant carries a boxed warning for eye infection',
+        laymanSummary:
+          'A refillable implant was developed to replace monthly injections. Its label opens with a boxed warning that it causes up to three times as much infection inside the eye as the injections it was meant to replace.',
+        technicalDetails:
+          'The ranibizumab port delivery implant carries a boxed warning stating that the implant has been associated with an up to three-fold higher rate of endophthalmitis than monthly intravitreal injections of ranibizumab, that many of these events were associated with conjunctival retraction or erosion, and that appropriate conjunctival management with early surgical repair may reduce the risk. The Warnings and Precautions section additionally lists rhegmatogenous retinal detachment, implant dislocation, septum dislodgement, vitreous haemorrhage, conjunctival erosion, conjunctival retraction and conjunctival blebs, and notes that in some cases these events present asymptomatically. Antithrombotic medication is to be temporarily discontinued before implant insertion to reduce vitreous haemorrhage risk, and vitrectomy may be needed. The device solves the burden of monthly injections by substituting a surgical implant with its own failure modes.',
+        evidenceSource:
+          'SUSVIMO (ranibizumab injection) for ocular implant, US prescribing information, Boxed Warning and Warnings and Precautions (BLA 761197)',
+        measuredMetric:
+          'Endophthalmitis rate with the implant relative to monthly intravitreal injection, as stated in the boxed warning',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ran-a6',
+        category: 'inferred',
+        title: 'Fifteen letters is a threshold, not a description of sight',
+        laymanSummary:
+          'The headline number from the pivotal trials — nineteen in twenty patients maintained vision — counts anyone who lost fewer than fifteen letters on a chart. Fourteen letters is a large loss and counts as success.',
+        technicalDetails:
+          'The primary endpoint of both MARINA and ANCHOR was the proportion of patients losing fewer than 15 letters of best corrected visual acuity from baseline at 12 months. Fifteen letters on an ETDRS chart is three lines, and a patient who loses fourteen letters is counted as having maintained vision. This is why the secondary endpoint — the proportion gaining 15 letters or more, which was 33.8% in MARINA and 40.3% in ANCHOR — carries more information about how well people actually saw. Chart letters are also not reading, driving, or recognising faces. No registration trial in this programme used a patient-reported functional outcome as its primary endpoint, and the threshold chosen defines success generously by design, because it was set when the realistic aim was to slow loss rather than to produce gain.',
+        evidenceSource:
+          'Rosenfeld PJ et al., N Engl J Med 2006;355:1419-1431; Brown DM et al., N Engl J Med 2006;355:1432-1444',
+        doi: '10.1056/NEJMoa054481',
+        inferredClaim:
+          'That "94.6% maintained vision" describes preserved sight, when the threshold counts a fourteen-letter loss as a success and no functional endpoint was primary',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A needle through the white of the eye',
+        laymanDesc:
+          'The drug cannot reach the back of the eye from the bloodstream or from a drop. It is injected directly into the jelly that fills the eyeball, through the white, under local anaesthetic.',
+        molecularDetail:
+          'Intravitreal injection of 0.5 mg in 0.05 mL through the pars plana. The blood-retinal barrier makes systemic delivery ineffective and the anterior segment blocks topical delivery, so direct vitreous injection is the only practical route. Presumed endophthalmitis occurred in 1.0% of MARINA patients over 24 months of monthly injections.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'A fragment small enough to cross the retina',
+        laymanDesc:
+          'A whole antibody is bulky. This one has had two thirds of it cut away, leaving only the part that does the gripping, so it can work its way through the layers of the retina.',
+        molecularDetail:
+          'Ranibizumab is an antigen-binding fragment of approximately 48 kDa, roughly a third the mass of the full-length antibody it was derived from. Removal of the Fc region was intended to improve penetration through the retina to the choroidal neovascular complex, and it also removes Fc-mediated recycling, shortening systemic half-life once drug leaves the eye.',
+        iconName: 'Minimize2',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It grips every active form of the growth signal',
+        laymanDesc:
+          'The signal driving the vessels exists in several slightly different forms, and broken-down pieces of it are still active. This fragment binds all of them.',
+        molecularDetail:
+          'Ranibizumab binds all active isoforms of VEGF-A and their biologically active degradation products. It was affinity-matured from the same parent antibody as bevacizumab and binds VEGF-A substantially more tightly. Binding occupies the surface VEGF-A would otherwise use to engage its receptors.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The vessel wall never receives the message',
+        laymanDesc:
+          'With the signal captured, the receptors on the abnormal vessels are not switched on. The vessels stop growing, and the leak that was flooding the retina slows and stops.',
+        molecularDetail:
+          'Neutralised VEGF-A cannot engage VEGFR-1 or VEGFR-2 on vascular endothelial cells, blocking the proliferation, migration and permeability signalling that drives choroidal neovascularisation and the associated exudation. Reduction in central retinal thickness follows, measured in CATT as 196 micrometres with monthly ranibizumab.',
+        iconName: 'ShieldOff',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Fluid clears and vision improves rather than merely holding',
+        laymanDesc:
+          'As the leak stops, the retina dries out and often works better than it did. Average vision went up by seven letters in the sham-controlled trial and by eleven against the older treatment.',
+        molecularDetail:
+          'Mean visual acuity increased 7.2 letters at 12 months in MARINA against a 10.4-letter decrease on sham, and 11.3 letters in ANCHOR against a 9.5-letter decrease on verteporfin. Fifteen letters or more were gained by 33.8% and 40.3% respectively. Improvement rather than stabilisation was novel in this disease.',
+        iconName: 'TrendingUp',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'It is cleared, and the whole thing repeats',
+        laymanDesc:
+          'The drug does not stay. Within weeks it has gone and the signal returns, so the injection has to be repeated, in most cases indefinitely.',
+        molecularDetail:
+          'Vitreous clearance of the Fab returns VEGF-A to unbound levels within weeks, which is why the pivotal trials used monthly dosing for 24 months. IVAN measured what happens when intervals are stretched: discontinuous treatment cost a small amount of acuity regardless of drug, -1.63 letters (95% CI -4.01 to 0.75), and mortality was lower with continuous treatment (odds ratio 0.47, 95% CI 0.22 to 1.03, p=0.05).',
+        iconName: 'RefreshCw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MARINA (NCT00056836)',
+        phase: 'Phase 3, multicentre, double-blind, sham-controlled, 2-year',
+        sampleSize: 716,
+        primaryEndpoint:
+          'Proportion of patients losing fewer than 15 letters from baseline visual acuity at 12 months',
+        endpointMet: true,
+        statisticalPValue: '94.6% on ranibizumab 0.5 mg against 62.2% on sham, P < 0.001',
+        unreportedAdverseSignals:
+          'The endpoint counts a 14-letter loss as maintained vision. Over 24 months, presumed endophthalmitis occurred in 5 patients (1.0%) and serious uveitis in 6 (1.3%), which are per-course rather than per-injection rates in a treatment that continues indefinitely.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'ANCHOR (NCT00061594)',
+        phase: 'Phase 3, multicentre, double-blind, active-controlled, 2-year',
+        sampleSize: 423,
+        primaryEndpoint:
+          'Proportion of patients losing fewer than 15 letters from baseline visual acuity at 12 months',
+        endpointMet: true,
+        statisticalPValue:
+          '96.4% on ranibizumab 0.5 mg against 64.3% on verteporfin, P < 0.001; mean acuity +11.3 letters against -9.5',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'CATT (NCT00593450)',
+        phase: 'Phase 3, multicentre, single-blind, non-inferiority, publicly funded',
+        sampleSize: 1208,
+        primaryEndpoint:
+          'Mean change in visual acuity at 1 year, bevacizumab against ranibizumab, with a 5-letter non-inferiority limit',
+        endpointMet: true,
+        statisticalPValue:
+          'Bevacizumab monthly 8.0 letters against ranibizumab monthly 8.5; as-needed 5.9 against 6.8; equivalence met on matched schedules',
+        unreportedAdverseSignals:
+          'Serious systemic adverse events, primarily hospitalisations, were higher with bevacizumab, 24.1% against 19.0% (risk ratio 1.29, 95% CI 1.01 to 1.66), with excess events broadly distributed across disease categories not previously flagged. The trial was single-blind rather than double-blind because the two drugs cannot be made to look identical.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'IVAN (ISRCTN92166560)',
+        phase: 'Multicentre, 2×2 factorial, non-inferiority randomised, 2-year, publicly funded',
+        sampleSize: 610,
+        primaryEndpoint: 'Best corrected visual acuity at 2 years, with a 3.5-letter limit',
+        endpointMet: false,
+        statisticalPValue:
+          'Mean difference -1.37 letters (95% CI -3.75 to 1.01, p=0.26) — bevacizumab neither non-inferior nor inferior, because the confidence interval crosses the limit',
+        unreportedAdverseSignals:
+          'The formal verdict is inconclusive rather than positive: the confidence interval spans the pre-specified 3.5-letter limit. Mortality was lower with continuous than discontinuous treatment, odds ratio 0.47 (95% CI 0.22 to 1.03, p=0.05), a secondary safety finding at the edge of significance.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '94.6% of patients lost fewer than 15 letters at 12 months against 62.2% on matched sham injections in 716 randomised patients (P<0.001)',
+        'Mean visual acuity increased 11.3 letters against a 9.5-letter decrease on verteporfin photodynamic therapy in 423 randomised patients',
+        'Bevacizumab equivalent to ranibizumab on matched schedules in 1,208 patients: 8.0 against 8.5 letters monthly, 5.9 against 6.8 as needed',
+        'Per-dose drug cost of approximately US$2,000 against US$50, and first-year cost of US$23,400 against US$385, as stated in the CATT protocol',
+      ],
+      unsupportedInferences: [
+        'That "maintained vision" in the pivotal trials describes preserved sight, when the threshold counts a fourteen-letter loss as success',
+        'That the affinity maturation and Fc removal engineered into this molecule produce a clinically superior drug to its parent antibody',
+        'That the CATT serious-adverse-event difference is a drug effect; the excess was broadly distributed across unrelated disease categories and IVAN found no difference in arterial thrombotic events',
+        'That the port delivery implant reduces treatment burden without cost, when its label opens with a boxed warning for threefold endophthalmitis',
+      ],
+      whatFailedInitially: [
+        'The design rationale did not translate: a publicly funded 1,208-patient trial found no vision advantage over the cheaper parent antibody, and a 610-patient trial in another country reached the same place',
+        'The sustained-release implant carries a boxed warning for endophthalmitis and a Warnings list including implant dislocation, septum dislodgement and retinal detachment',
+        'Stretching injection intervals costs vision: IVAN measured -1.63 letters for discontinuous against continuous treatment, irrespective of drug',
+        'No biosimilar competition existed for the first fifteen years after approval',
+      ],
+      realWorldOutcome: [
+        'Approved 30 June 2006 under BLA 125156, the first treatment to improve rather than merely preserve average vision in wet macular degeneration',
+        'Indications extended to retinal vein occlusion, diabetic macular oedema, diabetic retinopathy and myopic choroidal neovascularisation',
+        'CATT and IVAN made off-label bevacizumab a defensible standard of care in publicly funded health systems worldwide',
+        'Biosimilars arrived from 2021 onwards, and a refillable ocular implant of the same molecule was approved with a boxed warning',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravitreal injection of 0.5 mg in 0.05 mL; also available as a refillable ocular implant',
+      description:
+        'A needle through the pars plana into the vitreous cavity, under topical anaesthetic and antisepsis, repeated on a monthly or individualised schedule. The molecule is an antibody fragment rather than a whole antibody, made small deliberately so it penetrates the retina. The port delivery implant is a surgically placed refillable reservoir that releases drug continuously and is refilled in clinic.',
+      safetyProfile:
+        'Presumed endophthalmitis in 1.0% of MARINA patients over 24 months of monthly injections and 1.4% of the ANCHOR 0.5 mg group, serious uveitis in 1.3% and 0.7%. Retinal detachment, intraocular inflammation, raised intraocular pressure and traumatic cataract are recognised risks of the injection procedure. Arterial thromboembolic events are a theoretical class concern from systemic VEGF inhibition; CATT found no difference in death, myocardial infarction or stroke between ranibizumab and bevacizumab (P>0.20) and IVAN found no difference in arterial thrombotic events (odds ratio 1.69, 95% CI 0.80 to 3.57). The ocular implant carries a boxed warning for an up to threefold higher endophthalmitis rate than injection, plus warnings for retinal detachment, implant dislocation, septum dislodgement, vitreous haemorrhage and conjunctival erosion or retraction.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why is there a drug that costs forty times more and works the same?',
+        a: 'Because the cheaper one was never registered for the eye, and the company that owns both had no reason to register it. Bevacizumab is the full-length antibody ranibizumab was engineered from, approved for cancer at doses hundreds of times larger. Ophthalmologists began using tiny repackaged aliquots off-label, and Genentech developed and priced the eye-specific fragment separately. Two publicly funded trials then did what neither manufacturer would: CATT in the United States, 1,208 patients, and IVAN in Britain, 610 patients. CATT found bevacizumab equivalent to ranibizumab on matched schedules — 8.0 letters against 8.5 monthly. IVAN found a two-year difference of 1.37 letters. CATT’s own protocol put the per-dose cost at about US$2,000 against about US$50.',
+        auditNote:
+          'IVAN’s formal verdict was that bevacizumab was neither non-inferior nor inferior, because the confidence interval crossed its 3.5-letter limit. Read strictly, that is inconclusive rather than positive, and it is quoted as positive far more often than it is quoted correctly.',
+      },
+      {
+        q: 'If bevacizumab is as good, is there any reason to use ranibizumab?',
+        a: 'Two, and they are about the product rather than the molecule. Bevacizumab comes in oncology vials and has to be split into eye-sized doses by a compounding pharmacy, which is a sterility step a licensed single-use presentation does not require. Failures of that step have caused clusters of infection. Second, CATT found more serious systemic adverse events with bevacizumab, 24.1% against 19.0%, with a risk ratio of 1.29 whose confidence interval only just excluded 1. The trialists noted that the excess events were spread across disease categories with no previous link to VEGF inhibition, which is the pattern of a chance finding rather than a drug effect, and IVAN found no difference in arterial thrombotic events. So the safety signal is real in the data and weak in interpretation.',
+      },
+      {
+        q: 'How long do I need injections for?',
+        a: 'Indefinitely, in most cases, and the trials are clear about why. The drug is cleared from the eye within weeks, the signal driving the abnormal vessels returns, and the leak resumes. Both pivotal trials gave monthly injections for 24 months. The obvious question is whether the interval can be stretched, and IVAN tested it directly: as-needed treatment cost 1.63 letters over two years compared with monthly, regardless of which drug was used, and the trial also found lower mortality with continuous treatment (odds ratio 0.47, p=0.05). That second finding is a secondary safety outcome at the edge of significance and should not be leaned on. The first is the practical answer: less frequent treatment costs a little vision.',
+      },
+      {
+        q: 'What does "94% maintained vision" actually mean?',
+        a: 'It means 94% lost fewer than fifteen letters on the chart, which is a lower bar than it sounds. Fifteen letters is three lines. Someone who lost fourteen letters counts as a success by this definition. The threshold was set when the realistic aim in this disease was to slow decline, and by that standard it is a reasonable measure. What tells you more about how people actually saw is the secondary endpoint: 33.8% in MARINA and 40.3% in ANCHOR gained fifteen letters or more, and mean acuity went up by 7.2 and 11.3 letters respectively where the control groups lost around ten. Those are the genuinely remarkable numbers, and they are the ones that made this drug change the disease.',
+      },
+      {
+        q: 'There is an implant that avoids monthly injections. Is it worth it?',
+        a: 'It is a real trade rather than a free improvement, and the label states the terms in a boxed warning. The port delivery implant is a refillable reservoir placed surgically in the eye wall, releasing ranibizumab continuously so that visits are for refills rather than injections. Its boxed warning states that it has been associated with an up to three-fold higher rate of endophthalmitis than monthly intravitreal injections, many of those events linked to the conjunctiva retracting or eroding over the implant. The Warnings section adds retinal detachment, implant dislocation, septum dislodgement, vitreous haemorrhage and conjunctival blebs, and notes some of these can present without symptoms. For a person for whom monthly injections are genuinely unmanageable, that may still be the better trade.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Rosenfeld PJ et al. Ranibizumab for neovascular age-related macular degeneration. N Engl J Med 2006;355:1419-1431 (MARINA)',
+        identifier: '10.1056/NEJMoa054481',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Brown DM et al. Ranibizumab versus verteporfin for neovascular age-related macular degeneration. N Engl J Med 2006;355:1432-1444 (ANCHOR)',
+        identifier: '10.1056/NEJMoa062655',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CATT Research Group. Ranibizumab and bevacizumab for neovascular age-related macular degeneration. N Engl J Med 2011;364:1897-1908',
+        identifier: '10.1056/NEJMoa1102673',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chakravarthy U et al. Alternative treatments to inhibit VEGF in age-related choroidal neovascularisation: 2-year findings of the IVAN randomised controlled trial. Lancet 2013;382:1258-1267',
+        identifier: '10.1016/S0140-6736(13)61501-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Comparison of Age-related Macular Degeneration Treatments Trials (CATT) Research Group. Ranibizumab and bevacizumab for treatment of neovascular age-related macular degeneration: two-year results. Ophthalmology 2012;119:1388-1398',
+        identifier: '10.1016/j.ophtha.2012.03.053',
+        kind: 'doi',
+      },
+      {
+        label: 'MARINA: ranibizumab against sham injection in minimally classic or occult lesions',
+        identifier: 'NCT00056836',
+        kind: 'nct',
+      },
+      {
+        label: 'ANCHOR: ranibizumab against verteporfin photodynamic therapy',
+        identifier: 'NCT00061594',
+        kind: 'nct',
+      },
+      {
+        label: 'CATT: Lucentis-Avastin Trial, 1,208 patients randomised',
+        identifier: 'NCT00593450',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: LUCENTIS (ranibizumab injection), BLA 125156, Genentech — original approval 30 June 2006',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125156',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'SUSVIMO (ranibizumab injection) for ocular implant, BLA 761197 — Boxed Warning for endophthalmitis and Warnings and Precautions section',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761197',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]

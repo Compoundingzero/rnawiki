@@ -110,11 +110,26 @@ function formPhrase(form: string, plural: boolean): string {
 }
 
 /** What the FDA's product records say, stated as the record rather than as pharmacology. */
-export function describeRecord(displayName: string, record: SubstanceRecord | null): string {
+export function describeRecord(
+  displayName: string,
+  record: SubstanceRecord | null,
+  isSupplement = false,
+): string {
   if (!record || record.productCount === 0) {
-    // Why the record is empty is not in the record. An earlier draft guessed "that is usually what
-    // an ingredient looks like after every product has left the market", which is one explanation
-    // of several and was being stated as the explanation.
+    // A supplement is absent from the FDA's drug records because it was never submitted to them,
+    // not because it left the market, and saying "the FDA's drug records carry no label for it"
+    // implies a review that never happened. The difference is the whole point of the distinction.
+    if (isSupplement) {
+      return (
+        `${displayName} is listed as an ingredient in the NIH Dietary Supplement Label Database ` +
+        'and has no FDA drug record. Supplements are not reviewed by the FDA before they go on ' +
+        'sale, so there is no approved label stating what this does, what it is for, or what it ' +
+        'was tested against. The absence is how the category works, not a gap in this page.'
+      )
+    }
+    // Why an FDA-listed ingredient's record is empty is not in the record. An earlier draft
+    // guessed "that is usually what an ingredient looks like after every product has left the
+    // market", which is one explanation of several and was being stated as the explanation.
     return (
       `The FDA's public drug records list ${displayName} as an active ingredient, but carry no ` +
       'prescribing label for it — no mechanism section, no indication, no dosage form. Ingredients ' +
@@ -166,11 +181,13 @@ export function substanceContext(
   displayName: string,
   literature: Literature | null,
   record: SubstanceRecord | null,
+  isSupplement = false,
 ): SubstanceContext | null {
-  if (!literature && !record) return null
+  if (!literature && !record && !isSupplement) return null
 
   const sources: string[] = []
   if (record) sources.push('openFDA Drugs@FDA', 'openFDA NDC Directory')
+  else if (isSupplement) sources.push('NIH Dietary Supplement Label Database')
   if (literature) sources.push('Europe PMC')
 
   const evidence = literature
@@ -179,7 +196,7 @@ export function substanceContext(
 
   return {
     conditionContext: {
-      conditionExplainer: [describeRecord(displayName, record), evidence]
+      conditionExplainer: [describeRecord(displayName, record, isSupplement), evidence]
         .filter(Boolean)
         .join(' ')
         .trim(),

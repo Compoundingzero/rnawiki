@@ -1670,7 +1670,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'High blood pressure is treated because of what it does over decades rather than because of how it feels. Beta-blockers lower it by slowing the heart and cutting renin release, and their main cost is that a slower heart makes people tired.',
       whyItMatters:
-        'Nebivolol was launched as a different kind of beta-blocker: one that also widens arteries, through nitric oxide, and therefore avoids the fatigue and metabolic penalties of the class. That story is scientifically interesting and it is not in the drug United States label, which says the antihypertensive mechanism has not been definitively established and does not use the phrase nitric oxide anywhere.',
+        'Nebivolol was launched as a different kind of beta-blocker: one that also widens arteries, through nitric oxide, and therefore avoids the fatigue and metabolic penalties of the class. That story is scientifically interesting and it is not in the drug’s United States label, which says the antihypertensive mechanism has not been definitively established and does not use the phrase nitric oxide anywhere.',
       whoTakesThis:
         'Adults with high blood pressure. Not people with decompensated heart failure, severe bradycardia, heart block beyond first degree or severe liver impairment, all of which are contraindications.',
       clinicalGoals:
@@ -2596,6 +2596,486 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 39186 — diltiazem structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/39186',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Verapamil — the strongest rate-slowing calcium blocker, whose post-infarction trial missed
+  //    mortality, and which is now being tested for something entirely unrelated to the heart.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'verapamil',
+    name: 'Verapamil',
+    tradeName: 'Calan / Isoptin / Verelan / Verelan PM / Covera-HS',
+    sponsor: 'Mt Adams Pharmaceuticals and many generic manufacturers; originated at Knoll AG in Germany',
+    targetGene: 'CACNA1C',
+    targetProtein:
+      'Alpha-1C subunit of the L-type voltage-gated calcium channel (Cav1.2), bound at the phenylalkylamine site inside the pore',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1981,
+    indication:
+      'Angina at rest including vasospastic and unstable angina; chronic stable angina; control of ventricular rate in chronic atrial flutter or fibrillation in association with digitalis; prophylaxis of repetitive paroxysmal supraventricular tachycardia; and essential hypertension',
+    patientFriendlyIndication:
+      'Chest pain, a racing or irregular heartbeat, and high blood pressure',
+    anatomicalSite:
+      'Atrioventricular and sinoatrial nodes, and vascular smooth muscle — the phenylalkylamine site inside the pore of the L-type calcium channel',
+    conditionContext: {
+      conditionExplainer:
+        'The heart has two kinds of electrical tissue. Most of it fires on sodium; the sinus node and the atrioventricular node fire on calcium. A drug that blocks the calcium channel therefore acts almost exclusively on the pacemaker and the relay, which is why verapamil slows the pulse and terminates the reentrant rhythms that use the AV node as one arm of their circuit.',
+      whyItMatters:
+        'Verapamil is the strongest rate-slowing member of the calcium blocker family, and the price of that strength is the largest reduction in contractile force. Its contraindications are all versions of the same sentence: do not give it to a heart that cannot afford to squeeze less hard, or to one whose electrical circuit has an alternative route the drug will not block.',
+      whoTakesThis:
+        'Adults with angina including the vasospastic form, adults needing ventricular rate control in atrial fibrillation or flutter, adults with recurrent supraventricular tachycardia, and adults with high blood pressure. Not people with severe left ventricular dysfunction, and not people with pre-excited atrial fibrillation.',
+      clinicalGoals:
+        'Fewer anginal episodes, a controlled ventricular rate, a lower blood pressure. Its two large outcome trials measured deaths and events, and neither showed the drug reduced them.',
+    },
+    oneSentenceVerdict:
+      'A phenylalkylamine calcium blocker that slows the AV node harder than any other oral drug in its class, whose post-infarction trial in 1,775 patients missed mortality at p=0.11 while cutting major events by 20% (p=0.03), and which in 22,576 hypertensive patients with coronary disease matched an atenolol strategy exactly (RR 0.98) rather than beating it.',
+    laymanHowItWorks:
+      'The electrical relay between the top and bottom chambers of the heart runs on calcium rather than sodium, unlike most heart tissue. Verapamil sits inside the calcium channel and blocks it, so the relay slows and a racing pulse comes down. In circuits that loop through that relay, blocking it stops the loop and the rhythm reverts. The same block relaxes artery muscle, which lowers blood pressure and eases angina, and it also weakens the squeeze of the heart itself — which is helpful in some conditions and dangerous in a heart that is already failing.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 70,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1803 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 43 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'First approved in the United States in 1981 and generic for decades. Verapamil appears on the WHO Model List of Essential Medicines. The chronotherapeutic formulations designed to release drug overnight, such as Covera-HS, were the last part of the franchise to hold protection, and the concept did not survive the failure of the outcome hypothesis behind it.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For rate control the alternatives are diltiazem and the beta-blockers, and the choice turns on how much contractile reserve the heart has and what else the patient is taking. For blood pressure alone, verapamil is a poor first choice in most guidelines. For supraventricular tachycardia the real alternative is not a drug at all: catheter ablation cures the reentrant circuits that verapamil only interrupts.',
+      conventionalRx: [
+        {
+          name: 'Diltiazem',
+          class: 'Non-dihydropyridine calcium channel blocker, benzothiazepine class',
+          howItCompares:
+            'Binds a different site on the same channel, slows the AV node almost as much and depresses contractility less. Its own post-infarction trial, MDPIT, found the same subgroup pattern as verapamil DAVIT-II: benefit without pulmonary congestion, harm with it.',
+          typicalCost:
+            'US$0.3196 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 177 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: less negative inotropy; far less constipation. Cons: the same CYP3A4 interaction problem, now quantified against apixaban and rivaroxaban in 204,155 patients; more expensive per unit.',
+        },
+        {
+          name: 'Metoprolol or another beta-blocker',
+          class: 'Beta-1 adrenergic blocker',
+          howItCompares:
+            'Slows the same node by blocking adrenaline rather than calcium, and unlike verapamil has mortality evidence in heart failure and after infarction. In INVEST, an atenolol-based strategy and a verapamil-based strategy produced identical primary event rates in 22,576 patients (9.93% against 10.17%).',
+          typicalCost: 'Generic; a few United States cents per tablet at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: safe in reduced ejection fraction, where verapamil is contraindicated; no constipation; no CYP3A4 inhibition. Cons: bronchospasm risk; fatigue; no coronary vasodilatation for vasospastic angina.',
+        },
+        {
+          name: 'Catheter ablation, for recurrent supraventricular tachycardia',
+          class: 'Procedure rather than drug',
+          howItCompares:
+            'Verapamil interrupts a reentrant circuit each time it fires; ablation destroys the circuit. For AV nodal reentrant tachycardia the procedure is curative in the large majority and removes the need for daily medication.',
+          typicalCost:
+            'A one-off procedural cost rather than a daily drug cost; not comparable per unit',
+          prosAndCons:
+            'Pros: definitive rather than suppressive. Cons: an invasive procedure with a small risk of AV block requiring a pacemaker, and it is not an option for atrial fibrillation rate control in the same way.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Take constipation seriously rather than tolerating it',
+          action:
+            'Report constipation, and say if it becomes severe or if the abdomen becomes distended.',
+          patientImpact:
+            'Constipation occurred in 7.3% of 4,954 patients in the trial database, by a wide margin the commonest adverse effect and the commonest reason the drug is abandoned. Reversible non-obstructive paralytic ileus has been reported infrequently.',
+          clinicalPrecaution:
+            'The mechanism is direct: gut smooth muscle uses the same L-type calcium channel as artery muscle. Severe abdominal distension with absent bowel sounds is not a side effect to manage at home.',
+        },
+        {
+          name: 'Say if you have ever been told you have an extra electrical pathway',
+          action:
+            'Mention Wolff-Parkinson-White syndrome or any accessory pathway before taking this drug.',
+          patientImpact:
+            'Atrial flutter or fibrillation with an accessory bypass tract is a contraindication. Blocking the AV node in that setting can push conduction down the accessory pathway instead, accelerating the ventricular rate rather than slowing it.',
+          clinicalPrecaution:
+            'This is one of the few situations in cardiology where the correct drug and the dangerous drug produce opposite effects for the same presenting complaint.',
+        },
+        {
+          name: 'Report breathlessness or swelling',
+          action: 'Say if you become short of breath, or if your legs or abdomen swell.',
+          patientImpact:
+            'Verapamil weakens the heart squeeze. Congestive heart failure or pulmonary oedema developed in 87 of 4,954 patients, or 1.8%, in the clinical trial database. It is contraindicated in severe left ventricular dysfunction and should be avoided at ejection fractions below 30%.',
+          clinicalPrecaution:
+            'The label directs avoiding it in any degree of ventricular dysfunction if a beta-blocker is also being taken, because the two negative inotropic effects add.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)C(CCCN(C)CCC1=CC(=C(C=C1)OC)OC)(C#N)C2=CC(=C(C=C2)OC)OC',
+      chemicalFormula: 'C27H38N2O4',
+      molecularWeight: '454.60 g/mol (free base); dispensed as verapamil hydrochloride',
+      targetReceptorAffinity:
+        'Binds the phenylalkylamine site within the pore of Cav1.2, reached from the cytoplasmic side, which is why block is strongly use-dependent and why the drug acts most on tissue that is depolarising fastest. Marketed as a racemate: the S-enantiomer is substantially more potent at cardiac tissue and is cleared faster on first pass, so the intravenous and oral routes deliver different enantiomer ratios and different degrees of AV nodal block per milligram.',
+      structureSource: {
+        label:
+          'PubChem CID 2520 (verapamil) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2520',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'vpm-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the racemic ratio and the nitrile',
+          description:
+            'Verapamil is marketed as a racemate whose enantiomers differ substantially in cardiac potency and in first-pass clearance. Confirm the ratio rather than assume it, and confirm the nitrile group, which is the quaternary carbon substituent that fixes the molecule geometry inside the pore.',
+          reagentsAndBuffer:
+            'Verapamil hydrochloride reference standard, chiral HPLC on a cellulose or amylose phase, infrared confirmation of the nitrile stretch near 2240 wavenumbers, 1H NMR in DMSO-d6, Karl Fischer titration',
+        },
+        {
+          id: 'vpm-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Alkylate the arylacetonitrile and couple the aminopropyl chain',
+          description:
+            'Deprotonate 3,4-dimethoxyphenylacetonitrile and alkylate with an isopropyl halide to build the quaternary centre, then alkylate again with a chloropropyl chain and couple to N-methylhomoveratrylamine. The two dimethoxyphenyl rings at either end of the molecule are what give it the length required to reach the pore site from inside the cell.',
+          dependsOnStepId: 'vpm-w1',
+          reagentsAndBuffer:
+            '3,4-dimethoxyphenylacetonitrile, sodium hydride or sodium amide in toluene, 2-bromopropane, 1-bromo-3-chloropropane, N-methyl-2-(3,4-dimethoxyphenyl)ethylamine, potassium iodide catalysis, nitrogen atmosphere',
+        },
+        {
+          id: 'vpm-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Remove the dialkylated by-product and crystallise the hydrochloride',
+          description:
+            'The secondary amine can alkylate twice, and the resulting quaternary ammonium species is both inactive and highly water-soluble, which makes it easy to miss on a lipophilic assay. Purification targets it explicitly before the hydrochloride is crystallised.',
+          dependsOnStepId: 'vpm-w2',
+          reagentsAndBuffer:
+            'Acid-base extraction, silica chromatography where required, hydrogen chloride in isopropanol, crystallisation with controlled cooling, HPLC release testing with a specified limit for quaternary impurities',
+        },
+        {
+          id: 'vpm-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Use-dependent block from the intracellular face',
+          description:
+            'The phenylalkylamine site is reached from inside the cell and only when the channel is open, so block accumulates with stimulation frequency. Measure at several pacing rates and with the drug applied inside and outside the cell separately. A single-frequency, extracellular measurement misses the property that makes the drug useful in a fast arrhythmia.',
+          dependsOnStepId: 'vpm-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells expressing human Cav1.2 with beta and alpha2-delta subunits, whole-cell patch clamp at 0.1, 1 and 3 Hz, intracellular perfusion arm, barium as charge carrier',
+        },
+        {
+          id: 'vpm-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Separate the nodal effect from the contractile effect on tissue',
+          description:
+            'Measure AV nodal conduction delay and developed tension in the same preparation at the same concentrations, and report the ratio. That ratio is the entire clinical distinction between verapamil and diltiazem, and it is what determines whether a given heart tolerates the drug.',
+          dependsOnStepId: 'vpm-w4',
+          reagentsAndBuffer:
+            'Isolated perfused rabbit or guinea-pig heart with atrial pacing and His bundle electrogram, isolated papillary muscle for developed tension, Krebs-Henseleit buffer at 37 degrees Celsius',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'vpm-a1',
+        category: 'failed',
+        title: 'DAVIT-II: mortality missed at p=0.11, events met at p=0.03',
+        laymanSummary:
+          'Nearly eighteen hundred patients were given verapamil or a dummy tablet from the second week after a heart attack. Deaths fell from 13.8% to 11.1%, which was not statistically convincing. The combined count of deaths and repeat heart attacks did reach significance.',
+        technicalDetails:
+          'The Danish Verapamil Infarction Trial II randomised 878 patients to verapamil 360 mg daily and 897 to placebo, starting in the second week after admission and continuing up to 18 months, mean 16. There were 95 deaths and 146 major events on verapamil against 119 deaths and 180 major events on placebo. Eighteen-month mortality was 11.1% against 13.8% (p=0.11, hazard ratio 0.80, 95% CI 0.61 to 1.05) — not significant. Major event rate, defined as death or reinfarction, was 18.0% against 21.6% (p=0.03, hazard ratio 0.80, 95% CI 0.64 to 0.99). The benefit was confined to patients without heart failure in the coronary care unit: mortality 7.7% against 11.8% (p=0.02, HR 0.64, 95% CI 0.44 to 0.94) without heart failure, and 17.9% against 17.5% (p=0.79, HR 1.05, 95% CI 0.72 to 1.54) with it. The same split found in the diltiazem trial appeared here in a different drug and a different country.',
+        evidenceSource:
+          'Danish Study Group on Verapamil in Myocardial Infarction, Am J Cardiol 1990;66:779-785 (DAVIT II)',
+        doi: '10.1016/0002-9149(90)90351-z',
+        measuredMetric:
+          'Eighteen-month mortality and major event rate after myocardial infarction, with a prespecified split by heart failure at admission',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vpm-a2',
+        category: 'measured',
+        title: 'INVEST: identical to an atenolol strategy in 22,576 patients',
+        laymanSummary:
+          'The largest verapamil trial compared a verapamil-based plan against a beta-blocker-based plan in twenty-two thousand people with both high blood pressure and coronary disease. The rates of death, heart attack and stroke came out the same.',
+        technicalDetails:
+          'INVEST randomised 22,576 hypertensive patients aged 50 or over with coronary artery disease, at 862 sites in 14 countries, to a calcium antagonist strategy based on sustained-release verapamil or a non-calcium-antagonist strategy based on atenolol, each with trandolapril and hydrochlorothiazide added to reach blood pressure goals. After 61,835 patient-years, mean 2.7 per patient, 2,269 patients had a primary outcome of death from any cause, non-fatal myocardial infarction or non-fatal stroke: 9.93% on the verapamil strategy and 10.17% on the atenolol strategy, relative risk 0.98 (95% CI 0.90 to 1.06). Two-year blood pressure control was similar, with 71.7% and 70.7% reaching below 140/90 mmHg. The conclusion is that the verapamil-trandolapril strategy was as clinically effective as the atenolol-hydrochlorothiazide strategy. As clinically effective is not more effective, and this trial was designed and reported as a comparison of strategies rather than of molecules — by 24 months only 81.5% of the verapamil arm was still on verapamil.',
+        evidenceSource: 'Pepine CJ et al., JAMA 2003;290:2805-2816 (INVEST)',
+        doi: '10.1001/jama.290.21.2805',
+        measuredMetric:
+          'First occurrence of all-cause death, non-fatal myocardial infarction or non-fatal stroke',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vpm-a3',
+        category: 'measured',
+        title: 'Constipation in 7.3%, heart failure in 1.8%, from a database of 4,954 patients',
+        laymanSummary:
+          'The commonest problem with verapamil is not cardiac. Seven in a hundred become constipated, because the gut muscle uses the same calcium channel as artery muscle. Nearly two in a hundred developed heart failure or fluid on the lungs.',
+        technicalDetails:
+          'From the clinical trial database of 4,954 patients: constipation 7.3%, dizziness 3.3%, nausea 2.7%, hypotension 2.5%, headache 2.2%, oedema 1.9%, congestive heart failure or pulmonary oedema 1.8% (87 patients), fatigue 1.7%, dyspnoea 1.4%, bradycardia below 50 beats per minute 1.4%, total AV block of any degree 1.2% with second- and third-degree at 0.8%, rash 1.2%, flushing 0.6%. Reversible non-obstructive paralytic ileus has been reported infrequently. In the subset treated for rate control in digitalised atrial fibrillation or flutter, ventricular rates below 50 at rest occurred in 15% and asymptomatic hypotension in 5%. The label also records elevations of transaminases, sometimes transient and sometimes persisting, with several cases of hepatocellular injury.',
+        evidenceSource:
+          'Verapamil hydrochloride United States prescribing information, Warnings and Adverse Reactions sections',
+        measuredMetric:
+          'Adverse reaction rates from a pooled clinical trial population of 4,954 patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vpm-a4',
+        category: 'failed',
+        title: 'Two contraindications that describe the drug own mechanism turning on the patient',
+        laymanSummary:
+          'Verapamil weakens the heart squeeze, so it must not be used in a heart that is already failing badly. And it blocks the normal electrical relay, so in people with an extra pathway it can push the impulse down that pathway instead and make the rhythm faster, not slower.',
+        technicalDetails:
+          'Contraindications are severe left ventricular dysfunction; hypotension below 90 mmHg systolic or cardiogenic shock; sick sinus syndrome or second- or third-degree AV block without a functioning pacemaker; atrial flutter or fibrillation with an accessory bypass tract such as Wolff-Parkinson-White or Lown-Ganong-Levine; and hypersensitivity. The Warnings section directs avoiding the drug at ejection fraction below 30% or with moderate to severe cardiac failure symptoms, and in any degree of ventricular dysfunction if a beta-adrenergic blocker is also being given, because the negative inotropic effects are additive. Both contraindications are the therapeutic mechanism applied to the wrong heart: negative inotropy where contractile reserve is already exhausted, and AV nodal block where an alternative conduction route exists.',
+        evidenceSource:
+          'Verapamil hydrochloride United States prescribing information, Contraindications and Warnings sections',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vpm-a5',
+        category: 'inferred',
+        title: 'A beta-cell result in type 1 diabetes, on a surrogate, in 88 children',
+        laymanSummary:
+          'Verapamil is being investigated for something with no connection to the heart: preserving the insulin-producing cells in newly diagnosed type 1 diabetes. A randomised trial in eighty-eight children found more insulin production after a year. Blood sugar control was not measurably better.',
+        technicalDetails:
+          'The CLVer trial randomised 88 children and adolescents aged 7 to 17 within a month of type 1 diabetes diagnosis to once-daily oral verapamil (n=47) or placebo (n=41), within a factorial design also testing intensive diabetes management. The primary endpoint was area under the curve for C-peptide stimulated by a mixed-meal tolerance test at 52 weeks. Mean C-peptide AUC went from 0.66 to 0.65 pmol/mL on verapamil and from 0.60 to 0.44 on placebo, an adjusted between-group difference of 0.14 pmol/mL (95% CI 0.01 to 0.27, p=0.04), equating to a 30% higher C-peptide level at 52 weeks. HbA1c at 52 weeks was 6.6% against 6.9%, adjusted difference -0.3% (95% CI -1.0 to 0.4) — not significant. Treatment-related non-serious adverse events occurred in 17% against 20%. The rationale is that calcium blockade reduces thioredoxin-interacting protein overexpression, which drives beta-cell apoptosis in preclinical models. This is a genuine randomised result on a mechanistic surrogate, in 88 children, with a confidence interval whose lower bound is 0.01, and with no measurable difference in the outcome patients experience.',
+        evidenceSource:
+          'Forlenza GP et al. Effect of verapamil on pancreatic beta cell function in newly diagnosed pediatric type 1 diabetes: a randomized clinical trial. JAMA 2023;329:990-999 (CLVer, NCT04233034)',
+        doi: '10.1001/jama.2023.2064',
+        inferredClaim:
+          'That preserved C-peptide secretion at one year will translate into better long-term glycaemic control or fewer complications — the trial measured the surrogate, found no HbA1c difference, and says longitudinal durability is unknown',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vpm-a6',
+        category: 'conclusion_shift',
+        title: 'Two calcium blockers, two countries, the same subgroup',
+        laymanSummary:
+          'The Danish verapamil trial and the American diltiazem trial were run separately with different drugs. Both found the same thing: benefit in patients whose hearts were coping, harm or nothing in patients whose hearts were failing.',
+        technicalDetails:
+          'DAVIT-II found post-infarction mortality of 7.7% against 11.8% (HR 0.64, 95% CI 0.44 to 0.94) in patients without heart failure in the coronary care unit, and 17.9% against 17.5% (HR 1.05, 95% CI 0.72 to 1.54) in those with it. MDPIT, published two years earlier with diltiazem in 2,466 patients, found cardiac event hazard ratios of 0.77 (0.61 to 0.98) without radiographic pulmonary congestion and 1.41 (1.01 to 1.96) with it, interaction p=0.0042. Two independently designed trials of two different molecules binding two different sites on the same channel converged on the same modifier. That convergence is the strongest evidence either trial provides, and it is a class-level physiological finding — negative inotropy is tolerable when there is contractile reserve and not when there is none — rather than a property of either drug.',
+        evidenceSource:
+          'Danish Study Group on Verapamil in Myocardial Infarction, Am J Cardiol 1990;66:779-785; Multicenter Diltiazem Postinfarction Trial Research Group, N Engl J Med 1988;319:385-392',
+        doi: '10.1016/0002-9149(90)90351-z',
+        inferredClaim:
+          'That either trial subgroup result stands alone — each is a subgroup analysis, and what makes them credible is that they replicate each other across drugs, countries and endpoints',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'It reaches the channel from the inside',
+        laymanDesc:
+          'Unlike the calcium blockers used for blood pressure, verapamil has to get into the cell first and then blocks the channel from within, and only while the channel is open.',
+        molecularDetail:
+          'Verapamil binds the phenylalkylamine site within the pore of Cav1.2, accessible from the cytoplasmic face and only in the open state. Block is therefore strongly use-dependent: the faster the tissue is depolarising, the more of it is blocked.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 2,
+        title: 'The pacemaker and the relay slow down',
+        laymanDesc:
+          'Two small regions of the heart run on calcium rather than sodium. Blocking calcium slows both, so the pulse falls and a rhythm that loops through the relay is interrupted.',
+        molecularDetail:
+          'Sinoatrial automaticity and atrioventricular nodal conduction depend on L-type calcium current. Verapamil prolongs AV nodal refractoriness and terminates reentrant supraventricular tachycardias whose circuit includes the node. In digitalised atrial fibrillation trials, resting ventricular rates below 50 occurred in 15% of patients.',
+        iconName: 'Timer',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'Arteries relax and pressure falls',
+        laymanDesc:
+          'The same channel in artery muscle is blocked too, so vessels widen. That lowers blood pressure and eases angina by cutting the work the heart has to do.',
+        molecularDetail:
+          'Reduced calcium influx into vascular smooth muscle lowers systemic vascular resistance, which partially offsets the negative inotropic effect. The label states that in most patients the negative inotropy is compensated by afterload reduction without net impairment of ventricular performance.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'The squeeze weakens, which is the whole risk',
+        laymanDesc:
+          'Blocking calcium in heart muscle means each beat is less forceful. In a healthy heart that does not matter. In a failing one it can be the difference between compensated and not.',
+        molecularDetail:
+          'Congestive heart failure or pulmonary oedema developed in 87 of 4,954 trial patients, 1.8%. The label contraindicates severe left ventricular dysfunction, directs avoidance below 30% ejection fraction, and directs avoidance at any degree of ventricular dysfunction if a beta-blocker is co-prescribed.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'The gut uses the same channel',
+        laymanDesc:
+          'Bowel muscle contracts using the same calcium channel as artery muscle. Blocking it slows the bowel, which is why constipation is the most common complaint by a wide margin.',
+        molecularDetail:
+          'Constipation occurred in 7.3% of 4,954 patients, more than twice the rate of the next most common adverse effect. Reversible non-obstructive paralytic ileus has been reported infrequently. The effect is dose-related and is the leading reason for discontinuation.',
+        iconName: 'Ban',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the outcome trials found',
+        laymanDesc:
+          'Two large trials looked for a survival benefit. After a heart attack, deaths fell but not convincingly. Against a beta-blocker strategy in coronary disease, the two were identical.',
+        molecularDetail:
+          'DAVIT-II: 18-month mortality 11.1% against 13.8%, p=0.11; major events 18.0% against 21.6%, p=0.03. INVEST: primary outcome 9.93% against 10.17%, relative risk 0.98 (95% CI 0.90 to 1.06), in 22,576 patients over a mean 2.7 years.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'DAVIT II (Am J Cardiol 1990;66:779-785)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 1775,
+        primaryEndpoint:
+          'All-cause mortality, and major events defined as death or reinfarction, up to 18 months after myocardial infarction',
+        endpointMet: false,
+        statisticalPValue:
+          'Mortality 11.1% against 13.8%, p=0.11 (HR 0.80, 95% CI 0.61 to 1.05); major events 18.0% against 21.6%, p=0.03 (HR 0.80, 95% CI 0.64 to 0.99)',
+        unreportedAdverseSignals:
+          'The benefit was confined to the subgroup without heart failure in the coronary care unit: mortality HR 0.64 (0.44 to 0.94) without heart failure against 1.05 (0.72 to 1.54) with it.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'INVEST (JAMA 2003;290:2805-2816)',
+        phase: 'Phase 4, randomised, open label, blinded endpoint',
+        sampleSize: 22576,
+        primaryEndpoint:
+          'First occurrence of all-cause death, non-fatal myocardial infarction or non-fatal stroke',
+        endpointMet: true,
+        statisticalPValue:
+          '9.93% against 10.17%; relative risk 0.98 (95% CI 0.90 to 1.06) over a mean 2.7 years',
+        unreportedAdverseSignals:
+          'A comparison of strategies rather than of molecules: by 24 months, 81.5% of the calcium antagonist arm was still on verapamil and 77.5% of the comparator arm still on atenolol, with trandolapril and hydrochlorothiazide layered onto both. Open-label design with blinded endpoint adjudication.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'CLVer (NCT04233034)',
+        phase: 'Phase 2, randomised, double-blind, placebo-controlled, factorial',
+        sampleSize: 88,
+        primaryEndpoint:
+          'Area under the curve for mixed-meal-stimulated C-peptide at 52 weeks from diagnosis of type 1 diabetes',
+        endpointMet: true,
+        statisticalPValue:
+          'Adjusted between-group difference 0.14 pmol/mL (95% CI 0.01 to 0.27), p=0.04, equating to a 30% higher C-peptide level at 52 weeks',
+        unreportedAdverseSignals:
+          'HbA1c did not differ: 6.6% against 6.9%, adjusted difference -0.3% (95% CI -1.0 to 0.4). The endpoint is a mechanistic surrogate in 88 children, and durability beyond 52 weeks is unknown.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Eighteen-month mortality after infarction 11.1% against 13.8%, not statistically significant at p=0.11',
+        'Major events after infarction 18.0% against 21.6% (HR 0.80, 95% CI 0.64 to 0.99, p=0.03)',
+        'Identical primary event rates against an atenolol-based strategy in 22,576 patients (9.93% against 10.17%, RR 0.98)',
+        'Constipation in 7.3% and congestive heart failure or pulmonary oedema in 1.8% of 4,954 trial patients',
+      ],
+      unsupportedInferences: [
+        'That verapamil reduces mortality after myocardial infarction — the trial that looked missed its mortality endpoint',
+        'That INVEST showed the verapamil strategy superior, when the published conclusion is that it was as clinically effective as the comparator',
+        'That preserved C-peptide in newly diagnosed type 1 diabetes will produce better long-term control, when HbA1c did not differ at 52 weeks',
+        'That the rate-control effect is interchangeable with diltiazem — verapamil depresses contractility substantially more at equivalent nodal effect',
+      ],
+      whatFailedInitially: [
+        'DAVIT-II missed all-cause mortality at p=0.11 and reported the composite as its positive result',
+        'The post-infarction benefit disappeared entirely in patients who had heart failure at admission (HR 1.05)',
+        'INVEST found no advantage over a beta-blocker strategy in 22,576 patients with coronary disease',
+        'Constipation, at 7.3%, is the dominant reason the drug is stopped and is not a cardiac effect at all',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in 1981 and on the WHO Model List of Essential Medicines',
+        'Still the reference oral drug for AV nodal reentrant tachycardia prophylaxis where ablation is not chosen',
+        'Its post-infarction subgroup pattern converged with the independent diltiazem trial, which is the strongest evidence either produced',
+        'Under active investigation for beta-cell preservation in newly diagnosed type 1 diabetes, an indication with no cardiac connection at all',
+      ],
+    },
+    deliverySystem: {
+      type: 'Immediate-release tablet, sustained-release tablet and capsule, chronotherapeutic overnight-release formats, and an intravenous bolus',
+      description:
+        'The intravenous route exists for immediate termination of supraventricular tachycardia and acute rate control, and delivers a different enantiomer ratio than the oral route because the more cardioactive S-enantiomer is preferentially removed on first pass. The chronotherapeutic formulations were designed to release drug in the early morning, when cardiovascular events cluster; the outcome hypothesis behind that design was not confirmed.',
+      safetyProfile:
+        'Contraindicated in severe left ventricular dysfunction, systolic pressure below 90 mmHg or cardiogenic shock, sick sinus syndrome or high-grade AV block without a pacemaker, and atrial flutter or fibrillation with an accessory bypass tract. Avoid below 30% ejection fraction and in any ventricular dysfunction when a beta-blocker is co-prescribed. Constipation affects 7.3% and paralytic ileus has been reported. Transaminase elevations occur, occasionally with hepatocellular injury. It raises digoxin levels and inhibits CYP3A4.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does it make me so constipated?',
+        a: 'Because the muscle in your bowel wall uses the same L-type calcium channel as the muscle in your artery walls, and the drug cannot tell them apart. Constipation occurred in 7.3% of the 4,954 patients in the trial database, more than twice the rate of the next most common effect, and it is the leading reason people stop the drug. It is dose-related. Occasionally it goes further: reversible non-obstructive paralytic ileus has been reported, which is a hospital problem rather than a home one, so severe abdominal distension needs assessment rather than more laxative.',
+      },
+      {
+        q: 'Does verapamil prevent heart attacks?',
+        a: 'It has been tested twice at scale and the answer is not clearly yes. After a heart attack, DAVIT-II gave verapamil to 878 patients from the second week and found eighteen-month deaths of 11.1% against 13.8% on placebo — a difference at p=0.11, which is not statistically convincing. The combined count of death or repeat infarction did reach significance at p=0.03. In INVEST, 22,576 patients with high blood pressure and coronary disease were randomised to a verapamil-based or an atenolol-based strategy, and the rates of death, heart attack and stroke were 9.93% and 10.17% — the same. The trial authors described the verapamil strategy as as clinically effective, which is precisely what it was.',
+      },
+      {
+        q: 'Why is it dangerous with Wolff-Parkinson-White syndrome?',
+        a: 'Because in that condition there is a second electrical route between the upper and lower chambers, and verapamil blocks only the normal one. In atrial fibrillation, the AV node normally acts as a filter, letting through only some of the chaotic atrial impulses. Block that filter while an unblocked accessory pathway is available, and more impulses take the alternative route, so the ventricular rate can accelerate rather than slow. Atrial flutter or fibrillation with an accessory bypass tract is therefore a contraindication. It is one of the few places in cardiology where the right drug and a dangerous drug are given for the same presenting problem.',
+      },
+      {
+        q: 'I have heart failure. Can I take it?',
+        a: 'Probably not, and the label is specific. Verapamil weakens the force of each heartbeat, which most hearts absorb because the drug also reduces the resistance they pump against. A heart with little contractile reserve does not absorb it. Severe left ventricular dysfunction is a contraindication, the label directs avoiding the drug below 30% ejection fraction or with moderate to severe failure symptoms, and it directs avoiding it in any degree of ventricular dysfunction if a beta-blocker is also being taken, because both weaken contraction. In the post-infarction trial, patients who had heart failure at admission got no survival benefit at all.',
+      },
+      {
+        q: 'I read that verapamil helps type 1 diabetes. Is that real?',
+        a: 'It is a real randomised finding and a small one, on a laboratory measure rather than on how anyone feels. The CLVer trial gave verapamil or placebo to 88 children and adolescents within a month of diagnosis. After a year, stimulated C-peptide — a marker of how much insulin the pancreas is still making — was about 30% higher on verapamil, with a between-group difference whose confidence interval ran from 0.01 to 0.27 pmol/mL. HbA1c, the measure of actual blood sugar control, was 6.6% against 6.9%, a difference that was not statistically significant. The trial investigators say the durability of the C-peptide effect and the right length of treatment are both unknown. It is a promising signal on a surrogate in 88 children, and it is not yet a treatment.',
+        auditNote:
+          'C-peptide preservation is a mechanistically meaningful surrogate in type 1 diabetes and it is still a surrogate. This trial measured it, found no glycaemic difference, and said so.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Danish Study Group on Verapamil in Myocardial Infarction. Effect of verapamil on mortality and major events after acute myocardial infarction (DAVIT II). Am J Cardiol 1990;66:779-785',
+        identifier: '10.1016/0002-9149(90)90351-z',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pepine CJ, Handberg EM, Cooper-DeHoff RM, et al. A calcium antagonist vs a non-calcium antagonist hypertension treatment strategy for patients with coronary artery disease: the International Verapamil-Trandolapril Study (INVEST). JAMA 2003;290:2805-2816',
+        identifier: '10.1001/jama.290.21.2805',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Forlenza GP, McVean J, Beck RW, et al. Effect of verapamil on pancreatic beta cell function in newly diagnosed pediatric type 1 diabetes: a randomized clinical trial. JAMA 2023;329:990-999',
+        identifier: '10.1001/jama.2023.2064',
+        kind: 'doi',
+      },
+      {
+        label: 'CLVer: verapamil and intensive diabetes management in newly diagnosed type 1 diabetes',
+        identifier: 'NCT04233034',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Multicenter Diltiazem Postinfarction Trial Research Group. The effect of diltiazem on mortality and reinfarction after myocardial infarction. N Engl J Med 1988;319:385-392',
+        identifier: '10.1056/NEJM198808183190701',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Verapamil hydrochloride tablets United States prescribing information — Indications, Contraindications, Warnings and Adverse Reactions sections',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22verapamil+hydrochloride%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — verapamil, 43 listed generic products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 2520 — verapamil structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2520',
         kind: 'url',
       },
     ],

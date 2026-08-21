@@ -3882,4 +3882,466 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 9. Calcium carbonate — chalk. An over-the-counter antacid, the commonest bone supplement in
+  //    the world, and the placebo arm of most of the trials in this file.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'calcium-carbonate',
+    name: 'Calcium Carbonate',
+    tradeName: 'Tums / Ultra Strength Antacid / Extra Strength Antacid / Caltrate',
+    sponsor:
+      'No single originator — a mineral sold under an over-the-counter antacid monograph and as a dietary supplement by many manufacturers; the antacid label on this record is held by Kenvue Brands',
+    targetGene:
+      'None. It has no molecular target: it neutralises stomach acid chemically and supplies calcium ions',
+    targetProtein:
+      'None. Absorbed calcium acts through the calcium-sensing receptor and through ordinary mineral incorporation into hydroxyapatite',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    approvalYear: 2000,
+    indication:
+      'As an over-the-counter antacid: relief of acid indigestion and heartburn, with the label limiting use to no more than the stated maximum in 24 hours and to no more than two weeks except under medical supervision. As a dietary supplement it is sold to raise calcium intake, which is a nutritional claim and not an approved drug indication',
+    patientFriendlyIndication: 'Heartburn and indigestion, and topping up dietary calcium',
+    anatomicalSite:
+      'The stomach lumen, where it neutralises acid, and the small intestine, where a fraction of the calcium is absorbed',
+    conditionContext: {
+      conditionExplainer:
+        'Calcium carbonate is chalk. In the stomach it reacts with hydrochloric acid, which is why it relieves heartburn within minutes. The reaction also frees calcium ions, a small proportion of which are absorbed, which is why the same substance is sold as a bone supplement. One chemical, two entirely different uses, sitting on the same shelf.',
+      whyItMatters:
+        'It is the comparator underneath almost every drug in this file. The alendronate, risedronate, raloxifene and zoledronic acid trials all gave calcium and vitamin D to their placebo groups, so every fracture reduction on those pages is a reduction on top of this. Its own effect on fractures, tested directly in 36,282 women, did not reach significance.',
+      whoTakesThis:
+        'Almost everyone at some point, for heartburn. And a very large number of postmenopausal women, daily and for years, for bone.',
+      clinicalGoals:
+        'Symptom relief within minutes for the antacid use. For the supplement use, an intake target — which is a different kind of goal from a fracture reduction, and the trials keep the distinction.',
+    },
+    oneSentenceVerdict:
+      'Chalk, which neutralises stomach acid in minutes and supplies the mineral bone is built from — and which, given with 400 IU of vitamin D to 36,282 postmenopausal women for seven years, raised hip bone density by 1.06% while missing hip fracture at a hazard ratio of 0.88 (95% CI 0.72 to 1.08) and significantly increasing kidney stones at 1.17 (1.02 to 1.34).',
+    laymanHowItWorks:
+      'In the stomach it is a straightforward acid-base reaction: chalk plus stomach acid gives calcium, water and carbon dioxide, which is why relief is quick and why it can make you belch. In the intestine, a fraction of the freed calcium crosses into the blood, and that requires stomach acid to have dissolved it first — which is why this particular calcium salt is absorbed poorly by people on acid-blocking drugs.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0323 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 37 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'A mineral, mined or precipitated, with no patent and no originator. At about three United States cents per tablet at pharmacy acquisition it is the cheapest entry in this file by an order of magnitude, and cost is never the reason it is not taken.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For heartburn the alternatives are other antacids and the acid-suppressing drugs, which act more slowly and last far longer. For bone, the honest alternative is dietary calcium: the trial evidence for supplements is a small density gain, no significant fracture reduction in healthy postmenopausal women, more kidney stones, and a contested cardiovascular signal — none of which has been shown for calcium eaten as food.',
+      conventionalRx: [
+        {
+          name: 'Calcium citrate',
+          class: 'Alternative calcium salt',
+          howItCompares:
+            'Does not require stomach acid to dissolve, so it is the salt used when acid is suppressed by a proton pump inhibitor or after gastric surgery. It contains less elemental calcium per gram, so more tablets are needed for the same amount.',
+          typicalCost:
+            'Not stated: no verified CMS acquisition price for calcium citrate was held on this record at the time of writing',
+          prosAndCons:
+            'Pros: absorption independent of gastric acid; less constipating for many people. Cons: a lower proportion of elemental calcium, so a larger tablet burden; no separate fracture evidence.',
+        },
+        {
+          name: 'Proton pump inhibitors and H2 blockers',
+          class: 'Acid suppression rather than acid neutralisation',
+          howItCompares:
+            'For heartburn they work far longer but not immediately, because they stop acid being made rather than removing acid already present. They also reduce absorption of calcium carbonate specifically, which is the interaction most often missed when someone takes both.',
+          typicalCost:
+            'Not stated: no verified CMS acquisition price for a comparable acid suppressant was held on this record at the time of writing',
+          prosAndCons:
+            'Pros: sustained relief; treat the cause rather than the symptom. Cons: no immediate effect; long-term acid suppression impairs calcium carbonate absorption and is itself associated with fracture in observational data.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Dairy — milk, yoghurt, hard cheese',
+          activeCompound: 'Calcium, with protein, phosphorus and, in fortified products, vitamin D',
+          biologicalMechanism:
+            'Supplies calcium in a food matrix, absorbed gradually across a meal rather than as a single bolus. The cardiovascular signal reported for supplements has not been found for dietary calcium, and the leading hypothesis for that difference is the size and speed of the rise in blood calcium after a supplement.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated: this page carries no intake guidance. The relevant evidence is comparative — the harms reported in the supplement trials have not been reported for calcium consumed as food.',
+          monthlyCost: 'Ordinary grocery cost; not separately priced',
+        },
+        {
+          name: 'Tinned sardines and salmon eaten with the bones',
+          activeCompound: 'Calcium hydroxyapatite, with vitamin D and omega-3 fatty acids',
+          biologicalMechanism:
+            'Fish bones are hydroxyapatite, the same mineral form found in human bone, and are absorbed comparably to dairy calcium.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'Not stated: this page carries no intake guidance. These are among the few non-dairy foods that deliver calcium at a density comparable to milk.',
+          monthlyCost: 'Ordinary grocery cost; not separately priced',
+        },
+        {
+          name: 'Kale, bok choy, broccoli and fortified plant drinks',
+          activeCompound: 'Calcium, at varying absorbability',
+          biologicalMechanism:
+            'Low-oxalate greens deliver calcium that is absorbed at least as well as dairy calcium. High-oxalate greens such as spinach bind their own calcium and deliver very little of it, which is a common source of confusion in food tables.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'Not stated: this page carries no intake guidance. The oxalate distinction is the useful mechanistic fact and is why spinach is a poor calcium source despite a high number on the label.',
+          monthlyCost: 'Ordinary grocery cost; not separately priced',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Do not treat heartburn with it for more than the label allows',
+          action:
+            'The over-the-counter label limits use to the stated maximum in 24 hours and to no more than two weeks except under medical supervision.',
+          patientImpact:
+            'Persistent heartburn needs a diagnosis rather than more antacid, and sustained high-dose calcium with an alkali is the recipe for calcium-alkali syndrome.',
+          clinicalPrecaution:
+            'The label also warns that antacids interact with prescription medicines and directs asking a doctor or pharmacist first.',
+        },
+        {
+          name: 'Separate it from other tablets',
+          action:
+            'Take it at a different time from thyroid hormone, tetracycline and quinolone antibiotics, iron and bisphosphonates.',
+          patientImpact:
+            'Calcium binds several drug classes in the gut and prevents their absorption. For an oral bisphosphonate, whose bioavailability is already under one percent, taking it with calcium reduces absorption to essentially nothing.',
+          clinicalPrecaution:
+            'This is a chelation effect in the gut lumen, not a metabolic interaction, so timing separates them. How far apart is a pharmacist’s question and is not addressed here.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C(=O)([O-])[O-].[Ca+2]',
+      chemicalFormula: 'CCaO3',
+      molecularWeight: '100.09 g/mol',
+      targetReceptorAffinity:
+        'None. There is no receptor and no binding constant. Calcium carbonate is 40% elemental calcium by mass, the highest proportion of the common calcium salts, which is why it dominates the supplement market. Its dissolution requires gastric acid, so absorption falls substantially when acid is suppressed — the one pharmacological property that distinguishes it from calcium citrate.',
+      structureSource: {
+        label:
+          'PubChem CID 10112 (calcium carbonate) — canonical SMILES, molecular formula and weight, as held on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/10112',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cc-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Heavy metal and polymorph screening of the source mineral',
+          description:
+            'Test the limestone or oyster-shell source for lead, cadmium and arsenic, and identify the crystal polymorph. This is the step that matters most for a mineral product: the risk in calcium carbonate is almost entirely in what came with it out of the ground, not in the compound itself.',
+          reagentsAndBuffer:
+            'Inductively coupled plasma mass spectrometry for lead, cadmium, arsenic and mercury after acid digestion, X-ray powder diffraction for calcite against aragonite, loss on ignition for carbonate content',
+        },
+        {
+          id: 'cc-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Precipitation of pharmaceutical-grade carbonate',
+          description:
+            'Where mined limestone is not clean enough, calcium carbonate is precipitated by carbonating calcium hydroxide. Precipitation gives control of particle size and purity that grinding a rock cannot, and particle size is what decides how fast an antacid tablet works.',
+          reagentsAndBuffer:
+            'Calcined limestone slaked to calcium hydroxide, carbon dioxide sparging under controlled temperature and agitation, filtration and washing to remove soluble impurities',
+          dependsOnStepId: 'cc-w1',
+        },
+        {
+          id: 'cc-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Particle sizing, drying and tabletting',
+          description:
+            'Dry, size and compress. For the antacid use the specification is acid-neutralising capacity, which is a functional test rather than a chemical one, and it depends on surface area as much as on assay.',
+          dependsOnStepId: 'cc-w2',
+          reagentsAndBuffer:
+            'Laser diffraction particle sizing, direct compression with disintegrant and lubricant, acid-neutralising capacity determination by titration against standardised hydrochloric acid to the compendial endpoint',
+        },
+        {
+          id: 'cc-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Absorption measurement across an intestinal monolayer at controlled pH',
+          description:
+            'Measure calcium flux across an intestinal cell monolayer with the compound predissolved at gastric pH and, separately, at neutral pH. Running the neutral-pH arm is the point: it reproduces what happens on an acid-suppressing drug, and it is the condition under which this salt underperforms calcium citrate.',
+          dependsOnStepId: 'cc-w3',
+          reagentsAndBuffer:
+            'Caco-2 monolayers on permeable supports, simulated gastric fluid at pH 1.2 and simulated intestinal fluid at pH 6.8, stable-isotope calcium-44 tracer, transepithelial electrical resistance monitoring for monolayer integrity',
+        },
+        {
+          id: 'cc-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Serum calcium excursion and urinary calcium after a single dose',
+          description:
+            'Track the rise in blood calcium over the hours after a dose and the calcium appearing in urine. The size and speed of that excursion is the leading hypothesis for why supplements carry a cardiovascular signal that dietary calcium does not, and it is measurable.',
+          dependsOnStepId: 'cc-w4',
+          reagentsAndBuffer:
+            'Serial albumin-corrected serum calcium over 8 hours, ionised calcium by direct electrode, 24-hour urinary calcium and creatinine, matched dietary-calcium comparison meal at equal elemental calcium',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cc-a1',
+        category: 'failed',
+        title: 'In 36,282 women over seven years, hip fracture was not significantly reduced',
+        laymanSummary:
+          'The largest trial ever run of calcium and vitamin D gave it to more than thirty-six thousand postmenopausal women for seven years. Hip bone density rose by about one percent. Hip fractures did not fall significantly. Kidney stones went up.',
+        technicalDetails:
+          'The Women’s Health Initiative Calcium/Vitamin D trial randomised 36,282 postmenopausal women aged 50 to 79 to 1000 mg of elemental calcium as calcium carbonate with 400 IU of vitamin D3 daily or placebo, with fractures ascertained over an average of 7.0 years. Hip bone density was 1.06% higher on treatment (P<0.01). In intention-to-treat analysis the hazard ratio was 0.88 for hip fracture (95% CI 0.72 to 1.08), 0.90 for clinical spine fracture (0.74 to 1.10) and 0.96 for total fractures (0.91 to 1.02) — none significant. Renal calculi increased, hazard ratio 1.17 (95% CI 1.02 to 1.34). Censoring at non-adherence lowered the hip fracture hazard ratio to 0.71 (0.52 to 0.97), which is an on-treatment analysis rather than a randomised comparison. Effects did not vary by prerandomisation serum vitamin D.',
+        evidenceSource:
+          'Jackson RD et al., N Engl J Med 2006;354:669-683 (WHI CaD, NCT00000611)',
+        doi: '10.1056/NEJMoa055218',
+        measuredMetric:
+          'Hip fracture hazard ratio 0.88 (95% CI 0.72 to 1.08); renal calculi hazard ratio 1.17 (1.02 to 1.34)',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cc-a2',
+        category: 'conclusion_shift',
+        title: 'The cardiovascular signal that changed how supplements are viewed',
+        laymanSummary:
+          'Pooling the randomised trials, people taking calcium supplements had more heart attacks than people taking placebo. The largest trial had missed it because nearly half its participants were already taking calcium of their own before they were randomised.',
+        technicalDetails:
+          'Bolland and colleagues pooled 15 randomised placebo-controlled trials of calcium supplements of at least 500 mg per day without co-administered vitamin D. In the five with patient-level data (8151 participants, median follow-up 3.6 years), 143 allocated to calcium had a myocardial infarction against 111 on placebo, hazard ratio 1.31 (95% CI 1.02 to 1.67, P=0.035); stroke 1.20 (0.96 to 1.50) and death 1.09 (0.96 to 1.23) were not significant. Trial-level data in 11,921 participants gave a pooled relative risk of 1.27 (1.01 to 1.59, P=0.038). The following year the same group reanalysed the WHI limited-access dataset and found an interaction with personal calcium supplement use at randomisation: in the 16,718 women (46%) not already taking supplements, hazard ratios for cardiovascular events ran 1.13 to 1.22, while in women already taking them risk did not change with allocation. Meta-analysis across eight trials plus the WHI non-users, 28,072 participants and 1384 events, gave a relative risk of 1.24 (1.07 to 1.45, P=0.004) for myocardial infarction and 1.15 (1.03 to 1.27, P=0.009) for myocardial infarction or stroke. The authors of both papers called for a reassessment of the role of calcium supplements in osteoporosis management. The finding has been disputed, and the disclosure statement records the senior author’s research support from a dairy company.',
+        evidenceSource:
+          'Bolland MJ et al., BMJ 2010;341:c3691; Bolland MJ et al., BMJ 2011;342:d2040',
+        doi: '10.1136/bmj.d2040',
+        inferredClaim:
+          'That a supplement of an essential nutrient must be at worst harmless — the pooled randomised evidence puts myocardial infarction at a relative risk of 1.24 (95% CI 1.07 to 1.45)',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cc-a3',
+        category: 'failed',
+        title:
+          'The USPSTF recommends against it for fracture prevention in healthy postmenopausal women',
+        laymanSummary:
+          'The United States preventive task force looked at the evidence and issued its second-strongest negative grade: do not take 1000 mg of calcium with 400 IU of vitamin D to prevent fractures if you are a healthy postmenopausal woman living at home.',
+        technicalDetails:
+          'The 2018 USPSTF statement found adequate evidence that daily supplementation with 400 IU or less of vitamin D and 1000 mg or less of calcium has no benefit for the primary prevention of fractures in community-dwelling postmenopausal women, and issued a D recommendation against it. It found inadequate evidence to estimate benefits at higher doses, or in men and premenopausal women at any dose, issuing I statements for both. It found adequate evidence that supplementation with vitamin D and calcium increases the incidence of kidney stones. The recommendations explicitly exclude people with osteoporosis, vitamin D deficiency, a previous fracture, or long-term steroid use — which is most of the population the drugs elsewhere in this file are for.',
+        evidenceSource:
+          'US Preventive Services Task Force. JAMA 2018;319:1592-1599',
+        doi: '10.1001/jama.2018.3185',
+        measuredMetric:
+          'D recommendation against ≤400 IU vitamin D with ≤1000 mg calcium for primary fracture prevention in community-dwelling postmenopausal women',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cc-a4',
+        category: 'measured',
+        title: 'It is the invisible floor under every other page in this file',
+        laymanSummary:
+          'Almost every osteoporosis drug trial gave calcium and vitamin D to both groups, including the placebo group. So the benefits reported on those pages are benefits on top of calcium, not instead of it.',
+        technicalDetails:
+          'In the Fracture Intervention Trial, all participants reporting calcium intake of 1000 mg per day or less received a supplement containing 500 mg of calcium and 250 IU of cholecalciferol. In VERT-NA all subjects received 1000 mg of calcium daily with up to 500 IU of vitamin D where baseline levels were low. In MORE all women received supplemental calcium and cholecalciferol. In HORIZON-RFT all patients received supplemental vitamin D and calcium. This is the reason the drug effects elsewhere in this file are increments rather than totals, and it is also why calcium cannot be presented as an alternative to those drugs: it was present in both arms of the trials that established them.',
+        evidenceSource:
+          'Cummings SR et al., JAMA 1998;280:2077-2082; Harris ST et al., JAMA 1999;282:1344-1352; Ettinger B et al., JAMA 1999;282:637-645; Lyles KW et al., N Engl J Med 2007;357:1799-1809',
+        doi: '10.1001/jama.280.24.2077',
+        measuredMetric:
+          'Calcium and vitamin D supplied to both arms in the pivotal trials of alendronate, risedronate, raloxifene and zoledronic acid',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cc-a5',
+        category: 'measured',
+        title: 'Taken with an alkali at high dose it can cause a named syndrome',
+        laymanSummary:
+          'Large amounts of calcium taken with something alkaline — which chalk itself is — can produce a triad of high blood calcium, alkaline blood and failing kidneys. It used to come from milk and bicarbonate for ulcers; now it comes from supplements.',
+        technicalDetails:
+          'Ingestion of calcium with alkali produces hypercalcaemia, metabolic alkalosis and renal insufficiency. Originally described as milk-alkali syndrome in patients treating peptic ulcer with milk and bicarbonate, the condition largely disappeared with the arrival of acid-suppressing drugs and returned as calcium-alkali syndrome, driven by calcium carbonate taken for bone or for heartburn. The reviewers describe it as an important cause of morbidity that may be rising, and as an unintended consequence of shifts in calcium and vitamin D intake in segments of the population. Calcium carbonate supplies both halves of the syndrome at once, which is why it is the salt most often implicated.',
+        evidenceSource: 'Patel AM, Adeseun GA, Goldfarb S. Nutrients 2013;5:4880-4893',
+        doi: '10.3390/nu5124880',
+        measuredMetric:
+          'The defining triad: hypercalcaemia, metabolic alkalosis and renal insufficiency after combined calcium and alkali ingestion',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'In the stomach it is simply an acid-base reaction',
+        laymanDesc:
+          'Chalk meets stomach acid and neutralises it within minutes. The carbon dioxide produced is why it can make you belch.',
+        molecularDetail:
+          'CaCO3 plus two HCl gives CaCl2, H2O and CO2. Onset is a matter of minutes because no absorption is required, and duration is short because the stomach continues to secrete acid. The functional specification for an antacid tablet is acid-neutralising capacity, measured by titration, not a plasma concentration.',
+        iconName: 'Flame',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The same reaction is what makes the calcium absorbable',
+        laymanDesc:
+          'The calcium in chalk is locked up until acid dissolves it. That is why this particular calcium salt works poorly in people taking acid-blocking drugs.',
+        molecularDetail:
+          'Dissolution of calcium carbonate requires an acidic environment to liberate ionised calcium. Under proton pump inhibition or after gastric surgery, absorption falls markedly, which is the one clinically actionable difference between this salt and calcium citrate, whose dissolution is acid-independent.',
+        iconName: 'Droplet',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A fraction crosses the intestinal wall',
+        laymanDesc:
+          'Only some of the calcium is absorbed, and the proportion falls as the dose rises. Splitting a large dose gets more in than taking it all at once.',
+        molecularDetail:
+          'Absorption is transcellular and saturable at low luminal concentrations, mediated by TRPV6 and calbindin under vitamin D control, and paracellular and non-saturable at high concentrations. Fractional absorption therefore falls as dose rises, which is a mass-action property rather than a formulation one.',
+        iconName: 'ArrowUpCircle',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Blood calcium rises sharply for a few hours',
+        laymanDesc:
+          'A supplement produces a spike in blood calcium that food does not. This difference is the leading explanation for why supplements carry a heart signal that dietary calcium does not.',
+        molecularDetail:
+          'A bolus supplement produces a measurable acute rise in serum calcium over several hours, unlike calcium distributed across a meal. The hypothesis linking that excursion to vascular events is unproven, but it is the mechanistic account offered for a difference that is consistent across the observational and randomised literatures.',
+        iconName: 'TrendingUp',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Some is deposited in bone; some appears in urine',
+        laymanDesc:
+          'Absorbed calcium either goes into bone or is filtered out by the kidney. More in the urine means more raw material for a stone.',
+        molecularDetail:
+          'Calcium not incorporated into hydroxyapatite is excreted renally. In WHI CaD the direct consequence was measured: renal calculi hazard ratio 1.17 (95% CI 1.02 to 1.34), the one clearly significant effect the trial found in either direction.',
+        iconName: 'Filter',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Density rises by about one percent; fractures did not significantly fall',
+        laymanDesc:
+          'Seven years of it raised hip bone density by roughly one percent in the largest trial ever run. Hip fractures did not fall significantly, and kidney stones did rise.',
+        molecularDetail:
+          'WHI CaD: hip bone density +1.06% (P<0.01); hip fracture hazard ratio 0.88 (95% CI 0.72 to 1.08); total fracture 0.96 (0.91 to 1.02); renal calculi 1.17 (1.02 to 1.34). This is the cleanest illustration in the file of a bone-density gain that did not deliver a fracture reduction.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'WHI Calcium/Vitamin D Supplementation Study (NCT00000611)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, average 7.0 years',
+        sampleSize: 36282,
+        primaryEndpoint: 'Hip fracture',
+        endpointMet: false,
+        statisticalPValue:
+          'Hazard ratio 0.88 (95% CI 0.72 to 1.08); hip bone density +1.06% (P<0.01); renal calculi hazard ratio 1.17 (1.02 to 1.34)',
+        unreportedAdverseSignals:
+          'Roughly 46% of participants were already taking personal calcium supplements at randomisation, which a later reanalysis showed obscured a cardiovascular interaction. The on-treatment hazard ratio of 0.71 is widely quoted without noting that it is not a randomised comparison.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Bolland 2010 patient-level and trial-level meta-analysis of calcium supplements',
+        phase: 'Meta-analysis of 15 randomised placebo-controlled trials',
+        sampleSize: 20072,
+        primaryEndpoint: 'Myocardial infarction and composite cardiovascular events',
+        endpointMet: false,
+        statisticalPValue:
+          'Patient-level hazard ratio for myocardial infarction 1.31 (95% CI 1.02 to 1.67, P=0.035); trial-level pooled relative risk 1.27 (1.01 to 1.59, P=0.038)',
+        unreportedAdverseSignals:
+          'Cardiovascular outcomes came from self-reports, hospital admissions and death certificates rather than from adjudicated endpoints prespecified in the constituent trials, since none of those trials was designed to measure them.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Hip bone density 1.06% higher than placebo after 7.0 years in 36,282 women (P<0.01)',
+        'Hip fracture hazard ratio 0.88 (95% CI 0.72 to 1.08) — not significant',
+        'Renal calculi hazard ratio 1.17 (95% CI 1.02 to 1.34) — significant',
+        'Myocardial infarction relative risk 1.24 (95% CI 1.07 to 1.45) in pooled randomised trials of calcium supplements',
+        'Immediate acid neutralisation in the stomach, the basis of the over-the-counter antacid label',
+      ],
+      unsupportedInferences: [
+        'That a 1.06% gain in hip bone density is a fracture benefit — in the same trial it was not',
+        'That calcium supplements substitute for the drugs elsewhere in this file, when those trials gave calcium to their placebo arms too',
+        'That an essential nutrient is harmless as a supplement, when the randomised pooled estimate for myocardial infarction is above 1',
+        'That the on-treatment hip fracture hazard ratio of 0.71 in WHI is the trial’s result — it is an adherence-censored analysis, not the randomised comparison',
+      ],
+      whatFailedInitially: [
+        'The largest trial ever run of calcium and vitamin D missed hip fracture, clinical spine fracture and total fracture',
+        'Kidney stones rose significantly, and the USPSTF later graded that harm as adequately evidenced',
+        'The cardiovascular signal was invisible in WHI itself because 46% of participants were already taking their own calcium at randomisation',
+        'Milk-alkali syndrome, thought to have been abolished by acid-suppressing drugs, returned as calcium-alkali syndrome driven by supplements',
+      ],
+      realWorldOutcome: [
+        'Among the most consumed products in the world, as an antacid at about three cents a tablet and as the default bone supplement',
+        'The USPSTF recommends against 1000 mg of calcium with 400 IU of vitamin D for fracture prevention in healthy community-dwelling postmenopausal women',
+        'It remains standard co-therapy alongside every drug in this file, because that is how those drugs were tested and how their labels are written',
+        'The distinction between calcium eaten as food and calcium taken as a bolus supplement is now the central question in this literature and is still unresolved',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral chewable tablet, swallowable tablet, and liquid suspension',
+      description:
+        'Chewed or swallowed. As an antacid it works within minutes because no absorption is needed. As a calcium source it depends on gastric acid to dissolve, so it is taken with food and is a poor choice for anyone on long-term acid suppression.',
+      safetyProfile:
+        'Sold over the counter without a boxed warning. The label limits antacid use to the stated maximum in 24 hours and to two weeks without medical supervision, and warns of interactions with prescription drugs. Constipation and bloating are the common effects. The measured harms in the randomised literature are kidney stones, hazard ratio 1.17 (95% CI 1.02 to 1.34) in WHI, and a contested increase in myocardial infarction, relative risk 1.24 (1.07 to 1.45) in pooled trials. High-dose use with alkali can produce calcium-alkali syndrome: hypercalcaemia, metabolic alkalosis and renal insufficiency. It binds thyroid hormone, tetracyclines, quinolones, iron and bisphosphonates in the gut.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does taking calcium prevent fractures?',
+        a: 'In healthy postmenopausal women, the largest trial says no. The Women’s Health Initiative randomised 36,282 women to 1000 mg of calcium carbonate with 400 IU of vitamin D or placebo for an average of seven years. Hip bone density rose by 1.06%, and hip fracture, spine fracture and total fracture all had confidence intervals crossing 1. Kidney stones rose significantly. The United States preventive task force reviewed this and issued a recommendation against that combination for fracture prevention in that group. What the trials do not address is people who are actually deficient, or who have osteoporosis, or who are taking one of the drugs elsewhere in this file — all of whom were excluded from the task force’s remit.',
+        auditNote:
+          'The 1.06% density gain and the null fracture result are from the same trial, the same women and the same seven years. That is the cleanest available demonstration that density is a surrogate.',
+      },
+      {
+        q: 'Is it true that calcium supplements cause heart attacks?',
+        a: 'The randomised evidence points that way and the question is not settled. Pooling fifteen placebo-controlled trials, myocardial infarction occurred in 143 people on calcium against 111 on placebo, a hazard ratio of 1.31. A later analysis adding the Women’s Health Initiative participants who were not already taking their own supplements gave a relative risk of 1.24 for myocardial infarction across 28,072 people. The signal is modest, the outcomes were not adjudicated endpoints in the original trials, and the finding has been disputed in print. What is agreed is that no comparable signal has been found for calcium eaten as food.',
+      },
+      {
+        q: 'Why does it matter whether I take an acid-blocking drug?',
+        a: 'Because this particular calcium salt has to be dissolved by stomach acid before any of it can be absorbed. On a proton pump inhibitor there is much less acid, so much less of the calcium becomes available. Calcium citrate does not have this problem: it dissolves regardless of pH, which is why it is the salt used after gastric surgery or during long-term acid suppression. It contains less elemental calcium per gram, so it takes more of it.',
+      },
+      {
+        q: 'Should I take it with my osteoporosis drug?',
+        a: 'That is a prescriber’s decision, and what can be reported is how the trials were run. Every major trial on the neighbouring pages gave calcium and vitamin D to both arms, including the placebo arm — the alendronate trial supplied 500 mg with 250 IU to anyone whose intake was below 1000 mg a day, the risedronate trial gave 1000 mg to everyone, the raloxifene and zoledronic acid trials did the same. So the fracture reductions attributed to those drugs are reductions measured on top of calcium replacement. What is separately true is that calcium binds an oral bisphosphonate in the gut and destroys its absorption, so the two are not taken at the same time.',
+      },
+      {
+        q: 'Can I take it for heartburn every day?',
+        a: 'The label says not for more than two weeks except under medical supervision, and not more than the stated maximum in 24 hours. Two reasons sit behind that. Heartburn that persists for weeks needs a diagnosis rather than a stronger antacid. And sustained high-dose calcium taken with an alkali — which chalk itself is — produces calcium-alkali syndrome: high blood calcium, alkaline blood and failing kidneys. That syndrome had almost disappeared when acid-suppressing drugs replaced milk-and-bicarbonate ulcer treatment, and it came back through supplements.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Jackson RD et al. Calcium plus vitamin D supplementation and the risk of fractures. N Engl J Med 2006;354:669-683 (WHI CaD)',
+        identifier: '10.1056/NEJMoa055218',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bolland MJ et al. Effect of calcium supplements on risk of myocardial infarction and cardiovascular events: meta-analysis. BMJ 2010;341:c3691',
+        identifier: '10.1136/bmj.c3691',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bolland MJ et al. Calcium supplements with or without vitamin D and risk of cardiovascular events: reanalysis of the Women’s Health Initiative limited access dataset and meta-analysis. BMJ 2011;342:d2040',
+        identifier: '10.1136/bmj.d2040',
+        kind: 'doi',
+      },
+      {
+        label:
+          'US Preventive Services Task Force. Vitamin D, calcium, or combined supplementation for the primary prevention of fractures in community-dwelling adults: recommendation statement. JAMA 2018;319:1592-1599',
+        identifier: '10.1001/jama.2018.3185',
+        kind: 'doi',
+      },
+      {
+        label: 'Patel AM, Adeseun GA, Goldfarb S. Calcium-alkali syndrome in the modern era. Nutrients 2013;5:4880-4893',
+        identifier: '10.3390/nu5124880',
+        kind: 'doi',
+      },
+      {
+        label: 'WHI Calcium/Vitamin D Supplementation Study, ClinicalTrials.gov registration',
+        identifier: 'NCT00000611',
+        kind: 'nct',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

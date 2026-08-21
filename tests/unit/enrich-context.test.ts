@@ -95,6 +95,13 @@ describe('describeRecord', () => {
     ).not.toContain('marked discontinued')
   })
 
+  it('does not tell a supplement it has an FDA drug record', () => {
+    const out = describeRecord('7-Keto-Dehydroepiandrosterone', null, true)
+    expect(out).toContain('NIH Dietary Supplement Label Database')
+    expect(out).toContain('not reviewed by the FDA before they go on sale')
+    expect(out).not.toContain("FDA's public drug records list")
+  })
+
   it('does not guess why an empty record is empty', () => {
     const empty = describeRecord('Acetyl Tetrapeptide-5', null)
     expect(empty).toContain('which one applies here is not recorded')
