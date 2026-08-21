@@ -65,7 +65,9 @@ async function main(): Promise<void> {
     aliasesByDrug.set(row.drugId, list)
   }
 
-  console.log(`[export] ${rows.length.toLocaleString()} records, ${aliasRows.length.toLocaleString()} aliases`)
+  console.log(
+    `[export] ${rows.length.toLocaleString()} records, ${aliasRows.length.toLocaleString()} aliases`,
+  )
 
   // Wipe and rebuild, so a record deleted upstream disappears here rather than lingering as a
   // file nobody notices is stale.
@@ -118,15 +120,29 @@ async function main(): Promise<void> {
       bytes: Buffer.byteLength(body),
       sha256: sha256(body),
     })
-    console.log(`[export] ${name} · ${slice.length} rows · ${(Buffer.byteLength(body) / 1e6).toFixed(1)} MB`)
+    console.log(
+      `[export] ${name} · ${slice.length} rows · ${(Buffer.byteLength(body) / 1e6).toFixed(1)} MB`,
+    )
   }
 
   // A flat CSV of the columns most people want, for anyone who would rather open a spreadsheet
   // than parse newline-delimited JSON.
   const csvHeader = [
-    'slug', 'name', 'trade_name', 'sponsor', 'modality', 'approval_status', 'approval_year',
-    'target_gene', 'patient_friendly_indication', 'dossier_depth', 'machine_verified',
-    'smiles', 'chemical_formula', 'trial_count', 'url',
+    'slug',
+    'name',
+    'trade_name',
+    'sponsor',
+    'modality',
+    'approval_status',
+    'approval_year',
+    'target_gene',
+    'patient_friendly_indication',
+    'dossier_depth',
+    'machine_verified',
+    'smiles',
+    'chemical_formula',
+    'trial_count',
+    'url',
   ]
   const csvEscape = (value: unknown): string => {
     const text = value === null || value === undefined ? '' : String(value)
@@ -137,12 +153,24 @@ async function main(): Promise<void> {
     const dossier = rowToDossier(row)
     csvLines.push(
       [
-        row.slug, row.name, row.tradeName, row.sponsor, row.modality, row.approvalStatus,
-        row.approvalYear, row.targetGene, row.patientFriendlyIndication, row.dossierDepth,
-        row.isMachineVerifiedStructure, dossier.molecularSchema?.smilesString,
-        dossier.molecularSchema?.chemicalFormula, dossier.trials.length,
+        row.slug,
+        row.name,
+        row.tradeName,
+        row.sponsor,
+        row.modality,
+        row.approvalStatus,
+        row.approvalYear,
+        row.targetGene,
+        row.patientFriendlyIndication,
+        row.dossierDepth,
+        row.isMachineVerifiedStructure,
+        dossier.molecularSchema?.smilesString,
+        dossier.molecularSchema?.chemicalFormula,
+        dossier.trials.length,
         `https://rnawiki.com/d/${row.slug}`,
-      ].map(csvEscape).join(','),
+      ]
+        .map(csvEscape)
+        .join(','),
     )
   }
   const csvBody = `${csvLines.join('\n')}\n`

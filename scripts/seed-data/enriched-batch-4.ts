@@ -64,6 +64,29 @@ const NO_COST_STUDY_SOURCE = {
   kind: 'doi' as const,
 }
 
+/**
+ * Hospital-administered products in this group are billed to Medicare Part B and never appear in
+ * the retail NADAC survey, because no community pharmacy buys them. Where that is the case the
+ * price cited is CMS's own average Medicare spending per dosage unit, which is a payment and not a
+ * cost of manufacture.
+ */
+const CMS_PART_B_SOURCE = {
+  label:
+    'CMS Medicare Part B Spending by Drug — average Medicare spending per dosage unit by HCPCS code, 2024 reporting year, alongside the published average sales price',
+  identifier:
+    'https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicare-part-b-spending-by-drug',
+  kind: 'url' as const,
+}
+
+/** The equivalent dataset for drugs dispensed through a pharmacy benefit rather than a clinic. */
+const CMS_PART_D_SOURCE = {
+  label:
+    'CMS Medicare Part D Spending by Drug — average spending per dosage unit weighted by claim, 2023 reporting year',
+  identifier:
+    'https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicare-part-d-spending-by-drug',
+  kind: 'url' as const,
+}
+
 export const ENRICHED_BATCH_4_DOSSIERS: SeedDossier[] = [
   // ---------------------------------------------------------------------------------------------
   // 1. Aminocaproic acid — the older lysine analogue, and the one nobody ever powered for death.
@@ -1140,7 +1163,11 @@ export const ENRICHED_BATCH_4_DOSSIERS: SeedDossier[] = [
       ],
     },
     molecularSchema: {
-      structureType: 'peptide_sequence',
+      // A connection table, not a sequence. Desmopressin is a cyclic nonapeptide with a
+      // disulfide bridge and a D-arginine, none of which a one-letter sequence expresses — so the
+      // structure is given as a SMILES and the type has to say so, or Layer 1 routes it to the
+      // peptide branch and reads the bracket characters as illegal residues.
+      structureType: 'small_molecule_smiles',
       smilesString:
         'C1C[C@H](N(C1)C(=O)[C@@H]2CSSCCC(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N2)CC(=O)N)CCC(=O)N)CC3=CC=CC=C3)CC4=CC=C(C=C4)O)C(=O)N[C@H](CCCN=C(N)N)C(=O)NCC(=O)N',
       chemicalFormula: 'C46H64N14O12S2',
@@ -1193,7 +1220,7 @@ export const ENRICHED_BATCH_4_DOSSIERS: SeedDossier[] = [
           name: 'Preparative reversed-phase separation and acetate salt exchange',
           description:
             'Separate the cyclic monomer from deletion sequences, the linear precursor and the intermolecular dimers, then exchange the trifluoroacetate counter-ion for acetate. The dispensed drug is desmopressin acetate, and the counter-ion is part of the identity.',
-          dependsOnStepId: 'ddavp-w3',
+          dependsOnStepId: 'ddavp-w2',
           reagentsAndBuffer:
             'Preparative C18 reversed-phase column, water and acetonitrile with trifluoroacetic acid, ion-exchange or repeated lyophilisation from acetic acid for salt exchange, residual TFA determination by ion chromatography',
         },
@@ -1827,7 +1854,7 @@ export const ENRICHED_BATCH_4_DOSSIERS: SeedDossier[] = [
           'The new chemical group lets each factor hold a calcium ion, and the calcium bridges it onto the surface of injured cells. Clotting is a surface reaction, and this is the ticket to the surface.',
         molecularDetail:
           'Gamma-carboxyglutamate residues chelate calcium ions, which bridge the Gla domain to negatively charged phospholipid exposed on activated platelets and damaged endothelium. Colocalisation on that surface accelerates the tenase and prothrombinase reactions by orders of magnitude. Uncarboxylated factors circulate at normal concentration and are functionally inert, which is why the immunoassay for des-gamma-carboxy prothrombin detects deficiency that a factor level does not.',
-        iconName: 'Magnet',
+        iconName: 'Zap',
         visualStage: 'target_binding',
       },
       {
@@ -2026,6 +2053,949 @@ export const ENRICHED_BATCH_4_DOSSIERS: SeedDossier[] = [
           'PubChem CID 5284607 — phylloquinone structure, molecular formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284607',
         kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Protamine sulfate — fifty-seven years of universal use, and one placebo-controlled trial.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'protamine',
+    name: 'Protamine Sulfate',
+    sponsor:
+      'Eli Lilly and Company held the original NDA 006460, approved 13 August 1969 and since discontinued; the marketed United States product is Fresenius Kabi USA under ANDA 089454',
+    targetGene:
+      'None. The target is heparin, a sulfated polysaccharide drug, and no gene encodes it',
+    targetProtein:
+      'Unfractionated heparin itself. Protamine neutralises it by ionic complexation between its arginine side chains and heparin sulfate groups, not by binding any receptor or enzyme',
+    modality: 'Recombinant Protein / Biologic',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1969,
+    indication: 'Treatment of heparin overdosage',
+    patientFriendlyIndication:
+      'Switching off heparin when someone has had too much of it, or when the operation using it has finished',
+    anatomicalSite: 'Blood plasma. The drug never enters a cell and has no intracellular target',
+    conditionContext: {
+      conditionExplainer:
+        'Heparin does not thin blood by itself. It works by grabbing a natural brake called antithrombin and making it thousands of times faster at shutting down the enzymes that build a clot. Heparin is one of the most negatively charged molecules in biology, and that charge is what lets it grip antithrombin.',
+      whyItMatters:
+        'Every heart-lung bypass machine runs on heparin, because blood clots the moment it touches plastic tubing. At the end of the operation the heparin has to come off, or the patient bleeds. Protamine is the only agent licensed anywhere to do that, which means it has never had to compete for the job.',
+      whoTakesThis:
+        'Given in the operating theatre and the catheterisation laboratory by anaesthetists and cardiologists, at the end of cardiopulmonary bypass, after vascular and structural heart procedures, and occasionally on the ward for accidental heparin overdose.',
+      clinicalGoals:
+        'Return the activated clotting time to its pre-heparin value and stop the puncture site bleeding. No licensing trial used death or transfusion as an endpoint.',
+    },
+    oneSentenceVerdict:
+      'A salmon-sperm peptide so densely positively charged that it sticks to heparin and cancels it by pure electrostatics, licensed in 1969 on a clotting-time reading and only randomised against placebo half a century later, in a 410-patient valve trial where it raised the rate of successful haemostasis from 91.6% to 97.9% — while a separate randomised trial showed that giving too much of it makes patients bleed more, not less.',
+    laymanHowItWorks:
+      'Heparin is one of the most negatively charged molecules the body ever encounters. Protamine is a short peptide that is almost nothing but arginine, an amino acid that carries a positive charge. Put the two in the same bloodstream and they snap together like magnets, forming a stable salt in which neither one works any more. The complex is then cleared, and clotting resumes within about five minutes.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 64,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$1.53 per 10 mg of average Medicare Part B spending in 2024 under HCPCS J2720, against a 2024 average sales price of US$1.438 per 10 mg',
+      markupEstimate:
+        'Not calculable. No published per-dose cost of production exists for this peptide, so there is no denominator to divide the Medicare figure by.',
+      openPatentNotes:
+        'Off patent for decades. The original Lilly NDA is discontinued and every marketed United States product is an abbreviated application, the oldest of them from 1986. The drug is extracted from the sperm of salmonid fish rather than synthesised, and that single-source biological supply chain is why protamine goes into national shortage more often than its price would suggest.',
+      synthesisComplexity: 'Moderate',
+      costSource: NO_COST_STUDY_SOURCE,
+      priceSource: CMS_PART_B_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'There is no second agent. Protamine is the only licensed heparin antidote in any major jurisdiction, and the alternatives are all either withdrawn, unapproved or non-pharmacological: heparinase I was taken into trials and abandoned, methylene blue and hexadimethrine were dropped for toxicity, and the practical fallback is to stop the heparin and wait out its short half-life while supporting the patient with blood products.',
+      conventionalRx: [
+        {
+          name: 'Waiting for heparin to clear, with transfusion support',
+          class: 'Supportive management, no antidote',
+          howItCompares:
+            'Unfractionated heparin has a short and dose-dependent half-life, so anticoagulation resolves without treatment in a patient who can afford to wait. This is the only option in someone with a documented protamine anaphylaxis history, and it is not an option at all at the end of cardiopulmonary bypass.',
+          typicalCost:
+            'The cost of the blood products used, which varies with how much the patient bleeds while waiting.',
+          prosAndCons:
+            'Pros: no anaphylaxis risk, no rebound. Cons: does nothing for an actively bleeding surgical field, and is unusable in the setting where protamine is actually given.',
+        },
+        {
+          name: 'Andexanet alfa, idarucizumab and other targeted reversal agents',
+          class: 'Anticoagulant-specific reversal agents',
+          howItCompares:
+            'They reverse different drugs, not heparin. Idarucizumab binds dabigatran and andexanet alfa decoys factor Xa inhibitors; neither touches unfractionated heparin. They are listed here because readers looking for a reversal agent frequently land on the wrong one.',
+          typicalCost:
+            'Both are hospital-supplied biologics whose acquisition cost is orders of magnitude above protamine.',
+          prosAndCons:
+            'Pros: each is specific to the drug it was designed for. Cons: giving either to a heparinised patient does nothing at all.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: 'MPRRRRSSSRPVRRRRRPRVSRRRRRRGGRRRR',
+      molecularWeight:
+        '4,381 Da for the UniProt P69014 salmine-AI entry shown here; the initiator methionine is removed in the mature 32-residue chain, and the licensed drug is a mixture of closely related arginine-rich peptides standardised by heparin-neutralising potency rather than by mass',
+      targetReceptorAffinity:
+        'Not a receptor interaction and not expressible as a dissociation constant. Binding is charge-driven complexation between roughly twenty arginine residues and the sulfate and carboxylate groups of the heparin chain.',
+      structureSource: {
+        label:
+          'UniProtKB P69014 (PRT1_ONCKE) — protamine, salmine-AI, Oncorhynchus keta; 33-residue sequence, initiator methionine removed, 4,381 Da',
+        identifier: 'https://rest.uniprot.org/uniprotkb/P69014',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'prot-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Species identity and viral-safety control of the salmonid milt',
+          description:
+            'Confirm the fish species and the absence of adventitious agents in the incoming sperm before extraction. This is the step that distinguishes protamine from a synthetic drug: the raw material is an animal tissue, and its identity is established at goods-in rather than by a synthetic route.',
+          reagentsAndBuffer:
+            'Frozen salmonid milt, species-specific PCR primers, bioburden and endotoxin testing, cold acid extraction buffer',
+        },
+        {
+          id: 'prot-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Acid extraction of the protamine fraction from sperm chromatin',
+          description:
+            'Protamine replaces histone in mature fish sperm, packing the DNA into a near-crystalline state. Dilute acid dissociates the peptide from the DNA and releases it into solution. Nothing is built in this step; the molecule is removed from the nucleus it was already in.',
+          dependsOnStepId: 'prot-w1',
+          reagentsAndBuffer:
+            'Dilute sulfuric or hydrochloric acid, cold homogenisation buffer, protease inhibitors, centrifugation to clear the DNA pellet',
+        },
+        {
+          id: 'prot-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Cation-exchange capture and precipitation as the sulfate salt',
+          description:
+            'The extreme positive charge that makes the peptide a heparin antidote also makes it trivial to capture on a cation exchanger. It is eluted at high salt and precipitated as the sulfate. Residual DNA and host protein are the two impurities the monograph is written around.',
+          dependsOnStepId: 'prot-w2',
+          reagentsAndBuffer:
+            'Strong cation-exchange resin, sodium chloride gradient, sulfuric acid for salt formation, ethanol precipitation, reversed-phase HPLC for peptide profile',
+        },
+        {
+          id: 'prot-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Plasma complexation and clearance of the heparin-protamine salt',
+          description:
+            'Confirm the complex forms in whole blood and is removed from circulation. The label states that neutralisation occurs within five minutes of intravenous administration and that the metabolic fate of the complex has not been elucidated, which is an unusual admission for a drug in its sixth decade.',
+          dependsOnStepId: 'prot-w3',
+          reagentsAndBuffer:
+            'Fresh heparinised human whole blood, activated clotting time cartridges, anti-factor-Xa chromogenic assay, turbidimetric complex-formation readout',
+        },
+        {
+          id: 'prot-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'United States Pharmacopeia heparin-neutralising potency assay',
+          description:
+            'Potency is defined functionally, not by mass: one milligram must neutralise a specified number of heparin units in a clotting assay. Reporting both the potency and the intrinsic anticoagulant effect of the peptide alone matters, because excess protamine is itself an anticoagulant.',
+          dependsOnStepId: 'prot-w4',
+          reagentsAndBuffer:
+            'USP heparin sodium reference standard, pooled citrated sheep or human plasma, thrombin time and activated clotting time endpoints, rotational thromboelastometry for the intrinsic-effect arm',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'prot-a1',
+        category: 'measured',
+        title: 'The first placebo-controlled trial of protamine was published in 2024',
+        laymanSummary:
+          'In 410 patients having a heart valve replaced through the groin, protamine or a dummy injection was given at the end. Successful haemostasis went from 91.6% on placebo to 97.9% on protamine, and bleeding and vascular complications at 30 days fell.',
+        technicalDetails:
+          'ACE-PROTAVI was an investigator-initiated, double-blind, placebo-controlled randomised trial at three Australian hospitals, December 2021 to June 2023, in patients undergoing transfemoral transcatheter aortic valve implantation. Of 410 randomised, 199 received protamine and 211 placebo. Haemostasis success was 188 of 192 (97.9%) against 186 of 203 (91.6%), an absolute risk difference of 6.3% (95% CI 2.0% to 10.6%, p=0.006). Median time to haemostasis was 181 seconds (IQR 120-420) against 279 seconds (IQR 122-600), p=0.002. The major secondary composite of death, bleeding and vascular complications at 30 days occurred in 10 of 192 (5.2%) against 26 of 203 (12.8%), OR 0.37 (95% CI 0.1 to 0.8, p=0.01), predominantly driven by minor vascular complications. The investigators report no adverse events associated with protamine use. This is a percutaneous valve population, not the cardiopulmonary bypass population the drug is mostly used in.',
+        evidenceSource:
+          'Vriesendorp PA, Nanayakkara S, Heuts S, et al. Routine Protamine Administration for Bleeding in Transcatheter Aortic Valve Implantation: The ACE-PROTAVI Randomized Clinical Trial. JAMA Cardiol 2024;9(10):901-908',
+        doi: '10.1001/jamacardio.2024.2454',
+        measuredMetric:
+          'Rate of haemostasis success and time to haemostasis after transfemoral valve implantation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'prot-a2',
+        category: 'inferred',
+        title: 'Nobody has ever randomised protamine against placebo in cardiac surgery',
+        laymanSummary:
+          'The place protamine is used most, and the place it was licensed for, is the end of a heart-lung bypass operation. There is no placebo-controlled trial there, and there never will be, because withholding it is not considered testable.',
+        technicalDetails:
+          'The FDA-approved indication is the single sentence "treatment of heparin overdosage", granted to Eli Lilly under NDA 006460 on 13 August 1969, before the 1962 efficacy requirements were applied retrospectively to most older products. The randomised evidence that exists is in percutaneous procedures where the comparator is a short wait rather than an open chest: ACE-PROTAVI and PS TAVI. Within cardiac surgery the randomised literature compares protamine doses against each other, never against nothing. The 2008 systematic review that went looking found only 25 studies conducted in an evidence-based manner across the entire literature, of which three had what the reviewers considered an optimal design.',
+        evidenceSource:
+          'Drugs@FDA record for NDA 006460 (PROTAMINE SULFATE, Eli Lilly), original approval 13 August 1969; Nybo M, Madsen JS. Basic Clin Pharmacol Toxicol 2008;103(2):192-196',
+        doi: '10.1111/j.1742-7843.2008.00274.x',
+        inferredClaim:
+          'That the haemostatic benefit measured in transcatheter valve patients is the benefit obtained at the end of cardiopulmonary bypass — a transfer between two populations whose bleeding risk, heparin dose and surgical field have almost nothing in common',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'prot-a3',
+        category: 'failed',
+        title: 'Too much of the antidote causes the bleeding it was given to stop',
+        laymanSummary:
+          'Patients randomised to the higher protamine dose bled more, not less: 615 mL over 24 hours against 470 mL on the lower dose. More of them needed plasma and platelets. The clotting time looked the same in both groups, which is exactly the problem.',
+        technicalDetails:
+          'Meesters et al. randomised 96 on-pump coronary bypass patients to a protamine-to-heparin dosing ratio of 0.8 (n=49) or 1.3 (n=47) in an open-label, multicentre, single-blinded trial. The low-ratio group received 329 ± 95 mg against 539 ± 117 mg (p<0.001), yet post-protamine activated clotting times were similar between groups. The high-dose group had longer intrinsic clotting times on thromboelastometry (236 ± 74 s versus 196 ± 64 s, p=0.006), and maximum post-protamine thrombin generation was suppressed far more (6 ± 9% of baseline versus 38 ± 40%, p=0.001). Twenty-four-hour blood loss was 615 mL (95% CI 500 to 830) against 470 mL (95% CI 420 to 530), p=0.021. Fresh frozen plasma went to 11% versus 0% (p=0.02) and platelet concentrate to 21% versus 6% (p=0.04). The activated clotting time, which is the number the dose is titrated against in most operating theatres, did not detect any of this.',
+        evidenceSource:
+          'Meesters MI, Veerhoek D, de Lange F, et al. Effect of high or low protamine dosing on postoperative bleeding following heparin anticoagulation in cardiac surgery. A randomised clinical trial. Thromb Haemost 2016;116(2):251-261',
+        doi: '10.1160/TH16-02-0117',
+        measuredMetric:
+          'Twenty-four-hour postoperative blood loss, thrombin generation and transfusion rates at two protamine-to-heparin dosing ratios',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'prot-a4',
+        category: 'conclusion_shift',
+        title: 'The field abandoned the ratio it dosed by for forty years',
+        laymanSummary:
+          'Protamine was traditionally matched milligram-for-milligram against the heparin given. A blinded trial gave one group a flat dose instead and found the clotting time and the bleeding identical, while the matched group received roughly two extra vials each.',
+        technicalDetails:
+          'Jain et al. ran a single-centre, double-blinded randomised trial in 125 elective adult cardiac surgical patients receiving at least 27,500 units of initial heparin, comparing a fixed 250 mg protamine dose (n=62) against a 1 mg per 100 unit ratio-based dose (n=63). The mean post-protamine activated clotting time did not differ (-2.0 s; 95% CI -7.2 to 3.3; p=0.47). The fixed-dose group used 2.1 fewer 50 mg vials per case (95% CI -2.4 to -1.8; p<0.0001). Cumulative 24-hour chest tube output did not differ (-77 mL; 95% CI -220 to 65; p=0.28). Read alongside Meesters, the direction of travel is unambiguous: the ratio-based convention that governed practice for decades delivers more drug than the physiology needs, and the intrinsic anticoagulant effect of the excess is a real harm rather than a textbook footnote. The trial was single-centre and excluded patients already anticoagulated or coagulopathic.',
+        evidenceSource:
+          'Jain P, Silva-De Las Salas A, Bedi K, Lamelas J, Epstein RH, Fabbro M 2nd. Protamine Dosing for Heparin Reversal after Cardiopulmonary Bypass: A Double-blinded Prospective Randomized Control Trial Comparing Two Strategies. Anesthesiology 2025;142(1):98-106',
+        doi: '10.1097/ALN.0000000000005256',
+        inferredClaim:
+          'That neutralising heparin unit-for-unit is the correct target — a dosing convention that survived four decades on arithmetic rather than on a trial, and that both randomised comparisons now contradict',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'prot-a5',
+        category: 'failed',
+        title: 'The trial that tried to show protamine prevents major bleeding did not',
+        laymanSummary:
+          'A Polish trial randomised 100 valve patients to protamine or saline and looked at serious bleeding in the first two days. Bleeding was lower on protamine, but not by enough to rule out chance.',
+        technicalDetails:
+          'PS TAVI was a single-centre, single-blind, randomised placebo-controlled trial at the Medical University of Warsaw. Of 311 patients screened between December 2016 and July 2020, 100 met the inclusion criteria and 47 were randomised to protamine sulfate. The primary endpoint, a composite of life-threatening and major bleeding by Valve Academic Research Consortium criteria within 48 hours, occurred in 29% of the population overall: 21% on protamine against 36% on placebo, OR 0.48 (95% CI 0.2 to 1.2, p=0.11). No secondary endpoint differed significantly. The authors conclude that routine protamine did not significantly decrease major and life-threatening bleeding and that larger studies are required. The effect estimate points the same way as ACE-PROTAVI; the trial was a quarter of the size.',
+        evidenceSource:
+          'Zbroński K, Grodecki K, Gozdowska R, et al. Protamine sulfate during transcatheter aortic valve implantation (PS TAVI) - a single-center, single-blind, randomized placebo-controlled trial. Kardiol Pol 2021;79(9):995-1002',
+        doi: '10.33963/KP.a2021.0070',
+        measuredMetric:
+          'Composite of life-threatening and major bleeding by VARC criteria within 48 hours of valve implantation',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'prot-a6',
+        category: 'inferred',
+        title: 'Blood pressure changes after protamine track with death, and nobody knows why',
+        laymanSummary:
+          'In nearly 7,000 bypass patients, the bigger the drop in blood pressure and the bigger the rise in lung artery pressure after protamine, the higher the chance of dying in hospital. The link held even for small changes. It is an association, not a demonstrated cause.',
+        technicalDetails:
+          'Welsby et al. analysed 6,921 coronary bypass patients at a single university hospital using automated anaesthesia records. Degree-duration integrals of systemic hypotension below 100 mmHg and pulmonary hypertension above 30 mmHg over the 30 minutes after protamine were tested against in-hospital mortality in logistic models adjusted for risk factors. Overall mortality was 2%. Each 150 mmHg-minute increment carried an odds ratio of 1.28 for systemic hypotension (95% CI 1.14 to 1.43, p<0.001) and 1.27 for pulmonary hypertension (95% CI 1.06 to 1.48, p<0.001). Proximity of the haemodynamic response to the protamine dose strengthened the relation, and it persisted after excluding major disturbances. The authors state explicitly that randomised trials are necessary to address causality, and none has been done. Separately, the systematic review of anaphylaxis found an incidence of 0.69% in prospective studies against 0.19% in retrospective ones, with pronounced heterogeneity.',
+        evidenceSource:
+          'Welsby IJ, Newman MF, Phillips-Bute B, Messier RH, Kakkis ED, Stafford-Smith M. Hemodynamic changes after protamine administration: association with mortality after coronary artery bypass surgery. Anesthesiology 2005;102(2):308-314',
+        doi: '10.1097/00000542-200502000-00011',
+        measuredMetric:
+          'Degree-duration integrals of systemic hypotension and pulmonary hypertension in the 30 minutes after protamine, against in-hospital mortality',
+        inferredClaim:
+          'That the haemodynamic reaction causes the excess deaths rather than marking the patients who were already sickest — an unresolved question in an observational cohort',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'It is injected slowly into a vein, and slowness is the whole safety strategy',
+        laymanDesc:
+          'Given straight into the bloodstream at the end of the operation. The rate matters more than almost anything else about it: pushed fast, it can drop the blood pressure to nothing.',
+        molecularDetail:
+          'The FDA label carries a boxed warning naming severe hypotension, cardiovascular collapse, noncardiogenic pulmonary oedema, catastrophic pulmonary vasoconstriction and pulmonary hypertension, and lists rapid administration and high dose among the risk factors. Complement activation by the heparin-protamine complex, lysosomal enzyme release from neutrophils and thromboxane generation are the mechanisms the label associates with anaphylactoid reactions.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It stays in the bloodstream — there is nothing for it to do inside a cell',
+        laymanDesc:
+          'Its target is another drug floating in the plasma, so it never has to cross a membrane or enter tissue. Everything happens in the blood.',
+        molecularDetail:
+          'Protamine is a peptide of about 32 residues carrying roughly twenty arginines, giving it one of the highest positive charge densities in pharmacology. That charge makes membrane crossing energetically prohibitive, which is why the drug has no intracellular pharmacology and why its distribution volume is essentially the plasma space.',
+        iconName: 'Droplet',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Positive meets negative and the two drugs lock together',
+        laymanDesc:
+          'Heparin is the most negatively charged molecule in the bloodstream. Protamine is almost pure positive charge. They snap together into a stable salt, and inside that salt neither one works.',
+        molecularDetail:
+          'The label states that protamine has an anticoagulant effect when given alone, but that in the presence of heparin a stable salt is formed and the anticoagulant activity of both drugs is lost. Binding is a cooperative electrostatic interaction along the length of the heparin chain rather than a defined receptor contact, which is why potency is specified as heparin units neutralised per milligram and not as an affinity constant.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Antithrombin is released and clotting restarts',
+        laymanDesc:
+          'Heparin worked by supercharging a natural brake on clotting. Pulled away into the complex, it stops supercharging anything, and the brake returns to its normal slow speed.',
+        molecularDetail:
+          'Heparin accelerates antithrombin inactivation of thrombin and factor Xa by several orders of magnitude through a template and conformational mechanism. Sequestering the polysaccharide removes that acceleration. The label reports neutralisation within five minutes of an appropriate intravenous dose, and adds that the metabolic fate of the heparin-protamine complex has not been elucidated.',
+        iconName: 'ShieldOff',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The clotting time comes back — and past that point the drug turns on you',
+        laymanDesc:
+          'Once all the heparin is bound, any protamine left over is itself a mild blood thinner and a platelet poison. That is not a theoretical concern: the higher-dose arm of a randomised trial bled more.',
+        molecularDetail:
+          'Free protamine impairs thrombin generation and platelet function. In the Meesters trial the high-ratio arm had maximum post-protamine thrombin generation suppressed to 6 ± 9% of baseline against 38 ± 40% in the low-ratio arm (p=0.001), longer intrinsic clotting times, and 615 mL versus 470 mL of 24-hour blood loss (p=0.021), while activated clotting times were indistinguishable between the groups.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Heparin can come back hours later',
+        laymanDesc:
+          'Sometimes the bleeding returns half an hour to eighteen hours after surgery even though the heparin looked fully neutralised at the end. The label says so and does not explain it.',
+        molecularDetail:
+          'The FDA label reports hyperheparinaemia or bleeding in experimental animals and in some patients 30 minutes to 18 hours after cardiopulmonary bypass despite complete neutralisation by an adequate protamine dose. The label directs continued observation and repeat coagulation studies. The proposed explanations, including partial metabolism of the complex or attack on it by fibrinolysin, are stated in the label as postulates rather than findings.',
+        iconName: 'Repeat',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ACE-PROTAVI (ACTRN12621001261808) — routine protamine after transfemoral TAVI',
+        phase: 'Investigator-initiated double-blind placebo-controlled randomised trial, 3 centres',
+        sampleSize: 410,
+        primaryEndpoint: 'Co-primary: rate of haemostasis success, and time to haemostasis',
+        endpointMet: true,
+        statisticalPValue:
+          'Haemostasis success 97.9% versus 91.6%, absolute risk difference 6.3% (95% CI 2.0% to 10.6%), p = 0.006; median time to haemostasis 181 s versus 279 s, p = 0.002',
+        unreportedAdverseSignals:
+          'Both primary endpoints are procedural surrogates. The 30-day composite benefit (OR 0.37, 95% CI 0.1 to 0.8) was driven predominantly by minor vascular complications, not by death or major bleeding.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId:
+          'PS TAVI — protamine sulfate versus saline during transcatheter aortic valve implantation',
+        phase: 'Single-centre single-blind randomised placebo-controlled trial',
+        sampleSize: 100,
+        primaryEndpoint:
+          'Composite of life-threatening and major bleeding by VARC criteria within 48 hours',
+        endpointMet: false,
+        statisticalPValue: 'OR 0.48, 95% CI 0.2 to 1.2, p = 0.11',
+        unreportedAdverseSignals:
+          '311 patients were screened to randomise 100, so the enrolled population is a narrow slice of the procedural population. No secondary endpoint reached significance.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Meesters protamine-to-heparin dosing ratio trial (0.8 versus 1.3)',
+        phase: 'Open-label multicentre single-blinded randomised controlled trial',
+        sampleSize: 96,
+        primaryEndpoint: 'Twenty-four-hour postoperative blood loss',
+        endpointMet: true,
+        statisticalPValue:
+          '615 mL (95% CI 500 to 830) on the high ratio versus 470 mL (95% CI 420 to 530) on the low ratio, p = 0.021',
+        unreportedAdverseSignals:
+          'The endpoint was met in the direction opposite to the one a reader assumes: more antidote produced more bleeding. Post-protamine activated clotting times were similar in both arms, so the monitoring test used in routine practice was blind to the harm.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Jain fixed-dose versus ratio-based protamine after cardiopulmonary bypass',
+        phase: 'Single-centre double-blinded randomised controlled trial',
+        sampleSize: 125,
+        primaryEndpoint: 'Activated clotting time after the initial protamine dose',
+        endpointMet: true,
+        statisticalPValue:
+          'Difference in mean post-protamine activated clotting time -2.0 s (95% CI -7.2 to 3.3), p = 0.47; 2.1 fewer 50 mg vials per case on fixed dosing (95% CI -2.4 to -1.8), p < 0.0001',
+        unreportedAdverseSignals:
+          'A comparability trial, not a superiority trial, and its primary endpoint is a laboratory number. Patients already anticoagulated or coagulopathic were excluded, which is a population in which the answer could differ.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Haemostasis success after transfemoral valve implantation rose from 91.6% on placebo to 97.9% on protamine in 410 randomised patients, an absolute difference of 6.3% (95% CI 2.0% to 10.6%)',
+        'Median time to haemostasis fell from 279 seconds to 181 seconds in the same trial (p=0.002)',
+        'A protamine-to-heparin ratio of 1.3 produced 615 mL of 24-hour blood loss against 470 mL at a ratio of 0.8 (p=0.021), with more plasma and platelet transfusion in the high-dose arm',
+        'A fixed 250 mg dose and a 1:1 ratio dose gave indistinguishable post-protamine activated clotting times (difference -2.0 s, 95% CI -7.2 to 3.3) while using 2.1 fewer vials per case',
+        'Anaphylactic reaction incidence of 0.69% across prospective studies and 0.19% across retrospective studies in a systematic review of 272 relevant articles',
+      ],
+      unsupportedInferences: [
+        'That the licensed indication, treatment of heparin overdosage, rests on a controlled trial — it rests on a 1969 approval and on the drug doing visibly what it says on the vial',
+        'That the benefit measured in transcatheter valve patients transfers to the end of cardiopulmonary bypass, where the drug is mostly given and where no placebo-controlled trial exists',
+        'That the activated clotting time is an adequate guide to how much to give — two randomised trials now show it is identical across doses that produce very different bleeding',
+        'That the haemodynamic collapse seen after protamine causes the associated excess mortality rather than marking sicker patients; the authors of the 6,921-patient cohort say so themselves',
+      ],
+      whatFailedInitially: [
+        'PS TAVI, the first randomised placebo-controlled trial of routine protamine, missed its primary bleeding endpoint (OR 0.48, 95% CI 0.2 to 1.2, p=0.11) at 100 patients',
+        'Higher protamine dosing increased 24-hour blood loss and transfusion in a randomised trial, reversing the drug’s intended effect',
+        'Heparinase I was investigated as a replacement and found unsuitable in the one study identified by the 2008 systematic review',
+        'The FDA label reports bleeding returning 30 minutes to 18 hours after bypass despite complete neutralisation, and offers only postulates for why',
+      ],
+      realWorldOutcome: [
+        'The only licensed heparin antidote anywhere, given at the end of essentially every cardiopulmonary bypass operation performed worldwide',
+        'About US$1.53 per 10 mg of average Medicare Part B spending in 2024 — among the cheapest drugs on any operating theatre trolley',
+        'Extracted from salmonid sperm rather than synthesised, a single-source biological supply chain that has repeatedly put the drug into national shortage',
+        'Practice has moved from ratio-based to lower fixed dosing at many centres on the strength of the two randomised dosing trials, without any change to the 1969 label',
+      ],
+    },
+    deliverySystem: {
+      type: 'Slow intravenous injection, given by a clinician with resuscitation equipment present',
+      description:
+        'Supplied as a ready-to-use aqueous solution and given directly into a vein at the end of a procedure using heparin, or after accidental overdose. Onset is within about five minutes. There is no oral, subcutaneous or intramuscular route: the molecule is a polycationic peptide and would be destroyed or sequestered before reaching the plasma by any other path.',
+      safetyProfile:
+        'Carries a boxed warning for severe hypotension, cardiovascular collapse, noncardiogenic pulmonary oedema, catastrophic pulmonary vasoconstriction and pulmonary hypertension. Named risk factors are high dose or overdose, rapid administration, repeated doses, previous protamine exposure and current or previous use of protamine-containing drugs such as NPH insulin; allergy to fish, previous vasectomy, severe left ventricular dysfunction and abnormal preoperative pulmonary haemodynamics may also be risk factors. The label directs that vasopressors and resuscitation equipment be immediately available, and states the drug should not be given when bleeding occurs without prior heparin use. Given alone or in excess it is itself an anticoagulant and impairs platelet function.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does protamine reverse the newer blood thinners?',
+        a: 'No, and this is the single most consequential misunderstanding about it. Protamine works by electrostatically neutralising unfractionated heparin, so it only reverses drugs built from that same heavily sulfated polysaccharide. It has no effect on warfarin, on dabigatran, on apixaban, on rivaroxaban or on fondaparinux, each of which has either its own antidote or none. Against low-molecular-weight heparins it is partial rather than complete, because the shorter chains present less surface for the peptide to grip. If the anticoagulant is not unfractionated heparin, protamine is the wrong drug.',
+        auditNote:
+          'The label indication is one sentence long and says "heparin overdosage". Every wider use of protamine is an extrapolation from that sentence.',
+      },
+      {
+        q: 'Is more protamine safer than less?',
+        a: 'The randomised evidence says the opposite. In a trial randomising cardiac surgery patients to a higher or lower protamine-to-heparin dosing ratio, the higher-dose arm bled 615 mL in 24 hours against 470 mL, needed more plasma and more platelets, and had thrombin generation suppressed to 6% of baseline against 38%. The activated clotting time, which is what most theatres titrate against, was the same in both arms and detected none of it. A second blinded trial found a flat dose matched a ratio-based dose on clotting time and on chest tube output while using roughly two fewer vials per patient.',
+        auditNote:
+          'This is the clearest example on the page of a monitoring test that cannot see the harm it is being used to prevent.',
+      },
+      {
+        q: 'How likely is a severe reaction?',
+        a: 'The best available estimate comes from a systematic review that screened 487 articles and analysed 272: anaphylactic reactions occurred in 0.69% of patients in prospective studies and 0.19% in retrospective ones, with the reviewers warning of pronounced heterogeneity between studies. Separately, in a cohort of 6,921 bypass patients, the size of the blood pressure fall and the pulmonary pressure rise in the half hour after protamine tracked with in-hospital death, with odds ratios near 1.28 per increment, and the relationship held even at small values. That second finding is an association in observational data; the authors state plainly that randomised trials would be needed to establish cause.',
+      },
+      {
+        q: 'Why is a drug this old still not properly tested?',
+        a: 'Because withholding it was never considered testable in the setting it matters most. At the end of a heart-lung bypass operation the patient is fully anticoagulated with an open chest, and no ethics committee would approve a placebo arm. The randomised trials that do exist were possible only in percutaneous procedures, where the alternative to protamine is manual pressure and a wait. That is why the first placebo-controlled trial of routine protamine appeared in 2021 and the first adequately sized one in 2024, fifty-five years after approval.',
+      },
+      {
+        q: 'Where does it come from?',
+        a: 'From the sperm of salmon and related fish. In mature fish sperm, protamine replaces the histones that normally package DNA, compressing the genome into a dense, almost crystalline state — a job that requires exactly the extreme positive charge that makes it a heparin antidote. The drug is extracted from milt with dilute acid and purified on a cation exchanger. That biological origin is also why it periodically goes into shortage: there is no synthetic route in production, and supply depends on fish.',
+        auditNote:
+          'The FDA label’s boxed warning lists allergy to fish among the possible risk factors for a severe reaction, which follows directly from the source material.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Vriesendorp PA, Nanayakkara S, Heuts S, et al. Routine Protamine Administration for Bleeding in Transcatheter Aortic Valve Implantation: The ACE-PROTAVI Randomized Clinical Trial. JAMA Cardiol 2024;9(10):901-908',
+        identifier: '10.1001/jamacardio.2024.2454',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Zbroński K, Grodecki K, Gozdowska R, et al. Protamine sulfate during transcatheter aortic valve implantation (PS TAVI) - a single-center, single-blind, randomized placebo-controlled trial. Kardiol Pol 2021;79(9):995-1002',
+        identifier: '10.33963/KP.a2021.0070',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Meesters MI, Veerhoek D, de Lange F, et al. Effect of high or low protamine dosing on postoperative bleeding following heparin anticoagulation in cardiac surgery. A randomised clinical trial. Thromb Haemost 2016;116(2):251-261',
+        identifier: '10.1160/TH16-02-0117',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jain P, Silva-De Las Salas A, Bedi K, Lamelas J, Epstein RH, Fabbro M 2nd. Protamine Dosing for Heparin Reversal after Cardiopulmonary Bypass: A Double-blinded Prospective Randomized Control Trial Comparing Two Strategies. Anesthesiology 2025;142(1):98-106',
+        identifier: '10.1097/ALN.0000000000005256',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Welsby IJ, Newman MF, Phillips-Bute B, Messier RH, Kakkis ED, Stafford-Smith M. Hemodynamic changes after protamine administration: association with mortality after coronary artery bypass surgery. Anesthesiology 2005;102(2):308-314',
+        identifier: '10.1097/00000542-200502000-00011',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nybo M, Madsen JS. Serious anaphylactic reactions due to protamine sulfate: a systematic literature review. Basic Clin Pharmacol Toxicol 2008;103(2):192-196',
+        identifier: '10.1111/j.1742-7843.2008.00274.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Protamine Sulfate Injection USP — FDA-approved prescribing information, boxed warning, indications, warnings and adverse reactions, retrieved from the openFDA drug label endpoint',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22protamine%20sulfate%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: PROTAMINE SULFATE (Eli Lilly), NDA 006460, original approval 13 August 1969, all products discontinued; the marketed product is ANDA 089454 (Fresenius Kabi USA), original approval 7 April 1987',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=006460',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'UniProtKB P69014 (PRT1_ONCKE) — protamine, salmine-AI, Oncorhynchus keta; 33 residues, 4,381 Da, initiator methionine removed',
+        identifier: 'https://rest.uniprot.org/uniprotkb/P69014',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS Medicare Part B Spending by Drug — HCPCS J2720, injection protamine sulfate per 10 mg; average spending per dosage unit US$1.5309 in 2024 and 2024 average sales price US$1.438',
+        identifier:
+          'https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicare-part-b-spending-by-drug',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Idarucizumab — a perfect surrogate endpoint, measured in a trial with no control group.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'idarucizumab',
+    name: 'Idarucizumab',
+    tradeName: 'Praxbind',
+    sponsor: 'Boehringer Ingelheim, under BLA 761025',
+    targetGene:
+      'None. The target is dabigatran, a synthetic small molecule, and no gene encodes it',
+    targetProtein:
+      'Dabigatran and its acylglucuronide metabolites. The Fab binds the drug itself, not thrombin, and has no measurable activity in coagulation tests on its own',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2015,
+    indication:
+      'Patients treated with dabigatran when reversal of the anticoagulant effect is needed, for emergency surgery or urgent procedures, or in life-threatening or uncontrolled bleeding',
+    patientFriendlyIndication:
+      'Switching off the blood thinner dabigatran in an emergency — a serious bleed, or an operation that cannot wait',
+    anatomicalSite: 'Blood plasma, then the interstitial space where dabigatran is redistributing',
+    conditionContext: {
+      conditionExplainer:
+        'Dabigatran blocks thrombin, the enzyme that turns soluble fibrinogen into the fibrin mesh of a clot. It is taken every day by people with atrial fibrillation or previous clots. Most of the time that is exactly what is wanted; occasionally the person falls, bleeds into the brain, or needs an operation within hours.',
+      whyItMatters:
+        'Before 2015 there was nothing to do about it but wait for the kidneys to clear the drug, which takes twelve to twenty-four hours in someone with normal renal function and considerably longer in someone without. An antidote turns an eighteen-hour wait into a five-minute infusion.',
+      whoTakesThis:
+        'Given once, in an emergency department, operating theatre or intensive care unit, by the team looking after a bleeding or pre-operative patient known to be taking dabigatran.',
+      clinicalGoals:
+        'Bring the diluted thrombin time and ecarin clotting time back to normal, so surgery can proceed or bleeding can be controlled. Survival was never a trial endpoint.',
+    },
+    oneSentenceVerdict:
+      'An antibody fragment engineered to bind dabigatran about 350 times more tightly than thrombin does, and which strips it out of the plasma so completely that the median reversal of the clotting test was 100% with a confidence interval of 100 to 100 — measured, as the FDA label itself describes it, in a single-cohort case series with no control group, in which 101 of the 503 patients died.',
+    laymanHowItWorks:
+      'Dabigatran works by sitting in the pocket of thrombin, the enzyme that finishes a clot. Idarucizumab is a fragment of an antibody shaped like that same pocket, only better: it grips dabigatran roughly 350 times more tightly than thrombin can. Infused into a vein, it mops the drug out of the bloodstream in minutes and holds it in a complex the kidneys then clear. Thrombin is left alone and clotting resumes.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 66,
+    substitutes: {
+      summary:
+        'There is one licensed antidote for dabigatran and this is it. What competed with it before 2015, and what is still used where it is unavailable, is haemodialysis — dabigatran is only about 35% protein bound and can be filtered out — plus non-specific factor replacement that has never been shown to work for this drug.',
+      conventionalRx: [
+        {
+          name: 'Haemodialysis',
+          class: 'Extracorporeal drug removal',
+          howItCompares:
+            'Dabigatran is the only direct oral anticoagulant that is meaningfully dialysable, because it is small and only lightly bound to plasma protein. Dialysis removes it over hours rather than minutes, requires vascular access, and is difficult in a patient who is haemodynamically unstable — which describes most patients who need it.',
+          typicalCost:
+            'The cost of an urgent dialysis session and the access line, which is far below the cost of the antidote.',
+          prosAndCons:
+            'Pros: no drug cost, no rebound from redistribution because the drug is actually removed from the body. Cons: hours not minutes, needs a functioning circulation and a dialysis service at 3am.',
+        },
+        {
+          name: 'Prothrombin complex concentrate and activated PCC',
+          class: 'Non-specific clotting factor replacement',
+          howItCompares:
+            'Adds clotting factors rather than removing the drug, so it works downstream of a thrombin blockade that is still in place. It was the pre-2015 fallback and remains the fallback where idarucizumab is not stocked, on thin evidence: the label for idarucizumab notes only that coagulation factor concentrates do not interfere with its own action in vitro.',
+          typicalCost:
+            'Kcentra averaged US$3,150.56 per claim in 2023 Medicaid spending, at US$1.68 per international unit of factor IX activity.',
+          prosAndCons:
+            'Pros: on the shelf in every hospital, works for several anticoagulants rather than one. Cons: does not touch the drug causing the problem, and carries its own thrombotic risk.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      molecularWeight:
+        'Approximately 47,766 Da. A humanised Fab derived from an IgG1 isotype: a 219-residue light chain and a 225-residue heavy chain fragment joined by one disulfide bond between heavy chain cysteine 225 and light chain cysteine 219',
+      targetReceptorAffinity:
+        'Approximately 350-fold higher affinity for dabigatran than dabigatran has for thrombin, determined by X-ray crystallography and binding studies of the humanised Fab. It does not bind known thrombin substrates and has no activity in coagulation tests or platelet aggregation on its own',
+      structureSource: {
+        label:
+          'Schiele F, van Ryn J, Canada K, et al. A specific antidote for dabigatran: functional and structural characterization. Blood 2013;121(18):3554-3562',
+        identifier: '10.1182/blood-2012-11-468207',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ida-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Release of the CHO master and working cell banks',
+          description:
+            'Confirm identity, copy number and freedom from adventitious agents in the recombinant Chinese hamster ovary line before any production run. For a Fab that will be infused as a five-gram dose in a single sitting, host cell protein and endotoxin limits are set at the cell bank rather than argued about at the end.',
+          reagentsAndBuffer:
+            'Characterised recombinant CHO cell bank, mycoplasma and in vitro adventitious agent assays, quantitative PCR for transgene copy number, limulus amoebocyte lysate endotoxin assay',
+        },
+        {
+          id: 'ida-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fed-batch expression of the humanised Fab',
+          description:
+            'Express the light chain and the heavy chain fragment in the same cell so that they assemble and form the single interchain disulfide before secretion. The molecule has no Fc, which is deliberate: an Fc would give it a long half-life and effector functions that a one-shot antidote has no use for.',
+          dependsOnStepId: 'ida-w1',
+          reagentsAndBuffer:
+            'Chemically defined animal-component-free fed-batch medium, controlled dissolved oxygen and pH bioreactor, glucose and amino acid feeds',
+        },
+        {
+          id: 'ida-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Affinity capture, polishing and viral clearance',
+          description:
+            'Capture the Fab on an affinity resin, polish by ion exchange to remove aggregates and charge variants, then apply the two orthogonal viral clearance steps a mammalian-expressed biologic requires. Aggregate content is the parameter that matters most for a protein given as a rapid bolus.',
+          dependsOnStepId: 'ida-w2',
+          reagentsAndBuffer:
+            'Kappa-select or CH1-select affinity resin, low-pH viral inactivation buffer, cation-exchange polishing, small-virus retentive filtration, size-exclusion HPLC for aggregate quantification',
+        },
+        {
+          id: 'ida-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Capture of unbound dabigatran in whole blood',
+          description:
+            'Confirm the Fab removes free dabigatran from plasma rather than merely binding it in a buffer. In healthy subjects, unbound dabigatran fell below the limit of quantification immediately after infusion and stayed there for at least 24 hours; the assay has to be able to see that, and to see the redistribution rebound that follows in some patients.',
+          dependsOnStepId: 'ida-w3',
+          reagentsAndBuffer:
+            'Dabigatran-spiked human whole blood and plasma, ultrafiltration to separate unbound drug, LC-MS/MS quantification of free dabigatran, serial sampling to 24 hours',
+        },
+        {
+          id: 'ida-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Diluted thrombin time and ecarin clotting time reversal',
+          description:
+            'Measure the two clotting assays the licence was granted on. Both are specific to thrombin inhibition, which is why they were chosen, and neither says anything about whether the patient stops bleeding. Reporting the endogenous thrombin potential alongside them shows the antidote is not itself procoagulant.',
+          dependsOnStepId: 'ida-w4',
+          reagentsAndBuffer:
+            'Diluted thrombin time reagent, ecarin from Echis carinatus venom, activated partial thromboplastin time and thrombin time reagents, calibrated automated thrombogram for endogenous thrombin potential',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ida-a1',
+        category: 'measured',
+        title: 'The clotting test went back to normal in essentially every patient',
+        laymanSummary:
+          'Across 503 emergency patients, the median reversal of dabigatran’s effect on the clotting test within four hours was 100%, with a confidence interval of 100 to 100. As laboratory results go, that is about as clean as medicine gets.',
+        technicalDetails:
+          'RE-VERSE AD was a multicentre, prospective, open-label study of a single 5 g intravenous dose in patients with uncontrolled bleeding (group A, n=301) or requiring an urgent procedure (group B, n=202). The primary endpoint was the maximum percentage reversal of dabigatran’s anticoagulant effect within 4 hours, measured by diluted thrombin time or ecarin clotting time; the median was 100% (95% CI 100 to 100). In healthy volunteers given dabigatran 220 mg twice daily, a 5 g infusion took the diluted thrombin time from 66.6 s to 32.1 s and the ecarin clotting time from 122 s to 34.7 s by the end of the infusion, with unbound dabigatran below the limit of quantification for at least 24 hours.',
+        evidenceSource:
+          'Pollack CV Jr, Reilly PA, van Ryn J, et al. Idarucizumab for Dabigatran Reversal - Full Cohort Analysis. N Engl J Med 2017;377(5):431-441',
+        doi: '10.1056/NEJMoa1707278',
+        measuredMetric:
+          'Maximum percentage reversal of dabigatran anticoagulant effect within 4 hours, by diluted thrombin time or ecarin clotting time',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ida-a2',
+        category: 'inferred',
+        title: 'The FDA label calls the pivotal trial a case series, because that is what it was',
+        laymanSummary:
+          'RE-VERSE AD had no control group. Everyone enrolled got the drug. There is therefore no measurement anywhere of what would have happened to the same patients without it.',
+        technicalDetails:
+          'The Clinical Studies section of the PRAXBIND label describes RE-VERSE AD (NCT02104947) as "a single cohort case series trial". The FDA granted accelerated approval under BLA 761025 on 16 October 2015 on the basis of the interim cohort, converting to traditional approval on 12 April 2018 after the full cohort was published. A surrogate endpoint of 100% reversal in an uncontrolled cohort establishes that the antidote does what the chemistry says it does. It does not establish that giving it changes the outcome of a brain haemorrhage, because the counterfactual was never observed. No randomised trial of idarucizumab against usual care has been performed, and given that dabigatran now has an antidote and the comparator would be no antidote, none is likely.',
+        evidenceSource:
+          'PRAXBIND (idarucizumab) FDA-approved prescribing information, section 14 Clinical Studies; Drugs@FDA BLA 761025, original approval 16 October 2015, supplement 2 approved 12 April 2018',
+        inferredClaim:
+          'That normalising the diluted thrombin time is the same thing as improving the outcome of the bleed or the operation — an inference the trial design makes untestable rather than merely untested',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ida-a3',
+        category: 'failed',
+        title: 'One in five patients died, and the drug was not designed to stop that',
+        laymanSummary:
+          'Of the 503 patients given idarucizumab, 101 died. Nineteen died within a day of the infusion. The mortality rate at 90 days was about 19% in both groups.',
+        technicalDetails:
+          'The PRAXBIND label states that of the 503 dabigatran-treated patients across the entire study period, 101 died, 19 of them within the first day after dosing, and attributes each death either to a complication of the index event or to comorbidity. The published full-cohort analysis reports 90-day mortality of 18.8% in the bleeding group and 18.9% in the procedure group. This is a population presenting with intracranial haemorrhage or major gastrointestinal bleeding on an anticoagulant, so a high death rate is expected; the point of the audit is that the trial cannot separate deaths the drug failed to prevent from deaths it had no bearing on, because there was no comparison arm. A subsequent meta-analysis of 30 studies and 3,602 real-world patients found pooled all-cause mortality of 13.6% (95% CI 9.6% to 17.9%) and haemostatic effectiveness of 77.7% (95% CI 66.7% to 87.2%) — appreciably lower than the near-universal laboratory reversal.',
+        evidenceSource:
+          'van der Horst SFB, Martens ESL, den Exter PL, et al. Idarucizumab for dabigatran reversal: A systematic review and meta-analysis of indications and outcomes. Thromb Res 2023;228:21-32',
+        doi: '10.1016/j.thromres.2023.05.020',
+        measuredMetric:
+          'Pooled all-cause mortality and haemostatic effectiveness across 30 real-world studies and 3,602 patients',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ida-a4',
+        category: 'measured',
+        title: 'Clotting comes back hours later in some patients as the drug redistributes',
+        laymanSummary:
+          'The antidote clears the bloodstream, but dabigatran is also sitting in the tissues. In some patients it seeps back in over the next twelve to twenty-four hours and the clotting tests drift up again.',
+        technicalDetails:
+          'The label reports that in a limited number of patients in the clinical programme, elevated coagulation parameters — activated partial thromboplastin time or ecarin clotting time — reappeared between 12 and 24 hours after the 5 g dose, and attributes this to redistribution of dabigatran from the periphery into plasma. The stated response is that an additional 5 g dose may be considered, with the explicit caveat that the safety and effectiveness of repeat treatment have not been established. This is a mechanistic consequence of an antidote that binds a drug in one compartment while the drug is distributed across two, and it is one of the few places where the label states a limitation of its own recommendation.',
+        evidenceSource:
+          'PRAXBIND (idarucizumab) FDA-approved prescribing information, sections 5.2 Re-elevation of Coagulation Parameters and 12.2 Pharmacodynamics',
+        measuredMetric:
+          'Reappearance of elevated aPTT and ecarin clotting time between 12 and 24 hours after a single 5 g dose',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ida-a5',
+        category: 'inferred',
+        title: 'Thrombosis after reversal: 33 events in 503 patients, cause unresolved',
+        laymanSummary:
+          'Taking away someone’s anticoagulant returns them to the clotting risk it was preventing. Thirty-three of the 503 patients had a clot; eleven of those within five days. Whether the antidote contributed, or simply the loss of anticoagulation, has never been separated.',
+        technicalDetails:
+          'The label reports 33 of 503 patients with thrombotic events, 11 within 5 days of treatment and 22 at 6 days or more, and notes that most of these patients were not back on antithrombotic therapy. The full-cohort publication reports thrombotic events in 6.3% of the bleeding group and 7.4% of the procedure group at 90 days. A systematic review pooling 13 idarucizumab studies (1,384 patients) with 3 andexanet alfa studies (390 patients) found a combined thrombotic event rate of 5.5% (95% CI 2.0% to 10.1%) to 30-90 days and all-cause mortality of 13.3% (95% CI 9.6% to 17.5%), and concluded explicitly that causality of harm attributable to the antidotes remains to be established. The label’s own framing is that reversing dabigatran exposes the patient to the thrombotic risk of their underlying disease.',
+        evidenceSource:
+          'Rodrigues AO, David C, Ferreira JJ, Pinto FJ, Costa J, Caldeira D. The incidence of thrombotic events with idarucizumab and andexanet alfa: A systematic review and meta-analysis. Thromb Res 2020;196:291-296',
+        doi: '10.1016/j.thromres.2020.09.003',
+        measuredMetric:
+          'Pooled incidence of thrombotic events to 30-90 days across 16 studies and 1,774 patients receiving a specific reversal agent',
+        inferredClaim:
+          'That the post-reversal clots reflect the underlying disease rather than a procoagulant effect of the antidote — plausible, stated in the label, and not demonstrated by any controlled comparison',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ida-a6',
+        category: 'conclusion_shift',
+        title: 'It became a stroke drug, which is not what it was licensed for',
+        laymanSummary:
+          'Idarucizumab was approved for bleeding and emergency surgery. A large share of real-world use is now something else entirely: clearing dabigatran out of the way so a stroke patient can be given a clot-busting drug.',
+        technicalDetails:
+          'The pooled real-world analysis of 30 studies found that between 2.0% and 27.3% of idarucizumab prescriptions across cohorts were given to enable thrombolysis, an indication that appears nowhere in the label, alongside 63.1% for bleeding and 30.5% for invasive procedures. Registry-based work has since compared thrombolysis after dabigatran reversal against alternative strategies in patients with recent direct oral anticoagulant intake. The shift is a reasonable one on mechanism, and it is also a demonstration that the licensed indication stopped describing the drug’s use within a few years of approval. The same review found that 2.8% (95% CI 0.5% to 6.2%) of prescriptions were judged inappropriate on post-hoc review.',
+        evidenceSource:
+          'van der Horst SFB, et al. Thromb Res 2023;228:21-32; Neurology 2024;103(7):e209862, Thrombolysis After Dabigatran Reversal for Acute Ischemic Stroke: A National Registry-Based Study and Meta-Analysis',
+        doi: '10.1212/WNL.0000000000209862',
+        inferredClaim:
+          'That reversal-then-thrombolysis is safe and effective because reversal is complete — an off-label pathway built on the same surrogate the licence was built on',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Five grams of antibody fragment, infused over about five minutes',
+        laymanDesc:
+          'Given as two vials into a vein, one after the other. It is a large dose by the standards of antibody drugs, because it has to outnumber every molecule of dabigatran in the body.',
+        molecularDetail:
+          'Each vial contains 2.5 g of idarucizumab in 50 mL. The dose is stoichiometric rather than pharmacological: the Fab binds dabigatran one-to-one, so the amount required is set by the amount of drug present rather than by a receptor occupancy curve. The formulation contains 2004.20 mg of sorbitol per vial, which is why the label carries a specific warning for patients with hereditary fructose intolerance.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It stays in the blood — no cell has to be entered',
+        laymanDesc:
+          'Its target is a drug circulating in the plasma, so the antibody fragment never needs to cross into a cell. It works entirely in the bloodstream.',
+        molecularDetail:
+          'Idarucizumab is a Fab with no Fc region. That removes neonatal Fc receptor recycling and gives it a short half-life, which is appropriate for a molecule intended to act once and leave. It also removes complement and Fc receptor engagement, so the bound complex is cleared renally rather than by immune effector mechanisms.',
+        iconName: 'Droplet',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It grips dabigatran about 350 times harder than thrombin can',
+        laymanDesc:
+          'The fragment was engineered to copy the shape of the pocket in thrombin that dabigatran normally sits in, and then to hold on far more tightly. Dabigatran leaves thrombin and goes to the antidote.',
+        molecularDetail:
+          'The X-ray crystal structure of dabigatran bound to the humanised Fab shows structural similarities to how thrombin recognises the drug, but a tighter network of interactions that yields an affinity roughly 350-fold greater than dabigatran’s affinity for thrombin. The Fab does not bind known thrombin substrates and shows no activity in coagulation assays or platelet aggregation on its own.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Thrombin is released and starts making fibrin again',
+        laymanDesc:
+          'With the blocker pulled off, thrombin returns to normal and can convert fibrinogen into the mesh that holds a clot together. The clotting tests fall back to baseline within minutes.',
+        molecularDetail:
+          'Unbound dabigatran plasma concentration fell below the limit of quantification immediately after infusion in healthy subjects. In 14 dabigatran-exposed volunteers the thrombin time went from 127 s to 12.5 s, the ecarin clotting time from 122 s to 34.7 s, and the activated clotting time from 236 s to 116 s by the end of the infusion. Idarucizumab alone showed no procoagulant effect on endogenous thrombin potential.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The complex is cleared, and the patient is no longer anticoagulated',
+        laymanDesc:
+          'The antidote and the drug leave together through the kidneys. From that moment the patient has none of the protection the anticoagulant was giving them, which is its own risk.',
+        molecularDetail:
+          'The label states plainly that reversing dabigatran exposes patients to the thrombotic risk of their underlying disease and directs that anticoagulation be resumed as soon as medically appropriate. Thirty-three of 503 patients in RE-VERSE AD had a thrombotic event, most of them not back on antithrombotic therapy at the time.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Some of the drug comes back out of the tissues',
+        laymanDesc:
+          'Dabigatran is not only in the blood. In some patients enough seeps back from the tissues over the next twelve to twenty-four hours to push the clotting tests up again.',
+        molecularDetail:
+          'Redistribution of dabigatran from the peripheral compartment produced re-elevation of diluted thrombin time, ecarin clotting time, aPTT and thrombin time between 12 and 24 hours in a limited number of patients. A further 5 g dose may be considered, and the label states that the safety and effectiveness of repeat treatment have not been established.',
+        iconName: 'Repeat',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'RE-VERSE AD (NCT02104947) — full cohort',
+        phase:
+          'Multicentre prospective open-label single-cohort case series, as described in the FDA label',
+        sampleSize: 503,
+        primaryEndpoint:
+          'Maximum percentage reversal of the anticoagulant effect of dabigatran within 4 hours, by diluted thrombin time or ecarin clotting time',
+        endpointMet: true,
+        statisticalPValue:
+          'Median maximum reversal 100% (95% CI 100 to 100). No p-value is reported because there was no comparator arm',
+        unreportedAdverseSignals:
+          '101 of 503 patients died, 19 within the first day of dosing. Thrombotic events occurred in 33 of 503. Neither figure can be attributed or exonerated, because no control group was enrolled.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'RE-VERSE AD interim cohort — the accelerated approval basis',
+        phase: 'Prespecified interim analysis of the same single-arm cohort',
+        sampleSize: 90,
+        primaryEndpoint:
+          'Maximum percentage reversal of dabigatran anticoagulant effect within 4 hours',
+        endpointMet: true,
+        statisticalPValue:
+          'Complete normalisation of the diluted thrombin time or ecarin clotting time in 88% to 98% of patients depending on the assay',
+        unreportedAdverseSignals:
+          'Accelerated approval was granted on 90 patients with no control group and a laboratory endpoint, on 16 October 2015. Traditional approval followed on 12 April 2018 on the strength of the same trial, enlarged.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId:
+          'Pooled real-world experience — 30 studies of idarucizumab in routine practice, to September 2022',
+        phase: 'Systematic review and random-effects meta-analysis of observational studies',
+        sampleSize: 3602,
+        primaryEndpoint: 'Haemostatic effectiveness, all-cause mortality and thromboembolic events',
+        endpointMet: true,
+        statisticalPValue:
+          'Haemostatic effectiveness 77.7% (95% CI 66.7% to 87.2%); all-cause mortality 13.6% (95% CI 9.6% to 17.9%); thromboembolic events 2.0% (95% CI 0.8% to 3.4%)',
+        unreportedAdverseSignals:
+          'Haemostatic effectiveness in practice is more than twenty percentage points below the near-universal laboratory reversal that the licence rests on. Between 2.0% and 27.3% of prescriptions across cohorts were for thrombolysis enablement, which is not a licensed indication.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Pooled thrombotic event rate across idarucizumab and andexanet alfa studies',
+        phase: 'Systematic review and meta-analysis of 16 prospective and retrospective studies',
+        sampleSize: 1774,
+        primaryEndpoint: 'Incidence of thrombotic events after specific anticoagulant reversal',
+        endpointMet: true,
+        statisticalPValue:
+          'Pooled thrombotic events 5.5% (95% CI 2.0% to 10.1%) to 30-90 days; all-cause mortality 13.3% (95% CI 9.6% to 17.5%)',
+        unreportedAdverseSignals:
+          'The authors state that causality of harm attributable to the antidotes cannot be established from these data, because none of the included studies had an untreated comparison group.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Median maximum reversal of dabigatran’s anticoagulant effect within 4 hours of 100% (95% CI 100 to 100) across 503 emergency patients',
+        'Unbound dabigatran below the limit of quantification immediately after a 5 g infusion in healthy subjects, sustained for at least 24 hours',
+        'Approximately 350-fold higher affinity for dabigatran than dabigatran has for thrombin, from the crystal structure and binding studies',
+        'Median time to cessation of bleeding of 2.5 hours in assessable group A patients, and median time to the intended procedure of 1.6 hours in group B',
+        'Haemostatic effectiveness of 77.7% (95% CI 66.7% to 87.2%) pooled across 3,602 real-world patients',
+      ],
+      unsupportedInferences: [
+        'That normalising the diluted thrombin time improves the outcome of the bleed — untestable in a trial design with no control arm, which the FDA label itself calls a single-cohort case series',
+        'That the 101 deaths among 503 patients were all attributable to the index event and comorbidity; that attribution is the sponsor’s, made without a comparator',
+        'That the 33 thrombotic events reflect the underlying disease rather than any effect of the antidote — the pooled meta-analysis says causality remains to be established',
+        'That reversal followed by thrombolysis in acute stroke is safe because reversal is complete; that is an off-label pathway resting on the same laboratory surrogate',
+      ],
+      whatFailedInitially: [
+        'Coagulation parameters re-elevated between 12 and 24 hours in a limited number of patients as dabigatran redistributed from the tissues, and the label concedes that repeat dosing has not been shown to be safe or effective',
+        'Real-world haemostatic effectiveness of 77.7% sits far below the near-total laboratory reversal, which is the gap between a surrogate and an outcome made visible',
+        'Post-hoc review found 2.8% (95% CI 0.5% to 6.2%) of real-world prescriptions inappropriate for the indication given',
+      ],
+      realWorldOutcome: [
+        'The first specific antidote to a direct oral anticoagulant, approved on 16 October 2015 under accelerated approval and converted to traditional approval on 12 April 2018',
+        'Stocked as an emergency-department and theatre item rather than dispensed, which is why it appears in no CMS pharmacy or Part B pricing dataset',
+        'A substantial and growing share of use is off-label, to permit thrombolysis in acute ischaemic stroke in someone taking dabigatran',
+        'Its existence is part of the argument for prescribing dabigatran at all, which makes the antidote a commercial asset as well as a clinical one',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion or bolus, given once as two consecutive 2.5 g vials',
+      description:
+        'Supplied as two single-dose 50 mL vials, each containing 2.5 g. Given as two consecutive infusions of no more than five to ten minutes each, or as a bolus injection. There is no other route: it is a 48 kDa protein and would not survive the gut or reach plasma from a subcutaneous depot fast enough to matter in the situations it is used in.',
+      safetyProfile:
+        'No boxed warning. The principal risk is the one the drug is designed to create: removing anticoagulation returns the patient to the thrombotic risk of the disease that put them on dabigatran, and the label directs resumption of anticoagulation as soon as medically appropriate. Coagulation parameters can re-elevate between 12 and 24 hours from redistribution. Hypersensitivity reactions have been reported and clinical experience is described in the label as insufficient to quantify the risk. Each vial contains 2004.20 mg of sorbitol, which is a specific hazard in hereditary fructose intolerance. The commonest reported reactions in patients were constipation (7%) and nausea (5%).',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it work on the other new blood thinners?',
+        a: 'No. Idarucizumab binds dabigatran and its acylglucuronide metabolites and nothing else. Apixaban, rivaroxaban and edoxaban block factor Xa rather than thrombin, are chemically unrelated, and need a different agent — andexanet alfa. Warfarin needs vitamin K and factor replacement. Heparin needs protamine. Giving idarucizumab to a patient on any of those does precisely nothing, and the several minutes spent giving it are not free in a brain haemorrhage.',
+        auditNote:
+          'The specificity that makes this drug clean is the same property that makes it useless one drug over.',
+      },
+      {
+        q: 'If it reverses the drug completely, why did a fifth of the patients still die?',
+        a: 'Because the trial enrolled people who were already in serious trouble: nearly a third of the bleeding group had bled into the brain and nearly half had major gastrointestinal bleeding. Reversing the anticoagulant removes one contributor to a catastrophe that has usually already happened. The honest limit of the evidence is that we know the laboratory number was corrected and we do not know what the death rate would have been without the antidote, because nobody was randomised to go without it.',
+        auditNote:
+          'This is the central measured-versus-inferred gap on the page: a perfect surrogate endpoint and an unobserved counterfactual.',
+      },
+      {
+        q: 'Can the anticoagulant effect come back?',
+        a: 'Yes, in some patients. Dabigatran is distributed between the blood and the tissues, and the antidote only reaches the blood. Between twelve and twenty-four hours after a dose, enough can move back into the plasma to push the clotting tests up again. The label acknowledges this, suggests a second 5 g dose may be considered, and then states that the safety and effectiveness of repeat treatment have not been established — an unusually candid pair of sentences to find next to each other.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because no public CMS dataset carries one. It is given once, in hospital, to an inpatient in an emergency, so it is bundled into the hospital payment rather than billed as a pharmacy claim or a Part B outpatient drug. It appears in neither the retail acquisition cost survey, the Part B spending file, nor the Medicaid spending file. Rather than publish an estimate, this page leaves the field out. What can be said is that the pricing of reversal agents is part of the commercial case for the anticoagulants they reverse, and that argument is made by the same company that sells both.',
+      },
+      {
+        q: 'Is it used for anything other than what it says on the label?',
+        a: 'Yes, and increasingly so. The label covers life-threatening bleeding and emergency surgery. In practice, somewhere between one in fifty and one in four prescriptions across published cohorts are given to clear dabigatran out of the way so that a stroke patient can receive thrombolysis, an indication that appears nowhere in the licence. The mechanistic argument is sound and the outcome evidence for that pathway is registry data, not trials.',
+        auditNote:
+          'A pooled review of 30 real-world studies found 2.8% of prescriptions were judged inappropriate for the indication recorded.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Pollack CV Jr, Reilly PA, van Ryn J, et al. Idarucizumab for Dabigatran Reversal - Full Cohort Analysis. N Engl J Med 2017;377(5):431-441',
+        identifier: '10.1056/NEJMoa1707278',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pollack CV Jr, Reilly PA, Eikelboom J, et al. Idarucizumab for Dabigatran Reversal. N Engl J Med 2015;373(6):511-520 — the interim cohort on which accelerated approval was granted',
+        identifier: '10.1056/NEJMoa1502000',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Schiele F, van Ryn J, Canada K, et al. A specific antidote for dabigatran: functional and structural characterization. Blood 2013;121(18):3554-3562',
+        identifier: '10.1182/blood-2012-11-468207',
+        kind: 'doi',
+      },
+      {
+        label:
+          'van der Horst SFB, Martens ESL, den Exter PL, et al. Idarucizumab for dabigatran reversal: A systematic review and meta-analysis of indications and outcomes. Thromb Res 2023;228:21-32',
+        identifier: '10.1016/j.thromres.2023.05.020',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rodrigues AO, David C, Ferreira JJ, Pinto FJ, Costa J, Caldeira D. The incidence of thrombotic events with idarucizumab and andexanet alfa: A systematic review and meta-analysis. Thromb Res 2020;196:291-296',
+        identifier: '10.1016/j.thromres.2020.09.003',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thrombolysis After Dabigatran Reversal for Acute Ischemic Stroke: A National Registry-Based Study and Meta-Analysis. Neurology 2024;103(7):e209862',
+        identifier: '10.1212/WNL.0000000000209862',
+        kind: 'doi',
+      },
+      {
+        label: 'RE-VERSE AD — Reversal Effects of Idarucizumab on Active Dabigatran',
+        identifier: 'NCT02104947',
+        kind: 'nct',
+      },
+      {
+        label:
+          'PRAXBIND (idarucizumab) injection — FDA-approved prescribing information, sections 5, 6.1, 11, 12 and 14, retrieved from the openFDA drug label endpoint',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22PRAXBIND%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: PRAXBIND (idarucizumab), BLA 761025, Boehringer Ingelheim; original approval 16 October 2015, supplement 2 approved 12 April 2018',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761025',
+        kind: 'regulatory',
       },
     ],
   },

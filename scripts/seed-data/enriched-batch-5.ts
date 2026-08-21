@@ -56,6 +56,20 @@ const COST_OF_PRODUCTION_SOURCE = {
   kind: 'doi' as const,
 }
 
+const SANAD_I_FOCAL_SOURCE = {
+  label:
+    'Marson AG et al. The SANAD study of effectiveness of carbamazepine, gabapentin, lamotrigine, oxcarbazepine, or topiramate for treatment of partial epilepsy: an unblinded randomised controlled trial. Lancet 2007;369:1000-1015',
+  identifier: '10.1016/S0140-6736(07)60460-7',
+  kind: 'doi' as const,
+}
+
+const SANAD_I_GENERALISED_SOURCE = {
+  label:
+    'Marson AG et al. The SANAD study of effectiveness of valproate, lamotrigine, or topiramate for generalised and unclassifiable epilepsy: an unblinded randomised controlled trial. Lancet 2007;369:1016-1026',
+  identifier: '10.1016/S0140-6736(07)60461-9',
+  kind: 'doi' as const,
+}
+
 const SANAD_II_FOCAL_SOURCE = {
   label:
     'Marson A et al. The SANAD II study of the effectiveness and cost-effectiveness of levetiracetam, zonisamide, or lamotrigine for newly diagnosed focal epilepsy. Lancet 2021;397:1363-1374',
@@ -101,7 +115,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
     indication:
       'Treatment of partial-onset (focal) seizures in patients 1 month of age and older; adjunctive therapy for myoclonic seizures in juvenile myoclonic epilepsy from age 12, and for primary generalised tonic-clonic seizures in idiopathic generalised epilepsy from age 6',
     patientFriendlyIndication: 'Epilepsy, including focal seizures and generalised seizures',
-    anatomicalSite: 'Presynaptic nerve terminal, inside the synaptic vesicle membrane (cortex and hippocampus)',
+    anatomicalSite:
+      'Presynaptic nerve terminal, inside the synaptic vesicle membrane (cortex and hippocampus)',
     conditionContext: {
       conditionExplainer:
         'A seizure is a burst of synchronised electrical firing across a population of brain cells. In epilepsy that burst recurs without an external trigger, either starting in one patch of cortex and spreading (focal) or engaging both hemispheres from the outset (generalised).',
@@ -297,7 +312,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
       {
         id: 'lev-a3',
         category: 'failed',
-        title: 'SANAD II: levetiracetam also failed non-inferiority to valproate in generalised epilepsy',
+        title:
+          'SANAD II: levetiracetam also failed non-inferiority to valproate in generalised epilepsy',
         laymanSummary:
           'Levetiracetam is widely prescribed to women who would otherwise take valproate, because valproate harms a developing fetus. The trial designed to check whether it controls generalised seizures as well as valproate found that it did not.',
         technicalDetails:
@@ -373,7 +389,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
           'A 1,688-patient trial run to show levetiracetam was better than the older standards as a first drug did not show it. On time to the first seizure the older drugs did better.',
         technicalDetails:
           'KOMET was an unblinded, randomised, 52-week superiority trial in 1,688 patients aged 16 and over with newly diagnosed epilepsy, randomised to levetiracetam (n=841) or a physician-chosen standard (extended-release valproate or controlled-release carbamazepine, n=847). Time to treatment withdrawal, the primary outcome, did not differ (HR 0.90, 95% CI 0.74 to 1.08). Time to first seizure was significantly longer on the standard drugs (HR 1.20, 95% CI 1.03 to 1.39). Estimated 12-month seizure freedom was 58.7% on levetiracetam against 64.5% on extended-release valproate, and 50.5% against 56.7% on controlled-release carbamazepine. The authors concluded levetiracetam was not superior for the global outcome.',
-        evidenceSource: 'Trinka E et al., J Neurol Neurosurg Psychiatry 2013;84:1138-1147 (NCT00175903)',
+        evidenceSource:
+          'Trinka E et al., J Neurol Neurosurg Psychiatry 2013;84:1138-1147 (NCT00175903)',
         doi: '10.1136/jnnp-2011-300376',
         measuredMetric: 'Time to treatment withdrawal and time to first seizure over 52 weeks',
         auditFlag: 'verified',
@@ -616,7 +633,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
     slug: 'lamotrigine',
     name: 'Lamotrigine',
     tradeName: 'Lamictal',
-    sponsor: 'GlaxoSmithKline LLC (originator); now off-patent with generics from many manufacturers',
+    sponsor:
+      'GlaxoSmithKline LLC (originator); now off-patent with generics from many manufacturers',
     targetGene: 'SCN2A',
     targetProtein:
       'Voltage-gated sodium channel alpha subunits, bound preferentially in the inactivated state, with downstream reduction of presynaptic glutamate release',
@@ -627,7 +645,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
       'Adjunctive therapy for partial-onset seizures, primary generalised tonic-clonic seizures and generalised seizures of Lennox-Gastaut syndrome from age 2; conversion to monotherapy in partial-onset seizures from age 16; maintenance treatment of bipolar I disorder to delay the time to occurrence of mood episodes',
     patientFriendlyIndication:
       'Epilepsy, including seizures that start in one part of the brain, and long-term mood stabilisation in bipolar I disorder',
-    anatomicalSite: 'Axonal and presynaptic membrane of cortical neurons (voltage-gated sodium channels)',
+    anatomicalSite:
+      'Axonal and presynaptic membrane of cortical neurons (voltage-gated sodium channels)',
     conditionContext: {
       conditionExplainer:
         'Seizures spread when neurons fire in fast repetitive trains and recruit their neighbours. Sodium channels are what let a neuron fire that fast; slowing their recovery makes a long train harder to sustain without silencing normal single firing.',
@@ -851,7 +870,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
       {
         id: 'ltg-a5',
         category: 'inferred',
-        title: 'The cardiac arrhythmia warning was built from in vitro data, and the clinical data do not support it',
+        title:
+          'The cardiac arrhythmia warning was built from in vitro data, and the clinical data do not support it',
         laymanSummary:
           'In 2020 the FDA added a warning that lamotrigine could cause dangerous heart rhythms in people with heart disease. It was based on cell experiments. Two later studies in real patients found no such effect.',
         technicalDetails:
@@ -873,7 +893,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
           'Two prospectively harmonised 18-month trials enrolled 1,315 patients with bipolar I disorder in an open-label phase; 638 were stabilised and randomised to lamotrigine (n=280), lithium (n=167) or placebo (n=191). Median time from randomisation to intervention for any mood episode was 86 days on placebo (95% CI 58 to 121), 184 days on lithium (119 to not calculable) and 197 days on lamotrigine (144 to 388). Lamotrigine was superior to placebo for time to intervention for depression; lithium and lamotrigine were both superior for mania, but after adjustment for index mood only lithium remained superior for mania. Lithium produced more diarrhoea (19% against 7%) and tremor (15% against 4%). Neither drug caused affective switch.',
         evidenceSource: 'Goodwin GM et al., J Clin Psychiatry 2004;65:432-441',
         doi: '10.4088/jcp.v65n0321',
-        measuredMetric: 'Median time from randomisation to intervention for any mood episode over 18 months',
+        measuredMetric:
+          'Median time from randomisation to intervention for any mood episode over 18 months',
         auditFlag: 'verified',
       },
       {
@@ -1116,7 +1137,11 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
         identifier: '10.1016/S1474-4422(12)70323-X',
         kind: 'doi',
       },
-      { label: 'NEAD: Neurodevelopmental Effects of Antiepileptic Drugs', identifier: 'NCT00021866', kind: 'nct' },
+      {
+        label: 'NEAD: Neurodevelopmental Effects of Antiepileptic Drugs',
+        identifier: 'NCT00021866',
+        kind: 'nct',
+      },
       KETOGENIC_DIET_SOURCE,
       {
         label:
@@ -1141,7 +1166,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
     slug: 'valproate',
     name: 'Valproate',
     tradeName: 'Depacon / Depakote',
-    sponsor: 'AbbVie (Abbott Laboratories originator); now off-patent with many generic manufacturers',
+    sponsor:
+      'AbbVie (Abbott Laboratories originator); now off-patent with many generic manufacturers',
     targetGene: 'ABAT',
     targetProtein:
       '4-aminobutyrate aminotransferase (GABA transaminase) is one of several proposed targets, alongside histone deacetylases, voltage-gated sodium channels and T-type calcium channels. The label states that the mechanisms by which valproate works have not been established.',
@@ -1432,7 +1458,8 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
     mechanismSteps: [
       {
         step: 1,
-        title: 'Swallowed or infused, and bound so tightly to blood protein that the binding saturates',
+        title:
+          'Swallowed or infused, and bound so tightly to blood protein that the binding saturates',
         laymanDesc:
           'Almost all of the drug in blood is stuck to albumin. Once the albumin is full, extra doses raise the free, active fraction faster than the total blood level suggests.',
         molecularDetail:
@@ -1658,6 +1685,1110 @@ export const ENRICHED_BATCH_5_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 3549980 — valproate anion structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3549980',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Carbamazepine — the drug whose most important finding turned out to be a blood test.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'carbamazepine',
+    name: 'Carbamazepine',
+    tradeName: 'Tegretol / Carbatrol / Equetro',
+    sponsor:
+      'Geigy, now Novartis (originator); off-patent since the 1980s and manufactured generically worldwide',
+    targetGene: 'SCN2A',
+    targetProtein:
+      'Voltage-gated sodium channel alpha subunits, bound preferentially in the inactivated state. The United States label does not endorse this: it describes reduced polysynaptic responses and blocked post-tetanic potentiation and then states that the mechanism of action remains unknown.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1968,
+    indication:
+      'Treatment of partial seizures with complex symptomatology, generalised tonic-clonic seizures and mixed seizure patterns; treatment of the pain of trigeminal neuralgia; and, as the extended-release capsule Equetro, treatment of acute manic or mixed episodes of bipolar I disorder',
+    patientFriendlyIndication:
+      'Focal and generalised epilepsy, trigeminal nerve pain, and mania in bipolar I disorder',
+    anatomicalSite:
+      'Axonal membrane of cortical neurons and of the trigeminal nerve root (voltage-gated sodium channels)',
+    conditionContext: {
+      conditionExplainer:
+        'A seizure is a burst of synchronised electrical firing across a population of brain cells. Trigeminal neuralgia is the same physical problem in a different place: a nerve carrying sensation from the face fires in paroxysms, and the brain reads each paroxysm as a stab of pain.',
+      whyItMatters:
+        'Carbamazepine was the first drug shown in a large blinded trial to control focal seizures as well as anything then available while sedating people less. For fifty years it was the comparator every new anti-seizure drug had to beat, which is why it appears on the pages of drugs approved decades after it.',
+      whoTakesThis:
+        'People with focal epilepsy, people with trigeminal neuralgia, and a smaller group with bipolar I disorder. Prescribing has fallen in high-income countries because of interactions and rash risk, but it remains a WHO essential medicine and a mainstay where newer drugs are unaffordable.',
+      clinicalGoals:
+        'Seizure freedom or pain relief on one drug, without a rash, without a fall in sodium, and without wrecking the levels of every other medicine the person takes.',
+    },
+    oneSentenceVerdict:
+      'A sodium-channel blocker whose own label still says the mechanism is unknown, which matched or beat every 1980s alternative for focal seizures in a 622-patient blinded trial, lost to lamotrigine on treatment failure in the 1,721-patient SANAD arm, and whose most consequential result is not a seizure count at all but a genetic screen: no case of Stevens-Johnson syndrome occurred among 4,877 Taiwanese patients when HLA-B*1502 carriers were steered away from the drug.',
+    laymanHowItWorks:
+      'Nerve cells fire by letting sodium rush in through pores in their outer membrane. After each firing a pore spends a moment shut and unavailable, and carbamazepine binds to it in exactly that state and holds it there. A cell firing at a normal rate barely notices. A cell firing over and over, as it does in a seizure or in a trigeminal pain attack, finds more and more of its pores locked out, so the burst starves itself. The drug also switches on the liver enzymes that destroy it, so it speeds up its own removal over the first month.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 82,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.3776 per unit, the median across 92 listed carbamazepine products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Synthesised at Geigy in 1953 and approved in the United States in 1968 for trigeminal neuralgia, with the epilepsy indication following in 1974. Composition-of-matter protection expired long ago. What remains branded are formulations rather than the molecule: the extended-release tablet Tegretol-XR, the extended-release capsule Carbatrol, and Equetro, the same capsule relabelled for bipolar mania in 2004.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Carbamazepine has been the control arm of more first-line epilepsy trials than any other drug, so its alternatives are unusually well characterised. Lamotrigine beat it on treatment failure in SANAD. Oxcarbazepine is its own close chemical relative, built to avoid the epoxide metabolite. Phenytoin matched it in the 1985 Veterans Affairs trial. None of these is a like-for-like swap, and for trigeminal neuralgia specifically the alternatives are much weaker.',
+      conventionalRx: [
+        {
+          name: 'Lamotrigine (Lamictal)',
+          class: 'Sodium channel blocker',
+          howItCompares:
+            'In arm A of SANAD, 1,721 patients for whom carbamazepine was standard treatment were randomised across five drugs. Lamotrigine was significantly better than carbamazepine for time to treatment failure (HR 0.78, 95% CI 0.63 to 0.97). On the other primary outcome, time to 12-month remission, carbamazepine held a non-significant advantage (HR 0.91, 95% CI 0.77 to 1.09), and the per-protocol difference at two and four years was 0 and 5 percentage points.',
+          typicalCost:
+            'US$0.1612 per unit, median across 181 listed products at US pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: fewer withdrawals for side effects, no enzyme induction, and the lowest malformation rate in EURAP alongside levetiracetam. Cons: must be introduced slowly because of serious rash, and it does not have carbamazepine long record in trigeminal neuralgia.',
+        },
+        {
+          name: 'Oxcarbazepine (Trileptal)',
+          class: 'Sodium channel blocker, keto analogue of carbamazepine',
+          howItCompares:
+            'Designed as a carbamazepine that cannot form the 10,11-epoxide metabolite. In SANAD arm A the estimate for time to treatment failure favoured carbamazepine non-significantly (lamotrigine versus oxcarbazepine HR 1.15, 95% CI 0.86 to 1.54), and for 12-month remission carbamazepine held a non-significant edge (HR 0.92, 95% CI 0.73 to 1.18). Cross-reactivity of rash between the two drugs is substantial.',
+          typicalCost:
+            'US$0.1637 per unit, median across 90 listed products at US pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: far less enzyme induction and no autoinduction, so levels are predictable. Cons: clinically significant hyponatraemia is more common than with carbamazepine, and the HLA-B*1502 rash risk is shared, not avoided.',
+        },
+        {
+          name: 'Phenytoin (Dilantin)',
+          class: 'Sodium channel blocker',
+          howItCompares:
+            'In the Veterans Affairs Cooperative Study of 622 adults, overall treatment success was highest with carbamazepine or phenytoin, intermediate with phenobarbital and lowest with primidone (p<0.002). Carbamazepine controlled partial seizures completely more often than primidone or phenobarbital (p<0.03); phenytoin caused more dysmorphic effects and hypersensitivity.',
+          typicalCost:
+            'US$0.1812 per unit, median across 29 listed products at US pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: equally effective in the one blinded head-to-head, and available intravenously. Cons: non-linear kinetics make levels unpredictable, and gum overgrowth and coarsening of facial features are common on long treatment.',
+        },
+        {
+          name: 'Valproate (Depakote)',
+          class: 'Broad-spectrum, multiple proposed mechanisms',
+          howItCompares:
+            'Veterans Affairs Cooperative Study 264 randomised 480 adults double-blind. For secondarily generalised tonic-clonic seizures the two drugs were comparable (136 versus 138 patients). For complex partial seizures four of five outcome measures favoured carbamazepine, including total seizures 2.7 versus 7.6 (p=0.05) and seizures per month 0.9 versus 2.2 (p=0.01).',
+          typicalCost:
+            'Off-patent; divalproex and valproic acid products are listed separately from the injectable in the CMS NADAC file',
+          prosAndCons:
+            'Pros: covers generalised seizure types carbamazepine can make worse. Cons: 10.3% major congenital malformation rate in EURAP against 5.5% for carbamazepine, and more weight gain, tremor and hair change in the head-to-head.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Ketogenic diet (medically supervised, not a supplement)',
+          activeCompound: 'Ketone bodies produced by sustained carbohydrate restriction',
+          biologicalMechanism:
+            'Shifts brain fuel from glucose to ketone bodies, with downstream effects on GABA synthesis and adenosine signalling. It shares no mechanism with sodium-channel blockade and is used alongside drugs, not instead of them.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here. In the one randomised trial, 145 children with drug-resistant epilepsy were assigned to the diet or a 3-month delay, and 38% on the diet halved their seizures against 6% of controls.',
+          monthlyCost: '',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Leave grapefruit juice alone',
+          action:
+            'Do not start drinking grapefruit juice while taking carbamazepine, and tell the prescriber if it is already a daily habit.',
+          patientImpact:
+            'Grapefruit juice is named on the United States label among agents that inhibit CYP3A4 and raise plasma carbamazepine levels. Because the same enzyme handles the drug, a food-driven rise behaves like an unplanned dose increase.',
+          clinicalPrecaution:
+            'This is an interaction note, not a diet instruction, and no amount of avoiding grapefruit substitutes for the level monitoring the label calls for.',
+        },
+        {
+          name: 'Photograph any new rash and call the same day',
+          action:
+            'If a rash appears, photograph it, note the date, and contact the prescriber that day rather than waiting for the next appointment.',
+          patientImpact:
+            'The label puts serious dermatologic reactions at 1 to 6 per 10,000 new users in mainly Caucasian populations and about ten times higher in some Asian countries, and says over 90% of the cases that will happen happen in the first few months.',
+          clinicalPrecaution:
+            'The label instructs discontinuation at the first sign of a rash unless it is clearly not drug-related. That judgement belongs to the prescriber, not to the person with the rash.',
+        },
+        {
+          name: 'Ask whether an HLA-B*1502 test applies to you',
+          action:
+            'If you have ancestry anywhere across broad areas of Asia, ask before the first dose whether the HLA-B*1502 genetic test has been done.',
+          patientImpact:
+            'In the Taiwanese prevention study, 7.7% of 4,877 candidates carried the allele. Among those who tested negative and took carbamazepine, no case of Stevens-Johnson syndrome or toxic epidermal necrolysis occurred, against roughly ten cases expected from the historical rate.',
+          clinicalPrecaution:
+            'A negative test lowers the risk of SJS and TEN specifically. The label states it does not predict maculopapular rash or DRESS, and a separate allele, HLA-A*3101, carries risk in European, Korean and Japanese ancestry.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC=C2C(=C1)C=CC3=CC=CC=C3N2C(=O)N',
+      chemicalFormula: 'C15H12N2O',
+      molecularWeight: '236.27 g/mol',
+      targetReceptorAffinity:
+        'No single published affinity constant defines the clinical effect. Block of voltage-gated sodium channels is use-dependent and voltage-dependent, so potency measured in a cell depends on how fast the cell is firing and how depolarised it is held.',
+      structureSource: {
+        label: 'PubChem CID 2554 — carbamazepine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2554',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cbz-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and purity of the iminostilbene core',
+          description:
+            'Confirm 5H-dibenz[b,f]azepine before the carbamoylation step. The tricyclic core is shared with the antidepressant imipramine, and carbamazepine was investigated as an antidepressant on that resemblance before it was investigated as an anticonvulsant.',
+          reagentsAndBuffer:
+            'Iminostilbene reference standard, reverse-phase HPLC with UV detection at 285 nm, differential scanning calorimetry, loss on drying',
+        },
+        {
+          id: 'cbz-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Carbamoylation of the ring nitrogen',
+          description:
+            'Attach a carbamoyl group to the ring nitrogen to give 5H-dibenz[b,f]azepine-5-carboxamide. This is the whole molecule: a tricyclic amine with one urea-like substituent, which is why it is so cheap to make and so widely available.',
+          dependsOnStepId: 'cbz-w1',
+          reagentsAndBuffer:
+            'Phosgene or a phosgene equivalent to form the carbamoyl chloride, then ammonia; toluene or chlorobenzene, controlled temperature, nitrogen blanket, caustic scrubber on the vent',
+        },
+        {
+          id: 'cbz-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation with polymorph and dihydrate control',
+          description:
+            'Recrystallise and then prove which crystal form has been made. Carbamazepine has several anhydrous polymorphs and converts to a dihydrate on contact with water, and the forms dissolve at different rates. A batch that passes a chemical purity test can still fail a dissolution test because it crystallised in the wrong form.',
+          dependsOnStepId: 'cbz-w2',
+          reagentsAndBuffer:
+            'Ethanol or acetone for recrystallisation, controlled cooling profile, powder X-ray diffraction against a form III reference pattern, dynamic vapour sorption to check for dihydrate conversion',
+        },
+        {
+          id: 'cbz-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Whole-cell recording from neurons expressing Nav1.2',
+          description:
+            'Apply the compound to a cell expressing the sodium channel and hold the membrane at different voltages. The point is to show the block depends on state: much stronger when the channel has been driven into inactivation than when it sits at rest. That state dependence is the proposed reason a seizing brain is affected and a resting one is not.',
+          dependsOnStepId: 'cbz-w3',
+          reagentsAndBuffer:
+            'HEK293 cells or cultured cortical neurons expressing SCN2A, extracellular solution with 140 mM sodium chloride, caesium fluoride internal solution, voltage protocols stepping from -120 mV and from -70 mV holding potentials',
+        },
+        {
+          id: 'cbz-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Use-dependent block and epoxide metabolite quantification',
+          description:
+            'Measure how much of the sodium current is lost across a 10 Hz train rather than on a single pulse, and in parallel quantify carbamazepine-10,11-epoxide by mass spectrometry. Both numbers are needed: the train gives the mechanism, and the epoxide is an active metabolite that accumulates when valproate or brivaracetam inhibits the enzyme that clears it.',
+          dependsOnStepId: 'cbz-w4',
+          reagentsAndBuffer:
+            'Ten-pulse 10 Hz stimulus trains, deuterated carbamazepine and carbamazepine-10,11-epoxide internal standards, protein-precipitated plasma, LC-MS/MS in multiple reaction monitoring mode',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cbz-a1',
+        category: 'measured',
+        title: 'Veterans Affairs 1985: best overall result of the four drugs then available',
+        laymanSummary:
+          'Six hundred and twenty-two adults were assigned at random and double-blind to one of four anti-seizure drugs and followed for two years. Carbamazepine and phenytoin came out on top; primidone came last, mostly because people could not tolerate it.',
+        technicalDetails:
+          'Mattson and colleagues ran a 10-centre double-blind trial in 622 adults with partial and secondarily generalised tonic-clonic seizures, randomised to carbamazepine, phenobarbital, phenytoin or primidone and followed for two years or until failure. Overall treatment success was highest with carbamazepine or phenytoin, intermediate with phenobarbital, lowest with primidone (p<0.002), and the difference was driven mainly by primidone causing more nausea, vomiting, dizziness and sedation. Control of tonic-clonic seizures did not differ significantly between drugs. Carbamazepine gave complete control of partial seizures more often than primidone or phenobarbital (p<0.03). Phenytoin caused more dysmorphic effects and hypersensitivity.',
+        evidenceSource:
+          'Mattson RH et al., N Engl J Med 1985;313:145-151 (VA Cooperative Study 118)',
+        doi: '10.1056/NEJM198507183130303',
+        measuredMetric:
+          'Overall treatment success at two years, combining seizure control and drug tolerability',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cbz-a2',
+        category: 'measured',
+        title: 'Veterans Affairs 1992: better than valproate for complex partial seizures',
+        laymanSummary:
+          'A second blinded trial of 480 adults compared carbamazepine with valproate. For seizures that spread into a convulsion the two were equal. For complex partial seizures, four of five measures favoured carbamazepine.',
+        technicalDetails:
+          'VA Cooperative Study 264 randomised 480 adults double-blind to carbamazepine or divalproex sodium, dosed to mid-therapeutic blood levels, followed one to five years. For secondarily generalised tonic-clonic seizures the drugs were comparable (136 and 138 patients). For complex partial seizures carbamazepine was favoured on total seizure number (2.7 versus 7.6, p=0.05), seizures per month (0.9 versus 2.2, p=0.01), time to first seizure (p<0.02), seizure-rating score (p=0.04) and a composite score combining control and adverse effects (p<0.001). Valproate caused more weight gain above 5.5 kg (20% versus 8%, p<0.001), hair loss or texture change (12% versus 6%, p=0.02) and tremor (45% versus 22%, p<0.001). Rash was more common on carbamazepine (11% versus 1%, p<0.001).',
+        evidenceSource:
+          'Mattson RH et al., N Engl J Med 1992;327:765-771 (VA Cooperative Study 264)',
+        doi: '10.1056/NEJM199209103271104',
+        measuredMetric:
+          'Seizure counts, time to first seizure and a composite control-plus-toxicity score over one to five years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cbz-a3',
+        category: 'failed',
+        title: 'SANAD: lamotrigine beat it on the outcome that counts stopping the drug',
+        laymanSummary:
+          'The largest first-line trial ever run in focal epilepsy put carbamazepine against four newer drugs in 1,721 patients. Lamotrigine was better on how long people stayed on their assigned drug, and that result moved carbamazepine out of first place in United Kingdom guidance.',
+        technicalDetails:
+          'SANAD arm A was an unblinded randomised trial in 1,721 patients for whom carbamazepine was deemed standard treatment, assigned to carbamazepine, gabapentin, lamotrigine, oxcarbazepine or topiramate, with co-primary outcomes of time to treatment failure and time to 12-month remission. For time to treatment failure lamotrigine was significantly better than carbamazepine (HR 0.78, 95% CI 0.63 to 0.97), gabapentin (0.65, 0.52 to 0.80) and topiramate (0.64, 0.52 to 0.79). For time to 12-month remission the estimates ran the other way and did not reach significance: carbamazepine against lamotrigine HR 0.91 (0.77 to 1.09), against topiramate 0.86 (0.72 to 1.03), against oxcarbazepine 0.92 (0.73 to 1.18); carbamazepine was significantly better than gabapentin (0.75, 0.63 to 0.90). The per-protocol difference in 12-month remission between lamotrigine and carbamazepine was 0 percentage points (95% CI -8 to 7) at two years and 5 (-3 to 12) at four.',
+        evidenceSource: 'Marson AG et al., Lancet 2007;369:1000-1015 (ISRCTN38354748)',
+        doi: '10.1016/S0140-6736(07)60460-7',
+        measuredMetric: 'Time to treatment failure and time to 12-month remission, both co-primary',
+        inferredClaim:
+          'That lamotrigine controls focal seizures better than carbamazepine. It does not: on the remission outcome carbamazepine was numerically ahead. What lamotrigine did better was stay tolerable.',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cbz-a4',
+        category: 'measured',
+        title: 'A genetic screen made Stevens-Johnson syndrome preventable, prospectively',
+        laymanSummary:
+          'In Taiwan, 4,877 people about to start carbamazepine were genotyped first. The 7.7% who carried a particular immune gene variant were given something else. Among everyone else who took the drug, not one case of the life-threatening skin reaction occurred, where about ten were expected.',
+        technicalDetails:
+          'Chen and colleagues recruited 4,877 carbamazepine-naive candidates from 23 Taiwanese hospitals and genotyped HLA-B*1502. Carriers (7.7%) were advised against carbamazepine; non-carriers (92.3%) were advised to take it and were interviewed weekly for two months. Mild transient rash developed in 4.3% and more widespread rash requiring hospitalisation in 0.1%. No SJS or TEN developed in any HLA-B*1502-negative subject receiving carbamazepine, against roughly ten cases predicted by the historical incidence of 0.23% (p<0.001). This was a historically controlled prevention study, not a randomised one, which is the correct design here only because randomising carriers to the drug would be unethical, and it is the reason the result is stated as a strong association rather than a causal effect estimate.',
+        evidenceSource: 'Chen P et al., N Engl J Med 2011;364:1126-1133',
+        doi: '10.1056/NEJMoa1009717',
+        measuredMetric:
+          'Incidence of Stevens-Johnson syndrome and toxic epidermal necrolysis in HLA-B*1502-negative patients started on carbamazepine, against a historical control rate',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cbz-a5',
+        category: 'conclusion_shift',
+        title:
+          'From an unpredictable idiosyncratic reaction to a test you run before the first dose',
+        laymanSummary:
+          'For forty years the severe rash on this drug was treated as bad luck that nobody could foresee. In 2004 a one-page report in Nature found a genetic marker for it in Han Chinese patients, and by 2007 the United States label required testing before treatment in people of Asian ancestry.',
+        technicalDetails:
+          'Chung and colleagues reported in 2004 a strong association in Han Chinese between HLA-B*1502 and carbamazepine-induced Stevens-Johnson syndrome, and proposed that the association could be turned into a predictive test. The FDA added an HLA-B*1502 screening recommendation to the carbamazepine boxed warning in December 2007. The current label states that the allele exceeds 15% prevalence in Hong Kong, Thailand, Malaysia and parts of the Philippines, is about 10% in Taiwan and 4% in North China, 2 to 4% in South Asians, under 1% in Japan and Korea, and largely absent in people not of Asian origin. A second and separate association, HLA-A*3101, was reported in 2011 in European, Korean and Japanese ancestry and covers hypersensitivity reactions more broadly, including maculopapular eruption and DRESS, which HLA-B*1502 does not predict. The pharmacological understanding of the drug did not change. What changed was that a risk previously described as idiosyncratic acquired a population-specific, testable cause.',
+        evidenceSource:
+          'Chung WH et al., Nature 2004;428:486; McCormack M et al., N Engl J Med 2011;364:1134-1143; carbamazepine United States prescribing information, boxed warning',
+        doi: '10.1038/428486a',
+        inferredClaim:
+          'That "idiosyncratic" means causeless. It meant unexplained, and in this case the explanation was findable and is now printed in the boxed warning.',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cbz-a6',
+        category: 'inferred',
+        title: 'The mechanism everyone teaches is not the mechanism the label states',
+        laymanSummary:
+          'Textbooks describe carbamazepine as a use-dependent sodium channel blocker. Its own label describes reduced polysynaptic responses and blocked post-tetanic potentiation, and then says the mechanism of action remains unknown.',
+        technicalDetails:
+          'The United States prescribing information section on mechanism of action reports anticonvulsant activity in electrically and chemically induced rodent seizures, reduction of polysynaptic responses, block of post-tetanic potentiation, abolition of pain from infraorbital nerve stimulation in cats and rats, and depression of thalamic potential and bulbar and polysynaptic reflexes. It then states in as many words that the mechanism of action remains unknown. It also notes that the principal metabolite, carbamazepine-10,11-epoxide, has anticonvulsant activity in animal models, that clinical activity for the epoxide has been postulated, and that the significance of that activity for the safety and efficacy of carbamazepine has not been established. The state-dependent sodium-channel account is well supported in cellular electrophysiology; what has never been established is the quantitative link from that block to a suppressed seizure in a person, or how much of the clinical effect belongs to the parent drug rather than the epoxide.',
+        evidenceSource:
+          'Carbamazepine United States prescribing information, Clinical Pharmacology, Mechanism of Action (openFDA drug label endpoint)',
+        inferredClaim:
+          'That sodium-channel block is the established mechanism of carbamazepine in people, and that the parent drug is the active agent',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cbz-a7',
+        category: 'measured',
+        title:
+          'It doubles its own clearance in the first month, then keeps doing it to other drugs',
+        laymanSummary:
+          'Carbamazepine turns on the liver enzymes that destroy it. Over three to five weeks its half-life falls from as long as 65 hours to as little as 12, so a dose that worked at the start stops working. It does the same to most other medicines a person takes.',
+        technicalDetails:
+          'The label states that autoinduction is complete after 3 to 5 weeks of a fixed dosing regimen, with initial half-life values of 25 to 65 hours falling to 12 to 17 hours. Carbamazepine is 76% plasma protein bound with a CSF to serum ratio of 0.22. It is a potent inducer of CYP3A4 and of UGT enzymes, so it lowers the exposure of hormonal contraceptives, direct oral anticoagulants, many antiretrovirals and several other anti-seizure drugs. In the other direction the label names aprepitant, cimetidine, ciprofloxacin, danazol, diltiazem, macrolides, fluoxetine, fluvoxamine, trazodone, omeprazole, oxybutynin, isoniazid, nicotinamide, azole antifungals, acetazolamide, verapamil, ticlopidine, grapefruit juice and protease inhibitors as agents that raise carbamazepine levels, and loxapine, quetiapine, valproic acid and brivaracetam as agents that raise the epoxide by inhibiting microsomal epoxide hydrolase.',
+        evidenceSource:
+          'Carbamazepine United States prescribing information, Clinical Pharmacology and Drug Interactions (openFDA drug label endpoint)',
+        measuredMetric:
+          'Elimination half-life before and after autoinduction, and the named list of interacting agents on the label',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cbz-a8',
+        category: 'inferred',
+        title: 'Routine blood counts are monitored on a warning the label says they do not predict',
+        laymanSummary:
+          'The boxed warning names aplastic anaemia and agranulocytosis, and most patients have blood counts checked because of it. The same warning says the minor changes those counts pick up are unlikely to signal either condition.',
+        technicalDetails:
+          'The boxed warning cites a population-based case-control study finding a 5 to 8 fold increased risk of aplastic anaemia and agranulocytosis on carbamazepine, against an untreated general-population rate of approximately six cases of agranulocytosis and two of aplastic anaemia per million people per year. It then states that although transient or persistent decreases in platelet or white cell counts are not uncommon, data are not available to estimate their incidence or outcome accurately, that the vast majority of leukopenia cases have not progressed, and that because the incidence of the serious conditions is so low, the vast majority of minor haematological changes seen on monitoring are unlikely to signal either abnormality. A pretreatment baseline is called for; the warning does not establish that a schedule of repeat counts detects the events it names.',
+        evidenceSource:
+          'Carbamazepine United States prescribing information, boxed warning, Aplastic Anemia and Agranulocytosis (openFDA drug label endpoint)',
+        measuredMetric:
+          'Relative risk of 5 to 8 against a baseline of 6 and 2 cases per million per year',
+        inferredClaim:
+          'That periodic full blood counts on carbamazepine prevent aplastic anaemia or agranulocytosis. The label states the relative risk and simultaneously states that routine minor abnormalities do not predict the outcome.',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cbz-a9',
+        category: 'measured',
+        title: 'EURAP: 5.5% major malformation rate, roughly double lamotrigine and levetiracetam',
+        laymanSummary:
+          'Across 1,957 pregnancies on carbamazepine alone in a 42-country registry, 5.5% of babies had a major birth defect. Lamotrigine and levetiracetam were at 2.9% and 2.8%; valproate was at 10.3%.',
+        technicalDetails:
+          'The EURAP prospective registry followed pregnancies on anti-epileptic monotherapy at conception from 42 countries between 1999 and 2016. Major congenital malformation prevalence at one year was 107 of 1,957 (5.5%) for carbamazepine, against 17 of 599 (2.8%) for levetiracetam, 74 of 2,514 (2.9%) for lamotrigine, 10 of 333 (3.0%) for oxcarbazepine, 6 of 152 (3.9%) for topiramate, 8 of 125 (6.4%) for phenytoin, 19 of 294 (6.5%) for phenobarbital and 142 of 1,381 (10.3%) for valproate. The authors placed lamotrigine, levetiracetam and oxcarbazepine within the background range for unexposed offspring and carbamazepine outside it. This is a registry, not a randomised comparison: drug choice tracked seizure type and severity, and the endpoint is structural malformation at one year rather than cognition later.',
+        evidenceSource: 'Tomson T et al., Lancet Neurol 2018;17:530-538 (EURAP registry)',
+        doi: '10.1016/S1474-4422(18)30107-8',
+        measuredMetric: 'Prevalence of major congenital malformations at 1 year, by drug and dose',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, absorbed slowly, and increasingly destroyed by the liver it wakes up',
+        laymanDesc:
+          'Absorption is slow and varies between formulations. Over the first three to five weeks the liver learns to clear the drug faster, so blood levels drift down on an unchanged dose.',
+        molecularDetail:
+          'Peak plasma levels arrive at about 1.5 hours from suspension, 4 to 5 hours from conventional tablets and 3 to 12 hours from the extended-release tablet. Plasma protein binding is 76%. Metabolism runs mainly through CYP3A4 to carbamazepine-10,11-epoxide, which is itself anticonvulsant in animal models and is cleared by microsomal epoxide hydrolase. Autoinduction of CYP3A4 completes after 3 to 5 weeks, taking the half-life from 25 to 65 hours down to 12 to 17.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches brain tissue at roughly its free concentration in blood',
+        laymanDesc:
+          'The molecule is small and fat-soluble enough to cross into the brain, and the amount that gets there tracks the fraction not stuck to blood proteins.',
+        molecularDetail:
+          'The CSF to serum ratio is 0.22, closely matching the 24% of carbamazepine that is unbound in serum, which is the expected relationship for passive distribution of a free drug. The relevant compartment is the axonal and presynaptic membrane of cortical neurons, and for trigeminal neuralgia the root entry zone of the fifth cranial nerve.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It binds sodium channels that have just fired, not ones at rest',
+        laymanDesc:
+          'Each sodium pore passes through a shut, unavailable state right after it opens. Carbamazepine binds that state and holds the pore there, so pores that have just been used are the ones taken out of service.',
+        molecularDetail:
+          'Binding to the inactivated conformation of voltage-gated sodium channel alpha subunits shifts steady-state inactivation to more negative potentials and slows recovery from inactivation. Apparent potency is far higher from a depolarised holding potential than from a hyperpolarised one, which is what makes the block state-dependent rather than simply concentration-dependent.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Rapid repetitive firing runs itself down',
+        laymanDesc:
+          'A cell firing occasionally loses almost nothing. A cell firing in a fast train loses more of its pores with every spike, so the train fades instead of building.',
+        molecularDetail:
+          'Cumulative block across a stimulus train reduces sustained high-frequency firing. The label describes the observable version of this in animals: reduced polysynaptic responses and blocked post-tetanic potentiation, and abolition of pain evoked by infraorbital nerve stimulation. The label then states that the mechanism of action remains unknown.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Fewer focal seizures, and fewer facial pain attacks',
+        laymanDesc:
+          'The measured results are two: better control of focal seizures than phenobarbital or primidone in a blinded 622-patient trial, and relief of trigeminal neuralgia, which is what the drug was first licensed for in 1968.',
+        molecularDetail:
+          'Efficacy in focal epilepsy is established against three older comparators (VA 118), against valproate (VA 264) and across four newer drugs (SANAD arm A). The extended-release capsule was separately approved for acute manic and mixed episodes of bipolar I disorder in 2004 as Equetro, a different indication reached through different registration trials.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'VA Cooperative Study 118 (Mattson 1985)',
+        phase: 'Double-blind randomised comparative trial, 10 centres, 2-year follow-up',
+        sampleSize: 622,
+        primaryEndpoint:
+          'Overall treatment success, combining seizure control and tolerability, across carbamazepine, phenobarbital, phenytoin and primidone',
+        endpointMet: true,
+        statisticalPValue:
+          'Highest with carbamazepine or phenytoin, lowest with primidone, P<0.002; complete control of partial seizures better than primidone or phenobarbital, P<0.03',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'VA Cooperative Study 264 (Mattson 1992)',
+        phase: 'Double-blind randomised comparative trial, 1 to 5 years of follow-up',
+        sampleSize: 480,
+        primaryEndpoint:
+          'Seizure control and composite control-plus-toxicity score, carbamazepine versus divalproex sodium',
+        endpointMet: true,
+        statisticalPValue:
+          'Complex partial seizures per month 0.9 versus 2.2, P=0.01; composite score favoured carbamazepine, P<0.001; no difference for secondarily generalised tonic-clonic seizures',
+        unreportedAdverseSignals:
+          'Rash occurred in 11% on carbamazepine against 1% on valproate (P<0.001), a difference whose genetic basis was not identified for another twelve years.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'SANAD arm A (ISRCTN38354748)',
+        phase: 'Unblinded randomised controlled trial, five parallel arms',
+        sampleSize: 1721,
+        primaryEndpoint:
+          'Co-primary: time to treatment failure and time to 12-month remission, carbamazepine against gabapentin, lamotrigine, oxcarbazepine and topiramate',
+        endpointMet: false,
+        statisticalPValue:
+          'Lamotrigine better than carbamazepine for time to treatment failure, HR 0.78 (95% CI 0.63 to 0.97); for 12-month remission carbamazepine held a non-significant advantage, HR 0.91 (0.77 to 1.09)',
+        unreportedAdverseSignals:
+          'The trial was unblinded, so the treatment-failure endpoint, which depends on a clinician deciding to stop a drug, was open to expectation on both sides.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'HLA-B*1502 prospective screening study, Taiwan (Chen 2011)',
+        phase: 'Prospective cohort with historical control, 23 hospitals',
+        sampleSize: 4877,
+        primaryEndpoint:
+          'Incidence of Stevens-Johnson syndrome and toxic epidermal necrolysis among HLA-B*1502-negative subjects started on carbamazepine',
+        endpointMet: true,
+        statisticalPValue:
+          'Zero cases observed against approximately 10 expected from a historical incidence of 0.23%, P<0.001',
+        unreportedAdverseSignals:
+          'Mild transient rash still occurred in 4.3% and hospitalising rash in 0.1%. The allele predicts SJS and TEN only; the label states it does not predict maculopapular eruption or DRESS.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Highest overall treatment success alongside phenytoin among four drugs in 622 double-blind patients followed two years (P<0.002)',
+        'Better complex partial seizure control than valproate on four of five outcome measures in 480 double-blind patients',
+        'Time to treatment failure worse than lamotrigine in 1,721 randomised patients, HR 0.78 (95% CI 0.63 to 0.97)',
+        'Zero cases of SJS or TEN among HLA-B*1502-negative patients in 4,877 prospectively genotyped Taiwanese candidates, against about ten expected',
+        'Half-life falling from 25 to 65 hours to 12 to 17 hours over 3 to 5 weeks of unchanged dosing',
+        '107 major congenital malformations in 1,957 monotherapy-exposed pregnancies (5.5%) in the EURAP registry',
+      ],
+      unsupportedInferences: [
+        'That sodium-channel block is the established mechanism in people: it is the best cellular account, but the label says the mechanism remains unknown and the active-metabolite question is open',
+        'That periodic blood counts prevent aplastic anaemia or agranulocytosis, when the same boxed warning says minor haematological changes are unlikely to signal either',
+        'That lamotrigine controls focal seizures better than carbamazepine, when SANAD found the opposite direction on the remission endpoint',
+        'That a negative HLA-B*1502 test makes carbamazepine rash-safe, when the allele predicts SJS and TEN only and HLA-A*3101 covers a separate population and a broader set of reactions',
+      ],
+      whatFailedInitially: [
+        'The drug was first investigated as an antidepressant on its structural resemblance to imipramine, and reached the market for trigeminal neuralgia in 1968 before it reached it for epilepsy in 1974',
+        'It lost first-line status in United Kingdom focal epilepsy guidance after SANAD, on tolerability rather than on seizure control',
+        'For forty years its severe rash was classified as idiosyncratic and unpredictable, an inference falsified by a one-page report in 2004',
+      ],
+      realWorldOutcome: [
+        'A WHO essential medicine, still first-line for trigeminal neuralgia and widely used in focal epilepsy where cost decides',
+        'About 38 US cents per unit at United States pharmacy acquisition cost, a median across 92 listed generic products',
+        'Its enzyme induction, not its efficacy, is what most often removes it from a regimen: it lowers the levels of hormonal contraceptives, anticoagulants and other anti-seizure drugs',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, chewable tablet, extended-release tablet, extended-release capsule and oral suspension',
+      description:
+        'Formulation matters more here than for most drugs. The suspension peaks at about 1.5 hours, the conventional tablet at 4 to 5 and the extended-release tablet at 3 to 12, and the extended-release tablet given twice daily reproduces the steady-state levels of the conventional tablet given four times daily. There is no intravenous carbamazepine in general use, which is one reason it is absent from status epilepticus protocols.',
+      safetyProfile:
+        'The boxed warning has two halves. The first is dermatologic: serious and sometimes fatal SJS and TEN, estimated at 1 to 6 per 10,000 new users in mainly Caucasian populations and about ten times that in some Asian countries, with HLA-B*1502 screening required before treatment in people with ancestry across broad areas of Asia. The second is haematologic: aplastic anaemia and agranulocytosis at 5 to 8 times the general-population rate, on a baseline of roughly six and two cases per million per year. Beyond the box, hyponatraemia is common, the drug is a potent CYP3A4 inducer that lowers the levels of hormonal contraception and many other medicines, and it can worsen absence and myoclonic seizures in generalised epilepsy. The class-wide suicidality warning applies.',
+    },
+    commonQuestions: [
+      {
+        q: 'Should I have a genetic test before starting carbamazepine?',
+        a: 'If you have ancestry anywhere across broad areas of Asia, the United States label says yes, and says it should happen before the first dose. The evidence behind that instruction is a prospective study of 4,877 carbamazepine-naive people in Taiwan: 7.7% carried HLA-B*1502 and were given something else, and among the 92.3% who tested negative and took carbamazepine, no case of Stevens-Johnson syndrome or toxic epidermal necrolysis occurred, against roughly ten expected from the historical rate. The label gives allele prevalences to guide who to test: above 15% in Hong Kong, Thailand, Malaysia and parts of the Philippines, about 10% in Taiwan, 4% in North China, 2 to 4% in South Asians, under 1% in Japan and Korea, and largely absent in people not of Asian origin. A separate allele, HLA-A*3101, carries risk in European, Korean and Japanese ancestry and covers a wider range of reactions.',
+        auditNote:
+          'This is the strongest prevention result on this page and it is not about seizures at all.',
+      },
+      {
+        q: 'Is carbamazepine still a first-choice drug for epilepsy?',
+        a: 'It depends which endpoint you ask about and where you are. SANAD randomised 1,721 patients across five drugs and found lamotrigine significantly better on time to treatment failure (HR 0.78, 95% CI 0.63 to 0.97), which moved carbamazepine out of first place in United Kingdom guidance. On the other co-primary outcome, time to 12-month remission, carbamazepine was numerically ahead of lamotrigine, topiramate and oxcarbazepine and significantly ahead of gabapentin. So the drug lost on tolerability and interactions, not on seizure control, and it remains a WHO essential medicine and a first-line choice for trigeminal neuralgia.',
+      },
+      {
+        q: 'Why does my dose keep being increased when nothing has changed?',
+        a: 'Because the drug speeds up its own destruction. Carbamazepine induces CYP3A4, the enzyme that clears it, and the label states that autoinduction completes after 3 to 5 weeks of a fixed regimen, with half-life falling from 25 to 65 hours down to 12 to 17. The same dose therefore produces a lower blood level in week five than in week one. This is a known pharmacokinetic property, not a sign that the epilepsy is worsening or that tolerance has developed at the target.',
+      },
+      {
+        q: 'Does carbamazepine stop the contraceptive pill working?',
+        a: 'It lowers the exposure. Carbamazepine is a potent inducer of CYP3A4 and of the glucuronidation enzymes, and it reduces plasma levels of hormonal contraceptives along with direct oral anticoagulants, many antiretrovirals and several other anti-seizure drugs. The label handles this as a drug-interaction warning. What to do about it is a prescriber decision and this page does not make recommendations, but the interaction itself is not in doubt and it is one of the commonest reasons this drug gets swapped for a non-inducing one.',
+        auditNote:
+          'Direction of the interaction is documented on the label. Magnitude varies by the specific product and is not stated here.',
+      },
+      {
+        q: 'Why is there no manufacturing cost on this page?',
+        a: 'Because no per-dose cost-of-production figure for carbamazepine could be verified and cited. The published literature on essential-medicine production costs keeps its per-drug numbers in a supplementary appendix that was not checked line by line here, and estimating one would mean this page inventing a number. What is shown instead is the CMS National Average Drug Acquisition Cost, about 38 US cents per unit as a median across 92 listed generic products. That is what a United States pharmacy pays a wholesaler. It is not a manufacturing cost and it is not what a patient is charged.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Mattson RH et al. Comparison of carbamazepine, phenobarbital, phenytoin, and primidone in partial and secondarily generalized tonic-clonic seizures. N Engl J Med 1985;313:145-151',
+        identifier: '10.1056/NEJM198507183130303',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mattson RH et al. A comparison of valproate with carbamazepine for the treatment of complex partial seizures and secondarily generalized tonic-clonic seizures in adults. N Engl J Med 1992;327:765-771',
+        identifier: '10.1056/NEJM199209103271104',
+        kind: 'doi',
+      },
+      SANAD_I_FOCAL_SOURCE,
+      {
+        label:
+          'Chung WH et al. Medical genetics: a marker for Stevens-Johnson syndrome. Nature 2004;428:486',
+        identifier: '10.1038/428486a',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chen P et al. Carbamazepine-induced toxic effects and HLA-B*1502 screening in Taiwan. N Engl J Med 2011;364:1126-1133',
+        identifier: '10.1056/NEJMoa1009717',
+        kind: 'doi',
+      },
+      {
+        label:
+          'McCormack M et al. HLA-A*3101 and carbamazepine-induced hypersensitivity reactions in Europeans. N Engl J Med 2011;364:1134-1143',
+        identifier: '21428769',
+        kind: 'pmid',
+      },
+      EURAP_SOURCE,
+      KETOGENIC_DIET_SOURCE,
+      {
+        label:
+          'Carbamazepine United States prescribing information: boxed warning, Clinical Pharmacology, Drug Interactions and Adverse Reactions, retrieved from the openFDA drug label endpoint',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22CARBAMAZEPINE%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: TEGRETOL (carbamazepine), NDA 016608, original approval 1968; EQUETRO (carbamazepine extended-release capsules), NDA 021710, approved 2004',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=016608',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2554 — carbamazepine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2554',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Oxcarbazepine — a carbamazepine redesigned around one metabolite, tested against itself.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'oxcarbazepine',
+    name: 'Oxcarbazepine',
+    tradeName: 'Trileptal / Oxtellar XR',
+    sponsor:
+      'Novartis (originator, Trileptal); Supernus Pharmaceuticals for the extended-release Oxtellar XR; now off-patent with many generic manufacturers',
+    targetGene: 'SCN2A',
+    targetProtein:
+      'Voltage-gated sodium channel alpha subunits, blocked by the 10-monohydroxy derivative (MHD) rather than by oxcarbazepine itself. The label states that the precise mechanism is unknown and adds increased potassium conductance and modulation of high-voltage-activated calcium channels as possible contributors.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2000,
+    indication:
+      'Monotherapy or adjunctive therapy for partial-onset seizures in adults; monotherapy for partial-onset seizures in children aged 4 years and above; adjunctive therapy for partial-onset seizures in children aged 2 years and above',
+    patientFriendlyIndication: 'Focal (partial-onset) epilepsy',
+    anatomicalSite:
+      'Axonal membrane of cortical neurons, reached by the active metabolite rather than the swallowed drug',
+    conditionContext: {
+      conditionExplainer:
+        'Focal epilepsy starts in one patch of cortex and may or may not spread. The drugs that work best on it are almost all drugs that slow down repetitive firing in a single axon rather than drugs that change the chemistry of a whole brain region.',
+      whyItMatters:
+        'Carbamazepine works and is cheap, but it induces liver enzymes, wrecks the levels of other medicines, and makes a reactive epoxide metabolite that was suspected of causing some of its toxicity. Oxcarbazepine is what happens when a chemist tries to keep the first property and delete the rest.',
+      whoTakesThis:
+        'People with focal epilepsy, particularly where carbamazepine interactions are the problem rather than carbamazepine efficacy. It is also used off-label in trigeminal neuralgia, an indication it does not carry in the United States.',
+      clinicalGoals:
+        'Seizure control equal to carbamazepine with predictable blood levels and fewer interactions, at the cost of watching the serum sodium.',
+    },
+    oneSentenceVerdict:
+      'A carbamazepine redesigned so the body reduces it to an active alcohol instead of oxidising it to a reactive epoxide, which halved seizure frequency at 2,400 mg/day against 7.6% on placebo in 692 adults but at a dose more than 65% of that group stopped taking, and whose monotherapy licence rests largely on trials that compared a high dose of the drug with a low dose of the same drug.',
+    laymanHowItWorks:
+      'The tablet itself does almost nothing. The body immediately reduces it to a related molecule, the 10-monohydroxy derivative, and that is what acts. It works the same way carbamazepine does: it binds sodium pores in nerve membranes that have just fired and keeps them shut, so a cell firing repeatedly runs out of usable pores and the burst dies out. The chemical difference matters because the body reaches this metabolite by a simple reduction rather than by the oxidation that turns carbamazepine into a reactive epoxide, so there is far less enzyme induction and no self-induction.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 71,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1637 per unit, the median across 90 listed oxcarbazepine products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Synthesised at Geigy in 1966 as a deliberate carbamazepine analogue, first marketed in Denmark in 1990 and approved in the United States as Trileptal in January 2000 under NDA 021014. Now generic. The extended-release tablet Oxtellar XR (NDA 202810, Supernus, 2012) is a separate product with its own registration trial and remains branded.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Oxcarbazepine sits between two drugs it is chemically almost identical to. Carbamazepine is the parent it was built to improve on, and SANAD found no significant difference between them on either primary outcome. Eslicarbazepine acetate is the single enantiomer of its own active metabolite, sold separately. Lamotrigine is the drug that beat the whole group on staying tolerable.',
+      conventionalRx: [
+        {
+          name: 'Carbamazepine (Tegretol)',
+          class: 'Sodium channel blocker, the parent compound',
+          howItCompares:
+            'In SANAD arm A, 1,721 patients were randomised across five drugs. For time to 12-month remission carbamazepine held a non-significant advantage over oxcarbazepine (HR 0.92, 95% CI 0.73 to 1.18); for time to treatment failure lamotrigine had a non-significant advantage over oxcarbazepine (HR 1.15, 95% CI 0.86 to 1.54). The label reports that clinically significant hyponatraemia occurred in 2.5% of oxcarbazepine patients and in none of the carbamazepine or phenobarbital active controls.',
+          typicalCost:
+            'US$0.3776 per unit, median across 92 listed products at US pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: longer and larger evidence base, and the only one of the two licensed in the United States for trigeminal neuralgia. Cons: potent enzyme induction, autoinduction of its own clearance, and a boxed warning oxcarbazepine does not carry.',
+        },
+        {
+          name: 'Eslicarbazepine acetate (Aptiom)',
+          class: 'Prodrug of S-licarbazepine, one enantiomer of oxcarbazepine active metabolite',
+          howItCompares:
+            'Reaches the same active species by a shorter route and as a single enantiomer, and is given once daily. It is a distinct FDA application with its own trials rather than a reformulation, and no adequately powered head-to-head trial against oxcarbazepine establishes a difference in seizure control.',
+          typicalCost:
+            'Listed separately in the CMS NADAC file; not the same product and not interchangeable at the pharmacy',
+          prosAndCons:
+            'Pros: once-daily dosing and a cleaner metabolic picture. Cons: hyponatraemia is shared, the carbamazepine cross-hypersensitivity question is shared, and the price is not.',
+        },
+        {
+          name: 'Lamotrigine (Lamictal)',
+          class: 'Sodium channel blocker',
+          howItCompares:
+            'The drug that won SANAD arm A on time to treatment failure, significantly better than carbamazepine (HR 0.78, 95% CI 0.63 to 0.97) and non-significantly better than oxcarbazepine (HR 1.15, 95% CI 0.86 to 1.54, favouring lamotrigine). It does not cause hyponatraemia.',
+          typicalCost:
+            'US$0.1612 per unit, median across 181 listed products at US pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: best tolerated of the group in the largest first-line trial, and among the lowest malformation rates in EURAP. Cons: slow introduction because of serious rash, and a boxed warning for it.',
+        },
+        {
+          name: 'Levetiracetam (Keppra)',
+          class: 'SV2A ligand, unrelated mechanism',
+          howItCompares:
+            'Not a sodium channel blocker, so it shares neither the rash cross-reactivity nor the hyponatraemia. In SANAD II it failed non-inferiority to lamotrigine in focal epilepsy (HR 1.18, 97.5% CI 0.95 to 1.47), so it is not a stronger drug, only a differently limited one.',
+          typicalCost:
+            'US$0.1105 per unit, median across 134 listed products at US pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no interactions, an intravenous form, and no sodium monitoring. Cons: irritability and aggression in 13% of adults and 38% of children in its registration trials.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Ketogenic diet (medically supervised, not a supplement)',
+          activeCompound: 'Ketone bodies produced by sustained carbohydrate restriction',
+          biologicalMechanism:
+            'Shifts brain fuel from glucose to ketone bodies, with downstream effects on GABA synthesis and adenosine signalling. It shares no mechanism with sodium-channel blockade and is used alongside drugs, not instead of them.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here. In the one randomised trial, 145 children with drug-resistant epilepsy were assigned to the diet or a 3-month delay, and 38% on the diet halved their seizures against 6% of controls.',
+          monthlyCost: '',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Know what low sodium feels like',
+          action:
+            'Learn the symptom list the label gives for hyponatraemia and treat any of them as a reason to call rather than to wait: nausea, malaise, headache, lethargy, confusion, obtundation, or seizures becoming more frequent or more severe.',
+          patientImpact:
+            'In the 14 controlled epilepsy studies, 2.5% of oxcarbazepine-treated patients (38 of 1,524) recorded a serum sodium below 125 mmol/L, against none on placebo or active control. Most were asymptomatic, but the trials monitored frequently and real life does not.',
+          clinicalPrecaution:
+            'More seizures is on that symptom list, which means the natural reading, that the drug has stopped working, can be exactly wrong. Only a blood test separates the two.',
+        },
+        {
+          name: 'Say the word carbamazepine before the first dose',
+          action:
+            'Tell the prescriber explicitly about any past reaction to carbamazepine, even one described at the time as a minor rash.',
+          patientImpact:
+            'The label states that approximately 25% to 30% of patients who have had hypersensitivity reactions to carbamazepine will react to oxcarbazepine, and instructs that patients be specifically questioned about it.',
+          clinicalPrecaution:
+            'The chemical redesign that removed the epoxide did not remove this risk. A past carbamazepine reaction is a reason for a conversation, not a reason to assume the newer drug is safe.',
+        },
+        {
+          name: 'Flag a pregnancy early, for a pharmacokinetic reason',
+          action:
+            'Tell the neurology team as soon as a pregnancy is known, and again after delivery.',
+          patientImpact:
+            'The label warns that plasma levels of the active metabolite MHD may fall gradually through pregnancy and return after delivery, so seizure control can drift in both directions on an unchanged dose.',
+          clinicalPrecaution:
+            'This page gives no dosing advice. The point is only that the timing of the conversation matters, because the change is physiological and predictable rather than sudden.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1C2=CC=CC=C2N(C3=CC=CC=C3C1=O)C(=O)N',
+      chemicalFormula: 'C15H12N2O2',
+      molecularWeight: '252.27 g/mol',
+      targetReceptorAffinity:
+        'No clinically anchored affinity constant is published for the parent drug, and the parent is not the acting species. Potency measured in a cell belongs to the 10-monohydroxy derivative and is state-dependent, so it varies with holding potential and firing rate.',
+      structureSource: {
+        label: 'PubChem CID 34312 — oxcarbazepine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/34312',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'oxc-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the iminostilbene precursor and absence of carbamazepine carryover',
+          description:
+            'Confirm the tricyclic starting material and set a limit for carbamazepine itself. The two molecules differ by a single oxygen at the 10-position, so residual parent carbamazepine is the most consequential impurity in the whole route: it would bring back exactly the epoxide chemistry the compound exists to avoid.',
+          reagentsAndBuffer:
+            'Iminostilbene and carbamazepine reference standards, reverse-phase HPLC with UV detection at 254 nm, gradient elution, limit of quantification set below the impurity specification',
+        },
+        {
+          id: 'oxc-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Installation of the 10-keto group and carbamoylation',
+          description:
+            'Build the 10-oxo-10,11-dihydro core and carry the carboxamide on the ring nitrogen. Putting a ketone at position 10 blocks the site where carbamazepine gets oxidised to its 10,11-epoxide, so the body has to reduce this molecule instead of oxidising it.',
+          dependsOnStepId: 'oxc-w1',
+          reagentsAndBuffer:
+            'Oxidising system for the 10-position, then phosgene equivalent and ammonia for the carboxamide; toluene or chlorobenzene, controlled temperature, nitrogen blanket, caustic scrubber on the vent',
+        },
+        {
+          id: 'oxc-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation with an epoxide-impurity specification',
+          description:
+            'Recrystallise and then prove the absence of 10,11-epoxide species by mass spectrometry as well as the usual chemical purity. This step exists because the product specification here is defined by what must not be present, not only by what must.',
+          dependsOnStepId: 'oxc-w2',
+          reagentsAndBuffer:
+            'Ethanol or ethyl acetate for recrystallisation, controlled cooling profile, LC-MS with selected ion monitoring for epoxide masses, powder X-ray diffraction for form confirmation',
+        },
+        {
+          id: 'oxc-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Apply the metabolite, not the drug, to a sodium-channel-expressing cell',
+          description:
+            'Perfuse the 10-monohydroxy derivative onto neurons or transfected cells and hold the membrane at different voltages. Applying oxcarbazepine itself here would measure the wrong molecule: the label states the pharmacological activity is exerted primarily through MHD, and a cell in a dish does not carry out the reduction a liver does.',
+          dependsOnStepId: 'oxc-w3',
+          reagentsAndBuffer:
+            'HEK293 cells or cultured cortical neurons expressing SCN2A, synthetic MHD reference standard, extracellular solution with 140 mM sodium chloride, caesium fluoride internal solution, holding potentials at -120 mV and -70 mV',
+        },
+        {
+          id: 'oxc-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Chiral quantification of R- and S-licarbazepine alongside use-dependent block',
+          description:
+            'Separate the two enantiomers of the active metabolite and quantify each, while measuring how much sodium current is lost across a stimulus train. The reduction of the ketone creates a new chiral centre and the body does not make the two forms equally. That asymmetry is not a laboratory curiosity: the S-enantiomer is marketed as a drug in its own right, as eslicarbazepine acetate.',
+          dependsOnStepId: 'oxc-w4',
+          reagentsAndBuffer:
+            'Chiral stationary phase (polysaccharide-derived) LC column, deuterated MHD internal standard, protein-precipitated plasma, LC-MS/MS in multiple reaction monitoring mode, 10 Hz stimulus trains for the electrophysiology arm',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'oxc-a1',
+        category: 'measured',
+        title: 'Adjunctive trial in 692 adults: a clear, dose-ordered reduction against placebo',
+        laymanSummary:
+          'Adults whose seizures were not controlled added oxcarbazepine or a dummy tablet on top of what they already took. At the highest dose the median seizure count fell by half; on placebo it fell by 7.6%. The effect got bigger at every dose step.',
+        technicalDetails:
+          'Trial 2 of the label adjunctive programme enrolled 692 patients aged 15 to 66 on 1 to 3 concomitant anti-seizure drugs, stabilised over an 8-week baseline and randomised to fixed doses of oxcarbazepine 600, 1,200 or 2,400 mg/day or placebo, then maintained 24 weeks. Median percentage reduction in partial-onset seizure frequency was 49.9% at 2,400 mg/day (n=174), 40.2% at 1,200 mg/day (n=177), 26.4% at 600 mg/day (n=168) and 7.6% on placebo (n=173), p=0.0001 at every dose. The companion paediatric trial randomised 264 patients aged 3 to 17 to 30 to 46 mg/kg/day or placebo, with median reductions of 34.8% against 9.4%, p=0.0001.',
+        evidenceSource:
+          'Oxcarbazepine United States prescribing information, Clinical Studies 14.2, Table 8 (openFDA drug label endpoint)',
+        measuredMetric:
+          'Median percentage change in partial-onset seizure frequency from baseline, by fixed dose, against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxc-a2',
+        category: 'failed',
+        title: 'The dose that halved seizures is the dose two-thirds of patients stopped taking',
+        laymanSummary:
+          'The 49.9% figure comes from the 2,400 mg group. In that same group, more than 65% of patients quit because of side effects and only 46 of 174 finished the study. The number that gets quoted and the number of people who could live with it are not the same number.',
+        technicalDetails:
+          'The label states directly, in the clinical studies section rather than in the safety section, that in the high-dose group of the adult adjunctive trial over 65% of patients discontinued treatment because of adverse events, and that only 46 patients (27%) in that group completed the 28-week study. It further notes this was an outcome not seen in the monotherapy studies. A median percentage reduction computed over a cohort that mostly left is a statement about the people who stayed, and the label does not report a responder analysis that carries the drop-outs forward.',
+        evidenceSource:
+          'Oxcarbazepine United States prescribing information, Clinical Studies 14.2 (openFDA drug label endpoint)',
+        measuredMetric:
+          'Discontinuation for adverse events above 65%, and 27% study completion, in the 2,400 mg/day arm',
+        inferredClaim:
+          'That a 49.9% median seizure reduction at 2,400 mg/day describes what that dose does for a population, rather than what it did for the minority who tolerated it for 28 weeks',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'oxc-a3',
+        category: 'inferred',
+        title: 'The monotherapy licence rests mostly on the drug being compared with itself',
+        laymanSummary:
+          'Four trials support using oxcarbazepine on its own. Two of them compared 2,400 mg of oxcarbazepine with 300 mg of oxcarbazepine. That design shows the drug does more at a higher dose. It does not compare the drug with an alternative treatment.',
+        technicalDetails:
+          'The label describes four randomised controlled double-blind monotherapy trials in a predominantly adult population: two against placebo and two using a randomised-withdrawal design comparing high dose (2,400 mg) with low dose (300 mg) after substituting oxcarbazepine for existing drugs. Of the two placebo-controlled trials, one enrolled 102 patients aged 11 to 62 who had been withdrawn from all anti-seizure drugs as inpatients during a pre-surgical evaluation and required 2 to 10 seizures in the 48 hours before randomisation, with an endpoint of time to meet exit criteria over roughly 10 days (p=0.0001); the other enrolled 67 untreated patients with newly diagnosed seizures with time to first seizure as the endpoint over 84 days (p=0.046). The two withdrawal trials enrolled 143 and 87 patients. The largest single number in the monotherapy programme is 143, and the comparator in that trial was a sub-therapeutic dose of the same molecule.',
+        evidenceSource:
+          'Oxcarbazepine United States prescribing information, Clinical Studies 14.1 (openFDA drug label endpoint)',
+        measuredMetric:
+          'Time to meet pre-specified exit criteria, high dose against low dose of the same drug',
+        inferredClaim:
+          'That oxcarbazepine monotherapy has been shown to control focal seizures as well as an established alternative. The registration programme did not test that; SANAD later did, and found no significant difference from carbamazepine either way.',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'oxc-a4',
+        category: 'failed',
+        title: 'The paediatric monotherapy trial found no difference between high and low dose',
+        laymanSummary:
+          'A trial in 92 children compared a full dose with a token dose over five days on continuous video-EEG. The two were indistinguishable, p=0.90.',
+        technicalDetails:
+          'A monotherapy trial in 92 paediatric patients aged 1 month to 16 years with inadequately controlled or new-onset partial seizures randomised them in hospital to oxcarbazepine 10 mg/kg/day or titration to 40 to 60 mg/kg/day within 3 days while the previous drug was withdrawn on day 2. Seizures were recorded by continuous video-EEG from day 3 to day 5, with exit criteria of three study-specific seizures or one prolonged seizure. The between-group difference in time to exit was not statistically significant (p=0.90). The label states in the same paragraph that the effectiveness of oxcarbazepine as monotherapy in children aged 4 to 16 was determined from the adult data plus pharmacokinetic and pharmacodynamic considerations, which is the mechanism by which a paediatric indication survived a failed paediatric trial.',
+        evidenceSource:
+          'Oxcarbazepine United States prescribing information, Clinical Studies 14.1 (openFDA drug label endpoint)',
+        measuredMetric:
+          'Time to meet exit criteria on continuous video-EEG, high dose against low dose',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'oxc-a5',
+        category: 'measured',
+        title: 'Sodium below 125 mmol/L in 2.5% of treated patients and in none of the controls',
+        laymanSummary:
+          'Across fourteen controlled epilepsy studies, 38 of 1,524 patients on oxcarbazepine dropped their blood sodium below 125. Nobody on placebo, carbamazepine, phenobarbital, phenytoin or valproate did.',
+        technicalDetails:
+          'The label reports clinically significant hyponatraemia, defined as serum sodium below 125 mmol/L, in 2.5% of oxcarbazepine-treated patients (38 of 1,524) across the 14 controlled epilepsy studies, against no such patients on placebo or on the active controls, which were carbamazepine and phenobarbital in the adjunctive and substitution studies and phenytoin and valproate in the monotherapy initiation studies. It generally appeared in the first 3 months, though some patients first crossed the threshold more than a year in. Most were asymptomatic, but patients in trials were frequently monitored and some had the dose reduced or stopped, and the label states plainly that whether those manoeuvres prevented more severe events is unknown. Symptoms listed include nausea, malaise, headache, lethargy, confusion, obtundation, and an increase in seizure frequency or severity.',
+        evidenceSource:
+          'Oxcarbazepine United States prescribing information, Warnings and Precautions 5.1 (openFDA drug label endpoint)',
+        measuredMetric:
+          'Proportion of patients recording a serum sodium below 125 mmol/L at any point during controlled treatment',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxc-a6',
+        category: 'conclusion_shift',
+        title: 'The epoxide was removed. The hypersensitivity was not.',
+        laymanSummary:
+          'Oxcarbazepine exists because the reactive metabolite of carbamazepine was blamed for its rashes and its toxicity. The redesign removed that metabolite. Between a quarter and a third of people who reacted to carbamazepine still react to oxcarbazepine.',
+        technicalDetails:
+          'The design rationale was that placing a ketone at the 10-position prevents formation of carbamazepine-10,11-epoxide, forcing reduction to the 10-monohydroxy derivative instead of oxidation, and the pharmacokinetic half of that prediction held: there is no autoinduction and far less CYP3A4 induction. The immunological half did not. The label states that approximately 25% to 30% of patients who have had hypersensitivity reactions to carbamazepine will experience hypersensitivity reactions with oxcarbazepine, instructs that patients be specifically questioned about prior carbamazepine experience, and lists Stevens-Johnson syndrome, toxic epidermal necrolysis, DRESS, anaphylaxis and angioedema among the reactions. The carbamazepine label separately notes limited evidence that HLA-B*1502 is a risk factor for SJS and TEN with other anti-seizure drugs and advises considering avoidance of them in carriers. The reactive-epoxide hypothesis for carbamazepine hypersensitivity therefore lost most of its explanatory force, and HLA-restricted immune recognition of the shared tricyclic scaffold replaced it.',
+        evidenceSource:
+          'Oxcarbazepine United States prescribing information, Warnings and Precautions 5.2 and 5.3; carbamazepine United States prescribing information, HLA-B*1502 section (openFDA drug label endpoint)',
+        inferredClaim:
+          'That removing the reactive epoxide metabolite would remove the hypersensitivity risk. It removed the interactions, not the rash.',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxc-a7',
+        category: 'measured',
+        title: 'SANAD: statistically indistinguishable from the drug it was built to replace',
+        laymanSummary:
+          'In the largest first-line trial in focal epilepsy, oxcarbazepine and carbamazepine could not be separated on either of the two main outcomes, and both were behind lamotrigine on tolerability.',
+        technicalDetails:
+          'SANAD arm A randomised 1,721 patients across carbamazepine, gabapentin, lamotrigine, oxcarbazepine and topiramate. For time to treatment failure, lamotrigine had a non-significant advantage over oxcarbazepine (HR 1.15, 95% CI 0.86 to 1.54) while being significantly better than carbamazepine, gabapentin and topiramate. For time to 12-month remission, carbamazepine held a non-significant advantage over oxcarbazepine (HR 0.92, 95% CI 0.73 to 1.18). Oxcarbazepine recruited the smallest number of the five arms, so its confidence intervals are the widest in the trial and an absence of a significant difference here is weaker evidence of equivalence than it would be in a larger arm.',
+        evidenceSource: 'Marson AG et al., Lancet 2007;369:1000-1015 (ISRCTN38354748)',
+        doi: '10.1016/S0140-6736(07)60460-7',
+        measuredMetric:
+          'Time to treatment failure and time to 12-month remission against four comparators',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxc-a8',
+        category: 'measured',
+        title: 'EURAP: 3.0% malformation rate, inside the range the authors called background',
+        laymanSummary:
+          'Ten of 333 pregnancies exposed to oxcarbazepine alone ended in a major birth defect. That is 3.0%, roughly half the carbamazepine figure and a third of the valproate one.',
+        technicalDetails:
+          'The EURAP prospective registry followed pregnancies on anti-epileptic monotherapy at conception from 42 countries between 1999 and 2016. Major congenital malformation prevalence at one year was 10 of 333 (3.0%) for oxcarbazepine, against 17 of 599 (2.8%) for levetiracetam, 74 of 2,514 (2.9%) for lamotrigine, 6 of 152 (3.9%) for topiramate, 107 of 1,957 (5.5%) for carbamazepine, 8 of 125 (6.4%) for phenytoin, 19 of 294 (6.5%) for phenobarbital and 142 of 1,381 (10.3%) for valproate. The authors placed lamotrigine, levetiracetam and oxcarbazepine within the background range for unexposed offspring. The oxcarbazepine denominator is the second smallest in the study, so the estimate is the least precise of the three. Separately, the label warns that MHD levels may fall through pregnancy and return after delivery.',
+        evidenceSource: 'Tomson T et al., Lancet Neurol 2018;17:530-538 (EURAP registry)',
+        doi: '10.1016/S1474-4422(18)30107-8',
+        measuredMetric: 'Prevalence of major congenital malformations at 1 year, by drug and dose',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxc-a9',
+        category: 'measured',
+        title:
+          'It can make generalised seizures worse, and the label says to stop it if that happens',
+        laymanSummary:
+          'In people whose epilepsy is generalised rather than focal, this drug can increase seizures instead of reducing them. That is a recognised warning, not a rare surprise.',
+        technicalDetails:
+          'Warnings and Precautions 5.11 states that exacerbation of, or new onset of, primary generalised seizures has been reported with oxcarbazepine, that the risk is seen especially in children but may also occur in adults, and that oxcarbazepine should be discontinued if seizure aggravation occurs. This is a class property of sodium-channel blockers rather than a peculiarity of this molecule, and it is the reason getting the epilepsy syndrome right matters more than getting the drug right.',
+        evidenceSource:
+          'Oxcarbazepine United States prescribing information, Warnings and Precautions 5.11 (openFDA drug label endpoint)',
+        measuredMetric:
+          'Reported exacerbation or new onset of primary generalised seizures during treatment',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, then almost entirely converted before it can act',
+        laymanDesc:
+          'The tablet is absorbed and then rapidly reduced by the liver to a different molecule. That metabolite is the drug that does the work, and it is what blood tests measure.',
+        molecularDetail:
+          'Oxcarbazepine is reduced by cytosolic arylketone reductase to the 10-monohydroxy derivative (MHD), which the label identifies as the species primarily responsible for pharmacological activity. Because the route is reduction rather than oxidation, no 10,11-epoxide is formed, there is no autoinduction, and CYP3A4 induction is modest by comparison with carbamazepine.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The metabolite crosses into the brain',
+        laymanDesc:
+          'MHD passes into brain tissue and reaches the outer membranes of nerve cells, which is where sodium pores sit.',
+        molecularDetail:
+          'MHD circulates as a mixture of two mirror-image forms created when the 10-keto group is reduced. The two are not made in equal amounts, and the S form is marketed separately as the prodrug eslicarbazepine acetate. The relevant compartment is the axonal membrane of cortical neurons.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It binds sodium channels that have just fired',
+        laymanDesc:
+          'Sodium pores spend a moment shut and unavailable right after each firing. The metabolite binds them in that state and holds them there, so recently used pores stay out of service.',
+        molecularDetail:
+          'The label describes blockade of voltage-sensitive sodium channels producing stabilisation of hyperexcited neural membranes, inhibition of repetitive neuronal firing and diminution of propagation of synaptic impulses, and states that the precise mechanism is unknown. It adds increased potassium conductance and modulation of high-voltage-activated calcium channels as possible contributors, and records no significant interaction with brain neurotransmitter or modulator receptor sites.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'A repetitive burst runs out of usable channels',
+        laymanDesc:
+          'Occasional firing is barely affected. Rapid repeated firing loses more pores with every spike, so the burst cannot sustain itself or spread to the next region.',
+        molecularDetail:
+          'Cumulative use-dependent block reduces sustained high-frequency firing and the propagation of synaptic impulses across the cortex. The same property that suppresses focal seizure spread is thought to underlie the warning that generalised seizure types can be aggravated instead.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A median seizure reduction of about half, at a dose most people could not hold',
+        laymanDesc:
+          'At 2,400 mg a day the median seizure count fell 49.9% against 7.6% on placebo. In that same arm, more than 65% of patients stopped because of side effects.',
+        molecularDetail:
+          'Efficacy is established against placebo as adjunctive therapy at 600, 1,200 and 2,400 mg/day with an orderly dose-response, and in children at 30 to 46 mg/kg/day. The monotherapy indication rests largely on high-dose against low-dose randomised withdrawal designs rather than against an active comparator, and SANAD later found no significant separation from carbamazepine.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Adjunctive therapy trial in adults (label Clinical Studies 14.2, Trial 2)',
+        phase: 'Phase 3 multicentre randomised double-blind placebo-controlled fixed-dose trial',
+        sampleSize: 692,
+        primaryEndpoint:
+          'Percentage change in partial-onset seizure frequency from an 8-week baseline, over a 24-week maintenance period',
+        endpointMet: true,
+        statisticalPValue:
+          'Median reduction 49.9% at 2,400 mg/day, 40.2% at 1,200 mg/day, 26.4% at 600 mg/day against 7.6% on placebo, P=0.0001 at every dose',
+        unreportedAdverseSignals:
+          'Over 65% of the 2,400 mg/day group discontinued for adverse events and only 46 of 174 (27%) completed the 28-week study, a fact the label places in the efficacy section rather than the safety section.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId:
+          'Adjunctive therapy trial in children aged 3 to 17 (label Clinical Studies 14.2, Trial 1)',
+        phase: 'Phase 3 multicentre randomised double-blind placebo-controlled trial',
+        sampleSize: 264,
+        primaryEndpoint:
+          'Percentage change in partial-onset seizure frequency from baseline over a 14-week maintenance period',
+        endpointMet: true,
+        statisticalPValue: 'Median reduction 34.8% against 9.4% on placebo, P=0.0001',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Monotherapy substitution trial, oxcarbazepine 2,400 mg/day against 300 mg/day',
+        phase: 'Randomised withdrawal, double-blind, 126 days',
+        sampleSize: 143,
+        primaryEndpoint:
+          'Time to meet pre-specified exit criteria after substitution for carbamazepine monotherapy',
+        endpointMet: true,
+        statisticalPValue: 'P=0.0001 in favour of the 2,400 mg/day group',
+        unreportedAdverseSignals:
+          'The comparator is a sub-therapeutic dose of the same molecule, so the trial establishes dose-response rather than efficacy against an alternative treatment.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Paediatric monotherapy trial, 10 mg/kg/day against 40 to 60 mg/kg/day',
+        phase: 'Randomised, rater-blind, inpatient continuous video-EEG, 5 days',
+        sampleSize: 92,
+        primaryEndpoint: 'Time to meet exit criteria on continuous video-EEG monitoring',
+        endpointMet: false,
+        statisticalPValue: 'No statistically significant difference between groups, P=0.90',
+        unreportedAdverseSignals:
+          'The paediatric monotherapy indication was granted on adult data plus pharmacokinetic and pharmacodynamic extrapolation rather than on this trial.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'SANAD arm A (ISRCTN38354748)',
+        phase: 'Unblinded randomised controlled trial, five parallel arms',
+        sampleSize: 1721,
+        primaryEndpoint:
+          'Co-primary: time to treatment failure and time to 12-month remission across five first-line drugs',
+        endpointMet: false,
+        statisticalPValue:
+          'Oxcarbazepine separated significantly from no comparator on either outcome: lamotrigine versus oxcarbazepine HR 1.15 (95% CI 0.86 to 1.54) for treatment failure, carbamazepine versus oxcarbazepine HR 0.92 (0.73 to 1.18) for 12-month remission',
+        unreportedAdverseSignals:
+          'The oxcarbazepine arm was the smallest of the five, so its intervals are the widest in the trial and the absence of a difference is weak evidence of equivalence.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Median partial-onset seizure reduction of 49.9%, 40.2% and 26.4% at 2,400, 1,200 and 600 mg/day against 7.6% on placebo in 692 adults (P=0.0001 at every dose)',
+        'Median reduction of 34.8% against 9.4% on placebo in 264 children aged 3 to 17',
+        'Serum sodium below 125 mmol/L in 38 of 1,524 treated patients (2.5%) and in none on placebo or active control across 14 controlled studies',
+        'Discontinuation for adverse events above 65%, with 27% study completion, in the 2,400 mg/day arm',
+        'Hypersensitivity cross-reaction with carbamazepine in approximately 25% to 30% of those who reacted to carbamazepine',
+        '10 major congenital malformations in 333 monotherapy-exposed pregnancies (3.0%) in the EURAP registry',
+      ],
+      unsupportedInferences: [
+        'That oxcarbazepine monotherapy has been shown superior or equal to an established alternative: two of its four monotherapy trials compared 2,400 mg with 300 mg of the same drug, and SANAD later found no significant separation from carbamazepine in either direction',
+        'That removing the reactive epoxide removed the hypersensitivity risk, when a quarter to a third of carbamazepine reactors still react',
+        'That a 49.9% median reduction describes what the 2,400 mg dose achieves in practice, when most of that arm did not stay on it',
+        'That it is a safe substitute in any epilepsy syndrome, when the label warns it can aggravate primary generalised seizures',
+      ],
+      whatFailedInitially: [
+        'The paediatric monotherapy trial in 92 children found no difference between a full dose and a token dose (P=0.90); the paediatric monotherapy indication came from extrapolation instead',
+        'The highest and most effective adjunctive dose was abandoned by over 65% of the patients assigned to it',
+        'The reactive-epoxide explanation for carbamazepine hypersensitivity, which motivated the whole molecule, did not survive contact with the cross-reactivity data',
+      ],
+      realWorldOutcome: [
+        'Widely used where carbamazepine efficacy is wanted without carbamazepine interactions, and used off-label in trigeminal neuralgia, an indication it does not hold in the United States',
+        'About 16 US cents per unit at United States pharmacy acquisition cost, a median across 90 listed generic products, cheaper than the parent drug it improves on',
+        'Serum sodium monitoring, not seizure control, is the commonest documented reason this particular drug is stopped',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral film-coated tablet, oral suspension and extended-release tablet',
+      description:
+        'There is no intravenous oxcarbazepine, so it plays no part in emergency seizure management. The extended-release tablet Oxtellar XR is a separate FDA application with its own registration trial rather than a reformulation of Trileptal, and the two are not interchangeable at the pharmacy counter.',
+      safetyProfile:
+        'No boxed warning. The distinctive risk is hyponatraemia: serum sodium below 125 mmol/L in 2.5% of treated patients across 14 controlled studies and in none of the controls, usually in the first 3 months but occasionally after a year, with confusion and worsening seizures on the symptom list. Approximately 25% to 30% of people who reacted to carbamazepine react to this drug too, and Stevens-Johnson syndrome, toxic epidermal necrolysis, DRESS, anaphylaxis and angioedema are all on the label. Cognitive dysfunction, somnolence and coordination problems are common. Primary generalised seizures can be aggravated, especially in children. The class-wide suicidality warning applies: 0.43% against 0.24% across 199 pooled placebo-controlled trials of 11 anti-seizure drugs, an adjusted relative risk of 1.8 (95% CI 1.2 to 2.7).',
+    },
+    commonQuestions: [
+      {
+        q: 'Is oxcarbazepine just a safer carbamazepine?',
+        a: 'Partly. The pharmacokinetic redesign worked: the body reduces oxcarbazepine instead of oxidising it, so there is no reactive epoxide, no autoinduction and much less interference with other medicines. The immunological redesign did not: the label states that approximately 25% to 30% of people who have had hypersensitivity reactions to carbamazepine will react to oxcarbazepine as well. And it introduced a problem carbamazepine has much less of, hyponatraemia, at 2.5% of patients dropping below 125 mmol/L against none of the carbamazepine and phenobarbital controls. On seizure control the two could not be separated in SANAD.',
+        auditNote:
+          'Different risks, not fewer risks. That is a fair summary of what the comparison actually shows.',
+      },
+      {
+        q: 'Why do I need blood tests for sodium?',
+        a: 'Because this drug lowers it and the early symptoms are easy to mistake for something else. Across the 14 controlled epilepsy studies, 38 of 1,524 patients on oxcarbazepine recorded a serum sodium below 125 mmol/L and no patient on placebo or active control did. It usually happens in the first three months, though the label records patients crossing that threshold more than a year after starting. Most were asymptomatic in the trials, where monitoring was frequent. The symptom the label lists that matters most is an increase in seizure frequency or severity, because that reads exactly like the drug failing, and only a blood test tells the two apart.',
+      },
+      {
+        q: 'The trials say seizures dropped by half. Why did my dose never get that high?',
+        a: 'Because the 49.9% figure belongs to the 2,400 mg/day arm, and the label says in the same section that over 65% of that arm discontinued for adverse events and only 46 of 174 patients (27%) completed the 28-week study. The lower doses were both effective and better tolerated: 40.2% at 1,200 mg/day and 26.4% at 600 mg/day, each against 7.6% on placebo. This page does not give dosing advice, and the dose a person ends up on is a clinical decision. The point here is only that the largest published number came from the arm most people left.',
+        auditNote:
+          'The efficacy figure and the discontinuation figure appear in the same paragraph of the label. They are usually quoted apart.',
+      },
+      {
+        q: 'Does it work for trigeminal neuralgia like carbamazepine does?',
+        a: 'It is used for that widely, but not on the strength of a United States licence. The FDA-approved indications for oxcarbazepine are partial-onset seizures only, as monotherapy or adjunctive therapy. Carbamazepine, by contrast, holds an explicit trigeminal neuralgia indication and reached the American market for that condition in 1968, six years before its epilepsy indication. Where oxcarbazepine is prescribed for facial pain, that is off-label use resting on mechanistic similarity and smaller trials, not on the registration programme described on this page.',
+      },
+      {
+        q: 'Why is there no manufacturing cost on this page?',
+        a: 'Because no per-dose cost-of-production figure for oxcarbazepine could be verified and cited. The published literature on essential-medicine production costs keeps its per-drug numbers in a supplementary appendix that was not checked line by line here, and estimating one would mean this page inventing a number. What is shown instead is the CMS National Average Drug Acquisition Cost, about 16 US cents per unit as a median across 90 listed generic products. That is what a United States pharmacy pays a wholesaler. It is not a manufacturing cost and it is not what a patient is charged.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Oxcarbazepine United States prescribing information: Clinical Studies 14.1 and 14.2, Warnings and Precautions 5.1 to 5.11, Mechanism of Action 12.1, retrieved from the openFDA drug label endpoint',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22OXCARBAZEPINE%22',
+        kind: 'regulatory',
+      },
+      SANAD_I_FOCAL_SOURCE,
+      SANAD_II_FOCAL_SOURCE,
+      EURAP_SOURCE,
+      KETOGENIC_DIET_SOURCE,
+      {
+        label:
+          'Drugs@FDA: TRILEPTAL (oxcarbazepine), NDA 021014, original approval 14 January 2000',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021014',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: OXTELLAR XR (oxcarbazepine extended-release tablets), NDA 202810, Supernus Pharmaceuticals, approved 2012',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=202810',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 34312 — oxcarbazepine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/34312',
         kind: 'url',
       },
       NADAC_SOURCE,

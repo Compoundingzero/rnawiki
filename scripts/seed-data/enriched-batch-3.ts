@@ -266,7 +266,8 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
           'FISSION randomised 499 previously untreated patients with genotype 2 or 3 to sofosbuvir plus ribavirin for 12 weeks or peginterferon alfa-2a plus ribavirin for 24 weeks. Sustained virologic response was 67% in both groups. Within the sofosbuvir arm the split was stark: 97% in genotype 2 against 56% in genotype 3. Adverse events including fatigue, headache, nausea and neutropenia were less common with sofosbuvir. The trial met its noninferiority objective and did not show superiority.',
         evidenceSource: 'Lawitz E et al., N Engl J Med 2013;368:1878-1887 (FISSION, NCT01497366)',
         doi: '10.1056/NEJMoa1214853',
-        measuredMetric: 'Sustained virologic response, sofosbuvir-ribavirin against peginterferon-ribavirin',
+        measuredMetric:
+          'Sustained virologic response, sofosbuvir-ribavirin against peginterferon-ribavirin',
         auditFlag: 'verified',
       },
       {
@@ -286,13 +287,13 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
       {
         id: 'sof-a5',
         category: 'inferred',
-        title: 'No randomised trial has shown that curing hepatitis C prevents death or liver cancer',
+        title:
+          'No randomised trial has shown that curing hepatitis C prevents death or liver cancer',
         laymanSummary:
           'Every trial on this page measures virus in blood. None of them counted deaths, cancers or transplants for long enough to say anything. The link between clearing the virus and living longer is inferred from observational follow-up, not from a randomised comparison.',
         technicalDetails:
           'The Cochrane review by Jakobsen and colleagues pooled 138 randomised trials of 51 direct-acting antivirals in 25,232 participants, 128 of them placebo-controlled. It found no data at all on hepatitis C-related morbidity, and only limited mortality data from 11 trials (15 of 2,377 on DAA against 1 of 617 on control; OR 3.72, 95% CI 0.53 to 26.18, very low-quality evidence). None of the 138 trials provided usable data on ascites, variceal bleeding, hepato-renal syndrome, hepatic encephalopathy or hepatocellular carcinoma. Only one of 84 trials of marketed drugs measured quality of life. The authors concluded that SVR remains an outcome needing proper validation in randomised trials. The review was contested in print, and the counter-argument is that withholding a curative drug to run such a trial would now be unethical. Both things are true at once.',
-        evidenceSource:
-          'Jakobsen JC et al., Cochrane Database Syst Rev 2017;9:CD012143',
+        evidenceSource: 'Jakobsen JC et al., Cochrane Database Syst Rev 2017;9:CD012143',
         doi: '10.1002/14651858.CD012143.pub3',
         inferredClaim:
           'That sustained virologic response translates into fewer deaths, cirrhosis complications and liver cancers — biologically compelling, supported by cohort follow-up, and never tested against a randomised control',
@@ -419,7 +420,8 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
         sampleSize: 327,
         primaryEndpoint: 'Sustained virologic response 12 weeks after end of therapy',
         endpointMet: true,
-        statisticalPValue: '90% (95% CI 87 to 93); no concurrent control arm, historical comparison',
+        statisticalPValue:
+          '90% (95% CI 87 to 93); no concurrent control arm, historical comparison',
         unreportedAdverseSignals:
           'Single-arm design. The 90% figure has no internal comparator, and the regimen included peginterferon and ribavirin, so it is not a measurement of sofosbuvir alone.',
         independentReplicationStatus: 'Replicated',
@@ -578,7 +580,8 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
         kind: 'nct',
       },
       {
-        label: 'NEUTRINO: sofosbuvir plus peginterferon alfa-2a and ribavirin, previously untreated',
+        label:
+          'NEUTRINO: sofosbuvir plus peginterferon alfa-2a and ribavirin, previously untreated',
         identifier: 'NCT01641640',
         kind: 'nct',
       },
@@ -1047,9 +1050,21 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
         identifier: '10.1186/s13027-016-0071-z',
         kind: 'doi',
       },
-      { label: 'ION-1: ledipasvir/sofosbuvir in untreated genotype 1', identifier: 'NCT01701401', kind: 'nct' },
-      { label: 'ION-2: ledipasvir/sofosbuvir in previously treated genotype 1', identifier: 'NCT01768286', kind: 'nct' },
-      { label: 'ION-3: 8 weeks against 12 weeks without cirrhosis', identifier: 'NCT01851330', kind: 'nct' },
+      {
+        label: 'ION-1: ledipasvir/sofosbuvir in untreated genotype 1',
+        identifier: 'NCT01701401',
+        kind: 'nct',
+      },
+      {
+        label: 'ION-2: ledipasvir/sofosbuvir in previously treated genotype 1',
+        identifier: 'NCT01768286',
+        kind: 'nct',
+      },
+      {
+        label: 'ION-3: 8 weeks against 12 weeks without cirrhosis',
+        identifier: 'NCT01851330',
+        kind: 'nct',
+      },
       {
         label:
           'Drugs@FDA: HARVONI (ledipasvir and sofosbuvir), NDA 205834, Gilead Sciences — original approval 10 October 2014',
@@ -1175,7 +1190,8 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'Replicon EC50 values of 0.014 nM against genotype 1a, 0.016 nM against 1b, 0.005 to 0.016 nM against 2a, 0.002 to 0.006 nM against 2b and 0.004 nM against 3a. The narrow spread across genotypes is the whole point of the molecule: its predecessor ledipasvir varies by more than four orders of magnitude across the same panel.',
       structureSource: {
-        label: 'PubChem CID 67683363 (velpatasvir) — canonical SMILES, molecular formula and weight',
+        label:
+          'PubChem CID 67683363 (velpatasvir) — canonical SMILES, molecular formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/67683363',
         kind: 'url',
       },
@@ -1524,9 +1540,21 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
         identifier: '10.1016/S2055-6640(20)30691-9',
         kind: 'doi',
       },
-      { label: 'ASTRAL-1: placebo-controlled, genotypes 1, 2, 4, 5 and 6', identifier: 'NCT02201940', kind: 'nct' },
-      { label: 'ASTRAL-3: genotype 3 against sofosbuvir plus ribavirin', identifier: 'NCT02201953', kind: 'nct' },
-      { label: 'ASTRAL-4: decompensated (Child-Pugh class B) cirrhosis', identifier: 'NCT02201901', kind: 'nct' },
+      {
+        label: 'ASTRAL-1: placebo-controlled, genotypes 1, 2, 4, 5 and 6',
+        identifier: 'NCT02201940',
+        kind: 'nct',
+      },
+      {
+        label: 'ASTRAL-3: genotype 3 against sofosbuvir plus ribavirin',
+        identifier: 'NCT02201953',
+        kind: 'nct',
+      },
+      {
+        label: 'ASTRAL-4: decompensated (Child-Pugh class B) cirrhosis',
+        identifier: 'NCT02201901',
+        kind: 'nct',
+      },
       {
         label:
           'Drugs@FDA: EPCLUSA (sofosbuvir and velpatasvir), NDA 208341, Gilead Sciences — original approval 28 June 2016',
@@ -1638,7 +1666,8 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'Inhibits recombinant NS3/4A protease from clinical isolates of genotypes 1a, 1b, 2a, 2b, 3a, 4a, 5a and 6a with IC50 values of 3.5 to 11.3 nM, and full replicons with median EC50 values of 0.08 to 4.6 nM across ten subtypes. Notably, the Q80K substitution that defeated the earlier protease inhibitor simeprevir in genotype 1a does not reduce glecaprevir susceptibility.',
       structureSource: {
-        label: 'PubChem CID 66828839 (glecaprevir) — canonical SMILES, molecular formula and weight',
+        label:
+          'PubChem CID 66828839 (glecaprevir) — canonical SMILES, molecular formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/66828839',
         kind: 'url',
       },
@@ -1708,8 +1737,7 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
           'Eight weeks of treatment cured essentially everyone with genotype 1 and no cirrhosis, and twelve weeks added nothing measurable. Fewer than one in a hundred patients in any group stopped because of side effects.',
         technicalDetails:
           'ENDURANCE-1 and ENDURANCE-3 together treated 1,208 patients without cirrhosis. Genotype 1 patients were randomised 1:1 to glecaprevir 300 mg with pibrentasvir 120 mg for 8 or 12 weeks: SVR12 was 99.1% (95% CI 98 to 100) at 8 weeks and 99.7% (95% CI 99 to 100) at 12 weeks. Adverse events led to discontinuation in no more than 1% of patients in any group.',
-        evidenceSource:
-          'Zeuzem S et al., N Engl J Med 2018;378:354-369 (ENDURANCE-1, NCT02604017)',
+        evidenceSource: 'Zeuzem S et al., N Engl J Med 2018;378:354-369 (ENDURANCE-1, NCT02604017)',
         doi: '10.1056/NEJMoa1702417',
         measuredMetric: 'Sustained virologic response 12 weeks after end of treatment',
         auditFlag: 'verified',
@@ -1722,7 +1750,8 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
           'A hundred and four people with failing kidneys or on dialysis were treated. A hundred and two were cured. Not one had the virus break through during treatment, and not one relapsed afterwards.',
         technicalDetails:
           'EXPEDITION-4 was an open-label phase 3 trial in adults with genotype 1 to 6 hepatitis C, compensated liver disease with or without cirrhosis, and stage 4 or 5 chronic kidney disease including dialysis dependence. Of 104 patients, 52% had genotype 1, 16% genotype 2, 11% genotype 3, 19% genotype 4 and 2% genotype 5 or 6. SVR12 was 98% (102 of 104; 95% CI 95 to 100). No patient had virologic failure on treatment and none relapsed after it. Serious adverse events were reported in 24% of patients, and four discontinued early for adverse events, three of whom were still cured.',
-        evidenceSource: 'Gane E et al., N Engl J Med 2017;377:1448-1455 (EXPEDITION-4, NCT02651194)',
+        evidenceSource:
+          'Gane E et al., N Engl J Med 2017;377:1448-1455 (EXPEDITION-4, NCT02651194)',
         doi: '10.1056/NEJMoa1704053',
         measuredMetric:
           'Sustained virologic response at 12 weeks in stage 4 or 5 chronic kidney disease',
@@ -1771,7 +1800,8 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
       {
         id: 'gle-a6',
         category: 'measured',
-        title: 'The Q80K substitution that killed the previous protease inhibitor does nothing here',
+        title:
+          'The Q80K substitution that killed the previous protease inhibitor does nothing here',
         laymanSummary:
           'An earlier protease inhibitor failed in a large fraction of genotype 1a patients because of one common natural variant. Glecaprevir is unaffected by it, which is a genuine structural advance and not a marketing claim.',
         technicalDetails:
@@ -1973,9 +2003,21 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
         identifier: '10.1002/14651858.CD012143.pub3',
         kind: 'doi',
       },
-      { label: 'ENDURANCE-1: 8 against 12 weeks in genotype 1', identifier: 'NCT02604017', kind: 'nct' },
-      { label: 'ENDURANCE-3: genotype 3 against sofosbuvir-daclatasvir', identifier: 'NCT02640157', kind: 'nct' },
-      { label: 'EXPEDITION-4: stage 4 or 5 chronic kidney disease', identifier: 'NCT02651194', kind: 'nct' },
+      {
+        label: 'ENDURANCE-1: 8 against 12 weeks in genotype 1',
+        identifier: 'NCT02604017',
+        kind: 'nct',
+      },
+      {
+        label: 'ENDURANCE-3: genotype 3 against sofosbuvir-daclatasvir',
+        identifier: 'NCT02640157',
+        kind: 'nct',
+      },
+      {
+        label: 'EXPEDITION-4: stage 4 or 5 chronic kidney disease',
+        identifier: 'NCT02651194',
+        kind: 'nct',
+      },
       {
         label:
           'Drugs@FDA: MAVYRET (glecaprevir and pibrentasvir), NDA 209394, AbbVie — original approval 3 August 2017',
@@ -1986,6 +2028,1110 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 66828839 — glecaprevir structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/66828839',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Pibrentasvir — the picomolar NS5A inhibitor that carries the pan-genotypic claim, and the
+  //    one subtype, 3b, where the claim measurably fails.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'pibrentasvir',
+    name: 'Pibrentasvir',
+    tradeName: 'Mavyret',
+    sponsor: 'AbbVie',
+    targetGene: 'HCV NS5A — a hepatitis C viral gene, not a human one',
+    targetProtein:
+      'Hepatitis C virus NS5A phosphoprotein — a protein with no enzymatic activity of its own that organises the viral replication complex and directs assembly of new virus particles',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2017,
+    indication:
+      'Chronic hepatitis C virus genotype 1, 2, 3, 4, 5 or 6 infection in adults and children aged 3 years and older without cirrhosis or with compensated cirrhosis, given as a fixed-dose combination with glecaprevir; and genotype 1 infection previously treated with a regimen containing an NS5A inhibitor or an NS3/4A protease inhibitor, but not both',
+    patientFriendlyIndication: 'Long-standing hepatitis C infection, any of the six genotypes',
+    anatomicalSite:
+      'Hepatocyte cytoplasm — the membranous web of remodelled endoplasmic reticulum where NS5A holds the replication complex together',
+    conditionContext: {
+      conditionExplainer:
+        'Hepatitis C builds a private compartment inside the liver cell out of folded membrane, and copies itself there. NS5A is the protein that organises that compartment: it has no cutting or copying job of its own, it holds the machinery in place and hands finished genomes to the assembly line.',
+      whyItMatters:
+        'Because NS5A does nothing catalytic, nobody expected a drug against it to work at all. NS5A inhibitors turned out to be the most potent antivirals ever measured against any virus, and pibrentasvir is the most potent of them. That potency is what allows a curative course to be eight weeks rather than a year of interferon.',
+      whoTakesThis:
+        'Adults and children aged 3 and over with any of the six genotypes. It is never taken alone: it is only sold fixed together with glecaprevir, because a single direct-acting antiviral selects resistance.',
+      clinicalGoals:
+        'Sustained virologic response at 12 weeks — no detectable virus in blood twelve weeks after the last tablet. That is a laboratory endpoint, not a count of deaths, cancers or transplants.',
+    },
+    oneSentenceVerdict:
+      'An NS5A inhibitor of extraordinary potency — median replicon EC50 of 0.5 to 15.6 picomolar across thirteen viral subtypes, roughly a thousandfold below its own protease-inhibitor partner — which cured 99.5% of genotype 2 patients in the rare placebo-controlled ENDURANCE-2 and 97.7% of 343 previously untreated patients with compensated cirrhosis in eight weeks in EXPEDITION-8, and which loses 6,336-fold of that potency against a genotype 3b virus carrying a single Y93H change.',
+    laymanHowItWorks:
+      'Hepatitis C cannot copy itself out in the open. It first folds the liver cell’s own internal membranes into a private workshop, and one viral protein, NS5A, is what holds that workshop together and passes finished copies to the packing line. Pibrentasvir sticks to NS5A in vanishingly small amounts and stops it doing either job, so the workshop never assembles and no virus is packed. It is always given fixed together with a second drug that attacks a different viral protein, because hitting one target alone lets the virus escape.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 86,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$152.92 per tablet, median across the three listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'What pharmacies pay to acquire the drug, not what a patient is charged: United States list prices are not published and net prices after rebates are confidential by contract. The tablet is a fixed combination, so the figure buys glecaprevir as well and cannot be split between the two. No markup is stated because no per-dose cost of production has been published for pibrentasvir.',
+      synthesisComplexity: 'High',
+      costSource: {
+        label:
+          'Nearest published cost-of-production analysis for this drug class: Hill A, Simmons B, Gotham D, Fortunak J. Rapid reductions in prices for generic sofosbuvir and daclatasvir to treat hepatitis C. J Virus Erad 2016;2:28-31. It covers sofosbuvir and daclatasvir and does NOT cover pibrentasvir, which is why the synthesis cost field on this page is empty.',
+        identifier: '10.1016/S2055-6640(20)30691-9',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, brand listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'The alternative NS5A inhibitor is velpatasvir, sold fixed with sofosbuvir. The two pan-genotypic regimens split the population by which organ has failed rather than by genotype, and neither is a rescue for the other after both drug classes have already been tried — that is a third regimen.',
+      conventionalRx: [
+        {
+          name: 'Velpatasvir, in sofosbuvir/velpatasvir (Epclusa)',
+          class: 'Pan-genotypic NS5A inhibitor with an NS5B nucleotide inhibitor',
+          howItCompares:
+            'The same target and the same pan-genotypic claim, in a one-tablet regimen rather than three, but twelve weeks rather than eight for most patients. It is the option usable in decompensated cirrhosis, where a protease inhibitor is contraindicated; its nucleotide partner is renally cleared, which is the mirror-image limitation.',
+          typicalCost:
+            'US$866.40 per tablet, median across the two listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: one tablet; usable in Child-Pugh B and C. Cons: 12 weeks; renally cleared metabolite.',
+        },
+        {
+          name: 'Elbasvir, in elbasvir/grazoprevir (Zepatier)',
+          class: 'NS5A inhibitor with a different NS3/4A protease inhibitor',
+          howItCompares:
+            'Restricted to genotypes 1 and 4 rather than all six, and requires baseline NS5A resistance testing in genotype 1a, which this combination does not. Also usable in advanced kidney disease.',
+          typicalCost:
+            'US$54,600 per 12-week course at the United States wholesale acquisition cost recorded in the published price comparison',
+          prosAndCons:
+            'Pros: lower list price per course. Cons: two genotypes only; baseline resistance testing needed in genotype 1a.',
+        },
+        {
+          name: 'Sofosbuvir/velpatasvir/voxilaprevir (Vosevi)',
+          class: 'Triple regimen, the designated salvage after direct-acting antiviral failure',
+          howItCompares:
+            'This is what the label points to when both an NS5A inhibitor and a protease inhibitor have already failed — the population glecaprevir/pibrentasvir is explicitly not indicated for.',
+          typicalCost:
+            'Not listed in the CMS National Average Drug Acquisition Cost survey consulted for this page',
+          prosAndCons:
+            'Pros: covers the double-class failure gap. Cons: three drugs; contains a protease inhibitor, so the same decompensated-cirrhosis exclusion applies.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Say which subtype, not just which genotype',
+          action:
+            'If you were told you have genotype 3, ask whether the laboratory reported a subtype — 3a or 3b — and whether resistance testing was done.',
+          patientImpact:
+            'Subtype 3b carries natural changes at two positions in NS5A that cut pibrentasvir potency 24-fold before treatment even starts, and a further Y93H change cuts it 6,336-fold. Genotype 3 accounted for 20 of the 24 virologic failures in the whole registrational programme.',
+          clinicalPrecaution:
+            'Most United States and European laboratories report genotype only. Subtype 3b is uncommon in those regions and much more common in parts of South, Southeast and East Asia.',
+        },
+        {
+          name: 'Say exactly which hepatitis C drugs you have taken before',
+          action:
+            'Name every previous antiviral course, and ask which class each drug belonged to.',
+          patientImpact:
+            'The retreatment indication covers genotype 1 patients who previously failed an NS5A inhibitor OR a protease inhibitor, but not both. Failing both classes puts you outside this regimen’s label.',
+          clinicalPrecaution:
+            'In MAGELLAN-1 Part 2 the patients with past exposure to both classes had the lowest response rate in the trial. This is a label restriction, not a caution.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@H]([C@@H](C(=O)N1CCC[C@H]1C2=NC3=C(N2)C=C(C(=C3)F)[C@H]4CC[C@@H](N4C5=CC(=C(C(=C5)F)N6CCC(CC6)C7=CC=C(C=C7)F)F)C8=CC9=C(C=C8F)N=C(N9)[C@@H]1CCCN1C(=O)[C@H]([C@@H](C)OC)NC(=O)OC)NC(=O)OC)OC',
+      chemicalFormula: 'C57H65F5N10O8',
+      molecularWeight: '1113.20 g/mol',
+      targetReceptorAffinity:
+        'Median EC50 values of 0.5 to 15.6 pM against laboratory and clinical isolates from subtypes 1a, 1b, 2a, 2b, 3a, 3b, 4a, 4b, 4d, 5a, 6a, 6e and 6p in HCV replicon assays. Picomolar, not nanomolar: its partner glecaprevir is reported over the same panel at 0.08 to 4.6 nM, so pibrentasvir is roughly three orders of magnitude more potent per molecule against its own target.',
+      structureSource: {
+        label:
+          'PubChem CID 58031952 (pibrentasvir) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/58031952',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'pib-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the two benzimidazole-pyrrolidine arms and the fluorine count',
+          description:
+            'Confirm identity, enantiomeric purity and fluorine placement of the two proline-derived benzimidazole fragments and the fluorophenyl-piperidine core before coupling. The molecule carries five fluorines at four distinct environments, so 19F NMR is a faster identity check than mass alone and will catch a regiochemical error the mass spectrum cannot.',
+          reagentsAndBuffer:
+            'Chiral HPLC against single-enantiomer reference standards, 19F and 1H NMR in DMSO-d6, methyl carbamate and 4-(4-fluorophenyl)piperidine reference standards, Karl Fischer titration',
+        },
+        {
+          id: 'pib-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Sequential coupling of the two arms onto the fluorinated core',
+          description:
+            'Join each benzimidazole-pyrrolidine arm to the polyfluorinated central aryl ring, then cap both prolinamide nitrogens as methyl carbamates. The two arms are not identical, so the couplings must be performed in order rather than in one pot; a symmetrical by-product from a double coupling is the commonest impurity and is difficult to separate later.',
+          dependsOnStepId: 'pib-w1',
+          reagentsAndBuffer:
+            'Palladium precatalyst with a biaryl phosphine ligand for the C-N coupling, caesium or potassium carbonate base, anhydrous dioxane or toluene under nitrogen, methyl chloroformate with N-methylmorpholine for carbamate capping, HATU for the amide bond',
+        },
+        {
+          id: 'pib-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Palladium scavenging and separation of the symmetrical by-product',
+          description:
+            'Strip residual palladium to the elemental impurity limit and resolve the target from the double-coupled symmetrical analogue and from any epimer at the pyrrolidine centres. A single epimerised proline stereocentre changes potency without changing mass, so chiral analysis, not just purity by area, is the release test.',
+          dependsOnStepId: 'pib-w2',
+          reagentsAndBuffer:
+            'Thiol- or thiourea-functionalised silica scavenger, activated charcoal, preparative reversed-phase chromatography, chiral stationary phase for stereochemical purity, ICP-MS for residual palladium',
+        },
+        {
+          id: 'pib-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Picomolar dosing of a thirteen-subtype replicon panel',
+          description:
+            'Dose Huh-7 replicon lines carrying NS5A from all thirteen reported subtypes in one experiment. At picomolar concentrations the practical limit is not the biology but the plasticware: a lipophilic molecule of this size adsorbs measurably to untreated polystyrene, and an uncorrected adsorption loss reads out as a falsely weak EC50.',
+          dependsOnStepId: 'pib-w3',
+          reagentsAndBuffer:
+            'Huh-7 subgenomic replicon panel covering subtypes 1a, 1b, 2a, 2b, 3a, 3b, 4a, 4b, 4d, 5a, 6a, 6e and 6p, low-binding polypropylene dilution plates, DMEM with 10% fetal bovine serum and G418, DMSO held at or below 0.5% final, serial dilution verified by LC-MS/MS at the lowest points',
+        },
+        {
+          id: 'pib-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'The genotype 3b resistance panel, run against genotype 3a as reference',
+          description:
+            'Repeat the potency measurement against site-directed NS5A mutants and against the natural genotype 3b background. Reporting only the wild-type picomolar figure would misstate the drug: the naturally occurring K30 and M31 polymorphisms of genotype 3b already cost 24-fold relative to genotype 3a, and adding Y93H on that background costs 6,336-fold.',
+          dependsOnStepId: 'pib-w4',
+          reagentsAndBuffer:
+            'Site-directed NS5A mutants at positions 24, 28, 29, 30, 31, 32, 58, 92 and 93 including the genotype 1b P32 deletion and the genotype 3b K30 plus M31 plus Y93H combination, luciferase or neomycin phosphotransferase replicon readout, next-generation sequencing at 15% detection threshold for treatment-emergent substitutions',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'pib-a1',
+        category: 'measured',
+        title: 'ENDURANCE-2: a direct-acting antiviral trial that actually used a placebo',
+        laymanSummary:
+          'Almost no modern hepatitis C trial has a placebo group, because withholding a cure is hard to justify. This one did, for twelve weeks, in genotype 2. Nearly everyone on the drug was cured and the side effect rate was no different from placebo.',
+        technicalDetails:
+          'ENDURANCE-2 randomised adults with untreated or previously treated genotype 2 infection without cirrhosis 2:1 to once-daily glecaprevir 300 mg with pibrentasvir 120 mg (n = 202) or placebo (n = 100) for 12 weeks, double-blind. SVR12 in the intention-to-treat population was 99.5% (95% CI 98.5 to 100). The frequency and severity of adverse events on active treatment were similar to placebo, which is the specific claim a single-arm trial cannot make and this one can.',
+        evidenceSource:
+          'Asselah T et al., Clin Gastroenterol Hepatol 2018;16:417-426 (ENDURANCE-2, NCT02640482)',
+        doi: '10.1016/j.cgh.2017.09.027',
+        measuredMetric:
+          'Sustained virologic response at 12 weeks, against a concurrent double-blind placebo arm',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pib-a2',
+        category: 'measured',
+        title: 'EXPEDITION-8: eight weeks worked in 343 patients who already had cirrhosis',
+        laymanSummary:
+          'Cirrhosis had always meant longer treatment. This trial gave the eight-week course to 343 previously untreated people who already had scarred livers. One person relapsed.',
+        technicalDetails:
+          'EXPEDITION-8 was a single-arm, multicentre phase 3b trial of 8 weeks of glecaprevir/pibrentasvir in treatment-naive patients with genotypes 1 to 6 and compensated cirrhosis. SVR12 was 99.7% (334 of 335; 95% CI 98.3 to 99.9) per protocol and 97.7% (335 of 343; 95% CI 96.1 to 99.3) by intention to treat. One patient, genotype 3a, relapsed at post-treatment week 4. Serious adverse events occurred in 2% and none were assessed as related; no adverse event led to discontinuation. The gap between the two figures is the eight patients who did not complete per-protocol follow-up, not eight treatment failures.',
+        evidenceSource: 'Brown RS Jr et al., J Hepatol 2020;72:441-449 (EXPEDITION-8, NCT03089944)',
+        doi: '10.1016/j.jhep.2019.10.020',
+        measuredMetric:
+          'Sustained virologic response at 12 weeks after an 8-week course in compensated cirrhosis',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pib-a3',
+        category: 'measured',
+        title: 'Picomolar potency across thirteen subtypes, which is not a marketing adjective',
+        laymanSummary:
+          'The concentration needed to halve viral copying is measured in trillionths of a gram per litre. Its partner drug needs about a thousand times more. NS5A inhibitors are the most potent antivirals anyone has measured.',
+        technicalDetails:
+          'In HCV replicon assays pibrentasvir had median EC50 values of 0.5 to 15.6 pM against laboratory and clinical isolates from subtypes 1a, 1b, 2a, 2b, 3a, 3b, 4a, 4b, 4d, 5a, 6a, 6e and 6p. Glecaprevir over an overlapping panel was 0.08 to 4.6 nM. The range within the pibrentasvir panel is itself 31-fold, so "pan-genotypic" describes clinical adequacy across the panel, not equal potency across it.',
+        evidenceSource:
+          'MAVYRET United States prescribing information, Microbiology 12.4, antiviral activity (NDA 209394)',
+        measuredMetric: 'Median replicon EC50 by viral subtype',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pib-a4',
+        category: 'failed',
+        title: 'Genotype 3b: the subtype where the pan-genotypic claim measurably breaks',
+        laymanSummary:
+          'One subtype of genotype 3 carries two natural changes that blunt the drug before treatment starts, and a third change makes it more than six thousand times weaker. This is not a rare escape mutant — the first two changes are ordinary features of that subtype.',
+        technicalDetails:
+          'In a genotype 3b replicon the naturally occurring NS5A polymorphisms K30 and M31 reduced pibrentasvir susceptibility 24-fold relative to its activity in a genotype 3a replicon. Introducing NS5A Y93H into that genotype 3b background reduced susceptibility a further 6,336-fold. A genotype 1b P32 deletion cost 1,036-fold, and in genotype 1a, M28G cost 244-fold and Q30D 94-fold. Subtype 3b is uncommon in North America and western Europe and substantially more common in parts of South, Southeast and East Asia, so the registrational population under-represents the subtype in which the drug is weakest.',
+        evidenceSource:
+          'MAVYRET United States prescribing information, Microbiology 12.4, resistance in cell culture (NDA 209394)',
+        measuredMetric:
+          'Fold-change in pibrentasvir susceptibility on a genotype 3b background: 24-fold from natural K30 and M31, 6,336-fold with Y93H added',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pib-a5',
+        category: 'failed',
+        title: 'Retreatment after both drug classes was the worst arm in its own trial',
+        laymanSummary:
+          'For people whose earlier treatment failed, this combination worked well if they had been exposed to one class of hepatitis C drug. Those exposed to both classes did worse, and the label now excludes them.',
+        technicalDetails:
+          'MAGELLAN-1 Part 2 randomised 91 treated patients with past virologic failure on at least one NS3/4A protease or NS5A inhibitor regimen to 12 or 16 weeks of ribavirin-free glecaprevir/pibrentasvir. SVR12 was 89% (39 of 44) at 12 weeks and 91% (43 of 47) at 16 weeks; relapse occurred in 9% (4 of 44) at 12 weeks and in none at 16 weeks. Past treatment with one class had no impact on SVR12, whereas past treatment with both classes was associated with a lower SVR12 rate. The approved retreatment indication is correspondingly restricted to genotype 1 patients previously treated with an NS5A inhibitor or a protease inhibitor, but not both.',
+        evidenceSource:
+          'Poordad F et al., Hepatology 2018;67:1253-1260 (MAGELLAN-1 Part 2, NCT02446717)',
+        doi: '10.1002/hep.29671',
+        measuredMetric:
+          'SVR12 by number of prior direct-acting antiviral classes failed, and the resulting label restriction',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pib-a6',
+        category: 'failed',
+        title: 'One in fourteen failed again after a previous sofosbuvir plus NS5A regimen',
+        laymanSummary:
+          'A separate trial retreated 177 people whose earlier sofosbuvir-plus-NS5A course had failed. Thirteen failed a second time. Adding ribavirin caused more side effects and did not raise the cure rate.',
+        technicalDetails:
+          'This phase 3b open-label study randomised 177 genotype 1 patients with prior failure on sofosbuvir plus an NS5A inhibitor: without cirrhosis to 12 weeks (n = 78) or 16 weeks (n = 49), and with compensated cirrhosis to 12 weeks with ribavirin (n = 21) or 16 weeks without (n = 29). SVR12 was 90%, 94%, 86% and 97% across the four groups. Treatment failed in 13 patients (7.3%), all genotype 1a. Most patients had baseline NS5A resistance-associated substitutions; treatment-emergent substitutions appeared in NS3 in 9 and in NS5A in 10 of those who failed. Ribavirin increased adverse events without increasing efficacy.',
+        evidenceSource: 'Lok AS et al., Gastroenterology 2019;157:1506-1517 (NCT03092375)',
+        doi: '10.1053/j.gastro.2019.08.008',
+        measuredMetric: 'SVR12 on retreatment after sofosbuvir plus an NS5A inhibitor failure',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pib-a7',
+        category: 'inferred',
+        title: 'No number on this page belongs to pibrentasvir alone',
+        laymanSummary:
+          'Every cure rate quoted here comes from a fixed tablet containing two drugs. Pibrentasvir has never been given by itself in a registrational trial, so its individual contribution to the result is inferred, not measured.',
+        technicalDetails:
+          'Pibrentasvir is not marketed separately and was not studied as monotherapy in the registrational programme; the ENDURANCE, EXPEDITION, SURVEYOR and MAGELLAN trials all tested the fixed combination. What is measured separately is the biochemistry: replicon EC50 by subtype, resistance selection, and the observation that combining the two showed no antagonism in genotype 1 replicon assays. The clinical attribution — that the picomolar potency is what buys the eight-week duration — is a mechanistic inference consistent with the data rather than a finding from a trial that isolated it.',
+        evidenceSource:
+          'MAVYRET United States prescribing information, Microbiology 12.4, combination antiviral activity (NDA 209394)',
+        inferredClaim:
+          'That the trial cure rates measure pibrentasvir’s efficacy — they measure a two-drug fixed combination, and no arm separated the two',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pib-a8',
+        category: 'inferred',
+        title: 'Every endpoint is a blood test twelve weeks after the last tablet',
+        laymanSummary:
+          'The trials counted whether virus was still detectable in blood. None of them counted deaths, liver cancers or transplants.',
+        technicalDetails:
+          'The 2017 Cochrane review of 138 randomised direct-acting antiviral trials in 25,232 participants found no usable randomised evidence on hepatitis C-related morbidity or on hepatocellular carcinoma, and mortality data from only 11 trials. EXPEDITION-8 is where the gap is most visible in this programme: it enrolled the patients with the most to lose — 343 with established cirrhosis — was single-arm, and stopped measuring twelve weeks after the last dose.',
+        evidenceSource: 'Jakobsen JC et al., Cochrane Database Syst Rev 2017;9:CD012143',
+        doi: '10.1002/14651858.CD012143.pub3',
+        inferredClaim:
+          'That an undetectable blood test at twelve weeks in a cirrhotic patient predicts fewer cancers, transplants or deaths — plausible, and not what these trials measured',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed fixed to a second drug, with food',
+        laymanDesc:
+          'Pibrentasvir is not sold on its own. It is pressed into the same tablet as glecaprevir, and the tablets are taken with food because absorption is much lower on an empty stomach.',
+        molecularDetail:
+          'Fixed-dose combination of 40 mg pibrentasvir with 100 mg glecaprevir per tablet, three tablets once daily; oral pellets exist for children from age 3. Both components are substrates and inhibitors of P-glycoprotein and BCRP.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Carried into the liver cell and kept there',
+        laymanDesc:
+          'Transporters on the liver-cell surface draw the drug in, and it leaves the body in bile rather than urine. Almost none of it is cleared by the kidney.',
+        molecularDetail:
+          'Hepatic uptake with biliary elimination and negligible renal clearance, which is why the combination is usable across the full range of kidney function including dialysis. Unlike glecaprevir, pibrentasvir exposure is not meaningfully reduced by high-dose proton pump inhibitors.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It binds NS5A, the protein that has no job you can point at',
+        laymanDesc:
+          'NS5A does not cut or copy anything. It organises: it holds the viral workshop together and hands finished genomes to the packing line. Pibrentasvir sticks to it in trillionths of a gram.',
+        molecularDetail:
+          'Binds the NS5A phosphoprotein with median replicon EC50 of 0.5 to 15.6 pM across thirteen subtypes. NS5A has no catalytic site, so the binding surface is a protein-protein interface at domain I rather than an enzyme pocket — the reason this class was not obvious to look for and the reason its potency was a surprise.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The replication workshop never forms and nothing gets packed',
+        laymanDesc:
+          'Two things stop at once: the membrane compartment where the virus copies itself is never properly built, and the genomes already made are never loaded into new particles.',
+        molecularDetail:
+          'NS5A is required both for viral RNA replication on the membranous web and for virion assembly through its domain III interaction with core protein. Inhibiting it collapses replication complex formation and blocks assembly, which is why NS5A inhibitors clear viral RNA from serum faster in the first days of treatment than any other class.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Cured in eight weeks, cirrhosis or not',
+        laymanDesc:
+          'Eight weeks is the standard course for most previously untreated people, including those who already have a scarred liver.',
+        molecularDetail:
+          'SVR12 was 99.5% at 12 weeks in genotype 2 against a placebo arm, 98% at 8 weeks in genotype 2 and 93% at 8 weeks in genotypes 4, 5 and 6 without cirrhosis, and 97.7% by intention to treat at 8 weeks in 343 treatment-naive patients with compensated cirrhosis across genotypes 1 to 6.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Where it stops working is a subtype, not a genotype',
+        laymanDesc:
+          'Genotype 3b carries natural changes that blunt the drug from the outset, and one further change makes it thousands of times weaker. Genotype 3 accounted for twenty of the twenty-four failures in the whole approval programme.',
+        molecularDetail:
+          'Natural K30 and M31 in genotype 3b NS5A cost 24-fold against genotype 3a; adding Y93H costs 6,336-fold. A genotype 1b P32 deletion costs 1,036-fold. Of the 24 registrational virologic failures, 20 were genotype 3 and none were genotype 4, 5 or 6.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ENDURANCE-2 (NCT02640482)',
+        phase: 'Phase 3, randomised 2:1, double-blind, placebo-controlled',
+        sampleSize: 302,
+        primaryEndpoint: 'Sustained virologic response 12 weeks after end of treatment, genotype 2',
+        endpointMet: true,
+        statisticalPValue: '99.5% (95% CI 98.5 to 100) on treatment; the comparator was placebo',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'EXPEDITION-8 (NCT03089944)',
+        phase: 'Phase 3b, single-arm, open-label, treatment-naive compensated cirrhosis',
+        sampleSize: 343,
+        primaryEndpoint:
+          'Sustained virologic response 12 weeks after an 8-week course, genotypes 1 to 6',
+        endpointMet: true,
+        statisticalPValue:
+          '97.7% (335/343; 95% CI 96.1 to 99.3) by intention to treat; 99.7% (334/335; 95% CI 98.3 to 99.9) per protocol',
+        unreportedAdverseSignals:
+          'Single-arm, so the 2% serious adverse event rate in a cirrhotic population has no concurrent comparator. The comparison that established the 8-week duration was against historical 12-week rates, not a randomised control.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'MAGELLAN-1 Part 2 (NCT02446717)',
+        phase: 'Phase 3, randomised 1:1, open-label, prior direct-acting antiviral failure',
+        sampleSize: 91,
+        primaryEndpoint: 'Sustained virologic response 12 weeks after end of treatment',
+        endpointMet: true,
+        statisticalPValue: '89% (39/44) at 12 weeks and 91% (43/47) at 16 weeks',
+        unreportedAdverseSignals:
+          'Prior failure of both a protease inhibitor and an NS5A inhibitor was associated with a lower SVR12 rate; that subgroup is excluded from the approved retreatment indication.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'SURVEYOR-II Part 3 (NCT02243293)',
+        phase:
+          'Phase 3, partially randomised, open-label, genotype 3 with cirrhosis or prior treatment',
+        sampleSize: 131,
+        primaryEndpoint: 'Sustained virologic response 12 weeks after end of treatment, genotype 3',
+        endpointMet: true,
+        statisticalPValue:
+          '91% (20/22) at 12 weeks and 95% (21/22) at 16 weeks in treatment-experienced patients without cirrhosis; 98% (39/40) in treatment-naive cirrhosis at 12 weeks; 96% (45/47) in treatment-experienced cirrhosis at 16 weeks',
+        unreportedAdverseSignals:
+          'Only the treatment-experienced non-cirrhotic patients were randomised; the two cirrhotic groups were assigned by prior treatment status, so duration and population are confounded.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '99.5% sustained virologic response in genotype 2 against a concurrent double-blind placebo arm, with an adverse event profile similar to placebo',
+        '97.7% by intention to treat and 99.7% per protocol after 8 weeks in 343 treatment-naive patients with compensated cirrhosis',
+        'Median replicon EC50 of 0.5 to 15.6 pM across thirteen subtypes, roughly a thousandfold below the partner protease inhibitor',
+        '24-fold loss of susceptibility from natural K30 and M31 in genotype 3b, and 6,336-fold with Y93H added',
+        '89% and 91% SVR12 at 12 and 16 weeks after prior direct-acting antiviral failure, with lower rates after failure of both drug classes',
+      ],
+      unsupportedInferences: [
+        'That any cure rate here measures pibrentasvir — every registrational arm tested the fixed two-drug combination and none isolated it',
+        'That "pan-genotypic" means uniform potency: the replicon range spans 31-fold across subtypes before any resistance substitution is added',
+        'That an 8-week course in cirrhosis was shown non-inferior to 12 weeks — EXPEDITION-8 was single-arm against pre-defined historical thresholds',
+        'That clearing virus from the blood of a cirrhotic patient has been shown to reduce cancers, transplants or deaths; that outcome was not measured',
+      ],
+      whatFailedInitially: [
+        'Genotype 3b carries natural NS5A polymorphisms that blunt the drug before treatment starts, and a Y93H addition costs a further 6,336-fold',
+        'A genotype 1b NS5A P32 deletion costs 1,036-fold, and genotype 1a M28G and Q30D cost 244-fold and 94-fold',
+        'Twenty of the 24 registrational virologic failures were genotype 3; two genotype 2 failures had no treatment-emergent substitution at all',
+        'Retreatment after failure of both a protease inhibitor and an NS5A inhibitor performed worst and is excluded from the label; 13 of 177 failed again in the sofosbuvir plus NS5A retreatment study',
+        'Adding ribavirin to retreatment increased adverse events without increasing efficacy',
+      ],
+      realWorldOutcome: [
+        'Approved August 2017 under NDA 209394 as half of the first pan-genotypic 8-week regimen, and never marketed separately',
+        'Usable across the full range of kidney function including dialysis, because clearance is biliary rather than renal',
+        'Now indicated down to age 3, with oral pellets for children who cannot swallow tablets',
+        'Contraindicated in Child-Pugh B or C liver disease and with atazanavir or rifampin — restrictions that come from the protease-inhibitor half of the tablet',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral fixed-dose combination tablet with glecaprevir, and oral pellets for children',
+      description:
+        'Three tablets once daily with food; absorption falls substantially when taken fasting. Pibrentasvir is not sold separately and has no single-agent presentation. Pellets exist for children from age 3.',
+      safetyProfile:
+        'In ENDURANCE-2, the only placebo-controlled arm in the programme, adverse event frequency and severity on treatment were similar to placebo. In EXPEDITION-8 the commonest events were fatigue (9%), pruritus (8%), headache (8%) and nausea (6%); serious adverse events occurred in 2%, none assessed as related, and none led to discontinuation. In MAGELLAN-1 Part 2 the only adverse event reported in at least 10% was headache, with no drug-related serious events. The contraindications carried by the tablet — Child-Pugh B or C hepatic impairment, prior hepatic decompensation, atazanavir and rifampin — arise from glecaprevir, not from pibrentasvir. A boxed warning for hepatitis B virus reactivation applies to the class.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can a drug work at picomolar concentrations?',
+        a: 'By binding a target that has no spare copies. NS5A is not an enzyme — it does not turn over substrate, so there is no throughput to out-compete. It is a scaffold that has to be present in the right place at the right time, and occupying a small fraction of it appears to be enough to stop the replication complex assembling. Measured in replicon assays the median half-maximal concentration is 0.5 to 15.6 picomolar across thirteen viral subtypes; the protease inhibitor in the same tablet needs roughly a thousand times more. That potency is real and reproducible, and it is also the reason the drug can only be studied as part of a combination: on its own, a molecule this potent selects resistant virus quickly.',
+      },
+      {
+        q: 'Does "pan-genotypic" mean it works equally well against every hepatitis C?',
+        a: 'No, and the label’s own numbers say so. Across thirteen subtypes the measured potency spans a 31-fold range before any resistance mutation is involved. The clear exception is subtype 3b, which carries two ordinary, naturally occurring changes in NS5A — at positions 30 and 31 — that cut susceptibility 24-fold compared with subtype 3a, and a further change at position 93 that cuts it 6,336-fold. Subtype 3b is uncommon in North America and western Europe and much more common in parts of Asia, which is why the registrational trials contained few of these patients. Genotype 3 as a whole accounted for twenty of the twenty-four treatment failures in the entire approval programme.',
+        auditNote:
+          'Most laboratories report a genotype number, not a subtype letter. The difference between 3a and 3b is the difference between the drug’s best and worst measured performance.',
+      },
+      {
+        q: 'Is there any trial where the comparison was against a placebo?',
+        a: 'Yes, one, and it is unusual. ENDURANCE-2 randomised 302 people with genotype 2 hepatitis C two-to-one to twelve weeks of the combination or to twelve weeks of placebo, double-blind. Almost every other modern hepatitis C trial compares one active drug against another, or against nothing at all, because withholding a highly effective cure is difficult to justify to an ethics committee. The placebo arm is what allows a claim the single-arm trials cannot make: that the side effects reported on treatment occurred at a similar rate in people taking nothing.',
+      },
+      {
+        q: 'What if I have already been treated and it did not work?',
+        a: 'It depends on what you took. In MAGELLAN-1 Part 2, ninety-one people whose previous treatment had failed were retreated: 89% were cured with twelve weeks and 91% with sixteen, and prior exposure to a single class of drug made no measurable difference. Prior exposure to both classes — an NS5A inhibitor and a protease inhibitor — was associated with a lower cure rate, and the approved retreatment indication excludes that group. A separate study of 177 people who had failed sofosbuvir plus an NS5A inhibitor found 13 failed a second time. Adding ribavirin caused more side effects and cured no more people.',
+      },
+      {
+        q: 'Can I take pibrentasvir on its own?',
+        a: 'It does not exist on its own. There is no single-agent product, and there was no monotherapy arm in the registrational programme. Everything measured clinically — every cure rate on this page — belongs to the fixed tablet containing both pibrentasvir and glecaprevir. What has been measured about pibrentasvir alone is biochemical: how tightly it binds NS5A in each subtype, which mutations defeat it, and the finding that the two drugs showed no antagonism when combined in genotype 1 replicon assays. The claim that its potency is what shortens the course to eight weeks is a reasonable inference from that biochemistry, not a result from a trial designed to test it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Asselah T et al. Efficacy of glecaprevir/pibrentasvir for 8 or 12 weeks in patients with hepatitis C virus genotype 2, 4, 5, or 6 infection without cirrhosis. Clin Gastroenterol Hepatol 2018;16:417-426 (ENDURANCE-2, ENDURANCE-4, SURVEYOR-II Part 4)',
+        identifier: '10.1016/j.cgh.2017.09.027',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Brown RS Jr et al. Glecaprevir/pibrentasvir for 8 weeks in treatment-naive patients with chronic HCV genotypes 1-6 and compensated cirrhosis: the EXPEDITION-8 trial. J Hepatol 2020;72:441-449',
+        identifier: '10.1016/j.jhep.2019.10.020',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Poordad F et al. Glecaprevir/pibrentasvir in patients with hepatitis C virus genotype 1 or 4 and past direct-acting antiviral treatment failure. Hepatology 2018;67:1253-1260 (MAGELLAN-1 Part 2)',
+        identifier: '10.1002/hep.29671',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wyles D et al. Glecaprevir/pibrentasvir for hepatitis C virus genotype 3 patients with cirrhosis and/or prior treatment experience: a partially randomized phase 3 clinical trial. Hepatology 2018;67:514-523 (SURVEYOR-II Part 3)',
+        identifier: '10.1002/hep.29541',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lok AS et al. Efficacy of glecaprevir and pibrentasvir in patients with genotype 1 hepatitis C virus infection with treatment failure after NS5A inhibitor plus sofosbuvir therapy. Gastroenterology 2019;157:1506-1517',
+        identifier: '10.1053/j.gastro.2019.08.008',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jakobsen JC et al. Direct-acting antivirals for chronic hepatitis C. Cochrane Database Syst Rev 2017;9:CD012143',
+        identifier: '10.1002/14651858.CD012143.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rosenthal ES, Graham CS. Price and affordability of direct-acting antiviral regimens for hepatitis C virus in the United States. Infect Agent Cancer 2016;11:24',
+        identifier: '10.1186/s13027-016-0071-z',
+        kind: 'doi',
+      },
+      {
+        label: 'ENDURANCE-2: genotype 2 against placebo',
+        identifier: 'NCT02640482',
+        kind: 'nct',
+      },
+      {
+        label: 'EXPEDITION-8: 8 weeks in treatment-naive compensated cirrhosis',
+        identifier: 'NCT03089944',
+        kind: 'nct',
+      },
+      {
+        label: 'MAGELLAN-1: retreatment after direct-acting antiviral failure',
+        identifier: 'NCT02446717',
+        kind: 'nct',
+      },
+      {
+        label: 'SURVEYOR-II: genotypes 2, 3, 4, 5 and 6',
+        identifier: 'NCT02243293',
+        kind: 'nct',
+      },
+      {
+        label: 'Retreatment after sofosbuvir plus an NS5A inhibitor',
+        identifier: 'NCT03092375',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: MAVYRET (glecaprevir and pibrentasvir), NDA 209394, AbbVie — original approval 3 August 2017',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=209394',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 58031952 — pibrentasvir structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/58031952',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Ribavirin — approved in 1985, indispensable for fifteen years, and still without an
+  //    established mechanism of action. The clearest inference-overreach record in antiviral
+  //    medicine: five proposed mechanisms, three indications, and one boxed warning saying it does
+  //    not work on its own.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ribavirin',
+    name: 'Ribavirin',
+    tradeName: 'Rebetol / Copegus / Virazole / Ribasphere',
+    sponsor:
+      'Bausch Health (originated at ICN Pharmaceuticals; oral forms developed by Schering-Plough and Roche)',
+    targetGene:
+      'No single target gene has been established — proposed targets include the host genes IMPDH1 and IMPDH2 and the viral RNA-dependent RNA polymerase',
+    targetProtein:
+      'Contested. Inosine monophosphate dehydrogenase (host), viral RNA-dependent RNA polymerase, and the viral RNA capping machinery have each been proposed, alongside two indirect immunological mechanisms',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1985,
+    indication:
+      'Chronic hepatitis C virus infection in patients aged 5 years and older with compensated liver disease, in combination with peginterferon alfa or with certain direct-acting antiviral regimens; and, as an inhalation solution, hospitalised infants and young children with severe lower respiratory tract infection due to respiratory syncytial virus',
+    patientFriendlyIndication:
+      'An older broad-spectrum antiviral, now used mainly as an add-on in hepatitis C and as an inhaled treatment for severe RSV in infants',
+    anatomicalSite:
+      'Everywhere the nucleoside transporters reach — hepatocyte cytoplasm for the antiviral effect, and the red blood cell, where the phosphorylated drug accumulates and causes the toxicity',
+    conditionContext: {
+      conditionExplainer:
+        'Ribavirin is not a drug built for one virus. It is a counterfeit version of guanosine, one of the four letters of RNA, and it has measurable activity against a long list of unrelated RNA viruses in a dish. Which of its several possible effects actually does the work has never been settled.',
+      whyItMatters:
+        'For fifteen years ribavirin was the difference between a hepatitis C cure and a failed course, and it is still the only drug given for Lassa fever. Both of those roles rest on evidence of very different quality, and this page separates them.',
+      whoTakesThis:
+        'In hepatitis C, patients aged 5 and over on a combination regimen — a role that has shrunk close to nothing since 2014. As an aerosol, hospitalised infants with severe RSV. Never anyone who is pregnant, whose partner is pregnant, or who has significant cardiac disease.',
+      clinicalGoals:
+        'In hepatitis C, sustained virologic response — no detectable virus in blood after treatment. In RSV, shorter ventilation and hospitalisation. The strength of evidence behind those two goals is not remotely comparable.',
+    },
+    oneSentenceVerdict:
+      'A guanosine mimic with five separate proposed mechanisms and none established, which tripled interferon’s hepatitis C cure rate in a 912-patient randomised trial (38% against 13% at 48 weeks) and added 27 points on top of peginterferon in a 1,121-patient trial (56% against 29%), while carrying a boxed warning that it does not work alone, that its hemolytic anemia has caused fatal myocardial infarction, and that it is teratogenic in every animal species tested.',
+    laymanHowItWorks:
+      'Ribavirin looks enough like guanosine, one of the four building blocks of RNA, that cells and viruses both pick it up and phosphorylate it. After that the story becomes genuinely unsettled: it can starve the cell of real guanosine, it can be inserted into viral genomes and cause so many copying errors that the virus mutates itself to death, it can interfere with the cap a virus puts on its messages, it can slow the copying enzyme directly, and it shifts the immune response. Five mechanisms have been proposed and evidence exists for each; which one matters in a given infection is still argued. What is not in doubt is the side effect: the phosphorylated drug builds up inside red blood cells, which cannot remove it, and they break apart.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 54,
+    pricing: {
+      synthesisCostPerDose:
+        'US$21 to US$63 per 12-week course, projected minimum cost of manufacture at a scale of one million courses per year (Hill et al., Clin Infect Dis 2014), where ribavirin was ranked the least complex to synthesise of the five hepatitis C drugs assessed',
+      retailPricePerDoseOrYear:
+        'US$0.4507 per tablet, the one listed product at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'No markup is stated because the two figures are not in the same units: the published cost is per 12-week course and the surveyed price is per tablet, and converting between them requires a daily dose this page does not supply. The surveyed figure is also what pharmacies pay to acquire the generic oral tablet, not what a patient is charged, and it does not describe the aerosol formulation, which is a different product at a different price. Ribavirin has been generic in the United States for many years and is on the WHO Model List of Essential Medicines.',
+      synthesisComplexity: 'Low',
+      costSource: {
+        label:
+          'Hill A, Khoo S, Fortunak J, Simmons B, Ford N. Minimum costs for producing hepatitis C direct-acting antivirals for use in large-scale treatment access programs in developing countries. Clin Infect Dis 2014;58:928-936',
+        identifier: '10.1093/cid/ciu012',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'In hepatitis C the substitute for ribavirin is not another drug but the whole modern regimen: the direct-acting antivirals cure more people in eight to twelve weeks than interferon with ribavirin did in forty-eight, without the anemia. In Lassa fever and in severe RSV there is no approved alternative at all, which is the reason ribavirin is still given for both despite the state of the evidence.',
+      conventionalRx: [
+        {
+          name: 'Sofosbuvir/velpatasvir (Epclusa)',
+          class: 'Pan-genotypic direct-acting antiviral combination',
+          howItCompares:
+            'Cures well over 90% of all six genotypes in 12 weeks with no interferon and, in most patients, no ribavirin. This is what removed ribavirin from routine hepatitis C care rather than any trial that tested ribavirin against it directly.',
+          typicalCost:
+            'US$866.40 per tablet, median across the two listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: far higher cure rate, far shorter course, no hemolytic anemia. Cons: several thousand times the acquisition price per tablet.',
+        },
+        {
+          name: 'Glecaprevir/pibrentasvir (Mavyret)',
+          class: 'Pan-genotypic direct-acting antiviral combination',
+          howItCompares:
+            'Eight weeks for most previously untreated patients, including those with compensated cirrhosis, and usable on dialysis. Ribavirin is not part of it.',
+          typicalCost:
+            'US$152.92 per tablet, median across the three listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: shortest curative course available. Cons: three tablets daily; contraindicated in Child-Pugh B or C liver disease.',
+        },
+        {
+          name: 'Supportive care alone, in Lassa fever and in RSV',
+          class: 'Not a drug',
+          howItCompares:
+            'For Lassa fever, systematic review of 13 published and unpublished comparative studies found all of them at critical or serious risk of bias, and the authors concluded that robust evidence supporting ribavirin is lacking. For RSV, pooled randomised mortality data across four trials did not reach significance.',
+          typicalCost: 'No acquisition cost',
+          prosAndCons:
+            'Pros: no hemolysis, no teratogenic exposure. Cons: in Lassa fever this means withdrawing the only treatment that exists, on the strength of an absence of evidence rather than evidence of absence.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Settle contraception before the first dose, not after',
+          action:
+            'Confirm a negative pregnancy test and an agreed contraception plan covering both partners, and know that the requirement continues long after the last dose.',
+          patientImpact:
+            'Ribavirin has a multiple-dose half-life of 12 days and may persist in non-plasma compartments for as long as six months. The label requires avoiding pregnancy during therapy and for nine months afterwards in female patients, and for six months in the female partners of male patients.',
+          clinicalPrecaution:
+            'This is a boxed warning and a contraindication, not advice. Significant teratogenic and embryocidal effects have been demonstrated in every animal species tested.',
+        },
+        {
+          name: 'Say whether you have ever had heart trouble',
+          action:
+            'Report any angina, previous heart attack, heart failure or arrhythmia before starting, and ask when your hemoglobin will next be checked.',
+          patientImpact:
+            'Ribavirin causes hemolytic anemia, and the label records that the resulting anemia has led to fatal and non-fatal myocardial infarction. Patients with a history of significant or unstable cardiac disease should not be treated with it.',
+          clinicalPrecaution:
+            'The anemia is dose-related and predictable rather than idiosyncratic, which is why it is monitored rather than merely watched for.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=NC(=NN1[C@H]2[C@@H]([C@@H]([C@H](O2)CO)O)O)C(=O)N',
+      chemicalFormula: 'C8H12N4O5',
+      molecularWeight: '244.20 g/mol',
+      targetReceptorAffinity:
+        'No single binding affinity can be quoted, because no single target is established. Against Lassa virus in cell culture the systematically reviewed EC50 values ranged from 0.6 to 21.72 micrograms per millilitre with a mean of 7, and EC90 values from 1.5 to 29 with a mean of 15 — a spread of more than thirtyfold across published in-vitro studies of the same virus.',
+      structureSource: {
+        label: 'PubChem CID 37542 (ribavirin) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/37542',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'rbv-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Anomeric configuration of the ribose, not just the mass',
+          description:
+            'Confirm that the sugar is attached in the beta configuration at the anomeric carbon and that the heterocycle is 1,2,4-triazole-3-carboxamide rather than a regioisomer. The alpha anomer and the N2-linked regioisomer have the same molecular formula and the same mass spectrum as the drug and are not the drug.',
+          reagentsAndBuffer:
+            '1H and 13C NMR in DMSO-d6 with NOE correlation across the glycosidic bond, optical rotation against a reference standard, HPLC against USP ribavirin reference standard, Karl Fischer titration',
+        },
+        {
+          id: 'rbv-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Vorbrüggen glycosylation and ammonolysis',
+          description:
+            'Couple the silylated triazole ester to a peracetylated ribofuranose under Lewis acid catalysis, which sets the beta configuration by neighbouring-group participation from the 2-acetate, then convert the ester to the primary carboxamide with ammonia. Ribavirin was ranked the least complex to synthesise of the five hepatitis C antivirals costed by Hill and colleagues, and this two-step route is why.',
+          dependsOnStepId: 'rbv-w1',
+          reagentsAndBuffer:
+            '1,2,4-triazole-3-carboxylic acid methyl ester, 1,2,3,5-tetra-O-acetyl-beta-D-ribofuranose, N,O-bis(trimethylsilyl)acetamide, trimethylsilyl trifluoromethanesulfonate in acetonitrile, then methanolic ammonia',
+        },
+        {
+          id: 'rbv-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation away from the anomer and the free base',
+          description:
+            'Recrystallise to remove the alpha anomer, unreacted triazole carboxamide and partially deacetylated intermediates. Ribavirin is highly water-soluble and poorly retained on standard reversed-phase columns, so crystallisation rather than preparative chromatography is the practical purification.',
+          dependsOnStepId: 'rbv-w2',
+          reagentsAndBuffer:
+            'Hot methanol or aqueous ethanol recrystallisation, activated charcoal treatment, HILIC or ion-pair HPLC for purity because the compound is too polar for conventional C18 retention',
+        },
+        {
+          id: 'rbv-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Dosing with the guanosine content of the medium controlled',
+          description:
+            'Dose virus-infected or replicon-bearing cells in defined medium, running a parallel arm supplemented with exogenous guanosine. Ribavirin enters cells through equilibrative nucleoside transporters, so a line with low ENT1 expression will read as resistant for reasons that have nothing to do with the virus, and any effect that runs through depletion of the guanosine pool is reversed by adding guanosine back.',
+          dependsOnStepId: 'rbv-w3',
+          reagentsAndBuffer:
+            'Defined nucleoside-free medium, exogenous guanosine rescue arm, ENT1 expression confirmed by transporter inhibition with dipyridamole or NBMPR, replicon or infectious virus system with matched multiplicity of infection',
+        },
+        {
+          id: 'rbv-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Measure mutation frequency alongside viral titre',
+          description:
+            'Report the antiviral effect and the mutation rate of the surviving viral population in the same experiment, with and without guanosine rescue. This is the experiment that discriminates between the proposed mechanisms: if the antiviral effect tracks mutation frequency and survives guanosine rescue it is lethal mutagenesis, and if it disappears on rescue it was depletion of the guanosine pool. Reporting only a titre reduction cannot tell the two apart, which is a large part of why the mechanism is still argued after forty years.',
+          dependsOnStepId: 'rbv-w4',
+          reagentsAndBuffer:
+            'Plaque assay or TCID50 for infectious titre, quantitative PCR for genome copies, deep sequencing of the viral population for transition mutation frequency, specific infectivity calculated as plaque-forming units per genome copy',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'rbv-a1',
+        category: 'measured',
+        title: 'Adding ribavirin to interferon tripled the hepatitis C cure rate',
+        laymanSummary:
+          'In 1998, 912 people were randomly assigned to interferon alone or interferon with ribavirin. At forty-eight weeks, 13% of those on interferon alone were cured, against 38% of those who also took ribavirin.',
+        technicalDetails:
+          'The Hepatitis Interventional Therapy Group randomised 912 patients with chronic hepatitis C to interferon alfa-2b alone or with ribavirin, for 24 or 48 weeks. Sustained virologic response was 38% (87 of 228) with combination therapy for 48 weeks and 31% (70 of 228) for 24 weeks, against 13% (29 of 225) and 6% (13 of 231) with interferon alone, P<0.001 for both comparisons. Histologic improvement was also more common on combination therapy: 61% and 57% against 41% and 44%. Dose reduction and discontinuation were more frequent with ribavirin.',
+        evidenceSource: 'McHutchison JG et al., N Engl J Med 1998;339:1485-1492',
+        doi: '10.1056/NEJM199811193392101',
+        measuredMetric:
+          'Sustained virologic response at 24 weeks post-treatment, ribavirin added to interferon against interferon alone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rbv-a2',
+        category: 'measured',
+        title: 'A placebo arm isolated ribavirin’s own contribution: 56% against 29%',
+        laymanSummary:
+          'Four years later a larger trial gave everyone the same peginterferon and randomised only whether they also got ribavirin or a matching placebo. Ribavirin nearly doubled the cure rate on its own.',
+        technicalDetails:
+          'Fried and colleagues randomised 1,121 patients to peginterferon alfa-2a with daily ribavirin, peginterferon alfa-2a with daily placebo, or interferon alfa-2b with ribavirin, all for 48 weeks. Sustained virologic response was 56% with peginterferon plus ribavirin against 29% with peginterferon plus placebo (P<0.001) and 44% with interferon alfa-2b plus ribavirin (P<0.001). In genotype 1 the corresponding figures were 46%, 21% and 36%; in genotype 1 with high baseline viral load, 41%, 13% and 33%. The placebo arm is what makes this a measurement of ribavirin rather than of a regimen.',
+        evidenceSource: 'Fried MW et al., N Engl J Med 2002;347:975-982',
+        doi: '10.1056/NEJMoa020047',
+        measuredMetric:
+          'Sustained virologic response with ribavirin against matching placebo on identical peginterferon',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rbv-a3',
+        category: 'inferred',
+        title: 'Forty years in, the mechanism of action is still five hypotheses',
+        laymanSummary:
+          'Nobody has established how ribavirin works. Five separate explanations have been proposed, evidence exists for each of them, and which one applies probably differs between viruses.',
+        technicalDetails:
+          'The five proposed mechanisms are two indirect — inhibition of inosine monophosphate dehydrogenase, which depletes the intracellular GTP pool, and immunomodulatory effects — and three direct: interference with viral RNA capping, direct polymerase inhibition, and lethal mutagenesis. The mutagenesis case is the best characterised: ribavirin triphosphate is used by poliovirus 3Dpol and templates cytidine and uridine with equal efficiency, reducing infectious virus production to as little as 0.00001% in cell culture, with antiviral activity correlating directly with mutagenic activity. That is a clean result in poliovirus. It has never been established as the operative mechanism in hepatitis C, where ribavirin alone barely moves viral load at all.',
+        evidenceSource:
+          'Graci JD, Cameron CE. Mechanisms of action of ribavirin against distinct viruses. Rev Med Virol 2006;16:37-48; and Crotty S et al., Nat Med 2000;6:1375-1379',
+        doi: '10.1002/rmv.483',
+        inferredClaim:
+          'That ribavirin’s clinical benefit in hepatitis C is explained by any one of its five proposed mechanisms — evidence exists for each and none has been established as the operative one in this disease',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'rbv-a4',
+        category: 'failed',
+        title: 'The label carries a boxed warning that the drug does not work alone',
+        laymanSummary:
+          'One of the three boxed warnings on ribavirin says, in plain terms, that ribavirin by itself does not treat chronic hepatitis C and must not be used that way.',
+        technicalDetails:
+          'The boxed warning is headed EMBRYO-FETAL TOXICITY, HEMOLYTIC ANEMIA, and MONOTHERAPY NOT RECOMMENDED, and states that ribavirin monotherapy is not effective for the treatment of chronic hepatitis C virus infection and should not be used alone for this indication. This is a rare thing for a label to say about its own product, and it is the single clearest statement of the gap between ribavirin’s broad in-vitro activity and its narrow clinical effect: against hepatitis C the measurable benefit appears only in combination, largely as a reduction in relapse after treatment stops rather than as faster viral clearance during it.',
+        evidenceSource:
+          'Ribavirin tablets United States prescribing information, boxed warning (Aurobindo Pharma Limited labelling, openFDA)',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rbv-a5',
+        category: 'failed',
+        title: 'Hemolytic anemia that has led to fatal myocardial infarction',
+        laymanSummary:
+          'Ribavirin destroys red blood cells. In people whose hearts were already struggling, the resulting anemia has caused heart attacks, some of them fatal. It is also teratogenic in every animal species that has been tested, and it stays in the body for months.',
+        technicalDetails:
+          'The boxed warning records that hemolytic anemia has been reported with ribavirin therapy and may result in worsening of cardiac disease that has led to fatal and non-fatal myocardial infarctions; patients with a history of significant or unstable cardiac disease should not be treated. Separately, significant teratogenic and embryocidal effects have been demonstrated in all animal species exposed to ribavirin; the multiple-dose half-life is 12 days and the drug may persist in non-plasma compartments for as long as six months, which is why the contraception requirement extends nine months beyond treatment in female patients and six months in the female partners of male patients. The mechanism of the anemia is straightforward and follows from the drug’s chemistry: erythrocytes phosphorylate ribavirin and lack the phosphatase to reverse it, so the triphosphate accumulates and the cell is destroyed.',
+        evidenceSource:
+          'Ribavirin tablets United States prescribing information, boxed warning and Warnings and Precautions 5.1 and 5.2 (openFDA)',
+        measuredMetric: 'Multiple-dose half-life of 12 days; persistence in tissue up to 6 months',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rbv-a6',
+        category: 'conclusion_shift',
+        title: 'Lassa fever: the only treatment there is, and the evidence for it has collapsed',
+        laymanSummary:
+          'Ribavirin has been the standard treatment for Lassa fever in West Africa since the 1980s, on the strength of a single study. Reanalysis of that study and of every other comparison found all of them critically biased, and one reanalysis raised the possibility that ribavirin is harmful in some patients.',
+        technicalDetails:
+          'A systematic review searching published and unpublished literature to March 2022, including data obtained from a Sierra Leone study through a United States Freedom of Information Act request, identified 13 studies comparing ribavirin against no ribavirin on mortality. Ribavirin was associated with decreased mortality in these studies, but every one was at critical or serious risk of bias on the ROBINS-I tool, with problems of uncontrolled confounding, immortal time bias and missing outcome data. The authors concluded that robust evidence supporting the use of ribavirin in Lassa fever is lacking. A companion systematic review of pre-clinical and pharmacokinetic data found in-vitro EC50 values spanning 0.6 to 21.72 micrograms per millilitre and modelling suggesting current regimens exceed the mean EC50 for less than 20% of the time and the mean EC90 for less than 10% — meaning the doses in clinical use may not reach the concentrations that inhibit the virus. The same authors, writing separately, stated that reanalysis of previously unpublished data reveals ribavirin may actually be harmful in some Lassa fever patients.',
+        evidenceSource:
+          'Cheng HY et al., Emerg Infect Dis 2022;28:1559-1568; Salam AP et al., PLoS Negl Trop Dis 2022;16:e0010289; Salam AP et al., PLoS Negl Trop Dis 2021;15:e0009522',
+        doi: '10.3201/eid2808.211787',
+        measuredMetric:
+          'Risk-of-bias assessment of all 13 comparative studies: critical or serious on ROBINS-I',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'rbv-a7',
+        category: 'failed',
+        title: 'The 1985 approval, for RSV, was never confirmed by an adequately powered trial',
+        laymanSummary:
+          'Ribavirin’s original approval was as a mist for infants with severe RSV. Twenty-five years and twelve randomised trials later, the pooled mortality difference was still not statistically significant, and the reviewers said the trials were too small to answer the question.',
+        technicalDetails:
+          'The Cochrane review of aerosolised ribavirin for RSV lower respiratory tract infection included 12 randomised trials, all in infants under six months. Across four trials with 158 participants, mortality was 5.8% with ribavirin against 9.7% with placebo, odds ratio 0.58 (95% CI 0.18 to 1.85). Across three trials with 116 participants, respiratory deterioration was 7.1% against 18.3%, odds ratio 0.37 (95% CI 0.12 to 1.18). In three studies of 104 ventilated participants the mean difference was 1.9 fewer days of hospitalisation (95% CI -4.6 to +0.9) and 1.8 fewer days of ventilation (95% CI -3.4 to -0.2). The reviewers concluded that trials of ribavirin for RSV lack sufficient power to provide reliable estimates of the effects. The aerosol label carries its own separate warnings about drug precipitate causing mechanical ventilator dysfunction and about sudden deterioration of respiratory function in infants.',
+        evidenceSource:
+          'Ventre K, Randolph AG. Ribavirin for respiratory syncytial virus infection of the lower respiratory tract in infants and young children. Cochrane Database Syst Rev 2010;(5):CD000181',
+        doi: '10.1002/14651858.CD000181.pub4',
+        measuredMetric:
+          'Pooled mortality odds ratio 0.58 (95% CI 0.18 to 1.85) across four randomised trials, 158 participants',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'rbv-a8',
+        category: 'conclusion_shift',
+        title: 'From the backbone of every hepatitis C regimen to almost nothing',
+        laymanSummary:
+          'Between 1998 and 2013 no hepatitis C regimen omitted ribavirin. Within about five years of the direct-acting antivirals arriving, it had been designed out of nearly every recommended course.',
+        technicalDetails:
+          'The change was not driven by a trial that tested ribavirin and found it wanting. It was driven by regimens that reached cure rates in the high nineties without it: where an eight or twelve week all-oral course cures more than 95%, the 27-point contribution ribavirin made on top of peginterferon has no room left to act, and its hemolytic anemia becomes pure cost. Ribavirin survives in a small number of specific situations named in direct-acting antiviral labels, and as the only agent for Lassa fever. The trajectory is the ordinary one for an adjunct whose value was always relative to a weak backbone, but it is worth recording that a drug can go from indispensable to near-obsolete without any new evidence about the drug itself.',
+        evidenceSource:
+          'Contrast between Fried MW et al., N Engl J Med 2002;347:975-982 and the direct-acting antiviral registrational programmes summarised in Jakobsen JC et al., Cochrane Database Syst Rev 2017;9:CD012143',
+        doi: '10.1002/14651858.CD012143.pub3',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Taken as a tablet, or breathed in as a mist',
+        laymanDesc:
+          'Two completely different products share the same molecule: an oral tablet or capsule used in hepatitis C, and an aerosol given to hospitalised infants with RSV.',
+        molecularDetail:
+          'Oral ribavirin is well absorbed and widely distributed, with a multiple-dose half-life of 12 days and persistence in non-plasma compartments for up to six months. The inhalation solution is delivered by small-particle aerosol generator and carries separate warnings about drug precipitate obstructing mechanical ventilators.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Carried into cells by the transporters meant for real nucleosides',
+        laymanDesc:
+          'Because it looks like guanosine, the cell’s own nucleoside doorways let it in. Red blood cells let it in too, and that is where the trouble starts.',
+        molecularDetail:
+          'Uptake is via equilibrative nucleoside transporters, principally ENT1. Intracellular kinases phosphorylate it to the mono-, di- and triphosphate. Erythrocytes phosphorylate it but lack the phosphatase to reverse the reaction, so the triphosphate accumulates and causes dose-dependent hemolysis.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Five things it could be doing, and nobody has settled which',
+        laymanDesc:
+          'It can starve the cell of real guanosine, get inserted into viral genomes and cause copying errors, interfere with the cap a virus puts on its messages, slow the copying enzyme directly, or shift the immune response. Evidence exists for all five.',
+        molecularDetail:
+          'Proposed mechanisms: inhibition of inosine monophosphate dehydrogenase depleting the GTP pool; lethal mutagenesis, since ribavirin triphosphate templates cytidine and uridine with equal efficiency; interference with RNA capping; direct RNA-dependent RNA polymerase inhibition; and immunomodulation. Distinct virus and host combinations may favour different mechanisms.',
+        iconName: 'HelpCircle',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'In hepatitis C the visible effect is on relapse, not on viral load',
+        laymanDesc:
+          'Ribavirin alone barely changes the amount of virus in the blood. What it changes is how many people relapse after interferon stops, which is why it only ever worked as a partner.',
+        molecularDetail:
+          'The label’s own boxed warning states that ribavirin monotherapy is not effective for chronic hepatitis C. Its measurable contribution appears as a difference in sustained response rather than in on-treatment viral kinetics, which is one of the reasons the mechanism has resisted identification in this disease.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'It tripled the cure rate for fifteen years',
+        laymanDesc:
+          'With interferon alone, roughly one in eight people were cured. Adding ribavirin took that to roughly two in five, and adding it to peginterferon took 29% to 56%.',
+        molecularDetail:
+          'SVR was 38% against 13% at 48 weeks in 912 randomised patients on interferon alfa-2b, and 56% against 29% in 1,121 randomised patients on peginterferon alfa-2a with matching placebo. In genotype 1 the peginterferon figures were 46% against 21%.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The price was anemia, teratogenicity and a long tail',
+        laymanDesc:
+          'Red cells break apart, and in people with heart disease the anemia has caused fatal heart attacks. It also damages developing embryos in every animal species tested and lingers in the body for months after the last dose.',
+        molecularDetail:
+          'Three boxed warnings: embryo-fetal toxicity, hemolytic anemia leading to fatal and non-fatal myocardial infarction, and monotherapy not recommended. Contraception is required for nine months after treatment in female patients and six months in the female partners of male patients.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Hepatitis Interventional Therapy Group (McHutchison 1998, N Engl J Med)',
+        phase: 'Phase 3, randomised, interferon alfa-2b with or without ribavirin',
+        sampleSize: 912,
+        primaryEndpoint:
+          'Sustained virologic response, undetectable serum HCV RNA 24 weeks after treatment',
+        endpointMet: true,
+        statisticalPValue:
+          '38% (87/228) at 48 weeks and 31% (70/228) at 24 weeks with ribavirin, against 13% (29/225) and 6% (13/231) without; P<0.001',
+        unreportedAdverseSignals:
+          'Dose reduction and discontinuation were more frequent with ribavirin, and the paper does not resolve how much of the added benefit was offset by the added toxicity.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Fried 2002, N Engl J Med — peginterferon alfa-2a with ribavirin or placebo',
+        phase: 'Phase 3, randomised, three-arm, with a matching placebo arm',
+        sampleSize: 1121,
+        primaryEndpoint:
+          'Sustained virologic response, undetectable HCV RNA 24 weeks after cessation of therapy',
+        endpointMet: true,
+        statisticalPValue:
+          '56% with peginterferon plus ribavirin against 29% with peginterferon plus placebo and 44% with interferon alfa-2b plus ribavirin; P<0.001 for both comparisons',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane CD000181 — aerosolised ribavirin for RSV in infants',
+        phase: 'Systematic review of 12 randomised placebo-controlled trials',
+        sampleSize: 158,
+        primaryEndpoint: 'Mortality in infants with RSV lower respiratory tract infection',
+        endpointMet: false,
+        statisticalPValue:
+          'Mortality 5.8% against 9.7%, odds ratio 0.58 (95% CI 0.18 to 1.85) across four trials with 158 participants — the confidence interval crosses 1',
+        unreportedAdverseSignals:
+          'The reviewers state the trials lack sufficient power to provide reliable estimates. Occupational exposure of ward staff to aerosolised ribavirin, a known teratogen, is a documented concern that the efficacy trials were not designed to quantify.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Cheng 2022, Emerg Infect Dis — ribavirin for Lassa fever',
+        phase: 'Systematic review of 13 published and unpublished comparative studies',
+        sampleSize: 13,
+        primaryEndpoint: 'Mortality with ribavirin against no ribavirin in Lassa fever',
+        endpointMet: false,
+        statisticalPValue:
+          'Ribavirin was associated with decreased mortality, but every one of the 13 studies was at critical or serious risk of bias on ROBINS-I, so no pooled estimate was considered reliable',
+        unreportedAdverseSignals:
+          'Unpublished data from a Sierra Leone study had to be obtained through a Freedom of Information Act request. Uncontrolled confounding, immortal time bias and missing outcome data were the recurring problems.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Sustained virologic response 38% against 13% at 48 weeks when ribavirin was added to interferon alfa-2b in 912 randomised patients',
+        '56% against 29% when ribavirin was added to peginterferon alfa-2a against a matching placebo in 1,121 randomised patients',
+        'Multiple-dose half-life of 12 days, with persistence in non-plasma compartments up to six months',
+        'Ribavirin triphosphate templates cytidine and uridine with equal efficiency in poliovirus 3Dpol, reducing infectious virus to as little as 0.00001% in cell culture',
+        'In-vitro Lassa virus EC50 across published studies ranged from 0.6 to 21.72 micrograms per millilitre',
+      ],
+      unsupportedInferences: [
+        'That the mechanism of action is known — five mechanisms have been proposed, evidence exists for each, and none is established in hepatitis C',
+        'That lethal mutagenesis, demonstrated cleanly in poliovirus, is what ribavirin does in hepatitis C',
+        'That ribavirin reduces mortality in Lassa fever — the association exists in every comparative study and every one of those studies is at critical or serious risk of bias',
+        'That broad in-vitro activity against many RNA viruses predicts clinical benefit against them; the drug is active in a dish against far more viruses than it treats',
+        'That doses in clinical use for Lassa fever reach inhibitory concentrations — modelling suggests they exceed the mean EC90 less than 10% of the time',
+      ],
+      whatFailedInitially: [
+        'Ribavirin monotherapy does not treat chronic hepatitis C, and the label says so in a boxed warning',
+        'Hemolytic anemia has caused fatal and non-fatal myocardial infarction; patients with significant or unstable cardiac disease must not receive it',
+        'Teratogenic and embryocidal in every animal species tested, with a contraception requirement extending nine months past the last dose',
+        'The original 1985 RSV indication was never confirmed: twelve randomised trials pooled to an odds ratio for mortality of 0.58 with a confidence interval from 0.18 to 1.85',
+        'The Lassa fever evidence base, reassessed with unpublished data obtained by Freedom of Information request, was judged incapable of supporting the recommendation it has carried since the 1980s',
+      ],
+      realWorldOutcome: [
+        'Approved 1985 as an aerosol for RSV; oral forms for hepatitis C followed in 1998 and 2002',
+        'The backbone of every hepatitis C regimen from 1998 until the direct-acting antivirals, then designed out of nearly all of them within about five years',
+        'Long generic, inexpensive, and on the WHO Model List of Essential Medicines',
+        'Still the only drug given for Lassa fever, because nothing else exists — not because the evidence improved',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, capsule and solution; separately, an inhalation solution given by small-particle aerosol',
+      description:
+        'The oral forms are used in hepatitis C in combination with peginterferon or with certain direct-acting antiviral regimens. The inhalation solution is a distinct product for hospitalised infants and young children with severe RSV lower respiratory tract infection and is not indicated in adults.',
+      safetyProfile:
+        'Three boxed warnings on the oral product: embryo-fetal toxicity, hemolytic anemia, and monotherapy not recommended. Contraindicated in pregnancy, in the male partners of pregnant women, and in patients with a history of significant or unstable cardiac disease. The anemia is dose-related and monitored rather than merely watched for. The aerosol product carries separate warnings: accumulated drug precipitate has caused mechanical ventilator dysfunction with raised pulmonary pressures, and sudden deterioration of respiratory function has followed initiation in infants. Occupational exposure of healthcare staff to a teratogenic aerosol is a recognised handling concern.',
+    },
+    commonQuestions: [
+      {
+        q: 'How does ribavirin work?',
+        a: 'That is genuinely unresolved, and it has been unresolved since before the drug was approved in 1985. Five mechanisms have been proposed and there is published evidence for each: it inhibits an enzyme called IMPDH and so starves the cell of guanosine; it gets built into viral genomes and causes so many copying errors that the virus mutates itself into extinction; it interferes with the protective cap a virus puts on its messenger RNA; it slows the viral copying enzyme directly; and it shifts the immune response. The mutagenesis mechanism has been demonstrated cleanly in poliovirus. Whether it is what ribavirin does in hepatitis C has never been established, and the fact that ribavirin alone barely changes hepatitis C viral load argues against a simple direct antiviral explanation there.',
+      },
+      {
+        q: 'Why does the label say it does not work on its own?',
+        a: 'Because it does not, and the FDA required that to be stated in a boxed warning rather than buried in the text. Given alone against chronic hepatitis C, ribavirin lowers liver enzymes somewhat and does not clear the virus. Its measurable benefit appears only in combination, and it shows up as fewer relapses after treatment ends rather than as faster clearance during treatment. This is unusual enough to be worth noticing: a drug can carry a real, replicated, randomised benefit as a partner and no benefit at all by itself.',
+        auditNote:
+          'The boxed warning is the label contradicting the intuitive reading of the drug’s broad in-vitro activity. It is the most useful sentence on the document.',
+      },
+      {
+        q: 'Is ribavirin still used for hepatitis C?',
+        a: 'Rarely. Between 1998 and 2013 nothing else was on offer and every regimen included it. The direct-acting antivirals now cure well over 90% of people in eight to twelve weeks without interferon and, in most cases, without ribavirin. Nothing was discovered about ribavirin that made it worse — the 56% against 29% result still stands. It simply had nothing left to add once the backbone regimen was curing almost everyone, and its hemolytic anemia stopped being a price worth paying. It survives in a handful of specific situations named in modern antiviral labels.',
+      },
+      {
+        q: 'Is it safe in pregnancy?',
+        a: 'No, and the restriction is stricter and longer than most people expect. Significant teratogenic and embryocidal effects have been demonstrated in all animal species tested. Ribavirin has a multiple-dose half-life of 12 days and may remain in non-plasma compartments for as long as six months, so the label requires avoiding pregnancy during treatment and for nine months after it in female patients, and for six months in the female partners of male patients. It is contraindicated in women who are pregnant and in the male partners of women who are pregnant. The same teratogenicity is why the aerosol form raises occupational handling concerns for hospital staff.',
+      },
+      {
+        q: 'Why is it still the treatment for Lassa fever if the evidence is that weak?',
+        a: 'Because there is nothing else. Ribavirin became the standard of care in West Africa in the 1980s on the strength of one clinical study, and that recommendation was never revisited for thirty years. When it finally was, a systematic review that went as far as obtaining unpublished data through a Freedom of Information Act request found thirteen comparative studies, every one of them at critical or serious risk of bias from uncontrolled confounding, immortal time bias or missing outcomes. A companion analysis of the pharmacology suggested that the doses actually given may not reach the concentrations that inhibit the virus in a dish for most of the dosing interval, and the same group reported that reanalysis raised the possibility of harm in some patients. None of that proves ribavirin does not work. It establishes that after forty years nobody knows, which for the only available treatment for a fatal viral hemorrhagic fever is its own kind of finding.',
+        auditNote:
+          'Absence of reliable evidence is not evidence of absence of effect. The reviewers called for well-conducted trials, not for withdrawal.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'McHutchison JG et al. Interferon alfa-2b alone or in combination with ribavirin as initial treatment for chronic hepatitis C. N Engl J Med 1998;339:1485-1492',
+        identifier: '10.1056/NEJM199811193392101',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fried MW et al. Peginterferon alfa-2a plus ribavirin for chronic hepatitis C virus infection. N Engl J Med 2002;347:975-982',
+        identifier: '10.1056/NEJMoa020047',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Graci JD, Cameron CE. Mechanisms of action of ribavirin against distinct viruses. Rev Med Virol 2006;16:37-48',
+        identifier: '10.1002/rmv.483',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Crotty S et al. The broad-spectrum antiviral ribonucleoside ribavirin is an RNA virus mutagen. Nat Med 2000;6:1375-1379',
+        identifier: '10.1038/82191',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ventre K, Randolph AG. Ribavirin for respiratory syncytial virus infection of the lower respiratory tract in infants and young children. Cochrane Database Syst Rev 2010;(5):CD000181',
+        identifier: '10.1002/14651858.CD000181.pub4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cheng HY et al. Lack of evidence for ribavirin treatment of Lassa fever in systematic review of published and unpublished studies. Emerg Infect Dis 2022;28:1559-1568',
+        identifier: '10.3201/eid2808.211787',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Salam AP et al. Ribavirin for treating Lassa fever: a systematic review of pre-clinical studies and implications for human dosing. PLoS Negl Trop Dis 2022;16:e0010289',
+        identifier: '10.1371/journal.pntd.0010289',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Salam AP, Cheng V, Edwards T, Olliaro P, Sterne J, Horby P. Time to reconsider the role of ribavirin in Lassa fever. PLoS Negl Trop Dis 2021;15:e0009522',
+        identifier: '10.1371/journal.pntd.0009522',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hill A, Khoo S, Fortunak J, Simmons B, Ford N. Minimum costs for producing hepatitis C direct-acting antivirals for use in large-scale treatment access programs in developing countries. Clin Infect Dis 2014;58:928-936',
+        identifier: '10.1093/cid/ciu012',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jakobsen JC et al. Direct-acting antivirals for chronic hepatitis C. Cochrane Database Syst Rev 2017;9:CD012143',
+        identifier: '10.1002/14651858.CD012143.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ribavirin tablets United States prescribing information — boxed warning for embryo-fetal toxicity, hemolytic anemia and monotherapy not recommended (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22RIBAVIRIN%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 37542 — ribavirin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/37542',
         kind: 'url',
       },
     ],

@@ -65,8 +65,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
     approvalYear: 1997,
     indication:
       'Schizophrenia in adults and adolescents aged 13 to 17; manic episodes of bipolar I disorder; depressive episodes of bipolar disorder; and, as the extended-release form, adjunctive treatment of major depressive disorder alongside an antidepressant',
-    patientFriendlyIndication:
-      'Schizophrenia, and the high and low phases of bipolar disorder',
+    patientFriendlyIndication: 'Schizophrenia, and the high and low phases of bipolar disorder',
     anatomicalSite:
       'Mesolimbic and mesocortical dopamine synapses, plus histamine H1 and alpha-1 adrenergic receptors throughout the brain and blood vessels',
     conditionContext: {
@@ -121,7 +120,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Doxepin',
-          class: 'Tricyclic antidepressant, licensed at low strength specifically for sleep maintenance',
+          class:
+            'Tricyclic antidepressant, licensed at low strength specifically for sleep maintenance',
           howItCompares:
             'The comparison that matters most for the off-label sleep use. Doxepin at low strength is an H1 antagonist with an actual FDA insomnia indication, meaning a regulator has reviewed sleep-endpoint trials for it. Quetiapine has no such review anywhere, and its H1 blockade is the same mechanism.',
           typicalCost:
@@ -216,7 +216,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       {
         id: 'que-a1',
         category: 'measured',
-        title: 'BOLDER I: 58% responded in bipolar depression against 36% on placebo, in 542 patients',
+        title:
+          'BOLDER I: 58% responded in bipolar depression against 36% on placebo, in 542 patients',
         laymanSummary:
           'In an eight-week randomised trial of 542 outpatients with bipolar depression, roughly six in ten improved by half or more on the depression scale, against roughly three and a half in ten on placebo. This is the clearest positive result quetiapine owns.',
         technicalDetails:
@@ -235,10 +236,10 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           'In the largest independent schizophrenia trial ever run, patients were given one of five antipsychotics and followed for eighteen months. More people quit quetiapine than any other drug in the trial, including a 1950s drug it was meant to have replaced.',
         technicalDetails:
           'CATIE randomised 1,493 patients with chronic schizophrenia at 57 United States sites to olanzapine, perphenazine, quetiapine, risperidone or ziprasidone for up to 18 months, with time to discontinuation for any cause as the primary outcome. Of the 1,432 who took at least one dose, 74% discontinued before 18 months: 64% on olanzapine, 74% on risperidone, 75% on perphenazine, 79% on ziprasidone and 82% on quetiapine. Time to all-cause discontinuation was significantly longer on olanzapine than on quetiapine (P<0.001) or risperidone (P=0.002). The trial was funded by the National Institute of Mental Health, not by a manufacturer, and perphenazine, a first-generation drug from 1957, performed similarly to quetiapine, risperidone and ziprasidone.',
-        evidenceSource:
-          'Lieberman JA et al., N Engl J Med 2005;353:1209-1223 (CATIE, NCT00014001)',
+        evidenceSource: 'Lieberman JA et al., N Engl J Med 2005;353:1209-1223 (CATIE, NCT00014001)',
         doi: '10.1056/NEJMoa051688',
-        measuredMetric: 'Time to discontinuation of assigned treatment for any cause over 18 months',
+        measuredMetric:
+          'Time to discontinuation of assigned treatment for any cause over 18 months',
         auditFlag: 'verified',
       },
       {
@@ -304,7 +305,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       {
         id: 'que-a7',
         category: 'inferred',
-        title: 'The antidepressant effect is credited to a metabolite, from receptor data not trials',
+        title:
+          'The antidepressant effect is credited to a metabolite, from receptor data not trials',
         laymanSummary:
           'Quetiapine works in bipolar depression, which most antipsychotics do not. The usual explanation is that the body converts it into a second molecule that behaves like an antidepressant. That explanation comes from test-tube receptor work and mouse behaviour, not from a trial in people.',
         technicalDetails:
@@ -421,7 +423,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Unreplicated',
       },
       {
-        trialId: 'NCT00278941 (quetiapine SR monotherapy, maintenance in major depressive disorder)',
+        trialId:
+          'NCT00278941 (quetiapine SR monotherapy, maintenance in major depressive disorder)',
         phase: 'Phase 3 randomised withdrawal trial',
         sampleSize: 3000,
         primaryEndpoint:
@@ -519,7 +522,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: "CATIE-AD — Clinical Antipsychotic Trials of Intervention Effectiveness, Alzheimer's disease",
+        label:
+          "CATIE-AD — Clinical Antipsychotic Trials of Intervention Effectiveness, Alzheimer's disease",
         identifier: 'NCT00015548',
         kind: 'nct',
       },
@@ -604,8 +608,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
     approvalYear: 1996,
     indication:
       'Schizophrenia in adults and adolescents aged 13 to 17; acute manic or mixed episodes of bipolar I disorder and its maintenance; in combination with fluoxetine for bipolar I depression and for treatment-resistant depression; and as an intramuscular injection for agitation in schizophrenia and bipolar mania',
-    patientFriendlyIndication:
-      'Schizophrenia, and the manic and mixed phases of bipolar disorder',
+    patientFriendlyIndication: 'Schizophrenia, and the manic and mixed phases of bipolar disorder',
     anatomicalSite:
       'Mesolimbic and mesocortical dopamine synapses, plus hypothalamic serotonin 5-HT2C and histamine H1 receptors that govern appetite',
     conditionContext: {
@@ -632,7 +635,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           name: 'Aripiprazole (Abilify)',
           class: 'Dopamine D2 partial agonist',
           howItCompares:
-            'Ranked ninth to olanzapine\'s third on the 15-drug pooled efficacy estimate (SMD 0.43 versus 0.59), and had the smallest prolactin effect of the fifteen. It causes far less weight gain, and it carries an impulse-control warning olanzapine does not.',
+            "Ranked ninth to olanzapine's third on the 15-drug pooled efficacy estimate (SMD 0.43 versus 0.59), and had the smallest prolactin effect of the fifteen. It causes far less weight gain, and it carries an impulse-control warning olanzapine does not.",
           typicalCost:
             'US$0.1251 per tablet at pharmacy acquisition cost, median across 211 listed generic products (CMS NADAC, effective 19 August 2026)',
           prosAndCons:
@@ -640,7 +643,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Ziprasidone (Geodon)',
-          class: 'Second-generation antipsychotic with 5-HT1A agonism and monoamine reuptake inhibition',
+          class:
+            'Second-generation antipsychotic with 5-HT1A agonism and monoamine reuptake inhibition',
           howItCompares:
             'The one antipsychotic in the 32-drug network meta-analysis whose weight change against placebo was not positive at all: -0.16 kg (95% CrI -0.73 to 0.40). It buys that with the weakest efficacy ranking of the older second-generation drugs and a QT interval effect that required a dedicated 18,154-patient safety study.',
           typicalCost:
@@ -662,7 +666,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           name: 'Olanzapine with samidorphan (Lybalvi)',
           class: 'Olanzapine combined with a fixed amount of an opioid receptor antagonist',
           howItCompares:
-            'Built specifically to keep olanzapine\'s efficacy and remove its weight gain. In a 561-patient 24-week randomised trial it reduced mean weight gain from 6.59% to 4.21% of body weight and the proportion gaining 10% or more from 29.8% to 17.8%. Symptom improvement was the same as olanzapine alone, because the antipsychotic is the same molecule.',
+            "Built specifically to keep olanzapine's efficacy and remove its weight gain. In a 561-patient 24-week randomised trial it reduced mean weight gain from 6.59% to 4.21% of body weight and the proportion gaining 10% or more from 29.8% to 17.8%. Symptom improvement was the same as olanzapine alone, because the antipsychotic is the same molecule.",
           typicalCost:
             'A brand-only product; no generic median is listed in the CMS NADAC file consulted for this page',
           prosAndCons:
@@ -760,11 +764,11 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In the largest independent schizophrenia trial ever run, olanzapine kept more people on treatment than any of the other four drugs. It still lost roughly two-thirds of its patients within eighteen months.',
         technicalDetails:
-          'CATIE randomised 1,493 patients with chronic schizophrenia at 57 United States sites to olanzapine, perphenazine, quetiapine, risperidone or ziprasidone for up to 18 months, with time to all-cause discontinuation as the primary outcome. Of 1,432 patients who took at least one dose, 74% discontinued: 64% on olanzapine, 74% on risperidone, 75% on perphenazine, 79% on ziprasidone and 82% on quetiapine. Time to discontinuation was significantly longer on olanzapine than on quetiapine (P<0.001) or risperidone (P=0.002), but not significantly longer than on perphenazine (P=0.021) or ziprasidone (P=0.028) at the trial\'s adjusted threshold. The rates of discontinuation for intolerable side effects differed across groups (P=0.04), with olanzapine accounting for more discontinuation for weight gain or metabolic effects. The trial was funded by the National Institute of Mental Health.',
-        evidenceSource:
-          'Lieberman JA et al., N Engl J Med 2005;353:1209-1223 (CATIE, NCT00014001)',
+          "CATIE randomised 1,493 patients with chronic schizophrenia at 57 United States sites to olanzapine, perphenazine, quetiapine, risperidone or ziprasidone for up to 18 months, with time to all-cause discontinuation as the primary outcome. Of 1,432 patients who took at least one dose, 74% discontinued: 64% on olanzapine, 74% on risperidone, 75% on perphenazine, 79% on ziprasidone and 82% on quetiapine. Time to discontinuation was significantly longer on olanzapine than on quetiapine (P<0.001) or risperidone (P=0.002), but not significantly longer than on perphenazine (P=0.021) or ziprasidone (P=0.028) at the trial's adjusted threshold. The rates of discontinuation for intolerable side effects differed across groups (P=0.04), with olanzapine accounting for more discontinuation for weight gain or metabolic effects. The trial was funded by the National Institute of Mental Health.",
+        evidenceSource: 'Lieberman JA et al., N Engl J Med 2005;353:1209-1223 (CATIE, NCT00014001)',
         doi: '10.1056/NEJMoa051688',
-        measuredMetric: 'Time to discontinuation of assigned treatment for any cause over 18 months',
+        measuredMetric:
+          'Time to discontinuation of assigned treatment for any cause over 18 months',
         auditFlag: 'verified',
       },
       {
@@ -790,8 +794,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           'A National Cancer Institute trial gave olanzapine or a dummy pill to 380 people starting the harshest kind of chemotherapy, on top of the standard anti-sickness drugs. Over five days, 37% on olanzapine had no nausea at all against 22% on placebo.',
         technicalDetails:
           'Navari and colleagues ran a randomised double-blind phase 3 trial in patients with no previous chemotherapy receiving cisplatin at 70 mg/m2 or more, or cyclophosphamide with doxorubicin. All patients received dexamethasone, aprepitant or fosaprepitant and a 5-HT3 antagonist; 192 were assigned olanzapine 10 mg and 188 placebo on days 1 to 4. The proportion with no chemotherapy-induced nausea was 74% versus 45% in the first 24 hours (P=0.002), 42% versus 25% from 25 to 120 hours (P=0.002) and 37% versus 22% over the full 120 hours (P=0.002). Complete response rates were 86% versus 65% (P<0.001), 67% versus 52% (P=0.007) and 64% versus 41% (P<0.001). Severe sedation occurred in 5% on day 2. The trial was funded by the National Cancer Institute. Antiemesis is not an FDA-approved indication for olanzapine.',
-        evidenceSource:
-          'Navari RM et al., N Engl J Med 2016;375:134-142 (NCT02116530)',
+        evidenceSource: 'Navari RM et al., N Engl J Med 2016;375:134-142 (NCT02116530)',
         doi: '10.1056/NEJMoa1515725',
         measuredMetric:
           'Proportion of patients with no chemotherapy-induced nausea over 120 hours, and complete response rate',
@@ -843,7 +846,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       {
         id: 'ola-a7',
         category: 'conclusion_shift',
-        title: 'The uses beyond the licence were promoted, and settled for US$1.415 billion in 2009',
+        title:
+          'The uses beyond the licence were promoted, and settled for US$1.415 billion in 2009',
         laymanSummary:
           'In January 2009 the manufacturer agreed to pay one of the largest pharmaceutical settlements ever recorded in the United States over the promotion of olanzapine for uses the FDA had not approved.',
         technicalDetails:
@@ -890,7 +894,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         step: 4,
         title: 'It also blocks the receptors that tell you when you have eaten enough',
         laymanDesc:
-          'The same molecule blocks a serotonin receptor and a histamine receptor in the brain\'s appetite centre. Hunger increases, fullness arrives later, and weight goes up. This is not a side effect that can be dialled out, because it is the same molecule doing both jobs.',
+          "The same molecule blocks a serotonin receptor and a histamine receptor in the brain's appetite centre. Hunger increases, fullness arrives later, and weight goes up. This is not a side effect that can be dialled out, because it is the same molecule doing both jobs.",
         molecularDetail:
           'Antagonism at 5-HT2C removes a satiety brake and at H1 removes a second one, with downstream effects on hypothalamic AMPK signalling and on peripheral insulin sensitivity. Muscarinic M3 blockade has been proposed as a direct contributor to impaired insulin secretion. The measured consequence is the largest weight effect of fifteen ranked antipsychotics.',
         iconName: 'Scale',
@@ -989,7 +993,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         'That the metabolic effect can be avoided by using less — the receptors that drive appetite are bound at lower concentrations than those that control symptoms',
       ],
       whatFailedInitially: [
-        'CATIE\'s primary endpoint was met on olanzapine and still recorded 64% discontinuation, with olanzapine leading the arms for discontinuation due to weight and metabolic effects',
+        "CATIE's primary endpoint was met on olanzapine and still recorded 64% discontinuation, with olanzapine leading the arms for discontinuation due to weight and metabolic effects",
         'The obsessionality co-primary endpoint in the anorexia nervosa trial was not met',
         'The long-acting injectable formulation produced a syndrome resembling overdose in 1.4% of trial patients, with no identifiable risk factors',
       ],
@@ -1001,8 +1005,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet, orally disintegrating tablet, short-acting intramuscular injection, and a long-acting intramuscular pamoate depot',
+      type: 'Oral tablet, orally disintegrating tablet, short-acting intramuscular injection, and a long-acting intramuscular pamoate depot',
       description:
         'The oral half-life of roughly a day supports once-daily dosing. The orally disintegrating form exists for situations where swallowing cannot be confirmed. The pamoate depot releases olanzapine over two to four weeks and must be given in a registered healthcare facility with a post-injection observation period, because a portion of the depot can enter a blood vessel and produce sudden sedation or delirium.',
       safetyProfile:
@@ -1149,13 +1152,13 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
     confidenceScore: 72,
     substitutes: {
       summary:
-        'Risperidone is the cheapest antipsychotic in this batch at about six cents a tablet, and on pooled efficacy it is beaten only by clozapine, amisulpride and olanzapine. The case against it is almost always prolactin. Aripiprazole is the mirror image: the lowest prolactin effect of the fifteen ranked drugs and a measurably weaker effect on symptoms. Paliperidone is the same molecule\'s active metabolite and raises prolactin more, not less.',
+        "Risperidone is the cheapest antipsychotic in this batch at about six cents a tablet, and on pooled efficacy it is beaten only by clozapine, amisulpride and olanzapine. The case against it is almost always prolactin. Aripiprazole is the mirror image: the lowest prolactin effect of the fifteen ranked drugs and a measurably weaker effect on symptoms. Paliperidone is the same molecule's active metabolite and raises prolactin more, not less.",
       conventionalRx: [
         {
           name: 'Aripiprazole (Abilify)',
           class: 'Dopamine D2 partial agonist',
           howItCompares:
-            'The only drug in the 15-drug pooled ranking whose prolactin effect against placebo pointed in the opposite direction to every other antipsychotic (standardised mean difference 0.22, against -1.30 for paliperidone at the other end). It ranked ninth on efficacy against risperidone\'s fourth, and it also holds an autism-irritability indication.',
+            "The only drug in the 15-drug pooled ranking whose prolactin effect against placebo pointed in the opposite direction to every other antipsychotic (standardised mean difference 0.22, against -1.30 for paliperidone at the other end). It ranked ninth on efficacy against risperidone's fourth, and it also holds an autism-irritability indication.",
           typicalCost:
             'US$0.1251 per tablet at pharmacy acquisition cost, median across 211 listed generic products (CMS NADAC, effective 19 August 2026)',
           prosAndCons:
@@ -1165,7 +1168,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           name: 'Olanzapine (Zyprexa)',
           class: 'Second-generation antipsychotic, multi-receptor antagonist',
           howItCompares:
-            'Ranked one place above risperidone on pooled efficacy (SMD 0.59 versus 0.56) and had the longest time to all-cause discontinuation in CATIE, where risperidone was third of five. It trades risperidone\'s prolactin problem for the worst weight and metabolic profile of the fifteen ranked drugs.',
+            "Ranked one place above risperidone on pooled efficacy (SMD 0.59 versus 0.56) and had the longest time to all-cause discontinuation in CATIE, where risperidone was third of five. It trades risperidone's prolactin problem for the worst weight and metabolic profile of the fifteen ranked drugs.",
           typicalCost:
             'US$0.1432 per tablet at pharmacy acquisition cost, median across 167 listed generic products (CMS NADAC, effective 19 August 2026)',
           prosAndCons:
@@ -1175,7 +1178,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           name: 'Paliperidone (Invega)',
           class: 'The 9-hydroxy active metabolite of risperidone, marketed as a separate drug',
           howItCompares:
-            'Chemically it is what the body turns risperidone into. It ranked fifth to risperidone\'s fourth on pooled efficacy, and it produced the largest prolactin elevation of the 32 antipsychotics in the 2019 network meta-analysis (+48.51 ng/mL against placebo). It costs roughly sixteen times as much per tablet.',
+            "Chemically it is what the body turns risperidone into. It ranked fifth to risperidone's fourth on pooled efficacy, and it produced the largest prolactin elevation of the 32 antipsychotics in the 2019 network meta-analysis (+48.51 ng/mL against placebo). It costs roughly sixteen times as much per tablet.",
           typicalCost:
             'US$1.01 per tablet at pharmacy acquisition cost, median across 56 listed generic products (CMS NADAC, effective 19 August 2026)',
           prosAndCons:
@@ -1300,7 +1303,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Risperidone raises prolactin, the hormone that drives breast tissue growth. In a database study of over 400,000 young men, those currently taking it were diagnosed with breast enlargement about four times as often as non-users, and five times as often among those aged eighteen and under.',
         technicalDetails:
-          'Etminan and colleagues built a cohort of 401,924 males aged 15 to 25 from the IMS LifeLink claims database and ran a nested case-control analysis, identifying 1,556 incident gynaecomastia diagnoses matched to 15,560 controls by age, follow-up and calendar time. Current risperidone users had an adjusted rate ratio of 3.91 (95% CI 2.01 to 7.62); restricted to those aged 18 and under, the rate ratio was 5.44 (95% CI 1.50 to 19.74). The mechanism is dopamine D2 blockade at pituitary lactotrophs, which sit outside the blood-brain barrier and are therefore fully exposed while central penetration is limited by P-glycoprotein efflux. In the pooled network meta-analysis of 32 antipsychotics, the prolactin elevation range ran to 48.51 ng/mL for paliperidone, risperidone\'s own active metabolite. This is claims data rather than a randomised trial, so confounding by indication cannot be excluded, but the pharmacological mechanism is not in dispute.',
+          "Etminan and colleagues built a cohort of 401,924 males aged 15 to 25 from the IMS LifeLink claims database and ran a nested case-control analysis, identifying 1,556 incident gynaecomastia diagnoses matched to 15,560 controls by age, follow-up and calendar time. Current risperidone users had an adjusted rate ratio of 3.91 (95% CI 2.01 to 7.62); restricted to those aged 18 and under, the rate ratio was 5.44 (95% CI 1.50 to 19.74). The mechanism is dopamine D2 blockade at pituitary lactotrophs, which sit outside the blood-brain barrier and are therefore fully exposed while central penetration is limited by P-glycoprotein efflux. In the pooled network meta-analysis of 32 antipsychotics, the prolactin elevation range ran to 48.51 ng/mL for paliperidone, risperidone's own active metabolite. This is claims data rather than a randomised trial, so confounding by indication cannot be excluded, but the pharmacological mechanism is not in dispute.",
         evidenceSource:
           'Etminan M, Carleton B, Brophy JM, J Child Adolesc Psychopharmacol 2015;25:671-673',
         doi: '10.1089/cap.2015.0024',
@@ -1315,7 +1318,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Across 212 randomised trials, risperidone ranked fourth of fifteen antipsychotics on symptom reduction. In the eighteen-month independent trial that compared five drugs head to head, 74% of the risperidone arm stopped taking it.',
         technicalDetails:
-          'In the Leucht multiple-treatments meta-analysis of 212 trials and 43,049 patients, risperidone\'s standardised mean difference against placebo for overall symptom change was 0.56 (95% CrI 0.50 to 0.63), behind clozapine 0.88, amisulpride 0.66 and olanzapine 0.59, and ahead of paliperidone 0.50, haloperidol 0.45, quetiapine 0.44 and aripiprazole 0.43. In CATIE, 74% of the risperidone arm discontinued within 18 months against 64% on olanzapine (P=0.002 for the difference in time to discontinuation), 75% on perphenazine, 79% on ziprasidone and 82% on quetiapine. In the 2019 network meta-analysis of 32 drugs, risperidone was among those with significantly higher anticholinergic effects than placebo and among those requiring more antiparkinson medication than several newer agents.',
+          "In the Leucht multiple-treatments meta-analysis of 212 trials and 43,049 patients, risperidone's standardised mean difference against placebo for overall symptom change was 0.56 (95% CrI 0.50 to 0.63), behind clozapine 0.88, amisulpride 0.66 and olanzapine 0.59, and ahead of paliperidone 0.50, haloperidol 0.45, quetiapine 0.44 and aripiprazole 0.43. In CATIE, 74% of the risperidone arm discontinued within 18 months against 64% on olanzapine (P=0.002 for the difference in time to discontinuation), 75% on perphenazine, 79% on ziprasidone and 82% on quetiapine. In the 2019 network meta-analysis of 32 drugs, risperidone was among those with significantly higher anticholinergic effects than placebo and among those requiring more antiparkinson medication than several newer agents.",
         evidenceSource:
           'Leucht S et al., Lancet 2013;382:951-962; Lieberman JA et al., N Engl J Med 2005;353:1209-1223',
         doi: '10.1016/S0140-6736(13)60733-3',
@@ -1341,11 +1344,12 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       {
         id: 'ris-a6',
         category: 'conclusion_shift',
-        title: 'The elderly and paediatric uses were promoted, and settled for US$2.2 billion in 2013',
+        title:
+          'The elderly and paediatric uses were promoted, and settled for US$2.2 billion in 2013',
         laymanSummary:
           'In November 2013 Johnson & Johnson and Janssen agreed to pay more than two billion dollars to resolve United States criminal and civil investigations, with the promotion of risperidone for uses outside its licence among the conduct at issue.',
         technicalDetails:
-          'The United States Department of Justice announced in November 2013 that Johnson & Johnson and its subsidiaries would pay more than US$2.2 billion to resolve criminal and civil liability arising from allegations relating to the prescription drugs Risperdal, Invega and Natrecor, including promotion for uses not approved as safe and effective. Invega is paliperidone, risperidone\'s own active metabolite. The relevance here is the sequence: the elderly-dementia and paediatric prescribing patterns that the safety literature above was written to evaluate were, in part, produced by promotion that was later found unlawful, rather than by the trials that supported the licence.',
+          "The United States Department of Justice announced in November 2013 that Johnson & Johnson and its subsidiaries would pay more than US$2.2 billion to resolve criminal and civil liability arising from allegations relating to the prescription drugs Risperdal, Invega and Natrecor, including promotion for uses not approved as safe and effective. Invega is paliperidone, risperidone's own active metabolite. The relevance here is the sequence: the elderly-dementia and paediatric prescribing patterns that the safety literature above was written to evaluate were, in part, produced by promotion that was later found unlawful, rather than by the trials that supported the licence.",
         evidenceSource:
           'United States Department of Justice, Office of Public Affairs, 4 November 2013: "Johnson & Johnson to Pay More Than $2.2 Billion to Resolve Criminal and Civil Investigations"',
         inferredClaim:
@@ -1355,11 +1359,12 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       {
         id: 'ris-a7',
         category: 'inferred',
-        title: 'The metabolite was relaunched as a separate branded drug at sixteen times the price',
+        title:
+          'The metabolite was relaunched as a separate branded drug at sixteen times the price',
         laymanSummary:
           'When the body processes risperidone it produces a second active molecule. That molecule was developed and licensed as its own drug, Invega, shortly before risperidone lost patent protection. It is not more effective.',
         technicalDetails:
-          'Paliperidone is 9-hydroxyrisperidone, the principal active metabolite of risperidone, licensed in 2006 under a separate application. In the 15-drug pooled ranking, paliperidone\'s standardised mean difference against placebo was 0.50 (95% CrI 0.39 to 0.60), below risperidone\'s 0.56 (0.50 to 0.63); the credible intervals overlap and neither can be called superior. On prolactin, paliperidone produced the largest elevation of the 32 drugs in the 2019 network meta-analysis, +48.51 ng/mL against placebo (95% CrI 43.52 to 53.51). Current United States pharmacy acquisition cost is about US$1.01 per paliperidone tablet against US$0.0644 per risperidone tablet. What paliperidone genuinely adds is renal rather than CYP2D6-dependent clearance and a monthly and three-monthly injectable range.',
+          "Paliperidone is 9-hydroxyrisperidone, the principal active metabolite of risperidone, licensed in 2006 under a separate application. In the 15-drug pooled ranking, paliperidone's standardised mean difference against placebo was 0.50 (95% CrI 0.39 to 0.60), below risperidone's 0.56 (0.50 to 0.63); the credible intervals overlap and neither can be called superior. On prolactin, paliperidone produced the largest elevation of the 32 drugs in the 2019 network meta-analysis, +48.51 ng/mL against placebo (95% CrI 43.52 to 53.51). Current United States pharmacy acquisition cost is about US$1.01 per paliperidone tablet against US$0.0644 per risperidone tablet. What paliperidone genuinely adds is renal rather than CYP2D6-dependent clearance and a monthly and three-monthly injectable range.",
         evidenceSource:
           'Leucht S et al., Lancet 2013;382:951-962; Huhn M et al., Lancet 2019;394:939-951; CMS NADAC file',
         doi: '10.1016/S0140-6736(19)31135-3',
@@ -1401,7 +1406,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       },
       {
         step: 4,
-        title: 'The pituitary is outside the brain\'s protective barrier, and it gets a full dose',
+        title: "The pituitary is outside the brain's protective barrier, and it gets a full dose",
         laymanDesc:
           'The gland that controls hormones sits outside the barrier that keeps most molecules out of the brain, so it is exposed to more risperidone than the brain is. Dopamine normally holds prolactin down; blocking it there lets prolactin rise.',
         molecularDetail:
@@ -1436,7 +1441,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'VA Cooperative Study No. 504 (Krystal 2011)',
-        phase: 'Randomised double-blind placebo-controlled multicentre trial, 6 months, 23 VA centres',
+        phase:
+          'Randomised double-blind placebo-controlled multicentre trial, 6 months, 23 VA centres',
         sampleSize: 296,
         primaryEndpoint:
           'Change in Clinician-Administered PTSD Scale score from baseline to 24 weeks with adjunctive risperidone in antidepressant-resistant military-related PTSD',
@@ -1513,8 +1519,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet, orally disintegrating tablet, oral solution, and several long-acting injectable depots including intramuscular microspheres and subcutaneous formulations',
+      type: 'Oral tablet, orally disintegrating tablet, oral solution, and several long-acting injectable depots including intramuscular microspheres and subcutaneous formulations',
       description:
         'The oral form is taken daily. Risperdal Consta releases risperidone from polymer microspheres over about two weeks after a three-week lag, so oral cover is needed at the start; the newer subcutaneous depots have different onset profiles. The injectable range exists because non-adherence is the commonest route to relapse in schizophrenia, and a depot converts a daily decision into a monthly one.',
       safetyProfile:
@@ -1537,7 +1542,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is Invega a better version of it?',
-        a: 'Invega is paliperidone, which is the molecule your liver makes out of risperidone. On the pooled ranking of fifteen antipsychotics, paliperidone scored 0.50 against risperidone\'s 0.56, with overlapping credible intervals, so neither is demonstrably more effective. On prolactin, paliperidone produced the largest elevation of the 32 drugs in the 2019 network meta-analysis. It costs about US$1.01 per tablet against about six cents. What it genuinely offers is clearance through the kidneys rather than through a liver enzyme that varies between people, and injectable forms lasting one, three and six months.',
+        a: "Invega is paliperidone, which is the molecule your liver makes out of risperidone. On the pooled ranking of fifteen antipsychotics, paliperidone scored 0.50 against risperidone's 0.56, with overlapping credible intervals, so neither is demonstrably more effective. On prolactin, paliperidone produced the largest elevation of the 32 drugs in the 2019 network meta-analysis. It costs about US$1.01 per tablet against about six cents. What it genuinely offers is clearance through the kidneys rather than through a liver enzyme that varies between people, and injectable forms lasting one, three and six months.",
       },
       {
         q: 'Why does this page show a price but no manufacturing cost?',
@@ -1656,7 +1661,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'The first dopamine partial agonist to reach market, which produced almost no prolactin elevation and much less weight gain than olanzapine, ranked ninth of fifteen antipsychotics on pooled symptom reduction, and is the only drug in this class whose United States label carries a dedicated section warning that patients may develop uncontrollable urges to gamble, shop, eat or have sex.',
     laymanHowItWorks:
-      'Most antipsychotics simply switch the dopamine receptor off. Aripiprazole sits in the same place but turns it partly on: where dopamine is over-active it acts as a brake, and where dopamine is under-active it supplies a weak signal of its own. That is why it causes far less of the flat, deadened feeling and none of the hormonal disruption that full blockers cause. It is also the reason it can push the brain\'s reward circuitry the wrong way in some people, producing compulsive gambling or shopping that stops when the drug is reduced or stopped.',
+      "Most antipsychotics simply switch the dopamine receptor off. Aripiprazole sits in the same place but turns it partly on: where dopamine is over-active it acts as a brake, and where dopamine is under-active it supplies a weak signal of its own. That is why it causes far less of the flat, deadened feeling and none of the hormonal disruption that full blockers cause. It is also the reason it can push the brain's reward circuitry the wrong way in some people, producing compulsive gambling or shopping that stops when the drug is reduced or stopped.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 65,
     substitutes: {
@@ -1667,7 +1672,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           name: 'Olanzapine (Zyprexa)',
           class: 'Second-generation antipsychotic, multi-receptor antagonist',
           howItCompares:
-            'Ranked third of fifteen on pooled symptom reduction against aripiprazole\'s ninth (SMD 0.59 versus 0.43), and had the longest time to all-cause discontinuation in CATIE. It caused the largest weight gain of the fifteen; aripiprazole is among the smallest.',
+            "Ranked third of fifteen on pooled symptom reduction against aripiprazole's ninth (SMD 0.59 versus 0.43), and had the longest time to all-cause discontinuation in CATIE. It caused the largest weight gain of the fifteen; aripiprazole is among the smallest.",
           typicalCost:
             'US$0.1432 per tablet at pharmacy acquisition cost, median across 167 listed generic products (CMS NADAC, effective 19 August 2026)',
           prosAndCons:
@@ -1677,7 +1682,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           name: 'Risperidone (Risperdal)',
           class: 'Serotonin-dopamine antagonist',
           howItCompares:
-            'Ranked fourth of fifteen against aripiprazole\'s ninth, holds the same autism-irritability indication, and costs half as much. It raises prolactin substantially where aripiprazole lowers it, which is the whole distinction between the two in paediatric use.',
+            "Ranked fourth of fifteen against aripiprazole's ninth, holds the same autism-irritability indication, and costs half as much. It raises prolactin substantially where aripiprazole lowers it, which is the whole distinction between the two in paediatric use.",
           typicalCost:
             'US$0.0644 per tablet at pharmacy acquisition cost, median across 126 listed generic products (CMS NADAC, effective 19 August 2026)',
           prosAndCons:
@@ -1894,7 +1899,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The drug enters the brain readily, and the liver converts part of it into a related molecule that is also active and lasts even longer than the parent.',
         molecularDetail:
-          'Dehydroaripiprazole shares the parent\'s D2 affinity and accounts for roughly 40% of the exposure at steady state. CYP2D6 poor metabolisers reach substantially higher concentrations, which is one of the few places in psychiatry where genotype has a documented dosing consequence in the label.',
+          "Dehydroaripiprazole shares the parent's D2 affinity and accounts for roughly 40% of the exposure at steady state. CYP2D6 poor metabolisers reach substantially higher concentrations, which is one of the few places in psychiatry where genotype has a documented dosing consequence in the label.",
         iconName: 'ArrowDownToLine',
         visualStage: 'cellular_entry',
       },
@@ -1957,7 +1962,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Replicated',
       },
       {
-        trialId: 'Aripiprazole Alzheimer psychosis programme (three 10-week placebo-controlled studies)',
+        trialId:
+          'Aripiprazole Alzheimer psychosis programme (three 10-week placebo-controlled studies)',
         phase: 'Three randomised placebo-controlled trials, 10 weeks',
         sampleSize: 938,
         primaryEndpoint:
@@ -1966,7 +1972,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'No indication was granted. The label records the safety experience from these studies and states that aripiprazole is not approved for dementia-related psychosis.',
         unreportedAdverseSignals:
-          'The programme is documented in the label\'s safety section rather than in an efficacy section, which is where trials that did not produce an indication end up.',
+          "The programme is documented in the label's safety section rather than in an efficacy section, which is where trials that did not produce an indication end up.",
         independentReplicationStatus: 'Unreplicated',
       },
       {
@@ -2010,8 +2016,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet, orally disintegrating tablet, oral solution, short-acting intramuscular injection, and long-acting intramuscular injections given monthly or every two months',
+      type: 'Oral tablet, orally disintegrating tablet, oral solution, short-acting intramuscular injection, and long-acting intramuscular injections given monthly or every two months',
       description:
         'The 75-hour half-life makes the oral form unusually forgiving of a missed dose and means steady state takes about two weeks to reach, so early impressions of efficacy are unreliable. Abilify Maintena is given monthly and Abilify Asimtufii every two months. The Abilify MyCite kit, approved in 2017, paired the tablet with an ingestible sensor and a wearable patch; no label for it is currently listed on DailyMed.',
       safetyProfile:
@@ -2071,7 +2076,8 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       {
         label:
           'United States prescribing information for aripiprazole, section 5.7 (Pathological Gambling and Other Compulsive Behaviors) and section 5.1, via the openFDA drug label endpoint',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22aripiprazole%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22aripiprazole%22',
         kind: 'regulatory',
       },
       {
@@ -2097,6 +2103,1024 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 60795 — aripiprazole structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/60795',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Lurasidone — the cleanest metabolic and cardiac profile in the class, and the lowest
+  //    measured effect on symptoms of the fifteen drugs ever ranked head to head.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'lurasidone',
+    name: 'Lurasidone',
+    tradeName: 'Latuda',
+    sponsor:
+      'Sunovion Pharmaceuticals, the United States arm of Sumitomo Pharma (NDA 200603 approved 2010); the registration trials are now registered to Sumitomo Pharma America and the tablet has a large generic market',
+    targetGene: 'DRD2',
+    targetProtein:
+      'Dopamine D2 receptor (Ki 1 nM), serotonin 5-HT2A (Ki 0.5 nM) and 5-HT7 (Ki 0.5 nM), all antagonised, with partial agonism at 5-HT1A (Ki 6.4 nM) and antagonism at alpha-2C (Ki 11 nM) and alpha-2A (Ki 41 nM). The label records little or no affinity for histamine H1 or muscarinic M1 (IC50 above 1,000 nM), which is the whole basis of its side-effect profile.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2010,
+    indication:
+      'Schizophrenia in adults and adolescents aged 13 to 17; monotherapy for the depressive episodes of bipolar I disorder in adults and children aged 10 to 17; and adjunctive treatment with lithium or valproate for the depressive episodes of bipolar I disorder in adults',
+    patientFriendlyIndication: 'Schizophrenia, and the depressed phase of bipolar disorder',
+    anatomicalSite:
+      'Mesolimbic and mesocortical dopamine synapses, with 5-HT7 and 5-HT1A binding in cortical and hippocampal circuits proposed as the basis of the mood effect',
+    conditionContext: {
+      conditionExplainer:
+        'Bipolar depression is the phase people with bipolar disorder spend the most time in, and it is the phase with the fewest approved treatments. Most antidepressants have never been shown to work for it, and some can tip a person into mania. That gap is what lurasidone was developed to fill.',
+      whyItMatters:
+        'The bar a bipolar depression drug has to clear is a change on the Montgomery-Asberg Depression Rating Scale over six weeks. It is not a measurement of whether the next depressive episode is delayed. Lurasidone has never been approved for maintenance in bipolar disorder, and the trial that tested it is on this page.',
+      whoTakesThis:
+        'Adults and adolescents with schizophrenia, and adults and children aged 10 and over with bipolar depression. It is chosen most often for people whose weight, blood sugar or cholesterol rules out olanzapine or quetiapine.',
+      clinicalGoals:
+        'The registration trials measured PANSS or BPRS totals in schizophrenia over six weeks and MADRS totals in bipolar depression over six weeks. The two long trials measured time to relapse in schizophrenia and time to recurrence of a mood event in bipolar disorder.',
+    },
+    oneSentenceVerdict:
+      'A dopamine D2 and serotonin 5-HT2A antagonist built to avoid the histamine and muscarinic receptors that drive weight gain and sedation, which produced the most favourable QT signal of the fifteen antipsychotics ever ranked together and the equal-lowest effect on symptoms (standardised mean difference 0.33), works in bipolar depression on its own (MADRS 4.6 points better than placebo in 505 patients), and carries an add-on bipolar indication supported by one positive trial and one negative one.',
+    laymanHowItWorks:
+      'Lurasidone blocks the dopamine receptor that antipsychotics have blocked since the 1950s, and blocks two serotonin receptors alongside it. What makes it different is what it deliberately does not touch: it barely binds the histamine and acetylcholine receptors, and those are the receptors responsible for most of the weight gain, sedation, dry mouth and constipation that the older drugs in this class cause. It has to be swallowed with a real meal of at least 350 calories, because on an empty stomach the body absorbs roughly half as much.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 55,
+    substitutes: {
+      summary:
+        'Lurasidone costs about twenty-nine cents a tablet at United States pharmacy acquisition cost now that it is generic. Its case is a trade that is unusually easy to state: it gives up measured efficacy on the symptom scale in exchange for a metabolic and cardiac profile that almost nothing else in the class can match. Whether that trade is worth making depends entirely on which of the two problems the person in front of you actually has.',
+      conventionalRx: [
+        {
+          name: 'Quetiapine (Seroquel)',
+          class: 'Second-generation antipsychotic, strongly antihistaminergic',
+          howItCompares:
+            "The direct competitor in bipolar depression, and the only other drug with a monotherapy indication for it. Quetiapine ranked eighth of fifteen on symptom reduction against lurasidone's fourteenth (SMD 0.44 versus 0.33). It also causes far more sedation and weight gain, because it binds the histamine receptor lurasidone was designed to avoid.",
+          typicalCost:
+            'US$0.0876 per tablet at pharmacy acquisition cost, median across listed generic products (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: better measured effect on symptoms, longer track record in bipolar depression, cheaper. Cons: the sedation and weight gain that lurasidone exists to avoid.',
+        },
+        {
+          name: 'Olanzapine (Zyprexa)',
+          class: 'Second-generation antipsychotic, multi-receptor antagonist',
+          howItCompares:
+            "Ranked third of fifteen against lurasidone's fourteenth (SMD 0.59 versus 0.33), and had the longest time to all-cause discontinuation in CATIE. It also produced the worst weight gain of the fifteen (SMD -0.74) where lurasidone sits at the favourable end.",
+          typicalCost:
+            'US$0.1432 per tablet at pharmacy acquisition cost, median across 167 listed generic products (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: nearly twice the measured effect on symptoms. Cons: the metabolic profile that made room for lurasidone in the first place.',
+        },
+        {
+          name: 'Ziprasidone (Geodon)',
+          class: 'Second-generation antipsychotic with a QT warning',
+          howItCompares:
+            'The closest comparison for what lurasidone is trying to be: both are metabolically quiet, both are middling on efficacy (ziprasidone SMD 0.39, lurasidone 0.33). The difference is the electrocardiogram. Ziprasidone had one of the least favourable QT signals of the fifteen; lurasidone had the most favourable of all of them.',
+          typicalCost:
+            'US$0.3293 per capsule at pharmacy acquisition cost, median across 60 listed generic products (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: a slightly higher efficacy rank, and the same freedom from weight gain. Cons: a QT signal serious enough that its label restricts it in patients with a history of QT prolongation or recent myocardial infarction.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Take it with a real meal, not a snack',
+          action:
+            'The label instructs that lurasidone be taken with food of at least 350 calories. This is not a comfort measure, it is an absorption requirement.',
+          patientImpact:
+            'In the food-effect study, mean peak concentration was about three times and total exposure about twice what it was under fasting conditions. Exposure did not rise further as the meal went from 350 to 1,000 calories and did not depend on how fatty the meal was, so the requirement is a floor rather than a target.',
+          clinicalPrecaution:
+            'Every efficacy figure on this page comes from trials in which the drug was taken with food. A person taking it on an empty stomach is not taking the drug that was tested. Any change to how or when it is taken belongs with a prescriber.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C1CC[C@H]([C@@H](C1)CN2CCN(CC2)C3=NSC4=CC=CC=C43)CN5C(=O)[C@H]6[C@@H]7CC[C@@H](C7)[C@H]6C5=O',
+      chemicalFormula: 'C28H36N4O2S',
+      molecularWeight: '492.70 g/mol',
+      targetReceptorAffinity:
+        'Antagonist with high affinity at dopamine D2 (Ki 1 nM), serotonin 5-HT2A (Ki 0.5 nM) and 5-HT7 (Ki 0.5 nM); moderate affinity at alpha-2C adrenergic (Ki 11 nM); partial agonist at 5-HT1A (Ki 6.4 nM); antagonist at alpha-2A (Ki 41 nM). Little or no affinity for histamine H1 or muscarinic M1 (IC50 above 1,000 nM). The absent affinities are the designed feature: H1 blockade is the main driver of sedation and appetite, and M1 blockade of dry mouth, constipation and cognitive blunting.',
+      structureSource: {
+        label: 'PubChem CID 213046 (lurasidone) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/213046',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lur-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemical control of the norbornane imide and the cyclohexane linker',
+          description:
+            'Confirm the configuration of all four stereocentres before coupling. Lurasidone carries a bicyclic norbornane-2,3-dicarboximide fused to a trans-1,2-disubstituted cyclohexane, and the wrong relative configuration at either end gives a compound with different receptor behaviour, not merely a lower yield. Chiral separation is the only way to see it.',
+          reagentsAndBuffer:
+            'Chiral HPLC with an amylose or cellulose carbamate stationary phase, hexane and isopropanol mobile phase with diethylamine modifier, optical rotation reference standard, 1H and 13C NMR against a certified lurasidone reference',
+        },
+        {
+          id: 'lur-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Alkylation of benzisothiazolylpiperazine with the bicyclic imide fragment',
+          description:
+            'Couple 3-(1-piperazinyl)-1,2-benzisothiazole to the activated hydroxymethyl-cyclohexyl norbornane imide. The benzisothiazolylpiperazine is the fragment that produces the D2 and 5-HT2A affinity; the bulky bicyclic imide on the other end is what keeps the molecule off the histamine and muscarinic receptors.',
+          dependsOnStepId: 'lur-w1',
+          reagentsAndBuffer:
+            '3-(1-piperazinyl)-1,2-benzisothiazole, the corresponding dimesylate or dihalide of the trans-cyclohexanedimethanol norbornane imide, potassium carbonate or diisopropylethylamine as base, acetonitrile or toluene at reflux under nitrogen',
+        },
+        {
+          id: 'lur-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrochloride salt formation and crystal-form confirmation',
+          description:
+            'Convert the free base to the hydrochloride and crystallise under a controlled cooling profile. Lurasidone hydrochloride is practically insoluble in water and its dissolution behaviour is what makes the tablet dependent on food in the first place, so the crystal form that is isolated has direct consequences for the exposure a patient reaches.',
+          dependsOnStepId: 'lur-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in ethanol or isopropanol, controlled anti-solvent addition, powder X-ray diffraction reference pattern, differential scanning calorimetry, USP dissolution apparatus with a biorelevant fed-state medium',
+        },
+        {
+          id: 'lur-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Fed-state versus fasted-state exposure confirmation',
+          description:
+            'Establish systemic exposure with and without a 350-calorie meal before any efficacy claim is attached to a tablet. For lurasidone this is a mechanism step rather than a pharmacokinetic footnote: the label records a roughly three-fold peak concentration and two-fold total exposure difference between fed and fasted dosing, so a fasted patient is receiving a substantially different drug exposure from the one the trials measured.',
+          dependsOnStepId: 'lur-w3',
+          reagentsAndBuffer:
+            'Standardised 350-calorie and 1,000-calorie test meals, serial plasma sampling into potassium EDTA, LC-MS/MS with a deuterated lurasidone internal standard, ID-14283 and ID-14326 metabolite reference standards',
+        },
+        {
+          id: 'lur-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Counter-screen against H1 and M1, not only the on-target panel',
+          description:
+            "Run the histamine H1 and muscarinic M1 binding assays alongside the D2, 5-HT2A, 5-HT7 and 5-HT1A panel and report the absent affinities explicitly. Lurasidone's clinical selling point is a negative result on those two receptors, and a negative result is only meaningful if the assay was demonstrably capable of detecting a positive one.",
+          dependsOnStepId: 'lur-w4',
+          reagentsAndBuffer:
+            'Membranes from cells expressing human D2, 5-HT2A, 5-HT7, 5-HT1A, alpha-2A, alpha-2C, H1 and M1 receptors, radioligand competition binding with appropriate tritiated ligands, olanzapine and clozapine as positive controls for H1 and M1 affinity, scintillation counting',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lur-a1',
+        category: 'measured',
+        title: 'The most favourable QT signal of the fifteen antipsychotics ranked together',
+        laymanSummary:
+          "Across 212 trials and 43,049 patients, lurasidone sat at the good end of the range for effects on the heart's electrical recovery time. It is the one property on which it beat every other drug in the comparison.",
+        technicalDetails:
+          "In the Leucht multiple-treatments meta-analysis, standardised mean differences against placebo for QTc prolongation ran from 0.10 for the best drug, lurasidone, to -0.90 for the worst, sertindole. The label's dedicated thorough QT study in 43 patients with schizophrenia or schizoaffective disorder found a maximum mean increase in baseline-adjusted QTcI of 7.5 ms (upper one-sided 95% CI 11.7) at 120 mg daily and 4.6 ms (upper 95% CI 9.5) at 600 mg daily, with no apparent dose-response relationship, and no post-baseline QT above 500 ms in either arm of the short-term placebo-controlled studies.",
+        evidenceSource:
+          'Leucht S et al., Lancet 2013;382:951-962; United States prescribing information for lurasidone hydrochloride, section 12.2 (ECG Changes), via the openFDA drug label endpoint',
+        doi: '10.1016/S0140-6736(13)60733-3',
+        measuredMetric:
+          'Standardised mean difference against placebo for QTc prolongation, and maximum mean baseline-adjusted QTcI change in a dedicated thorough QT study',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lur-a2',
+        category: 'measured',
+        title: 'Bipolar depression on its own: 4.6 MADRS points better than placebo',
+        laymanSummary:
+          'In 505 patients with the depressed phase of bipolar disorder, six weeks of lurasidone alone improved the depression score by about fifteen points against about eleven on placebo. Both dose ranges tested gave the same result.',
+        technicalDetails:
+          'NCT00868699 randomised 505 patients with bipolar I depression to a lower or higher lurasidone dose range or placebo for six weeks. Least-squares mean change from baseline in MADRS total score was -15.4 in both lurasidone arms against -10.7 on placebo, a mean difference of -4.6 for each arm, p<0.001 by mixed-model analysis. The absence of a dose-response gradient between the two ranges is itself worth stating: the higher range bought nothing on the primary endpoint.',
+        evidenceSource:
+          'NCT00868699 — Lurasidone, A 6-week Study of Patients With Bipolar I Depression (Monotherapy), posted results, Sumitomo Pharma America',
+        measuredMetric:
+          'Least-squares mean change from baseline in MADRS total score at week 6 against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lur-a3',
+        category: 'failed',
+        title:
+          'The add-on bipolar indication rests on one positive trial and one negative one of the same design',
+        laymanSummary:
+          'Two six-week trials tested lurasidone added to lithium or valproate in bipolar depression. The first, in 348 patients, worked. The second, in 356 patients, did not. The label carries the indication.',
+        technicalDetails:
+          'NCT00868452 randomised 348 patients already taking lithium or divalproex and reported a least-squares mean MADRS change of -17.1 on lurasidone against -13.5 on placebo, a difference of -3.6, p=0.005. NCT01284517, a randomised, six-week, double-blind, placebo-controlled, flexible-dose study of the same adjunctive question in patients who had not responded to lithium or divalproex alone, randomised 356 patients and reported -11.8 against -10.4, a difference of -1.5, p=0.176. The second study is larger than the first and ran from November 2010 to August 2012, after the first had read out. Both results are posted on ClinicalTrials.gov. A reader told only about the positive trial has been shown half of a two-trial replication attempt in which the replication failed.',
+        evidenceSource: 'NCT00868452 and NCT01284517, posted results, Sumitomo Pharma America',
+        measuredMetric:
+          'Least-squares mean difference in MADRS change at week 6 against placebo: -3.6 (p=0.005) in the first adjunctive trial and -1.5 (p=0.176) in the second',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lur-a4',
+        category: 'failed',
+        title: 'The bipolar maintenance trial missed, and there is no maintenance indication',
+        laymanSummary:
+          'A 965-patient trial asked whether staying on lurasidone alongside a mood stabiliser delays the next episode of mania or depression. It did not reach statistical significance, and the drug has never been approved for that use.',
+        technicalDetails:
+          'NCT01358357, a phase 3 double-blind maintenance study of lurasidone adjunctive to lithium or divalproex, enrolled 965 participants and ran from June 2011 to April 2015. The primary endpoint, time to recurrence of a mood event during the double-blind phase, gave a hazard ratio of 0.71 (95% CI 0.49 to 1.04) with p<0.078 by Cox proportional hazards, against a design powered at 90% to detect a 15% difference in recurrence rates with 120 events. Median time to recurrence was not reached on lurasidone against 207 days on placebo. The secondary endpoint of time to all-cause discontinuation did separate, hazard ratio 0.72 (95% CI 0.54 to 0.98), p<0.034. A confidence interval crossing 1.00 on the primary endpoint and a significant secondary is the classic shape of a trial that will be described afterwards as encouraging. The United States label carries no maintenance indication for bipolar disorder.',
+        evidenceSource:
+          'NCT01358357 — Bipolar Maintenance Study of Lurasidone Adjunctive to Lithium or Divalproex, posted results, Sumitomo Pharma America',
+        measuredMetric:
+          'Hazard ratio for time to recurrence of a mood event: 0.71 (95% CI 0.49 to 1.04), p<0.078',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lur-a5',
+        category: 'measured',
+        title: 'Equal-lowest effect on symptoms of the fifteen drugs compared',
+        laymanSummary:
+          'On the pooled measure of how much antipsychotics reduce symptoms in acute schizophrenia, lurasidone came fourteenth of fifteen, tied with iloperidone and below chlorpromazine, a drug from 1957.',
+        technicalDetails:
+          "Standardised mean difference against placebo for overall symptom change was 0.33 (95% CrI 0.21 to 0.45) for lurasidone, placing it fourteenth of fifteen alongside iloperidone at 0.33 and below chlorpromazine 0.38, asenapine 0.38, ziprasidone 0.39, sertindole 0.39, aripiprazole 0.43, quetiapine 0.44, haloperidol 0.45, zotepine 0.49, paliperidone 0.50, risperidone 0.56, olanzapine 0.59, amisulpride 0.66 and clozapine 0.88. The authors concluded that differences in efficacy between antipsychotics are small but robust. Lurasidone's advantages are real and they are in the tolerability domains, not this one, and a page that quotes the metabolic profile without this figure has described a trade-off as a free lunch.",
+        evidenceSource: 'Leucht S et al., Lancet 2013;382:951-962',
+        doi: '10.1016/S0140-6736(13)60733-3',
+        measuredMetric: 'Standardised mean difference against placebo for overall symptom change',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lur-a6',
+        category: 'failed',
+        title:
+          'In the registration programme, the middle dose worked and the two around it did not',
+        laymanSummary:
+          'One of the five schizophrenia trials that established this drug tested three fixed doses in 489 patients. Only the middle one beat placebo. The lower and the higher dose both failed.',
+        technicalDetails:
+          'Section 14.1 of the United States prescribing information describes Study 4 as a six-week placebo-controlled trial with 489 patients on three fixed doses, and records that only the 80 mg per day arm was superior to placebo on PANSS total score and CGI-S at endpoint. The 40 mg and 120 mg arms were not, even though the 40 mg and 120 mg arms of Study 3 both were. A monotonic dose-response is the pattern a pharmacological effect predicts, and this programme does not show one. Two of the five trials also carried an active control, olanzapine in one and extended-release quetiapine in the other, specifically to establish assay sensitivity, which is the standard admission that a negative arm in this field is as likely to be a failed trial as an ineffective drug.',
+        evidenceSource:
+          'United States prescribing information for lurasidone hydrochloride, section 14.1, via the openFDA drug label endpoint',
+        measuredMetric:
+          'Change in PANSS total score and CGI-S at week 6 against placebo, by fixed dose arm',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lur-a7',
+        category: 'inferred',
+        title: 'A better metabolic profile is not a measured cardiovascular outcome',
+        laymanSummary:
+          'Lurasidone causes less weight gain and less disturbance of blood sugar and cholesterol than olanzapine. Nobody has shown that people taking it have fewer heart attacks or live longer.',
+        technicalDetails:
+          'What was measured in the registration and comparative programmes are surrogate endpoints: kilograms, fasting glucose, lipid fractions and QTc milliseconds. The clinical claim that gets built on them is a reduction in cardiovascular events and in the mortality gap that people with schizophrenia carry, which runs to roughly fifteen to twenty years of life expectancy. No randomised trial of lurasidone has measured myocardial infarction, stroke or death as a primary endpoint, and the two long trials that exist measured time to relapse and time to recurrence over months, not cardiovascular events over years. The surrogate improvements are genuine and well measured. The outcome inference from them is untested.',
+        evidenceSource:
+          'Leucht S et al., Lancet 2013;382:951-962; NCT01435928 and NCT01358357 posted results',
+        doi: '10.1016/S0140-6736(13)60733-3',
+        inferredClaim:
+          'That the favourable weight, lipid, glucose and QTc profile translates into fewer cardiovascular events or longer life — no trial of this drug has measured that endpoint',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A once-daily tablet that only works if it is swallowed with a meal',
+        laymanDesc:
+          'Lurasidone is taken once a day with food of at least 350 calories. On an empty stomach the body absorbs roughly half as much, so the meal is part of the dose, not advice about comfort.',
+        molecularDetail:
+          'Only an estimated 9 to 19% of an administered dose is absorbed. In the food-effect study mean Cmax was about three times and AUC about twice the fasting values, and exposure did not increase further from a 350 to a 1,000 calorie meal or vary with fat content. Peak concentration is reached in 1 to 3 hours and steady state within about seven days.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It crosses into the brain and is cleared almost entirely by one liver enzyme',
+        laymanDesc:
+          'The drug reaches the brain and is broken down mainly by a single liver enzyme, which is why a handful of common medicines and grapefruit juice change how much of it is in the body.',
+        molecularDetail:
+          'Activity is primarily due to the parent compound rather than a metabolite. Clearance is predominantly via CYP3A4, and the label contraindicates strong CYP3A4 inhibitors and strong inducers outright rather than adjusting around them. Plasma protein binding is about 99% and the apparent volume of distribution around 6,173 L.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies dopamine D2 and serotonin 5-HT2A and 5-HT7 tightly',
+        laymanDesc:
+          'It sits on the dopamine receptor that every antipsychotic since the 1950s has targeted, and on two serotonin receptors alongside it, switching all three off.',
+        molecularDetail:
+          'Antagonism with Ki of 1 nM at D2, 0.5 nM at 5-HT2A and 0.5 nM at 5-HT7. The 5-HT7 affinity is unusually high for this class and is the receptor most often invoked to explain the antidepressant signal in bipolar depression, though that link is a hypothesis rather than a demonstrated mechanism. Partial agonism at 5-HT1A with Ki 6.4 nM is proposed to contribute in the same direction.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It leaves the histamine and acetylcholine receptors alone',
+        laymanDesc:
+          'The receptors that make older drugs in this class sedating, appetite-driving and dry-mouthed are the ones lurasidone was designed to miss. That absence is the point of the molecule.',
+        molecularDetail:
+          'The label records IC50 above 1,000 nM at both histamine H1 and muscarinic M1, three orders of magnitude weaker than its D2 affinity. H1 blockade is the principal driver of sedation and appetite stimulation in this class, and M1 blockade of dry mouth, constipation, urinary retention and cognitive blunting. The bulky bicyclic norbornane imide at one end of the molecule is the structural feature that keeps it off those sites.',
+        iconName: 'ShieldCheck',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title:
+          'Symptoms fall modestly, weight and the electrocardiogram stay put, akathisia appears',
+        laymanDesc:
+          'The effect on symptoms is at the low end of what antipsychotics achieve. What stays normal is weight, blood sugar, cholesterol and the heart tracing. The characteristic complaint is restlessness and an urge to keep moving.',
+        molecularDetail:
+          "Standardised mean difference against placebo of 0.33 (95% CrI 0.21 to 0.45) for overall symptom change, equal-lowest of fifteen. QTc effect at the favourable extreme of the same fifteen-drug range (SMD 0.10). Akathisia, somnolence, nausea and parkinsonism are the most frequent adverse reactions in the label's pooled short-term data, and akathisia is dose-related.",
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT00868699',
+        phase: 'Phase 3, 6-week randomised double-blind placebo-controlled monotherapy trial',
+        sampleSize: 505,
+        primaryEndpoint:
+          'Mean change from baseline in Montgomery-Asberg Depression Rating Scale total score at week 6 in bipolar I depression',
+        endpointMet: true,
+        statisticalPValue:
+          'Least-squares mean change -15.4 on both lurasidone dose ranges against -10.7 on placebo; mean difference -4.6 for each arm, p<0.001 by mixed-model analysis',
+        unreportedAdverseSignals:
+          'The higher dose range produced exactly the same MADRS change as the lower one, so the trial provides no dose-response gradient for the effect it established.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'NCT00868452',
+        phase: 'Phase 3, 6-week randomised double-blind placebo-controlled adjunctive trial',
+        sampleSize: 348,
+        primaryEndpoint:
+          'Mean change from baseline in MADRS total score at week 6 in bipolar I depression, added to lithium or divalproex',
+        endpointMet: true,
+        statisticalPValue:
+          'Least-squares mean change -17.1 against -13.5 on placebo; mean difference -3.6, p=0.005',
+        unreportedAdverseSignals:
+          'This is the positive half of a two-trial adjunctive programme. The second and larger trial of the same question, NCT01284517, did not separate from placebo.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT01284517',
+        phase:
+          'Phase 3, 6-week randomised double-blind placebo-controlled flexible-dose adjunctive trial',
+        sampleSize: 356,
+        primaryEndpoint:
+          'Mean change from baseline in MADRS total score at week 6 in bipolar I depression in patients not responding to lithium or divalproex alone',
+        endpointMet: false,
+        statisticalPValue:
+          'Least-squares mean change -11.8 against -10.4 on placebo; mean difference -1.5, p=0.176',
+        unreportedAdverseSignals:
+          'Larger than the positive adjunctive trial it was meant to confirm, and completed in August 2012 after that trial had reported. The adjunctive indication remains on the United States label.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT01358357',
+        phase: 'Phase 3 randomised double-blind placebo-controlled maintenance trial',
+        sampleSize: 965,
+        primaryEndpoint:
+          'Time to recurrence of a mood event during the double-blind phase, lurasidone adjunctive to lithium or divalproex',
+        endpointMet: false,
+        statisticalPValue:
+          'Hazard ratio 0.71 (95% CI 0.49 to 1.04), p<0.078 by Cox proportional hazards; median time to recurrence not reached on lurasidone against 207 days on placebo',
+        unreportedAdverseSignals:
+          'The secondary endpoint of time to all-cause discontinuation did separate, hazard ratio 0.72 (95% CI 0.54 to 0.98), p<0.034. There is no bipolar maintenance indication on the United States label.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT01435928 (PEARL Schizophrenia Maintenance)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled relapse-prevention trial',
+        sampleSize: 676,
+        primaryEndpoint:
+          'Time to first relapse event during the double-blind phase in schizophrenia',
+        endpointMet: true,
+        statisticalPValue:
+          'Log-rank p=0.039, ratio 0.66 (95% CI 0.45 to 0.98); median time to relapse not reached on lurasidone against 192 days on placebo',
+        unreportedAdverseSignals:
+          'Time to all-cause discontinuation, the secondary endpoint that captures tolerability as well as relapse, did not reach significance: 0.75 (95% CI 0.54 to 1.03), p=0.070, with median 148 days on lurasidone against 115 on placebo.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Leucht 15-drug multiple-treatments meta-analysis',
+        phase: 'Bayesian network meta-analysis of 212 blinded randomised trials',
+        sampleSize: 43049,
+        primaryEndpoint:
+          'Mean overall change in symptoms against placebo in acute schizophrenia, with all-cause discontinuation, weight gain, extrapyramidal effects, prolactin, QTc and sedation as secondary outcomes',
+        endpointMet: true,
+        statisticalPValue:
+          'Lurasidone standardised mean difference 0.33 (95% CrI 0.21 to 0.45), fourteenth of fifteen; QTc effect 0.10, the most favourable of the fifteen',
+        unreportedAdverseSignals:
+          'The drug with the best cardiac signal in the analysis also had the equal-weakest effect on symptoms. Both findings come from the same pooled dataset.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A 4.6-point MADRS advantage over placebo at six weeks in 505 patients with bipolar I depression, p<0.001',
+        'A standardised mean difference of 0.33 against placebo for overall symptom change in acute schizophrenia, equal-lowest of fifteen ranked antipsychotics',
+        'The most favourable QTc effect of the fifteen drugs ranked (SMD 0.10), and a maximum mean QTcI increase of 7.5 ms at 120 mg in a dedicated thorough QT study',
+        'A roughly three-fold peak concentration and two-fold total exposure difference between taking the tablet with a 350-calorie meal and taking it fasting',
+        'Time to first relapse in schizophrenia extended against placebo in 676 patients, log-rank p=0.039',
+      ],
+      unsupportedInferences: [
+        'That the adjunctive bipolar depression indication is supported by replicated evidence — the second and larger trial of that question returned p=0.176',
+        'That a favourable weight, lipid, glucose and QTc profile means fewer cardiovascular events or longer life — no trial of this drug has measured those endpoints',
+        "That lurasidone prevents recurrence in bipolar disorder — the maintenance trial's primary endpoint had a 95% confidence interval crossing 1.00 and there is no such indication",
+        'That taking the tablet at a convenient time is equivalent to taking it as tested — every efficacy figure here comes from fed dosing',
+      ],
+      whatFailedInitially: [
+        'NCT01284517, the 356-patient replication of the adjunctive bipolar depression indication, returned a 1.5-point MADRS difference at p=0.176',
+        'NCT01358357, the 965-patient bipolar maintenance trial, missed its primary endpoint at p<0.078',
+        'In Study 4 of the schizophrenia registration programme, 489 patients on three fixed doses, only the middle dose beat placebo',
+      ],
+      realWorldOutcome: [
+        'About twenty-nine cents a tablet at United States pharmacy acquisition cost now that the generic market has 94 listed products',
+        'The routine choice where weight, blood sugar, lipids or the electrocardiogram rule out olanzapine, quetiapine or ziprasidone',
+        'One of only two drugs with a monotherapy indication for bipolar depression, alongside quetiapine',
+        'A dosing requirement — at least 350 calories of food — that is the most common reason the drug underperforms outside a trial',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet taken once daily with food of at least 350 calories',
+      description:
+        'There is no injectable, no long-acting form and no orally disintegrating form. The food requirement is a genuine constraint on the drug rather than a labelling formality: absorption is estimated at 9 to 19% of an administered dose, and taking the tablet fasting roughly halves total exposure and cuts peak concentration to about a third of the fed value. Clearance is almost entirely through CYP3A4, and the label contraindicates strong inhibitors and strong inducers of that enzyme rather than dose-adjusting around them.',
+      safetyProfile:
+        'The United States label carries boxed warnings for increased mortality in elderly patients with dementia-related psychosis and for suicidal thoughts and behaviours in children, adolescents and young adults. The most frequent adverse reactions in the pooled short-term data are somnolence, akathisia, extrapyramidal symptoms and nausea, with akathisia dose-related. Weight gain, lipid and glucose disturbance are at the favourable end of the class range, as is the QTc effect. Neuroleptic malignant syndrome, tardive dyskinesia, orthostatic hypotension, leukopenia, neutropenia and agranulocytosis, seizures and hyperprolactinaemia are all in the label.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it really matter whether I take it with food?',
+        a: 'It matters more than for almost any other tablet in psychiatry. The label instructs at least 350 calories, and the food-effect study behind that instruction found peak concentration about three times higher and total exposure about twice as high with food as without. Only an estimated 9 to 19% of a dose is absorbed even under the best conditions. Exposure did not rise further when the meal went from 350 to 1,000 calories and did not depend on fat content, so the number is a floor and not a target. Every efficacy figure on this page comes from trials in which the drug was taken with food.',
+        auditNote:
+          'This is the one place on this page where a patient behaviour, rather than a biological difference, changes the drug exposure by roughly a factor of two.',
+      },
+      {
+        q: 'Is it as effective as olanzapine or risperidone?',
+        a: "No, and the pooled evidence says so plainly. Across 212 blinded trials and 43,049 patients, lurasidone's standardised mean difference against placebo for overall symptom change was 0.33, equal-fourteenth of fifteen drugs, against 0.59 for olanzapine and 0.56 for risperidone. It also came below chlorpromazine at 0.38 and haloperidol at 0.45. What lurasidone buys with that is the best QTc signal of the fifteen and a weight and metabolic profile near the favourable end. That is a real trade and it is worth making for some people, but it is a trade.",
+      },
+      {
+        q: 'Why is it approved for bipolar depression when most antipsychotics are not?',
+        a: 'Because a 505-patient trial of lurasidone alone against placebo found a 4.6-point advantage on the MADRS at six weeks with p<0.001, and that result stands. The add-on indication is a different matter. Two trials tested lurasidone added to lithium or valproate: the first, in 348 patients, gave a 3.6-point difference at p=0.005, and the second, in 356 patients and completed afterwards, gave a 1.5-point difference at p=0.176. Both are posted on ClinicalTrials.gov. The monotherapy evidence and the add-on evidence are not of the same strength, and the label does not distinguish between them.',
+        auditNote:
+          'NCT00868452 and NCT01284517 asked the same question of similar populations and disagreed.',
+      },
+      {
+        q: 'Will it stop my bipolar disorder coming back?',
+        a: 'That was tested, in 965 people, and the trial did not show it. NCT01358357 followed patients on lurasidone added to lithium or divalproex and measured time to the next mood event. The hazard ratio was 0.71 with a 95% confidence interval from 0.49 to 1.04 and p<0.078, against a design powered at 90% to find a 15% difference. Median time to recurrence was not reached on lurasidone against 207 days on placebo, which reads well, and the secondary endpoint of time to all-cause discontinuation did separate. But the primary endpoint is the one the trial was designed to answer, and lurasidone has no bipolar maintenance indication in the United States.',
+      },
+      {
+        q: 'Why does this page show a price but no manufacturing cost?',
+        a: 'Because no verifiable per-dose cost of production for lurasidone could be found and cited. The figures quoted are from the CMS National Average Drug Acquisition Cost survey, which records what United States pharmacies pay to acquire a drug. That is a price, not a cost of manufacture, and the two are different quantities. Lurasidone is a moderately complex synthesis with four stereocentres that have to be controlled, which is a description of a route rather than a number, and a description is not a cost figure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Leucht S et al. Comparative efficacy and tolerability of 15 antipsychotic drugs in schizophrenia: a multiple-treatments meta-analysis. Lancet 2013;382:951-962',
+        identifier: '10.1016/S0140-6736(13)60733-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NCT00868699 — Lurasidone, A 6-week Study of Patients With Bipolar I Depression (Monotherapy), posted results',
+        identifier: 'NCT00868699',
+        kind: 'nct',
+      },
+      {
+        label:
+          'NCT00868452 — Lurasidone, A 6-week Study of Patients With Bipolar I Depression (Add-on), posted results',
+        identifier: 'NCT00868452',
+        kind: 'nct',
+      },
+      {
+        label:
+          'NCT01284517 — Lurasidone adjunctive to lithium or divalproex in bipolar I depression after non-response, posted results showing p=0.176 on the primary endpoint',
+        identifier: 'NCT01284517',
+        kind: 'nct',
+      },
+      {
+        label:
+          'NCT01358357 — Bipolar Maintenance Study of Lurasidone Adjunctive to Lithium or Divalproex, posted results showing a hazard ratio of 0.71 (95% CI 0.49 to 1.04)',
+        identifier: 'NCT01358357',
+        kind: 'nct',
+      },
+      {
+        label:
+          'NCT01435928 — PEARL Schizophrenia Maintenance, posted results showing log-rank p=0.039 on time to first relapse',
+        identifier: 'NCT01435928',
+        kind: 'nct',
+      },
+      {
+        label:
+          'United States prescribing information for lurasidone hydrochloride, sections 2 (food requirement), 12.2 (receptor affinities and ECG changes), 12.3 (food effect) and 14.1 (schizophrenia clinical studies), via the openFDA drug label endpoint',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22lurasidone+hydrochloride%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: LATUDA (lurasidone hydrochloride), NDA 200603, original approval 2010',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=200603',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 213046 — lurasidone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/213046',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Ziprasidone — the only antipsychotic whose Indications section tells the prescriber that
+  //    other drugs should often be tried first, and the subject of the largest randomised
+  //    post-marketing safety study ever run in psychiatry.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ziprasidone',
+    name: 'Ziprasidone',
+    tradeName: 'Geodon',
+    sponsor:
+      'Pfizer (NDA 020825 for the oral capsule approved 2001, NDA 020919 for the intramuscular form); the Upjohn division that held it merged with Mylan in 2020 to form Viatris, and the capsule is now widely generic',
+    targetGene: 'DRD2',
+    targetProtein:
+      'Dopamine D2 (Ki 4.8 nM) and D3 (Ki 7.2 nM) receptors, antagonised, alongside serotonin 5-HT2A (Ki 0.4 nM), 5-HT2C (Ki 1.3 nM), 5-HT1D (Ki 2 nM) and alpha-1 adrenergic (Ki 10 nM). It is an agonist at 5-HT1A (Ki 3.4 nM), has moderate affinity for histamine H1 (Ki 47 nM), essentially none for muscarinic receptors (IC50 above 1 micromolar), and inhibits the synaptic reuptake of both serotonin and noradrenaline.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2001,
+    indication:
+      'Schizophrenia; monotherapy for the acute treatment of manic or mixed episodes of bipolar I disorder; and, as an adjunct to lithium or valproate, maintenance treatment of bipolar disorder. The intramuscular form is indicated for acute agitation in patients with schizophrenia.',
+    patientFriendlyIndication: 'Schizophrenia, and the manic phase of bipolar disorder',
+    anatomicalSite:
+      'Mesolimbic and mesocortical dopamine synapses, and the cardiac hERG potassium channel, where the same molecule slows the electrical recovery of the ventricle',
+    conditionContext: {
+      conditionExplainer:
+        'Ziprasidone arrived in 2001 as the antipsychotic that would not cause weight gain. That claim held up. What came with it was an effect on the electrical recovery time of the heart, measured in milliseconds on an electrocardiogram, larger than that of the drugs it was competing against.',
+      whyItMatters:
+        'A QT interval is not a symptom. It is a measurement on a tracing, and its importance rests entirely on an inference: that a longer interval means a higher chance of a fatal arrhythmia called torsade de pointes. That inference is well founded for large prolongations and much less certain for small ones, and the whole regulatory history of this drug is an argument about where the line sits.',
+      whoTakesThis:
+        'Adults with schizophrenia and bipolar disorder, chosen most often when weight gain and metabolic disturbance are the deciding problem and the person has no cardiac history.',
+      clinicalGoals:
+        'The registration trials measured PANSS and BPRS totals in schizophrenia over six weeks and Young Mania Rating Scale scores in mania over three weeks. The post-marketing programme measured something different and much larger: non-suicide death within one year.',
+    },
+    oneSentenceVerdict:
+      'A dopamine D2 and serotonin 5-HT2A antagonist that causes almost no weight gain, ranked eleventh of fifteen antipsychotics on symptom reduction, prolonged the QT interval by roughly 9 to 14 milliseconds more than risperidone, olanzapine, quetiapine and haloperidol in a head-to-head study, and was then randomised against olanzapine in 18,154 patients whose one-year non-suicide mortality came out identical — a study its own authors state was never designed to detect the rare arrhythmia everyone was worried about.',
+    laymanHowItWorks:
+      'Ziprasidone blocks the dopamine receptor that antipsychotics have targeted since the 1950s and blocks several serotonin receptors at the same time, and it also weakly does what an antidepressant does by slowing the reuptake of serotonin and noradrenaline. It barely touches the receptors that drive appetite, which is why it is one of the few drugs in this class that does not reliably put weight on. The same molecule also slows a potassium current in heart muscle, which stretches out the time the heart takes to reset between beats. It has to be swallowed with food, because on an empty stomach the body absorbs about half as much.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 57,
+    substitutes: {
+      summary:
+        'Ziprasidone costs about thirty-three cents a capsule at United States pharmacy acquisition cost. It occupies a narrow position: metabolically among the cleanest drugs in the class, middling on symptom control, and carrying a cardiac warning strong enough that its own Indications section suggests other drugs first. The comparators below are the drugs a prescriber is choosing between when those three facts are all on the table.',
+      conventionalRx: [
+        {
+          name: 'Lurasidone (Latuda)',
+          class: 'Second-generation antipsychotic, D2 and 5-HT2A antagonist',
+          howItCompares:
+            'The nearest thing to a straight upgrade on the cardiac question. In the fifteen-drug network meta-analysis lurasidone had the most favourable QTc effect of all fifteen (SMD 0.10) where ziprasidone sat toward the unfavourable end, and both share a food requirement and a quiet metabolic profile. Ziprasidone is the more effective of the two on symptoms, 0.39 against 0.33.',
+          typicalCost:
+            'US$0.2860 per tablet at pharmacy acquisition cost, median across 94 listed generic products (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: the best cardiac signal in the ranked set, and a bipolar depression indication ziprasidone does not have. Cons: a lower measured effect on symptoms, and the same dependence on being taken with food.',
+        },
+        {
+          name: 'Aripiprazole (Abilify)',
+          class: 'Dopamine D2 partial agonist',
+          howItCompares:
+            'A higher efficacy rank than ziprasidone (SMD 0.43 against 0.39), no meaningful QT signal, no prolactin elevation and modest weight gain. It costs less than half as much. What it brings instead is akathisia and a label section on compulsive gambling and other impulse-control behaviours.',
+          typicalCost:
+            'US$0.1327 per tablet at pharmacy acquisition cost, median across listed generic products (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: better measured efficacy, no cardiac warning, cheaper. Cons: akathisia, and a documented impulse-control risk.',
+        },
+        {
+          name: 'Olanzapine (Zyprexa)',
+          class: 'Second-generation antipsychotic, multi-receptor antagonist',
+          howItCompares:
+            "The drug ziprasidone was randomised against in ZODIAC, and the comparison is instructive in both directions. Olanzapine ranked third of fifteen on symptom reduction against ziprasidone's eleventh, and had the longest time to all-cause discontinuation in CATIE. It also produced the worst weight gain of the fifteen, which is the whole reason ziprasidone exists. One-year non-suicide mortality in 18,154 randomised patients was the same for both.",
+          typicalCost:
+            'US$0.1432 per tablet at pharmacy acquisition cost, median across 167 listed generic products (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: substantially better measured effect on symptoms, no QT warning. Cons: the largest weight gain and metabolic disturbance of the fifteen drugs ranked.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Take the capsule with a meal, and swallow it whole',
+          action:
+            'The label instructs that capsules be administered orally with food, and that they not be opened, crushed or chewed.',
+          patientImpact:
+            'Absolute bioavailability under fed conditions is about 60%, and absorption is increased up to two-fold in the presence of food. Taking it without food therefore does not give a slightly smaller dose, it gives roughly half of one.',
+          clinicalPrecaution:
+            'Every efficacy figure on this page comes from trials in which the capsule was taken with food. Anything about timing, meals or how the capsule is handled belongs with a prescriber and a pharmacist.',
+        },
+        {
+          name: 'Tell the prescriber about every other medicine, including over-the-counter ones',
+          action:
+            'The label contraindicates ziprasidone in combination with other drugs known to prolong the QTc interval, and directs clinicians to identify such drugs rather than assume a list is complete.',
+          patientImpact:
+            'Low potassium and low magnesium also raise the risk, and both are common consequences of vomiting, diarrhoea and diuretics. The interaction that matters here is not necessarily with another psychiatric drug.',
+          clinicalPrecaution:
+            'This is a contraindication in the label, not a caution. It is a conversation to have before a new medicine is started, not after.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CN(CCN1CCC2=C(C=C3C(=C2)CC(=O)N3)Cl)C4=NSC5=CC=CC=C54',
+      chemicalFormula: 'C21H21ClN4OS',
+      molecularWeight: '412.90 g/mol',
+      targetReceptorAffinity:
+        'Antagonist at dopamine D2 (Ki 4.8 nM) and D3 (Ki 7.2 nM), serotonin 5-HT2A (Ki 0.4 nM), 5-HT2C (Ki 1.3 nM) and 5-HT1D (Ki 2 nM), and alpha-1 adrenergic (Ki 10 nM). Agonist at 5-HT1A (Ki 3.4 nM). Moderate affinity at histamine H1 (Ki 47 nM) and no appreciable affinity at muscarinic receptors (IC50 above 1 micromolar). It also inhibits the synaptic reuptake of serotonin and noradrenaline, which is unusual for this class. The 5-HT2A to D2 affinity ratio is roughly ten to one, among the highest of the second-generation drugs.',
+      structureSource: {
+        label: 'PubChem CID 60854 (ziprasidone) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/60854',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'zip-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of the benzisothiazolylpiperazine and the chlorooxindole',
+          description:
+            'Confirm identity and purity of 3-(1-piperazinyl)-1,2-benzisothiazole and of the 5-(2-chloroethyl)-6-chlorooxindole fragment before coupling. The benzisothiazolylpiperazine is a pharmacologically active serotonergic fragment in its own right, so residual unreacted starting material is an active impurity rather than an inert one.',
+          reagentsAndBuffer:
+            '3-(1-piperazinyl)-1,2-benzisothiazole hydrochloride and 6-chloro-5-(2-chloroethyl)oxindole reference standards, reversed-phase HPLC with UV detection, Karl Fischer titration, ion chromatography for residual chloride',
+        },
+        {
+          id: 'zip-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'N-alkylation joining the oxindole ethyl chain to the piperazine',
+          description:
+            'React the piperazine nitrogen with the chloroethyl side chain on the oxindole under base. The two-carbon linker is short by the standards of this class, and it is what holds the benzisothiazole and oxindole ends in the geometry that gives the unusually high 5-HT2A to D2 affinity ratio.',
+          dependsOnStepId: 'zip-w1',
+          reagentsAndBuffer:
+            'Sodium carbonate or diisopropylethylamine as base, catalytic sodium iodide, water or acetonitrile at reflux under nitrogen',
+        },
+        {
+          id: 'zip-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Salt selection and crystal-form confirmation for the two dosage forms',
+          description:
+            'Isolate the hydrochloride monohydrate for the oral capsule and the mesylate trihydrate for the injectable, and confirm each by powder X-ray diffraction and thermal analysis. The two salts exist because ziprasidone free base is poorly soluble in water, and that same poor solubility is why the oral form depends on food and why the injectable needed a cyclodextrin.',
+          dependsOnStepId: 'zip-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride or methanesulfonic acid, controlled water activity for hydrate formation, powder X-ray diffraction reference patterns, differential scanning calorimetry and thermogravimetric analysis, USP dissolution apparatus with a fed-state biorelevant medium',
+        },
+        {
+          id: 'zip-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Cyclodextrin complexation for the intramuscular form',
+          description:
+            'Form the inclusion complex with sulfobutylether-beta-cyclodextrin that makes an injectable solution possible at all. This is a formulation step rather than a chemical modification: the cyclodextrin encloses the hydrophobic portion of the molecule and carries it into solution, and the released drug is chemically identical to the oral form.',
+          dependsOnStepId: 'zip-w3',
+          reagentsAndBuffer:
+            'Sulfobutylether-beta-cyclodextrin sodium, water for injection, phase-solubility determination, lyophilisation, reconstitution testing with sterile water for injection',
+        },
+        {
+          id: 'zip-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'hERG channel assay run alongside the receptor panel, not after it',
+          description:
+            'Measure block of the hERG potassium current by patch clamp in parallel with the D2, D3, 5-HT2A, 5-HT2C, 5-HT1A, 5-HT1D, alpha-1 and H1 binding panel. For ziprasidone the cardiac assay is not a safety afterthought bolted onto a finished profile: it is the measurement that determines where the drug can be used, and it belongs on the same page as the affinities that make it work.',
+          dependsOnStepId: 'zip-w4',
+          reagentsAndBuffer:
+            'HEK293 cells stably expressing hERG, whole-cell patch clamp at physiological temperature, E-4031 as positive control, membranes from cells expressing human D2, D3, 5-HT2A, 5-HT2C, 5-HT1A, 5-HT1D, alpha-1 and H1 receptors, radioligand competition binding, synaptosomal serotonin and noradrenaline uptake assay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'zip-a1',
+        category: 'measured',
+        title: "The label's own Indications section says other drugs should often be tried first",
+        laymanSummary:
+          "Most drug labels put their warnings in the warnings section. Ziprasidone's United States label puts a sentence in the very first section, the one that says what the drug is for, telling prescribers that in many cases the conclusion would be to try something else first.",
+        technicalDetails:
+          'Section 1 of the United States prescribing information, immediately after listing the indications, states that the prescriber should consider the finding of ziprasidone\'s greater capacity to prolong the QT/QTc interval compared to several other antipsychotic drugs, that QTc prolongation is associated in some other drugs with the ability to cause torsade de pointes, and that "in many cases this would lead to the conclusion that other drugs should be tried first." Placing a comparative disadvantage inside Indications and Usage rather than in Warnings is unusual, and it is a regulatory judgement about how the drug should be positioned rather than a finding from any single trial.',
+        evidenceSource:
+          'United States prescribing information for ziprasidone hydrochloride, section 1 (Indications and Usage), via the openFDA drug label endpoint',
+        measuredMetric: 'The text of the approved United States label, section 1',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zip-a2',
+        category: 'measured',
+        title: 'Nine to fourteen milliseconds more QT than four comparator antipsychotics',
+        laymanSummary:
+          "A study compared ziprasidone directly against four other antipsychotics on how much they stretch the heart's electrical recovery time. Ziprasidone added about 9 to 14 milliseconds more than all four, and about 14 milliseconds less than thioridazine, the drug that was later effectively abandoned over this issue.",
+        technicalDetails:
+          'The head-to-head study described in section 5.3 of the United States label measured electrocardiograms at maximum plasma concentration in patient volunteers, both with each drug alone and with each drug co-administered with a CYP3A4 inhibitor. The mean increase in QTc from baseline for ziprasidone was approximately 9 to 14 msec greater than for risperidone, olanzapine, quetiapine and haloperidol, and approximately 14 msec less than for thioridazine. Ketoconazole 200 mg twice daily did not augment the effect. In placebo-controlled adult trials, oral ziprasidone increased QTc by approximately 10 msec at 160 mg daily. Electrocardiograms exceeding 500 msec occurred in 2 of 2,988 ziprasidone patients (0.06%) and 1 of 440 placebo patients (0.23%), and the label states neither ziprasidone case suggested a drug role. In the fifteen-drug network meta-analysis ziprasidone was among the less favourable drugs on QTc, in a range running from 0.10 for lurasidone to -0.90 for sertindole.',
+        evidenceSource:
+          'United States prescribing information for ziprasidone hydrochloride, section 5.3 (QT Prolongation and Risk of Sudden Death); Leucht S et al., Lancet 2013;382:951-962',
+        doi: '10.1016/S0140-6736(13)60733-3',
+        measuredMetric:
+          'Mean change in QTc from baseline at maximum plasma concentration, against four comparator antipsychotics and thioridazine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zip-a3',
+        category: 'inferred',
+        title:
+          'The 18,154-patient safety study could not measure the event it was built to reassure about',
+        laymanSummary:
+          'Pfizer randomised 18,154 patients to ziprasidone or olanzapine and counted deaths over a year. The rates were the same. The authors then wrote that the study was neither powered nor designed to detect the rare arrhythmia that the QT warning is actually about.',
+        technicalDetails:
+          'ZODIAC, registered as NCT00418171, was an open-label randomised post-marketing large simple trial in 18,154 patients with schizophrenia across 18 countries, with 9,077 in each arm. The primary outcome, non-suicide mortality within one year of initiating treatment, was 0.91 for ziprasidone and 0.90 for olanzapine, relative risk 1.02 (95% CI 0.76 to 1.39), confirmed across secondary and sensitivity analyses. The authors\' own conclusion states that the study excludes a relative risk larger than 1.39 with high probability, and then states plainly: "However, the study was neither powered nor designed to examine the risk of rare events like torsade de pointes." Torsade de pointes is the event the entire QT warning exists to prevent. A study that rules out a 39% increase in all non-suicide death has genuinely useful information in it, and it is not the same information as an absence of arrhythmia risk. Follow-up was by unblinded treating psychiatrists reporting vital status, and sudden death was a post hoc secondary analysis.',
+        evidenceSource: 'Strom BL et al., Am J Psychiatry 2011;168:193-201; NCT00418171',
+        doi: '10.1176/appi.ajp.2010.08040484',
+        inferredClaim:
+          'That equal one-year non-suicide mortality in ZODIAC demonstrates ziprasidone does not carry an arrhythmia risk — the authors state the trial was neither powered nor designed to examine rare events like torsade de pointes',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'zip-a4',
+        category: 'failed',
+        title: 'Adding it to lithium or valproate in acute mania did not beat placebo',
+        laymanSummary:
+          'A 680-patient trial tested ziprasidone added on top of lithium or divalproex in acute mania. Neither dose range beat placebo on the mania rating scale at three weeks.',
+        technicalDetails:
+          "NCT00312494, a three-week double-blind multicentre placebo-controlled study of add-on oral ziprasidone in subjects with acute mania already treated with lithium or divalproex, randomised 680 patients. Least-squares mean change from baseline in Young Mania Rating Scale total score was -10.95 in the lower ziprasidone dose arm and -10.19 in the higher one, against -9.47 on placebo, with p=0.1077 and p=0.4274 respectively against placebo. Both arms missed. The dose-response also runs backwards: the higher arm performed worse than the lower one. Ziprasidone's acute mania indication is for monotherapy, and its adjunctive bipolar indication is for maintenance rather than acute treatment, so this negative trial does not contradict the label. It does mean that the add-on question in acute mania was asked at scale and answered no.",
+        evidenceSource:
+          'NCT00312494 — A Three-Week, Double-Blind, Multicenter, Placebo-Controlled Study Evaluating the Efficacy and Safety of Add-On Oral Ziprasidone in Subjects With Acute Mania Treated With Lithium or Divalproex, posted results',
+        measuredMetric:
+          'Least-squares mean change in Young Mania Rating Scale total score at week 3: -10.95 and -10.19 on ziprasidone against -9.47 on placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'zip-a5',
+        category: 'failed',
+        title: 'Seventy-nine per cent of its patients stopped taking it within eighteen months',
+        laymanSummary:
+          'In the largest independent trial of antipsychotics ever run in the United States, ziprasidone had the second-highest dropout rate of the five drugs tested. Four out of five people had stopped by the end.',
+        technicalDetails:
+          "CATIE randomised 1,493 patients with chronic schizophrenia at 57 United States sites to olanzapine, perphenazine, quetiapine or risperidone, with ziprasidone added after its approval. Of the 1,432 who received at least one dose, 74% discontinued before 18 months: 64% on olanzapine, 74% on risperidone, 75% on perphenazine, 79% on ziprasidone and 82% on quetiapine. Time to discontinuation for any cause was significantly longer on olanzapine than on quetiapine (p<0.001) or risperidone (p=0.002), but the comparison against ziprasidone (p=0.028) did not meet the study's adjusted threshold. The trial was funded by the National Institute of Mental Health, not by a manufacturer, and its primary measure was whether people kept taking the drug at all, which is a different and harder question than whether a rating scale moved over six weeks.",
+        evidenceSource: 'Lieberman JA et al., N Engl J Med 2005;353:1209-1223; NCT00014001',
+        doi: '10.1056/NEJMoa051688',
+        measuredMetric:
+          'All-cause discontinuation of assigned treatment within 18 months, by drug arm',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zip-a6',
+        category: 'measured',
+        title: "It held its own as an active control in a competitor's trial",
+        laymanSummary:
+          'A rival company ran a trial of its own new drug and included ziprasidone as the yardstick. Ziprasidone beat placebo by about five points on the symptom scale and matched the drug being tested.',
+        technicalDetails:
+          "NCT00254202, sponsored by Vanda Pharmaceuticals to evaluate iloperidone in acute exacerbation of schizophrenia, randomised 593 patients to iloperidone, ziprasidone or placebo. Mean change from baseline in PANSS total score was -12.0 on iloperidone, -12.3 on ziprasidone and -7.1 on placebo. An active-control result generated by a company with no commercial interest in the comparator is a cleaner form of evidence than a sponsor's own registration trial, and it puts ziprasidone's effect size in the same place the pooled meta-analysis does: real, and modest.",
+        evidenceSource:
+          'NCT00254202 — Vanda Pharmaceuticals iloperidone trial with ziprasidone as active control, posted results',
+        measuredMetric:
+          'Mean change from baseline in PANSS total score: -12.3 on ziprasidone against -7.1 on placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'zip-a7',
+        category: 'inferred',
+        title: 'A quiet metabolic profile is measured; fewer cardiovascular events are not',
+        laymanSummary:
+          'Ziprasidone genuinely does not cause the weight gain that olanzapine does. Nobody has shown that people who take it instead have fewer heart attacks or live longer, and this drug carries a cardiac warning of its own running the other way.',
+        technicalDetails:
+          "In the fifteen-drug network meta-analysis, standardised mean differences for weight gain ran from -0.09 for haloperidol at the favourable end to -0.74 for olanzapine at the unfavourable end, with ziprasidone toward the favourable side. Those are kilograms and laboratory values, and the argument built on them is a reduction in cardiovascular events and in the fifteen-to-twenty-year mortality gap carried by people with schizophrenia. ZODIAC is the only trial that measured a hard outcome, and what it found was equality with olanzapine on one-year non-suicide mortality, not superiority. The metabolic advantage is well measured and the outcome advantage has never been demonstrated, and in ziprasidone's case a second surrogate, the QT interval, points in the opposite direction.",
+        evidenceSource:
+          'Leucht S et al., Lancet 2013;382:951-962; Strom BL et al., Am J Psychiatry 2011;168:193-201',
+        doi: '10.1176/appi.ajp.2010.08040484',
+        inferredClaim:
+          'That avoiding weight gain with ziprasidone reduces cardiovascular events or mortality — the one trial with a mortality endpoint found parity with olanzapine, not superiority',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A capsule taken twice a day, always with food',
+        laymanDesc:
+          'Ziprasidone is a capsule swallowed whole, twice daily, with a meal. Without food the body absorbs about half as much, so a missed meal changes the dose rather than the timing.',
+        molecularDetail:
+          'Absolute bioavailability of a 20 mg dose under fed conditions is approximately 60%, and absorption is increased up to two-fold in the presence of food. Peak plasma concentration is reached at 6 to 8 hours. Plasma protein binding exceeds 99%, mainly to albumin and alpha-1-acid glycoprotein.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the brain and is broken down mostly by an enzyme that is not P450',
+        laymanDesc:
+          'The drug enters the brain and is then cleared, mainly through a pathway that is different from the one most psychiatric drugs use, which keeps its interaction list shorter than expected.',
+        molecularDetail:
+          "Approximately two-thirds of clearance is by aldehyde oxidase-mediated reduction, with the remainder by CYP3A4 oxidation. Less than 1% is excreted unchanged in urine and under 4% in faeces. The four major circulating metabolites are benzisothiazole sulphoxide and sulphone, ziprasidone sulphoxide and S-methyldihydroziprasidone, and none carries the parent's activity.",
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks dopamine D2 and serotonin 5-HT2A, and blocks serotonin reuptake too',
+        laymanDesc:
+          'It switches off the dopamine receptor that dampens hallucinations and delusions, switches off several serotonin receptors, and additionally slows the reuptake of serotonin and noradrenaline in the way an antidepressant does.',
+        molecularDetail:
+          'Antagonism at D2 (Ki 4.8 nM), D3 (7.2 nM), 5-HT2A (0.4 nM), 5-HT2C (1.3 nM), 5-HT1D (2 nM) and alpha-1 (10 nM), with agonism at 5-HT1A (3.4 nM). The 5-HT2A to D2 ratio of roughly ten to one is among the highest in the class. Synaptic reuptake inhibition of serotonin and noradrenaline is stated in the label and is an unusual property for an antipsychotic.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The same molecule blocks a potassium channel in heart muscle',
+        laymanDesc:
+          'A potassium channel in heart cells does the work of resetting the electrical charge after each beat. Ziprasidone slows it, and the electrocardiogram records the delay as a longer QT interval.',
+        molecularDetail:
+          "Block of the hERG-encoded rapid delayed-rectifier potassium current prolongs ventricular repolarisation. In the label's head-to-head study, the mean QTc increase from baseline was approximately 9 to 14 msec greater than risperidone, olanzapine, quetiapine and haloperidol, and approximately 14 msec less than thioridazine. Co-administration with ketoconazole did not augment it, which points to a direct channel effect rather than a metabolic one.",
+        iconName: 'HeartPulse',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Symptoms fall modestly, weight stays put, the electrocardiogram changes',
+        laymanDesc:
+          'The effect on symptoms is in the middle of the field. Weight, blood sugar and cholesterol stay largely where they were, which is the main reason to choose it. The trade is on the heart tracing.',
+        molecularDetail:
+          'Standardised mean difference against placebo of 0.39 (95% CrI 0.30 to 0.49) for overall symptom change, eleventh of fifteen. Weight gain toward the favourable end of the fifteen-drug range. QTc increased by approximately 10 msec at 160 mg daily against placebo. In 18,154 randomised patients, one-year non-suicide mortality was 0.91 against 0.90 for olanzapine, relative risk 1.02 (95% CI 0.76 to 1.39).',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT00418171 (ZODIAC)',
+        phase: 'Phase 4 open-label randomised post-marketing large simple trial',
+        sampleSize: 18154,
+        primaryEndpoint:
+          'Non-suicide mortality within one year of initiating ziprasidone or olanzapine, in naturalistic practice across 18 countries',
+        endpointMet: true,
+        statisticalPValue:
+          'Non-suicide mortality 0.91 on ziprasidone against 0.90 on olanzapine; relative risk 1.02 (95% CI 0.76 to 1.39)',
+        unreportedAdverseSignals:
+          'The authors state the study was neither powered nor designed to examine the risk of rare events like torsade de pointes, which is the event the QT warning exists to prevent. Follow-up was by unblinded treating psychiatrists, and sudden death was analysed post hoc.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT00014001 (CATIE, phase 1)',
+        phase: 'Phase 4 double-blind randomised effectiveness trial, up to 18 months',
+        sampleSize: 1493,
+        primaryEndpoint:
+          'Time to discontinuation of assigned antipsychotic for any cause in chronic schizophrenia',
+        endpointMet: false,
+        statisticalPValue:
+          "79% of ziprasidone patients discontinued before 18 months against 64% on olanzapine, 74% on risperidone, 75% on perphenazine and 82% on quetiapine; olanzapine versus ziprasidone p=0.028, which did not meet the study's adjusted threshold",
+        unreportedAdverseSignals:
+          'Ziprasidone entered the trial late, after its approval, so its arm accrued fewer patients than the others. The trial was publicly funded and no drug arm retained a majority of its patients.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT00312494',
+        phase: 'Phase 3, 3-week randomised double-blind placebo-controlled add-on trial',
+        sampleSize: 680,
+        primaryEndpoint:
+          'Change from baseline to week 3 in Young Mania Rating Scale total score, ziprasidone added to lithium or divalproex in acute mania',
+        endpointMet: false,
+        statisticalPValue:
+          'Least-squares mean change -10.95 on the lower dose arm (p=0.1077) and -10.19 on the higher dose arm (p=0.4274) against -9.47 on placebo',
+        unreportedAdverseSignals:
+          'The higher dose arm performed worse than the lower one, so the trial provides no dose-response signal in the expected direction.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT00254202',
+        phase: 'Randomised double-blind placebo- and active-controlled trial in acute exacerbation',
+        sampleSize: 593,
+        primaryEndpoint:
+          'Change from baseline in PANSS total score, with ziprasidone as active control',
+        endpointMet: true,
+        statisticalPValue:
+          'Mean change -12.3 on ziprasidone and -12.0 on iloperidone against -7.1 on placebo',
+        unreportedAdverseSignals:
+          'The sponsor was Vanda Pharmaceuticals, a competitor with no commercial interest in ziprasidone, which makes this a cleaner estimate of its effect than a manufacturer-run registration trial.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Leucht 15-drug multiple-treatments meta-analysis',
+        phase: 'Bayesian network meta-analysis of 212 blinded randomised trials',
+        sampleSize: 43049,
+        primaryEndpoint:
+          'Mean overall change in symptoms against placebo in acute schizophrenia, with all-cause discontinuation, weight gain, extrapyramidal effects, prolactin, QTc and sedation as secondary outcomes',
+        endpointMet: true,
+        statisticalPValue:
+          'Ziprasidone standardised mean difference 0.39 (95% CrI 0.30 to 0.49), eleventh of fifteen',
+        unreportedAdverseSignals:
+          'Ziprasidone sits toward the unfavourable end of the QTc range in the same analysis, in which lurasidone was most favourable at 0.10 and sertindole least at -0.90.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A standardised mean difference of 0.39 against placebo for overall symptom change, eleventh of fifteen ranked antipsychotics',
+        'A QTc increase approximately 9 to 14 msec greater than risperidone, olanzapine, quetiapine and haloperidol in a direct head-to-head study, and about 14 msec less than thioridazine',
+        'One-year non-suicide mortality of 0.91 against 0.90 for olanzapine in 18,154 randomised patients, relative risk 1.02 (95% CI 0.76 to 1.39)',
+        'Absorption increased up to two-fold in the presence of food, with fed bioavailability of about 60%',
+        '79% all-cause discontinuation within 18 months in the publicly funded CATIE trial',
+      ],
+      unsupportedInferences: [
+        'That ZODIAC showed ziprasidone does not cause dangerous arrhythmias — its authors state it was neither powered nor designed to examine rare events like torsade de pointes',
+        'That a favourable weight and metabolic profile means fewer cardiovascular events — the only mortality trial found parity with olanzapine, not superiority',
+        'That adding ziprasidone to lithium or valproate helps in acute mania — a 680-patient trial found neither dose arm beat placebo',
+        'That taking the capsule at a convenient time is equivalent to taking it as tested — fasted dosing roughly halves absorption',
+      ],
+      whatFailedInitially: [
+        'NCT00312494, the 680-patient add-on trial in acute mania, missed at p=0.1077 and p=0.4274 with the higher dose performing worse than the lower',
+        'Four out of five ziprasidone patients in CATIE stopped the drug within eighteen months',
+        'The 2001 approval came with a comparative QT disadvantage written into the Indications section itself, a position no other drug on this page occupies',
+      ],
+      realWorldOutcome: [
+        'About thirty-three cents a capsule at United States pharmacy acquisition cost, across 60 listed generic products',
+        'Chosen where weight gain and metabolic disturbance are the deciding problem and there is no cardiac history',
+        'A contraindication against combining it with any other QT-prolonging drug, which in practice restricts a large part of the pharmacopoeia',
+        'An intramuscular form for acute agitation, made possible only by a cyclodextrin that carries the poorly soluble molecule into solution',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule taken twice daily with food, and an intramuscular injection for acute agitation in schizophrenia',
+      description:
+        'The capsule must be swallowed whole with a meal and must not be opened, crushed or chewed. Fed bioavailability is about 60% and absorption roughly doubles with food, so the meal is part of the dose. The intramuscular form is a sulfobutylether-beta-cyclodextrin complex, a formulation choice forced by the free base being too poorly water-soluble to inject on its own. There is no long-acting injectable.',
+      safetyProfile:
+        'The United States label carries a boxed warning for increased mortality in elderly patients with dementia-related psychosis. Section 5.3 covers QT prolongation and the risk of sudden death, and combination with other QT-prolonging drugs is a contraindication rather than a caution. Congenital long QT syndrome, a history of cardiac arrhythmias, bradycardia, hypokalaemia and hypomagnesaemia are all reasons to avoid it. Section 5.5 covers severe cutaneous adverse reactions including DRESS and Stevens-Johnson syndrome, which are sometimes fatal. Neuroleptic malignant syndrome, tardive dyskinesia, metabolic changes, orthostatic hypotension, leukopenia, neutropenia and agranulocytosis, seizures and cerebrovascular events in elderly patients with dementia are all in the label.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is the QT warning something to actually worry about?',
+        a: 'It is measured, and the size of the measurement is known. A direct comparison study found ziprasidone added approximately 9 to 14 milliseconds more to the QTc than risperidone, olanzapine, quetiapine and haloperidol, and about 14 milliseconds less than thioridazine. Placebo-controlled trials showed roughly 10 milliseconds at the top approved daily amount. The label itself states that the link between QT prolongation and torsade de pointes is clearest for increases of 20 milliseconds and greater, and that smaller prolongations may still increase risk in susceptible people. That is the honest state of the evidence: a real and reproducible effect of a size that sits below the threshold where the danger is established, in a drug where combining it with other QT-prolonging medicines is a contraindication.',
+        auditNote:
+          'The comparative QT statement is in section 1 of the label, not section 5, which is where a manufacturer would normally prefer it.',
+      },
+      {
+        q: "Didn't a huge study prove it was safe?",
+        a: 'A huge study measured something specific and found no difference. ZODIAC randomised 18,154 patients in 18 countries to ziprasidone or olanzapine and counted non-suicide deaths over one year: 0.91 against 0.90, relative risk 1.02 with a 95% confidence interval from 0.76 to 1.39. That excludes a 39% increase in overall non-suicide death with high probability, which is genuinely useful. The authors then wrote in their own conclusion that the study was neither powered nor designed to examine the risk of rare events like torsade de pointes. Torsade de pointes is the specific event the warning is about. A trial can be the largest ever run in its field and still be the wrong instrument for the question people quote it for.',
+        auditNote:
+          "The limitation is stated by the study's own authors in the published abstract, not by a critic afterwards.",
+      },
+      {
+        q: 'Why does it have to be taken with food?',
+        a: 'Because without it, roughly half the drug does not get absorbed. Absolute bioavailability under fed conditions is about 60%, and the label records that absorption is increased up to two-fold in the presence of food. Every efficacy figure that exists for this drug comes from trials in which it was taken with a meal. A person taking it on an empty stomach is not taking a slightly weaker version of the tested drug, they are taking about half of it.',
+      },
+      {
+        q: 'Does it work as well as the others?',
+        a: "It is in the middle. Across 212 blinded trials and 43,049 patients, ziprasidone's standardised mean difference against placebo for overall symptom change was 0.39, eleventh of fifteen, against 0.59 for olanzapine and 0.56 for risperidone. In an independent trial run by a competitor, where ziprasidone was included only as a yardstick, it moved the PANSS by 12.3 points against 7.1 on placebo. In CATIE, 79% of its patients had stopped within eighteen months. The picture is consistent across all three: a real effect, a modest one, and one that most people do not stay on for long.",
+      },
+      {
+        q: 'Why does this page show a price but no manufacturing cost?',
+        a: 'Because no verifiable per-dose cost of production for ziprasidone could be found and cited. The figures quoted come from the CMS National Average Drug Acquisition Cost survey, which records what United States pharmacies pay to acquire a drug. That is a price, not a cost of manufacture. The oral capsule is a single alkylation between two purchased fragments followed by salt formation, and the injectable adds a cyclodextrin complexation step, but describing a route is not the same as pricing one.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Strom BL et al. Comparative mortality associated with ziprasidone and olanzapine in real-world use among 18,154 patients with schizophrenia: The Ziprasidone Observational Study of Cardiac Outcomes (ZODIAC). Am J Psychiatry 2011;168:193-201',
+        identifier: '10.1176/appi.ajp.2010.08040484',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lieberman JA et al. Effectiveness of antipsychotic drugs in patients with chronic schizophrenia (CATIE). N Engl J Med 2005;353:1209-1223',
+        identifier: '10.1056/NEJMoa051688',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Leucht S et al. Comparative efficacy and tolerability of 15 antipsychotic drugs in schizophrenia: a multiple-treatments meta-analysis. Lancet 2013;382:951-962',
+        identifier: '10.1016/S0140-6736(13)60733-3',
+        kind: 'doi',
+      },
+      {
+        label: 'NCT00418171 — ZODIAC, the randomised post-marketing cardiovascular safety trial',
+        identifier: 'NCT00418171',
+        kind: 'nct',
+      },
+      {
+        label:
+          'NCT00312494 — Add-on oral ziprasidone in acute mania treated with lithium or divalproex, posted results showing p=0.1077 and p=0.4274 against placebo',
+        identifier: 'NCT00312494',
+        kind: 'nct',
+      },
+      {
+        label:
+          'NCT00254202 — Vanda Pharmaceuticals iloperidone trial with ziprasidone as active control, posted results',
+        identifier: 'NCT00254202',
+        kind: 'nct',
+      },
+      {
+        label: 'NCT00014001 — Clinical Antipsychotic Trials of Intervention Effectiveness (CATIE)',
+        identifier: 'NCT00014001',
+        kind: 'nct',
+      },
+      {
+        label:
+          'United States prescribing information for ziprasidone hydrochloride, sections 1 (Indications and Usage), 2 (administration with food), 5.3 (QT Prolongation and Risk of Sudden Death), 5.5 (severe cutaneous adverse reactions), 12.2 and 12.3, via the openFDA drug label endpoint',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ziprasidone+hydrochloride%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: GEODON (ziprasidone hydrochloride), NDA 020825, original approval 2001',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020825',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 60854 — ziprasidone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/60854',
         kind: 'url',
       },
       NADAC_SOURCE,
