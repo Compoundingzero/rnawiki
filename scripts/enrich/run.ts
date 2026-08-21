@@ -27,6 +27,7 @@ import { botanicalContext } from './botanical-context'
  *
  *   npm run enrich                    everything
  *   npm run enrich -- --limit 500     a sample
+ *   npm run enrich -- --offset 6750  resume a run that was interrupted at row 6,750
  *   npm run enrich -- --skip-trials   no network calls to ClinicalTrials.gov
  *   npm run enrich -- --dry-run       report what would change, write nothing
  *
@@ -39,6 +40,8 @@ import { botanicalContext } from './botanical-context'
 interface Options {
   dryRun: boolean
   limit: number | null
+  /** Where in the row order to start. See the slice below for why this is safe to rely on. */
+  offset: number
   skipTrials: boolean
   skipBotanicals: boolean
   only: string | null
@@ -57,9 +60,12 @@ interface Options {
 function parseArgs(argv: readonly string[]): Options {
   const limitIndex = argv.indexOf('--limit')
   const onlyIndex = argv.indexOf('--only')
+  const offsetIndex = argv.indexOf('--offset')
   return {
     dryRun: argv.includes('--dry-run'),
     skipTrials: argv.includes('--skip-trials'),
+    offset:
+      offsetIndex >= 0 ? Math.max(0, Number.parseInt(argv[offsetIndex + 1] ?? '0', 10) || 0) : 0,
     skipBotanicals: argv.includes('--skip-botanicals'),
     refreshDerived: argv.includes('--refresh-derived') || argv.includes('--refresh-labels'),
     limit: limitIndex >= 0 ? Number.parseInt(argv[limitIndex + 1] ?? '0', 10) || null : null,
@@ -215,12 +221,19 @@ async function main(): Promise<void> {
       drugs.name,
     )
 
+  // The row order is deterministic — the ORDER BY above never changes for a given corpus — so an
+  // offset names the same slice on every run. That is what makes a long run resumable: enriching
+  // nine thousand records over a TCP proxy takes forty minutes, and anything that interrupts it
+  // otherwise means starting again from the first row.
   const work = options.only
     ? rows.filter((row) => row.slug.includes(options.only ?? ''))
-    : options.limit
-      ? rows.slice(0, options.limit)
-      : rows
+    : rows.slice(options.offset, options.limit ? options.offset + options.limit : undefined)
 
+  if (options.offset > 0) {
+    console.log(
+      `[enrich] skipping the first ${options.offset.toLocaleString()} of ${rows.length.toLocaleString()} records`,
+    )
+  }
   console.log(`[enrich] ${work.length.toLocaleString()} records to enrich\n`)
 
   const counts = {
