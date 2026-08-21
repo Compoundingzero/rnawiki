@@ -41,8 +41,18 @@ async function findCandidates(): Promise<{ fold: Candidate[]; held: string[] }> 
   )
   const rows = result.rows as Array<{ id: string; name: string; slug: string; depth: string }>
 
-  const byLowerName = new Map(rows.map((row) => [row.name.toLowerCase(), row]))
   const bySlug = new Map(rows.map((row) => [row.slug, row]))
+  // When several rows share a name, the successor is the one holding the canonical slug — the slug
+  // the name itself produces. Taking whichever row the map happened to keep last picked a row that
+  // was itself scheduled for folding, and the alias then pointed at a deleted record.
+  const byLowerName = new Map<string, { slug: string; name: string; id: string; depth: string }>()
+  for (const row of rows) {
+    const key = row.name.toLowerCase()
+    const held = byLowerName.get(key)
+    if (!held || (row.slug === slugify(row.name) && held.slug !== slugify(held.name))) {
+      byLowerName.set(key, row)
+    }
+  }
   const fold: Candidate[] = []
   const held: string[] = []
 
@@ -96,7 +106,34 @@ async function findCandidates(): Promise<{ fold: Candidate[]; held: string[] }> 
     })
   }
 
-  return { fold, held }
+  // Chains: A folds into B, B folds into C. Deleting B while A's alias points at it violates the
+  // foreign key, which is how this surfaced — as "Key (drug_id)=(sodium-phosphate-dibasic-2) is not
+  // present in table drugs" from inside a fold that had just deleted it. Follow each successor to
+  // the row that actually survives.
+  const doomed = new Map(fold.map((candidate) => [candidate.id, candidate]))
+  for (const candidate of fold) {
+    const seen = new Set<string>([candidate.id])
+    let target = doomed.get(candidate.successorId)
+    while (target && !seen.has(target.id)) {
+      seen.add(target.id)
+      candidate.successorId = target.successorId
+      candidate.successorName = target.successorName
+      candidate.successorSlug = target.successorSlug
+      target = doomed.get(candidate.successorId)
+    }
+  }
+
+  // A row that still resolves to itself, or to something also being deleted, is a cycle. Nothing
+  // in the data should produce one; if it does, keep both pages rather than lose both.
+  const unresolved = fold.filter(
+    (candidate) => candidate.successorId === candidate.id || doomed.has(candidate.successorId),
+  )
+  const resolved = fold.filter((candidate) => !unresolved.includes(candidate))
+  for (const candidate of unresolved) {
+    held.push(`${candidate.name} — its successor is also being folded; left alone`)
+  }
+
+  return { fold: resolved, held }
 }
 
 async function main(): Promise<void> {
