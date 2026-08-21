@@ -10,6 +10,7 @@ import { formatNadacPrice, loadNadac, nadacNote, type NadacPrice } from './nadac
 import { fetchTrials, flushTrialCache, trialCacheStats } from './trials'
 import { mergeProvenance, SOURCE_LABELS, trimToSentence } from './provenance'
 import { botanicalCacheStats, flushBotanicalCache, lookupBotanical } from './botanicals'
+import { biologicStem, suffixedBiologicContext } from './suffixed-biologics'
 import { botanicalContext } from './botanical-context'
 
 /**
@@ -152,6 +153,7 @@ async function main(): Promise<void> {
     target: 0,
     delivery: 0,
     botanical: 0,
+    suffixed: 0,
     price: 0,
     trials: 0,
     verified: 0,
@@ -213,6 +215,20 @@ async function main(): Promise<void> {
         provenance = mergeProvenance(provenance, context.sources)
         counts.botanical += 1
       }
+    }
+
+    // --- Suffixed biologics -------------------------------------------------
+    const stem = biologicStem(row.name)
+    if (stem && !row.conditionContext && !patch.conditionContext) {
+      const parentRows = await db
+        .select({ name: drugs.name, slug: drugs.slug, indication: drugs.patientFriendlyIndication })
+        .from(drugs)
+        .where(sql`lower(${drugs.name}) = ${stem}`)
+        .limit(1)
+      const context = suffixedBiologicContext(row.name, stem, parentRows[0] ?? null)
+      patch.conditionContext = context.conditionContext
+      provenance = mergeProvenance(provenance, context.sources)
+      counts.suffixed += 1
     }
 
     // --- Price ------------------------------------------------------------
@@ -319,6 +335,7 @@ async function main(): Promise<void> {
   console.log(`   target identified      ${counts.target.toLocaleString()}`)
   console.log(`   how it is given        ${counts.delivery.toLocaleString()}`)
   console.log(`   species + literature   ${counts.botanical.toLocaleString()}`)
+  console.log(`   suffixed biologics     ${counts.suffixed.toLocaleString()}`)
   console.log(`   published price        ${counts.price.toLocaleString()}`)
   console.log(`   real trials attached   ${counts.trials.toLocaleString()}`)
   console.log(`   structures verified    ${counts.verified.toLocaleString()}`)

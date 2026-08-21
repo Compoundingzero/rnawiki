@@ -175,7 +175,8 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'The structure shown is the clavulanate anion, the inhibitor half of the combination. It is a mechanism-based, irreversible inactivator of class A serine beta-lactamases: the enzyme opens its beta-lactam ring, the resulting acyl-enzyme rearranges and the enzyme is permanently cross-linked rather than released. Clavulanate has almost no antibacterial activity of its own. The killing is done by amoxicillin, which acylates the active-site serine of penicillin-binding proteins.',
       structureSource: {
-        label: 'PubChem CID 16204478 (clavulanate) — canonical SMILES, molecular formula and weight',
+        label:
+          'PubChem CID 16204478 (clavulanate) — canonical SMILES, molecular formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/16204478',
         kind: 'url',
       },
@@ -245,8 +246,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
           'Finnish children aged six months to three years with ear infection diagnosed by strict criteria got either the drug or an identical-looking placebo. Roughly one in five on the drug failed treatment. Roughly two in five on placebo did.',
         technicalDetails:
           'In the double-blind trial by Tähtinen and colleagues, 161 children received amoxicillin-clavulanate and 158 placebo for 7 days. Treatment failure by day 8 occurred in 18.6% against 44.9% (P<0.001). Progression to failure was reduced by 62% (hazard ratio 0.38, 95% CI 0.25 to 0.59) and the need for rescue treatment by 81% (6.8% against 33.5%; hazard ratio 0.19, 95% CI 0.10 to 0.36). The separation was already present at the first scheduled visit on day 3. Analgesic or antipyretic agents were given to 84.2% and 85.9% of the two groups respectively, so the antibiotic effect sits on top of pain relief rather than in place of it.',
-        evidenceSource:
-          'Tähtinen PA et al., N Engl J Med 2011;364:116-126 (NCT00299455)',
+        evidenceSource: 'Tähtinen PA et al., N Engl J Med 2011;364:116-126 (NCT00299455)',
         doi: '10.1056/NEJMoa1007174',
         measuredMetric:
           'Time to treatment failure through day 8, against matching placebo, double-blind',
@@ -527,6 +527,447 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 16204478 — clavulanate structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/16204478',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 2. Cephalexin — approved in 1971, still the default oral antibiotic for skin infection, and
+  //    the one first-generation cephalosporin the modern penicillin-allergy reassurance excludes.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'cephalexin',
+    name: 'Cephalexin',
+    tradeName: 'Keflex',
+    sponsor:
+      'Eli Lilly (originator, from the Cephalosporium acremonium nucleus); the current United States application holder on NDA 050405 and NDA 050406 is Pragma, and the drug is made generically worldwide',
+    targetGene:
+      'Bacterial cell-wall genes ftsI, pbp2 and relatives — bacterial penicillin-binding-protein genes, not human ones',
+    targetProtein: 'Bacterial penicillin-binding proteins (DD-transpeptidases)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1971,
+    indication:
+      'Respiratory tract, otitis media, skin and skin structure, bone and genitourinary tract infections caused by susceptible isolates of the designated bacteria',
+    patientFriendlyIndication:
+      'Skin, throat, ear, bone and urinary infections caused by susceptible bacteria',
+    anatomicalSite:
+      'The bacterial cell envelope — the cross-linking machinery on the outer face of the cytoplasmic membrane',
+    conditionContext: {
+      conditionExplainer:
+        'Cellulitis is a bacterial infection of the skin and the tissue just beneath it. It spreads sideways rather than forming a pocket, which is what separates it from an abscess. Most cases are caused by streptococci or by ordinary Staphylococcus aureus, both of which cephalexin kills.',
+      whyItMatters:
+        'It is one of the most-prescribed oral antibiotics in the world for a condition diagnosed by eye, with no test to confirm it. That makes the question of what it adds — and what it does not — unusually worth measuring, and unusually rarely measured.',
+      whoTakesThis:
+        'Adults and children with cellulitis, other skin and soft-tissue infection, streptococcal pharyngitis, bone infection or urinary infection due to a susceptible organism.',
+      clinicalGoals:
+        'Clinical cure: the redness, swelling and tenderness resolve without a second course, a hospital admission or a drainage procedure.',
+    },
+    oneSentenceVerdict:
+      'A first-generation cephalosporin that jams the same wall-building enzyme a penicillin does, with a ring the common staphylococcal penicillinase cannot open — in the largest randomised trial it cured 85.5% of per-protocol patients with uncomplicated cellulitis on its own, and adding an antibiotic active against MRSA changed the cure rate by -2.0 percentage points (95% CI -9.7 to 5.7).',
+    laymanHowItWorks:
+      'Bacteria hold themselves together with a mesh wall that they constantly cut open and re-stitch as they grow. Cephalexin latches onto the stitching tool and will not let go. The cutting carries on, the stitching does not, and the cell bursts under its own pressure. Its ring is shaped so that the enzyme most staphylococci use to destroy penicillin cannot get at it.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 81,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0921 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 58 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States on 4 January 1971 under NDA 050405 and NDA 050406. All composition-of-matter protection expired decades ago; the drug is on the WHO Model List of Essential Medicines and dozens of manufacturers make it. At roughly nine United States cents a unit it is among the cheapest antibiotics in wide hospital and community use.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For non-purulent cellulitis the evidence says the alternatives are interchangeable at the level of cure rate, and the choice turns on allergy history, cost and what the local staphylococci look like. The finding that matters more than any comparison between drugs is from the paediatric trial: where an abscess was drained, cure was 94 to 97% whether or not the antibiotic covered the organism that was actually cultured. Nothing sold as a food treats cellulitis, and a spreading red area with fever is not a condition to manage at home.',
+      conventionalRx: [
+        {
+          name: 'Clindamycin',
+          class: 'Lincosamide — a ribosome inhibitor, not a beta-lactam',
+          howItCompares:
+            'Covers community MRSA, which cephalexin does not, and is an option in true penicillin allergy because it shares no structure with a beta-lactam. In the head-to-head paediatric trial in a population where 69% grew MRSA, it produced no better outcome than cephalexin: 97% against 94% improved at 48 to 72 hours (P=.50).',
+          typicalCost:
+            'US$0.1684 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 96 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: MRSA cover, no beta-lactam cross-reactivity, suppresses toxin production. Cons: the antibiotic most strongly associated with Clostridioides difficile colitis; inducible resistance in some staphylococci is not visible on a routine plate.',
+        },
+        {
+          name: 'Dicloxacillin',
+          class: 'Antistaphylococcal penicillin',
+          howItCompares:
+            'The narrowest option against methicillin-susceptible Staphylococcus aureus, and the one with the least effect on anything else. It is a penicillin, so it is unavailable in penicillin allergy, and it is now more than ten times the price of cephalexin per unit in the United States.',
+          typicalCost:
+            'US$1.01 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 4 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: narrow spectrum, excellent against methicillin-susceptible S. aureus. Cons: no MRSA cover, poor tolerability on an empty stomach, and only four listed products, which is a supply risk in itself.',
+        },
+        {
+          name: 'Cefadroxil',
+          class: 'First-generation oral cephalosporin',
+          howItCompares:
+            'The same generation and essentially the same spectrum, with a longer half-life. It shares an identical side chain with amoxicillin rather than with ampicillin, so it carries the same side-chain cross-reactivity concern as cephalexin does, not less of one.',
+          typicalCost:
+            'US$0.2781 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 23 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: longer-acting, same spectrum. Cons: three times the price for no measured advantage; the same penicillin side-chain issue.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask whether it needs draining rather than which antibiotic',
+          action:
+            'If there is a pocket of pus, ask whether drainage is the treatment and the antibiotic the adjunct rather than the other way round.',
+          patientImpact:
+            'In the paediatric trial, spontaneous or performed drainage occurred in 97% of children, and all of them had improved by day 7 regardless of which antibiotic they received — even though 69% grew MRSA, which cephalexin cannot kill.',
+          clinicalPrecaution:
+            'This is a description of what a trial found, not advice to do anything to a skin lesion. The authors concluded that close follow-up and wound care mattered more than the antibiotic choice, which is not the same as saying the antibiotic is optional.',
+        },
+        {
+          name: 'Be specific about what "penicillin allergy" meant',
+          action:
+            'Describe what actually happened — rash, hives, swelling, breathing difficulty, how long after the dose — rather than reporting the label alone.',
+          patientImpact:
+            'The blanket rule that penicillin-allergic patients react to cephalosporins about 10% of the time did not survive scrutiny, but cephalexin is the specific exception it does not rescue: it shares an identical side chain with ampicillin, and the pooled odds ratio for a reaction in a penicillin-allergic patient is 5.8 (95% CI 3.6 to 9.2).',
+          clinicalPrecaution:
+            'Second- and third-generation cephalosporins showed no increased risk in the same analysis (OR 1.1 and 0.5). The decision belongs to a clinician with the history in front of them; this page only records what the pooled data show.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(N2[C@@H]([C@@H](C2=O)NC(=O)[C@@H](C3=CC=CC=C3)N)SC1)C(=O)O',
+      chemicalFormula: 'C16H17N3O4S',
+      molecularWeight: '347.40 g/mol',
+      targetReceptorAffinity:
+        'Cephalexin acylates the active-site serine of bacterial DD-transpeptidases, forming a covalent penicilloyl-type adduct that hydrolyses back only very slowly. It has no human receptor: the target enzyme family has no mammalian counterpart, which is the structural reason beta-lactams are among the least intrinsically toxic drug classes in medicine. It is not hydrolysed by most staphylococcal penicillinase but is hydrolysed by extended-spectrum and AmpC beta-lactamases, and it does not bind PBP2a, the altered target that defines MRSA.',
+      structureSource: {
+        label: 'PubChem CID 27447 (cephalexin) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/27447',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cfx-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Configuration check at the 6R,7R centres and the D-phenylglycine side chain',
+          description:
+            'Confirm the stereochemistry of the bicyclic nucleus and of the phenylglycine side chain before anything else. The side chain is not incidental: it is the exact feature cephalexin shares with ampicillin, and it is the reason a penicillin-allergic patient can react to this molecule and not to a third-generation cephalosporin.',
+          reagentsAndBuffer:
+            'Cephalexin monohydrate reference standard, chiral HPLC, 1H NMR in D2O, optical rotation, Karl Fischer titration',
+        },
+        {
+          id: 'cfx-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Enzymatic acylation of 7-aminodeacetoxycephalosporanic acid',
+          description:
+            'Couple the D-phenylglycine side chain onto the 7-ADCA nucleus. Modern manufacture does this with an immobilised penicillin G acylase in water rather than by the older route through acid chlorides in organic solvent — a green-chemistry substitution that removed most of the solvent burden from one of the highest-tonnage antibiotics in the world.',
+          dependsOnStepId: 'cfx-w1',
+          reagentsAndBuffer:
+            'Immobilised penicillin G acylase, 7-aminodeacetoxycephalosporanic acid, D-phenylglycine methyl ester, aqueous buffer at pH 6.5 to 7.0 with controlled temperature',
+        },
+        {
+          id: 'cfx-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation as the monohydrate and residual-nucleus control',
+          description:
+            'Crystallise the monohydrate and quantify residual 7-ADCA and the phenylglycine ester. Unreacted nucleus is a specific concern in a beta-lactam: degradation and polymerisation products of this class are the immunogens that drive beta-lactam allergy, not the intact drug.',
+          dependsOnStepId: 'cfx-w2',
+          reagentsAndBuffer:
+            'Isoelectric crystallisation with pH control, water-acetone antisolvent system, gradient HPLC for related substances, size-exclusion chromatography for polymeric impurities',
+        },
+        {
+          id: 'cfx-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'PEPT1 transport assay in a Caco-2 intestinal monolayer',
+          description:
+            'Cephalexin is not passively absorbed. It is a substrate for PEPT1, the intestinal di- and tripeptide transporter, which is why an ionised molecule of this size achieves near-complete oral bioavailability. Confirm carrier-mediated uptake and its saturability across a differentiated monolayer, because a formulation change that alters dissolution rate can alter absorption far more than passive-uptake intuition predicts.',
+          dependsOnStepId: 'cfx-w3',
+          reagentsAndBuffer:
+            'Caco-2 cells on permeable supports, Hanks balanced salt solution at apical pH 6.0 and basolateral pH 7.4, glycylsarcosine as competing substrate, transepithelial electrical resistance monitoring, LC-MS/MS quantification',
+        },
+        {
+          id: 'cfx-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Penicillin-binding-protein competition and a mecA counter-screen',
+          description:
+            'Measure what the drug binds and what it cannot. Compete cephalexin against a labelled penicillin for the PBP set of a methicillin-susceptible Staphylococcus aureus, then repeat in a mecA-positive isolate. The second run is the point: PBP2a, the transpeptidase MRSA encodes, has an active site that essentially does not accept this molecule, and that single negative result defines the boundary of everything cephalexin can treat.',
+          dependsOnStepId: 'cfx-w4',
+          reagentsAndBuffer:
+            'Membrane preparations from methicillin-susceptible and mecA-positive S. aureus, Bocillin FL fluorescent penicillin, SDS-PAGE with fluorescence imaging, cation-adjusted Mueller-Hinton broth with 2% NaCl for MIC confirmation',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cfx-a1',
+        category: 'measured',
+        title: 'Cephalexin alone cured 85.5% of uncomplicated cellulitis; MRSA cover added nothing',
+        laymanSummary:
+          'Five American emergency departments randomised patients with plain cellulitis — no pus, no abscess — to cephalexin plus an antibiotic that kills MRSA, or cephalexin plus a placebo. The two groups came out the same. If anything the cephalexin-alone group did slightly better.',
+        technicalDetails:
+          'Moran and colleagues randomised 500 outpatients older than 12 with cellulitis and no wound, drainage or abscess, with ultrasound at enrolment to exclude an occult abscess. In the pre-specified per-protocol population, clinical cure occurred in 182 of 218 (83.5%) on cephalexin plus trimethoprim-sulfamethoxazole against 165 of 193 (85.5%) on cephalexin plus placebo — a difference of -2.0 percentage points (95% CI -9.7 to 5.7, P=.50). Adverse events, overnight hospitalisation, recurrent skin infection and similar infection in household contacts did not differ through 7 to 9 weeks.',
+        evidenceSource: 'Moran GJ et al., JAMA 2017;317:2088-2096 (NCT00729937)',
+        doi: '10.1001/jama.2017.5653',
+        measuredMetric:
+          'Clinical cure at 14 to 21 days, cephalexin plus trimethoprim-sulfamethoxazole against cephalexin plus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cfx-a2',
+        category: 'measured',
+        title: 'In children where 69% grew MRSA, a drug with no MRSA activity matched one with it',
+        laymanSummary:
+          'Two hundred children with skin infections were given either cephalexin, which cannot kill MRSA, or clindamycin, which can. Most of them turned out to have MRSA. It made no measurable difference which antibiotic they got.',
+        technicalDetails:
+          'Chen and colleagues randomised 200 patients aged 6 months to 18 years with uncomplicated skin and soft-tissue infection to 7 days of cephalexin or clindamycin. MRSA was cultured from 69% of wounds, mostly USA300, Panton-Valentine leukocidin-positive and clindamycin-susceptible. By 48 to 72 hours, 94% of the cephalexin arm and 97% of the clindamycin arm had improved (P=.50); by day 7 every patient had improved, with complete resolution in 97% and 94% respectively (P=.33). Spontaneous drainage occurred or a drainage procedure was performed in 97% of subjects. Fever and age under one year predicted early failure; initial erythema greater than 5 cm did not.',
+        evidenceSource: 'Chen AE et al., Pediatrics 2011;127:e573-e580',
+        doi: '10.1542/peds.2010-2053',
+        measuredMetric:
+          'Clinical improvement at 48 to 72 hours and resolution at 7 days, cephalexin against clindamycin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cfx-a3',
+        category: 'failed',
+        title: 'Roughly a quarter of cellulitis patients were not cured by either arm',
+        laymanSummary:
+          'The headline of the cellulitis trial is that the two arms matched. The number underneath it is that in the population as randomised, only about seven in ten were cured — by a week of oral antibiotics, in an infection generally treated as straightforward.',
+        technicalDetails:
+          'In the modified intention-to-treat population of the Moran trial, clinical cure occurred in 189 of 248 (76.2%) on cephalexin plus trimethoprim-sulfamethoxazole and 171 of 248 (69.0%) on cephalexin plus placebo. Failure was defined against explicit criteria at scheduled visits — fever, more than 25% increase in erythema at days 3 to 4, no decrease at days 8 to 10, more than minimal residual signs at days 14 to 21 — so the figure reflects a strict definition rather than clinical judgement. Median erythema at enrolment was 13.0 cm by 10.0 cm; 10.9% of participants had diabetes. Roughly 18% of randomised patients did not complete per protocol, and the gap between the two populations is where most of the trial’s ambiguity lives.',
+        evidenceSource: 'Moran GJ et al., JAMA 2017;317:2088-2096 (NCT00729937)',
+        doi: '10.1001/jama.2017.5653',
+        measuredMetric:
+          'Clinical cure in the modified intention-to-treat population under pre-specified failure criteria',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cfx-a4',
+        category: 'inferred',
+        title: 'The trial did not rule out a real benefit from adding MRSA cover',
+        laymanSummary:
+          'This trial is widely quoted as showing MRSA coverage is unnecessary in plain cellulitis. In the population as randomised, the confidence interval reached as high as a fifteen-point advantage for adding it. The authors said so themselves.',
+        technicalDetails:
+          'In the per-protocol analysis the difference was -2.0 percentage points (95% CI -9.7 to 5.7, P=.50), consistent with no benefit. In the modified intention-to-treat analysis the difference was +7.3 percentage points (95% CI -1.0 to 15.5, P=.07), an interval whose upper bound exceeds the 10% the investigators had pre-specified as clinically significant. The published conclusion is explicit: because imprecision around the intention-to-treat finding included a clinically important difference favouring the combination, further research may be needed. A negative per-protocol result in a trial with 18% protocol deviation is a weaker statement than "it does not help".',
+        evidenceSource: 'Moran GJ et al., JAMA 2017;317:2088-2096, Conclusions and Relevance',
+        doi: '10.1001/jama.2017.5653',
+        inferredClaim:
+          'That covering MRSA adds nothing in non-purulent cellulitis — supported in the per-protocol analysis, not excluded by the intention-to-treat analysis, and quoted far more confidently than either supports',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cfx-a5',
+        category: 'conclusion_shift',
+        title:
+          'The 10% penicillin cross-reactivity rule collapsed — and cephalexin is the exception',
+        laymanSummary:
+          'For decades doctors were taught that anyone allergic to penicillin had about a one-in-ten chance of reacting to any cephalosporin. That figure came from a period when cephalosporins were contaminated with traces of penicillin. The modern answer is that the risk depends on whether the two drugs share the same side chain — and cephalexin shares one with ampicillin.',
+        technicalDetails:
+          'Pichichero and Casey pooled nine studies from a 1960 to 2005 literature search. Penicillin-allergic patients showed significantly increased reactions to cephalothin (OR 2.5, 95% CI 1.1 to 5.5), cephaloridine (OR 8.7, 95% CI 5.9 to 12.8) and cephalexin (OR 5.8, 95% CI 3.6 to 9.2), and to first-generation cephalosporins plus cefamandole taken together (OR 4.8, 95% CI 3.7 to 6.2). No increase was seen with second-generation agents (OR 1.1, 95% CI 0.6 to 2.1) or third-generation agents (OR 0.5, 95% CI 0.2 to 1.1). Clinical challenge, skin testing and monoclonal antibody work all point to R1 side-chain similarity rather than to the shared beta-lactam ring as the determinant. Cephalexin carries a D-phenylglycine side chain identical to ampicillin’s, and cefadroxil carries one identical to amoxicillin’s.',
+        evidenceSource:
+          'Pichichero ME, Casey JR. Safe use of selected cephalosporins in penicillin-allergic patients: a meta-analysis. Otolaryngol Head Neck Surg 2007;136:340-347',
+        doi: '10.1016/j.otohns.2006.10.007',
+        inferredClaim:
+          'That the collapse of the class-wide 10% figure means cephalosporins are broadly safe after penicillin allergy — true for the second and third generations in this analysis, and specifically not shown for cephalexin, the most-prescribed member of the generation it exonerates least',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Carried across the gut wall by a transporter, not by diffusion',
+        laymanDesc:
+          'Most drugs seep through the gut lining. This one is picked up by a pump the body built to absorb fragments of digested protein, which mistakes it for one. That is why an otherwise poorly absorbable molecule ends up almost completely absorbed.',
+        molecularDetail:
+          'Cephalexin is a substrate for PEPT1 (SLC15A1), the proton-coupled intestinal di- and tripeptide transporter, and for PEPT2 in the renal tubule. Carrier-mediated uptake gives near-complete oral bioavailability for a zwitterionic beta-lactam that would otherwise cross membranes poorly, and it is saturable, which is a different absorption profile from a passively absorbed drug.',
+        iconName: 'ArrowRightLeft',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the outside of the bacterial membrane',
+        laymanDesc:
+          'The target is not inside the bacterium. The wall-stitching tools sit on the outer face of the bacterial membrane, so the drug never has to get into the cell at all.',
+        molecularDetail:
+          'Penicillin-binding proteins are anchored in the cytoplasmic membrane with their catalytic domains facing outward into the peptidoglycan layer. In Gram-positive organisms the drug reaches them directly; in Gram-negatives it must first cross the outer membrane through porins, which is one reason cephalexin’s Gram-negative range is narrow.',
+        iconName: 'Layers',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It impersonates the piece the enzyme is looking for',
+        laymanDesc:
+          'The stitching enzyme grabs a specific two-unit tail on the wall material. The drug’s ring is shaped like that tail. The enzyme grabs it, opens the ring, and is left permanently attached.',
+        molecularDetail:
+          'The strained four-membered beta-lactam ring mimics the D-alanyl-D-alanine terminus of the peptidoglycan pentapeptide. Nucleophilic attack by the active-site serine opens the ring and produces a covalent acyl-enzyme that deacylates orders of magnitude more slowly than the natural intermediate. The cephem sulfur and the 3-methyl substituent are what make this ring a poor substrate for most staphylococcal penicillinase.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Building stops while demolition continues',
+        laymanDesc:
+          'A growing bacterium is constantly cutting its own wall open to expand it. With the repair enzymes jammed, the cutting proceeds unopposed and the wall thins until the cell bursts.',
+        molecularDetail:
+          'Autolysins continue to hydrolyse peptidoglycan while cross-linking is blocked, producing osmotic lysis. Killing is therefore time-dependent and requires actively dividing cells; a dormant organism inside a biofilm or a walled-off collection is not killed by any concentration.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'What it cannot reach at all',
+        laymanDesc:
+          'MRSA carries a replacement stitching tool with a differently shaped grip. Cephalexin cannot get hold of it. No dose changes that — it is a shape mismatch, not a strength problem.',
+        molecularDetail:
+          'The mecA gene encodes PBP2a, a transpeptidase whose active site adopts a closed conformation with very low acylation efficiency for essentially all beta-lactams except the fifth-generation cephalosporins designed against it. Cephalexin also lacks useful activity against Enterococcus, Haemophilus influenzae, Pseudomonas and organisms producing extended-spectrum or AmpC beta-lactamases.',
+        iconName: 'Ban',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the trials measured on the other side',
+        laymanDesc:
+          'In the two head-to-head trials, adding cover for the organism cephalexin cannot kill did not improve the outcome. In one of them, nearly everyone had the pus drained, and that may be what did the work.',
+        molecularDetail:
+          'Per-protocol cure was 85.5% with cephalexin plus placebo against 83.5% with added trimethoprim-sulfamethoxazole in 411 adults with non-purulent cellulitis. In 200 children with 69% MRSA prevalence and 97% drainage, day-7 resolution was 97% with cephalexin against 94% with clindamycin. Neither trial measured whether antibiotic choice affected subsequent resistance carriage.',
+        iconName: 'BarChart3',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Moran 2017 (NCT00729937)',
+        phase: 'Phase 4, multicentre, double-blind, randomised superiority',
+        sampleSize: 500,
+        primaryEndpoint:
+          'Clinical cure of uncomplicated non-purulent cellulitis in the per-protocol population',
+        endpointMet: false,
+        statisticalPValue:
+          'Per protocol 83.5% against 85.5%, difference -2.0 percentage points (95% CI -9.7 to 5.7), P=.50; modified intention-to-treat 76.2% against 69.0%, difference 7.3 points (95% CI -1.0 to 15.5), P=.07',
+        unreportedAdverseSignals:
+          'The superiority hypothesis failed, but the intention-to-treat interval reached +15.5 points, above the 10% the investigators had called clinically significant. An 18% protocol-deviation rate separates the two populations, and the trial is routinely cited on the per-protocol result alone.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Chen 2011 paediatric skin and soft-tissue infection trial',
+        phase: 'Randomised, controlled, single-centre',
+        sampleSize: 200,
+        primaryEndpoint: 'Clinical improvement at 48 to 72 hours',
+        endpointMet: true,
+        statisticalPValue:
+          'Cephalexin 94% against clindamycin 97% improved at 48 to 72 hours (P=.50); resolution at day 7 97% against 94% (P=.33)',
+        unreportedAdverseSignals:
+          'Drainage occurred spontaneously or was performed in 97% of children, so the trial cannot separate the antibiotic effect from the effect of drainage. It was powered to detect superiority of clindamycin, not to establish equivalence.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clinical cure 85.5% with cephalexin plus placebo against 83.5% with added trimethoprim-sulfamethoxazole in 411 per-protocol adults with cellulitis',
+        'Difference of -2.0 percentage points (95% CI -9.7 to 5.7) for adding MRSA coverage in the per-protocol analysis',
+        'Day-7 resolution 97% on cephalexin against 94% on clindamycin in 200 children of whom 69% grew MRSA',
+        'Odds ratio 5.8 (95% CI 3.6 to 9.2) for an allergic reaction to cephalexin in penicillin-allergic patients, against 1.1 and 0.5 for second- and third-generation agents',
+      ],
+      unsupportedInferences: [
+        'That MRSA coverage is unnecessary in non-purulent cellulitis — the intention-to-treat interval reached +15.5 percentage points and the authors called for further research',
+        'That the collapse of the 10% cross-reactivity figure exonerates cephalexin, when cephalexin is the first-generation agent the same analysis flagged',
+        'That the paediatric result shows the antibiotic did not matter, when 97% of those children also had the lesion drained',
+        'That a 1971 approval implies the same evidentiary base as a modern one — the label carries no efficacy figures at all',
+      ],
+      whatFailedInitially: [
+        'The Moran superiority hypothesis failed: adding MRSA coverage did not raise the per-protocol cure rate',
+        'Roughly a quarter to a third of intention-to-treat patients were not cured in either arm under strict failure criteria',
+        'Cephalexin has no activity against MRSA, Enterococcus, Pseudomonas or extended-spectrum beta-lactamase producers, and no dose changes that',
+        'The class-wide reassurance about cephalosporins after penicillin allergy does not extend to this molecule, because of a shared side chain',
+      ],
+      realWorldOutcome: [
+        'Approved 4 January 1971 under NDA 050405 and NDA 050406 and still among the most-prescribed oral antibiotics in the world',
+        'On the WHO Model List of Essential Medicines at roughly nine United States cents per unit',
+        'The default oral choice for non-purulent cellulitis in the guidelines of most high-income countries',
+        'Manufactured by an enzymatic route that replaced the older solvent-heavy chemistry, at a scale of thousands of tonnes a year',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsules, tablets and reconstituted oral suspension',
+      description:
+        'Absorbed by the PEPT1 peptide transporter rather than by passive diffusion, which gives near-complete oral bioavailability and makes the drug unusual among beta-lactams in not needing an intravenous route for ordinary infections. Cleared largely unchanged by the kidney, so exposure rises substantially when renal function is reduced.',
+      safetyProfile:
+        'One of the better-tolerated antibiotics in wide use. Gastrointestinal upset and rash are the common events. The serious concerns are hypersensitivity — including reactions in penicillin-allergic patients, where cephalexin’s shared side chain with ampicillin gives a pooled odds ratio of 5.8 — and Clostridioides difficile-associated diarrhoea, reported with essentially all antibacterials. It can produce false-positive urine glucose tests with copper-reduction methods and a positive direct Coombs test.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it work if I have MRSA?',
+        a: 'No, and no dose changes that. MRSA carries a gene, mecA, encoding a replacement wall-stitching enzyme called PBP2a whose active site essentially does not accept cephalexin. It is a shape mismatch rather than a matter of concentration. What is genuinely surprising is what happened when that was tested: in 200 children with skin infections of whom 69% grew MRSA, cephalexin produced the same outcomes as clindamycin, which does kill MRSA — 97% against 94% resolved at day 7. The likely explanation is in the same paper: 97% of those children had the lesion drained, and drainage is what treats a walled-off collection.',
+        auditNote:
+          'The trial was designed to show clindamycin was superior. It did not, but it also was not powered to prove equivalence, and a trial that fails to find a difference is not a trial that found sameness.',
+      },
+      {
+        q: 'I am allergic to penicillin. Can I take this?',
+        a: 'That is a clinician’s decision with your history in front of them, and this is the cephalosporin where the modern reassurance applies least. The old teaching — about a 10% chance of cross-reaction with any cephalosporin — came from an era when cephalosporins were contaminated with traces of penicillin, and it did not survive scrutiny. But the replacement understanding is that risk tracks the side chain rather than the shared ring, and cephalexin carries a D-phenylglycine side chain identical to ampicillin’s. In the pooled analysis, penicillin-allergic patients had an odds ratio of 5.8 (95% CI 3.6 to 9.2) for a reaction to cephalexin, while second-generation agents came in at 1.1 and third-generation at 0.5.',
+      },
+      {
+        q: 'Why is it still used when it was approved in 1971?',
+        a: 'Because the organisms it was designed against — streptococci and methicillin-susceptible Staphylococcus aureus — have not developed widespread resistance to it, and nothing since has been shown to cure ordinary cellulitis better. Its longevity is also a warning about the evidence base: a 1971 label carries no efficacy figures, no trial descriptions and no confidence intervals, because it was not required to. Almost everything numerical on this page comes from investigator-led trials run decades after approval, and there are only a handful of them.',
+      },
+      {
+        q: 'The redness has not gone after a week. Has it failed?',
+        a: 'Not necessarily, and the trials show how common that is. In the largest randomised trial of cellulitis, under strict pre-specified criteria, cure at 14 to 21 days occurred in 69.0% to 76.2% of the population as randomised — roughly a quarter of people did not meet the cure definition in either arm. Residual redness and discoloration can persist well after the infection is controlled, which is one reason the trial used explicit criteria at scheduled visits rather than clinical judgement. Whether a given case is failing is a question for the person who examined it.',
+      },
+      {
+        q: 'Does taking it change what I might catch later?',
+        a: 'Nobody measured that in either trial on this page, and it is the honest answer rather than a hedge. The Moran trial followed household contacts for similar infections through 7 to 9 weeks and found no difference between groups, but that is contact transmission, not resistance selection. Neither trial cultured participants afterwards to see what antibiotic-resistant organisms they were carrying. This gap is not specific to cephalexin: it is the standard shape of antibiotic evidence, where cure in one person over days is measured and resistance in a population over years is not.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Moran GJ, Krishnadasan A, Mower WR, et al. Effect of cephalexin plus trimethoprim-sulfamethoxazole vs cephalexin alone on clinical cure of uncomplicated cellulitis: a randomized clinical trial. JAMA 2017;317:2088-2096',
+        identifier: '10.1001/jama.2017.5653',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chen AE, Carroll KC, Diener-West M, et al. Randomized controlled trial of cephalexin versus clindamycin for uncomplicated pediatric skin infections. Pediatrics 2011;127:e573-e580',
+        identifier: '10.1542/peds.2010-2053',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pichichero ME, Casey JR. Safe use of selected cephalosporins in penicillin-allergic patients: a meta-analysis. Otolaryngol Head Neck Surg 2007;136:340-347',
+        identifier: '10.1016/j.otohns.2006.10.007',
+        kind: 'doi',
+      },
+      {
+        label: 'Moran cellulitis trial: cephalexin plus trimethoprim-sulfamethoxazole or placebo',
+        identifier: 'NCT00729937',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: KEFLEX (cephalexin), NDA 050405 and NDA 050406, Pragma — original approval 4 January 1971',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=050405',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 27447 — cephalexin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/27447',
         kind: 'url',
       },
       {

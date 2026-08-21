@@ -1605,4 +1605,519 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Propofol — the cleanest mechanism proof in anaesthesia, attached to a long list of outcome
+  //    claims that were tested and did not hold.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'propofol',
+    name: 'Propofol',
+    tradeName: 'Diprivan; also marketed as propofol injectable emulsion',
+    sponsor:
+      'Fresenius Kabi USA (current US label holder for the generic emulsion); discovered by John B. Glen at Imperial Chemical Industries in 1977 and first approved in the United States in 1989',
+    targetGene: 'GABRB3, GABRB2, GABRB1',
+    targetProtein:
+      'Type A gamma-aminobutyric acid receptor, acting at a site involving asparagine 265 in the second transmembrane region of the beta subunit; positive allosteric modulator at low concentration and direct agonist at high concentration',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1989,
+    indication:
+      'Induction of general anaesthesia in patients 3 years and older, maintenance of general anaesthesia in patients 2 months and older, initiation and maintenance of monitored anaesthesia care sedation in adults, sedation combined with regional anaesthesia in adults, and intensive care unit sedation of intubated mechanically ventilated adults',
+    patientFriendlyIndication:
+      'Putting a person to sleep for surgery, and keeping them asleep or sedated on a ventilator',
+    anatomicalSite:
+      'Chloride channel of the type A GABA receptor, on cortical, thalamic and brainstem neurons',
+    conditionContext: {
+      conditionExplainer:
+        'General anaesthesia is not sleep. It is a reversible, drug-induced state with four separable components — unconsciousness, amnesia, immobility and blunting of the stress response — and no single drug produces all four equally well. Propofol is very good at unconsciousness and amnesia, adequate at immobility, and does nothing at all for pain. That is why it is almost never given alone.',
+      whyItMatters:
+        'Propofol is the most commonly used induction agent in the world, and it displaced thiopental almost completely on the strength of how quickly and pleasantly people wake up. The claims that followed — that it reduces nausea, protects against cancer recurrence, improves survival compared to inhaled anaesthesia — are separate claims, and most of them have now been tested.',
+      whoTakesThis:
+        'Nearly anyone having a general anaesthetic, a colonoscopy or a cardioversion in a high-income health system, and most intubated adults sedated in intensive care.',
+      clinicalGoals:
+        'Loss of consciousness within one arm-brain circulation time, a controllable depth of anaesthesia, and rapid clear-headed recovery. Whether the choice of anaesthetic changes anything that happens weeks or years later is a different question and is answered separately below.',
+    },
+    oneSentenceVerdict:
+      'A phenol that opens the GABA-A chloride channel and switches consciousness off within seconds — proved to act there by a single-residue knock-in mutation that abolishes its effect in mice — and which, in 5,400 patients having coronary bypass surgery, produced 1-year mortality of 3.0% against 2.8% for inhaled anaesthesia, a trial stopped early for futility.',
+    laymanHowItWorks:
+      'The brain has a built-in brake: a receptor that lets chloride into a neuron and makes it much harder for that neuron to fire. Propofol grips that receptor and holds the brake on, so at a high enough concentration the cortex and thalamus stop passing signals to each other and consciousness stops. It is extremely fat-soluble, so it reaches the brain within one circulation of the blood and then leaves again as it redistributes into muscle and fat, which is why one injection lasts minutes and why waking is quick and unusually clear.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 76,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1709 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 4 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'The molecule is off patent and generic worldwide. The commercially interesting part was never the phenol, which is a simple alkylated cresol, but the lipid emulsion needed to make an insoluble oil injectable, and the manufacturing and sterility control of that emulsion is why the number of United States suppliers is small and why propofol has repeatedly appeared on national drug shortage lists.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Substitution depends on which of the four components of anaesthesia you actually need. For induction, etomidate is the alternative when blood pressure is the concern and ketamine when it is bronchospasm or shock. For maintenance, the real alternative is a volatile agent, and the largest randomised comparison of the two found no difference in death at one year. For intensive care sedation, dexmedetomidine and midazolam are the alternatives, and neither has beaten propofol on mortality. No food or supplement induces general anaesthesia and none is listed here.',
+      conventionalRx: [
+        {
+          name: 'Sevoflurane and the other volatile agents',
+          class: 'Inhalational general anaesthetic',
+          howItCompares:
+            'In MYRIAD, 5,400 patients having elective coronary bypass were randomised to a volatile agent or to total intravenous anaesthesia. One-year mortality was 2.8% against 3.0% (relative risk 0.94, 95% CI 0.69 to 1.29, P=0.71) and the trial was stopped for futility at the second interim analysis. No secondary outcome differed, including myocardial infarction.',
+          typicalCost: 'No NADAC value is held on this record for sevoflurane and none is asserted here',
+          prosAndCons:
+            'Pros: end-tidal concentration is directly measurable, which propofol\'s brain concentration is not. Cons: more postoperative nausea, and an operating-theatre greenhouse-gas footprint propofol does not have.',
+        },
+        {
+          name: 'Etomidate (Amidate)',
+          class: 'Imidazole intravenous induction agent',
+          howItCompares:
+            'Acts at the same beta3 subunit residue — the N265M knock-in mouse is unresponsive to both drugs — but causes far less drop in blood pressure. It buys that stability with dose-dependent inhibition of adrenal steroid synthesis, which is a real and measured harm rather than a theoretical one.',
+          typicalCost: 'No NADAC value is held on this record for etomidate and none is asserted here',
+          prosAndCons:
+            'Pros: haemodynamic stability at induction. Cons: adrenal suppression from a single dose, and an outcome literature that has repeatedly pointed the wrong way.',
+        },
+        {
+          name: 'Dexmedetomidine (Precedex)',
+          class: 'Selective alpha-2 adrenergic agonist',
+          howItCompares:
+            'Sedates through a different receptor entirely and preserves respiratory drive. Against propofol in ventilated septic adults in MENDS2, there was no difference in days alive without delirium or coma, ventilator-free days, death at 90 days, or cognitive function at six months.',
+          typicalCost:
+            'No NADAC value is held on this record for dexmedetomidine and none is asserted here',
+          prosAndCons:
+            'Pros: no respiratory depression, and patients are rousable. Cons: bradycardia and hypotension, slower onset, and no measured advantage over propofol in the trial designed to find one.',
+        },
+        {
+          name: 'Midazolam (Versed)',
+          class: 'Benzodiazepine',
+          howItCompares:
+            'Also a GABA-A positive modulator, but at the benzodiazepine site between the alpha and gamma subunits rather than the beta-subunit site. Slower on, much slower off, and with an active metabolite that accumulates in renal impairment.',
+          typicalCost:
+            'US$0.4200 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 23 listed products, effective 12 March 2025)',
+          prosAndCons:
+            'Pros: strong anterograde amnesia, and a specific antagonist exists. Cons: accumulation, prolonged emergence, and a consistent association with delirium in intensive care.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report a previous bad anaesthetic in detail',
+          action:
+            'Slow waking, prolonged nausea, unexplained agitation or a family history of an anaesthetic problem are the sort of history that changes what is chosen and how it is monitored.',
+          patientImpact:
+            'Most of what a person can contribute to the safety of their own anaesthetic happens in the pre-operative conversation, not afterwards.',
+          clinicalPrecaution:
+            'This is a communication point, not a treatment. Nothing on this page substitutes for an anaesthetic assessment.',
+        },
+        {
+          name: 'Egg or soy allergy is worth mentioning and is probably not a barrier',
+          action:
+            'The emulsion contains egg lecithin and soybean oil, and the folk rule that egg or soy allergy rules propofol out is not supported by the evidence that has been gathered.',
+          patientImpact:
+            'In 520 adults with confirmed IgE to egg, soy or peanut, no allergic reaction to propofol was found across 171 retrieved anaesthetic charts, and none of the four patients with confirmed propofol allergy had food allergy or specific IgE to egg or soy.',
+          clinicalPrecaution:
+            'Mention the allergy anyway. The point is that the decision belongs to the anaesthetist with the evidence in front of them, not to a rule of thumb.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)C1=C(C(=CC=C1)C(C)C)O',
+      chemicalFormula: 'C12H18O',
+      molecularWeight: '178.27 g/mol; formulated as a 1% oil-in-water emulsion, not as a solution',
+      targetReceptorAffinity:
+        'Propofol is a positive allosteric modulator of the GABA-A receptor at low micromolar concentrations and a direct channel agonist at higher ones. The decisive affinity evidence is genetic rather than biochemical: mice carrying a single N265M substitution in the second transmembrane region of the GABA-A beta3 subunit lose the suppression of noxious-evoked movement by propofol entirely, and show a profound reduction in loss of righting reflex, while enflurane and halothane are only slightly affected in the same animals.',
+      structureSource: {
+        label: 'PubChem CID 4943 (propofol) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4943',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'pro-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Phenol identity and oxidation state of the drug substance',
+          description:
+            'Confirm 2,6-diisopropylphenol identity and, more importantly, its oxidation status. A free phenol is an oxidisable species, and quinone-type degradation products are both the discolouration risk and the specification that governs storage under nitrogen.',
+          reagentsAndBuffer:
+            '2,6-diisopropylphenol reference standard, gas chromatography with flame ionisation detection, reversed-phase HPLC with UV detection at 270 nm, nitrogen headspace, dissolved oxygen measurement',
+        },
+        {
+          id: 'pro-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Friedel-Crafts alkylation of phenol at both ortho positions',
+          description:
+            'Alkylate phenol with propene over an acidic catalyst to install isopropyl groups at the 2 and 6 positions. Mono-alkylated and 2,4-alkylated isomers form alongside the wanted 2,6 product and are separated later; the chemistry itself is commodity-scale and unremarkable, which is why the molecule is cheap and the emulsion is not.',
+          dependsOnStepId: 'pro-w1',
+          reagentsAndBuffer:
+            'Phenol, propene or isopropanol, aluminium phenoxide or an acidic zeolite catalyst, elevated temperature and pressure, nitrogen blanket',
+        },
+        {
+          id: 'pro-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Fractional distillation away from the alkylation isomers',
+          description:
+            'Separate 2,6-diisopropylphenol from its 2-, 4- and 2,4-substituted relatives by fractional distillation under reduced pressure, then hold the purified oil under nitrogen. The finished drug substance is a clear oil at room temperature and essentially insoluble in water, which is the entire formulation problem.',
+          dependsOnStepId: 'pro-w2',
+          reagentsAndBuffer:
+            'Vacuum fractional distillation column, nitrogen blanket, gas chromatography for isomer ratio, Karl Fischer titration for water content',
+        },
+        {
+          id: 'pro-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Emulsification into a soybean oil, egg lecithin and glycerol vehicle',
+          description:
+            'High-pressure homogenise the oil into an aqueous phase with purified egg phosphatide as emulsifier and glycerol for tonicity, targeting a droplet size distribution tight enough for intravenous use. This step is the product. Droplet size, zeta potential and the free-phenol fraction in the aqueous phase determine both stability and injection pain, and getting it wrong is why propofol supply is concentrated in few manufacturers.',
+          dependsOnStepId: 'pro-w3',
+          reagentsAndBuffer:
+            'Refined soybean oil, purified egg phosphatide, glycerol, sodium hydroxide to adjust pH, water for injection, high-pressure homogeniser, laser diffraction and dynamic light scattering for droplet sizing',
+        },
+        {
+          id: 'pro-w5',
+          stepNumber: 5,
+          phase: 'Cellular_Delivery',
+          name: 'Whole-cell recording on recombinant GABA-A receptors, wild type against N265M',
+          description:
+            'Express alpha1-beta3-gamma2 GABA-A receptors and the beta3(N265M) variant side by side and record chloride current with and without drug. Running the mutant alongside the wild type in the same session is what converts a modulation measurement into a site attribution; a potentiation curve on wild type alone shows only that the drug does something.',
+          dependsOnStepId: 'pro-w4',
+          reagentsAndBuffer:
+            'HEK293 cells or Xenopus oocytes expressing GABRA1, GABRB3 and GABRG2, extracellular solution at pH 7.4, GABA applied at its half-maximal effective concentration, propofol in dimethyl sulfoxide below 0.1%, matched beta3(N265M) construct',
+        },
+        {
+          id: 'pro-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'Separate the endpoints: immobility, righting reflex, and current potentiation',
+          description:
+            'Score suppression of noxious-evoked movement, duration of loss of righting reflex and GABA current potentiation as three distinct readouts, because the mutation dissociates them from one another and from the volatile anaesthetics. Reporting a single anaesthesia score would have hidden the finding that the intravenous agents depend on one residue and the volatiles do not.',
+          dependsOnStepId: 'pro-w5',
+          reagentsAndBuffer:
+            'Tail-clamp or hindpaw withdrawal scoring for immobility, timed loss of righting reflex, cortical brain slice recordings of spontaneous action potential firing, enflurane and halothane comparators in the same animals',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'pro-a1',
+        category: 'measured',
+        title: 'One changed amino acid abolishes propofol anaesthesia in a living animal',
+        laymanSummary:
+          'Researchers swapped a single amino acid in one subunit of the brain\'s main inhibitory receptor. Mice carrying the change no longer stopped moving in response to propofol at all, while gas anaesthetics still worked on them.',
+        technicalDetails:
+          'Jurd and colleagues used gene targeting to generate mice carrying an N265M point mutation in the second transmembrane region of the GABA-A receptor beta3 subunit. In these animals, suppression of noxious-evoked movement by intravenous etomidate and propofol was completely abolished, while it was only slightly decreased for the volatile anaesthetics enflurane and halothane. The mutants also showed a profound reduction in the duration of loss of righting reflex in response to intravenous but not volatile agents. Electrophysiology in cortical brain slices from the mutants showed that the anaesthetics were significantly less effective both at enhancing GABA-A mediated currents and at reducing spontaneous action potential firing. This is as close to a mechanism proof as pharmacology gets: a specific residue, altered in the whole animal, removes the behavioural effect of the drug, and the control drugs in the same animals are unaffected.',
+        evidenceSource:
+          'Jurd R, Arras M, Lambert S, et al. General anesthetic actions in vivo strongly attenuated by a point mutation in the GABA(A) receptor beta3 subunit. FASEB J 2003;17:250-252',
+        doi: '10.1096/fj.02-0611fje',
+        measuredMetric:
+          'Suppression of noxious-evoked movement and duration of loss of righting reflex in beta3(N265M) knock-in mice versus wild type, with volatile anaesthetic controls',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a2',
+        category: 'failed',
+        title: 'MYRIAD: intravenous anaesthesia did not change one-year death after bypass surgery',
+        laymanSummary:
+          'Inhaled anaesthetics were believed to protect the heart during bypass surgery. Five thousand four hundred patients were randomised to gas or to propofol, and after a year 2.8% and 3.0% had died. The trial was stopped early because it was clear nothing would be found.',
+        technicalDetails:
+          'Landoni and colleagues ran a pragmatic, multicentre, single-blind trial at 36 centres in 13 countries. Patients scheduled for elective coronary artery bypass grafting were randomised to an intraoperative regimen including a volatile agent — desflurane, isoflurane or sevoflurane — or to total intravenous anaesthesia with propofol. On-pump bypass was performed in 64% of patients with a mean bypass duration of 79 minutes. The primary outcome, death from any cause at one year, occurred in 2.8% of the volatile group and 3.0% of the total intravenous anaesthesia group (relative risk 0.94, 95% CI 0.69 to 1.29, P=0.71), with data available for 99.1% of patients. Thirty-day mortality was 1.4% against 1.3%. No secondary outcome differed and no prespecified adverse event, including myocardial infarction, differed. The data and safety monitoring board stopped the trial for futility at the second interim analysis. The result cuts both ways and this page records it that way: it is a failure of the volatile cardioprotection hypothesis and equally a failure of any claim that intravenous anaesthesia is the safer choice.',
+        evidenceSource:
+          'Landoni G, Lomivorotov VV, Nigro Neto C, et al. Volatile anesthetics versus total intravenous anesthesia for cardiac surgery. N Engl J Med 2019;380:1214-1225 (NCT02105610)',
+        doi: '10.1056/NEJMoa1816476',
+        measuredMetric: 'Death from any cause at one year after elective coronary artery bypass grafting',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a3',
+        category: 'failed',
+        title: 'Propofol plus regional block did not reduce breast cancer recurrence',
+        laymanSummary:
+          'A long-standing theory held that gas anaesthesia and opioids weaken the immune defences that stop cancer spreading, and that propofol with a nerve block would do better. Two thousand one hundred women were randomised over eleven years. Recurrence was 10% in both groups.',
+        technicalDetails:
+          'Sessler and colleagues randomised women under 85 having potentially curative primary breast cancer resection at 13 hospitals in eight countries to regional anaesthesia-analgesia with paravertebral blocks plus propofol, or to general anaesthesia with sevoflurane plus opioid analgesia. Of 2,132 enrolled between January 2007 and January 2018, 24 were excluded before surgery, leaving 1,043 assigned to regional and 1,065 to general anaesthesia; median follow-up was 36 months. Local or metastatic recurrence occurred in 102 (10%) versus 111 (10%) — hazard ratio 0.97, 95% CI 0.74 to 1.28, P=0.84. The trial was stopped after crossing a preplanned futility boundary. The secondary hypothesis also failed: incisional pain at six months was reported by 52% in both groups and at 12 months by 28% and 27%, with an interim-adjusted odds ratio of 1.00 (95% CI 0.85 to 1.17, P=0.99), and neuropathic breast pain did not differ either. This is one of the most expensive negative results in perioperative medicine and it removed a hypothesis that had driven a decade of observational publishing.',
+        evidenceSource:
+          'Sessler DI, Pei L, Huang Y, et al. Recurrence of breast cancer after regional or general anaesthesia: a randomised controlled trial. Lancet 2019;394:1807-1815 (NCT00418457)',
+        doi: '10.1016/S0140-6736(19)32313-X',
+        measuredMetric: 'Local or metastatic breast cancer recurrence, and persistent incisional pain at 6 and 12 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a4',
+        category: 'failed',
+        title: 'Propofol infusion syndrome: five children died before anyone connected the cases',
+        laymanSummary:
+          'Children sedated on a ventilator with propofol began developing an unexplained acid build-up in the blood, a failing heart and fatty serum. Five deaths in three intensive care units were published together in 1992, and the same pattern was later described in adults.',
+        technicalDetails:
+          'Parke and colleagues reviewed the case notes of five children aged four weeks to six years with upper respiratory tract infections — four with laryngotracheobronchitis and one with bronchiolitis — all sedated with propofol in three intensive care units. The clinical course was remarkably similar in all five: increasing metabolic acidosis with bradyarrhythmia and progressive myocardial failure unresponsive to resuscitation, and lipaemic serum after starting propofol. Viral myocarditis was excluded. Nine years later Cremer and colleagues reported five adult head-injured patients with inexplicable fatal cardiac arrest after a more concentrated sedation formulation was introduced, and a retrospective cohort of 67 sedated ventilated head-injured adults in which seven were judged to have died from the syndrome; the odds ratio was 1.93 for every mg/kg per hour increase in mean propofol dose above 5 mg/kg per hour (95% CI 1.12 to 3.32, P=0.018). The proposed mechanism is impairment of mitochondrial fatty acid oxidation and the electron transport chain. Propofol is not indicated for intensive care sedation of paediatric patients on the United States label.',
+        evidenceSource:
+          'Parke TJ, Stevens JE, Rice AS, et al. BMJ 1992;305:613-616; Cremer OL, Moons KG, Bouman EA, et al. Lancet 2001;357:117-118',
+        doi: '10.1136/bmj.305.6854.613',
+        measuredMetric:
+          'Case series of five paediatric deaths; retrospective cohort odds ratio of 1.93 per mg/kg/h above 5 mg/kg/h in 67 ventilated head-injured adults',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a5',
+        category: 'conclusion_shift',
+        title: 'The egg and soy allergy rule was never evidence-based, and was tested and dropped',
+        laymanSummary:
+          'Because the emulsion contains egg lecithin and soybean oil, people with egg or soy allergy were routinely given a different anaesthetic. When someone finally looked, there was no link at all.',
+        technicalDetails:
+          'Asserhoj and colleagues ran two studies. In the first, 273 patients systematically investigated for suspected perioperative allergic reactions included 153 who had been exposed to propofol and who underwent skin testing and intravenous provocation; four (2.6%) were diagnosed with propofol allergy, three of them positive only on provocation. None of those four had symptoms on eating egg, soy or peanut, and none had detectable specific IgE to egg or soy. In the second, 520 adults with a positive specific IgE to egg, soy or peanut were investigated retrospectively for propofol exposure, and no sign of an allergic reaction to propofol was found in 171 retrieved anaesthetic charts from 99 exposed patients. The authors concluded that the practice of avoiding propofol in food-allergic patients is not evidence-based and should be reconsidered. The original belief rested on six case reports lacking confirmatory evidence of an allergic reaction, plus the ingredient list.',
+        evidenceSource:
+          'Asserhoj LL, Mosbech H, Kroigaard M, Garvey LH. No evidence for contraindications to the use of propofol in adults allergic to egg, soy or peanut. Br J Anaesth 2016;116:77-82',
+        doi: '10.1093/bja/aev360',
+        inferredClaim:
+          'That egg, soy or peanut allergy contraindicates propofol because the emulsion contains egg lecithin and soybean oil — an inference from the ingredient list that direct investigation did not support',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pro-a6',
+        category: 'inferred',
+        title: 'The brain concentration is never measured; the whole technique runs on a model',
+        laymanSummary:
+          'With a gas anaesthetic, a monitor tells you the concentration the patient is breathing out, which closely tracks what is in the brain. With propofol there is no equivalent measurement, so the dose is guided by a computer model of an average person.',
+        technicalDetails:
+          'Total intravenous anaesthesia is delivered either by weight-based infusion or by target-controlled infusion, in which a pharmacokinetic model calculates the rate needed to reach a chosen plasma or effect-site concentration. No propofol concentration is measured in the patient in real time. Depth-of-anaesthesia monitors derived from the processed electroencephalogram are used as an indirect check, but they are a signal-processing surrogate rather than a concentration measurement, and their relationship to the drug differs between intravenous and volatile anaesthesia. This is not an argument that intravenous anaesthesia is unsafe — MYRIAD found no mortality difference in 5,400 patients — but it is a structural difference in what is known about a given patient at a given moment, and it is the reason awareness under anaesthesia is a live concern specifically for the intravenous technique when a neuromuscular blocking drug is also being used.',
+        evidenceSource:
+          'FDA-approved US prescribing information for propofol injectable emulsion, Dosage and Administration and Warnings',
+        inferredClaim:
+          'That a modelled effect-site concentration is equivalent to a measured one; end-tidal monitoring of a volatile agent has no intravenous counterpart',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected as an oil in water, not as a solution',
+        laymanDesc:
+          'Propofol will not dissolve in water, so it is delivered as microscopic oil droplets suspended in a milky white emulsion of soybean oil, egg lecithin and glycerol.',
+        molecularDetail:
+          'The drug substance is a lipophilic phenol, an oil at room temperature. The 1% emulsion vehicle is the pharmaceutical achievement; the free phenol dissolved in the aqueous phase is responsible for injection pain, and formulations differ in that fraction. The emulsion is also an excellent bacterial growth medium, which is why presentations either carry a retardant such as EDTA or metabisulfite or are single-use with strict handling rules.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the brain in one circulation',
+        laymanDesc:
+          'Because it is so fat-soluble it crosses out of the blood into brain tissue almost immediately. Loss of consciousness happens within about half a minute of the injection.',
+        molecularDetail:
+          'Onset is limited by arm-brain circulation time rather than by permeability. Distribution then follows a three-compartment pattern, and the offset of a single bolus is governed by redistribution into muscle and fat rather than by elimination, which is why a bolus lasts minutes but a long infusion has a context-sensitive half-time that lengthens with duration.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It grips the GABA-A receptor at the beta subunit',
+        laymanDesc:
+          'It binds the brain\'s main inhibitory receptor, at a site on a different part of the protein from where alcohol or benzodiazepines act.',
+        molecularDetail:
+          'The site involves asparagine 265 in transmembrane domain 2 of the beta subunit. Mice carrying the beta3(N265M) substitution lose propofol\'s immobilising action completely and most of its hypnotic action, while enflurane and halothane remain largely effective, which localises the intravenous anaesthetic effect to this residue and shows the volatiles act through a broader set of targets.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Chloride floods in and neurons stop firing',
+        laymanDesc:
+          'The receptor is a gate for chloride ions. Holding it open makes the neuron electrically negative inside and much harder to excite, so signalling across the cortex and thalamus breaks down.',
+        molecularDetail:
+          'At low micromolar concentrations propofol is a positive allosteric modulator, increasing the response to GABA already present; at higher concentrations it opens the channel directly without GABA. In cortical brain slices from beta3(N265M) mice both the current enhancement and the reduction in spontaneous action potential firing are significantly attenuated, tying the network effect to the same residue as the behaviour.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Unconsciousness, amnesia — and no pain relief at all',
+        laymanDesc:
+          'The person is unconscious and will remember nothing, but the drug does nothing about pain. That is why an opioid or a local anaesthetic is almost always given alongside it.',
+        molecularDetail:
+          'Propofol produces hypnosis and amnesia at concentrations well below those needed for immobility in response to a noxious stimulus, and has no analgesic action at any clinical concentration. It also depresses ventilation and vasomotor tone, so apnoea after induction is expected rather than adverse, and hypotension is the dose-limiting effect in an unwell patient.',
+        iconName: 'MoonStar',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'It redistributes and is glucuronidated, and waking is unusually clear',
+        laymanDesc:
+          'The drug moves out of the brain into muscle and fat within minutes, and the liver conjugates it into inactive forms. People wake up quickly and without the hungover feeling older agents left behind.',
+        molecularDetail:
+          'Clearance exceeds hepatic blood flow, implying substantial extrahepatic metabolism, principally by glucuronidation to inactive conjugates excreted renally. No active metabolite accumulates, which distinguishes propofol from midazolam and is the pharmacological basis of its clear-headed emergence. The comparison that made propofol displace thiopental was quality of recovery, and it is worth naming precisely: quality of recovery is a measured advantage, and no mortality advantage has ever been demonstrated.',
+        iconName: 'RotateCcw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MYRIAD — volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery (NCT02105610)',
+        phase: 'Pragmatic multicentre single-blind randomised controlled trial',
+        sampleSize: 5400,
+        primaryEndpoint: 'Death from any cause at one year after elective coronary artery bypass grafting',
+        endpointMet: false,
+        statisticalPValue:
+          '2.8% volatile versus 3.0% total intravenous anaesthesia; relative risk 0.94, 95% CI 0.69 to 1.29, P=0.71',
+        unreportedAdverseSignals:
+          'Stopped for futility at the second interim analysis. No secondary outcome and no prespecified adverse event, including myocardial infarction, differed between the groups.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId:
+          'Sessler breast cancer recurrence after regional or general anaesthesia (NCT00418457)',
+        phase: 'Randomised controlled trial at 13 hospitals in 8 countries',
+        sampleSize: 2132,
+        primaryEndpoint: 'Local or metastatic breast cancer recurrence after potentially curative resection',
+        endpointMet: false,
+        statisticalPValue:
+          '102 of 1,043 (10%) with paravertebral block plus propofol versus 111 of 1,065 (10%) with sevoflurane plus opioid; hazard ratio 0.97, 95% CI 0.74 to 1.28, P=0.84',
+        unreportedAdverseSignals:
+          'The secondary endpoint failed too: persistent incisional pain at 6 and 12 months was identical, odds ratio 1.00 (95% CI 0.85 to 1.17, P=0.99). The trial crossed a preplanned futility boundary and was stopped after 11 years of enrolment.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Cremer retrospective cohort of long-term propofol infusion in head-injured adults',
+        phase: 'Retrospective cohort study following five index deaths',
+        sampleSize: 67,
+        primaryEndpoint: 'Occurrence of propofol infusion syndrome in sedated ventilated head-injured adults',
+        endpointMet: true,
+        statisticalPValue:
+          'Odds ratio 1.93 for each mg/kg per hour increase in mean propofol dose above 5 mg/kg per hour (95% CI 1.12 to 3.32, P=0.018); 7 of 67 patients judged to have died of the syndrome',
+        unreportedAdverseSignals:
+          'Retrospective and single-centre, prompted by a formulation change. It establishes a dose-response association with a rare fatal syndrome, not a rate.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Asserhoj investigation of propofol allergy in egg, soy and peanut allergic adults',
+        phase: 'Two-part clinical investigation with skin testing and intravenous provocation',
+        sampleSize: 793,
+        primaryEndpoint:
+          'Frequency of propofol allergy, and tolerance of propofol in adults with specific IgE to egg, soy or peanut',
+        endpointMet: true,
+        statisticalPValue:
+          '4 of 153 propofol-exposed patients (2.6%) had confirmed propofol allergy, none with food allergy or specific IgE to egg or soy; no allergic reaction in 171 anaesthetic charts from 99 food-allergic patients',
+        unreportedAdverseSignals:
+          'Three of the four confirmed propofol allergies were positive only on intravenous provocation and would have been missed by skin testing alone — a finding about diagnostic practice rather than about food allergy.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A single N265M substitution in the GABA-A beta3 subunit completely abolishes propofol\'s suppression of noxious-evoked movement in mice, while volatile anaesthetics still work in the same animals',
+        'One-year mortality of 3.0% with total intravenous anaesthesia against 2.8% with a volatile agent in 5,400 coronary bypass patients',
+        'Breast cancer recurrence of 10% with propofol plus paravertebral block against 10% with sevoflurane plus opioid, hazard ratio 0.97, in 2,108 analysed women',
+        'A dose-response association between propofol infusion rate and fatal propofol infusion syndrome, odds ratio 1.93 per mg/kg/h above 5 mg/kg/h',
+        'No link between propofol allergy and egg, soy or peanut allergy across 793 investigated adults',
+      ],
+      unsupportedInferences: [
+        'That the anaesthetic technique chosen for a cardiac operation changes whether the patient is alive a year later — tested in 5,400 patients and stopped for futility',
+        'That avoiding volatile agents and opioids reduces cancer recurrence — tested over eleven years in 2,132 women and stopped for futility',
+        'That egg or soy allergy is a reason to avoid propofol, an inference from the ingredient list that the direct investigation contradicted',
+        'That a modelled effect-site concentration tells you what a measured end-tidal concentration tells you; there is no propofol equivalent of the volatile agent monitor',
+        'That faster, clearer recovery — which is measured and real — implies any advantage in death, complications or long-term outcome',
+      ],
+      whatFailedInitially: [
+        'Volatile cardioprotection, the hypothesis MYRIAD was built to confirm, failed; and the trial equally failed to show any advantage for the intravenous technique',
+        'The regional-anaesthesia-and-propofol cancer recurrence hypothesis failed on its primary and its secondary endpoint',
+        'Paediatric intensive care sedation with propofol produced a fatal syndrome described in 1992 and is not an indication on the United States label',
+        'The egg and soy allergy contraindication, believed for decades on the strength of six unconfirmed case reports, did not survive investigation',
+      ],
+      realWorldOutcome: [
+        'The most widely used induction agent in the world, on the WHO Model List of Essential Medicines, and the reason day-case surgery under general anaesthesia is routine',
+        'About 17 cents per millilitre at United States pharmacy acquisition cost across only 4 listed generic products — a small supplier base for a drug this essential, and a recurring cause of shortage',
+        'Its measured advantage over its predecessors is the quality and speed of recovery, and that advantage has never converted into a measured advantage in survival',
+      ],
+    },
+    deliverySystem: {
+      type:
+        'Sterile 1% oil-in-water injectable emulsion for intravenous bolus and infusion, in ampoules, vials and prefilled syringes; delivered by weight-based or target-controlled infusion',
+      description:
+        'The emulsion is the delivery system. Soybean oil provides the lipid phase, purified egg phosphatide the emulsifier and glycerol the tonicity, and the droplet size distribution has to be tight enough that the suspension can go safely into a vein. Because that vehicle supports rapid bacterial growth, presentations either include a growth retardant such as disodium edetate, sodium metabisulfite or benzyl alcohol, or are strictly single-patient with a short in-use time. The lipid load itself is clinically relevant during long infusions and is one reason propofol is not simply run indefinitely.',
+      safetyProfile:
+        'Apnoea after an induction dose is expected rather than adverse, and hypotension from reduced systemic vascular resistance and myocardial depression is the dose-limiting effect in unwell patients. Injection pain is common and is caused by the free phenol in the aqueous phase. Propofol infusion syndrome — metabolic acidosis, rhabdomyolysis, hyperkalaemia, lipaemia, bradyarrhythmia and myocardial failure — is rare, associated with higher infusion rates and longer duration, and has been fatal in both children and adults. Propofol is not indicated for paediatric intensive care sedation. Bacterial contamination of the emulsion has caused outbreaks and is the reason for the handling rules. None of this is dosing guidance and no dosing guidance appears on this page.',
+    },
+    commonQuestions: [
+      {
+        q: 'How do we actually know propofol works on the receptor everyone says it does?',
+        a: 'Because someone changed the receptor and the drug stopped working. Mice were engineered carrying a single amino acid substitution — asparagine to methionine at position 265 — in the beta3 subunit of the GABA-A receptor. In those animals propofol completely lost its ability to suppress movement in response to a painful stimulus, and largely lost its ability to abolish the righting reflex. Crucially, gas anaesthetics still worked on the same mice, so the effect was specific rather than a generally anaesthesia-resistant animal. Brain slice recordings from the same mutants showed the drug no longer enhanced GABA currents properly. That combination — genetic change, behavioural loss, electrophysiological loss, intact control drugs — is about as strong as mechanism evidence gets in pharmacology.',
+      },
+      {
+        q: 'Is intravenous anaesthesia safer than gas?',
+        a: 'Not by any measure anyone has managed to detect. The largest test is MYRIAD: 5,400 patients at 36 centres in 13 countries having elective coronary bypass, randomised to a volatile agent or to total intravenous anaesthesia with propofol. One-year mortality was 2.8% and 3.0%. The relative risk was 0.94 with a confidence interval from 0.69 to 1.29, P=0.71, and the trial was stopped for futility. Thirty-day mortality, myocardial infarction and every other secondary outcome were the same. That trial was designed to prove volatile agents protect the heart, and it is usually cited as a failure of that hypothesis; it is equally a failure of the reverse claim. There are real differences between the two techniques — nausea, recovery quality, environmental footprint, cost, monitoring — and death at one year is not one of them.',
+      },
+      {
+        q: 'Does the anaesthetic used during cancer surgery affect whether the cancer comes back?',
+        a: 'The best test says no. The hypothesis was specific and biologically plausible: surgical stress, volatile anaesthetics and opioids all impair the immune surveillance that clears circulating tumour cells, and regional anaesthesia with propofol avoids all three. Sessler and colleagues randomised 2,132 women having curative breast cancer surgery in eight countries and followed them for a median of three years. Recurrence was 102 of 1,043 with paravertebral block and propofol, and 111 of 1,065 with sevoflurane and opioids: hazard ratio 0.97, confidence interval 0.74 to 1.28. The trial was stopped for futility. The secondary hypothesis, that regional anaesthesia would reduce persistent incisional pain, failed with an odds ratio of exactly 1.00.',
+        auditNote:
+          'A large observational literature had reported the opposite. This is a clean example of a plausible mechanism plus consistent retrospective data being overturned by one adequately powered randomised trial.',
+      },
+      {
+        q: 'What is propofol infusion syndrome and how worried should I be?',
+        a: 'It is a rare, severe reaction to prolonged high-rate infusion, and the risk to someone having a normal anaesthetic for an operation is essentially not this. It was first described in 1992 in five children in intensive care who developed a progressive metabolic acidosis, an abnormal heart rhythm, fatty-looking serum and heart failure that did not respond to resuscitation; all five died and viral myocarditis was excluded. In 2001 a similar pattern was reported in head-injured adults after a more concentrated sedation formulation was introduced, with the odds of the syndrome rising by a factor of 1.93 for every mg/kg per hour of average infusion rate above 5. The mechanism is thought to be impairment of mitochondrial fatty acid oxidation. It is a syndrome of days of sedation, not of minutes of anaesthesia, and propofol is not indicated for intensive care sedation of children.',
+      },
+      {
+        q: 'I am allergic to eggs. Can I have propofol?',
+        a: 'The evidence says the connection does not exist, and the rule that says otherwise was never based on evidence. Propofol\'s emulsion does contain egg lecithin and soybean oil, and for decades that ingredient list was treated as a contraindication in people with egg, soy or peanut allergy — on the strength of six case reports that lacked confirmatory evidence of an allergic reaction. When it was investigated properly, four of 153 propofol-exposed patients under investigation for perioperative reactions turned out to be genuinely allergic to propofol, and none of them had food allergy or specific IgE to egg or soy. Separately, 520 adults with confirmed IgE to egg, soy or peanut were reviewed, and no allergic reaction to propofol appeared in 171 retrieved anaesthetic charts. Tell your anaesthetist about the allergy regardless; the point is what they should conclude from it.',
+        auditNote:
+          'Filed as a change of mind rather than an unproven claim, because it was a standing clinical practice that direct investigation contradicted.',
+      },
+      {
+        q: 'Why is a drug this important made by only four suppliers?',
+        a: 'Because the hard part is not the molecule. 2,6-diisopropylphenol is made by alkylating phenol with propene over an acid catalyst, which is commodity chemistry, and the CMS survey puts United States pharmacy acquisition cost at about 17 cents per millilitre. The difficulty is turning an oil that will not dissolve in water into a sterile intravenous emulsion with a controlled droplet size, a controlled free-phenol fraction and no bacterial growth — a formulation and sterility problem rather than a synthesis one. That is why the number of listed United States products is four, and why propofol has repeatedly appeared on national shortage lists. This page shows no manufacturing cost because no verified per-dose cost-of-production study for propofol was found.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Jurd R, Arras M, Lambert S, et al. General anesthetic actions in vivo strongly attenuated by a point mutation in the GABA(A) receptor beta3 subunit. FASEB J 2003;17:250-252',
+        identifier: '10.1096/fj.02-0611fje',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Landoni G, Lomivorotov VV, Nigro Neto C, et al. Volatile anesthetics versus total intravenous anesthesia for cardiac surgery. N Engl J Med 2019;380:1214-1225',
+        identifier: '10.1056/NEJMoa1816476',
+        kind: 'doi',
+      },
+      {
+        label: 'NCT02105610 — MYRIAD, volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery',
+        identifier: 'NCT02105610',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Sessler DI, Pei L, Huang Y, et al. Recurrence of breast cancer after regional or general anaesthesia: a randomised controlled trial. Lancet 2019;394:1807-1815',
+        identifier: '10.1016/S0140-6736(19)32313-X',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Parke TJ, Stevens JE, Rice AS, et al. Metabolic acidosis and fatal myocardial failure after propofol infusion in children: five case reports. BMJ 1992;305:613-616',
+        identifier: '10.1136/bmj.305.6854.613',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cremer OL, Moons KG, Bouman EA, Kruijswijk JE, de Smet AM, Kalkman CJ. Long-term propofol infusion and cardiac failure in adult head-injured patients. Lancet 2001;357:117-118',
+        identifier: '10.1016/S0140-6736(00)03547-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Asserhoj LL, Mosbech H, Kroigaard M, Garvey LH. No evidence for contraindications to the use of propofol in adults allergic to egg, soy or peanut. Br J Anaesth 2016;116:77-82',
+        identifier: '10.1093/bja/aev360',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 4943 — propofol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4943',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

@@ -2204,4 +2204,498 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 5. Oxybutynin — approved in 1975, still the cheapest drug in the indication, beaten by
+  //    behavioural training in the only trial that compared the two, and the drug whose whole
+  //    modern history is a fifty-year attempt to stop its own metabolite reaching the mouth.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'oxybutynin',
+    name: 'Oxybutynin',
+    tradeName: 'Ditropan XL',
+    sponsor: 'Janssen Pharmaceuticals',
+    targetGene: 'CHRM3',
+    targetProtein:
+      'Muscarinic acetylcholine receptors on detrusor smooth muscle, non-selectively across subtypes; the R-enantiomer carries the antimuscarinic activity and the active metabolite N-desethyloxybutynin carries a comparable one',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1975,
+    indication:
+      'Treatment of overactive bladder with symptoms of urge urinary incontinence, urgency and frequency; and, for the extended-release tablet, of detrusor overactivity associated with a neurological condition in children aged 6 years and over. A transdermal form is sold over the counter to women in the United States.',
+    patientFriendlyIndication:
+      'An overactive bladder — sudden urgency, going far too often, and leaking — treated with the oldest and cheapest drug available for it',
+    anatomicalSite:
+      'Detrusor smooth muscle of the bladder wall; and, unavoidably, the salivary glands, gut, eye and brain',
+    conditionContext: {
+      conditionExplainer:
+        'Oxybutynin reached the market in 1975, before overactive bladder existed as a named condition, before the three-day bladder diary was a standard endpoint, and before any regulator asked for a placebo-controlled trial in this indication. Its modern efficacy data come from studies run twenty-five years later to register a new formulation.',
+      whyItMatters:
+        'That history explains the shape of the evidence. There is no large modern placebo-controlled trial of plain immediate-release oxybutynin, the form most prescriptions are written for, because none was ever required. What exists is a comparison of the extended-release tablet against placebo, and comparisons of every newer formulation against the immediate-release one.',
+      whoTakesThis:
+        'Anyone for whom cost is the deciding factor, which in practice means a very large number of older adults — the group in whom the anticholinergic-burden evidence is strongest and in whom this particular molecule crosses into the brain most readily.',
+      clinicalGoals:
+        'Fewer incontinence episodes and fewer voids on a diary. What the drug is chosen for, in most systems, is that it costs about eight cents a dose.',
+    },
+    oneSentenceVerdict:
+      'A non-selective muscarinic antagonist from 1975 whose extended-release tablet removed 15.8 urge incontinence episodes a week against 7.6 on placebo, and whose entire subsequent development history — extended release, transdermal patch, topical gel — exists to keep its own active metabolite out of the salivary gland, where the immediate-release form produces dry mouth in 72.4% of patients against 34.9% for the extended-release version.',
+    laymanHowItWorks:
+      'The bladder wall contracts when acetylcholine lands on muscarinic receptors in it, and oxybutynin blocks those receptors so the contraction is blunted. It is not selective about which muscarinic receptors it blocks, and it is not selective about which organ it does it in. When the tablet is swallowed, the liver converts much of it into a second compound, N-desethyloxybutynin, which is about as active as the drug itself and reaches the salivary glands in quantity — which is why the immediate-release tablet dries out roughly seven patients in ten. Every newer version of this drug, from the once-daily tablet to the skin patch, is an attempt to get the drug into the body without going through that conversion step.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 55,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0817 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, median across 92 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 1975 and off patent for decades, with ninety-two products in the acquisition-cost file — the most crowded generic market of any drug in this group, and the reason the median sits at eight cents. The transdermal system for women was switched to over-the-counter sale in the United States and is priced separately.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Everything else in this indication is more expensive and less anticholinergic, in roughly that order. Solifenacin is about twice the price and produces dry mouth in a third as many patients. Trospium carries a permanent charge and crosses into the brain poorly. Mirabegron does not touch the acetylcholine system at all and costs over a hundred times as much. And in the only randomised trial that pitted this drug against structured behavioural training, the training won.',
+      conventionalRx: [
+        {
+          name: 'Solifenacin (Vesicare)',
+          class: 'M3-preferring muscarinic antagonist',
+          howItCompares:
+            'Newer, subtype-preferring and once daily. Dry mouth at the 5 mg dose is 10.9% against placebo 4.2%, where immediate-release oxybutynin reaches 72.4% and extended-release 34.9%. The diary effect is not obviously larger: solifenacin 5 mg removed 1.79 incontinence episodes a day against placebo 1.34 in the SYNERGY trial.',
+          typicalCost:
+            'US$0.1754 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 40 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: a third of the dry mouth of even the extended-release oxybutynin, once-daily dosing. Cons: twice the acquisition cost, and it sits inside the same class-level anticholinergic signal.',
+        },
+        {
+          name: 'Trospium chloride (Sanctura)',
+          class: 'Quaternary ammonium muscarinic antagonist',
+          howItCompares:
+            'A permanently charged molecule, which crosses the blood-brain barrier poorly by design. Oxybutynin is the opposite: lipophilic, tertiary, and the antimuscarinic most often singled out in the cognitive literature. No randomised trial has compared cognitive outcomes between the two.',
+          typicalCost:
+            'US$0.2121 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 16 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: designed not to reach the brain. Cons: two and a half times the cost, absorption cut substantially by food, and the central-nervous-system advantage is pharmacological reasoning rather than a measured outcome.',
+        },
+        {
+          name: 'Mirabegron (Myrbetriq)',
+          class: 'Beta-3 adrenergic agonist',
+          howItCompares:
+            'A different receptor entirely, so it contributes nothing to anticholinergic burden and produces dry mouth at close to placebo rates. Its diary effect is of the same order: incontinence episodes fell 1.38 to 1.57 a day at 50 mg against 0.96 to 1.17 on placebo across three trials.',
+          typicalCost:
+            'US$9.60 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 17 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no anticholinergic load at all, and roughly double the one-year persistence. Cons: about a hundred and twenty times the acquisition cost of oxybutynin, plus a blood-pressure warning and a CYP2D6 interaction.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Structured behavioural training, taught rather than handed out',
+          action:
+            'Pelvic floor muscle exercises with biofeedback plus urge-suppression strategy, delivered over several supervised sessions.',
+          patientImpact:
+            'In a randomised trial of 197 community-dwelling women aged 55 and over, behavioural training reduced incontinence episodes by a mean of 80.7%, oxybutynin by 68.5% (P=.04 for the comparison) and placebo by 39.4%. Patient-perceived improvement was "much better" in 74.1% of the behavioural group against 50.9% on the drug. Only 14.0% of the behavioural group wanted to change treatment, against 75.5% of the drug group.',
+          clinicalPrecaution:
+            'A later extension of the same programme found that adding one to the other helped further: among patients not satisfied with a single treatment, combining them improved reduction from 57.5% to 88.5% in one group and from 72.7% to 84.3% in another. These are not mutually exclusive options.',
+        },
+        {
+          name: 'Count the anticholinergic drugs you are already taking, not just this one',
+          action:
+            'Antihistamines, tricyclic antidepressants and several other common classes carry the same activity, and the evidence associates the cumulative total rather than any single prescription with harm.',
+          patientImpact:
+            'In a prospective cohort of 3,434 people aged 65 and over followed a mean 7.3 years, the adjusted hazard ratio for incident dementia rose to 1.54 (95% CI 1.21 to 1.96) in those with more than 1,095 total standardised daily doses of strong anticholinergics over ten years, against nonusers, with a significant dose-response trend (P<.001). Bladder antimuscarinics were among the three commonest classes contributing.',
+          clinicalPrecaution:
+            'The study excluded the most recent twelve months of use specifically to reduce the chance that early dementia symptoms were driving the prescriptions. That design choice strengthens the finding without making it a trial.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCN(CC)CC#CCOC(=O)C(C1CCCCC1)(C2=CC=CC=C2)O',
+      chemicalFormula: 'C22H31NO3',
+      molecularWeight: '357.50 g/mol (free base); dispensed as oxybutynin chloride',
+      targetReceptorAffinity:
+        'Non-selective muscarinic antagonism. The US label describes the pharmacology in two separate clauses — the drug "relaxes bladder smooth muscle" and "inhibits the muscarinic action of acetylcholine on smooth muscle" — a wording that preserves the historical claim of a direct spasmolytic action alongside receptor blockade. The molecule is supplied as a racemate and the R-enantiomer carries the antimuscarinic activity. Its principal metabolite, N-desethyloxybutynin, is described by the label as having pharmacological activity similar to the parent in vitro, which is the single most consequential fact about this drug: first-pass metabolism generates a second active antimuscarinic in quantity.',
+      structureSource: {
+        label: 'PubChem CID 4634 — oxybutynin structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4634',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'oxy-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and purity of the tertiary glycolic acid, with no chiral specification',
+          description:
+            'Confirm identity and purity of 2-cyclohexyl-2-hydroxy-2-phenylacetic acid and of 4-(diethylamino)but-2-yn-1-ol before esterification. There is deliberately no enantiomeric-excess step here: oxybutynin is manufactured and sold as the racemate, and the single-enantiomer version was pursued separately and never displaced it. Recording an absent specification is as much a QC decision as recording a present one.',
+          reagentsAndBuffer:
+            'Reversed-phase HPLC with UV detection at 210 nm, gas chromatography for residual solvents in the alkynol, Karl Fischer titration, nuclear magnetic resonance for identity confirmation',
+        },
+        {
+          id: 'oxy-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Esterification of the glycolic acid with the aminoalkynol',
+          description:
+            'Form the ester bond between the tertiary alcohol-bearing acid and the propargylic alcohol carrying the diethylamino group. The alkyne in the middle of the chain is the structural feature that distinguishes this molecule from the simpler antispasmodics of the same era, and it survives the reaction untouched.',
+          dependsOnStepId: 'oxy-w1',
+          reagentsAndBuffer:
+            'Acid chloride formation with thionyl chloride or direct coupling with a carbodiimide, 4-dimethylaminopyridine catalyst, triethylamine base, anhydrous toluene or dichloromethane under nitrogen',
+        },
+        {
+          id: 'oxy-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrochloride salt formation and control of the hydrolysis products',
+          description:
+            'Precipitate the hydrochloride and recrystallise. The ester bond is the vulnerable point of the molecule, so the specification is written around the free glycolic acid and the free aminoalkynol as hydrolysis markers, and stability testing follows the same two analytes.',
+          dependsOnStepId: 'oxy-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in 2-propanol or ethyl acetate, activated charcoal, reversed-phase HPLC with gradient elution for related substances, accelerated stability chambers at 40 degrees Celsius and 75% relative humidity',
+        },
+        {
+          id: 'oxy-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Parallel application of parent drug and N-desethyl metabolite to each muscarinic subtype',
+          description:
+            'Apply oxybutynin and, in parallel wells, synthesised N-desethyloxybutynin to five stable lines carrying human CHRM1 through CHRM5. Testing the parent alone would misdescribe what a patient is exposed to after an oral dose, because first-pass metabolism means the metabolite reaches the tissue in comparable quantity. This is the assay design that explains why a transdermal route changes the side-effect profile without changing the molecule.',
+          dependsOnStepId: 'oxy-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 lines stably expressing human CHRM1 to CHRM5, DMEM with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4, authentic N-desethyloxybutynin reference standard',
+        },
+        {
+          id: 'oxy-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Radioligand competition, calcium readout, and a salivary-gland comparison arm',
+          description:
+            'Measure displacement of a labelled muscarinic antagonist at each subtype for both compounds, then measure blockade of carbachol-evoked calcium to confirm functional antagonism. Running a salivary acinar preparation alongside the detrusor readout is what turns the dry-mouth rate from an observed adverse-event percentage into a predicted, mechanistically explained one.',
+          dependsOnStepId: 'oxy-w4',
+          reagentsAndBuffer:
+            'Tritiated N-methylscopolamine as radioligand, atropine for non-specific binding, GF/B filter plates, Fluo-4 AM calcium indicator, carbachol as agonist, isolated rodent submandibular acinar cells or a human salivary gland cell line as the comparison tissue',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'oxy-a1',
+        category: 'measured',
+        title: 'Immediate release dries the mouth in 72.4% of patients; extended release in 34.9%',
+        laymanSummary:
+          'The cheapest and most-prescribed form of this drug gives roughly seven patients in ten a dry mouth. The once-daily version halves that. Same molecule, same dose range — only the release rate differs.',
+        technicalDetails:
+          'The US label for the extended-release tablet reports pooled adverse events against an immediate-release comparator arm. Dry mouth: 34.9% on extended release (n=774) against 72.4% on immediate release (n=199). Constipation 8.7% against 15.1%. Somnolence 5.6% against 14.1%. Dizziness 5.0% against 16.6%. Blurred vision 4.3% against 9.6%. Every one of those is roughly halved or better. The mechanism is first-pass metabolism: swallowing a rapidly dissolving tablet delivers a bolus to the liver, which converts a large fraction into N-desethyloxybutynin, an active antimuscarinic that the label states has similar in vitro activity to the parent. Slowing the release moves absorption further down the gut and changes the parent-to-metabolite ratio. The clinical consequence of a pharmacokinetic decision is a 37-percentage-point difference in whether a patient can taste their food.',
+        evidenceSource:
+          'US prescribing information for oxybutynin chloride extended-release tablets, Adverse Reactions and Clinical Pharmacology sections (openFDA drug label endpoint)',
+        measuredMetric:
+          'Incidence of dry mouth, constipation, somnolence, dizziness and blurred vision, extended release versus immediate release',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxy-a2',
+        category: 'failed',
+        title: 'Behavioural training beat this drug, and the drug group wanted out',
+        laymanSummary:
+          'The only randomised trial to compare a bladder drug against structured behavioural training used oxybutynin, and the training won. Three quarters of the people on the drug wanted to switch to something else. One in seven of the training group did.',
+        technicalDetails:
+          'Burgio and colleagues randomised 197 community-dwelling women aged 55 and over with persistent urge incontinence to behavioural training, oxybutynin, or placebo. Behavioural training reduced incontinence episodes by a mean of 80.7%, significantly more than the drug at 68.5% (P=.04), and both beat placebo at 39.4% (P<.001 and P=.009). Patient-perceived improvement of "much better" was reported by 74.1% of the behavioural group against 50.9% on the drug and 26.9% on placebo. The most telling number is the last: 14.0% of the behavioural group wanted to change to another treatment, against 75.5% in each of the other two groups. Note what that means — three quarters of the drug group and three quarters of the placebo group wanted out, at the same rate, despite a real difference in diary outcomes between them.',
+        evidenceSource: 'Burgio KL et al., JAMA 1998;280:1995-2000 (PMID 9863850)',
+        doi: '10.1001/jama.280.23.1995',
+        measuredMetric:
+          'Percentage reduction in incontinence episodes and proportion wanting to change treatment, by randomised arm',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxy-a3',
+        category: 'measured',
+        title: 'Against placebo the extended-release tablet is worth about one episode a day',
+        laymanSummary:
+          'In the trial that registered the once-daily tablet, patients on the drug had 15.8 fewer weekly leaks and patients on placebo had 7.6 fewer. That is a real difference of about eight leaks a week, or a bit over one a day.',
+        technicalDetails:
+          'The Clinical Studies section of the extended-release label reports urge urinary incontinence episodes falling 15.8 per week on the drug against 7.6 per week on placebo. Converted to the units the rest of this class reports in, that is 2.26 against 1.09 episodes per 24 hours — a treatment effect of about 1.17 episodes a day, at the upper end of what any drug in this indication has shown. Two things qualify it. The placebo arm still accounts for nearly half the total movement. And no comparable modern placebo-controlled trial exists for the immediate-release tablet, which is the form most prescriptions in this class are actually written for, because it was approved in 1975 and never had to produce one.',
+        evidenceSource:
+          'US prescribing information for oxybutynin chloride extended-release tablets, Clinical Studies section (openFDA drug label endpoint)',
+        measuredMetric: 'Change in weekly urge urinary incontinence episodes against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxy-a4',
+        category: 'measured',
+        title: 'The topical gel beat placebo by half an episode a day, and placebo took away 2.5',
+        laymanSummary:
+          'A 789-patient trial of oxybutynin skin gel found the drug removed 3.0 leaks a day and the placebo gel removed 2.5. Almost all the improvement people felt came from something other than the drug.',
+        technicalDetails:
+          'Study OG05009 (NCT00350636), sponsored by Watson Pharmaceuticals, randomised 789 patients to oxybutynin topical gel (n=389) or placebo gel (n=400) for 12 weeks, with change in average daily incontinence episodes as the primary endpoint. The reported result was -3.0 (SD 2.73) on drug against -2.5 (SD 3.06) on placebo. That is the largest placebo response of any trial on this page, and the smallest absolute margin. Large placebo responses are characteristic of applied-to-the-skin interventions in symptom-diary conditions, which is a reason to read the difference rather than the change, and a reason to distrust any presentation of this trial that quotes only the -3.0.',
+        evidenceSource: 'ClinicalTrials.gov results record, OG05009, NCT00350636',
+        measuredMetric:
+          'Change from baseline to week 12 in average daily incontinence episodes, gel versus placebo gel',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'oxy-a5',
+        category: 'inferred',
+        title: 'The dementia association is dose-graded and this is the molecule most implicated',
+        laymanSummary:
+          'A ten-year study of 3,434 older adults found that the more anticholinergic medicine someone had taken, the higher their chance of a later dementia diagnosis. Oxybutynin is the most brain-penetrating drug in this class.',
+        technicalDetails:
+          'Gray and colleagues followed 3,434 people aged 65 and over with no dementia at entry for a mean 7.3 years, using computerised dispensing records to compute total standardised daily doses over the preceding ten years and excluding the most recent twelve months to reduce reverse causation. Dementia developed in 797 (23.2%). Adjusted hazard ratios against nonuse were 0.92 (95% CI 0.74 to 1.16) at 1 to 90 TSDDs, 1.19 (0.94 to 1.51) at 91 to 365, 1.23 (0.94 to 1.62) at 366 to 1,095, and 1.54 (1.21 to 1.96) above 1,095, with a significant trend (P<.001). Bladder antimuscarinics were among the three most-used classes. Coupland and colleagues later reported an adjusted odds ratio of 1.65 (1.56 to 1.75) for bladder antimuscarinics specifically. Oxybutynin is tertiary, lipophilic and the most readily brain-penetrating of the class, so the pharmacology points the same way as the epidemiology — but no randomised trial in this indication has ever been powered for a cognitive endpoint, and none is likely to be.',
+        evidenceSource:
+          'Gray SL et al., JAMA Intern Med 2015;175:401-407 (PMID 25621434); Coupland CAC et al., JAMA Intern Med 2019;179:1084-1093 (PMID 31233095)',
+        doi: '10.1001/jamainternmed.2014.7663',
+        inferredClaim:
+          'That oxybutynin specifically causes dementia — the cohort data are for cumulative anticholinergic exposure across all classes, and the singling out of this molecule rests on its lipophilicity rather than on a drug-specific randomised result',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'oxy-a6',
+        category: 'failed',
+        title: 'The over-the-counter study found half the users applied the patch wrongly',
+        laymanSummary:
+          'Before the transdermal form was sold without a prescription, a study watched 855 real consumers use it. Over half used it incorrectly, and one in seven kept using it after developing a symptom the label told them to stop for.',
+        technicalDetails:
+          'The Oxytrol Transdermal System Actual Use Study (NCT04534491, sponsored by Bayer) enrolled 855 participants in a single-group, unmasked design. The registered primary outcome was the percentage who did not stop use when they developed a new symptom named in the labelling or when their condition worsened, including abdominal or pelvic pain: 14.4% (95% CI 12.0 to 17.2) of 727 participants pre-mitigation, falling to 3.4% (2.2 to 5.0) after mitigating factors such as physician contact were accounted for. Patch misuse — wrong duration or simultaneous application of more than one — was 51.7% pre-mitigation and 21.2% post-mitigation. Among 324 participants who continued despite concerning symptoms, 16 were assessed as facing medical risk and 24 possible risk. The switch went ahead. The finding that half the participants misused the product is a real, measured, published result about how this drug is used outside a clinic, and it exists because a regulator required it.',
+        evidenceSource: 'ClinicalTrials.gov results record, Oxytrol Actual Use Study, NCT04534491',
+        measuredMetric:
+          'Percentage misusing the transdermal system and percentage continuing use despite labelled warning symptoms',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'oxy-a7',
+        category: 'conclusion_shift',
+        title: 'A 1975 drug whose efficacy evidence was assembled in the 2000s for a newer tablet',
+        laymanSummary:
+          'Oxybutynin was approved half a century ago, under a standard of evidence that no longer exists. The placebo-controlled numbers on its label today come from studies run decades later to register the once-daily version.',
+        technicalDetails:
+          'The immediate-release tablet reached the US market in 1975. Overactive bladder as a defined syndrome, the standardised three-day bladder diary, and the regulatory expectation of a placebo-controlled trial with a diary primary endpoint all postdate it. The efficacy data now quoted for oxybutynin — the 15.8 against 7.6 weekly urge incontinence episodes — come from the extended-release registration programme, and the comparisons that establish the immediate-release form\'s effect are non-inferiority comparisons against that newer product rather than against placebo. The direction of inference is backwards from the usual one: the old drug\'s efficacy is supported by the new formulation\'s trials, and the new formulation\'s advantage is supported by a tolerability comparison against the old drug.',
+        evidenceSource:
+          'US prescribing information for oxybutynin chloride extended-release tablets, Clinical Studies and Adverse Reactions sections; approval year as held on this record',
+        measuredMetric:
+          'Provenance of the placebo-controlled efficacy figures carried on the current US label',
+        inferredClaim:
+          'That immediate-release oxybutynin has a demonstrated placebo-controlled effect of the size quoted on the extended-release label',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed — and immediately half-converted into something else',
+        laymanDesc:
+          'A tablet goes through the liver before it reaches the rest of the body, and the liver turns much of this drug into a second compound that is just as active. That second compound is the source of most of the dry mouth.',
+        molecularDetail:
+          'Extensive first-pass metabolism, principally by CYP3A4, generates N-desethyloxybutynin, which the label describes as having pharmacological activity similar to the parent in vitro. Extended-release, transdermal and topical gel formulations all exist to alter the parent-to-metabolite ratio rather than to alter the molecule. The extended-release tablet halves the dry-mouth rate on that basis alone.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the bladder wall — and everywhere else, including the brain',
+        laymanDesc:
+          'The target is on the outside of the muscle cell, so nothing needs to be carried inside. But this particular molecule is fat-soluble and uncharged, so it also passes into the brain more readily than newer drugs in its class.',
+        molecularDetail:
+          'Muscarinic receptors are plasma-membrane G-protein-coupled receptors with an outward-facing binding pocket; no transporter step is required. Oxybutynin is a lipophilic tertiary amine, in contrast to the quaternary, permanently charged trospium, and blood-brain barrier penetration follows from that difference in physical chemistry. This is the structural basis of the class cognitive concern, and the reason oxybutynin is the molecule most often named in it.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks acetylcholine at every muscarinic receptor it meets',
+        laymanDesc:
+          'Newer drugs try to prefer the receptor subtype the bladder uses. This one does not distinguish. It blocks the signal in the bladder, the salivary gland, the gut and the eye at the same time.',
+        molecularDetail:
+          'Non-selective competitive muscarinic antagonism, with the R-enantiomer of the racemate carrying the activity. The label additionally preserves a direct smooth-muscle relaxant claim alongside receptor blockade, wording that dates from an era when antispasmodics were characterised functionally rather than by receptor pharmacology.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The calcium signal that drives the squeeze is blunted',
+        laymanDesc:
+          'A bladder contraction needs a burst of calcium inside the muscle cell. With the receptors occupied, that burst is smaller and the involuntary squeeze during filling is weaker.',
+        molecularDetail:
+          'Loss of M3-Gq/11 coupling reduces phospholipase C activity, inositol trisphosphate falls, sarcoplasmic reticulum calcium release drops and myosin light-chain phosphorylation declines. The identical cascade is interrupted in salivary acinar cells, where the consequence is not relaxation but a failure to secrete — which is what a 72.4% dry-mouth rate looks like at the molecular level.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'About one fewer leak a day, at eight cents a dose',
+        laymanDesc:
+          'The once-daily tablet removes roughly one more leak a day than placebo. It costs about eight cents. Those two facts together are why it is still one of the most prescribed drugs in the indication fifty years after approval.',
+        molecularDetail:
+          'Urge incontinence episodes fell 15.8 per week on extended-release oxybutynin against 7.6 on placebo, equivalent to 2.26 against 1.09 per 24 hours. Median United States pharmacy acquisition cost is US$0.0817 per unit across ninety-two listed products. The cost of that effect is a dry-mouth rate of 34.9% on the extended-release form and 72.4% on the immediate-release one, plus membership of the drug class with the strongest observational cognitive signal.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Oxybutynin topical gel pivotal study OG05009 (NCT00350636)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled, 12 weeks',
+        sampleSize: 789,
+        primaryEndpoint:
+          'Change from baseline to week 12 in average daily number of incontinence episodes',
+        endpointMet: true,
+        statisticalPValue:
+          'Oxybutynin gel -3.0 (SD 2.73) against placebo gel -2.5 (SD 3.06); the results record does not carry a p-value for the primary comparison',
+        unreportedAdverseSignals:
+          'The placebo gel arm removed 2.5 incontinence episodes a day. That is the largest placebo response of any trial on this page and it leaves a drug-attributable margin of 0.5 episodes.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Behavioural versus drug treatment for urge incontinence (Burgio 1998)',
+        phase: 'Randomised controlled trial, three arms, 8 weeks per treatment phase',
+        sampleSize: 197,
+        primaryEndpoint: 'Percentage reduction in incontinence episodes from bladder diaries',
+        endpointMet: false,
+        statisticalPValue:
+          'Behavioural 80.7% versus drug 68.5%, P=.04; both versus placebo 39.4%, P<.001 and P=.009',
+        unreportedAdverseSignals:
+          '75.5% of the oxybutynin group wanted to change to another treatment, the same proportion as in the placebo group, against 14.0% of the behavioural group. `endpointMet: false` records that the drug arm lost the head-to-head comparison, not that the trial failed.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Oxytrol Transdermal System Actual Use Study (NCT04534491)',
+        phase: 'Phase 3 single-group open-label consumer actual-use study',
+        sampleSize: 855,
+        primaryEndpoint:
+          'Percentage of participants who did not stop use when they developed a new symptom named in the labelling or when their condition worsened',
+        endpointMet: false,
+        statisticalPValue:
+          '14.4% (95% CI 12.0 to 17.2) pre-mitigation and 3.4% (2.2 to 5.0) post-mitigation of 727 evaluable participants',
+        unreportedAdverseSignals:
+          'Patch misuse — wrong duration or more than one applied at once — was 51.7% pre-mitigation and 21.2% post-mitigation. Of 324 continuing despite concerning symptoms, 16 were assessed as at medical risk and 24 at possible risk.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Oxybutynin extended-release registration programme (US label, Study 1)',
+        phase: 'Randomised double-blind placebo-controlled',
+        sampleSize: 774,
+        primaryEndpoint: 'Change in weekly urge urinary incontinence episodes against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Urge incontinence episodes fell 15.8 per week on extended-release oxybutynin against 7.6 on placebo; the label reports the arm values without a p-value in the extracted text',
+        unreportedAdverseSignals:
+          'The sample size given is the pooled safety population of 774 for the extended-release arm reported in the Adverse Reactions table, not a per-study randomised total. No equivalent placebo-controlled trial exists for the immediate-release tablet.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Dry mouth in 72.4% on immediate-release oxybutynin against 34.9% on extended release, with dizziness 16.6% against 5.0% and somnolence 14.1% against 5.6%',
+        'Urge incontinence episodes fell 15.8 per week on extended release against 7.6 per week on placebo',
+        'Oxybutynin topical gel removed 3.0 incontinence episodes a day against 2.5 on placebo gel in 789 patients',
+        'Behavioural training reduced incontinence episodes 80.7% against 68.5% for oxybutynin (P=.04) and 39.4% for placebo',
+        '51.7% of 855 consumers misused the over-the-counter transdermal system before mitigation was applied',
+        'Cumulative strong-anticholinergic exposure above 1,095 total standardised daily doses carried an adjusted hazard ratio for dementia of 1.54 (95% CI 1.21 to 1.96)',
+      ],
+      unsupportedInferences: [
+        'That the immediate-release tablet has the placebo-controlled effect size quoted on the extended-release label — the placebo comparison was run on the newer formulation',
+        'That oxybutynin specifically causes dementia — the cohort evidence is for cumulative anticholinergic exposure across all classes, and this molecule is singled out on lipophilicity rather than on a drug-specific trial',
+        'That a 3.0-episode-a-day reduction on topical gel is a drug effect — 2.5 of it occurred on placebo gel',
+        'That over-the-counter availability implies the drug is used as labelled — the study run to answer that question found otherwise',
+      ],
+      whatFailedInitially: [
+        'The head-to-head against behavioural training, which oxybutynin lost on both the diary endpoint and on how many patients wanted to stop',
+        'The immediate-release formulation\'s tolerability, which drove fifty years of reformulation rather than replacement',
+        'Correct use of the over-the-counter patch, misapplied by half the consumers studied before mitigation',
+      ],
+      realWorldOutcome: [
+        'Eight cents a dose across ninety-two listed products — the cheapest option in the indication by a wide margin',
+        'Still among the most prescribed bladder drugs worldwide, and the one most frequently named in anticholinergic-burden guidance for older adults',
+        'The only drug in this indication available over the counter in the United States, in a transdermal form sold to women without a prescription',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral immediate-release tablet and syrup, oral extended-release tablet, transdermal system, and topical gel',
+      description:
+        'Four routes for one molecule, and the reason for all of them is the same: avoiding or reducing first-pass conversion to N-desethyloxybutynin. The extended-release tablet slows absorption; the transdermal system and topical gel bypass the gut and liver entirely. None of them changes the drug. The extended-release tablet is swallowed whole and its non-absorbable shell may be visible in the stool, which is expected rather than a treatment failure.',
+      safetyProfile:
+        'Anticholinergic effects dominate and are dose- and formulation-dependent: dry mouth, constipation, blurred vision, somnolence and dizziness. Because the molecule is lipophilic and enters the central nervous system, confusion and cognitive impairment are described particularly in older adults, and this is the antimuscarinic most often named in anticholinergic-burden guidance. Heat-related risk is real, because sweating is a cholinergic function. Urinary retention, decreased gastrointestinal motility and caution in narrow-angle glaucoma appear as they do across the class.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does the once-a-day version cost more but dry my mouth less?',
+        a: 'Because of what happens on the way in, not what the drug does when it arrives. A fast-dissolving tablet delivers a slug of drug to the liver, which converts a large part of it into a second compound, N-desethyloxybutynin, that is about as antimuscarinic as the original. That metabolite reaches the salivary glands in quantity. Slowing the release changes where and how much absorption happens and shifts that balance. The measured consequence in the label\'s own tables is dry mouth in 72.4% on immediate release against 34.9% on extended release, with dizziness falling from 16.6% to 5.0% and somnolence from 14.1% to 5.6%. Same molecule, same dose range, different delivery.',
+        auditNote:
+          'This is the rare case where a formulation change is the clinically significant innovation and the molecule is unchanged. The skin patch and the gel exist for the same reason.',
+      },
+      {
+        q: 'Is there anything that works better than this drug?',
+        a: 'In the one randomised trial that asked, yes. Burgio and colleagues randomised 197 women aged 55 and over to structured behavioural training, to oxybutynin, or to placebo. Behavioural training cut incontinence episodes by 80.7%, oxybutynin by 68.5% — a statistically significant difference at P=.04 — and placebo by 39.4%. The most striking result was not the diary: 75.5% of the drug group wanted to change to a different treatment by the end, exactly the same proportion as the placebo group, against 14.0% of the training group. A later extension found that combining the two helped patients who were unsatisfied with either alone. Behavioural training here meant several supervised sessions with biofeedback, not a leaflet.',
+      },
+      {
+        q: 'Should I worry about this drug and memory?',
+        a: 'It is the honest thing to raise with a prescriber, and it is not settled. A prospective cohort of 3,434 people aged 65 and over, followed a mean of 7.3 years, found the risk of a later dementia diagnosis rose with total anticholinergic exposure over the preceding decade: hazard ratio 1.54 (95% CI 1.21 to 1.96) for the highest exposure group against nonusers, with a clear dose-response trend. The study deliberately ignored the most recent year of prescriptions to reduce the chance that early symptoms were causing the prescribing. Oxybutynin is the most fat-soluble drug in its class and therefore the one that enters the brain most readily, which makes it the molecule most often singled out — but that singling out is pharmacological reasoning, not a drug-specific trial result. No randomised trial in this indication has ever been powered for a cognitive endpoint.',
+        auditNote:
+          'What the evidence supports is counting the total anticholinergic load across all a person\'s prescriptions. What it does not support is a claim about this one tablet in isolation.',
+      },
+      {
+        q: 'The patch is sold without a prescription. Does that mean it is safer?',
+        a: 'It means a regulator judged that consumers could select and use it appropriately, and the study run to test that is public. Bayer enrolled 855 consumers in an actual-use study. Before mitigating factors were counted, 14.4% continued using the patch after developing a symptom the labelling told them to stop for, and 51.7% used it incorrectly — wrong duration, or more than one patch at a time. After accounting for mitigation such as physician contact, those figures fell to 3.4% and 21.2%. Of 324 people who kept going despite concerning symptoms, 16 were assessed as facing medical risk. The switch to over-the-counter went ahead on that evidence. Over-the-counter status describes a regulatory judgement about self-selection, not a lower pharmacological risk: it is the same anticholinergic drug.',
+      },
+      {
+        q: 'Why does this page not show a manufacturing cost?',
+        a: 'Because no per-dose cost-of-production figure for oxybutynin could be verified and cited. The cost-of-production literature checked here publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about eight cents a unit in the CMS acquisition-cost survey, across ninety-two listed products — which is a price, not a cost of manufacture. It is the lowest figure on any page in this group, and the number of listed suppliers is the reason.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Burgio KL, Locher JL, Goode PS, Hardin JM, McDowell BJ, Dombrowski M, Candib D. Behavioral vs drug treatment for urge urinary incontinence in older women: a randomized controlled trial. JAMA 1998;280:1995-2000',
+        identifier: '10.1001/jama.280.23.1995',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Burgio KL, Locher JL, Goode PS. Combined behavioral and drug therapy for urge incontinence in older women. J Am Geriatr Soc 2000;48:370-374',
+        identifier: '10.1111/j.1532-5415.2000.tb04692.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gray SL, Anderson ML, Dublin S, et al. Cumulative use of strong anticholinergics and incident dementia: a prospective cohort study. JAMA Intern Med 2015;175:401-407',
+        identifier: '10.1001/jamainternmed.2014.7663',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Coupland CAC, Hill T, Dening T, Morriss R, Moore M, Hippisley-Cox J. Anticholinergic drug exposure and the risk of dementia: a nested case-control study. JAMA Intern Med 2019;179:1084-1093',
+        identifier: '10.1001/jamainternmed.2019.0677',
+        kind: 'doi',
+      },
+      {
+        label:
+          'OG05009 — placebo-controlled trial of oxybutynin topical gel for overactive bladder',
+        identifier: 'NCT00350636',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Oxytrol Transdermal System Actual Use Study — consumer self-selection and use of the over-the-counter patch',
+        identifier: 'NCT04534491',
+        kind: 'nct',
+      },
+      {
+        label:
+          'US prescribing information for oxybutynin chloride extended-release tablets — mechanism of action, clinical pharmacology, clinical studies and adverse reactions (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22oxybutynin+chloride%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4634 — oxybutynin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4634',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

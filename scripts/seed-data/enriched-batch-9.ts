@@ -2027,4 +2027,488 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Glyburide — the sulfonylurea with the most hypoglycaemia, dropped from pregnancy care after
+  //    a 2,509-woman meta-analysis reversed the trial that put it there, and simultaneously the
+  //    single most effective drug in medicine for a rare form of diabetes diagnosed in babies.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'glyburide',
+    name: 'Glyburide',
+    tradeName: 'Diabeta / Micronase / Glynase PresTab (glibenclamide outside the United States)',
+    sponsor: 'Pfizer (Upjohn and Pharmacia originators); marketed almost entirely as generics',
+    targetGene: 'ABCC8',
+    targetProtein:
+      'Sulfonylurea receptor 1 (SUR1) with the Kir6.2 pore (KCNJ11) on the pancreatic beta cell, and — unlike the more selective sulfonylureas — the SUR2A and SUR2B receptors of cardiac and vascular smooth muscle',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1984,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus.',
+    patientFriendlyIndication: 'Type 2 diabetes — the strongest and longest-acting of the old sulfonylurea tablets',
+    anatomicalSite:
+      'Pancreatic islet beta cell plasma membrane, and the ATP-sensitive potassium channels of cardiac and vascular smooth muscle',
+    conditionContext: {
+      conditionExplainer:
+        'Sulfonylureas force the pancreas to release insulin by chemically shutting a potassium channel that normally only shuts when blood sugar is high. Glyburide does this more potently and for longer than the others in its class, and its breakdown products keep doing it.',
+      whyItMatters:
+        'Potency and duration are not free. The measured consequence, across a randomised meta-analysis and a 13,963-person cohort, is more hypoglycaemia than any other second-generation sulfonylurea — and hypoglycaemia in an older person is a fall, a fracture, a hospital admission or a death.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, usually after metformin, and disproportionately those for whom price is the binding constraint. Its use in pregnancy has fallen sharply since 2015. In a rare genetic form of diabetes diagnosed before six months of age it is the treatment of choice.',
+      clinicalGoals:
+        'Lower HbA1c. The label itself states that no clinical study has established conclusive evidence of macrovascular risk reduction with glyburide or any other antidiabetic drug.',
+    },
+    oneSentenceVerdict:
+      'The most potent and longest-acting of the second-generation sulfonylureas, which closes the beta-cell potassium channel to force insulin release and produces 83% more hypoglycaemia than other sulfonylureas across 21 randomised trials — a drug that a 2,509-woman meta-analysis concluded should not be used in gestational diabetes if insulin or metformin is available, and that simultaneously allowed 44 of 49 patients with Kir6.2 neonatal diabetes to stop insulin altogether.',
+    laymanHowItWorks:
+      'Insulin-producing cells sit quietly because potassium leaks out of them through an open gate. When blood sugar rises the cell burns it, the gate shuts, and insulin is released. Glyburide jams that gate shut chemically, so insulin comes out whether or not there is sugar to justify it. It grips harder and stays longer than the other drugs of its type, and the liver turns it into breakdown products that do the same thing.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 52,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0668 per tablet at United States pharmacy acquisition cost, the median across 30 listed generic products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Long off patent and available as generics from many manufacturers. Two particle sizes are marketed and they are not interchangeable milligram for milligram: the conventional tablet and the micronised presentation sold as Glynase PresTab differ in bioavailability, which is a substitution hazard rather than a therapeutic distinction.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Within its own class, glyburide is the one with the worst measured hypoglycaemia record: 83% more than other sulfonylureas across 21 randomised trials, and 1.9 times the serious-hypoglycaemia risk of glipizide in a 13,963-person cohort of older adults. In pregnancy the comparison is settled against it — a meta-analysis of 15 randomised trials in 2,509 women found more macrosomia and more neonatal hypoglycaemia than insulin, and concluded it should not be used where insulin or metformin is available. In Kir6.2 neonatal diabetes there is no substitute for it, and insulin is the worse option.',
+      conventionalRx: [
+        {
+          name: 'Metformin',
+          class: 'Biguanide',
+          howItCompares:
+            'Does not force insulin release, so it does not cause hypoglycaemia on its own. In gestational diabetes the network of randomised comparisons puts metformin ahead of glyburide on birth weight (mean difference -209 g, 95% CI -314 to -104), macrosomia (risk ratio 0.33, 95% CI 0.13 to 0.81) and large-for-gestational-age newborns (risk ratio 0.44, 95% CI 0.21 to 0.92), though treatment failure requiring escalation was more common with metformin.',
+          typicalCost: 'Comparable — both are among the cheapest oral drugs available',
+          prosAndCons:
+            'Pros: no hypoglycaemia alone, no weight gain, better fetal outcomes than glyburide. Cons: gastrointestinal intolerance, contraindicated at low kidney function, and more treatment failures in gestational diabetes.',
+        },
+        {
+          name: 'Glipizide',
+          class: 'Second-generation sulfonylurea',
+          howItCompares:
+            'Same mechanism, shorter duration, no active metabolites, and measurably less hypoglycaemia. In 13,963 Medicaid enrollees aged 65 or over, the adjusted relative risk of serious hypoglycaemia for glyburide against glipizide was 1.9 (95% CI 1.2 to 2.9), and the excess held in every stratum including dose and duration of use.',
+          typicalCost: 'US$0.0464 per tablet at NADAC, marginally cheaper than glyburide',
+          prosAndCons:
+            'Pros: less hypoglycaemia at comparable glucose control, elimination half-life of 2 to 4 hours rather than a 24-hour tail. Cons: shares every class-level limitation, including the same 1970 label warning.',
+        },
+        {
+          name: 'Insulin (in gestational diabetes)',
+          class: 'Injected hormone replacement',
+          howItCompares:
+            'The comparator that glyburide was introduced to replace and that the evidence has now returned to. Against insulin in 2,509 randomised women, glibenclamide produced 109 g more birth weight (95% CI 35.9 to 181), 2.62 times the macrosomia (95% CI 1.35 to 5.08) and 2.04 times the neonatal hypoglycaemia (95% CI 1.30 to 3.20).',
+          typicalCost: 'Substantially more expensive and requires injection and monitoring',
+          prosAndCons:
+            'Pros: does not cross the placenta in meaningful amounts, and the fetal outcomes are better. Cons: injections, cost, and maternal hypoglycaemia risk of its own.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Treat a missed meal on this drug as an event, not an inconvenience',
+          action:
+            'Glyburide peaks about four hours after a dose and is still measurable at twenty-four, and its liver breakdown products remain active. A skipped meal, alcohol or a long walk is therefore a longer exposure than on a shorter-acting sulfonylurea.',
+          patientImpact:
+            'In 13,963 Medicaid enrollees aged 65 and over, serious hypoglycaemia — hospitalisation, emergency admission or death with a measured blood glucose below 50 mg/dL — occurred at 16.6 episodes per 1,000 person-years on glyburide, the highest rate of the six sulfonylureas studied. The label states that hypoglycaemia may be difficult to recognise in the elderly and in people taking beta-blockers.',
+          clinicalPrecaution:
+            'Any change to a diabetes regimen, including for fasting, illness or a change in kidney function, belongs with the prescribing clinician. Renal impairment raises glyburide levels because its active metabolites are cleared by the kidney. This page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'COC1=C(C=C(C=C1)Cl)C(=O)NCCC2=CC=C(C=C2)S(=O)(=O)NC(=O)NC3CCCCC3',
+      chemicalFormula: 'C23H28ClN3O5S',
+      molecularWeight: '494.00 g/mol',
+      targetReceptorAffinity:
+        'Binds the sulfonylurea receptor with higher affinity and slower dissociation than glipizide or tolbutamide, and — distinctively within the class — is not selective for the pancreatic SUR1 isoform over the SUR2A and SUR2B isoforms found in cardiac and vascular smooth muscle. The FDA label reports significant absorption within one hour, peak levels at about four hours and low but detectable levels at twenty-four hours, and states that "the mechanism by which glyburide lowers blood glucose during long-term administration has not been clearly established". Hepatic metabolism yields hydroxylated products that retain hypoglycaemic activity and are cleared renally.',
+      structureSource: {
+        label:
+          'PubChem CID 3488 (glyburide) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint and matched to the FDA label description section (molecular weight 493.99)',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3488',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'gly-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the chlorinated methoxybenzamide fragment',
+          description:
+            'Confirm the identity and purity of 5-chloro-2-methoxybenzoic acid or its acyl chloride, 4-(2-aminoethyl)benzenesulfonamide and cyclohexyl isocyanate. The chloro-methoxy benzamide head is what distinguishes glyburide from glipizide, and it is the fragment responsible for the higher receptor affinity and the loss of SUR1 selectivity — an incorrect halogen position changes the pharmacology, not just the assay.',
+          reagentsAndBuffer:
+            'Reference standards, nuclear magnetic resonance and infrared identity, chloride content by ion chromatography, Karl Fischer water determination, residual solvent screening by headspace gas chromatography',
+        },
+        {
+          id: 'gly-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Benzamide coupling then sulfonylurea closure',
+          description:
+            'Acylate the aminoethyl side chain of the benzenesulfonamide with the chlorinated methoxybenzoyl group, then react the sulfonamide nitrogen with cyclohexyl isocyanate to form the sulfonylurea bridge. Both steps are ordinary condensation chemistry and are the reason a tablet costs under seven cents.',
+          dependsOnStepId: 'gly-w1',
+          reagentsAndBuffer:
+            'Acyl chloride or carbodiimide activation, triethylamine base, cyclohexyl isocyanate, anhydrous acetone or toluene, controlled-temperature jacketed reactor with inert-gas blanket',
+        },
+        {
+          id: 'gly-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Base-acid reprecipitation and controlled particle-size reduction',
+          description:
+            'Reprecipitate from dilute alkali by acidification and recrystallise, then mill to the specified particle size. Particle size is not a cosmetic specification here: glyburide is practically insoluble in water, its dissolution is the rate-limiting step of absorption, and the micronised presentation is not bioequivalent to the conventional tablet at the same milligram strength. Two different products with the same generic name and different bioavailability is a dispensing hazard created at this step.',
+          dependsOnStepId: 'gly-w2',
+          reagentsAndBuffer:
+            'Dilute sodium hydroxide, dilute hydrochloric acid, ethanol-water recrystallisation, jet mill or air classifier, laser diffraction particle-size analysis, reversed-phase HPLC with ultraviolet detection',
+        },
+        {
+          id: 'gly-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Dissolution profiling and placental transfer modelling',
+          description:
+            'Run comparative dissolution across the marketed particle sizes, and characterise transfer across a placental barrier model. The placental question is specific to this molecule: the 404-woman trial that established glyburide in gestational diabetes reported that the drug was not detected in the cord serum of any infant, and the meta-analysis that displaced it fifteen years later found worse fetal outcomes anyway.',
+          dependsOnStepId: 'gly-w3',
+          reagentsAndBuffer:
+            'USP apparatus 2 dissolution in phosphate buffer with surfactant, biorelevant fasted and fed simulated intestinal fluids, BeWo trophoblast monolayers or ex vivo perfused placental cotyledon, liquid chromatography with tandem mass spectrometry at low nanogram sensitivity',
+        },
+        {
+          id: 'gly-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'SUR1 against SUR2A and SUR2B selectivity, and metabolite activity',
+          description:
+            'Measure binding and channel block at the pancreatic SUR1/Kir6.2 channel and at the cardiac SUR2A/Kir6.2 and vascular SUR2B/Kir6.1 channels in the same experiment, and repeat the panel for the hydroxylated metabolites. Non-selectivity is the mechanistic distinction of this molecule, and metabolite activity is the reason renal impairment prolongs its effect; neither can be inferred from the parent compound alone.',
+          dependsOnStepId: 'gly-w4',
+          reagentsAndBuffer:
+            'HEK293 cells co-transfected with SUR1/Kir6.2, SUR2A/Kir6.2 and SUR2B/Kir6.1, tritiated glibenclamide for competition binding, inside-out patch clamp with ATP-free intracellular solution, synthesised 4-trans-hydroxy and 3-cis-hydroxy metabolite standards',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'gly-a1',
+        category: 'measured',
+        title: 'Across 21 randomised trials it caused 83% more hypoglycaemia than its own class',
+        laymanSummary:
+          'Someone gathered every randomised trial that compared glyburide directly against another drug that squeezes insulin out of the pancreas, and counted low blood sugar episodes. Glyburide caused about half again as many as the comparators, and nearly twice as many as other sulfonylureas.',
+        technicalDetails:
+          'Gangji and colleagues searched Medline, Embase, Cochrane and three trial registers from 1966 to 2005, reviewed 1,806 titles in duplicate and identified 21 parallel randomised trials of glyburide monotherapy against another secretagogue or insulin in type 2 diabetes. Glyburide carried a 52% greater risk of at least one hypoglycaemic episode than other secretagogues (relative risk 1.52, 95% CI 1.21 to 1.92) and an 83% greater risk than other sulfonylureas (1.83, 95% CI 1.35 to 2.49). It was not associated with an increased risk of cardiovascular events (0.84, 95% CI 0.56 to 1.26), death (0.87, 95% CI 0.70 to 1.07) or end-of-trial weight (weighted mean difference 1.69 kg, 95% CI -0.41 to 3.80). The authors record that reporting in the original trials was suboptimal, loss to follow-up exceeded 20% in some, and major hypoglycaemia specifically was infrequently reported — so the excess is established for hypoglycaemia in general and is imprecise for the severe episodes that matter most.',
+        evidenceSource: 'Gangji AS, Cukierman T, Gerstein HC, Goldsmith CH, Clase CM. Diabetes Care 2007;30:389-394',
+        doi: '10.2337/dc06-1789',
+        measuredMetric:
+          'Relative risk of at least one hypoglycaemic episode, cardiovascular events, death and weight, glyburide against other secretagogues and other sulfonylureas',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'gly-a2',
+        category: 'measured',
+        title: 'It had the highest serious-hypoglycaemia rate of six sulfonylureas in older adults',
+        laymanSummary:
+          'A study of nearly 14,000 people over 65 counted episodes of low blood sugar severe enough to require a hospital. Glyburide had the highest rate of the six drugs examined, at about five times the rate of the lowest.',
+        technicalDetails:
+          'Shorr and colleagues followed 13,963 Tennessee Medicaid enrollees aged 65 or over prescribed one of six sulfonylureas between 1985 and 1989, identifying 255 first episodes of serious hypoglycaemia — hospitalisation, emergency admission or death with neuroglycopenic or autonomic symptoms and a concomitant blood glucose below 2.8 mmol/L — during 20,715 person-years of use. The crude rate per 1,000 person-years was 16.6 for glyburide (95% CI 13.2 to 19.9), the highest of the six, against 3.5 for tolbutamide (95% CI 1.2 to 5.9), the lowest. Glyburide users did not differ from chlorpropamide users, historically the class outlier for hypoglycaemia. Among second-generation agents the adjusted relative risk for glyburide against glipizide was 1.9 (95% CI 1.2 to 2.9), holding in every stratum defined by gender, race, nursing-home residence, dose and duration. This is an observational cohort and prescribing was not randomised.',
+        evidenceSource: 'Shorr RI, Ray WA, Daugherty JR, Griffin MR. J Am Geriatr Soc 1996;44:751-755',
+        doi: '10.1111/j.1532-5415.1996.tb03729.x',
+        measuredMetric:
+          'Crude serious-hypoglycaemia rate per 1,000 person-years by individual sulfonylurea, and adjusted relative risk against glipizide, in adults aged 65 and over',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'gly-a3',
+        category: 'conclusion_shift',
+        title: 'A 404-woman trial made it standard in pregnancy; a 2,509-woman analysis reversed that',
+        laymanSummary:
+          'In 2000 a randomised trial concluded glyburide was a clinically effective alternative to insulin in gestational diabetes, and it became widely used. In 2015 a pooled analysis of fifteen randomised trials found babies born heavier, more than twice as much macrosomia and twice as much newborn low blood sugar, and concluded the drug should not be used if insulin or metformin was available.',
+        technicalDetails:
+          'Langer and colleagues randomised 404 women with singleton pregnancies and gestational diabetes requiring treatment, between 11 and 33 weeks, to glyburide or insulin. Mean blood glucose during treatment was 105 mg/dL in both arms (p=0.99); 8 women on glyburide (4%) required insulin; there were no significant differences in large-for-gestational-age infants (12% against 13%), macrosomia (7% against 4%), lung complications, neonatal hypoglycaemia (9% against 6%), NICU admission or fetal anomalies, and glyburide was not detected in the cord serum of any infant. The authors concluded glyburide was a clinically effective alternative. Balsells and colleagues then pooled 15 randomised articles totalling 2,509 subjects, searched to May 2014. Against insulin, glibenclamide produced a mean birth weight difference of 109 g (95% CI 35.9 to 181), a macrosomia risk ratio of 2.62 (95% CI 1.35 to 5.08) and a neonatal hypoglycaemia risk ratio of 2.04 (95% CI 1.30 to 3.20). Against metformin it produced 209 g more birth weight, 3.0 times the macrosomia and 2.3 times the large-for-gestational-age rate. Their conclusion is unambiguous: "glibenclamide is clearly inferior to both insulin and metformin", and it "should not be used for the treatment of women with gestational diabetes if insulin or metformin is available."',
+        evidenceSource:
+          'Langer O et al., N Engl J Med 2000;343:1134-1138; Balsells M et al., BMJ 2015;350:h102 (registration NCT01998113)',
+        doi: '10.1136/bmj.h102',
+        measuredMetric:
+          'Mean birth weight difference, macrosomia risk ratio and neonatal hypoglycaemia risk ratio against insulin, pooled across 15 randomised trials in 2,509 women',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'gly-a4',
+        category: 'conclusion_shift',
+        title: 'In babies with a specific channel mutation, it replaced insulin entirely',
+        laymanSummary:
+          'Diabetes diagnosed before six months of age is usually caused by a mutation that jams the same potassium gate this drug closes, permanently open. Of 49 patients switched from insulin to a sulfonylurea, 44 stopped insulin altogether and their average blood sugar improved.',
+        technicalDetails:
+          'Heterozygous activating mutations in KCNJ11, which encodes the Kir6.2 subunit of the ATP-sensitive potassium channel, cause 30 to 58% of diabetes diagnosed under six months of age. The channel fails to close in response to rising intracellular ATP, so glucose cannot trigger insulin release. Sulfonylureas close the channel by an ATP-independent route, which is precisely the step the mutation has broken. Pearson and colleagues assessed 49 consecutive patients with Kir6.2 mutations given appropriate sulfonylurea doses: 44 (90%) successfully discontinued insulin. HbA1c fell from 8.1% before treatment to 6.4% after 12 weeks (p<0.001), and the improvement was sustained at one year. The extent of tolbutamide blockade of mutant channels in Xenopus oocytes predicted the response seen in patients. Insulin secretion was more strongly stimulated by oral glucose or a mixed meal than by intravenous glucose, and exogenous glucagon increased insulin secretion only in the presence of sulfonylureas.',
+        evidenceSource:
+          'Pearson ER et al., N Engl J Med 2006;355:467-477, Neonatal Diabetes International Collaborative Group (NCT00334711)',
+        doi: '10.1056/NEJMoa061759',
+        measuredMetric:
+          'Proportion of patients discontinuing insulin, and change in HbA1c at 12 weeks and one year, in 49 consecutive patients with Kir6.2 mutations',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'gly-a5',
+        category: 'inferred',
+        title: 'The label states no drug in this field has conclusively reduced macrovascular risk',
+        laymanSummary:
+          'The precautions section of the glyburide label says plainly that no clinical study has established conclusive evidence that this drug — or any diabetes drug — reduces the risk of heart attacks and strokes. That sentence has been on the label for decades.',
+        technicalDetails:
+          'The PRECAUTIONS section of the glyburide label opens: "Macrovascular Outcomes: There have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with glyburide tablets or any other anti-diabetic drug." The same label carries the class-wide special warning on increased risk of cardiovascular mortality derived from the University Group Diabetes Program, an 823-patient trial of tolbutamide reported in 1970 and extended to the class by chemical analogy. The randomised evidence that exists is neutral rather than reassuring: the Gangji meta-analysis found a cardiovascular event risk ratio of 0.84 (95% CI 0.56 to 1.26) and a death risk ratio of 0.87 (95% CI 0.70 to 1.07) against other secretagogues, both compatible with no difference in either direction, from trials not designed or powered for those endpoints. Glyburide has never had a dedicated cardiovascular outcome trial.',
+        evidenceSource:
+          'FDA prescribing information for glyburide tablets USP, PRECAUTIONS (Macrovascular Outcomes) and WARNINGS; Gangji AS et al., Diabetes Care 2007;30:389-394',
+        inferredClaim:
+          'That lowering HbA1c with glyburide reduces heart attacks and strokes — the label states no study has conclusively established this for any antidiabetic drug, and the pooled randomised estimate straddles no effect',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'gly-a6',
+        category: 'failed',
+        title: 'In UKPDS, glibenclamide doubled major hypoglycaemia and moved no hard endpoint',
+        laymanSummary:
+          'The largest and longest trial of tight control in type 2 diabetes used glibenclamide as one of its intensive treatments. It doubled the rate of severe low blood sugar against dietary management, prevented eye and kidney damage, and did not significantly reduce deaths.',
+        technicalDetails:
+          'UKPDS 33 randomised 3,867 newly diagnosed patients with type 2 diabetes to intensive control with a sulphonylurea (chlorpropamide, glibenclamide or glipizide) or insulin, or conventional dietary policy, and followed them a median of ten years. Median HbA1c was 7.0% intensive against 7.9% conventional. Major hypoglycaemic episodes per year were 0.7% on conventional treatment, 1.0% on chlorpropamide, 1.4% on glibenclamide and 1.8% on insulin. Intensive treatment reduced any diabetes-related endpoint by 12% (95% CI 1 to 21, p=0.029), driven by a 25% reduction in microvascular endpoints (95% CI 7 to 40, p=0.0099); diabetes-related death fell 10% (95% CI -11 to 27, p=0.34) and all-cause mortality 6% (95% CI -10 to 20, p=0.44), neither significant. There was no difference in the three aggregate endpoints between chlorpropamide, glibenclamide and insulin. Mean weight gain in the intensive group was 2.9 kg (p<0.001).',
+        evidenceSource:
+          'UK Prospective Diabetes Study (UKPDS) Group, Lancet 1998;352:837-853 (UKPDS 33, PMID 9742976)',
+        doi: '10.1016/S0140-6736(98)07019-6',
+        measuredMetric:
+          'Annual rate of major hypoglycaemic episodes by agent, and relative risk reductions for aggregate diabetes-related endpoints and mortality at ten years',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed slowly, peaking at about four hours',
+        laymanDesc:
+          'The drug is practically insoluble in water, so how fast it dissolves decides how fast it works. Meaningful levels appear within an hour, peak around four, and are still detectable a full day later.',
+        molecularDetail:
+          'The label reports significant absorption within one hour, peak drug levels at about four hours and low but detectable levels at twenty-four hours. Dissolution is rate-limiting, which is why the micronised presentation is not bioequivalent to the conventional tablet milligram for milligram.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It grips the potassium gate harder than the other drugs in its class',
+        laymanDesc:
+          'Like every sulfonylurea it binds the handle sitting on the beta cell potassium gate. Unlike the others, it binds more tightly, lets go more slowly, and also grips the versions of that handle found in the heart and blood vessels.',
+        molecularDetail:
+          'Glyburide binds SUR1 with higher affinity and slower off-rate than glipizide or tolbutamide, and lacks the SUR1-over-SUR2 selectivity of the newer agents. The chloro-methoxybenzamide head group is responsible for both properties.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The gate shuts, the cell depolarises, calcium enters',
+        laymanDesc:
+          'With potassium no longer leaking out, charge builds inside the cell. Voltage-gated calcium channels open, calcium rushes in, and the stored packets of insulin fuse with the cell surface and empty.',
+        molecularDetail:
+          'Channel closure removes the resting potassium conductance and depolarises the beta cell toward the L-type calcium channel threshold. Rising cytosolic calcium triggers SNARE-mediated exocytosis of docked insulin granules — the same final step glucose metabolism normally reaches by raising the ATP-to-ADP ratio.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'The liver makes breakdown products that do the same thing',
+        laymanDesc:
+          'Most drugs are switched off by the liver. Glyburide is converted into hydroxylated products that still lower blood sugar, and the kidney has to clear them. If kidney function is poor they build up.',
+        molecularDetail:
+          'Hepatic hydroxylation yields 4-trans-hydroxy and 3-cis-hydroxy metabolites that retain hypoglycaemic activity and depend on renal elimination. The label warns that renal or hepatic insufficiency may cause elevated glyburide levels and that hepatic impairment additionally reduces gluconeogenic capacity — two independent routes to the same event.',
+        iconName: 'Recycle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Blood sugar falls, and keeps falling for longer than on other sulfonylureas',
+        laymanDesc:
+          'Insulin drives glucose into muscle and fat and shuts the liver down. Because the release was not conditional on blood sugar and the drug lingers, the fall continues past the point where it is useful.',
+        molecularDetail:
+          'This is the mechanistic origin of the measured excess: 83% more hypoglycaemia than other sulfonylureas across 21 randomised trials, and 16.6 serious episodes per 1,000 person-years in adults over 65 — the highest of six agents compared in the same cohort.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'In one rare disease, this exact mechanism is the cure',
+        laymanDesc:
+          'Some babies are born with a mutation that jams that potassium gate permanently open, so glucose can never trigger insulin. A drug that shuts the gate chemically bypasses the broken switch entirely.',
+        molecularDetail:
+          'Activating KCNJ11 mutations prevent ATP-dependent channel closure, which is why the affected beta cell cannot respond to glucose. Sulfonylureas close the channel by an ATP-independent route. In 49 consecutive patients, 44 discontinued insulin and HbA1c fell from 8.1% to 6.4% at 12 weeks. The degree of channel block measured in Xenopus oocytes predicted the clinical response.',
+        iconName: 'Dna',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Balsells 2015 meta-analysis in gestational diabetes (NCT01998113)',
+        phase: 'Systematic review and meta-analysis of 15 randomised controlled trials',
+        sampleSize: 2509,
+        primaryEndpoint:
+          'Fourteen primary maternal and fetal outcomes comparing glibenclamide or metformin against insulin or against each other in gestational diabetes requiring drug treatment',
+        endpointMet: false,
+        statisticalPValue:
+          'Against insulin: birth weight +109 g (95% CI 35.9 to 181); macrosomia risk ratio 2.62 (95% CI 1.35 to 5.08); neonatal hypoglycaemia risk ratio 2.04 (95% CI 1.30 to 3.20)',
+        unreportedAdverseSignals:
+          'The conclusion reverses the 404-woman randomised trial that established the practice: the reviewers state glibenclamide is clearly inferior to both insulin and metformin and should not be used where either is available.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Langer 2000 glyburide against insulin in gestational diabetes',
+        phase: 'Randomised controlled trial, 11 to 33 weeks of gestation to delivery',
+        sampleSize: 404,
+        primaryEndpoint: 'Achievement of the desired level of glycaemic control',
+        endpointMet: true,
+        statisticalPValue:
+          'Mean blood glucose during treatment 105 mg/dL in both arms (P = 0.99); no significant difference in any reported neonatal outcome',
+        unreportedAdverseSignals:
+          'Macrosomia was 7% against 4% and neonatal hypoglycaemia 9% against 6% — differences the trial was not powered to detect and which reached significance when pooled with fourteen later trials.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Pearson 2006 sulfonylurea transfer in Kir6.2 neonatal diabetes (NCT00334711)',
+        phase: 'Prospective consecutive-series transfer study with in vitro channel assay, 1 year',
+        sampleSize: 49,
+        primaryEndpoint:
+          'Glycaemic control after transfer from insulin to sulfonylurea in patients with KCNJ11 mutations',
+        endpointMet: true,
+        statisticalPValue:
+          'P < 0.001 for a fall in HbA1c from 8.1% to 6.4% at 12 weeks; 44 of 49 patients (90%) discontinued insulin',
+        unreportedAdverseSignals:
+          'Not a randomised trial and not blinded; the authors describe safety as established only in the short term. Five patients did not come off insulin, and that subgroup is small.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'UKPDS 33, glibenclamide arm',
+        phase: 'Randomised controlled trial of glycaemic policy, median 10 years',
+        sampleSize: 3867,
+        primaryEndpoint:
+          'Any diabetes-related endpoint, diabetes-related death and all-cause mortality for intensive control against conventional dietary policy',
+        endpointMet: true,
+        statisticalPValue:
+          'P = 0.029 for a 12% reduction in any diabetes-related endpoint; P = 0.0099 for a 25% reduction in microvascular endpoints; P = 0.34 and P = 0.44 for diabetes-related death and all-cause mortality',
+        unreportedAdverseSignals:
+          'Major hypoglycaemia was 1.4% per year on glibenclamide against 0.7% on conventional treatment. No macrovascular benefit was demonstrated.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'An 83% greater risk of at least one hypoglycaemic episode than other sulfonylureas across 21 randomised trials (RR 1.83, 95% CI 1.35 to 2.49)',
+        'The highest serious-hypoglycaemia rate of six sulfonylureas in 13,963 adults aged 65 and over — 16.6 episodes per 1,000 person-years',
+        'Against insulin in gestational diabetes: 109 g more birth weight, 2.62 times the macrosomia and 2.04 times the neonatal hypoglycaemia, pooled across 2,509 women',
+        'In Kir6.2 neonatal diabetes: 44 of 49 patients discontinued insulin, with HbA1c falling from 8.1% to 6.4% at 12 weeks (p<0.001) and holding at one year',
+      ],
+      unsupportedInferences: [
+        'That glyburide reduces heart attacks or strokes — its own label states no study has conclusively established macrovascular risk reduction for this or any antidiabetic drug',
+        'That the absence of a cardiovascular signal in the meta-analysis is reassurance — the risk ratios of 0.84 for events and 0.87 for death come from trials not designed for those endpoints, with confidence intervals that include meaningful harm',
+        'That undetectable cord-serum drug levels mean no fetal effect — the 2000 trial reported exactly that, and the pooled fetal outcomes fifteen years later were worse than insulin anyway',
+        'That the micronised and conventional tablets are interchangeable milligram for milligram — they are not bioequivalent',
+      ],
+      whatFailedInitially: [
+        'The gestational diabetes indication: a 404-woman randomised trial concluded glyburide was a clinically effective alternative to insulin, and a 15-trial meta-analysis in 2,509 women concluded it should not be used where insulin or metformin is available',
+        'UKPDS 33 showed no significant reduction in diabetes-related death or all-cause mortality, at the cost of doubling major hypoglycaemia against dietary management',
+        'The class-wide 1970 UGDP cardiovascular mortality warning still sits at the top of the label, unresolved by any trial of glyburide itself',
+      ],
+      realWorldOutcome: [
+        'US$0.0668 per tablet at United States pharmacy acquisition cost, the median across 30 listed generic products in the CMS NADAC survey',
+        'Use in pregnancy fell after 2015; use in type 2 diabetes persists, concentrated where price is the binding constraint',
+        'It remains the treatment of choice for KCNJ11 and ABCC8 neonatal diabetes, a use discovered three decades after approval',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, in conventional and micronised particle-size presentations',
+      description:
+        'Glyburide is practically insoluble in water, so particle size determines how much reaches the blood. Two presentations are marketed with the same generic name and different bioavailability: a conventional tablet and a micronised tablet sold as Glynase PresTab. They are not interchangeable milligram for milligram, and confusing them is a substitution error rather than a therapeutic choice.',
+      safetyProfile:
+        'Hypoglycaemia is the defining risk, is mechanistic rather than idiosyncratic, and is measurably greater than for other sulfonylureas. Renal or hepatic impairment raises drug and active-metabolite levels; hepatic impairment separately reduces the capacity to make glucose. The label notes hypoglycaemia may be hard to recognise in older people and in those on beta-blockers, and is more likely with deficient calorie intake, prolonged exercise, alcohol or multiple glucose-lowering drugs. Weight gain occurs. A mild diuresis and rare disulfiram-like reactions are described on the label. The class-wide special warning on increased cardiovascular mortality, derived from the 1970 UGDP tolbutamide trial, applies.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is glyburide worse than other sulfonylureas?',
+        a: 'On hypoglycaemia, the measured answer is yes, and it has been measured twice by different methods. A meta-analysis of 21 randomised trials found an 83% greater risk of at least one hypoglycaemic episode than other sulfonylureas (RR 1.83, 95% CI 1.35 to 2.49). A cohort of 13,963 people aged 65 and over found the highest serious-hypoglycaemia rate of the six sulfonylureas studied, 16.6 episodes per 1,000 person-years, and an adjusted relative risk of 1.9 against glipizide that held in every subgroup. The mechanistic explanation is consistent: glyburide binds the receptor more tightly, releases it more slowly, is still detectable 24 hours after a dose, and its liver breakdown products remain active and depend on the kidney to clear them.',
+        auditNote:
+          'The same meta-analysis found no excess of cardiovascular events or death. Those confidence intervals are wide and the trials were not built to answer that question.',
+      },
+      {
+        q: 'Why did doctors stop using it in pregnancy?',
+        a: 'Because the evidence base grew and reversed. A 404-woman randomised trial published in 2000 found identical average blood glucose on glyburide and insulin, no significant difference in any neonatal outcome, and no glyburide detectable in cord serum, and concluded it was a clinically effective alternative. It became widely used on that basis. In 2015 a meta-analysis pooled fifteen randomised trials totalling 2,509 women and found that against insulin, glibenclamide produced 109 g more birth weight (95% CI 35.9 to 181), 2.62 times the macrosomia (95% CI 1.35 to 5.08) and 2.04 times the neonatal hypoglycaemia (95% CI 1.30 to 3.20). Its conclusion was that glibenclamide should not be used in gestational diabetes if insulin or metformin is available. The original trial was not wrong about what it measured; it was too small to detect the differences that mattered.',
+      },
+      {
+        q: 'Why is an old, cheap tablet the best treatment for a rare kind of baby diabetes?',
+        a: 'Because the mutation and the drug act on the same protein from opposite directions. Diabetes diagnosed before six months of age is often caused by an activating mutation in KCNJ11 or ABCC8, which leaves the beta cell potassium channel stuck open so that glucose can never trigger insulin release. Sulfonylureas close that channel by a route that does not need ATP, which bypasses the broken step entirely. In 49 consecutive patients switched from insulin, 44 came off insulin completely and average HbA1c fell from 8.1% to 6.4% within twelve weeks, sustained at a year. The degree to which each patient responded was predicted by how strongly the drug blocked the mutant channel of that patient in a frog-egg expression system.',
+        auditNote:
+          'This is a genotype-directed use in a rare monogenic disease. It says nothing about how the drug performs in ordinary type 2 diabetes.',
+      },
+      {
+        q: 'Does glyburide prevent heart attacks?',
+        a: 'No study has shown that, and the label says so. The precautions section states: "There have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with glyburide tablets or any other anti-diabetic drug." The pooled randomised comparison against other secretagogues gave a cardiovascular event risk ratio of 0.84 with a confidence interval from 0.56 to 1.26, and a death risk ratio of 0.87 from 0.70 to 1.07 — both compatible with no difference in either direction, from trials that were not designed to answer the question. Glyburide has never had a dedicated cardiovascular outcome trial, and the 1970 warning that opens its label concerns a different drug.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for glyburide could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.0668 per tablet, the median across 30 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost, and this page will not guess at the difference.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Gangji AS, Cukierman T, Gerstein HC, Goldsmith CH, Clase CM. A systematic review and meta-analysis of hypoglycemia and cardiovascular events: a comparison of glyburide with other secretagogues and with insulin. Diabetes Care 2007;30:389-394',
+        identifier: '10.2337/dc06-1789',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Shorr RI, Ray WA, Daugherty JR, Griffin MR. Individual sulfonylureas and serious hypoglycemia in older people. J Am Geriatr Soc 1996;44:751-755',
+        identifier: '10.1111/j.1532-5415.1996.tb03729.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Balsells M, García-Patterson A, Solà I, Roqué M, Gich I, Corcoy R. Glibenclamide, metformin, and insulin for the treatment of gestational diabetes: a systematic review and meta-analysis. BMJ 2015;350:h102',
+        identifier: '10.1136/bmj.h102',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Langer O, Conway DL, Berkus MD, Xenakis EM, Gonzales O. A comparison of glyburide and insulin in women with gestational diabetes mellitus. N Engl J Med 2000;343:1134-1138',
+        identifier: '10.1056/NEJM200010193431601',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pearson ER, Flechtner I, Njølstad PR et al. Switching from insulin to oral sulfonylureas in patients with diabetes due to Kir6.2 mutations. N Engl J Med 2006;355:467-477',
+        identifier: '10.1056/NEJMoa061759',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sulfonylurea Therapy in Patients With Permanent Neonatal Diabetes Due to Kir6.2 Mutations',
+        identifier: 'NCT00334711',
+        kind: 'nct',
+      },
+      {
+        label:
+          'UK Prospective Diabetes Study (UKPDS) Group. Intensive blood-glucose control with sulphonylureas or insulin compared with conventional treatment and risk of complications in patients with type 2 diabetes (UKPDS 33). Lancet 1998;352:837-853',
+        identifier: '10.1016/S0140-6736(98)07019-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA prescribing information for glyburide tablets USP — CLINICAL PHARMACOLOGY, PRECAUTIONS (Macrovascular Outcomes, Hypoglycemia) and WARNINGS',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glyburide%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3488 — glyburide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3488',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

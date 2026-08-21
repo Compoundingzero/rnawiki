@@ -2183,4 +2183,521 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       NADAC_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Umeclidinium — a once-daily antimuscarinic whose own trials measured lung function only, and
+  //    whose exacerbation claim on the label comes from a trial of a three-drug inhaler.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'umeclidinium',
+    name: 'Umeclidinium',
+    tradeName: 'Incruse Ellipta',
+    sponsor: 'GlaxoSmithKline (developed as GSK573719)',
+    targetGene: 'CHRM3',
+    targetProtein:
+      'Muscarinic acetylcholine receptor M3 on airway smooth muscle — with sub-nanomolar affinity at M1 to M5',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2013,
+    indication:
+      'Maintenance treatment of patients with chronic obstructive pulmonary disease. Not indicated for the relief of acute symptoms and not to be initiated in acutely deteriorating COPD.',
+    patientFriendlyIndication:
+      'A once-daily inhaler for long-term chronic obstructive pulmonary disease, blocking the nerve signal that tightens the airway',
+    anatomicalSite:
+      'Muscarinic M3 receptors on bronchial smooth muscle, reached by dry powder deposited in the conducting airways',
+    conditionContext: {
+      conditionExplainer:
+        'Chronic obstructive pulmonary disease narrows the airways in two ways at once. Part of the narrowing is structural — destroyed air sacs and thickened small airways — and does not move. Part of it is the airway muscle held in constant mild contraction by a nerve signal, and that part can be released.',
+      whyItMatters:
+        'Umeclidinium releases the second part. That is a real and immediate improvement in how much air can be moved, and it is not a change in the disease. Knowing which of the two a drug addresses is the difference between expecting relief and expecting recovery.',
+      whoTakesThis:
+        'People with chronic obstructive pulmonary disease as long-term maintenance treatment. It is not approved for asthma, and the label says so by omission rather than by warning: asthma appears nowhere in its indications.',
+      clinicalGoals:
+        'More air moved on a breathing test and less breathlessness. Whether it prevents exacerbations on its own has not been tested in a trial of the drug on its own.',
+    },
+    oneSentenceVerdict:
+      'A once-daily quaternary antimuscarinic with sub-nanomolar affinity at all five muscarinic receptors and slow functional reversal at M3, which raised trough lung function by 115 to 127 mL against placebo in its own 12- and 24-week trials; its label’s exacerbation claim comes not from those trials but from IMPACT, where umeclidinium was one of three drugs in a single inhaler given to 10,355 people.',
+    laymanHowItWorks:
+      'A nerve running to the lungs keeps the muscle around each airway slightly tightened all the time. Umeclidinium blocks the receptor that signal arrives at, and the muscle relaxes. It carries a permanent electrical charge, so it stays in the airway rather than spreading through the body, and it clears off the receptor slowly enough that one inhalation covers a day. It changes nothing about the destroyed lung tissue underneath, so it makes breathing easier without making the disease better.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$10.28 per unit, the median across 3 listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Umeclidinium is one of the newest molecules in this file and is still sold only as a brand, in only three listed presentations. It exists in the Ellipta dry-powder inhaler and nowhere else — alone as Incruse, with vilanterol as Anoro and with fluticasone furoate and vilanterol as Trelegy. Every piece of clinical evidence about it was generated inside that device, which means the molecule and the inhaler cannot be separated in the record even in principle.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Umeclidinium is a member of a class with an older and much better-studied leader. The honest comparison is tiotropium, which has a four-year outcome trial and a 17,135-patient safety trial behind it, against umeclidinium, which has neither. On lung function they are close. On the questions that take years to answer, one of them has been asked and the other has not.',
+      conventionalRx: [
+        {
+          name: 'Tiotropium (Spiriva)',
+          class: 'Long-acting muscarinic antagonist',
+          howItCompares:
+            'The reference molecule of this class, once daily, with a four-year 5,993-patient trial and a 17,135-patient device safety trial in its record. In isolated human bronchial strips the two behave almost identically: time to 50% restoration of contraction after washout was about 381 minutes for umeclidinium and 413 minutes for tiotropium.',
+          typicalCost:
+            'US$11.73 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: by far the larger evidence base, including hard safety outcomes over years. Cons: capsule-loading or soft-mist devices rather than a single-step dry-powder inhaler, and no cheaper.',
+        },
+        {
+          name: 'Ipratropium (Atrovent)',
+          class: 'Short-acting muscarinic antagonist',
+          howItCompares:
+            'The same receptor at a hundredth of the price, four times a day instead of once, and directly beaten by a long-acting antimuscarinic on trough lung function and exacerbations in a randomised one-year comparison.',
+          typicalCost:
+            'US$0.1089 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: generic, cheap, available as a nebuliser solution. Cons: four doses a day, and lower trough lung function than a long-acting agent.',
+        },
+        {
+          name: 'Umeclidinium with vilanterol (Anoro Ellipta)',
+          class: 'Long-acting muscarinic antagonist plus long-acting beta-2 agonist',
+          howItCompares:
+            'The same molecule with a beta-agonist added in the same inhaler. In EMAX, 2,696 patients at low exacerbation risk, the combination gave 66 mL more trough FEV1 than umeclidinium alone at 24 weeks (95% CI 43 to 89, p<0.001).',
+          typicalCost:
+            'US$6.50 per unit for the vilanterol-containing products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: 66 mL more lung function and better dyspnoea scores than umeclidinium alone. Cons: two long-acting bronchodilators where one may be enough, and the increment is smaller than the effect of the first drug.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report eye pain, blurred vision or haloes at once',
+          action:
+            'If narrow-angle glaucoma is known or suspected, raise it before starting and treat these symptoms as urgent.',
+          patientImpact:
+            'The label states that worsening of narrow-angle glaucoma may occur and instructs patients to contact a healthcare provider immediately if symptoms appear.',
+          clinicalPrecaution:
+            'Muscarinic receptors sit in the eye as well as the airway. This is the mechanism working where it was not wanted, which is why it is predictable rather than rare and idiosyncratic.',
+        },
+        {
+          name: 'Say if passing urine has become difficult',
+          action:
+            'Mention prostate enlargement or bladder-neck obstruction before the first dose and report new difficulty passing urine.',
+          patientImpact:
+            'The label names worsening of urinary retention as a specific risk requiring immediate contact with a healthcare provider.',
+          clinicalPrecaution:
+            'Bladder emptying depends on the same receptor family. The risk is highest in men who already have some outflow obstruction.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C1C[N+]2(CCC1(CC2)C(C3=CC=CC=C3)(C4=CC=CC=C4)O)CCOCC5=CC=CC=C5',
+      chemicalFormula: 'C29H34NO2',
+      molecularWeight: '428.60 g/mol',
+      targetReceptorAffinity:
+        'Affinity (Ki) for cloned human M1 to M5 receptors ranged from 0.05 to 0.16 nM — sub-nanomolar and essentially the same at every subtype. Dissociation of the labelled compound was slower from M3 than from M2, with half-lives of 82 and 9 minutes. In acetylcholine-mediated calcium mobilisation in CHO cells expressing human M3 the antagonism was competitive with partial reversibility after washout, and in isolated human bronchial strips the time to 50% restoration of contraction at 10 nM was about 381 minutes, against 413 minutes for tiotropium in the same experiment.',
+      structureSource: {
+        label:
+          'PubChem CID 11519070 (umeclidinium) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11519070',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ume-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the quinuclidinol diphenylmethanol core',
+          description:
+            'Confirm the tertiary alcohol bearing two phenyl rings on the quinuclidine bridgehead before quaternisation. The diphenyl carbinol is the pharmacophore shared with every antimuscarinic in this class; the benzyloxyethyl group added later is what sets the duration.',
+          reagentsAndBuffer:
+            'Umeclidinium bromide reference standard, reversed-phase HPLC with ultraviolet detection, 1H and 13C NMR in DMSO-d6, ion chromatography for bromide',
+        },
+        {
+          id: 'ume-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Quaternisation with the benzyloxyethyl arm',
+          description:
+            'Alkylate the quinuclidine nitrogen with 2-benzyloxyethyl bromide to give the permanently charged azoniabicyclooctane. The charge is deliberate: it keeps the drug in the airway lumen and out of the central nervous system, and it is why swallowed drug contributes almost nothing to systemic exposure.',
+          dependsOnStepId: 'ume-w1',
+          reagentsAndBuffer:
+            '3-substituted quinuclidin-3-ol intermediate, 2-benzyloxyethyl bromide, acetonitrile or chloroform, elevated temperature under nitrogen',
+        },
+        {
+          id: 'ume-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and micronisation for the Ellipta blister',
+          description:
+            'Crystallise the bromide and micronise it into a lactose blend with a controlled aerodynamic particle size. This step is not incidental to the drug: umeclidinium has never been given to a patient by any route other than this device, so the powder specification is part of the evidence, not a manufacturing detail beneath it.',
+          dependsOnStepId: 'ume-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from acetonitrile or ethanol, jet milling, lactose monohydrate carrier blend, cascade impaction for aerodynamic particle size distribution, X-ray powder diffraction for polymorph identity',
+        },
+        {
+          id: 'ume-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Antagonism in CHO cells expressing human M3',
+          description:
+            'Challenge Chinese hamster ovary cells transfected with human M3 receptors with acetylcholine and measure the calcium rise in the presence of drug. Run a washout arm alongside: reversibility after washout is the property that separates members of this class, and a protocol without a washout arm reports only the trivial part of the pharmacology.',
+          dependsOnStepId: 'ume-w3',
+          reagentsAndBuffer:
+            'CHO cells stably expressing recombinant human CHRM3, Fluo-4 or equivalent calcium-sensitive dye, HEPES-buffered assay saline with probenecid, acetylcholine as agonist, repeated buffer washes for the reversibility arm',
+        },
+        {
+          id: 'ume-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Human bronchial strip contraction recovery against a reference antimuscarinic',
+          description:
+            'Contract isolated human bronchial strips with carbachol, apply drug, wash, and record the time to 50% restoration of contraction with tiotropium run in parallel. Only a side-by-side functional measurement supports a duration comparison between molecules — radioligand off-rates from different laboratories under different conditions do not.',
+          dependsOnStepId: 'ume-w4',
+          reagentsAndBuffer:
+            'Isolated human bronchial strips in Krebs-Henseleit solution at 37C, carbachol as contractile agonist, tiotropium bromide as reference comparator, isometric force transducers, Schild analysis for pA2',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ume-a1',
+        category: 'measured',
+        title: 'Its own placebo-controlled trials measured lung function, and nothing else',
+        laymanSummary:
+          'The two trials that support approval both asked the same question: how much more air can you blow out in one second, twenty-four hours after a dose? The answer was around 120 to 130 millilitres more than placebo. Neither trial counted flare-ups.',
+        technicalDetails:
+          'A 12-week randomised placebo-controlled trial enrolled 246 patients with moderate to very severe COPD; the primary endpoint was change from baseline in trough FEV1 on day 85. Umeclidinium 62.5 and 125 micrograms improved least-squares mean trough FEV1 by 127 and 152 mL against placebo (p<0.001), with 0-6-hour weighted mean improvements of 166 and 191 mL. In the 24-week trial (NCT01313650, 1,532 patients in the intent-to-treat population), all active arms improved trough FEV1 on day 169 by 0.072 to 0.167 L against placebo (all p<0.001), with the umeclidinium-vilanterol combination significantly greater than either monotherapy by 0.052 to 0.095 L (p<=0.004). Both trials used trough FEV1 as the primary endpoint. Neither was designed or powered to measure exacerbations.',
+        evidenceSource:
+          'Trivedi R, Richard N, Mehta R, Church A. Eur Respir J 2014;43:72-81; Donohue JF, Maleki-Yazdi MR, Kilbride S, et al. Respir Med 2013;107:1538-1546 (NCT01313650)',
+        doi: '10.1183/09031936.00033213',
+        measuredMetric: 'Change from baseline in trough FEV1 at 12 and 24 weeks against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ume-a2',
+        category: 'inferred',
+        title:
+          'The label’s exacerbation claim is borrowed from a trial of a three-drug inhaler',
+        laymanSummary:
+          'The prescribing information says outright where the evidence for preventing flare-ups comes from: a twelve-month trial of a combination containing umeclidinium plus two other drugs. Umeclidinium on its own has no exacerbation trial.',
+        technicalDetails:
+          'Section 14 of the INCRUSE ELLIPTA prescribing information states: "Evidence of efficacy for INCRUSE ELLIPTA on COPD exacerbations was established by the efficacy of the umeclidinium component as part of a fixed-dose combination with an ICS/LABA, as assessed in a 12-month trial in 10,355 subjects." That trial is IMPACT, which compared fluticasone furoate plus umeclidinium plus vilanterol against fluticasone furoate-vilanterol and against umeclidinium-vilanterol. In IMPACT the umeclidinium-containing dual arm had the highest exacerbation rate of the three, 1.21 per year against 0.91 on triple therapy (rate ratio 0.75, 95% CI 0.70 to 0.81, P<0.001) and 1.07 on fluticasone furoate-vilanterol. Attributing the exacerbation benefit of a three-drug inhaler to one of its components is an inference from a factorial-looking design that was not factorial.',
+        evidenceSource:
+          'INCRUSE ELLIPTA United States prescribing information, Clinical Studies 14 and 14.3; Lipson DA, Barnhart F, Brealey N, et al. N Engl J Med 2018;378:1671-1680 (IMPACT, NCT02164513)',
+        doi: '10.1056/NEJMoa1713901',
+        inferredClaim:
+          'That umeclidinium as a single agent reduces COPD exacerbations — a claim the label itself sources to a trial in which umeclidinium was never given alone',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ume-a3',
+        category: 'failed',
+        title: 'A third of the 12-week trial did not finish it',
+        laymanSummary:
+          'The trial that reported a striking quality-of-life improvement enrolled 246 people and 168 finished. Nearly a third left before the end, in a study lasting twelve weeks.',
+        technicalDetails:
+          'The 12-week placebo-controlled trial enrolled 246 patients and 168 completed, a completion rate of 68%. It reported St George’s Respiratory Questionnaire total score changes against placebo of -7.9 units for umeclidinium 62.5 micrograms and -10.87 units for 125 micrograms (both p<0.001), well beyond the conventional 4-unit threshold for clinical significance, and a transitional dyspnoea index focal score improvement that reached significance only at the higher 125-microgram dose. The published record carries a dosage-error correction notice. A health-status result of that size from a 246-patient study with 32% attrition is a weaker foundation than the effect size suggests, and the 125-microgram dose it partly rests on was never approved in the United States.',
+        evidenceSource: 'Trivedi R, Richard N, Mehta R, Church A. Eur Respir J 2014;43:72-81',
+        doi: '10.1183/09031936.00033213',
+        measuredMetric:
+          'Completion rate and St George’s Respiratory Questionnaire change at 12 weeks',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ume-a4',
+        category: 'measured',
+        title: 'IMPACT: adding a steroid beat the umeclidinium-vilanterol pair, and caused pneumonia',
+        laymanSummary:
+          'In the largest trial umeclidinium has appeared in, the two-bronchodilator combination containing it had the most flare-ups of the three arms. Adding an inhaled steroid cut flare-ups by a quarter and raised the risk of pneumonia by half.',
+        technicalDetails:
+          'IMPACT randomised 10,355 patients with COPD to 52 weeks of once-daily fluticasone furoate 100 micrograms plus umeclidinium 62.5 micrograms plus vilanterol 25 micrograms, or fluticasone furoate-vilanterol, or umeclidinium-vilanterol, each in a single Ellipta inhaler. Moderate or severe exacerbations were 0.91 per year on triple therapy against 1.07 on fluticasone furoate-vilanterol (rate ratio 0.85, 95% CI 0.80 to 0.90, P<0.001) and 1.21 on umeclidinium-vilanterol (rate ratio 0.75, 95% CI 0.70 to 0.81, P<0.001). Severe exacerbations leading to hospitalisation were 0.13 against 0.19 on umeclidinium-vilanterol (rate ratio 0.66, 95% CI 0.56 to 0.78, P<0.001). Pneumonia was more common in the glucocorticoid-containing arms, with clinician-diagnosed pneumonia significantly more likely on triple therapy than on umeclidinium-vilanterol, hazard ratio 1.53 (95% CI 1.22 to 1.92, P<0.001).',
+        evidenceSource:
+          'Lipson DA, Barnhart F, Brealey N, et al. N Engl J Med 2018;378:1671-1680 (IMPACT, NCT02164513)',
+        doi: '10.1056/NEJMoa1713901',
+        measuredMetric:
+          'Annual rate of moderate or severe COPD exacerbations across three single-inhaler regimens',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ume-a5',
+        category: 'measured',
+        title: 'EMAX: adding a beta-agonist bought 66 mL over umeclidinium alone',
+        laymanSummary:
+          'A 24-week trial in nearly 2,700 people compared umeclidinium with vilanterol, umeclidinium alone, and salmeterol alone. The pair beat umeclidinium alone by 66 millilitres of lung function and salmeterol alone by 141.',
+        technicalDetails:
+          'EMAX was a 24-week double-blind, double-dummy, parallel-group trial in patients at low exacerbation risk not receiving inhaled corticosteroids, randomised to umeclidinium/vilanterol 62.5/25 micrograms once daily, umeclidinium 62.5 micrograms once daily or salmeterol 50 micrograms twice daily. Change from baseline in trough FEV1 at week 24 was 66 mL greater with the combination than with umeclidinium (95% CI 43 to 89) and 141 mL greater than with salmeterol (95% CI 118 to 164), both p<0.001. Transition Dyspnoea Index at week 24 favoured the combination over umeclidinium by 0.37 units (95% CI 0.06 to 0.68, p=0.018) and over salmeterol by 0.45 (0.15 to 0.76, p=0.004). The risk of a first clinically important deterioration fell by 16 to 25% against umeclidinium and 26 to 41% against salmeterol depending on the definition used.',
+        evidenceSource:
+          'Maltais F, Bjermer L, Kerwin EM, et al. Respir Res 2019;20:238 (EMAX, NCT03034915)',
+        doi: '10.1186/s12931-019-1193-9',
+        measuredMetric: 'Trough FEV1 at week 24, dual bronchodilator against each monotherapy',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ume-a6',
+        category: 'inferred',
+        title: 'The receptor off-rate is quoted in minutes here and in hours for tiotropium',
+        laymanSummary:
+          'Umeclidinium is described as leaving its target receptor with a half-life of eighty-two minutes. Tiotropium is described as thirty-five hours. Both drugs are taken once a day. The two figures came from different laboratories using different methods and do not mean what putting them side by side suggests.',
+        technicalDetails:
+          'Umeclidinium binds cloned human M1 to M5 receptors with Ki values of 0.05 to 0.16 nM, and dissociation half-lives of labelled compound were reported as 82 minutes at M3 and 9 minutes at M2. Tiotropium’s corresponding published figures are 34.7 hours at M3 and 3.6 hours at M2, measured two decades earlier in a different laboratory with a different tracer. The only like-for-like comparison in the umeclidinium paper is functional and run in parallel: in isolated human bronchial strips at 10 nM, time to 50% restoration of contraction was about 381 minutes for umeclidinium and 413 minutes for tiotropium. That comparison shows the two behaving almost identically, and it is the one that supports once-daily dosing for both.',
+        evidenceSource:
+          'Salmon M, Luttmann MA, Foley JJ, et al. J Pharmacol Exp Ther 2013;345:260-270; Disse B, Speck GA, Rominger KL, et al. Life Sci 1993;52:537-544',
+        doi: '10.1124/jpet.112.202051',
+        inferredClaim:
+          'That umeclidinium leaves the M3 receptor twenty-five times faster than tiotropium — a comparison between numbers produced by different assays in different laboratories, which the one parallel functional experiment contradicts',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ume-a7',
+        category: 'failed',
+        title: 'There is no long-term outcome trial of this molecule',
+        laymanSummary:
+          'Tiotropium has a four-year trial in 5,993 people and a safety trial in 17,135. Umeclidinium has neither. Its longest dedicated study is a twelve-month safety trial, and its largest appearance is inside a three-drug inhaler.',
+        technicalDetails:
+          'The prescribing information describes the efficacy basis as three dose-ranging trials in 624 subjects, two placebo-controlled confirmatory trials in 1,738 subjects at 12 and 24 weeks, a 12-month long-term safety trial, and four 12-week trials of umeclidinium added to an inhaled corticosteroid plus long-acting beta-agonist in 1,637 subjects. Nothing in that programme measures mortality, rate of lung function decline or cardiovascular outcomes over years. The class-level cardiovascular question raised for inhaled antimuscarinics in 2008 was answered for tiotropium by UPLIFT and TIOSPIR; for umeclidinium it rests on the class rather than on the molecule.',
+        evidenceSource:
+          'INCRUSE ELLIPTA United States prescribing information, Clinical Studies 14 and Adverse Reactions 6.1',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One inhalation from a blister strip',
+        laymanDesc:
+          'Opening the cover pulls a foil blister into place and pierces it. The powder is drawn in by the breath — there is no propellant and nothing to press.',
+        molecularDetail:
+          'Umeclidinium bromide 62.5 micrograms micronised and blended with lactose monohydrate carrier in an Ellipta dry-powder inhaler. Every registration trial of this molecule used this device, so device performance and drug effect are not separable in the clinical record.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The permanent charge keeps it in the airway',
+        laymanDesc:
+          'The molecule carries a fixed positive charge, so it does not readily cross membranes or reach the brain. What lands in the mouth and is swallowed contributes almost nothing.',
+        molecularDetail:
+          'A quaternary azoniabicyclo[2.2.2]octane. The label describes the bronchodilation as predominantly a site-specific effect, which is the pharmacokinetic consequence of a permanently charged nitrogen.',
+        iconName: 'Lock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies the receptor with sub-nanomolar affinity',
+        laymanDesc:
+          'It sits in the place acetylcholine would land, on the muscle that wraps the airway, and it takes very little of the drug to do it.',
+        molecularDetail:
+          'Ki values of 0.05 to 0.16 nM across cloned human M1 to M5, competitive antagonism with partial reversibility after washout. In CHO cells expressing human M3 the potency against acetylcholine-mediated calcium mobilisation was picomolar, and in human bronchial strips against carbachol it was similar.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It leaves M3 slowly and M2 quickly',
+        laymanDesc:
+          'It comes off the receptor on airway muscle about nine times more slowly than off the receptor found on the heart and on nerve endings. That gap is what a once-daily antimuscarinic is designed around.',
+        molecularDetail:
+          'Reported dissociation half-lives of 82 minutes at M3 against 9 minutes at M2. Functional reversal in isolated human bronchus at 10 nM took about 381 minutes to reach 50% recovery, against 413 minutes for tiotropium measured alongside it — a like-for-like comparison that puts the two molecules in the same place.',
+        iconName: 'Timer',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Airway calibre rises for twenty-four hours',
+        laymanDesc:
+          'Lung function measured a full day after the dose is still higher than it would have been — around a tenth of a litre more air in the first second of a forced breath out.',
+        molecularDetail:
+          'Trough FEV1 improvements against placebo of 127 mL at 12 weeks and 0.072 to 0.167 L across arms at 24 weeks, measured 23 to 24 hours after dosing. In guinea pigs 2.5 micrograms intratracheally gave 50% bronchoprotection for more than 24 hours.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the molecule has not been shown to do alone',
+        laymanDesc:
+          'No trial has given umeclidinium by itself and counted flare-ups, hospital admissions or deaths. Everything the label claims about flare-ups comes from a trial where it was one drug of three.',
+        molecularDetail:
+          'The label sources its exacerbation evidence to IMPACT, a 10,355-patient trial of a three-component single inhaler. In IMPACT the umeclidinium-vilanterol arm had the highest exacerbation rate of the three at 1.21 per year, against 0.91 on triple therapy.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Trivedi 2014 — 12-week placebo-controlled umeclidinium monotherapy',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, 12 weeks',
+        sampleSize: 246,
+        primaryEndpoint: 'Change from baseline in trough FEV1 on day 85',
+        endpointMet: true,
+        statisticalPValue:
+          'Trough FEV1 +127 mL (62.5 micrograms) and +152 mL (125 micrograms) against placebo, both p<0.001',
+        unreportedAdverseSignals:
+          '246 enrolled and 168 completed — 32% attrition over twelve weeks. The transitional dyspnoea index reached significance only at 125 micrograms, a dose never approved in the United States, and the published record carries a dosage-error correction.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'DB2113373 (NCT01313650)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, four-arm, 24 weeks',
+        sampleSize: 1532,
+        primaryEndpoint: 'Trough FEV1 on day 169, 23 to 24 hours post-dose',
+        endpointMet: true,
+        statisticalPValue:
+          'All active arms 0.072 to 0.167 L above placebo (all p<0.001); umeclidinium-vilanterol above each monotherapy by 0.052 to 0.095 L (p<=0.004)',
+        unreportedAdverseSignals:
+          'Every endpoint in this trial is a lung-function or symptom-scale measurement. Exacerbations were not a designed endpoint, and the trial ran 24 weeks — too short to count them reliably.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'EMAX (NCT03034915)',
+        phase: 'Phase 4, randomised, double-blind, double-dummy, three-arm, 24 weeks',
+        sampleSize: 2696,
+        primaryEndpoint: 'Trough FEV1 at week 24',
+        endpointMet: true,
+        statisticalPValue:
+          'Umeclidinium/vilanterol above umeclidinium by 66 mL (95% CI 43 to 89) and above salmeterol by 141 mL (95% CI 118 to 164), both p<0.001',
+        unreportedAdverseSignals:
+          'Enrolment was restricted to patients at low exacerbation risk who were not taking inhaled corticosteroids, so the result does not transfer to the frequent-exacerbator population where most COPD prescribing decisions are made.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'IMPACT (NCT02164513)',
+        phase: 'Phase 3, randomised, double-blind, three-arm, 52 weeks',
+        sampleSize: 10355,
+        primaryEndpoint: 'Annual rate of moderate or severe COPD exacerbations during treatment',
+        endpointMet: true,
+        statisticalPValue:
+          'Triple 0.91/year against fluticasone furoate-vilanterol 1.07 (rate ratio 0.85, 95% CI 0.80 to 0.90, P<0.001) and against umeclidinium-vilanterol 1.21 (rate ratio 0.75, 95% CI 0.70 to 0.81, P<0.001)',
+        unreportedAdverseSignals:
+          'Clinician-diagnosed pneumonia was significantly more likely on triple therapy than on umeclidinium-vilanterol, hazard ratio 1.53 (95% CI 1.22 to 1.92, P<0.001). The umeclidinium-containing dual arm had the highest exacerbation rate of the three, and this is the trial the umeclidinium label cites for exacerbation efficacy.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Trough FEV1 127 mL above placebo at 12 weeks and 0.072 to 0.167 L above placebo across arms at 24 weeks',
+        'Ki values of 0.05 to 0.16 nM at cloned human M1 to M5 receptors',
+        'Time to 50% restoration of human bronchial strip contraction of about 381 minutes, against 413 minutes for tiotropium measured alongside',
+        'Umeclidinium-vilanterol 66 mL above umeclidinium alone in trough FEV1 at 24 weeks in 2,696 patients',
+        'An exacerbation rate of 1.21 per year on umeclidinium-vilanterol in IMPACT, the highest of the trial’s three arms',
+      ],
+      unsupportedInferences: [
+        'That umeclidinium alone reduces COPD exacerbations — the label sources that claim to a trial of a three-drug inhaler',
+        'That an 82-minute M3 off-rate makes it materially shorter-acting than tiotropium, when the one parallel functional experiment puts them within 10% of each other',
+        'That a -7.9 to -10.87 unit health-status improvement in a 246-patient trial with 32% attrition is a settled result',
+        'That its long-term cardiovascular and mortality safety is established, when it rests on the class rather than on any trial of this molecule',
+      ],
+      whatFailedInitially: [
+        'Nearly a third of the 12-week pivotal trial withdrew before completion',
+        'The 125-microgram dose that produced the larger dyspnoea and health-status effects was not approved in the United States',
+        'In IMPACT the umeclidinium-containing dual-bronchodilator arm had the highest exacerbation rate and the highest hospitalisation rate of the three regimens',
+        'No trial of this molecule has ever measured mortality, rate of FEV1 decline or cardiovascular outcomes over years',
+      ],
+      realWorldOutcome: [
+        'Approved as a once-daily maintenance bronchodilator for chronic obstructive pulmonary disease and not for asthma',
+        'Sold exclusively inside the Ellipta inhaler, alone as Incruse and in the two- and three-drug combinations built on it',
+        'Its commercial life is largely as a component: the fixed combinations, not the single agent, carry the outcome evidence',
+        'Still brand-priced across all three listed presentations in the CMS acquisition survey',
+      ],
+    },
+    deliverySystem: {
+      type: 'Inhalation powder, 62.5 micrograms per blister, in the Ellipta dry-powder inhaler',
+      description:
+        'One inhalation once daily. Opening the cover indexes and pierces a foil blister; the dose is drawn in by the patient’s own inspiratory effort, with no propellant and no coordination step. This device is the only way umeclidinium has ever been administered in a trial, so its evidence and its hardware are the same object.',
+      safetyProfile:
+        'Not to be initiated in rapidly deteriorating or potentially life-threatening COPD and not for relief of acute symptoms — acute symptoms are to be treated with an inhaled short-acting beta-2 agonist. Paradoxical bronchospasm requires discontinuation. Worsening of narrow-angle glaucoma and worsening of urinary retention are both named in the label as reasons to contact a healthcare provider immediately, with caution advised in prostatic hyperplasia and bladder-neck obstruction. The most common adverse reactions at 2% or more and more common than placebo were nasopharyngitis, upper respiratory tract infection, cough and arthralgia.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does umeclidinium stop flare-ups?',
+        a: 'Not on the strength of any trial of umeclidinium alone. The prescribing information is unusually candid about this: it says the evidence for exacerbation efficacy was established by the umeclidinium component as part of a fixed-dose combination with an inhaled corticosteroid and a long-acting beta-agonist, in a twelve-month trial of 10,355 people. In that trial, IMPACT, the arm containing umeclidinium without a steroid had the highest exacerbation rate of the three at 1.21 per year. What umeclidinium alone has been shown to do is raise trough lung function by around 120 to 130 mL for twenty-four hours, which is a genuine measurement of something else.',
+        auditNote:
+          'This is a component-attribution inference, and it is common across combination-inhaler labels. It is not fraud; it is a claim that rests on a design that could not isolate the component.',
+      },
+      {
+        q: 'Is it as good as tiotropium?',
+        a: 'On the pharmacology, they look almost the same. In the single experiment that measured both side by side — isolated human bronchial strips, washed out after exposure — the time to half-recovery of contraction was about 381 minutes for umeclidinium and 413 for tiotropium. On lung function in patients the two are comparable. On everything that takes years to measure, they are not comparable at all: tiotropium has a four-year trial in 5,993 people and a device safety trial in 17,135, and umeclidinium has a twelve-month safety study. That is a difference in what is known, not a demonstrated difference in the drugs.',
+      },
+      {
+        q: 'Why can I only get it in that one inhaler?',
+        a: 'Because it has never existed anywhere else. Umeclidinium was developed as GSK573719 specifically for the Ellipta device, and every trial that supports it was run in that device — alone, with vilanterol, and with fluticasone furoate and vilanterol. That has a consequence people rarely notice: the evidence base cannot separate the molecule from the hardware, so a future generic would have to demonstrate equivalent lung deposition from a different inhaler rather than merely equivalent chemistry.',
+      },
+      {
+        q: 'Should I be taking a steroid inhaler with it?',
+        a: 'That is a question for a prescriber, and IMPACT is the trial that informs it, with a cost attached in both directions. Adding fluticasone furoate to umeclidinium and vilanterol cut moderate or severe exacerbations from 1.21 to 0.91 per year and hospitalisations from 0.19 to 0.13. It also raised clinician-diagnosed pneumonia, hazard ratio 1.53 with a confidence interval of 1.22 to 1.92. Whether that trade favours a particular person depends on how often they exacerbate, and this page does not make that judgement.',
+      },
+      {
+        q: 'Can I use it for asthma?',
+        a: 'It is not approved for asthma. The indication reads maintenance treatment of chronic obstructive pulmonary disease and nothing else, and asthma is absent from the label rather than warned against in it. The related molecule tiotropium was separately studied in asthma and approved there as an add-on; umeclidinium was not.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Trivedi R, Richard N, Mehta R, Church A. Umeclidinium in patients with COPD: a randomised, placebo-controlled study. Eur Respir J 2014;43:72-81',
+        identifier: '10.1183/09031936.00033213',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Donohue JF, Maleki-Yazdi MR, Kilbride S, et al. Efficacy and safety of once-daily umeclidinium/vilanterol 62.5/25 mcg in COPD. Respir Med 2013;107:1538-1546',
+        identifier: '10.1016/j.rmed.2013.06.001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lipson DA, Barnhart F, Brealey N, et al. Once-Daily Single-Inhaler Triple versus Dual Therapy in Patients with COPD. N Engl J Med 2018;378:1671-1680',
+        identifier: '10.1056/NEJMoa1713901',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Maltais F, Bjermer L, Kerwin EM, et al. Efficacy of umeclidinium/vilanterol versus umeclidinium and salmeterol monotherapies in symptomatic patients with COPD not receiving inhaled corticosteroids: the EMAX randomised trial. Respir Res 2019;20:238',
+        identifier: '10.1186/s12931-019-1193-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Salmon M, Luttmann MA, Foley JJ, et al. Pharmacological characterization of GSK573719 (umeclidinium). J Pharmacol Exp Ther 2013;345:260-270',
+        identifier: '10.1124/jpet.112.202051',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Disse B, Speck GA, Rominger KL, Witek TJ, Hammer R. Ba 679 BR, a novel long-acting anticholinergic bronchodilator. Life Sci 1993;52:537-544',
+        identifier: '10.1016/0024-3205(93)90312-q',
+        kind: 'doi',
+      },
+      {
+        label: 'DB2113373 — 24-week umeclidinium/vilanterol and components trial',
+        identifier: 'NCT01313650',
+        kind: 'nct',
+      },
+      {
+        label: 'EMAX — umeclidinium/vilanterol against umeclidinium and against salmeterol',
+        identifier: 'NCT03034915',
+        kind: 'nct',
+      },
+      {
+        label: 'IMPACT — single-inhaler triple against dual therapy in 10,355 patients',
+        identifier: 'NCT02164513',
+        kind: 'nct',
+      },
+      {
+        label:
+          'INCRUSE ELLIPTA (umeclidinium inhalation powder) United States prescribing information — Indications, Warnings and Precautions 5.1 to 5.5, Adverse Reactions 6.1, Clinical Studies 14 and 14.3, Clinical Pharmacology 12.1',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22INCRUSE+ELLIPTA%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 11519070 — umeclidinium structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11519070',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
 ]
