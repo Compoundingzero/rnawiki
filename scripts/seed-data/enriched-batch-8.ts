@@ -1076,4 +1076,1111 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       NADAC_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 3. Salmeterol — the molecule that generated the boxed warning the whole class then wore, and
+  //    the only one in this file still contraindicated on its own.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'salmeterol',
+    name: 'Salmeterol',
+    tradeName: 'Serevent / Serevent Diskus',
+    sponsor: 'GlaxoSmithKline (Serevent Diskus, NDA 020692)',
+    targetGene: 'ADRB2',
+    targetProtein: 'Beta-2 adrenergic receptor — a Gs-coupled G-protein-coupled receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1994,
+    indication:
+      'Treatment of asthma in patients aged 4 years and older, only in combination with an inhaled corticosteroid; prevention of exercise-induced bronchospasm in patients aged 4 years and older; maintenance treatment of bronchospasm associated with chronic obstructive pulmonary disease. Not indicated for relief of acute bronchospasm.',
+    patientFriendlyIndication:
+      'A twice-daily inhaler that keeps the muscle around the airway relaxed for about twelve hours',
+    anatomicalSite:
+      'Airway smooth muscle of the bronchi and bronchioles — the beta-2 receptor on the muscle cell surface, and the membrane pocket beside it',
+    conditionContext: {
+      conditionExplainer:
+        'Every airway has a ring of muscle wrapped around it. In asthma and in chronic obstructive pulmonary disease that muscle tightens and narrows the tube, and in asthma the lining underneath is inflamed as well. Salmeterol works on the muscle. It does not touch the lining.',
+      whyItMatters:
+        'That division is the whole story of this drug. A medicine that relaxes the muscle makes a person breathe more easily while the inflammation carries on unattended, and the trial that found out what happens when it is used that way is the reason every long-acting beta-agonist on the market wore a boxed warning for twelve years.',
+      whoTakesThis:
+        'In asthma, only people already on an inhaled corticosteroid whose asthma is not controlled by it, and in practice almost always inside a single combination inhaler so the steroid cannot be skipped. In chronic obstructive pulmonary disease, where there is no equivalent death signal, it is used as maintenance treatment on its own or with other bronchodilators.',
+      clinicalGoals:
+        'Fewer symptoms and fewer exacerbations. Not survival: the one trial designed to show salmeterol-containing therapy extends life in chronic obstructive pulmonary disease missed its threshold at p=0.052.',
+    },
+    oneSentenceVerdict:
+      'A beta-2 receptor agonist whose long greasy tail anchors it in the membrane beside the receptor so airway muscle stays relaxed for about twelve hours — given alone in asthma it produced 13 asthma deaths against 3 on placebo in 26,355 people, and given with an inhaled steroid to 11,679 people it produced no excess of serious asthma events and 21% fewer severe exacerbations, which is why it is contraindicated by itself and routine inside a combination inhaler.',
+    laymanHowItWorks:
+      'The muscle wrapped around each airway can tighten and squeeze the tube narrow. Salmeterol switches on a receptor on that muscle which raises a chemical messenger inside the cell and makes it let go, holding the airway open for about twelve hours. What makes it last that long is a long fatty tail on the molecule that buries itself in the cell membrane next to the receptor, so the working end keeps swinging back into place instead of washing away. It does nothing at all to the inflammation underneath, which is why using it without a steroid quietens the symptoms while the disease carries on — and that is the exact combination that produced the deaths in SMART.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 81,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$6.74 per unit, the median across 30 listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Salmeterol xinafoate was first made at Glaxo in the late 1980s and its composition-of-matter protection expired long ago, yet the CMS acquisition survey still lists it as a brand product. The molecule is off patent; the Diskus dry-powder device that carries it, and the fixed-dose combinations built around it, are not. That gap between an old free molecule and a proprietary piece of plastic is the recurring reason a drug of this age is still bought at brand prices.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The alternatives to salmeterol are other long-acting bronchodilators, and the differences between them are real but small next to the difference between taking one with a steroid and taking one without. In chronic obstructive pulmonary disease there is one genuinely superior option on exacerbations, measured head to head in 7,376 people, and it is not a beta-agonist. Nothing eaten or drunk relaxes airway smooth muscle for twelve hours.',
+      conventionalRx: [
+        {
+          name: 'Formoterol (Foradil, and inside Symbicort)',
+          class: 'Long-acting beta-2 agonist',
+          howItCompares:
+            'The same receptor and roughly the same twelve hours, but a full agonist that works within one to three minutes rather than fifteen to twenty. That speed is why formoterol can be combined with a steroid in a single inhaler used both as maintenance and as a reliever, and salmeterol cannot.',
+          typicalCost:
+            'US$4.35 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: fast onset, usable in the as-needed anti-inflammatory reliever strategy. Cons: the same class warning applies, and it inherited a boxed warning generated by a trial of salmeterol rather than of itself.',
+        },
+        {
+          name: 'Tiotropium (Spiriva)',
+          class: 'Long-acting muscarinic antagonist',
+          howItCompares:
+            'Relaxes the same muscle by blocking the opposite signal, once daily instead of twice. In POET-COPD, a one-year head-to-head trial in 7,376 people with chronic obstructive pulmonary disease, tiotropium beat salmeterol on time to first exacerbation, hazard ratio 0.83 (95% CI 0.77 to 0.90, p<0.001).',
+          typicalCost:
+            'US$11.73 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: better than salmeterol on exacerbations in the only large head-to-head trial; once daily. Cons: dry mouth and urinary retention rather than tremor and palpitations; not a substitute for an inhaled steroid in asthma.',
+        },
+        {
+          name: 'Vilanterol (only inside Breo, Anoro and Trelegy Ellipta)',
+          class: 'Long-acting beta-2 agonist, 24-hour',
+          howItCompares:
+            'A newer beta-2 agonist with a full day of action, so the inhaler is used once daily rather than twice. It is not sold on its own anywhere, which means every piece of evidence for it is evidence for a combination product.',
+          typicalCost:
+            'US$6.50 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: once daily, and available in a single inhaler with a steroid and an antimuscarinic. Cons: the molecule has never been tested alone in a registration trial, so its own contribution cannot be separated from the products it lives in.',
+        },
+        {
+          name: 'An inhaled corticosteroid alone',
+          class: 'Inhaled corticosteroid',
+          howItCompares:
+            'In AUSTRI the steroid-only arm had the same rate of serious asthma events as the combination and 24% more severe exacerbations: 597 of 5,845 against 480 of 5,834. The steroid is the part that treats the disease; salmeterol is the part that adds control on top of it.',
+          typicalCost:
+            'US$0.6920 per millilitre of fluticasone propionate at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no beta-agonist class warning, no tremor, treats the inflammation. Cons: measurably more exacerbations than the combination in an 11,679-patient trial.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Check that a steroid inhaler is part of the prescription',
+          action:
+            'If salmeterol has been prescribed for asthma, confirm that an inhaled corticosteroid is being taken as well — ideally inside the same inhaler.',
+          patientImpact:
+            'Salmeterol as monotherapy in asthma is contraindicated in the United States label. The boxed warning rests on 13 asthma deaths among 13,176 people on salmeterol against 3 among 13,179 on placebo, in a trial where background steroid use was not required.',
+          clinicalPrecaution:
+            'The reason a fixed-dose combination is preferred is adherence, not chemistry. Two separate inhalers can be reduced to one by a person who feels better, and the one that gets dropped is the one that does not produce an immediate sensation.',
+        },
+        {
+          name: 'Do not reach for it during an attack',
+          action:
+            'Use the reliever inhaler for symptoms happening now; salmeterol is not one, whatever it feels like.',
+          patientImpact:
+            'Onset is roughly fifteen to twenty minutes, and the label states it is not indicated for relief of acute bronchospasm and must not be initiated in acutely deteriorating asthma.',
+          clinicalPrecaution:
+            'Using two products that both contain a long-acting beta-agonist is an overdose risk the label calls out specifically. A combination inhaler plus a separate salmeterol inhaler is that mistake.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC=C(C=C1)CCCCOCCCCCCNCC(C2=CC(=C(C=C2)O)CO)O',
+      chemicalFormula: 'C25H37NO4',
+      molecularWeight: '415.60 g/mol',
+      targetReceptorAffinity:
+        'The label states that in vitro studies show salmeterol to be at least 50 times more selective for beta-2 adrenoceptors than albuterol. It also records that beta-2 adrenoceptors make up 10% to 50% of total beta-adrenoceptors in the human heart, so selectivity for the lung receptor does not mean absence of cardiac effect. Salmeterol is a partial agonist at the receptor, which is why it cannot be used as a reliever.',
+      structureSource: {
+        label: 'PubChem CID 5152 (salmeterol) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5152',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sal-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the saligenin head group',
+          description:
+            'Confirm the hydroxymethyl-phenol head before any coupling. Salmeterol carries a saligenin ring rather than the catechol of adrenaline, and that substitution is what makes it resistant to catechol-O-methyltransferase. A catechol impurity is not a weaker drug but a short-acting one.',
+          reagentsAndBuffer:
+            'Salmeterol xinafoate reference standard, reversed-phase HPLC with ultraviolet detection at 278 nm, 1H NMR in DMSO-d6, Karl Fischer titration',
+        },
+        {
+          id: 'sal-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Reductive amination joining the head to the phenylbutoxyhexyl tail',
+          description:
+            'Couple the protected saligenin amino alcohol to 6-(4-phenylbutoxy)hexanal or the corresponding bromide, then reduce. The tail added here is the entire reason the drug lasts twelve hours: it is a lipophilic anchor, not a pharmacophore, and shortening it shortens the duration of action.',
+          dependsOnStepId: 'sal-w1',
+          reagentsAndBuffer:
+            'N-benzyl-protected saligenin amine, 6-(4-phenylbutoxy)hexyl bromide, potassium carbonate or sodium triacetoxyborohydride, anhydrous acetonitrile or dichloroethane, nitrogen atmosphere',
+        },
+        {
+          id: 'sal-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Deprotection and formation of the 1-hydroxy-2-naphthoate salt',
+          description:
+            'Remove the benzyl protection by hydrogenolysis and crystallise the free base as the xinafoate salt. The xinafoate counter-ion is a formulation decision rather than a pharmacological one: it gives a crystalline solid stable enough to be micronised into a dry powder.',
+          dependsOnStepId: 'sal-w2',
+          reagentsAndBuffer:
+            'Palladium on carbon under hydrogen, 1-hydroxy-2-naphthoic acid, isopropanol or ethanol for crystallisation, silica chromatography where required, differential scanning calorimetry to confirm the polymorph',
+        },
+        {
+          id: 'sal-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Exposure of ADRB2-expressing cells and washout',
+          description:
+            'Dose Chinese hamster ovary cells stably expressing human ADRB2, then wash the cells repeatedly and re-measure. The washout is the point of the experiment: a short-acting agonist loses its effect when the medium is replaced, whereas salmeterol keeps signalling because the tail remains in the membrane. A protocol without a washout arm cannot distinguish the two.',
+          dependsOnStepId: 'sal-w3',
+          reagentsAndBuffer:
+            'CHO-K1 cells stably transfected with human ADRB2, Ham F-12 medium with 10% fetal bovine serum and G418 selection, HEPES-buffered assay saline, 3-isobutyl-1-methylxanthine to block phosphodiesterase, repeated serum-free washes',
+        },
+        {
+          id: 'sal-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'cAMP accumulation curve and partial-agonist ceiling',
+          description:
+            'Measure cyclic AMP against a full agonist run on the same plate. Salmeterol is a partial agonist and its curve plateaus below isoprenaline; reporting only an EC50 hides that ceiling, and the ceiling is the pharmacological reason the drug is useless as a reliever.',
+          dependsOnStepId: 'sal-w4',
+          reagentsAndBuffer:
+            'Homogeneous time-resolved fluorescence cAMP kit, isoprenaline as full-agonist reference, ICI 118,551 as beta-2 selective antagonist control, CGP 20712A as beta-1 antagonist control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sal-a1',
+        category: 'measured',
+        title: 'SMART: 13 asthma deaths against 3 on placebo in 26,355 people',
+        laymanSummary:
+          'A safety trial added salmeterol or a dummy inhaler to whatever asthma treatment people were already on, and did not require them to be on a steroid. It was stopped early. Thirteen people died of asthma on salmeterol; three did on placebo.',
+        technicalDetails:
+          'The Salmeterol Multicenter Asthma Research Trial was a 28-week randomised, double-blind, placebo-controlled study of salmeterol 42 micrograms twice daily by metered-dose inhaler added to usual asthma care, terminated at an interim analysis of 26,355 subjects. The primary outcome, respiratory-related deaths or life-threatening experiences, was not significantly different: 50 against 36, relative risk 1.40 (95% CI 0.91 to 2.14). Significant differences appeared in respiratory-related deaths (24 against 11, RR 2.16, 95% CI 1.06 to 4.41), asthma-related deaths (13 against 3, RR 4.37, 95% CI 1.25 to 15.34) and combined asthma-related deaths or life-threatening experiences (37 against 22, RR 1.71, 95% CI 1.01 to 2.89). Background inhaled corticosteroid use was not required by the protocol.',
+        evidenceSource: 'Nelson HS, Weiss ST, Bleecker ER, et al. Chest 2006;129:15-26 (SMART)',
+        doi: '10.1378/chest.129.1.15',
+        measuredMetric:
+          'Asthma-related deaths on salmeterol added to usual care against placebo added to usual care',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sal-a2',
+        category: 'measured',
+        title: 'AUSTRI: with a steroid in the same inhaler, no excess and 21% fewer exacerbations',
+        laymanSummary:
+          'The FDA made the manufacturer run the trial the first one should have been. Eleven and a half thousand people took salmeterol and fluticasone in one inhaler or fluticasone alone. Serious asthma events were the same in both groups, and the combination group had a fifth fewer severe attacks.',
+        technicalDetails:
+          'AUSTRI randomised 11,679 patients aged 12 and over with persistent asthma and a severe exacerbation in the preceding year to fluticasone plus salmeterol or fluticasone alone for 26 weeks. Sixty-seven patients had 74 serious asthma-related events: 36 events in 34 patients on the combination against 38 events in 33 patients on fluticasone alone, hazard ratio 1.03 (95% CI 0.64 to 1.66), meeting the prespecified noninferiority margin of an upper bound below 2.0 (P=0.003). There were no asthma-related deaths; two intubations occurred, both in the fluticasone-only group. Severe exacerbations occurred in 480 of 5,834 (8%) on the combination against 597 of 5,845 (10%) on fluticasone alone, hazard ratio 0.79 (95% CI 0.70 to 0.89), P<0.001.',
+        evidenceSource:
+          'Stempel DA, Raphiou IH, Kral KM, et al. N Engl J Med 2016;374:1822-1830 (AUSTRI, NCT01475721)',
+        doi: '10.1056/NEJMoa1511049',
+        measuredMetric:
+          'First serious asthma-related event and first severe exacerbation, fluticasone-salmeterol against fluticasone alone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sal-a3',
+        category: 'measured',
+        title: 'VESTRI: the same question asked again in 6,208 children aged 4 to 11',
+        laymanSummary:
+          'Children were the group where the original alarm was about hospital admissions rather than deaths, so the trial was repeated in them. Twenty-seven children on the combination and twenty-one on the steroid alone were admitted. All the serious events were admissions; none was a death.',
+        technicalDetails:
+          'VESTRI randomised 6,208 children aged 4 to 11 requiring daily asthma medication with an exacerbation in the previous year to fluticasone plus salmeterol or fluticasone alone for 26 weeks. Twenty-seven patients on the combination and 21 on fluticasone alone had a serious asthma-related event, every one of them a hospitalisation, hazard ratio 1.28 (95% CI 0.73 to 2.27). Noninferiority was declared against a prespecified upper bound of 2.675 (P=0.006). Severe exacerbations occurred in 265 (8.5%) against 309 (10.0%), hazard ratio 0.86 (95% CI 0.73 to 1.01).',
+        evidenceSource:
+          'Stempel DA, Szefler SJ, Pedersen S, et al. N Engl J Med 2016;375:840-849 (VESTRI, NCT01462344)',
+        doi: '10.1056/NEJMoa1606356',
+        measuredMetric: 'First serious asthma-related event in children aged 4 to 11',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sal-a4',
+        category: 'failed',
+        title: 'TORCH: the survival trial missed at p=0.052 and found more pneumonia',
+        laymanSummary:
+          'Six thousand people with chronic obstructive pulmonary disease were followed for three years to see whether salmeterol with a steroid helps them live longer. Fewer died on the combination, but not by enough to clear the threshold the trial had set. Meanwhile one in five on the steroid-containing arms got pneumonia, against one in eight on placebo.',
+        technicalDetails:
+          'TORCH randomised 6,112 patients in the efficacy population to salmeterol 50 micrograms plus fluticasone propionate 500 micrograms twice daily, salmeterol alone, fluticasone alone or placebo for three years. All-cause mortality was 12.6% on combination, 13.5% on salmeterol, 16.0% on fluticasone and 15.2% on placebo. The hazard ratio for combination against placebo was 0.825 (95% CI 0.681 to 1.002, P=0.052 adjusted for interim analyses), missing the predetermined level of significance. Neither monotherapy differed significantly from placebo. The combination cut annual exacerbations from 1.13 to 0.85 and improved health status and spirometry (P<0.001). Pneumonia reported as an adverse event was 19.6% on combination and 18.3% on fluticasone against 12.3% on placebo, P<0.001.',
+        evidenceSource:
+          'Calverley PMA, Anderson JA, Celli B, et al. N Engl J Med 2007;356:775-789 (TORCH, NCT00268216)',
+        doi: '10.1056/NEJMoa063070',
+        measuredMetric: 'Death from any cause at three years, combination against placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sal-a5',
+        category: 'failed',
+        title: 'POET-COPD: beaten head to head by an anticholinergic in 7,376 patients',
+        laymanSummary:
+          'The largest direct comparison of salmeterol against tiotropium in chronic obstructive pulmonary disease ran for a year. Tiotropium delayed the next flare-up by six weeks and cut the risk by seventeen per cent. Salmeterol lost.',
+        technicalDetails:
+          'POET-COPD randomised 7,376 patients with moderate to very severe chronic obstructive pulmonary disease and an exacerbation in the preceding year to tiotropium 18 micrograms once daily or salmeterol 50 micrograms twice daily for one year, double-blind and double-dummy. Tiotropium increased time to first exacerbation from 145 to 187 days, hazard ratio 0.83 (95% CI 0.77 to 0.90, P<0.001), increased time to first severe exacerbation (HR 0.72, 95% CI 0.61 to 0.85, P<0.001), and reduced annual moderate or severe exacerbations from 0.72 to 0.64 (rate ratio 0.89, 95% CI 0.83 to 0.96, P=0.002). There were 64 deaths (1.7%) on tiotropium and 78 (2.1%) on salmeterol.',
+        evidenceSource:
+          'Vogelmeier C, Hederer B, Glaab T, et al. N Engl J Med 2011;364:1093-1103 (POET-COPD, NCT00563381)',
+        doi: '10.1056/NEJMoa1008378',
+        measuredMetric: 'Time to first moderate or severe exacerbation, tiotropium against salmeterol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sal-a6',
+        category: 'conclusion_shift',
+        title: 'The class warning was lifted in 2017 — but not from salmeterol on its own',
+        laymanSummary:
+          'The boxed warning came off the combination inhalers in December 2017 after four trials in 36,010 people found no excess risk when the beta-agonist is given with a steroid. It stayed on salmeterol by itself, and using salmeterol alone in asthma is now not merely warned against but forbidden.',
+        technicalDetails:
+          'SMART led to a boxed warning applied to every long-acting beta-agonist. In 2010 the FDA required the four manufacturers to run harmonised safety trials; the combined analysis of AUSTRI, VESTRI and the two sibling trials covered 36,010 adolescents and adults and found three asthma-related intubations and two asthma-related deaths in total, with serious asthma-related events in 108 of 18,006 (0.60%) on inhaled glucocorticoid alone against 119 of 18,004 (0.66%) on combination therapy, relative risk 1.09 (95% CI 0.83 to 1.43, P=0.55), and exacerbations in 2,100 (11.7%) against 1,768 (9.8%), relative risk 0.83 (95% CI 0.78 to 0.89, P<0.001). The boxed warning was removed from fixed-dose combination products in December 2017. The current SEREVENT DISKUS label still carries WARNING: ASTHMA-RELATED DEATH and states that use as monotherapy for asthma without a concomitant inhaled corticosteroid is contraindicated. A reader who has heard that the class warning was withdrawn will find this page contradicting them, and the label is why.',
+        evidenceSource:
+          'Busse WW, Bateman ED, Caplan AL, et al. N Engl J Med 2018;378:2497-2505; SEREVENT DISKUS United States prescribing information, boxed warning and Warnings and Precautions 5.1',
+        doi: '10.1056/NEJMoa1716868',
+        inferredClaim:
+          'That the 2017 withdrawal cleared long-acting beta-agonists generally — it cleared them in fixed-dose combination with a steroid, and left salmeterol monotherapy in asthma contraindicated',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sal-a7',
+        category: 'inferred',
+        title: 'The genetic explanation for the SMART deaths did not survive its own trial',
+        laymanSummary:
+          'Most of the excess deaths in SMART were in African-American participants, and a popular explanation was a common variant in the receptor the drug acts on. A trial built specifically to test that gave the two genotypes the same lung-function response to salmeterol, to within a tenth of a litre per minute.',
+        technicalDetails:
+          'In SMART the imbalance concentrated in African-American subjects: respiratory-related deaths or life-threatening experiences 20 against 5, relative risk 4.10 (95% CI 1.54 to 10.90), and combined asthma-related deaths or life-threatening experiences 19 against 4, RR 4.92 (95% CI 1.68 to 14.45). The paper itself says whether the risk reflects a physiologic treatment effect, genetic factors or patient behaviours remains unknown. LARGE then enrolled adults matched in pairs by FEV1 and ethnic origin and stratified by ADRB2 codon 16 genotype — 42 Arg/Arg and 45 Gly/Gly — and crossed them over between salmeterol and placebo on open-label beclometasone. Morning peak expiratory flow rose 21.4 L/min (95% CI 11.8 to 31.1) in Arg/Arg and 21.5 L/min (11.0 to 32.1) in Gly/Gly, a between-genotype difference of -0.1 L/min (95% CI -14.4 to 14.2, p=0.99). A genotype-specific difference did appear in methacholine responsiveness, 1.32 doubling doses (0.43 to 2.21, p=0.0038), which is a secondary outcome and a different question.',
+        evidenceSource:
+          'Wechsler ME, Kunselman SJ, Chinchilli VM, et al. Lancet 2009;374:1754-1764 (LARGE, NCT00200967); Nelson HS et al., Chest 2006;129:15-26',
+        doi: '10.1016/S0140-6736(09)61492-6',
+        inferredClaim:
+          'That the excess deaths among African-American participants in SMART are explained by the ADRB2 Arg16 variant — a hypothesis that a genotype-stratified randomised trial tested directly and did not support on its primary endpoint',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Breathed in as a dry powder',
+        laymanDesc:
+          'The inhaler releases a measured puff of powder. Only a fraction of it reaches the small airways; the rest lands in the mouth and throat and is swallowed.',
+        molecularDetail:
+          'Salmeterol xinafoate, 50 micrograms of the base per blister in the Diskus, micronised and blended with lactose carrier. Plasma concentrations after inhalation are very low and often undetectable, so systemic exposure is a poor guide to lung effect; the drug is measured by what it does to FEV1, not by what appears in blood.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The fatty tail parks in the cell membrane',
+        laymanDesc:
+          'Half the molecule is a long greasy chain that does nothing to the receptor. It slides into the fatty layer of the muscle cell and stays there, holding the rest of the molecule permanently within reach.',
+        molecularDetail:
+          'The phenylbutoxyhexyl side chain partitions into the lipid bilayer and occupies a hydrophobic exosite adjacent to the orthosteric pocket of ADRB2. This anchoring is the accepted structural explanation for a duration of action near twelve hours from a molecule whose head group binds no more tightly than a short-acting agonist.',
+        iconName: 'Anchor',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The active head switches the receptor on, again and again',
+        laymanDesc:
+          'The working end of the molecule swings into the receptor, activates it, drifts out, and swings back in — because the tail will not let it leave.',
+        molecularDetail:
+          'The saligenin head engages the orthosteric site of the beta-2 adrenoceptor. Replacing the catechol of adrenaline with a saligenin ring removes the substrate for catechol-O-methyltransferase, which is why the molecule is not degraded the way endogenous catecholamines are. Salmeterol is a partial agonist: its maximal response is below that of isoprenaline on the same preparation.',
+        iconName: 'RefreshCw',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'A messenger builds up inside the muscle cell',
+        laymanDesc:
+          'The switched-on receptor makes the cell produce a signalling chemical. The more of it there is, the more the muscle lets go.',
+        molecularDetail:
+          'The receptor couples to Gs, which activates adenylyl cyclase and converts ATP to cyclic AMP. The label attributes the pharmacologic effect at least in part to that step. Cyclic AMP activates protein kinase A, which lowers intracellular calcium and reduces myosin light-chain kinase activity.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The airway stays open for about twelve hours',
+        laymanDesc:
+          'The muscle relaxes and the tube widens. It takes fifteen to twenty minutes to start, which is why this inhaler is useless in an attack, and it lasts about twelve hours, which is why it is taken twice a day.',
+        molecularDetail:
+          'Bronchodilation with a duration near twelve hours, in contrast to four to six for albuterol. The label additionally records that salmeterol is a potent and long-lasting inhibitor of mast cell mediator release — histamine, leukotrienes and prostaglandin D2 — from human lung in vitro, and that single inhaled doses attenuate allergen-induced bronchial hyper-responsiveness in humans.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The inflammation underneath is untouched',
+        laymanDesc:
+          'Nothing in the chain above reaches the swollen, mucus-filled lining that causes asthma attacks. A person on salmeterol alone breathes more easily while the disease continues, and that is what the boxed warning is about.',
+        molecularDetail:
+          'The mast-cell stabilising effect measured in vitro does not translate into control of eosinophilic airway inflammation in vivo, and salmeterol produces no change in the transcriptional programme that inhaled corticosteroids act on. In SMART, run without required background steroid, asthma-related deaths were 13 against 3. In AUSTRI, run with fluticasone in the same inhaler, the hazard ratio for serious asthma events was 1.03 (95% CI 0.64 to 1.66).',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SMART (Nelson HS et al., Chest 2006)',
+        phase: 'Phase 4, randomised, double-blind, placebo-controlled safety trial',
+        sampleSize: 26355,
+        primaryEndpoint:
+          'Combined respiratory-related deaths or life-threatening experiences, salmeterol added to usual care against placebo added to usual care',
+        endpointMet: false,
+        statisticalPValue:
+          'Primary endpoint not significant: 50 against 36, relative risk 1.40 (95% CI 0.91 to 2.14). Asthma-related deaths 13 against 3, RR 4.37 (95% CI 1.25 to 15.34).',
+        unreportedAdverseSignals:
+          'The trial was terminated at interim analysis on the strength of the African-American subgroup, so the planned enrolment of 60,000 was never reached and the primary comparison is underpowered. Background inhaled corticosteroid was not required, which the label now makes mandatory.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'AUSTRI (NCT01475721)',
+        phase: 'Phase 4, randomised, double-blind, FDA-mandated safety trial',
+        sampleSize: 11679,
+        primaryEndpoint:
+          'Time to first serious asthma-related event — death, endotracheal intubation or hospitalisation',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 1.03 (95% CI 0.64 to 1.66); noninferiority against an upper bound of 2.0 achieved, P=0.003',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'VESTRI (NCT01462344)',
+        phase: 'Phase 4, randomised, double-blind, FDA-mandated paediatric safety trial',
+        sampleSize: 6208,
+        primaryEndpoint:
+          'Time to first serious asthma-related event in children aged 4 to 11 years',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 1.28 (95% CI 0.73 to 2.27); noninferiority against an upper bound of 2.675 achieved, P=0.006',
+        unreportedAdverseSignals:
+          'The noninferiority margin in children was 2.675 rather than the 2.0 used in adults, so a wider excess would have been declared acceptable. Every serious asthma-related event in the trial was a hospitalisation.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'TORCH (NCT00268216)',
+        phase: 'Phase 3/4, randomised, double-blind, placebo-controlled, four-arm, three years',
+        sampleSize: 6112,
+        primaryEndpoint:
+          'Death from any cause, salmeterol-fluticasone combination against placebo, in chronic obstructive pulmonary disease',
+        endpointMet: false,
+        statisticalPValue:
+          'Hazard ratio 0.825 (95% CI 0.681 to 1.002), P=0.052 adjusted for interim analyses — the predetermined level of significance was not reached',
+        unreportedAdverseSignals:
+          'Pneumonia reported as an adverse event in 19.6% on combination and 18.3% on fluticasone against 12.3% on placebo, P<0.001. The mortality result is quoted as a 17.5% risk reduction far more often than as a missed endpoint.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'POET-COPD (NCT00563381)',
+        phase: 'Phase 4, randomised, double-blind, double-dummy, active comparator, one year',
+        sampleSize: 7376,
+        primaryEndpoint:
+          'Time to first moderate or severe exacerbation, tiotropium against salmeterol',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 0.83 favouring tiotropium (95% CI 0.77 to 0.90), P<0.001; 187 days against 145 days to first exacerbation',
+        unreportedAdverseSignals:
+          'This trial met its endpoint against salmeterol, not for it. It is the largest head-to-head evidence that a long-acting antimuscarinic prevents more exacerbations than this drug in chronic obstructive pulmonary disease.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '13 asthma-related deaths on salmeterol against 3 on placebo among 26,355 subjects in SMART, relative risk 4.37 (95% CI 1.25 to 15.34)',
+        'Hazard ratio 1.03 (95% CI 0.64 to 1.66) for serious asthma events with salmeterol added to fluticasone in 11,679 patients in AUSTRI',
+        '21% fewer severe asthma exacerbations on fluticasone-salmeterol than on fluticasone alone in AUSTRI, hazard ratio 0.79 (95% CI 0.70 to 0.89)',
+        'All-cause mortality 12.6% against 15.2% in TORCH, hazard ratio 0.825 (95% CI 0.681 to 1.002), P=0.052',
+        'Time to first exacerbation 145 days on salmeterol against 187 days on tiotropium in 7,376 patients in POET-COPD',
+      ],
+      unsupportedInferences: [
+        'That salmeterol with a steroid has been shown to prolong survival in chronic obstructive pulmonary disease — TORCH is the trial that asked, and it missed at p=0.052',
+        'That the ADRB2 Arg16 variant explains the SMART deaths, an idea a genotype-stratified randomised trial tested and did not support on its primary endpoint',
+        'That the December 2017 withdrawal of the class boxed warning applies to salmeterol used on its own, when the current label still carries it and calls asthma monotherapy contraindicated',
+        'That relaxing airway muscle addresses asthma — the drug does nothing to the airway inflammation, and the whole safety history follows from that',
+      ],
+      whatFailedInitially: [
+        'SMART was stopped early and never reached its planned enrolment, leaving the primary endpoint underpowered and the mortality finding a secondary one',
+        'TORCH failed its primary mortality endpoint by three thousandths of a p-value and found pneumonia in 19.6% against 12.3% on placebo',
+        'POET-COPD showed a long-acting antimuscarinic prevents exacerbations better than salmeterol in 7,376 people',
+        'The genetic explanation offered for the African-American excess in SMART was not confirmed when tested directly in LARGE',
+      ],
+      realWorldOutcome: [
+        'Approved in 1994 and still the beta-agonist in one of the most-prescribed combination inhalers in the world',
+        'Carried a boxed warning from 2005; it was removed from fixed-dose combination products in December 2017 and retained on the single-ingredient inhaler',
+        'Asthma monotherapy moved from warned-against to contraindicated in the United States label',
+        'In chronic obstructive pulmonary disease it remains a maintenance bronchodilator with symptom and exacerbation benefit and no demonstrated survival benefit',
+      ],
+    },
+    deliverySystem: {
+      type: 'Dry-powder inhaler (Diskus, 50 micrograms per blister) and, historically, metered-dose inhalation aerosol',
+      description:
+        'Inhaled twice daily. Salmeterol is a partial agonist with an onset of roughly fifteen to twenty minutes, so it cannot function as a reliever, and the label states it is not indicated for relief of acute bronchospasm and must not be initiated in acutely deteriorating asthma. In asthma it is used almost exclusively inside a fixed-dose combination with an inhaled corticosteroid, because two separate inhalers can be reduced to one by a patient who feels better.',
+      safetyProfile:
+        'Boxed warning for asthma-related death when used as monotherapy without an inhaled corticosteroid; monotherapy in asthma is contraindicated. Not for acute symptoms. Do not combine with another long-acting beta-agonist. Paradoxical bronchospasm requires discontinuation. Caution in cardiovascular and central nervous system disorders, convulsive disorders, thyrotoxicosis, diabetes and ketoacidosis, and alertness to hypokalaemia and hyperglycaemia. Most common adverse reactions at 5% or more in asthma were headache, influenza, nasal or sinus congestion, pharyngitis, rhinitis and tracheitis or bronchitis; in chronic obstructive pulmonary disease, cough, headache, musculoskeletal pain, throat irritation and viral respiratory infection.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is salmeterol dangerous?',
+        a: 'Used on its own in asthma, the trial evidence says yes and the label says it is contraindicated. In SMART, 13 of 13,176 people on salmeterol died of asthma against 3 of 13,179 on placebo, in a study that did not require anyone to be taking an inhaled steroid. Used in a fixed-dose combination with a steroid, four FDA-mandated trials in 36,010 people found serious asthma events in 0.66% against 0.60% on the steroid alone, relative risk 1.09 with a confidence interval spanning one, and 17% fewer exacerbations. Those are two different questions with two different answers, and almost every argument about this drug comes from treating them as one.',
+        auditNote:
+          'The mechanism explains the difference. Salmeterol relieves the symptom of a disease it does not treat, and a person whose symptoms are muffled while the inflammation worsens has lost the warning that would have sent them for help.',
+      },
+      {
+        q: 'Was the boxed warning taken off?',
+        a: 'From the combination inhalers, in December 2017. Not from salmeterol by itself. The current SEREVENT DISKUS label still opens with WARNING: ASTHMA-RELATED DEATH, and use as asthma monotherapy without a concomitant inhaled corticosteroid is listed as contraindicated rather than merely discouraged. That is a stricter position than the one the warning originally took.',
+      },
+      {
+        q: 'Why does it take twenty minutes to work?',
+        a: 'Because of how it lasts twelve hours. Half the molecule is a long fatty chain that has no pharmacological job at all: it buries itself in the membrane of the muscle cell so the active end cannot wash away. Getting into position takes time, and salmeterol is also a partial agonist, meaning it cannot push the receptor as hard as adrenaline or albuterol can even at saturating concentrations. Formoterol, which is a full agonist, works in one to three minutes and lasts about as long — which is why formoterol and not salmeterol is the beta-agonist in the combination inhalers that double as relievers.',
+      },
+      {
+        q: 'Does it help people with COPD live longer?',
+        a: 'That was the question TORCH was built to answer, over three years in 6,112 people, and the answer it returned was no by the narrowest possible margin. Deaths were 12.6% on salmeterol plus fluticasone against 15.2% on placebo, hazard ratio 0.825 with a confidence interval of 0.681 to 1.002 and p=0.052 against a threshold of 0.05. Salmeterol alone did not differ significantly from placebo. What the same trial did show, at p<0.001, was fewer exacerbations, better health status and better spirometry — and more pneumonia, 19.6% against 12.3%.',
+        auditNote:
+          'A 17.5% relative risk reduction that misses its threshold is quoted as a benefit far more often than as a miss. The trial reported both, and this page keeps them together.',
+      },
+      {
+        q: 'Is there something better for COPD?',
+        a: 'For preventing exacerbations, one large trial says yes. POET-COPD randomised 7,376 people with moderate to very severe disease to tiotropium or salmeterol for a year and found tiotropium delayed the first exacerbation from 145 to 187 days, hazard ratio 0.83 (95% CI 0.77 to 0.90, p<0.001), with fewer severe exacerbations too. Deaths were 1.7% against 2.1%, a difference the trial was not designed to test. That is a single head-to-head comparison in one population, not a rule for every patient, but it is the largest direct evidence there is.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Nelson HS, Weiss ST, Bleecker ER, Yancey SW, Dorinsky PM. The Salmeterol Multicenter Asthma Research Trial. Chest 2006;129:15-26',
+        identifier: '10.1378/chest.129.1.15',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stempel DA, Raphiou IH, Kral KM, et al. Serious Asthma Events with Fluticasone plus Salmeterol versus Fluticasone Alone. N Engl J Med 2016;374:1822-1830',
+        identifier: '10.1056/NEJMoa1511049',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stempel DA, Szefler SJ, Pedersen S, et al. Safety of Adding Salmeterol to Fluticasone Propionate in Children with Asthma. N Engl J Med 2016;375:840-849',
+        identifier: '10.1056/NEJMoa1606356',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Calverley PMA, Anderson JA, Celli B, et al. Salmeterol and fluticasone propionate and survival in chronic obstructive pulmonary disease. N Engl J Med 2007;356:775-789',
+        identifier: '10.1056/NEJMoa063070',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vogelmeier C, Hederer B, Glaab T, et al. Tiotropium versus salmeterol for the prevention of exacerbations of COPD. N Engl J Med 2011;364:1093-1103',
+        identifier: '10.1056/NEJMoa1008378',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Busse WW, Bateman ED, Caplan AL, et al. Combined Analysis of Asthma Safety Trials of Long-Acting beta2-Agonists. N Engl J Med 2018;378:2497-2505',
+        identifier: '10.1056/NEJMoa1716868',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wechsler ME, Kunselman SJ, Chinchilli VM, et al. Effect of beta2-adrenergic receptor polymorphism on response to longacting beta2 agonist in asthma (LARGE). Lancet 2009;374:1754-1764',
+        identifier: '10.1016/S0140-6736(09)61492-6',
+        kind: 'doi',
+      },
+      {
+        label: 'AUSTRI — the FDA-mandated salmeterol-fluticasone safety trial in adolescents and adults',
+        identifier: 'NCT01475721',
+        kind: 'nct',
+      },
+      {
+        label: 'VESTRI — the FDA-mandated salmeterol-fluticasone safety trial in children aged 4 to 11',
+        identifier: 'NCT01462344',
+        kind: 'nct',
+      },
+      {
+        label: 'TORCH — three-year survival trial of salmeterol and fluticasone in COPD',
+        identifier: 'NCT00268216',
+        kind: 'nct',
+      },
+      {
+        label: 'POET-COPD — tiotropium against salmeterol for exacerbation prevention',
+        identifier: 'NCT00563381',
+        kind: 'nct',
+      },
+      {
+        label: 'LARGE — genotype-stratified crossover trial of salmeterol by ADRB2 codon 16 genotype',
+        identifier: 'NCT00200967',
+        kind: 'nct',
+      },
+      {
+        label:
+          'SEREVENT DISKUS (salmeterol xinafoate inhalation powder) United States prescribing information — boxed warning, Contraindications, Warnings and Precautions 5.1, Clinical Pharmacology 12.1',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22salmeterol+xinafoate%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5152 — salmeterol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5152',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Tiotropium — the bronchodilator that beat every comparator it was given and failed the one
+  //    endpoint it was designed around: the rate at which lung function falls.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tiotropium',
+    name: 'Tiotropium',
+    tradeName: 'Spiriva Respimat / Spiriva HandiHaler / Spiriva',
+    sponsor: 'Boehringer Ingelheim (with Pfizer as co-development partner on the COPD programme)',
+    targetGene: 'CHRM3',
+    targetProtein:
+      'Muscarinic acetylcholine receptor M3 on airway smooth muscle — with similar binding affinity at M1 to M5',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Long-term, once-daily maintenance treatment of bronchospasm associated with chronic obstructive pulmonary disease, including chronic bronchitis and emphysema, and to reduce COPD exacerbations. The Respimat product is additionally indicated as add-on maintenance treatment in asthma. Not a rescue medication.',
+    patientFriendlyIndication:
+      'A once-daily inhaler that blocks the nerve signal telling the airway to tighten',
+    anatomicalSite:
+      'Muscarinic M3 receptors on bronchial smooth muscle and submucosal glands, reached directly by the inhaled particle',
+    conditionContext: {
+      conditionExplainer:
+        'The vagus nerve runs to the airways and releases acetylcholine, which tells the muscle around them to contract and the glands to make mucus. In chronic obstructive pulmonary disease that resting nerve tone is the single largest reversible part of the obstruction. Tiotropium blocks the receptor the acetylcholine lands on.',
+      whyItMatters:
+        'Most of the airflow obstruction in this disease is fixed — destroyed alveoli and scarred small airways do not open again. Blocking cholinergic tone removes the part that can still move, which is why a drug of this class produces a real and immediate gain in lung function and no change at all in how fast the lung is being lost.',
+      whoTakesThis:
+        'People with chronic obstructive pulmonary disease as maintenance treatment, and separately people whose asthma stays uncontrolled on an inhaled steroid plus a long-acting beta-agonist, where it is an add-on rather than a replacement.',
+      clinicalGoals:
+        'Fewer exacerbations and less breathlessness. Not a slower decline in lung function: a four-year, 5,993-patient trial was built to test that and did not show it.',
+    },
+    oneSentenceVerdict:
+      'A muscarinic antagonist that stays stuck to the M3 receptor for a day and a half while falling off M2 in three and a half hours, which is what makes one inhalation last twenty-four hours; over four years in 5,993 people it held a 87 to 103 mL gain in lung function, cut exacerbations and hospitalisations, and did not change the rate at which lung function declined — the co-primary endpoint the trial existed to answer.',
+    laymanHowItWorks:
+      'A nerve running to the lungs constantly tells the muscle around each airway to stay slightly tightened. Tiotropium sits on the receptor that nerve signal lands on, so the message never arrives and the muscle relaxes. What makes one dose last a full day is not how tightly it binds but how slowly it lets go: it clings to the receptor on airway muscle for about thirty-five hours, while falling off the receptor on the heart in under four. It cannot undo the airway damage underneath, so it makes breathing easier without changing the course of the disease.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 84,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$11.73 per unit, the median across 7 listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Tiotropium bromide was synthesised at Boehringer Ingelheim as Ba 679 BR and first described in 1993. The CMS survey still lists it as a brand product two decades after approval, and the reason is the same one that runs through this whole file: the molecule and the inhaler are separate pieces of intellectual property. HandiHaler capsules and the Respimat soft-mist cartridge each carry device and formulation protection outliving the compound patent, and a generic that cannot use the device cannot show equivalent lung deposition.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The honest comparison for tiotropium is other long-acting bronchodilators, and it has been made directly and at scale. Against salmeterol it prevented more exacerbations in 7,376 people. Against ipratropium, the drug it replaced, it produced a higher trough lung function and 24% fewer exacerbations. Against an inhaled steroid it is a different drug for a different part of the problem, not an alternative. Nothing eaten blocks a muscarinic receptor for a day.',
+      conventionalRx: [
+        {
+          name: 'Ipratropium (Atrovent)',
+          class: 'Short-acting muscarinic antagonist',
+          howItCompares:
+            'The same target, four times a day instead of once, because it falls off the M3 receptor in about fifteen minutes rather than thirty-five hours. In two identical one-year trials in 535 people, trough FEV1 rose 0.12 L on tiotropium and fell 0.03 L on ipratropium (p<0.001), with 24% fewer exacerbations (p<0.01).',
+          typicalCost:
+            'US$0.1089 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheap, generic, decades of use, available as a nebuliser solution for acute care. Cons: four doses a day, and directly beaten by tiotropium on lung function and exacerbations in a randomised comparison.',
+        },
+        {
+          name: 'Umeclidinium (Incruse Ellipta)',
+          class: 'Long-acting muscarinic antagonist',
+          howItCompares:
+            'A once-daily antimuscarinic of the same generation, delivered in a dry-powder device rather than a capsule inhaler or a soft-mist inhaler. Its evidence base is much smaller than tiotropium’s and contains no four-year outcome trial.',
+          typicalCost:
+            'US$10.28 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: single-inhalation dry-powder device, once daily, and available combined with vilanterol. Cons: nothing on the scale of UPLIFT or TIOSPIR behind it, so long-term safety rests on the class rather than the molecule.',
+        },
+        {
+          name: 'Salmeterol (Serevent)',
+          class: 'Long-acting beta-2 agonist',
+          howItCompares:
+            'Relaxes the same muscle through the opposite signal. POET-COPD compared them head to head for a year in 7,376 patients: tiotropium delayed the first exacerbation from 145 to 187 days, hazard ratio 0.83 (95% CI 0.77 to 0.90, p<0.001).',
+          typicalCost:
+            'US$6.74 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: different side-effect profile, no dry mouth or urinary retention. Cons: lost the largest head-to-head trial ever run between the two classes on the endpoint that matters most.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Mention glaucoma or prostate trouble before starting',
+          action:
+            'Tell the prescriber about narrow-angle glaucoma, an enlarged prostate or difficulty passing urine.',
+          patientImpact:
+            'The label warns that worsening of narrow-angle glaucoma and worsening of urinary retention may occur, and asks patients with those conditions to consult a physician immediately if symptoms appear. Eye pain, blurred vision and haloes are the warning signs.',
+          clinicalPrecaution:
+            'These are muscarinic effects at receptors outside the lung, not idiosyncratic reactions. They are predictable from the mechanism, which is why the label singles out exactly these two organs.',
+        },
+        {
+          name: 'Say if you have a severe milk protein allergy',
+          action:
+            'Check which device has been prescribed: the HandiHaler capsule contains lactose.',
+          patientImpact:
+            'The label asks for caution in patients with severe hypersensitivity to milk proteins, because the inhalation powder is blended with a lactose monohydrate carrier that can contain milk protein traces.',
+          clinicalPrecaution:
+            'This is a property of the formulation, not of tiotropium. The soft-mist inhaler is an aqueous solution and does not contain the lactose carrier.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[N+]1([C@@H]2CC(C[C@H]1[C@H]3[C@@H]2O3)OC(=O)C(C4=CC=CS4)(C5=CC=CS5)O)C',
+      chemicalFormula: 'C19H22NO4S2',
+      molecularWeight: '392.50 g/mol',
+      targetReceptorAffinity:
+        'The label states similar affinity across muscarinic subtypes M1 to M5, with the airway effect arising from M3 inhibition on smooth muscle, and describes the antagonism as competitive and reversible. The duration is kinetic rather than affinity-driven: in the original characterisation, dissociation half-lives from human receptors were 34.7 hours at M3, 14.6 hours at M1 and 3.6 hours at M2, against 0.26, 0.11 and 0.035 hours for ipratropium. Faster release from M2 than from M3 is what the authors called kinetic receptor subtype selectivity.',
+      structureSource: {
+        label:
+          'PubChem CID 5487427 (tiotropium) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5487427',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tio-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the scopine core and the dithienylglycolic acid',
+          description:
+            'Confirm both halves before esterification. The epoxide bridge of the scopine ring and the two thiophene rings of the acid are what distinguish tiotropium from ipratropium, and the pair of thiophenes is the part responsible for the thirty-five-hour residence time at M3.',
+          reagentsAndBuffer:
+            'Tiotropium bromide reference standard, reversed-phase HPLC with ultraviolet detection, 1H and 13C NMR in D2O or DMSO-d6, ion chromatography for bromide content',
+        },
+        {
+          id: 'tio-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Esterification and quaternisation to the bromide salt',
+          description:
+            'Esterify scopine with di-2-thienylglycolic acid or its methyl ester under transesterification conditions, then quaternise the tertiary amine with methyl bromide. Quaternisation is what confines the drug to the airway: a permanently charged nitrogen crosses membranes poorly, so swallowed drug is barely absorbed and central anticholinergic effects do not appear.',
+          dependsOnStepId: 'tio-w1',
+          reagentsAndBuffer:
+            'Scopine or scopine hydrochloride, methyl di-2-thienylglycolate, sodium methoxide in anhydrous methanol or toluene, methyl bromide in acetonitrile, nitrogen atmosphere',
+        },
+        {
+          id: 'tio-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation of the monohydrate and control of the epoxide impurity',
+          description:
+            'Crystallise the bromide monohydrate and assay for epoxide ring-opened degradants, which form under acid and moisture. The polymorph and the water of crystallisation matter here for a practical reason: the dry-powder product is a micronised blend and its aerodynamic particle size distribution depends on the crystal habit.',
+          dependsOnStepId: 'tio-w2',
+          reagentsAndBuffer:
+            'Water and methanol or acetone antisolvent crystallisation, controlled-humidity drying, X-ray powder diffraction and differential scanning calorimetry, HPLC purity with impurity limits',
+        },
+        {
+          id: 'tio-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Radioligand occupancy on membranes from cells expressing human M1, M2 and M3',
+          description:
+            'Load membranes from cells expressing each human receptor subtype with labelled tiotropium, then dilute heavily and follow the fall in bound radioligand over days. The dilution step is the experiment: equilibrium affinity is nearly identical across subtypes, and only the off-rate separates them.',
+          dependsOnStepId: 'tio-w3',
+          reagentsAndBuffer:
+            'CHO or CHO-K1 membranes expressing human CHRM1, CHRM2 and CHRM3, tritiated N-methylscopolamine as tracer, HEPES-buffered assay medium, atropine for non-specific binding, glass-fibre filtration with rapid washing',
+        },
+        {
+          id: 'tio-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Dissociation half-life and protection against induced bronchospasm',
+          description:
+            'Fit the washout curve to give a dissociation half-life per subtype, and pair it with a functional protection assay against methacholine or acetylcholine challenge. Reporting an affinity constant without an off-rate would make tiotropium and ipratropium look interchangeable, which is precisely the error the original pharmacology was designed to expose.',
+          dependsOnStepId: 'tio-w4',
+          reagentsAndBuffer:
+            'Scintillation counting of filter-bound tracer, guinea pig tracheal ring organ bath with acetylcholine challenge, ipratropium as fast-dissociating comparator, non-linear regression to a one-phase exponential decay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tio-a1',
+        category: 'failed',
+        title: 'UPLIFT: four years, 5,993 patients, and the co-primary endpoint was not met',
+        laymanSummary:
+          'The trial was built around one question: does this drug slow the rate at which lung function is lost in chronic obstructive pulmonary disease? After four years, the answer was no. Everything else about the trial went well, and that is the part people remember.',
+        technicalDetails:
+          'UPLIFT randomised 5,993 patients with a post-bronchodilator FEV1 of 70% predicted or less to tiotropium 18 micrograms once daily or placebo for four years, with all other respiratory medication except inhaled anticholinergics permitted. The co-primary endpoints were the rate of decline in mean FEV1 before and after bronchodilation from day 30 onwards. After day 30 the differences between groups in the rate of decline were not significant on either co-primary endpoint. Absolute FEV1 improvements were maintained throughout — 87 to 103 mL before bronchodilation and 47 to 65 mL after (P<0.001) — and the St George’s Respiratory Questionnaire total score was better on tiotropium at every time point, by 2.3 to 3.3 units (P<0.001). At four years and 30 days tiotropium was associated with reductions in exacerbations, related hospitalisations and respiratory failure.',
+        evidenceSource:
+          'Tashkin DP, Celli B, Senn S, et al. N Engl J Med 2008;359:1543-1554 (UPLIFT, NCT00144339)',
+        doi: '10.1056/NEJMoa0805800',
+        measuredMetric:
+          'Rate of decline in FEV1 before and after bronchodilation from day 30 to four years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tio-a2',
+        category: 'inferred',
+        title: 'The quality-of-life gain in UPLIFT sat below its own clinical threshold',
+        laymanSummary:
+          'The trial reported a statistically significant improvement in a breathing questionnaire at every visit for four years. The size of that improvement was between two and three and a third points, and the smallest change the questionnaire’s author considers clinically meaningful is four.',
+        technicalDetails:
+          'UPLIFT reported mean absolute St George’s Respiratory Questionnaire total scores lower on tiotropium than on placebo at every time point across four years, ranging from 2.3 to 3.3 units, P<0.001. The threshold for a clinically significant change in the SGRQ is conventionally 4 units, derived empirically by Jones and set out in the standard reference on interpreting these instruments. A difference can be highly significant and smaller than the smallest difference a patient would notice; with 5,993 patients followed for four years, statistical significance is not the constraint. This does not make the finding wrong, and it does make "improved quality of life" a heavier claim than the number supports.',
+        evidenceSource:
+          'Tashkin DP et al., N Engl J Med 2008;359:1543-1554; Jones PW. Interpreting thresholds for a clinically significant change in health status in asthma and COPD. Eur Respir J 2002;19:398-404',
+        doi: '10.1183/09031936.02.00063702',
+        inferredClaim:
+          'That a 2.3 to 3.3 unit SGRQ difference is a clinically meaningful improvement in quality of life, when the accepted threshold for that instrument is 4 units',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tio-a3',
+        category: 'conclusion_shift',
+        title: 'The Respimat mortality alarm, and the 17,135-patient trial that dissolved it',
+        laymanSummary:
+          'A 2011 meta-analysis of five trials found people using the soft-mist version of tiotropium died more often than those on placebo, a 52% higher risk. Boehringer then ran a single trial larger than all five put together, comparing the two devices directly. The excess was not there.',
+        technicalDetails:
+          'Singh and colleagues pooled five randomised trials of tiotropium delivered by the Respimat soft-mist inhaler against placebo and found all-cause mortality of 90 of 3,686 against 47 of 2,836, relative risk 1.52 (95% CI 1.06 to 2.16, P=0.02, I2=0%), with both the 5 microgram (RR 1.46, 1.01 to 2.10) and 10 microgram (RR 2.15, 1.03 to 4.51) doses implicated, and a number needed to harm of 124 per year. TIOSPIR then randomised 17,135 patients to Respimat 2.5 or 5 micrograms or HandiHaler 18 micrograms and followed them a mean of 2.3 years. Respimat was noninferior to HandiHaler for death — 5 micrograms hazard ratio 0.96 (95% CI 0.84 to 1.09), 2.5 micrograms hazard ratio 1.00 (0.87 to 1.14) — and not superior on first exacerbation (HR 0.98, 0.93 to 1.03). Causes of death and major cardiovascular event rates were similar across the three groups.',
+        evidenceSource:
+          'Singh S, Loke YK, Enright PL, Furberg CD. BMJ 2011;342:d3215; Wise RA, Anzueto A, Cotton D, et al. N Engl J Med 2013;369:1491-1501 (TIOSPIR, NCT01126437)',
+        doi: '10.1056/NEJMoa1303342',
+        inferredClaim:
+          'That the soft-mist device carries a mortality risk the dry-powder device does not — an inference from placebo-controlled trials of unequal design that a direct head-to-head comparison in 17,135 patients did not reproduce',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tio-a4',
+        category: 'conclusion_shift',
+        title: 'A 2008 meta-analysis put a cardiovascular signal on the whole class',
+        laymanSummary:
+          'Seventeen trials pooled together suggested that inhaled anticholinergics raised the risk of heart attack, cardiovascular death or stroke by about sixty per cent. The two very large trials that came afterwards, together covering 23,000 people, did not find it.',
+        technicalDetails:
+          'Singh and colleagues pooled 17 randomised trials of inhaled anticholinergics — ipratropium or tiotropium — enrolling 13,645 patients with COPD. The composite of cardiovascular death, myocardial infarction or stroke occurred in 134 of 6,984 (1.9%) on anticholinergics against 83 of 6,661 (1.2%) on control, relative risk 1.60 (95% CI 1.22 to 2.10, P<0.001, I2=0%), with myocardial infarction RR 1.52 (1.04 to 2.22) and cardiovascular death RR 1.92 (1.23 to 3.00). All-cause mortality was RR 1.29 (1.00 to 1.65, P=0.05). UPLIFT, published two weeks later with 5,993 patients over four years, and TIOSPIR, with 17,135 patients over a mean 2.3 years, both reported similar cardiovascular event rates between arms. The meta-analysis pooled two different molecules, several devices and trials designed for other purposes; the trials that followed were designed to answer the question and answered it differently.',
+        evidenceSource:
+          'Singh S, Loke YK, Furberg CD. JAMA 2008;300:1439-1450; Tashkin DP et al., N Engl J Med 2008;359:1543-1554; Wise RA et al., N Engl J Med 2013;369:1491-1501',
+        doi: '10.1001/jama.300.12.1439',
+        inferredClaim:
+          'That inhaled antimuscarinics raise cardiovascular risk by roughly 60% — a pooled estimate across two molecules and many devices that two purpose-built trials of 23,128 patients did not confirm',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'tio-a5',
+        category: 'measured',
+        title: 'POET-COPD: more exacerbations prevented than by a long-acting beta-agonist',
+        laymanSummary:
+          'A one-year trial put tiotropium directly against salmeterol in more than seven thousand people with chronic obstructive pulmonary disease. Tiotropium delayed the next flare-up by about six weeks and cut the risk of one by seventeen per cent.',
+        technicalDetails:
+          'POET-COPD randomised 7,376 patients with moderate to very severe COPD and an exacerbation in the preceding year to tiotropium 18 micrograms once daily or salmeterol 50 micrograms twice daily, double-blind and double-dummy, for one year. Time to first exacerbation was 187 days against 145 days, hazard ratio 0.83 (95% CI 0.77 to 0.90, P<0.001). Time to first severe exacerbation favoured tiotropium (HR 0.72, 95% CI 0.61 to 0.85, P<0.001), annual moderate or severe exacerbations fell from 0.72 to 0.64 (rate ratio 0.89, 95% CI 0.83 to 0.96, P=0.002) and annual severe exacerbations from 0.13 to 0.09 (rate ratio 0.73, 95% CI 0.66 to 0.82, P<0.001). Deaths were 64 (1.7%) against 78 (2.1%), a comparison the trial was not powered to make.',
+        evidenceSource:
+          'Vogelmeier C, Hederer B, Glaab T, et al. N Engl J Med 2011;364:1093-1103 (POET-COPD, NCT00563381)',
+        doi: '10.1056/NEJMoa1008378',
+        measuredMetric:
+          'Time to first moderate or severe exacerbation, tiotropium against salmeterol over one year',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tio-a6',
+        category: 'measured',
+        title: 'PrimoTinA-asthma: a third drug added on top of two, worth about 100 mL and 56 days',
+        laymanSummary:
+          'In people whose asthma stayed uncontrolled on a steroid and a long-acting beta-agonist, adding tiotropium improved lung function by around a tenth of a litre and delayed the next severe attack from about seven and a half months to nine and a half.',
+        technicalDetails:
+          'Two replicate 48-week randomised placebo-controlled trials enrolled 912 patients already taking inhaled glucocorticoids and long-acting beta-agonists, all symptomatic, with post-bronchodilator FEV1 of 80% predicted or less and at least one severe exacerbation in the previous year. Mean baseline FEV1 was 62% predicted. At 24 weeks the difference in peak FEV1 was 86±34 mL in trial 1 (P=0.01) and 154±32 mL in trial 2 (P<0.001); trough FEV1 differences were 88±31 mL (P=0.01) and 111±30 mL (P<0.001). Time to first severe exacerbation rose from 226 to 282 days, an overall 21% reduction in risk (hazard ratio 0.79, P=0.03). No deaths occurred and adverse events were similar between groups.',
+        evidenceSource:
+          'Kerstjens HAM, Engel M, Dahl R, et al. N Engl J Med 2012;367:1198-1207 (NCT00772538 and NCT00776984)',
+        doi: '10.1056/NEJMoa1208606',
+        measuredMetric:
+          'Peak and trough FEV1 at 24 weeks and time to first severe exacerbation at 48 weeks, added to inhaled glucocorticoid plus long-acting beta-agonist',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tio-a7',
+        category: 'measured',
+        title: 'It beat the drug it replaced on lung function and exacerbations',
+        laymanSummary:
+          'Two identical year-long trials compared tiotropium once a day with ipratropium four times a day. Lung function rose on tiotropium and fell on ipratropium, and there were about a quarter fewer flare-ups.',
+        technicalDetails:
+          'Two identical one-year randomised, double-blind, double-dummy trials compared tiotropium 18 micrograms once daily (n=356) with ipratropium 40 micrograms four times daily (n=179) in patients with screening FEV1 around 40% predicted. Trough FEV1 at one year improved by 0.12±0.01 L on tiotropium and declined by 0.03±0.02 L on ipratropium (P<0.001). Peak expiratory flow, rescue salbutamol use, Transition Dyspnea Index focal score and St George’s Respiratory Questionnaire total and impact scores all improved on tiotropium (P<0.01). Exacerbations fell by 24% (P<0.01), with longer time to first exacerbation (P<0.01) and to first hospitalisation for exacerbation (P<0.05). Apart from more dry mouth on tiotropium, adverse events were similar.',
+        evidenceSource:
+          'Vincken W, van Noord JA, Greefhorst APM, et al. Eur Respir J 2002;19:209-216',
+        doi: '10.1183/09031936.02.00238702',
+        measuredMetric:
+          'Trough FEV1 and exacerbation rate at one year, tiotropium once daily against ipratropium four times daily',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Delivered as a powder from a capsule, or as a slow mist',
+        laymanDesc:
+          'Two devices exist. One pierces a capsule of powder that is drawn in by the breath; the other pushes a fine mist out slowly enough that it can be inhaled without perfect timing.',
+        molecularDetail:
+          'HandiHaler delivers 18 micrograms of tiotropium bromide monohydrate blended with lactose carrier; Respimat delivers 2.5 or 5 micrograms as an aqueous soft mist generated mechanically rather than by propellant. The two were compared directly in 17,135 patients in TIOSPIR and were noninferior on mortality and equivalent on exacerbations.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'A permanently charged molecule stays where it lands',
+        laymanDesc:
+          'The molecule carries a fixed electrical charge, so it does not slip through cell membranes easily. That keeps it in the airway and out of the brain, and means the portion swallowed is barely absorbed.',
+        molecularDetail:
+          'Tiotropium is a quaternary ammonium compound. The permanent positive charge on the nitrogen limits passive membrane permeation and blood-brain barrier penetration, and the label describes the bronchodilation as predominantly a site-specific effect.',
+        iconName: 'Lock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies the receptor the nerve signal was aiming for',
+        laymanDesc:
+          'Acetylcholine released by the vagus nerve normally lands on a receptor on the airway muscle and makes it contract. Tiotropium sits in that spot instead, and the message has nowhere to arrive.',
+        molecularDetail:
+          'Competitive, reversible antagonism at muscarinic receptors, with similar affinity across M1 to M5 and the airway effect arising from M3 blockade on smooth muscle. M3 activation normally couples through Gq to phospholipase C, inositol trisphosphate and a rise in intracellular calcium.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It lets go of the lung receptor very slowly and the heart receptor quickly',
+        laymanDesc:
+          'This is the whole trick. The drug clings to the receptor on airway muscle for about a day and a half, but falls off the one on the heart in a few hours — so the useful effect outlasts the unwanted one.',
+        molecularDetail:
+          'Measured dissociation half-lives from human receptors were 34.7 hours at M3, 14.6 hours at M1 and 3.6 hours at M2, against 0.26, 0.11 and 0.035 hours for ipratropium. The authors named this kinetic receptor subtype selectivity: equilibrium affinity is near-identical across subtypes, and only the off-rate distinguishes them. M2 receptors are presynaptic autoreceptors and cardiac; leaving them quickly is desirable.',
+        iconName: 'Timer',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The airway opens and stays open for a day',
+        laymanDesc:
+          'Airway muscle relaxes, the tube widens, and one inhalation covers twenty-four hours. It also cuts down mucus secretion, which the same nerve signal drives.',
+        molecularDetail:
+          'Preclinical protection against methacholine-induced bronchoconstriction was dose-dependent and lasted longer than 24 hours. In UPLIFT the absolute FEV1 gain of 87 to 103 mL before bronchodilation was maintained unchanged across four years, which is the signature of a symptomatic bronchodilator rather than a disease-modifying drug.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The damaged lung goes on being lost at the same rate',
+        laymanDesc:
+          'Blocking the nerve signal removes the part of the narrowing that can still move. It does nothing to destroyed air sacs or scarred small airways, and four years of treatment did not change how fast lung function fell.',
+        molecularDetail:
+          'UPLIFT’s co-primary endpoints were the rates of decline in pre- and post-bronchodilator FEV1 from day 30; after day 30 neither differed significantly from placebo. The exacerbation, hospitalisation and respiratory-failure reductions in the same trial are real and are a separate finding from disease modification.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'UPLIFT (NCT00144339)',
+        phase: 'Phase 4, randomised, double-blind, placebo-controlled, four years',
+        sampleSize: 5993,
+        primaryEndpoint:
+          'Co-primary: rate of decline in mean FEV1 before and after bronchodilation, from day 30 onwards',
+        endpointMet: false,
+        statisticalPValue:
+          'After day 30 the between-group differences in rate of decline were not significant on either co-primary endpoint. Absolute FEV1 gains of 87 to 103 mL pre-bronchodilator and 47 to 65 mL post-bronchodilator were maintained, P<0.001.',
+        unreportedAdverseSignals:
+          'The trial is widely cited for its secondary findings on exacerbations and health status. Its co-primary endpoint — the reason it ran for four years — was not met, and the St George’s Respiratory Questionnaire benefit of 2.3 to 3.3 units sits below the conventional 4-unit threshold for clinical significance.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'TIOSPIR (NCT01126437)',
+        phase: 'Phase 4, randomised, double-blind, device-comparison safety trial, mean 2.3 years',
+        sampleSize: 17135,
+        primaryEndpoint:
+          'Risk of death (noninferiority, Respimat against HandiHaler) and risk of first COPD exacerbation (superiority)',
+        endpointMet: true,
+        statisticalPValue:
+          'Death: Respimat 5 micrograms against HandiHaler hazard ratio 0.96 (95% CI 0.84 to 1.09); 2.5 micrograms hazard ratio 1.00 (0.87 to 1.14). First exacerbation: hazard ratio 0.98 (0.93 to 1.03) — noninferior on death, not superior on exacerbations.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'POET-COPD (NCT00563381)',
+        phase: 'Phase 4, randomised, double-blind, double-dummy, active comparator, one year',
+        sampleSize: 7376,
+        primaryEndpoint:
+          'Time to first moderate or severe COPD exacerbation, tiotropium against salmeterol',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 0.83 (95% CI 0.77 to 0.90), P<0.001; 187 days against 145 days',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'PrimoTinA-asthma (NCT00772538 and NCT00776984)',
+        phase: 'Phase 3, two replicate randomised, double-blind, placebo-controlled trials, 48 weeks',
+        sampleSize: 912,
+        primaryEndpoint:
+          'Peak and trough FEV1 at 24 weeks, and time to first severe exacerbation, added to inhaled glucocorticoid plus long-acting beta-agonist',
+        endpointMet: true,
+        statisticalPValue:
+          'Trough FEV1 difference 88±31 mL (P=0.01) and 111±30 mL (P<0.001); time to first severe exacerbation 282 against 226 days, hazard ratio 0.79, P=0.03',
+        unreportedAdverseSignals:
+          'This is a third controller added to two, in patients already failing both. The lung-function difference is around 100 mL, which is at the lower edge of what a patient would be expected to notice.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Vincken 2002 — tiotropium against ipratropium, two identical one-year trials',
+        phase: 'Phase 3, randomised, double-blind, double-dummy, active comparator, one year',
+        sampleSize: 535,
+        primaryEndpoint: 'Trough FEV1 at one year, tiotropium against ipratropium',
+        endpointMet: true,
+        statisticalPValue:
+          'Trough FEV1 +0.12±0.01 L on tiotropium against -0.03±0.02 L on ipratropium, P<0.001; exacerbations reduced 24%, P<0.01',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'No significant difference in the rate of FEV1 decline against placebo over four years in 5,993 patients — UPLIFT’s co-primary endpoint',
+        'An 87 to 103 mL pre-bronchodilator FEV1 gain held constant across four years, P<0.001',
+        'Time to first exacerbation 187 days against 145 on salmeterol in 7,376 patients, hazard ratio 0.83 (95% CI 0.77 to 0.90)',
+        'Respimat noninferior to HandiHaler for death in 17,135 patients, hazard ratio 0.96 (95% CI 0.84 to 1.09)',
+        'Dissociation half-lives of 34.7 hours at M3 and 3.6 hours at M2, against 0.26 and 0.035 hours for ipratropium',
+      ],
+      unsupportedInferences: [
+        'That tiotropium slows the progression of chronic obstructive pulmonary disease — the four-year trial designed to test that did not show it',
+        'That a 2.3 to 3.3 unit St George’s Respiratory Questionnaire difference is a clinically meaningful quality-of-life improvement, against a conventional threshold of 4 units',
+        'That the soft-mist inhaler carries a mortality risk the dry-powder inhaler does not, which a 17,135-patient head-to-head comparison did not reproduce',
+        'That inhaled antimuscarinics raise cardiovascular risk by around 60%, a pooled estimate the two large purpose-built trials did not confirm',
+      ],
+      whatFailedInitially: [
+        'UPLIFT missed both co-primary endpoints after four years and 5,993 patients',
+        'A 2011 meta-analysis of five trials reported a 52% higher mortality with the Respimat device, relative risk 1.52 (95% CI 1.06 to 2.16)',
+        'A 2008 meta-analysis of 17 trials reported a 60% higher risk of cardiovascular death, myocardial infarction or stroke across the anticholinergic class',
+        'In asthma the drug is a third agent added to two that are already failing, and buys about 100 mL of trough FEV1',
+      ],
+      realWorldOutcome: [
+        'Approved in 2004 and the reference long-acting antimuscarinic against which every later one in this class is compared',
+        'The FDA-required device safety programme became TIOSPIR, one of the largest respiratory trials ever run',
+        'Extended into asthma in 2015 as add-on maintenance treatment, not as a replacement for an inhaled corticosteroid',
+        'Still sold as a brand two decades on, because the device and the molecule are separate pieces of property',
+      ],
+    },
+    deliverySystem: {
+      type: 'Inhalation powder in capsules for the HandiHaler device (18 micrograms) and aqueous soft-mist inhalation spray for the Respimat device (2.5 or 5 micrograms)',
+      description:
+        'Once daily. The HandiHaler pierces a lactose-blended capsule and depends on the patient generating enough inspiratory flow; the Respimat produces a slow-moving mist mechanically, which removes that dependence. The two devices were compared directly in TIOSPIR and behaved the same on mortality and exacerbations. The label is explicit that neither is a rescue medication.',
+      safetyProfile:
+        'Not for acute use and not a rescue medication. Immediate hypersensitivity reactions including angioedema, urticaria, rash, bronchospasm and anaphylaxis require immediate discontinuation, and caution applies in patients with hypersensitivity to atropine derivatives or severe hypersensitivity to milk proteins, since the powder is lactose-blended. Life-threatening paradoxical bronchospasm can occur. Worsening of narrow-angle glaucoma and of urinary retention may occur and both are named in the label as reasons to seek immediate advice. The most common adverse reactions above 5% in the one-year placebo-controlled trials were upper respiratory tract infection, dry mouth, sinusitis, pharyngitis, non-specific chest pain, urinary tract infection, dyspepsia and rhinitis.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does tiotropium slow down my lung disease?',
+        a: 'No, and this is the clearest negative result on the page. UPLIFT ran for four years in 5,993 people specifically to answer that question, with the rate of FEV1 decline as its co-primary endpoint, and after day 30 the difference from placebo was not significant. What the same trial did show was a lung-function gain of about 90 to 100 mL that stayed the same size for four years — the signature of a drug that removes a fixed amount of reversible narrowing every day, not one that changes what is happening to the lung underneath. It also reduced exacerbations, hospitalisations and respiratory failure, which are worth having and are a different claim.',
+        auditNote:
+          'A constant absolute benefit over four years and an unchanged rate of decline are the same observation described twice. Marketing tends to report the first and not the second.',
+      },
+      {
+        q: 'Why does one puff last a whole day?',
+        a: 'Not because it binds unusually tightly. Tiotropium has roughly the same affinity for all five muscarinic receptor subtypes. What is unusual is how slowly it comes off: about thirty-five hours at the M3 receptor on airway muscle, against about fifteen minutes for ipratropium at the same receptor. It also comes off the M2 receptor — the one on the heart and on nerve terminals — in three and a half hours, so the lung effect outlives the cardiac one. The original 1993 paper called this kinetic receptor subtype selectivity, and it is the reason the same chemical family went from four doses a day to one.',
+      },
+      {
+        q: 'Was there a problem with the Respimat inhaler?',
+        a: 'There was a signal, and it did not hold up. A 2011 meta-analysis of five placebo-controlled trials found 90 deaths among 3,686 people on Respimat against 47 among 2,836 on placebo, a relative risk of 1.52 with a confidence interval of 1.06 to 2.16. That was enough for regulators to act on. Boehringer then ran TIOSPIR, which put 17,135 patients on Respimat or on the HandiHaler directly against each other for an average of 2.3 years, and found hazard ratios for death of 0.96 and 1.00 with confidence intervals comfortably spanning one. A direct comparison in one trial larger than all five pooled ones is stronger evidence than the pooling was.',
+      },
+      {
+        q: 'Should I be worried about my heart?',
+        a: 'The evidence has moved. In 2008 a meta-analysis of 17 trials in 13,645 people reported the composite of cardiovascular death, heart attack or stroke in 1.9% on inhaled anticholinergics against 1.2% on control, a relative risk of 1.60. UPLIFT and TIOSPIR, which between them followed 23,128 patients for years with cardiovascular events collected prospectively, reported similar rates between arms. The meta-analysis mixed two different drugs, several devices and trials designed to answer other questions; the two large trials were designed to answer this one.',
+      },
+      {
+        q: 'It was added to my asthma inhalers — is it doing much?',
+        a: 'A measurable amount, and less than the first two drugs did. In two 48-week trials in 912 people already on an inhaled steroid and a long-acting beta-agonist and still symptomatic, adding tiotropium raised trough lung function by 88 and 111 mL in the two trials, and pushed the time to the next severe attack from 226 days to 282, a 21% risk reduction at p=0.03. That is a real effect in a group that had run out of other options, and it is roughly a tenth of a litre. It is an add-on: the label positions it alongside the inhaled corticosteroid, never instead of it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Tashkin DP, Celli B, Senn S, et al. A 4-year trial of tiotropium in chronic obstructive pulmonary disease. N Engl J Med 2008;359:1543-1554',
+        identifier: '10.1056/NEJMoa0805800',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wise RA, Anzueto A, Cotton D, et al. Tiotropium Respimat inhaler and the risk of death in COPD. N Engl J Med 2013;369:1491-1501',
+        identifier: '10.1056/NEJMoa1303342',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vogelmeier C, Hederer B, Glaab T, et al. Tiotropium versus salmeterol for the prevention of exacerbations of COPD. N Engl J Med 2011;364:1093-1103',
+        identifier: '10.1056/NEJMoa1008378',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kerstjens HAM, Engel M, Dahl R, et al. Tiotropium in asthma poorly controlled with standard combination therapy. N Engl J Med 2012;367:1198-1207',
+        identifier: '10.1056/NEJMoa1208606',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Singh S, Loke YK, Enright PL, Furberg CD. Mortality associated with tiotropium mist inhaler in patients with COPD: systematic review and meta-analysis. BMJ 2011;342:d3215',
+        identifier: '10.1136/bmj.d3215',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Singh S, Loke YK, Furberg CD. Inhaled anticholinergics and risk of major adverse cardiovascular events in patients with COPD. JAMA 2008;300:1439-1450',
+        identifier: '10.1001/jama.300.12.1439',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Disse B, Speck GA, Rominger KL, Witek TJ, Hammer R. Ba 679 BR, a novel long-acting anticholinergic bronchodilator. Life Sci 1993;52:537-544',
+        identifier: '10.1016/0024-3205(93)90312-q',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vincken W, van Noord JA, Greefhorst APM, et al. Improved health outcomes in patients with COPD during 1 yr’s treatment with tiotropium. Eur Respir J 2002;19:209-216',
+        identifier: '10.1183/09031936.02.00238702',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jones PW. Interpreting thresholds for a clinically significant change in health status in asthma and COPD. Eur Respir J 2002;19:398-404',
+        identifier: '10.1183/09031936.02.00063702',
+        kind: 'doi',
+      },
+      {
+        label: 'UPLIFT — four-year tiotropium trial with rate of FEV1 decline as co-primary endpoint',
+        identifier: 'NCT00144339',
+        kind: 'nct',
+      },
+      {
+        label: 'TIOSPIR — Respimat against HandiHaler in 17,135 patients',
+        identifier: 'NCT01126437',
+        kind: 'nct',
+      },
+      {
+        label: 'POET-COPD — tiotropium against salmeterol for exacerbation prevention',
+        identifier: 'NCT00563381',
+        kind: 'nct',
+      },
+      {
+        label:
+          'SPIRIVA HANDIHALER (tiotropium bromide inhalation powder) United States prescribing information — Indications, Warnings and Precautions 5.1 to 5.5, Clinical Pharmacology 12.1',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22SPIRIVA+HANDIHALER%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5487427 — tiotropium structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5487427',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
 ]

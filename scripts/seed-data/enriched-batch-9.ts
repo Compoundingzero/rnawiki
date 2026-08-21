@@ -1558,4 +1558,473 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Glipizide — a 1984 sulfonylurea whose label still carries a cardiovascular mortality warning
+  //    based on a different drug tested in 1970, and which lost the one randomised outcome
+  //    comparison it has ever had.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'glipizide',
+    name: 'Glipizide',
+    tradeName: 'Glucotrol / Glucotrol XL',
+    sponsor: 'Pfizer (Roerig division, originator); marketed almost entirely as generics',
+    targetGene: 'ABCC8',
+    targetProtein:
+      'Sulfonylurea receptor 1 (SUR1), the regulatory subunit of the ATP-sensitive potassium channel formed with the Kir6.2 pore (KCNJ11) in the pancreatic beta-cell membrane',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1984,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not for the treatment of type 1 diabetes or diabetic ketoacidosis.',
+    patientFriendlyIndication: 'Type 2 diabetes — a tablet that squeezes more insulin out of the pancreas',
+    anatomicalSite:
+      'Pancreatic islet beta cell plasma membrane; the same channel subtype family also exists in cardiac and vascular smooth muscle',
+    conditionContext: {
+      conditionExplainer:
+        'In type 2 diabetes the pancreas still makes insulin, but not enough of it at the right moment, and the tissues respond to it poorly. A sulfonylurea attacks the first half of that problem only: it forces the remaining beta cells to release more insulin, whether or not glucose is high.',
+      whyItMatters:
+        'Because the release is not conditional on blood sugar, the same mechanism that lowers glucose after a meal also lowers it during a missed meal. That is what hypoglycaemia is, and it is the defining risk of this whole drug class. It also means the drug depends on beta cells that still work, so its effect decays as the disease progresses.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, usually after metformin. Glipizide is among the cheapest glucose-lowering drugs in existence and remains heavily prescribed for that reason, particularly where newer agents are not affordable.',
+      clinicalGoals:
+        'Lower HbA1c without causing hypoglycaemia. Nothing in the glipizide evidence base measures whether doing so prevents a heart attack; the one randomised trial that looked found it did worse than metformin.',
+    },
+    oneSentenceVerdict:
+      'A sulfonylurea that closes the ATP-sensitive potassium channel on the pancreatic beta cell and forces insulin release regardless of blood glucose — a mechanism that reliably lowers HbA1c, that lost a 304-patient randomised cardiovascular outcome comparison against metformin with an adjusted hazard ratio of 0.54 in favour of metformin, and whose United States label has carried a special warning on increased cardiovascular mortality since 1970 based on a trial of a different sulfonylurea.',
+    laymanHowItWorks:
+      'Beta cells in the pancreas keep a set of potassium channels open when blood sugar is low, which keeps them electrically quiet. When sugar rises the cell burns it, the channels shut, and the cell fires and releases insulin. Glipizide shuts those channels chemically, so the cell fires whether or not there is sugar to justify it. Insulin comes out, blood sugar falls, and it keeps falling if the person has not eaten.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0464 per tablet at United States pharmacy acquisition cost, the median across 75 listed generic products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved as Glucotrol in 1984 and long off patent. The extended-release Glucotrol XL uses an osmotic push-pull tablet whose delivery system was separately patented; both immediate-release and extended-release generics are widely available, and 75 distinct products appear in the current NADAC file.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The honest comparison for glipizide is metformin, and it has been made once, head to head, with hard endpoints: in 304 patients with type 2 diabetes and established coronary disease, metformin produced an adjusted hazard ratio of 0.54 for recurrent cardiovascular events against glipizide over a median five years, at effectively identical HbA1c. Within the sulfonylurea class, glipizide is the one with the lower measured hypoglycaemia rate: a 13,963-person cohort found glyburide users at 1.9 times the risk of serious hypoglycaemia. Nothing in a supermarket replaces a glucose-lowering drug, and the evidence for diet and exercise is a different kind of evidence with a different kind of trial behind it.',
+      conventionalRx: [
+        {
+          name: 'Metformin',
+          class: 'Biguanide',
+          howItCompares:
+            'The only drug that has beaten glipizide on a hard cardiovascular endpoint in a randomised trial. SPREAD-DIMCAD randomised 304 patients with type 2 diabetes and a history of coronary artery disease to glipizide or metformin for three years, double-blind, and followed them a median of five. Ninety-one participants had 103 primary endpoints; the intention-to-treat adjusted hazard ratio for the composite of cardiovascular death, all-cause death, non-fatal myocardial infarction, non-fatal stroke or revascularisation was 0.54 (95% CI 0.30 to 0.90, p=0.026) favouring metformin. HbA1c at end of treatment was 7.1% on glipizide and 7.0% on metformin.',
+          typicalCost: 'Comparable — both are among the cheapest oral drugs in the pharmacopoeia',
+          prosAndCons:
+            'Pros: does not cause hypoglycaemia on its own, does not cause weight gain, has the only randomised head-to-head cardiovascular win over glipizide. Cons: gastrointestinal intolerance is common, and it is contraindicated at low kidney function.',
+        },
+        {
+          name: 'Glyburide (glibenclamide)',
+          class: 'Second-generation sulfonylurea',
+          howItCompares:
+            'Same mechanism, more hypoglycaemia. In 13,963 Tennessee Medicaid enrollees aged 65 or over, the crude rate of serious hypoglycaemia was 16.6 per 1,000 person-years on glyburide, and the adjusted relative risk for glyburide against glipizide was 1.9 (95% CI 1.2 to 2.9), consistent across every stratum including dose and duration. A meta-analysis of 21 randomised trials found glyburide carried an 83% greater risk of at least one hypoglycaemic episode than other sulfonylureas (RR 1.83, 95% CI 1.35 to 2.49).',
+          typicalCost: 'US$0.0668 per tablet at NADAC, marginally more than glipizide',
+          prosAndCons:
+            'Pros: none that the comparative data establish. Cons: measurably more hypoglycaemia at equivalent glucose control, and an active metabolite that accumulates in renal impairment.',
+        },
+        {
+          name: 'DPP-4 inhibitors (sitagliptin, linagliptin, alogliptin)',
+          class: 'Incretin enhancers',
+          howItCompares:
+            'Lower HbA1c by a similar amount without forcing insulin release when glucose is normal, so hypoglycaemia is rare. Their cardiovascular outcome trials were designed to exclude harm rather than show benefit, and one of them — saxagliptin in SAVOR-TIMI 53 — found an excess of heart-failure hospitalisation.',
+          typicalCost:
+            'Alogliptin is US$5.18 per tablet at NADAC, more than a hundred times the price of glipizide',
+          prosAndCons:
+            'Pros: no hypoglycaemia, weight neutral. Cons: far more expensive, and no cardiovascular benefit has been demonstrated for any of them.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Do not skip meals while taking a sulfonylurea without telling the prescriber',
+          action:
+            'This drug releases insulin whether or not food has arrived. A missed or delayed meal, unusual exertion or alcohol are the ordinary circumstances in which a sulfonylurea causes hypoglycaemia, and they are also the circumstances patients most often do not mention.',
+          patientImpact:
+            'In a cohort of 13,963 Medicaid enrollees aged 65 and over, 255 people had a first episode of serious hypoglycaemia — hospitalisation, emergency admission or death with a measured blood glucose under 50 mg/dL — during 20,715 person-years of sulfonylurea use. On glipizide the rate was lower than on glyburide or chlorpropamide, but it was not zero.',
+          clinicalPrecaution:
+            'Any change to a diabetes regimen, including around fasting for religious or medical reasons, belongs with the prescribing clinician. This page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=CN=C(C=N1)C(=O)NCCC2=CC=C(C=C2)S(=O)(=O)NC(=O)NC3CCCCC3',
+      chemicalFormula: 'C21H27N5O4S',
+      molecularWeight: '445.50 g/mol',
+      targetReceptorAffinity:
+        'Binds the sulfonylurea receptor SUR1 in the beta-cell plasma membrane, closing the associated ATP-sensitive potassium channel. The FDA label describes this mechanism directly and then, in the same section, states that "the mechanism by which glipizide lowers blood glucose during long-term administration has not been clearly established." Pharmacokinetically the molecule is short-lived: absolute bioavailability 100%, peak plasma concentration at 1 to 3 hours, elimination half-life 2 to 4 hours, and no accumulation on repeated dosing.',
+      structureSource: {
+        label:
+          'PubChem CID 3478 (glipizide) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint and matched to the FDA label description section',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3478',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'glp-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and pKa confirmation of the sulfonylurea starting materials',
+          description:
+            'Confirm the identity and purity of 5-methylpyrazine-2-carboxylic acid, 4-(2-aminoethyl)benzenesulfonamide and cyclohexyl isocyanate before any coupling. The pKa of the finished molecule is 5.9, which is why it is insoluble in water and soluble in 0.1 N sodium hydroxide, and an incorrect acid component changes that number and with it the dissolution behaviour of every tablet made from the batch.',
+          reagentsAndBuffer:
+            'Reference standards, nuclear magnetic resonance and infrared identity, Karl Fischer water determination, potentiometric titration in mixed aqueous-organic solvent for pKa',
+        },
+        {
+          id: 'glp-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Amide coupling then sulfonylurea formation',
+          description:
+            'Couple the pyrazine carboxylic acid to the aminoethyl side chain of the benzenesulfonamide to form the amide, then react the sulfonamide nitrogen with cyclohexyl isocyanate to close the sulfonylurea. Both steps are ordinary condensation chemistry, which is the reason this molecule costs under five cents a tablet.',
+          dependsOnStepId: 'glp-w1',
+          reagentsAndBuffer:
+            'Carbodiimide or acyl chloride activation, triethylamine or potassium carbonate base, cyclohexyl isocyanate, anhydrous acetone or acetonitrile, controlled-temperature jacketed reactor',
+        },
+        {
+          id: 'glp-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Base-acid recrystallisation and related-substances profiling',
+          description:
+            'Dissolve the crude solid in dilute sodium hydroxide, filter, and reprecipitate by acidification, then recrystallise to the specified polymorph. The related substances the monograph is written to catch are the uncyclised sulfonamide intermediate and cyclohexylurea, both of which are inactive and both of which suppress potency if carried through.',
+          dependsOnStepId: 'glp-w2',
+          reagentsAndBuffer:
+            'Dilute sodium hydroxide, dilute hydrochloric acid, methanol-water recrystallisation, reversed-phase HPLC with ultraviolet detection at 275 nm, X-ray powder diffraction for polymorph identity',
+        },
+        {
+          id: 'glp-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Osmotic push-pull tablet assembly and dissolution profiling',
+          description:
+            'For the extended-release presentation, compress a bilayer core — an active layer containing drug and a push layer containing osmotically active but pharmacologically inert polymer — coat it with a semipermeable cellulose acetate membrane, and laser-drill the delivery orifice. Water enters through the membrane, the push layer swells, and drug is extruded at a controlled rate. Dissolution testing is the release criterion, because the entire clinical difference between the two presentations lives in this membrane and not in the molecule.',
+          dependsOnStepId: 'glp-w3',
+          reagentsAndBuffer:
+            'Polyethylene oxide, hypromellose, sodium chloride, cellulose acetate coating solution, polyethylene glycol plasticiser, laser drilling station, USP apparatus 2 dissolution in phosphate buffer',
+        },
+        {
+          id: 'glp-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Rubidium efflux and patch-clamp confirmation of KATP channel block',
+          description:
+            'Measure inhibition of potassium efflux from beta-cell lines expressing SUR1 and Kir6.2, and confirm channel closure directly by inside-out patch clamp. Selectivity between SUR1 and the SUR2A and SUR2B isoforms in cardiac and vascular smooth muscle is measured in the same run, because those isoforms are the mechanistic basis of the cardiovascular concern that the label warning has carried since 1970.',
+          dependsOnStepId: 'glp-w4',
+          reagentsAndBuffer:
+            'INS-1 or MIN6 beta-cell lines, HEK293 cells co-transfected with SUR1/Kir6.2, SUR2A/Kir6.2 and SUR2B/Kir6.1, rubidium-86 or thallium-flux dye, patch-clamp rig with inside-out excised patches, ATP-free and ATP-containing intracellular solutions',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'glp-a1',
+        category: 'conclusion_shift',
+        title: 'The label still carries a 1970 mortality warning about a drug that is not glipizide',
+        laymanSummary:
+          'Every glipizide package insert in the United States opens its warnings section with a statement that oral diabetes drugs increase death from heart disease. That statement comes from a trial that finished in 1970, tested tolbutamide, and enrolled 823 people. It was extended to glipizide on the reasoning that the drugs are chemically similar.',
+        technicalDetails:
+          'The FDA-approved glipizide label contains a section headed "SPECIAL WARNING ON INCREASED RISK OF CARDIOVASCULAR MORTALITY". It states that the University Group Diabetes Program, a 823-patient four-arm trial published in Diabetes in 1970, found patients treated for five to eight years with diet plus a fixed 1.5 g daily dose of tolbutamide had cardiovascular mortality approximately two and a half times that of patients on diet alone. Total mortality was not significantly increased, and the label acknowledges that tolbutamide was discontinued on the basis of the cardiovascular finding, "thus limiting the opportunity for the study to show an increase in overall mortality". The label then states: "Despite controversy regarding the interpretation of these results, the findings of the UGDP study provide an adequate basis for this warning", and extends it to the class because "it is prudent from a safety standpoint to consider that this warning may also apply to other oral hypoglycemic drugs in this class, in view of their close similarities in mode of action and chemical structure." Glipizide was approved fourteen years after UGDP reported and has never had a placebo-controlled cardiovascular outcome trial of its own.',
+        evidenceSource:
+          'FDA prescribing information for glipizide tablets USP, WARNINGS section; University Group Diabetes Program, Diabetes 1970;19(suppl 2):747-830',
+        measuredMetric:
+          'Cardiovascular mortality ratio in the tolbutamide arm of a 823-patient trial, and the regulatory extension of that finding to the sulfonylurea class',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'glp-a2',
+        category: 'failed',
+        title: 'Glipizide lost its only randomised cardiovascular comparison, to metformin',
+        laymanSummary:
+          'A Chinese trial randomised 304 people with type 2 diabetes who had already had coronary disease to glipizide or metformin, blinded, for three years, then followed them for five. Both drugs controlled blood sugar equally. The metformin group had roughly half the rate of further cardiovascular events.',
+        technicalDetails:
+          'SPREAD-DIMCAD was a multicentre, randomised, double-blind, placebo-controlled trial of 304 patients with type 2 diabetes and a history of coronary artery disease, mean age 63.3 years, assigned to glipizide 30 mg daily or metformin 1.5 g daily for three years. At the end of study drug administration HbA1c was 7.1% in the glipizide group and 7.0% in the metformin group. At a median follow-up of 5.0 years, 91 participants had developed 103 primary endpoints. The intention-to-treat adjusted hazard ratio for the composite of cardiovascular death, death from any cause, non-fatal myocardial infarction, non-fatal stroke or arterial revascularisation was 0.54 (95% CI 0.30 to 0.90, p=0.026) for metformin against glipizide. Secondary endpoints and adverse events did not differ significantly. The trial is small, single-country and has not been replicated, and it is the only randomised comparison of glipizide against another agent with adjudicated cardiovascular endpoints in the literature.',
+        evidenceSource: 'Hong J et al., Diabetes Care 2013;36:1304-1311 (SPREAD-DIMCAD)',
+        doi: '10.2337/dc12-0719',
+        measuredMetric:
+          'Adjusted hazard ratio for the composite of recurrent cardiovascular events at a median 5.0 years, metformin against glipizide, at matched HbA1c',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'glp-a3',
+        category: 'measured',
+        title: 'In UKPDS, sulfonylureas prevented eye and kidney damage but not heart attacks',
+        laymanSummary:
+          'The one large long-term trial that included glipizide followed 3,867 newly diagnosed patients for ten years. Tighter control cut microvascular complications — retinal damage, kidney damage — by a quarter. It did not significantly cut heart attacks, deaths from diabetes, or deaths from anything.',
+        technicalDetails:
+          'UKPDS 33 randomised 3,867 newly diagnosed patients with type 2 diabetes to an intensive policy with a sulphonylurea (chlorpropamide, glibenclamide or glipizide) or insulin, or a conventional policy with diet. Over ten years median HbA1c was 7.0% in the intensive group against 7.9% conventional, an 11% relative reduction. Risk in the intensive group was 12% lower for any diabetes-related endpoint (95% CI 1 to 21, p=0.029), 10% lower for any diabetes-related death (95% CI -11 to 27, p=0.34) and 6% lower for all-cause mortality (95% CI -10 to 20, p=0.44). Most of the aggregate benefit came from a 25% reduction in microvascular endpoints (95% CI 7 to 40, p=0.0099), including the need for retinal photocoagulation. Major hypoglycaemic episodes per year were 0.7% on conventional treatment, 1.0% on chlorpropamide, 1.4% on glibenclamide and 1.8% on insulin. Mean weight gain in the intensive group was 2.9 kg (p<0.001). The published between-agent comparisons in the abstract cover chlorpropamide, glibenclamide and insulin; glipizide was used at some centres and is not separately reported.',
+        evidenceSource: 'UK Prospective Diabetes Study (UKPDS) Group, Lancet 1998;352:837-853 (UKPDS 33, PMID 9742976)',
+        doi: '10.1016/S0140-6736(98)07019-6',
+        measuredMetric:
+          'Relative risk reductions for aggregate diabetes-related endpoints, microvascular endpoints and all-cause mortality at ten years, and major hypoglycaemia rates by agent',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'glp-a4',
+        category: 'measured',
+        title: 'Glipizide causes about half as much serious hypoglycaemia as glyburide',
+        laymanSummary:
+          'A study of nearly 14,000 older people on Medicaid counted the episodes of low blood sugar severe enough to put someone in hospital. Glyburide users had nearly twice the risk of glipizide users, and the gap held in every subgroup examined.',
+        technicalDetails:
+          'Shorr and colleagues followed 13,963 Tennessee Medicaid enrollees aged 65 or over prescribed one of six sulfonylureas between 1985 and 1989, and identified 255 first episodes of serious hypoglycaemia — hospitalisation, emergency admission or death with neuroglycopenic or autonomic symptoms and a concomitant blood glucose below 2.8 mmol/L — during 20,715 person-years of use. The crude rate per 1,000 person-years was highest for glyburide at 16.6 (95% CI 13.2 to 19.9) and lowest for tolbutamide at 3.5 (95% CI 1.2 to 5.9). Among second-generation agents the adjusted relative risk for glyburide against glipizide was 1.9 (95% CI 1.2 to 2.9), and the excess persisted in every stratum defined by gender, race, nursing-home residence, dose and duration of use. This is an observational cohort, not a randomised comparison, and the authors themselves called for effectiveness data on individual agents that the field still largely lacks.',
+        evidenceSource: 'Shorr RI, Ray WA, Daugherty JR, Griffin MR. J Am Geriatr Soc 1996;44:751-755',
+        doi: '10.1111/j.1532-5415.1996.tb03729.x',
+        measuredMetric:
+          'Crude and adjusted rates of serious hypoglycaemia per 1,000 person-years by individual sulfonylurea in adults aged 65 and over',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'glp-a5',
+        category: 'inferred',
+        title: 'The label concedes the long-term mechanism has not been established',
+        laymanSummary:
+          'The drug has been sold since 1984. Its own FDA-approved label says that how it lowers blood sugar over the long run is not clearly known, and that fasting insulin levels do not go up even after years of treatment.',
+        technicalDetails:
+          'The clinical pharmacology section of the glipizide label states that "the mechanism by which glipizide lowers blood glucose during long-term administration has not been clearly established", that fasting insulin levels are not elevated even on long-term administration while the post-prandial insulin response remains enhanced after at least six months, and that "extrapancreatic effects may play a part in the mechanism of action of oral sulfonylurea hypoglycemic drugs". The extended-release label adds that in two randomised double-blind dose-response studies totalling 347 patients, "the relationship between dose and reduction in hemoglobin A1c was not established", although fasting plasma glucose fell more at 20 mg than at 5 mg. A drug in continuous use for four decades whose dose-response relationship for its own registration endpoint is described on its label as not established is a fact worth stating plainly.',
+        evidenceSource:
+          'FDA prescribing information for glipizide tablets USP, CLINICAL PHARMACOLOGY; FDA prescribing information for GLUCOTROL XL, sections 12.1 and 12.2',
+        inferredClaim:
+          'That the glucose-lowering effect of long-term glipizide is fully explained by beta-cell insulin release — the label says otherwise and points at unspecified extrapancreatic effects',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'glp-a6',
+        category: 'measured',
+        title: 'The molecule is gone in hours; the extended-release tablet is a plumbing solution',
+        laymanSummary:
+          'Glipizide itself is short-acting: fully absorbed, peaking in one to three hours, half of it cleared within four. The once-daily version works by encasing the drug in a membrane with a laser-drilled hole and pushing it out slowly with an osmotic layer.',
+        technicalDetails:
+          'The label reports absolute bioavailability of 100%, peak plasma concentrations at 1 to 3 hours after a single oral dose, an elimination half-life of 2 to 4 hours identical by oral and intravenous routes — indicating no significant first-pass metabolism — and no accumulation on repeated dosing. Blood-sugar control nonetheless persists in some patients up to 24 hours after a single dose, when plasma levels have fallen to a small fraction of peak. Glucotrol XL is an osmotically active bilayer core, an active drug layer and an inert push layer, surrounded by a semipermeable cellulose acetate membrane with a drilled orifice; the tablet shell is excreted intact. Each extended-release tablet is overfilled — 5.49 mg of glipizide to deliver a 5 mg dose — because the system does not empty completely.',
+        evidenceSource:
+          'FDA prescribing information for glipizide tablets USP, Pharmacokinetics; FDA prescribing information for GLUCOTROL XL, section 11 Description',
+        measuredMetric:
+          'Absolute bioavailability, time to peak plasma concentration, elimination half-life, and the overfill ratio of the extended-release tablet',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, completely absorbed, in the blood within an hour',
+        laymanDesc:
+          'The tablet dissolves and essentially all of the drug gets into the bloodstream. Peak levels arrive one to three hours later, and most of it is cleared within four hours.',
+        molecularDetail:
+          'Absolute bioavailability is 100%, with peak plasma concentration at 1 to 3 hours and an elimination half-life of 2 to 4 hours. The half-life is the same intravenously as orally, so there is no meaningful first-pass extraction. The molecule is highly protein-bound and metabolised in the liver to inactive products.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It docks on a receptor that sits on top of a potassium gate',
+        laymanDesc:
+          'On the surface of every insulin-producing cell is a gate that lets potassium out. Sitting on that gate is a protein that acts as its handle. Glipizide grips that handle.',
+        molecularDetail:
+          'Glipizide binds the sulfonylurea receptor SUR1, an ABC-transporter-family protein (gene ABCC8) that assembles as four copies around four copies of the inward-rectifier potassium pore Kir6.2 (gene KCNJ11). The binding site is on SUR1, not on the pore itself.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The gate shuts and the cell becomes electrically excitable',
+        laymanDesc:
+          'With potassium no longer leaking out, positive charge builds up inside the cell. That change in voltage is the trigger the cell normally waits for sugar to produce.',
+        molecularDetail:
+          'Channel closure removes the resting potassium conductance and depolarises the beta-cell membrane from roughly -70 mV toward the threshold for voltage-gated L-type calcium channels. Physiologically this depolarisation is produced by a rising ATP-to-ADP ratio from glucose metabolism; glipizide produces it chemically, independent of glucose.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Calcium floods in and insulin granules fuse with the surface',
+        laymanDesc:
+          'Voltage-gated calcium channels open, calcium rushes in, and the pre-loaded packets of insulin inside the cell fuse with the membrane and empty into the blood.',
+        molecularDetail:
+          'L-type calcium channel opening raises cytosolic calcium, which triggers SNARE-mediated fusion of docked insulin granules. The label notes the insulinotropic response to a meal occurs within 30 minutes of an oral dose, and that elevated insulin levels do not persist beyond the meal challenge.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Blood sugar falls — and keeps falling if no food arrives',
+        laymanDesc:
+          'The released insulin drives glucose into muscle and fat and shuts down the liver. Because the release was not conditional on blood sugar being high, it continues when blood sugar is already normal.',
+        molecularDetail:
+          'This is the mechanistic origin of sulfonylurea hypoglycaemia: the drug bypasses the glucose-sensing step entirely. It is also why the effect decays as beta-cell function is lost, and why the label states the drug is ineffective in type 1 diabetes and diabetic ketoacidosis.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The same channel family exists in heart and blood vessels',
+        laymanDesc:
+          'Potassium channels of this type also sit in heart muscle and artery walls, where they open during oxygen starvation and are thought to protect tissue. Whether blocking them there matters is the question behind the warning on the label.',
+        molecularDetail:
+          'The cardiac and vascular isoforms pair Kir6.2 or Kir6.1 with SUR2A or SUR2B (gene ABCC9) rather than SUR1, and mediate ischaemic preconditioning. Sulfonylureas differ in their selectivity between SUR1 and SUR2. This is the proposed mechanism behind the UGDP finding and behind the SPREAD-DIMCAD result, and it remains a mechanism rather than a demonstrated cause of the clinical outcomes.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SPREAD-DIMCAD (Hong 2013)',
+        phase:
+          'Multicentre randomised double-blind trial, 3 years of treatment, median 5.0 years of follow-up',
+        sampleSize: 304,
+        primaryEndpoint:
+          'Time to the composite of recurrent cardiovascular events — cardiovascular death, death from any cause, non-fatal myocardial infarction, non-fatal stroke or arterial revascularisation — glipizide against metformin',
+        endpointMet: false,
+        statisticalPValue:
+          'Adjusted hazard ratio 0.54 (95% CI 0.30 to 0.90, P = 0.026) in favour of metformin, against glipizide',
+        unreportedAdverseSignals:
+          'Both arms reached effectively the same HbA1c (7.1% against 7.0%), so the difference in outcomes cannot be attributed to differential glucose control. The trial is small, single-country and unreplicated.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'UKPDS 33',
+        phase: 'Randomised controlled trial of glycaemic policy, median 10 years',
+        sampleSize: 3867,
+        primaryEndpoint:
+          'Three aggregate endpoints — any diabetes-related endpoint, diabetes-related death and all-cause mortality — for intensive control with a sulphonylurea or insulin against conventional dietary policy',
+        endpointMet: true,
+        statisticalPValue:
+          'P = 0.029 for a 12% reduction in any diabetes-related endpoint; P = 0.0099 for a 25% reduction in microvascular endpoints; P = 0.34 for diabetes-related death and P = 0.44 for all-cause mortality',
+        unreportedAdverseSignals:
+          'Neither diabetes-related death nor all-cause mortality reached significance, and macrovascular disease was not reduced. Intensive treatment produced more hypoglycaemia (p<0.0001) and 2.9 kg more weight gain (p<0.001).',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'GLUCOTROL XL dose-response programme',
+        phase: 'Two randomised double-blind dose-response studies',
+        sampleSize: 347,
+        primaryEndpoint: 'Reduction in HbA1c and fasting plasma glucose across doses',
+        endpointMet: false,
+        statisticalPValue:
+          'The label states the relationship between dose and reduction in HbA1c was not established; fasting plasma glucose fell more at 20 mg than at 5 mg',
+        unreportedAdverseSignals:
+          'A dose-response relationship for the registration endpoint that could not be demonstrated in 347 randomised patients is stated on the label rather than resolved by a further trial.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'University Group Diabetes Program (UGDP), tolbutamide arm',
+        phase: 'Long-term prospective randomised four-arm trial, 5 to 8 years',
+        sampleSize: 823,
+        primaryEndpoint:
+          'Prevention or delay of vascular complications with glucose-lowering drugs in non-insulin-dependent diabetes',
+        endpointMet: false,
+        statisticalPValue:
+          'Cardiovascular mortality approximately 2.5 times that of diet alone in the tolbutamide arm; total mortality was not significantly increased',
+        unreportedAdverseSignals:
+          'Tolbutamide was stopped on the cardiovascular finding, which the FDA label acknowledges limited the ability of the trial to detect an effect on overall mortality. The finding has been extended by regulation to glipizide, which was not studied.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'An adjusted hazard ratio of 0.54 (95% CI 0.30 to 0.90) for recurrent cardiovascular events favouring metformin over glipizide in 304 randomised patients with coronary disease, at matched HbA1c',
+        'A 25% reduction in microvascular endpoints (95% CI 7 to 40, p=0.0099) with intensive sulfonylurea or insulin therapy in 3,867 newly diagnosed patients over ten years',
+        'An adjusted relative risk of 1.9 (95% CI 1.2 to 2.9) for serious hypoglycaemia on glyburide against glipizide in 13,963 adults aged 65 and over',
+        'Absolute bioavailability of 100%, peak at 1 to 3 hours and an elimination half-life of 2 to 4 hours',
+      ],
+      unsupportedInferences: [
+        'That lowering HbA1c with glipizide prevents heart attacks — UKPDS found no significant macrovascular reduction, and the only randomised head-to-head comparison found glipizide worse than metformin',
+        'That the 1970 UGDP cardiovascular mortality finding applies to glipizide — the label extends it by chemical analogy and says so, and glipizide has never been tested against placebo for cardiovascular outcomes',
+        'That higher doses give proportionally better HbA1c control — the extended-release label states in terms that this relationship was not established across 347 randomised patients',
+        'That the long-term glucose-lowering effect is fully explained by insulin release — the label says the long-term mechanism has not been clearly established and invokes unspecified extrapancreatic effects',
+      ],
+      whatFailedInitially: [
+        'Glipizide lost SPREAD-DIMCAD to metformin on a composite hard cardiovascular endpoint, the only randomised outcome comparison it has',
+        'UKPDS 33 did not show a significant reduction in diabetes-related death (p=0.34) or all-cause mortality (p=0.44) for intensive glycaemic control with sulfonylureas or insulin',
+        'The dose-response relationship for HbA1c could not be established in the extended-release registration programme',
+      ],
+      realWorldOutcome: [
+        'US$0.0464 per tablet at United States pharmacy acquisition cost, the median across 75 listed generic products in the CMS NADAC survey',
+        'On the WHO Model List of Essential Medicines as a therapeutic alternative within the sulfonylurea class',
+        'Still one of the most-prescribed oral diabetes drugs in the world four decades after approval, largely on price',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet — immediate-release, and an extended-release osmotic push-pull system',
+      description:
+        'The immediate-release tablet is a conventional compressed tablet of a poorly water-soluble weak acid with a pKa of 5.9. The extended-release tablet is an osmotic pump: a bilayer core of drug plus an inert swelling layer, inside a semipermeable cellulose acetate membrane with a laser-drilled orifice. Water crosses the membrane, the push layer expands, and drug is extruded through the hole at a controlled rate. The insoluble shell passes through the gut and is excreted intact, which patients sometimes notice and mistake for an unabsorbed tablet.',
+      safetyProfile:
+        'Hypoglycaemia is the defining risk and it is mechanistic, not idiosyncratic: the drug releases insulin whether or not glucose is high. Older patients, impaired renal or hepatic function, missed meals, alcohol and unaccustomed exertion all increase it. Weight gain is expected. The United States label opens its warnings with a special warning on increased risk of cardiovascular mortality derived from the 1970 UGDP trial of tolbutamide and extended to the class by analogy. Haemolytic anaemia has been reported in glucose-6-phosphate dehydrogenase deficiency. Rare hepatic and haematological reactions occur, as with any sulfonylurea.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does the label say this drug increases cardiovascular deaths?',
+        a: 'Because of a trial that reported in 1970 and did not test glipizide. The University Group Diabetes Program randomised 823 people with type 2 diabetes to four arms, and found that those on a fixed dose of tolbutamide for five to eight years had cardiovascular mortality about two and a half times that of the diet-only group. Total mortality was not significantly increased, and the tolbutamide arm was stopped, which the label concedes limited the trial from detecting a mortality effect either way. The FDA extended the warning to every drug in the class "in view of their close similarities in mode of action and chemical structure". Glipizide was approved in 1984 and has never had its own placebo-controlled cardiovascular outcome trial. Whether the warning is right about glipizide specifically is unknown; the label states plainly that it is applied by analogy.',
+        auditNote:
+          'A warning extended by chemical similarity is a hypothesis with regulatory force. It is not a measurement of this drug.',
+      },
+      {
+        q: 'Is glipizide worse than metformin?',
+        a: 'On the one hard-endpoint comparison that exists, yes. SPREAD-DIMCAD randomised 304 people with type 2 diabetes and existing coronary artery disease to glipizide or metformin, double-blind, for three years, and followed them a median of five. Both arms reached the same average blood sugar — 7.1% against 7.0% HbA1c. The metformin group had an adjusted hazard ratio of 0.54 (95% CI 0.30 to 0.90, p=0.026) for the composite of cardiovascular death, death from any cause, heart attack, stroke or revascularisation. Because the glucose control was matched, the difference is not explained by glycaemia. It is one small trial in one country and it has not been replicated, which is a real limitation and also the reason it stands out: nothing else has tested the question.',
+      },
+      {
+        q: 'Is glipizide safer than glyburide?',
+        a: 'On hypoglycaemia, the observational evidence consistently says yes. In 13,963 Medicaid enrollees aged 65 and over, serious hypoglycaemia occurred at 16.6 episodes per 1,000 person-years on glyburide against a materially lower rate on glipizide, giving an adjusted relative risk of 1.9 (95% CI 1.2 to 2.9) for glyburide, and the gap persisted in every stratum including dose and duration. A meta-analysis of 21 randomised trials found glyburide carried an 83% greater risk of at least one hypoglycaemic episode than other sulfonylureas. Neither of those is a randomised head-to-head comparison of the two drugs for that outcome, so the direction is well supported and the magnitude is not precisely established.',
+      },
+      {
+        q: 'Does it stop working?',
+        a: 'The label says so in its own words: "Some patients fail to respond initially, or gradually lose their responsiveness to sulfonylurea drugs, including glipizide." The mechanism explains why. Glipizide does not make the pancreas produce more insulin; it forces the existing beta cells to release what they have. Type 2 diabetes involves progressive loss of those cells, so the lever gets shorter over time. UKPDS documented this drift across a decade of follow-up in nearly four thousand patients.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for glipizide could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.0464 per tablet, the median across 75 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost. At under five cents a tablet the two numbers are unlikely to be far apart, but this page does not know that and will not assert it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Hong J, Zhang Y, Lai S et al. Effects of metformin versus glipizide on cardiovascular outcomes in patients with type 2 diabetes and coronary artery disease (SPREAD-DIMCAD). Diabetes Care 2013;36:1304-1311',
+        identifier: '10.2337/dc12-0719',
+        kind: 'doi',
+      },
+      {
+        label:
+          'UK Prospective Diabetes Study (UKPDS) Group. Intensive blood-glucose control with sulphonylureas or insulin compared with conventional treatment and risk of complications in patients with type 2 diabetes (UKPDS 33). Lancet 1998;352:837-853',
+        identifier: '9742976',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Shorr RI, Ray WA, Daugherty JR, Griffin MR. Individual sulfonylureas and serious hypoglycemia in older people. J Am Geriatr Soc 1996;44:751-755',
+        identifier: '10.1111/j.1532-5415.1996.tb03729.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gangji AS, Cukierman T, Gerstein HC, Goldsmith CH, Clase CM. A systematic review and meta-analysis of hypoglycemia and cardiovascular events: a comparison of glyburide with other secretagogues and with insulin. Diabetes Care 2007;30:389-394',
+        identifier: '10.2337/dc06-1789',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA prescribing information for glipizide tablets USP — WARNINGS (Special Warning on Increased Risk of Cardiovascular Mortality) and CLINICAL PHARMACOLOGY',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glipizide%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'FDA prescribing information for GLUCOTROL XL (glipizide) extended-release tablets — section 11 Description (osmotic push-pull system) and sections 12.1 to 12.3',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GLUCOTROL+XL%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3478 — glipizide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3478',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

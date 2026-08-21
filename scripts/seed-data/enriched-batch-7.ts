@@ -1098,4 +1098,1110 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 3. Solifenacin — the best-selling antimuscarinic, whose own placebo-controlled trials show a
+  //    margin of well under one episode a day, whose side effects are the same receptor in the
+  //    wrong organ, and which most people have stopped taking within a year.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'solifenacin',
+    name: 'Solifenacin',
+    tradeName: 'Vesicare',
+    sponsor: 'Astellas',
+    targetGene: 'CHRM3',
+    targetProtein:
+      'M3 muscarinic acetylcholine receptor on detrusor smooth muscle, with binding at M1 and M2 as well; the same M3 receptor serves the salivary glands, gut smooth muscle and the ciliary muscle of the eye',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Treatment of adults with overactive bladder with symptoms of urge urinary incontinence, urgency and urinary frequency. A separate paediatric oral suspension is licensed for neurogenic detrusor overactivity.',
+    patientFriendlyIndication:
+      'A bladder that squeezes without asking — sudden urgency, going far too often, and leaking before you get there',
+    anatomicalSite:
+      'Detrusor smooth muscle of the bladder wall, and the urothelium and suburothelial afferent nerves beneath it',
+    conditionContext: {
+      conditionExplainer:
+        'Overactive bladder is a symptom description, not a lesion. There is no scan and no blood test for it. It is defined by what a person reports — urgency, frequency, sometimes leaking — and it is measured with a three-day diary in which the patient counts their own trips to the toilet and their own accidents.',
+      whyItMatters:
+        'That measurement method decides how the evidence must be read. A diary is a patient-reported instrument with a large placebo response: in the placebo arm of the 3,527-patient SYNERGY trial, incontinence episodes fell by 1.34 a day with no active drug at all. Any drug effect has to be counted on top of that, not instead of it.',
+      whoTakesThis:
+        'Mostly women, mostly over 50, and disproportionately people already taking several other medicines with anticholinergic activity. It is the best-selling drug of its class worldwide.',
+      clinicalGoals:
+        'Fewer incontinence episodes and fewer voids per 24 hours on the diary. Not continence, which the trials do not deliver for most patients, and not cure.',
+    },
+    oneSentenceVerdict:
+      'A competitive M3 muscarinic antagonist that blocks the acetylcholine signal telling the bladder wall to contract: in its 12-week pivotal trial it removed 2.37 voids a day at 5 mg against 1.59 on placebo, and in the placebo-controlled SYNERGY trial 1.79 incontinence episodes a day against placebo 1.34 — margins of roughly three-quarters of a void and less than half an episode a day, bought at a dry-mouth rate of 10.9% at 5 mg and 27.6% at 10 mg against 4.2% on placebo.',
+    laymanHowItWorks:
+      'The bladder wall is a muscle that contracts when a nerve chemical, acetylcholine, lands on receptors embedded in it. In an overactive bladder that contraction arrives early and unbidden while the bladder is still filling, and that is what urgency feels like. Solifenacin occupies those receptors so the chemical cannot land, and the wall stays quieter for longer. The same receptor runs the salivary glands, the gut and the focusing muscle of the eye, which is why dry mouth, constipation and blurred vision are not incidental side effects — they are the identical drug action in the wrong organ.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 61,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1754 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 40 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 2004 and now off patent, with forty generic products listed in the acquisition-cost file. The branded paediatric oral suspension is a separate, later listing and is not covered by that median.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The alternatives divide by where they act. Mirabegron works through a different receptor entirely and, in a head-to-head trial in patients dissatisfied with antimuscarinics, was statistically indistinguishable from solifenacin. Trospium is a charged molecule that crosses into the brain far less readily, which matters given the class-wide dementia association. And in the one trial that pitted a drug of this class directly against structured behavioural training, the training won.',
+      conventionalRx: [
+        {
+          name: 'Mirabegron (Myrbetriq)',
+          class: 'Beta-3 adrenergic agonist',
+          howItCompares:
+            'Relaxes the detrusor during filling through a different receptor, so it does not dry the mouth. BEYOND (NCT01638000) randomised 1,887 patients who were already dissatisfied with an antimuscarinic to mirabegron 50 mg or solifenacin 5 mg; voids per 24 hours fell 2.95 on mirabegron and 3.13 on solifenacin, adjusted difference -0.18 (95% CI -0.42 to 0.06), p=0.15. Non-inferiority was met; superiority was not shown in either direction.',
+          typicalCost:
+            'US$9.60 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 17 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no anticholinergic burden, and real-world one-year persistence of 32% to 38% against 12% to 25% for antimuscarinics. Cons: a blood-pressure warning on the label, and about fifty-five times the acquisition cost of solifenacin.',
+        },
+        {
+          name: 'Trospium chloride (Sanctura)',
+          class: 'Quaternary ammonium muscarinic antagonist',
+          howItCompares:
+            'Does the same receptor job, but carries a permanent positive charge, so it crosses the blood-brain barrier poorly. That is a pharmacological argument, not an outcome: no randomised trial has compared dementia incidence between trospium and the tertiary-amine antimuscarinics.',
+          typicalCost:
+            'US$0.2121 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 16 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: minimal central nervous system penetration by design, and almost the same acquisition cost. Cons: absorption is cut substantially by food, and the immediate-release form is not once daily.',
+        },
+        {
+          name: 'Tolterodine extended release (Detrol LA)',
+          class: 'Non-selective muscarinic antagonist',
+          howItCompares:
+            'The STAR trial compared flexibly dosed solifenacin against tolterodine ER 4 mg in a double-dummy design and found solifenacin superior on most efficacy variables. The 4-week subanalysis is more specific: incontinence episodes fell 1.30 a day on solifenacin 5 mg against 0.90 on tolterodine ER 4 mg, p=0.0181 — a difference of 0.4 episodes a day between two active drugs.',
+          typicalCost:
+            'US$0.2533 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, median across 54 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: long track record and cheap. Cons: the STAR comparison went against it, and both arms sit inside the same anticholinergic class signal.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Structured behavioural training with a bladder diary',
+          action:
+            'Pelvic floor muscle exercises with biofeedback plus urge-suppression strategies, taught over several sessions rather than handed out as a leaflet.',
+          patientImpact:
+            'In a randomised trial of 197 community-dwelling women aged 55 and over, behavioural training reduced incontinence episodes by a mean of 80.7%, the drug arm by 68.5% (P=.04 for the comparison) and placebo by 39.4%. Only 14.0% of the behavioural group wanted to switch to something else, against 75.5% in each of the other two groups.',
+          clinicalPrecaution:
+            'The drug in that trial was oxybutynin, not solifenacin, and no equivalent head-to-head against a modern antimuscarinic has been run. It is evidence that the behavioural arm is not a placebo, not evidence that solifenacin specifically is inferior to it.',
+        },
+        {
+          name: 'Tell any clinician who prescribes for you what else you already take',
+          action:
+            'Anticholinergic burden accumulates across drug classes — antidepressants, antipsychotics, antiparkinson and antiepileptic drugs all contribute alongside bladder antimuscarinics.',
+          patientImpact:
+            'In a nested case-control study of 58,769 dementia cases and 225,574 controls, the adjusted odds ratio for dementia rose from 1.06 (95% CI 1.03 to 1.09) at the lowest total anticholinergic exposure to 1.49 (1.44 to 1.54) at the highest. Bladder antimuscarinics carried an adjusted odds ratio of 1.65 (1.56 to 1.75) as a class.',
+          clinicalPrecaution:
+            'This is observational and cannot establish causation; reverse causation and confounding by indication are both live explanations, and no randomised trial in this class has ever been powered for a dementia endpoint.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CN2CCC1[C@H](C2)OC(=O)N3CCC4=CC=CC=C4[C@@H]3C5=CC=CC=C5',
+      chemicalFormula: 'C23H26N2O2',
+      molecularWeight: '362.50 g/mol (free base); dispensed as solifenacin succinate',
+      targetReceptorAffinity:
+        'Competitive antagonism at muscarinic receptors, with relative preference for M3 over M2. The US label states the mechanism in one sentence and offers no binding constants, so no Ki is quoted here. Two stereocentres are fixed in the molecule and both appear in the structure, which is why enantiomeric purity is the first quality-control question rather than the last.',
+      structureSource: {
+        label: 'PubChem CID 154059 — solifenacin structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/154059',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sol-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemical purity of both chiral fragments before coupling',
+          description:
+            'Establish enantiomeric excess of the quinuclidin-3-ol and of the 1-phenyl-1,2,3,4-tetrahydroisoquinoline separately, before the carbamate bond joins them. The molecule carries two stereocentres, so four stereoisomers are possible and three of them are impurities. Measuring each fragment on its own is the only way to attribute a failure to a step.',
+          reagentsAndBuffer:
+            'Chiral stationary-phase HPLC on amylose or cellulose carbamate columns, n-hexane with 2-propanol and diethylamine, UV detection at 210 and 254 nm, individual enantiomer reference standards',
+        },
+        {
+          id: 'sol-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Carbamate coupling of the two fragments',
+          description:
+            'Activate the tetrahydroisoquinoline nitrogen and couple it to the quinuclidinol oxygen, forming the carbamate ester that is the whole molecule. Neither stereocentre is created here, which is the reason for setting both beforehand.',
+          dependsOnStepId: 'sol-w1',
+          reagentsAndBuffer:
+            'Carbonyl source such as a chloroformate or carbonyldiimidazole, sodium hydride or an amine base, anhydrous tetrahydrofuran or toluene, nitrogen atmosphere',
+        },
+        {
+          id: 'sol-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Succinate salt formation and recrystallisation',
+          description:
+            'Form the succinate salt from the free base and recrystallise, then re-run the chiral assay on the finished salt rather than only on the intermediates. The specification is written around residual diastereomer and unreacted quinuclidinol.',
+          dependsOnStepId: 'sol-w2',
+          reagentsAndBuffer:
+            'Succinic acid, ethanol or 2-propanol with water, activated charcoal, reversed-phase HPLC for related substances, chiral HPLC for stereoisomeric purity, Karl Fischer titration for water content',
+        },
+        {
+          id: 'sol-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Application to cell lines expressing each human muscarinic subtype separately',
+          description:
+            'Apply the compound to five stable lines, each carrying one human muscarinic receptor — M1 through M5. The receptor sits in the plasma membrane facing outward, so no cell entry is required and no transporter step exists. Running all five side by side is the only way an M3-selectivity claim carries meaning, and it is the assay that predicts the dry mouth as well as the bladder effect.',
+          dependsOnStepId: 'sol-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 lines stably expressing human CHRM1 to CHRM5, DMEM or Ham F-12 with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4',
+        },
+        {
+          id: 'sol-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Radioligand competition and functional calcium readout across all five subtypes',
+          description:
+            'Measure displacement of a labelled non-selective muscarinic antagonist at each subtype to obtain affinity, then measure blockade of carbachol-evoked intracellular calcium at the Gq-coupled subtypes to confirm functional antagonism. Affinity ratios and functional ratios do not always agree, and it is the functional one that predicts tissue behaviour.',
+          dependsOnStepId: 'sol-w4',
+          reagentsAndBuffer:
+            'Tritiated N-methylscopolamine as radioligand, atropine for non-specific binding, GF/B filter plates, Fluo-4 AM calcium indicator, carbachol as agonist, probenecid-containing assay buffer',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sol-a1',
+        category: 'measured',
+        title: 'The pivotal trial margin is about three-quarters of a void a day over placebo',
+        laymanSummary:
+          'In the trial that got the drug licensed, people on placebo cut 1.59 trips to the toilet a day. People on the 5 mg dose cut 2.37. The difference between them is the drug effect, and it is under one trip a day.',
+        technicalDetails:
+          'Cardozo and colleagues ran a multicentre, multinational, randomised, double-blind, placebo-controlled phase 3 trial with 12 weeks of once-daily treatment. The primary variable was change from baseline in mean micturitions per 24 hours. Placebo fell 1.59, solifenacin 5 mg fell 2.37 (p=0.0018) and solifenacin 10 mg fell 2.81 (p=0.0001). Urgency episodes fell 2.84 on 5 mg (a 51% reduction, p=0.003) and 2.90 on 10 mg (52%, p=0.002), and half of patients incontinent at baseline achieved continence. Nocturia reached significance only at 10 mg, falling 0.71 episodes against 0.52 on placebo, p=0.036. The p-values are solid and the absolute differences are small; both statements are true at once and the second is the one a reader is rarely shown.',
+        evidenceSource: 'Cardozo L et al., J Urol 2004;172(5 Pt 1):1919-1924 (PMID 15540755)',
+        doi: '10.1097/01.ju.0000140729.07840.16',
+        measuredMetric:
+          'Change from baseline in mean micturitions per 24 hours at 12 weeks, against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sol-a2',
+        category: 'measured',
+        title: 'The dry mouth is the same receptor, in the salivary gland, and it doubles with dose',
+        laymanSummary:
+          'Dry mouth is not an unlucky side reaction. It is the drug doing exactly what it was designed to do, in the gland that makes saliva. At the higher dose more than one patient in four reports it.',
+        technicalDetails:
+          'The US label reports dry mouth in 4.2% on placebo, 10.9% on 5 mg and 27.6% on 10 mg; constipation in 2.9%, 5.4% and 13.4%; blurred vision in 1.8%, 3.8% and 4.8%. The pivotal publication reports the same gradient at 2.3%, 7.7% and 23%. The M3 receptor blocked in the detrusor is the M3 receptor in the salivary acinar cell and in the ciliary muscle, so the therapeutic effect and the adverse effects rise together and cannot be separated by dosing. This is the clearest on-target-wrong-organ example in the class, and it is why the efficacy gain from doubling the dose has to be weighed against a roughly two-and-a-half-fold rise in dry mouth.',
+        evidenceSource:
+          'US prescribing information for solifenacin succinate tablets, Adverse Reactions section; Cardozo L et al., J Urol 2004;172:1919-1924',
+        measuredMetric:
+          'Incidence of dry mouth, constipation and blurred vision by dose in the pooled registration trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sol-a3',
+        category: 'measured',
+        title: 'Against placebo in a modern trial, under half an incontinence episode a day',
+        laymanSummary:
+          'SYNERGY is one of the few recent trials of this drug with a real placebo arm. Placebo took away 1.34 leaks a day on its own. Solifenacin took away 1.79. The drug is responsible for the difference: 0.45 leaks a day.',
+        technicalDetails:
+          'SYNERGY (NCT01972841) randomised 3,527 patients to placebo, mirabegron 25 mg or 50 mg, solifenacin 5 mg, or solifenacin plus mirabegron at either dose. Change from baseline to end of treatment in mean incontinence episodes per 24 hours was -1.34 on placebo, -1.70 and -1.76 on mirabegron 25 and 50 mg, and -1.79 on solifenacin 5 mg. Micturitions per 24 hours fell 1.64 on placebo and 2.20 on solifenacin. The combination arms reached -2.04 and -1.98 for incontinence, significantly better than the corresponding mirabegron monotherapy (p=0.001 and p<0.001). Read from the placebo arm rather than from baseline, every active arm in this trial sits within half an episode a day of every other.',
+        evidenceSource: 'ClinicalTrials.gov results record, SYNERGY, NCT01972841',
+        measuredMetric:
+          'Change from baseline in mean incontinence episodes and micturitions per 24 hours, all arms including placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sol-a4',
+        category: 'inferred',
+        title: 'BESIDE beat solifenacin 5 mg and did not separate from solifenacin 10 mg',
+        laymanSummary:
+          'The trial used to argue for adding a second drug on top of solifenacin compared the combination with the low dose. Against the high dose of solifenacin alone, the gap nearly disappears.',
+        technicalDetails:
+          'BESIDE (NCT01908829) randomised 2,174 incontinent patients already on solifenacin 5 mg for four weeks to combination with mirabegron, to solifenacin 5 mg, or to solifenacin 10 mg. Incontinence episodes per 24 hours fell 1.80 on combination, 1.53 on solifenacin 5 mg and 1.67 on solifenacin 10 mg. The registered primary comparison was combination against solifenacin 5 mg: difference -0.26 episodes (95% CI -0.47 to -0.05), p=0.001. The comparison a prescriber actually faces — add a second drug, or raise the dose of the one already prescribed — is 1.80 against 1.67, a gap of 0.13 episodes a day that the trial was not designed to test as its primary endpoint.',
+        evidenceSource: 'ClinicalTrials.gov results record, BESIDE, NCT01908829',
+        measuredMetric:
+          'Change from baseline in mean incontinence episodes per 24 hours, combination versus each solifenacin dose',
+        inferredClaim:
+          'That combination therapy is the next step after solifenacin 5 mg fails — an inference resting on a comparison against the dose the patient has already outgrown, rather than against the higher dose of the same drug',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sol-a5',
+        category: 'failed',
+        title: 'Most people have stopped within a year, and a quarter never reach six months',
+        laymanSummary:
+          'Whatever the trials show at 12 weeks, in ordinary use this class of drug is abandoned. Across thirty real-world studies, between 12% and 25% of patients were still taking an antimuscarinic a year later.',
+        technicalDetails:
+          'Yeowell and colleagues systematically reviewed thirty observational studies drawing on electronic prescription claims. Overall persistence ranged from 5% to 47%. In the three studies reporting both drug groups, one-year persistence was 12% to 25% for antimuscarinics and 32% to 38% for mirabegron. Median time to discontinuation was under five months for antimuscarinics in all but one study, against 5.6 to 7.4 months for mirabegron. The proportion adherent at one year ranged from 15% to 44%. A 12-week efficacy result describes a population that, in practice, has largely dispersed before the first anniversary of the prescription; the review was funded by the manufacturer of the comparator drug, which is a reason to check the underlying studies rather than a reason to dismiss the direction.',
+        evidenceSource: 'Yeowell G et al., BMJ Open 2018;8(11):e021889 (PMID 30467131)',
+        doi: '10.1136/bmjopen-2018-021889',
+        measuredMetric:
+          'One-year persistence and adherence with oral antimuscarinics in electronic prescription claims, across 30 studies',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sol-a6',
+        category: 'inferred',
+        title: 'The class-wide dementia association is large, consistent, and not from a trial',
+        laymanSummary:
+          'Two very large British database studies found more dementia in people who had taken bladder antimuscarinics. Neither randomised anyone, and a bladder that is misbehaving can itself be an early sign of the disease being counted as the outcome.',
+        technicalDetails:
+          'Coupland and colleagues studied 58,769 dementia cases and 225,574 matched controls aged 55 and over, using prescriptions for 56 anticholinergic drugs issued 1 to 11 years before diagnosis. The adjusted odds ratio rose from 1.06 (95% CI 1.03 to 1.09) at the lowest exposure to 1.49 (1.44 to 1.54) at the highest, and bladder antimuscarinics as a class carried an adjusted odds ratio of 1.65 (1.56 to 1.75). The population-attributable fraction for total anticholinergic exposure was 10.3%. Richardson and colleagues, in 40,770 cases and 283,933 controls, found an adjusted odds ratio of 1.11 (1.08 to 1.14) for any drug with a definite anticholinergic score, with the association for urological drugs still present 15 to 20 years before diagnosis. Persistence that far back argues against simple reverse causation and is the strongest part of the case; the absence of any randomised evidence is the weakest.',
+        evidenceSource:
+          'Coupland CAC et al., JAMA Intern Med 2019;179:1084-1093 (PMID 31233095); Richardson K et al., BMJ 2018;361:k1315 (PMID 29695481)',
+        doi: '10.1001/jamainternmed.2019.0677',
+        inferredClaim:
+          'That bladder antimuscarinics cause dementia — a large and dose-graded association in two national primary-care databases, with no randomised trial in this class ever powered for a cognitive endpoint',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'sol-a7',
+        category: 'measured',
+        title: 'A measured QT effect at three times the maximum dose, and a boxed-adjacent warning',
+        laymanSummary:
+          'At three times the highest dose anyone is meant to take, solifenacin lengthened an electrical interval in the heart by about 8 milliseconds. That is small. The label still names it, alongside angioedema, as a reason for caution.',
+        technicalDetails:
+          'The US label reports a dedicated QT study in which the 30 mg dose — three times the maximum recommended 10 mg — produced a mean increase in the Fridericia-corrected QT interval of 8 msec (90% CI 4 to 13), an effect smaller than that of moxifloxacin as positive control at its therapeutic dose. The Warnings and Precautions section carries angioedema and anaphylactic reactions with potential airway obstruction, urinary retention, reduced gastrointestinal motility, somnolence affecting the ability to drive, and caution in narrow-angle glaucoma. The QT finding is measured, quantified and modest; it is included here because "no clinically significant effect at the approved dose" and "no effect" are different statements and the label makes only the first.',
+        evidenceSource:
+          'US prescribing information for solifenacin succinate tablets, Clinical Pharmacology and Warnings and Precautions sections (openFDA drug label endpoint)',
+        measuredMetric:
+          'Mean change in Fridericia-corrected QT interval at 30 mg against placebo, with 90% confidence interval',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sol-a8',
+        category: 'failed',
+        title: 'A 2,225-patient study of this drug had no control arm at all',
+        laymanSummary:
+          'One of the largest studies on the registry for solifenacin, VOLT, enrolled 2,225 patients and gave every one of them the drug. With nobody on placebo, it cannot say what the drug did.',
+        technicalDetails:
+          'VOLT (NCT00463541) was an open-label study of solifenacin 5 and 10 mg in patients with overactive bladder symptoms, enrolling 2,225 participants and assessing symptoms at weeks 4, 8 and 12. It is completed. An open-label single-arm design in a condition whose placebo arms lose 1.34 incontinence episodes and 1.64 voids a day cannot distinguish drug effect from regression to the mean, from diary-keeping itself, or from expectation. It remains a legitimate safety and tolerability dataset and an illegitimate efficacy one, and the distinction is not always made when its patient numbers are quoted.',
+        evidenceSource: 'ClinicalTrials.gov record, VOLT, NCT00463541',
+        measuredMetric:
+          'Enrolment and design of the largest open-label solifenacin study on the public registry',
+        inferredClaim:
+          'That large single-arm enrolment numbers add weight to the efficacy case — they add precision to a within-arm change that includes the entire placebo response',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed once a day, and slow to leave',
+        laymanDesc:
+          'One tablet daily. The drug hangs around in the body far longer than most, which is why the dose is once a day and why side effects do not clear quickly if they arrive.',
+        molecularDetail:
+          'Oral tablet, once daily, with a long terminal half-life supporting once-daily dosing. Cleared substantially by CYP3A4, so strong inhibitors of that enzyme raise exposure and the label caps the dose accordingly. Dispensed as the succinate salt.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the bladder wall without entering a cell',
+        laymanDesc:
+          'The target sits on the outer surface of the muscle cell, facing outward. The drug arrives from the bloodstream and sits down on it; nothing has to be carried inside.',
+        molecularDetail:
+          'Muscarinic receptors are G-protein-coupled receptors in the plasma membrane with an outward-facing orthosteric pocket. No transporter and no intracellular accumulation is required. The same access applies in the salivary gland and the gut, which is why the unwanted effects appear on the same timescale as the wanted one.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies the seat acetylcholine needs',
+        laymanDesc:
+          'Parasympathetic nerves release acetylcholine into the bladder wall to tell it to squeeze. Solifenacin sits in the receptor that message binds to, so the message does not get through.',
+        molecularDetail:
+          'Competitive antagonism at muscarinic receptors with relative preference for M3 over M2. Competitive means surmountable: a strong enough acetylcholine surge still produces a contraction, which is the pharmacological reason a person on this drug can still be caught by urgency.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The calcium spike that drives the squeeze does not fire',
+        laymanDesc:
+          'A contraction needs a burst of calcium inside the muscle cell. With the receptor occupied, the burst is smaller, and the involuntary squeeze during filling is blunted.',
+        molecularDetail:
+          'Loss of M3-Gq/11 coupling reduces phospholipase C activation, so inositol trisphosphate falls, sarcoplasmic reticulum calcium release drops and myosin light-chain phosphorylation declines. M2 blockade additionally removes the inhibition of adenylyl cyclase that normally opposes relaxation. Detrusor tone during filling falls and functional bladder capacity rises.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A fraction of an episode a day, and a dry mouth',
+        laymanDesc:
+          'The diary improves by less than one leak and under one extra trip a day compared with placebo. Roughly one person in nine at the low dose, and one in four at the high dose, gets a dry mouth in exchange.',
+        molecularDetail:
+          'Micturitions per 24 hours fell 2.37 on 5 mg against 1.59 on placebo in the pivotal trial; incontinence episodes fell 1.79 against 1.34 on placebo in SYNERGY. Dry mouth 10.9% and 27.6% at 5 and 10 mg against 4.2% on placebo. The identical M3 blockade produces both columns of that table, and no dosing strategy separates them.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SYNERGY (NCT01972841)',
+        phase: 'Phase 3 randomised double-blind placebo- and active-controlled, 12 weeks',
+        sampleSize: 3527,
+        primaryEndpoint:
+          'Change from baseline to end of treatment in mean incontinence episodes and mean micturitions per 24 hours',
+        endpointMet: true,
+        statisticalPValue:
+          'Combination versus mirabegron monotherapy p=0.001 (25 mg) and p<0.001 (50 mg) for incontinence episodes; placebo -1.34, solifenacin 5 mg -1.79, mirabegron 50 mg -1.76',
+        unreportedAdverseSignals:
+          'The comparison a reader most wants — solifenacin monotherapy against placebo — is present in the arm means but is not the registered hypothesis, so it carries no p-value in the results record. The margin from those means is 0.45 incontinence episodes a day.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'BESIDE (NCT01908829)',
+        phase: 'Phase 3 randomised double-blind active-controlled, 12 weeks',
+        sampleSize: 2174,
+        primaryEndpoint:
+          'Change from baseline to end of treatment in mean incontinence episodes per 24 hours, combination versus solifenacin 5 mg',
+        endpointMet: true,
+        statisticalPValue:
+          'Difference -0.26 episodes per 24 hours (95% CI -0.47 to -0.05), p=0.001 for combination versus solifenacin 5 mg',
+        unreportedAdverseSignals:
+          'Solifenacin 10 mg monotherapy fell 1.67 episodes against the combination arm 1.80. That 0.13 gap is the clinically relevant comparison and was not the primary hypothesis.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'BEYOND (NCT01638000)',
+        phase: 'Phase 3 randomised double-blind active-controlled non-inferiority, 12 weeks',
+        sampleSize: 1887,
+        primaryEndpoint:
+          'Change from baseline to final visit in mean micturitions per 24 hours, mirabegron 50 mg versus solifenacin 5 mg in patients dissatisfied with prior antimuscarinics',
+        endpointMet: true,
+        statisticalPValue:
+          'Solifenacin -3.13 versus mirabegron -2.95; adjusted difference -0.18 (95% CI -0.42 to 0.06), p=0.15. Non-inferiority met; no superiority in either direction.',
+        unreportedAdverseSignals:
+          'Every patient enrolled had already failed an antimuscarinic, and the trial then gave half of them another antimuscarinic. That both arms improved by about three voids a day with no placebo arm to subtract makes the size of the drug effect unrecoverable from this trial.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'VOLT (NCT00463541)',
+        phase: 'Open-label single-arm, 12 weeks',
+        sampleSize: 2225,
+        primaryEndpoint:
+          'Efficacy of solifenacin 5 and 10 mg on overactive bladder symptoms at weeks 4, 8 and 12',
+        endpointMet: false,
+        statisticalPValue:
+          'No controlled comparison exists. `endpointMet: false` here records the absence of a control arm, not a missed endpoint.',
+        unreportedAdverseSignals:
+          'A single-arm design in a condition with a placebo response of 1.34 incontinence episodes a day cannot separate drug effect from regression to the mean or from the act of keeping a diary.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Micturitions per 24 hours fell 2.37 on solifenacin 5 mg and 2.81 on 10 mg, against 1.59 on placebo, in the 12-week pivotal trial',
+        'Incontinence episodes per 24 hours fell 1.79 on solifenacin 5 mg against 1.34 on placebo in the 3,527-patient SYNERGY trial',
+        'Dry mouth in 10.9% at 5 mg and 27.6% at 10 mg, against 4.2% on placebo, in the pooled label data',
+        'Against tolterodine ER 4 mg at four weeks, incontinence fell 1.30 a day on solifenacin 5 mg versus 0.90, p=0.0181',
+        'A 30 mg dose — three times the maximum recommended — raised Fridericia-corrected QT by a mean 8 msec (90% CI 4 to 13)',
+      ],
+      unsupportedInferences: [
+        'That a 51% reduction in urgency episodes is a 51% drug effect — the placebo arm supplies most of the movement, and only the difference belongs to the drug',
+        'That combination therapy is the established next step after solifenacin 5 mg — BESIDE tested it against the 5 mg dose, not against the 10 mg dose of the same drug',
+        'That bladder antimuscarinics cause dementia — a class odds ratio of 1.65 in a nested case-control study, with no randomised evidence at all',
+        'That the trial populations describe the treated population — real-world one-year persistence for this class runs from 12% to 25%',
+      ],
+      whatFailedInitially: [
+        'Persistence: median time to discontinuation is under five months for oral antimuscarinics across almost every real-world study reviewed',
+        'The head-to-head against a different mechanism: BEYOND could not separate solifenacin from mirabegron on its primary endpoint, p=0.15',
+        'The comparison with structured behavioural training, which reduced incontinence episodes 80.7% against 68.5% for the antimuscarinic arm and has never been repeated against a modern agent',
+      ],
+      realWorldOutcome: [
+        'Eighteen cents a tablet at United States pharmacy acquisition cost, with forty generic products listed',
+        'Still the leading branded-turned-generic antimuscarinic worldwide, and increasingly prescribed alongside mirabegron rather than instead of it',
+        'The class now carries an anticholinergic-burden warning in most national prescribing guidance for older adults, driven by observational data rather than by any trial in this indication',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, once daily; a separate oral suspension exists for paediatric use',
+      description:
+        'A conventional immediate-release tablet swallowed whole once a day. There is no modified-release engineering here of the kind tamsulosin uses, because the molecule already has a long enough half-life to hold a once-daily schedule on its own. Dose is capped in the presence of strong CYP3A4 inhibitors and in significant renal or hepatic impairment.',
+      safetyProfile:
+        'The commonest effects are dry mouth, constipation and blurred vision, all dose-dependent and all on-target. The label warns of angioedema and anaphylactic reactions with potential airway obstruction, of urinary retention in patients with bladder outflow obstruction, of decreased gastrointestinal motility, of somnolence affecting driving, of caution in narrow-angle glaucoma, and of QT prolongation in patients already at risk. The class-level concern that does not appear in a 12-week trial is cumulative anticholinergic burden in older adults.',
+    },
+    commonQuestions: [
+      {
+        q: 'How much better than placebo is it, in plain numbers?',
+        a: 'In the trial that licensed it, people on placebo made 1.59 fewer trips to the toilet a day and people on 5 mg made 2.37 fewer — a difference of about three-quarters of a trip. In the more recent SYNERGY trial, placebo removed 1.34 leaks a day and solifenacin removed 1.79, a difference of 0.45. Both differences are statistically real; the trials were large enough to detect them reliably. Whether a fraction of an episode a day is worth it to any particular person is a different question from whether the p-value is small, and it is the question the p-value does not answer.',
+        auditNote:
+          'Percentage reductions quoted from baseline — "a 51% fall in urgency episodes" — include the whole placebo response. Only the difference between arms is attributable to the drug.',
+      },
+      {
+        q: 'Why does it dry my mouth out so badly?',
+        a: 'Because the receptor it blocks in your bladder is the same receptor that makes your salivary glands produce saliva. There is no version of this drug that can tell the two apart, and the rate rises with dose in exactly the way the bladder effect does: 10.9% at 5 mg and 27.6% at 10 mg, against 4.2% on placebo. Constipation follows the same pattern for the same reason, because the gut uses the receptor too, and blurred vision because the focusing muscle of the eye does. These are not side effects in the sense of something going wrong. They are the drug working, elsewhere.',
+      },
+      {
+        q: 'Does this class of drug cause dementia?',
+        a: 'Nobody knows, and the honest answer has to include why. Two very large British primary-care studies found an association. Coupland and colleagues, comparing 58,769 people with dementia against 225,574 controls, found bladder antimuscarinics carried an adjusted odds ratio of 1.65, and found the risk rose steadily with cumulative exposure across all anticholinergic drugs. Richardson and colleagues found the association still present 15 to 20 years before diagnosis, which argues against the simplest alternative explanation — that an early, undiagnosed dementia was causing the bladder symptoms that led to the prescription. But no randomised trial in this indication has ever been powered for a cognitive endpoint, and observational data of this kind cannot settle causation on its own.',
+        auditNote:
+          'A drug that is stopped by most people inside a year is also a drug whose cumulative-exposure studies are dominated by the minority who stay on it, who differ from everyone else in ways no adjustment fully captures.',
+      },
+      {
+        q: 'Is there anything that works as well without the drug?',
+        a: 'One randomised trial addressed this directly, and it did not favour the drug. In 197 community-dwelling women aged 55 and over, structured behavioural training — pelvic floor exercises with biofeedback plus urge-suppression technique — reduced incontinence episodes by a mean of 80.7%, against 68.5% for the drug arm (P=.04) and 39.4% for placebo. Only 14% of the behavioural group wanted to switch to something else, against 75.5% in each of the other groups. Two caveats belong with that result: the drug in that trial was oxybutynin rather than solifenacin, and behavioural training as delivered there was several supervised sessions, not a handout.',
+      },
+      {
+        q: 'Why does this page not show a manufacturing cost?',
+        a: 'Because no per-dose cost-of-production figure for solifenacin could be verified and cited. The cost-of-production literature checked publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule, and filling that field without a source would mean inventing a number. What is shown instead is what pharmacies pay — about eighteen cents a tablet in the CMS acquisition-cost survey — which is a price, not a cost of manufacture.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Cardozo L, Lisec M, Millard R, van Vierssen Trip O, Kuzmin I, Drogendijk TE, Huang M, Ridder AM. Randomized, double-blind placebo controlled trial of the once daily antimuscarinic agent solifenacin succinate in patients with overactive bladder. J Urol 2004;172(5 Pt 1):1919-1924',
+        identifier: '10.1097/01.ju.0000140729.07840.16',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chapple CR et al., STAR study group. A comparison of the efficacy and tolerability of solifenacin succinate and extended release tolterodine at treating overactive bladder syndrome: results of the STAR trial. Eur Urol 2005;48:464-470',
+        identifier: '10.1016/j.eururo.2005.05.015',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chapple CR et al., STAR study group. Treatment outcomes in the STAR study: a subanalysis of solifenacin 5 mg and tolterodine ER 4 mg. Eur Urol 2007;52:1195-1203',
+        identifier: '10.1016/j.eururo.2007.05.027',
+        kind: 'doi',
+      },
+      {
+        label:
+          'SYNERGY — solifenacin and mirabegron combination versus each monotherapy and placebo in overactive bladder',
+        identifier: 'NCT01972841',
+        kind: 'nct',
+      },
+      {
+        label: 'BESIDE — adding mirabegron to solifenacin in incontinent overactive bladder',
+        identifier: 'NCT01908829',
+        kind: 'nct',
+      },
+      {
+        label:
+          'BEYOND — mirabegron versus solifenacin in patients dissatisfied with prior antimuscarinic therapy',
+        identifier: 'NCT01638000',
+        kind: 'nct',
+      },
+      {
+        label: 'VOLT — open-label study of solifenacin 5 and 10 mg in overactive bladder',
+        identifier: 'NCT00463541',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Yeowell G, Smith P, Nazir J, Hakimi Z, Siddiqui E, Fatoye F. Real-world persistence and adherence to oral antimuscarinics and mirabegron in patients with overactive bladder: a systematic literature review. BMJ Open 2018;8(11):e021889',
+        identifier: '10.1136/bmjopen-2018-021889',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Coupland CAC, Hill T, Dening T, Morriss R, Moore M, Hippisley-Cox J. Anticholinergic drug exposure and the risk of dementia: a nested case-control study. JAMA Intern Med 2019;179:1084-1093',
+        identifier: '10.1001/jamainternmed.2019.0677',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Richardson K, Fox C, Maidment I, et al. Anticholinergic drugs and risk of dementia: case-control study. BMJ 2018;361:k1315',
+        identifier: '10.1136/bmj.k1315',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Burgio KL, Locher JL, Goode PS, Hardin JM, McDowell BJ, Dombrowski M, Candib D. Behavioral vs drug treatment for urge urinary incontinence in older women: a randomized controlled trial. JAMA 1998;280:1995-2000',
+        identifier: '10.1001/jama.280.23.1995',
+        kind: 'doi',
+      },
+      {
+        label:
+          'US prescribing information for solifenacin succinate tablets — mechanism of action, clinical pharmacology, warnings and precautions, adverse reactions (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22solifenacin+succinate%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 154059 — solifenacin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/154059',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 4. Mirabegron — the first new mechanism in this indication in thirty years, whose registration
+  //    trials accidentally demonstrated that the drug they were being compared against could not
+  //    beat placebo, and whose most famous experiment used four times the licensed dose.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'mirabegron',
+    name: 'Mirabegron',
+    tradeName: 'Myrbetriq',
+    sponsor: 'Astellas',
+    targetGene: 'ADRB3',
+    targetProtein:
+      'Beta-3 adrenergic receptor on detrusor smooth muscle, the dominant beta-adrenoceptor subtype in human bladder and the one that mediates relaxation during filling',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2012,
+    indication:
+      'Overactive bladder in adults with symptoms of urge urinary incontinence, urgency and urinary frequency, alone or in combination with solifenacin succinate; and neurogenic detrusor overactivity in children aged 3 years and over weighing 35 kg or more.',
+    patientFriendlyIndication:
+      'An overactive bladder — sudden urgency, going too often, and leaking — for people who cannot tolerate or do not want an anticholinergic drug',
+    anatomicalSite: 'Detrusor smooth muscle of the bladder wall during the storage phase',
+    conditionContext: {
+      conditionExplainer:
+        'The bladder has two jobs and they use different nerves. Emptying is driven by acetylcholine acting on muscarinic receptors, which is what every older drug in this indication blocks. Filling is helped along by the sympathetic nervous system relaxing the same muscle through beta-adrenoceptors, and in the human bladder that job belongs almost entirely to the beta-3 subtype.',
+      whyItMatters:
+        'For thirty years the whole treatment class attacked the emptying signal. Mirabegron was the first approved drug to work on the filling signal instead, which is why its side-effect profile is unrelated: no dry mouth, no constipation from the drug itself, and no contribution to anticholinergic burden.',
+      whoTakesThis:
+        'Adults with overactive bladder, disproportionately those who stopped an antimuscarinic because of dry mouth or who are already carrying a heavy anticholinergic load from other prescriptions. A paediatric granule formulation is licensed separately for neurogenic detrusor overactivity.',
+      clinicalGoals:
+        'Fewer incontinence episodes and fewer voids per 24 hours on a three-day diary, without adding to the anticholinergic burden. The size of that improvement over placebo is the number this page keeps returning to.',
+    },
+    oneSentenceVerdict:
+      'The first beta-3 adrenergic agonist licensed for any condition, which relaxes the bladder wall during filling instead of blocking the signal that empties it: across its three placebo-controlled registration trials the 50 mg dose removed 1.38 to 1.57 incontinence episodes a day against placebo 0.96 to 1.17, and in two of those trials the antimuscarinic used as active control could not separate from placebo at all.',
+    laymanHowItWorks:
+      'Your bladder does not just squeeze — while it is filling, a separate set of nerve signals actively tells the muscle to stay relaxed so it can hold more. Mirabegron amplifies that relaxing signal by switching on a receptor called beta-3, which in the human bladder is almost the only beta-receptor there is. Because it is not touching the acetylcholine system at all, it does not dry the mouth, blur vision or add to the anticholinergic load older bladder drugs carry. What it does carry instead is a blood-pressure warning, because beta receptors elsewhere in the body are not entirely indifferent to it.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$9.60 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 17 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in June 2012 and now nominally generic, with seventeen products in the acquisition-cost file. The median has not collapsed the way tamsulosin or solifenacin did: at US$9.60 a tablet this generic still costs roughly fifty-five times a generic solifenacin tablet, which is a fact about how few suppliers entered rather than about the chemistry.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The choice here is a three-way one. The antimuscarinics are almost free and produce a similar diary change, at the cost of dry mouth, constipation and a place on every anticholinergic-burden list. Vibegron is the same mechanism as mirabegron without the blood-pressure warning, and costs more again. And the only randomised comparison of a drug in this indication against structured behavioural training went to the training.',
+      conventionalRx: [
+        {
+          name: 'Solifenacin (Vesicare)',
+          class: 'M3-preferring muscarinic antagonist',
+          howItCompares:
+            'BEYOND (NCT01638000) randomised 1,887 patients dissatisfied with prior antimuscarinics to mirabegron 50 mg or solifenacin 5 mg. Voids per 24 hours fell 2.95 against 3.13, adjusted difference -0.18 (95% CI -0.42 to 0.06), p=0.15: statistically indistinguishable. In SYNERGY, with a placebo arm present, incontinence fell 1.76 on mirabegron 50 mg and 1.79 on solifenacin 5 mg against 1.34 on placebo.',
+          typicalCost:
+            'US$0.1754 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 40 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: about one fifty-fifth of the acquisition cost, and the same diary movement. Cons: dry mouth in 10.9% at 5 mg and 27.6% at 10 mg, and membership of a drug class carrying an observational dementia association.',
+        },
+        {
+          name: 'Vibegron (Gemtesa)',
+          class: 'Beta-3 adrenergic agonist, the second in the class',
+          howItCompares:
+            'EMPOWUR (NCT03492281) randomised 1,530 patients to vibegron 75 mg, tolterodine ER 4 mg or placebo. Vibegron beat placebo by 0.5 voids a day (p<0.001) and 0.6 urge incontinence episodes a day (p<0.0001). Its US label does not carry mirabegron\'s blood-pressure warning, and it is not a strong CYP2D6 inhibitor, which removes a drug-interaction problem mirabegron has.',
+          typicalCost:
+            'US$16.46 per tablet at United States pharmacy acquisition cost (CMS NADAC, brand, median across 2 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: same mechanism, no blood-pressure warning, fewer interactions. Cons: still branded, nearly double the acquisition cost, and no head-to-head trial against mirabegron has been run.',
+        },
+        {
+          name: 'Oxybutynin (Ditropan, and its transdermal forms)',
+          class: 'Non-selective muscarinic antagonist, the oldest drug in the indication',
+          howItCompares:
+            'The cheapest option by a wide margin and the one with the heaviest anticholinergic load. In older patients, dry mouth occurred roughly six times more often on tolterodine ER 4 mg than on mirabegron over 12 weeks, and oxybutynin is more anticholinergic than tolterodine, not less.',
+          typicalCost:
+            'US$0.0817 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, median across 92 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: eight cents a dose, fifty years of use, and transdermal forms that bypass first-pass metabolism. Cons: the highest anticholinergic burden in the indication, and it was the drug arm that lost to behavioural training in the only trial to test that comparison.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Have your blood pressure checked after starting, not only before',
+          action:
+            'The US label recommends measuring blood pressure periodically on treatment, and states that mirabegron is not recommended in severe uncontrolled hypertension.',
+          patientImpact:
+            'At the 50 mg dose the label reports mean increases of approximately 0.5 to 1 mmHg over placebo — small. The adverse-event table is less tidy: hypertension was reported in 11.3% at 25 mg, 7.5% at 50 mg and 7.6% on placebo, a pattern with no dose gradient. A 715-patient ambulatory monitoring substudy of SYNERGY then found no consistent 24-hour blood-pressure or heart-rate signal at all.',
+          clinicalPrecaution:
+            'A group mean of 1 mmHg says nothing about an individual, which is why the label asks for measurement rather than reassurance. Someone with severe uncontrolled hypertension is outside the population any of these datasets describe.',
+        },
+        {
+          name: 'Check for interactions before anything metabolised by CYP2D6 is added',
+          action:
+            'Mirabegron is a moderate CYP2D6 inhibitor, so it raises exposure to drugs cleared by that enzyme.',
+          patientImpact:
+            'This is a mechanism-level interaction, not a rare event: metoprolol, many antidepressants, and several antiarrhythmics all use that pathway. The label handles it with dose caps and monitoring language rather than outright contraindications.',
+          clinicalPrecaution:
+            'The successor drug in the same class, vibegron, does not inhibit CYP2D6, which is one of the few concrete clinical differences between the two.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC=C(C=C1)[C@H](CNCCC2=CC=C(C=C2)NC(=O)CC3=CSC(=N3)N)O',
+      chemicalFormula: 'C21H24N4O2S',
+      molecularWeight: '396.50 g/mol',
+      targetReceptorAffinity:
+        'Agonist at the human beta-3 adrenergic receptor. The US label describes the pharmacology functionally rather than numerically — the drug "relaxes the detrusor smooth muscle during the storage phase" and increases bladder capacity — so no Ki or EC50 is quoted here. The single stereocentre is the (R) configuration and is carried in the structure; the (S) enantiomer is the specified chiral impurity. The aminothiazole acetamide on one end and the phenylethanolamine on the other are the two halves the synthesis joins.',
+      structureSource: {
+        label: 'PubChem CID 9865528 — mirabegron structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9865528',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mir-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric excess of the (R)-styrene oxide or (R)-phenylglycinol precursor',
+          description:
+            'Confirm the configuration of the benzylic alcohol fragment before it is opened by the amine. Mirabegron is a single enantiomer with one stereocentre, so this is the only chiral checkpoint in the route and every downstream specification depends on it.',
+          reagentsAndBuffer:
+            'Chiral stationary-phase HPLC on an amylose tris(3,5-dimethylphenylcarbamate) column, n-hexane with 2-propanol and diethylamine, UV detection at 210 nm, (S)-enantiomer reference standard',
+        },
+        {
+          id: 'mir-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Ring opening of the epoxide, then amide coupling to the aminothiazole',
+          description:
+            'Open the chiral epoxide with the arylethylamine to build the secondary amine and the benzylic alcohol in one operation, then acylate the aniline nitrogen with 2-(2-aminothiazol-4-yl)acetic acid to complete the molecule. The stereocentre is inherited, not created, which is the point of settling it first.',
+          dependsOnStepId: 'mir-w1',
+          reagentsAndBuffer:
+            '(R)-styrene oxide, 4-nitrophenethylamine followed by reduction to the aniline, 2-(2-aminothiazol-4-yl)acetic acid, a carbodiimide or uronium coupling reagent with hydroxybenzotriazole, diisopropylethylamine, anhydrous dimethylformamide under nitrogen',
+        },
+        {
+          id: 'mir-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and control of the des-amino and regioisomeric impurities',
+          description:
+            'Crystallise the free base and re-run both the achiral related-substances method and the chiral method on the finished solid. The impurity profile is dominated by incomplete acylation and by over-alkylation at the secondary amine, and residual thiazole starting material is controlled separately.',
+          dependsOnStepId: 'mir-w2',
+          reagentsAndBuffer:
+            'Ethanol or ethyl acetate with heptane antisolvent, activated charcoal, reversed-phase HPLC with gradient elution for related substances, chiral HPLC for enantiomeric purity, X-ray powder diffraction for polymorph identity',
+        },
+        {
+          id: 'mir-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Application to cells expressing each human beta-adrenoceptor subtype separately',
+          description:
+            'Apply the compound to three stable lines carrying human ADRB1, ADRB2 or ADRB3. The receptor faces the extracellular space, so nothing has to be carried inside a cell. Running all three together is what a selectivity claim rests on, and it is also the assay that maps onto the cardiovascular warning: beta-1 activity is what would raise heart rate, and beta-2 activity is what would move vascular tone.',
+          dependsOnStepId: 'mir-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 lines stably expressing human ADRB1, ADRB2 or ADRB3, Ham F-12 or DMEM with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4, ascorbate to protect catecholamine reference agonists',
+        },
+        {
+          id: 'mir-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Cyclic AMP accumulation across all three subtypes, plus isolated detrusor strip relaxation',
+          description:
+            'Measure cyclic AMP generation at each beta subtype to obtain potency and intrinsic activity, then confirm the result in a tissue that has not been engineered: strips of human detrusor precontracted with carbachol, relaxed by the compound. A cell line reports what a transfected receptor does; a muscle strip reports what the drug does to muscle.',
+          dependsOnStepId: 'mir-w4',
+          reagentsAndBuffer:
+            'HTRF or AlphaScreen cyclic AMP detection kit, isoprenaline and CL-316,243 as reference agonists, IBMX to block phosphodiesterase, forskolin as positive control, Krebs-Henseleit buffer gassed with 95% oxygen and 5% carbon dioxide for the organ bath, carbachol as precontracting agent',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mir-a1',
+        category: 'measured',
+        title: 'Three placebo-controlled trials, all positive, all under half an episode a day',
+        laymanSummary:
+          'Mirabegron beat placebo in all three of its registration trials, on both endpoints, with small p-values. The size of the win was consistently between a quarter and half an accident a day.',
+        technicalDetails:
+          'ARIES (NCT00662909, n=2,149) reported incontinence episodes per 24 hours falling 1.13 on placebo, 1.47 on 50 mg (p=0.026) and 1.63 on 100 mg (p<0.001); micturitions fell 1.05, 1.66 (p=0.001) and 1.75 (p<0.001). SCORPIO (NCT00689104, n=2,336) reported incontinence 1.17 on placebo against 1.57 on 50 mg (p=0.003), micturitions 1.34 against 1.93 (p<0.001). CAPRICORN (NCT00912964, n=2,030) reported incontinence 0.96 on placebo, 1.36 on 25 mg (p=0.005) and 1.38 on 50 mg (p=0.001). Three independent trials, over 6,500 patients, and a treatment effect that lands between 0.34 and 0.59 incontinence episodes a day every time. The consistency is the strongest thing about this dataset and the magnitude is the most easily overstated.',
+        evidenceSource:
+          'ClinicalTrials.gov results records for ARIES (NCT00662909), SCORPIO (NCT00689104) and CAPRICORN (NCT00912964)',
+        measuredMetric:
+          'Change from baseline to week 12 in mean incontinence episodes and micturitions per 24 hours, against placebo, in three registration trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mir-a2',
+        category: 'failed',
+        title: 'In SCORPIO the active control — the standard drug — could not beat placebo',
+        laymanSummary:
+          'SCORPIO included an arm on tolterodine, the established treatment, purely as a yardstick. On both main endpoints, the yardstick failed to separate from placebo. Mirabegron did. The comparison people rarely draw from that trial is the one about tolterodine.',
+        technicalDetails:
+          'In SCORPIO (n=2,336; placebo 480, mirabegron 50 mg 473, mirabegron 100 mg 478, tolterodine SR 4 mg 475), incontinence episodes per 24 hours fell 1.17 on placebo and 1.27 on tolterodine, p=0.11 (95% CI -0.42 to 0.21); micturitions fell 1.34 and 1.59, p=0.11 (95% CI -0.55 to 0.06). Mirabegron 50 mg reached p=0.003 and p<0.001 on the same endpoints in the same trial. The pattern repeated seven years later in EMPOWUR (NCT03492281, n=1,530), where tolterodine ER 4 mg missed on micturitions against placebo (p=0.0988) while vibegron reached p<0.001. Two large, well-conducted, independently sponsored trials in which a drug prescribed to millions of people could not be distinguished from placebo is not a fluke of assay sensitivity; it is a statement about the size of the effect.',
+        evidenceSource:
+          'ClinicalTrials.gov results records, SCORPIO NCT00689104 and EMPOWUR NCT03492281; Khullar V et al., Eur Urol 2013;63:283-295',
+        doi: '10.1016/j.eururo.2012.10.016',
+        measuredMetric:
+          'Tolterodine arm versus placebo on both co-primary endpoints, in two separate phase 3 trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mir-a3',
+        category: 'conclusion_shift',
+        title: 'The blood-pressure warning stayed, and the measurement that tested it found nothing',
+        laymanSummary:
+          'Mirabegron carries a blood-pressure warning on its label. When 715 patients wore 24-hour blood-pressure monitors in a later trial, no consistent increase showed up.',
+        technicalDetails:
+          'The US label states the drug can increase blood pressure, is not recommended in severe uncontrolled hypertension, and asks for periodic measurement; it quotes mean increases of approximately 0.5 to 1 mmHg over placebo at the 50 mg dose. The adverse-event table sits awkwardly beside that: hypertension was reported in 11.3% at 25 mg, 7.5% at 50 mg and 7.6% on placebo, with no dose gradient in the direction the warning implies. Weber and colleagues then reported an ambulatory blood-pressure monitoring substudy of SYNERGY in 715 patients, and found no consistent increase from baseline in mean 24-hour systolic or diastolic pressure for any active arm against placebo, no signal in the one-hour averages spanning both drugs\' Tmax, no difference on shift or outlier analysis, and no 24-hour heart-rate signal. The warning has not been removed. That is a defensible regulatory position for a chronic drug in an elderly population, and it is also a case where the most careful measurement disagrees with the label text.',
+        evidenceSource:
+          'US prescribing information for mirabegron extended-release tablets, Warnings and Precautions and Adverse Reactions; Weber MA et al., Blood Press Monit 2018;23:153-163 (PMID 29578880)',
+        doi: '10.1097/MBP.0000000000000320',
+        measuredMetric:
+          '24-hour ambulatory systolic and diastolic blood pressure and heart rate against placebo, in 715 patients',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'mir-a4',
+        category: 'inferred',
+        title: 'The brown fat result everyone cites used four times the approved dose in twelve men',
+        laymanSummary:
+          'Mirabegron became famous outside urology for switching on brown fat and raising resting metabolic rate by 13%. That experiment gave twelve healthy men 200 mg — four times the licensed dose.',
+        technicalDetails:
+          'Cypess and colleagues gave 200 mg of oral mirabegron to twelve healthy male subjects and measured brown adipose tissue activity by 18F-fluorodeoxyglucose PET-CT. All twelve showed higher brown fat metabolic activity than on placebo (p=0.001) and resting metabolic rate rose by 203 ± 40 kcal/day, a 13% increase (p=0.001). Brown fat activity significantly predicted the change in resting metabolic rate (p=0.006). The maximum licensed dose for overactive bladder is 50 mg, and the label\'s own QT data show the cardiovascular effect scaling with dose: mean QTcI difference from placebo of 3.7 msec at 50 mg against 8.1 msec at 200 mg. Twelve healthy young men receiving a single supratherapeutic dose is a physiology experiment, and it is a legitimate and important one. It is not evidence that the licensed dose does anything to body weight in anybody.',
+        evidenceSource: 'Cypess AM et al., Cell Metab 2015;21:33-38 (PMID 25565203)',
+        doi: '10.1016/j.cmet.2014.12.009',
+        measuredMetric:
+          'Brown adipose tissue 18F-FDG uptake and resting metabolic rate after a single 200 mg dose, against placebo, in 12 healthy men',
+        inferredClaim:
+          'That mirabegron is a metabolic or weight-loss drug — an extrapolation from a twelve-man crossover at four times the approved dose to a chronic 50 mg prescription written for a bladder',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mir-a5',
+        category: 'measured',
+        title: 'It genuinely does not dry the mouth, and people stay on it longer as a result',
+        laymanSummary:
+          'The one thing mirabegron clearly does better than the older drugs is not cause dry mouth. That shows up in how long people keep taking it: roughly a third are still on it after a year, against one in five on an antimuscarinic.',
+        technicalDetails:
+          'In a systematic review of thirty observational studies using electronic prescription claims, one-year persistence was 32% to 38% for mirabegron against 12% to 25% for antimuscarinics in the three studies reporting both, with median time to discontinuation of 5.6 to 7.4 months against under five months. Mean medication possession ratio was 0.59 for mirabegron against 0.41 to 0.53 for antimuscarinics. In patients aged 65 and over, dry mouth occurred with a six-fold higher incidence on tolterodine ER 4 mg than on mirabegron over 12 weeks, and a three-fold higher incidence over one year. The review was conducted by authors including employees and consultants of the manufacturer, which is a reason to weigh the size of the difference carefully rather than to discount its direction — the tolerability mechanism is not in dispute, because mirabegron has no muscarinic activity to produce the effect in the first place.',
+        evidenceSource:
+          'Yeowell G et al., BMJ Open 2018;8(11):e021889 (PMID 30467131); Wagg A et al., Curr Med Res Opin 2016;32:621-638 (PMID 26828974)',
+        doi: '10.1136/bmjopen-2018-021889',
+        measuredMetric:
+          'One-year persistence, median time to discontinuation and dry-mouth incidence against antimuscarinics',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mir-a6',
+        category: 'inferred',
+        title: 'BESIDE tested adding mirabegron against the low dose of the drug already prescribed',
+        laymanSummary:
+          'The trial behind the combination licence compared solifenacin plus mirabegron with solifenacin 5 mg. Against solifenacin 10 mg — simply raising the dose already prescribed — the difference nearly vanishes.',
+        technicalDetails:
+          'BESIDE (NCT01908829) randomised 2,174 patients still incontinent after four weeks on solifenacin 5 mg to combination with mirabegron, to solifenacin 5 mg, or to solifenacin 10 mg. Incontinence episodes per 24 hours fell 1.80 on combination, 1.53 on solifenacin 5 mg and 1.67 on solifenacin 10 mg. The registered primary comparison against solifenacin 5 mg gave a difference of -0.26 episodes (95% CI -0.47 to -0.05), p=0.001. Against solifenacin 10 mg the gap is 0.13 episodes a day and was not the primary hypothesis. Adding a second mechanism and doubling the first drug are the two options a prescriber has, and the trial was designed to answer only one of them.',
+        evidenceSource: 'ClinicalTrials.gov results record, BESIDE, NCT01908829',
+        measuredMetric:
+          'Change from baseline in mean incontinence episodes per 24 hours, combination versus each solifenacin dose',
+        inferredClaim:
+          'That combination therapy is the demonstrated next step after a partial response — demonstrated against the dose the patient has already failed, not against the higher dose of the same drug',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mir-a7',
+        category: 'measured',
+        title: 'The longest trial measured adverse events, not whether anyone got better',
+        laymanSummary:
+          'TAURUS ran for a year in 2,792 patients — the longest study of this drug. Its primary endpoint was how many people had side effects, not how well it worked.',
+        technicalDetails:
+          'TAURUS (NCT00688688) randomised 2,792 patients to mirabegron 50 mg, mirabegron 100 mg or tolterodine ER 4 mg for twelve months, with the number and severity of treatment-emergent adverse events as the registered primary outcome. There is no placebo arm. This is a normal and appropriate design for a long-term safety commitment, and it is worth stating plainly what follows from it: the longest randomised exposure anyone has to this drug can describe its tolerability over a year, and cannot describe the size of its benefit over a year. Every efficacy figure quoted for mirabegron comes from a 12-week trial.',
+        evidenceSource:
+          'ClinicalTrials.gov record, TAURUS, NCT00688688; Chapple CR et al., Eur Urol 2013;63:296-305',
+        doi: '10.1016/j.eururo.2012.10.048',
+        measuredMetric:
+          'Registered primary outcome and arm structure of the only 12-month randomised trial of this drug',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mir-a8',
+        category: 'measured',
+        title: 'Generic status did not bring the price down',
+        laymanSummary:
+          'Mirabegron is off patent and there are seventeen listed products, yet pharmacies still pay about nine dollars sixty a tablet. Generic solifenacin costs eighteen cents.',
+        technicalDetails:
+          'The CMS National Average Drug Acquisition Cost file effective 19 August 2026 lists mirabegron as generic with a median across seventeen products of US$9.60 per tablet. The comparable figures on the same file are US$0.1754 for solifenacin across forty products, US$0.2533 for tolterodine across fifty-four, and US$0.0817 for oxybutynin across ninety-two. Number of suppliers, not molecular complexity, is what these medicines\' prices track: the extended-release formulation is a real technical barrier, and seventeen listings that leave the median near ten dollars indicate a market that has not behaved the way a mature generic market does.',
+        evidenceSource:
+          'CMS National Average Drug Acquisition Cost file, effective 19 August 2026, as stored on this record',
+        measuredMetric:
+          'Median pharmacy acquisition cost per tablet and number of listed products, against the antimuscarinic comparators on the same file',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An extended-release tablet, once a day, sensitive to food',
+        laymanDesc:
+          'One tablet daily, swallowed whole. The tablet is engineered to release slowly, and how much gets absorbed depends on whether it is taken with food.',
+        molecularDetail:
+          'Oral controlled-absorption system tablet, once daily. Bioavailability is dose-dependent and is reduced by food, which is why the label specifies conditions of administration. Metabolised by multiple routes including CYP3A4 and CYP2D6; mirabegron itself is a moderate CYP2D6 inhibitor, which is the source of its main interaction profile.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It meets the receptor on the outside of the bladder muscle cell',
+        laymanDesc:
+          'The beta-3 receptor sits on the surface of the muscle cell facing the bloodstream. The drug arrives and sits on it. Nothing needs to be carried inside.',
+        molecularDetail:
+          'Beta-3 adrenoceptors are G-protein-coupled receptors in the plasma membrane with an extracellular-facing orthosteric pocket. Beta-3 is the predominant beta-adrenoceptor subtype expressed in human detrusor, which is the anatomical fact the whole drug class rests on and the reason a beta-3-selective agonist can relax bladder without the beta-1 and beta-2 effects that would follow a non-selective one.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It switches the receptor on rather than blocking it',
+        laymanDesc:
+          'This is the opposite of how every older bladder drug works. Instead of blocking a squeeze signal, mirabegron turns up a relaxation signal the body already uses while the bladder fills.',
+        molecularDetail:
+          'Agonism, not antagonism. Beta-3 activation couples to Gs, which is why the pharmacology is additive with muscarinic blockade rather than redundant to it — the two drugs act on opposite arms of the autonomic supply to the same muscle. That is the mechanistic basis for the combination licence, and BESIDE is the trial that had to test whether the mechanism translated.',
+        iconName: 'ToggleRight',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Cyclic AMP rises and the muscle lets go during filling',
+        laymanDesc:
+          'Switching the receptor on raises an internal messenger that tells the muscle to relax. The bladder holds more before it starts demanding to be emptied.',
+        molecularDetail:
+          'Gs coupling activates adenylyl cyclase, cyclic AMP rises, protein kinase A phosphorylates targets that lower intracellular calcium and reduce myosin light-chain kinase sensitivity. Detrusor tone during the storage phase falls and functional bladder capacity increases without impairing the voiding contraction itself, which is why post-void residual volume is not the problem here that it is with antimuscarinics.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A third to a half an episode a day, and a dry mouth that does not arrive',
+        laymanDesc:
+          'The diary improves by roughly a third to a half an accident a day more than placebo. The difference people notice most is what does not happen: no dry mouth, no constipation from the drug.',
+        molecularDetail:
+          'Incontinence episodes per 24 hours fell 1.38 to 1.57 on 50 mg against 0.96 to 1.17 on placebo across ARIES, SCORPIO and CAPRICORN. Because no muscarinic receptor is touched, dry mouth rates approach placebo, and one-year persistence runs 32% to 38% against 12% to 25% for antimuscarinics. The trade appearing in its place is a blood-pressure warning, a mean QTcI increase of 3.7 msec at 50 mg, and moderate CYP2D6 inhibition.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ARIES (NCT00662909)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled, 12 weeks',
+        sampleSize: 2149,
+        primaryEndpoint:
+          'Change from baseline to week 12 in mean incontinence episodes and mean micturitions per 24 hours',
+        endpointMet: true,
+        statisticalPValue:
+          'Incontinence: placebo -1.13, 50 mg -1.47 (p=0.026), 100 mg -1.63 (p<0.001). Micturitions: placebo -1.05, 50 mg -1.66 (p=0.001), 100 mg -1.75 (p<0.001)',
+        unreportedAdverseSignals:
+          'No active comparator arm, so this trial says nothing about how mirabegron compares with the drugs it was intended to replace.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'SCORPIO (NCT00689104)',
+        phase: 'Phase 3 randomised double-blind placebo- and active-controlled, 12 weeks',
+        sampleSize: 2336,
+        primaryEndpoint:
+          'Change from baseline to week 12 in mean incontinence episodes and mean micturitions per 24 hours',
+        endpointMet: true,
+        statisticalPValue:
+          'Mirabegron 50 mg: incontinence -1.57 versus placebo -1.17 (p=0.003), micturitions -1.93 versus -1.34 (p<0.001). Tolterodine SR 4 mg: incontinence -1.27 (p=0.11), micturitions -1.59 (p=0.11)',
+        unreportedAdverseSignals:
+          'The tolterodine arm missed on both co-primary endpoints against placebo. That result belongs to tolterodine and is rarely reported as a finding about tolterodine.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'CAPRICORN (NCT00912964)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled, 12 weeks',
+        sampleSize: 2030,
+        primaryEndpoint:
+          'Change from baseline to week 12 in mean incontinence episodes and mean micturitions per 24 hours',
+        endpointMet: true,
+        statisticalPValue:
+          'Incontinence: placebo -0.96, 25 mg -1.36 (p=0.005), 50 mg -1.38 (p=0.001). Micturitions: placebo -1.18, 25 mg -1.65 (p=0.007), 50 mg -1.60 (p=0.015)',
+        unreportedAdverseSignals:
+          'The 25 mg and 50 mg arms are indistinguishable from each other on both endpoints, which is the trial that establishes 25 mg as a licensed dose and also undercuts any dose-response argument for going higher.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'TAURUS (NCT00688688)',
+        phase: 'Phase 3 randomised double-blind active-controlled long-term safety, 12 months',
+        sampleSize: 2792,
+        primaryEndpoint:
+          'Number and severity of treatment-emergent adverse events over 12 months, against tolterodine ER 4 mg',
+        endpointMet: true,
+        statisticalPValue:
+          'A safety endpoint with no hypothesis test of efficacy and no placebo arm; no efficacy p-value exists for the 12-month comparison',
+        unreportedAdverseSignals:
+          'The longest randomised exposure to this drug carries no placebo arm and no efficacy primary. Every efficacy number quoted for mirabegron comes from a 12-week study.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'SYNERGY (NCT01972841)',
+        phase: 'Phase 3 randomised double-blind placebo- and active-controlled, 12 weeks',
+        sampleSize: 3527,
+        primaryEndpoint:
+          'Change from baseline to end of treatment in mean incontinence episodes and micturitions per 24 hours, combination versus each monotherapy',
+        endpointMet: true,
+        statisticalPValue:
+          'Combination versus mirabegron monotherapy p=0.001 (25 mg) and p<0.001 (50 mg) for incontinence; placebo -1.34, mirabegron 50 mg -1.76, solifenacin 5 mg -1.79, combination -1.98',
+        unreportedAdverseSignals:
+          'The 715-patient ambulatory blood-pressure substudy of this trial found no consistent 24-hour blood-pressure or heart-rate signal in any active arm, which sits uneasily with the label warning it was designed to interrogate.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Incontinence episodes per 24 hours fell 1.38 to 1.57 on mirabegron 50 mg against 0.96 to 1.17 on placebo, across three phase 3 trials totalling over 6,500 patients',
+        'Micturitions per 24 hours fell 1.60 to 1.93 on 50 mg against 1.05 to 1.34 on placebo in the same trials',
+        'Tolterodine SR 4 mg, the active control in SCORPIO, missed against placebo on both co-primary endpoints at p=0.11',
+        'Mean QTcI difference from placebo of 3.7 msec at the 50 mg dose, and 8.1 msec at 200 mg',
+        'A single 200 mg dose raised resting metabolic rate by 203 ± 40 kcal/day in 12 healthy men (p=0.001)',
+        'One-year persistence of 32% to 38% against 12% to 25% for antimuscarinics in real-world prescription claims',
+      ],
+      unsupportedInferences: [
+        'That mirabegron is a metabolic or weight-loss drug — the brown fat result used four times the licensed dose in twelve healthy young men',
+        'That the label blood-pressure warning reflects a measurable hypertensive effect at the approved dose — a 715-patient ambulatory monitoring substudy found no consistent signal',
+        'That combination with solifenacin is the demonstrated next step after partial response — BESIDE compared it with solifenacin 5 mg, not with solifenacin 10 mg',
+        'That the 12-month TAURUS trial demonstrates 12-month efficacy — its primary endpoint was adverse events and it had no placebo arm',
+      ],
+      whatFailedInitially: [
+        'The active-control arm in its own registration trial: tolterodine could not beat placebo in SCORPIO, and the same happened to tolterodine again in EMPOWUR seven years later',
+        'Generic competition: seventeen listed products and a median acquisition cost still near ten dollars a tablet',
+        'The dose-response case: 25 mg and 50 mg were indistinguishable on both co-primary endpoints in CAPRICORN',
+      ],
+      realWorldOutcome: [
+        'US$9.60 a tablet at pharmacy acquisition cost, about fifty-five times generic solifenacin',
+        'Now the usual choice where anticholinergic burden is the deciding factor, and the reason most national guidance for older adults names a beta-3 agonist before an antimuscarinic',
+        'A second drug in the class, vibegron, is licensed without the blood-pressure warning and without the CYP2D6 interaction, and no head-to-head against mirabegron exists',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral extended-release tablet, once daily; granules for oral suspension in paediatric use',
+      description:
+        'A controlled-absorption tablet swallowed whole and not crushed or chewed, because the release mechanism is the formulation rather than the molecule. Food reduces exposure, so the label specifies administration conditions. The paediatric neurogenic detrusor overactivity indication uses a granule formulation dosed by weight.',
+      safetyProfile:
+        'No anticholinergic effects, which is the point of the drug: dry mouth rates approach placebo. The label warns that mirabegron can increase blood pressure, is not recommended in severe uncontrolled hypertension, and requires periodic blood-pressure measurement; it also warns of urinary retention in patients with bladder outlet obstruction, particularly if an antimuscarinic is taken as well, and of angioedema. Mirabegron is a moderate CYP2D6 inhibitor, so exposure to substrates of that enzyme rises. The measured QT effect is 3.7 msec at the licensed dose.',
+    },
+    commonQuestions: [
+      {
+        q: 'How is this different from the older bladder drugs?',
+        a: 'It works on the opposite nerve system. Emptying the bladder is driven by acetylcholine, and every older drug in this indication blocks that. Filling is helped by the sympathetic system relaxing the same muscle through beta-adrenoceptors, and in the human bladder that job is done almost entirely by the beta-3 subtype. Mirabegron switches beta-3 on rather than switching acetylcholine off. Practically, this means no dry mouth, no constipation from the drug itself, no blurred vision, and no contribution to the anticholinergic burden that matters so much in older adults. It also means a different set of cautions: a blood-pressure warning, and an interaction with drugs cleared by CYP2D6.',
+      },
+      {
+        q: 'How much does it actually help?',
+        a: 'Between about a third and half an incontinence episode a day more than placebo, consistently, across three trials in more than 6,500 people. In the 50 mg arms, incontinence episodes fell 1.38 to 1.57 a day; on placebo they fell 0.96 to 1.17. Voids per day fell 1.60 to 1.93 against 1.05 to 1.34. Those p-values are convincing and the trials are large, so the effect is real. It is also small, and the fair way to describe it is that it is about the same size as what an antimuscarinic delivers, with a different side-effect profile.',
+        auditNote:
+          'Every efficacy figure on this page comes from a 12-week trial. The only 12-month randomised study of this drug measured adverse events and had no placebo arm.',
+      },
+      {
+        q: 'Does it raise blood pressure?',
+        a: 'The label says it can, and the best measurement of it found nothing. Mirabegron\'s US prescribing information warns about blood pressure, asks for periodic measurement, and quotes mean increases of roughly 0.5 to 1 mmHg over placebo at the 50 mg dose. Its own adverse-event table reports hypertension in 11.3% at 25 mg, 7.5% at 50 mg and 7.6% on placebo — no dose gradient at all. Then 715 patients in the SYNERGY trial wore 24-hour ambulatory blood-pressure monitors, and the analysis found no consistent increase in mean 24-hour systolic or diastolic pressure, no signal in the hourly averages around peak drug levels, and no heart-rate signal. The warning remains on the label. If you have severe uncontrolled hypertension you are outside every dataset described here, and that is the population the label is written for.',
+      },
+      {
+        q: 'I read this drug burns fat. Is that true?',
+        a: 'A real experiment produced a real result at a dose nobody is prescribed. Cypess and colleagues gave twelve healthy men 200 mg of mirabegron — four times the maximum licensed dose — and measured brown adipose tissue with PET-CT. All twelve showed increased brown fat activity, and resting metabolic rate rose by 203 calories a day, about 13%. That is a genuine finding and a genuinely interesting one about human physiology. It does not transfer to a 50 mg tablet taken for a bladder. It is also worth knowing that the drug\'s cardiovascular effects scale with dose in the label\'s own data: the QT effect is 3.7 milliseconds at 50 mg and 8.1 at 200 mg.',
+        auditNote:
+          'Twelve subjects, single dose, healthy young men, four times the approved dose. Each of those four facts limits what the result can be generalised to, and they compound.',
+      },
+      {
+        q: 'Why is a generic drug still nine dollars a tablet?',
+        a: 'Because the acquisition-cost file lists only seventeen products for mirabegron, and price in this market tracks the number of suppliers more closely than it tracks anything about the molecule. On the same CMS file, generic solifenacin sits at eighteen cents across forty products, tolterodine at twenty-five cents across fifty-four, and oxybutynin at eight cents across ninety-two. The extended-release formulation is a real technical barrier to entry, which is part of it. What that figure is not is a manufacturing cost — it is what pharmacies pay, and no verifiable per-dose cost-of-production study for this molecule exists to compare it against.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'ARIES — phase 3 placebo-controlled trial of mirabegron in overactive bladder',
+        identifier: 'NCT00662909',
+        kind: 'nct',
+      },
+      {
+        label:
+          'SCORPIO — phase 3 placebo- and tolterodine-controlled trial of mirabegron in overactive bladder',
+        identifier: 'NCT00689104',
+        kind: 'nct',
+      },
+      {
+        label: 'CAPRICORN — phase 3 placebo-controlled trial of mirabegron 25 mg and 50 mg',
+        identifier: 'NCT00912964',
+        kind: 'nct',
+      },
+      {
+        label:
+          'TAURUS — 12-month randomised active-controlled long-term safety study of mirabegron versus tolterodine ER',
+        identifier: 'NCT00688688',
+        kind: 'nct',
+      },
+      {
+        label:
+          'SYNERGY — solifenacin and mirabegron combination versus each monotherapy and placebo in overactive bladder',
+        identifier: 'NCT01972841',
+        kind: 'nct',
+      },
+      {
+        label: 'BESIDE — adding mirabegron to solifenacin in incontinent overactive bladder',
+        identifier: 'NCT01908829',
+        kind: 'nct',
+      },
+      {
+        label:
+          'EMPOWUR — phase 3 placebo- and tolterodine-controlled trial of vibegron in overactive bladder',
+        identifier: 'NCT03492281',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Khullar V, Amarenco G, Angulo JC, et al. Efficacy and tolerability of mirabegron, a beta(3)-adrenoceptor agonist, in patients with overactive bladder: results from a randomised European-Australian phase 3 trial. Eur Urol 2013;63:283-295',
+        identifier: '10.1016/j.eururo.2012.10.016',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chapple CR, Kaplan SA, Mitcheson D, et al. Randomized double-blind, active-controlled phase 3 study to assess 12-month safety and efficacy of mirabegron, a beta(3)-adrenoceptor agonist, in overactive bladder. Eur Urol 2013;63:296-305',
+        identifier: '10.1016/j.eururo.2012.10.048',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Weber MA, Chapple CR, Gratzke C, et al. A strategy utilizing ambulatory monitoring and home and clinic blood pressure measurements to optimize the safety evaluation of noncardiovascular drugs with potential for hemodynamic effects: a report from the SYNERGY trial. Blood Press Monit 2018;23:153-163',
+        identifier: '10.1097/MBP.0000000000000320',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cypess AM, Weiner LS, Roberts-Toler C, et al. Activation of human brown adipose tissue by a beta3-adrenergic receptor agonist. Cell Metab 2015;21:33-38',
+        identifier: '10.1016/j.cmet.2014.12.009',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Yeowell G, Smith P, Nazir J, Hakimi Z, Siddiqui E, Fatoye F. Real-world persistence and adherence to oral antimuscarinics and mirabegron in patients with overactive bladder: a systematic literature review. BMJ Open 2018;8(11):e021889',
+        identifier: '10.1136/bmjopen-2018-021889',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wagg A, Nitti VW, Kelleher C, Castro-Diaz D, Siddiqui E, Berner T. Oral pharmacotherapy for overactive bladder in older patients: mirabegron as a potential alternative to antimuscarinics. Curr Med Res Opin 2016;32:621-638',
+        identifier: '10.1185/03007995.2016.1149806',
+        kind: 'doi',
+      },
+      {
+        label:
+          'US prescribing information for mirabegron extended-release tablets — mechanism of action, clinical pharmacology, warnings and precautions, adverse reactions (openFDA drug label endpoint)',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22mirabegron%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 9865528 — mirabegron structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9865528',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]
