@@ -9,8 +9,16 @@ import { enrichFromLabel } from './from-labels'
 import { formatNadacPrice, loadNadac, nadacNote, type NadacPrice } from './nadac'
 import { fetchTrials, flushTrialCache, trialCacheStats } from './trials'
 import { mergeProvenance, SOURCE_LABELS, trimToSentence } from './provenance'
-import { botanicalCacheStats, flushBotanicalCache, lookupBotanical } from './botanicals'
-import { biologicStem, suffixedBiologicContext } from './suffixed-biologics'
+import {
+  botanicalCacheStats,
+  flushBotanicalCache,
+  looksBinomial,
+  lookupBotanical,
+  lookupLiterature,
+  splitPlantName,
+} from './botanicals'
+import { type SubstanceRecord, substanceContext } from './substance-context'
+import { biologicStem, isKnownBiologicStem, suffixedBiologicContext } from './suffixed-biologics'
 import { botanicalContext } from './botanical-context'
 
 /**
@@ -77,6 +85,11 @@ function medianPrice(prices: readonly NadacPrice[]): NadacPrice | null {
   if (prices.length === 0) return null
   const sorted = [...prices].sort((a, b) => a.perUnit - b.perUnit)
   return sorted[Math.floor(sorted.length / 2)] ?? null
+}
+
+/** Map keys ordered by how many products carried them, most common first. */
+function rankedKeys(counts: Map<string, number>): string[] {
+  return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([key]) => key)
 }
 
 async function main(): Promise<void> {
@@ -153,6 +166,8 @@ async function main(): Promise<void> {
     target: 0,
     delivery: 0,
     botanical: 0,
+    reclassified: 0,
+    substance: 0,
     suffixed: 0,
     price: 0,
     trials: 0,
@@ -200,7 +215,15 @@ async function main(): Promise<void> {
     // survey. What does exist is which species it is and what the literature actually contains,
     // and for a reader deciding whether to believe a supplement label those are the two facts that
     // matter most.
-    if (!options.skipBotanicals && row.modality === 'Nutraceutical / Botanical') {
+    //
+    // The gate is the NAME, not the stored modality. Gating on modality assumed the classifier had
+    // already recognised these, and it had not: "Acacia Longifolia Pollen" and "Melopsittacus
+    // Undulatus Feather" were filed as Recombinant Protein / Biologic and "Betula Alba Juice" as
+    // Small Molecule, so the one pass that could have said anything about them never ran. A name
+    // shaped like a binomial is asked about regardless of how it was classified; GBIF returns
+    // matchType NONE for every chemical name tested against it, so a wrong guess costs a lookup
+    // rather than a wrong page.
+    if (!options.skipBotanicals && looksBinomial(splitPlantName(row.name).binomial)) {
       const facts = await lookupBotanical(row.name)
       // The label purpose keeps its place under "who takes this", where it reads as the claim it
       // is. It does NOT stay in the explainer: on a homeopathic listing that slot was carrying
@@ -215,6 +238,18 @@ async function main(): Promise<void> {
         provenance = mergeProvenance(provenance, context.sources)
         counts.botanical += 1
       }
+      // A resolved species IS the classification. When GBIF returns a species-rank match for a
+      // record the classifier filed as a chemical or a biologic, the classifier was wrong and the
+      // taxonomy is the better evidence.
+      const rank = facts.taxonomy?.rank
+      if (
+        facts.taxonomy &&
+        (rank === 'SPECIES' || rank === 'SUBSPECIES' || rank === 'VARIETY') &&
+        row.modality !== 'Nutraceutical / Botanical'
+      ) {
+        patch.modality = 'Nutraceutical / Botanical'
+        counts.reclassified += 1
+      }
     }
 
     // --- Suffixed biologics -------------------------------------------------
@@ -225,10 +260,47 @@ async function main(): Promise<void> {
         .from(drugs)
         .where(sql`lower(${drugs.name}) = ${stem}`)
         .limit(1)
-      const context = suffixedBiologicContext(row.name, stem, parentRows[0] ?? null)
-      patch.conditionContext = context.conditionContext
-      provenance = mergeProvenance(provenance, context.sources)
-      counts.suffixed += 1
+      const parent = parentRows[0] ?? null
+      // Either the molecule is on this site, or its name ends in an INN stem the scheme is applied
+      // to. Without one of the two, a hyphenated four-letter ending is just a hyphenated name, and
+      // describing it as a version of a molecule that does not exist is worse than leaving it empty.
+      if (parent || isKnownBiologicStem(stem)) {
+        const context = suffixedBiologicContext(row.name, stem, parent)
+        patch.conditionContext = context.conditionContext
+        provenance = mergeProvenance(provenance, context.sources)
+        counts.suffixed += 1
+      }
+    }
+
+    // --- Everything else ---------------------------------------------------
+    //
+    // Whatever is left after the label, the taxonomy and the biosimilar passes. These have no
+    // label section, no species and no parent molecule, and they were being published as a name
+    // and a modality. What is still true about them is what the FDA's product records say and how
+    // much has been published — including, often, that almost nothing has.
+    if (
+      !options.skipBotanicals &&
+      !row.conditionContext &&
+      !patch.conditionContext &&
+      !row.laymanHowItWorks &&
+      !patch.laymanHowItWorks
+    ) {
+      const literature = await lookupLiterature(row.name)
+      const record: SubstanceRecord | null = substance
+        ? {
+            routes: rankedKeys(substance.routes),
+            dosageForms: rankedKeys(substance.dosageForms),
+            marketingStatuses: Object.keys(substance.marketingStatuses),
+            productCount: substance.productCount,
+            firstApprovalYear: substance.firstApprovalYear,
+          }
+        : null
+      const context = substanceContext(row.name, literature, record)
+      if (context) {
+        patch.conditionContext = context.conditionContext
+        provenance = mergeProvenance(provenance, context.sources)
+        counts.substance += 1
+      }
     }
 
     // --- Price ------------------------------------------------------------
@@ -335,6 +407,8 @@ async function main(): Promise<void> {
   console.log(`   target identified      ${counts.target.toLocaleString()}`)
   console.log(`   how it is given        ${counts.delivery.toLocaleString()}`)
   console.log(`   species + literature   ${counts.botanical.toLocaleString()}`)
+  console.log(`   reclassified as plant  ${counts.reclassified.toLocaleString()}`)
+  console.log(`   record + literature    ${counts.substance.toLocaleString()}`)
   console.log(`   suffixed biologics     ${counts.suffixed.toLocaleString()}`)
   console.log(`   published price        ${counts.price.toLocaleString()}`)
   console.log(`   real trials attached   ${counts.trials.toLocaleString()}`)

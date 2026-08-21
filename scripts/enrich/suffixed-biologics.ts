@@ -14,19 +14,34 @@ import type { ConditionContext } from '@/lib/types'
  * complete and truthful answer, and it is the answer a reader arriving at Denosumab-Kyqq wants.
  */
 
-/** `Denosumab-Kyqq` -> `denosumab`. Returns null for anything not shaped like a suffixed biologic. */
+/**
+ * `Denosumab-Kyqq` -> `denosumab`, `Insulin Aspart-Szjj` -> `insulin aspart`.
+ *
+ * The stem may contain spaces. Requiring one word missed every two-word biological name the scheme
+ * is applied to — insulin aspart, pegunigalsidase alfa, denileukin diftitox — and those are
+ * precisely the records that stayed empty.
+ *
+ * Returns the candidate stem for anything shaped like a suffixed biologic. Whether it really is one
+ * is decided by `isKnownBiologicStem` or by finding the molecule on this site; see the caller.
+ */
 export function biologicStem(name: string): string | null {
-  const match = /^([A-Za-z]{5,})-([A-Za-z]{4})$/.exec(name.trim())
+  const match = /^([A-Za-z][A-Za-z]*(?: [A-Za-z]+)*)-([A-Za-z]{4})$/.exec(name.trim())
   if (!match) return null
   const stem = match[1]?.toLowerCase()
-  if (!stem) return null
+  if (!stem || stem.replace(/ /g, '').length < 5) return null
+  return stem
+}
 
-  // Only for the INN stems the FDA actually applies this scheme to. Without this, ordinary
-  // hyphenated names — "Guaifenesin-Codeine" would not match on length, but plenty of botanical
-  // and chemical names do — get described as biosimilars of a molecule that does not exist.
-  const BIOLOGIC_STEMS =
-    /(mab|cept|ase|kin|stim|poetin|gase|parin|glucosidase|lysin|ximab|zumab|umab)$/
-  return BIOLOGIC_STEMS.test(stem) ? stem : null
+/**
+ * The INN stems the FDA actually applies the four-letter scheme to.
+ *
+ * This is the evidence of last resort. It is checked only when the molecule has no record on this
+ * site, because an existing record IS the proof that the stem names a real drug, and it is better
+ * proof than a suffix list — the list cannot know about `alfa`, `diftitox` or `aspart` without
+ * being extended every time a new one is approved.
+ */
+export function isKnownBiologicStem(stem: string): boolean {
+  return /(mab|cept|ase|kin|stim|poetin|gase|parin|lysin|alfa|beta|gamma|tope|tox)$/.test(stem)
 }
 
 export interface SuffixedBiologicContext {
@@ -43,7 +58,10 @@ export function suffixedBiologicContext(
   stem: string,
   parent: { name: string; slug: string; indication: string } | null,
 ): SuffixedBiologicContext {
-  const capitalised = stem.charAt(0).toUpperCase() + stem.slice(1)
+  const capitalised = stem.replace(
+    /(^|\s)([a-z])/g,
+    (_, space: string, letter: string) => space + letter.toUpperCase(),
+  )
 
   const explainer =
     `${displayName} is ${capitalised}. The four letters after the hyphen are a suffix the FDA ` +

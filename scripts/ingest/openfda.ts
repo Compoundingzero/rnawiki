@@ -170,9 +170,11 @@ export function aggregateOpenFda(): Map<string, AggregatedSubstance> {
     const sponsorName = (record.sponsor_name ?? '').trim()
 
     for (const product of record.products ?? []) {
-      const names = (product.active_ingredients ?? [])
-        .map((ingredient) => ingredient.name?.trim())
-        .filter((name): name is string => Boolean(name))
+      const names = rejoinParenSplits(
+        (product.active_ingredients ?? [])
+          .map((ingredient) => ingredient.name?.trim())
+          .filter((name): name is string => Boolean(name)),
+      )
       if (names.length === 0) continue
 
       const singleIngredient = names.length === 1
@@ -221,9 +223,11 @@ export function aggregateOpenFda(): Map<string, AggregatedSubstance> {
     const category = record.marketing_category ?? ''
     if (NON_PRODUCT_CATEGORIES.has(category)) continue
 
-    let names = (record.active_ingredients ?? [])
-      .map((ingredient) => ingredient.name?.trim())
-      .filter((name): name is string => Boolean(name))
+    let names = rejoinParenSplits(
+      (record.active_ingredients ?? [])
+        .map((ingredient) => ingredient.name?.trim())
+        .filter((name): name is string => Boolean(name)),
+    )
     if (names.length === 0) continue
 
     // Substitute the readable generic name when every active ingredient is a codename.
@@ -320,4 +324,50 @@ export function summariseAggregate(index: Map<string, AggregatedSubstance>): str
     `with an FDA application: ${withApplication.toLocaleString()}`,
     `with label text: ${withLabel.toLocaleString()}`,
   ].join(' · ')
+}
+
+/**
+ * openFDA stores a product's active ingredients as an array, and the upstream Drugs@FDA extract
+ * builds that array by splitting one comma-delimited string. A name that legitimately contains a
+ * comma is therefore torn in half before it ever reaches us: "LIOTRIX (T4, T3)" arrives as
+ * ["LIOTRIX (T4", "T3)"], "MENOTROPINS (FSH, LH)" as ["MENOTROPINS (FSH", "LH)"], and each half is
+ * then ingested as its own drug. Twenty-one records in the corpus were fragments like "1000 Mw)"
+ * and "T3)" — page titles with no referent.
+ *
+ * The tear is always at a comma inside brackets, so the brackets identify it: an element with more
+ * openers than closers is an opening fragment, and it is rejoined with the elements that follow
+ * until the brackets balance. An element that never balances is dropped rather than emitted
+ * truncated, because a name ending mid-parenthesis is worse than one missing ingredient.
+ */
+export function rejoinParenSplits(names: string[]): string[] {
+  const depth = (text: string): number =>
+    (text.match(/[([]/g) ?? []).length - (text.match(/[)\]]/g) ?? []).length
+
+  const joined: string[] = []
+  let pending: string[] = []
+  let open = 0
+
+  for (const name of names) {
+    if (open > 0) {
+      pending.push(name)
+      open += depth(name)
+      if (open <= 0) {
+        joined.push(pending.join(', '))
+        pending = []
+        open = 0
+      }
+      continue
+    }
+
+    const d = depth(name)
+    if (d > 0) {
+      pending = [name]
+      open = d
+    } else {
+      joined.push(name)
+    }
+  }
+
+  // An unterminated fragment is discarded, not emitted half-written.
+  return joined
 }

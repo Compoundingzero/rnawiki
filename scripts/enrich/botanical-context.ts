@@ -22,25 +22,58 @@ function formatCount(n: number): string {
   return n.toLocaleString('en-GB')
 }
 
+/**
+ * Which part was used, and why the answer is not a detail.
+ *
+ * The reason differs by kingdom, so the sentence does too. For a plant it is chemistry: the root
+ * and the leaf of one species can be entirely different preparations. For an animal source it is
+ * not — the earlier copy told readers that the root and leaf of a budgerigar feather carry
+ * different chemistry, which is how you find out a rule was written for one case and applied to
+ * every case.
+ */
+function partSentence(part: string, kingdom?: string): string {
+  const stated = `The part used is the ${part}.`
+  if (kingdom === 'Plantae' || kingdom === 'Fungi') {
+    if (part === 'pollen')
+      return `${stated} A pollen preparation is made from the pollen alone, not the whole plant.`
+    return (
+      `${stated} Which part matters: the root and the leaf of one species can carry entirely ` +
+      'different chemistry.'
+    )
+  }
+  return `${stated} It is a preparation of that tissue, not of the whole animal.`
+}
+
 /** What the literature actually contains, stated as counts rather than characterised. */
 export function describeEvidence(facts: BotanicalFacts, displayName: string): string {
   const literature = facts.literature
   if (!literature || literature.total === 0) {
     return (
-      `A search of the biomedical literature for ${displayName} returns no indexed papers. ` +
-      'That is not evidence that it does nothing; it means nobody has published on it under this ' +
-      'name, and there is nothing here to summarise.'
+      `A search of the biomedical literature for ${displayName} returns no papers with that name ` +
+      'in the title, abstract or keywords. That is not evidence that it does nothing; it means ' +
+      'nobody has published on it under this name, and there is nothing here to summarise.'
     )
   }
 
+  // "Papers about it", not "papers mentioning it": the search reads where a paper declares its
+  // subject, not the reagent tables of every open-access article.
   const parts: string[] = [
-    `Europe PMC indexes ${formatCount(literature.total)} papers mentioning ${displayName}`,
+    `Europe PMC indexes ${formatCount(literature.total)} ` +
+      `${literature.total === 1 ? 'paper' : 'papers'} with ${displayName} in the ` +
+      'title, abstract or keywords',
   ]
 
-  if (literature.reviews > 0) parts.push(`${formatCount(literature.reviews)} of them reviews`)
+  if (literature.reviews > 0) {
+    parts.push(
+      `${formatCount(literature.reviews)} of them ` +
+        `${literature.reviews === 1 ? 'a review' : 'reviews'}`,
+    )
+  }
 
   if (literature.clinicalTrials === 0) {
     parts.push('and none indexed as a clinical trial')
+  } else if (literature.clinicalTrials === 1) {
+    parts.push('and one indexed as a clinical trial')
   } else {
     parts.push(`and ${formatCount(literature.clinicalTrials)} indexed as clinical trials`)
   }
@@ -74,17 +107,15 @@ export function botanicalContext(
   const identity: string[] = []
 
   if (taxonomy) {
+    // With a part in the name the record is not the organism, it is one tissue of it: "Acacia
+    // Longifolia Pollen is Acacia longifolia" was equating the pollen with the tree.
+    const family = taxonomy.family ? `, a member of the ${taxonomy.family} family` : ''
     identity.push(
-      `${displayName} is ${taxonomy.scientificName}` +
-        (taxonomy.family ? `, a member of the ${taxonomy.family} family` : '') +
-        '.',
+      part
+        ? `${displayName} comes from ${taxonomy.scientificName}${family}.`
+        : `${displayName} is ${taxonomy.scientificName}${family}.`,
     )
-    if (part) {
-      identity.push(
-        `The part used is the ${part}. Which part matters: the root and the leaf of one species ` +
-          'can carry entirely different chemistry.',
-      )
-    }
+    if (part) identity.push(partSentence(part, taxonomy.kingdom))
     sources.push('GBIF Backbone Taxonomy')
   }
 

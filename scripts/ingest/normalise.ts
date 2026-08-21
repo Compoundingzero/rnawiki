@@ -77,7 +77,98 @@ const SALT_SUFFIXES = [
   'EDISYLATE',
   'XINAFOATE',
   'LAURYL SULFATE',
+  // The di-, tri- and mono- forms need their own entries: the loop matches on a whole trailing
+  // word, so ' DIHYDROCHLORIDE' is never reached by the ' HYDROCHLORIDE' rule and NETARSUDIL
+  // DIMESYLATE was getting a second page alongside NETARSUDIL.
+  'DIHYDROCHLORIDE',
+  'TRIHYDROCHLORIDE',
+  'MONOHYDROCHLORIDE',
+  'DIMESYLATE',
+  'DIMALEATE',
+  'DIFUMARATE',
+  'DITARTRATE',
+  'DIACETATE',
+  'DIPHOSPHATE',
+  'MONOSULFATE',
+  'DISULFATE',
+  'HEMIFUMARATE',
+  'HEMISUCCINATE',
+  'TETRAHYDRATE',
+  'PENTAHYDRATE',
+  'HEPTAHYDRATE',
+  'TETRADECAHYDRATE',
+  'SESQUIHYDRATE',
+  'CAMSYLATE',
+  'ISETHIONATE',
+  'GLUCEPTATE',
+  'OROTATE',
+  'TANNATE',
+  'TANNATES',
+  'PENTETATE',
+  'MEGLUMINE',
+  // Misspelled in the FDA source itself, on a real marketed product. Correcting it here is the
+  // only way AZELASTINE HYDROCHRLORIDE reaches the azelastine page.
+  'HYDROCHRLORIDE',
 ] as const
+
+/**
+ * Stripping stops here. A salt of a metal is a different substance from the metal: aluminium
+ * sulfate is an astringent, calcium acetate is a prescription phosphate binder, and neither is
+ * what a reader means by "aluminium" or "calcium". Left ungated, the suffix loop reduced
+ * ALUMINUM SULFATE TETRADECAHYDRATE to ALUMINUM and filed an antiperspirant under the element.
+ *
+ * Hydrates are exempt from the guard, because a hydrate really is the same substance with water
+ * attached — ZINC SULFATE MONOHYDRATE and ZINC SULFATE belong on one page.
+ */
+const ELEMENTAL_CATIONS = new Set([
+  'ALUMINUM',
+  'ALUMINIUM',
+  'AMMONIUM',
+  'ANTIMONY',
+  'BARIUM',
+  'BISMUTH',
+  'BORON',
+  'CALCIUM',
+  'CHROMIUM',
+  'COBALT',
+  'COPPER',
+  'CUPRIC',
+  'FERRIC',
+  'FERROUS',
+  'GALLIUM',
+  'GOLD',
+  'INDIUM',
+  'IRON',
+  'LITHIUM',
+  'MAGNESIUM',
+  'MANGANESE',
+  'MERCURIC',
+  'MERCURY',
+  'NICKEL',
+  'PLATINUM',
+  'POTASSIUM',
+  'SELENIUM',
+  'SILVER',
+  'SODIUM',
+  'STANNOUS',
+  'STRONTIUM',
+  'TITANIUM',
+  'ZINC',
+  'ZIRCONIUM',
+])
+
+const HYDRATE_SUFFIXES = new Set([
+  'ANHYDROUS',
+  'HEMIHYDRATE',
+  'HEPTAHYDRATE',
+  'MONOHYDRATE',
+  'DIHYDRATE',
+  'PENTAHYDRATE',
+  'SESQUIHYDRATE',
+  'TETRAHYDRATE',
+  'TETRADECAHYDRATE',
+  'TRIHYDRATE',
+])
 
 export function baseMoiety(name: string): string {
   // Source data uses "||" to join the ingredients of a combination product, and DSLD group names
@@ -96,7 +187,9 @@ export function baseMoiety(name: string): string {
     changed = false
     for (const suffix of SALT_SUFFIXES) {
       if (n.endsWith(` ${suffix}`) && n.length > suffix.length + 2) {
-        n = n.slice(0, -(suffix.length + 1)).trim()
+        const remainder = n.slice(0, -(suffix.length + 1)).trim()
+        if (!HYDRATE_SUFFIXES.has(suffix) && ELEMENTAL_CATIONS.has(remainder)) continue
+        n = remainder
         changed = true
       }
     }

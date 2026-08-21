@@ -43,6 +43,8 @@ interface CacheEntry {
   taxonomy: Taxonomy | null
   literature: Literature | null
   fetchedAt: string
+  /** Which literature query produced `literature`. Absent means version 1, the all-fields search. */
+  litVersion?: number
 }
 
 const cachePath = join(DATA_DIR, 'botanical-index.json')
@@ -199,8 +201,28 @@ async function countPapers(query: string): Promise<number> {
   }
 }
 
+/**
+ * Restricted to title, abstract and keywords — deliberately, and at the cost of most of the count.
+ *
+ * Europe PMC's default search reads the full text of every open-access paper, so a substance named
+ * once in a table of reagents counts as a paper about it. Acetophenazine came back with 5,372
+ * papers and a most-cited paper about a tetrazolium assay; restricted to where a paper declares
+ * its subject, it is 31 papers and the most cited is about antipsychotics. Both numbers are
+ * "correct" for some question, but only one of them answers the question this site is asking, and
+ * printing the other one next to an unrelated title was telling readers something false.
+ */
+function subjectQuery(term: string): string {
+  return `(TITLE:"${term}" OR ABSTRACT:"${term}" OR KW:"${term}")`
+}
+
+/**
+ * Bumped when the query changes. Cached entries below this are refetched; their taxonomy is kept,
+ * because GBIF is unaffected and those lookups are the slow half.
+ */
+export const LITERATURE_QUERY_VERSION = 2
+
 async function fetchLiterature(term: string): Promise<Literature | null> {
-  const phrase = `"${term}"`
+  const phrase = subjectQuery(term)
   const url = `${EPMC}?query=${encodeURIComponent(phrase)}&format=json&pageSize=1&resultType=core&sort=CITED%20desc`
 
   let top: Literature['topPaper']
@@ -237,6 +259,10 @@ async function fetchLiterature(term: string): Promise<Literature | null> {
   const clinicalTrials = await countPapers(`${phrase} AND PUB_TYPE:"Clinical Trial"`)
   await sleep(120)
   const reviews = await countPapers(`${phrase} AND PUB_TYPE:"Review"`)
+  // A subset cannot exceed its parent; if the API disagrees, the totals are not comparable and
+  // publishing them side by side would invite a reader to subtract them.
+  if (clinicalTrials > total || reviews > total)
+    return { total, clinicalTrials: 0, reviews: 0, topPaper: top }
 
   return { total, clinicalTrials, reviews, topPaper: top }
 }
@@ -252,22 +278,61 @@ export async function lookupBotanical(name: string): Promise<BotanicalFacts> {
   const store = load()
   const key = name.toLowerCase()
 
-  if (key in store) {
-    const entry = store[key]
-    return { taxonomy: entry?.taxonomy ?? null, literature: entry?.literature ?? null, part }
+  const cached = store[key]
+  const fresh = (cached?.litVersion ?? 1) >= LITERATURE_QUERY_VERSION
+  if (cached && fresh) {
+    return { taxonomy: cached.taxonomy ?? null, literature: cached.literature ?? null, part }
   }
 
-  const taxonomy = looksBinomial(binomial) ? await fetchTaxonomy(binomial) : null
-  await sleep(120)
+  // A stale entry keeps its taxonomy: only the literature query changed.
+  const taxonomy = cached
+    ? (cached.taxonomy ?? null)
+    : looksBinomial(binomial)
+      ? await fetchTaxonomy(binomial)
+      : null
+  if (!cached) await sleep(120)
   // Search the literature under the accepted scientific name where GBIF resolved one, because that
   // is the name the papers are indexed under; otherwise under the name as written.
   const literature = await fetchLiterature(taxonomy?.canonicalName ?? binomial)
 
-  store[key] = { taxonomy, literature, fetchedAt: new Date().toISOString() }
+  store[key] = {
+    taxonomy,
+    literature,
+    fetchedAt: new Date().toISOString(),
+    litVersion: LITERATURE_QUERY_VERSION,
+  }
   dirty += 1
   if (dirty >= 30) flushBotanicalCache()
 
   return { taxonomy, literature, part }
+}
+
+/**
+ * The literature alone, searched under the name exactly as the corpus stores it.
+ *
+ * `lookupBotanical` searches under the binomial it parsed out of the name, which is right for an
+ * organism and wrong for a chemical: "Aluminum Zirconium Tetrachlorohydrex Gly" has no binomial to
+ * find and must be searched whole. Cached under a separate key so the two searches of the same
+ * string cannot overwrite each other.
+ */
+export async function lookupLiterature(term: string): Promise<Literature | null> {
+  const store = load()
+  const key = `lit:${term.toLowerCase()}`
+  const cached = store[key]
+  if (cached && (cached.litVersion ?? 1) >= LITERATURE_QUERY_VERSION) {
+    return cached.literature ?? null
+  }
+
+  const literature = await fetchLiterature(term)
+  store[key] = {
+    taxonomy: null,
+    literature,
+    fetchedAt: new Date().toISOString(),
+    litVersion: LITERATURE_QUERY_VERSION,
+  }
+  dirty += 1
+  if (dirty >= 30) flushBotanicalCache()
+  return literature
 }
 
 export function botanicalCacheStats(): { total: number; resolved: number; withPapers: number } {
