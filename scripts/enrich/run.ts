@@ -270,6 +270,35 @@ async function main(): Promise<void> {
       provenance = mergeProvenance(provenance, fromLabel.sources)
     }
 
+    // --- Suffixed biologics -------------------------------------------------
+    //
+    // Runs BEFORE the organism pass, because "Insulin Aspart-Szjj" is two words of letters and
+    // therefore looks exactly like a binomial. The organism pass claimed it, found no species,
+    // published a bare publication count, and the biosimilar pass — which knew the molecule and
+    // had its page — was skipped. An FDA four-letter suffix over a molecule this site already
+    // carries is not an ambiguous case.
+    //
+    // Refresh-aware like the passes around it, or it never runs a second time: a record it has
+    // written has a context, so it is skipped, and a later pass overwrites its answer.
+    const stem = biologicStem(row.name)
+    if (stem && !patch.conditionContext && (refreshable || !row.conditionContext)) {
+      const parentRows = await db
+        .select({ name: drugs.name, slug: drugs.slug, indication: drugs.patientFriendlyIndication })
+        .from(drugs)
+        .where(sql`lower(${drugs.name}) = ${stem}`)
+        .limit(1)
+      const parent = parentRows[0] ?? null
+      // Either the molecule is on this site, or its name ends in an INN stem the scheme is applied
+      // to. Without one of the two, a hyphenated four-letter ending is just a hyphenated name, and
+      // describing it as a version of a molecule that does not exist is worse than leaving it empty.
+      if (parent || isKnownBiologicStem(stem)) {
+        const context = suffixedBiologicContext(row.name, stem, parent)
+        patch.conditionContext = context.conditionContext
+        provenance = mergeProvenance(provenance, context.sources)
+        counts.suffixed += 1
+      }
+    }
+
     // --- Plants and homeopathic listings -----------------------------------
     //
     // Everything above comes back empty for these: no application, no mechanism section, no price
@@ -302,7 +331,10 @@ async function main(): Promise<void> {
         300,
       )
       const context = botanicalContext(facts, row.name, purpose)
-      if (context) {
+      // Only claimed when GBIF actually resolved a species. Without a taxonomy this pass has
+      // nothing but a publication count, and the pass below says that AND what the FDA's product
+      // records hold — a strictly longer answer for the same row.
+      if (context && facts.taxonomy) {
         patch.conditionContext = context.conditionContext
         provenance = mergeProvenance(provenance, context.sources)
         counts.botanical += 1
@@ -318,30 +350,6 @@ async function main(): Promise<void> {
       ) {
         patch.modality = 'Nutraceutical / Botanical'
         counts.reclassified += 1
-      }
-    }
-
-    // --- Suffixed biologics -------------------------------------------------
-    // Refresh-aware like the passes around it. Without this the pass never ran again after the
-    // first fill: a record it had written has a context, so it was skipped, and the substance pass
-    // below then overwrote its answer with a publication count. "Insulin Aspart-Szjj is insulin
-    // aspart, and here is insulin aspart" became "Europe PMC indexes 1 paper".
-    const stem = biologicStem(row.name)
-    if (stem && !patch.conditionContext && (refreshable || !row.conditionContext)) {
-      const parentRows = await db
-        .select({ name: drugs.name, slug: drugs.slug, indication: drugs.patientFriendlyIndication })
-        .from(drugs)
-        .where(sql`lower(${drugs.name}) = ${stem}`)
-        .limit(1)
-      const parent = parentRows[0] ?? null
-      // Either the molecule is on this site, or its name ends in an INN stem the scheme is applied
-      // to. Without one of the two, a hyphenated four-letter ending is just a hyphenated name, and
-      // describing it as a version of a molecule that does not exist is worse than leaving it empty.
-      if (parent || isKnownBiologicStem(stem)) {
-        const context = suffixedBiologicContext(row.name, stem, parent)
-        patch.conditionContext = context.conditionContext
-        provenance = mergeProvenance(provenance, context.sources)
-        counts.suffixed += 1
       }
     }
 
@@ -372,6 +380,7 @@ async function main(): Promise<void> {
         literature,
         record,
         row.approvalStatus === 'Non-FDA / Dietary Supplement',
+        trimToSentence(cleanLabelProse(row.indication ?? ''), 300),
       )
       if (context) {
         patch.conditionContext = context.conditionContext

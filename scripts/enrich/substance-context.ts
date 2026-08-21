@@ -192,6 +192,7 @@ export function substanceContext(
   literature: Literature | null,
   record: SubstanceRecord | null,
   isSupplement = false,
+  labelPurpose = '',
 ): SubstanceContext | null {
   if (!literature && !record && !isSupplement) return null
 
@@ -212,7 +213,9 @@ export function substanceContext(
         .trim(),
       // Why a reader should care is a judgement and stays a contributor's to make.
       whyItMatters: '',
-      whoTakesThis: '',
+      // What the product is sold for, in the seller's words, under the heading that frames it as a
+      // claim. Dropping it lost the only statement of purpose these records have.
+      whoTakesThis: labelPurpose,
       clinicalGoals: undefined,
     },
     sources,
