@@ -99,6 +99,56 @@ function medianPrice(prices: readonly NadacPrice[]): NadacPrice | null {
   return sorted[Math.floor(sorted.length / 2)] ?? null
 }
 
+/**
+ * One row's update, retried through a dropped connection.
+ *
+ * Against a local Postgres this never matters. Against production it does: the connection goes
+ * through Railway's TCP proxy, and nine thousand updates in sequence exhausted the ephemeral port
+ * range on the client — EADDRNOTAVAIL, four thousand rows in, ending a run that had already done
+ * the expensive part. A network blip on one row out of nine thousand should cost that row a second
+ * attempt, not the run.
+ *
+ * Only connection-level failures are retried. A constraint violation or a bad value is a real
+ * defect and is raised immediately, because retrying it would just fail again more slowly.
+ */
+const RETRYABLE = new Set([
+  'EADDRNOTAVAIL',
+  'ECONNRESET',
+  'ECONNREFUSED',
+  'EPIPE',
+  'ETIMEDOUT',
+  'ENOTFOUND',
+  'EHOSTUNREACH',
+  '57P01', // admin_shutdown
+  '57P03', // cannot_connect_now
+  '08006', // connection_failure
+  '08003', // connection_does_not_exist
+])
+
+function isRetryable(error: unknown): boolean {
+  const code = (error as { code?: string })?.code
+  const causeCode = (error as { cause?: { code?: string } })?.cause?.code
+  return Boolean((code && RETRYABLE.has(code)) || (causeCode && RETRYABLE.has(causeCode)))
+}
+
+async function writeRow(id: string, patch: Record<string, unknown>): Promise<void> {
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      await db.update(drugs).set(patch).where(eq(drugs.id, id))
+      return
+    } catch (error) {
+      if (attempt >= 4 || !isRetryable(error)) throw error
+      // Long enough for the operating system to release sockets sitting in TIME_WAIT, which is
+      // what the port exhaustion was actually waiting on.
+      const delay = 1_000 * 2 ** attempt
+      console.log(
+        `[enrich] ${id}: ${(error as { code?: string }).code ?? 'connection error'}, retrying in ${delay / 1000}s`,
+      )
+      await new Promise((resolve) => setTimeout(resolve, delay))
+    }
+  }
+}
+
 /** Map keys ordered by how many products carried them, most common first. */
 function rankedKeys(counts: Map<string, number>): string[] {
   return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([key]) => key)
@@ -469,7 +519,7 @@ async function main(): Promise<void> {
       patch.updatedAt = new Date()
 
       if (!options.dryRun) {
-        await db.update(drugs).set(patch).where(eq(drugs.id, row.id))
+        await writeRow(row.id, patch)
       }
     }
 
