@@ -256,19 +256,20 @@ describe('structureType overrides modality routing', () => {
   const IPAMORELIN_SMILES =
     'CC(C)(C(=O)N[C@@H](CC1=CN=CN1)C(=O)N[C@H](CC2=CC3=CC=CC=C3C=C2)C(=O)N[C@H](CC4=CC=CC=C4)C(=O)N[C@@H](CCCCN)C(=O)N)N'
 
-  it('misreads a peptide-modality SMILES when routing is left to the modality', () => {
+  it('recovers a peptide-modality SMILES even with no structureType given', () => {
     const report = runFullDeterministicSweep({
       structureString: IPAMORELIN_SMILES,
       modality: 'Peptide / GLP-1 Agonist',
       workflow: [],
     })
 
-    // The peptide branch finds the handful of characters in a SMILES that happen to be standard
-    // one-letter residue codes and reads them as a backbone. It does not error — it answers a
-    // question nobody asked, which is why the record has to be able to state its own type.
-    expect(report.layer1.structureType).toBe('peptide_sequence')
-    expect(report.layer1.chemicalFormula).toBeUndefined()
-    expect(report.layer1.aminoAcidCount).toBeLessThan(6)
+    // Layer 1 used to route on modality alone, send this to the peptide branch, find the three
+    // characters in a SMILES that happen to be one-letter residue codes and call it a backbone.
+    // It now reads the brackets and stereochemistry markers, recognises a connection table, and
+    // says so instead of answering a question nobody asked.
+    expect(report.layer1.structureType).toBe('small_molecule_smiles')
+    expect(report.layer1.chemicalFormula).toBe('C38H49N9O5')
+    expect(report.diagnostics.map((d) => d.code)).toContain('L1_STRUCTURE_TYPE_CORRECTED')
   })
 
   it('accepts the same string when the record states its structure type', () => {

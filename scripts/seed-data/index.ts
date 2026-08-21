@@ -23,6 +23,10 @@ import { NUTRACEUTICAL_CORE_DOSSIERS } from './nutraceutical-core'
 import { NUTRACEUTICAL_BOTANICAL_DOSSIERS } from './nutraceutical-botanical'
 import { WITHDRAWN_AND_RESTRICTED_DOSSIERS } from './withdrawn-and-restricted'
 import { ENRICHED_BATCH_10_DOSSIERS } from './enriched-batch-10'
+import { ENRICHED_BATCH_14_DOSSIERS } from './enriched-batch-14'
+import { ENRICHED_BATCH_13_DOSSIERS } from './enriched-batch-13'
+import { ENRICHED_BATCH_12_DOSSIERS } from './enriched-batch-12'
+import { ENRICHED_BATCH_11_DOSSIERS } from './enriched-batch-11'
 import { ENRICHED_BATCH_9_DOSSIERS } from './enriched-batch-9'
 import { ENRICHED_BATCH_8_DOSSIERS } from './enriched-batch-8'
 import { ENRICHED_BATCH_7_DOSSIERS } from './enriched-batch-7'
@@ -50,6 +54,10 @@ export const ALL_SEED_DOSSIERS: SeedDossier[] = [
   ...NUTRACEUTICAL_BOTANICAL_DOSSIERS,
   ...WITHDRAWN_AND_RESTRICTED_DOSSIERS,
   ...ENRICHED_BATCH_10_DOSSIERS,
+  ...ENRICHED_BATCH_14_DOSSIERS,
+  ...ENRICHED_BATCH_13_DOSSIERS,
+  ...ENRICHED_BATCH_12_DOSSIERS,
+  ...ENRICHED_BATCH_11_DOSSIERS,
   ...ENRICHED_BATCH_9_DOSSIERS,
   ...ENRICHED_BATCH_8_DOSSIERS,
   ...ENRICHED_BATCH_7_DOSSIERS,

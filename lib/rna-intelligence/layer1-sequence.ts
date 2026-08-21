@@ -133,6 +133,36 @@ export function structureTypeForModality(modality: DrugModality): StructureType 
  * the published `StructureType` union has no DNA member and inventing one here would break the
  * contract other layers and the database read against.
  */
+/**
+ * Works out what a structure string actually IS, regardless of what it was labelled.
+ *
+ * Three real drugs have now been rejected for the same reason: a cyclic or modified peptide —
+ * desmopressin, ipamorelin, bivalirudin — cannot be written as one-letter residues, so it is
+ * recorded as a connection table while the record still says `peptide_sequence`. Routed on the
+ * label, the peptide branch reads the brackets and stereochemistry markers as illegal residues and
+ * refuses a perfectly good molecule.
+ *
+ * A connection table is unmistakable: bracket atoms, stereochemistry markers, bond symbols, ring
+ * digits. None of those appear in a residue sequence. Where the content is that clear the content
+ * wins, and the mismatch is reported rather than swallowed, so whoever wrote the record can fix the
+ * label.
+ */
+export function detectStructureType(raw: string): StructureType | null {
+  const trimmed = raw.trim()
+  if (trimmed.length < MIN_DESCRIPTOR_LENGTH) return null
+
+  // Bracket atoms, stereochemistry markers and bond symbols. These are the only characters that
+  // cannot appear in a residue sequence.
+  //
+  // Digits and parentheses are NOT among them, and an earlier version of this that treated them as
+  // evidence broke semaglutide: its side-chain conjugate is written
+  // "K(AEEAc-AEEAc-gamma-Glu-17-carboxyheptadecanoyl)", which has both. A rule that misreads the
+  // reference implementation's own worked example is a rule that is wrong.
+  if (/[[\]@=#]/.test(trimmed)) return 'small_molecule_smiles'
+
+  return null
+}
+
 export function validateLayer1(
   rawStructure: string,
   modality: DrugModality,
@@ -152,7 +182,14 @@ export function validateLayer1(
    */
   structureTypeOverride?: StructureType,
 ): Layer1Result {
-  const structureType = structureTypeOverride ?? structureTypeForModality(modality)
+  const declared = structureTypeOverride ?? structureTypeForModality(modality)
+  const detected = detectStructureType(rawStructure)
+
+  // The content overrules the label, but only when the content is unambiguous and only when the two
+  // actually disagree.
+  const structureType =
+    detected && detected !== declared && declared !== 'small_molecule_smiles' ? detected : declared
+  const typeWasCorrected = structureType !== declared
   const trimmed = rawStructure.trim()
   // Positions in diagnostics are 1-based indices into `rawStructure`, so a UI can highlight the
   // character the contributor actually typed rather than an offset into some cleaned copy.
@@ -172,16 +209,35 @@ export function validateLayer1(
     }
   }
 
-  switch (structureType) {
-    case 'rna_sequence':
-      return validateNucleotide(rawStructure, trimmed, offset, cdnaMode)
-    case 'small_molecule_smiles':
-      return validateSmiles(rawStructure, trimmed)
-    case 'peptide_sequence':
-      return validatePeptide(rawStructure, trimmed, offset)
-    default:
-      return validateDescriptor(rawStructure, trimmed, structureType)
+  const result = ((): Layer1Result => {
+    switch (structureType) {
+      case 'rna_sequence':
+        return validateNucleotide(rawStructure, trimmed, offset, cdnaMode)
+      case 'small_molecule_smiles':
+        return validateSmiles(rawStructure, trimmed)
+      case 'peptide_sequence':
+        return validatePeptide(rawStructure, trimmed, offset)
+      default:
+        return validateDescriptor(rawStructure, trimmed, structureType)
+    }
+  })()
+
+  // Reported rather than swallowed: the record's label is wrong and somebody should fix it, even
+  // though reading the content instead has just saved the structure from a spurious rejection.
+  if (typeWasCorrected) {
+    result.diagnostics.unshift(
+      diagnostic(
+        'warning',
+        'L1_STRUCTURE_TYPE_CORRECTED',
+        `This record calls the structure a ${declared.replace(/_/g, ' ')}, but the text is a ` +
+          `${structureType.replace(/_/g, ' ')} and has been read as one. Cyclic and modified ` +
+          "peptides are usually recorded this way; correcting the record's structureType would " +
+          'remove this notice.',
+      ),
+    )
   }
+
+  return result
 }
 
 // ---------------------------------------------------------------------------

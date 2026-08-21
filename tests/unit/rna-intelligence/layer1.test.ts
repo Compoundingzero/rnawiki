@@ -534,3 +534,58 @@ describe('multi-chain peptides and short peptides', () => {
     expect(result.aminoAcidCount).toBe(31)
   })
 })
+
+describe('a structure labelled as one thing and written as another', () => {
+  // Three real drugs hit this: desmopressin, ipamorelin and bivalirudin are cyclic or modified
+  // peptides that cannot be written as one-letter residues, so they are recorded as connection
+  // tables while the record still says 'peptide_sequence'. Routed on the label, the peptide branch
+  // read the brackets as illegal residues and refused a perfectly good molecule.
+  const CYCLIC_PEPTIDE_SMILES = 'CC[C@H](C)[C@H](NC(=O)CNC(=O)[C@H](CCC(O)=O)NC(=O)CN)C(O)=O'
+
+  it('reads a connection table as one even when the record calls it a sequence', () => {
+    const result = validateLayer1(
+      CYCLIC_PEPTIDE_SMILES,
+      'Peptide / GLP-1 Agonist',
+      false,
+      'peptide_sequence',
+    )
+
+    expect(result.passed).toBe(true)
+    expect(result.structureType).toBe('small_molecule_smiles')
+    expect(result.chemicalFormula).toBe('C15H26N4O7')
+  })
+
+  it('says so rather than swallowing the mismatch', () => {
+    const result = validateLayer1(
+      CYCLIC_PEPTIDE_SMILES,
+      'Peptide / GLP-1 Agonist',
+      false,
+      'peptide_sequence',
+    )
+
+    const correction = result.diagnostics.find((d) => d.code === 'L1_STRUCTURE_TYPE_CORRECTED')
+    expect(correction).toBeDefined()
+    expect(correction?.severity).toBe('warning')
+  })
+
+  it('leaves a genuine residue sequence alone, conjugate and all', () => {
+    const result = validateLayer1(
+      'HAEGTFTSDVSSYLEGQAAK(AEEAc-AEEAc)EFIAWLVRGRG',
+      'Peptide / GLP-1 Agonist',
+      false,
+      'peptide_sequence',
+    )
+
+    // Parentheses alone must not trigger the correction: a side-chain conjugate is written in them.
+    expect(result.structureType).toBe('peptide_sequence')
+    expect(result.aminoAcidCount).toBe(31)
+    expect(result.diagnostics.map((d) => d.code)).not.toContain('L1_STRUCTURE_TYPE_CORRECTED')
+  })
+
+  it('leaves a nucleotide sequence alone', () => {
+    const result = validateLayer1('AUGGGGAAACCCUAA', 'siRNA (Small Interfering RNA)')
+
+    expect(result.structureType).toBe('rna_sequence')
+    expect(result.diagnostics.map((d) => d.code)).not.toContain('L1_STRUCTURE_TYPE_CORRECTED')
+  })
+})
