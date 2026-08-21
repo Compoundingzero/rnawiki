@@ -120,6 +120,25 @@ export async function loadDrugs(
   rows: readonly DrugInsert[],
   options: { dryRun?: boolean; note?: string; prune?: boolean } = {},
 ): Promise<LoadResult> {
+  // Postgres answers a batch containing one slug twice with "ON CONFLICT DO UPDATE command cannot
+  // affect row a second time", a hint about nodeModifyTable.c, and no indication of which slug or
+  // which stage produced it. It happened once, when a change to the deduplicator started returning
+  // a filtered list while the caller went on discarding the return value. Say it in English, name
+  // the slugs, and stop before writing anything.
+  const seen = new Set<string>()
+  const repeated = new Set<string>()
+  for (const row of rows) {
+    if (seen.has(row.slug)) repeated.add(row.slug)
+    seen.add(row.slug)
+  }
+  if (repeated.size > 0) {
+    const sample = [...repeated].slice(0, 10).join(', ')
+    throw new Error(
+      `[load] ${repeated.size} slugs appear on more than one row, so deduplication did not run ` +
+        `or its result was discarded: ${sample}${repeated.size > 10 ? ', …' : ''}`,
+    )
+  }
+
   const runId = newId('ingest')
 
   if (options.dryRun) {

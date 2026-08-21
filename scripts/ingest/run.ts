@@ -173,7 +173,7 @@ async function main(): Promise<void> {
 
   const structures = loadStructures(options.skipStructures)
 
-  const rows: DrugInsert[] = []
+  let rows: DrugInsert[] = []
   const skips = new Map<string, number>()
 
   for (const substance of index.values()) {
@@ -196,10 +196,13 @@ async function main(): Promise<void> {
     if (options.limit && rows.length >= options.limit) break
   }
 
-  // Most-listed substances first, so the slug collision resolver gives the plain slug to the
-  // better-known drug: "vitamin-d" should be the one on 5,000 labels, not the one on two.
+  // Most-listed substances first, so that where two records merge the better-known one survives:
+  // "vitamin-d" should be the one on 5,000 labels, not the one on two.
   rows.sort((a, b) => b.productCount - a.productCount || a.name.localeCompare(b.name))
-  assignUniqueSlugs(rows)
+  // The return value is the deduplicated list and MUST be used. The earlier version renamed rows in
+  // place and returned the same array, so discarding the result was harmless; this one removes the
+  // rows it merges, and ignoring it sends both halves of every merged pair to the same INSERT.
+  rows = assignUniqueSlugs(rows)
 
   console.log(`\n[run] built ${rows.length.toLocaleString()} dossiers`)
   console.log('[run] skipped:')
