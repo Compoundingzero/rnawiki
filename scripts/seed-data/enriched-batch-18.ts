@@ -3,10 +3,10 @@ import type { SeedDossier } from '@/lib/seed-types'
 /**
  * Enriched batch 18 — the skin.
  *
- * Ten medicines applied to a surface: two retinoids, an oxidising agent, a ribosome-blocking
- * antibiotic, a calcineurin inhibitor, a vitamin D analogue, two antifungals, an insecticide and a
- * tRNA-synthetase inhibitor. Most are decades old, most cost cents per gram, and most are used for
- * years by people who were never shown where the evidence for them stops.
+ * Nine medicines applied to a surface: two retinoids, an oxidising agent, a ribosome-blocking
+ * antibiotic, a vitamin D analogue, two antifungals, an insecticide and a tRNA-synthetase
+ * inhibitor. Most are decades old, most cost cents per gram, and most are used for years by people
+ * who were never shown where the evidence for them stops.
  *
  * That is what makes the group worth auditing, because topical dermatology has a structural
  * problem the rest of medicine mostly does not. The endpoints are graded by eye. "Investigator's
@@ -20,6 +20,11 @@ import type { SeedDossier } from '@/lib/seed-types'
  * with them. Every arm size, response rate, confidence interval and p-value is copied from the
  * published abstract or from the label text held on the record, never from memory. Where a number
  * could not be sourced, the field is absent.
+ *
+ * A tenth, topical tacrolimus, was researched and then dropped from this file: `tacrolimus` was
+ * already taken by a sibling group, whose transplant-focused dossier also carries the ointment
+ * indication and the 2006 boxed malignancy warning. A second dossier on the same slug is discarded
+ * at load, so it is absent here rather than duplicated.
  *
  * Six conventions apply to the whole group.
  *
@@ -38,8 +43,8 @@ import type { SeedDossier } from '@/lib/seed-types'
  *    that the engine has checked the string that is actually stored.
  *
  * 3. A GRADED APPEARANCE IS A SURROGATE AND EVERY PAGE SAYS SO. Lesion counts, Investigator's
- *    Global Assessment, Eczema Area and Severity Index, Psoriasis Area and Severity Index and
- *    mycological cure are all measurements of a proxy. Two of the drugs here have been tested
+ *    Global Assessment, global improvement scales and mycological cure are all measurements of a
+ *    proxy. Two of the drugs here have been tested
  *    against a hard endpoint in a randomised trial — tretinoin against skin cancer and death,
  *    mupirocin against surgical site infection — and both missed their primary endpoint. Those two
  *    results are the spine of this batch.
@@ -150,7 +155,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           class: 'Systemic retinoid',
           howItCompares:
             'A different medicine, not a stronger cream. It shrinks the sebaceous gland itself and is the only acne treatment with durable remission after a finite course. It is also a proven human teratogen under a mandatory pregnancy-prevention programme, which topical tretinoin is not.',
-          typicalCost: 'Priced per capsule rather than per gram; not comparable to a topical figure',
+          typicalCost:
+            'Priced per capsule rather than per gram; not comparable to a topical figure',
           prosAndCons:
             'Pros: works when topicals have not, and the effect can outlast treatment. Cons: teratogenic, requires monitoring, and is a systemic exposure for a skin problem.',
         },
@@ -428,7 +434,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         trialId: 'Weiss 1988 University of Michigan photoaging study (PMID 3336176)',
         phase: 'Randomised, double-blind, vehicle-controlled, within-patient design',
         sampleSize: 30,
-        primaryEndpoint: 'Graded improvement in photoaging at 16 weeks, with histologic confirmation',
+        primaryEndpoint:
+          'Graded improvement in photoaging at 16 weeks, with histologic confirmation',
         endpointMet: true,
         statisticalPValue:
           'Statistically significant improvement on tretinoin-treated forearms and not on vehicle-treated forearms in all 30 completers; 14 of 15 tretinoin-treated faces improved against 0 of the vehicle-treated faces',
@@ -655,8 +662,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'This is the retinoid that tolerates benzoyl peroxide',
-          action:
-            'Adapalene is photostable and resistant to oxidation, which tretinoin is not.',
+          action: 'Adapalene is photostable and resistant to oxidation, which tretinoin is not.',
           patientImpact:
             'That chemistry is why a single fixed-dose product containing both a retinoid and benzoyl peroxide exists at all, and why the combination could be tested head-to-head against its own components.',
           clinicalPrecaution:
@@ -761,7 +767,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           'DIFFERIN (adapalene) Gel 0.3% United States prescribing information, section 14, Table 3 (NDA 021753)',
         inferredClaim:
           'That a retinoid clears acne — the pivotal trial’s own table leaves 79% of patients on the strongest strength not clear or almost clear at 12 weeks, and credits the vehicle with three-quarters of the measured lesion reduction',
-        measuredMetric: 'IGA success 21% against 16% against 9%; total lesion reduction 45.3% against 41.8% against 33.7%',
+        measuredMetric:
+          'IGA success 21% against 16% against 9%; total lesion reduction 45.3% against 41.8% against 33.7%',
         auditFlag: 'caution',
       },
       {
@@ -786,7 +793,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           'A meta-analysis pooled every comparison of adapalene against tretinoin the manufacturer could find, published and unpublished, in nine hundred patients. The stated goal was to show adapalene worked better. It worked the same. It was gentler, which is a genuine finding, and the paper concluded it was a pharmacologic advance.',
         technicalDetails:
           'Cunliffe and colleagues pooled five multicentre randomised investigator-blind trials, published and unpublished, from the United States and Europe: 450 patients on adapalene 0.1% gel against 450 on tretinoin 0.025% gel, analysed by intention to treat. The stated purpose was "to determine if adapalene 0.1% gel provided superior efficacy and better tolerability than tretinoin 0.025% gel". Adapalene demonstrated equivalent efficacy on total lesion count reduction, a significant advantage at week 1 on inflammatory and total lesions, and considerably greater local tolerability at every assessment. The authors concluded the findings "suggest that adapalene 0.1% gel constitutes a pharmacologic advance over such classic retinoids as tretinoin". Three of the four authors were employees of the manufacturer, the analysis included unpublished company studies, and it was published in a journal supplement rather than a regular issue.',
-        evidenceSource: 'Cunliffe WJ, Poncet M, Loesche C, Verschoore M. Br J Dermatol 1998;139 Suppl 52:48-56 (PMID 9990421)',
+        evidenceSource:
+          'Cunliffe WJ, Poncet M, Loesche C, Verschoore M. Br J Dermatol 1998;139 Suppl 52:48-56 (PMID 9990421)',
         doi: '10.1046/j.1365-2133.1998.1390s2048.x',
         inferredClaim:
           'That adapalene is a pharmacologic advance over tretinoin — an equivalence result on the efficacy endpoint plus a tolerability advantage, restated as a class advance in the manufacturer’s own supplement',
@@ -1016,13 +1024,15 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       {
         label:
           'DIFFERIN (adapalene) Gel 0.3% United States prescribing information, section 14 Clinical Studies, Table 3 — NDA 021753, Galderma Laboratories LP',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22NDA021753%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22NDA021753%22',
         kind: 'regulatory',
       },
       {
         label:
           'openFDA Drugs@FDA record for NDA 020380 (DIFFERIN adapalene gel 0.1%), marketing status over-the-counter',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA020380%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA020380%22',
         kind: 'regulatory',
       },
       NADAC_SOURCE,
@@ -1260,7 +1270,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           'Sixteen weeks of clindamycin on its own multiplied the number of clindamycin-resistant bacteria on the face more than sixteenfold. The identical gel with benzoyl peroxide added reduced them instead, and the patients whose resistant bacteria fell were the patients whose spots cleared.',
         technicalDetails:
           'Cunliffe and colleagues randomised 79 patients aged 13 to 30 with facial Cutibacterium acnes counts of at least 10^4 colony-forming units per square centimetre to clindamycin 1% with benzoyl peroxide 5% or to matching clindamycin 1% alone, twice daily for 16 weeks; 70 were analysed. Clindamycin-resistant organism counts fell from baseline in the combination group and rose by more than 1,600% in the clindamycin monotherapy group by week 16 (P=0.018 between groups); total C. acnes count also fell significantly with combination (P=0.002). Reduction in resistant organisms correlated with reduction in inflammatory lesions (r2=0.31, P=0.016) and total lesions (r2=0.28, P=0.027). Total lesion, inflammatory lesion and comedone reductions were all significantly greater on the combination (P<=0.046).',
-        evidenceSource: 'Cunliffe WJ, Holland KT, Bojar R, Levy SF. Clin Ther 2002;24:1117-1133 (PMID 12182256)',
+        evidenceSource:
+          'Cunliffe WJ, Holland KT, Bojar R, Levy SF. Clin Ther 2002;24:1117-1133 (PMID 12182256)',
         doi: '10.1016/s0149-2918(02)80023-6',
         measuredMetric:
           'Clindamycin-resistant Cutibacterium acnes colony counts at 16 weeks, combination against clindamycin alone',
@@ -1378,7 +1389,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           'Cochrane overview pooled benzoyl peroxide against placebo, investigators’ assessment (CD014918)',
         phase: 'Overview of systematic reviews, pooled randomised evidence',
         sampleSize: 4110,
-        primaryEndpoint: 'Investigators’ global assessment of improvement at 12 weeks against placebo',
+        primaryEndpoint:
+          'Investigators’ global assessment of improvement at 12 weeks against placebo',
         endpointMet: true,
         statisticalPValue:
           'RR 1.77 (95% CI 1.37 to 2.28), 6 trials, very low-certainty evidence by GRADE',
@@ -1554,7 +1566,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
     approvalYear: 1970,
     indication:
       'The topical lotion, gel, foam and solution are indicated in the treatment of acne vulgaris. The oral and injectable forms are indicated for serious infections caused by susceptible anaerobic bacteria and by susceptible streptococci, pneumococci and staphylococci, with the label directing that their use be reserved for penicillin-allergic patients or those for whom a penicillin is inappropriate',
-    patientFriendlyIndication: 'Acne, when applied to the skin; serious bacterial infection when taken by mouth or by drip',
+    patientFriendlyIndication:
+      'Acne, when applied to the skin; serious bacterial infection when taken by mouth or by drip',
     anatomicalSite:
       'The sebaceous follicle, where Cutibacterium acnes lives — and, unavoidably, the colon, because topical clindamycin is absorbed through the skin',
     conditionContext: {
@@ -1603,7 +1616,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           class: 'Lincosamide plus oxidising antimicrobial in one product',
           howItCompares:
             'The combination beat matching clindamycin monotherapy on total, inflammatory and comedonal lesion counts (P<=0.046) in a 16-week randomised comparison, and reversed the growth of clindamycin-resistant organisms that monotherapy produced.',
-          typicalCost: 'Sold as a combination product; not comparable to the per-unit clindamycin figure',
+          typicalCost:
+            'Sold as a combination product; not comparable to the per-unit clindamycin figure',
           prosAndCons:
             'Pros: better efficacy and better microbiology than clindamycin alone, from the same trial. Cons: inherits benzoyl peroxide’s bleaching and irritation, and the topical clindamycin colitis warning still applies.',
         },
@@ -1719,7 +1733,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           'Seventy-nine patients were randomised to clindamycin gel or the identical gel with benzoyl peroxide added. By sixteen weeks the antibiotic-alone group had more than sixteen times as many clindamycin-resistant bacteria on their faces as when they started. The combination group had fewer.',
         technicalDetails:
           'Cunliffe and colleagues enrolled 79 patients aged 13 to 30 with facial Cutibacterium acnes counts of at least 10^4 colony-forming units per square centimetre and randomised them to clindamycin 1% with benzoyl peroxide 5% or to matching clindamycin 1% alone, twice daily for 16 weeks; 70 were analysed. Clindamycin-resistant C. acnes counts rose by more than 1,600% at week 16 on monotherapy and fell from baseline on the combination (P=0.018 between groups). Total C. acnes count also fell significantly more on the combination (P=0.002). Reduction in resistant organisms correlated with reduction in inflammatory lesions (r2=0.31, P=0.016) and total lesions (r2=0.28, P=0.027), and the combination reduced total, inflammatory and comedonal lesion counts significantly more (P<=0.046). This is a single-centre trial in 70 analysed patients, and it is the study the whole no-monotherapy convention rests on.',
-        evidenceSource: 'Cunliffe WJ, Holland KT, Bojar R, Levy SF. Clin Ther 2002;24:1117-1133 (PMID 12182256)',
+        evidenceSource:
+          'Cunliffe WJ, Holland KT, Bojar R, Levy SF. Clin Ther 2002;24:1117-1133 (PMID 12182256)',
         doi: '10.1016/s0149-2918(02)80023-6',
         measuredMetric:
           'Clindamycin-resistant Cutibacterium acnes colony counts at 16 weeks, monotherapy against combination',
@@ -1747,7 +1762,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           'Pooled across trials with more than two thousand patients, an antibiotic that carries a colitis warning performed the same as an over-the-counter oxidising cream that carries none.',
         technicalDetails:
           'The 2024 Cochrane overview reports that against clindamycin, benzoyl peroxide may have little to no effect on total lesion counts (MD -3.50, 95% CI -7.54 to 0.54; 1 trial, 641 participants), inflammatory lesion counts (MD -1.20, 95% CI -2.99 to 0.59), non-inflammatory lesion counts (MD -2.4, 95% CI -5.3 to 0.5), participant’s global self-assessment (RR 0.95, 95% CI 0.68 to 1.34; 1 trial, 240 participants), investigator’s global assessment (RR 1.10, 95% CI 0.83 to 1.45; 2 trials, 2,277 participants) or incidence of a less serious adverse event (RR 1.27, 95% CI 0.98 to 1.64; 5 trials, 2,842 participants). Certainty was very low or low for every estimate. The overview separately notes that no included review collected data comparing topical antibiotics with placebo at all.',
-        evidenceSource: 'Yuan Y et al., Cochrane Database Syst Rev 2024;10:CD014918 (PMID 39440650)',
+        evidenceSource:
+          'Yuan Y et al., Cochrane Database Syst Rev 2024;10:CD014918 (PMID 39440650)',
         doi: '10.1002/14651858.CD014918.pub2',
         inferredClaim:
           'That an antibiotic is the stronger option for inflammatory acne — every pooled comparison against benzoyl peroxide crosses no difference, and no pooled comparison against placebo exists at all',
@@ -2020,7 +2036,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Clindamycin Phosphate Topical Lotion United States prescribing information, Indications and Usage and Warnings — ANDA 214604, retrieved from the openFDA label endpoint',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA214604%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA214604%22',
         kind: 'regulatory',
       },
       {
@@ -2044,470 +2061,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
   },
 
   // ---------------------------------------------------------------------------------------------
-  // 5. Tacrolimus ointment — a boxed warning issued in 2006 on animal data and case reports, and
-  //    the 2021 meta-analysis of 408,366 treated people that half-confirmed it.
-  // ---------------------------------------------------------------------------------------------
-  {
-    slug: 'tacrolimus',
-    name: 'Tacrolimus',
-    tradeName: 'Protopic (ointment) / Prograf, Astagraf XL, Envarsus XR (systemic)',
-    sponsor:
-      'Discovered by Fujisawa, now Astellas; the topical ointment was approved as Protopic under NDA 050777 and that application is now held by LEO Pharma',
-    targetGene:
-      'FKBP1A, and through it PPP3CA and PPP3R1 — the FK506-binding protein 12 gene and the calcineurin catalytic and regulatory subunit genes',
-    targetProtein:
-      'The tacrolimus–FKBP-12 complex, which binds and inhibits the calcium-dependent phosphatase calcineurin',
-    modality: 'Small Molecule',
-    approvalStatus: 'FDA Approved',
-    approvalYear: 1994,
-    indication:
-      'The ointment is indicated as second-line therapy for the short-term and non-continuous chronic treatment of moderate to severe atopic dermatitis in non-immunocompromised adults and children aged 2 and over who have failed to respond adequately to other topical prescription treatments, or for whom those treatments are not advisable. The oral and intravenous forms are indicated for prophylaxis of organ rejection after liver, kidney or heart transplantation',
-    patientFriendlyIndication:
-      'Moderate to severe eczema, when steroid creams have not worked or cannot be used',
-    anatomicalSite:
-      'The skin-resident T lymphocyte and Langerhans cell — tacrolimus acts on the immune cells in the dermis and epidermis, not on the keratinocyte',
-    conditionContext: {
-      conditionExplainer:
-        'Atopic dermatitis is an immune reaction against the person’s own skin, sustained by T cells that keep arriving and keep signalling. Steroid creams shut that down broadly and, applied for long enough to the wrong place, thin the skin permanently. Tacrolimus interrupts one specific step in T-cell activation and does not thin skin, which is why it exists.',
-      whyItMatters:
-        'This is the clearest case in dermatology of a regulator acting on a theory. In 2006 the FDA put a boxed cancer warning on a skin ointment on the strength of animal studies and case reports, because the same molecule swallowed by transplant patients raises lymphoma risk. Fifteen years later a meta-analysis of more than 400,000 treated people gave a genuinely mixed answer, and that answer is the spine of this page.',
-      whoTakesThis:
-        'Adults and children aged 2 and over with moderate to severe eczema that steroids have not controlled, or on sites — face, eyelids, skin folds — where steroids would thin the skin quickly.',
-      clinicalGoals:
-        'A physician-graded improvement in eczema severity and less itch. The label’s own wording constrains the goal further: short-term and non-continuous use, second line, on areas of involvement only.',
-    },
-    oneSentenceVerdict:
-      'A macrolide that jams the calcium-triggered switch inside T cells so they cannot transcribe interleukin-2 — 36.8% of adults reached a 90% improvement against 6.6% on vehicle in 632 randomised patients, it matches a potent steroid without thinning skin, and it carries a 2006 boxed cancer warning that a 2021 meta-analysis of 408,366 treated people neither confirmed for cancer overall (RR 1.03, 95% CI 0.92 to 1.16) nor dismissed for lymphoma (RR 1.86, 95% CI 1.39 to 2.49).',
-    laymanHowItWorks:
-      'When a T cell decides to attack, calcium floods in and flips a molecular switch called calcineurin, which releases a messenger that travels to the nucleus and turns on the genes for inflammation. Tacrolimus grabs a small protein already inside the cell, and the pair together clamp onto calcineurin and hold it shut. The messenger never gets released, the inflammation genes stay off, and the eczema settles. Because it acts on immune cells rather than on the structure of the skin, it does not thin the skin the way a steroid does — which is the entire reason it is used on faces and eyelids.',
-    auditConfidence: 'Moderate / Debated',
-    confidenceScore: 72,
-    pricing: {
-      synthesisCostPerDose: '',
-      retailPricePerDoseOrYear:
-        'US$0.6591 per unit, the median United States pharmacy acquisition cost across 86 listed tacrolimus products of all routes (CMS NADAC, generic, survey effective 19 August 2026)',
-      markupEstimate: '',
-      openPatentNotes:
-        'The ointment has been generic since the Protopic patents expired, and 86 tacrolimus products across all routes are listed in the CMS survey. The molecule is a fermentation product of Streptomyces tsukubaensis rather than a synthetic compound, which puts a floor under manufacturing cost that a purely synthetic small molecule does not have.',
-      synthesisComplexity: 'High',
-      costSource: COST_OF_PRODUCTION_SOURCE,
-      priceSource: NADAC_SOURCE,
-    },
-    substitutes: {
-      summary:
-        'The comparison that matters is against topical corticosteroids, and the 2005 BMJ meta-analysis made it carefully: tacrolimus 0.1% matches a potent steroid, tacrolimus 0.03% is beaten by one, both burn more than steroids do, and no study has demonstrated the long-term safety advantage that is the whole argument for using them.',
-      conventionalRx: [
-        {
-          name: 'Potent topical corticosteroid (for example hydrocortisone butyrate 0.1%)',
-          class: 'Glucocorticoid receptor agonist',
-          howItCompares:
-            'Tacrolimus 0.1% was as effective as potent topical corticosteroids at three weeks in the pooled analysis, and more effective than a combined potent-on-trunk, weak-on-face regimen at 12 weeks (NNT 6). Tacrolimus 0.03% was less effective than hydrocortisone butyrate 0.1% (NNT -8). Steroids do not burn on application; tacrolimus does.',
-          typicalCost: 'Varies by molecule and strength; most potent topical steroids are generic',
-          prosAndCons:
-            'Pros: cheaper, faster, no burning, no boxed warning. Cons: skin atrophy, telangiectasia and striae with prolonged use, particularly on the face, eyelids and skin folds — which is the specific problem tacrolimus was introduced to solve.',
-        },
-        {
-          name: 'Weak topical corticosteroid (hydrocortisone acetate 1%)',
-          class: 'Glucocorticoid receptor agonist',
-          howItCompares:
-            'Both tacrolimus strengths beat it: NNT 4 for 0.1% and NNT 5 for 0.03% in the pooled comparison. This is the comparison most favourable to tacrolimus and the one most often quoted.',
-          typicalCost: 'Available over the counter in many countries at negligible cost',
-          prosAndCons:
-            'Pros: extremely well tolerated and safe on the face. Cons: often not strong enough for moderate to severe disease, which is why the comparison flatters the alternative.',
-        },
-        {
-          name: 'Pimecrolimus cream 1% (Elidel)',
-          class: 'The other topical calcineurin inhibitor',
-          howItCompares:
-            'Far less effective than betamethasone valerate 0.1% (NNT -3 at three weeks) in the same pooled analysis, and the reviewers concluded that in the absence of key comparisons against mild corticosteroids, the clinical need for it is unclear. It shares the boxed warning.',
-          typicalCost: 'Available generically; priced separately from tacrolimus ointment',
-          prosAndCons:
-            'Pros: less burning than tacrolimus in most comparisons, and licensed for mild to moderate disease. Cons: the pooled evidence puts it well behind both tacrolimus and a potent steroid.',
-        },
-      ],
-      naturalFoods: [],
-      homeRemedies: [
-        {
-          name: 'The burning is expected and it fades',
-          action:
-            'Skin burning on application is the characteristic adverse effect of both topical calcineurin inhibitors.',
-          patientImpact:
-            'The pooled analysis found significantly more skin burning with tacrolimus and pimecrolimus than with topical corticosteroids. Rates of skin infection did not differ in any comparison, which is a reassurance that matters for a drug that suppresses local immunity.',
-          clinicalPrecaution:
-            'Burning that does not settle, or spreading infection of treated skin, are reasons to consult a clinician rather than continue.',
-        },
-        {
-          name: 'Read what the label actually licenses',
-          action:
-            'The indication is second-line, short-term and non-continuous, in non-immunocompromised people aged 2 and over.',
-          patientImpact:
-            'The boxed warning instructs that continuous long-term use in any age group be avoided and that application be limited to areas of involvement. Only the 0.03% strength is indicated for children aged 2 to 15, and neither strength is indicated below age 2.',
-          clinicalPrecaution:
-            'Those constraints come from the boxed warning, not from evidence that continuous use is harmful — the warning states plainly that a causal relationship has not been established.',
-        },
-      ],
-    },
-    molecularSchema: {
-      structureType: 'small_molecule_smiles',
-      smilesString:
-        'C[C@@H]1C[C@@H]([C@@H]2[C@H](C[C@H]([C@@](O2)(C(=O)C(=O)N3CCCC[C@H]3C(=O)O[C@@H]([C@@H]([C@H](CC(=O)[C@@H](/C=C(/C1)\\C)CC=C)O)C)/C(=C/[C@@H]4CC[C@H]([C@@H](C4)OC)O)/C)O)C)OC)OC',
-      chemicalFormula: 'C44H69NO12',
-      molecularWeight: '804.00 g/mol',
-      targetReceptorAffinity:
-        'Binds FK506-binding protein 12 (FKBP-12) with nanomolar affinity. Neither tacrolimus nor FKBP-12 alone inhibits calcineurin; the composite surface of the two together is what binds the calcineurin A/B heterodimer and blocks substrate access to its active site. Molecular weight 804 g/mol is high for a topical drug, which is the reason systemic absorption through intact skin is low and why the ointment’s systemic exposure is far below the transplant range.',
-      structureSource: {
-        label:
-          'PubChem CID 445643 (tacrolimus) — canonical SMILES, molecular formula and weight, as held on the record',
-        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445643',
-        kind: 'url',
-      },
-      laboratoryWorkflow: [
-        {
-          id: 'tac-w1',
-          stepNumber: 1,
-          phase: 'QC',
-          name: 'Fermentation broth identity and tautomer ratio',
-          description:
-            'Confirm the producing organism and assay the broth. Tacrolimus is made by Streptomyces tsukubaensis, not by synthesis, and it exists in solution as an equilibrium of two rotamers about the pipecolinyl amide. An assay method that does not resolve or deliberately coalesce them will report the wrong potency.',
-          reagentsAndBuffer:
-            'Streptomyces tsukubaensis culture, tacrolimus reference standard, HPLC at elevated column temperature to coalesce rotamers, 1H NMR in CDCl3 for rotamer ratio, LC-MS for related macrolides',
-        },
-        {
-          id: 'tac-w2',
-          stepNumber: 2,
-          phase: 'Synthesis',
-          name: 'Extraction from broth and formulation into a petrolatum-based ointment',
-          description:
-            'Extract, then formulate into white petrolatum with mineral oil and propylene carbonate. The vehicle is not incidental: an 804-dalton macrolide does not cross intact stratum corneum easily, and the ointment base exists to hold it against inflamed, barrier-disrupted skin long enough for it to get in.',
-          dependsOnStepId: 'tac-w1',
-          reagentsAndBuffer:
-            'Organic solvent extraction from fermentation broth, white petrolatum, mineral oil, propylene carbonate, white wax and paraffin, controlled-temperature melt and cool',
-        },
-        {
-          id: 'tac-w3',
-          stepNumber: 3,
-          phase: 'Purification',
-          name: 'Chromatographic purification and related-substance profiling',
-          description:
-            'Separate tacrolimus from the structurally similar macrolides the same organism makes. This matters more than for a synthetic drug: a fermentation stream contains congeners that differ by a methyl or a hydroxyl and that co-elute unless the method is developed against them specifically.',
-          dependsOnStepId: 'tac-w2',
-          reagentsAndBuffer:
-            'Preparative reversed-phase chromatography, acetonitrile-water gradient, ascomycin and 8-epi-tacrolimus as marker impurities, evaporative light scattering or mass detection',
-        },
-        {
-          id: 'tac-w4',
-          stepNumber: 4,
-          phase: 'Cellular_Delivery',
-          name: 'Penetration through intact against barrier-disrupted skin',
-          description:
-            'Measure flux across both healthy and tape-stripped skin. The two answers should differ substantially, and that difference is the pharmacological argument of the whole product: the drug reaches inflamed skin where the barrier is broken, and largely does not reach intact skin once the eczema resolves.',
-          dependsOnStepId: 'tac-w3',
-          reagentsAndBuffer:
-            'Franz cells with intact and tape-stripped human skin, receptor fluid with solubiliser for a lipophilic macrolide, LC-MS/MS quantification in receptor fluid and in skin layers, blood sampling in vivo for systemic exposure',
-        },
-        {
-          id: 'tac-w5',
-          stepNumber: 5,
-          phase: 'Assay_Quantification',
-          name: 'Calcineurin phosphatase inhibition and IL-2 transcription readout',
-          description:
-            'Measure calcineurin phosphatase activity directly, then measure interleukin-2 transcription in stimulated primary T cells. The first is the biochemistry and the second is the biology, and only the second speaks to what the drug does in skin. Reporting the enzyme number alone is the most common way this mechanism gets overstated.',
-          dependsOnStepId: 'tac-w4',
-          reagentsAndBuffer:
-            'Recombinant calcineurin A/B with calmodulin and RII phosphopeptide substrate, primary human T cells stimulated with anti-CD3/anti-CD28 or PMA/ionomycin, quantitative PCR and ELISA for IL-2, NFAT nuclear translocation imaging',
-        },
-      ],
-    },
-    keyAudits: [
-      {
-        id: 'tac-a1',
-        category: 'measured',
-        title: '632 adults, and a fivefold separation from vehicle',
-        laymanSummary:
-          'In two randomised blinded trials, about one in three adults on the stronger ointment improved by ninety per cent or more. On the ointment base with no drug in it, about one in fifteen did.',
-        technicalDetails:
-          'Hanifin and colleagues pooled two randomised, double-blind studies in 632 adults with atopic dermatitis applying tacrolimus ointment 0.03% or 0.1% or vehicle twice daily for up to 12 weeks. Mean body surface area affected at baseline was 45% and 56% had severe disease. A 90% or greater improvement from baseline was reached by 6.6% on vehicle, 27.5% on 0.03% and 36.8% on 0.1% (P<0.001); 50% or better improvement by 19.8%, 61.6% and 72.7%. Tacrolimus was significantly better than vehicle on every parameter measured, including body surface area affected, individual sign scores, patient-assessed pruritus and the Eczema Area and Severity Index. The 0.1% strength outperformed 0.03%, particularly in severe or extensive disease and in African American patients.',
-        evidenceSource: 'Hanifin JM et al., J Am Acad Dermatol 2001;44:S28-S38 (PMID 11145793)',
-        doi: '10.1067/mjd.2001.109810',
-        measuredMetric:
-          'Proportion reaching 90% or greater and 50% or greater improvement at up to 12 weeks against vehicle',
-        auditFlag: 'verified',
-      },
-      {
-        id: 'tac-a2',
-        category: 'failed',
-        title: 'The weaker strength lost to an ordinary steroid ointment',
-        laymanSummary:
-          'The strength licensed for children was compared with a potent steroid ointment and came off worse. The stronger adult strength matched the steroid. Neither burned less — both burned more.',
-        technicalDetails:
-          'Ashcroft and colleagues pooled 25 randomised controlled trials in which 4,186 of 6,897 participants received pimecrolimus or tacrolimus. Tacrolimus 0.1% was as effective as potent topical corticosteroids at three weeks and more effective than combined hydrocortisone butyrate 0.1% on trunk plus hydrocortisone acetate 1% on face at 12 weeks (NNT 6), and more effective than hydrocortisone acetate 1% alone (NNT 4). Tacrolimus 0.03% was more effective than hydrocortisone acetate 1% (NNT 5) but less effective than hydrocortisone butyrate 0.1% (NNT -8). Direct comparison of the two strengths favoured 0.1%, significantly so only after 12 weeks (rate ratio 0.80, 95% CI 0.65 to 0.99). Both calcineurin inhibitors caused significantly more skin burning than topical corticosteroids; rates of skin infection did not differ in any comparison.',
-        evidenceSource: 'Ashcroft DM et al., BMJ 2005;330:516 (PMID 15731121)',
-        doi: '10.1136/bmj.38376.439653.D3',
-        measuredMetric:
-          'Number needed to treat against topical corticosteroid comparators, pooled across 25 randomised trials',
-        auditFlag: 'verified',
-      },
-      {
-        id: 'tac-a3',
-        category: 'inferred',
-        title: 'The reason to use it has never been demonstrated',
-        laymanSummary:
-          'The argument for a calcineurin inhibitor is that it spares skin from the thinning steroids cause over years. The pooled reviewers looked for studies showing that long-term safety gain and found none, and said so.',
-        technicalDetails:
-          'The BMJ meta-analysis concluded that both drugs are more effective than placebo treatments, "but in the absence of studies that show long term safety gains, any advantage over topical corticosteroids is unclear". It adds that topical tacrolimus is similar to potent topical corticosteroids and may have a place for long-term use on sites where corticosteroid side effects develop quickly, and that the usefulness of either treatment in patients who have failed to respond adequately to topical corticosteroids is also unclear — which is precisely the population the label licenses it for. The trials were three to twelve weeks long; skin atrophy from corticosteroids is a multi-year problem, so the comparison that would settle the question has never been run at the necessary duration.',
-        evidenceSource: 'Ashcroft DM et al., BMJ 2005;330:516 (PMID 15731121)',
-        doi: '10.1136/bmj.38376.439653.D3',
-        inferredClaim:
-          'That tacrolimus ointment is preferable to a topical steroid because it spares the skin over the long term — biologically well grounded, clinically routine, and never demonstrated in a trial long enough to measure it',
-        auditFlag: 'caution',
-      },
-      {
-        id: 'tac-a4',
-        category: 'conclusion_shift',
-        title: 'A boxed warning issued on theory, half-confirmed fifteen years later',
-        laymanSummary:
-          'In 2006 the regulator put a cancer warning on the ointment because the same drug swallowed by transplant patients raises lymphoma risk, and because of animal studies and scattered case reports. A meta-analysis of more than four hundred thousand treated people later found no overall cancer signal — but did find a lymphoma one.',
-        technicalDetails:
-          'Lam and colleagues pooled eight cohort studies (408,366 treated participants, 1,764,313 non-active comparator controls, 1,067,280 topical corticosteroid controls) and three case-control studies (3,898 cases, 14,026 cancer-free controls), from 2,464 non-duplicate records. There was no association between topical calcineurin inhibitor use and cancer overall against non-active comparators (RR 1.03, 95% CI 0.92 to 1.16), and no significant association with melanoma or keratinocyte carcinoma. Lymphoma risk was elevated against both non-active comparators (RR 1.86, 95% CI 1.39 to 2.49) and topical corticosteroid comparators (RR 1.35, 95% CI 1.13 to 1.61). The authors conclude that combined with the low absolute risk of lymphoma, the increase attributable to these drugs for any individual patient is likely very small. Confounding by indication is the standing objection: more severe atopic dermatitis both attracts second-line treatment and is itself associated with lymphoma, and observational data cannot separate the two.',
-        evidenceSource: 'Lam M, Zhu JW, Tadrous M, Drucker AM. JAMA Dermatol 2021;157:549-558 (PMID 33787818)',
-        doi: '10.1001/jamadermatol.2021.0345',
-        inferredClaim:
-          'That the 2006 boxed warning was either vindicated or refuted — the pooled data show no overall cancer excess and a real lymphoma association of uncertain causality, which is neither',
-        auditFlag: 'contested',
-      },
-      {
-        id: 'tac-a5',
-        category: 'inferred',
-        title: 'The boxed warning says in its own text that causality is not established',
-        laymanSummary:
-          'The warning is worth reading rather than summarising. It states that although a causal relationship has not been established, rare cases of skin cancer and lymphoma have been reported — and then instructs that continuous long-term use be avoided in any age group.',
-        technicalDetails:
-          'The boxed warning reads in full: "Long-term Safety of Topical Calcineurin Inhibitors Has Not Been Established. Although a causal relationship has not been established, rare cases of malignancy (e.g., skin and lymphoma) have been reported in patients treated with topical calcineurin inhibitors, including tacrolimus ointment. Therefore: Continuous long-term use of topical calcineurin inhibitors, including tacrolimus ointment, in any age group should be avoided, and application limited to areas of involvement with atopic dermatitis. Tacrolimus ointment is not indicated for use in children less than 2 years of age. Only 0.03% tacrolimus ointment is indicated for use in children 2-15 years of age." The Indications section correspondingly restricts the drug to second-line, short-term and non-continuous chronic use in non-immunocompromised patients who have failed other topical prescription treatments. A restriction derived from an explicitly non-causal association is a regulatory judgment about uncertainty, not a finding about the drug.',
-        evidenceSource:
-          'Tacrolimus ointment United States prescribing information, boxed warning and Indications and Usage (ANDA 200744, openFDA label endpoint); Protopic original approval NDA 050777, 8 December 2000',
-        inferredClaim:
-          'That the boxed warning records a demonstrated harm — its own first clause states that a causal relationship has not been established, and the restrictions follow from the uncertainty rather than from evidence of injury',
-        auditFlag: 'caution',
-      },
-      {
-        id: 'tac-a6',
-        category: 'measured',
-        title: 'No excess skin infection, which for an immunosuppressant is not obvious',
-        laymanSummary:
-          'A drug that switches off local immune cells might reasonably be expected to let infections take hold in treated skin. Across all the pooled comparisons, it did not.',
-        technicalDetails:
-          'In the BMJ meta-analysis of 25 randomised controlled trials, rates of skin infections did not differ in any of the comparisons, including against vehicle and against topical corticosteroids. This is a genuine negative finding rather than an absence of data, and it constrains the plausible magnitude of local immunosuppression at the concentrations reached through skin. It does not extend to the systemic drug, whose transplant indication carries an explicit increased-risk-of-infection warning, nor does it address herpetic infection specifically, which the ointment label handles separately.',
-        evidenceSource: 'Ashcroft DM et al., BMJ 2005;330:516 (PMID 15731121)',
-        doi: '10.1136/bmj.38376.439653.D3',
-        measuredMetric:
-          'Proportion of patients with skin infections, pooled across all comparisons in 25 randomised trials',
-        auditFlag: 'verified',
-      },
-    ],
-    mechanismSteps: [
-      {
-        step: 1,
-        title: 'A heavy molecule that only gets in where the skin is broken',
-        laymanDesc:
-          'Tacrolimus is large for a drug that has to cross skin. It penetrates inflamed, cracked eczema skin far better than healthy skin — so as the eczema improves, less of it gets through.',
-        molecularDetail:
-          'Molecular weight 804 g/mol, well above the rule-of-thumb ceiling for passive percutaneous absorption. Penetration is substantially higher through barrier-disrupted skin than intact stratum corneum, which produces a self-limiting exposure profile: systemic concentrations from the ointment sit far below the trough concentrations targeted in transplantation.',
-        iconName: 'Droplet',
-        visualStage: 'delivery',
-      },
-      {
-        step: 2,
-        title: 'It captures a protein already inside the cell',
-        laymanDesc:
-          'On its own the drug does nothing. Inside a T cell it grabs a small resident protein, and only the two of them stuck together have any effect.',
-        molecularDetail:
-          'Tacrolimus binds FK506-binding protein 12 with nanomolar affinity. Neither partner inhibits calcineurin alone: the composite surface formed by the drug-protein complex is the actual inhibitor, which is why this class is described as acting through a gain-of-function rather than by occupying an active site.',
-        iconName: 'Link',
-        visualStage: 'cellular_entry',
-      },
-      {
-        step: 3,
-        title: 'The pair clamp shut the calcium switch',
-        laymanDesc:
-          'When a T cell is triggered, calcium floods in and activates an enzyme that releases the signal for inflammation. The drug complex jams that enzyme.',
-        molecularDetail:
-          'The tacrolimus–FKBP-12 complex binds the calcineurin A/B heterodimer at a composite surface adjacent to the active site, sterically blocking access of the substrate NFAT to the phosphatase. Calcineurin is the only calcium- and calmodulin-dependent protein phosphatase in the cell, which is the basis for the selectivity of the effect.',
-        iconName: 'Lock',
-        visualStage: 'target_binding',
-      },
-      {
-        step: 4,
-        title: 'The inflammation genes are never switched on',
-        laymanDesc:
-          'Without that enzyme, the messenger cannot move into the nucleus, and the genes that summon more immune cells stay silent.',
-        molecularDetail:
-          'NFAT remains phosphorylated and cytoplasmic, so it cannot assemble with AP-1 on the promoters of IL-2, IL-3, IL-4, IL-5, GM-CSF, TNF-alpha and interferon-gamma. Tacrolimus additionally reduces FcεRI expression on Langerhans cells and inhibits mast cell and basophil mediator release, which is the proposed basis for the rapid effect on itch.',
-        iconName: 'Dna',
-        visualStage: 'catalytic_action',
-      },
-      {
-        step: 5,
-        title: 'Eczema clears, and the skin does not thin',
-        laymanDesc:
-          'About a third of adults on the stronger ointment improve by ninety per cent or more. Because the drug never touches the machinery that makes collagen, it does not cause the skin thinning that steroids do.',
-        molecularDetail:
-          '90% or greater improvement in 36.8% on 0.1% and 27.5% on 0.03% against 6.6% on vehicle in 632 randomised adults (P<0.001). Tacrolimus does not act on the glucocorticoid receptor and does not suppress dermal fibroblast collagen synthesis, so telangiectasia, striae and atrophy are not features of it.',
-        iconName: 'Sparkles',
-        visualStage: 'therapeutic_result',
-      },
-      {
-        step: 6,
-        title: 'What the endpoint does not measure',
-        laymanDesc:
-          'The trials ran for three to twelve weeks. The reason to choose this drug over a steroid is what happens over years, and no trial has been long enough to measure it. The cancer question has only ever been answered by observational data.',
-        molecularDetail:
-          'The pooled reviewers state that in the absence of studies showing long-term safety gains, any advantage over topical corticosteroids is unclear. The 2021 cancer meta-analysis rests entirely on eight cohort and three case-control studies; no randomised trial has ever been powered for malignancy, and confounding by disease severity cannot be excluded from the lymphoma association.',
-        iconName: 'HelpCircle',
-        visualStage: 'therapeutic_result',
-      },
-    ],
-    trials: [
-      {
-        trialId: 'Tacrolimus ointment adult pivotal programme (PMID 11145793)',
-        phase: 'Two randomised, double-blind, vehicle-controlled 12-week studies, pooled',
-        sampleSize: 632,
-        primaryEndpoint:
-          'Physician’s global evaluation of clinical response, with body surface area, EASI and patient-assessed pruritus',
-        endpointMet: true,
-        statisticalPValue:
-          '90% or greater improvement in 6.6% vehicle, 27.5% tacrolimus 0.03% and 36.8% tacrolimus 0.1% (P<0.001); 50% or greater improvement in 19.8%, 61.6% and 72.7%',
-        unreportedAdverseSignals:
-          'Vehicle-controlled only. No corticosteroid comparator arm existed in the registration programme, so the comparison that determines whether the drug should be used had to be assembled later from separate trials.',
-        independentReplicationStatus: 'Replicated',
-      },
-      {
-        trialId: 'Ashcroft 2005 pooled calcineurin-inhibitor meta-analysis (PMID 15731121)',
-        phase: 'Systematic review and meta-analysis of 25 randomised controlled trials',
-        sampleSize: 6897,
-        primaryEndpoint:
-          'Investigators’ and patients’ global assessment of response, flares, quality of life, withdrawal and tolerability against vehicle and against topical corticosteroids',
-        endpointMet: true,
-        statisticalPValue:
-          'Tacrolimus 0.1% equal to potent corticosteroids at 3 weeks; NNT 6 against a combined steroid regimen at 12 weeks and NNT 4 against hydrocortisone acetate 1%. Tacrolimus 0.03% NNT -8 against hydrocortisone butyrate 0.1%. Strength comparison rate ratio 0.80 (95% CI 0.65 to 0.99) at 12 weeks',
-        unreportedAdverseSignals:
-          'Significantly more skin burning than topical corticosteroids for both calcineurin inhibitors. The reviewers state that no study demonstrates the long-term safety gain that is the reason for using the class at all.',
-        independentReplicationStatus: 'Replicated',
-      },
-      {
-        trialId: 'Lam 2021 topical calcineurin inhibitor cancer meta-analysis (PMID 33787818)',
-        phase: 'Systematic review and meta-analysis of 8 cohort and 3 case-control studies',
-        sampleSize: 408366,
-        primaryEndpoint:
-          'Risk of cancer overall and of lymphoma, melanoma and keratinocyte carcinoma with topical calcineurin inhibitor use',
-        endpointMet: false,
-        statisticalPValue:
-          'Cancer overall RR 1.03 (95% CI 0.92 to 1.16) against non-active comparators; lymphoma RR 1.86 (95% CI 1.39 to 2.49) against non-active and RR 1.35 (95% CI 1.13 to 1.61) against topical corticosteroids; no significant association with melanoma or keratinocyte carcinoma',
-        unreportedAdverseSignals:
-          'Entirely observational. Confounding by indication is unresolved: severe atopic dermatitis is itself associated with lymphoma and is also what leads to a second-line drug being prescribed. No randomised trial has ever been powered for malignancy.',
-        independentReplicationStatus: 'Partially Replicated',
-      },
-    ],
-    measuredVsInferredSummary: {
-      strictlyMeasured: [
-        '90% or greater improvement in 36.8% on tacrolimus 0.1% and 27.5% on 0.03% against 6.6% on vehicle in 632 randomised adults (P<0.001)',
-        '50% or greater improvement in 72.7%, 61.6% and 19.8% respectively in the same programme',
-        'Tacrolimus 0.1% as effective as potent topical corticosteroids at three weeks, NNT 6 against a combined steroid regimen at 12 weeks',
-        'Tacrolimus 0.03% less effective than hydrocortisone butyrate 0.1%, NNT -8',
-        'No association with cancer overall (RR 1.03, 95% CI 0.92 to 1.16) and an association with lymphoma (RR 1.86, 95% CI 1.39 to 2.49) across 408,366 treated participants',
-        'No difference in skin infection rates in any pooled comparison, including against vehicle',
-      ],
-      unsupportedInferences: [
-        'That the boxed warning documents a demonstrated harm — its own text states a causal relationship has not been established',
-        'That the lymphoma association is causal, when severe eczema itself carries that risk and is what leads to the drug being prescribed',
-        'That tacrolimus is safer than a steroid over years, which is the reason it is chosen and has never been tested at that duration',
-        'That effectiveness in trials of people who had not failed steroids transfers to the steroid-refractory population the label licenses it for',
-      ],
-      whatFailedInitially: [
-        'The 0.03% strength, the only one licensed for children, lost to a potent topical corticosteroid (NNT -8)',
-        'Both calcineurin inhibitors burn on application significantly more than topical corticosteroids do',
-        'The pooled reviewers could find no study demonstrating the long-term safety advantage that justifies the class',
-        'The reviewers also state that usefulness in patients who failed topical corticosteroids is unclear, which is the licensed indication',
-      ],
-      realWorldOutcome: [
-        'Approved as an ointment under NDA 050777 on 8 December 2000, now generic and held by LEO Pharma',
-        'Carries a boxed warning added in 2006 restricting it to non-continuous use on involved areas only, in people aged 2 and over',
-        'Remains the standard second-line option for eczema on the face, eyelids and skin folds, where steroid atrophy appears fastest',
-        'Eighty-six listed tacrolimus products across all routes at a median United States acquisition cost of US$0.6591 per unit',
-      ],
-    },
-    deliverySystem: {
-      type: 'Topical ointment at 0.03% and 0.1% in a petrolatum base',
-      description:
-        'A white petrolatum ointment rather than a cream, because an 804-dalton macrolide needs prolonged occlusive contact to cross skin at all. Penetration is far greater through the disrupted barrier of active eczema than through intact skin, so exposure falls as the disease improves. Systemic concentrations achieved this way are far below the trough levels targeted when the same molecule is used to prevent transplant rejection.',
-      safetyProfile:
-        'Boxed warning: long-term safety has not been established, and although a causal relationship has not been established, rare cases of skin malignancy and lymphoma have been reported with topical calcineurin inhibitors. Continuous long-term use in any age group should be avoided and application limited to involved areas. Not indicated below age 2; only the 0.03% strength is indicated for ages 2 to 15. Skin burning and stinging on application are common and significantly more frequent than with topical corticosteroids. Skin infection rates did not differ from comparators in the pooled randomised evidence. It does not cause the skin atrophy, telangiectasia or striae that prolonged corticosteroid use does.',
-    },
-    commonQuestions: [
-      {
-        q: 'Does this ointment cause cancer?',
-        a: 'The most complete answer available pools eight cohort studies and three case-control studies covering 408,366 treated people. It found no association with cancer overall (RR 1.03, 95% CI 0.92 to 1.16) and no association with melanoma or with the common skin cancers. It did find an association with lymphoma: 1.86 times the risk against untreated comparators and 1.35 times against people using topical steroids. The authors’ own conclusion is that combined with how rare lymphoma is to begin with, the increase attributable to the drug for any individual is likely very small. The unresolved problem is that severe eczema is itself associated with lymphoma, and severe eczema is exactly what leads to this drug being prescribed. Observational data cannot separate those two things, and no randomised trial has ever been large enough to try.',
-        auditNote:
-          'This is a page where the honest answer is neither reassurance nor alarm. The signal is real, its cause is not established, and the boxed warning says the same thing in its first clause.',
-      },
-      {
-        q: 'Why is there a boxed warning if causality was never established?',
-        a: 'Because in 2006 the regulator was reasoning from three things: the same molecule taken by mouth by transplant patients raises lymphoma risk, animal studies at high systemic exposure showed malignancy, and case reports had accumulated. None of those is evidence that an ointment causes cancer, and the warning says so — it opens "Although a causal relationship has not been established". What follows from it are restrictions rather than a prohibition: avoid continuous long-term use, apply only to involved areas, not below age 2, only the weaker strength in children. That is a regulator acting on uncertainty rather than on injury, which is a defensible thing to do and a different thing from a demonstrated harm.',
-      },
-      {
-        q: 'Is it better than a steroid cream?',
-        a: 'For the stronger strength, it is about equal. Tacrolimus 0.1% matched potent topical corticosteroids at three weeks in the pooled analysis and beat a mixed steroid regimen at twelve weeks with a number needed to treat of six. The 0.03% strength, which is the only one licensed for children, was actually less effective than hydrocortisone butyrate 0.1%. Both strengths burn on application significantly more than steroids do. So on effectiveness there is no clear win. The reason to reach for it is that it does not thin skin — and the pooled reviewers looked specifically for studies demonstrating that long-term safety gain, and reported that they found none.',
-        auditNote:
-          'Three to twelve weeks is the length of these trials. Steroid atrophy is a multi-year problem. The comparison that would settle the question is the one nobody has run.',
-      },
-      {
-        q: 'Does it make skin infections more likely?',
-        a: 'The pooled randomised evidence says no. Across 25 trials, rates of skin infection did not differ in any comparison — not against vehicle and not against topical corticosteroids. That is a real negative result rather than missing data, and for a drug that switches off local T cells it is not the answer you would predict from the mechanism. It also does not extend to the systemic drug, where suppressing immunity enough to prevent transplant rejection carries an explicit infection warning.',
-      },
-      {
-        q: 'Is this the same drug transplant patients take?',
-        a: 'The same molecule, at a wholly different exposure. Swallowed or infused for transplantation, tacrolimus is titrated to blood concentrations that suppress the whole immune system, and it carries warnings about infection and lymphoma that are not theoretical. Applied as an ointment, an 804-dalton macrolide crosses skin poorly, penetrates best where eczema has broken the barrier, and produces systemic levels far below the transplant range — and less of it gets in as the skin heals. The 2006 boxed warning is the point where those two very different exposures were treated as one risk, and the 2021 meta-analysis is the best attempt so far to find out whether that was right.',
-      },
-    ],
-    recentAuditDate: 'August 2026',
-    hasDiscrepancy: true,
-    sources: [
-      {
-        label:
-          'Hanifin JM, Ling MR, Langley R, Breneman D, Rafal E. Tacrolimus ointment for the treatment of atopic dermatitis in adult patients: part I, efficacy. J Am Acad Dermatol 2001;44:S28-S38',
-        identifier: '10.1067/mjd.2001.109810',
-        kind: 'doi',
-      },
-      {
-        label:
-          'Ashcroft DM, Dimmock P, Garside R, Stein K, Williams HC. Efficacy and tolerability of topical pimecrolimus and tacrolimus in the treatment of atopic dermatitis: meta-analysis of randomised controlled trials. BMJ 2005;330:516',
-        identifier: '10.1136/bmj.38376.439653.D3',
-        kind: 'doi',
-      },
-      {
-        label:
-          'Lam M, Zhu JW, Tadrous M, Drucker AM. Association between topical calcineurin inhibitor use and risk of cancer, including lymphoma, keratinocyte carcinoma, and melanoma: a systematic review and meta-analysis. JAMA Dermatol 2021;157:549-558',
-        identifier: '10.1001/jamadermatol.2021.0345',
-        kind: 'doi',
-      },
-      {
-        label:
-          'Tacrolimus ointment United States prescribing information, boxed warning and Indications and Usage — ANDA 200744, retrieved from the openFDA label endpoint',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA200744%22',
-        kind: 'regulatory',
-      },
-      {
-        label:
-          'openFDA Drugs@FDA record for NDA 050777 (PROTOPIC tacrolimus ointment), original approval 8 December 2000, LEO Pharma AS',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA050777%22',
-        kind: 'regulatory',
-      },
-      NADAC_SOURCE,
-      COST_OF_PRODUCTION_SOURCE,
-    ],
-  },
-
-  // ---------------------------------------------------------------------------------------------
-  // 6. Calcipotriene — a psoriasis drug that loses to steroids on the scalp and irritates more,
+  // 5. Calcipotriene — a psoriasis drug that loses to steroids on the scalp and irritates more,
   //    which turned out to be an immune adjuvant that cut three-year skin cancer on treated faces.
   // ---------------------------------------------------------------------------------------------
   {
@@ -2571,7 +2125,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           class: 'Fixed-dose vitamin D analogue plus potent corticosteroid',
           howItCompares:
             'For both body and scalp psoriasis, combined treatment performed significantly better than vitamin D alone or corticosteroid alone in the Cochrane review, and was tolerated as well as potent corticosteroids and significantly better than vitamin D alone.',
-          typicalCost: 'Sold as a combination product; not comparable to the per-gram calcipotriene figure',
+          typicalCost:
+            'Sold as a combination product; not comparable to the per-gram calcipotriene figure',
           prosAndCons:
             'Pros: the best-supported topical option in the review, and better tolerated than calcipotriene by itself. Cons: carries the corticosteroid’s HPA-axis suppression, cataract and glaucoma warnings alongside calcipotriene’s hypercalcaemia warning.',
         },
@@ -2847,7 +2402,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'Cochrane topical psoriasis review, vitamin D analogues against placebo (CD005028)',
+        trialId:
+          'Cochrane topical psoriasis review, vitamin D analogues against placebo (CD005028)',
         phase: 'Systematic review and meta-analysis of 177 randomised controlled trials',
         sampleSize: 34808,
         primaryEndpoint:
@@ -2860,7 +2416,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Replicated',
       },
       {
-        trialId: 'Cochrane topical psoriasis review, vitamin D against corticosteroids on the scalp',
+        trialId:
+          'Cochrane topical psoriasis review, vitamin D against corticosteroids on the scalp',
         phase: 'Pooled head-to-head comparison within the same systematic review',
         sampleSize: 34808,
         primaryEndpoint:
@@ -2885,7 +2442,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Unreplicated',
       },
       {
-        trialId: 'Rosenberg 2019 three-year squamous cell carcinoma follow-up cohort (PMID 30895944)',
+        trialId:
+          'Rosenberg 2019 three-year squamous cell carcinoma follow-up cohort (PMID 30895944)',
         phase: 'Blinded prospective cohort study of participants from the randomised trial',
         sampleSize: 70,
         primaryEndpoint:
@@ -2989,7 +2547,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Calcipotriene and betamethasone dipropionate ointment United States prescribing information, Warnings and Precautions and Adverse Reactions — ANDA 200174, retrieved from the openFDA label endpoint',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA200174%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA200174%22',
         kind: 'regulatory',
       },
       NADAC_SOURCE,
@@ -2998,16 +2557,19 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
   },
 
   // ---------------------------------------------------------------------------------------------
-  // 7. Terbinafine — 70% mycological cure and 38% normal-looking nails, from the same trial, on the
+  // 6. Terbinafine — 70% mycological cure and 38% normal-looking nails, from the same trial, on the
   //    same label, and a resistant dermatophyte species that did not have a name until 2020.
   // ---------------------------------------------------------------------------------------------
   {
     slug: 'terbinafine',
     name: 'Terbinafine',
     tradeName: 'Lamisil / Lamisil AT (topical, over the counter)',
-    sponsor: 'Novartis, which developed it; the topical over-the-counter line is now held elsewhere',
-    targetGene: 'ERG1 — the fungal squalene epoxidase gene. The human enzyme is not meaningfully inhibited',
-    targetProtein: 'Fungal squalene epoxidase (squalene monooxygenase), the first committed step of ergosterol biosynthesis',
+    sponsor:
+      'Novartis, which developed it; the topical over-the-counter line is now held elsewhere',
+    targetGene:
+      'ERG1 — the fungal squalene epoxidase gene. The human enzyme is not meaningfully inhibited',
+    targetProtein:
+      'Fungal squalene epoxidase (squalene monooxygenase), the first committed step of ergosterol biosynthesis',
     modality: 'Small Molecule',
     approvalStatus: 'FDA Approved',
     approvalYear: 1992,
@@ -3089,8 +2651,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Report loss of taste or smell, and do not wait to see whether it returns',
-          action:
-            'The label directs discontinuation if taste or smell disturbance occurs.',
+          action: 'The label directs discontinuation if taste or smell disturbance occurs.',
           patientImpact:
             'Taste disturbance including complete taste loss can be severe, prolonged or permanent, and the same is true of smell. These are not nuisance side effects — they are irreversible in some people, and the treatment being given is for the appearance of a nail.',
           clinicalPrecaution:
@@ -3340,7 +2901,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'LION study (PMID 10205099)',
-        phase: 'Prospective, randomised, double-blind, double-dummy, multicentre, four-arm, 72 weeks',
+        phase:
+          'Prospective, randomised, double-blind, double-dummy, multicentre, four-arm, 72 weeks',
         sampleSize: 496,
         primaryEndpoint:
           'Mycological cure of the target toenail at week 72, negative microscopy plus negative culture',
@@ -3367,7 +2929,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         trialId: 'Cochrane pooled terbinafine against azoles (CD010031)',
         phase: 'Systematic review and meta-analysis of randomised controlled trials',
         sampleSize: 2544,
-        primaryEndpoint: 'Clinical cure and mycological cure, terbinafine against azole comparators',
+        primaryEndpoint:
+          'Clinical cure and mycological cure, terbinafine against azole comparators',
         endpointMet: true,
         statisticalPValue:
           'Clinical cure RR 0.82 (95% CI 0.72 to 0.95; 15 studies, 2,168 participants) and mycological cure RR 0.77 (95% CI 0.68 to 0.88; 17 studies, 2,544 participants), moderate-quality evidence; adverse events RR 1.00 (95% CI 0.86 to 1.17)',
@@ -3473,13 +3036,15 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Terbinafine tablets United States prescribing information, section 5 Warnings and Precautions and section 14 Clinical Studies — ANDA 078297, retrieved from the openFDA label endpoint',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA078297%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA078297%22',
         kind: 'regulatory',
       },
       {
         label:
           'openFDA Drugs@FDA record for NDA 020192 (LAMISIL cream), original approval 30 December 1992, Novartis',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA020192%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA020192%22',
         kind: 'regulatory',
       },
       NADAC_SOURCE,
@@ -3488,7 +3053,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
   },
 
   // ---------------------------------------------------------------------------------------------
-  // 8. Ketoconazole — the first oral azole, de-indicated by its own boxed warning for the
+  // 7. Ketoconazole — the first oral azole, de-indicated by its own boxed warning for the
   //    infections it was famous for, and re-approved in 2021 for the side effect.
   // ---------------------------------------------------------------------------------------------
   {
@@ -3581,8 +3146,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'The tablets and the shampoo are not interchangeable in risk',
-          action:
-            'The oral formulation carries a boxed warning; the topical formulations do not.',
+          action: 'The oral formulation carries a boxed warning; the topical formulations do not.',
           patientImpact:
             'Oral ketoconazole has caused hepatotoxicity with fatal outcome or requiring liver transplantation, in some patients with no obvious risk factors, and prolongs the QT interval with nine drugs contraindicated for co-administration. None of that applies to a shampoo.',
           clinicalPrecaution:
@@ -3829,7 +3393,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         trialId: 'Cochrane pooled ketoconazole against topical steroids (CD008138)',
         phase: 'Pooled head-to-head comparison within the same systematic review',
         sampleSize: 632,
-        primaryEndpoint: 'Remission rate and side effect occurrence against topical corticosteroids',
+        primaryEndpoint:
+          'Remission rate and side effect occurrence against topical corticosteroids',
         endpointMet: false,
         statisticalPValue:
           'Remission RR 1.17 (95% CI 0.95 to 1.44), six studies, low-quality evidence — no significant difference. Side effects RR 0.56 (95% CI 0.32 to 0.96), eight studies, moderate-quality evidence — 44% lower',
@@ -3919,7 +3484,8 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Ketoconazole tablets United States prescribing information, boxed warning and Indications and Usage — ANDA 075912, retrieved from the openFDA label endpoint',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA075912%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA075912%22',
         kind: 'regulatory',
       },
       {
@@ -3931,8 +3497,970 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       {
         label:
           'openFDA Drugs@FDA record for NDA 214133 (RECORLEV levoketoconazole), original approval 30 December 2021, Strongbridge',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA214133%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA214133%22',
         kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 8. Permethrin — still first-line for scabies, and facing a head louse population in which the
+  //    pooled frequency of the resistance mutation is 76.9%.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'permethrin',
+    name: 'Permethrin',
+    tradeName: 'Elimite / Nix / Permethrin Cream 5% / lice-killing creme rinse 1%',
+    sponsor:
+      'No single originator; the 5% cream is approved under NDA 019855 and the over-the-counter 1% lice products under separate applications, with the labeller held on the record listed as GlaxoSmithKline',
+    targetGene:
+      'None human. The target is the arthropod voltage-gated sodium channel gene, the para orthologue, in which the knockdown-resistance substitutions arise',
+    targetProtein:
+      'The alpha subunit of the arthropod voltage-gated sodium channel, held open so the nerve cannot repolarise',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1986,
+    indication:
+      'Permethrin cream 5% is indicated for the treatment of infestation with Sarcoptes scabiei (scabies). The over-the-counter 1% creme rinse is indicated for the treatment of head lice',
+    patientFriendlyIndication: 'Scabies, and head lice',
+    anatomicalSite:
+      'The skin surface and the burrows in the stratum corneum where the scabies mite lives, and the scalp and hair shaft for lice',
+    conditionContext: {
+      conditionExplainer:
+        'Scabies is a mite that burrows into the outer layer of skin and lays eggs there. The unbearable itch is an allergic reaction to the mite and its waste, which is why it can continue for weeks after every mite is dead. Head lice are a different arthropod living on the hair shaft, and the same drug kills both.',
+      whyItMatters:
+        'Permethrin is the World Health Organization’s and most guidelines’ first-line scabies treatment, and it is genuinely hard to beat. It is also the drug in this batch facing the most advanced resistance problem, and the two facts belong on the same page because the resistance is in the louse rather than the mite.',
+      whoTakesThis:
+        'People with scabies, and their household contacts; and children and adults with head lice, for whom the 1% product is sold off the shelf.',
+      clinicalGoals:
+        'Complete clearance of the infestation. The itch is a separate matter and outlasts the cure, which is the commonest reason people believe treatment has failed when it has not.',
+    },
+    oneSentenceVerdict:
+      'A synthetic pyrethroid that holds the arthropod sodium channel open until the nerve cannot fire again — indistinguishable from ivermectin on complete clearance of scabies by two weeks across 15 randomised trials in 1,896 people, with a pooled treatment failure rate of 10.8% that has risen by about half a percentage point every year since 1983, and facing a head louse population whose pooled resistance-mutation frequency is 76.9%.',
+    laymanHowItWorks:
+      'Nerves fire by letting sodium rush in through a gate and then slamming the gate shut so they can reset. Permethrin wedges that gate open. Sodium keeps leaking in, the nerve never resets, and the mite or louse is paralysed and dies. Insect gates are far more sensitive to it than human ones, and on top of that human skin absorbs almost none of it — about two per cent or less of what is applied — and breaks down what does get in within hours. That combination of a species-selective target and near-zero exposure is why a neurotoxic insecticide is safe enough to put on a baby.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 69,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.2314 per gram, the median United States pharmacy acquisition cost across 3 listed permethrin products (CMS NADAC, generic, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Long off patent, and with only three products in the CMS survey the median rests on a thin base. The 1% lice products are sold over the counter and are not all captured in the prescription acquisition-cost survey at all, which is worth knowing before treating that number as the price of treating an infestation.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The Cochrane comparison of permethrin against ivermectin is one of the cleaner head-to-head questions in dermatology and the answer is a draw by two weeks. What separates them is practical rather than pharmacological: one is a cream applied over the whole body and the other is a tablet, which matters enormously when a household or an institution has to be treated at once.',
+      conventionalRx: [
+        {
+          name: 'Oral ivermectin',
+          class: 'Macrocyclic lactone, opens glutamate-gated chloride channels in invertebrates',
+          howItCompares:
+            'At one week, permethrin cleared more people — 65% average against an illustrative 43% for ivermectin (RR 0.65, 95% CI 0.54 to 0.78, 6 studies, 613 participants). By two weeks the difference had gone (74% against 68%, RR 0.91, 95% CI 0.76 to 1.08). At four weeks with one to three doses or applications, 93% against 86% (RR 0.92, 95% CI 0.82 to 1.03). The pooled treatment-failure review put permethrin at 10.8% and oral ivermectin at 11.8%.',
+          typicalCost: 'Generic tablets; not comparable to a per-gram cream figure',
+          prosAndCons:
+            'Pros: swallowed rather than smeared, which makes treating households, care homes and outbreaks feasible. Cons: slower to clear in the first week, and the failure review found single-dose failure at 15.2% against 7.1% for two doses.',
+        },
+        {
+          name: 'Topical ivermectin 1% lotion',
+          class: 'The same macrocyclic lactone applied to skin',
+          howItCompares:
+            'Probably no difference from permethrin cream at four weeks (extrapolated cure rates 96% against 94%; RR 1.02, 95% CI 0.96 to 1.08, 210 participants, 1 study, moderate-certainty evidence), and no difference from oral ivermectin (97% against 96%, RR 0.99, 95% CI 0.95 to 1.03). Pooled treatment failure 9.3%, the lowest of the three.',
+          typicalCost: 'Priced as a topical lotion; availability varies by country',
+          prosAndCons:
+            'Pros: the lowest pooled failure rate of the three main options, with mild and rare adverse events. Cons: the comparison against permethrin rests on a single 210-participant study.',
+        },
+        {
+          name: 'Benzyl benzoate, crotamiton, malathion and sulfur',
+          class: 'Older scabicides of varied mechanism',
+          howItCompares:
+            'All included in the 147-study treatment-failure review, where the overall failure prevalence across all agents was 15.2% (95% CI 12.9 to 17.6) — higher than permethrin, oral ivermectin or topical ivermectin individually.',
+          typicalCost:
+            'Generally inexpensive; sulfur preparations remain the option in settings where the others are unavailable',
+          prosAndCons:
+            'Pros: cheap, long-established, and sulfur is usable where nothing else is. Cons: higher pooled failure rates and, for several of them, worse tolerability.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'The itch outlasting treatment is not treatment failure',
+          action:
+            'Post-scabetic itch is an immune reaction to dead mite material, not evidence of live mites.',
+          patientImpact:
+            'It can persist for weeks after every mite is dead. Repeating treatment because the itch has not stopped is the commonest avoidable exposure in this condition, and it is what makes real failure rates hard to measure.',
+          clinicalPrecaution:
+            'Persistent or worsening itch, new burrows, or itch in previously unaffected household members are reasons to be re-assessed rather than to re-treat unsupervised.',
+        },
+        {
+          name: 'For head lice, resistance is the likeliest explanation for failure',
+          action:
+            'The knockdown-resistance mutation is now the majority allele in surveyed louse populations.',
+          patientImpact:
+            'Across 24 studies the mean frequency of pyrethroid resistance was 76.9%, and in four surveyed countries the resistance allele frequency reached 100%. The highest resistance recorded was against permethrin specifically.',
+          clinicalPrecaution:
+            'This is an epidemiological finding about louse populations, not advice about what to use instead. Which treatment is appropriate is a clinical decision.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1(C(C1C(=O)OCC2=CC(=CC=C2)OC3=CC=CC=C3)C=C(Cl)Cl)C',
+      chemicalFormula: 'C21H20Cl2O3',
+      molecularWeight: '391.30 g/mol',
+      targetReceptorAffinity:
+        'Permethrin has no receptor in the conventional sense: it binds a lipophilic site on the arthropod voltage-gated sodium channel and slows its inactivation, prolonging the open state. Selectivity comes from three things at once — the arthropod channel is far more sensitive than the mammalian one, mammalian body temperature reduces pyrethroid binding, and mammalian esterases hydrolyse the ester rapidly. The label reports absorption after a single application of the 5% cream as 2% or less of the amount applied.',
+      structureSource: {
+        label:
+          'PubChem CID 40326 (permethrin) — canonical SMILES, molecular formula and weight, as held on the record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/40326',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'per-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Cis/trans isomer ratio of the cyclopropane ester',
+          description:
+            'Determine the ratio of cis to trans isomers about the cyclopropane ring. Permethrin is not one compound but a defined mixture, the cis isomer being the more insecticidal and the more slowly metabolised. A product with the wrong ratio is a different insecticide with different potency and different persistence.',
+          reagentsAndBuffer:
+            'Permethrin reference standard of defined isomer ratio, capillary gas chromatography with flame ionisation or mass detection, 1H NMR for cyclopropane ring geometry',
+        },
+        {
+          id: 'per-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Esterification and formulation into cream or creme rinse',
+          description:
+            'Couple the dichlorovinyl cyclopropanecarboxylic acid to 3-phenoxybenzyl alcohol and formulate. The ester bond is deliberately the weak point of the molecule: it is what mammalian esterases cleave within hours, and the whole safety argument for putting this on human skin runs through that bond.',
+          dependsOnStepId: 'per-w1',
+          reagentsAndBuffer:
+            'Cis/trans-3-(2,2-dichlorovinyl)-2,2-dimethylcyclopropanecarboxylic acid, 3-phenoxybenzyl alcohol, acid catalyst or acyl chloride route, emulsion cream base or cationic creme rinse base',
+        },
+        {
+          id: 'per-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Removal of the free alcohol and acid, and hydrolytic stability testing',
+          description:
+            'Strip out unreacted phenoxybenzyl alcohol and the free acid, then test how fast the ester hydrolyses in the finished vehicle. A cream that hydrolyses on the shelf is delivering inactive metabolites, and the assay that detects that is the same one used to demonstrate the drug’s rapid inactivation in the body.',
+          dependsOnStepId: 'per-w2',
+          reagentsAndBuffer:
+            'Vacuum distillation or chromatographic removal of residuals, gas chromatography-mass spectrometry for 3-phenoxybenzyl alcohol and free acid, accelerated stability at 40C and 75% relative humidity across the vehicle pH range',
+        },
+        {
+          id: 'per-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Percutaneous absorption and urinary metabolite recovery',
+          description:
+            'Measure how much crosses human skin. The answer is meant to be very small, and the label states it: 2% or less of a single application of the 5% cream, established with carbon-14 labelled permethrin and in patients with moderate to severe scabies. That figure is the entire systemic safety case for the product.',
+          dependsOnStepId: 'per-w3',
+          reagentsAndBuffer:
+            'Carbon-14 labelled permethrin, dermatomed human skin in Franz cells or in vivo application under clinical conditions, urinary collection for 3-phenoxybenzoic acid and other ester hydrolysis metabolites, LC-MS/MS quantification',
+        },
+        {
+          id: 'per-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Ex vivo knockdown bioassay and kdr allele genotyping',
+          description:
+            'Expose field-collected lice or mites to permethrin and time how long knockdown takes, then genotype the sodium channel gene. The two together are the only way to say whether a treatment failure was resistance or something else — and a systematic review of 147 scabies studies found that none of them assessed resistance at all.',
+          dependsOnStepId: 'per-w4',
+          reagentsAndBuffer:
+            'Field-collected Pediculus humanus capitis or Sarcoptes scabiei, filter-paper or immersion knockdown bioassay with timed observation, DNA extraction and PCR of the voltage-gated sodium channel gene covering the knockdown-resistance codons',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'per-a1',
+        category: 'measured',
+        title: 'Faster than ivermectin in week one, level with it by week two',
+        laymanSummary:
+          'Fifteen randomised trials compared permethrin cream against ivermectin. After a week, roughly two-thirds of the permethrin patients were clear against four in ten on ivermectin. By two weeks the gap had closed, and by four weeks both were above eighty-five per cent.',
+        technicalDetails:
+          'The 2018 Cochrane review included 15 studies with 1,896 participants comparing topical permethrin, systemic ivermectin and topical ivermectin. Using the average clearance of 65% in the permethrin trials, the illustrative clearance with oral ivermectin at one week was 43% (RR 0.65, 95% CI 0.54 to 0.78; 613 participants, 6 studies, low-certainty evidence). By two weeks there may be little or no difference (74% against 68%; RR 0.91, 95% CI 0.76 to 1.08; 459 participants, 5 studies). With one to three doses or applications at four weeks, illustrative cures were 93% for permethrin and 86% for ivermectin (RR 0.92, 95% CI 0.82 to 1.03; 581 participants, 5 studies). The authors conclude that for the most part no difference in efficacy was detected, with confidence in the effect estimates mostly low to moderate and poor reporting a major limitation.',
+        evidenceSource:
+          'Rosumeck S, Nast A, Dressler C. Cochrane Database Syst Rev 2018;4:CD012994 (PMID 29608022)',
+        doi: '10.1002/14651858.CD012994',
+        measuredMetric:
+          'Complete clearance of scabies at one, two and four weeks, permethrin against ivermectin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'per-a2',
+        category: 'failed',
+        title:
+          'Failure rates have risen every year since 1983, and nobody has tested for resistance',
+        laymanSummary:
+          'A review of 147 studies found that about one scabies treatment in seven fails, and that permethrin failures have crept up by roughly half a percentage point every year for four decades. Not one of the 147 studies looked for resistance in the mite.',
+        technicalDetails:
+          'The overall prevalence of scabies treatment failure across 147 eligible studies was 15.2% (95% CI 12.9 to 17.6; I² = 95.3%, moderate-certainty evidence), with regional variation (P=0.003) and the highest rate in the Western Pacific region at 26.9% (95% CI 14.5 to 41.2). Permethrin failure was 10.8% (95% CI 7.5 to 14.5), oral ivermectin 11.8% (8.4 to 15.4) and topical ivermectin 9.3% (5.1 to 14.3). Across the included studies from 1983 to 2021, overall failure prevalence increased by 0.27% per year and permethrin failure prevalence by 0.58% per year. Only three studies conducted a multivariable risk factor analysis, and the review records that no studies assessed resistance. The authors read the temporal increase as a hint of decreasing mite susceptibility.',
+        evidenceSource:
+          'Mbuagbaw L et al. Failure of scabies treatment: a systematic review and meta-analysis. Br J Dermatol 2024;190:163-173 (PMID 37625798)',
+        doi: '10.1093/bjd/ljad308',
+        measuredMetric:
+          'Pooled treatment failure prevalence and its annual trend, 1983 to 2021, across 147 studies',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'per-a3',
+        category: 'conclusion_shift',
+        title: 'Against head lice, the resistance mutation is now the majority allele',
+        laymanSummary:
+          'Permethrin is still sold off the shelf as the standard treatment for head lice. Across twenty-four surveys worldwide, three-quarters of lice carried the mutation that makes them insensitive to it, and in four countries every louse tested did.',
+        technicalDetails:
+          'A systematic review and meta-analysis of 24 articles covering the period 2000 to June 2021 estimated the mean frequency of pyrethroid resistance in treated head louse populations at 76.9%, of which 64.4% of resistant lice were homozygous and 30.3% heterozygous. Four countries — Australia, England, Israel and Turkey — showed 100% knockdown-resistance gene frequencies, which the authors state is likely to render pyrethrin- and pyrethroid-based pediculicides ineffective there. The highest resistance recorded across the included studies was against permethrin specifically. The mechanism is target-site insensitivity: point substitutions in the voltage-gated sodium channel that reduce pyrethroid binding without affecting the channel’s normal function.',
+        evidenceSource: 'Mohammadi J et al., Parasite 2021;28:86 (PMID 34935614)',
+        doi: '10.1051/parasite/2021083',
+        inferredClaim:
+          'That an over-the-counter treatment’s continued availability implies continued effectiveness — the pooled resistance frequency in the target organism is 76.9% and reaches 100% in four surveyed countries',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'per-a4',
+        category: 'measured',
+        title: 'The safety case is a pharmacokinetic number, and the label states it',
+        laymanSummary:
+          'Putting an insecticide on a child’s skin sounds alarming until you see how little of it gets in. The label says two per cent or less of a single application is absorbed, and what does get in is broken down and passed in urine.',
+        technicalDetails:
+          'The permethrin cream 5% label states that although the amount absorbed after a single application has not been determined precisely, data from studies with carbon-14 labelled permethrin and absorption studies of the cream applied to patients with moderate to severe scabies indicate it is 2% or less of the amount applied. Permethrin is rapidly metabolised by ester hydrolysis to inactive metabolites excreted primarily in the urine. Selectivity has three independent components: the arthropod sodium channel is markedly more sensitive than the mammalian one, pyrethroid binding falls with rising temperature so mammalian body temperature works against it, and mammalian esterases cleave the molecule quickly. Any one of those alone would be a thin argument; together they are why the drug is usable on infants.',
+        evidenceSource:
+          'Permethrin Cream 5% United States prescribing information, Clinical Pharmacology (NDA 019855, openFDA label endpoint)',
+        measuredMetric:
+          'Percutaneous absorption of 2% or less of a single application, from carbon-14 labelled studies',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'per-a5',
+        category: 'inferred',
+        title:
+          'The trials were run where the disease is, which is not where the guidelines are used',
+        laymanSummary:
+          'Nearly every randomised trial in the Cochrane review was conducted in South Asia or North Africa, where scabies is common and associated with poverty. The results are then applied worldwide, including in settings with different mite populations and different living conditions.',
+        technicalDetails:
+          'The review records that nearly all included studies were conducted in South Asia or North Africa, where the disease is more common and is associated with poverty; that the overall risk of bias in included trials was moderate with poor reporting in many studies; and that confidence in the effect estimates was mostly low to moderate, with poor reporting a major limitation. The treatment-failure review separately found significant regional differences in failure prevalence between World Health Organization regions (P=0.003), with the Western Pacific at 26.9% against an overall 15.2%. Transporting a pooled clearance rate across regions that demonstrably differ by a factor of nearly two is an inference the trials do not license.',
+        evidenceSource:
+          'Rosumeck S, Nast A, Dressler C. Cochrane Database Syst Rev 2018;4:CD012994; Mbuagbaw L et al., Br J Dermatol 2024;190:163-173',
+        doi: '10.1002/14651858.CD012994',
+        inferredClaim:
+          'That a pooled clearance rate from trials in South Asia and North Africa describes what will happen elsewhere, when the pooled failure rate itself differs significantly by region',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'per-a6',
+        category: 'inferred',
+        title: 'Nothing in these trials measured the symptom people actually have',
+        laymanSummary:
+          'Scabies is unbearable because of the itch. The primary outcome in every one of these trials is whether mites can still be found. The itch is an allergic reaction that continues for weeks after the last mite dies, and it is not what was measured.',
+        technicalDetails:
+          'The Cochrane review’s primary outcome was complete clearance of scabies, with secondary outcomes of re-treatment, adverse events and withdrawals. Post-scabetic pruritus is not among them. Reporting of adverse events in included studies was described as suboptimal; at four weeks the extrapolated proportion with at least one adverse event was 4% for permethrin and 5% for ivermectin (RR 1.30, 95% CI 0.35 to 4.83, low-certainty evidence). Because persistent itch is routinely interpreted as treatment failure by patients and sometimes by clinicians, an endpoint that excludes it also systematically under-measures the thing that drives re-treatment.',
+        evidenceSource:
+          'Rosumeck S, Nast A, Dressler C. Cochrane Database Syst Rev 2018;4:CD012994 (PMID 29608022)',
+        doi: '10.1002/14651858.CD012994',
+        inferredClaim:
+          'That parasitological clearance is what a scabies patient experiences as cure — the itch is an immune response to dead mite material and persists for weeks after clearance, and no trial in the review measured it',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Applied to skin, and barely absorbed',
+        laymanDesc:
+          'The cream goes on the skin where the mites are. Almost none of it crosses into the body — two per cent or less of what is applied.',
+        molecularDetail:
+          'The label reports absorption of 2% or less of a single application of the 5% cream, from carbon-14 labelled studies and from patients with moderate to severe scabies. Permethrin is rapidly metabolised by ester hydrolysis to inactive metabolites excreted primarily in urine.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the nerves of the mite',
+        laymanDesc:
+          'The mite lives in burrows in the outer skin, which is exactly where a lipophilic cream sits. The drug crosses the mite’s cuticle and reaches its nervous system.',
+        molecularDetail:
+          'Permethrin is highly lipophilic and partitions into the stratum corneum and the burrows within it. Penetration into the arthropod occurs through the cuticle rather than by ingestion, which is why the drug works on contact rather than requiring feeding.',
+        iconName: 'Bug',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The sodium gate is wedged open',
+        laymanDesc:
+          'Nerve cells fire by letting sodium in and then shutting the gate. Permethrin stops the gate closing.',
+        molecularDetail:
+          'Permethrin binds a lipophilic site on the arthropod voltage-gated sodium channel and slows inactivation, prolonging the open state. The label describes it as disrupting the sodium channel current by which polarisation of the membrane is regulated.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The nerve cannot reset and the animal is paralysed',
+        laymanDesc:
+          'With sodium leaking in continuously the nerve never repolarises. The mite or louse is knocked down and dies.',
+        molecularDetail:
+          'Delayed repolarisation and paralysis are the stated consequences in the label. Human channels are far less sensitive, mammalian body temperature reduces pyrethroid binding, and mammalian esterases hydrolyse the ester rapidly — three independent contributions to selectivity.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Unless the gate has been rebuilt',
+        laymanDesc:
+          'Lice have accumulated changes in that gate which stop the drug binding. Across worldwide surveys about three-quarters of lice carry them, and in four countries all of them do.',
+        molecularDetail:
+          'Knockdown resistance arises from point substitutions in the voltage-gated sodium channel that reduce pyrethroid binding without impairing normal channel function. Pooled mean frequency across 24 studies was 76.9%, with 64.4% of resistant lice homozygous, and 100% allele frequency reported in Australia, England, Israel and Turkey.',
+        iconName: 'ShieldOff',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the endpoint does not measure',
+        laymanDesc:
+          'Every trial counts whether mites can still be found. None of them measured the itch, which is what the patient came in about and which continues for weeks after the last mite is dead.',
+        molecularDetail:
+          'Complete clearance of scabies was the primary outcome of every trial in the Cochrane review; post-scabetic pruritus appears in none of the outcome sets. The 147-study failure review records that no study assessed resistance either, so the two most likely explanations for a treatment appearing not to work are both unmeasured.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane pooled permethrin against ivermectin, one week (CD012994)',
+        phase: 'Systematic review and meta-analysis of randomised controlled trials',
+        sampleSize: 613,
+        primaryEndpoint: 'Complete clearance of scabies one week after treatment',
+        endpointMet: true,
+        statisticalPValue:
+          'RR 0.65 (95% CI 0.54 to 0.78) favouring permethrin, 6 studies, low-certainty evidence; illustrative clearance 65% permethrin against 43% ivermectin',
+        unreportedAdverseSignals:
+          'Nearly all included trials were run in South Asia or North Africa. Risk of bias was moderate and reporting poor in many studies, which the reviewers name as their major limitation.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane pooled permethrin against ivermectin, four weeks (CD012994)',
+        phase: 'Systematic review and meta-analysis of randomised controlled trials',
+        sampleSize: 581,
+        primaryEndpoint:
+          'Complete clearance four weeks after initiation, one to three applications or doses',
+        endpointMet: false,
+        statisticalPValue:
+          'RR 0.92 (95% CI 0.82 to 1.03), 5 studies, low-certainty evidence; illustrative cures 93% permethrin against 86% ivermectin — no difference detected',
+        unreportedAdverseSignals:
+          'The reviewers state that for the most part no difference in efficacy was detected between permethrin and either form of ivermectin. The week-one advantage does not persist.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Scabies treatment failure systematic review (PMID 37625798)',
+        phase: 'Systematic review and random-effects meta-analysis of 147 studies, 1983 to 2021',
+        sampleSize: 147,
+        primaryEndpoint: 'Prevalence of scabies treatment failure and its associated factors',
+        endpointMet: true,
+        statisticalPValue:
+          'Overall failure 15.2% (95% CI 12.9 to 17.6, I² = 95.3%); permethrin 10.8% (7.5 to 14.5); permethrin failure rising 0.58% per year across the study period',
+        unreportedAdverseSignals:
+          'Only three of 147 studies performed a multivariable risk factor analysis and none assessed resistance. Sample size here counts studies, not participants — participant-level totals are not reported as a single figure.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Pyrethroid resistance frequency meta-analysis in head lice (PMID 34935614)',
+        phase: 'Systematic review and meta-analysis of 24 field surveys, 2000 to June 2021',
+        sampleSize: 24,
+        primaryEndpoint:
+          'Frequency of pyrethroid knockdown-resistance alleles in treated head louse populations',
+        endpointMet: true,
+        statisticalPValue:
+          'Mean resistance frequency 76.9%; 64.4% of resistant lice homozygous and 30.3% heterozygous; 100% allele frequency reported in four countries',
+        unreportedAdverseSignals:
+          'Sample size counts included articles rather than lice. Surveys are geographically uneven and the review restricted itself to English-language publications.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Complete clearance at one week 65% on permethrin against an illustrative 43% on oral ivermectin (RR 0.65, 95% CI 0.54 to 0.78)',
+        'No difference detected by two weeks (74% against 68%) or at four weeks (93% against 86%, RR 0.92, 95% CI 0.82 to 1.03)',
+        'Pooled scabies treatment failure 10.8% for permethrin against 15.2% across all agents',
+        'Permethrin treatment failure prevalence rose by 0.58% per year across studies published from 1983 to 2021',
+        'Mean pyrethroid resistance frequency in head lice 76.9% across 24 surveys, reaching 100% in four countries',
+        'Percutaneous absorption of 2% or less of a single application of the 5% cream',
+      ],
+      unsupportedInferences: [
+        'That parasitological clearance is what the patient experiences as cure, when the itch persists for weeks afterwards and no trial measured it',
+        'That continued over-the-counter availability for head lice implies continued effectiveness against them',
+        'That a pooled clearance rate from South Asian and North African trials transfers to regions whose failure rates differ significantly',
+        'That the rising failure rate is resistance — the authors call it a hint, and none of the 147 studies tested for it',
+      ],
+      whatFailedInitially: [
+        'The week-one advantage over ivermectin disappears by week two and is gone at four weeks',
+        'Permethrin failure prevalence has climbed steadily for nearly four decades of published studies',
+        'Against head lice the resistance allele is now the majority allele in surveyed populations, and fixed in four countries',
+        'No study in the 147-study failure review assessed resistance, so the most important question about the drug has no direct data behind it',
+      ],
+      realWorldOutcome: [
+        'Still the first-line scabies treatment in most guidelines, approved as a 5% cream under NDA 019855',
+        'Only three permethrin products appear in the CMS survey, at a median United States acquisition cost of US$0.2314 per gram',
+        'The 1% lice product remains on open shelves in countries where the resistance allele is at or near fixation',
+        'Its principal practical rival is a tablet, which is why ivermectin has taken over outbreak and institutional treatment',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical cream 5% for scabies; over-the-counter creme rinse 1% for head lice',
+      description:
+        'A lipophilic cream that partitions into the stratum corneum and the mite burrows within it, killing on contact rather than requiring the parasite to feed. Percutaneous absorption is 2% or less of a single application, and what is absorbed is hydrolysed to inactive metabolites and excreted in urine. The 1% creme rinse is a short-contact scalp product for a different parasite.',
+      safetyProfile:
+        'Well tolerated: in the pooled randomised trials at four weeks, the extrapolated proportion with at least one adverse event was 4% on permethrin against 5% on ivermectin, and no withdrawals for adverse events occurred in either group. Reporting of adverse events in the underlying studies was described by the reviewers as suboptimal. Transient burning, stinging and itching on application are the usual complaints, and are hard to distinguish from the itch of the disease. The selectivity that makes a neurotoxic insecticide acceptable on human and infant skin rests on the arthropod channel’s greater sensitivity, the temperature dependence of pyrethroid binding and rapid mammalian ester hydrolysis.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why am I still itching after the treatment worked?',
+        a: 'Because the itch is not caused by the mites moving around — it is an allergic reaction to the mites, their eggs and their waste, and that material stays in the skin after everything is dead. It can go on for weeks. This is the single most common reason people conclude a treatment has failed, and it is also why the failure rates in the literature are hard to trust: the trials measured whether mites could still be found, which is the right scientific endpoint and is not the thing the patient is experiencing. Not one trial in the Cochrane review had persistent itch as an outcome.',
+        auditNote:
+          'New burrows, spreading rash, or itch appearing in household members who were previously fine are a different matter and mean a reassessment rather than a repeat.',
+      },
+      {
+        q: 'Is permethrin or ivermectin better for scabies?',
+        a: 'For the first week, permethrin. After that, neither. Pooling six trials, permethrin cleared about 65% of people at one week against an illustrative 43% for oral ivermectin. By two weeks the figures were 74% and 68% with the confidence interval crossing no difference, and by four weeks 93% and 86%, again with no difference detected. The reviewers’ own summary is that for the most part they found no difference in efficacy. What separates the two in practice is the form: treating an entire household or a care home with a whole-body cream is a different proposition from handing out tablets.',
+      },
+      {
+        q: 'Does permethrin still work on head lice?',
+        a: 'Increasingly not, and the evidence for that is genetic rather than clinical. Lice develop resistance through point mutations in the sodium channel the drug targets — the gate is rebuilt so the drug no longer wedges it open. A meta-analysis of 24 field surveys found the mean frequency of that resistance at 76.9%, with about two-thirds of resistant lice carrying it on both chromosomes. In Australia, England, Israel and Turkey the surveyed frequency was 100%, which the authors say is likely to make pyrethroid-based treatments ineffective there. The highest resistance recorded across all the included studies was against permethrin specifically. It is still sold on open shelves.',
+      },
+      {
+        q: 'Is it safe to put an insecticide on skin, including a child’s?',
+        a: 'The safety case is unusually explicit and it rests on numbers rather than reassurance. Three things point the same way. The arthropod sodium channel is far more sensitive to pyrethroids than the mammalian one. Pyrethroid binding weakens as temperature rises, so mammalian body temperature works against the drug. And mammalian esterases cleave the molecule quickly into inactive fragments excreted in urine. On top of that, the label states that absorption after a single application of the 5% cream is 2% or less of what was applied, established using carbon-14 labelled drug in patients with real scabies. Any one of those arguments alone would be thin; together they are why the drug is used on infants.',
+      },
+      {
+        q: 'Is scabies becoming resistant to permethrin too?',
+        a: 'It is suspected and it has not been demonstrated. A review of 147 studies published between 1983 and 2021 found that permethrin treatment failure rose by about 0.58 percentage points every year over that period, and overall failure across all drugs by 0.27 points a year. The authors describe this as hinting at decreasing mite susceptibility. The same review records that no study assessed resistance — not one of the 147. So the trend is real, the explanation is unestablished, and the experiment that would settle it has not been done. Poor adherence, reinfestation from untreated contacts and misdiagnosis are all plausible alternatives.',
+        auditNote:
+          'The failure rate also differs significantly between regions, from 26.9% in the Western Pacific against 15.2% overall, which any single explanation would need to account for.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Rosumeck S, Nast A, Dressler C. Ivermectin and permethrin for treating scabies. Cochrane Database Syst Rev 2018;4:CD012994',
+        identifier: '10.1002/14651858.CD012994',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mbuagbaw L, Sadeghirad B, Morgan RL, et al. Failure of scabies treatment: a systematic review and meta-analysis. Br J Dermatol 2024;190:163-173',
+        identifier: '10.1093/bjd/ljad308',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mohammadi J, Azizi K, Alipour H, et al. Frequency of pyrethroid resistance in human head louse treatment: systematic review and meta-analysis. Parasite 2021;28:86',
+        identifier: '10.1051/parasite/2021083',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Permethrin Cream 5% United States prescribing information, Indications and Usage and Clinical Pharmacology — NDA 019855, retrieved from the openFDA label endpoint',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22NDA019855%22',
+        kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 9. Mupirocin — a 4,030-patient trial that missed its primary endpoint and is remembered for a
+  //    subgroup, and a decolonisation strategy that works best where resistance has not arrived.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'mupirocin',
+    name: 'Mupirocin',
+    tradeName: 'Bactroban / Bactroban Nasal / Centany',
+    sponsor:
+      'Beecham, now GlaxoSmithKline, which isolated it from Pseudomonas fluorescens and developed it',
+    targetGene:
+      'ileS — the bacterial isoleucyl-tRNA synthetase gene. Resistance comes from a second, plasmid-borne copy, ileS-2, carried on the mupA determinant',
+    targetProtein:
+      'Bacterial isoleucyl-tRNA synthetase. The human enzyme has a different active site and is not inhibited',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1987,
+    indication:
+      'Mupirocin cream 2% is indicated for secondarily infected traumatic skin lesions up to 10 cm in length or 100 cm2 in area due to susceptible isolates of Staphylococcus aureus and Streptococcus pyogenes. The ointment is indicated for impetigo, and a separate nasal ointment is used for eradication of nasal Staphylococcus aureus carriage',
+    patientFriendlyIndication:
+      'Impetigo and small infected skin wounds, and clearing staph from the nose before surgery',
+    anatomicalSite:
+      'The skin surface and the anterior nares — the front of the nostril, which is where Staphylococcus aureus lives in about a quarter of people',
+    conditionContext: {
+      conditionExplainer:
+        'Roughly a quarter of people carry Staphylococcus aureus in their nose without any illness. That reservoir is where a patient’s own surgical wound infection usually comes from. Impetigo is the same organism, plus Streptococcus pyogenes, growing on broken skin.',
+      whyItMatters:
+        'Mupirocin is the drug behind hospital decolonisation programmes worldwide, and the evidence for those programmes is a more complicated story than it is usually told as. The largest trial of the strategy missed its primary endpoint outright.',
+      whoTakesThis:
+        'People with impetigo or a small infected wound, and surgical patients found to carry Staphylococcus aureus in the nose.',
+      clinicalGoals:
+        'Clearance of the skin infection, or eradication of nasal carriage. Whether eradicating carriage prevents infection is a separate question with two large trials pointing in different directions.',
+    },
+    oneSentenceVerdict:
+      'A Pseudomonas natural product that mimics isoleucine locked onto ATP and jams the bacterial enzyme that loads isoleucine onto tRNA — better than placebo for impetigo (RR 2.24, 95% CI 1.61 to 3.13) and indistinguishable from fusidic acid, but its 4,030-patient surgical prophylaxis trial missed its primary endpoint (2.3% against 2.4%) and is remembered for a carrier subgroup, with pooled high-level resistance now at 8.5%.',
+    laymanHowItWorks:
+      'To build a protein, a cell must first attach each amino acid to its matching carrier molecule, and a dedicated enzyme does that for each amino acid. Mupirocin is shaped almost exactly like isoleucine already joined to the cell’s energy currency — the fleeting intermediate that enzyme normally makes. It slots into the enzyme and will not leave. No isoleucine gets loaded, protein production halts, and the bacterium stops. The equivalent human enzyme is built differently enough that the drug ignores it. The molecule is also destroyed within minutes in blood, which is why it exists only as an ointment.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 71,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.8388 per gram, the median United States pharmacy acquisition cost across 20 listed mupirocin products (CMS NADAC, generic, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Off patent with 20 listed products, and at US$0.8388 per gram it is the second most expensive drug per gram in this batch after tretinoin. It is a fermentation product of Pseudomonas fluorescens rather than a synthetic compound, which puts a floor under manufacturing cost, and the near-universal hospital decolonisation programmes keep demand high.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For impetigo the Cochrane review found mupirocin and fusidic acid indistinguishable, and topical treatment equal or superior to oral antibiotics with fewer side effects. For nasal decolonisation there is no established alternative with comparable trial evidence, which is precisely why the rising resistance figures matter.',
+      conventionalRx: [
+        {
+          name: 'Fusidic acid (topical)',
+          class: 'Steroid-like antibiotic inhibiting bacterial elongation factor G',
+          howItCompares:
+            'In four studies with 440 participants there was no clear evidence that either mupirocin or fusidic acid was more effective than the other (RR 1.03, 95% CI 0.95 to 1.11). The reviewers conclude the two are of similar efficacy.',
+          typicalCost: 'Generic where marketed; not licensed in the United States',
+          prosAndCons:
+            'Pros: equivalent efficacy in the pooled comparison, and a different target so no cross-resistance. Cons: resistance in Staphylococcus aureus is well documented for this agent too, and it is unavailable in some markets.',
+        },
+        {
+          name: 'Oral erythromycin or cloxacillin',
+          class: 'Systemic antibiotics for impetigo',
+          howItCompares:
+            'Topical mupirocin was slightly superior to oral erythromycin across 10 studies with 581 participants (pooled RR 1.07, 95% CI 1.01 to 1.13), and there were no significant differences against other oral antibiotics. Side effects were more common with oral treatment, driven mostly by gastrointestinal effects.',
+          typicalCost: 'Generic oral antibiotics, inexpensive',
+          prosAndCons:
+            'Pros: practical for extensive disease, where the review notes a lack of studies and cannot say whether oral is superior. Cons: more side effects for no measured efficacy gain in localised impetigo.',
+        },
+        {
+          name: 'Retapamulin',
+          class: 'Pleuromutilin, inhibits the bacterial ribosome at a distinct site',
+          howItCompares:
+            'The Cochrane review notes that for this newly developed topical treatment no resistance had yet been reported at the time of writing, against a background of growing resistance among the bacteria causing impetigo to commonly used antibiotics.',
+          typicalCost: 'Branded topical; more expensive than generic mupirocin',
+          prosAndCons:
+            'Pros: a genuinely different target and, at the time of that review, no reported resistance. Cons: a smaller evidence base, and two of the review’s authors disclosed manufacturer funding for a retapamulin trial included in the update.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Disinfectant washes are not a substitute',
+          action:
+            'The Cochrane review pooled two studies with 292 participants comparing topical antibiotics against disinfecting treatments.',
+          patientImpact:
+            'Topical antibiotics were significantly better (RR 1.15, 95% CI 1.01 to 1.32), and the reviewers state there is a lack of evidence to support disinfection measures to manage impetigo.',
+          clinicalPrecaution:
+            'This concerns treating established impetigo. It says nothing about hand hygiene or preventing spread, which were not what was compared.',
+        },
+        {
+          name: 'The area limit in the indication is part of the indication',
+          action:
+            'The cream is licensed for secondarily infected traumatic skin lesions up to 10 cm in length or 100 cm2 in area.',
+          patientImpact:
+            'That boundary exists because the trials were done in localised disease. The Cochrane review notes a lack of studies in people with extensive impetigo and says it is therefore unclear whether oral antibiotics are superior in that group.',
+          clinicalPrecaution:
+            'Extensive or spreading infection, fever, or infection not settling are reasons for clinical assessment rather than continued topical treatment.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@H]([C@H]1[C@@H](O1)C[C@H]2CO[C@H]([C@@H]([C@@H]2O)O)C/C(=C/C(=O)OCCCCCCCCC(=O)O)/C)[C@H](C)O',
+      chemicalFormula: 'C26H44O9',
+      molecularWeight: '500.60 g/mol',
+      targetReceptorAffinity:
+        'Mupirocin is a structural mimic of isoleucyl-adenylate, the transient intermediate that isoleucyl-tRNA synthetase forms from isoleucine and ATP. It binds the bacterial enzyme reversibly and with high affinity, competing with both substrates, and does not inhibit the eukaryotic enzyme, whose active site differs. Activity is concentration-dependent: bacteriostatic at low concentrations and bactericidal at the concentrations achieved topically.',
+      structureSource: {
+        label:
+          'PubChem CID 446596 (mupirocin) — canonical SMILES, molecular formula and weight, as held on the record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/446596',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mup-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Fermentation identity and pseudomonic acid congener profile',
+          description:
+            'Confirm the producing strain and separate pseudomonic acid A from the B, C and D congeners it makes alongside. Mupirocin is pseudomonic acid A specifically; the others differ by a hydroxyl or a double bond and are far less potent. This is a purity problem that only exists because the drug is grown rather than built.',
+          reagentsAndBuffer:
+            'Pseudomonas fluorescens culture, pseudomonic acid A reference standard, reversed-phase HPLC with ultraviolet detection at 221 nm, LC-MS for congener identification',
+        },
+        {
+          id: 'mup-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Extraction and formulation into a polyethylene glycol or emollient base',
+          description:
+            'Extract from broth and formulate. Vehicle choice is a real clinical variable here: the original ointment used a polyethylene glycol base which is unsuitable for large denuded areas because the glycol is absorbed, and the cream and the paraffin-based ointment exist to work around that.',
+          dependsOnStepId: 'mup-w1',
+          reagentsAndBuffer:
+            'Solvent extraction from fermentation broth, polyethylene glycol 400 and 3350 base or white soft paraffin, benzyl alcohol as preservative in the cream, mild heating with controlled cooling',
+        },
+        {
+          id: 'mup-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and ester hydrolysis stability profiling',
+          description:
+            'Purify and then measure how fast the ester linking the monic acid head to the nonanoic acid tail hydrolyses. That hydrolysis yields monic acid, which is inactive, and it happens within minutes in plasma. The instability is the reason there is no systemic mupirocin and never will be.',
+          dependsOnStepId: 'mup-w2',
+          reagentsAndBuffer:
+            'Crystallisation as the free acid or calcium salt, HPLC assay of mupirocin and monic acid, human plasma incubation at 37C for half-life determination, accelerated stability at 40C and 75% relative humidity',
+        },
+        {
+          id: 'mup-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Retention in the anterior nares and on wound surfaces',
+          description:
+            'Measure how long the drug persists where it is applied. Nasal decolonisation depends entirely on maintaining concentration in the anterior nares against mucociliary clearance, and a formulation that is cleared quickly fails for reasons that have nothing to do with susceptibility.',
+          dependsOnStepId: 'mup-w3',
+          reagentsAndBuffer:
+            'Anterior nares swab recovery at timed intervals, ex vivo skin and wound-model surfaces, LC-MS/MS quantification of mupirocin and monic acid, plasma sampling to confirm absence of systemic exposure',
+        },
+        {
+          id: 'mup-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Minimum inhibitory concentration with low- and high-level resistance breakpoints',
+          description:
+            'Determine the minimum inhibitory concentration against Staphylococcus aureus isolates, then apply both resistance breakpoints separately and screen for the mupA determinant. Low-level and high-level resistance have different mechanisms and different clinical meanings, and a single susceptible-or-resistant call collapses a distinction that decides whether decolonisation will work.',
+          dependsOnStepId: 'mup-w4',
+          reagentsAndBuffer:
+            'Staphylococcus aureus clinical isolates including MRSA, CLSI broth microdilution and mupirocin-containing agar screens at both breakpoints, PCR for the plasmid-borne mupA (ileS-2) determinant and sequencing of native ileS',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mup-a1',
+        category: 'failed',
+        title: 'The 4,030-patient prophylaxis trial missed its primary endpoint',
+        laymanSummary:
+          'The largest randomised trial of nasal mupirocin before surgery found no difference in surgical wound infections: 2.3 per cent on the drug and 2.4 per cent on placebo. The result the trial is remembered for came from a subgroup analysis.',
+        technicalDetails:
+          'Perl and colleagues randomised 4,030 patients undergoing general, gynaecologic, neurologic or cardiothoracic surgery to intranasal mupirocin or placebo, with 3,864 in the intention-to-treat analysis. Overall, 2.3% of mupirocin recipients and 2.4% of placebo recipients had Staphylococcus aureus infections at surgical sites — the primary endpoint, not met. Among the 891 patients (23.1% of completers) who carried S. aureus in the anterior nares, 4.0% of mupirocin recipients had nosocomial S. aureus infections against 7.7% on placebo (odds ratio 0.49, 95% CI 0.25 to 0.92, P=0.02). The authors state the conclusion precisely: prophylactic intranasal mupirocin did not significantly reduce surgical-site S. aureus infections overall, but did significantly decrease all nosocomial S. aureus infections among carriers. Note that the subgroup result is also on a different endpoint from the primary one.',
+        evidenceSource: 'Perl TM et al., N Engl J Med 2002;346:1871-1877 (PMID 12063371)',
+        doi: '10.1056/NEJMoa003069',
+        measuredMetric:
+          'Staphylococcus aureus surgical-site infection, 2.3% against 2.4% in 3,864 patients',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'mup-a2',
+        category: 'measured',
+        title: 'Screening first, then treating only carriers, cut infections by more than half',
+        laymanSummary:
+          'A later trial screened everyone on admission with a rapid genetic test and treated only the carriers. Infections fell from 7.7 per cent to 3.4 per cent, and deep wound infections by nearly eighty per cent. Deaths did not change.',
+        technicalDetails:
+          'Bode and colleagues screened 6,771 patients on admission with a real-time PCR assay; 1,270 swabs from 1,251 patients were positive and 917 entered the intention-to-treat analysis, of whom 88.1% underwent surgery. Treatment was mupirocin nasal ointment plus chlorhexidine soap against placebo. Staphylococcus aureus infection occurred in 3.4% (17 of 504) against 7.7% (32 of 413), relative risk 0.42 (95% CI 0.23 to 0.75). The effect was most pronounced for deep surgical-site infections, relative risk 0.21 (95% CI 0.07 to 0.62). Time to onset of nosocomial infection was shorter in the placebo group (P=0.005). There was no significant difference in all-cause in-hospital mortality. Registered as ISRCTN56186788.',
+        evidenceSource: 'Bode LG et al., N Engl J Med 2010;362:9-17 (PMID 20054045)',
+        doi: '10.1056/NEJMoa0808939',
+        measuredMetric:
+          'Hospital-associated Staphylococcus aureus infection in screened carriers, 3.4% against 7.7%',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mup-a3',
+        category: 'inferred',
+        title: 'Every organism in that trial was susceptible, and the paper says so',
+        laymanSummary:
+          'The trial that made decolonisation standard practice was run where no strain in it was resistant to either methicillin or mupirocin. That is stated in the results, and it is exactly the condition that no longer holds in much of the world.',
+        technicalDetails:
+          'The Bode trial reports: "All the S. aureus strains identified on PCR assay were susceptible to methicillin and mupirocin." The trial was conducted in Dutch hospitals between October 2005 and June 2007, in a country with an aggressive search-and-destroy MRSA policy and correspondingly low prevalence. Transporting a relative risk of 0.42 into a setting where a pooled 13.8% of MRSA isolates are mupirocin-resistant and 8.1% carry high-level resistance requires assuming the intervention works the same way when a meaningful fraction of target organisms cannot be eradicated by it. The trial also found no difference in all-cause in-hospital mortality, so the demonstrated benefit is on infection counts rather than on survival.',
+        evidenceSource:
+          'Bode LG et al., N Engl J Med 2010;362:9-17 (PMID 20054045); Dadashi M et al., J Glob Antimicrob Resist 2020;20:238-247 (PMID 31442624)',
+        doi: '10.1056/NEJMoa0808939',
+        inferredClaim:
+          'That a decolonisation result obtained where every strain was mupirocin-susceptible transfers to settings where a substantial minority are not — the condition is stated in the trial’s own results and is not met globally',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mup-a4',
+        category: 'measured',
+        title: 'Impetigo: better than placebo, level with fusidic acid, barely ahead of a tablet',
+        laymanSummary:
+          'Across 68 trials in more than five thousand people, topical antibiotics roughly doubled the cure rate against placebo. Mupirocin and fusidic acid could not be told apart. Against an oral antibiotic mupirocin came out ahead by seven per cent relative, an interval that only just clears no difference.',
+        technicalDetails:
+          'The 2012 Cochrane review of interventions for impetigo included 68 trials with 5,578 participants reporting on 50 different treatments. Topical antibiotic treatment beat placebo (pooled RR 2.24, 95% CI 1.61 to 3.13; 6 studies, 575 participants). Mupirocin and fusidic acid were indistinguishable (RR 1.03, 95% CI 0.95 to 1.11; 4 studies, 440 participants). Topical mupirocin was slightly superior to oral erythromycin (pooled RR 1.07, 95% CI 1.01 to 1.13; 10 studies, 581 participants), with no significant differences against other oral antibiotics. Topical antibiotics beat disinfecting treatments (RR 1.15, 95% CI 1.01 to 1.32; 2 studies, 292 participants). Reported side effects were low and mostly mild, and more common with oral than topical treatment, the difference driven mainly by gastrointestinal effects. Most studies did not provide enough information to assess risk of bias, and only 15 reported blinding of participants and outcome assessors.',
+        evidenceSource:
+          'Koning S et al., Cochrane Database Syst Rev 2012;1:CD003261 (PMID 22258953)',
+        doi: '10.1002/14651858.CD003261.pub3',
+        measuredMetric:
+          'Pooled cure rate ratios for topical antibiotic against placebo, against fusidic acid and against oral erythromycin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mup-a5',
+        category: 'conclusion_shift',
+        title: 'Resistance is now measurable and rising, including the high-level kind',
+        laymanSummary:
+          'The drug that hospitals rely on to clear staph from noses is losing ground. Pooling studies from 2000 to 2018, about one staph isolate in thirteen was mupirocin-resistant, rising to about one MRSA isolate in seven.',
+        technicalDetails:
+          'A meta-analysis of studies published between 2000 and 2018 found pooled prevalences of mupirocin-resistant Staphylococcus aureus at 7.6% (95% CI 6.2 to 9.0) from 30 studies, mupirocin-resistant MRSA at 13.8% (95% CI 12.0 to 15.6) from 63 studies, high-level mupirocin-resistant S. aureus at 8.5% (95% CI 6.3 to 10.7) from 27 studies and high-level mupirocin-resistant MRSA at 8.1% (95% CI 6.8 to 9.4) from 60 studies. The authors report a global increase in high-level resistance over time, with a significant increase specifically in mupirocin-resistant MRSA. High-level resistance is conferred by mupA, a plasmid-borne second copy of the isoleucyl-tRNA synthetase gene (ileS-2) whose product the drug does not bind; low-level resistance arises from point mutations in the native enzyme. Because they are transmissible and non-transmissible respectively, the distinction matters more than the numbers do.',
+        evidenceSource:
+          'Dadashi M et al., J Glob Antimicrob Resist 2020;20:238-247 (PMID 31442624)',
+        doi: '10.1016/j.jgar.2019.07.032',
+        inferredClaim:
+          'That mupirocin remains uniformly effective for decolonisation — pooled resistance is 7.6% overall and 13.8% among MRSA, with high-level plasmid-borne resistance rising over time',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'mup-a6',
+        category: 'inferred',
+        title: 'Reducing infection counts is not the same as saving lives',
+        laymanSummary:
+          'The trial that showed decolonisation works measured infections. It also measured deaths in hospital, and found no difference between the groups.',
+        technicalDetails:
+          'The Bode trial states that there was no significant difference in all-cause in-hospital mortality between the mupirocin-chlorhexidine group and placebo. The Perl trial did not demonstrate an effect on its primary infection endpoint at all. Neither trial was powered for mortality, and a reduction in deep surgical-site infection from a relative risk of 0.21 is a clinically meaningful outcome in its own right. But the step from fewer infections to fewer deaths is an inference here, not a measurement, and decolonisation programmes are frequently justified in the stronger terms.',
+        evidenceSource:
+          'Bode LG et al., N Engl J Med 2010;362:9-17 (PMID 20054045); Perl TM et al., N Engl J Med 2002;346:1871-1877',
+        doi: '10.1056/NEJMoa0808939',
+        inferredClaim:
+          'That nasal decolonisation reduces deaths — the trial that established it measured in-hospital mortality and found no significant difference, and was not powered to',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mup-a7',
+        category: 'measured',
+        title: 'A target no other antibiotic uses, and a molecule blood destroys in minutes',
+        laymanSummary:
+          'Mupirocin blocks an enzyme no other antibiotic class touches, so bacteria resistant to everything else are usually still sensitive to it. It is also broken down almost instantly in blood, which is why it can only ever be a cream.',
+        technicalDetails:
+          'Mupirocin is a structural analogue of isoleucyl-adenylate and reversibly inhibits bacterial isoleucyl-tRNA synthetase, competing with both isoleucine and ATP. No other clinically used antibiotic class targets an aminoacyl-tRNA synthetase in this way, so cross-resistance with other classes does not occur. The eukaryotic enzyme is not inhibited. The ester bond joining the monic acid moiety to 9-hydroxynonanoic acid is hydrolysed rapidly in plasma to inactive monic acid, which precludes systemic administration entirely — an unusual case where a molecule’s metabolic fragility is the reason its indication is confined to a surface.',
+        evidenceSource:
+          'Mupirocin Cream 2% United States prescribing information, Indications and Usage and Microbiology sections, as held on the record',
+        measuredMetric:
+          'Mechanism of action and route restriction as stated in the approved label and reflected in the absence of any systemic formulation',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Applied to skin or to the front of the nose',
+        laymanDesc:
+          'The ointment goes where the bacteria are — on the crusted skin of impetigo, or just inside the nostril where staph lives quietly in about a quarter of people.',
+        molecularDetail:
+          'The anterior nares are the principal reservoir of Staphylococcus aureus and the source of most endogenous surgical site infections: 23.1% of completers in the Perl trial carried it. Nasal decolonisation depends on maintaining local concentration against mucociliary clearance rather than on systemic exposure, of which there is none.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It impersonates a fleeting intermediate',
+        laymanDesc:
+          'To build a protein, a bacterium first joins each amino acid to the cell’s energy currency for a fraction of a second. Mupirocin is shaped like that fleeting pairing, made permanent.',
+        molecularDetail:
+          'Mupirocin is a structural mimic of isoleucyl-adenylate, the transient enzyme-bound intermediate formed from isoleucine and ATP. It competes with both substrates for the active site of bacterial isoleucyl-tRNA synthetase and binds reversibly with high affinity.',
+        iconName: 'Copy',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The enzyme is jammed and isoleucine is never loaded',
+        laymanDesc:
+          'With the enzyme occupied, no isoleucine gets attached to its carrier. Every protein that needs isoleucine — which is nearly all of them — stalls.',
+        molecularDetail:
+          'Inhibition of isoleucyl-tRNA synthetase depletes charged tRNA-Ile, halting translation and triggering the stringent response. No other clinically used antibiotic class inhibits an aminoacyl-tRNA synthetase this way, so cross-resistance with other classes does not arise.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Human cells are untouched, and so is the bloodstream',
+        laymanDesc:
+          'The human version of the same enzyme is built differently and ignores the drug. And blood destroys the molecule within minutes, so it cannot be given any other way than on a surface.',
+        molecularDetail:
+          'The eukaryotic isoleucyl-tRNA synthetase active site differs and is not inhibited. The ester linking monic acid to 9-hydroxynonanoic acid is rapidly hydrolysed in plasma to inactive monic acid, which is why no systemic formulation exists or can exist.',
+        iconName: 'ShieldCheck',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The infection clears, or the carriage does',
+        laymanDesc:
+          'On skin, cure rates roughly double compared with placebo. In the nose, treating screened carriers cut hospital staph infections from about eight per cent to about three.',
+        molecularDetail:
+          'Impetigo: topical antibiotic against placebo RR 2.24 (95% CI 1.61 to 3.13). Decolonisation of screened carriers: S. aureus infection 3.4% against 7.7%, RR 0.42 (95% CI 0.23 to 0.75), with deep surgical-site infection RR 0.21 (95% CI 0.07 to 0.62).',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the endpoint does not measure',
+        laymanDesc:
+          'The decolonisation trial counted infections, not deaths, and found no difference in deaths. And every organism in it was susceptible to the drug, which is no longer true everywhere.',
+        molecularDetail:
+          'No significant difference in all-cause in-hospital mortality in the Bode trial. All strains identified in that trial were susceptible to methicillin and mupirocin. Pooled resistance now stands at 7.6% for S. aureus overall, 13.8% among MRSA and 8.5% for high-level resistance, which is plasmid-borne and transmissible.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Perl 2002 intranasal mupirocin surgical prophylaxis trial (PMID 12063371)',
+        phase: 'Randomised, double-blind, placebo-controlled',
+        sampleSize: 3864,
+        primaryEndpoint:
+          'Staphylococcus aureus infection at the surgical site, intranasal mupirocin against placebo',
+        endpointMet: false,
+        statisticalPValue:
+          '2.3% on mupirocin against 2.4% on placebo — no significant reduction. In the 891-patient carrier subgroup, nosocomial S. aureus infection 4.0% against 7.7%, odds ratio 0.49 (95% CI 0.25 to 0.92), P=0.02',
+        unreportedAdverseSignals:
+          'The result this trial is cited for is a subgroup, and on a different endpoint from the primary one — all nosocomial S. aureus infections rather than surgical-site infections. Both facts are stated plainly in the paper and routinely lost in citation.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Bode 2010 screen-and-decolonise trial (ISRCTN56186788)',
+        phase: 'Randomised, double-blind, placebo-controlled, multicentre',
+        sampleSize: 917,
+        primaryEndpoint:
+          'Hospital-associated Staphylococcus aureus infection in PCR-identified nasal carriers treated with mupirocin nasal ointment plus chlorhexidine soap',
+        endpointMet: true,
+        statisticalPValue:
+          '3.4% (17/504) against 7.7% (32/413), relative risk 0.42 (95% CI 0.23 to 0.75); deep surgical-site infection relative risk 0.21 (95% CI 0.07 to 0.62); time to onset shorter on placebo, P=0.005',
+        unreportedAdverseSignals:
+          'All S. aureus strains identified in the trial were susceptible to both methicillin and mupirocin, which is stated in the results and constrains generalisability. There was no significant difference in all-cause in-hospital mortality. The intervention was two drugs, so the mupirocin contribution alone is not separable.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane interventions for impetigo (CD003261)',
+        phase: 'Systematic review and meta-analysis of 68 randomised controlled trials',
+        sampleSize: 5578,
+        primaryEndpoint: 'Cure rate, topical antibiotic against placebo and against comparators',
+        endpointMet: true,
+        statisticalPValue:
+          'Topical antibiotic against placebo RR 2.24 (95% CI 1.61 to 3.13); mupirocin against fusidic acid RR 1.03 (95% CI 0.95 to 1.11); mupirocin against oral erythromycin RR 1.07 (95% CI 1.01 to 1.13)',
+        unreportedAdverseSignals:
+          'Most studies did not provide enough information to assess risk of bias and only 15 reported blinding. Three review authors were authors of an included trial and two disclosed manufacturer funding for a retapamulin study added in the update.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Dadashi 2020 mupirocin resistance meta-analysis (PMID 31442624)',
+        phase: 'Systematic review and meta-analysis of prevalence studies, 2000 to 2018',
+        sampleSize: 63,
+        primaryEndpoint:
+          'Pooled worldwide prevalence of mupirocin-resistant and high-level mupirocin-resistant Staphylococcus aureus and MRSA',
+        endpointMet: true,
+        statisticalPValue:
+          'MuRSA 7.6% (95% CI 6.2 to 9.0); MuRMRSA 13.8% (95% CI 12.0 to 15.6); HLMuRSA 8.5% (95% CI 6.3 to 10.7); HLMuRMRSA 8.1% (95% CI 6.8 to 9.4)',
+        unreportedAdverseSignals:
+          'Sample size counts included studies rather than isolates. Prevalence surveys are geographically uneven and reflect where surveillance is done rather than where resistance is.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Staphylococcus aureus surgical-site infection 2.3% on intranasal mupirocin against 2.4% on placebo in 3,864 randomised patients — primary endpoint not met',
+        'Among 891 nasal carriers in that trial, nosocomial S. aureus infection 4.0% against 7.7%, odds ratio 0.49 (95% CI 0.25 to 0.92)',
+        'In screened carriers given mupirocin plus chlorhexidine, S. aureus infection 3.4% against 7.7%, relative risk 0.42 (95% CI 0.23 to 0.75)',
+        'Deep surgical-site infection relative risk 0.21 (95% CI 0.07 to 0.62) in the same trial',
+        'Impetigo: topical antibiotic against placebo RR 2.24 (95% CI 1.61 to 3.13); mupirocin against fusidic acid RR 1.03 (95% CI 0.95 to 1.11)',
+        'Pooled mupirocin resistance 7.6% in S. aureus, 13.8% in MRSA, with high-level resistance at 8.5% and rising',
+      ],
+      unsupportedInferences: [
+        'That the 2002 trial demonstrated mupirocin prevents surgical-site infection — its primary endpoint was 2.3% against 2.4%',
+        'That a decolonisation result obtained where every strain was susceptible transfers to settings where 13.8% of MRSA is resistant',
+        'That decolonisation reduces mortality, when the trial that established it found no difference in in-hospital deaths',
+        'That the benefit shown by mupirocin plus chlorhexidine belongs to mupirocin, when the two were given together and never separately',
+      ],
+      whatFailedInitially: [
+        'The largest randomised prophylaxis trial missed its primary endpoint outright and is cited for a subgroup on a different endpoint',
+        'All-cause in-hospital mortality did not differ in the trial that established screen-and-decolonise',
+        'Against oral erythromycin the advantage was RR 1.07 with a lower bound of 1.01 — statistically present, clinically slight',
+        'High-level, plasmid-borne mupirocin resistance is rising globally in the organism the drug exists to eradicate',
+      ],
+      realWorldOutcome: [
+        'Approved in 1987 and now the backbone of hospital decolonisation programmes worldwide',
+        'Twenty listed products at a median United States acquisition cost of US$0.8388 per gram, the second highest per gram in this batch',
+        'Equal to fusidic acid and at least equal to oral antibiotics for impetigo, with fewer side effects than the oral route',
+        'Its unique target means no cross-resistance with any other antibiotic class, and its plasmid-borne resistance determinant is transmissible',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical ointment 2%, cream 2%, and a separate nasal ointment',
+      description:
+        'Topical only, and necessarily so: the ester bond in the molecule is hydrolysed to inactive monic acid within minutes in plasma, which rules out any systemic formulation. The original ointment used a polyethylene glycol base that is unsuitable for extensive denuded skin because the glycol is absorbed; the cream and paraffin-based ointment exist for that reason. The nasal preparation is formulated to persist in the anterior nares against mucociliary clearance.',
+      safetyProfile:
+        'Well tolerated. In the impetigo review, reported side effects were low and mostly mild, and were more common with oral than with topical treatment, the difference driven mainly by gastrointestinal effects. Local burning, stinging and itching are the usual complaints. Systemic exposure is negligible because the molecule is destroyed in plasma. The cream’s indication is bounded by lesion size — up to 10 cm in length or 100 cm2 in area — because that is the population it was tested in, and the polyethylene glycol vehicle of the original ointment is a specific caution on large open areas.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does putting mupirocin in the nose before surgery prevent wound infections?',
+        a: 'The two big trials give different answers and both are worth knowing. In 2002, 3,864 surgical patients were randomised to intranasal mupirocin or placebo. Staphylococcus aureus surgical-site infection occurred in 2.3% and 2.4% — no difference, primary endpoint not met. Within that trial, the 891 patients who actually carried staph in their nose did better on mupirocin: 4.0% against 7.7% for all nosocomial staph infections, odds ratio 0.49. That is a subgroup, on a different endpoint. In 2010 a second trial did what the first result implied: screened everyone on admission, treated only the carriers, and added a chlorhexidine wash. Infections fell from 7.7% to 3.4%, and deep wound infections by nearly 80%. So the strategy that works is screen-then-treat, not treat-everybody.',
+        auditNote:
+          'The 2010 trial gave two interventions together. How much of the effect belongs to mupirocin and how much to the chlorhexidine soap is not separable from that design.',
+      },
+      {
+        q: 'Does it save lives?',
+        a: 'Not shown. The trial that established screen-and-decolonise reported all-cause in-hospital mortality and found no significant difference between the groups. It was not powered to detect one, and a reduction in deep surgical-site infection with a relative risk of 0.21 is a serious clinical benefit whether or not it moves mortality. But decolonisation programmes are often justified in terms of lives saved, and the step from fewer infections to fewer deaths is an inference in this evidence base rather than a measurement.',
+      },
+      {
+        q: 'Is mupirocin better than the alternatives for impetigo?',
+        a: 'It is equal to fusidic acid and about equal to tablets. Pooling 68 trials in 5,578 people, topical antibiotics beat placebo with a risk ratio of 2.24. Mupirocin against fusidic acid was 1.03 with an interval from 0.95 to 1.11 — indistinguishable. Against oral erythromycin, mupirocin came out ahead at 1.07 with a lower bound of 1.01, which is a real but slight advantage, and there were no significant differences against other oral antibiotics. What did differ was side effects: more common with tablets, mostly gastrointestinal. The reviewers also note a lack of studies in extensive impetigo, so whether oral treatment is better in that situation is genuinely unknown.',
+      },
+      {
+        q: 'Are bacteria becoming resistant to it?',
+        a: 'Yes, and the shape of the resistance matters more than the rate. Pooling studies from 2000 to 2018, 7.6% of Staphylococcus aureus isolates were mupirocin-resistant, rising to 13.8% among MRSA. High-level resistance — the kind that makes decolonisation fail rather than just work less well — was 8.5% overall, and the authors report it rising over time. Low-level resistance comes from a mutation in the bacterium’s own enzyme. High-level resistance comes from mupA, an entire second copy of the gene carried on a plasmid, which the drug cannot bind and which can be passed between bacteria. That transmissibility is why the 8.5% figure is the one to watch.',
+        auditNote:
+          'Worth reading alongside the 2010 trial, which states in its results that every strain it identified was susceptible to both methicillin and mupirocin.',
+      },
+      {
+        q: 'Why is there no mupirocin tablet or injection?',
+        a: 'Because blood destroys it. The molecule is a long-chain fatty acid ester joined to the active head group, and that ester is hydrolysed within minutes in plasma to monic acid, which has no antibacterial activity. There is no formulation trick that fixes this — it is a property of the molecule. The consolation is a genuinely unusual target: mupirocin blocks the enzyme that loads isoleucine onto its transfer RNA, and no other antibiotic class in clinical use works that way. A bacterium resistant to everything else is usually still sensitive to it, which is exactly why the rising resistance figures are worth taking seriously.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Perl TM et al. Intranasal mupirocin to prevent postoperative Staphylococcus aureus infections. N Engl J Med 2002;346:1871-1877',
+        identifier: '10.1056/NEJMoa003069',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bode LG et al. Preventing surgical-site infections in nasal carriers of Staphylococcus aureus. N Engl J Med 2010;362:9-17',
+        identifier: '10.1056/NEJMoa0808939',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Koning S et al. Interventions for impetigo. Cochrane Database Syst Rev 2012;1:CD003261',
+        identifier: '10.1002/14651858.CD003261.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dadashi M et al. Mupirocin resistance in Staphylococcus aureus: a systematic review and meta-analysis. J Glob Antimicrob Resist 2020;20:238-247',
+        identifier: '10.1016/j.jgar.2019.07.032',
+        kind: 'doi',
       },
       NADAC_SOURCE,
       COST_OF_PRODUCTION_SOURCE,

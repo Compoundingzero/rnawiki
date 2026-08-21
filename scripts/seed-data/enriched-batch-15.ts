@@ -71,7 +71,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
     slug: 'amlodipine-valsartan',
     name: 'Amlodipine / Valsartan',
     tradeName: 'Exforge',
-    sponsor: 'Novartis Pharmaceuticals Corporation; generic since 2014 and made by many manufacturers',
+    sponsor:
+      'Novartis Pharmaceuticals Corporation; generic since 2014 and made by many manufacturers',
     targetGene: 'CACNA1C and AGTR1 — two human genes, one tablet',
     targetProtein:
       'Alpha-1C pore-forming subunit of the L-type voltage-gated calcium channel (Cav1.2), blocked by amlodipine; angiotensin II type 1 receptor, blocked by valsartan',
@@ -149,7 +150,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
           class: 'Three-drug fixed-dose combination',
           howItCompares:
             'Adds a thiazide diuretic to the same pair for pressure that stays high on two drugs. In the controlled trial of the triple product, excessive hypotension including orthostatic hypotension occurred in 1.7% at the maximum strength against 0.4% on amlodipine-valsartan.',
-          typicalCost: 'Generic; a few United States cents more per tablet than the two-drug product',
+          typicalCost:
+            'Generic; a few United States cents more per tablet than the two-drug product',
           prosAndCons:
             'Pros: three mechanisms in one tablet for genuinely resistant pressure. Cons: more hypotension, more electrolyte disturbance, and ACCOMPLISH is a direct argument against the diuretic being the right third drug in high-risk patients.',
         },
@@ -274,7 +276,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         id: 'amv-a1',
         category: 'measured',
-        title: 'Two placebo-controlled factorial trials: the pair beat each half at almost every dose',
+        title:
+          'Two placebo-controlled factorial trials: the pair beat each half at almost every dose',
         laymanSummary:
           'Three thousand people were randomised to the combination, to each drug alone, or to a dummy tablet. At the strongest combination the top blood pressure number fell about 16 points further than on the dummy tablet, against about 9 for either drug on its own.',
         technicalDetails:
@@ -318,7 +321,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         id: 'amv-a4',
         category: 'failed',
-        title: 'VALUE: the two halves were compared head to head and the trial could not answer itself',
+        title:
+          'VALUE: the two halves were compared head to head and the trial could not answer itself',
         laymanSummary:
           'Fifteen thousand high-risk patients were randomised to a valsartan-based or an amlodipine-based regimen to see which prevented more heart events. Neither won. The trial was undermined by its own design: amlodipine lowered pressure faster, so the two groups were never at the same pressure to compare.',
         technicalDetails:
@@ -438,8 +442,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
         trialId: 'Philipp study 1 (Clin Ther 2007;29:563-580)',
         phase: 'Phase 3, randomised, double-blind, placebo-controlled factorial',
         sampleSize: 1911,
-        primaryEndpoint:
-          'Change from baseline in mean sitting diastolic blood pressure at week 8',
+        primaryEndpoint: 'Change from baseline in mean sitting diastolic blood pressure at week 8',
         endpointMet: true,
         statisticalPValue:
           'p<0.05 for combination against each component and against placebo at all doses except a few containing amlodipine 2.5 mg; response rate 91.3% at 5/320 mg against 71.9% amlodipine, 73.4% valsartan, 40.9% placebo',
@@ -465,8 +468,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Composite of cardiac mortality and morbidity, valsartan-based against amlodipine-based regimen',
         endpointMet: false,
-        statisticalPValue:
-          'Hazard ratio 1.04, 95% CI 0.94 to 1.15, p=0.49 over a mean 4.2 years',
+        statisticalPValue: 'Hazard ratio 1.04, 95% CI 0.94 to 1.15, p=0.49 over a mean 4.2 years',
         unreportedAdverseSignals:
           'Blood pressure was 4.0/2.1 mmHg lower on amlodipine at one month and 1.5/1.3 mmHg at one year (p<0.001), so the two arms were never at equal pressure. The comparison the trial was built to make could not be made.',
         independentReplicationStatus: 'Unreplicated',
@@ -741,7 +743,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'A racemate in which the two enantiomers do different jobs. Non-selective beta-adrenoceptor blockade resides in the S(-) enantiomer; alpha-1 adrenergic blockade resides in both R(+) and S(-) at equal potency. The label records no intrinsic sympathomimetic activity, which distinguishes it from the beta-blockers that failed in heart failure.',
       structureSource: {
-        label: 'PubChem CID 2585 (carvedilol) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
+        label:
+          'PubChem CID 2585 (carvedilol) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2585',
         kind: 'url',
       },
@@ -806,7 +809,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         id: 'cvd-a1',
         category: 'measured',
-        title: 'COPERNICUS: 35% fewer deaths in the sickest patients ever randomised to a beta-blocker',
+        title:
+          'COPERNICUS: 35% fewer deaths in the sickest patients ever randomised to a beta-blocker',
         laymanSummary:
           'Patients with symptoms at rest and a pumping fraction under a quarter — the group beta-blockers were supposed to be most dangerous in — were randomised to carvedilol or a dummy tablet. A third fewer died on the drug.',
         technicalDetails:
@@ -848,7 +852,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         id: 'cvd-a4',
         category: 'conclusion_shift',
-        title: 'The same advisory committee looked at the same data twice and decided the opposite way',
+        title:
+          'The same advisory committee looked at the same data twice and decided the opposite way',
         laymanSummary:
           'The FDA expert committee reviewed carvedilol on two occasions and reached opposite conclusions. What changed was not the data but the argument about whether a death count collected outside the trial design can carry an approval.',
         technicalDetails:
@@ -979,7 +984,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'US Carvedilol Heart Failure Program (N Engl J Med 1996;334:1349-1355)',
-        phase: 'Phase 3, four stratified double-blind placebo-controlled protocols analysed together',
+        phase:
+          'Phase 3, four stratified double-blind placebo-controlled protocols analysed together',
         sampleSize: 1094,
         primaryEndpoint:
           'Exercise capacity within each of four protocols; mortality was monitored across the programme rather than as a protocol primary endpoint',
@@ -1128,8 +1134,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
         kind: 'pmid',
       },
       {
-        label:
-          'Drugs@FDA: COREG (carvedilol), NDA 020297 — original approval 14 September 1995',
+        label: 'Drugs@FDA: COREG (carvedilol), NDA 020297 — original approval 14 September 1995',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020297',
         kind: 'regulatory',
@@ -1359,7 +1364,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         id: 'bis-a3',
         category: 'conclusion_shift',
-        title: 'The perioperative evidence was fabricated, and the surviving trials point the other way',
+        title:
+          'The perioperative evidence was fabricated, and the surviving trials point the other way',
         laymanSummary:
           'For a decade, guidelines on two continents told surgeons to start a beta-blocker before an operation, largely on a family of Dutch trials. Those trials were found not to be secure. When the remaining honest trials were pooled, starting a beta-blocker before surgery came out associated with more deaths, not fewer.',
         technicalDetails:
@@ -1393,8 +1399,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
           'A trial asked whether heart failure treatment can start with the beta-blocker instead of the usual first drug. In the main analysis the answer was yes. In the stricter analysis — the one that matters most for this kind of question — it was not proven.',
         technicalDetails:
           'CIBIS-III randomised 1,010 patients with mild to moderate heart failure and ejection fraction at or below 35%, on no ACE inhibitor, beta-blocker or angiotensin receptor blocker, to six months of open-label bisoprolol or enalapril monotherapy followed by the combination. Non-inferiority required the upper bound of the 95% CI for the absolute difference to be below 5%, corresponding to a hazard ratio of 1.17. In the intention-to-treat sample the primary composite of all-cause mortality or hospitalisation occurred in 178 against 186 (HR 0.94, 95% CI 0.77 to 1.16) — the bound was met. In the per-protocol sample it occurred in 163 against 165 (HR 0.97, 95% CI 0.78 to 1.21) — the bound was not met. For a non-inferiority trial the per-protocol analysis is the conservative one, because dropouts and crossovers push an intention-to-treat result toward no difference, which is the direction non-inferiority wants. The authors state that non-inferiority was not proven in the per-protocol analysis and that the results indicate it may be as safe and efficacious to start with bisoprolol.',
-        evidenceSource:
-          'Willenheimer R et al., Circulation 2005;112:2426-2435 (CIBIS III)',
+        evidenceSource: 'Willenheimer R et al., Circulation 2005;112:2426-2435 (CIBIS III)',
         doi: '10.1161/CIRCULATIONAHA.105.582320',
         measuredMetric:
           'Composite of all-cause mortality or hospitalisation, bisoprolol-first against enalapril-first, against a non-inferiority margin of HR 1.17',
@@ -1630,7 +1635,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         label:
           'DailyMed: bisoprolol fumarate tablets United States prescribing information — Indications and Usage, Contraindications, Warnings and Clinical Pharmacology',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22bisoprolol+fumarate%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22bisoprolol+fumarate%22',
         kind: 'regulatory',
       },
       {
@@ -1654,7 +1660,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
     slug: 'nebivolol',
     name: 'Nebivolol',
     tradeName: 'Bystolic',
-    sponsor: 'Allergan (current holder of NDA 021742); originated at Janssen and licensed to Mylan and then Forest Laboratories',
+    sponsor:
+      'Allergan (current holder of NDA 021742); originated at Janssen and licensed to Mylan and then Forest Laboratories',
     targetGene: 'ADRB1',
     targetProtein:
       'Beta-1 adrenergic receptor, blocked by the d-nebivolol isomer; the l-isomer contributes little at the receptor',
@@ -1731,7 +1738,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       naturalFoods: [
         {
           name: 'Dietary nitrate — beetroot, rocket, spinach and other leafy greens',
-          activeCompound: 'Inorganic nitrate, reduced to nitrite by oral bacteria and then to nitric oxide',
+          activeCompound:
+            'Inorganic nitrate, reduced to nitrite by oral bacteria and then to nitric oxide',
           biologicalMechanism:
             'The nitrate-nitrite-nitric oxide pathway raises circulating nitric oxide independently of the endothelial enzyme, which is the same end-point nebivolol is claimed to reach by a different route. Antibacterial mouthwash abolishes the effect, which is unusually direct evidence that the oral bacteria are the necessary step.',
           evidenceStrength: 'Moderate Evidence',
@@ -2608,7 +2616,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
     slug: 'verapamil',
     name: 'Verapamil',
     tradeName: 'Calan / Isoptin / Verelan / Verelan PM / Covera-HS',
-    sponsor: 'Mt Adams Pharmaceuticals and many generic manufacturers; originated at Knoll AG in Germany',
+    sponsor:
+      'Mt Adams Pharmaceuticals and many generic manufacturers; originated at Knoll AG in Germany',
     targetGene: 'CACNA1C',
     targetProtein:
       'Alpha-1C subunit of the L-type voltage-gated calcium channel (Cav1.2), bound at the phenylalkylamine site inside the pore',
@@ -3051,7 +3060,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'CLVer: verapamil and intensive diabetes management in newly diagnosed type 1 diabetes',
+        label:
+          'CLVer: verapamil and intensive diabetes management in newly diagnosed type 1 diabetes',
         identifier: 'NCT04233034',
         kind: 'nct',
       },
@@ -3064,7 +3074,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Verapamil hydrochloride tablets United States prescribing information — Indications, Contraindications, Warnings and Adverse Reactions sections',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22verapamil+hydrochloride%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22verapamil+hydrochloride%22',
         kind: 'regulatory',
       },
       {
@@ -3088,7 +3099,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
     slug: 'isosorbide-mononitrate',
     name: 'Isosorbide Mononitrate',
     tradeName: 'Imdur / Monoket / Ismo',
-    sponsor: 'Promius Pharma and many generic manufacturers; originated as the active metabolite of isosorbide dinitrate',
+    sponsor:
+      'Promius Pharma and many generic manufacturers; originated as the active metabolite of isosorbide dinitrate',
     targetGene: 'GUCY1A1 and GUCY1B1 — the two subunits of soluble guanylate cyclase',
     targetProtein:
       'Soluble guanylate cyclase in vascular smooth muscle, activated indirectly by nitric oxide released from the drug',
@@ -3097,7 +3109,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
     approvalYear: 1991,
     indication:
       'Prevention and treatment of angina pectoris due to coronary artery disease. The label states that the onset of action is not sufficiently rapid for the oral product to be useful in aborting an acute anginal episode',
-    patientFriendlyIndication: 'Chest pain from narrowed heart arteries, prevented rather than stopped',
+    patientFriendlyIndication:
+      'Chest pain from narrowed heart arteries, prevented rather than stopped',
     anatomicalSite:
       'Venous capacitance vessels above all, then arterioles and the epicardial coronary arteries — the soluble guanylate cyclase inside their smooth muscle',
     conditionContext: {
@@ -3164,7 +3177,8 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       naturalFoods: [
         {
           name: 'Dietary nitrate — beetroot, rocket, spinach and celery',
-          activeCompound: 'Inorganic nitrate, reduced by oral bacteria to nitrite and then to nitric oxide',
+          activeCompound:
+            'Inorganic nitrate, reduced by oral bacteria to nitrite and then to nitric oxide',
           biologicalMechanism:
             'Reaches the same end point as the drug — nitric oxide acting on soluble guanylate cyclase — by an entirely different route that does not require the enzymatic bioactivation an organic nitrate needs, and that does not appear to induce the same tolerance.',
           evidenceStrength: 'Moderate Evidence',
@@ -3531,14 +3545,16 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'NEAT-HFpEF: nitrate effect on activity tolerance in heart failure with preserved ejection fraction',
+        label:
+          'NEAT-HFpEF: nitrate effect on activity tolerance in heart failure with preserved ejection fraction',
         identifier: 'NCT02053493',
         kind: 'nct',
       },
       {
         label:
           'Isosorbide mononitrate tablets United States prescribing information — Indications, Contraindications, Warnings, Clinical Pharmacology and Adverse Reactions sections',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22isosorbide+mononitrate%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22isosorbide+mononitrate%22',
         kind: 'regulatory',
       },
       {
@@ -3556,6 +3572,1534 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 27661 — isosorbide mononitrate structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/27661',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Ranolazine — named after a mechanism its own label calls uncertain, with two failed outcome
+  //    trials and a diabetes effect nobody has developed.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ranolazine',
+    name: 'Ranolazine',
+    tradeName: 'Ranexa / Aspruzyo Sprinkle',
+    sponsor:
+      'Menarini International; developed by CV Therapeutics and marketed by Gilead Sciences before generic entry',
+    targetGene: 'SCN5A and KCNH2',
+    targetProtein:
+      'Cardiac late sodium current carried by Nav1.5, inhibited at therapeutic concentrations; and the hERG potassium channel, whose block produces the QT prolongation',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2006,
+    indication:
+      'Treatment of chronic angina. It may be used with beta-blockers, nitrates, calcium channel blockers, antiplatelet therapy, lipid-lowering therapy, ACE inhibitors and angiotensin receptor blockers',
+    patientFriendlyIndication: 'Chest pain that keeps happening despite the usual drugs',
+    anatomicalSite:
+      'Cardiac myocyte membrane — the late sodium current during the plateau of the action potential, and the hERG potassium channel that repolarises it',
+    conditionContext: {
+      conditionExplainer:
+        'Angina is a mismatch between what the heart muscle needs and what a narrowed artery can supply. Almost every antianginal drug closes that gap by reducing demand: slowing the heart, dropping the blood pressure, or unloading the ventricle. All three of those are felt as tiredness or dizziness, and all three run out when the heart rate and pressure are already low.',
+      whyItMatters:
+        'Ranolazine was developed to reduce ischaemia without touching heart rate or blood pressure, which would make it usable in exactly the patients whose other options have been exhausted. The label confirms it has no effect on the rate-pressure product at maximal exercise. It also says the mechanism of its antianginal effect has not been determined.',
+      whoTakesThis:
+        'Adults with chronic angina, usually added to existing treatment rather than replacing it. Not people taking strong CYP3A inhibitors or CYP3A inducers, and not people with liver cirrhosis, all of which are contraindications.',
+      clinicalGoals:
+        'Fewer anginal episodes and a longer exercise time before pain starts. Two large trials looked for a reduction in cardiovascular events and neither found one.',
+    },
+    oneSentenceVerdict:
+      'An antianginal that works without lowering heart rate or blood pressure, adding about 24 seconds of exercise time over placebo in 823 patients in CARISA and about half an anginal episode a week in 949 diabetic patients in TERISA — and which missed its primary endpoint in both of its cardiovascular outcome trials, in 6,560 and 2,651 patients.',
+    laymanHowItWorks:
+      'When heart muscle is short of oxygen, a small leak of sodium into the cell fails to shut off properly. Sodium builds up, which forces calcium in behind it, and the overloaded muscle cannot relax properly between beats. A stiff, incompletely relaxing muscle squeezes its own small blood vessels and makes the oxygen shortage worse. Ranolazine blocks that leaking sodium current, so the calcium overload eases and the muscle relaxes. That account is what the drug is named after; the prescribing information says the connection between blocking the current and relieving angina is uncertain.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 58,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1609 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 35 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 2006 and generic since 2019. Before genericisation it was priced as a branded speciality antianginal, which was a substantial part of the argument about whether an extra half an anginal episode per week was worth buying; at sixteen United States cents a tablet that argument has largely disappeared.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Ranolazine is almost never the first antianginal, and its selling point is what it does not do: it does not lower heart rate or blood pressure, so it can be added when there is no room left to lower either. Against that, every drug it might be added to has a longer record, and two of them have outcome evidence in defined populations that ranolazine has failed to produce in its own trials.',
+      conventionalRx: [
+        {
+          name: 'A beta-blocker such as metoprolol or bisoprolol',
+          class: 'Beta-1 adrenergic blocker',
+          howItCompares:
+            'Reduces angina by cutting heart rate and contractility. In CARISA, ranolazine was added on top of atenolol, amlodipine or diltiazem rather than compared against them, so the trial describes what ranolazine adds, not whether it substitutes.',
+          typicalCost: 'Generic; a few United States cents per tablet at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: mortality evidence in heart failure and after infarction; decades of use; no QT effect. Cons: fatigue and bradycardia are the limiting factors, and they are exactly the reason ranolazine gets added.',
+        },
+        {
+          name: 'Diltiazem or amlodipine',
+          class: 'Calcium channel blocker',
+          howItCompares:
+            'Reduces demand and dilates coronary arteries. Both were background therapy in CARISA. Neither has shown a survival benefit in stable angina, which puts them on the same footing as ranolazine for outcomes and ahead of it on length of record.',
+          typicalCost:
+            'US$0.3196 per unit for diltiazem at United States pharmacy acquisition cost (CMS NADAC, survey effective 19 August 2026); amlodipine among the cheapest drugs available',
+          prosAndCons:
+            'Pros: no QT prolongation; no CYP3A contraindications; cheap. Cons: they lower blood pressure and, for diltiazem, heart rate, which is what limits them in the patients ranolazine is meant for.',
+        },
+        {
+          name: 'Isosorbide mononitrate',
+          class: 'Organic nitrate',
+          howItCompares:
+            'Prevents angina by pooling blood in the veins. Its own label records that the antianginal effect disappears within 24 hours of continuous exposure and cannot be recovered by raising the dose, and ISIS-4 found no mortality benefit in 58,050 patients.',
+          typicalCost:
+            'US$0.0977 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 35 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheapest option; long record. Cons: tolerance; headache in a third of patients at higher strengths; absolutely contraindicated with phosphodiesterase type 5 inhibitors.',
+        },
+        {
+          name: 'Revascularisation, by stent or bypass',
+          class: 'Procedure rather than drug',
+          howItCompares:
+            'For symptom relief in stable angina, revascularisation outperforms medical therapy in the short term. RIVER-PCI is the trial that speaks directly to the combination: in 2,651 patients left incompletely revascularised after a stent procedure, adding ranolazine did not reduce ischaemia-driven revascularisation or hospitalisation (HR 0.95, p=0.48).',
+          typicalCost: 'A one-off procedural cost; not comparable per unit',
+          prosAndCons:
+            'Pros: addresses the anatomical narrowing rather than the cellular consequence. Cons: procedural risk; incomplete revascularisation is common and is exactly the population ranolazine failed in.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Bring the full list of your medicines, including supplements',
+          action:
+            'List everything, including antibiotics, antifungals, HIV medicines and St John wort.',
+          patientImpact:
+            'Ranolazine is contraindicated both with strong CYP3A inhibitors such as ketoconazole, clarithromycin and nelfinavir, and with CYP3A inducers such as rifampin, phenobarbital and St John wort. Inhibitors raise the level enough to matter for the QT interval; inducers drop it enough that the drug does nothing.',
+          clinicalPrecaution:
+            'Being contraindicated in both directions is unusual and it means a short course of a common antibiotic can be a genuine problem rather than a caution.',
+        },
+        {
+          name: 'Ask about your kidney function',
+          action: 'Say if you have kidney disease, and ask whether your function is being checked.',
+          patientImpact:
+            'Acute renal failure has been observed in some patients with severe renal impairment, at a creatinine clearance below 30 mL/min, while taking ranolazine. The label directs monitoring renal function after starting and periodically below 60 mL/min, and stopping the drug if acute renal failure develops.',
+          clinicalPrecaution:
+            'The label directs discontinuation on a marked rise in creatinine with a rise in blood urea nitrogen, rather than a dose reduction.',
+        },
+        {
+          name: 'Mention liver disease',
+          action: 'Say if you have been told you have cirrhosis.',
+          patientImpact:
+            'Liver cirrhosis is an absolute contraindication, because impaired clearance raises plasma concentration and with it the degree of QT prolongation.',
+          clinicalPrecaution:
+            'Ranolazine blocks the hERG potassium channel and prolongs the QT interval in a dose-related way. Anything that raises the concentration raises that effect.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(C(=CC=C1)C)NC(=O)CN2CCN(CC2)CC(COC3=CC=CC=C3OC)O',
+      chemicalFormula: 'C24H33N3O4',
+      molecularWeight: '427.50 g/mol',
+      targetReceptorAffinity:
+        'The label states that the mechanism of the antianginal effect has not been determined, that ranolazine at therapeutic levels can inhibit the cardiac late sodium current, and that the relationship of that inhibition to angina symptoms is uncertain. It separately attributes the observed QT prolongation to inhibition of IKr, the rapid delayed rectifier potassium current carried by hERG, which prolongs the ventricular action potential. It has anti-ischaemic effects that do not depend on reductions in heart rate or blood pressure and does not affect the rate-pressure product at maximal exercise.',
+      structureSource: {
+        label:
+          'PubChem CID 56959 (ranolazine) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/56959',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'rnz-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, single stereocentre and piperazine purity',
+          description:
+            'Ranolazine has one stereocentre on the propanol linker and is marketed as a racemate, so the specification is a ratio rather than a single configuration. The piperazine core is the impurity-prone part: mono-substituted and bis-substituted piperazines both form and both are pharmacologically different.',
+          reagentsAndBuffer:
+            'Ranolazine reference standard, reversed-phase and chiral HPLC, 1H NMR in DMSO-d6 to confirm both aryl substitution patterns, specified limits for mono- and bis-alkylated piperazine impurities, Karl Fischer titration',
+        },
+        {
+          id: 'rnz-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Open the aryloxy epoxide onto piperazine, then acylate the far nitrogen',
+          description:
+            'Open 2-methoxyphenyl glycidyl ether with piperazine at one nitrogen to build the propanol linker, then acylate the remaining nitrogen with a 2,6-dimethylanilide acetamide. The dimethylanilide end is the fragment shared with local anaesthetics and class I antiarrhythmics, which is a structural clue to the sodium-channel activity and not a proof of it.',
+          dependsOnStepId: 'rnz-w1',
+          reagentsAndBuffer:
+            '2-methoxyphenyl glycidyl ether, excess anhydrous piperazine to suppress bis-alkylation, N-(2,6-dimethylphenyl)-2-chloroacetamide, potassium carbonate in acetonitrile or toluene, nitrogen atmosphere',
+        },
+        {
+          id: 'rnz-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Strip the bis-alkylated piperazine and crystallise',
+          description:
+            'Excess piperazine suppresses but does not eliminate double alkylation, and the bis-adduct is the impurity that determines release. Remove it, then crystallise the free base or the dihydrochloride depending on the intended formulation.',
+          dependsOnStepId: 'rnz-w2',
+          reagentsAndBuffer:
+            'Acid-base extraction to exploit the difference in basicity between mono- and bis-substituted piperazines, crystallisation from ethyl acetate or isopropanol, HPLC release testing against specified impurity limits',
+        },
+        {
+          id: 'rnz-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Measure late sodium current block and hERG block on the same cells',
+          description:
+            'The wanted effect and the main safety liability are both ion-channel block, in the same tissue, at overlapping concentrations. Measuring one without the other reports half the drug. Late sodium current must be provoked — with a channel opener or a mutant channel — because it is small in healthy myocytes and large in ischaemic ones, which is the whole selectivity argument for the drug.',
+          dependsOnStepId: 'rnz-w3',
+          reagentsAndBuffer:
+            'HEK293 cells expressing human Nav1.5 and, separately, hERG; whole-cell patch clamp; ATX-II or veratridine to enhance late sodium current; paired concentration-response curves to derive the ratio between the two effects',
+        },
+        {
+          id: 'rnz-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Diastolic relaxation in an ischaemic tissue model',
+          description:
+            'The mechanistic claim is that blocking late sodium current reduces calcium overload and improves diastolic relaxation, which in turn relieves the compression of intramural vessels. Test that chain rather than assuming it: measure diastolic tension and coronary flow in a perfused heart during and after simulated ischaemia, with and without drug.',
+          dependsOnStepId: 'rnz-w4',
+          reagentsAndBuffer:
+            'Langendorff-perfused rat or guinea-pig heart with intraventricular balloon for diastolic pressure, low-flow ischaemia and reperfusion protocol, coronary flow measurement, Krebs-Henseleit buffer at 37 degrees Celsius',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'rnz-a1',
+        category: 'inferred',
+        title: 'The label says the mechanism has not been determined',
+        laymanSummary:
+          'Ranolazine is universally described as a late sodium current inhibitor, and that is where its whole scientific story comes from. Its own prescribing information says the mechanism of the antianginal effect has not been determined and that the link between blocking that current and relieving angina is uncertain.',
+        technicalDetails:
+          'Section 12.1 reads: "The mechanism of action of ranolazine’s antianginal effects has not been determined. Ranolazine has anti-ischemic and antianginal effects that do not depend upon reductions in heart rate or blood pressure. It does not affect the rate-pressure product, a measure of myocardial work, at maximal exercise. Ranolazine at therapeutic levels can inhibit the cardiac late sodium current (INa). However, the relationship of this inhibition to angina symptoms is uncertain." The one mechanism the label does assert is the unwanted one: QT prolongation is attributed to inhibition of IKr. So the drug is named and taught by a mechanism the regulator will not endorse, while the mechanism the regulator does endorse is the safety liability.',
+        evidenceSource:
+          'Ranolazine extended-release tablets United States prescribing information, section 12.1',
+        inferredClaim:
+          'That ranolazine relieves angina by inhibiting the cardiac late sodium current — the label states the relationship between that inhibition and angina symptoms is uncertain',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'rnz-a2',
+        category: 'failed',
+        title: 'MERLIN-TIMI 36: the outcome trial missed, in 6,560 patients',
+        laymanSummary:
+          'Six and a half thousand patients admitted with an acute coronary syndrome were randomised to ranolazine or placebo and followed for about a year. The main measure — cardiovascular death, heart attack or recurrent ischaemia — was not significantly better.',
+        technicalDetails:
+          'MERLIN-TIMI 36 randomised 6,560 patients within 48 hours of ischaemic symptoms to intravenous then oral extended-release ranolazine 1000 mg twice daily (n=3,279) or matching placebo (n=3,281), followed for a median 348 days. The primary composite of cardiovascular death, myocardial infarction or recurrent ischaemia occurred in 696 (21.8%) against 753 (23.5%), hazard ratio 0.92 (95% CI 0.83 to 1.02, p=0.11). The major secondary composite was 18.7% against 19.2% (HR 0.96, 0.86 to 1.08, p=0.50). Cardiovascular death or myocardial infarction was 10.4% against 10.5% (HR 0.99, 0.85 to 1.15, p=0.87). Recurrent ischaemia alone was reduced: 13.9% against 16.1% (HR 0.87, 0.76 to 0.99, p=0.03). QTc prolongation requiring a reduction in intravenous dose occurred in 0.9% against 0.3%. Symptomatic documented arrhythmias did not differ (3.0% against 3.1%) and total mortality did not differ (HR 0.99, 0.80 to 1.22). The published conclusion is that adding ranolazine to standard treatment for acute coronary syndrome was not effective in reducing major cardiovascular events, and that the findings support its safety and efficacy as antianginal therapy.',
+        evidenceSource: 'Morrow DA et al., JAMA 2007;297:1775-1783 (MERLIN-TIMI 36, NCT00099788)',
+        doi: '10.1001/jama.297.16.1775',
+        measuredMetric:
+          'Composite of cardiovascular death, myocardial infarction or recurrent ischaemia through end of study',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rnz-a3',
+        category: 'failed',
+        title: 'RIVER-PCI: the second outcome trial missed too, and more patients stopped the drug',
+        laymanSummary:
+          'Patients whose stent procedure left some narrowings untreated were given ranolazine or placebo. Repeat procedures and hospital admissions for ischaemia were no less common, and more people on the drug stopped it because of side effects.',
+        technicalDetails:
+          'RIVER-PCI randomised 2,651 patients at 245 centres in 15 countries with a history of chronic angina and incomplete revascularisation after percutaneous coronary intervention, defined as one or more lesions with at least 50% diameter stenosis in a vessel of at least 2 mm, to ranolazine 1000 mg twice daily (n=1,332) or placebo (n=1,319). After a median follow-up of 643 days, the primary composite of ischaemia-driven revascularisation or ischaemia-driven hospitalisation without revascularisation occurred in 345 (26%) against 364 (28%), hazard ratio 0.95 (95% CI 0.82 to 1.10, p=0.48). Neither component differed significantly. Discontinuation for an adverse event occurred in 189 (14%) on ranolazine against 137 (11%) on placebo, p=0.04. The trial was funded by Gilead Sciences and Menarini.',
+        evidenceSource: 'Weisz G et al., Lancet 2016;387:136-145 (RIVER-PCI, NCT01442038)',
+        doi: '10.1016/S0140-6736(15)00459-6',
+        measuredMetric:
+          'Time to first ischaemia-driven revascularisation or ischaemia-driven hospitalisation without revascularisation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rnz-a4',
+        category: 'measured',
+        title: 'CARISA: about 24 seconds more exercise than placebo',
+        laymanSummary:
+          'In the trial that supported approval, patients walked longer on a treadmill before the pain started. The difference against the dummy tablet was about twenty-four seconds, and angina attacks fell by roughly one a week.',
+        technicalDetails:
+          'CARISA randomised 823 adults with symptomatic chronic angina who still had angina and ischaemia at low workloads despite standard doses of atenolol, amlodipine or diltiazem, to placebo or one of two ranolazine doses twice daily, at 118 outpatient sites. Trough exercise duration — measured 12 hours after dosing — increased by 115.6 seconds from baseline in the pooled ranolazine groups against 91.7 seconds on placebo, p=0.01. The between-group difference is therefore about 24 seconds. Times to angina and to electrocardiographic ischaemia also increased, more at peak than at trough. Ranolazine reduced angina attacks and nitroglycerin use by about one per week against placebo (p<0.02), independent of changes in blood pressure, heart rate or background therapy, and the effect persisted through 12 weeks. Survival among 750 patients in the trial or its open-label extension was 98.4% at one year and 95.9% at two, which is an uncontrolled observation and not a comparison.',
+        evidenceSource: 'Chaitman BR et al., JAMA 2004;291:309-316 (CARISA)',
+        doi: '10.1001/jama.291.3.309',
+        measuredMetric:
+          'Change in trough treadmill exercise duration and weekly angina frequency against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rnz-a5',
+        category: 'measured',
+        title: 'TERISA: half an anginal episode a week in patients with diabetes',
+        laymanSummary:
+          'In nearly a thousand patients with type 2 diabetes and stable angina, the drug reduced weekly angina from 4.3 episodes to 3.8 and nitroglycerin use from 2.1 doses to 1.7. Both differences were statistically clear and both are small.',
+        technicalDetails:
+          'TERISA randomised 949 patients with type 2 diabetes, coronary artery disease and stable angina despite one or two antianginal agents, across 104 centres in 14 countries, to eight weeks of ranolazine at a target of 1000 mg twice daily or placebo after a four-week single-blind placebo run-in. Mean age was 64, mean diabetes duration 7.5 years and mean baseline HbA1c 7.3%. Weekly angina frequency over the last six weeks was 3.8 episodes (95% CI 3.6 to 4.1) against 4.3 (95% CI 4.0 to 4.5), p=0.008; weekly sublingual nitroglycerin use was 1.7 doses (1.6 to 1.9) against 2.1 (1.9 to 2.3), p=0.003. Electronic diary capture was 98% in both groups. Serious adverse events did not differ. The absolute effect is about half an episode and 0.4 doses per week.',
+        evidenceSource:
+          'Kosiborod M et al., J Am Coll Cardiol 2013;61:2038-2045 (TERISA, NCT01425359)',
+        doi: '10.1016/j.jacc.2013.02.011',
+        measuredMetric:
+          'Average weekly number of anginal episodes over the last six weeks of treatment',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rnz-a6',
+        category: 'conclusion_shift',
+        title: 'It lowers HbA1c substantially, and was never developed as a diabetes drug',
+        laymanSummary:
+          'A prespecified analysis inside the failed outcome trial found that ranolazine lowered long-term blood sugar by an amount comparable to a real diabetes drug, without causing low blood sugar. Twenty years later it is still an angina drug and the mechanism is still described as under investigation.',
+        technicalDetails:
+          'A prospective evaluation within MERLIN-TIMI 36 compared HbA1c in 4,918 randomised patients. Ranolazine reduced HbA1c at four months against placebo: 5.9% against 6.2%, change from baseline -0.30 against -0.04, p<0.001. In patients with diabetes, HbA1c fell from 7.5% to 6.9%, a change of -0.64 (p<0.001); 59% against 49% reached HbA1c below 7% at four months (p<0.001); and 14.2% against 20.6% had a rise of at least 1% by one year (HR 0.63, 95% CI 0.51 to 0.77, p<0.001). Recurrent ischaemia was reduced in diabetic patients (HR 0.75, 95% CI 0.61 to 0.93, p=0.008). In patients without diabetes at baseline, new fasting glucose above 110 mg/dL or HbA1c at or above 6% occurred in 31.8% against 41.2% (HR 0.68, 95% CI 0.53 to 0.88, p=0.003). Reported hypoglycaemia did not increase. The authors state the mechanism of this effect is under investigation. A 0.64 percentage point HbA1c reduction is within the range achieved by approved oral antidiabetic agents, and no ranolazine diabetes programme followed.',
+        evidenceSource:
+          'Morrow DA et al. Evaluation of the glycometabolic effects of ranolazine in patients with and without diabetes mellitus in the MERLIN-TIMI 36 randomized controlled trial. Circulation 2009;119:2032-2039',
+        doi: '10.1161/CIRCULATIONAHA.107.763912',
+        inferredClaim:
+          'That an HbA1c reduction of this size in a cardiovascular trial would translate into a diabetes indication — it has not, and the effect remains an unexploited finding inside a trial that missed its primary endpoint',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rnz-a7',
+        category: 'failed',
+        title: 'Contraindicated in both directions on the same enzyme',
+        laymanSummary:
+          'Drugs that slow the enzyme clearing ranolazine push its level up, which lengthens the QT interval. Drugs that speed the enzyme up push its level down until it does nothing. Both are contraindications.',
+        technicalDetails:
+          'Ranolazine is contraindicated in patients taking strong CYP3A inhibitors such as ketoconazole, clarithromycin and nelfinavir, in patients taking CYP3A inducers such as rifampin, phenobarbital and St John wort, and in liver cirrhosis. It blocks IKr and prolongs QTc in a dose-related manner; the label records little experience above 1000 mg twice daily, with other QT-prolonging drugs, with potassium channel variants producing long QT, or in congenital or acquired QT prolongation, while noting that the acute coronary syndrome population showed no increased risk of proarrhythmia or sudden death. Acute renal failure has been observed in some patients with creatinine clearance below 30 mL/min, and the label directs monitoring below 60 mL/min and discontinuation if acute renal failure develops. About 6% of angina patients discontinued for an adverse event against about 3% on placebo, most often dizziness (1.3% against 0.1%) and nausea (1% against 0%).',
+        evidenceSource:
+          'Ranolazine extended-release tablets United States prescribing information, sections 4, 5.1, 5.2 and 6.1',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A sodium leak that should have closed',
+        laymanDesc:
+          'Heart muscle cells open sodium gates for a fraction of a second at the start of each beat. When the muscle is short of oxygen, a small fraction of those gates fail to shut and keep leaking.',
+        molecularDetail:
+          'The late component of the sodium current through Nav1.5 is small in healthy myocytes and enlarged by ischaemia, hypoxia, oxidative stress and several inherited channel variants. That difference in size between healthy and ischaemic tissue is the selectivity argument for a drug that targets it.',
+        iconName: 'Droplet',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 2,
+        title: 'Sodium drags calcium in behind it',
+        laymanDesc:
+          'The cell has an exchanger that normally pushes calcium out in return for letting sodium in. With sodium already high, that exchanger runs backwards and calcium accumulates.',
+        molecularDetail:
+          'Elevated intracellular sodium drives the sodium-calcium exchanger into reverse mode, loading the cytosol and the sarcoplasmic reticulum with calcium. This is the mechanistic chain proposed for the drug, and the label says the relationship between blocking the current and relieving angina is uncertain.',
+        iconName: 'Repeat',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 3,
+        title: 'Overloaded muscle cannot let go between beats',
+        laymanDesc:
+          'Calcium is what makes muscle contract, so too much of it left over means the muscle never fully relaxes. A stiff heart wall squeezes the small vessels running through it.',
+        molecularDetail:
+          'Calcium overload raises diastolic tension and left ventricular diastolic pressure, compressing intramural coronary vessels and reducing subendocardial perfusion — the proposed route by which a purely electrical abnormality becomes an ischaemic one.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Blocking the leak, without touching rate or pressure',
+        laymanDesc:
+          'Ranolazine blocks the leaking current. Unlike every other antianginal drug, it does this without slowing the heart or lowering blood pressure, which is the reason it exists.',
+        molecularDetail:
+          'The label records anti-ischaemic and antianginal effects that do not depend on reductions in heart rate or blood pressure, and no effect on the rate-pressure product at maximal exercise. That is an unusual and genuinely useful property in patients already at the floor of both.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'The same channel family produces the risk',
+        laymanDesc:
+          'The drug also blocks a potassium channel that resets the heart electrically, which lengthens the QT interval on an ECG. That is the effect the label is confident about.',
+        molecularDetail:
+          'QT prolongation is attributed to inhibition of IKr, the hERG-carried rapid delayed rectifier, prolonging the ventricular action potential, and is dose-related. In the acute coronary syndrome population there was no increased risk of proarrhythmia or sudden death, and symptomatic documented arrhythmias were 3.0% against 3.1% on placebo.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the outcome trials measured',
+        laymanDesc:
+          'Two large trials asked whether the drug prevents heart attacks and repeat procedures. Both missed. What is left is about twenty-four seconds more treadmill time and half an anginal episode a week.',
+        molecularDetail:
+          'MERLIN-TIMI 36: primary composite HR 0.92 (95% CI 0.83 to 1.02, p=0.11) in 6,560 patients. RIVER-PCI: primary composite HR 0.95 (0.82 to 1.10, p=0.48) in 2,651 patients. CARISA: trough exercise duration +115.6 seconds against +91.7 on placebo (p=0.01). TERISA: 3.8 against 4.3 weekly anginal episodes (p=0.008).',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MERLIN-TIMI 36 (NCT00099788)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, multinational',
+        sampleSize: 6560,
+        primaryEndpoint:
+          'Composite of cardiovascular death, myocardial infarction or recurrent ischaemia through end of study',
+        endpointMet: false,
+        statisticalPValue:
+          '21.8% against 23.5%; hazard ratio 0.92 (95% CI 0.83 to 1.02), p=0.11 over a median 348 days',
+        unreportedAdverseSignals:
+          'Recurrent ischaemia alone was reduced (HR 0.87, p=0.03), which is the component most vulnerable to ascertainment bias in an unblinded clinical setting. QTc prolongation requiring intravenous dose reduction occurred in 0.9% against 0.3%.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'RIVER-PCI (NCT01442038)',
+        phase: 'Phase 4, randomised, double-blind, placebo-controlled, event-driven',
+        sampleSize: 2651,
+        primaryEndpoint:
+          'Time to first ischaemia-driven revascularisation or ischaemia-driven hospitalisation without revascularisation',
+        endpointMet: false,
+        statisticalPValue:
+          '26% against 28%; hazard ratio 0.95 (95% CI 0.82 to 1.10), p=0.48 over a median 643 days',
+        unreportedAdverseSignals:
+          'More patients stopped the study drug for an adverse event on ranolazine: 189 (14%) against 137 (11%), p=0.04. Funded by Gilead Sciences and Menarini.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'CARISA (JAMA 2004;291:309-316)',
+        phase: 'Phase 3, randomised, three-group parallel, double-blind, placebo-controlled',
+        sampleSize: 823,
+        primaryEndpoint:
+          'Change in trough treadmill exercise duration at 12 weeks, on background atenolol, amlodipine or diltiazem',
+        endpointMet: true,
+        statisticalPValue:
+          '+115.6 seconds from baseline in the pooled ranolazine groups against +91.7 seconds on placebo, p=0.01 — a between-group difference of about 24 seconds',
+        unreportedAdverseSignals:
+          'The reported survival figures of 98.4% at one year and 95.9% at two come from the trial plus its open-label extension in 750 patients, with no control group.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'TERISA (NCT01425359)',
+        phase: 'Phase 4, randomised, double-blind, placebo-controlled, with placebo run-in',
+        sampleSize: 949,
+        primaryEndpoint:
+          'Average weekly number of anginal episodes over the last six weeks in patients with type 2 diabetes',
+        endpointMet: true,
+        statisticalPValue:
+          '3.8 episodes (95% CI 3.6 to 4.1) against 4.3 (95% CI 4.0 to 4.5), p=0.008; weekly nitroglycerin 1.7 against 2.1 doses, p=0.003',
+        unreportedAdverseSignals:
+          'A four-week single-blind placebo run-in preceded randomisation, which removes placebo responders and inflates the apparent drug effect relative to unselected practice. The absolute difference is about half an episode a week.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Trough exercise duration +115.6 seconds against +91.7 on placebo in 823 patients (p=0.01)',
+        'Weekly anginal episodes 3.8 against 4.3 in 949 patients with type 2 diabetes (p=0.008)',
+        'No reduction in the primary composite in 6,560 acute coronary syndrome patients (HR 0.92, p=0.11)',
+        'HbA1c fell 0.64 percentage points in diabetic patients within MERLIN-TIMI 36, without increased hypoglycaemia',
+      ],
+      unsupportedInferences: [
+        'That ranolazine relieves angina by inhibiting the late sodium current — the label says that relationship is uncertain',
+        'That reducing recurrent ischaemia in MERLIN-TIMI 36 amounts to a cardiovascular benefit, when the primary composite it belongs to was not met',
+        'That the 98.4% one-year survival in the CARISA extension says anything about the drug, given there was no control group',
+        'That the HbA1c effect is clinically established — it is a prespecified analysis inside a trial that missed its primary endpoint, with a mechanism the authors describe as under investigation',
+      ],
+      whatFailedInitially: [
+        'MERLIN-TIMI 36 missed its primary composite in 6,560 patients at p=0.11',
+        'RIVER-PCI missed its primary composite in 2,651 patients at p=0.48, with more discontinuations on the drug',
+        'The drug is contraindicated with both CYP3A inhibitors and CYP3A inducers, and in liver cirrhosis',
+        'Acute renal failure has been observed at creatinine clearance below 30 mL/min',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in 2006 for chronic angina and generic since 2019, now about sixteen United States cents a tablet',
+        'The only antianginal that works without lowering heart rate or blood pressure, which is a real and narrow advantage',
+        'Two adequately powered outcome trials have failed, so it remains a symptomatic drug with no demonstrated effect on events',
+        'Its most striking measured effect — a 0.64 point HbA1c reduction — has never been developed into an indication',
+      ],
+    },
+    deliverySystem: {
+      type: 'Extended-release oral tablet, taken twice daily; a sprinkle formulation exists for patients who cannot swallow tablets',
+      description:
+        'The extended-release matrix exists because ranolazine has a short half-life and a dose-related QT effect, so a formulation that flattens the peak is doing safety work rather than convenience work. Clearance is dominated by CYP3A, which is why both inhibitors and inducers of that enzyme are contraindications rather than cautions.',
+      safetyProfile:
+        'Contraindicated with strong CYP3A inhibitors, with CYP3A inducers and in liver cirrhosis. Blocks IKr and prolongs QTc dose-dependently, with little data above 1000 mg twice daily, alongside other QT-prolonging drugs, or in congenital or acquired long QT. Acute renal failure has been observed at creatinine clearance below 30 mL/min, and renal function should be monitored below 60 mL/min. Commonest reactions above 4% and more common than placebo are dizziness, headache, constipation and nausea; about 6% discontinued for an adverse event against 3% on placebo.',
+    },
+    commonQuestions: [
+      {
+        q: 'How much difference will it actually make?',
+        a: 'Less than most people expect, and the numbers are worth seeing. In CARISA, patients on ranolazine walked on a treadmill for 115.6 seconds longer than at baseline, and patients on placebo for 91.7 seconds longer — so the drug itself is worth about twenty-four seconds. In TERISA, in patients with diabetes, weekly anginal episodes went from 4.3 on placebo to 3.8 on the drug, and nitroglycerin use from 2.1 doses a week to 1.7. Both differences are statistically clear and both are small. For someone having several episodes a week whose other drugs are at their limit, half an episode a week is not nothing. It is also not what the word antianginal usually suggests.',
+      },
+      {
+        q: 'Will it stop me having a heart attack?',
+        a: 'Two large trials asked and neither found it. MERLIN-TIMI 36 gave ranolazine or placebo to 6,560 patients admitted with an acute coronary syndrome; the combined rate of cardiovascular death, heart attack and recurrent ischaemia was 21.8% against 23.5%, which is a hazard ratio of 0.92 at p=0.11 — not significant. RIVER-PCI gave it to 2,651 patients who had been left with untreated narrowings after a stent procedure; repeat procedures and ischaemic admissions were no less common (HR 0.95, p=0.48), and more people stopped the drug for side effects. The drug is licensed for symptoms and that is what the evidence supports.',
+      },
+      {
+        q: 'Is it true nobody knows how it works?',
+        a: 'The prescribing information says so directly: the mechanism of the antianginal effect has not been determined. The standard account — that it blocks a leaking late sodium current, which reduces calcium overload, which lets the heart muscle relax — is coherent, well supported in isolated tissue, and is what the drug is named for. The label acknowledges that ranolazine can inhibit that current at therapeutic levels and then adds that the relationship of the inhibition to angina symptoms is uncertain. The only mechanism the label states without qualification is the unwanted one: the QT prolongation comes from blocking a potassium channel.',
+        auditNote:
+          'A drug can work without its mechanism being settled — aspirin was used for seventy years before anyone found cyclooxygenase. What is unusual here is that the unsettled mechanism is also the drug marketing identity.',
+      },
+      {
+        q: 'I have diabetes. Does it help with that too?',
+        a: 'It appears to lower long-term blood sugar, and nobody has turned that into a treatment. A prespecified analysis inside MERLIN-TIMI 36 measured HbA1c in 4,918 patients. In those with diabetes it fell from 7.5% to 6.9% on ranolazine — a 0.64 percentage point reduction, which is in the range of a real oral diabetes drug — and 59% reached below 7% against 49% on placebo. In people without diabetes, new high fasting glucose or HbA1c was less common on the drug. Hypoglycaemia did not increase. That was published in 2009 and the mechanism was described as under investigation. There is still no diabetes indication and no diabetes programme.',
+      },
+      {
+        q: 'Why can I not take it with certain antibiotics?',
+        a: 'Because ranolazine is cleared almost entirely by one liver enzyme, CYP3A, and the drug is unusually sensitive in both directions. Antibiotics and antifungals that block that enzyme — clarithromycin, ketoconazole and others — push the ranolazine level up, and since the drug lengthens the QT interval in proportion to its concentration, that matters. Drugs that speed the enzyme up — rifampin, phenobarbital, St John wort — push the level down until the drug does nothing at all. Both are listed as contraindications rather than cautions, which is unusual, and liver cirrhosis is a contraindication for the same reason.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Morrow DA, Scirica BM, Karwatowska-Prokopczuk E, et al. Effects of ranolazine on recurrent cardiovascular events in patients with non-ST-elevation acute coronary syndromes: the MERLIN-TIMI 36 randomized trial. JAMA 2007;297:1775-1783',
+        identifier: '10.1001/jama.297.16.1775',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Weisz G, Genereux P, Iniguez A, et al. Ranolazine in patients with incomplete revascularisation after percutaneous coronary intervention (RIVER-PCI). Lancet 2016;387:136-145',
+        identifier: '10.1016/S0140-6736(15)00459-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chaitman BR, Pepine CJ, Parker JO, et al. Effects of ranolazine with atenolol, amlodipine, or diltiazem on exercise tolerance and angina frequency in patients with severe chronic angina (CARISA). JAMA 2004;291:309-316',
+        identifier: '10.1001/jama.291.3.309',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kosiborod M, Arnold SV, Spertus JA, et al. Evaluation of ranolazine in patients with type 2 diabetes mellitus and chronic stable angina: results from the TERISA randomized clinical trial. J Am Coll Cardiol 2013;61:2038-2045',
+        identifier: '10.1016/j.jacc.2013.02.011',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Morrow DA, Scirica BM, Chaitman BR, et al. Evaluation of the glycometabolic effects of ranolazine in patients with and without diabetes mellitus in the MERLIN-TIMI 36 randomized controlled trial. Circulation 2009;119:2032-2039',
+        identifier: '10.1161/CIRCULATIONAHA.107.763912',
+        kind: 'doi',
+      },
+      {
+        label: 'MERLIN-TIMI 36: ranolazine in non-ST-elevation acute coronary syndromes',
+        identifier: 'NCT00099788',
+        kind: 'nct',
+      },
+      {
+        label: 'RIVER-PCI: ranolazine after incomplete revascularisation',
+        identifier: 'NCT01442038',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Ranolazine extended-release tablets United States prescribing information — Indications, Contraindications, Warnings 5.1 and 5.2, Mechanism of Action 12.1 and Adverse Reactions 6.1',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22ranolazine%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — ranolazine, 35 listed generic products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 56959 — ranolazine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/56959',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Ivabradine — licensed to prevent hospital admissions and nothing else, after two large
+  //    trials in coronary disease failed and one of them found harm in the angina subgroup.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ivabradine',
+    name: 'Ivabradine',
+    tradeName: 'Corlanor',
+    sponsor:
+      'Amgen Inc. (holder of NDA 206143 in the United States); discovered and developed by Servier',
+    targetGene: 'HCN4',
+    targetProtein:
+      'Hyperpolarisation-activated cyclic nucleotide-gated channel carrying the pacemaker funny current, and the related retinal Ih channel',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2015,
+    indication:
+      'To reduce the risk of hospitalisation for worsening heart failure in adults with stable, symptomatic chronic heart failure and left ventricular ejection fraction at or below 35%, in sinus rhythm with resting heart rate at or above 70 beats per minute, who are on maximally tolerated beta-blocker doses or cannot take one; and for stable symptomatic heart failure due to dilated cardiomyopathy in children aged 6 months and older',
+    patientFriendlyIndication:
+      'A weakened heart that keeps beating too fast, to keep you out of hospital',
+    anatomicalSite:
+      'Sinoatrial node pacemaker cells — the HCN4 channel that sets the resting heart rate — and, incidentally, the retina',
+    conditionContext: {
+      conditionExplainer:
+        'The sinoatrial node is a small patch of cells that generates each heartbeat by slowly leaking positive charge inward until a threshold is crossed. The current that does that leaking was named the funny current because it behaved the wrong way round compared with every other cardiac current. Its speed sets the resting heart rate.',
+      whyItMatters:
+        'A high resting heart rate predicts bad outcomes in heart failure, and every drug that lowers it also does several other things. Ivabradine lowers heart rate and does nothing else measurable: no effect on contractility, no effect on blood pressure, no effect on ventricular repolarisation. It is therefore the cleanest available test of whether heart rate itself is the problem or merely a marker of it.',
+      whoTakesThis:
+        'Adults with reduced-ejection-fraction heart failure whose resting heart rate stays at or above 70 in sinus rhythm despite the maximum beta-blocker dose they can take, and children from six months old with dilated cardiomyopathy. Not people in atrial fibrillation, where the drug has no target.',
+      clinicalGoals:
+        'Staying out of hospital. That is what the United States indication says, in those words, and the trial that produced it did not reduce cardiovascular death or all-cause death.',
+    },
+    oneSentenceVerdict:
+      'A pure heart-rate-lowering drug that reduced the composite of cardiovascular death or heart failure admission from 29% to 24% in 6,558 patients in SHIFT, driven by admissions rather than deaths — and which failed its primary endpoint in 10,917 patients in BEAUTIFUL and in 19,102 patients in SIGNIFY, where the subgroup with activity-limiting angina did worse on the drug than on placebo.',
+    laymanHowItWorks:
+      'Every heartbeat starts in a small cluster of cells that act as the heart natural pacemaker. Those cells slowly build up an electrical charge until they fire, and the speed of that build-up is what sets your resting pulse. Ivabradine blocks the specific channel that lets the charge in, so the build-up is slower and the heart beats less often. It does nothing else: it does not weaken the beat, it does not lower blood pressure, and it does not change the electrical recovery of the pumping chambers. The same channel exists in the retina, which is why some people see brief flashes of brightness.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 63,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.7645 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 16 listed products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States on 15 April 2015 under NDA 206143, more than a decade after its European approval for angina in 2005. At about seventy-six United States cents a tablet it is roughly thirty-five times the price of carvedilol per unit, and it is taken twice daily on top of a beta-blocker rather than instead of one.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Ivabradine is an add-on, and the first question its own label asks is whether the beta-blocker is already at the maximum tolerated dose. In SHIFT the alternative that has never been tested against it is simply more beta-blocker. Beyond rate control, the drugs that have reduced death in reduced-ejection-fraction heart failure — the neprilysin inhibitor, the mineralocorticoid antagonists, the SGLT2 inhibitors — are additions rather than substitutes, and all of them have mortality evidence that ivabradine does not.',
+      conventionalRx: [
+        {
+          name: 'More of the existing beta-blocker',
+          class: 'Beta-1 adrenergic blocker',
+          howItCompares:
+            'Lowers heart rate and reduces mortality, which ivabradine has not been shown to do. The United States indication for ivabradine requires that the beta-blocker already be at the maximally tolerated dose or contraindicated, which makes this the comparison that matters and the one no trial has made directly.',
+          typicalCost:
+            'US$0.0214 per tablet for carvedilol at United States pharmacy acquisition cost (CMS NADAC, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: mortality evidence; a fraction of the cost; no phosphenes and no atrial fibrillation signal. Cons: hypotension and fatigue are what stop titration, which is the situation ivabradine exists for.',
+        },
+        {
+          name: 'Sacubitril / valsartan (Entresto)',
+          class: 'Angiotensin receptor-neprilysin inhibitor',
+          howItCompares:
+            'In PARADIGM-HF, 8,442 patients with reduced ejection fraction had a primary composite rate of 21.8% against 26.5% on enalapril (HR 0.80, p<0.001), including a reduction in all-cause death from 19.8% to 17.0%. Ivabradine reduced admissions without reducing death.',
+          typicalCost:
+            'US$0.5291 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 100 listed products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: mortality benefit demonstrated in a single large trial; cheaper per tablet. Cons: hypotension and angioedema; requires stopping an ACE inhibitor with a washout.',
+        },
+        {
+          name: 'An SGLT2 inhibitor such as dapagliflozin or empagliflozin',
+          class: 'Sodium-glucose cotransporter 2 inhibitor',
+          howItCompares:
+            'Reduces heart failure hospitalisation and cardiovascular death in reduced-ejection-fraction heart failure regardless of diabetes status, and does so without needing a particular heart rate or rhythm — ivabradine is useless in atrial fibrillation, which a large proportion of heart failure patients have.',
+          typicalCost: 'Branded in the United States; substantially more expensive per tablet',
+          prosAndCons:
+            'Pros: works in sinus rhythm and atrial fibrillation alike; large mortality evidence base. Cons: genital mycotic infection, volume depletion, and the euglycaemic ketoacidosis signal.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report a new irregular pulse',
+          action:
+            'Say if your heartbeat becomes irregular, and ask whether your rhythm is being checked.',
+          patientImpact:
+            'The label states that ivabradine increases the risk of atrial fibrillation: 5.0% per patient-year against 3.9% on placebo in SHIFT, with atrial fibrillation reported as an adverse reaction in 8.3% against 6.6%. The label directs regular rhythm monitoring and discontinuation if atrial fibrillation develops.',
+          clinicalPrecaution:
+            'Atrial fibrillation also removes the drug reason for existing, because the funny current no longer sets the ventricular rate once the atria are fibrillating.',
+        },
+        {
+          name: 'Expect the visual flashes and know what they are',
+          action:
+            'Report brief flashes of enhanced brightness, particularly when light levels change suddenly.',
+          patientImpact:
+            'Phosphenes occurred in 2.8% of patients against 0.5% on placebo. The label explains them: ivabradine also inhibits the retinal current Ih, which normally curtails the retinal response to bright light, so partial inhibition produces a transient enhanced brightness in part of the visual field.',
+          clinicalPrecaution:
+            'They are generally transient and not a sign of retinal damage, but they matter for night driving, and they are the reason some patients stop the drug.',
+        },
+        {
+          name: 'Use effective contraception if you could become pregnant',
+          action: 'Discuss contraception before starting.',
+          patientImpact:
+            'The label warns of fetal toxicity based on animal findings: embryo-fetal toxicity and cardiac teratogenic effects were seen in rats treated during organogenesis at exposures one to three times the human exposure at the maximum recommended dose.',
+          clinicalPrecaution:
+            'This is an animal finding rather than a human one, and the exposure multiple is low enough that the label directs effective contraception rather than a caution.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(CCCN1CCC2=CC(=C(C=C2CC1=O)OC)OC)C[C@H]3CC4=CC(=C(C=C34)OC)OC',
+      chemicalFormula: 'C27H36N2O5',
+      molecularWeight: '468.60 g/mol (free base); dispensed as ivabradine hydrochloride',
+      targetReceptorAffinity:
+        'Blocks the HCN channel carrying the cardiac pacemaker If current from the intracellular side, with access requiring the channel to be open, so block accumulates at higher heart rates. Cardiac effects are most pronounced at the sinoatrial node, though AH and PR interval prolongation have occurred. The label records no effect on ventricular repolarisation and none on myocardial contractility. It also inhibits the retinal Ih current, which normally curtails retinal responses to bright light, and that is the stated basis for the luminous phenomena.',
+      structureSource: {
+        label:
+          'PubChem CID 132999 (ivabradine) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/132999',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ivb-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the S configuration on the benzocyclobutane',
+          description:
+            'Ivabradine has a single stereocentre on a strained benzocyclobutane ring, and only the S enantiomer is the drug. The strained four-membered ring is also the part of the molecule most vulnerable to thermal ring-opening during processing, so identity and stereochemistry are checked on the finished substance rather than only on the intermediate.',
+          reagentsAndBuffer:
+            'Ivabradine hydrochloride reference standard, chiral HPLC on an amylose phase, 1H NMR in DMSO-d6 with attention to the cyclobutane protons, specified limit for the ring-opened degradant, Karl Fischer titration',
+        },
+        {
+          id: 'ivb-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Reductively aminate the benzocyclobutylmethylamine onto the benzazepinone chain',
+          description:
+            'Couple the chiral (S)-4,5-dimethoxybenzocyclobutan-1-yl-methylamine to a 3-chloropropyl benzazepinone, then methylate the resulting secondary amine. The molecule is essentially two dimethoxyaromatic units joined by an aminopropyl chain, and its resemblance to verapamil is structural rather than pharmacological — it has no calcium channel activity of consequence.',
+          dependsOnStepId: 'ivb-w1',
+          reagentsAndBuffer:
+            '(S)-benzocyclobutylmethylamine, 7,8-dimethoxy-3-(3-chloropropyl)-1,3,4,5-tetrahydro-2H-3-benzazepin-2-one, potassium carbonate with potassium iodide in acetonitrile, formaldehyde with a reducing agent for N-methylation, nitrogen atmosphere',
+        },
+        {
+          id: 'ivb-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Control the ring-opened degradant and crystallise the hydrochloride',
+          description:
+            'The benzocyclobutane can open under heat or acid to a styrene-type impurity that is inactive and difficult to remove downstream. Crystallise the hydrochloride under controlled temperature and set a limit for the degradant, because thermal history rather than reaction chemistry is what determines its level.',
+          dependsOnStepId: 'ivb-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in isopropanol or ethyl acetate, crystallisation with a controlled cooling ramp and no high-temperature drying step, HPLC release testing with limits for the ring-opened degradant and the R enantiomer',
+        },
+        {
+          id: 'ivb-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Confirm intracellular, open-channel access on HCN4',
+          description:
+            'Ivabradine reaches its site from inside the cell and only when the channel is open, which is why block deepens as heart rate rises. Demonstrate that directly by applying the drug intracellularly and extracellularly in separate arms and by varying pulse frequency. An extracellular single-frequency measurement misses the property that makes the drug self-limiting at low heart rates.',
+          dependsOnStepId: 'ivb-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells expressing human HCN4, whole-cell patch clamp with hyperpolarising steps, intracellular and extracellular application arms, cyclic AMP in the pipette to set channel gating',
+        },
+        {
+          id: 'ivb-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Selectivity against retinal Ih and against contractility',
+          description:
+            'Two negative results define this drug and both must be measured, not assumed. Against retinal HCN1 and HCN2 the ratio predicts the phosphene rate; against isolated papillary muscle, the absence of any effect on developed tension is the property that distinguishes ivabradine from every other rate-lowering agent.',
+          dependsOnStepId: 'ivb-w4',
+          reagentsAndBuffer:
+            'Cells expressing human HCN1 and HCN2 for the retinal comparison, isolated guinea-pig papillary muscle in Krebs-Henseleit buffer with isometric force transducers, spontaneously beating sinoatrial node preparation for rate measurement',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ivb-a1',
+        category: 'measured',
+        title: 'SHIFT: fewer admissions, and no reduction in death from any cause',
+        laymanSummary:
+          'Six and a half thousand patients with a weak, fast-beating heart were randomised to ivabradine or a dummy tablet. The combined measure improved from 29% to 24%. Almost all of that came from fewer hospital admissions rather than fewer deaths.',
+        technicalDetails:
+          'SHIFT randomised 6,558 patients with symptomatic heart failure, ejection fraction at or below 35%, in sinus rhythm with heart rate at or above 70 beats per minute, admitted for heart failure within the previous year, on stable background therapy including a beta-blocker if tolerated. Median follow-up was 22.9 months. The primary composite of cardiovascular death or hospital admission for worsening heart failure occurred in 793 (24%) against 937 (29%), hazard ratio 0.82 (95% CI 0.75 to 0.90, p<0.0001). The published account states the effects were driven mainly by hospital admissions for worsening heart failure (672 [21%] placebo against 514 [16%] ivabradine; HR 0.74, 0.66 to 0.83, p<0.0001) and deaths due to heart failure (151 [5%] against 113 [3%]; HR 0.74, 0.58 to 0.94, p=0.014). The United States indication that followed is written narrowly, to reduce the risk of hospitalisation for worsening heart failure, and makes no mortality claim.',
+        evidenceSource: 'Swedberg K et al., Lancet 2010;376:875-885 (SHIFT, ISRCTN70429960)',
+        doi: '10.1016/S0140-6736(10)61198-1',
+        measuredMetric:
+          'Composite of cardiovascular death or hospital admission for worsening heart failure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ivb-a2',
+        category: 'failed',
+        title: 'BEAUTIFUL: no effect at all in 10,917 patients with coronary disease',
+        laymanSummary:
+          'A trial in almost eleven thousand patients with coronary disease and a weakened heart found the drug made no difference whatsoever to the main outcome. The hazard ratio was exactly 1.00.',
+        technicalDetails:
+          'BEAUTIFUL screened 12,473 and enrolled 10,917 patients with coronary artery disease and ejection fraction below 40%, randomised to ivabradine (n=5,479) or placebo (n=5,438) in addition to appropriate cardiovascular medication; 87% were on beta-blockers. Median follow-up was 19 months. Ivabradine reduced heart rate by 6 beats per minute at 12 months, placebo-corrected. The primary composite of cardiovascular death, admission for acute myocardial infarction and admission for new or worsening heart failure was not affected: hazard ratio 1.00 (95% CI 0.91 to 1.1, p=0.94). In the prespecified subgroup with heart rate at or above 70, the primary composite was still not affected (HR 0.91, 95% CI 0.81 to 1.04, p=0.17), nor was cardiovascular death or admission for new or worsening heart failure; two secondary endpoints were reduced, admission for fatal and non-fatal myocardial infarction (HR 0.64, 0.49 to 0.84, p=0.001) and coronary revascularisation (HR 0.70, 0.52 to 0.93, p=0.016). Those two secondary results generated the hypothesis that SIGNIFY was designed to test.',
+        evidenceSource: 'Fox K et al., Lancet 2008;372:807-816 (BEAUTIFUL, NCT00143507)',
+        doi: '10.1016/S0140-6736(08)61170-8',
+        measuredMetric:
+          'Composite of cardiovascular death, admission for acute myocardial infarction and admission for new or worsening heart failure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ivb-a3',
+        category: 'conclusion_shift',
+        title: 'SIGNIFY: the confirmatory trial found harm in the group it was aimed at',
+        laymanSummary:
+          'Nineteen thousand patients with coronary disease and a fast pulse were given ivabradine to confirm the earlier subgroup finding. There was no benefit. Among those whose angina limited their activity — the very group the trial targeted — outcomes were worse on the drug.',
+        technicalDetails:
+          'SIGNIFY randomised 19,102 patients with stable coronary artery disease without clinical heart failure and heart rate at or above 70, including 12,049 with activity-limiting angina of Canadian Cardiovascular Society class II or above, to ivabradine at up to 10 mg twice daily or placebo, targeting a heart rate of 55 to 60. At three months, mean heart rate was 60.7 against 70.6. After a median 27.8 months there was no significant difference in the primary composite of cardiovascular death or non-fatal myocardial infarction: 6.8% against 6.4%, hazard ratio 1.08 (95% CI 0.96 to 1.20, p=0.20). Ivabradine was associated with an increase in the primary endpoint among patients with activity-limiting angina but not among those without it, p=0.02 for interaction. Bradycardia occurred in 18.0% against 2.3%, p<0.001. The dose tested was above the approved heart failure dose. European regulators subsequently restricted the drug angina labelling.',
+        evidenceSource: 'Fox K et al., N Engl J Med 2014;371:1091-1099 (SIGNIFY, ISRCTN61576291)',
+        doi: '10.1056/NEJMoa1406430',
+        inferredClaim:
+          'That the myocardial infarction reduction seen in a BEAUTIFUL subgroup would confirm in a dedicated trial — it did not, and the confirmatory trial found a significant interaction pointing the other way in the target population',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ivb-a4',
+        category: 'failed',
+        title: 'A systematic review of 47 trials found no benefit on any patient-important outcome',
+        laymanSummary:
+          'Pooling every randomised trial of ivabradine in angina — forty-seven trials and nearly thirty-six thousand people — found no effect on deaths or quality of life, and slightly more serious side effects.',
+        technicalDetails:
+          'Maagaard and colleagues systematically reviewed randomised trials of ivabradine against placebo or no intervention in angina from coronary artery disease, including 47 trials with 35,797 participants; all trials and outcomes were judged at high risk of bias. Ivabradine had no effect on all-cause mortality (RR 1.04, 95% CI 0.96 to 1.13), quality of life (standardised mean difference -0.05, 95% CI -0.11 to 0.01), cardiovascular mortality (RR 1.07, 95% CI 0.97 to 1.18) or myocardial infarction (RR 1.03, 95% CI 0.91 to 1.16). After removal of outliers it appeared to increase serious adverse events (RR 1.07, 95% CI 1.03 to 1.11), including bradycardia, prolonged QT interval, photopsia, atrial fibrillation and hypertension, and non-serious adverse events (RR 1.13, 95% CI 1.11 to 1.16). Angina frequency and stability scores favoured ivabradine — mean differences of 2.06 (95% CI 0.82 to 3.30) and 1.48 (0.07 to 2.89) — but the authors state the effect sizes seemed minimal and possibly without relevance to patients, with methodological limitations questioning their validity. Their conclusion is that guidelines need reassessment and the use of ivabradine for angina should be reconsidered. This review covers angina, not the heart failure indication SHIFT established.',
+        evidenceSource:
+          'Maagaard M, Nielsen EE, Sethi NJ, et al. Effects of adding ivabradine to usual care in patients with angina pectoris: a systematic review with meta-analysis and Trial Sequential Analysis. Open Heart 2020;7:e001288',
+        doi: '10.1136/openhrt-2020-001288',
+        measuredMetric:
+          'All-cause mortality, quality of life and serious adverse events pooled across 47 randomised trials in 35,797 participants',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ivb-a5',
+        category: 'measured',
+        title: 'It causes the arrhythmia that makes it useless',
+        laymanSummary:
+          'Ivabradine only works in a heart beating in normal rhythm. It also makes the commonest abnormal rhythm more likely, and the label directs stopping the drug if that rhythm develops.',
+        technicalDetails:
+          'The label states that ivabradine increases the risk of atrial fibrillation, with a rate of 5.0% per patient-year against 3.9% on placebo in SHIFT, and directs regular cardiac rhythm monitoring and discontinuation if atrial fibrillation develops. In the SHIFT adverse reaction table, atrial fibrillation was reported in 8.3% against 6.6%, bradycardia in 10% against 2.2%, hypertension or increased blood pressure in 8.9% against 7.8%, and phosphenes in 2.8% against 0.5%. Symptomatic bradycardia in the published trial occurred in 150 (5%) against 32 (1%), p<0.0001. The drug has no effect on ventricular rate in atrial fibrillation, because the funny current no longer sets it, so the adverse event and the loss of indication arrive together.',
+        evidenceSource:
+          'CORLANOR (ivabradine) United States prescribing information, sections 5.2, 5.3 and 6.1 (NDA 206143); Swedberg K et al., Lancet 2010;376:875-885',
+        doi: '10.1016/S0140-6736(10)61198-1',
+        measuredMetric:
+          'Atrial fibrillation rate per patient-year and adverse reaction rates in SHIFT',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ivb-a6',
+        category: 'inferred',
+        title: 'The comparison that would settle it has never been run',
+        laymanSummary:
+          'The drug is licensed for patients whose heart rate stays high on the maximum beta-blocker dose they can tolerate. In the trial, only a minority were on a full beta-blocker dose, so the question of whether more beta-blocker would have done the same job was never asked.',
+        technicalDetails:
+          'The United States indication requires that patients be on maximally tolerated doses of beta-blockers or have a contraindication to them, and the label records that SHIFT patients had to be clinically stable for at least four weeks on an optimised regimen including maximally tolerated beta-blocker doses. Maximally tolerated is not the same as target dose, and in SHIFT a minority of patients were at the target dose of their beta-blocker. Since beta-blockers lower heart rate and reduce mortality, while ivabradine lowers heart rate and did not reduce mortality, the untested question is whether the benefit measured in SHIFT belongs to ivabradine or to insufficient beta-blockade. No randomised trial has compared uptitration of a beta-blocker against the addition of ivabradine, and the drug regulatory position depends on the assumption that the beta-blocker was already maximal.',
+        evidenceSource:
+          'CORLANOR United States prescribing information, sections 1.1 and 14.1 (NDA 206143); Swedberg K et al., Lancet 2010;376:875-885',
+        inferredClaim:
+          'That the SHIFT benefit is attributable to ivabradine rather than to residual room for beta-blocker uptitration — plausible, assumed by the indication, and never tested against an uptitration arm',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ivb-a7',
+        category: 'failed',
+        title: 'A list of contraindications that is mostly the drug own mechanism',
+        laymanSummary:
+          'Almost everything the drug must not be used in is a version of the same thing: a heart that is already too slow, or a pacemaker system that cannot be slowed further, or anything that raises the drug level.',
+        technicalDetails:
+          'Contraindications are acute decompensated heart failure, clinically significant hypotension, sick sinus syndrome, sinoatrial block or third-degree AV block without a functioning demand pacemaker, clinically significant bradycardia, severe hepatic impairment, pacemaker dependence where the heart rate is maintained exclusively by the pacemaker, and concomitant use of strong CYP3A4 inhibitors. Second-degree AV block is listed as not recommended. Fetal toxicity is a warning: embryo-fetal toxicity and cardiac teratogenic effects were observed in rats treated during organogenesis at exposures one to three times the human exposure at the maximum recommended dose, and effective contraception is directed. Bradycardia, sinus arrest and heart block have occurred, at a rate of 6.0% per patient-year.',
+        evidenceSource:
+          'CORLANOR United States prescribing information, sections 4, 5.1 and 5.3 (NDA 206143)',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'The pacemaker cell leaks itself up to threshold',
+        laymanDesc:
+          'A small cluster of cells at the top of the heart starts every beat. Between beats they slowly let positive charge in until they reach a trigger point. How fast that happens is your resting pulse.',
+        molecularDetail:
+          'The funny current, carried mainly by HCN4 in the sinoatrial node, activates on hyperpolarisation rather than depolarisation — which is why it was named funny — and provides the slow diastolic depolarisation that determines cycle length. Cyclic AMP binding to the channel steepens that slope, which is how adrenaline speeds the heart.',
+        iconName: 'Timer',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 2,
+        title: 'The drug gets in through the open channel',
+        laymanDesc:
+          'Ivabradine can only reach its target from inside the cell, and only while the channel is open. That means it blocks more when the heart is beating fast and less when it is already slow.',
+        molecularDetail:
+          'Block is current-dependent and requires channel opening for access from the intracellular side, giving a self-limiting profile: the faster the sinoatrial node fires, the more block accumulates. The label records cardiac effects most pronounced at the sinoatrial node, with some AH and PR interval prolongation.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The rate falls and nothing else changes',
+        laymanDesc:
+          'The heart beats less often. It does not beat more weakly, blood pressure does not fall, and the electrical recovery of the pumping chambers is untouched. That combination is unique.',
+        molecularDetail:
+          'The label records no effect on ventricular repolarisation and no effect on myocardial contractility. In BEAUTIFUL the placebo-corrected heart rate reduction was 6 beats per minute at 12 months; in SIGNIFY, mean heart rate at three months was 60.7 against 70.6 on placebo.',
+        iconName: 'TrendingDown',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Fewer admissions in heart failure',
+        laymanDesc:
+          'In patients with a weak heart beating over seventy times a minute, this reduced hospital admissions for worsening heart failure by about a quarter. Deaths from all causes were not reduced.',
+        molecularDetail:
+          'SHIFT primary composite 24% against 29%, HR 0.82 (95% CI 0.75 to 0.90, p<0.0001), driven mainly by heart failure admissions (HR 0.74, 0.66 to 0.83) and heart failure deaths (HR 0.74, 0.58 to 0.94). The United States indication is written as reducing hospitalisation risk and makes no mortality claim.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'The retina has the same channel',
+        laymanDesc:
+          'A related channel in the retina normally damps the response to sudden bright light. Blocking part of it produces brief flashes of brightness in part of the visual field.',
+        molecularDetail:
+          'The label states that ivabradine can inhibit the retinal current Ih, which is involved in curtailing retinal responses to bright light, and that partial inhibition under rapid changes in luminosity may underlie the luminous phenomena. Phosphenes occurred in 2.8% against 0.5% on placebo.',
+        iconName: 'Sparkles',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Where it did not work, and where it did harm',
+        laymanDesc:
+          'In coronary disease without heart failure, two large trials found nothing. In the group with activity-limiting angina, the larger trial found outcomes were worse on the drug.',
+        molecularDetail:
+          'BEAUTIFUL primary composite HR 1.00 (95% CI 0.91 to 1.1, p=0.94) in 10,917 patients. SIGNIFY primary composite HR 1.08 (0.96 to 1.20, p=0.20) in 19,102 patients, with a significant interaction (p=0.02) showing an increase in the primary endpoint among the 12,049 with activity-limiting angina.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SHIFT (ISRCTN70429960)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, parallel-group',
+        sampleSize: 6558,
+        primaryEndpoint:
+          'Composite of cardiovascular death or hospital admission for worsening heart failure',
+        endpointMet: true,
+        statisticalPValue:
+          '24% against 29%; hazard ratio 0.82 (95% CI 0.75 to 0.90), p<0.0001 over a median 22.9 months',
+        unreportedAdverseSignals:
+          'The effect was driven by heart failure admissions and heart failure deaths. Symptomatic bradycardia occurred in 150 (5%) against 32 (1%) and phosphenes in 89 (3%) against 17 (1%), both p<0.0001. Atrial fibrillation ran at 5.0% per patient-year against 3.9%.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'BEAUTIFUL (NCT00143507)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, parallel-group',
+        sampleSize: 10917,
+        primaryEndpoint:
+          'Composite of cardiovascular death, admission for acute myocardial infarction and admission for new or worsening heart failure',
+        endpointMet: false,
+        statisticalPValue: 'Hazard ratio 1.00 (95% CI 0.91 to 1.1), p=0.94 over a median 19 months',
+        unreportedAdverseSignals:
+          'The prespecified heart rate subgroup at or above 70 also failed on the primary endpoint (HR 0.91, p=0.17). Two secondary endpoints in that subgroup were positive, and it was those that generated the SIGNIFY hypothesis.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'SIGNIFY (ISRCTN61576291)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 19102,
+        primaryEndpoint:
+          'Composite of death from cardiovascular causes or non-fatal myocardial infarction',
+        endpointMet: false,
+        statisticalPValue:
+          '6.8% against 6.4%; hazard ratio 1.08 (95% CI 0.96 to 1.20), p=0.20 over a median 27.8 months',
+        unreportedAdverseSignals:
+          'Ivabradine increased the primary endpoint among the 12,049 patients with activity-limiting angina but not among those without it, p=0.02 for interaction. Bradycardia occurred in 18.0% against 2.3%, p<0.001, at a dose above the approved heart failure dose.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Composite of cardiovascular death or heart failure admission 24% against 29% in 6,558 patients (HR 0.82, p<0.0001)',
+        'No effect on the primary composite in 10,917 patients with coronary disease and reduced ejection fraction (HR 1.00, p=0.94)',
+        'No effect on the primary composite in 19,102 patients with stable coronary disease (HR 1.08, p=0.20), with harm in the angina subgroup (interaction p=0.02)',
+        'Atrial fibrillation 5.0% per patient-year against 3.9%, bradycardia 10% against 2.2%, phosphenes 2.8% against 0.5%',
+      ],
+      unsupportedInferences: [
+        'That ivabradine reduces death — the SHIFT effect was driven by admissions and heart failure deaths, and the United States indication claims only reduced hospitalisation',
+        'That the SHIFT benefit belongs to ivabradine rather than to residual room for beta-blocker uptitration, which no trial has tested',
+        'That heart rate reduction is beneficial in itself, which BEAUTIFUL and SIGNIFY tested directly and did not support outside heart failure',
+        'That the myocardial infarction reduction in a BEAUTIFUL subgroup was real, when the confirmatory trial designed to test it found the opposite interaction',
+      ],
+      whatFailedInitially: [
+        'BEAUTIFUL missed its primary endpoint with a hazard ratio of exactly 1.00 in 10,917 patients',
+        'SIGNIFY missed its primary endpoint in 19,102 patients and found a significant interaction indicating harm in the target angina population',
+        'A systematic review of 47 angina trials in 35,797 participants found no effect on mortality or quality of life and slightly more serious adverse events',
+        'The drug increases atrial fibrillation, the arrhythmia in which it stops working, and the label directs discontinuation if it develops',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States on 15 April 2015 under NDA 206143, ten years after its European angina approval',
+        'The United States indication is written narrowly around hospitalisation and does not claim a mortality benefit',
+        'European regulators restricted the angina labelling after SIGNIFY',
+        'It is the cleanest test of the heart rate hypothesis ever run, and the answer it gave was condition-specific rather than general',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet taken twice daily with food; an oral solution exists for paediatric use from six months of age',
+      description:
+        'The dose is titrated to a resting heart rate between 50 and 60 beats per minute, which makes this one of the few drugs whose target is a number measured at each visit rather than a fixed strength. Clearance is dominated by CYP3A4, so strong inhibitors of that enzyme are a contraindication rather than a caution.',
+      safetyProfile:
+        'Contraindicated in acute decompensated heart failure, clinically significant hypotension, sick sinus syndrome, sinoatrial block or third-degree AV block without a demand pacemaker, clinically significant bradycardia, severe hepatic impairment, pacemaker dependence, and with strong CYP3A4 inhibitors. It increases atrial fibrillation and the label directs discontinuation if it develops. Bradycardia, sinus arrest and heart block occur at 6.0% per patient-year. Phosphenes affected 2.8% against 0.5% on placebo. Animal studies showed embryo-fetal toxicity and cardiac teratogenic effects at one to three times human exposure, and effective contraception is directed.',
+    },
+    commonQuestions: [
+      {
+        q: 'Will it help me live longer?',
+        a: 'The evidence says it keeps people out of hospital, and the regulator wrote the indication accordingly. The United States label says the drug is indicated to reduce the risk of hospitalisation for worsening heart failure — that phrase, and no mortality claim. In SHIFT, the combined measure of cardiovascular death or heart failure admission fell from 29% to 24%, and the published account states the effect was driven mainly by admissions for worsening heart failure and by deaths specifically from heart failure. Staying out of hospital matters a great deal on its own. It is a different claim from living longer, and this label keeps them apart.',
+      },
+      {
+        q: 'Why does it only work if I am in normal rhythm?',
+        a: 'Because the target only sets the pace in normal rhythm. Ivabradine blocks the current in the sinus node — the heart natural pacemaker — that decides how often it fires. In atrial fibrillation the atria are firing chaotically and the ventricular rate is set by what gets through the AV node, not by the sinus node at all, so the drug has nothing to act on. There is an uncomfortable corollary: the drug also makes atrial fibrillation more likely, at 5.0% per patient-year against 3.9% on placebo, and the label directs stopping it if that rhythm develops. The adverse event and the loss of the indication arrive together.',
+      },
+      {
+        q: 'I see flashes of light. Is my vision being damaged?',
+        a: 'Almost certainly not, and there is a specific explanation. The channel the drug blocks in the heart has close relatives in the retina, where they help damp the response to sudden bright light. Blocking part of that current means a rapid change in brightness produces a brief enhanced brightness in one area of the visual field — that is what a phosphene is. It affected 2.8% of patients against 0.5% on placebo, and it is described in the label as transient. It is worth mentioning, particularly if you drive at night, and it is one of the more common reasons people choose to stop the drug.',
+      },
+      {
+        q: 'It failed in two big trials. Why is it still used?',
+        a: 'Because the failures and the success were in different conditions. BEAUTIFUL, in 10,917 patients with coronary disease and a weakened heart, found a hazard ratio of exactly 1.00. SIGNIFY, in 19,102 patients with stable coronary disease and no heart failure, found 1.08, and among patients whose angina limited their activity — the group it targeted — outcomes were worse on the drug. Those trials tested whether lowering heart rate helps in coronary disease, and the answer was no. SHIFT tested whether it helps in heart failure with a fast rate, and found fewer admissions. The lesson people take from that pair is that heart rate is not universally the enemy, and the drug is licensed only for the setting where it helped.',
+        auditNote:
+          'BEAUTIFUL produced a positive secondary result in a subgroup, SIGNIFY was built to confirm it, and SIGNIFY found the interaction pointing the other way. That sequence is the clearest illustration in this file of why a subgroup finding is a hypothesis rather than a result.',
+      },
+      {
+        q: 'Should I have more beta-blocker instead?',
+        a: 'That is exactly the question nobody has answered, and it is worth asking your prescriber. The indication requires that you already be on the maximum beta-blocker dose you can tolerate, or unable to take one. Maximally tolerated and target dose are not the same thing, and in SHIFT a minority of patients were at their beta-blocker target. Since beta-blockers also lower heart rate and do reduce deaths, while ivabradine lowers heart rate and did not reduce all-cause death, the untested possibility is that some of the SHIFT benefit reflects room left in the beta-blocker rather than something ivabradine adds. No randomised trial has compared uptitrating the beta-blocker against adding ivabradine.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Swedberg K, Komajda M, Bohm M, et al. Ivabradine and outcomes in chronic heart failure (SHIFT): a randomised placebo-controlled study. Lancet 2010;376:875-885',
+        identifier: '10.1016/S0140-6736(10)61198-1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fox K, Ford I, Steg PG, Tendera M, Ferrari R. Ivabradine for patients with stable coronary artery disease and left-ventricular systolic dysfunction (BEAUTIFUL): a randomised, double-blind, placebo-controlled trial. Lancet 2008;372:807-816',
+        identifier: '10.1016/S0140-6736(08)61170-8',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fox K, Ford I, Steg PG, Tardif JC, Tendera M, Ferrari R. Ivabradine in stable coronary artery disease without clinical heart failure (SIGNIFY). N Engl J Med 2014;371:1091-1099',
+        identifier: '10.1056/NEJMoa1406430',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Maagaard M, Nielsen EE, Sethi NJ, et al. Effects of adding ivabradine to usual care in patients with angina pectoris: a systematic review of randomised clinical trials with meta-analysis and Trial Sequential Analysis. Open Heart 2020;7:e001288',
+        identifier: '10.1136/openhrt-2020-001288',
+        kind: 'doi',
+      },
+      {
+        label:
+          'BEAUTIFUL: ivabradine in coronary artery disease with left ventricular systolic dysfunction',
+        identifier: 'NCT00143507',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: CORLANOR (ivabradine), NDA 206143, Amgen — original approval 15 April 2015; prescribing information sections 1.1, 4, 5.1 to 5.3, 6.1, 12.1 and 14.1',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=206143',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — ivabradine, 16 listed products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 132999 — ivabradine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/132999',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 10. Sacubitril / valsartan — one of the strongest single trials in heart failure, followed by
+  //     two failures, and an indication broadened on the trial that missed at p=0.06.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'sacubitril',
+    name: 'Sacubitril / Valsartan',
+    tradeName: 'Entresto / Entresto Sprinkle',
+    sponsor: 'Novartis Pharmaceuticals Corporation',
+    targetGene: 'MME (neprilysin) and AGTR1',
+    targetProtein:
+      'Neprilysin, inhibited by LBQ657 the active metabolite of the prodrug sacubitril; and the angiotensin II type 1 receptor, blocked by valsartan',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2015,
+    indication:
+      'To reduce the risk of cardiovascular death and hospitalisation for heart failure in adults with chronic heart failure, with benefits most clearly evident below normal left ventricular ejection fraction; and for symptomatic heart failure with systemic left ventricular systolic dysfunction in children aged one year and older',
+    patientFriendlyIndication: 'A weakened heart, to reduce dying of it and being admitted for it',
+    anatomicalSite:
+      'Circulating and endothelial neprilysin, which degrades natriuretic peptides, and the angiotensin II type 1 receptor on vascular, renal and adrenal cells',
+    conditionContext: {
+      conditionExplainer:
+        'A failing heart releases natriuretic peptides, hormones that tell the kidney to shed salt and the arteries to relax. They are the body own counter-regulation, and they are destroyed within minutes by an enzyme called neprilysin. Blocking that enzyme lets them last longer. On its own that also lets angiotensin II last longer, which is the opposite of what is wanted — so the drug carries a second molecule to block the angiotensin receptor.',
+      whyItMatters:
+        'This is the first drug in thirty years to beat an ACE inhibitor on mortality in heart failure with reduced ejection fraction, in a trial stopped early for overwhelming benefit. It is also the drug whose indication was later broadened to cover heart failure generally on the strength of a trial that did not reach significance, which is one of the more consequential regulatory judgements of the last decade.',
+      whoTakesThis:
+        'Adults with chronic heart failure, in practice mainly those with reduced ejection fraction, and children from one year old with systolic dysfunction. Not people who have had angioedema on an ACE inhibitor or angiotensin receptor blocker, and never within a day and a half of an ACE inhibitor.',
+      clinicalGoals:
+        'Fewer cardiovascular deaths and fewer heart failure admissions — both measured directly in the trial rather than inferred from a surrogate, which is unusual in this file. The paediatric indication is the exception and rests on a blood test.',
+    },
+    oneSentenceVerdict:
+      'A neprilysin inhibitor paired with an angiotensin receptor blocker that cut cardiovascular death or heart failure admission from 26.5% to 21.8% and all-cause death from 19.8% to 17.0% against enalapril in 8,442 patients, in a trial stopped early — and whose indication was later widened to chronic heart failure generally on the basis of PARAGON-HF, which missed its primary endpoint at p=0.06.',
+    laymanHowItWorks:
+      'When the heart is failing it makes hormones that tell the body to shed salt and relax the arteries — its own attempt at treatment. An enzyme called neprilysin chews those hormones up almost as fast as they appear. Half of this tablet blocks that enzyme, so the helpful hormones last longer. But neprilysin also breaks down angiotensin II, the hormone that tightens arteries and retains salt, so blocking the enzyme alone would make things worse. The other half of the tablet blocks the receptor angiotensin II uses, which cancels that problem. Neither half works properly without the other.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 76,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.5291 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 100 listed products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States on 7 July 2015 under NDA 207620, with the paediatric sprinkle formulation added under NDA 218591. It launched as one of the most expensive chronic heart failure drugs in the United States and was among the first ten products selected for Medicare price negotiation under the Inflation Reduction Act, which is a policy fact about the price rather than a clinical one.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'This drug replaces the ACE inhibitor or angiotensin receptor blocker in a heart failure regimen rather than adding to it — the two cannot be given together, and the label requires a day and a half between them. The comparison that matters is against enalapril, which PARADIGM-HF made directly, and against the argument that the enalapril arm was fixed at a dose some cardiologists consider submaximal. The other drugs in the regimen are additions, not alternatives.',
+      conventionalRx: [
+        {
+          name: 'Enalapril or another ACE inhibitor',
+          class: 'Angiotensin-converting enzyme inhibitor',
+          howItCompares:
+            'The active comparator in PARADIGM-HF, given at 10 mg twice daily. Sacubitril-valsartan beat it: primary composite 21.8% against 26.5% (HR 0.80, p<0.0001) and all-cause mortality 17.0% against 19.8% (HR 0.84, p=0.0009). It is also very much cheaper and has a far longer record.',
+          typicalCost:
+            'Generic; among the cheapest prescription drugs at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: decades of mortality evidence in its own right, negligible cost, no washout needed to start. Cons: it lost the head-to-head trial; dry cough in roughly one in ten; the same fetal toxicity boxed warning.',
+        },
+        {
+          name: 'Valsartan or another angiotensin receptor blocker alone',
+          class: 'Angiotensin II receptor blocker',
+          howItCompares:
+            'Half of this tablet. In PARAGON-HF, valsartan alone was the comparator in preserved-ejection-fraction heart failure, and the combination did not significantly beat it: rate ratio 0.87 (95% CI 0.75 to 1.01, p=0.06).',
+          typicalCost:
+            'US$0.1648 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 163 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: a third of the price; no neprilysin inhibition, so no theoretical amyloid concern; less hypotension. Cons: it was the arm that lost, narrowly, in preserved ejection fraction and was not tested against the combination in reduced ejection fraction.',
+        },
+        {
+          name: 'An SGLT2 inhibitor such as dapagliflozin or empagliflozin',
+          class: 'Sodium-glucose cotransporter 2 inhibitor',
+          howItCompares:
+            'Added on top rather than instead. It reduces cardiovascular death and heart failure hospitalisation across the ejection fraction range, including the preserved-ejection-fraction population where sacubitril-valsartan narrowly missed.',
+          typicalCost: 'Branded in the United States; more expensive per tablet',
+          prosAndCons:
+            'Pros: benefit demonstrated at preserved ejection fraction, where this drug did not reach significance. Cons: genital mycotic infection, volume depletion, euglycaemic ketoacidosis.',
+        },
+        {
+          name: 'A mineralocorticoid receptor antagonist such as spironolactone',
+          class: 'Aldosterone antagonist',
+          howItCompares:
+            'Also added rather than substituted; 58% of PARADIGM-HF patients were already taking one. Its own mortality evidence in reduced ejection fraction predates this drug by nearly two decades.',
+          typicalCost: 'Generic; a few United States cents per tablet at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: cheap; long-established mortality benefit. Cons: hyperkalaemia, which is the adverse effect this drug reduces relative to enalapril; gynaecomastia with spironolactone specifically.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Leave a day and a half between this and an ACE inhibitor',
+          action: 'Never take both, and confirm the gap when switching in either direction.',
+          patientImpact:
+            'Concomitant use with an ACE inhibitor is an absolute contraindication, and the label directs that this drug not be given within 36 hours of switching from or to one. The reason is angioedema: both drugs raise bradykinin, by different steps, and the risk compounds.',
+          clinicalPrecaution:
+            'A history of angioedema on any ACE inhibitor or angiotensin receptor blocker is itself a contraindication, and the drug must never be re-administered after an episode.',
+        },
+        {
+          name: 'Know the signs of angioedema, and treat swelling of the tongue as an emergency',
+          action:
+            'Seek urgent help for swelling of the face, lips, tongue or throat, or any difficulty breathing.',
+          patientImpact:
+            'The label states that angioedema associated with laryngeal oedema may be fatal, and that where tongue, glottis or larynx are involved, adrenaline and airway measures are needed. Swelling confined to face and lips has generally resolved without treatment.',
+          clinicalPrecaution:
+            'The label records a higher rate of angioedema in Black than in non-Black patients, and PARADIGM-HF enrolled only 5% Black patients, so the population in which the risk is highest is the one the trial characterised least.',
+        },
+        {
+          name: 'Say immediately if you are or might become pregnant',
+          action: 'Raise it before starting and at any point the situation changes.',
+          patientImpact:
+            'The drug carries a boxed warning for fetal toxicity. Drugs acting on the renin-angiotensin system reduce fetal renal function in the second and third trimesters and increase fetal and neonatal morbidity and death.',
+          clinicalPrecaution:
+            'The label directs considering an alternative and discontinuing when pregnancy is detected, with an explicit carve-out only if there is no appropriate alternative and the drug is considered lifesaving for the mother.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCOC(=O)[C@H](C)C[C@@H](CC1=CC=C(C=C1)C2=CC=CC=C2)NC(=O)CCC(=O)O',
+      chemicalFormula: 'C24H29NO5',
+      molecularWeight: '411.50 g/mol — the sacubitril component only',
+      targetReceptorAffinity:
+        'The structure carried here is sacubitril, the neprilysin-inhibitor half; the valsartan half has its own record. The marketed product is not a simple physical mixture but a co-crystal of the two sodium salts in a fixed molar ratio, which is why its dose strengths are quoted as combined totals — 24/26, 49/51 and 97/103 mg, referred to in the trials as 50, 100 and 200 mg. Sacubitril is a prodrug: the ethyl ester is cleaved to LBQ657, which is the molecule that inhibits neprilysin. Valsartan selectively blocks the angiotensin II type 1 receptor and inhibits angiotensin II-dependent aldosterone release.',
+      structureSource: {
+        label:
+          'PubChem CID 9811834 (sacubitril) — canonical SMILES, molecular formula and weight, as carried on the enriched record; dose-strength convention from the ENTRESTO label section 14',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9811834',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'scv-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the co-crystal, not just the two actives',
+          description:
+            'The marketed substance is a supramolecular sodium complex of sacubitril and valsartan in a fixed ratio, not a blend of two powders. A batch containing the right mass of both actives in the wrong solid form has different dissolution and different exposure. This is the one assay that a two-active blend specification would miss entirely.',
+          reagentsAndBuffer:
+            'Sacubitril and valsartan reference standards, powder X-ray diffraction against the reference pattern of the complex, differential scanning calorimetry, ion chromatography for sodium stoichiometry, Karl Fischer titration',
+        },
+        {
+          id: 'scv-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Build the biphenyl amino acid backbone and acylate with succinate',
+          description:
+            'Sacubitril is a biphenyl-substituted gamma-amino acid ethyl ester acylated on the nitrogen with a succinic acid half-amide. The two stereocentres are set before the succinate is attached, because correcting stereochemistry after acylation is not practical. Valsartan is made separately by its own route and only combined at the crystallisation stage.',
+          dependsOnStepId: 'scv-w1',
+          reagentsAndBuffer:
+            'Chiral biphenylalanine-derived intermediate, ethyl ester protection, succinic anhydride with base in an aprotic solvent, nitrogen atmosphere, with separately manufactured valsartan held for the complexation step',
+        },
+        {
+          id: 'scv-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Co-crystallise the two sodium salts in fixed ratio',
+          description:
+            'Dissolve both actives with sodium hydroxide and crystallise the complex. This is a purification step and a formulation step at once: the ratio, the hydration state and the crystal form are all fixed here, and all three determine what the tablet does.',
+          dependsOnStepId: 'scv-w2',
+          reagentsAndBuffer:
+            'Sodium hydroxide in a controlled water-solvent system, seeded crystallisation with a defined cooling ramp, powder X-ray diffraction and dynamic vapour sorption for hydrate confirmation',
+        },
+        {
+          id: 'scv-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Confirm ester hydrolysis to LBQ657 in hepatocytes',
+          description:
+            'Sacubitril itself inhibits nothing. It must be de-esterified to LBQ657 before it touches neprilysin, and the carboxylesterases that do that are hepatic. A cell-free assay using the parent compound reports a drug that does not exist in the patient.',
+          dependsOnStepId: 'scv-w3',
+          reagentsAndBuffer:
+            'Primary human hepatocytes or liver S9 fraction, LC-MS/MS quantification of sacubitril and LBQ657, esterase inhibitor control arm, physiological buffer at 37 degrees Celsius',
+        },
+        {
+          id: 'scv-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Neprilysin inhibition and natriuretic peptide half-life in the same system',
+          description:
+            'Measure enzyme inhibition against a fluorogenic substrate, then measure what it is for: the survival of intact natriuretic peptide in plasma. Neprilysin has many substrates besides the natriuretic peptides — bradykinin, substance P, amyloid beta — so a specificity panel is part of the assay rather than an optional extra, and it is where the theoretical safety questions about the drug live.',
+          dependsOnStepId: 'scv-w4',
+          reagentsAndBuffer:
+            'Recombinant human neprilysin with a fluorogenic peptide substrate, human plasma spiked with BNP and ANP with immunoassay of intact peptide over time, counter-screen panel including bradykinin, substance P and amyloid beta degradation',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'scv-a1',
+        category: 'measured',
+        title: 'PARADIGM-HF: fewer deaths than on enalapril, and the trial was stopped early',
+        laymanSummary:
+          'Eight and a half thousand patients with a weakened heart were randomised to this drug or to enalapril, the standard treatment. The combined measure fell from 26.5% to 21.8%, and deaths from any cause from 19.8% to 17.0%. The trial was halted before its planned end because the benefit was so clear.',
+        technicalDetails:
+          'PARADIGM-HF randomised 8,442 patients with NYHA class II to IV heart failure and ejection fraction at or below 40% to sacubitril-valsartan 200 mg twice daily (n=4,209) or enalapril 10 mg twice daily (n=4,233), on top of recommended therapy including a beta-blocker in 94% and a mineralocorticoid antagonist in 58%. It was stopped early after a median 27 months on the prespecified overwhelming-benefit boundary. The primary composite of cardiovascular death or heart failure hospitalisation occurred in 914 (21.8%) against 1,117 (26.5%), hazard ratio 0.80 (95% CI 0.73 to 0.87, p<0.001). All-cause mortality was 711 (17.0%) against 835 (19.8%), hazard ratio 0.84 (95% CI 0.76 to 0.93, p=0.0009), a finding the label states was driven entirely by lower cardiovascular mortality: 558 (13.3%) against 693 (16.5%), hazard ratio 0.80 (0.71 to 0.89). Heart failure hospitalisation fell 21%. Sudden death accounted for 45% of cardiovascular deaths. The drug arm had more hypotension and non-serious angioedema and less renal impairment, hyperkalaemia and cough.',
+        evidenceSource:
+          'McMurray JJ et al., N Engl J Med 2014;371:993-1004 (PARADIGM-HF, NCT01035255); ENTRESTO United States prescribing information section 14.1',
+        doi: '10.1056/NEJMoa1409077',
+        measuredMetric:
+          'Composite of cardiovascular death or heart failure hospitalisation, and all-cause mortality, against enalapril',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'scv-a2',
+        category: 'inferred',
+        title: 'Only patients who tolerated both drugs in a run-in were randomised',
+        laymanSummary:
+          'Before randomisation, everyone was given enalapril for a period and then the new drug at increasing strength. Only those who got through both without a problem entered the trial. The result therefore describes people already known to tolerate both drugs.',
+        technicalDetails:
+          'The label describes the design: after discontinuing existing ACE inhibitor or angiotensin receptor blocker therapy, patients entered sequential single-blind run-in periods on enalapril 10 mg twice daily followed by sacubitril-valsartan 100 mg twice daily increasing to 200 mg twice daily, and only patients who successfully completed both run-in periods were randomised. Patients with systolic pressure below 100 mmHg at screening were excluded outright. A sequential double run-in is a legitimate way to reduce dropout noise in a mortality trial and it selects the randomised population: people who could not tolerate the target dose of either drug never appear in the denominator. That makes the measured hazard ratio a valid estimate for people like those randomised and an optimistic one for an unselected clinic population, particularly on the tolerability endpoints.',
+        evidenceSource:
+          'ENTRESTO United States prescribing information, section 14.1 (NDA 207620); McMurray JJ et al., N Engl J Med 2014;371:993-1004',
+        doi: '10.1056/NEJMoa1409077',
+        inferredClaim:
+          'That the PARADIGM-HF hazard ratios apply unchanged to patients who have not first been shown to tolerate target doses of both drugs — the run-in design means the trial did not test that population',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'scv-a3',
+        category: 'failed',
+        title: 'PARAGON-HF missed, at p=0.06, in 4,822 patients',
+        laymanSummary:
+          'In heart failure with a normal-looking pumping fraction, the drug was compared against valsartan alone. The result came within a hair of significance and did not reach it.',
+        technicalDetails:
+          'PARAGON-HF randomised 4,822 patients with NYHA class II to IV heart failure, ejection fraction at or above 45%, elevated natriuretic peptides and structural heart disease, to sacubitril-valsartan at a target of 97/103 mg twice daily or valsartan at a target of 160 mg twice daily. The primary outcome, total heart failure hospitalisations and cardiovascular death, gave 894 primary events in 526 patients against 1,009 in 557: rate ratio 0.87 (95% CI 0.75 to 1.01, p=0.06). Cardiovascular death was 8.5% against 8.9% (HR 0.95, 0.79 to 1.16) and total heart failure hospitalisations 690 against 797 (rate ratio 0.85, 0.72 to 1.00). NYHA class improved in 15.0% against 12.6% (OR 1.45, 1.13 to 1.86); renal function worsened in 1.4% against 2.7% (HR 0.50, 0.33 to 0.77); the mean KCCQ clinical summary score at eight months was 1.0 point higher (95% CI 0.0 to 2.1). Hypotension and angioedema were more common and hyperkalaemia less common. Among 12 prespecified subgroups there was suggestion of heterogeneity, with possible benefit at lower ejection fraction and in women. The published conclusion is that the drug did not result in a significantly lower rate of the primary outcome.',
+        evidenceSource:
+          'Solomon SD et al., N Engl J Med 2019;381:1609-1620 (PARAGON-HF, NCT01920711)',
+        doi: '10.1056/NEJMoa1908655',
+        measuredMetric:
+          'Total heart failure hospitalisations and cardiovascular death, against valsartan alone, at ejection fraction 45% or above',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'scv-a4',
+        category: 'conclusion_shift',
+        title: 'The indication was broadened on the trial that missed',
+        laymanSummary:
+          'After a trial that did not reach statistical significance, the licence was widened from reduced pumping fraction to chronic heart failure generally, with a sentence saying the benefit is clearest when the pumping fraction is below normal and that doctors should use judgement.',
+        technicalDetails:
+          'The current United States indication reads: indicated to reduce the risk of cardiovascular death and hospitalisation for heart failure in adult patients with chronic heart failure, with benefits most clearly evident in patients with left ventricular ejection fraction below normal, adding that ejection fraction is a variable measure so clinical judgement should be used in deciding whom to treat. That wording replaced the original restriction to reduced ejection fraction, and the evidence that supported the widening is PARAGON-HF, whose primary endpoint gave a rate ratio of 0.87 with a confidence interval touching 1.01 at p=0.06, together with the subgroup suggestion of benefit at lower ejection fraction. Whether this is a regulator reading a body of evidence sensibly or a regulator approving on a negative trial is a genuine argument, and the label unusual instruction to use clinical judgement about a numeric threshold is the sentence in which that argument is visible.',
+        evidenceSource:
+          'ENTRESTO United States prescribing information, section 1.1 (NDA 207620); Solomon SD et al., N Engl J Med 2019;381:1609-1620',
+        doi: '10.1056/NEJMoa1908655',
+        inferredClaim:
+          'That the benefit demonstrated at reduced ejection fraction extends across the ejection fraction range — inferred from a trial that missed its primary endpoint and from subgroup heterogeneity within it',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'scv-a5',
+        category: 'failed',
+        title: 'PARADISE-MI: no benefit after myocardial infarction, in 5,661 patients',
+        laymanSummary:
+          'Given straight after a heart attack that had weakened the heart, the drug was compared against ramipril. Deaths from heart causes and new heart failure were no less common.',
+        technicalDetails:
+          'PARADISE-MI randomised 5,661 patients with myocardial infarction complicated by reduced left ventricular ejection fraction, pulmonary congestion or both, to sacubitril-valsartan 97/103 mg twice daily (n=2,830) or ramipril 5 mg twice daily (n=2,831) in addition to recommended therapy. Over a median 22 months the primary outcome of cardiovascular death or incident heart failure occurred in 338 (11.9%) against 373 (13.2%), hazard ratio 0.90 (95% CI 0.78 to 1.04, p=0.17). Cardiovascular death or heart failure hospitalisation was 10.9% against 11.8% (HR 0.91, 0.78 to 1.07), cardiovascular death 5.9% against 6.7% (HR 0.87, 0.71 to 1.08) and death from any cause 7.5% against 8.5% (HR 0.88, 0.73 to 1.05). Discontinuation for an adverse event was 12.6% against 13.4%. Every point estimate favours the drug and none reaches significance, which is a different failure from a flat one and is not the same as a positive result.',
+        evidenceSource:
+          'Pfeffer MA et al., N Engl J Med 2021;385:1845-1855 (PARADISE-MI, NCT02924727)',
+        doi: '10.1056/NEJMoa2104508',
+        measuredMetric:
+          'Cardiovascular death or incident heart failure after myocardial infarction, against ramipril',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'scv-a6',
+        category: 'inferred',
+        title: 'The paediatric indication rests on a blood test and says so',
+        laymanSummary:
+          'For children, the licence was granted on the basis that the drug lowers a heart failure blood marker. The label states in plain words that improved outcomes are expected, not shown.',
+        technicalDetails:
+          'Section 1.2 reads: ENTRESTO is indicated for the treatment of symptomatic heart failure with systemic left ventricular systolic dysfunction in pediatric patients aged one year and older. ENTRESTO reduces NT-proBNP and is expected to improve cardiovascular outcomes. The word expected is doing the work of an outcome trial. NT-proBNP is a validated prognostic marker and it is not a demonstrated treatment target; a drug can lower it without changing what happens to the child. Extrapolating adult efficacy to children is standard regulatory practice where the disease mechanism is shared, and it is an inference. This label is unusually honest in marking it as one.',
+        evidenceSource:
+          'ENTRESTO United States prescribing information, section 1.2 (NDA 207620 and NDA 218591)',
+        inferredClaim:
+          'That an NT-proBNP reduction in children translates into fewer deaths and admissions — the label states it is expected, which is the correct word and not a measurement',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'scv-a7',
+        category: 'failed',
+        title: 'Angioedema, a boxed warning and a 36-hour rule',
+        laymanSummary:
+          'This drug cannot be combined with an ACE inhibitor, and a day and a half must pass when switching. The reason is swelling of the airway, which can be fatal, and it is more common in Black patients — a group who made up one in twenty of the main trial.',
+        technicalDetails:
+          'Contraindications are hypersensitivity, a history of angioedema related to previous ACE inhibitor or angiotensin receptor blocker therapy, concomitant ACE inhibitor use with a 36-hour separation required when switching in either direction, and aliskiren in diabetes. The label states that angioedema with laryngeal oedema may be fatal, that the drug must not be re-administered after an episode, and that it has been associated with a higher rate of angioedema in Black than in non-Black patients. PARADIGM-HF enrolled 66% Caucasian, 18% Asian and 5% Black patients, so the population at highest risk of the drug most dangerous adverse effect is the one the pivotal trial characterised least well. A boxed warning for fetal toxicity applies, as with every renin-angiotensin drug.',
+        evidenceSource:
+          'ENTRESTO United States prescribing information, boxed warning, sections 4, 5.1, 5.2 and 14.1 (NDA 207620)',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'The failing heart makes its own treatment',
+        laymanDesc:
+          'A stretched heart releases hormones that tell the kidney to shed salt and the arteries to relax. They are helpful, and they are destroyed within minutes.',
+        molecularDetail:
+          'Atrial and B-type natriuretic peptides are released in response to myocyte stretch and act through particulate guanylate cyclase to raise cyclic GMP, producing natriuresis, vasodilatation and inhibition of fibrosis. Neprilysin, a zinc metallopeptidase, degrades them along with bradykinin, substance P, adrenomedullin and angiotensin II.',
+        iconName: 'Droplets',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'One half is a prodrug that has to be unmasked',
+        laymanDesc:
+          'Sacubitril as swallowed does nothing. The liver removes a chemical cap, and only the unmasked form blocks the destroying enzyme.',
+        molecularDetail:
+          'Sacubitril is an ethyl ester prodrug hydrolysed by carboxylesterases to LBQ657, the active neprilysin inhibitor. The label attributes the cardiovascular and renal effects to increased levels of neprilysin substrates such as the natriuretic peptides, produced by LBQ657.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The destroying enzyme is blocked',
+        laymanDesc:
+          'With the enzyme inhibited, the helpful hormones survive longer and act for longer. More salt is passed, arteries stay wider, and scarring signals are damped.',
+        molecularDetail:
+          'Neprilysin inhibition raises circulating and tissue natriuretic peptide concentration, increasing cyclic GMP signalling. This is the reason plasma BNP rises on treatment while NT-proBNP falls — BNP is a neprilysin substrate and NT-proBNP is not, which makes BNP unusable as a monitoring marker on this drug.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The second half cancels the drug own side effect',
+        laymanDesc:
+          'The same enzyme also destroys the hormone that tightens arteries. Blocking it alone would let that hormone build up too, which is why a second drug blocks its receptor.',
+        molecularDetail:
+          'Neprilysin degrades angiotensin II as well as the natriuretic peptides, so inhibition alone raises angiotensin II. Valsartan blocks the AT1 receptor selectively and inhibits angiotensin II-dependent aldosterone release, which is why single-agent neprilysin inhibitors failed and why the earlier combination with an ACE inhibitor, omapatrilat, was abandoned over angioedema.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Fewer deaths and fewer admissions, against the standard drug',
+        laymanDesc:
+          'Compared head to head against enalapril in eight and a half thousand patients, deaths from any cause fell from about one in five to about one in six.',
+        molecularDetail:
+          'PARADIGM-HF: primary composite 21.8% against 26.5% (HR 0.80, 95% CI 0.73 to 0.87, p<0.001); all-cause mortality 17.0% against 19.8% (HR 0.84, 0.76 to 0.93, p=0.0009), driven entirely by lower cardiovascular mortality (13.3% against 16.5%, HR 0.80). The trial was stopped early on the overwhelming-benefit boundary.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Where the same mechanism did not deliver',
+        laymanDesc:
+          'In heart failure with a normal-looking pumping fraction, and immediately after a heart attack, the same drug was tested and neither trial reached significance.',
+        molecularDetail:
+          'PARAGON-HF: rate ratio 0.87 (95% CI 0.75 to 1.01, p=0.06) in 4,822 patients at ejection fraction 45% or above. PARADISE-MI: hazard ratio 0.90 (0.78 to 1.04, p=0.17) in 5,661 patients after infarction. The indication was nevertheless widened to chronic heart failure generally, with the label directing clinical judgement about ejection fraction.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'PARADIGM-HF (NCT01035255)',
+        phase: 'Phase 3, randomised, double-blind, active-controlled, event-driven',
+        sampleSize: 8442,
+        primaryEndpoint:
+          'Composite of cardiovascular death or hospitalisation for heart failure, against enalapril',
+        endpointMet: true,
+        statisticalPValue:
+          '21.8% against 26.5%; hazard ratio 0.80 (95% CI 0.73 to 0.87), p<0.001; all-cause mortality 17.0% against 19.8%, HR 0.84 (0.76 to 0.93), p=0.0009',
+        unreportedAdverseSignals:
+          'Stopped early on the prespecified overwhelming-benefit boundary, which tends to overestimate effect size. Randomisation followed sequential single-blind run-ins on both drugs, so patients intolerant of either never entered. Enalapril was fixed at 10 mg twice daily and patients with systolic pressure below 100 mmHg were excluded.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'PARAGON-HF (NCT01920711)',
+        phase: 'Phase 3, randomised, double-blind, active-controlled',
+        sampleSize: 4822,
+        primaryEndpoint:
+          'Total hospitalisations for heart failure and death from cardiovascular causes, against valsartan, at ejection fraction 45% or above',
+        endpointMet: false,
+        statisticalPValue: 'Rate ratio 0.87 (95% CI 0.75 to 1.01), p=0.06',
+        unreportedAdverseSignals:
+          'Among 12 prespecified subgroups there was suggestion of heterogeneity, with possible benefit at lower ejection fraction and in women. The United States indication was subsequently broadened on the strength of a trial that did not meet its primary endpoint.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'PARADISE-MI (NCT02924727)',
+        phase: 'Phase 3, randomised, double-blind, active-controlled',
+        sampleSize: 5661,
+        primaryEndpoint:
+          'Death from cardiovascular causes or incident heart failure after myocardial infarction, against ramipril',
+        endpointMet: false,
+        statisticalPValue:
+          '11.9% against 13.2%; hazard ratio 0.90 (95% CI 0.78 to 1.04), p=0.17 over a median 22 months',
+        unreportedAdverseSignals:
+          'Every secondary point estimate favoured the drug and none reached significance. A uniformly directional miss is a different signal from a flat one, and it is still a miss.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Cardiovascular death or heart failure hospitalisation 21.8% against 26.5% on enalapril in 8,442 patients (HR 0.80, p<0.001)',
+        'All-cause mortality 17.0% against 19.8% in the same trial (HR 0.84, p=0.0009), driven entirely by cardiovascular death',
+        'No significant benefit at ejection fraction 45% or above in 4,822 patients (rate ratio 0.87, 95% CI 0.75 to 1.01, p=0.06)',
+        'No significant benefit after myocardial infarction in 5,661 patients (HR 0.90, 95% CI 0.78 to 1.04, p=0.17)',
+      ],
+      unsupportedInferences: [
+        'That the benefit extends across the ejection fraction range, which rests on a trial that missed its primary endpoint and on subgroup heterogeneity within it',
+        'That the PARADIGM-HF hazard ratios apply to patients not pre-selected by a double run-in on both drugs',
+        'That an NT-proBNP reduction in children means fewer deaths and admissions — the label says expected, not shown',
+        'That the enalapril comparator represented maximal ACE inhibition, when it was fixed at 10 mg twice daily throughout',
+      ],
+      whatFailedInitially: [
+        'PARAGON-HF missed its primary endpoint at p=0.06 in preserved-ejection-fraction heart failure',
+        'PARADISE-MI missed its primary endpoint at p=0.17 after myocardial infarction, with every point estimate directionally favourable',
+        'The predecessor combination, omapatrilat, which paired neprilysin inhibition with ACE inhibition, was abandoned over angioedema — the reason this drug uses a receptor blocker instead',
+        'Angioedema remains the defining safety issue, is more common in Black patients, and PARADIGM-HF enrolled only 5% Black patients',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States on 7 July 2015 under NDA 207620, with a paediatric sprinkle formulation added later under NDA 218591',
+        'The first drug in three decades to beat an ACE inhibitor on mortality in reduced-ejection-fraction heart failure',
+        'The indication was broadened in 2021 to chronic heart failure generally, with the label directing clinical judgement about ejection fraction rather than a numeric cut-off',
+        'Among the first products selected for Medicare price negotiation in the United States, which is where the argument about it now mostly sits',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral film-coated tablet at 24/26, 49/51 and 97/103 mg, taken twice daily; an oral pellet sprinkle formulation exists for children from one year',
+      description:
+        'The strengths are quoted as combined totals of both components because the substance is a co-crystal rather than a blend, and the trials referred to the same strengths as 50, 100 and 200 mg, which is a persistent source of confusion between the literature and the label. The paediatric sprinkle exists so the drug can be given from one year of age, which is why that indication could be written at all.',
+      safetyProfile:
+        'Boxed warning for fetal toxicity: discontinue when pregnancy is detected. Contraindicated in hypersensitivity, in a history of angioedema on any ACE inhibitor or angiotensin receptor blocker, with concomitant ACE inhibitor use and within 36 hours of switching, and with aliskiren in diabetes. Angioedema with laryngeal oedema may be fatal, the drug must never be re-administered after an episode, and the rate is higher in Black than in non-Black patients. Hypotension is more common than on enalapril; renal impairment, hyperkalaemia and cough are less common. Plasma BNP rises on treatment because BNP is a neprilysin substrate, so NT-proBNP rather than BNP is the usable marker.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is this better than the ACE inhibitor I was on?',
+        a: 'In the one trial that compared them directly, yes, and by a margin that is unusual in heart failure. PARADIGM-HF randomised 8,442 patients to this drug or to enalapril at 10 mg twice daily. The combined rate of cardiovascular death or heart failure admission was 21.8% against 26.5%, and deaths from any cause were 17.0% against 19.8% — a difference driven entirely by fewer cardiovascular deaths. The trial was stopped early because the benefit crossed a prespecified boundary. Two caveats belong with that. The enalapril dose was fixed rather than uptitrated, and only patients who had already tolerated target doses of both drugs during a run-in were randomised.',
+        auditNote:
+          'Trials stopped early for benefit tend to overestimate the size of the effect, because they stop at a random high point in the accumulating data. The direction of the PARADIGM-HF result is not in doubt; the magnitude probably is.',
+      },
+      {
+        q: 'My ejection fraction is normal. Should I be on it?',
+        a: 'This is the genuinely contested question, and the label is unusually candid about it. PARAGON-HF tested exactly this in 4,822 patients with an ejection fraction of 45% or above, comparing the drug against valsartan alone. The primary outcome gave a rate ratio of 0.87 with a confidence interval running from 0.75 to 1.01, at p=0.06 — it missed. Within it, subgroup analysis suggested possible benefit in patients with lower ejection fraction and in women. The FDA then broadened the indication to chronic heart failure generally, adding that benefits are most clearly evident below normal ejection fraction and that ejection fraction is a variable measure, so clinical judgement should be used. That sentence is a regulator declining to draw a line, and reasonable cardiologists disagree about whether it should have been drawn.',
+      },
+      {
+        q: 'Why can I not take my old ACE inhibitor as well?',
+        a: 'Because of angioedema, and because the field learned this the hard way. Both drug families raise bradykinin, a peptide that causes tissue swelling — ACE inhibitors by blocking the enzyme that degrades it, neprilysin inhibitors by blocking another. An earlier drug called omapatrilat combined neprilysin and ACE inhibition in one molecule and was abandoned because of angioedema. This product avoids that by pairing neprilysin inhibition with an angiotensin receptor blocker instead. Taking it alongside an ACE inhibitor recreates the combination that failed, so it is an absolute contraindication and the label requires 36 hours between the two in either direction.',
+      },
+      {
+        q: 'My BNP went up after I started. Is it getting worse?',
+        a: 'Almost certainly not, and this catches people out, including clinicians. BNP is itself one of the peptides that neprilysin destroys. Block the enzyme and BNP accumulates in the blood, so the number rises even as the heart improves. NT-proBNP, a different fragment released at the same time, is not a neprilysin substrate, so it still falls when things get better. On this drug NT-proBNP is the marker that means what you expect it to mean, and a rising BNP is a pharmacological consequence of the treatment rather than a sign of deterioration.',
+      },
+      {
+        q: 'Is angioedema likely?',
+        a: 'It is uncommon and it is the reason for most of the rules around this drug. Swelling confined to the face and lips has generally resolved without treatment. Swelling of the tongue, glottis or larynx can obstruct the airway and the label states it may be fatal, requiring adrenaline and airway management. Once it has happened, the drug must never be given again. The label records a higher rate in Black than in non-Black patients, and this is worth stating plainly: the main trial enrolled 5% Black patients against 66% Caucasian, so the group at highest risk of the drug most serious adverse effect is the group its pivotal trial described least well.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'McMurray JJ, Packer M, Desai AS, et al. Angiotensin-neprilysin inhibition versus enalapril in heart failure. N Engl J Med 2014;371:993-1004 (PARADIGM-HF)',
+        identifier: '10.1056/NEJMoa1409077',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Solomon SD, McMurray JJV, Anand IS, et al. Angiotensin-neprilysin inhibition in heart failure with preserved ejection fraction. N Engl J Med 2019;381:1609-1620 (PARAGON-HF)',
+        identifier: '10.1056/NEJMoa1908655',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pfeffer MA, Claggett B, Lewis EF, et al. Angiotensin receptor-neprilysin inhibition in acute myocardial infarction. N Engl J Med 2021;385:1845-1855 (PARADISE-MI)',
+        identifier: '10.1056/NEJMoa2104508',
+        kind: 'doi',
+      },
+      {
+        label: 'PARADIGM-HF: sacubitril-valsartan against enalapril in reduced ejection fraction',
+        identifier: 'NCT01035255',
+        kind: 'nct',
+      },
+      {
+        label: 'PARAGON-HF: sacubitril-valsartan against valsartan in preserved ejection fraction',
+        identifier: 'NCT01920711',
+        kind: 'nct',
+      },
+      {
+        label: 'PARADISE-MI: sacubitril-valsartan against ramipril after myocardial infarction',
+        identifier: 'NCT02924727',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: ENTRESTO (sacubitril and valsartan), NDA 207620, Novartis — original approval 7 July 2015; prescribing information boxed warning and sections 1.1, 1.2, 4, 5.1, 5.2, 12.1 and 14.1',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=207620',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — sacubitril and valsartan, 100 listed products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 9811834 — sacubitril structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9811834',
         kind: 'url',
       },
     ],

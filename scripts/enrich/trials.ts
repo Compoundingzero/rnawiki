@@ -132,6 +132,44 @@ export async function fetchTrials(drugName: string, limit = 6): Promise<Clinical
   return records
 }
 
+/**
+ * Fills the trial cache for many drugs at once, a few requests in flight at a time.
+ *
+ * Same reason as the literature warm: the enrichment loop is sequential because it writes rows, and
+ * a registry lookup inside it is a round trip. Once the taxonomy and literature were prefetched the
+ * trial calls became the whole cost of the run — the loop dropped to fifty records a minute, and
+ * fifty a minute over four thousand records is eighty minutes of waiting on one socket at a time.
+ *
+ * Six concurrent, which is roughly what a person browsing ClinicalTrials.gov generates.
+ */
+export async function warmTrials(
+  names: readonly string[],
+  onProgress?: (done: number, total: number) => void,
+): Promise<void> {
+  const CONCURRENCY = 6
+  const store = loadCache()
+  const pending = names.filter((name) => !(name.toLowerCase() in store))
+
+  let done = 0
+  let next = 0
+
+  async function worker(): Promise<void> {
+    for (;;) {
+      const index = next
+      next += 1
+      const name = pending[index]
+      if (name === undefined) return
+      await fetchTrials(name)
+      done += 1
+      if (done % 250 === 0) onProgress?.(done, pending.length)
+    }
+  }
+
+  await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
+  flushTrialCache()
+  onProgress?.(done, pending.length)
+}
+
 export function trialCacheStats(): { total: number; withTrials: number } {
   const store = loadCache()
   const values = Object.values(store)

@@ -2,8 +2,14 @@ import type { SeedDossier } from '@/lib/seed-types'
 
 /**
  * Curated flagship dossiers — the eye drugs: the topical agents that lower intraocular pressure in
- * glaucoma, the intravitreal VEGF inhibitors that hold back neovascular retinal disease, and the
- * one topical immunosuppressant approved for dry eye.
+ * glaucoma, from the 1978 beta-blocker through the prostaglandin analogues to the first drug aimed
+ * at the trabecular meshwork itself, and the intravitreal VEGF inhibitors that hold back
+ * neovascular retinal disease.
+ *
+ * Cyclosporine ophthalmic was researched for this batch and dropped before publication: a sibling
+ * seed file claimed `slug: 'cyclosporine'` for the systemic transplant drug while this file was
+ * being written, and a duplicate slug is discarded at load. There is one cyclosporine record in the
+ * corpus and it belongs to the systemic product.
  *
  * Editorial layer written over the machine-enriched records: the verdict, the mechanism carousel
  * and the audits, which no pipeline can produce. The identity facts — slug, trade name, sponsor,
@@ -161,8 +167,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CC(C)OC(=O)CCC/C=C\\C[C@H]1[C@H](C[C@H]([C@@H]1CC[C@H](CCC2=CC=CC=C2)O)O)O',
+      smilesString: 'CC(C)OC(=O)CCC/C=C\\C[C@H]1[C@H](C[C@H]([C@@H]1CC[C@H](CCC2=CC=CC=C2)O)O)O',
       chemicalFormula: 'C26H40O5',
       molecularWeight: '432.60 g/mol',
       targetReceptorAffinity:
@@ -238,8 +243,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
           'Five hundred and sixteen people with newly diagnosed glaucoma were given either latanoprost or an identical dummy drop, and neither they nor their doctors knew which. Vision was tracked for two years. Deterioration of the visual field came significantly later in the latanoprost group.',
         technicalDetails:
           'The United Kingdom Glaucoma Treatment Study was a randomised, triple-masked, placebo-controlled trial in 516 patients with newly diagnosed open-angle glaucoma at ten UK centres. Baseline mean intraocular pressure was 19.6 mmHg (SD 4.6) in 258 latanoprost patients and 20.1 (4.8) in 258 controls. At 24 months, mean reduction was 3.8 mmHg (4.0) in 231 assessed latanoprost patients against 0.9 mmHg (3.8) in 230 controls. The primary outcome was time to visual field deterioration within 24 months: adjusted hazard ratio 0.44 (95% CI 0.28 to 0.69, p=0.0003). Eighteen serious adverse events occurred, none attributed to the study drug. The Data and Safety Monitoring Committee stopped the trial early in January 2011 after an interim analysis and recommended changing the primary outcome from a difference in proportions progressing to time to deterioration.',
-        evidenceSource:
-          'Garway-Heath DF et al., Lancet 2015;385:1295-1304 (UKGTS, ISRCTN96423140)',
+        evidenceSource: 'Garway-Heath DF et al., Lancet 2015;385:1295-1304 (UKGTS, ISRCTN96423140)',
         doi: '10.1016/S0140-6736(14)62111-5',
         measuredMetric:
           'Time to visual field deterioration within 24 months, latanoprost against identical placebo drops',
@@ -305,7 +309,8 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       {
         id: 'lat-a6',
         category: 'inferred',
-        title: 'Millimetres of mercury are not sight, and no drop has been shown to prevent blindness',
+        title:
+          'Millimetres of mercury are not sight, and no drop has been shown to prevent blindness',
         laymanSummary:
           'Every trial on this page measures either pressure or blind spots on a field test. None of them counted how many people went blind. The step from a lower pressure reading to keeping your sight is an inference, well supported but not directly measured.',
         technicalDetails:
@@ -593,7 +598,8 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
     approvalYear: 1978,
     indication:
       'Reduction of elevated intraocular pressure in patients with ocular hypertension or open-angle glaucoma',
-    patientFriendlyIndication: 'High pressure inside the eye, treated by making the eye produce less fluid',
+    patientFriendlyIndication:
+      'High pressure inside the eye, treated by making the eye produce less fluid',
     anatomicalSite:
       'Non-pigmented epithelium of the ciliary body, where aqueous humour is secreted — and, through nasal absorption, the heart and airways',
     conditionContext: {
@@ -785,7 +791,8 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Zimmerman TJ, Kaufman HE. Arch Ophthalmol 1977;95:601-604 and 1977;95:605-607',
         doi: '10.1001/archopht.1977.04450040067008',
-        measuredMetric: 'Intraocular pressure reduction after single-dose instillation, by strength',
+        measuredMetric:
+          'Intraocular pressure reduction after single-dose instillation, by strength',
         auditFlag: 'verified',
       },
       {
@@ -810,7 +817,8 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
           'A crossover study measured pressure around the clock in hospital. Timolol lowered pressure at every time of day except three in the morning, where it did nothing measurable. Latanoprost and dorzolamide both worked overnight.',
         technicalDetails:
           'Orzalesi and colleagues admitted 20 patients with primary open-angle glaucoma or ocular hypertension to hospital and measured four 24-hour tonometric curves — at baseline and after each of three randomised one-month treatment periods — with two evaluators masked to assignment. Using Goldmann sitting values, all three drugs significantly reduced pressure against baseline at every measurement time except timolol at 3 AM. Latanoprost was more effective than timolol at 3, 6 and 9 AM, noon, 9 PM and midnight. Dorzolamide, weaker than timolol overall, outperformed it at midnight and 3 AM. The sample is 20 patients in a crossover design, which is small, and the finding has shaped how the class is understood since.',
-        evidenceSource: 'Orzalesi N et al., Invest Ophthalmol Vis Sci 2000;41:2566-2573 (PMID 10937568)',
+        evidenceSource:
+          'Orzalesi N et al., Invest Ophthalmol Vis Sci 2000;41:2566-2573 (PMID 10937568)',
         measuredMetric:
           'Intraocular pressure at eight times across 24 hours, three drugs in randomised crossover',
         auditFlag: 'caution',
@@ -1690,8 +1698,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Report any sulfa drug reaction you have ever had',
-          action:
-            'Name any past reaction to a sulfonamide antibiotic or diuretic before starting.',
+          action: 'Name any past reaction to a sulfonamide antibiotic or diuretic before starting.',
           patientImpact:
             'Brinzolamide is a sulfonamide and is absorbed systemically despite being applied to the eye. The label states that fatalities have occurred, rarely, from severe sulfonamide reactions including Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis and aplastic anaemia.',
           clinicalPrecaution:
@@ -1822,7 +1829,8 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
           'The FDA label lists blurred vision and bitter, sour or unusual taste as the most frequently reported adverse reactions, at an incidence of 5% to 10%. Reactions occurring in 1% to 5% include blepharitis, dermatitis, dry eye, foreign body sensation, headache, hyperemia, ocular discharge and ocular discomfort. Transient blurring is a direct consequence of the suspension: undissolved drug particles scatter light on the tear film until they dissolve. The bitter taste is nasolacrimal drainage carrying drug to the pharynx, which is shared with dorzolamide. So the comparison is not comfort against discomfort but stinging against blurring plus a required shaking step, in a drug taken three times a day for decades.',
         evidenceSource:
           'AZOPT (brinzolamide ophthalmic suspension) 1% US prescribing information, Adverse Reactions 6.1 and Dosage and Administration 2 (NDA 020816)',
-        measuredMetric: 'Labelled adverse reaction incidence bands from the clinical trial programme',
+        measuredMetric:
+          'Labelled adverse reaction incidence bands from the clinical trial programme',
         auditFlag: 'caution',
       },
       {
@@ -2186,8 +2194,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'CCNC(=O)CCC/C=C\\C[C@H]1[C@H](C[C@H]([C@@H]1/C=C/[C@H](CCC2=CC=CC=C2)O)O)O',
+      smilesString: 'CCNC(=O)CCC/C=C\\C[C@H]1[C@H](C[C@H]([C@@H]1/C=C/[C@H](CCC2=CC=CC=C2)O)O)O',
       chemicalFormula: 'C25H37NO4',
       molecularWeight: '415.60 g/mol',
       targetReceptorAffinity:
@@ -3340,8 +3347,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
           'A British trial reached the same place by a different route: over two years, the two drugs differed by 1.37 letters, which is nothing. It also found that spacing injections out cost a little vision whichever drug was used.',
         technicalDetails:
           'IVAN was a multicentre 2×2 factorial non-inferiority randomised trial at 23 UK hospitals. Six hundred and twenty-eight patients were randomised and 610 received study drugs — 314 ranibizumab, 296 bevacizumab — in continuous monthly or discontinuous as-needed regimens. The primary outcome was best corrected visual acuity at two years with a non-inferiority limit of 3.5 letters. Bevacizumab was neither non-inferior nor inferior to ranibizumab, mean difference -1.37 letters (95% CI -3.75 to 1.01, p=0.26). Discontinuous treatment was neither non-inferior nor inferior to continuous, -1.63 letters (-4.01 to 0.75, p=0.18). Arterial thrombotic events or heart failure admissions did not differ by drug, 20 of 314 (6%) against 12 of 296 (4%), odds ratio 1.69 (95% CI 0.80 to 3.57, p=0.16). Mortality was lower with continuous than discontinuous treatment, odds ratio 0.47 (95% CI 0.22 to 1.03, p=0.05), and did not differ by drug. The authors conclude that the choice of anti-VEGF strategy is less straightforward than previously thought.',
-        evidenceSource:
-          'Chakravarthy U et al., Lancet 2013;382:1258-1267 (IVAN, ISRCTN92166560)',
+        evidenceSource: 'Chakravarthy U et al., Lancet 2013;382:1258-1267 (IVAN, ISRCTN92166560)',
         doi: '10.1016/S0140-6736(13)61501-9',
         measuredMetric:
           'Best corrected visual acuity at two years, ranibizumab against bevacizumab in a 2×2 factorial design',
@@ -4107,6 +4113,522 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125387',
         kind: 'regulatory',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Netarsudil — the first drug to target the trabecular meshwork itself, which reddens half of
+  //    the eyes it is put in, works worse than timolol above 25 mmHg, and costs 84 times as much
+  //    per millilitre as generic latanoprost.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'netarsudil',
+    name: 'Netarsudil',
+    tradeName: 'Rhopressa',
+    sponsor: 'Alcon Laboratories Inc — developed by Aerie Pharmaceuticals',
+    targetGene:
+      'ROCK1, ROCK2 and SLC6A2 — the human Rho kinase and norepinephrine transporter genes',
+    targetProtein:
+      'Rho-associated coiled-coil containing protein kinase in the trabecular meshwork, and the norepinephrine transporter',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2017,
+    indication:
+      'Reduction of elevated intraocular pressure in patients with open-angle glaucoma or ocular hypertension',
+    patientFriendlyIndication: 'High pressure inside the eye, treated at the blocked drain itself',
+    anatomicalSite:
+      'The trabecular meshwork and Schlemm’s canal — the eye’s main drain, and the actual site of disease in open-angle glaucoma',
+    conditionContext: {
+      conditionExplainer:
+        'In open-angle glaucoma the drain at the base of the iris stiffens and resists flow. Every earlier drug worked around that: by turning down production, or by opening a secondary route through the muscle behind it. Netarsudil is the first approved drug aimed at the stiffened drain itself.',
+      whyItMatters:
+        'A century of glaucoma pharmacology treated the symptom — pressure — by every route except the one that was actually failing. This is the first molecule to address the pathology directly, and the label still says the exact mechanism is unknown.',
+      whoTakesThis:
+        'Adults with open-angle glaucoma or ocular hypertension, usually after or alongside a prostaglandin analogue. The label reports it works less well than timolol in patients whose starting pressure is 25 mmHg or above.',
+      clinicalGoals:
+        'A reduction in millimetres of mercury, and specifically an increase in conventional outflow facility. The trials tested non-inferiority to timolol rather than superiority to anything.',
+    },
+    oneSentenceVerdict:
+      'A Rho kinase and norepinephrine transporter inhibitor that relaxes the trabecular meshwork to open the eye’s main drain, non-inferior to timolol only in the restricted population with baseline pressure below 25 mmHg — a post hoc analysis in ROCKET-1 and the pre-specified one in ROCKET-2 — while causing conjunctival hyperemia in 53% of patients, corneal deposits in around a quarter, and costing US$131.76 per millilitre against generic latanoprost’s US$1.57.',
+    laymanHowItWorks:
+      'Fluid leaves the eye mainly through a spongy mesh at the base of the iris. In glaucoma that mesh stiffens, because the cells in it are holding themselves tight with an internal scaffolding of protein cables. Netarsudil blocks the enzyme that keeps those cables under tension. The cells relax, the mesh opens, and fluid drains through the route it was always meant to use.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 62,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$131.76 per millilitre, the one listed product at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Rhopressa was approved 18 December 2017 under NDA 208254 and has no generic. At US$131.76 per millilitre it is the most expensive product in this batch by a wide margin: 84 times generic latanoprost at US$1.57, 124 times generic timolol at US$1.06 and 148 times generic dorzolamide at US$0.8910, all from the same survey on the same date. A fixed combination with latanoprost was approved in 2019, pairing a still-patented molecule with one that has been generic since 2011.',
+      synthesisComplexity: 'High',
+      costSource: {
+        label:
+          'Nearest published cost-of-production analysis: Hill AM, Barber MJ, Gotham D. Estimated costs of production and potential prices for the WHO Essential Medicines List. BMJ Glob Health 2018;3:e000571. Its methods restrict the analysis to solid oral formulations and exclude eye drops, which is why the synthesis cost field on this page is empty.',
+        identifier: '10.1136/bmjgh-2017-000571',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, brand listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Netarsudil is not competing on pressure lowering, where its own trials only claim non-inferiority to timolol in a restricted population. It competes on mechanism: it is the only marketed drop acting on the conventional outflow pathway, so it adds to everything else rather than overlapping. Against that, it costs 84 times generic latanoprost and reddens more than half the eyes it goes into.',
+      conventionalRx: [
+        {
+          name: 'Latanoprost (Xalatan)',
+          class: 'Prostaglandin F2-alpha analogue',
+          howItCompares:
+            'Lowers pressure 4.85 mmHg at three months in the pooled analysis of 114 trials, in which netarsudil does not appear because it was approved after that analysis was published. Netarsudil’s trials claim non-inferiority to timolol, which sits at 3.70 mmHg in the same table.',
+          typicalCost:
+            'US$1.57 per millilitre, median across the 13 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: one eighty-fourth the acquisition cost, more pressure lowering in indirect comparison, and the only placebo-controlled visual field trial in the field. Cons: permanent iris darkening and periorbital fat loss, neither of which netarsudil causes.',
+        },
+        {
+          name: 'Timolol (Timoptic)',
+          class: 'Non-selective beta-adrenergic antagonist',
+          howItCompares:
+            'The comparator in every netarsudil trial. Non-inferiority was met only in patients whose maximum baseline pressure was below 25 mmHg, and the label states that at 25 mmHg or above netarsudil gave smaller morning reductions than timolol, by as much as 3 mmHg.',
+          typicalCost:
+            'US$1.06 per millilitre, median across the 65 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: one hundred and twenty-fourth the cost, better at higher starting pressures, hyperemia in 8% to 14% against netarsudil’s 53% to 61%. Cons: contraindicated in asthma and heart block, and loses its effect overnight.',
+        },
+        {
+          name: 'Selective laser trabeculoplasty',
+          class: 'A laser applied to the same tissue netarsudil targets',
+          howItCompares:
+            'Acts on the trabecular meshwork, as netarsudil does, but by a single procedure rather than a daily drop. In the LiGHT trial of 718 patients, 74.2% of the laser group needed no drops at all at three years.',
+          typicalCost:
+            'Not a product listed in the CMS National Average Drug Acquisition Cost survey — it is a procedure, billed and costed separately',
+          prosAndCons:
+            'Pros: no daily drop, no red eye, no corneal deposits, and it addresses the same anatomical target. Cons: the effect wanes and repeat treatment is often needed.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Expect red eyes, and decide in advance how much you will tolerate',
+          action:
+            'Look at your eyes in a mirror before starting, and agree with the prescriber what degree of redness would be a reason to stop.',
+          patientImpact:
+            'Conjunctival hyperemia was reported in 53% of patients in the controlled trials, and 6% of patients discontinued therapy because of it. In the twelve-month trial the rate reached 61% for once-daily dosing and 66% for twice-daily, against 14% on timolol.',
+          clinicalPrecaution:
+            'The redness is a direct consequence of the mechanism — Rho kinase inhibition dilates conjunctival vessels — so it is not an impurity or an allergy and it does not resolve with a different bottle.',
+        },
+        {
+          name: 'Ask about the corneal deposits and whether they are being looked for',
+          action:
+            'Ask whether corneal verticillata have been seen at your slit-lamp examinations, particularly if vision seems slightly hazier.',
+          patientImpact:
+            'Corneal verticillata — a whorl-shaped pattern of deposits in the corneal epithelium — occurred in about 20% of patients in the labelled summary and in 26% and 25% of the once-daily and twice-daily groups in the twelve-month trial, against 1% on timolol. The trial ran a separate non-interventional Corneal Observation Study for patients who developed them.',
+          clinicalPrecaution:
+            'These deposits are generally reported as visually insignificant and reversible on stopping, and they are a finding a clinician has to look for rather than one a patient reports. That is exactly the kind of finding that gets under-counted outside a trial.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=CC(=C(C=C1)C(=O)OCC2=CC=C(C=C2)[C@@H](CN)C(=O)NC3=CC4=C(C=C3)C=NC=C4)C',
+      chemicalFormula: 'C28H27N3O3',
+      molecularWeight: '453.50 g/mol',
+      targetReceptorAffinity:
+        'An inhibitor of Rho-associated coiled-coil containing protein kinase, and separately of the norepinephrine transporter. The label states only that netarsudil is a Rho kinase inhibitor believed to reduce pressure by increasing outflow through the trabecular meshwork, and that the exact mechanism is unknown. Supplied as the dimesylate salt. The molecule is an ester prodrug: ocular esterases cleave the 2,4-dimethylbenzoate group to give the active metabolite netarsudil-M1, which is itself a more potent Rho kinase inhibitor than the parent and is the species that acts on the meshwork.',
+      structureSource: {
+        label: 'PubChem CID 66599893 (netarsudil) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/66599893',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'net-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric purity at the benzylic aminomethyl stereocentre',
+          description:
+            'Confirm the single stereocentre bearing the primary amine and the isoquinoline amide. Kinase inhibitors in this series are markedly stereoselective, and the opposite enantiomer is a substantially weaker Rho kinase inhibitor rather than an inactive by-product to be tolerated at a percent level.',
+          reagentsAndBuffer:
+            'Netarsudil dimesylate reference standard, chiral HPLC with polysaccharide stationary phase, 1H and 13C NMR in DMSO-d6, ion chromatography to confirm two mesylate counter-ions',
+        },
+        {
+          id: 'net-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Amide coupling to the isoquinolinamine and esterification with 2,4-dimethylbenzoic acid',
+          description:
+            'Couple the beta-amino acid fragment to 6-aminoisoquinoline to form the amide, then esterify the benzylic alcohol with 2,4-dimethylbenzoic acid. The isoquinoline is the hinge-binding element common to this kinase inhibitor class, and the dimethylbenzoate is a deliberately labile ester whose only purpose is to be removed in the eye.',
+          dependsOnStepId: 'net-w1',
+          reagentsAndBuffer:
+            '6-aminoisoquinoline, peptide coupling reagent with base, 2,4-dimethylbenzoyl chloride or the acid with a coupling agent, anhydrous aprotic solvent, nitrogen atmosphere, amine protection and deprotection sequence',
+        },
+        {
+          id: 'net-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Dimesylate salt formation and control of the free-acid hydrolysis product',
+          description:
+            'Form the dimesylate salt and crystallise, controlling the level of prematurely hydrolysed material. The ester is designed to be cleaved by esterases and is therefore intrinsically hydrolysis-prone, so the specification on the hydrolysis product is a stability specification as much as a purity one.',
+          dependsOnStepId: 'net-w2',
+          reagentsAndBuffer:
+            'Methanesulfonic acid, alcoholic solvent, controlled cooling crystallisation, stability-indicating HPLC with the M1 metabolite and the free acid as named impurities, Karl Fischer titration',
+        },
+        {
+          id: 'net-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Corneal esterase conversion to netarsudil-M1 and delivery to trabecular meshwork cells',
+          description:
+            'Confirm that the ester is cleaved during corneal passage and that M1 reaches cultured trabecular meshwork cells at an inhibitory concentration. Measuring the parent compound alone reports the carrier rather than the drug: M1 is the more potent Rho kinase inhibitor and is what the meshwork actually sees.',
+          dependsOnStepId: 'net-w3',
+          reagentsAndBuffer:
+            'Excised cornea in a diffusion cell, primary human trabecular meshwork cell culture, balanced salt solution at 34 degrees Celsius, LC-MS/MS quantification of netarsudil and netarsudil-M1',
+        },
+        {
+          id: 'net-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Rho kinase inhibition, actin stress fibre disassembly and outflow facility',
+          description:
+            'Measure ROCK1 and ROCK2 inhibition, then image actin stress fibre and focal adhesion loss in trabecular meshwork cells, then measure outflow facility in a perfused anterior segment. Kinase inhibition alone predicts nothing here: the therapeutic claim is a mechanical one about tissue stiffness, and only the perfusion measurement tests it.',
+          dependsOnStepId: 'net-w4',
+          reagentsAndBuffer:
+            'Recombinant human ROCK1 and ROCK2 with kinase assay reagents, primary trabecular meshwork cells with phalloidin and vinculin staining, perfused human or porcine anterior segment organ culture with pressure transducer',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'net-a1',
+        category: 'failed',
+        title: 'ROCKET-1 met its endpoint only as a post hoc analysis in a subgroup',
+        laymanSummary:
+          'Two trials in 1,167 patients tested whether netarsudil matched timolol. In the first one, the answer across the full pressure range was no, and the claim of non-inferiority comes from an analysis of a narrower group decided on after the results were in.',
+        technicalDetails:
+          'ROCKET-1 (411 patients) and ROCKET-2 (756 patients) were double-masked randomised non-inferiority trials enrolling 1,167 patients in total, comparing netarsudil 0.02% once daily against timolol 0.5% twice daily, with an additional netarsudil twice-daily arm in ROCKET-2. The published report states that netarsudil once daily was non-inferior to timolol in the per-protocol population with maximum baseline intraocular pressure below 25 mmHg in both studies — and specifies that this was the primary outcome measure and population in ROCKET-2, and a post hoc outcome measure in ROCKET-1. ROCKET-1 did not meet non-inferiority across its full enrolled range. The restriction is not a footnote: it defines the population in which the drug can claim to match a sixty-year-old generic.',
+        evidenceSource:
+          'Serle JB et al., Am J Ophthalmol 2018;186:116-127 (ROCKET-1 NCT02207491 and ROCKET-2 NCT02207621)',
+        doi: '10.1016/j.ajo.2017.11.019',
+        measuredMetric:
+          'Non-inferiority to timolol in the per-protocol population with maximum baseline IOP below 25 mmHg',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'net-a2',
+        category: 'failed',
+        title: 'The label says it works worse than timolol above 25 mmHg',
+        laymanSummary:
+          'The prescribing information states it plainly: in patients whose starting pressure was 25 millimetres of mercury or higher, netarsudil lowered morning pressure less than timolol did, by as much as three millimetres.',
+        technicalDetails:
+          'The Clinical Studies section states that across three randomised controlled trials — Study 301 (NCT02207491), Study 302 (NCT02207621) and Study 304 (NCT02558374) — netarsudil 0.02% once daily in the evening produced up to 5 mmHg reductions in pressure. For patients with baseline pressure below 25 mmHg, reductions were similar to timolol 0.5% twice daily. For patients at or above 25 mmHg, netarsudil resulted in smaller mean reductions at the morning time points than timolol at the Day 43 and Day 90 visits, with the difference as high as 3 mmHg favouring timolol. Studies 301 and 302 enrolled patients with baseline pressure below 27 mmHg and Study 304 below 30 mmHg. A drug that underperforms a generic beta-blocker at the pressures where treatment is most urgent has a narrower place than its approval implies.',
+        evidenceSource:
+          'RHOPRESSA (netarsudil ophthalmic solution) 0.02% US prescribing information, Clinical Studies section (NDA 208254)',
+        measuredMetric:
+          'Mean intraocular pressure reduction at morning time points, stratified by baseline pressure above and below 25 mmHg',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'net-a3',
+        category: 'failed',
+        title: 'Half the eyes go red, and 6% of patients stop because of it',
+        laymanSummary:
+          'Conjunctival redness affected 53% of patients in the controlled trials and 61% over twelve months. On timolol it was 8% to 14%. Six in a hundred patients stopped the drug because of the redness alone.',
+        technicalDetails:
+          'In the ROCKET-1 and ROCKET-2 three-month report, conjunctival hyperemia was the most frequent adverse event, ranging from 50% (126 of 251, ROCKET-2) to 53% (108 of 203, ROCKET-1) for netarsudil once daily, 59% (149 of 253, ROCKET-2) for twice daily, against 8% (17 of 208, ROCKET-1) to 11% (27 of 251, ROCKET-2) for timolol (P<.0001 for netarsudil against timolol). At twelve months in ROCKET-2 the figures were 61% once daily, 66% twice daily and 14% for timolol. The label records 53% and states that 6% of patients discontinued therapy because of conjunctival hyperemia. The hyperemia follows directly from Rho kinase inhibition relaxing conjunctival vascular smooth muscle, so it is inseparable from the mechanism.',
+        evidenceSource:
+          'Serle JB et al., Am J Ophthalmol 2018;186:116-127; Kahook MY et al., Am J Ophthalmol 2019;200:130-137 (ROCKET-2 12-month)',
+        doi: '10.1016/j.ajo.2019.01.003',
+        measuredMetric:
+          'Incidence of conjunctival hyperemia and discontinuation for hyperemia, netarsudil against timolol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'net-a4',
+        category: 'failed',
+        title: 'A quarter of patients develop deposits in the cornea',
+        laymanSummary:
+          'Whorl-shaped deposits build up in the surface layer of the cornea in about a quarter of patients over a year. On timolol it happens to one in a hundred. Patients do not notice them; a clinician has to look.',
+        technicalDetails:
+          'In the twelve-month ROCKET-2 study of 756 patients — netarsudil once daily 251, twice daily 254, timolol 251 — corneal deposits (cornea verticillata) occurred in 26%, 25% and 1% respectively. Conjunctival haemorrhage, typically petechial, occurred in 20%, 19% and 1%. All three findings were generally scored as mild. The study ran a separate non-interventional Corneal Observation Study specifically for patients who developed verticillata, which is an acknowledgement that the finding needed dedicated follow-up rather than routine adverse event capture. The label summarises corneal verticillata, instillation site pain and conjunctival haemorrhage together at approximately 20%. Verticillata are asymptomatic in most patients and reported as reversible on discontinuation, which is reassuring and also means the true incidence outside a trial depends entirely on whether anyone is looking.',
+        evidenceSource: 'Kahook MY et al., Am J Ophthalmol 2019;200:130-137 (ROCKET-2, 12 months)',
+        doi: '10.1016/j.ajo.2019.01.003',
+        measuredMetric:
+          'Incidence of cornea verticillata and conjunctival haemorrhage at 12 months, netarsudil against timolol',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'net-a5',
+        category: 'measured',
+        title: 'Twelve-month durability with no loss of effect',
+        laymanSummary:
+          'Over a full year, netarsudil held pressure in the same range as timolol, without the drift that beta-blockers can show. The pressures achieved were within about a millimetre of each other throughout.',
+        technicalDetails:
+          'In the twelve-month ROCKET-2 study, mean intraocular pressure at 8 AM decreased from a baseline of 22.5 to 22.6 mmHg to 17.9 to 18.8 mmHg with netarsudil once daily, 17.2 to 18.0 mmHg with netarsudil twice daily and 17.5 to 17.9 mmHg with timolol, sustained across twelve months. ROCKET-4 separately compared once-daily netarsudil against twice-daily timolol over six months in patients with baseline pressure below 30 mmHg. The durability result is real and is the strongest thing on this page. It is also a comparison against timolol, which the independent pooled analysis of 114 trials ranks sixth of fourteen first-line agents, more than a millimetre below the prostaglandin analogues.',
+        evidenceSource:
+          'Kahook MY et al., Am J Ophthalmol 2019;200:130-137; Khouri AS et al., Am J Ophthalmol 2019;204:97-104 (ROCKET-4)',
+        doi: '10.1016/j.ajo.2019.03.002',
+        measuredMetric: 'Mean intraocular pressure at 8 AM sustained over 12 months, three arms',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'net-a6',
+        category: 'conclusion_shift',
+        title: 'The first drug aimed at the tissue that actually fails',
+        laymanSummary:
+          'For a hundred years, glaucoma drugs turned down fluid production or opened a side route. None of them touched the drain that is the actual problem. This is the first one that does, and the label still says the exact mechanism is unknown.',
+        technicalDetails:
+          'Open-angle glaucoma is a disease of increased outflow resistance at the trabecular meshwork and the inner wall of Schlemm’s canal. Beta-blockers and carbonic anhydrase inhibitors reduce aqueous production. Prostaglandin analogues increase uveoscleral outflow, a secondary route. Neither addresses the conventional pathway. Rho kinase inhibition disassembles actin stress fibres and focal adhesions in trabecular meshwork cells, reducing cell contractility and tissue stiffness and increasing conventional outflow facility, and netarsudil additionally inhibits the norepinephrine transporter and lowers episcleral venous pressure. The FDA label commits to none of this in detail: its Mechanism of Action section reads in full that netarsudil is a Rho kinase inhibitor believed to reduce intraocular pressure by increasing outflow of aqueous humour through the trabecular meshwork, and that the exact mechanism is unknown. A field-changing target and an explicitly unresolved mechanism are stated on the same page.',
+        evidenceSource:
+          'RHOPRESSA (netarsudil ophthalmic solution) 0.02% US prescribing information, Mechanism of Action 12.1 (NDA 208254)',
+        inferredClaim:
+          'That netarsudil works by relaxing the trabecular meshwork — the design rationale for the whole drug class, supported by cell and perfusion work, and described by the approved label as unknown',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'net-a7',
+        category: 'inferred',
+        title: 'Eighty-four times generic latanoprost, for non-inferiority to timolol',
+        laymanSummary:
+          'A millilitre costs pharmacies US$131.76. A millilitre of generic latanoprost costs US$1.57 and lowers pressure more in indirect comparison. The clinical case for the difference is the mechanism, not the measurement.',
+        technicalDetails:
+          'In the CMS acquisition-cost survey effective 19 August 2026, netarsudil is listed as a single brand product at US$131.76 per millilitre. In the same survey on the same date, generic latanoprost is US$1.57 across 13 products, generic timolol US$1.06 across 65, and generic dorzolamide US$0.8910 across 23 — ratios of 84, 124 and 148. The clinical evidence supporting that price is non-inferiority to timolol in the population with baseline pressure below 25 mmHg, with the ROCKET-1 non-inferiority analysis being post hoc. Netarsudil is absent from the network meta-analysis of 114 randomised trials that ranks the first-line drops, because it was approved after that analysis was published, so no independent pooled estimate places it against the alternatives. The argument for the drug is that it acts on a pathway nothing else reaches and therefore adds to a prostaglandin analogue rather than overlapping with it. That argument is mechanistically sound and it is not the same thing as a measured comparative advantage.',
+        evidenceSource:
+          'CMS National Average Drug Acquisition Cost survey effective 19 August 2026; Serle JB et al., Am J Ophthalmol 2018;186:116-127; Li T et al., Ophthalmology 2016;123:129-140',
+        doi: '10.1016/j.ophtha.2015.09.005',
+        inferredClaim:
+          'That a novel mechanism justifies an eighty-four-fold price difference against the incumbent, when the supporting trial claims non-inferiority to a still cheaper drug in a restricted population',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One drop in the evening, containing a disguised molecule',
+        laymanDesc:
+          'What is in the bottle is not what does the work. A chemical group is attached that gets cut off inside the eye, releasing a more potent version.',
+        molecularDetail:
+          'Netarsudil dimesylate 0.02% is instilled once daily in the evening. The molecule is an ester of 2,4-dimethylbenzoic acid, and ocular esterases cleave it to netarsudil-M1, which is a more potent Rho kinase inhibitor than the parent. The ester exists to carry the compound across the cornea, as in the prostaglandin analogues.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the mesh at the base of the iris',
+        laymanDesc:
+          'The active form reaches the spongy tissue where fluid normally leaves the eye — the tissue that is actually blocked in this disease, and that no earlier drug touched.',
+        molecularDetail:
+          'Netarsudil-M1 reaches the trabecular meshwork and the inner wall of Schlemm’s canal, the site of the outflow resistance that defines open-angle glaucoma. Every earlier drug class acts either on aqueous production at the ciliary body or on the uveoscleral pathway, both anatomically distinct from this tissue.',
+        iconName: 'Eye',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the enzyme holding the cells under tension',
+        laymanDesc:
+          'The cells in that mesh keep themselves taut with internal protein cables. One enzyme maintains the tension. Netarsudil blocks it.',
+        molecularDetail:
+          'Netarsudil-M1 inhibits Rho-associated coiled-coil containing protein kinase, which phosphorylates myosin light chain and the myosin phosphatase targeting subunit to sustain actomyosin contractility. Inhibition permits dephosphorylation, disassembling actin stress fibres and focal adhesions in trabecular meshwork cells. The drug also inhibits the norepinephrine transporter, a second and pharmacologically separate activity.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The mesh relaxes and the drain opens',
+        laymanDesc:
+          'With the tension released, the tissue becomes less stiff and the spaces in it widen. Fluid leaves through the route it was always supposed to use.',
+        molecularDetail:
+          'Loss of cell contractility and extracellular matrix tension reduces outflow resistance and increases conventional outflow facility. Netarsudil additionally lowers episcleral venous pressure, the back-pressure against which the conventional pathway drains, and reduces aqueous production through norepinephrine transporter inhibition. The label declines to commit to any of this, stating that the exact mechanism is unknown.',
+        iconName: 'Unlock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Pressure falls, and holds for a year',
+        laymanDesc:
+          'Pressure drops by up to five millimetres of mercury and stays down across twelve months. The comparison it was tested against is timolol, not the stronger modern drops.',
+        molecularDetail:
+          'The label reports up to 5 mmHg reductions with once-daily evening dosing. In the twelve-month study, mean pressure at 8 AM fell from a baseline of 22.5 to 22.6 mmHg to 17.9 to 18.8 mmHg on once-daily netarsudil against 17.5 to 17.9 on timolol, sustained throughout. Non-inferiority was demonstrated only in the population with maximum baseline pressure below 25 mmHg.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The same relaxation reddens the surface vessels',
+        laymanDesc:
+          'The enzyme being blocked also keeps blood vessels in the white of the eye constricted. Blocking it dilates them, which is why more than half of patients get red eyes.',
+        molecularDetail:
+          'Rho kinase inhibition relaxes vascular smooth muscle in conjunctival vessels, producing hyperemia in 53% of patients in the controlled trials, 61% at twelve months on once-daily dosing and 66% on twice-daily, against 8% to 14% on timolol. Six per cent of patients discontinued for hyperemia. Cornea verticillata occurred in about a quarter of patients at twelve months and conjunctival haemorrhage in about a fifth, against 1% each on timolol.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ROCKET-1 (NCT02207491)',
+        phase: 'Double-masked, randomised, non-inferiority, 3-month',
+        sampleSize: 411,
+        primaryEndpoint:
+          'Non-inferiority of netarsudil 0.02% once daily to timolol 0.5% twice daily on intraocular pressure',
+        endpointMet: false,
+        statisticalPValue:
+          'Non-inferiority met in the per-protocol population with maximum baseline IOP < 25 mmHg as a POST HOC outcome measure; not met across the full enrolled range',
+        unreportedAdverseSignals:
+          'The population in which the drug can claim to match timolol was defined after the results were seen. Conjunctival hyperemia occurred in 53% (108 of 203) against 8% (17 of 208) on timolol, P < .0001.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ROCKET-2 (NCT02207621)',
+        phase: 'Double-masked, randomised, multicentre, parallel-group, non-inferiority, 12-month',
+        sampleSize: 756,
+        primaryEndpoint:
+          'Non-inferiority to timolol in the per-protocol population with maximum baseline IOP < 25 mmHg',
+        endpointMet: true,
+        statisticalPValue:
+          'Non-inferiority met; mean IOP at 8 AM 17.9 to 18.8 mmHg (netarsudil once daily), 17.2 to 18.0 (twice daily) and 17.5 to 17.9 (timolol) over 12 months',
+        unreportedAdverseSignals:
+          'Conjunctival hyperemia 61% and 66% against timolol’s 14%; cornea verticillata 26% and 25% against 1%; conjunctival haemorrhage 20% and 19% against 1%. A separate non-interventional Corneal Observation Study was run for patients developing verticillata.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ROCKET-4 (NCT02558374)',
+        phase: 'Randomised, double-masked, phase 3, 6-month',
+        sampleSize: 708,
+        primaryEndpoint:
+          'Intraocular pressure with once-daily netarsudil against twice-daily timolol in patients with baseline IOP below 30 mmHg',
+        endpointMet: true,
+        statisticalPValue:
+          'Reported by the label as demonstrating up to 5 mmHg reductions, with reductions similar to timolol for baseline IOP < 25 mmHg and up to 3 mmHg worse than timolol at morning time points for baseline IOP ≥ 25 mmHg',
+        unreportedAdverseSignals:
+          'The stratification by baseline pressure at 25 mmHg recurs across all three registration studies and is the boundary of the drug’s demonstrated equivalence. Every comparison is against timolol, never against a prostaglandin analogue.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Non-inferiority to twice-daily timolol in the per-protocol population with maximum baseline IOP below 25 mmHg, across 1,167 randomised patients',
+        'Mean IOP at 8 AM of 17.9 to 18.8 mmHg sustained over 12 months against timolol’s 17.5 to 17.9, from a baseline of 22.5 to 22.6',
+        'Conjunctival hyperemia in 53% of patients in the controlled trials and 61% at 12 months, against 8% to 14% on timolol, with 6% discontinuing for it',
+        'Cornea verticillata in 26% and conjunctival haemorrhage in 20% at 12 months, against 1% each on timolol',
+      ],
+      unsupportedInferences: [
+        'That netarsudil works by relaxing the trabecular meshwork — the approved label states the exact mechanism is unknown',
+        'That a novel outflow mechanism justifies 84 times the acquisition cost of generic latanoprost, which lowers pressure more in indirect comparison',
+        'That the ROCKET-1 non-inferiority result is equivalent in weight to ROCKET-2’s; one was pre-specified and the other post hoc',
+        'That non-inferiority to timolol implies comparability with the prostaglandin analogues, which the drug has never been tested against as a primary comparison',
+      ],
+      whatFailedInitially: [
+        'ROCKET-1 did not meet non-inferiority across its full enrolled range; the claim rests on a post hoc restricted population',
+        'The label states that above 25 mmHg baseline pressure, netarsudil gives smaller morning reductions than timolol, by as much as 3 mmHg',
+        'More than half of patients develop red eyes and 6% stop the drug for that alone',
+        'About a quarter develop corneal deposits over a year, a finding that required its own dedicated observational sub-study',
+      ],
+      realWorldOutcome: [
+        'Approved 18 December 2017 under NDA 208254, the first glaucoma drug directed at the trabecular meshwork itself',
+        'A fixed combination with latanoprost followed in 2019, pairing a patented molecule with one generic since 2011',
+        'Absent from the network meta-analysis of 114 randomised trials that ranks the first-line drops, because it was approved after it was published',
+        'The most expensive product in this batch at US$131.76 per millilitre, with no generic',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical ophthalmic solution 0.02%, instilled once daily in the evening',
+      description:
+        'A once-daily evening drop of an ester prodrug, cleaved by ocular esterases during corneal passage to the more potent active metabolite netarsudil-M1. Evening dosing was used throughout the registration programme. Supplied as the dimesylate salt.',
+      safetyProfile:
+        'Conjunctival hyperemia in 53% of patients, with 6% discontinuing because of it, rising to 61% and 66% for once- and twice-daily dosing at twelve months against 14% on timolol. Corneal verticillata, instillation site pain and conjunctival haemorrhage each at approximately 20% in the label, with verticillata at 26% and haemorrhage at 20% in the twelve-month study against 1% each on timolol. Instillation site erythema, corneal staining, blurred vision, increased lacrimation, eyelid erythema and reduced visual acuity also reported. No systemic beta-blockade and no respiratory or cardiac contraindications. The hyperemia and the corneal deposits are both direct consequences of the mechanism rather than formulation problems, so neither is addressable by reformulation.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why is my eye so red?',
+        a: 'Because that is the mechanism working somewhere you did not want it to. Netarsudil blocks an enzyme that keeps smooth muscle contracted, which is how it relaxes the drainage tissue at the base of your iris. The same enzyme keeps the small blood vessels in the white of your eye constricted, and blocking it lets them dilate. In the controlled trials conjunctival hyperemia affected 53% of patients, and over twelve months 61% on once-daily dosing against 14% on timolol. Six per cent of patients in the trials stopped the drug because of it. It is not an allergy, not a preservative reaction, and not something a different bottle will fix.',
+      },
+      {
+        q: 'Is it as good as timolol?',
+        a: 'Only within a defined range, and the label draws the line for you. Non-inferiority to twice-daily timolol was demonstrated in the per-protocol population whose maximum baseline pressure was below 25 millimetres of mercury. In ROCKET-2 that was the pre-specified primary population. In ROCKET-1 it was a post hoc analysis, meaning the population was chosen after the results were seen, and ROCKET-1 did not meet non-inferiority across its full enrolled range. The label goes further and states that for patients at or above 25 mmHg, netarsudil gave smaller morning pressure reductions than timolol, by as much as 3 mmHg. So the answer is: comparable below 25 mmHg, worse above it.',
+        auditNote:
+          'A post hoc subgroup in which a drug meets its endpoint is the weakest form of a positive result. It is quoted here as the paper reports it, which is unusually candid — the authors label it post hoc in the abstract.',
+      },
+      {
+        q: 'Why does it cost so much?',
+        a: 'It has no generic and it is the only drug of its kind. In the same acquisition-cost survey on the same date, netarsudil is US$131.76 per millilitre as a single brand product, generic latanoprost is US$1.57 across thirteen products, generic timolol US$1.06 across sixty-five and generic dorzolamide US$0.89 across twenty-three. That is 84, 124 and 148 times. What you get for it is a mechanism nothing else on the market has: it works on the drainage tissue that is actually failing in glaucoma, so it adds to a prostaglandin analogue instead of overlapping with it. Whether that justifies the ratio is a judgement, and it is worth making it knowing that the supporting evidence is non-inferiority to the cheapest drug on the list, in a restricted population.',
+      },
+      {
+        q: 'What are the deposits in my cornea?',
+        a: 'Corneal verticillata — a faint whorl-shaped pattern of drug deposits in the surface layer of the cornea. In the twelve-month trial they were seen in 26% of patients on once-daily netarsudil and 1% on timolol. They are almost always asymptomatic, generally graded mild, and reported to clear after the drug is stopped. They are also something a clinician has to look for at the slit lamp rather than something you would report, which is why the trial ran a separate observational sub-study for patients who developed them. The same pattern occurs with several unrelated drugs, notably amiodarone, and it reflects the drug accumulating in the epithelial cells rather than damaging them.',
+      },
+      {
+        q: 'Should this be my first drop?',
+        a: 'The evidence points the other way, and the reasoning is about what has been compared with what. Every netarsudil trial used timolol as its comparator, and timolol ranks sixth of fourteen first-line drops in the independent pooled analysis of 114 randomised trials — more than a millimetre of mercury behind latanoprost, bimatoprost and travoprost. Netarsudil itself is absent from that analysis, because it was approved after it was published, so there is no independent pooled estimate placing it against the prostaglandin analogues. Add the 53% hyperemia rate and an 84-fold price difference against generic latanoprost, and the position the evidence actually supports is as an added agent when a prostaglandin analogue is not enough — where its distinct mechanism means it contributes something the first drug cannot.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Serle JB et al. Two phase 3 clinical trials comparing the safety and efficacy of netarsudil to timolol in patients with elevated intraocular pressure: ROCKET-1 and ROCKET-2. Am J Ophthalmol 2018;186:116-127',
+        identifier: '10.1016/j.ajo.2017.11.019',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kahook MY et al. Long-term safety and ocular hypotensive efficacy evaluation of netarsudil ophthalmic solution: ROCKET-2. Am J Ophthalmol 2019;200:130-137',
+        identifier: '10.1016/j.ajo.2019.01.003',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Khouri AS et al. Once-daily netarsudil versus twice-daily timolol in patients with elevated intraocular pressure: the randomized phase 3 ROCKET-4 study. Am J Ophthalmol 2019;204:97-104',
+        identifier: '10.1016/j.ajo.2019.03.002',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Li T et al. Comparative effectiveness of first-line medications for primary open-angle glaucoma: a systematic review and network meta-analysis. Ophthalmology 2016;123:129-140 — the pooled ranking netarsudil is absent from',
+        identifier: '10.1016/j.ophtha.2015.09.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gazzard G et al. Selective laser trabeculoplasty versus eye drops for first-line treatment of ocular hypertension and glaucoma (LiGHT). Lancet 2019;393:1505-1516',
+        identifier: '10.1016/S0140-6736(18)32213-X',
+        kind: 'doi',
+      },
+      {
+        label: 'ROCKET-1: double-masked study of AR-13324 in glaucoma or ocular hypertension',
+        identifier: 'NCT02207491',
+        kind: 'nct',
+      },
+      {
+        label: 'ROCKET-2: evaluation of netarsudil (AR-13324) in glaucoma and ocular hypertension',
+        identifier: 'NCT02207621',
+        kind: 'nct',
+      },
+      {
+        label: 'ROCKET-4: AR-13324-CS304, netarsudil against timolol over 6 months',
+        identifier: 'NCT02558374',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: RHOPRESSA (netarsudil ophthalmic solution) 0.02%, NDA 208254, Alcon — original approval 18 December 2017. Mechanism of Action, Clinical Studies and Adverse Reactions sections quoted.',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=208254',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 66599893 — netarsudil structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/66599893',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, brand listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
       },
     ],
   },

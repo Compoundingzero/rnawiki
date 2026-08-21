@@ -3909,4 +3909,1545 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 8. Cyclosporine — the drug that created modern transplantation, then lost to its successor in
+  //    a four-arm trial, failed a 970-patient heart-attack trial, and had its eye-drop patents
+  //    transferred to a sovereign tribe to keep generics out.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'cyclosporine',
+    name: 'Cyclosporine',
+    tradeName: 'Sandimmune / Neoral / Gengraf / Restasis / Cequa / Verkazia',
+    sponsor:
+      'Novartis, formerly Sandoz, which isolated the compound in 1970 from the fungus Tolypocladium inflatum found in a Norwegian soil sample. Sandimmune was approved in 1983; the ophthalmic emulsion Restasis was developed by Allergan.',
+    targetGene: 'PPIA (cyclophilin A), acting on PPP3CA/PPP3CB (calcineurin) and NFATC1/NFATC2',
+    targetProtein:
+      'Cyclophilin A. As with tacrolimus, the drug-protein complex rather than the drug is the inhibitor: the cyclosporine-cyclophilin complex blocks calcineurin, preventing dephosphorylation of nuclear factor of activated T cells.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1983,
+    indication:
+      'Prophylaxis of organ rejection in kidney, liver and heart transplantation; severe active rheumatoid arthritis unresponsive to methotrexate; severe recalcitrant plaque psoriasis in non-immunocompromised adults who have failed at least one systemic therapy; and, as an ophthalmic emulsion, increased tear production in patients whose tear production is presumed suppressed by ocular inflammation',
+    patientFriendlyIndication:
+      'Preventing rejection of a transplanted organ, severe rheumatoid arthritis and psoriasis, and chronic dry eye',
+    anatomicalSite:
+      'The cytoplasm of T lymphocytes. For the ophthalmic emulsion, the conjunctiva and lacrimal gland surface, where the intended effect is local and systemic blood levels are below the limit of quantification.',
+    conditionContext: {
+      conditionExplainer:
+        'Before 1978, a transplanted kidney from an unrelated donor was rejected more often than not, and the only drugs available — azathioprine and steroids — suppressed the whole immune system indiscriminately. Cyclosporine acted on the T cell specifically, and it did so at the moment of activation.',
+      whyItMatters:
+        'This is the drug that turned transplantation from an experiment into a service. One-year kidney graft survival in the pivotal Canadian trial was 80.4% against 64.0% on the old regimen. It is also the drug that established that calcineurin inhibition damages the kidney, and it has since been beaten by tacrolimus on nearly every transplant endpoint measured head to head.',
+      whoTakesThis:
+        'Transplant recipients, though far fewer than in the 1990s; people with severe psoriasis or rheumatoid arthritis; people with severe steroid-refractory ulcerative colitis; and, in a completely different formulation and at a completely different scale, millions of people with chronic dry eye.',
+      clinicalGoals:
+        'In transplantation, prevent rejection while limiting the kidney damage and hypertension the drug itself causes. In dry eye, raise tear production measurably. The two uses share a molecule and almost nothing else.',
+    },
+    oneSentenceVerdict:
+      'A cyclic fungal peptide that binds cyclophilin and, as that complex, blocks calcineurin so T cells cannot transcribe interleukin-2 — it raised one-year kidney graft survival from 64.0% to 80.4% in 209 randomised patients and created modern transplantation, then came last or second-last on kidney function, rejection and graft survival against tacrolimus in a 1,645-patient four-arm trial, and failed outright in a 970-patient trial of reperfusion injury after heart attack (59.0% against 58.1%, odds ratio 1.04, 95% CI 0.78 to 1.39).',
+    laymanHowItWorks:
+      'When an immune cell recognises a transplanted organ as foreign, a calcium signal switches on an enzyme that releases the cell’s call for reinforcements. Cyclosporine first binds a small protein inside the cell called cyclophilin, and the two of them together block that enzyme. The call is never made, and the attack never assembles. It reaches the same enzyme by a different route than tacrolimus does, through a different partner protein, which is why the two drugs share a mechanism and differ in their side effects. The same enzyme regulates blood vessel tone in the kidney, which is where the drug’s main harm comes from.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 69,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$1.24 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'The oral formulations have been generic since the 1990s. The ophthalmic emulsion is a different story and is one of the clearest patent cases in modern pharmacy: in September 2017 Allergan assigned the Restasis patents to the Saint Regis Mohawk Tribe and licensed them back, with the stated aim of asserting tribal sovereign immunity against inter partes review at the Patent Trial and Appeal Board. The Federal Circuit held in 2018 that tribal sovereign immunity does not apply to inter partes review, the patents were separately held invalid in district court, and the first generic ophthalmic cyclosporine emulsion was approved in February 2022 — more than twenty years after the pivotal trials.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'In transplantation the substitute is tacrolimus, and the head-to-head evidence favours it on rejection, kidney function and graft survival, while cyclosporine causes less new-onset diabetes and worse lipids. In psoriasis and rheumatoid arthritis the biologics have largely displaced it. In severe steroid-refractory ulcerative colitis the modern comparison is infliximab, and the two have been found broadly similar. For dry eye the alternatives are artificial tears, lifitegrast, and now generic ophthalmic cyclosporine itself. Nothing sold as a food or supplement substitutes for immunosuppression, and grapefruit and St John’s wort move cyclosporine levels enough to matter.',
+      conventionalRx: [
+        {
+          name: 'Tacrolimus',
+          class: 'Calcineurin inhibitor, macrolide',
+          howItCompares:
+            'Same target through a different intracellular partner. In the 1,645-patient ELITE-Symphony trial, low-dose tacrolimus gave a mean GFR of 65.4 mL/min against 56.7 to 59.4 for the cyclosporine arms, biopsy-proven acute rejection of 12.3% against 24.0% and 25.8%, and allograft survival of 94.2% against 93.1% and 89.3%. Against that, DIRECT found new-onset diabetes or impaired fasting glucose in 26.0% on cyclosporine against 33.6% on tacrolimus, and significantly better lipids on tacrolimus.',
+          typicalCost:
+            'US$0.6591 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: better on rejection, kidney function and graft survival in the largest head-to-head comparison. Cons: more new-onset diabetes, more neurotoxicity.',
+        },
+        {
+          name: 'Azathioprine with corticosteroids',
+          class: 'The regimen cyclosporine replaced',
+          howItCompares:
+            'The comparator in the 1983 Canadian trial: one-year predicted graft survival 64.0% against 80.4% with cyclosporine (P=0.003), and predicted patient survival 86.4% against 96.6%. That single comparison is the historical basis for the whole calcineurin inhibitor class.',
+          typicalCost:
+            'US$0.1249 per azathioprine tablet at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no nephrotoxicity, no drug-level monitoring, far cheaper. Cons: markedly worse graft survival, which is the reason it stopped being the backbone in 1983.',
+        },
+        {
+          name: 'Infliximab (for severe steroid-refractory ulcerative colitis)',
+          class: 'Anti-TNF monoclonal antibody',
+          howItCompares:
+            'The modern alternative to intravenous cyclosporine as rescue therapy. The cyclosporine evidence rests on a 20-patient randomised trial from 1994 in which 9 of 11 responded against 0 of 9 on placebo — a striking result on a very small denominator, in a setting where the alternative was immediate colectomy.',
+          typicalCost:
+            'Substantially more expensive per course than cyclosporine even after biosimilar entry',
+          prosAndCons:
+            'Pros: no nephrotoxicity, no drug-level monitoring, transitions more naturally to maintenance therapy. Cons: cost, and contraindicated in undiagnosed infection.',
+        },
+        {
+          name: 'Lifitegrast or artificial tears (for dry eye)',
+          class: 'LFA-1 antagonist eye drop, or lubricant',
+          howItCompares:
+            'The cyclosporine emulsion’s pivotal evidence is two identical 6-month trials in 877 patients showing significantly greater improvement than vehicle in two objective signs — corneal staining and categorised Schirmer values — with no dose-response between the 0.05% and 0.1% strengths. Artificial tears treat the symptom without acting on inflammation; lifitegrast acts on a different inflammatory step.',
+          typicalCost:
+            'Generic ophthalmic cyclosporine emulsion has been available in the United States since February 2022; artificial tears are inexpensive and sold over the counter',
+          prosAndCons:
+            'Pros of the emulsion: acts on the inflammation presumed to suppress tear production rather than replacing tears. Cons: burning on instillation is the commonest complaint, and the effect takes months.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Avoid grapefruit, and check every new medicine',
+          action:
+            'Do not take grapefruit or grapefruit juice, and clear any new prescription, over-the-counter product or herbal remedy with the transplant team.',
+          patientImpact:
+            'Cyclosporine is cleared by CYP3A4 and is a P-glycoprotein substrate. Grapefruit inhibits intestinal CYP3A4 and raises levels; St John’s wort and rifampicin induce it and can lower levels far enough for rejection.',
+          clinicalPrecaution:
+            'The interaction list is long and includes statins, where cyclosporine raises exposure enough to cause rhabdomyolysis. This is a description of why monitoring exists, not dosing advice.',
+        },
+        {
+          name: 'Have blood pressure and kidney function checked, not just drug levels',
+          action:
+            'Ask that blood pressure and creatinine are tracked alongside the drug level, and raise any new swelling or reduced urine output.',
+          patientImpact:
+            'Hypertension and nephrotoxicity are the two dose-related harms that define this drug. In the pivotal Canadian trial serum creatinine at 90 days was 2.6 mg/dL on cyclosporine against 2.0 on the older regimen (P=0.03) — the nephrotoxicity was visible in the trial that established the benefit.',
+          clinicalPrecaution:
+            'The acute component is reversible; the chronic component is the subject of a long-running dispute in the transplant literature and is discussed on this page.',
+        },
+        {
+          name: 'Expect gum swelling and increased body hair, and mention them',
+          action:
+            'Report gum overgrowth and excessive hair growth rather than assuming they cannot be addressed.',
+          patientImpact:
+            'Gingival hyperplasia and hypertrichosis are characteristic of cyclosporine and not of tacrolimus, and both are cosmetically significant enough to affect whether people keep taking the drug.',
+          clinicalPrecaution:
+            'Gum overgrowth is worsened by poor oral hygiene and by concurrent calcium channel blockers, and dental review helps. Whether to switch drugs is a transplant team decision.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC[C@H]1C(=O)N(CC(=O)N([C@H](C(=O)N[C@H](C(=O)N([C@H](C(=O)N[C@H](C(=O)N[C@@H](C(=O)N([C@H](C(=O)N([C@H](C(=O)N([C@H](C(=O)N([C@H](C(=O)N1)[C@@H]([C@H](C)C/C=C/C)O)C)C(C)C)C)CC(C)C)C)CC(C)C)C)C)C)CC(C)C)C)C(C)C)CC(C)C)C)C',
+      chemicalFormula: 'C62H111N11O12',
+      molecularWeight: '1202.60 g/mol',
+      targetReceptorAffinity:
+        'Binds cyclophilin A with high affinity; the resulting complex inhibits calcineurin phosphatase. Roughly 100-fold less potent than tacrolimus on a molar basis in mixed lymphocyte reaction assays. The stored structure is declared as a SMILES connection table rather than a peptide sequence because cyclosporine is an eleven-residue cyclic undecapeptide containing seven N-methylated residues and the non-proteinogenic residue MeBmt, none of which can be written in one-letter code.',
+      structureSource: {
+        label:
+          'PubChem CID 5284373 (cyclosporin A) — canonical SMILES, molecular formula C62H111N11O12 and molecular weight 1202.6 g/mol, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284373',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'csa-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the MeBmt residue and the seven N-methylations',
+          description:
+            'Verify the unusual residue at position 1 — (4R)-4-[(E)-2-butenyl]-4-methyl-L-threonine, universally abbreviated MeBmt — and the pattern of N-methylation across the ring. Cyclosporins B through I differ from cyclosporin A by single residues and are co-produced by the same fungus; they are not separable by molecular formula alone in every case.',
+          reagentsAndBuffer:
+            'Cyclosporin A reference standard, high-temperature reversed-phase HPLC to sharpen the conformer-broadened peaks, high-resolution LC-MS/MS, 1H NMR in benzene-d6 at elevated temperature',
+        },
+        {
+          id: 'csa-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fermentation of Tolypocladium inflatum',
+          description:
+            'Cyclosporine is a non-ribosomal peptide assembled by a single 1.6-megadalton synthetase enzyme in the fungus, and it is produced commercially by fermentation. Total synthesis has been achieved and is not a manufacturing route: eleven residues, seven N-methylations, a macrocyclisation and a non-proteinogenic amino acid make it uncompetitive with the mould.',
+          dependsOnStepId: 'csa-w1',
+          reagentsAndBuffer:
+            'Tolypocladium inflatum production strain, glucose and casein peptone medium with L-valine feeding to favour cyclosporin A over the other congeners, extended fed-batch fermentation, solvent extraction into ethyl acetate or butyl acetate',
+        },
+        {
+          id: 'csa-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Separate cyclosporin A from congeners B through I',
+          description:
+            'Resolve the target from the other naturally co-produced cyclosporins, several of which are substantially less active but chromatographically close. This separation, and the fact that the peptide adopts multiple slowly interconverting conformations that broaden chromatographic peaks, is what makes purification the cost-determining step.',
+          dependsOnStepId: 'csa-w2',
+          reagentsAndBuffer:
+            'Silica gel and preparative reversed-phase chromatography at 60 to 80 degrees C to sharpen conformer peaks, acetonitrile-water gradients, crystallisation from acetone-hexane, LC-MS against congener standards',
+        },
+        {
+          id: 'csa-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Formulate as a self-microemulsifying preparation',
+          description:
+            'The molecule is highly lipophilic and essentially insoluble in water, and the original oil-based Sandimmune formulation gave erratic absorption dependent on bile flow. The Neoral microemulsion preformulation was developed to make absorption reproducible. The two are not bioequivalent and the label treats them as different products, which is why the formulation is a pharmacological step and not a packaging one.',
+          dependsOnStepId: 'csa-w3',
+          reagentsAndBuffer:
+            'Corn oil mono- and diglycerides, polyoxyl 40 hydrogenated castor oil or similar non-ionic surfactant, ethanol and propylene glycol co-solvents, droplet-size measurement on aqueous dispersion, comparative dissolution and bioavailability testing',
+        },
+        {
+          id: 'csa-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Calcineurin inhibition with a cyclophilin-dependence control',
+          description:
+            'Measure calcineurin phosphatase inhibition in the presence and absence of cyclophilin. Free cyclosporine does not inhibit calcineurin; only the complex does. An assay run without cyclophilin will report the drug as inactive, and one run without that control cannot distinguish complex-mediated inhibition from direct enzyme poisoning.',
+          dependsOnStepId: 'csa-w4',
+          reagentsAndBuffer:
+            'Recombinant human cyclophilin A, purified calcineurin A and B with calmodulin and calcium, RII phosphopeptide substrate with malachite green detection, tacrolimus with FKBP12 as a parallel mechanistic control, anti-CD3 stimulated T cells with IL-2 ELISA',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'csa-a1',
+        category: 'measured',
+        title: 'The 1983 trial that created modern transplantation',
+        laymanSummary:
+          'Two hundred and nine people receiving a kidney from a deceased donor were randomly given the new drug or the existing combination. Four out of five kept the kidney for a year on cyclosporine, against roughly two out of three on the old regimen. Transplantation stopped being an experiment.',
+        technicalDetails:
+          'The Canadian Multicentre Transplant Study Group randomised 209 recipients of cadaveric renal transplants to cyclosporine with prednisone or to standard therapy with azathioprine and prednisone. Predicted graft survival at one year was 80.4% against 64.0% (P=0.003) and predicted patient survival 96.6% against 86.4%. The trial also recorded the drug’s cost in the same paper: serum creatinine at 90 days was 2.6 mg/dL on cyclosporine against 2.0 on standard therapy (P=0.03), and graft survival on cyclosporine was worse where cold ischaemia exceeded 24 hours (70% against 88%, P=0.005) or the anastomosis took longer than 45 minutes (60% against 89%, P=0.002) — an interaction between the drug’s nephrotoxicity and pre-existing ischaemic injury.',
+        evidenceSource:
+          'Canadian Multicentre Transplant Study Group, N Engl J Med 1983;309:809-815',
+        doi: '10.1056/NEJM198310063091401',
+        measuredMetric:
+          'Predicted graft and patient survival at one year, against azathioprine and prednisone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'csa-a2',
+        category: 'failed',
+        title: 'ELITE-Symphony: beaten by tacrolimus on every endpoint that mattered',
+        laymanSummary:
+          'A four-arm trial in 1,645 kidney recipients compared two cyclosporine regimens against low-dose tacrolimus and low-dose sirolimus. Both cyclosporine arms came out behind tacrolimus on kidney function, rejection and graft survival. This is the trial that ended cyclosporine’s status as the default.',
+        technicalDetails:
+          'Mean calculated glomerular filtration rate at 12 months, the primary endpoint, was 65.4 mL/min on low-dose tacrolimus against a range of 56.7 to 59.4 in the other three arms, which included standard-dose and low-dose cyclosporine. Biopsy-proven acute rejection was 25.8% on standard-dose cyclosporine and 24.0% on low-dose cyclosporine, against 12.3% on low-dose tacrolimus. Allograft survival differed significantly across arms (P=0.02): 93.1% low-dose cyclosporine, 89.3% standard-dose cyclosporine, 94.2% low-dose tacrolimus. The standard-dose cyclosporine arm was the only one without daclizumab induction, so it is a comparison of regimens rather than of molecules — but the low-dose cyclosporine arm, which did receive induction, still trailed tacrolimus on all three measures.',
+        evidenceSource: 'Ekberg H et al., N Engl J Med 2007;357:2562-2575 (NCT00231764)',
+        doi: '10.1056/NEJMoa067411',
+        measuredMetric:
+          'GFR at 12 months, biopsy-proven acute rejection and allograft survival, four-arm randomised comparison',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'csa-a3',
+        category: 'conclusion_shift',
+        title: 'CIRCUS: a promising 58-patient pilot that a 970-patient trial demolished',
+        laymanSummary:
+          'A small trial suggested that giving cyclosporine just before opening a blocked coronary artery limited the damage to the heart muscle. It was published in a major journal and generated a decade of work. The definitive trial randomised 970 patients and found no difference at all in anything.',
+        technicalDetails:
+          'The pilot randomised 58 patients with ST-elevation myocardial infarction to an intravenous cyclosporine bolus of 2.5 mg/kg or saline before percutaneous coronary intervention. Creatine kinase release was significantly lower (P=0.04) and infarct mass on day-5 MRI in a 27-patient subgroup was 37 g against 46 g (P=0.04), though troponin I release was not significantly different (P=0.15). The authors described the data as preliminary and requiring confirmation. CIRCUS then randomised 970 patients with anterior STEMI, of whom 395 and 396 were evaluable, to the same intervention. The primary composite outcome at one year occurred in 59.0% against 58.1% (odds ratio 1.04, 95% CI 0.78 to 1.39, P=0.77). Cyclosporine did not reduce any separate component, including recurrent infarction, unstable angina and stroke, and did not prevent adverse left ventricular remodelling. Safety profiles did not differ.',
+        evidenceSource:
+          'Piot C et al., N Engl J Med 2008;359:473-481; Cung TT et al., N Engl J Med 2015;373:1021-1031 (CIRCUS, NCT01502774)',
+        doi: '10.1056/NEJMoa1505489',
+        inferredClaim:
+          'That inhibiting the mitochondrial permeability transition pore limits reperfusion injury in humans — a mechanism supported by a biomarker and an imaging endpoint in 58 patients, and refuted on clinical outcomes in 970',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'csa-a4',
+        category: 'measured',
+        title: 'Severe ulcerative colitis: 9 of 11 against 0 of 9, in twenty patients',
+        laymanSummary:
+          'Twenty people with ulcerative colitis so severe that steroids had failed and surgery was next were given intravenous cyclosporine or a placebo. Nine of eleven on the drug responded within about a week. None of nine on placebo did. It is one of the smallest trials that ever changed a standard of care.',
+        technicalDetails:
+          'A randomised, double-blind, controlled trial gave intravenous cyclosporine 4 mg/kg/day or placebo by continuous infusion to 20 patients with severe ulcerative colitis unimproved after at least 7 days of intravenous corticosteroids. Response, defined as symptom-score improvement allowing hospital discharge on oral medication, occurred in 9 of 11 (82%) on cyclosporine within a mean of seven days against 0 of 9 on placebo (P<0.001). Mean clinical activity score fell from 13 to 6 against 14 to 13. All five placebo non-responders who subsequently received open cyclosporine responded. Failure to respond meant colectomy, which is why the placebo arm could not be continued and why the trial is this small.',
+        evidenceSource: 'Lichtiger S et al., N Engl J Med 1994;330:1841-1845',
+        doi: '10.1056/NEJM199406303302601',
+        measuredMetric:
+          'Clinical response permitting discharge on oral therapy, against placebo, in steroid-refractory disease',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'csa-a5',
+        category: 'inferred',
+        title: 'The dry eye result is a sign, and the symptom evidence is thinner than the marketing',
+        laymanSummary:
+          'The eye-drop trials measured how much the eye stained with dye and how far a paper strip wetted. Both improved against the vehicle. The things patients actually notice — burning, grittiness, dryness — mostly did not separate, and doubling the concentration did nothing at all.',
+        technicalDetails:
+          'Two identical multicentre, randomised, double-masked, vehicle-controlled six-month trials in 877 patients with moderate to severe dry eye compared cyclosporine ophthalmic emulsion 0.05% and 0.1% against vehicle. Both strengths gave significantly greater improvement than vehicle in two objective signs — corneal staining and categorised Schirmer values — at P at or below 0.05. The 0.05% strength additionally improved three subjective measures: blurred vision, need for concomitant artificial tears and the physician’s global response evaluation. The remaining subjective measures, including the Ocular Surface Disease Index and the patient rating scale, are not among the endpoints reported as significant. There was no dose-response effect between 0.05% and 0.1%, which is unusual for a real pharmacological effect and is a finding the paper reports plainly.',
+        evidenceSource: 'Sall K et al., CsA Phase 3 Study Group, Ophthalmology 2000;107:631-639',
+        doi: '10.1016/s0161-6420(99)00176-1',
+        inferredClaim:
+          'That an improvement in corneal staining and Schirmer score is an improvement in dry eye as a patient experiences it — the objective signs separated from vehicle, most patient-reported measures did not, and there was no dose-response',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'csa-a6',
+        category: 'conclusion_shift',
+        title: 'The Restasis patents were assigned to a sovereign tribe, and it did not work',
+        laymanSummary:
+          'Facing challenges to the patents on its dry-eye drops, Allergan transferred them to the Saint Regis Mohawk Tribe in 2017 and licensed them straight back, so the tribe’s sovereign immunity would block the challenge. A federal court held that sovereign immunity does not apply to that kind of review. The patents were separately found invalid, and a generic finally arrived in 2022.',
+        technicalDetails:
+          'In September 2017 Allergan assigned six Restasis patents to the Saint Regis Mohawk Tribe of New York in exchange for payments, and took an exclusive licence back, with the express purpose of asserting tribal sovereign immunity as a bar to inter partes review at the Patent Trial and Appeal Board. In October 2017 the Eastern District of Texas held the patents invalid for obviousness. In July 2018 the Federal Circuit held in Saint Regis Mohawk Tribe v. Mylan Pharmaceuticals that tribal sovereign immunity cannot be asserted in inter partes review proceedings, and the Supreme Court denied certiorari in 2019. The first generic cyclosporine ophthalmic emulsion 0.05% was approved by the FDA in February 2022. The molecule dates from 1970 and the pivotal trials were published in 2000.',
+        evidenceSource:
+          'Sall K et al., Ophthalmology 2000;107:631-639 (the pivotal trials whose product the patents covered); Drugs@FDA record for RESTASIS (cyclosporine ophthalmic emulsion), NDA 050790',
+        inferredClaim:
+          'That patent term on a formulation of a 1970 molecule reflects the cost of developing it — the assignment to a sovereign tribe for the stated purpose of blocking validity review is difficult to characterise as anything other than a term-extension manoeuvre, and the courts treated it as one',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'csa-a7',
+        category: 'measured',
+        title: 'The pivotal trial reported the nephrotoxicity in the same paper as the benefit',
+        laymanSummary:
+          'The 1983 trial did not hide the kidney damage. Creatinine was measurably worse on cyclosporine at ninety days, and grafts that had already suffered a long time without blood supply did substantially worse on the drug than on the old regimen. Both facts are in the abstract.',
+        technicalDetails:
+          'Serum creatinine 90 days after transplantation was 2.6 mg/dL on cyclosporine against 2.0 mg/dL on azathioprine and prednisone (P=0.03). Predicted one-year graft survival was worse on cyclosporine where the kidney had been machine-perfused for more than 24 hours (70% against 88%, P=0.005) or where the surgical anastomosis took longer than 45 minutes (60% against 89%, P=0.002). Lymphoma developed in one cyclosporine patient. The interaction with ischaemic injury is mechanistically coherent: cyclosporine constricts the afferent arteriole, and a kidney already injured by prolonged ischaemia has less reserve. That interaction, visible in the very first trial, is the origin of the entire subsequent literature on calcineurin inhibitor nephrotoxicity.',
+        evidenceSource: 'Canadian Multicentre Transplant Study Group, N Engl J Med 1983;309:809-815',
+        doi: '10.1056/NEJM198310063091401',
+        measuredMetric:
+          'Serum creatinine at 90 days, and graft survival stratified by cold ischaemia time and anastomosis time',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'csa-a8',
+        category: 'inferred',
+        title: 'Two formulations of the same molecule that are not interchangeable',
+        laymanSummary:
+          'The original oil-based capsules were absorbed erratically, depending on how much bile the person happened to be producing. A microemulsion version fixed that. They contain the same drug and cannot be swapped one for one, and the label says so.',
+        technicalDetails:
+          'Sandimmune, the original formulation, depends on bile for emulsification and gives absorption that varies substantially between and within patients, particularly in liver transplant recipients with impaired bile flow. Neoral is a self-microemulsifying preconcentrate that forms a fine dispersion on contact with aqueous fluid and gives markedly higher and more consistent bioavailability. The label states the two are not bioequivalent and must not be used interchangeably without physician supervision and blood level monitoring. The generic Gengraf is a modified formulation bioequivalent to Neoral, not to Sandimmune. A reader encountering "cyclosporine" in a paper, a guideline or a pharmacy record is encountering one of at least three products whose exposure profiles differ.',
+        evidenceSource:
+          'NEORAL and SANDIMMUNE (cyclosporine) United States prescribing information, Description, Dosage and Administration and Clinical Pharmacology sections',
+        inferredClaim:
+          'That "cyclosporine" names one exposure profile — the oil-based and microemulsion formulations are explicitly not interchangeable, and much of the older transplant literature used the formulation with the erratic absorption',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A ring of eleven amino acids, made by a mould',
+        laymanDesc:
+          'Cyclosporine is a closed loop of eleven building blocks, produced by a fungus found in Norwegian soil in 1970. Its shape is what lets it slip through cell membranes despite being enormous by drug standards.',
+        molecularDetail:
+          'A cyclic undecapeptide of 1,202.6 g/mol with seven N-methylated amide bonds and the non-proteinogenic residue MeBmt at position 1. The N-methylation removes hydrogen-bond donors and lets the molecule adopt a closed, internally hydrogen-bonded conformation in lipid environments — the reason a 1.2-kilodalton peptide is orally absorbed at all.',
+        iconName: 'CircleDot',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorption depends heavily on the formulation',
+        laymanDesc:
+          'The original capsules needed bile to be absorbed properly, which made blood levels unpredictable. A later formulation pre-mixes the drug into microscopic droplets so it does not depend on the gut’s own emulsifying.',
+        molecularDetail:
+          'The Sandimmune oil formulation requires biliary emulsification and shows wide inter- and intra-patient variability, especially in liver transplant recipients. The Neoral self-microemulsifying preconcentrate forms a fine dispersion on contact with aqueous fluid and gives higher, more reproducible exposure. The two are not bioequivalent.',
+        iconName: 'Droplets',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Inside the T cell it binds cyclophilin',
+        laymanDesc:
+          'The drug pairs up with an abundant small protein in the cell. Neither one alone blocks anything; the pair is the working unit.',
+        molecularDetail:
+          'Binds cyclophilin A, a peptidyl-prolyl cis-trans isomerase. The composite surface of the cyclosporine-cyclophilin complex is what recognises calcineurin — structurally distinct from, but functionally parallel to, the tacrolimus-FKBP12 complex.',
+        iconName: 'Link',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The complex blocks calcineurin and interleukin-2 is never transcribed',
+        laymanDesc:
+          'That pair sits on the enzyme that would otherwise unlock the transcription factor for the immune system’s main recruitment signal. Blocked, the signal is never made and the response never assembles.',
+        molecularDetail:
+          'The complex binds at the calcineurin A and B subunit interface and blocks substrate access. Nuclear factor of activated T cells stays phosphorylated and cytoplasmic, so IL2, IL4, IFNG and CD40LG transcription is not initiated. Cyclophilin binding also underlies a second, unrelated action: inhibition of the mitochondrial permeability transition pore through cyclophilin D, which was the rationale for the heart-attack trials.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Rejection rates fall, and transplantation becomes routine',
+        laymanDesc:
+          'The first randomised trial raised one-year kidney survival from about two-thirds to about four-fifths. Every solid organ transplant programme in the world dates from that result.',
+        molecularDetail:
+          'Predicted one-year graft survival 80.4% against 64.0% on azathioprine and prednisone (P=0.003) in 209 randomised cadaveric kidney recipients, with predicted patient survival 96.6% against 86.4%.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Calcineurin in the kidney arteriole is the price',
+        laymanDesc:
+          'The same enzyme controls the tone of the small artery feeding each filtering unit of the kidney. Blocking it narrows that artery, which is why the drug that saves the transplanted kidney also damages it.',
+        molecularDetail:
+          'Afferent arteriolar vasoconstriction with reduced renal blood flow and glomerular filtration, reversible acutely and associated on chronic exposure with arteriolar hyalinosis and striped interstitial fibrosis. The first trial already measured it — creatinine 2.6 against 2.0 mg/dL at 90 days — and showed it interacting with pre-existing ischaemic injury. Hypertension, gingival hyperplasia and hypertrichosis complete the characteristic profile.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Canadian Multicentre Transplant Study (1983)',
+        phase: 'Randomised, multicentre, active-controlled',
+        sampleSize: 209,
+        primaryEndpoint: 'Graft survival at one year after cadaveric renal transplantation',
+        endpointMet: true,
+        statisticalPValue:
+          'Predicted one-year graft survival 80.4% against 64.0%, P=0.003; predicted patient survival 96.6% against 86.4%',
+        unreportedAdverseSignals:
+          'Serum creatinine at 90 days was worse on cyclosporine (2.6 against 2.0 mg/dL, P=0.03), and graft survival on cyclosporine was substantially worse where cold ischaemia exceeded 24 hours (70% against 88%, P=0.005). The nephrotoxicity was in the founding trial, not discovered later.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'ELITE-Symphony, cyclosporine arms (NCT00231764)',
+        phase: 'Phase 4, randomised, open-label, four-arm',
+        sampleSize: 1645,
+        primaryEndpoint: 'Estimated glomerular filtration rate at 12 months',
+        endpointMet: false,
+        statisticalPValue:
+          'Both cyclosporine arms fell in the 56.7 to 59.4 mL/min band against 65.4 for low-dose tacrolimus; acute rejection 24.0% and 25.8% against 12.3%; allograft survival 93.1% and 89.3% against 94.2%, P=0.02 across arms',
+        unreportedAdverseSignals:
+          'The standard-dose cyclosporine arm alone received no induction agent, which confounds that comparison. The low-dose cyclosporine arm did receive daclizumab and still trailed tacrolimus on all three endpoints.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'CIRCUS (NCT01502774, EudraCT 2009-013713-99)',
+        phase: 'Phase 3, multicentre, randomised, double-blind, placebo-controlled',
+        sampleSize: 970,
+        primaryEndpoint:
+          'Composite of death, worsening heart failure during initial hospitalisation, rehospitalisation for heart failure, or adverse left ventricular remodelling at 1 year',
+        endpointMet: false,
+        statisticalPValue: '59.0% against 58.1%; odds ratio 1.04 (95% CI 0.78 to 1.39), P=0.77',
+        unreportedAdverseSignals:
+          'No separate component of the composite moved, including recurrent infarction, unstable angina and stroke. The 58-patient pilot that motivated this trial had reported significant reductions in creatine kinase release and MRI infarct mass, on endpoints that are not clinical outcomes.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Lichtiger 1994 severe ulcerative colitis trial',
+        phase: 'Randomised, double-blind, placebo-controlled',
+        sampleSize: 20,
+        primaryEndpoint:
+          'Clinical response permitting hospital discharge on oral medication, in steroid-refractory severe ulcerative colitis',
+        endpointMet: true,
+        statisticalPValue: '9 of 11 (82%) against 0 of 9, P<0.001, within a mean of seven days',
+        unreportedAdverseSignals:
+          'Twenty patients in total. The trial could not run longer or larger because non-response meant colectomy, and five placebo non-responders were crossed over to open cyclosporine. It is a genuine result on a denominator too small to estimate an effect size from.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'CsA Phase 3 dry eye programme (Sall 2000)',
+        phase: 'Two identical randomised, double-masked, vehicle-controlled 6-month trials',
+        sampleSize: 877,
+        primaryEndpoint:
+          'Objective signs of dry eye — corneal and interpalpebral dye staining and Schirmer tear test — and subjective symptom measures',
+        endpointMet: true,
+        statisticalPValue:
+          'Significantly greater improvement than vehicle in corneal staining and categorised Schirmer values at P at or below 0.05 for both 0.05% and 0.1%; no dose-response between the two strengths',
+        unreportedAdverseSignals:
+          'Only three of the reported subjective measures separated from vehicle for the 0.05% strength, and the absence of any dose-response between a strength and double that strength is a finding that argues against a straightforward pharmacological effect.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Predicted one-year kidney graft survival 80.4% against 64.0% on azathioprine and prednisone, P=0.003, in 209 randomised patients',
+        'Serum creatinine 2.6 against 2.0 mg/dL at 90 days in the same trial, P=0.03',
+        'GFR 56.7 to 59.4 mL/min and acute rejection 24.0% to 25.8% for cyclosporine arms against 65.4 and 12.3% for low-dose tacrolimus in 1,645 patients',
+        'No effect on the composite clinical outcome after anterior STEMI: 59.0% against 58.1%, odds ratio 1.04 (95% CI 0.78 to 1.39) in 970 patients',
+        'Clinical response in 9 of 11 against 0 of 9 in steroid-refractory severe ulcerative colitis, P<0.001',
+      ],
+      unsupportedInferences: [
+        'That inhibiting the mitochondrial permeability transition pore limits human reperfusion injury — supported by biomarkers in 58 patients, refuted on outcomes in 970',
+        'That improvement in corneal staining and Schirmer score amounts to the improvement in dry eye a patient would report; most symptom endpoints did not separate and there was no dose-response',
+        'That "cyclosporine" names a single exposure profile, when the oil-based and microemulsion formulations are explicitly not interchangeable',
+        'That the patent term on the ophthalmic emulsion reflected development cost, given the 2017 assignment to a sovereign tribe for the stated purpose of blocking validity review',
+      ],
+      whatFailedInitially: [
+        'CIRCUS found no effect on any component of its composite outcome in 970 patients after a promising 58-patient pilot',
+        'ELITE-Symphony placed both cyclosporine arms behind low-dose tacrolimus on kidney function, rejection and graft survival',
+        'The nephrotoxicity that defines the class was measurable in the founding 1983 trial, and interacted with prolonged cold ischaemia to cut graft survival to 70% against 88%',
+        'The Saint Regis Mohawk assignment was held ineffective by the Federal Circuit, and the patents were separately invalidated',
+      ],
+      realWorldOutcome: [
+        'The drug that made solid organ transplantation a routine service rather than an experimental procedure',
+        'Displaced by tacrolimus as the default calcineurin inhibitor after ELITE-Symphony reported in 2007',
+        'Still used in severe psoriasis, steroid-refractory ulcerative colitis and aplastic anaemia, and at very large scale as a dry eye drop',
+        'A generic ophthalmic emulsion finally reached the United States market in February 2022, twenty-two years after the pivotal trials were published',
+      ],
+    },
+    deliverySystem: {
+      type:
+        'Oil-based soft gelatin capsules and oral solution (Sandimmune), self-microemulsifying capsules and oral solution (Neoral, Gengraf), intravenous concentrate, and 0.05% and 0.09% ophthalmic emulsions and solutions',
+      description:
+        'Oral absorption of the original oil formulation depends on bile and is highly variable; the microemulsion preconcentrate was developed to remove that dependence and gives higher and more consistent exposure. The two are not bioequivalent and the label forbids interchange without supervision and level monitoring. Clearance is by CYP3A4 with P-glycoprotein efflux, giving an extensive interaction list. The ophthalmic emulsion is designed to keep a lipophilic molecule on the ocular surface; blood concentrations after topical use are below the limit of quantification.',
+      safetyProfile:
+        'Boxed warnings covering administration only by physicians experienced in immunosuppressive therapy, increased susceptibility to infection and lymphoma, hypertension and nephrotoxicity — the last of which was measurable in the founding trial — and, for the psoriasis indication, an additional warning about malignancy in patients previously treated with PUVA and other immunosuppressants. Characteristic and largely cyclosporine-specific effects include gingival hyperplasia, hypertrichosis and tremor. Hyperkalaemia, hypomagnesaemia, hyperuricaemia and gout, hyperlipidaemia and posterior reversible encephalopathy syndrome are all labelled. The ophthalmic emulsion’s commonest adverse effect is ocular burning on instillation.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is cyclosporine still the standard transplant drug?',
+        a: 'No, and the date it stopped being one is documented. ELITE-Symphony randomised 1,645 kidney transplant recipients across four regimens in 2007. Low-dose tacrolimus produced a mean glomerular filtration rate of 65.4 mL/min against 56.7 to 59.4 for the other arms, biopsy-proven acute rejection of 12.3% against 24.0% and 25.8% for the two cyclosporine arms, and the highest allograft survival at 94.2%. Cyclosporine remains in use where tacrolimus cannot be tolerated, most often because of new-onset diabetes, and it is still used in psoriasis, steroid-refractory ulcerative colitis and aplastic anaemia. Its historical importance is not in question; its current position is second.',
+      },
+      {
+        q: 'How is it different from tacrolimus if they do the same thing?',
+        a: 'They inhibit the same enzyme through different partners. Cyclosporine binds cyclophilin; tacrolimus binds FKBP12; both resulting complexes block calcineurin. The clinical differences follow from everything else the two molecules do. Cyclosporine causes gum overgrowth, excess body hair, worse cholesterol and more hypertension. Tacrolimus causes more tremor, more neurotoxicity and substantially more new-onset diabetes — 33.6% against 26.0% at six months in the trial designed to measure it. Tacrolimus produces fewer rejections and better kidney function in the head-to-head comparisons. Neither is free of nephrotoxicity, because that comes from the shared target.',
+      },
+      {
+        q: 'Why did it fail in heart attacks?',
+        a: 'Because the mechanism it was tested on turned out not to determine the outcome. Cyclophilin D sits in the mitochondrion and helps open a pore that kills cells when blood flow returns to starved tissue. Cyclosporine blocks it, and a 58-patient pilot found lower creatine kinase release and a smaller infarct on MRI. Those are markers of tissue damage, not clinical outcomes, and the authors said explicitly the results needed confirmation. CIRCUS then randomised 970 patients with anterior STEMI. The composite outcome at one year was 59.0% against 58.1%, an odds ratio of 1.04 with a confidence interval from 0.78 to 1.39. Not one component moved. It is a clean illustration of a surrogate that responded to a drug while the outcome did not.',
+        auditNote:
+          'The pilot was correctly labelled preliminary by its own authors. The failure here is not of that paper but of how confidently a 58-patient biomarker result was read forward.',
+      },
+      {
+        q: 'What was the Mohawk tribe patent story?',
+        a: 'In September 2017 Allergan assigned six patents on Restasis, its cyclosporine eye drop, to the Saint Regis Mohawk Tribe in New York in exchange for payments, and immediately took an exclusive licence back. The stated purpose was to assert tribal sovereign immunity as a bar to inter partes review — the administrative process by which a competitor can challenge a patent’s validity. In October 2017 a federal district court held the patents invalid for obviousness anyway. In July 2018 the Federal Circuit held that tribal sovereign immunity cannot be asserted in inter partes review, and the Supreme Court declined to hear the appeal. The first generic ophthalmic cyclosporine emulsion was approved in February 2022. The molecule itself was isolated in 1970 and the pivotal dry eye trials were published in 2000.',
+      },
+      {
+        q: 'Do the dry eye drops work?',
+        a: 'They move the objective measures. In two identical six-month trials in 877 patients, both the 0.05% and 0.1% emulsions produced significantly greater improvement than the vehicle in corneal staining and in categorised Schirmer scores, which measure how much the eye stains with dye and how far a paper strip wets. On the things a patient notices, the picture is thinner: for the 0.05% strength three subjective measures separated from vehicle — blurred vision, need for artificial tears, and the physician’s global assessment — and the rest did not. There was also no dose-response: doubling the concentration produced no additional effect, which is unusual for a straightforward pharmacological action and is reported plainly in the paper. Burning on instillation is the commonest complaint, and the effect takes months rather than days.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Canadian Multicentre Transplant Study Group. A randomized clinical trial of cyclosporine in cadaveric renal transplantation. N Engl J Med 1983;309:809-815',
+        identifier: '10.1056/NEJM198310063091401',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ekberg H et al. Reduced exposure to calcineurin inhibitors in renal transplantation. N Engl J Med 2007;357:2562-2575 (ELITE-Symphony)',
+        identifier: '10.1056/NEJMoa067411',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cung TT et al. Cyclosporine before PCI in patients with acute myocardial infarction. N Engl J Med 2015;373:1021-1031 (CIRCUS)',
+        identifier: '10.1056/NEJMoa1505489',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Piot C et al. Effect of cyclosporine on reperfusion injury in acute myocardial infarction. N Engl J Med 2008;359:473-481',
+        identifier: '10.1056/NEJMoa071142',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lichtiger S et al. Cyclosporine in severe ulcerative colitis refractory to steroid therapy. N Engl J Med 1994;330:1841-1845',
+        identifier: '10.1056/NEJM199406303302601',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sall K, Stevenson OD, Mundorf TK, Reis BL. Two multicenter, randomized studies of the efficacy and safety of cyclosporine ophthalmic emulsion in moderate to severe dry eye disease. Ophthalmology 2000;107:631-639',
+        identifier: '10.1016/s0161-6420(99)00176-1',
+        kind: 'doi',
+      },
+      {
+        label: 'CIRCUS: cyclosporine and prognosis in acute myocardial infarction patients',
+        identifier: 'NCT01502774',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: RESTASIS (cyclosporine ophthalmic emulsion) 0.05%, NDA 050790, Allergan — label and approval history',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=050790',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5284373 — cyclosporin A structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284373',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 9. Sulfasalazine — designed in 1938 on a hypothesis that was wrong, and it works anyway, with
+  //    a different half of the molecule doing the work in each of its two diseases.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'sulfasalazine',
+    name: 'Sulfasalazine',
+    tradeName: 'Azulfidine / Azulfidine EN-tabs / Salazopyrin',
+    sponsor:
+      'Designed by Nanna Svartz at the Karolinska Institute with Pharmacia in the late 1930s and first reported in 1942. Now off patent and made by many manufacturers; the United States brand Azulfidine is a Pfizer legacy product.',
+    targetGene:
+      'No single target. The two moieties act separately: 5-aminosalicylic acid on colonic epithelium (PPARG, NFKB1), sulfapyridine on the systemic process in rheumatoid arthritis',
+    targetProtein:
+      'Multiple and incompletely defined. Documented actions include inhibition of NF-kappaB activation, inhibition of folate-dependent enzymes including AICAR transformylase, adenosine release, and inhibition of dihydropteroate synthase by the sulfapyridine moiety.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1950,
+    indication:
+      'Mild to moderate ulcerative colitis and adjunctive therapy in severe ulcerative colitis; prolongation of the remission period between acute attacks of ulcerative colitis; and, as the delayed-release formulation, rheumatoid arthritis in patients who have responded inadequately to salicylates or other non-steroidal anti-inflammatory drugs, and polyarticular-course juvenile idiopathic arthritis',
+    patientFriendlyIndication: 'Ulcerative colitis and rheumatoid arthritis',
+    anatomicalSite:
+      'Two different places, depending on the disease. For colitis the colon lumen and epithelium, where gut bacteria split the molecule and release the active half locally. For rheumatoid arthritis, the systemic circulation, which the other half reaches after absorption.',
+    conditionContext: {
+      conditionExplainer:
+        'Sulfasalazine is two drugs joined by a chemical bond that only bacteria in the colon can break: a sulfa antibiotic, sulfapyridine, and an aspirin relative, 5-aminosalicylic acid. Almost none of the intact molecule is absorbed in the small intestine, so the split happens where the colon starts.',
+      whyItMatters:
+        'It was designed in the late 1930s on the theory that rheumatoid arthritis was caused by a streptococcal infection — an antibiotic bolted to an anti-inflammatory. The theory was wrong. The drug works, and the reason it works turned out to be different in each of its two licensed diseases: the salicylate half in colitis, the antibiotic half in arthritis.',
+      whoTakesThis:
+        'People with ulcerative colitis, particularly where the disease is confined to the colon; people with rheumatoid arthritis, usually as part of triple therapy with methotrexate and hydroxychloroquine; and people with ankylosing spondylitis with peripheral joint involvement.',
+      clinicalGoals:
+        'In colitis, induce and maintain remission with a locally acting drug. In arthritis, slow the disease as part of a combination that a large trial found equal to a biologic at a small fraction of the cost.',
+    },
+    oneSentenceVerdict:
+      'A sulfa antibiotic tied to an aspirin relative by a bond only colonic bacteria can cut — designed on a bacterial theory of rheumatoid arthritis that proved false, it works in both of its diseases through opposite halves of the molecule (5-aminosalicylic acid produced histological improvement in about 30% of colitis patients against 5% for sulfapyridine, while sulfapyridine carried the arthritis effect), and in 353 randomised patients it was part of a triple regimen non-inferior to etanercept plus methotrexate, DAS28 change -2.1 against -2.3, P=0.26.',
+    laymanHowItWorks:
+      'Sulfasalazine is two molecules chemically welded together by a bond that human enzymes cannot cut and gut bacteria can. Swallowed, it passes almost untouched through the stomach and small intestine and arrives in the colon, where bacteria break the weld and release both halves. One half, an aspirin relative, stays in the colon and calms the inflamed lining there. The other half, a sulfa antibiotic, is absorbed into the bloodstream and is the part that acts on rheumatoid arthritis. Which half matters depends entirely on which disease is being treated.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 73,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.2003 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'First reported in 1942 and out of patent for many decades; sulfasalazine appears on the WHO Model List of Essential Medicines. At about 20 cents a tablet it is one of the cheapest disease-modifying drugs in rheumatology, which is the fact that makes the RACAT result economically significant: a regimen built on it was found non-inferior to a biologic whose annual cost is measured in tens of thousands of dollars.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'In ulcerative colitis the substitute is mesalazine, which is the active half without the antibiotic half that causes most of the side effects — a direct consequence of the 1977 experiment that identified which moiety worked. In rheumatoid arthritis the substitute is a different disease-modifying drug or a biologic, and the head-to-head evidence is that a triple regimen containing sulfasalazine matched etanercept plus methotrexate over 48 weeks. Nothing sold as a food or supplement substitutes for a disease-modifying antirheumatic drug or for colitis maintenance therapy.',
+      conventionalRx: [
+        {
+          name: 'Mesalazine (mesalamine, 5-aminosalicylic acid)',
+          class: 'Aminosalicylate',
+          howItCompares:
+            'The active moiety of sulfasalazine in ulcerative colitis, delivered without the sulfapyridine carrier by pH-dependent or time-dependent release formulations. It exists because the 1977 rectal-enema experiment showed 5-ASA produced the therapeutic effect and sulfapyridine did not. It causes fewer of the sulfa-related adverse effects — rash, headache, nausea, reversible male infertility — and it has no effect in rheumatoid arthritis.',
+          typicalCost:
+            'Generic oral mesalazine is available but is substantially more expensive per day than sulfasalazine in most markets',
+          prosAndCons:
+            'Pros: markedly better tolerated in colitis, no reversible oligospermia. Cons: costs more, needs a formulation to get it to the right part of the bowel, and does nothing for joints.',
+        },
+        {
+          name: 'Methotrexate',
+          class: 'Antifolate disease-modifying antirheumatic drug',
+          howItCompares:
+            'The first-line conventional DMARD in rheumatoid arthritis and the backbone that sulfasalazine is added to rather than a competitor to it. In RACAT, every patient was already failing methotrexate; the question was what to add.',
+          typicalCost: 'Generic; among the cheapest disease-modifying antirheumatic drugs available',
+          prosAndCons:
+            'Pros: the reference DMARD, weekly dosing, largest evidence base. Cons: teratogenic, hepatotoxic, and in this trial insufficient on its own by definition.',
+        },
+        {
+          name: 'Etanercept plus methotrexate',
+          class: 'TNF inhibitor plus antifolate',
+          howItCompares:
+            'The comparator in RACAT. At 48 weeks the change in DAS28 was -2.3 with etanercept plus methotrexate and -2.1 with triple therapy, P=0.26, with a 95% upper confidence limit of 0.41 against a non-inferiority margin of 0.6 (P=0.002). There were no significant differences in radiographic progression, pain, quality of life, or major adverse events.',
+          typicalCost:
+            'Tens of thousands of United States dollars per year at list price, against roughly 20 cents a tablet for sulfasalazine',
+          prosAndCons:
+            'Pros: subcutaneous injection rather than multiple daily tablets, and no sulfa intolerance. Cons: cost, injection, and no measured clinical advantage over triple therapy in the one large blinded head-to-head trial.',
+        },
+        {
+          name: 'Hydroxychloroquine',
+          class: 'Antimalarial disease-modifying antirheumatic drug',
+          howItCompares:
+            'The third component of triple therapy rather than an alternative to sulfasalazine. It is the mildest of the conventional DMARDs and the one with the fewest monitoring requirements, though it needs periodic retinal screening.',
+          typicalCost: 'Generic; inexpensive',
+          prosAndCons:
+            'Pros: well tolerated, no blood monitoring. Cons: weakest single-agent effect, and cumulative retinal toxicity over years.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Men planning a pregnancy should know about the sperm effect',
+          action:
+            'Anyone taking sulfasalazine who is trying to conceive should raise it, because the effect is real, common and reversible.',
+          patientImpact:
+            'Sulfasalazine causes reversible oligospermia in a substantial proportion of men taking it, attributed to the sulfapyridine moiety. Sperm counts recover within a few months of stopping or of switching to mesalazine.',
+          clinicalPrecaution:
+            'This is a labelled adverse reaction and it is one of the main reasons a man with ulcerative colitis may be moved to mesalazine, which does not have the effect.',
+        },
+        {
+          name: 'Report a rash with fever as urgent, not as a nuisance',
+          action:
+            'Any rash accompanied by fever, facial swelling, mouth ulcers or feeling generally unwell needs same-day attention rather than a wait-and-see.',
+          patientImpact:
+            'Sulfasalazine contains a sulfonamide and the label warns of severe cutaneous reactions including Stevens-Johnson syndrome and toxic epidermal necrolysis, and of drug reaction with eosinophilia and systemic symptoms. These present as a rash before they present as anything else.',
+          clinicalPrecaution:
+            'Blood dyscrasias including agranulocytosis are also labelled, which is why blood counts are checked in the first months of treatment.',
+        },
+        {
+          name: 'Do not be alarmed by orange urine or stained contact lenses',
+          action:
+            'Expect urine, and sometimes skin, to take on a yellow-orange colour, and be aware that soft contact lenses can be stained permanently.',
+          patientImpact:
+            'The molecule is an azo dye, and the colouration is a direct consequence of its chemistry rather than a sign of liver or kidney trouble.',
+          clinicalPrecaution:
+            'Harmless in itself. Yellowing of the whites of the eyes is a different matter and does need reporting, because that is jaundice.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC=NC(=C1)NS(=O)(=O)C2=CC=C(C=C2)N=NC3=CC(=C(C=C3)O)C(=O)O',
+      chemicalFormula: 'C18H14N4O5S',
+      molecularWeight: '398.40 g/mol',
+      targetReceptorAffinity:
+        'No defined receptor affinity, and the drug is best described as a colon-targeted delivery system for two separate agents. The azo bond linking sulfapyridine to 5-aminosalicylic acid is cleaved by bacterial azoreductases in the colon; only about 10 to 30% of the intact molecule is absorbed in the small intestine, and most of that is returned to the gut in bile.',
+      structureSource: {
+        label:
+          'PubChem CID 5339 (sulfasalazine) — canonical SMILES, molecular formula C18H14N4O5S and molecular weight 398.4 g/mol, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5339',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ssz-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the azo linkage and quantify free sulfapyridine and free 5-ASA',
+          description:
+            'Verify the intact azo bond and set limits on the two free moieties. Free sulfapyridine or free 5-aminosalicylic acid in the tablet defeats the entire design, because both would be absorbed in the small intestine and neither would reach the colon.',
+          reagentsAndBuffer:
+            'Sulfasalazine USP reference standard, reversed-phase HPLC with ultraviolet detection at 359 nm for the azo chromophore and at 303 nm for the moieties, limit tests against sulfapyridine and 5-ASA standards',
+        },
+        {
+          id: 'ssz-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Diazotisation of sulfapyridine and azo coupling to salicylic acid',
+          description:
+            'Diazotise the aromatic amine of sulfapyridine with nitrous acid at low temperature, then couple the diazonium salt to salicylic acid. This is textbook azo dye chemistry from the 1930s, done at scale in a single vessel, which is the reason the finished drug costs about twenty cents a tablet.',
+          dependsOnStepId: 'ssz-w1',
+          reagentsAndBuffer:
+            'Sulfapyridine, sodium nitrite and hydrochloric acid at 0 to 5 degrees C for diazotisation, salicylic acid in sodium hydroxide for the coupling, controlled pH to direct coupling to the 5-position, acidification to precipitate the product',
+        },
+        {
+          id: 'ssz-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallise and check for positional isomers of the coupling',
+          description:
+            'Remove unreacted sulfapyridine and salicylic acid and confirm that coupling occurred at the intended position on the salicylate ring. A differently coupled isomer would still be an azo compound cleaved by the same bacteria, and would release a different aminosalicylate.',
+          dependsOnStepId: 'ssz-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from aqueous dimethylformamide or ethanol-water, activated charcoal treatment, HPLC against USP related-compounds standards, 1H NMR to confirm the substitution pattern',
+        },
+        {
+          id: 'ssz-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Anaerobic faecal incubation to measure azoreductase cleavage',
+          description:
+            'Incubate the drug with human faecal flora under strict anaerobic conditions and measure the release of both moieties over time. This is the step that decides whether the drug works at all, and it is a microbiological property rather than a chemical one: an antibiotic course that suppresses colonic flora reduces cleavage and therefore reduces the delivered dose of the active moiety.',
+          dependsOnStepId: 'ssz-w3',
+          reagentsAndBuffer:
+            'Fresh human faecal slurry in anaerobic phosphate buffer, anaerobic chamber at 37 degrees C, LC-MS/MS quantification of sulfasalazine, sulfapyridine and 5-aminosalicylic acid, sterile-flora and antibiotic-suppressed controls',
+        },
+        {
+          id: 'ssz-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Separate the two moieties in every downstream assay',
+          description:
+            'Run any pharmacodynamic readout — NF-kappaB activation, cytokine release, epithelial barrier function — against sulfasalazine, sulfapyridine and 5-ASA separately, never against the parent alone. The whole clinical history of this drug turns on the fact that different moieties are responsible in different diseases, and an assay of the intact molecule cannot detect that.',
+          dependsOnStepId: 'ssz-w4',
+          reagentsAndBuffer:
+            'Colonic epithelial cell line and stimulated peripheral blood mononuclear cells in parallel, NF-kappaB reporter and cytokine ELISA panels, all three compounds tested individually at matched molar concentrations',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ssz-a1',
+        category: 'conclusion_shift',
+        title: 'Designed on a wrong hypothesis, and it works for a different reason',
+        laymanSummary:
+          'Nanna Svartz built this drug in the late 1930s from a sulfa antibiotic and an aspirin relative, because she thought rheumatoid arthritis was caused by a streptococcal infection. That theory was abandoned. The drug turned out to work in two diseases, and the antibiotic half is the part that does the work in arthritis — which is not evidence that the theory was right, and is the reason the question keeps being asked.',
+        technicalDetails:
+          'Sulfasalazine was synthesised as a deliberate conjugate of sulfapyridine, an antibacterial sulfonamide, and 5-aminosalicylic acid, an anti-inflammatory salicylate, on the working hypothesis that rheumatoid arthritis had a bacterial aetiology and that a drug combining antibacterial and anti-inflammatory activity would target it. The infectious theory of rheumatoid arthritis was not sustained. Two separate moiety experiments, decades apart, then established that different halves carry the effect in the drug’s two diseases. In the arthritis experiment the authors noted explicitly that the efficacy of the antibacterial component "yet again permits speculation about the role of a bacterial pathogen in the aetiopathogenesis of rheumatoid disease" — a speculation that remains unresolved, with the modern version framed around the gut and oral microbiome rather than around a single organism.',
+        evidenceSource:
+          'Pullar T, Hunter JA, Capell HA, Br Med J (Clin Res Ed) 1985;290:1535-1538; Azad Khan AK, Piris J, Truelove SC, Lancet 1977;2:892-895',
+        doi: '10.1136/bmj.290.6481.1535',
+        inferredClaim:
+          'That sulfapyridine working in rheumatoid arthritis supports a bacterial cause of the disease — the observation is real and the inference has never been closed either way',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ssz-a2',
+        category: 'measured',
+        title: 'The 1977 enema experiment: 5-ASA is the active half in colitis',
+        laymanSummary:
+          'Three groups of patients with active ulcerative colitis were given nightly enemas of either the whole drug, or one half, or the other half, for two weeks. The whole drug and the salicylate half produced about the same improvement on biopsy. The antibiotic half produced almost none.',
+        technicalDetails:
+          'Retention enemas of sulfasalazine, sulfapyridine or 5-aminosalicylic acid were given daily for two weeks to patients with sigmoidoscopic evidence of active ulcerative colitis, in a blind controlled trial with each patient receiving one preparation. Pronounced histological improvement was observed in approximately 30% of patients receiving sulfasalazine or 5-aminosalicylic acid, and in only 5% of those receiving sulfapyridine. The authors concluded that the active therapeutic moiety is 5-ASA and that sulfapyridine functions as a carrier ensuring the 5-ASA is liberated in the colon. That conclusion created the entire mesalazine class, which is sulfasalazine with the carrier removed and a formulation put in its place.',
+        evidenceSource: 'Azad Khan AK, Piris J, Truelove SC, Lancet 1977;2:892-895',
+        doi: '10.1016/s0140-6736(77)90831-5',
+        measuredMetric:
+          'Histological improvement on biopsy after two weeks of moiety-specific retention enemas',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ssz-a3',
+        category: 'measured',
+        title: 'The 1985 experiment: sulfapyridine is the active half in arthritis',
+        laymanSummary:
+          'The same question was asked in rheumatoid arthritis and got the opposite answer. Given separately over twenty-four weeks, the antibiotic half worked about as well as the whole drug. The salicylate half — the one that works in colitis — barely did anything.',
+        technicalDetails:
+          'Sulfapyridine and 5-aminosalicylic acid were assessed separately over 24 weeks in the treatment of rheumatoid arthritis. Sulfapyridine showed a pronounced second-line effect comparable with sulfasalazine and with a similar toxicity profile, whereas 5-aminosalicylic acid showed only a weak first-line effect. The authors concluded that sulfapyridine is the active moiety responsible for the second-line effect in rheumatoid arthritis. Taken with the 1977 colitis experiment, this establishes that a single marketed molecule delivers its benefit through opposite halves in its two licensed indications — an unusual situation, and the reason the mesalazine class replaced sulfasalazine in colitis while sulfasalazine itself remains in rheumatology.',
+        evidenceSource: 'Pullar T, Hunter JA, Capell HA, Br Med J (Clin Res Ed) 1985;290:1535-1538',
+        doi: '10.1136/bmj.290.6481.1535',
+        measuredMetric:
+          'Second-line disease-modifying effect over 24 weeks with each moiety administered separately',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ssz-a4',
+        category: 'measured',
+        title: 'RACAT: triple therapy matched a biologic over 48 weeks',
+        laymanSummary:
+          'Three hundred and fifty-three people with rheumatoid arthritis still active on methotrexate were randomly given either two cheap old tablets added on, or an injected biologic. After a year the disease scores were the same, and so were the X-rays. The tablets cost cents; the biologic costs tens of thousands a year.',
+        technicalDetails:
+          'RACAT was a 48-week double-blind non-inferiority trial in 353 participants with rheumatoid arthritis active despite methotrexate, randomised to triple therapy — methotrexate, sulfasalazine and hydroxychloroquine — or to etanercept plus methotrexate, with blinded switching at 24 weeks for those below a prespecified improvement threshold. Twenty-seven percent in each group switched. The change in DAS28 between baseline and 48 weeks was -2.1 with triple therapy and -2.3 with etanercept plus methotrexate (P=0.26); non-inferiority was met, with the 95% upper confidence limit of 0.41 below the prespecified margin of 0.6 (P=0.002). There were no significant between-group differences in radiographic progression, pain, health-related quality of life, or major adverse events. Response after switching did not differ significantly between groups (P=0.08).',
+        evidenceSource:
+          'O’Dell JR et al., CSP 551 RACAT Investigators, N Engl J Med 2013;369:307-318 (NCT00405275)',
+        doi: '10.1056/NEJMoa1303006',
+        measuredMetric:
+          'Change in DAS28 from baseline to week 48, non-inferiority against etanercept plus methotrexate, double-blind',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ssz-a5',
+        category: 'inferred',
+        title: 'Non-inferiority is not equivalence, and the trial says what it says',
+        laymanSummary:
+          'RACAT showed the cheap combination was not meaningfully worse than the biologic. It did not show the two were identical, and it was not designed to. The distinction matters because the result is often reported as though the biologic had been beaten.',
+        technicalDetails:
+          'The prespecified non-inferiority margin was a DAS28 difference of 0.6. The observed difference favoured etanercept plus methotrexate by 0.2 points with a 95% upper confidence limit of 0.41 — inside the margin, and pointing the same direction. A non-inferiority design establishes that the difference is smaller than a stated threshold of clinical importance; it does not establish that there is no difference, and it cannot establish superiority. Both arms also included a blinded switch at 24 weeks for non-responders, which was used by 27% of each group, so the 48-week comparison is of strategies rather than of fixed regimens. The finding is important and the correct statement of it is narrower than the headline.',
+        evidenceSource: 'O’Dell JR et al., N Engl J Med 2013;369:307-318 (RACAT)',
+        doi: '10.1056/NEJMoa1303006',
+        inferredClaim:
+          'That triple therapy is as good as, or better than, a TNF inhibitor — the trial established non-inferiority within a 0.6 DAS28 margin, with the point estimate favouring the biologic by 0.2',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ssz-a6',
+        category: 'failed',
+        title: 'The carrier half causes most of the harm, which is why it was removed',
+        laymanSummary:
+          'The sulfa half of the molecule is responsible for most of the side effects — rash, headache, nausea and a reversible drop in sperm count. Once it was established that this half did nothing useful in colitis, the obvious move was to deliver the other half on its own, and that is what the mesalazine drugs are.',
+        technicalDetails:
+          'Adverse effects attributable to the sulfapyridine moiety include nausea, headache, rash and reversible oligospermia, with incidence related to serum sulfapyridine concentration and therefore to acetylator phenotype: slow acetylators reach higher concentrations and experience more toxicity. Severe reactions on the label include Stevens-Johnson syndrome, toxic epidermal necrolysis, drug reaction with eosinophilia and systemic symptoms, agranulocytosis and aplastic anaemia. The 1977 finding that 5-ASA carried the colitis effect made the carrier’s toxicity indefensible in that indication and created the mesalazine class — pH-dependent, time-dependent and azo-bonded formulations of 5-ASA without any sulfonamide. In rheumatoid arthritis the same reasoning cannot be applied, because there the sulfapyridine is the active moiety.',
+        evidenceSource:
+          'Azad Khan AK et al., Lancet 1977;2:892-895; Pullar T et al., Br Med J 1985;290:1535-1538; AZULFIDINE (sulfasalazine) United States prescribing information, Warnings and Adverse Reactions',
+        doi: '10.1016/s0140-6736(77)90831-5',
+        measuredMetric:
+          'Histological response by moiety in colitis, and the consequent removal of the sulfonamide carrier from the treatment class',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ssz-a7',
+        category: 'inferred',
+        title: 'The drug depends on the patient’s gut bacteria to work at all',
+        laymanSummary:
+          'Nothing happens until bacteria in the colon cut the molecule in half. That means the delivered dose depends on the person’s microbiome, and a course of antibiotics can reduce it. This is rarely discussed and has never been measured against a clinical outcome.',
+        technicalDetails:
+          'Sulfasalazine is cleaved by bacterial azoreductases, an activity concentrated in the colon and absent from the human enzyme repertoire. Only about 10 to 30% of an oral dose is absorbed intact in the small intestine, and much of that returns to the gut in bile. Antibiotic-induced suppression of colonic flora reduces azoreduction and therefore reduces liberation of both moieties. The pharmacological consequence — a dose delivered that varies with the composition of an individual microbiome, and that a course of antibiotics can alter — is well described in vitro and in pharmacokinetic studies. What has not been done is a clinical study relating measured azoreductase activity or microbiome composition to disease outcome, so the practical significance is inferred from the mechanism rather than measured.',
+        evidenceSource:
+          'Azad Khan AK, Piris J, Truelove SC, Lancet 1977;2:892-895; AZULFIDINE United States prescribing information, Clinical Pharmacology',
+        doi: '10.1016/s0140-6736(77)90831-5',
+        inferredClaim:
+          'That variation in colonic azoreductase activity meaningfully changes clinical response — mechanistically certain, and never measured against an outcome',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ssz-a8',
+        category: 'measured',
+        title: 'A twenty-cent tablet is on the essential medicines list for two diseases',
+        laymanSummary:
+          'The whole molecule is made in one step of nineteen-thirties dye chemistry, and it costs about twenty cents a tablet at what American pharmacies pay. That price is the reason a trial comparing it against a biologic mattered.',
+        technicalDetails:
+          'Sulfasalazine is manufactured by diazotisation of sulfapyridine and azo coupling to salicylic acid — a single-vessel reaction sequence developed for the dye industry. The CMS National Average Drug Acquisition Cost file lists generic sulfasalazine at US$0.2003 per tablet. Sulfasalazine appears on the WHO Model List of Essential Medicines. The economic significance of RACAT follows directly: a regimen whose two added components cost a few dollars a month was found non-inferior over 48 weeks to a biologic priced at tens of thousands of dollars a year, with no significant difference in radiographic progression, pain, quality of life or major adverse events.',
+        evidenceSource:
+          'CMS National Average Drug Acquisition Cost file, effective 19 August 2026; O’Dell JR et al., N Engl J Med 2013;369:307-318',
+        doi: '10.1056/NEJMoa1303006',
+        measuredMetric:
+          'United States pharmacy acquisition cost per tablet, alongside a 48-week non-inferiority result against a biologic',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed whole and almost entirely not absorbed',
+        laymanDesc:
+          'Most drugs are designed to be absorbed. This one is designed not to be. Between seven and nine tenths of a dose passes through the stomach and small intestine untouched.',
+        molecularDetail:
+          'Only about 10 to 30% of intact sulfasalazine is absorbed from the small intestine, and much of that is returned to the gut lumen in bile. The molecule is large, dianionic at intestinal pH and a poor passive-diffusion substrate — properties that would normally count as a formulation failure and are here the whole point.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Colonic bacteria cut it in half',
+        laymanDesc:
+          'The bond joining the two halves can only be broken by bacterial enzymes, and those bacteria live in the colon. The drug therefore releases itself exactly where colitis is.',
+        molecularDetail:
+          'Bacterial azoreductases reduce the azo bond, liberating sulfapyridine and 5-aminosalicylic acid. Humans have no equivalent enzyme, which makes the colon the only site of activation. Suppression of colonic flora by antibiotics reduces cleavage and therefore the delivered dose of both moieties.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'One half stays in the colon and acts there',
+        laymanDesc:
+          'The aspirin relative is poorly absorbed from the colon, so it sits on the inflamed lining at high concentration and low body-wide exposure.',
+        molecularDetail:
+          '5-aminosalicylic acid acts locally on colonic epithelium, with described actions including PPAR-gamma agonism, inhibition of NF-kappaB activation, scavenging of reactive oxygen species and inhibition of leukotriene synthesis. It is largely acetylated in the mucosa and excreted in faeces. In the moiety experiment it produced pronounced histological improvement in about 30% of patients against 5% for sulfapyridine.',
+          iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The other half is absorbed and acts on the joints',
+        laymanDesc:
+          'The sulfa antibiotic is absorbed from the colon into the bloodstream. It is the part that treats rheumatoid arthritis, and nobody is entirely sure how.',
+        molecularDetail:
+          'Sulfapyridine is absorbed, acetylated in the liver at a rate set by NAT2 acetylator phenotype, and excreted renally. Slow acetylators reach higher serum concentrations and experience more toxicity. Its disease-modifying mechanism in rheumatoid arthritis is not established; candidate actions include inhibition of NF-kappaB, inhibition of AICAR transformylase with consequent adenosine release, suppression of angiogenesis, and an effect on gut or oral bacteria.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Both diseases improve, through different halves',
+        laymanDesc:
+          'The colitis improvement comes from the half that stayed behind, and the arthritis improvement from the half that travelled. Two moiety experiments, done eight years apart, established which was which.',
+        molecularDetail:
+          'Histological improvement in ulcerative colitis in about 30% with sulfasalazine or 5-ASA against 5% with sulfapyridine; a pronounced second-line effect in rheumatoid arthritis with sulfapyridine comparable to sulfasalazine, and only a weak first-line effect with 5-ASA. In RACAT, a regimen containing sulfasalazine produced a DAS28 change of -2.1 against -2.3 for etanercept plus methotrexate.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The carrier half carries most of the toxicity too',
+        laymanDesc:
+          'Nausea, headache, rash and a reversible drop in sperm count all track with the sulfa half. In colitis, that half does no useful work, which is why a whole class of successor drugs exists to deliver the other half alone.',
+        molecularDetail:
+          'Sulfapyridine-related adverse effects scale with serum concentration and therefore with acetylator phenotype. Severe labelled reactions include Stevens-Johnson syndrome, toxic epidermal necrolysis, DRESS, agranulocytosis and aplastic anaemia. Reversible oligospermia resolves within months of stopping. The mesalazine class exists precisely because the 1977 experiment made this trade-off indefensible in colitis.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'RACAT / CSP 551 (NCT00405275)',
+        phase: 'Phase 4, randomised, double-blind, non-inferiority, with blinded switch at 24 weeks',
+        sampleSize: 353,
+        primaryEndpoint: 'Change in DAS28 from baseline to week 48',
+        endpointMet: true,
+        statisticalPValue:
+          '-2.1 with triple therapy against -2.3 with etanercept plus methotrexate, P=0.26; non-inferiority met with a 95% upper confidence limit of 0.41 against a margin of 0.6, P=0.002',
+        unreportedAdverseSignals:
+          'Non-inferiority, not equivalence or superiority: the point estimate favoured the biologic by 0.2 DAS28 points. Twenty-seven percent of each group required a blinded switch at 24 weeks, so this compares strategies rather than fixed regimens.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'TEAR (NCT00259610)',
+        phase: 'Phase 3, 2-year randomised, double-blind, 2-by-2 factorial',
+        sampleSize: 755,
+        primaryEndpoint:
+          'Observed-group DAS28-ESR from week 48 to week 102 in early rheumatoid arthritis',
+        endpointMet: true,
+        statisticalPValue:
+          'No difference in mean DAS28-ESR over weeks 48 to 102 between methotrexate plus etanercept and oral triple therapy, whether started immediately or stepped up at week 24',
+        unreportedAdverseSignals:
+          'Radiographic progression did differ and favoured the biologic: change from baseline 0.64 with methotrexate plus etanercept against 1.69 with oral triple therapy, P=0.047. A clinical equivalence with a radiographic difference is exactly the finding most likely to be quoted as one thing or the other.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Histological improvement in ulcerative colitis in about 30% with sulfasalazine or 5-ASA against about 5% with sulfapyridine, by moiety-specific enema',
+        'A pronounced second-line effect in rheumatoid arthritis from sulfapyridine, and only a weak first-line effect from 5-ASA, over 24 weeks',
+        'DAS28 change -2.1 with triple therapy against -2.3 with etanercept plus methotrexate at 48 weeks, P=0.26, non-inferiority met',
+        'No significant difference in radiographic progression, pain, quality of life or major adverse events between those two regimens in RACAT',
+        'In TEAR, no DAS28-ESR difference between the same two regimens over weeks 48 to 102 in 755 patients, with radiographic change of 0.64 against 1.69 favouring the biologic (P=0.047)',
+        'A United States pharmacy acquisition cost of US$0.2003 per tablet',
+      ],
+      unsupportedInferences: [
+        'That sulfapyridine working in rheumatoid arthritis supports a bacterial cause of the disease — the observation is real and the inference is still open',
+        'That triple therapy is as good as or better than a TNF inhibitor; the trial established non-inferiority within a 0.6 margin with the point estimate favouring the biologic',
+        'That variation in colonic azoreductase activity changes clinical outcome — mechanistically certain and never measured against one',
+        'That the same molecule works the same way in both its licensed diseases; two experiments established the opposite',
+      ],
+      whatFailedInitially: [
+        'The bacterial theory of rheumatoid arthritis that the drug was designed around was abandoned; the drug survived it',
+        'Sulfapyridine, the carrier, produces most of the adverse effects and does no useful work in colitis, which cost sulfasalazine that indication to the mesalazine class',
+        'Separating the moieties in rheumatoid arthritis identified the active half but not a better-tolerated one: sulfapyridine alone had a similar toxicity profile to the parent',
+        'The drug does nothing at all until bacteria act on it, so its delivered dose is outside both the prescriber’s and the patient’s control',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines, at about 20 cents a tablet at United States pharmacy acquisition cost',
+        'Largely replaced by mesalazine in ulcerative colitis, and still standard in rheumatology as part of triple therapy',
+        'The 1977 moiety experiment created the entire aminosalicylate class used in inflammatory bowel disease today',
+        'RACAT made a twenty-cent tablet the comparator that a TNF inhibitor had to beat, and it did not',
+      ],
+    },
+    deliverySystem: {
+      type: 'Immediate-release oral tablet and delayed-release (enteric-coated) oral tablet',
+      description:
+        'A colon-targeted prodrug in which the targeting is biological rather than pharmaceutical: the azo bond is cleaved only by bacterial azoreductases, which exist in the colon and not in human tissue. Only about 10 to 30% of an oral dose is absorbed intact, and much of that returns to the gut in bile. The enteric-coated form exists to reduce upper gastrointestinal irritation and is the presentation used for rheumatoid arthritis. Absorption of the liberated sulfapyridine, and therefore systemic toxicity, depends on NAT2 acetylator phenotype.',
+      safetyProfile:
+        'Most adverse effects track the sulfapyridine moiety and its serum concentration: nausea, headache, rash, and reversible oligospermia in men, which resolves within months of stopping. Labelled serious reactions include Stevens-Johnson syndrome, toxic epidermal necrolysis, drug reaction with eosinophilia and systemic symptoms, agranulocytosis, aplastic anaemia and hepatotoxicity, which is why blood counts and liver tests are monitored in the early months. Contraindicated in sulfonamide or salicylate hypersensitivity and in intestinal or urinary obstruction. It interferes with folate absorption, and it turns urine and sometimes skin yellow-orange and can permanently stain soft contact lenses.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does one drug treat both bowel disease and arthritis?',
+        a: 'Because it is really two drugs joined together, and a different one does the work in each disease. Sulfasalazine is a sulfa antibiotic, sulfapyridine, chemically welded to an aspirin relative, 5-aminosalicylic acid, by a bond only colonic bacteria can break. In 1977 an experiment gave patients with active colitis enemas of the whole drug, or one half, or the other. About 30% improved on biopsy with the whole drug or with 5-ASA, and about 5% with sulfapyridine. In 1985 the same question was asked in rheumatoid arthritis and the answer reversed: sulfapyridine produced an effect comparable to the whole drug, and 5-ASA barely did anything. Two diseases, one molecule, opposite halves.',
+      },
+      {
+        q: 'Should I be on mesalazine instead?',
+        a: 'For ulcerative colitis, that is exactly the question the 1977 experiment set up. Mesalazine is 5-aminosalicylic acid delivered to the colon without the sulfa carrier, and it exists because the carrier turned out to do no useful work in that disease while causing most of the side effects — rash, headache, nausea and reversible reduction in sperm count. For rheumatoid arthritis the same substitution makes no sense, because there the carrier is the active drug. Sulfasalazine is also considerably cheaper than mesalazine, which is why it has not disappeared from colitis practice. The decision belongs with the prescriber and this page does not make it.',
+      },
+      {
+        q: 'Is triple therapy really as good as a biologic?',
+        a: 'The trial says not meaningfully worse, which is a slightly narrower claim. RACAT randomised 353 people whose rheumatoid arthritis was still active on methotrexate to either triple therapy — methotrexate, sulfasalazine and hydroxychloroquine — or etanercept plus methotrexate, and kept everyone blinded for 48 weeks. The change in disease activity score was -2.1 with triple therapy and -2.3 with the biologic, and non-inferiority was met with a comfortable margin. X-ray progression, pain, quality of life and major adverse events did not differ. The point estimate did favour the biologic by 0.2 points, and a non-inferiority design cannot show one treatment beating another. What it does show is that the difference is smaller than the threshold rheumatologists agreed in advance would matter, between a regimen costing a few dollars a month and one costing tens of thousands a year.',
+        auditNote:
+          'Twenty-seven percent of patients in each arm switched treatments at 24 weeks under blinding, so this is a comparison of treatment strategies rather than of two fixed regimens held for a year.',
+      },
+      {
+        q: 'Why is my urine orange?',
+        a: 'Because the molecule is literally an azo dye — the same chemistry that produced the industrial colourants of the early twentieth century, applied to a drug. Sulfasalazine and its metabolites colour urine yellow-orange and can tint skin, and they will permanently stain soft contact lenses. None of that indicates a problem. Yellowing of the whites of the eyes is entirely different and does need reporting, because that is jaundice and this drug can cause liver injury.',
+      },
+      {
+        q: 'Does it affect fertility?',
+        a: 'In men, yes, and reversibly. Sulfasalazine causes a reduction in sperm count and motility in a substantial proportion of men who take it, attributed to the sulfapyridine half. It resolves within a few months of stopping the drug or switching to mesalazine, which does not have the effect. It is a labelled adverse reaction and one of the more common practical reasons for changing treatment in a man with ulcerative colitis. There is no equivalent effect described in women, and unlike several other drugs in this batch — mycophenolate, leflunomide, methotrexate — sulfasalazine is not a recognised teratogen, though it does interfere with folate absorption.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Azad Khan AK, Piris J, Truelove SC. An experiment to determine the active therapeutic moiety of sulphasalazine. Lancet 1977;2:892-895',
+        identifier: '10.1016/s0140-6736(77)90831-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pullar T, Hunter JA, Capell HA. Which component of sulphasalazine is active in rheumatoid arthritis? Br Med J (Clin Res Ed) 1985;290:1535-1538',
+        identifier: '10.1136/bmj.290.6481.1535',
+        kind: 'doi',
+      },
+      {
+        label:
+          'O’Dell JR et al. Therapies for active rheumatoid arthritis after methotrexate failure. N Engl J Med 2013;369:307-318 (RACAT)',
+        identifier: '10.1056/NEJMoa1303006',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Moreland LW et al. A randomized comparative effectiveness study of oral triple therapy versus etanercept plus methotrexate in early aggressive rheumatoid arthritis: the TEAR trial. Arthritis Rheum 2012;64:2824-2835',
+        identifier: '10.1002/art.34498',
+        kind: 'doi',
+      },
+      {
+        label: 'RACAT / CSP 551: rheumatoid arthritis comparison of active therapies',
+        identifier: 'NCT00405275',
+        kind: 'nct',
+      },
+      {
+        label: 'TEAR: treatment of early aggressive rheumatoid arthritis',
+        identifier: 'NCT00259610',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 5339 — sulfasalazine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5339',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 10. Leflunomide — equivalent to methotrexate rather than better than it, with a half-life
+  //     measured in weeks that needs a chemical procedure to reverse, and two boxed warnings.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'leflunomide',
+    name: 'Leflunomide',
+    tradeName: 'Arava',
+    sponsor:
+      'Sanofi-Aventis, originally Hoechst Marion Roussel. Approved in the United States in September 1998 and generic since 2005; the active metabolite teriflunomide was separately developed and approved for relapsing multiple sclerosis in 2012.',
+    targetGene: 'DHODH',
+    targetProtein:
+      'Dihydroorotate dehydrogenase, the mitochondrial inner-membrane enzyme catalysing the rate-limiting step of de novo pyrimidine synthesis. Inhibition is by the active metabolite teriflunomide, not by leflunomide itself.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1998,
+    indication:
+      'Treatment of adults with active rheumatoid arthritis, to reduce signs and symptoms, inhibit structural damage as evidenced by radiographic erosions and joint space narrowing, and improve physical function',
+    patientFriendlyIndication: 'Active rheumatoid arthritis',
+    anatomicalSite:
+      'The mitochondrial inner membrane of activated lymphocytes, where dihydroorotate dehydrogenase sits and where the pyrimidine supply for a dividing immune cell is decided',
+    conditionContext: {
+      conditionExplainer:
+        'Rheumatoid arthritis is an immune attack on the lining of joints that erodes cartilage and bone. Mounting and sustaining it requires lymphocytes to divide, and dividing requires both purine and pyrimidine building blocks. The antimetabolites in this batch block the purine side; leflunomide is the one that blocks the pyrimidine side.',
+      whyItMatters:
+        'It was the first genuinely new conventional disease-modifying drug for rheumatoid arthritis in years when it arrived in 1998, and its registration trial showed it equal to methotrexate rather than better. What distinguishes it clinically is not potency but persistence: the active metabolite is recycled through the liver and gut so efficiently that it can take up to two years to clear, which is why stopping it requires a chemical procedure rather than simply stopping.',
+      whoTakesThis:
+        'Adults with active rheumatoid arthritis, usually where methotrexate has failed or cannot be tolerated. It is also used off-label in psoriatic arthritis and, at times, in BK virus nephropathy after transplantation.',
+      clinicalGoals:
+        'Reduce symptoms and slow radiographic erosion. The two constraints that shape every decision about it are liver injury, monitored monthly at first, and the fact that it must not reach a pregnancy.',
+    },
+    oneSentenceVerdict:
+      'A prodrug whose active metabolite blocks the rate-limiting enzyme of pyrimidine synthesis and so starves dividing lymphocytes of the other half of the DNA alphabet — in its 482-patient registration trial it produced an ACR20 response in 52% against 26% on placebo and 46% on methotrexate, statistically superior to placebo and equivalent to methotrexate, and it carries boxed warnings for embryo-fetal toxicity and for severe liver injury including fatal liver failure.',
+    laymanHowItWorks:
+      'DNA is built from two families of chemical letters, and an immune cell preparing to divide has to manufacture both. Leflunomide is inert until the body converts it into its working form, which then blocks the single enzyme that controls production of one of those families. Immune cells, which cannot get enough of these letters by recycling, stall. Most other cells can recycle enough to carry on. The working form is reabsorbed from the gut over and over instead of being excreted, so it stays in the body for months to years after the last tablet — which is why coming off it usually means taking a second drug to strip it out.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 66,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.3247 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 20 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in 1998 and generic in the United States since 2005, at about 32 cents a tablet. The commercially interesting move came later: teriflunomide, the active metabolite that leflunomide converts into, was developed as a separate product and approved for relapsing multiple sclerosis in 2012 under its own patents. A metabolite of a generic drug, marketed as a new medicine for a different disease, is a legitimate development path and also a recognisable one.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The comparator that matters is methotrexate, and the registration trial found the two statistically equivalent — 52% against 46% ACR20 response, with both clearly better than placebo at 26%. That makes leflunomide an alternative to methotrexate rather than an advance on it, chosen mostly when methotrexate has failed or cannot be tolerated. Sulfasalazine is the other conventional option and is part of the triple regimen that matched a biologic in RACAT. Nothing sold as a food or supplement modifies rheumatoid arthritis, and this is one of the drugs where delay has a measurable cost, because erosion accumulates.',
+      conventionalRx: [
+        {
+          name: 'Methotrexate',
+          class: 'Antifolate disease-modifying antirheumatic drug',
+          howItCompares:
+            'The active comparator in the registration trial. ACR20 response was 46% on methotrexate against 52% on leflunomide and 26% on placebo, described as statistically equivalent between the two active drugs, with mean time to initial response of 9.5 weeks against 8.4. Both slowed radiographic progression against placebo (P=0.02 and P=0.001).',
+          typicalCost: 'Generic; among the cheapest disease-modifying antirheumatic drugs available',
+          prosAndCons:
+            'Pros: weekly rather than daily, the reference drug against which everything else is measured, decades of accumulated data. Cons: also hepatotoxic, also teratogenic, and it was the drug the patients in most modern trials had already failed.',
+        },
+        {
+          name: 'Sulfasalazine, with methotrexate and hydroxychloroquine',
+          class: 'Conventional triple therapy',
+          howItCompares:
+            'The combination found non-inferior to etanercept plus methotrexate over 48 weeks in 353 patients, with a DAS28 change of -2.1 against -2.3. It is the cheapest effective regimen in rheumatology and it is not hepatotoxic in the way leflunomide is.',
+          typicalCost:
+            'US$0.2003 per sulfasalazine tablet at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no leflunomide-scale hepatotoxicity, no two-year washout, evidence against a biologic. Cons: multiple tablets several times daily, sulfa intolerance, and reversible male infertility.',
+        },
+        {
+          name: 'TNF inhibitors and other biologics',
+          class: 'Biologic disease-modifying antirheumatic drugs',
+          howItCompares:
+            'The next step where conventional drugs fail. RACAT and TEAR both found a conventional triple regimen clinically comparable to etanercept plus methotrexate, though TEAR found a small radiographic advantage for the biologic (0.64 against 1.69 change from baseline, P=0.047).',
+          typicalCost:
+            'Tens of thousands of United States dollars per year at list price, against roughly 32 cents a tablet for leflunomide',
+          prosAndCons:
+            'Pros: no hepatotoxicity of this kind, no washout problem. Cons: cost, injection or infusion, and serious infection risk including tuberculosis reactivation.',
+        },
+        {
+          name: 'Teriflunomide (Aubagio)',
+          class: 'The active metabolite of leflunomide, marketed for multiple sclerosis',
+          howItCompares:
+            'Not a substitute in rheumatoid arthritis — it is the same active molecule reaching the same enzyme, developed and priced as a separate product for a different disease. Anyone taking leflunomide is already producing teriflunomide, which is why the two are never combined and why the same accelerated elimination procedure applies to both.',
+          typicalCost: 'Marketed as a branded multiple sclerosis therapy; generics have since entered',
+          prosAndCons:
+            'Pros: none over leflunomide in rheumatoid arthritis; it is the same active species. Cons: the same boxed warnings for hepatotoxicity and embryo-fetal toxicity, for the same reason.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Pregnancy must be excluded before starting, not discovered afterwards',
+          action:
+            'Anyone of reproductive potential should confirm they are not pregnant before the first tablet and use reliable contraception throughout.',
+          patientImpact:
+            'The label contraindicates leflunomide in pregnancy, and teratogenicity and embryo-lethality occurred in animals at exposures below the human level. Because the active metabolite persists for months to years, stopping the drug is not by itself sufficient.',
+          clinicalPrecaution:
+            'The label directs that if pregnancy occurs, the drug is stopped and an accelerated drug elimination procedure is started. That procedure exists because ordinary discontinuation does not clear the drug on any useful timescale.',
+        },
+        {
+          name: 'Monthly liver tests are part of the treatment, not an optional extra',
+          action:
+            'Keep the blood test appointments in the first six months, and report dark urine, pale stools, itching or yellowing of the eyes at once.',
+          patientImpact:
+            'The label carries a boxed warning for severe liver injury including fatal liver failure. It directs ALT monitoring at least monthly for six months after starting and every six to eight weeks thereafter, and it names patients with pre-existing liver disease or a baseline ALT above twice the upper limit of normal as people who should not be treated.',
+          clinicalPrecaution:
+            'If liver injury is suspected the label directs stopping the drug, starting the accelerated elimination procedure and monitoring liver tests weekly until they normalise.',
+        },
+        {
+          name: 'Understand that stopping is a two-step process',
+          action:
+            'If the drug needs to come out — for pregnancy, for liver injury, or to switch to something else — ask about the elimination procedure rather than simply stopping.',
+          patientImpact:
+            'The active metabolite is reabsorbed from the gut instead of being excreted, and plasma concentrations can remain detectable for up to two years after the last tablet. Cholestyramine or activated charcoal interrupts that recycling and brings the level down in about eleven days.',
+          clinicalPrecaution:
+            'This is a description of a labelled procedure, not instruction on how to carry one out. It matters because it is the single most surprising practical fact about this drug.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(C=NO1)C(=O)NC2=CC=C(C=C2)C(F)(F)F',
+      chemicalFormula: 'C12H9F3N2O2',
+      molecularWeight: '270.21 g/mol',
+      targetReceptorAffinity:
+        'Leflunomide has no meaningful activity at the target. It opens under physiological conditions to teriflunomide, the malononitrilamide that inhibits dihydroorotate dehydrogenase. Teriflunomide is over 99% protein bound with a very small volume of distribution and a half-life of roughly two weeks, sustained by extensive enterohepatic recirculation; plasma concentrations can remain measurable for up to two years after the last dose.',
+      structureSource: {
+        label:
+          'PubChem CID 3899 (leflunomide) — canonical SMILES, molecular formula C12H9F3N2O2 and molecular weight 270.21 g/mol, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3899',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lef-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Set a limit on teriflunomide already present in the tablet',
+          description:
+            'The isoxazole ring opens to teriflunomide under mild conditions, including on storage in humidity. Because teriflunomide is the active species with a two-week half-life, a batch carrying it as an impurity is not a slightly degraded product; it is a partially pre-activated one with different early kinetics.',
+          reagentsAndBuffer:
+            'Leflunomide reference standard and teriflunomide reference standard, reversed-phase HPLC with ultraviolet detection at 260 nm, forced-degradation study under humidity and acid, Karl Fischer water content',
+        },
+        {
+          id: 'lef-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Amide coupling of 5-methylisoxazole-4-carboxylic acid to 4-trifluoromethylaniline',
+          description:
+            'Activate 5-methylisoxazole-4-carboxylic acid and couple it to 4-(trifluoromethyl)aniline. A two-step sequence from commercial starting materials, which is why the finished tablet costs about thirty cents. The trifluoromethyl group is what gives the metabolite its long residence on the enzyme and its resistance to metabolic clearance.',
+          dependsOnStepId: 'lef-w1',
+          reagentsAndBuffer:
+            '5-methylisoxazole-4-carboxylic acid, thionyl chloride or a carbodiimide coupling agent, 4-(trifluoromethyl)aniline, triethylamine base in dichloromethane or toluene, anhydrous conditions to prevent premature ring opening',
+        },
+        {
+          id: 'lef-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallise under conditions that do not open the ring',
+          description:
+            'Purify and dry without exposing the isoxazole to the base or moisture that would convert it to teriflunomide. Purification conditions here are constrained by the same chemistry that makes the prodrug work, which is unusual: the instability being avoided in the factory is the instability being relied on in the patient.',
+          dependsOnStepId: 'lef-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from ethanol or ethyl acetate-heptane at controlled pH, vacuum drying at moderate temperature, HPLC against the teriflunomide standard as the critical related-substance limit',
+        },
+        {
+          id: 'lef-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Ring opening and DHODH occupancy in activated lymphocytes',
+          description:
+            'Confirm conversion to teriflunomide and measure inhibition of dihydroorotate dehydrogenase in intact activated lymphocytes rather than in isolated enzyme. The enzyme is on the inner mitochondrial membrane and is coupled to the respiratory chain through ubiquinone, so an isolated-enzyme assay omits the compartment the drug actually has to reach.',
+          dependsOnStepId: 'lef-w3',
+          reagentsAndBuffer:
+            'Anti-CD3 activated primary human lymphocytes, LC-MS/MS quantification of leflunomide and teriflunomide, dihydroorotate to orotate conversion measured by 2,6-dichloroindophenol reduction in permeabilised cells, brequinar as a mechanistic comparator',
+        },
+        {
+          id: 'lef-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Uridine rescue, to prove the effect is pyrimidine starvation',
+          description:
+            'Repeat the proliferation assay with uridine added to the medium. Supplying uridine bypasses the blocked de novo pathway through salvage; if proliferation recovers, the assay is measuring pyrimidine starvation rather than general toxicity. Without this control, the tyrosine kinase inhibition that teriflunomide also shows at higher concentrations cannot be excluded as the explanation.',
+          dependsOnStepId: 'lef-w4',
+          reagentsAndBuffer:
+            'CFSE dilution or tritiated thymidine incorporation in activated lymphocytes, uridine-supplemented and unsupplemented parallel arms, viability counterscreen, matched-concentration teriflunomide control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lef-a1',
+        category: 'measured',
+        title: 'US301: better than placebo, statistically equivalent to methotrexate',
+        laymanSummary:
+          'The registration trial compared leflunomide against a dummy tablet and against methotrexate in 482 patients over a year. About half responded on leflunomide, about half on methotrexate, and about a quarter on placebo. The new drug beat placebo clearly, and did not beat the old drug.',
+        technicalDetails:
+          'A randomised, double-blind, placebo- and active-controlled 12-month study at 47 centres in the United States and Canada enrolled 482 patients with rheumatoid arthritis of at least six months’ duration and no previous methotrexate treatment, randomised to leflunomide 20 mg daily, placebo, or methotrexate 7.5 to 15 mg weekly. ACR20 response and success rates were 52% and 41% for leflunomide, 46% and 35% for methotrexate, and 26% and 19% for placebo (P<0.001 against placebo for both active arms), with the two active treatments described as statistically equivalent. Mean time to initial response was 8.4 weeks on leflunomide against 9.5 on methotrexate. Radiographic progression was less with leflunomide (P=0.001) and methotrexate (P=0.02) than placebo. Asymptomatic transaminase elevations caused discontinuation in 7.1% on leflunomide, 3.3% on methotrexate and 1.7% on placebo.',
+        evidenceSource:
+          'Strand V et al., Leflunomide Rheumatoid Arthritis Investigators Group, Arch Intern Med 1999;159:2542-2550',
+        doi: '10.1001/archinte.159.21.2542',
+        measuredMetric:
+          'ACR20 response and success rate at 52 weeks, and radiographic progression, against placebo and against methotrexate',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lef-a2',
+        category: 'failed',
+        title: 'Hepatotoxicity: transaminase discontinuations at four times the placebo rate, then a boxed warning',
+        laymanSummary:
+          'Even in the registration trial, liver enzyme rises made people stop the drug four times as often as placebo. Severe liver injury including fatal liver failure was reported afterwards, and the label now carries a boxed warning and a monthly blood test schedule.',
+        technicalDetails:
+          'In the registration trial, asymptomatic transaminase elevations resulted in treatment discontinuation for 7.1% of leflunomide patients against 3.3% on methotrexate and 1.7% on placebo. The label now carries a boxed warning stating that severe liver injury, including fatal liver failure, has been reported in patients treated with the drug; that it is contraindicated in severe hepatic impairment; that concomitant use with other potentially hepatotoxic drugs may increase risk; and that patients with pre-existing acute or chronic liver disease or a baseline ALT above twice the upper limit of normal are at increased risk and should not be treated. It directs ALT monitoring at least monthly for six months after starting and every six to eight weeks thereafter, and, if drug-induced liver injury is suspected, stopping the drug, starting the accelerated elimination procedure and monitoring liver tests weekly.',
+        evidenceSource:
+          'ARAVA (leflunomide) tablets United States prescribing information, boxed warning "Hepatotoxicity"; Strand V et al., Arch Intern Med 1999;159:2542-2550',
+        doi: '10.1001/archinte.159.21.2542',
+        measuredMetric:
+          'Discontinuation for asymptomatic transaminase elevation, 7.1% against 1.7% on placebo, in the registration trial',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lef-a3',
+        category: 'measured',
+        title: 'A drug you cannot simply stop taking',
+        laymanSummary:
+          'The active form is reabsorbed from the gut over and over rather than being excreted, so it can still be detectable up to two years after the last tablet. Getting it out requires taking a second drug that interrupts the recycling, which brings the level down in about eleven days.',
+        technicalDetails:
+          'Teriflunomide is over 99% protein bound with a small volume of distribution and undergoes extensive enterohepatic recirculation, giving a half-life of roughly two weeks and plasma concentrations that may remain measurable for up to two years after discontinuation. The label describes an accelerated drug elimination procedure — cholestyramine or activated charcoal, which interrupt the recirculation — that reduces plasma concentrations substantially over about eleven days. The label directs that this procedure be used if pregnancy occurs, if serious liver injury is suspected, and before switching to certain other agents. This kinetic property, not potency, is what most distinguishes the drug clinically.',
+        evidenceSource:
+          'ARAVA (leflunomide) tablets United States prescribing information, boxed warning, Warnings and Precautions and Clinical Pharmacology sections',
+        measuredMetric:
+          'Plasma teriflunomide concentration decline with and without an accelerated elimination procedure, as described on the label',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lef-a4',
+        category: 'failed',
+        title: 'The embryo-fetal warning has to be read together with the half-life',
+        laymanSummary:
+          'The drug is contraindicated in pregnancy, and animal studies showed harm at exposures below what a person receives. The difficulty is that stopping the tablets does not remove the drug for a very long time, so avoiding pregnancy has to be planned rather than reacted to.',
+        technicalDetails:
+          'The boxed warning states that the drug is contraindicated for use in pregnant women because of the potential for fetal harm, that teratogenicity and embryo-lethality occurred in animals administered leflunomide at doses lower than the human exposure level, and that pregnancy must be excluded before starting treatment in females of reproductive potential. It directs effective contraception during treatment and during an accelerated drug elimination procedure after treatment, and directs stopping the drug and starting that procedure if a patient becomes pregnant. The clinical consequence of combining a contraindication in pregnancy with a metabolite detectable for up to two years is that discontinuation alone does not make the drug safe to conceive on, and the label handles this by making elimination an explicit procedure rather than a matter of waiting.',
+        evidenceSource:
+          'ARAVA (leflunomide) tablets United States prescribing information, boxed warning "Embryo-Fetal Toxicity"',
+        measuredMetric:
+          'Teratogenicity and embryo-lethality in animals at exposures below the human clinical level, as stated on the label',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lef-a5',
+        category: 'inferred',
+        title: 'Equivalence to methotrexate is not superiority, and the trial reported both drugs plainly',
+        laymanSummary:
+          'Leflunomide arrived as the first new conventional drug for rheumatoid arthritis in years, and it was often described that way. What its own registration trial showed was that it performed about the same as the drug already in use, with more liver-enzyme problems.',
+        technicalDetails:
+          'The registration trial reported ACR20 response of 52% for leflunomide and 46% for methotrexate and described them as statistically equivalent — a term that in this design means no significant difference was detected between the active arms, in a trial powered to distinguish each from placebo rather than from each other. A trial with 482 patients across three arms has limited power to detect a modest difference between two active drugs. What the trial does establish is that leflunomide is clearly better than nothing on both symptoms and radiographs. What it does not establish, and was not designed to, is a reason to prefer it over methotrexate in a patient who tolerates methotrexate — and the discontinuation figures for transaminase elevation, 7.1% against 3.3%, point the other way.',
+        evidenceSource: 'Strand V et al., Arch Intern Med 1999;159:2542-2550',
+        doi: '10.1001/archinte.159.21.2542',
+        inferredClaim:
+          'That leflunomide is an improvement on methotrexate — the registration trial found the two statistically equivalent on response, with more transaminase-driven discontinuation on leflunomide',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lef-a6',
+        category: 'conclusion_shift',
+        title: 'The metabolite became a separate drug for a different disease',
+        laymanSummary:
+          'Leflunomide is inert until the body turns it into teriflunomide. In 2012 teriflunomide itself was approved as a new medicine for multiple sclerosis, under its own patents, more than a decade after leflunomide had gone generic. The molecule doing the work was the same one all along.',
+        technicalDetails:
+          'Leflunomide is a prodrug that opens to teriflunomide, the malononitrilamide that inhibits dihydroorotate dehydrogenase. Teriflunomide was developed separately, tested in relapsing multiple sclerosis, and approved in 2012 with its own labelling, its own price and its own patent protection, while leflunomide had been generic in the United States since 2005. Both carry boxed warnings for hepatotoxicity and embryo-fetal toxicity, and both are subject to the same accelerated elimination procedure, because they are the same active species. Developing a known active metabolite for a new indication is a legitimate and reasonably common path, and the resulting situation — a generic drug and a branded drug that a patient’s liver cannot distinguish between — is worth stating plainly.',
+        evidenceSource:
+          'ARAVA (leflunomide) United States prescribing information, Clinical Pharmacology (conversion to teriflunomide); Drugs@FDA record for ARAVA, NDA 020905',
+        inferredClaim:
+          'That teriflunomide represents a distinct therapeutic advance over leflunomide — it is the active metabolite leflunomide produces, developed for a different disease and priced accordingly',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'lef-a7',
+        category: 'measured',
+        title: 'Radiographic progression slowed, which is the endpoint that matters most',
+        laymanSummary:
+          'Beyond how people felt, the trial measured joint damage on X-ray after a year. Both leflunomide and methotrexate showed less progression than placebo, and leflunomide’s result was the stronger of the two by p-value.',
+        technicalDetails:
+          'X-ray analyses in the registration trial demonstrated less disease progression with leflunomide (P=0.001) and with methotrexate (P=0.02) than with placebo. Both active treatments also improved physical function and health-related quality of life significantly more than placebo (P<0.001 and P<0.05 respectively). A structural endpoint is the strongest evidence available in rheumatoid arthritis short of long-term disability, because erosion is irreversible and symptom scores are not. The p-values should not be read as ranking the two active drugs against each other: each is a comparison against placebo, and a smaller p-value in one comparison does not establish superiority in a comparison that was not made.',
+        evidenceSource: 'Strand V et al., Arch Intern Med 1999;159:2542-2550',
+        doi: '10.1001/archinte.159.21.2542',
+        measuredMetric:
+          'Radiographic disease progression at 12 months against placebo, in the intent-to-treat population',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lef-a8',
+        category: 'inferred',
+        title: 'The selectivity argument depends on a salvage pathway the assays have to test for',
+        laymanSummary:
+          'The reason this drug is supposed to hit immune cells and spare everything else is that most cells can recycle the building blocks it blocks, and activated immune cells cannot. That is well supported in cell culture and it is an inference about what happens in a person.',
+        technicalDetails:
+          'Teriflunomide inhibits dihydroorotate dehydrogenase, the rate-limiting enzyme of de novo pyrimidine synthesis. Resting and most somatic cells meet their pyrimidine needs through the salvage pathway and are relatively unaffected; activated lymphocytes expand their pyrimidine pool roughly eightfold and depend on de novo synthesis to do so. This is demonstrable in vitro by the uridine rescue experiment, in which adding uridine to the medium restores proliferation. In humans the corresponding demonstration does not exist, and the drug additionally inhibits several tyrosine kinases at higher concentrations, an activity whose clinical contribution is unquantified. The observed toxicity profile — hepatic injury, diarrhoea, hypertension, peripheral neuropathy, interstitial lung disease — is not obviously confined to tissues lacking salvage capacity.',
+        evidenceSource:
+          'ARAVA (leflunomide) United States prescribing information, Clinical Pharmacology, Mechanism of Action; Strand V et al., Arch Intern Med 1999;159:2542-2550',
+        inferredClaim:
+          'That lymphocyte selectivity explains the clinical effect and the toxicity profile — the pathway dependence is established in cell culture, the human demonstration does not exist, and the drug has activities beyond DHODH',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed as a closed ring that opens in the body',
+        laymanDesc:
+          'The tablet contains an inert molecule. Almost as soon as it is absorbed, a chemical ring in it opens up, and the opened form is the drug.',
+        molecularDetail:
+          'Leflunomide is an isoxazole that undergoes ring opening to teriflunomide, a malononitrilamide, largely in the gut wall and liver and partly non-enzymatically. Conversion is essentially complete, and leflunomide itself is undetectable in plasma at steady state.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The active form is recycled instead of excreted',
+        laymanDesc:
+          'Rather than being cleared, the working molecule is sent into the bile, reabsorbed from the gut, and sent round again. This is why it lasts for months.',
+        molecularDetail:
+          'Teriflunomide is over 99% protein bound with a very small volume of distribution and undergoes extensive enterohepatic recirculation, giving an elimination half-life of roughly two weeks and detectable plasma concentrations for up to two years. Cholestyramine or activated charcoal binds it in the gut, interrupts the loop and reduces concentrations over about eleven days.',
+        iconName: 'Repeat',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks one enzyme on the mitochondrial membrane',
+        laymanDesc:
+          'Deep inside the cell, on the surface of the mitochondrion, sits the enzyme that controls production of one of the two families of DNA building blocks. The drug binds it and stops it.',
+        molecularDetail:
+          'Teriflunomide binds dihydroorotate dehydrogenase, an inner mitochondrial membrane flavoenzyme coupled to the respiratory chain through ubiquinone, which catalyses the fourth and rate-limiting step of de novo pyrimidine synthesis — oxidation of dihydroorotate to orotate.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Activated lymphocytes cannot expand their pyrimidine pool',
+        laymanDesc:
+          'Most cells in the body can recycle enough building blocks to get by. An immune cell that has just been activated needs roughly eight times more than usual and cannot recycle its way there, so it stalls.',
+        molecularDetail:
+          'Resting and most somatic cells meet their pyrimidine requirement through the salvage pathway; activated lymphocytes expand their pyrimidine pool approximately eightfold and depend on de novo synthesis. The dependence is demonstrable in vitro by uridine rescue. Teriflunomide additionally inhibits several tyrosine kinases at higher concentrations, with unquantified clinical contribution.',
+        iconName: 'Target',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Symptoms improve and joint erosion slows',
+        laymanDesc:
+          'About half of patients met the standard response threshold at a year, against a quarter on placebo, and X-rays showed less new joint damage.',
+        molecularDetail:
+          'ACR20 response 52% against 26% on placebo and 46% on methotrexate in 482 patients over 52 weeks, with mean time to initial response of 8.4 weeks. Radiographic progression was less than placebo at P=0.001, and physical function and quality of life improved at P<0.001.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The liver and a possible pregnancy are the two hard limits',
+        laymanDesc:
+          'The drug can injure the liver badly, and it must not reach a pregnancy. Both of those are made harder by the fact that stopping the tablets does not remove the drug for a very long time.',
+        molecularDetail:
+          'Boxed warnings for embryo-fetal toxicity and for severe liver injury including fatal liver failure. Discontinuation for asymptomatic transaminase elevation was 7.1% against 1.7% on placebo in the registration trial. Because teriflunomide persists for up to two years, both problems are managed with an accelerated elimination procedure rather than by discontinuation alone.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'US301 leflunomide registration trial (Strand 1999)',
+        phase: 'Phase 3, randomised, double-blind, placebo- and active-controlled, 12 months',
+        sampleSize: 482,
+        primaryEndpoint:
+          'American College of Rheumatology success rate — completing 52 weeks of treatment and meeting ACR20 response criteria',
+        endpointMet: true,
+        statisticalPValue:
+          'ACR20 response 52% leflunomide, 46% methotrexate, 26% placebo; success rate 41%, 35%, 19%; P<0.001 for both active arms against placebo, active arms statistically equivalent to each other',
+        unreportedAdverseSignals:
+          'Discontinuation for asymptomatic transaminase elevation was 7.1% on leflunomide against 3.3% on methotrexate and 1.7% on placebo. The trial was powered against placebo, not to distinguish the two active drugs, so "statistically equivalent" describes an absence of detected difference rather than a demonstrated equivalence.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'ACR20 response 52% on leflunomide against 26% on placebo and 46% on methotrexate in 482 patients over 52 weeks, P<0.001 against placebo',
+        'ACR success rate — completing 52 weeks and meeting ACR20 — of 41%, 19% and 35% respectively',
+        'Less radiographic progression than placebo with leflunomide (P=0.001) and methotrexate (P=0.02)',
+        'Discontinuation for asymptomatic transaminase elevation in 7.1% on leflunomide against 1.7% on placebo',
+        'Mean time to initial response 8.4 weeks on leflunomide against 9.5 weeks on methotrexate',
+      ],
+      unsupportedInferences: [
+        'That leflunomide is an improvement on methotrexate — its own registration trial found the two statistically equivalent, with more liver-driven discontinuation',
+        'That lymphocyte selectivity through salvage-pathway dependence explains both the effect and the toxicity profile in humans; the demonstration is in cell culture',
+        'That teriflunomide is a distinct therapeutic advance, when it is the active metabolite leflunomide already produces',
+        'That a smaller p-value against placebo for radiographic progression ranks leflunomide above methotrexate; that comparison was not made',
+      ],
+      whatFailedInitially: [
+        'Severe liver injury including fatal liver failure was reported after approval and is now the second half of a boxed warning',
+        'Transaminase elevations forced discontinuation in more than four times as many patients as placebo in the registration trial itself',
+        'The drug cannot be reliably withdrawn by stopping it: the active metabolite persists for up to two years and needs a chemical elimination procedure',
+        'It did not displace methotrexate as first-line conventional therapy, because it never showed a reason to',
+      ],
+      realWorldOutcome: [
+        'Generic in the United States since 2005, at about 32 cents a tablet at pharmacy acquisition cost',
+        'Established as a genuine alternative for patients in whom methotrexate fails or cannot be tolerated',
+        'Its active metabolite was separately developed and approved for relapsing multiple sclerosis in 2012',
+        'One of very few drugs whose label describes a procedure for removing it from the body, which is the practical fact most often missed',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral film-coated tablet, 10 mg and 20 mg',
+      description:
+        'Rapidly and almost completely converted to teriflunomide, so leflunomide itself is not detectable in plasma at steady state. Teriflunomide is more than 99% protein bound with a very small volume of distribution and is cleared slowly through extensive enterohepatic recirculation, giving a half-life of roughly two weeks and measurable concentrations for up to two years after the last dose. Because of that, the label describes an accelerated drug elimination procedure using cholestyramine or activated charcoal, which reduces plasma concentrations substantially over about eleven days and is directed for pregnancy, suspected liver injury and certain treatment switches.',
+      safetyProfile:
+        'Two boxed warnings. Embryo-fetal toxicity: contraindicated in pregnancy, with teratogenicity and embryo-lethality in animals at exposures below the human level; pregnancy must be excluded before starting and effective contraception used during treatment and during the elimination procedure. Hepatotoxicity: severe liver injury including fatal liver failure has been reported; contraindicated in severe hepatic impairment; patients with pre-existing liver disease or baseline ALT above twice the upper limit of normal should not be treated; ALT monitored at least monthly for six months and then every six to eight weeks. Other labelled risks include serious infection including tuberculosis reactivation, interstitial lung disease, peripheral neuropathy, hypertension, severe cutaneous reactions including Stevens-Johnson syndrome and toxic epidermal necrolysis, and blood dyscrasias.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is leflunomide better than methotrexate?',
+        a: 'Its own registration trial says the two are statistically equivalent. In 482 patients over a year, ACR20 response was 52% on leflunomide, 46% on methotrexate and 26% on placebo; both active drugs clearly beat placebo and neither beat the other. Both slowed X-ray progression. Where they differed was tolerability of a specific kind: discontinuation for raised liver enzymes was 7.1% on leflunomide against 3.3% on methotrexate and 1.7% on placebo. Leflunomide is a real alternative for someone in whom methotrexate has failed or cannot be tolerated. It is not an upgrade, and the trial that introduced it did not claim to be showing one.',
+      },
+      {
+        q: 'Why can I not just stop taking it?',
+        a: 'Because stopping the tablets does not remove the drug. Leflunomide converts to teriflunomide, which is over 99% bound to plasma proteins and is repeatedly secreted into bile and reabsorbed from the gut instead of being excreted. Its half-life is about two weeks, and the label states that plasma concentrations may remain detectable for up to two years after the last dose. That is why the label describes an accelerated drug elimination procedure — cholestyramine or activated charcoal, which bind the drug in the gut and break the recycling loop, reducing concentrations substantially over about eleven days. The procedure is directed if pregnancy occurs, if serious liver injury is suspected, and before certain treatment switches.',
+        auditNote:
+          'This is the single most practically important fact about the drug and the one least likely to be understood in advance. It turns "I stopped taking it" into a statement that says nothing about whether the drug is still present.',
+      },
+      {
+        q: 'How dangerous is it for the liver?',
+        a: 'Enough to have a boxed warning of its own. The label states that severe liver injury, including fatal liver failure, has been reported. It contraindicates the drug in severe hepatic impairment, says that patients with pre-existing acute or chronic liver disease or a baseline ALT above twice the upper limit of normal should not be treated, and warns that other potentially hepatotoxic drugs increase the risk. Monitoring is monthly for the first six months and then every six to eight weeks. If injury is suspected the label directs stopping the drug, starting the elimination procedure, and checking liver tests weekly until they normalise. In the registration trial, before any of this was known, asymptomatic enzyme rises caused 7.1% of patients to stop.',
+      },
+      {
+        q: 'What if I want to have a baby?',
+        a: 'That conversation needs to happen before starting the drug, not after. Leflunomide is contraindicated in pregnancy, and animal studies showed teratogenicity and embryo-lethality at exposures below the human level. The difficulty specific to this drug is the persistence: because the active metabolite can remain detectable for up to two years, simply stopping does not make conception safe. The label handles that by directing effective contraception during treatment and during an accelerated elimination procedure afterwards, and by directing that the procedure be started if a patient becomes pregnant while taking it. This page describes the labelled position; the planning belongs with the prescriber.',
+      },
+      {
+        q: 'Is Aubagio the same drug?',
+        a: 'It is the same active molecule. Leflunomide is inert until the body opens a chemical ring in it to produce teriflunomide, and teriflunomide is what Aubagio contains. It was developed separately, tested in relapsing multiple sclerosis, and approved in 2012 with its own patents and its own price, seven years after leflunomide had gone generic in the United States. Both carry boxed warnings for hepatotoxicity and embryo-fetal toxicity, and the same accelerated elimination procedure applies to both, because at the level of the enzyme they are indistinguishable. Developing a known active metabolite for a new indication is legitimate; what this page records is that the molecule doing the work was the same one throughout.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Strand V et al. Treatment of active rheumatoid arthritis with leflunomide compared with placebo and methotrexate. Arch Intern Med 1999;159:2542-2550',
+        identifier: '10.1001/archinte.159.21.2542',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DailyMed: ARAVA (leflunomide) tablets, Sanofi-Aventis — boxed warnings for embryo-fetal toxicity and hepatotoxicity, and the accelerated drug elimination procedure',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=320f63f2-fac3-4aee-aff8-85724e00ef52',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: ARAVA (leflunomide), NDA 020905, Sanofi-Aventis — label and approval history',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020905',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3899 — leflunomide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3899',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

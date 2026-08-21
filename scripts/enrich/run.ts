@@ -7,7 +7,7 @@ import type { MolecularSchema, PricingTransparency } from '@/lib/types'
 import { aggregateOpenFda } from '../ingest/openfda'
 import { enrichFromLabel } from './from-labels'
 import { formatNadacPrice, loadNadac, nadacNote, type NadacPrice } from './nadac'
-import { fetchTrials, flushTrialCache, trialCacheStats } from './trials'
+import { fetchTrials, flushTrialCache, trialCacheStats, warmTrials } from './trials'
 import { cleanLabelProse, mergeProvenance, SOURCE_LABELS, trimToSentence } from './provenance'
 import {
   botanicalCacheStats,
@@ -219,6 +219,17 @@ async function main(): Promise<void> {
     )
     await warmCache(jobs, (done, total) => {
       console.log(`[enrich]   ${done.toLocaleString()}/${total.toLocaleString()} looked up`)
+    })
+  }
+
+  // The registry lookups the loop would make, made first and in parallel, for the same reason.
+  if (!options.skipTrials) {
+    const needTrials = work
+      .filter((row) => (row.trials as unknown[]).length === 0)
+      .map((row) => row.name)
+    console.log(`[enrich] warming trials for ${needTrials.length.toLocaleString()} names…`)
+    await warmTrials(needTrials, (done, total) => {
+      console.log(`[enrich]   ${done.toLocaleString()}/${total.toLocaleString()} trial lookups`)
     })
   }
 

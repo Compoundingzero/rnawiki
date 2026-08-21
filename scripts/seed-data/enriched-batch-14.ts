@@ -109,7 +109,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       conventionalRx: [
         {
           name: 'Cetirizine (Zyrtec)',
-          class: 'Second-generation H1 antagonist — the racemic mixture levocetirizine was split from',
+          class:
+            'Second-generation H1 antagonist — the racemic mixture levocetirizine was split from',
           howItCompares:
             'Levocetirizine is one of the two mirror-image halves of cetirizine, and it is the half that does the work: the label records an H1 affinity two-fold higher than cetirizine (Ki 3 nmol/L against 6 nmol/L) and states in the same sentence that the clinical relevance of that finding is unknown. UCB ran a 570-subject head-to-head comparison of the two in a ragweed exposure chamber (NCT00544388, completed July 2004) and never posted results to the registry.',
           typicalCost:
@@ -299,7 +300,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'lct-a5',
         category: 'inferred',
-        title: 'The two-fold receptor affinity is the marketing case, and the label calls it unknown',
+        title:
+          'The two-fold receptor affinity is the marketing case, and the label calls it unknown',
         laymanSummary:
           'The drug is one half of an older, cheaper drug. It binds the target twice as tightly as the mixture does, which is arithmetically what you would expect if the other half does nothing. Whether that translates into working better in a person has never been shown.',
         technicalDetails:
@@ -328,7 +330,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'lct-a7',
         category: 'failed',
-        title: 'It is sedating in a measurable, dose-related way, and two warnings arrived after approval',
+        title:
+          'It is sedating in a measurable, dose-related way, and two warnings arrived after approval',
         laymanSummary:
           'Sleepiness was three times more common on the drug than on the dummy tablet, and it got worse as the dose went up. Two further problems — difficulty passing urine, and severe itching on stopping after long use — were only found once the drug was on the market.',
         technicalDetails:
@@ -600,12 +603,14 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
         kind: 'nct',
       },
       {
-        label: 'Levocetirizine 5 mg against placebo in seasonal allergic rhinitis, 580 adults — positive',
+        label:
+          'Levocetirizine 5 mg against placebo in seasonal allergic rhinitis, 580 adults — positive',
         identifier: 'NCT00653224',
         kind: 'nct',
       },
       {
-        label: 'Levocetirizine 5 mg against placebo in seasonal allergic rhinitis, 596 adults — null',
+        label:
+          'Levocetirizine 5 mg against placebo in seasonal allergic rhinitis, 596 adults — null',
         identifier: 'NCT00621959',
         kind: 'nct',
       },
@@ -755,8 +760,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'The pharmacologically decisive measurement is not the H1 affinity but the absence of cardiac potassium channel block. In isolated feline myocytes terfenadine was equipotent with quinidine as a blocker of the delayed rectifier potassium current, while terfenadine carboxylate — fexofenadine — did not inhibit that current at concentrations thirty times higher than the terfenadine concentration producing a half-maximal effect. Human brain H1 receptor occupancy after 120 mg, measured by [11C]doxepin positron emission tomography, was -0.1%.',
       structureSource: {
-        label:
-          'PubChem CID 3348 (fexofenadine) — canonical SMILES, molecular formula and weight',
+        label: 'PubChem CID 3348 (fexofenadine) — canonical SMILES, molecular formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3348',
         kind: 'url',
       },
@@ -850,7 +854,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'fex-a3',
         category: 'measured',
-        title: 'In a driving simulator it behaved like placebo while diphenhydramine behaved worse than alcohol',
+        title:
+          'In a driving simulator it behaved like placebo while diphenhydramine behaved worse than alcohol',
         laymanSummary:
           'Forty licensed drivers with hay fever drove an hour in a simulator after this drug, after an old antihistamine, after enough alcohol to be over the limit, and after a dummy. The old antihistamine was the worst of the four. This one was not distinguishable from the dummy.',
         technicalDetails:
@@ -893,7 +898,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'fex-a6',
         category: 'failed',
-        title: 'In people it had already failed, adding it back to a nasal spray contributed nothing',
+        title:
+          'In people it had already failed, adding it back to a nasal spray contributed nothing',
         laymanSummary:
           'A trial recruited people who had taken this drug for a week and barely improved. It compared a nasal spray alone against the spray plus this drug. The spray alone did just as well. For that group, the tablet was adding nothing.',
         technicalDetails:
@@ -907,12 +913,14 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'fex-a7',
         category: 'measured',
-        title: 'It works in chronic hives, and above the lowest effective strength it stops improving',
+        title:
+          'It works in chronic hives, and above the lowest effective strength it stops improving',
         laymanSummary:
           'In long-running hives, all four strengths tested beat the dummy tablet for itching and number of welts. Quadrupling the strength beyond the second-lowest did not help further.',
         technicalDetails:
           'A four-week, double-blind, randomised, placebo-controlled dose-finding study in 418 patients with chronic idiopathic urticaria and moderate to severe pruritus compared fexofenadine 20, 60, 120 and 240 mg twice daily against placebo. All four doses were statistically superior to placebo for reducing pruritus severity and number of wheals over four weeks (p<=0.0115), and patients on fexofenadine reported significantly less interference with sleep and daily activities (p<=0.0014). Reductions were greater at 60 mg than at 20 mg and similar across 60, 120 and 240 mg. Adverse event incidence was similar across all groups with no dose-related increase.',
-        evidenceSource: 'Nelson HS, Reynolds R, Mason J. Ann Allergy Asthma Immunol 2000;84:517-522',
+        evidenceSource:
+          'Nelson HS, Reynolds R, Mason J. Ann Allergy Asthma Immunol 2000;84:517-522',
         doi: '10.1016/S1081-1206(10)62515-X',
         measuredMetric:
           'Mean daily change from baseline in pruritus severity and wheal count over four weeks against placebo',
@@ -1066,8 +1074,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Onset of action and efficacy of single-dose fexofenadine 180 mg against montelukast 10 mg and placebo',
         endpointMet: false,
-        statisticalPValue:
-          'Not reported. The registry record carries no posted results section.',
+        statisticalPValue: 'Not reported. The registry record carries no posted results section.',
         unreportedAdverseSignals:
           'The largest registered head-to-head this sponsor ran on the molecule, and its outcome is not public.',
         independentReplicationStatus: 'Unreplicated',
@@ -1101,8 +1108,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet (30, 60 and 180 mg), orally disintegrating tablet, oral suspension, and extended-release tablets combined with pseudoephedrine',
+      type: 'Oral tablet (30, 60 and 180 mg), orally disintegrating tablet, oral suspension, and extended-release tablets combined with pseudoephedrine',
       description:
         'Taken with water. Absorption depends on an intestinal uptake transporter rather than on passive diffusion, so fruit juice substantially reduces the amount that reaches the blood while water does not. Very little of the drug is metabolised; most is excreted unchanged.',
       safetyProfile:
@@ -1313,7 +1319,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
           class: 'Non-pharmacological, and the first-line treatment for chronic insomnia',
           howItCompares:
             'For the sleep indication specifically, the comparison is not another drug. The American Academy of Sleep Medicine reviewed the randomised evidence drug by drug and issued a recommendation that clinicians not use diphenhydramine for sleep onset or sleep maintenance insomnia in adults.',
-          typicalCost: 'No drug acquisition cost; delivered as therapy or through structured programmes',
+          typicalCost:
+            'No drug acquisition cost; delivered as therapy or through structured programmes',
           prosAndCons:
             'Pros: the guideline-recommended first-line treatment, no tolerance and no anticholinergic burden. Cons: requires access, effort and weeks rather than a tablet tonight.',
         },
@@ -1356,7 +1363,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'The molecule is small, lipophilic and uncharged at the ether oxygen, with a single basic tertiary amine — the opposite of the zwitterionic second-generation drugs — so it crosses the blood-brain barrier freely. Its selectivity for H1 over muscarinic acetylcholine receptors is poor, and the muscarinic block is not a rare side effect but a routine, dose-proportional part of what the drug does.',
       structureSource: {
-        label: 'PubChem CID 3100 (diphenhydramine) — canonical SMILES, molecular formula and weight',
+        label:
+          'PubChem CID 3100 (diphenhydramine) — canonical SMILES, molecular formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3100',
         kind: 'url',
       },
@@ -1479,8 +1487,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'dph-a5',
         category: 'measured',
-        title:
-          'Equal itch relief to intravenous cetirizine, and twice as many patients came back',
+        title: 'Equal itch relief to intravenous cetirizine, and twice as many patients came back',
         laymanSummary:
           'In an emergency department trial in people with sudden hives, this drug relieved itching just as well as a modern antihistamine given the same way. But patients on it were more sedated, stayed longer, and were more than twice as likely to return for another visit.',
         technicalDetails:
@@ -1494,7 +1501,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'dph-a6',
         category: 'inferred',
-        title: 'Cumulative anticholinergic exposure tracks with dementia, and this is an observation',
+        title:
+          'Cumulative anticholinergic exposure tracks with dementia, and this is an observation',
         laymanSummary:
           'A long-running study of older adults found that the more anticholinergic medicine someone had taken over ten years, the more likely they were to develop dementia. First-generation antihistamines were one of the three commonest drug groups involved. This is an association measured in a population, not a demonstration that the drug causes the disease.',
         technicalDetails:
@@ -1692,8 +1700,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet, capsule, liquid and orally disintegrating strip; topical cream; and injection, which for sixty-four years was the only intravenous antihistamine available in the United States',
+      type: 'Oral tablet, capsule, liquid and orally disintegrating strip; topical cream; and injection, which for sixty-four years was the only intravenous antihistamine available in the United States',
       description:
         'The injectable form is labelled for use when oral therapy is impossible or contraindicated. Onset of sedation after an oral dose is within about an hour; the effect on driving is present at that point whether or not the person feels it.',
       safetyProfile:
@@ -1806,7 +1813,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
     tradeName: 'Sudafed / Sudogest / Nasal Decongestant',
     sponsor:
       'Marketed in the United States from 1963, originally by Schering-Plough as Sudafed; now generic across dozens of labellers and sold only from behind the pharmacy counter under the Combat Methamphetamine Epidemic Act of 2005',
-    targetGene: 'ADRA1A and SLC6A2 — acting mostly indirectly, through the noradrenaline transporter',
+    targetGene:
+      'ADRA1A and SLC6A2 — acting mostly indirectly, through the noradrenaline transporter',
     targetProtein:
       'Alpha-1 adrenergic receptors on nasal venous sinusoids, reached mainly by displacing stored noradrenaline from sympathetic nerve terminals rather than by binding the receptor directly',
     modality: 'Small Molecule',
@@ -1860,7 +1868,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       conventionalRx: [
         {
           name: 'Oral phenylephrine',
-          class: 'Direct alpha-1 agonist, the ingredient that replaced pseudoephedrine on the open shelf',
+          class:
+            'Direct alpha-1 agonist, the ingredient that replaced pseudoephedrine on the open shelf',
           howItCompares:
             'This is the comparison that matters and it goes only one way. On 8 November 2024 the FDA announced proposed administrative order OTC000036 to amend monograph M012 and remove orally administered phenylephrine hydrochloride and phenylephrine bitartrate as nasal decongestant active ingredients on the stated ground that they are not effective. Pseudoephedrine was not part of that action.',
           typicalCost:
@@ -1998,7 +2007,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
           'Pooling the randomised trials, taking repeated doses gave a modest improvement in how blocked people said their nose felt, about three hours after the last dose. The reviewers described the size as small and said they could not tell whether it was clinically meaningful.',
         technicalDetails:
           'The Cochrane review of nasal decongestants in monotherapy for the common cold included 15 trials with 1,838 participants, nine of them using pseudoephedrine. For multiple doses against placebo, subjective congestion was significantly better in the treatment group approximately three hours after the last dose, standardised mean difference 0.49 (95% CI 0.07 to 0.92, p=0.02), graded low-quality evidence. That pooling rested on two studies only, one oral and one topical, so oral and topical effects could not be separated. For single doses, the ten available trials measured and reported congestion so diversely that no pooling was possible at all, and the authors drew no conclusion. There is no defined minimal clinically important difference for subjective congestion, so the reviewers used the standardised mean difference itself as the yardstick and classed 0.49 as small.',
-        evidenceSource: 'Deckx L, De Sutter AI, Guo L, Mir NA, van Driel ML. Cochrane Database Syst Rev 2016;10:CD009612',
+        evidenceSource:
+          'Deckx L, De Sutter AI, Guo L, Mir NA, van Driel ML. Cochrane Database Syst Rev 2016;10:CD009612',
         doi: '10.1002/14651858.CD009612.pub2',
         measuredMetric:
           'Standardised mean difference in subjective nasal congestion, multiple doses against placebo',
@@ -2501,7 +2511,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
           'In a 1982 trial, coughs were recorded on tape and counted, and the drug made no difference to how much people coughed. The same patients filled in a questionnaire, and almost all of them said their mucus felt thinner. The subjective answer is the one the product claim was built on.',
         technicalDetails:
           'Forty-two patients with acute respiratory disease had their coughs recorded on tape over a 24-hour baseline and a 36-hour treatment period, comparing a guaifenesin preparation with its syrup vehicle in double-blind fashion, with efficacy assessed between equivalent six-hour periods on successive days to control for the pronounced diurnal variation in cough frequency. No antitussive effect was demonstrated. A questionnaire given to 65 patients including those 42 found that 25 of 26 patients with productive cough on guaifenesin (96%) reported a decrease in sputum thickness against 13 of 24 (54%) on vehicle (p=0.01, Fisher exact test), and 23 of 26 (88%) reported reduced sputum quantity against 15 of 24 (62.5%) on vehicle (p=0.07). The paper also records that the diurnal variation the tape recorder detected was not apparent in the patients’ own estimates of how often they coughed.',
-        evidenceSource: 'Kuhn JJ, Hendley JO, Adams KF, Clark JW, Gwaltney JM Jr. Chest 1982;82:713-718',
+        evidenceSource:
+          'Kuhn JJ, Hendley JO, Adams KF, Clark JW, Gwaltney JM Jr. Chest 1982;82:713-718',
         doi: '10.1378/chest.82.6.713',
         inferredClaim:
           'That patients reporting thinner mucus establishes that the mucus is thinner — the objective cough count in the same trial was null, and the instrumented sputum measurement thirty-two years later found no change in any physical property',
@@ -2530,7 +2541,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
           'The systematic review of every over-the-counter cough medicine tested against a dummy found the trials too few, too different and too poorly reported to combine. Of the three adult trials of this drug, one showed benefit and two did not.',
         technicalDetails:
           'The Cochrane review of over-the-counter medications for acute cough in community settings included 29 placebo-controlled randomised trials in 4,835 people, 19 in adults and 10 in children. The authors judged pooling inappropriate because of the small number of trials in each category, the limited quantitative data and marked differences in participants, interventions and outcome measurement, and noted that risk-of-bias assessment was limited by poor reporting particularly in earlier studies. Three adult trials compared guaifenesin with placebo: one indicated significant benefit and two did not. No studies using expectorants in children met the inclusion criteria at all. The overall conclusion was that there is no good evidence for or against the effectiveness of over-the-counter medicines in acute cough.',
-        evidenceSource: 'Smith SM, Schroeder K, Fahey T. Cochrane Database Syst Rev 2014;11:CD001831',
+        evidenceSource:
+          'Smith SM, Schroeder K, Fahey T. Cochrane Database Syst Rev 2014;11:CD001831',
         doi: '10.1002/14651858.CD001831.pub5',
         inferredClaim:
           'That an ingredient sold in 189 separate products across a shelf worth billions rests on a settled evidence base — the systematic review found no good evidence for or against, and no paediatric expectorant trial that met inclusion criteria at all',
@@ -2539,7 +2551,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'gua-a5',
         category: 'inferred',
-        title: 'It is the only recognised expectorant, and there is no molecular target to describe',
+        title:
+          'It is the only recognised expectorant, and there is no molecular target to describe',
         laymanSummary:
           'Federal regulation names exactly one ingredient as an expectorant, and this is it. Nobody has identified what the molecule binds to in the body. The mechanism given in textbooks is a nerve reflex from the stomach, inherited from an older class of medicines.',
         technicalDetails:
@@ -2553,7 +2566,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'gua-a6',
         category: 'measured',
-        title: 'Both groups got better, and that is the result most often mistaken for the drug working',
+        title:
+          'Both groups got better, and that is the result most often mistaken for the drug working',
         laymanSummary:
           'In the trial that measured sputum, people on the drug improved over the week. So did people on the dummy tablet, by the same amount. Acute cough from a virus resolves on its own, which is why an untreated comparison group is the only way to see whether a medicine did anything.',
         technicalDetails:
@@ -3015,13 +3029,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         id: 'bnz-a3',
         category: 'measured',
-        title: 'Twenty years of poison centre calls: severe in deliberate overdose, rarely otherwise',
+        title:
+          'Twenty years of poison centre calls: severe in deliberate overdose, rarely otherwise',
         laymanSummary:
           'A regional poison centre reviewed every call about this drug over twenty years. Among people who took it deliberately, more than one in five had a seizure, a heart rhythm change, coma or died. Among accidental exposures, including seventy-seven in children, almost none did.',
         technicalDetails:
           'A retrospective review of all benzonatate exposures reported to the Wisconsin Poison Center from 1 January 2000 to 31 December 2019 identified 313 calls, of which 265 had complete records. Median age was 19 years and 61% were female. Of 106 intentional exposures (40%), 23 (22%) experienced at least one serious adverse effect — defined as seizure, electrocardiogram change, coma or central nervous system depression, or death — and 40 (38%) were hospitalised. Of 143 unintentional exposures (54%), one (0.7%) had a serious adverse effect and three (2%) were hospitalised. Among 77 unintentional paediatric exposures, none had a serious adverse effect and two (3%) were hospitalised. Two deaths occurred over the twenty years, both after intentional exposure. No therapeutic intervention beyond supportive care was consistently used, and the authors note that no standard treatment guideline for benzonatate toxicity exists.',
-        evidenceSource:
-          'Cicci CD, Theobald J, Stanton M, Feldman R. Clin Toxicol 2025;63:488-494',
+        evidenceSource: 'Cicci CD, Theobald J, Stanton M, Feldman R. Clin Toxicol 2025;63:488-494',
         doi: '10.1080/15563650.2025.2512817',
         measuredMetric:
           'Rate of seizure, ECG change, coma or death by intent of exposure, across 265 poison centre cases',
@@ -3250,7 +3264,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Benzonatate capsules prescribing information — Clinical Pharmacology, Warnings, Precautions and Overdosage sections, via openFDA drug labelling',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22benzonatate%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22benzonatate%22',
         kind: 'regulatory',
       },
       {
@@ -3609,7 +3624,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'MP4002 (NCT00651118), MP4004 (NCT00740792) and MP4006 (NCT00883168), pooled',
-        phase: 'Three Phase 3, randomised, double-blind, placebo- and active-controlled, 14 days each',
+        phase:
+          'Three Phase 3, randomised, double-blind, placebo- and active-controlled, 14 days each',
         sampleSize: 3398,
         primaryEndpoint:
           'Sum of morning and evening change from baseline in reflective total nasal symptom score (0-24) over 14 days',
@@ -3685,8 +3701,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Metered nasal spray (0.1% and 0.15%), and a separate ophthalmic solution for allergic conjunctivitis',
+      type: 'Metered nasal spray (0.1% and 0.15%), and a separate ophthalmic solution for allergic conjunctivitis',
       description:
         'Sprayed onto the nasal mucosa, aimed away from the septum, with the head tilted slightly forward to limit run-off into the pharynx — which is what produces the bitter taste. Onset is within minutes; the ophthalmic form prevents itch within 3 minutes and lasts about 8 hours.',
       safetyProfile:
@@ -3726,17 +3741,20 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'MP4002 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
+        label:
+          'MP4002 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
         identifier: 'NCT00651118',
         kind: 'nct',
       },
       {
-        label: 'MP4004 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
+        label:
+          'MP4004 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
         identifier: 'NCT00740792',
         kind: 'nct',
       },
       {
-        label: 'MP4006 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
+        label:
+          'MP4006 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
         identifier: 'NCT00883168',
         kind: 'nct',
       },
@@ -3769,6 +3787,1457 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 2267 — azelastine structure, formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2267',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Olopatadine — three strengths of the same eye drop across nineteen years, each shown better
+  //    than the last inside an allergen challenge booth, and almost never outside one.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'olopatadine',
+    name: 'Olopatadine',
+    tradeName: 'Patanol / Pataday / Patanase',
+    sponsor:
+      'Alcon Laboratories holds the ophthalmic applications — NDA 020688 (18 December 1996), NDA 021545 (22 December 2004) and NDA 206276 (30 January 2015), all now over-the-counter; the nasal spray Patanase (NDA 021861, Novartis, 15 April 2008) is discontinued, and the olopatadine-mometasone nasal combination Ryaltris (NDA 211746, Glenmark) was approved 13 January 2022',
+    targetGene: 'HRH1',
+    targetProtein:
+      'Histamine H1 receptor, with non-lytic stabilisation of human conjunctival mast cells as the second claimed action',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1996,
+    indication:
+      'Ophthalmic solution for the treatment of ocular itching associated with allergic conjunctivitis; the nasal spray formulation was indicated for the symptoms of seasonal allergic rhinitis in adults and children aged 6 years and older',
+    patientFriendlyIndication: 'Itchy, red, watering eyes from allergy',
+    anatomicalSite:
+      'Conjunctiva — the transparent membrane over the white of the eye and the inside of the eyelids, which carries a dense population of mast cells',
+    conditionContext: {
+      conditionExplainer:
+        'The surface of the eye is one of the few places where allergen lands directly on a mucous membrane packed with mast cells and nothing filters it. When pollen settles there, histamine is released within seconds, and the itch is immediate and specific — allergic eye itch is unlike almost any other ocular symptom.',
+      whyItMatters:
+        'Because the itch is fast and unmistakable, it can be provoked deliberately in a clinic. Almost the entire evidence base for this drug comes from that provocation — the conjunctival allergen challenge, where a measured amount of allergen is dropped into the eye and the subject rates the itch minutes later.',
+      whoTakesThis:
+        'Adults and children, sold without a prescription in the United States since an efficacy supplement was approved on 14 February 2020.',
+      clinicalGoals:
+        'Less ocular itching, fast and lasting. Both are measured on a 0 to 4 scale in a challenge booth, and the Cochrane review of this whole drug class found no long-term efficacy data at all.',
+    },
+    oneSentenceVerdict:
+      'A dibenzoxepin H1 antagonist that also stabilises human conjunctival mast cells without lysing them — in a 345-subject phase 3 challenge study the 0.77% strength beat vehicle on ocular itching by 0.9 to 1.5 points on a 0-to-4 scale (P<0.0001) and beat the 0.1% and 0.2% strengths that preceded it by 0.3 to 0.5 points at 24 hours (P<0.05), all of it measured minutes after allergen was placed in the eye rather than during a pollen season.',
+    laymanHowItWorks:
+      'When pollen lands on the surface of your eye, mast cells sitting in that membrane burst open and release histamine, and histamine is what makes the eye itch within seconds. This drop does two things: it occupies the receptor histamine acts on, and it makes the mast cells themselves less willing to burst. The second part is what separates it from a plain antihistamine drop, and unlike an older drug in the same category it does that without damaging the cell membrane in the process.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 70,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        '$2.48 per mL, median across 30 listed products (CMS National Average Drug Acquisition Cost, effective 19 August 2026)',
+      markupEstimate: '',
+      synthesisComplexity: 'Moderate',
+      openPatentNotes:
+        'The franchise ran on strength increases: 0.1% under NDA 020688 in 1996, 0.2% under NDA 021545 in 2004, and 0.7% (0.77% as the hydrochloride) under NDA 206276 in 2015, each a separate application with its own exclusivity, and each shown superior to the previous one in the same challenge model. An efficacy supplement approved on 14 February 2020 moved the once-daily product to over-the-counter sale. At $2.48 per millilitre it is the most expensive drug per unit in this batch on the CMS acquisition survey.',
+      costSource: {
+        label:
+          'No published cost-of-production study exists for olopatadine; the field is left empty rather than estimated',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'url',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 30 listed olopatadine products',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'regulatory',
+      },
+    },
+    substitutes: {
+      summary:
+        'The Cochrane review of this whole class found that every topical antihistamine and mast cell stabiliser it examined reduced symptoms against placebo in the short term, that only one head-to-head comparison could be meta-analysed at all, and that there is no long-term efficacy data for any of them. The differences between these drops are therefore much less established than the marketing implies.',
+      conventionalRx: [
+        {
+          name: 'Ketotifen ophthalmic',
+          class: 'H1 antagonist with mast cell stabilising activity — the direct competitor',
+          howItCompares:
+            'The only comparison in the Cochrane review with enough studies to meta-analyse was olopatadine against ketotifen. Alcon’s own membrane work found a mechanistic difference: at 1 to 10 mM, ketotifen caused complete haemolysis of bovine erythrocytes while olopatadine caused under 8%, which the authors offered as an explanation for ketotifen’s biphasic non-specific cytotoxicity and olopatadine’s non-lytic mast cell stabilisation. Those concentrations are far above anything achieved on an eye.',
+          typicalCost:
+            '$1.30 per mL at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: roughly half the acquisition cost per millilitre, long over-the-counter availability. Cons: the membrane-perturbation finding, though at supra-clinical concentrations; the head-to-head clinical data are short-term.',
+        },
+        {
+          name: 'Azelastine ophthalmic',
+          class: 'H1 antagonist with mediator-release inhibition',
+          howItCompares:
+            'The most-studied drug in the Cochrane review, with nine placebo-controlled studies against azelastine alone. Onset of itch prevention within 3 minutes and duration of about 8 hours in a conjunctival antigen challenge — faster onset than olopatadine’s label claim, shorter duration than the 24 hours the 0.77% strength was approved on.',
+          typicalCost:
+            '$1.01 per mL at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheaper, very fast onset, the largest placebo-controlled evidence base in the class. Cons: bitter taste in about 10% of ophthalmic users as the drop drains into the throat, and transient eye burning in about 30%.',
+        },
+        {
+          name: 'Sodium cromoglicate ophthalmic',
+          class: 'Pure mast cell stabiliser with no receptor-blocking action',
+          howItCompares:
+            'The original of the mechanism olopatadine claims as its second action, and included in the Cochrane review. It has no antihistamine component, so it prevents rather than relieves: it must be started before exposure and used regularly, and it does nothing for an eye that is already itching.',
+          typicalCost:
+            '$0.5845 per mL of cromolyn at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: about a quarter of the cost, decades of ophthalmic use, no receptor-level effect to wear off. Cons: prophylactic only, needs several doses a day, and slow to establish effect.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Cold compress',
+          action: 'A clean, cold, damp cloth held over closed eyes for a few minutes.',
+          patientImpact:
+            'Cooling reduces itch and vasodilatation directly and has no drug interaction. It addresses the symptom rather than the mechanism, and it works within the same minutes the drop does.',
+          clinicalPrecaution:
+            'Never rub the eye. Rubbing mechanically degranulates conjunctival mast cells and releases more histamine, which is why the itch-rub cycle escalates.',
+        },
+        {
+          name: 'Take contact lenses out first',
+          action:
+            'Remove lenses before instilling the drop and wait before replacing them, and check whether the product contains benzalkonium chloride.',
+          patientImpact:
+            'Preservatives in multi-dose eye drops accumulate in soft contact lenses. Allergic conjunctivitis also makes lens wear less comfortable, and lenses hold allergen against the conjunctiva.',
+          clinicalPrecaution:
+            'Ocular itching that is severe, associated with pain, light sensitivity or reduced vision, is not routine allergic conjunctivitis and needs assessment rather than an antihistamine drop.',
+        },
+        {
+          name: 'Rinse pollen off the face and hair',
+          action: 'Wash the face and rinse hair at the end of a day outdoors during pollen season.',
+          patientImpact:
+            'The conjunctiva is the one mucous membrane with no filter in front of it, so deposited allergen keeps arriving from hair, skin and hands for hours after exposure ends.',
+          clinicalPrecaution:
+            'This reduces continued exposure and is not a treatment. It does not substitute for a drop in someone with established symptoms.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(C)CC/C=C\\1/C2=CC=CC=C2COC3=C1C=C(C=C3)CC(=O)O',
+      chemicalFormula: 'C21H23NO3',
+      molecularWeight: '337.40 g/mol',
+      targetReceptorAffinity:
+        'A dibenz[b,e]oxepin bearing an exocyclic Z-configured dimethylaminopropylidene and an acetic acid side chain. The geometry of that exocyclic double bond is the whole molecule: the Z isomer is the drug and the E isomer is not, and the carboxylic acid makes it a zwitterion at physiological pH, which limits corneal penetration and keeps the drug on the surface where the mast cells are. Comparative membrane work at 1 to 10 mM found ketotifen completely haemolysed bovine erythrocytes while olopatadine produced under 8% haemolysis, and olopatadine perturbed erythrocyte ghost membranes minimally where ketotifen caused concentration-dependent marker leakage.',
+      structureSource: {
+        label: 'PubChem CID 5281071 (olopatadine) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281071',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'olo-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Geometric isomer assignment at the exocyclic alkene',
+          description:
+            'Establish that the exocyclic double bond is Z rather than E. This is not a stereocentre that can be assayed by chiral chromatography; it requires nuclear Overhauser measurement or crystallography. The E isomer has different pharmacology, and it is the impurity that matters most in a product where nothing else about the molecule is difficult.',
+          reagentsAndBuffer:
+            'Olopatadine hydrochloride reference standard, NOESY and 1H NMR in DMSO-d6, reversed-phase HPLC resolving E and Z isomers, single-crystal X-ray on the reference lot',
+        },
+        {
+          id: 'olo-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Wittig olefination onto the dibenzoxepinone core',
+          description:
+            'Build the tricyclic dibenzoxepinone carrying the protected acetic acid arm, then install the aminopropylidene side chain by Wittig or Horner-Wadsworth-Emmons olefination. Olefination is where the Z/E ratio is decided, and the choice of ylide stabilisation and solvent is the process lever that sets it — this step, not the purification, is where the product is won or lost.',
+          dependsOnStepId: 'olo-w1',
+          reagentsAndBuffer:
+            '(3-dimethylaminopropyl)triphenylphosphonium bromide, strong base such as potassium tert-butoxide or n-butyllithium, anhydrous tetrahydrofuran at low temperature, nitrogen atmosphere, then ester hydrolysis to the free acid',
+        },
+        {
+          id: 'olo-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'E/Z separation and hydrochloride crystallisation to ophthalmic grade',
+          description:
+            'Separate the geometric isomers and crystallise the hydrochloride to a specification suitable for an eye drop. Ophthalmic grade means sterility, isotonicity and sub-visible particulate limits far tighter than an oral product: a particle in a tablet is invisible, and a particle on a cornea is an abrasion.',
+          dependsOnStepId: 'olo-w2',
+          reagentsAndBuffer:
+            'Preparative reversed-phase chromatography, hydrogen chloride in isopropanol, recrystallisation from ethanol and water, 0.22 micron sterile filtration of the finished solution, light-obscuration particulate counting, osmolality and pH verification',
+        },
+        {
+          id: 'olo-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Human conjunctival mast cell challenge',
+          description:
+            'Apply the compound to mast cells isolated from human conjunctiva and challenge with anti-IgE. Conjunctival mast cells are the specific population the drug is claimed to stabilise, and they behave differently from lung or skin mast cells; a stabilisation result in the wrong tissue would not support the claim on the label. Membrane integrity must be measured alongside mediator release, because a compound that lyses the cell also stops it degranulating.',
+          dependsOnStepId: 'olo-w3',
+          reagentsAndBuffer:
+            'Enzymatically dispersed human conjunctival mast cells, anti-human IgE, HEPES-buffered Tyrode solution with calcium and magnesium, histamine and tryptase immunoassay, lactate dehydrogenase release and 6-carboxyfluorescein leakage as membrane-integrity controls',
+        },
+        {
+          id: 'olo-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Conjunctival allergen challenge with a 0-to-4 itch scale',
+          description:
+            'Instil a titrated allergen into the eye of a sensitised subject and record ocular itching at fixed intervals on a 0 to 4 scale, with conjunctival redness graded in parallel. This is the assay that every approval of this drug rests on. It is reproducible and it is not a pollen season: the allergen amount, the timing and the environment are all controlled, and the endpoint is measured in minutes.',
+          dependsOnStepId: 'olo-w4',
+          reagentsAndBuffer:
+            'Titrated ryegrass, ragweed or cat allergen extract, vehicle-matched control drops, slit-lamp grading of conjunctival, ciliary and episcleral redness, standardised 0-4 itch scale where 4 is incapacitating itch, masked graders',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'olo-a1',
+        category: 'measured',
+        title: 'The 0.77% strength beat vehicle by up to 1.5 points on a 4-point itch scale',
+        laymanSummary:
+          'In the trial that supported the strongest version, allergen was placed in 345 people’s eyes and they rated the itch on a scale from none to unbearable. The drop lowered that rating by up to one and a half points against a dummy drop, both minutes after the challenge and a full day later.',
+        technicalDetails:
+          'A five-week, multicentre, double-masked phase 3 trial randomised 345 subjects aged 18 and over with a history of allergic conjunctivitis and a confirmed positive bilateral conjunctival allergen challenge response 2:2:2:1 to olopatadine 0.77%, 0.2%, 0.1% or vehicle, following a single topical dose in each eye. The primary objective was superiority of 0.77% over all comparators on ocular itching, graded 0 to 4 where 4 is incapacitating itch, at 24-hour duration of action, and over vehicle only at onset of action 3, 5 and 7 minutes after challenge. Olopatadine 0.77% was superior to vehicle at all post-challenge timepoints at onset and at 24 hours, with differences in means of -0.9 to -1.5 (P<0.0001), and superior to both 0.2% and 0.1% at 24 hours, with differences of -0.3 to -0.5 (P<0.05). It also improved conjunctival redness and total redness against all comparators at onset (-0.3 to -0.6 and -0.8 to -2.0 respectively, both P<0.05).',
+        evidenceSource:
+          'McLaurin E, Narvekar A, Gomes P, Adewale A, Torkildsen G. Cornea 2015;34:1245-1251 (NCT01743027)',
+        doi: '10.1097/ICO.0000000000000562',
+        measuredMetric:
+          'Ocular itching on a 0-4 scale at 3, 5 and 7 minutes and at 24 hours after conjunctival allergen challenge',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'olo-a2',
+        category: 'inferred',
+        title: 'Almost the whole evidence base is a challenge booth, not a pollen season',
+        laymanSummary:
+          'The trials that establish this drug work by putting a measured amount of allergen into the eye in a clinic and asking how much it itches a few minutes later. That is a clean experiment. It is not the same thing as living through a spring.',
+        technicalDetails:
+          'The conjunctival allergen challenge model titrates allergen to produce a reproducible bilateral response, then measures itching and redness at fixed short intervals under masked grading. Its advantages are exactly what limit its external validity: a single controlled exposure, a highly selected population screened for a confirmed positive response, an endpoint recorded within minutes, and no natural variability in allergen load, humidity, wind or concurrent nasal disease. The registration trial for the 0.77% strength followed a single topical dose in each eye. The Cochrane review of the entire topical antihistamine and mast cell stabiliser class found 30 randomised trials in 4,344 participants covering 17 different drugs or comparisons, evaluated only short-term effects with treatment ranging from one to eight weeks, and stated that there is no long-term data on efficacy for any drug in the class.',
+        evidenceSource:
+          'McLaurin E et al., Cornea 2015;34:1245-1251; Castillo M, Scott NW, Mustafa MZ, Mustafa MS, Azuara-Blanco A. Cochrane Database Syst Rev 2015;6:CD009566',
+        doi: '10.1002/14651858.CD009566.pub2',
+        inferredClaim:
+          'That a 0.9-to-1.5-point advantage on itch minutes after a controlled allergen challenge describes the benefit of using the drop through an allergy season — no long-term efficacy data exists for any drug in this class',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'olo-a3',
+        category: 'measured',
+        title:
+          'Each new strength beat the one before it, and each got its own application and exclusivity',
+        laymanSummary:
+          'The same molecule was approved three times at three strengths across nineteen years, and each time the new strength was shown better than the old one in the same booth. That is a real finding and also a commercial pattern worth naming.',
+        technicalDetails:
+          'NDA 020688 approved the 0.1% ophthalmic solution on 18 December 1996; NDA 021545 approved the 0.2% once-daily solution on 22 December 2004; NDA 206276 approved the 0.7% solution on 30 January 2015. The 2015 registration trial compared the new strength against both older strengths as active comparators and against vehicle, and found the differences over the older strengths at 24 hours were -0.3 to -0.5 points on the 0-4 itch scale (P<0.05) — statistically clear and a third to a half of one point on a four-point scale. An efficacy supplement approved on 14 February 2020 moved the once-daily product to over-the-counter status.',
+        evidenceSource:
+          'Drugs@FDA: NDA 020688 (18 December 1996), NDA 021545 (22 December 2004), NDA 206276 (30 January 2015), NDA 021545 efficacy supplement 22 approved 14 February 2020; McLaurin E et al., Cornea 2015;34:1245-1251',
+        doi: '10.1097/ICO.0000000000000562',
+        measuredMetric:
+          'Difference in mean ocular itching at 24 hours, 0.77% against 0.2% and 0.1%',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'olo-a4',
+        category: 'inferred',
+        title:
+          'The mast-cell-stabilising claim rests on membrane work at concentrations no eye reaches',
+        laymanSummary:
+          'The distinguishing claim is that this drug calms mast cells without damaging them, unlike an older rival. The experiment behind that used concentrations thousands of times higher than a drop delivers, in cow red blood cells.',
+        technicalDetails:
+          'Comparative work from the manufacturer’s laboratories examined olopatadine and ketotifen against phospholipid monolayers and against erythrocyte membranes. Both compounds were surface active and interacted with monolayers, but olopatadine produced smaller surface pressure changes. Exposure of bovine erythrocytes to ketotifen at 1 to 10 mM produced complete haemolysis while olopatadine at the same 1 to 10 mM produced under 8%; in erythrocyte ghosts, olopatadine at 0.1 to 10 mM minimally perturbed the membrane while ketotifen at 1 to 10 mM caused concentration-dependent marker leakage. The authors offered this as an explanation for ketotifen’s biphasic non-specific cytotoxic effect on histamine release and for olopatadine’s non-lytic mast cell stabilising activity. Millimolar is three orders of magnitude above the concentration a 0.1% to 0.7% eye drop sustains on the ocular surface, and the cells are bovine erythrocytes rather than human conjunctival mast cells.',
+        evidenceSource:
+          'Brockman H, Graff G, Spellman J, Yanni J. Acta Ophthalmol Scand Suppl 2000;(230):10-15',
+        doi: '10.1034/j.1600-0420.2000.078s230010.x',
+        inferredClaim:
+          'That olopatadine stabilises mast cells non-lytically where ketotifen does not — a mechanism inferred from millimolar membrane experiments in bovine erythrocytes, published by the manufacturer, and not from a clinical comparison',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'olo-a5',
+        category: 'failed',
+        title: 'The nasal spray was approved in 2008 and is discontinued',
+        laymanSummary:
+          'The same molecule was developed as a nose spray for hay fever, approved in 2008, and is no longer marketed. Azelastine, its direct competitor in that form, went the other way and became the first over-the-counter antihistamine nasal spray.',
+        technicalDetails:
+          'Patanase, olopatadine hydrochloride nasal spray, was approved under NDA 021861 on 15 April 2008 for the symptoms of seasonal allergic rhinitis in adults and children aged 6 and over, and is listed in Drugs@FDA as discontinued. The competing nasal antihistamine azelastine, first approved in 1996, was granted over-the-counter status under NDA 213872 on 17 June 2021. Olopatadine returned to the nasal route only in combination, as Ryaltris with mometasone furoate, approved as NDA 211746 on 13 January 2022 — the same combination strategy that produced Dymista from azelastine a decade earlier.',
+        evidenceSource:
+          'Drugs@FDA: PATANASE, NDA 021861, approved 15 April 2008, Novartis, discontinued; RYALTRIS, NDA 211746, approved 13 January 2022, Glenmark',
+        measuredMetric:
+          'Regulatory marketing status of the nasal formulation, Drugs@FDA product listings',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'olo-a6',
+        category: 'measured',
+        title: 'The class as a whole works, and only one head-to-head could be pooled',
+        laymanSummary:
+          'A systematic review of every eye-drop antihistamine and mast cell stabiliser found that all of them beat a dummy drop in the short term and none of them had long-term data. Out of seventeen different drug comparisons, only one had enough studies to combine statistically — and it happened to be this drug against its main rival.',
+        technicalDetails:
+          'The Cochrane review identified 30 randomised trials with 4,344 participants covering 17 different drugs or treatment comparisons, including nedocromil, sodium cromoglicate, olopatadine, ketotifen, azelastine, emedastine, levocabastine, mequitazine and bepotastine. Risk of bias was low overall but reporting quality was variable and outcome reporting highly heterogeneous. Meta-analysis was possible for only one comparison — olopatadine against ketotifen. The review concluded that all reported topical antihistamines and mast cell stabilisers reduce symptoms and signs of seasonal allergic conjunctivitis against placebo in the short term, that there is no long-term efficacy data, that direct comparisons need cautious interpretation, and that no serious adverse events related to this class were reported.',
+        evidenceSource:
+          'Castillo M, Scott NW, Mustafa MZ, Mustafa MS, Azuara-Blanco A. Cochrane Database Syst Rev 2015;6:CD009566',
+        doi: '10.1002/14651858.CD009566.pub2',
+        measuredMetric:
+          'Participant-reported severity of ocular itching, irritation, tearing and photophobia against placebo, 30 trials',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Dropped onto the surface it needs to treat',
+        laymanDesc:
+          'An eye drop puts the medicine exactly where the pollen landed. There is no absorption step to wait for and no journey through the body.',
+        molecularDetail:
+          'Instilled directly onto the conjunctiva. The molecule is a zwitterion at physiological pH — a carboxylic acid and a tertiary amine on the same scaffold — so corneal penetration is limited and the drug remains largely on the ocular surface, which is where the conjunctival mast cell population sits.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the mast cells without entering the cell',
+        laymanDesc:
+          'It works from outside the cell membrane rather than by getting inside and disrupting it. That distinction is the whole argument for this drug over its older rival.',
+        molecularDetail:
+          'Comparative monolayer and erythrocyte work found olopatadine intrinsically surface active but producing smaller surface pressure changes than ketotifen, and minimal membrane perturbation at 0.1 to 10 mM where ketotifen caused concentration-dependent leakage and complete haemolysis. The finding is at millimolar concentrations in bovine cells and is a mechanistic inference rather than a clinical measurement.',
+        iconName: 'ShieldCheck',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies the histamine receptor on the conjunctiva',
+        laymanDesc:
+          'It takes the seat histamine needs on the surface of the eye, so the histamine released by mast cells has nowhere to signal.',
+        molecularDetail:
+          'Selective H1 receptor antagonism on conjunctival vasculature and sensory nerve endings. The label for the once-daily strength claims a 24-hour duration of action, which the registration trial tested directly by grading itch a full day after a single dose.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It makes the mast cells less willing to fire',
+        laymanDesc:
+          'Beyond blocking the receiver, it damps down the release of histamine in the first place, so the reaction is smaller as well as less audible.',
+        molecularDetail:
+          'Stabilisation of human conjunctival mast cells is the claimed second action, and it is what puts this drug in the dual-action category rather than the antihistamine category. The distinguishing evidence is the non-lytic character of that stabilisation, established against ketotifen in membrane models rather than in a clinical comparison.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Itch falls by about one point out of four, within minutes',
+        laymanDesc:
+          'On a scale where zero is no itch and four is unbearable, the strongest version lowered the rating by roughly one to one and a half points against a dummy drop, three minutes after allergen was placed in the eye.',
+        molecularDetail:
+          'Differences in mean ocular itching of -0.9 to -1.5 against vehicle at 3, 5 and 7 minutes post-challenge and at 24 hours (P<0.0001), with conjunctival redness improved by -0.3 to -0.6 and total redness by -0.8 to -2.0 against all comparators at onset (both P<0.05), in 345 randomised subjects.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What was never measured is a season',
+        laymanDesc:
+          'Everything above happened in a clinic with a measured amount of allergen. No trial of this drug or any drug in its class has reported long-term efficacy.',
+        molecularDetail:
+          'The Cochrane review of 30 trials in 4,344 participants evaluated only short-term effects, with treatment durations of one to eight weeks, and states that there is no long-term data on efficacy for any topical antihistamine or mast cell stabiliser.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT01743027 (McLaurin 2015, Cornea 34:1245-1251)',
+        phase: 'Phase 3, multicentre, randomised, double-masked, conjunctival allergen challenge',
+        sampleSize: 345,
+        primaryEndpoint:
+          'Ocular itching on a 0-4 scale at 24-hour duration of action against all comparators, and at 3, 5 and 7 minutes against vehicle',
+        endpointMet: true,
+        statisticalPValue:
+          'Against vehicle: differences in means -0.9 to -1.5 at all post-challenge timepoints, P<0.0001. Against olopatadine 0.2% and 0.1% at 24 hours: -0.3 to -0.5, P<0.05',
+        unreportedAdverseSignals:
+          'A single topical dose in each eye, in subjects pre-screened for a confirmed positive bilateral challenge response. The model measures a provoked response in a clinic, not symptom control across a season.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Cochrane CD009566.pub2 — topical antihistamines and mast cell stabilisers',
+        phase: 'Systematic review of 30 randomised trials across 17 drugs or comparisons',
+        sampleSize: 4344,
+        primaryEndpoint:
+          'Participant-reported severity of ocular itching, irritation, tearing and photophobia',
+        endpointMet: true,
+        statisticalPValue:
+          'All reported agents reduced symptoms and signs against placebo in the short term; meta-analysis possible for one comparison only (olopatadine against ketotifen)',
+        unreportedAdverseSignals:
+          'Treatment durations of one to eight weeks only, with no long-term efficacy data for any drug in the class. Outcome reporting was highly variable and poor reporting quality challenged synthesis.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Brockman 2000 (Acta Ophthalmol Scand Suppl 230:10-15)',
+        phase: 'In vitro membrane biophysics, manufacturer laboratories',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Surface pressure change in phospholipid monolayers and haemolysis or marker leakage in erythrocyte membranes',
+        endpointMet: true,
+        statisticalPValue:
+          'Ketotifen 1-10 mM caused complete haemolysis of bovine erythrocytes; olopatadine 1-10 mM caused under 8%',
+        unreportedAdverseSignals:
+          'Millimolar concentrations, three orders of magnitude above what an eye drop sustains, in bovine erythrocytes rather than human conjunctival mast cells, published by the manufacturer of the favoured compound.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Ocular itching lowered by 0.9 to 1.5 points on a 0-4 scale against vehicle at 3 to 7 minutes and at 24 hours, in 345 randomised subjects',
+        'The 0.77% strength better than the 0.2% and 0.1% strengths by 0.3 to 0.5 points at 24 hours (P<0.05)',
+        'Conjunctival redness improved by 0.3 to 0.6 and total redness by 0.8 to 2.0 against all comparators at onset',
+        'Ketotifen fully haemolysed bovine erythrocytes at 1-10 mM where olopatadine produced under 8% haemolysis',
+      ],
+      unsupportedInferences: [
+        'That a challenge-booth itch score describes benefit across a pollen season — no long-term efficacy data exists for any drug in this class',
+        'That the non-lytic mast cell stabilisation established at millimolar concentrations in bovine erythrocytes operates at eye-drop concentrations in human conjunctival mast cells',
+        'That the dual-action label distinguishes this drop clinically from a plain antihistamine drop — the Cochrane review found only one poolable head-to-head comparison in the entire class',
+        'That successive strength increases represent successive therapeutic advances rather than successive applications',
+      ],
+      whatFailedInitially: [
+        'The nasal spray formulation, approved as Patanase in April 2008, is discontinued, while its direct competitor azelastine went over-the-counter',
+        'Only one of seventeen drug comparisons in the Cochrane review had enough studies to meta-analyse',
+        'The mechanistic differentiation from ketotifen has never been demonstrated at clinical concentrations or in the relevant cell type',
+        'No trial in this class has reported efficacy beyond eight weeks',
+      ],
+      realWorldOutcome: [
+        'Approved as Patanol 0.1% on 18 December 1996, Pataday 0.2% on 22 December 2004, and the 0.7% strength on 30 January 2015',
+        'Moved to over-the-counter sale by an efficacy supplement approved on 14 February 2020',
+        'Returned to the nasal route only in fixed combination with mometasone, as Ryaltris, approved 13 January 2022',
+        'The most expensive product per unit in this batch on the CMS acquisition survey, at $2.48 per millilitre',
+      ],
+    },
+    deliverySystem: {
+      type: 'Ophthalmic solution (0.1%, 0.2% and 0.7%), formerly also a metered nasal spray now discontinued',
+      description:
+        'One drop in each affected eye, once or twice daily depending on strength. Contact lenses should be removed before instillation. The zwitterionic molecule stays largely on the ocular surface rather than penetrating the cornea, which is where the target mast cells are.',
+      safetyProfile:
+        'The Cochrane review of 30 trials in 4,344 participants reported no serious adverse events related to topical antihistamines and mast cell stabilisers as a class, and found them safe and well tolerated. No safety concerns were identified for the 0.77% strength in its registration trial. The ophthalmic route keeps systemic exposure minimal, in contrast to nasal antihistamines where about 40% of the delivered amount is absorbed. Transient stinging on instillation and preservative sensitivity are the usual practical limits.',
+    },
+    commonQuestions: [
+      {
+        q: 'How was this actually tested?',
+        a: 'By putting allergen in people’s eyes on purpose. The conjunctival allergen challenge model takes people with a confirmed allergic response, titrates a measured amount of pollen or cat extract into both eyes, and has them rate the itch on a scale from 0 to 4 at fixed intervals — three, five and seven minutes afterwards, and again a full day later. In the trial for the strongest version, 345 subjects received a single drop in each eye and the drug lowered the itch rating by 0.9 to 1.5 points against a dummy drop. It is a clean, reproducible experiment. It is also a single controlled exposure in a clinic, and the Cochrane review of this entire class of eye drops states plainly that there is no long-term data on efficacy for any of them.',
+      },
+      {
+        q: 'What does "dual action" mean, and does it matter?',
+        a: 'It means the drop is claimed to do two things: block the histamine receptor, and make conjunctival mast cells less likely to release histamine in the first place. The second part is what distinguishes it from a plain antihistamine drop. The evidence that it does this without damaging the cells comes from membrane experiments comparing it with ketotifen: at concentrations of 1 to 10 millimolar, ketotifen completely destroyed bovine red blood cells while olopatadine destroyed under 8% of them. Whether that translates into a clinical difference is unresolved — the Cochrane review found that olopatadine against ketotifen was the one comparison in the whole class with enough studies to combine statistically, and it cautioned against reading direct comparisons too firmly.',
+      },
+      {
+        q: 'Why are there three strengths of the same drop?',
+        a: 'Each was a separate approval nineteen years apart: 0.1% in December 1996, 0.2% in December 2004 and 0.7% in January 2015. The 2015 trial did compare the new strength against both older ones head to head and found it better at 24 hours — by 0.3 to 0.5 points on a four-point itch scale, which is statistically clear and, in absolute terms, between a third and a half of one point. Each new strength came with its own new drug application and its own exclusivity period. Both readings of that sequence are available and both are supported by the same data.',
+      },
+      {
+        q: 'What happened to the nose spray version?',
+        a: 'It was approved as Patanase in April 2008 and is now discontinued. Its direct competitor, azelastine nasal spray, went in the opposite direction and became the first antihistamine nasal spray sold over the counter in the United States in June 2021. Olopatadine came back to the nose only in combination with a steroid, as Ryaltris, approved in January 2022 — which is the same route azelastine took a decade earlier when it was combined with fluticasone.',
+      },
+      {
+        q: 'Is it worth the price against the cheaper drops?',
+        a: 'On the acquisition survey it is the most expensive drug per unit in this group: $2.48 per millilitre against $1.30 for ketotifen, $1.01 for azelastine and $0.58 for cromolyn, all as median United States pharmacy acquisition costs effective 19 August 2026. Those are what pharmacies pay, not what a patient is charged. The Cochrane review found that every drug in this class reduced symptoms against placebo in the short term and that direct comparisons between them need cautious interpretation. So the case for paying more rests on a difference the systematic review says has not been firmly established.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'McLaurin E, Narvekar A, Gomes P, Adewale A, Torkildsen G. Phase 3 randomized double-masked study of efficacy and safety of once-daily 0.77% olopatadine hydrochloride ophthalmic solution in subjects with allergic conjunctivitis using the conjunctival allergen challenge model. Cornea 2015;34:1245-1251',
+        identifier: '10.1097/ICO.0000000000000562',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Olopatadine 0.77% against 0.2%, 0.1% and vehicle in the conjunctival allergen challenge model, 345 subjects',
+        identifier: 'NCT01743027',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Castillo M, Scott NW, Mustafa MZ, Mustafa MS, Azuara-Blanco A. Topical antihistamines and mast cell stabilisers for treating seasonal and perennial allergic conjunctivitis. Cochrane Database Syst Rev 2015;6:CD009566',
+        identifier: '10.1002/14651858.CD009566.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Brockman H, Graff G, Spellman J, Yanni J. A comparison of the effects of olopatadine and ketotifen on model membranes. Acta Ophthalmol Scand Suppl 2000;(230):10-15',
+        identifier: '10.1034/j.1600-0420.2000.078s230010.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: PATANOL / PATADAY TWICE DAILY RELIEF, NDA 020688, approved 18 December 1996; PATADAY ONCE DAILY RELIEF, NDA 021545, 22 December 2004, over-the-counter efficacy supplement approved 14 February 2020; 0.7% strength, NDA 206276, 30 January 2015',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021545',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: PATANASE (olopatadine hydrochloride) nasal spray, NDA 021861, approved 15 April 2008, discontinued; RYALTRIS (olopatadine and mometasone) nasal spray, NDA 211746, approved 13 January 2022',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021861',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5281071 — olopatadine structure, formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5281071',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Cromolyn — the original mast cell stabiliser, whose stabilising mechanism its own
+  //    pharmacologists still describe as a mystery, and whose paediatric asthma evidence Cochrane
+  //    found distorted by publication bias.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'cromolyn',
+    name: 'Cromolyn',
+    tradeName: 'Intal / Nasalcrom / Gastrocrom / Opticrom',
+    sponsor:
+      'Synthesised at Fisons in the 1960s; the surviving United States applications are Gastrocrom oral concentrate (NDA 020479, approved 29 February 1996, now Viatris Specialty) and generics for the inhalation, nasal and ophthalmic routes — the original Intal, Opticrom and Crolom brands are no longer listed as marketed',
+    targetGene: 'Not established',
+    targetProtein:
+      'No target has been confirmed. The classical account is stabilisation of the mast cell membrane; current candidates include the orphan receptor GPR35 and the annexin A1 / formyl peptide receptor anti-inflammatory loop',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1982,
+    indication:
+      'Inhalation solution as a prophylactic agent in the management of bronchial asthma; nasal solution over the counter for prevention and relief of allergic rhinitis symptoms; ophthalmic solution for allergic conjunctivitis; oral concentrate for mastocytosis',
+    patientFriendlyIndication:
+      'Preventing asthma attacks, hay fever and itchy eyes before they start — and, by mouth, the gut symptoms of mastocytosis',
+    anatomicalSite:
+      'The mucosal surface it is applied to — bronchial epithelium, nasal mucosa, conjunctiva, or gut lumen. Almost none of it is absorbed, which is the whole design',
+    conditionContext: {
+      conditionExplainer:
+        'Every other drug on this shelf works after histamine has been released. Cromolyn was built to work before: to make the mast cell itself less willing to open, so the allergic reaction is smaller from the start. That is why it has to be taken regularly and in advance, and why it does nothing for symptoms already under way.',
+      whyItMatters:
+        'It is the drug that created the category "mast cell stabiliser", and nearly sixty years later the pharmacologists who worked on it describe the exact mechanism as a mystery. Meanwhile the Cochrane review of its main indication found the published evidence distorted by missing negative trials.',
+      whoTakesThis:
+        'Historically children with asthma, and still people with allergic rhinitis and allergic conjunctivitis over the counter. The oral concentrate is used for mastocytosis, where the target cell is unambiguously the mast cell.',
+      clinicalGoals:
+        'Prevention rather than relief. The Cochrane review of childhood asthma found no significant difference from placebo on symptom-free days, and publication bias likely to have overestimated everything else.',
+    },
+    oneSentenceVerdict:
+      'A bis-chromone so poorly absorbed that it only works where it is sprayed — the drug that named the mast cell stabiliser class, whose mechanism its own pharmacologists called a mystery as recently as 2017, and whose Cochrane review of 23 trials in 1,026 children found no significant difference from placebo on symptom-free days with a funnel plot showing missing small negative studies.',
+    laymanHowItWorks:
+      'Most allergy drugs block the receiver of the histamine signal. This one was designed to stop the signal being sent: to make the cells that store histamine less willing to release it when they meet an allergen. Because it barely gets absorbed, it only works on whatever surface you apply it to — the nose, the eye, the airway lining — and it has to be there before the allergen arrives. Exactly how it calms those cells has never been settled.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 44,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        '$0.5845 per mL, median across 6 listed products (CMS National Average Drug Acquisition Cost, effective 19 August 2026)',
+      markupEstimate: '',
+      synthesisComplexity: 'Moderate',
+      openPatentNotes:
+        'Only six products appear in the CMS acquisition survey, the smallest number of any drug in this batch — a marker of a molecule in retreat rather than of scarcity. Every original brand has left the active Drugs@FDA product listing: what remains are generics under abbreviated applications for inhalation (2000), nasal over-the-counter (2001) and ophthalmic (1999) routes, plus the oral concentrate Gastrocrom under NDA 020479 from 29 February 1996 and its generics.',
+      costSource: {
+        label:
+          'No published cost-of-production study exists for cromolyn; the field is left empty rather than estimated',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'url',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 6 listed cromolyn products',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'regulatory',
+      },
+    },
+    substitutes: {
+      summary:
+        'In asthma the substitute is the drug class that displaced it: inhaled corticosteroids, whose use rose from 1990 onward and whose evidence base is not in question. In allergic rhinitis and conjunctivitis the comparison is with the newer dual-action agents that combine mast cell stabilisation with receptor blockade, and which therefore also work once symptoms have started.',
+      conventionalRx: [
+        {
+          name: 'Inhaled corticosteroid',
+          class: 'Topical anti-inflammatory — the class that replaced cromolyn in asthma',
+          howItCompares:
+            'The Cochrane review of cromolyn in childhood asthma opens by noting that its use decreased after 1990 when inhaled corticosteroids became popular. The review then found insufficient evidence to be sure cromolyn beats placebo at all, with publication bias likely to have overestimated what benefit was reported.',
+          typicalCost:
+            'US$0.7198 per millilitre of budesonide inhalation suspension, median across 51 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: an evidence base that is not in dispute, and once- or twice-daily dosing rather than four times. Cons: local effects including oral candidiasis and dysphonia, and systemic absorption that cromolyn essentially does not have.',
+        },
+        {
+          name: 'Olopatadine or ketotifen ophthalmic',
+          class: 'Dual-action H1 antagonist plus mast cell stabiliser',
+          howItCompares:
+            'Does what cromolyn does and also blocks the histamine receptor, so it relieves an eye that is already itching rather than only preventing one that is not. Cromolyn is included in the same Cochrane review of this class, which found all reported agents reduced symptoms against placebo in the short term.',
+          typicalCost:
+            '$2.48 per mL for olopatadine and $1.30 per mL for ketotifen at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: works on established symptoms, once or twice daily. Cons: four times the cost per millilitre for olopatadine; cromolyn remains the option where a receptor-blocking drug is unwanted.',
+        },
+        {
+          name: 'Intranasal corticosteroid',
+          class: 'Topical anti-inflammatory for the nose',
+          howItCompares:
+            'Suppresses the whole inflammatory cascade rather than one upstream step, and works on nasal congestion, which cromolyn addresses weakly. Cromolyn nasal solution remains available over the counter and requires dosing several times daily where a steroid spray is once.',
+          typicalCost:
+            'US$0.6920 per millilitre of fluticasone, median across 51 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: greater effect, once-daily, cheaper per millilitre. Cons: nosebleeds in a minority; cromolyn has arguably the most benign safety record of any drug in this batch.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Start it before the season, not during',
+          action:
+            'Begin regular use a week or two ahead of expected exposure and keep it up, rather than reaching for it when symptoms arrive.',
+          patientImpact:
+            'This is a prophylactic agent by design and by label: it acts on mediator release rather than on the receptor, so it has nothing to offer a reaction already in progress. The inhalation label states the effect is usually evident after several weeks of treatment.',
+          clinicalPrecaution:
+            'Using it as a rescue treatment and concluding it does not work is the commonest way this drug is misjudged. That said, the Cochrane review found the prophylactic evidence itself insufficient.',
+        },
+        {
+          name: 'Count the doses per day honestly',
+          action:
+            'Check how many times a day the product requires, and whether that is realistic before starting.',
+          patientImpact:
+            'Cromolyn formulations are typically dosed several times daily across every route. Against a once-daily steroid spray or a once-daily eye drop, the adherence gap is large and it is the practical reason the drug lost ground rather than a pharmacological one.',
+          clinicalPrecaution:
+            'Irregular use of a prophylactic agent is close to no use at all, and unlike a receptor blocker there is no immediate feedback telling you a dose was missed.',
+        },
+        {
+          name: 'Reduce exposure at the same time',
+          action: 'Allergen avoidance measures alongside, rather than instead of, the drug.',
+          patientImpact:
+            'A drug that raises the threshold for mast cell release works better the lower the allergen load it has to raise it against. This is one of the few places where avoidance and pharmacology genuinely compound.',
+          clinicalPrecaution:
+            'Avoidance measures have their own weak evidence base and are not a substitute for treatment of established allergic disease.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC2=C(C(=C1)OCC(COC3=CC=CC4=C3C(=O)C=C(O4)C(=O)O)O)C(=O)C=C(O2)C(=O)O',
+      chemicalFormula: 'C23H16O11',
+      molecularWeight: '468.40 g/mol',
+      targetReceptorAffinity:
+        'No binding constant can be quoted, because the target is unresolved. The molecule is a symmetrical bis-chromone: two chromone-2-carboxylic acid units joined by a 2-hydroxypropylene bridge, giving two carboxylic acids that are fully ionised at physiological pH. That double negative charge is why oral bioavailability is negligible and why the drug acts only on the surface it is applied to — and it is also why no plasma concentration-effect relationship has ever been established for it.',
+      structureSource: {
+        label:
+          'PubChem CID 2882 (cromoglicic acid) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2882',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'crm-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Symmetry and dicarboxylate stoichiometry',
+          description:
+            'Confirm that both chromone arms are present and both carboxylic acids are free. The molecule is a symmetrical dimer and the commonest process impurity is the mono-chromone fragment, which has neither the geometry nor the charge of the drug. Sodium content is measured as an identity check because the marketed form is the disodium salt.',
+          reagentsAndBuffer:
+            'Cromoglicic acid reference standard, reversed-phase HPLC with ultraviolet detection at 326 nm, 1H NMR in D2O, flame photometry or ion chromatography for sodium stoichiometry, Karl Fischer titration',
+        },
+        {
+          id: 'crm-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Double Kostanecki condensation onto the epichlorohydrin bridge',
+          description:
+            'Join two 2,6-dihydroxyacetophenone units through an epichlorohydrin-derived bridge, then close both chromone rings and hydrolyse the esters to the free diacid. The two ring closures have to succeed on both arms: a single-armed product looks similar by mass but is pharmacologically inert, and separating it is the reason the process is only moderately cheap.',
+          dependsOnStepId: 'crm-w1',
+          reagentsAndBuffer:
+            '2,6-dihydroxyacetophenone, epichlorohydrin, potassium carbonate in acetone or dimethylformamide, diethyl oxalate with sodium ethoxide for the chromone closure, then aqueous sodium hydroxide hydrolysis',
+        },
+        {
+          id: 'crm-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Disodium salt formation and sterile solution preparation',
+          description:
+            'Convert to the disodium salt and prepare the solution to inhalation, nasal or ophthalmic grade. Because the finished products are nebulised, sprayed or dropped onto mucosa, the specifications on sterility, particulates and osmolality dominate — and unlike a tablet, nothing about the formulation can compensate for a molecule that will not be absorbed.',
+          dependsOnStepId: 'crm-w2',
+          reagentsAndBuffer:
+            'Sodium hydroxide to exactly two equivalents, activated carbon treatment, 0.22 micron sterile filtration, osmolality and pH verification, light-obscuration particulate counting, endotoxin testing',
+        },
+        {
+          id: 'crm-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Mast cell degranulation across species and subtype',
+          description:
+            'Challenge mast cells from more than one species and more than one tissue and measure mediator release. This is the step that exposes the problem: the 2017 review of the cromones states that the classical mast cell stabiliser account cannot explain the discrepancies between species and between mast cell subtypes in their response to these drugs. A single-preparation result would conceal exactly the inconsistency that matters.',
+          dependsOnStepId: 'crm-w3',
+          reagentsAndBuffer:
+            'Rat peritoneal mast cells alongside human lung and human conjunctival mast cells, anti-IgE and compound 48/80 as secretagogues, HEPES-buffered Tyrode solution with calcium and magnesium, histamine and tryptase immunoassay, lactate dehydrogenase release as a viability control',
+        },
+        {
+          id: 'crm-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'GPR35 signalling and annexin A1 dependence',
+          description:
+            'Test the two current mechanistic candidates against each other in the same system. Cromoglicate, nedocromil and zaprinast increase inositol phosphate accumulation and calcium mobilisation in cells transfected with GPR35; separately, cromones potentiate glucocorticoid-induced annexin A1 release by inhibiting PP2A, and depleting annexin A1 in vitro completely reverses their inhibitory action. Running both arms is the only way to distinguish a receptor mechanism from a phosphatase one.',
+          dependsOnStepId: 'crm-w4',
+          reagentsAndBuffer:
+            'HEK293 cells transfected with human GPR35, inositol phosphate accumulation assay and calcium imaging with Fura-2, zaprinast as a comparator agonist; for the second arm, annexin A1 small interfering RNA knockdown, PP2A phosphatase activity assay, dexamethasone co-treatment and formyl peptide receptor antagonists',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'crm-a1',
+        category: 'failed',
+        title:
+          'Cochrane: no significant benefit on symptom-free days, and the missing studies were the negative ones',
+        laymanSummary:
+          'Twenty-three trials in a thousand children were pooled. On the cleanest measure — how many days a child had no symptoms — the drug was no better than placebo. The pattern of published studies showed that small trials with negative results were missing from the literature.',
+        technicalDetails:
+          'The Cochrane review searched for all double-blind placebo-controlled randomised trials of inhaled sodium cromoglycate as maintenance therapy in children aged 0 to 18 with asthma, screening 3,500 titles and including 24 papers reporting 23 studies published between 1970 and 1997, together enrolling 1,026 participants. Most were crossover studies and few provided enough information to judge allocation concealment. Four studies reported percentage of symptom-free days; pooling them revealed no statistically significant difference between cromoglycate and placebo. Other pooled symptom outcomes and bronchodilator use reached statistical significance but with small treatment effects, and the confidence intervals were wide enough that a clinically relevant effect could not be excluded either. The funnel plot showed an under-representation of small studies with negative results, indicating publication bias. The authors concluded there is insufficient evidence to be sure about efficacy over placebo, and that publication bias is likely to have overestimated the beneficial effects.',
+        evidenceSource:
+          'van der Wouden JC, Uijen JH, Bernsen RM, Tasche MJ, de Jongste JC, Ducharme F. Cochrane Database Syst Rev 2008;4:CD002173',
+        doi: '10.1002/14651858.CD002173.pub2',
+        measuredMetric:
+          'Percentage of symptom-free days, pooled across four trials, cromoglycate against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'crm-a2',
+        category: 'inferred',
+        title: 'The mechanism that named a whole drug class has never been established',
+        laymanSummary:
+          'Cromolyn is the original "mast cell stabiliser" and the phrase was invented for it. Nearly sixty years after it was made, the pharmacologists reviewing it wrote that the exact mechanism remained a mystery.',
+        technicalDetails:
+          'A 2017 review by researchers including one of the original pharmacologists in the field states that while early studies attributed the cromones’ ability to prevent allergic reactions to their mast cell stabilising properties, the exact pharmacological mechanism by which this occurred remained a mystery, and that the classical account cannot explain the discrepancies between species and between mast cell subtypes in their response to these drugs. Two candidate mechanisms are advanced. First, the orphan G-protein coupled receptor GPR35: cromoglycate, nedocromil and zaprinast increase inositol phosphate accumulation and calcium mobilisation in HEK cells transfected with GPR35, though the review notes its significance to asthma, allergy or mast cell mediator release is yet to be elucidated and it is unclear how those actions would translate into therapeutic effect. Second, the annexin A1 and formyl peptide receptor anti-inflammatory loop: cromones potentiate glucocorticoid-induced annexin A1 release by inhibiting PP2A phosphatase activity, and depletion of annexin A1 in vitro completely reverses their inhibitory actions.',
+        evidenceSource: 'Sinniah A, Yazid S, Flower RJ. Front Pharmacol 2017;8:827',
+        doi: '10.3389/fphar.2017.00827',
+        inferredClaim:
+          'That cromolyn works by stabilising the mast cell membrane — the phrase that defines the class, offered without a confirmed molecular mechanism and contradicted by species and subtype discrepancies its own reviewers describe',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'crm-a3',
+        category: 'conclusion_shift',
+        title:
+          'It was displaced from asthma by a class with better evidence, not by a safety finding',
+        laymanSummary:
+          'This drug was standard maintenance treatment for childhood asthma for years. Its use fell away from 1990 as inhaled steroids took over. Nothing dangerous was discovered — the replacement simply had evidence that held up.',
+        technicalDetails:
+          'The Cochrane review records that sodium cromoglycate was recommended as maintenance treatment for childhood asthma for many years and that its use decreased after 1990 when inhaled corticosteroids became popular, while still being used in many countries. The displacement was not driven by any safety signal: cromolyn remains among the best-tolerated drugs in respiratory medicine, and the Cochrane review of topical antihistamines and mast cell stabilisers in allergic conjunctivitis, which included cromoglicate, reported no serious adverse events for the class. What changed was the availability of a comparator whose evidence base did not depend on trials published between 1970 and 1997 with a funnel plot showing missing negatives. Every original brand — Intal, Opticrom, Crolom — has since left the active Drugs@FDA product listing.',
+        evidenceSource:
+          'van der Wouden JC et al., Cochrane Database Syst Rev 2008;4:CD002173, Background; Drugs@FDA product listings for cromolyn sodium',
+        doi: '10.1002/14651858.CD002173.pub2',
+        inferredClaim:
+          'That a drug leaving practice implies it was found harmful — here it was displaced by a comparator with stronger evidence while remaining one of the safest molecules in respiratory medicine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'crm-a4',
+        category: 'measured',
+        title: 'It is essentially not absorbed, and that is the design',
+        laymanSummary:
+          'The molecule carries two permanent negative charges, so almost none of it crosses from the gut or the airway into the bloodstream. It can only act on the surface you put it on — which is why there are four different formulations for four different surfaces.',
+        technicalDetails:
+          'Cromoglicic acid is a symmetrical bis-chromone with two carboxylic acid groups, fully ionised at physiological pH, giving a doubly anionic molecule with negligible passive membrane permeability. The consequence runs through the whole product family: separate formulations exist for inhalation, nasal, ophthalmic and oral routes, and the oral concentrate is indicated for mastocytosis precisely because it acts on gut mucosal mast cells without being absorbed. It also explains the safety record — a drug that does not enter the circulation cannot produce systemic toxicity — and the dosing burden, since local concentration must be maintained by repeated application rather than by a plasma half-life.',
+        evidenceSource:
+          'PubChem CID 2882, structure and physicochemical properties; Drugs@FDA route listings for cromolyn sodium (inhalation, nasal, ophthalmic, oral)',
+        measuredMetric:
+          'Ionisation state and route-specific formulation set, from structure and regulatory listings',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'crm-a5',
+        category: 'measured',
+        title: 'Across the eye-drop class it works, in the short term, like everything else',
+        laymanSummary:
+          'In allergic conjunctivitis, the systematic review that examined every drop in this class found that all of them beat a dummy in the short term, including this one, and that none of them has any long-term data.',
+        technicalDetails:
+          'The Cochrane review of topical antihistamines and mast cell stabilisers for seasonal and perennial allergic conjunctivitis identified 30 randomised trials in 4,344 participants across 17 drugs or comparisons, with nedocromil sodium and sodium cromoglycate among the agents evaluated. Overall risk of bias was low but reporting quality variable and outcome reporting highly heterogeneous; meta-analysis was possible for only one comparison, which did not involve cromoglicate. The conclusion was that all reported agents reduce symptoms and signs of seasonal allergic conjunctivitis against placebo in the short term, that trials evaluated treatment periods of one to eight weeks only with no long-term efficacy data, and that no serious adverse events related to the class were reported.',
+        evidenceSource:
+          'Castillo M, Scott NW, Mustafa MZ, Mustafa MS, Azuara-Blanco A. Cochrane Database Syst Rev 2015;6:CD009566',
+        doi: '10.1002/14651858.CD009566.pub2',
+        measuredMetric:
+          'Participant-reported ocular symptom severity against placebo, class-wide across 30 trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'crm-a6',
+        category: 'inferred',
+        title: 'The one indication where the target cell is beyond doubt is the smallest one',
+        laymanSummary:
+          'For mastocytosis — a disease defined by too many mast cells — the oral form has its own approval. That is the only place where "mast cell drug" is not an assumption about the mechanism but a description of the disease.',
+        technicalDetails:
+          'Gastrocrom, cromolyn sodium oral concentrate, was approved under NDA 020479 on 29 February 1996 and remains the only branded cromolyn product in the active Drugs@FDA listing, with generics from 2011 onward. In mastocytosis the pathology is an excess of mast cells, so the drug and the disease are matched at the level of the cell type regardless of which molecular mechanism turns out to be correct — the therapeutic rationale does not depend on resolving the GPR35 or annexin A1 question. This is a narrower and firmer claim than the one made for the inhaled product, where the same cell type is one participant among many in a complex inflammatory disease.',
+        evidenceSource:
+          'Drugs@FDA: GASTROCROM (cromolyn sodium) oral concentrate, NDA 020479, approved 29 February 1996',
+        inferredClaim:
+          'That a mast-cell-directed rationale transfers from mastocytosis, where the cell type defines the disease, to asthma, where the Cochrane review found no significant effect on symptom-free days',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Applied to a surface, and it stays there',
+        laymanDesc:
+          'Sprayed into the nose, nebulised into the lungs, dropped into the eye, or swallowed to reach the gut lining. Which formulation you use decides which surface is treated, because none of it travels.',
+        molecularDetail:
+          'Two carboxylic acids fully ionised at physiological pH give a doubly anionic molecule with negligible absorption across any epithelium. Four separate route-specific formulations exist for that reason, and the oral concentrate acts on gut mucosal mast cells without entering the circulation.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It never enters the cell',
+        laymanDesc:
+          'The molecule is far too charged to cross a cell membrane. Whatever it does, it does from the outside — which is one reason the mechanism has been so hard to pin down.',
+        molecularDetail:
+          'The double negative charge that prevents systemic absorption equally prevents passive entry into mast cells. Any mechanism must therefore operate at the cell surface or through a surface receptor, which is what makes the GPR35 hypothesis structurally attractive and the classical membrane-stabilisation account structurally awkward.',
+        iconName: 'ShieldCheck',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The classical account: the mast cell is stabilised',
+        laymanDesc:
+          'The traditional explanation is that it makes the mast cell membrane less likely to open and release its contents when an allergen arrives. This is the phrase the whole drug category is named after.',
+        molecularDetail:
+          'Early studies attributed the cromones’ prevention of allergic reactions to mast cell stabilising properties. The 2017 review states the exact pharmacological mechanism remained a mystery, and that the account cannot explain the discrepancies between species and between mast cell subtypes in their response to the drugs.',
+        iconName: 'HelpCircle',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Two candidate mechanisms, neither settled',
+        laymanDesc:
+          'One idea is that the drug activates a specific receptor on the cell surface. The other is that it boosts one of the body’s own anti-inflammatory systems, the one steroids also use. Both have evidence and neither has closed the question.',
+        molecularDetail:
+          'Cromoglycate, nedocromil and zaprinast increase inositol phosphate accumulation and calcium mobilisation in HEK cells transfected with the orphan receptor GPR35, though its relevance to mast cell mediator release is unelucidated. Separately, cromones potentiate glucocorticoid-induced annexin A1 release by inhibiting PP2A phosphatase, and annexin A1 depletion in vitro completely reverses their inhibitory actions.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The allergic reaction is smaller, if it is prevented in advance',
+        laymanDesc:
+          'Used regularly and started before exposure, less histamine is released and the reaction is milder. Used during a reaction it does nothing, because it works upstream of everything that is already happening.',
+        molecularDetail:
+          'The inhalation label describes it as a prophylactic agent given on a regular daily basis, with effect usually evident after several weeks though some patients respond almost immediately. There is no receptor-blocking component, so nothing in the mechanism addresses mediators already released.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the pooled trials actually showed',
+        laymanDesc:
+          'On the cleanest measure in childhood asthma — days with no symptoms — pooling the trials found no difference from placebo, and the shape of the published literature suggested negative studies were missing.',
+        molecularDetail:
+          'Twenty-three trials in 1,026 children published 1970 to 1997; percentage of symptom-free days showed no statistically significant difference; other symptom outcomes reached significance with small effects and wide intervals; funnel plot indicated under-representation of small negative studies.',
+        iconName: 'Ban',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane CD002173.pub2 — inhaled sodium cromoglycate for asthma in children',
+        phase: 'Systematic review and meta-analysis of 23 double-blind placebo-controlled trials',
+        sampleSize: 1026,
+        primaryEndpoint:
+          'Efficacy of sodium cromoglycate against placebo as maintenance therapy in children aged 0 to 18',
+        endpointMet: false,
+        statisticalPValue:
+          'No statistically significant difference on percentage of symptom-free days; other symptom outcomes significant with small effects; funnel plot indicating publication bias',
+        unreportedAdverseSignals:
+          'Trials published 1970 to 1997, mostly crossover, few reporting allocation concealment. The authors state publication bias is likely to have overestimated the beneficial effects.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Cochrane CD009566.pub2 — topical antihistamines and mast cell stabilisers',
+        phase: 'Systematic review of 30 randomised trials across 17 drugs or comparisons',
+        sampleSize: 4344,
+        primaryEndpoint:
+          'Participant-reported severity of ocular itching, irritation, tearing and photophobia',
+        endpointMet: true,
+        statisticalPValue:
+          'All reported agents, cromoglicate among them, reduced symptoms and signs against placebo in the short term; no serious adverse events reported for the class',
+        unreportedAdverseSignals:
+          'Treatment periods of one to eight weeks only, with no long-term efficacy data for any drug in the class. Meta-analysis was possible for one comparison, which did not involve cromoglicate.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'No statistically significant difference from placebo on percentage of symptom-free days across four pooled paediatric asthma trials',
+        'A funnel plot showing under-representation of small negative studies among 23 trials in 1,026 children',
+        'Short-term symptom reduction against placebo in allergic conjunctivitis, alongside every other drug in that class',
+        'Cromoglycate, nedocromil and zaprinast increase inositol phosphate accumulation and calcium mobilisation in GPR35-transfected HEK cells',
+        'Annexin A1 depletion in vitro completely reverses the inhibitory actions of the cromones',
+      ],
+      unsupportedInferences: [
+        'That "mast cell stabiliser" describes a known mechanism — the 2017 review calls the exact mechanism a mystery and notes species and subtype discrepancies the account cannot explain',
+        'That the statistically significant secondary symptom outcomes in childhood asthma reflect a real effect, given the publication bias the funnel plot indicates',
+        'That the GPR35 findings translate into therapeutic effect — the review states explicitly that it is unclear how they would',
+        'That a mast-cell rationale established in mastocytosis transfers to asthma, where the pooled primary outcome was null',
+      ],
+      whatFailedInitially: [
+        'The pooled percentage of symptom-free days in childhood asthma showed no significant difference from placebo',
+        'Publication bias was detected in the paediatric asthma literature, with small negative studies under-represented',
+        'The drug lost its place as maintenance therapy for childhood asthma from 1990 onward as inhaled corticosteroids arrived',
+        'Every original brand — Intal, Opticrom, Crolom — has left the active Drugs@FDA product listing',
+      ],
+      realWorldOutcome: [
+        'Synthesised at Fisons in the 1960s and the origin of the entire "mast cell stabiliser" category',
+        'Only six products remain in the CMS acquisition survey, the smallest count of any drug in this batch, at $0.5845 per millilitre',
+        'Still available over the counter as a nasal solution and by prescription for inhalation, ophthalmic and oral use',
+        'Gastrocrom oral concentrate, NDA 020479 of 29 February 1996, remains the only branded cromolyn product listed as marketed, for mastocytosis',
+      ],
+    },
+    deliverySystem: {
+      type: 'Four route-specific formulations: inhalation solution for nebulisation, nasal solution over the counter, ophthalmic solution, and oral concentrate',
+      description:
+        'Each formulation treats only the surface it reaches, because the molecule is not absorbed. All require dosing several times daily to maintain local concentration, since there is no plasma half-life doing that work. The inhalation label describes it as a prophylactic given on a regular daily basis, with effect usually evident after several weeks though some patients respond almost immediately.',
+      safetyProfile:
+        'Among the most benign safety profiles in this batch, and for a structural reason: a doubly anionic molecule that is essentially not absorbed cannot produce systemic toxicity. The Cochrane review of topical antihistamines and mast cell stabilisers reported no serious adverse events related to the class across 30 trials in 4,344 participants. Local irritation on application — throat irritation and cough with inhalation, nasal stinging and sneezing with the spray, transient burning with the drops — is the practical limit. The safety record is the strongest thing about this drug and it was never the reason it was displaced.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it work for childhood asthma?',
+        a: 'The systematic review could not say, and thought the published literature was flattering it. Cochrane pooled 23 double-blind placebo-controlled trials in 1,026 children, published between 1970 and 1997. On percentage of symptom-free days — the cleanest of the outcomes — pooling showed no statistically significant difference from placebo. Other symptom measures and bronchodilator use did reach significance, but the treatment effects were small and the confidence intervals wide. And the funnel plot showed small studies with negative results were under-represented, which is the signature of publication bias. The authors concluded there is insufficient evidence to be sure of efficacy over placebo, and that publication bias is likely to have overestimated the benefit that was reported.',
+      },
+      {
+        q: 'What does "mast cell stabiliser" actually mean?',
+        a: 'It means less than the phrase suggests. The category was invented for this drug, on the observation that it prevents allergic reactions without blocking any receptor. But a 2017 review by pharmacologists in the field — including one who worked on the original programme — states that the exact mechanism by which the cromones do this remained a mystery, and that the classical stabilisation account cannot explain why mast cells from different species and different tissues respond so inconsistently. Two candidate mechanisms are now on the table: activation of an orphan receptor called GPR35, and potentiation of the body’s own annexin A1 anti-inflammatory system, the same one glucocorticoids work through. Neither is settled.',
+        auditNote:
+          'A drug can work without its mechanism being known. What is unusual here is that the unknown mechanism was given a confident name, and the name then became a marketing category for other drugs.',
+      },
+      {
+        q: 'Why do I have to use it four times a day?',
+        a: 'Because the molecule carries two permanent negative charges and is therefore essentially not absorbed anywhere. That is a design feature, not a flaw: it is why there are four separate formulations for four separate surfaces, why the oral form can treat gut mast cells without entering the bloodstream, and why the safety record is as clean as it is. But it also means there is no plasma half-life keeping the drug present between doses. Local concentration has to be maintained by putting more on, which is the practical reason once-daily steroid sprays displaced it.',
+      },
+      {
+        q: 'Is it dangerous? Is that why it went out of use?',
+        a: 'No — the opposite. It is one of the safest molecules in this whole batch, precisely because it does not get into the circulation. The Cochrane review of every topical antihistamine and mast cell stabiliser in allergic conjunctivitis, across 30 trials in 4,344 people, reported no serious adverse events for the class. What displaced it in asthma was inhaled corticosteroids becoming available from around 1990, with an evidence base that did not depend on trials from the 1970s and 1980s with negative studies missing from the record. It was outcompeted, not withdrawn.',
+      },
+      {
+        q: 'Is there anywhere it clearly belongs?',
+        a: 'Mastocytosis is the strongest case. That is a disease defined by having too many mast cells, so the match between drug and disease is at the level of the cell type rather than a hypothesis about mechanism — it does not matter whether the GPR35 or the annexin A1 explanation turns out to be right. The oral concentrate has its own approval for it, granted in February 1996, and it is the only branded cromolyn product still listed as marketed. That is a much narrower and firmer claim than the one made for the inhaled product in asthma, where the mast cell is one participant among many.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'van der Wouden JC, Uijen JH, Bernsen RM, Tasche MJ, de Jongste JC, Ducharme F. Inhaled sodium cromoglycate for asthma in children. Cochrane Database Syst Rev 2008;4:CD002173',
+        identifier: '10.1002/14651858.CD002173.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sinniah A, Yazid S, Flower RJ. The anti-allergic cromones: past, present, and future. Front Pharmacol 2017;8:827',
+        identifier: '10.3389/fphar.2017.00827',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Castillo M, Scott NW, Mustafa MZ, Mustafa MS, Azuara-Blanco A. Topical antihistamines and mast cell stabilisers for treating seasonal and perennial allergic conjunctivitis. Cochrane Database Syst Rev 2015;6:CD009566',
+        identifier: '10.1002/14651858.CD009566.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: GASTROCROM (cromolyn sodium) oral concentrate, NDA 020479, approved 29 February 1996; generic cromolyn sodium for inhalation (ANDA 075271, 2000), nasal over-the-counter (ANDA 075702, 2001) and ophthalmic (ANDA 075282, 1999) use',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020479',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2882 — cromoglicic acid structure, formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2882',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 10. Loratadine — the antihistamine defined by the strength it was not allowed to exceed, whose
+  //     active metabolite was launched as a new prescription brand eleven months before the parent
+  //     went over the counter.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'loratadine',
+    name: 'Loratadine',
+    tradeName: 'Claritin / Alavert / Allergy Relief',
+    sponsor:
+      'Developed by Schering-Plough; NDA 019658 was approved 12 April 1993 and its over-the-counter efficacy supplement on 27 November 2002. The applications are now held by Bayer HealthCare, with Alavert (NDA 021375) approved 19 December 2002',
+    targetGene: 'HRH1',
+    targetProtein: 'Histamine H1 receptor — a human G-protein-coupled receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1993,
+    indication:
+      'Temporary relief of runny nose, itchy or watery eyes, sneezing and itching of the nose or throat due to hay fever or other upper respiratory allergies, and relief of itching due to hives',
+    patientFriendlyIndication: 'Hay fever and itchy hives',
+    anatomicalSite:
+      'Nasal mucosa, conjunctiva and dermal postcapillary venules — peripheral H1 receptors, with limited central nervous system penetration at the marketed strength',
+    conditionContext: {
+      conditionExplainer:
+        'The same allergic reaction every antihistamine on this shelf addresses: mast cells release histamine within seconds of meeting pollen, and histamine produces the itch, the sneeze and the running.',
+      whyItMatters:
+        'Loratadine is the drug that made non-sedating antihistamines a mass-market product, and its story is about the number on the box. Its marketed strength is the one that stays below the threshold where the molecule starts to sedate, and the label says so in as many words: taking more than directed may cause drowsiness. Everything else about the drug follows from that constraint.',
+      whoTakesThis:
+        'Adults and children from two years, sold without a prescription in the United States since November 2002 and now among the cheapest medicines in any pharmacy.',
+      clinicalGoals:
+        'Symptom relief with no drowsiness. Both halves are achieved at the marketed strength, and a network meta-analysis puts the symptom half at roughly half the size of cetirizine’s.',
+    },
+    oneSentenceVerdict:
+      'A tricyclic H1 antagonist that reliably beats placebo without sedating at the one strength it is sold in — a network meta-analysis of 13 randomised trials in 6,867 patients put its improvement in rhinoconjunctivitis quality of life at -0.32 (95% CI -0.55 to -0.097, p=0.005) against cetirizine’s -0.62 (95% CI -0.90 to -0.34), and its own over-the-counter label states that taking more than directed may cause drowsiness.',
+    laymanHowItWorks:
+      'Histamine is what makes an allergic reaction itch and run, and it works by switching on a receptor in your nose, eyes and skin. Loratadine sits in that receptor and holds it closed. What makes it different from the older antihistamines is the amount you take: the strength on the box is set just below the point where the drug starts crossing into the brain enough to make you sleepy. That is why it does not make you drowsy, and it is also why there is no stronger version to move up to.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 71,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        '$0.0532 per unit, median across 109 listed products (CMS National Average Drug Acquisition Cost, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      synthesisComplexity: 'Moderate',
+      openPatentNotes:
+        'The lifecycle sequence is unusually legible here. Clarinex, the active metabolite desloratadine, was approved as a new prescription product under NDA 021165 on 21 December 2001. Claritin’s own over-the-counter efficacy supplement was approved eleven months later, on 27 November 2002, and Alavert followed on 19 December 2002. The parent molecule is now among the cheapest drugs in any pharmacy — 109 products in the CMS acquisition survey at just over five cents a unit — while desloratadine remains a prescription product at $0.2553 per unit.',
+      costSource: {
+        label:
+          'No published cost-of-production study exists for loratadine; the field is left empty rather than estimated',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'url',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 109 listed loratadine products',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'regulatory',
+      },
+    },
+    substitutes: {
+      summary:
+        'The one network meta-analysis that ranked these drugs against each other on quality of life put cetirizine first and loratadine third of four, with overlapping confidence intervals. The practical trade is straightforward: loratadine is the least sedating of the widely used oral options and the weakest, and cetirizine is the reverse.',
+      conventionalRx: [
+        {
+          name: 'Cetirizine (Zyrtec)',
+          class: 'Second-generation H1 antagonist',
+          howItCompares:
+            'Ranked first in a network meta-analysis of 13 randomised trials in 6,867 patients, improving rhinoconjunctivitis quality of life by -0.62 (95% CI -0.90 to -0.34) against loratadine’s -0.32 (95% CI -0.55 to -0.097). The point estimate is roughly double; the confidence intervals overlap. The cost of that difference is measurable sedation: brain H1 receptor occupancy of 26.0% by PET at 20 mg.',
+          typicalCost:
+            '$0.0629 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: the largest measured effect of the common oral antihistamines. Cons: dose-related somnolence and a label warning against driving, which loratadine does not carry at its marketed strength.',
+        },
+        {
+          name: 'Fexofenadine (Allegra)',
+          class: 'Second-generation H1 antagonist that does not enter the brain',
+          howItCompares:
+            'The only oral antihistamine whose absence from the brain has been imaged directly: -0.1% H1 receptor occupancy by [11C]doxepin PET. Loratadine’s non-sedating claim rests on trial sedation rates rather than on that kind of measurement, which is a weaker form of evidence for the same property.',
+          typicalCost:
+            '$0.2407 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: direct imaging evidence for the non-sedating claim, and no hepatic enzyme interactions. Cons: about four and a half times the acquisition cost, and fruit juice cuts absorption to roughly a third.',
+        },
+        {
+          name: 'Desloratadine (Clarinex)',
+          class: 'The active metabolite of loratadine, sold as a separate prescription product',
+          howItCompares:
+            'What loratadine turns into in the liver, marketed on its own from December 2001. In the same network meta-analysis it improved quality of life by -0.39 (95% CI -0.60 to -0.18) against loratadine’s -0.32 — a difference well inside the overlap of the two intervals. It remains prescription-only.',
+          typicalCost:
+            '$0.2553 per unit at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: skips the metabolic step, so hepatic enzyme variation matters less. Cons: roughly five times the acquisition cost of its own parent, prescription-only, and no separation from loratadine in the pooled comparison.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Do not double the dose to get more effect',
+          action:
+            'Take the strength on the box and no more, even when symptoms are not fully controlled.',
+          patientImpact:
+            'The over-the-counter label states directly: do not take more than directed; taking more than directed may cause drowsiness. The marketed strength sits just below the sedation threshold, so exceeding it converts a non-sedating antihistamine into a sedating one without a guaranteed gain in symptom control.',
+          clinicalPrecaution:
+            'If the marketed strength is not enough, the answer is a different class — an intranasal corticosteroid for congestion, or an intranasal antihistamine — rather than more of this one.',
+        },
+        {
+          name: 'Mention liver or kidney disease',
+          action:
+            'Check with a clinician before use if you have liver or kidney disease, as the label instructs.',
+          patientImpact:
+            'Loratadine is converted to its active form by hepatic cytochrome P450 enzymes and cleared renally, so impaired function on either side changes exposure. The label says a doctor should determine whether a different amount is needed.',
+          clinicalPrecaution:
+            'This is one of the few genuine label cautions on a drug that is otherwise remarkably free of them.',
+        },
+        {
+          name: 'Saline nasal irrigation',
+          action: 'Rinsing the nasal cavity with isotonic or hypertonic salt water.',
+          patientImpact:
+            'Physically removes deposited pollen. It works on nasal blockage, which is the symptom oral antihistamines address least well and which is not among the four symptoms this drug’s own label claims to relieve.',
+          clinicalPrecaution:
+            'Only sterile, distilled or previously boiled water. Fatal amoebic meningoencephalitis has been traced to irrigation with untreated tap water.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCOC(=O)N1CCC(=C2C3=C(CCC4=C2N=CC=C4)C=C(C=C3)Cl)CC1',
+      chemicalFormula: 'C22H23ClN2O2',
+      molecularWeight: '382.90 g/mol',
+      targetReceptorAffinity:
+        'A tricyclic benzocycloheptapyridine bearing an exocyclic piperidylidene capped with an ethyl carbamate. That carbamate is the feature that distinguishes it from the sedating tricyclics it descends from: it lowers basicity and raises polarity enough to limit central nervous system penetration at the marketed strength, and hepatic removal of it yields desloratadine, the active metabolite that was later marketed as a drug in its own right. The molecule is a prodrug in practical terms, and its activity therefore depends on cytochrome P450 conversion rather than on the parent alone.',
+      structureSource: {
+        label: 'PubChem CID 3957 (loratadine) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3957',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lor-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Carbamate integrity and desloratadine content',
+          description:
+            'Measure how much of the batch has already lost its ethyl carbamate. Free desloratadine is not an ordinary impurity: it is a separately approved drug with its own application, and it is more centrally active than the parent. A batch drifting towards the metabolite is drifting towards a different pharmacology.',
+          reagentsAndBuffer:
+            'Loratadine and desloratadine reference standards, reversed-phase HPLC with ultraviolet detection at 247 nm, 1H NMR in CDCl3, water content by Karl Fischer, forced-degradation samples under acid, base and humidity',
+        },
+        {
+          id: 'lor-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Grignard addition to the tricyclic ketone, then carbamoylation',
+          description:
+            'Add an N-methylpiperidinyl Grignard reagent to the chlorinated benzocycloheptapyridinone, dehydrate to set the exocyclic alkene, then demethylate the piperidine nitrogen and cap it with ethyl chloroformate. The carbamoylation is the last step and the commercially decisive one — the intermediate immediately before it is desloratadine.',
+          dependsOnStepId: 'lor-w1',
+          reagentsAndBuffer:
+            '1-methyl-4-piperidinylmagnesium chloride, 8-chloro-5,6-dihydro-11H-benzo[5,6]cyclohepta[1,2-b]pyridin-11-one, anhydrous tetrahydrofuran under nitrogen, acid-catalysed dehydration, then ethyl chloroformate with a hindered base',
+        },
+        {
+          id: 'lor-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation away from the des-carbamate and the alkene regioisomer',
+          description:
+            'Crystallise the product away from residual desloratadine and from the endocyclic alkene isomer formed during dehydration. Both are structurally close and both are pharmacologically different, and the specification on each is what keeps a five-cent tablet a defined product rather than a mixture.',
+          dependsOnStepId: 'lor-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from ethanol or isopropanol with controlled cooling, HPLC purity and related-substances profile, differential scanning calorimetry and powder X-ray diffraction for polymorph confirmation',
+        },
+        {
+          id: 'lor-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Hepatocyte conversion to desloratadine across CYP genotypes',
+          description:
+            'Incubate the compound with human hepatocytes or recombinant cytochrome P450 isoforms and measure formation of the active metabolite. Because the parent depends on hepatic conversion for a large part of its activity, a single-donor experiment can conceal the variation that matters: enzyme inhibition or genetic variability shifts the parent-to-metabolite ratio and with it the effective exposure.',
+          dependsOnStepId: 'lor-w3',
+          reagentsAndBuffer:
+            'Cryopreserved pooled and single-donor human hepatocytes, recombinant CYP3A4 and CYP2D6 supersomes with NADPH-regenerating system, ketoconazole and quinidine as isoform-selective inhibitors, LC-MS/MS quantification of loratadine and desloratadine',
+        },
+        {
+          id: 'lor-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Wheal-and-flare suppression paired with a sedation measure at the same exposure',
+          description:
+            'Measure histamine wheal suppression and psychomotor performance in the same subjects at the same exposure, across a range of strengths. This is the experiment the marketed product embodies: the label states that taking more than directed may cause drowsiness, which is a statement that the strength was chosen where those two curves cross. Reporting either curve alone would misdescribe the drug.',
+          dependsOnStepId: 'lor-w4',
+          reagentsAndBuffer:
+            'Intradermal histamine phosphate with saline control, planimetry of wheal and flare to 24 hours, choice reaction time and critical flicker fusion testing, Stanford Sleepiness Scale, matched placebo and a sedating positive control such as hydroxyzine',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lor-a1',
+        category: 'measured',
+        title: 'It beats placebo, at roughly half the effect size of cetirizine',
+        laymanSummary:
+          'A network meta-analysis pooled thirteen trials in nearly seven thousand people and compared four allergy drugs on how much they improved quality of life. All four beat placebo. Cetirizine came first and this drug came third, at about half the improvement.',
+        technicalDetails:
+          'A network meta-analysis of randomised controlled trials in allergic rhinitis identified 386 studies and included 13 high-quality randomised trials with a combined 6,867 patients across loratadine, cetirizine, montelukast and desloratadine, using rhinoconjunctivitis quality of life questionnaire scores as the outcome. Against placebo, mean differences were: cetirizine -0.62 (95% CI -0.90 to -0.34, p<0.001); desloratadine -0.39 (95% CI -0.60 to -0.18, p<0.001); loratadine -0.32 (95% CI -0.55 to -0.097, p=0.005); montelukast -0.28 (95% CI -0.54 to -0.023, p=0.033). Surface-under-the-cumulative-ranking analysis placed cetirizine first. The loratadine and cetirizine confidence intervals overlap between -0.34 and -0.55, so the ranking is a point-estimate ordering rather than a demonstrated separation.',
+        evidenceSource: 'Xiao J, Wu WX, Ye YY, Lin WJ, Wang L. Am J Ther 2016;23:e1568-e1578',
+        doi: '10.1097/MJT.0000000000000242',
+        measuredMetric:
+          'Mean change in rhinoconjunctivitis quality of life questionnaire score against placebo, network meta-analysis of 13 trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lor-a2',
+        category: 'inferred',
+        title:
+          'The strength is set at the sedation threshold, and the label says what happens above it',
+        laymanSummary:
+          'This drug is famous for not making people sleepy. The reason is the number on the box: it is the amount that stays below the point where the molecule starts affecting the brain. The label states plainly that taking more than directed may cause drowsiness.',
+        technicalDetails:
+          'The over-the-counter label carries, under "When using this product", the statement: "do not take more than directed. Taking more than directed may cause drowsiness." No higher strength of loratadine is marketed. The structural basis is the ethyl carbamate cap on the piperidine nitrogen, which lowers basicity and raises polarity enough to limit central nervous system penetration at the marketed exposure — a property that is a function of amount rather than an absolute. The clinical consequence is visible in the comparative data: in the network meta-analysis the point estimate for loratadine was roughly half that of cetirizine, and cetirizine is the drug that carries the sedation warning loratadine does not. What no public dataset establishes is what a higher loratadine strength would have achieved on symptoms, because no such strength was developed for sale.',
+        evidenceSource:
+          'Loratadine over-the-counter prescribing information, "When using this product" section, via openFDA drug labelling; Xiao J et al., Am J Ther 2016;23:e1568-e1578',
+        inferredClaim:
+          'That loratadine is intrinsically a non-sedating molecule rather than a molecule sold at a non-sedating amount — its own label states that exceeding the marketed amount may cause drowsiness, and no higher strength exists to test what it would do for symptoms',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'lor-a3',
+        category: 'conclusion_shift',
+        title:
+          'The hypospadias alarm of 2002 did not survive a national birth defects study, and a mouse study kept it alive',
+        laymanSummary:
+          'A Swedish study reported that boys born to women who took this drug in pregnancy had twice the usual rate of a urethral birth defect. A large United States birth defects study then found no increased risk. A mouse experiment afterwards did produce the defect, which is why the question has never fully closed.',
+        technicalDetails:
+          'In 2002 a Swedish study reported hypospadias prevalence twice that of the general population among male infants born to women who took loratadine during pregnancy; it had insufficient data to determine severity and did not control for confounders such as family history or maternal age. In 2003 a prospective study across four countries found five of 142 loratadine-exposed pregnancies resulted in major malformations, a prevalence consistent with the general population, and none of them hypospadias. The CDC then analysed the National Birth Defects Prevention Study for 1997 to 2001 and determined that no increased risk for second- or third-degree hypospadias existed among women who used loratadine in early pregnancy; that report carries a published erratum. Separately, in 2006 a mouse study gavaging pregnant dams with over-the-counter loratadine syrup from gestational day 12 to 17 reported disrupted urethral development on gross and histological assessment and a steroid receptor messenger RNA expression profile resembling that produced by ethinyl estradiol, and it drew a published comment and author reply.',
+        evidenceSource:
+          'CDC. Evaluation of an association between loratadine and hypospadias — United States, 1997-2001. MMWR 2004;53:219-221 (erratum MMWR 2006;55:1075); Willingham E, Agras K, Vilela M, Baskin LS. J Urol 2006;175:723-726',
+        doi: '10.1016/S0022-5347(05)00188-6',
+        inferredClaim:
+          'That loratadine causes hypospadias — an uncontrolled registry signal that a national case-control study did not reproduce, complicated rather than settled by a mouse model showing oestrogen-like disruption of urethral development',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'lor-a4',
+        category: 'conclusion_shift',
+        title:
+          'The active metabolite became a new prescription brand eleven months before the parent went over the counter',
+        laymanSummary:
+          'What your liver turns this drug into was launched as a separate prescription medicine in December 2001. The original drug moved to the open shelf in November 2002. The sequence put a new branded product in place before the old one lost its prescription status.',
+        technicalDetails:
+          'Clarinex, desloratadine, was approved under NDA 021165 on 21 December 2001. The over-the-counter efficacy supplement to Claritin’s NDA 019658 was approved on 27 November 2002, and Alavert followed under NDA 021375 on 19 December 2002. Desloratadine is the active metabolite formed from loratadine by hepatic cytochrome P450 conversion, so the two are pharmacologically continuous rather than distinct. In the network meta-analysis of allergic rhinitis quality of life, desloratadine improved scores by -0.39 (95% CI -0.60 to -0.18) against loratadine’s -0.32 (95% CI -0.55 to -0.097) — a difference lying well inside the overlap of the two intervals. Twenty-four years later loratadine costs $0.0532 per unit as a generic and desloratadine $0.2553, roughly five times as much, and remains prescription-only.',
+        evidenceSource:
+          'Drugs@FDA: CLARINEX (desloratadine), NDA 021165, approved 21 December 2001; CLARITIN, NDA 019658, over-the-counter efficacy supplement 18 approved 27 November 2002; ALAVERT, NDA 021375, 19 December 2002; Xiao J et al., Am J Ther 2016;23:e1568-e1578',
+        doi: '10.1097/MJT.0000000000000242',
+        inferredClaim:
+          'That the metabolite is a therapeutic advance over its parent — the pooled comparison places the two within each other’s confidence intervals, while the price and prescription status differ by a factor of five',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'lor-a5',
+        category: 'measured',
+        title: 'Its activity depends on the liver converting it, and the label reflects that',
+        laymanSummary:
+          'Loratadine is largely a starting material: the liver strips off part of the molecule to make the form that does most of the work. That is why the label singles out liver and kidney disease as reasons to check with a doctor.',
+        technicalDetails:
+          'Loratadine bears an ethyl carbamate on the piperidine nitrogen which hepatic cytochrome P450 enzymes remove to yield desloratadine, itself an approved active drug. The over-the-counter label instructs: "Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose." That caution is unusual on a monograph-style antihistamine label and follows directly from the metabolic dependence: anything that inhibits the converting enzymes, or impairs renal clearance of the metabolite, shifts exposure. This is a difference of kind from fexofenadine, which is excreted largely unchanged and has no meaningful hepatic enzyme interactions.',
+        evidenceSource:
+          'Loratadine over-the-counter prescribing information, "Ask a doctor before use" section, via openFDA drug labelling; Drugs@FDA CLARINEX (desloratadine) NDA 021165',
+        measuredMetric:
+          'Labelled hepatic and renal cautions, and the existence of the metabolite as a separately approved product',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lor-a6',
+        category: 'inferred',
+        title: 'A 1,095-patient phase 3 combination trial has no public result',
+        laymanSummary:
+          'The manufacturer ran a phase 3 trial of this drug combined with montelukast against a decongestant and a placebo, in over a thousand people with hay fever. The registry entry has no results.',
+        technicalDetails:
+          'NCT00319995, "Efficacy and Safety of Combination Loratadine/Montelukast QD vs Pseudoephedrine and Placebo in the Treatment of Subjects With Seasonal Allergic Rhinitis", is a phase 3 study with an actual enrolment of 1,095 sponsored by Organon. The registry record carries no posted results section. A four-arm comparison of that size against both an active decongestant and placebo would be among the more informative datasets on how an oral antihistamine performs on nasal congestion specifically, which is the symptom the class relieves least well.',
+        evidenceSource:
+          'NCT00319995 registry record, Organon — actual enrolment 1,095, no results posted',
+        inferredClaim:
+          'That the published trial set characterises this drug’s performance in combination and against an active decongestant, when a 1,095-patient phase 3 designed to answer that has never reported',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed once a day',
+        laymanDesc:
+          'One tablet, one strength, once daily. There is no stronger version, and that constraint is the defining fact about the drug.',
+        molecularDetail:
+          'Marketed at a single strength across tablet, rapidly disintegrating tablet, chewable and liquid forms, and in combination with pseudoephedrine. The over-the-counter label states that taking more than directed may cause drowsiness, which locates the marketed exposure at the boundary of central nervous system effect.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The liver converts it into its active form',
+        laymanDesc:
+          'Enzymes in the liver strip a piece off the molecule. What is left is the form that does most of the work — and it is itself a separately approved medicine.',
+        molecularDetail:
+          'Hepatic cytochrome P450 enzymes remove the ethyl carbamate from the piperidine nitrogen to yield desloratadine, approved in its own right as Clarinex under NDA 021165 in December 2001. Activity therefore depends on hepatic conversion, which is why the label singles out liver and kidney disease.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies the histamine receptor in the periphery',
+        laymanDesc:
+          'In the nose, eyes and skin it takes the seat histamine needs, so the histamine released by mast cells has nowhere to signal.',
+        molecularDetail:
+          'Selective peripheral H1 antagonism. The carbamate and the resulting polarity limit central nervous system penetration at the marketed exposure — a property of the amount taken rather than an absolute property of the molecule, which is what the label’s overdose warning encodes.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The brain is spared, at the marketed strength',
+        laymanDesc:
+          'At the amount on the box, not enough reaches the brain to make you sleepy. Take more and that stops being true, which is exactly what the label warns.',
+        molecularDetail:
+          'Non-sedation here is established from trial adverse event rates rather than from direct receptor imaging — unlike fexofenadine, whose brain H1 occupancy of -0.1% has been measured by [11C]doxepin PET. The distinction is between a measured absence and an unobserved effect.',
+        iconName: 'ShieldCheck',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Symptoms improve, by about a third of a quality-of-life point',
+        laymanDesc:
+          'Pooled across thirteen trials in nearly seven thousand people, it improved rhinoconjunctivitis quality of life by 0.32 points against a dummy tablet. Cetirizine achieved about twice that.',
+        molecularDetail:
+          'Mean difference against placebo -0.32 (95% CI -0.55 to -0.097, p=0.005), against cetirizine -0.62 (95% CI -0.90 to -0.34), desloratadine -0.39 and montelukast -0.28, in a network meta-analysis of 13 randomised trials in 6,867 patients. The loratadine and cetirizine intervals overlap.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'And there is nowhere to go from there',
+        laymanDesc:
+          'If the tablet is not enough, there is no stronger tablet. The next step has to be a different kind of drug, because more of this one buys drowsiness rather than a guarantee of more relief.',
+        molecularDetail:
+          'No higher-strength loratadine product is marketed and the label forbids exceeding the directed amount. The classes with evidence beyond this ceiling are intranasal corticosteroids for congestion and intranasal antihistamines, both of which act on symptoms an oral H1 blocker addresses poorly.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Xiao 2016 network meta-analysis (Am J Ther 23:e1568-e1578)',
+        phase: 'Network meta-analysis of 13 randomised controlled trials',
+        sampleSize: 6867,
+        primaryEndpoint:
+          'Mean change in rhinoconjunctivitis quality of life questionnaire score against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Loratadine -0.32 (95% CI -0.55 to -0.097), p=0.005; cetirizine -0.62 (95% CI -0.90 to -0.34), p<0.001; desloratadine -0.39, p<0.001; montelukast -0.28, p=0.033',
+        unreportedAdverseSignals:
+          'The ranking rests on point estimates whose confidence intervals overlap. Quality of life is the only outcome pooled; nasal congestion specifically is not separated out.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'NCT00319995',
+        phase: 'Phase 3, randomised, four-arm, seasonal allergic rhinitis',
+        sampleSize: 1095,
+        primaryEndpoint:
+          'Efficacy and safety of combination loratadine/montelukast once daily against pseudoephedrine and placebo',
+        endpointMet: false,
+        statisticalPValue: 'Not reported. The registry record carries no posted results section.',
+        unreportedAdverseSignals:
+          'A four-arm comparison against both an active decongestant and placebo, in 1,095 patients, with no public outcome.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId:
+          'National Birth Defects Prevention Study analysis, 1997-2001 (MMWR 2004;53:219-221)',
+        phase: 'Population-based case-control analysis, not a trial',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Risk of second- or third-degree hypospadias with loratadine use in early pregnancy',
+        endpointMet: true,
+        statisticalPValue:
+          'No increased risk determined for second- or third-degree hypospadias among women who used loratadine in early pregnancy',
+        unreportedAdverseSignals:
+          'The report carries a published erratum. A 2006 mouse study subsequently reported disrupted urethral development and oestrogen-like steroid receptor changes after in utero exposure, and drew a published comment and author reply.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Rhinoconjunctivitis quality of life improved by 0.32 points against placebo (95% CI -0.55 to -0.097) across 13 trials in 6,867 patients',
+        'Cetirizine improved the same measure by 0.62 points (95% CI -0.90 to -0.34) in the same analysis, with overlapping intervals',
+        'The over-the-counter label states that taking more than directed may cause drowsiness',
+        'No increased risk of second- or third-degree hypospadias with early-pregnancy use in the National Birth Defects Prevention Study',
+        'Desloratadine, the hepatic metabolite, was approved as a separate prescription product on 21 December 2001',
+      ],
+      unsupportedInferences: [
+        'That loratadine is intrinsically non-sedating rather than sold at a non-sedating amount — its label warns that exceeding the amount may cause drowsiness',
+        'That the metabolite is therapeutically superior to the parent — the pooled estimates sit inside each other’s confidence intervals while the price differs fivefold',
+        'That loratadine causes hypospadias — the registry signal was not reproduced in a national case-control analysis',
+        'That the ranking of these four drugs is established — the confidence intervals overlap and only one outcome was pooled',
+      ],
+      whatFailedInitially: [
+        'Loratadine ranked third of four on quality of life, behind cetirizine and behind its own metabolite',
+        'The 2002 Swedish hypospadias signal did not control for family history or maternal age and was not reproduced',
+        'A 1,095-patient phase 3 four-arm combination trial has never posted results',
+        'There is no stronger version of the drug to escalate to, because the marketed strength is the sedation ceiling',
+      ],
+      realWorldOutcome: [
+        'Approved 12 April 1993 under NDA 019658 and switched to over-the-counter sale on 27 November 2002',
+        'Now among the cheapest medicines in any pharmacy — 109 products in the CMS acquisition survey at $0.0532 per unit',
+        'Its own active metabolite remains a prescription product at roughly five times the acquisition cost',
+        'Still the default recommendation where sedation must be avoided and cost matters, which is most of the time',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, rapidly disintegrating tablet, chewable tablet and oral solution, plus extended-release combinations with pseudoephedrine',
+      description:
+        'One dose daily at a single marketed strength. The rapidly disintegrating form exists for people who cannot swallow a tablet rather than for faster onset. The label instructs that the directed amount not be exceeded, because more of it may cause drowsiness.',
+      safetyProfile:
+        'Among the most benign labels of any drug in this batch. The over-the-counter label carries no driving warning, no alcohol warning and no contraindication other than prior allergic reaction to the product. Its two substantive cautions are a direction not to exceed the stated amount, because doing so may cause drowsiness, and an instruction to consult a clinician in liver or kidney disease, which follows from the drug’s dependence on hepatic conversion to desloratadine and renal clearance. Pregnancy safety was the subject of a hypospadias signal in 2002 that a national birth defects study did not reproduce.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why can I not just take two if one is not working?',
+        a: 'Because the label says so, and it says why: do not take more than directed; taking more than directed may cause drowsiness. The reason this drug does not sedate is not that the molecule cannot reach the brain — it is that the amount you are sold stays below the point where enough of it does. There is no higher strength on the market, so there is nothing to escalate to. If the standard amount is not controlling your symptoms, the answer is a different class: an intranasal corticosteroid if the main problem is a blocked nose, or an intranasal antihistamine if you need something that works within minutes.',
+        auditNote:
+          'What no public dataset shows is what a higher loratadine strength would have done for symptoms, because no such product was developed for sale.',
+      },
+      {
+        q: 'Is it weaker than cetirizine?',
+        a: 'On the one analysis that compared them directly, yes, by about half — with the caveat that the ranges overlap. A network meta-analysis pooled 13 randomised trials in 6,867 patients and measured improvement in rhinoconjunctivitis quality of life against placebo. Cetirizine came out at -0.62 with a confidence interval from -0.90 to -0.34; loratadine at -0.32 with an interval from -0.55 to -0.097. The point estimates differ roughly two-fold and cetirizine ranked first of the four drugs examined. But those intervals overlap between -0.34 and -0.55, so this is an ordering of best guesses rather than a demonstrated separation. And cetirizine buys its extra effect with measurable sedation, which loratadine does not have at its marketed strength.',
+      },
+      {
+        q: 'What is Clarinex, and is it better?',
+        a: 'Clarinex is desloratadine — what your liver turns loratadine into. It was approved as a separate prescription product on 21 December 2001, eleven months before Claritin moved to the open shelf on 27 November 2002. In the same network meta-analysis, desloratadine improved quality of life by -0.39 against loratadine’s -0.32, a difference well inside the overlap of the two confidence intervals. Today loratadine costs about five cents a unit as a generic and desloratadine about twenty-six cents, and desloratadine is still prescription-only. The pharmacological argument for taking the metabolite directly is that it removes dependence on the liver conversion step, which matters most in impaired hepatic function.',
+      },
+      {
+        q: 'Is it safe in pregnancy? I read something about birth defects.',
+        a: 'The signal did not hold up, and the question is not entirely closed. In 2002 a Swedish study reported that hypospadias — a urethral birth defect in boys — occurred at twice the general rate among infants of women who took loratadine in pregnancy. That study could not determine severity and did not adjust for family history or maternal age. A prospective study across four countries then found five major malformations among 142 loratadine-exposed pregnancies, in line with the background rate, and none of them hypospadias. The CDC analysed the National Birth Defects Prevention Study and found no increased risk of second- or third-degree hypospadias with early-pregnancy use. Against that, a 2006 mouse study reported that loratadine syrup given to pregnant mice disrupted urethral development and produced steroid receptor changes resembling those from a synthetic oestrogen. The human epidemiology is reassuring; the animal work is why this appears here rather than being dropped.',
+      },
+      {
+        q: 'Why is it so cheap?',
+        a: 'Because it is thirty-three years past approval, went over the counter in 2002, and has 109 separate products competing in the acquisition survey. At $0.0532 per unit it is the second cheapest drug in this batch after diphenhydramine. Those are what pharmacies pay rather than what a patient is charged, and no cost-of-production study has been published for it, so there is no manufacturing figure to compare against. What the price does illustrate cleanly is the value of the switch: the same molecule that carried a branded prescription price into the late 1990s now costs about what a single sweet costs.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Xiao J, Wu WX, Ye YY, Lin WJ, Wang L. A network meta-analysis of randomized controlled trials focusing on different allergic rhinitis medications. Am J Ther 2016;23:e1568-e1578',
+        identifier: '10.1097/MJT.0000000000000242',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Centers for Disease Control and Prevention. Evaluation of an association between loratadine and hypospadias — United States, 1997-2001. MMWR Morb Mortal Wkly Rep 2004;53:219-221 (erratum MMWR 2006;55:1075)',
+        identifier: '15029117',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Willingham E, Agras K, Vilela M, Baskin LS. Loratadine exerts estrogen-like effects and disrupts penile development in the mouse. J Urol 2006;175:723-726',
+        identifier: '10.1016/S0022-5347(05)00188-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Combination loratadine/montelukast against pseudoephedrine and placebo in seasonal allergic rhinitis, 1,095 patients, Organon — no results posted',
+        identifier: 'NCT00319995',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: CLARITIN (loratadine), NDA 019658, approved 12 April 1993, over-the-counter efficacy supplement 18 approved 27 November 2002; ALAVERT, NDA 021375, 19 December 2002; CLARINEX (desloratadine), NDA 021165, 21 December 2001',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019658',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Loratadine over-the-counter prescribing information — Uses, Warnings, "Ask a doctor before use" and "When using this product" sections, via openFDA drug labelling',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22loratadine%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3957 — loratadine structure, formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3957',
         kind: 'url',
       },
     ],
