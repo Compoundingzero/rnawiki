@@ -2216,7 +2216,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
   // buried, and a sepsis trial in which intravenous vitamin C made patients measurably worse.
   // ---------------------------------------------------------------------------------------------
   {
-    slug: 'vitamin-c-ascorbic-acid',
+    slug: 'vitamin-c',
     name: 'Vitamin C',
     tradeName: 'Ascorbic acid; L-ascorbate',
     sponsor:
@@ -7630,7 +7630,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
   // buried, and a sepsis trial in which intravenous vitamin C made patients measurably worse.
   // ---------------------------------------------------------------------------------------------
   {
-    slug: 'vitamin-c-ascorbic-acid',
+    slug: 'vitamin-c',
     name: 'Vitamin C',
     tradeName: 'Ascorbic acid; L-ascorbate',
     sponsor:

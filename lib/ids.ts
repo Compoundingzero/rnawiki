@@ -92,6 +92,10 @@ export function slugify(input: string): string {
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
+    // An apostrophe joins a word to itself; every other separator divides two words. Treating it
+    // as a divider gave "St. John's Wort" the slug st-john-s-wort, which is both unreadable and a
+    // different slug from the one "St John's wort" produces — two pages for one plant.
+    .replace(/['\u2018\u2019\u02bc]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 

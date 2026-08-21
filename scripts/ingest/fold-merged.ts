@@ -4,6 +4,8 @@ import { sql } from 'drizzle-orm'
 import { db } from '@/db'
 import { newId } from '@/lib/ids'
 
+import { slugify } from '@/lib/ids'
+
 import { baseMoiety, titleCaseDrugName } from './normalise'
 
 /**
@@ -40,14 +42,25 @@ async function findCandidates(): Promise<{ fold: Candidate[]; held: string[] }> 
   const rows = result.rows as Array<{ id: string; name: string; slug: string; depth: string }>
 
   const byLowerName = new Map(rows.map((row) => [row.name.toLowerCase(), row]))
+  const bySlug = new Map(rows.map((row) => [row.slug, row]))
   const fold: Candidate[] = []
   const held: string[] = []
 
   for (const row of rows) {
     const merged = titleCaseDrugName(baseMoiety(row.name.toUpperCase()))
-    if (!merged || merged.toLowerCase() === row.name.toLowerCase()) continue
+    if (!merged) continue
 
-    const successor = byLowerName.get(merged.toLowerCase())
+    // Two ways a row stops being generated, and the name-based test only sees one of them.
+    //
+    // A salt form changes NAME: "Levocetirizine Dihydrochloride" now normalises to
+    // "Levocetirizine". But a merged duplicate keeps its name and loses its SLUG — `vitamin-c-2`
+    // was still called "Vitamin C", so comparing names found nothing and the second page stayed.
+    const successor =
+      merged.toLowerCase() !== row.name.toLowerCase()
+        ? byLowerName.get(merged.toLowerCase())
+        : row.slug !== slugify(merged)
+          ? bySlug.get(slugify(merged))
+          : undefined
     if (!successor || successor.id === row.id) continue
 
     // An editorial dossier is written by a person and is not reproducible from any source.
@@ -103,14 +116,17 @@ async function main(): Promise<void> {
 
   let aliased = 0
   for (const candidate of fold) {
-    // The alias first: if the delete succeeds and this fails, the name becomes unfindable.
-    await db.execute(
-      sql`INSERT INTO drug_aliases (id, drug_id, alias, kind, source)
-          VALUES (${newId('alias')}, ${candidate.successorId}, ${candidate.name}, 'salt_form',
-                  'merged onto the base moiety')
-          ON CONFLICT DO NOTHING`,
-    )
-    aliased += 1
+    // The alias first: if the delete succeeds and this fails, the name becomes unfindable. Skipped
+    // when the two rows share a name, since the survivor already answers to it.
+    if (candidate.name.toLowerCase() !== candidate.successorName.toLowerCase()) {
+      await db.execute(
+        sql`INSERT INTO drug_aliases (id, drug_id, alias, kind, source)
+            VALUES (${newId('alias')}, ${candidate.successorId}, ${candidate.name}, 'salt_form',
+                    'merged onto the base moiety')
+            ON CONFLICT DO NOTHING`,
+      )
+      aliased += 1
+    }
     await db.execute(sql`DELETE FROM drugs WHERE id = ${candidate.id}`)
   }
 
