@@ -206,10 +206,12 @@ async function main(): Promise<void> {
       if (looksBinomial(splitPlantName(row.name).binomial)) {
         return [{ name: row.name, kind: 'organism' }]
       }
-      // Only the records that will reach the substance pass. A row that already has a mechanism or
-      // a context is not going to ask for its publication count, and there are five thousand of
-      // them.
-      if (!row.conditionContext && !row.laymanHowItWorks) {
+      // Only the records that will reach the substance pass — which, under --refresh-derived, is
+      // every record the label pass does not fill. Getting this condition out of step with the
+      // pass itself is not a missed optimisation: the pass then does its lookup live, inside the
+      // sequential write loop, and the run drops from three thousand records a minute to fifty.
+      // It did, for four thousand records, before this matched.
+      if (options.refreshDerived || (!row.conditionContext && !row.laymanHowItWorks)) {
         return [{ name: row.name, kind: 'literature' }]
       }
       return []

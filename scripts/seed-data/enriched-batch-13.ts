@@ -280,8 +280,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'This is the cleanest result the drug has. Patients with sudden one-sided facial paralysis were randomly given prednisolone, an antiviral, both or dummy tablets within three days of onset. Four in five on prednisolone had full facial function back at three months. Fewer than two in three did without it. The antiviral did nothing.',
         technicalDetails:
           'A double-blind, placebo-controlled, factorial trial recruited 551 patients within 72 hours of symptom onset and assessed final outcomes in 496. Recovery of facial function on the House-Brackmann scale at 3 months was 83.0% with prednisolone against 63.6% without it (P<0.001), and at 9 months 94.4% against 81.6% (P<0.001). Acyclovir showed no benefit alone (71.2% against 75.7%, adjusted P=0.50) and added nothing to prednisolone. There were no serious adverse events in any group.',
-        evidenceSource:
-          'Sullivan FM et al., N Engl J Med 2007;357:1598-1607 (ISRCTN71548196)',
+        evidenceSource: 'Sullivan FM et al., N Engl J Med 2007;357:1598-1607 (ISRCTN71548196)',
         doi: '10.1056/NEJMoa072006',
         measuredMetric:
           'Complete recovery of facial function on the House-Brackmann scale at 3 and 9 months, against placebo',
@@ -313,7 +312,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Thursz MR et al., N Engl J Med 2015;372:1619-1628 (STOPAH, ISRCTN88782125, EudraCT 2009-013897-42)',
         doi: '10.1056/NEJMoa1412278',
-        measuredMetric: 'All-cause mortality at 28 days, 90 days and 1 year, against matched placebo',
+        measuredMetric:
+          'All-cause mortality at 28 days, 90 days and 1 year, against matched placebo',
         auditFlag: 'caution',
       },
       {
@@ -339,7 +339,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'PREDNOS randomised 237 children aged 1 to 14 with a first episode of steroid-sensitive nephrotic syndrome to an extended 16-week prednisolone course (total 3,150 mg/m2) or a standard 8-week course (total 2,240 mg/m2), with matching placebo so tablet counts were identical, across 125 UK hospitals. There was no significant difference in time to first relapse (hazard ratio 0.87, 95% CI 0.65 to 1.17, log-rank P=0.28), nor in frequently relapsing nephrotic syndrome (53% against 50%, P=0.75), steroid-dependent disease (42% against 44%, P=0.77) or need for other immunosuppression (54% against 56%, P=0.81).',
         evidenceSource: 'Webb NJA et al., BMJ 2019;365:l1800 (PREDNOS, ISRCTN16645249)',
         doi: '10.1136/bmj.l1800',
-        measuredMetric: 'Time to first relapse over a minimum 24 months, extended against standard course',
+        measuredMetric:
+          'Time to first relapse over a minimum 24 months, extended against standard course',
         auditFlag: 'verified',
       },
       {
@@ -359,7 +360,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'pred-a7',
         category: 'inferred',
-        title: 'The "steroid-equivalent dose" table is a potency conversion, not an outcome equivalence',
+        title:
+          'The "steroid-equivalent dose" table is a potency conversion, not an outcome equivalence',
         laymanSummary:
           'Every hospital has a chart saying that so many milligrams of one steroid equals so many of another. Those numbers came from measurements of anti-inflammatory potency in the 1950s and 1960s. They were never validated against clinical outcomes, and they do not carry over to bone loss, blood sugar or adrenal suppression, which follow the drug’s half-life rather than its potency.',
         technicalDetails:
@@ -536,8 +538,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral solution, oral tablet, orally disintegrating tablet, ophthalmic suspension and emulsion, and injectable sodium phosphate and acetate salts',
+      type: 'Oral solution, oral tablet, orally disintegrating tablet, ophthalmic suspension and emulsion, and injectable sodium phosphate and acetate salts',
       description:
         'Absorbed rapidly and completely from the gut, with peak concentrations within one to two hours. The sodium phosphate salt is water-soluble and used for injection and for oral solution; the acetate salt is a poorly soluble depot for intra-articular and ophthalmic use. Ophthalmic formulations exist because the eye is one of the few places a glucocorticoid can be delivered locally at high concentration with limited systemic exposure.',
       safetyProfile:
@@ -827,7 +828,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'dex-a1',
         category: 'measured',
-        title: 'RECOVERY: 28-day mortality fell from 41.4% to 29.3% in ventilated COVID-19 patients',
+        title:
+          'RECOVERY: 28-day mortality fell from 41.4% to 29.3% in ventilated COVID-19 patients',
         laymanSummary:
           'This is the strongest randomised result any drug in this batch has. Patients in hospital with COVID-19 were randomly given dexamethasone or the usual care. Among those on a ventilator, roughly three in ten on the drug died against four in ten without it.',
         technicalDetails:
@@ -835,13 +837,15 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'RECOVERY Collaborative Group, N Engl J Med 2021;384:693-704 (NCT04381936, ISRCTN50189673)',
         doi: '10.1056/NEJMoa2021436',
-        measuredMetric: 'All-cause mortality at 28 days, against usual care, in an open-label randomised comparison',
+        measuredMetric:
+          'All-cause mortality at 28 days, against usual care, in an open-label randomised comparison',
         auditFlag: 'verified',
       },
       {
         id: 'dex-a2',
         category: 'failed',
-        title: 'The same trial found no benefit, and a point estimate favouring harm, without oxygen',
+        title:
+          'The same trial found no benefit, and a point estimate favouring harm, without oxygen',
         laymanSummary:
           'The headline was that dexamethasone saves lives in COVID-19. The trial itself found that in patients who were not on oxygen at all, more died on the drug than off it. The result was not statistically significant, but it points the wrong way and it is the reason the indication is written as it is.',
         technicalDetails:
@@ -869,7 +873,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'dex-a4',
         category: 'failed',
-        title: 'ACT: widening antenatal use in the community raised neonatal deaths and maternal infection',
+        title:
+          'ACT: widening antenatal use in the community raised neonatal deaths and maternal infection',
         laymanSummary:
           'A programme to get the same drug to more women at risk of preterm birth across six countries was tested against ordinary care. Among the whole population, more babies died in the intervention group, not fewer, and more mothers developed suspected infections. The drug was right. The targeting was not.',
         technicalDetails:
@@ -905,7 +910,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'A double-blind trial at four paediatric emergency departments randomised 720 children with mild croup, defined by a Westley score of 2 or less, to a single oral dose of dexamethasone 0.6 mg/kg or placebo. Return to a medical care provider for croup within seven days was 7.3% against 15.3% (P<0.001). Croup symptoms resolved faster (P=0.003), less sleep was lost (P<0.001), and parental stress was lower (P<0.001).',
         evidenceSource: 'Bjornson CL et al., N Engl J Med 2004;351:1306-1313',
         doi: '10.1056/NEJMoa033534',
-        measuredMetric: 'Return to a medical care provider for croup within seven days, against placebo',
+        measuredMetric:
+          'Return to a medical care provider for croup within seven days, against placebo',
         auditFlag: 'verified',
       },
       {
@@ -1103,8 +1109,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet including a 20 mg high-strength presentation, oral solution, sodium phosphate solution for intravenous, intramuscular, intra-articular and soft-tissue injection, ophthalmic suspension, and a biodegradable intravitreal implant',
+      type: 'Oral tablet including a 20 mg high-strength presentation, oral solution, sodium phosphate solution for intravenous, intramuscular, intra-articular and soft-tissue injection, ophthalmic suspension, and a biodegradable intravitreal implant',
       description:
         'Well absorbed orally and rapidly distributed, including across the blood-brain barrier and the placenta. Because it is a poor substrate for placental 11-beta-hydroxysteroid dehydrogenase type 2, an intramuscular dose given to a mother reaches the fetus largely intact, which is what makes fetal lung maturation possible. The intravitreal implant exists to place the same molecule inside the eye for months without systemic exposure.',
       safetyProfile:
@@ -1265,8 +1270,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           class: 'Glucocorticoid, intermediate-acting',
           howItCompares:
             'A once-daily alternative for adults with adrenal insufficiency who cannot manage divided hydrocortisone. It is about four times as potent per milligram with a much longer duration, which smooths out the peaks and troughs and also removes the physiological rhythm. It retains only a fraction of hydrocortisone’s mineralocorticoid activity.',
-          typicalCost:
-            'Generic tablets cost cents at United States pharmacy acquisition cost',
+          typicalCost: 'Generic tablets cost cents at United States pharmacy acquisition cost',
           prosAndCons:
             'Pros: once daily, simpler. Cons: a flat exposure curve rather than a diurnal one, and long-term data comparing it against hydrocortisone on hard outcomes in adrenal insufficiency are limited.',
         },
@@ -1490,7 +1494,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'hc-a7',
         category: 'inferred',
-        title: 'Faster shock reversal is not the same as a life saved, and this is where they diverge',
+        title:
+          'Faster shock reversal is not the same as a life saved, and this is where they diverge',
         laymanSummary:
           'Every large trial of hydrocortisone in septic shock agrees on one thing: blood pressure recovers faster on the drug. The trials disagree about whether anyone lives longer as a result. The surrogate is consistent; the outcome is not.',
         technicalDetails:
@@ -1594,7 +1599,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'APROCCHSS (NCT00625209)',
-        phase: 'Phase 3, multicentre, randomised, double-blind, 2-by-2 factorial reduced to two groups',
+        phase:
+          'Phase 3, multicentre, randomised, double-blind, 2-by-2 factorial reduced to two groups',
         sampleSize: 1241,
         primaryEndpoint: 'All-cause mortality at 90 days in septic shock',
         endpointMet: true,
@@ -1657,8 +1663,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet, taste-masked oral granules for infants and children, sodium succinate powder for intravenous and intramuscular injection, sodium phosphate injection, rectal foam and enema, and topical creams and ointments including over-the-counter 1%',
+      type: 'Oral tablet, taste-masked oral granules for infants and children, sodium succinate powder for intravenous and intramuscular injection, sodium phosphate injection, rectal foam and enema, and topical creams and ointments including over-the-counter 1%',
       description:
         'Absorbed rapidly and almost completely by mouth, with a short biological half-life of 8 to 12 hours that requires divided daily administration for replacement and makes it the most controllable systemic glucocorticoid. The water-soluble sodium succinate ester is the standard intravenous form. Rectal foams deliver it to the distal colon with reduced systemic exposure, and topical formulations exploit the fact that inflamed skin absorbs far more than intact skin.',
       safetyProfile:
@@ -1722,7 +1727,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'ADRENAL: adjunctive corticosteroid treatment in critically ill patients with septic shock',
+        label:
+          'ADRENAL: adjunctive corticosteroid treatment in critically ill patients with septic shock',
         identifier: 'NCT01448109',
         kind: 'nct',
       },
@@ -1978,7 +1984,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'mp-a3',
         category: 'failed',
-        title: 'The 2012 fungal meningitis outbreak: 749 infections and 61 deaths from one pharmacy',
+        title:
+          'The 2012 fungal meningitis outbreak: 749 infections and 61 deaths from one pharmacy',
         laymanSummary:
           'A compounding pharmacy in Massachusetts made preservative-free methylprednisolone for spinal injections. Three batches were contaminated with fungus, visible in unopened vials. Seven hundred and forty-nine people across twenty states became infected and sixty-one died, most of them from meningitis, on average seven weeks after their injection.',
         technicalDetails:
@@ -2050,7 +2057,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'mp-a8',
         category: 'conclusion_shift',
-        title: 'From "steroids reduce brain swelling, therefore they help brain injury" to the opposite',
+        title:
+          'From "steroids reduce brain swelling, therefore they help brain injury" to the opposite',
         laymanSummary:
           'Steroids genuinely do reduce the swelling around a brain tumour. The reasoning that they would therefore help a swollen injured brain held for three decades and was wrong: the two kinds of swelling are different, and the trial that finally tested the idea found more deaths.',
         technicalDetails:
@@ -2193,8 +2201,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oral tablet including dose packs, sodium succinate powder for intravenous and intramuscular injection, and acetate suspension for intramuscular, intra-articular, intralesional and soft-tissue depot injection',
+      type: 'Oral tablet including dose packs, sodium succinate powder for intravenous and intramuscular injection, and acetate suspension for intramuscular, intra-articular, intralesional and soft-tissue depot injection',
       description:
         'The molecule is poorly water-soluble, and the two esters solve opposite problems. The succinate dissolves freely and allows gram-scale intravenous administration over minutes. The acetate is a micronised crystal suspension that dissolves slowly and acts as a local depot for one to several weeks. The acetate suspension is explicitly not for intrathecal use, and no corticosteroid product is approved for epidural administration.',
       safetyProfile:
@@ -2264,7 +2271,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'COPOUSEP: oral versus intravenous methylprednisolone for multiple sclerosis relapse',
+        label:
+          'COPOUSEP: oral versus intravenous methylprednisolone for multiple sclerosis relapse',
         identifier: 'NCT00984984',
         kind: 'nct',
       },
@@ -2302,7 +2310,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
     tradeName: 'Imuran / Azasan',
     sponsor:
       'Discovered at Burroughs Wellcome by Gertrude Elion and George Hitchings, whose work on purine antimetabolites won the 1988 Nobel Prize in Physiology or Medicine. IMURAN is now held under NDA 016324; the molecule has been generic for decades.',
-    targetGene: 'IMPDH1 / IMPDH2 (through the active metabolite), with TPMT and NUDT15 governing who tolerates it',
+    targetGene:
+      'IMPDH1 / IMPDH2 (through the active metabolite), with TPMT and NUDT15 governing who tolerates it',
     targetProtein:
       'De novo purine synthesis enzymes, reached through the thioguanine nucleotides formed from 6-mercaptopurine. The clinically decisive proteins are the two that inactivate it: thiopurine S-methyltransferase (TPMT) and the nucleotide diphosphatase NUDT15.',
     modality: 'Small Molecule',
@@ -2360,7 +2369,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           class: 'Dihydrofolate reductase inhibitor and antifolate',
           howItCompares:
             'The first-line conventional disease-modifying drug in rheumatoid arthritis, with a far larger randomised evidence base in that disease than azathioprine has. It is also used in Crohn’s disease. It is teratogenic and requires the same kind of blood monitoring.',
-          typicalCost: 'Generic; among the cheapest disease-modifying antirheumatic drugs available',
+          typicalCost:
+            'Generic; among the cheapest disease-modifying antirheumatic drugs available',
           prosAndCons:
             'Pros: the reference DMARD in rheumatoid arthritis, weekly rather than daily. Cons: teratogenic, hepatotoxic, and interacts badly with alcohol.',
         },
@@ -2495,8 +2505,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'The reasoning was that starting an immunosuppressant early, before damage accumulates, would change the course of Crohn’s disease. A blinded trial gave azathioprine or placebo to adults diagnosed within the previous eight weeks. After a year and a half, the two groups were not meaningfully different, and more people stopped the drug because of side effects.',
         technicalDetails:
           'AZTEC randomised 131 adults diagnosed with Crohn’s disease within the previous 8 weeks at 31 Spanish hospitals to azathioprine 2.5 mg/kg/day (n=68) or placebo (n=63), with corticosteroids permitted but no other concomitant medication. After 76 weeks, sustained corticosteroid-free remission was achieved by 30 (44.1%) against 23 (36.5%), a difference of 7.6% (95% CI -9.2 to 24.4, P=0.48). Relapse rates using a Crohn’s Disease Activity Index threshold of 175 and corticosteroid requirements were similar. A post hoc analysis using a threshold of 220 did favour azathioprine (11.8% against 30.2%, P=0.01). Serious adverse events occurred in 20.6% against 11.1% (P=0.16), and discontinuation for adverse events in 20.6% against 6.35% (P=0.02).',
-        evidenceSource:
-          'Panés J et al., AZTEC Study Group, Gastroenterology 2013;145:766-774',
+        evidenceSource: 'Panés J et al., AZTEC Study Group, Gastroenterology 2013;145:766-774',
         doi: '10.1053/j.gastro.2013.06.009',
         measuredMetric: 'Sustained corticosteroid-free remission at 76 weeks, against placebo',
         auditFlag: 'verified',
@@ -2561,7 +2570,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'aza-a6',
         category: 'inferred',
-        title: 'A boxed warning for malignancy, on a risk that is hard to separate from the disease',
+        title:
+          'A boxed warning for malignancy, on a risk that is hard to separate from the disease',
         laymanSummary:
           'The label warns that long-term use raises the risk of cancer, including two specific lymphomas. That warning rests on observational data, and the diseases the drug treats also raise cancer risk on their own. Untangling the two has proved difficult and the field has not fully done it.',
         technicalDetails:
@@ -2685,8 +2695,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Sustained corticosteroid-free remission at 76 weeks in Crohn’s disease diagnosed within the previous 8 weeks',
         endpointMet: false,
-        statisticalPValue:
-          '44.1% against 36.5%; difference 7.6% (95% CI -9.2 to 24.4), P=0.48',
+        statisticalPValue: '44.1% against 36.5%; difference 7.6% (95% CI -9.2 to 24.4), P=0.48',
         unreportedAdverseSignals:
           'Discontinuation for adverse events was 20.6% against 6.35% (P=0.02). A post hoc analysis using a higher activity threshold did favour azathioprine (11.8% against 30.2%, P=0.01) and is frequently cited as though it were the trial result.',
         independentReplicationStatus: 'Replicated',
@@ -2819,8 +2828,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         kind: 'regulatory',
       },
       {
-        label:
-          'Drugs@FDA: IMURAN (azathioprine), NDA 016324 — label and approval history',
+        label: 'Drugs@FDA: IMURAN (azathioprine), NDA 016324 — label and approval history',
         identifier:
           'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=016324',
         kind: 'regulatory',
@@ -3037,8 +3045,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'The registration trial did not ask whether this drug worked better than the one already on the market. It asked whether it worked the same. Four hundred and twenty-three kidney transplant patients were randomised, and the two arms came out within half a percentage point of each other.',
         technicalDetails:
           'A 12-month double-blind study in 423 de novo kidney transplant patients compared enteric-coated mycophenolate sodium 720 mg twice daily against mycophenolate mofetil 1,000 mg twice daily, both with cyclosporine microemulsion and corticosteroids. Efficacy failure at 6 months — biopsy-proven acute rejection, graft loss, death or loss to follow-up — was 25.8% against 26.2% (95% CI -8.7 to +8.0), demonstrating therapeutic equivalence. At 12 months, biopsy-proven acute rejection, graft loss or death was 26.3% against 28.1%, and biopsy-proven acute rejection alone 22.5% against 24.3%. Among those with rejection, severe acute rejection was 2.1% against 9.8%, not statistically significant.',
-        evidenceSource:
-          'Salvadori M et al., ERL B301 Study Groups, Am J Transplant 2004;4:231-236',
+        evidenceSource: 'Salvadori M et al., ERL B301 Study Groups, Am J Transplant 2004;4:231-236',
         doi: '10.1046/j.1600-6143.2003.00337.x',
         measuredMetric:
           'Efficacy failure at 6 months against mycophenolate mofetil, equivalence design with a prespecified confidence interval',
@@ -3227,7 +3234,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         trialId: 'ERL B302 maintenance conversion study (Budde 2004)',
         phase: 'Phase 3, 12-month, randomised, double-blind',
         sampleSize: 322,
-        primaryEndpoint: 'Incidence of gastrointestinal adverse events at 3 months after conversion',
+        primaryEndpoint:
+          'Incidence of gastrointestinal adverse events at 3 months after conversion',
         endpointMet: false,
         statisticalPValue:
           '26.4% against 20.9% at 3 months, not significant; 29.6% against 24.5% at 12 months, not significant',
@@ -3574,8 +3582,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'Five hundred and twenty-nine liver transplant patients were randomly given tacrolimus or cyclosporine. The same proportion were alive a year later. But rejection that resisted steroid treatment happened half as often on tacrolimus, and rejection that resisted everything happened five times less often.',
         technicalDetails:
           'An open-label randomised multicentre trial assigned 478 adults and 51 children receiving a first liver transplant to tacrolimus (n=263) or cyclosporine (n=266) and followed them for a year. One-year patient survival was 88% in both groups (P=0.85, 95% CI for the difference -5.4 to +6.6) and graft survival 82% against 79% (P=0.55, 95% CI -4.8 to +9.7). Acute rejection occurred in 154 against 173 patients (P<0.002), corticosteroid-resistant rejection in 43 against 82 (P<0.001) and refractory rejection in 6 against 32 (P<0.001). Withdrawal for adverse events, primarily nephrotoxicity and neurotoxicity, was 37 against 13 patients (P<0.001).',
-        evidenceSource:
-          'US Multicenter FK506 Liver Study Group, N Engl J Med 1994;331:1110-1115',
+        evidenceSource: 'US Multicenter FK506 Liver Study Group, N Engl J Med 1994;331:1110-1115',
         doi: '10.1056/NEJM199410273311702',
         measuredMetric:
           'Patient and graft survival at one year, and rates of acute, corticosteroid-resistant and refractory rejection, against cyclosporine',
@@ -3584,7 +3591,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'tac-a2',
         category: 'measured',
-        title: 'ELITE-Symphony: best kidney function, lowest rejection, best graft survival of four arms',
+        title:
+          'ELITE-Symphony: best kidney function, lowest rejection, best graft survival of four arms',
         laymanSummary:
           'A trial of 1,645 kidney transplant patients compared four regimens head to head. Low-dose tacrolimus came first on every measure that mattered: kidney function, rejection rate and graft survival. This is the trial that made it the default.',
         technicalDetails:
@@ -3778,7 +3786,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'New-onset diabetes after transplant or impaired fasting glucose at 6 months, by ADA/WHO criteria',
         endpointMet: false,
-        statisticalPValue: '33.6% on tacrolimus against 26.0% on cyclosporine microemulsion, P=0.046',
+        statisticalPValue:
+          '33.6% on tacrolimus against 26.0% on cyclosporine microemulsion, P=0.046',
         unreportedAdverseSignals:
           'Open-label, six months only, and glucose endpoints in the first months after transplantation are heavily influenced by corticosteroid exposure, which was reported as similar between arms. Cyclosporine produced significantly worse lipids, which the diabetes headline tends to displace.',
         independentReplicationStatus: 'Replicated',
@@ -3825,8 +3834,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Immediate-release oral capsules, granules for oral suspension, extended-release capsules and tablets, intravenous solution, and 0.03% and 0.1% topical ointment',
+      type: 'Immediate-release oral capsules, granules for oral suspension, extended-release capsules and tablets, intravenous solution, and 0.03% and 0.1% topical ointment',
       description:
         'Oral absorption is incomplete and highly variable between people and within the same person, and is substantially reduced by food. Clearance is almost entirely hepatic and intestinal CYP3A4 and CYP3A5, with P-glycoprotein efflux, so any CYP3A inhibitor or inducer moves concentrations. The immediate-release, extended-release and once-daily products are not bioequivalent to one another and are not interchangeable milligram for milligram. The topical ointment exploits the molecule’s size: at 804 g/mol it penetrates inflamed skin adequately and intact skin poorly, which limits systemic absorption as the barrier repairs.',
       safetyProfile:
@@ -4169,7 +4177,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'csa-a5',
         category: 'inferred',
-        title: 'The dry eye result is a sign, and the symptom evidence is thinner than the marketing',
+        title:
+          'The dry eye result is a sign, and the symptom evidence is thinner than the marketing',
         laymanSummary:
           'The eye-drop trials measured how much the eye stained with dye and how far a paper strip wetted. Both improved against the vehicle. The things patients actually notice — burning, grittiness, dryness — mostly did not separate, and doubling the concentration did nothing at all.',
         technicalDetails:
@@ -4202,7 +4211,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'The 1983 trial did not hide the kidney damage. Creatinine was measurably worse on cyclosporine at ninety days, and grafts that had already suffered a long time without blood supply did substantially worse on the drug than on the old regimen. Both facts are in the abstract.',
         technicalDetails:
           'Serum creatinine 90 days after transplantation was 2.6 mg/dL on cyclosporine against 2.0 mg/dL on azathioprine and prednisone (P=0.03). Predicted one-year graft survival was worse on cyclosporine where the kidney had been machine-perfused for more than 24 hours (70% against 88%, P=0.005) or where the surgical anastomosis took longer than 45 minutes (60% against 89%, P=0.002). Lymphoma developed in one cyclosporine patient. The interaction with ischaemic injury is mechanistically coherent: cyclosporine constricts the afferent arteriole, and a kidney already injured by prolonged ischaemia has less reserve. That interaction, visible in the very first trial, is the origin of the entire subsequent literature on calcineurin inhibitor nephrotoxicity.',
-        evidenceSource: 'Canadian Multicentre Transplant Study Group, N Engl J Med 1983;309:809-815',
+        evidenceSource:
+          'Canadian Multicentre Transplant Study Group, N Engl J Med 1983;309:809-815',
         doi: '10.1056/NEJM198310063091401',
         measuredMetric:
           'Serum creatinine at 90 days, and graft survival stratified by cold ischaemia time and anastomosis time',
@@ -4376,8 +4386,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Oil-based soft gelatin capsules and oral solution (Sandimmune), self-microemulsifying capsules and oral solution (Neoral, Gengraf), intravenous concentrate, and 0.05% and 0.09% ophthalmic emulsions and solutions',
+      type: 'Oil-based soft gelatin capsules and oral solution (Sandimmune), self-microemulsifying capsules and oral solution (Neoral, Gengraf), intravenous concentrate, and 0.05% and 0.09% ophthalmic emulsions and solutions',
       description:
         'Oral absorption of the original oil formulation depends on bile and is highly variable; the microemulsion preconcentrate was developed to remove that dependence and gives higher and more consistent exposure. The two are not bioequivalent and the label forbids interchange without supervision and level monitoring. Clearance is by CYP3A4 with P-glycoprotein efflux, giving an extensive interaction list. The ophthalmic emulsion is designed to keep a lipophilic molecule on the ocular surface; blood concentrations after topical use are below the limit of quantification.',
       safetyProfile:
@@ -4536,7 +4545,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           class: 'Antifolate disease-modifying antirheumatic drug',
           howItCompares:
             'The first-line conventional DMARD in rheumatoid arthritis and the backbone that sulfasalazine is added to rather than a competitor to it. In RACAT, every patient was already failing methotrexate; the question was what to add.',
-          typicalCost: 'Generic; among the cheapest disease-modifying antirheumatic drugs available',
+          typicalCost:
+            'Generic; among the cheapest disease-modifying antirheumatic drugs available',
           prosAndCons:
             'Pros: the reference DMARD, weekly dosing, largest evidence base. Cons: teratogenic, hepatotoxic, and in this trial insufficient on its own by definition.',
         },
@@ -4808,7 +4818,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'The aspirin relative is poorly absorbed from the colon, so it sits on the inflamed lining at high concentration and low body-wide exposure.',
         molecularDetail:
           '5-aminosalicylic acid acts locally on colonic epithelium, with described actions including PPAR-gamma agonism, inhibition of NF-kappaB activation, scavenging of reactive oxygen species and inhibition of leukotriene synthesis. It is largely acetylated in the mucosa and excreted in faeces. In the moiety experiment it produced pronounced histological improvement in about 30% of patients against 5% for sulfapyridine.',
-          iconName: 'Target',
+        iconName: 'Target',
         visualStage: 'target_binding',
       },
       {
@@ -4845,7 +4855,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'RACAT / CSP 551 (NCT00405275)',
-        phase: 'Phase 4, randomised, double-blind, non-inferiority, with blinded switch at 24 weeks',
+        phase:
+          'Phase 4, randomised, double-blind, non-inferiority, with blinded switch at 24 weeks',
         sampleSize: 353,
         primaryEndpoint: 'Change in DAS28 from baseline to week 48',
         endpointMet: true,
@@ -5032,7 +5043,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           class: 'Antifolate disease-modifying antirheumatic drug',
           howItCompares:
             'The active comparator in the registration trial. ACR20 response was 46% on methotrexate against 52% on leflunomide and 26% on placebo, described as statistically equivalent between the two active drugs, with mean time to initial response of 9.5 weeks against 8.4. Both slowed radiographic progression against placebo (P=0.02 and P=0.001).',
-          typicalCost: 'Generic; among the cheapest disease-modifying antirheumatic drugs available',
+          typicalCost:
+            'Generic; among the cheapest disease-modifying antirheumatic drugs available',
           prosAndCons:
             'Pros: weekly rather than daily, the reference drug against which everything else is measured, decades of accumulated data. Cons: also hepatotoxic, also teratogenic, and it was the drug the patients in most modern trials had already failed.',
         },
@@ -5061,7 +5073,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           class: 'The active metabolite of leflunomide, marketed for multiple sclerosis',
           howItCompares:
             'Not a substitute in rheumatoid arthritis — it is the same active molecule reaching the same enzyme, developed and priced as a separate product for a different disease. Anyone taking leflunomide is already producing teriflunomide, which is why the two are never combined and why the same accelerated elimination procedure applies to both.',
-          typicalCost: 'Marketed as a branded multiple sclerosis therapy; generics have since entered',
+          typicalCost:
+            'Marketed as a branded multiple sclerosis therapy; generics have since entered',
           prosAndCons:
             'Pros: none over leflunomide in rheumatoid arthritis; it is the same active species. Cons: the same boxed warnings for hepatotoxicity and embryo-fetal toxicity, for the same reason.',
         },
@@ -5186,7 +5199,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'lef-a2',
         category: 'failed',
-        title: 'Hepatotoxicity: transaminase discontinuations at four times the placebo rate, then a boxed warning',
+        title:
+          'Hepatotoxicity: transaminase discontinuations at four times the placebo rate, then a boxed warning',
         laymanSummary:
           'Even in the registration trial, liver enzyme rises made people stop the drug four times as often as placebo. Severe liver injury including fatal liver failure was reported afterwards, and the label now carries a boxed warning and a monthly blood test schedule.',
         technicalDetails:
@@ -5229,7 +5243,8 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       {
         id: 'lef-a5',
         category: 'inferred',
-        title: 'Equivalence to methotrexate is not superiority, and the trial reported both drugs plainly',
+        title:
+          'Equivalence to methotrexate is not superiority, and the trial reported both drugs plainly',
         laymanSummary:
           'Leflunomide arrived as the first new conventional drug for rheumatoid arthritis in years, and it was often described that way. What its own registration trial showed was that it performed about the same as the drug already in use, with more liver-enzyme problems.',
         technicalDetails:
