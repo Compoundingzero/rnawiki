@@ -77,7 +77,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     slug: 'insulin-aspart',
     name: 'Insulin Aspart',
     tradeName: 'NovoLog / Fiasp / NovoLog Mix 70/30 / Kirsty / Merilog / Garzulys',
-    sponsor: 'Novo Nordisk Inc. (originator); biosimilars from Biocon, Sanofi and others since 2025',
+    sponsor:
+      'Novo Nordisk Inc. (originator); biosimilars from Biocon, Sanofi and others since 2025',
     targetGene: 'INSR',
     targetProtein:
       'Insulin receptor, a disulphide-linked alpha-2-beta-2 receptor tyrosine kinase on skeletal muscle, adipocyte and hepatocyte membranes',
@@ -252,7 +253,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'asp-a2',
         category: 'inferred',
-        title: 'The whole class gains a seventh of a point and does not reduce severe hypoglycaemia',
+        title:
+          'The whole class gains a seventh of a point and does not reduce severe hypoglycaemia',
         laymanSummary:
           'Pooling every randomised trial of fast analogues against ordinary human insulin in adults with type 1 diabetes gives an HbA1c advantage of 0.15 percentage points, on evidence the reviewers graded low quality, and no reduction in the severe lows the class is usually sold on preventing.',
         technicalDetails:
@@ -283,7 +285,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'asp-a4',
         category: 'measured',
-        title: 'Faster aspart beat ordinary aspart on post-meal glucose, and by the same 0.15 points',
+        title:
+          'Faster aspart beat ordinary aspart on post-meal glucose, and by the same 0.15 points',
         laymanSummary:
           'Reformulating the identical molecule with two absorption-accelerating additives measurably flattened the one-hour post-meal glucose rise. The average blood sugar advantage was the same tenth of a point the class always produces.',
         technicalDetails:
@@ -297,7 +300,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'asp-a5',
         category: 'conclusion_shift',
-        title: 'The molecule became affordable only when the patents ran out, not when trials asked',
+        title:
+          'The molecule became affordable only when the patents ran out, not when trials asked',
         laymanSummary:
           'For a quarter of a century this was a patented product with no generic, and a quarter of patients at one American clinic were using less of it than prescribed because of the price. Interchangeable biosimilars arrived in 2025.',
         technicalDetails:
@@ -546,7 +550,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'openFDA Drugs@FDA — BLA 020986 (NOVOLOG, Novo Nordisk, original approval 7 June 2000) and the 2025 interchangeable applications BLA 761188, 761325 and 761497',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=openfda.generic_name:%22insulin+aspart%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=openfda.generic_name:%22insulin+aspart%22',
         kind: 'regulatory',
       },
       {
@@ -767,7 +772,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'det-a3',
         category: 'failed',
-        title: 'Basal insulin alone did not hold: four in five needed a second insulin within 3 years',
+        title:
+          'Basal insulin alone did not hold: four in five needed a second insulin within 3 years',
         laymanSummary:
           'In the 4-T trial, the arm started on detemir alone had the fewest hypoglycaemic episodes and the least weight gain. It also had the highest proportion of people who ended up needing a second type of insulin as well.',
         technicalDetails:
@@ -781,7 +787,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'det-a4',
         category: 'inferred',
-        title: 'The Cochrane review found the basal analogue class buys only a minor clinical benefit',
+        title:
+          'The Cochrane review found the basal analogue class buys only a minor clinical benefit',
         laymanSummary:
           'Pooling every trial of long-acting analogues against NPH insulin in type 2 diabetes found no meaningful difference in average blood sugar, no difference in severe hypoglycaemia, and no evidence at all on death, complications or quality of life.',
         technicalDetails:
@@ -1032,7 +1039,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'openFDA Drugs@FDA — BLA 021536 (LEVEMIR, Novo Nordisk Inc., original approval 16 June 2005) with per-presentation marketing statuses',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=openfda.brand_name:%22LEVEMIR%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=openfda.brand_name:%22LEVEMIR%22',
         kind: 'regulatory',
       },
       {
@@ -1061,7 +1069,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     approvalYear: 2015,
     indication:
       'To improve glycaemic control in patients one year of age and older with diabetes mellitus. Not recommended for the treatment of diabetic ketoacidosis.',
-    patientFriendlyIndication: 'Diabetes — the once-daily background insulin that lasts over 42 hours',
+    patientFriendlyIndication:
+      'Diabetes — the once-daily background insulin that lasts over 42 hours',
     anatomicalSite:
       'Subcutaneous depot, then circulating albumin, then insulin receptors on skeletal muscle, fat and liver cells',
     conditionContext: {
@@ -1140,7 +1149,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString: 'CC[C@H](C)[C@H]1C(=O)N[C@H]2CSSC[C@@H](C(=O)N[C@@H](CSSC[C@@H](C(=O)NCC(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@@H](CSSC[C@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC2=O)CO)CC(C)C)CC3=CC=C(C=C3)O)CCC(=O)N)CC(C)C)CCC(=O)O)CC(=O)N)CC4=CC=C(C=C4)O)C(=O)N[C@@H](CC(=O)N)C(=O)O)C(=O)NCC(=O)N[C@@H](CCC(=O)O)C(=O)N[C@@H](CCCNC(=N)N)C(=O)NCC(=O)N[C@@H](CC5=CC=CC=C5)C(=O)N[C@@H](CC6=CC=CC=C6)C(=O)N[C@@H](CC7=CC=C(C=C7)O)C(=O)N[C@@H]([C@@H](C)O)C(=O)N8CCC[C@H]8C(=O)N[C@@H](CCCCNC(=O)CC[C@@H](C(=O)O)NC(=O)CCCCCCCCCCCCCCC(=O)O)C(=O)O)C(C)C)CC(C)C)CC9=CC=C(C=C9)O)CC(C)C)C)CCC(=O)O)C(C)C)CC(C)C)CC2=CNC=N2)CO)NC(=O)[C@H](CC(C)C)NC(=O)[C@H](CC2=CNC=N2)NC(=O)[C@H](CCC(=O)N)NC(=O)[C@H](CC(=O)N)NC(=O)[C@H](C(C)C)NC(=O)[C@H](CC2=CC=CC=C2)N)C(=O)N[C@H](C(=O)N[C@H](C(=O)N1)CO)[C@@H](C)O)NC(=O)[C@H](CCC(=O)N)NC(=O)[C@H](CCC(=O)O)NC(=O)[C@H](C(C)C)NC(=O)[C@H]([C@@H](C)CC)NC(=O)CN',
+      smilesString:
+        'CC[C@H](C)[C@H]1C(=O)N[C@H]2CSSC[C@@H](C(=O)N[C@@H](CSSC[C@@H](C(=O)NCC(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@H](C(=O)N[C@@H](CSSC[C@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@@H](NC2=O)CO)CC(C)C)CC3=CC=C(C=C3)O)CCC(=O)N)CC(C)C)CCC(=O)O)CC(=O)N)CC4=CC=C(C=C4)O)C(=O)N[C@@H](CC(=O)N)C(=O)O)C(=O)NCC(=O)N[C@@H](CCC(=O)O)C(=O)N[C@@H](CCCNC(=N)N)C(=O)NCC(=O)N[C@@H](CC5=CC=CC=C5)C(=O)N[C@@H](CC6=CC=CC=C6)C(=O)N[C@@H](CC7=CC=C(C=C7)O)C(=O)N[C@@H]([C@@H](C)O)C(=O)N8CCC[C@H]8C(=O)N[C@@H](CCCCNC(=O)CC[C@@H](C(=O)O)NC(=O)CCCCCCCCCCCCCCC(=O)O)C(=O)O)C(C)C)CC(C)C)CC9=CC=C(C=C9)O)CC(C)C)C)CCC(=O)O)C(C)C)CC(C)C)CC2=CNC=N2)CO)NC(=O)[C@H](CC(C)C)NC(=O)[C@H](CC2=CNC=N2)NC(=O)[C@H](CCC(=O)N)NC(=O)[C@H](CC(=O)N)NC(=O)[C@H](C(C)C)NC(=O)[C@H](CC2=CC=CC=C2)N)C(=O)N[C@H](C(=O)N[C@H](C(=O)N1)CO)[C@@H](C)O)NC(=O)[C@H](CCC(=O)N)NC(=O)[C@H](CCC(=O)O)NC(=O)[C@H](C(C)C)NC(=O)[C@H]([C@@H](C)CC)NC(=O)CN',
       chemicalFormula: 'C274H411N65O81S6',
       molecularWeight: '6104 g/mol',
       targetReceptorAffinity:
@@ -1503,7 +1513,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'DEVOTE: A Trial Comparing Cardiovascular Safety of Insulin Degludec vs Insulin Glargine in Subjects With Type 2 Diabetes at High Risk of Cardiovascular Events',
+        label:
+          'DEVOTE: A Trial Comparing Cardiovascular Safety of Insulin Degludec vs Insulin Glargine in Subjects With Type 2 Diabetes at High Risk of Cardiovascular Events',
         identifier: 'NCT01959529',
         kind: 'nct',
       },
@@ -1534,13 +1545,15 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA approval letter, NDA 203314 (TRESIBA, insulin degludec injection), 25 September 2015 — records the 8 February 2013 complete response action and imposes postmarketing requirement 2954-2 for a cardiovascular outcome trial',
-        identifier: 'https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2015/203314Orig1s000ltr.pdf',
+        identifier:
+          'https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2015/203314Orig1s000ltr.pdf',
         kind: 'regulatory',
       },
       {
         label:
           'openFDA Drugs@FDA — NDA 203314 (TRESIBA, Novo Nordisk Inc., original approval 25 September 2015; deemed a BLA on 23 March 2020)',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=openfda.brand_name:%22TRESIBA%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=openfda.brand_name:%22TRESIBA%22',
         kind: 'regulatory',
       },
       {
@@ -1576,7 +1589,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     approvalYear: 1984,
     indication:
       'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not for the treatment of type 1 diabetes or diabetic ketoacidosis.',
-    patientFriendlyIndication: 'Type 2 diabetes — a tablet that squeezes more insulin out of the pancreas',
+    patientFriendlyIndication:
+      'Type 2 diabetes — a tablet that squeezes more insulin out of the pancreas',
     anatomicalSite:
       'Pancreatic islet beta cell plasma membrane; the same channel subtype family also exists in cardiac and vascular smooth muscle',
     conditionContext: {
@@ -1726,7 +1740,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'glp-a1',
         category: 'conclusion_shift',
-        title: 'The label still carries a 1970 mortality warning about a drug that is not glipizide',
+        title:
+          'The label still carries a 1970 mortality warning about a drug that is not glipizide',
         laymanSummary:
           'Every glipizide package insert in the United States opens its warnings section with a statement that oral diabetes drugs increase death from heart disease. That statement comes from a trial that finished in 1970, tested tolbutamide, and enrolled 823 people. It was extended to glipizide on the reasoning that the drugs are chemically similar.',
         technicalDetails:
@@ -1759,7 +1774,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
           'The one large long-term trial that included glipizide followed 3,867 newly diagnosed patients for ten years. Tighter control cut microvascular complications — retinal damage, kidney damage — by a quarter. It did not significantly cut heart attacks, deaths from diabetes, or deaths from anything.',
         technicalDetails:
           'UKPDS 33 randomised 3,867 newly diagnosed patients with type 2 diabetes to an intensive policy with a sulphonylurea (chlorpropamide, glibenclamide or glipizide) or insulin, or a conventional policy with diet. Over ten years median HbA1c was 7.0% in the intensive group against 7.9% conventional, an 11% relative reduction. Risk in the intensive group was 12% lower for any diabetes-related endpoint (95% CI 1 to 21, p=0.029), 10% lower for any diabetes-related death (95% CI -11 to 27, p=0.34) and 6% lower for all-cause mortality (95% CI -10 to 20, p=0.44). Most of the aggregate benefit came from a 25% reduction in microvascular endpoints (95% CI 7 to 40, p=0.0099), including the need for retinal photocoagulation. Major hypoglycaemic episodes per year were 0.7% on conventional treatment, 1.0% on chlorpropamide, 1.4% on glibenclamide and 1.8% on insulin. Mean weight gain in the intensive group was 2.9 kg (p<0.001). The published between-agent comparisons in the abstract cover chlorpropamide, glibenclamide and insulin; glipizide was used at some centres and is not separately reported.',
-        evidenceSource: 'UK Prospective Diabetes Study (UKPDS) Group, Lancet 1998;352:837-853 (UKPDS 33, PMID 9742976)',
+        evidenceSource:
+          'UK Prospective Diabetes Study (UKPDS) Group, Lancet 1998;352:837-853 (UKPDS 33, PMID 9742976)',
         doi: '10.1016/S0140-6736(98)07019-6',
         measuredMetric:
           'Relative risk reductions for aggregate diabetes-related endpoints, microvascular endpoints and all-cause mortality at ten years, and major hypoglycaemia rates by agent',
@@ -1773,7 +1789,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
           'A study of nearly 14,000 older people on Medicaid counted the episodes of low blood sugar severe enough to put someone in hospital. Glyburide users had nearly twice the risk of glipizide users, and the gap held in every subgroup examined.',
         technicalDetails:
           'Shorr and colleagues followed 13,963 Tennessee Medicaid enrollees aged 65 or over prescribed one of six sulfonylureas between 1985 and 1989, and identified 255 first episodes of serious hypoglycaemia — hospitalisation, emergency admission or death with neuroglycopenic or autonomic symptoms and a concomitant blood glucose below 2.8 mmol/L — during 20,715 person-years of use. The crude rate per 1,000 person-years was highest for glyburide at 16.6 (95% CI 13.2 to 19.9) and lowest for tolbutamide at 3.5 (95% CI 1.2 to 5.9). Among second-generation agents the adjusted relative risk for glyburide against glipizide was 1.9 (95% CI 1.2 to 2.9), and the excess persisted in every stratum defined by gender, race, nursing-home residence, dose and duration of use. This is an observational cohort, not a randomised comparison, and the authors themselves called for effectiveness data on individual agents that the field still largely lacks.',
-        evidenceSource: 'Shorr RI, Ray WA, Daugherty JR, Griffin MR. J Am Geriatr Soc 1996;44:751-755',
+        evidenceSource:
+          'Shorr RI, Ray WA, Daugherty JR, Griffin MR. J Am Geriatr Soc 1996;44:751-755',
         doi: '10.1111/j.1532-5415.1996.tb03729.x',
         measuredMetric:
           'Crude and adjusted rates of serious hypoglycaemia per 1,000 person-years by individual sulfonylurea in adults aged 65 and over',
@@ -2009,13 +2026,15 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA prescribing information for glipizide tablets USP — WARNINGS (Special Warning on Increased Risk of Cardiovascular Mortality) and CLINICAL PHARMACOLOGY',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glipizide%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glipizide%22',
         kind: 'regulatory',
       },
       {
         label:
           'FDA prescribing information for GLUCOTROL XL (glipizide) extended-release tablets — section 11 Description (osmotic push-pull system) and sections 12.1 to 12.3',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GLUCOTROL+XL%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22GLUCOTROL+XL%22',
         kind: 'regulatory',
       },
       {
@@ -2045,7 +2064,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     approvalYear: 1984,
     indication:
       'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus.',
-    patientFriendlyIndication: 'Type 2 diabetes — the strongest and longest-acting of the old sulfonylurea tablets',
+    patientFriendlyIndication:
+      'Type 2 diabetes — the strongest and longest-acting of the old sulfonylurea tablets',
     anatomicalSite:
       'Pancreatic islet beta cell plasma membrane, and the ATP-sensitive potassium channels of cardiac and vascular smooth muscle',
     conditionContext: {
@@ -2199,7 +2219,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
           'Someone gathered every randomised trial that compared glyburide directly against another drug that squeezes insulin out of the pancreas, and counted low blood sugar episodes. Glyburide caused about half again as many as the comparators, and nearly twice as many as other sulfonylureas.',
         technicalDetails:
           'Gangji and colleagues searched Medline, Embase, Cochrane and three trial registers from 1966 to 2005, reviewed 1,806 titles in duplicate and identified 21 parallel randomised trials of glyburide monotherapy against another secretagogue or insulin in type 2 diabetes. Glyburide carried a 52% greater risk of at least one hypoglycaemic episode than other secretagogues (relative risk 1.52, 95% CI 1.21 to 1.92) and an 83% greater risk than other sulfonylureas (1.83, 95% CI 1.35 to 2.49). It was not associated with an increased risk of cardiovascular events (0.84, 95% CI 0.56 to 1.26), death (0.87, 95% CI 0.70 to 1.07) or end-of-trial weight (weighted mean difference 1.69 kg, 95% CI -0.41 to 3.80). The authors record that reporting in the original trials was suboptimal, loss to follow-up exceeded 20% in some, and major hypoglycaemia specifically was infrequently reported — so the excess is established for hypoglycaemia in general and is imprecise for the severe episodes that matter most.',
-        evidenceSource: 'Gangji AS, Cukierman T, Gerstein HC, Goldsmith CH, Clase CM. Diabetes Care 2007;30:389-394',
+        evidenceSource:
+          'Gangji AS, Cukierman T, Gerstein HC, Goldsmith CH, Clase CM. Diabetes Care 2007;30:389-394',
         doi: '10.2337/dc06-1789',
         measuredMetric:
           'Relative risk of at least one hypoglycaemic episode, cardiovascular events, death and weight, glyburide against other secretagogues and other sulfonylureas',
@@ -2213,7 +2234,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
           'A study of nearly 14,000 people over 65 counted episodes of low blood sugar severe enough to require a hospital. Glyburide had the highest rate of the six drugs examined, at about five times the rate of the lowest.',
         technicalDetails:
           'Shorr and colleagues followed 13,963 Tennessee Medicaid enrollees aged 65 or over prescribed one of six sulfonylureas between 1985 and 1989, identifying 255 first episodes of serious hypoglycaemia — hospitalisation, emergency admission or death with neuroglycopenic or autonomic symptoms and a concomitant blood glucose below 2.8 mmol/L — during 20,715 person-years of use. The crude rate per 1,000 person-years was 16.6 for glyburide (95% CI 13.2 to 19.9), the highest of the six, against 3.5 for tolbutamide (95% CI 1.2 to 5.9), the lowest. Glyburide users did not differ from chlorpropamide users, historically the class outlier for hypoglycaemia. Among second-generation agents the adjusted relative risk for glyburide against glipizide was 1.9 (95% CI 1.2 to 2.9), holding in every stratum defined by gender, race, nursing-home residence, dose and duration. This is an observational cohort and prescribing was not randomised.',
-        evidenceSource: 'Shorr RI, Ray WA, Daugherty JR, Griffin MR. J Am Geriatr Soc 1996;44:751-755',
+        evidenceSource:
+          'Shorr RI, Ray WA, Daugherty JR, Griffin MR. J Am Geriatr Soc 1996;44:751-755',
         doi: '10.1111/j.1532-5415.1996.tb03729.x',
         measuredMetric:
           'Crude serious-hypoglycaemia rate per 1,000 person-years by individual sulfonylurea, and adjusted relative risk against glipizide, in adults aged 65 and over',
@@ -2222,7 +2244,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'gly-a3',
         category: 'conclusion_shift',
-        title: 'A 404-woman trial made it standard in pregnancy; a 2,509-woman analysis reversed that',
+        title:
+          'A 404-woman trial made it standard in pregnancy; a 2,509-woman analysis reversed that',
         laymanSummary:
           'In 2000 a randomised trial concluded glyburide was a clinically effective alternative to insulin in gestational diabetes, and it became widely used. In 2015 a pooled analysis of fifteen randomised trials found babies born heavier, more than twice as much macrosomia and twice as much newborn low blood sugar, and concluded the drug should not be used if insulin or metformin was available.',
         technicalDetails:
@@ -2499,7 +2522,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA prescribing information for glyburide tablets USP — CLINICAL PHARMACOLOGY, PRECAUTIONS (Macrovascular Outcomes, Hypoglycemia) and WARNINGS',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glyburide%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glyburide%22',
         kind: 'regulatory',
       },
       {
@@ -2529,7 +2553,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     approvalYear: 1995,
     indication:
       'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not for treating type 1 diabetes mellitus or diabetic ketoacidosis.',
-    patientFriendlyIndication: 'Type 2 diabetes — the sulfonylurea with the largest outcome trial behind it',
+    patientFriendlyIndication:
+      'Type 2 diabetes — the sulfonylurea with the largest outcome trial behind it',
     anatomicalSite: 'Pancreatic islet beta cell plasma membrane',
     conditionContext: {
       conditionExplainer:
@@ -2741,8 +2766,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
           'The same trial also counted kidney damage, nerve damage, heart attacks, heart failure and deaths. Across five years, the four drugs were indistinguishable on all of them. The only signal was a modest one favouring liraglutide on any cardiovascular disease.',
         technicalDetails:
           'Over a mean 5.0 years in 5,047 participants, GRADE found no material differences between glargine, glimepiride, liraglutide and sitagliptin in the development of hypertension or dyslipidaemia, or in microvascular outcomes: overall rates per 100 participant-years were 2.6 for moderately increased albuminuria, 1.1 for severely increased albuminuria, 2.9 for renal impairment and 16.7 for diabetic peripheral neuropathy. The groups did not differ on MACE (overall rate 1.0), hospitalisation for heart failure (0.4), cardiovascular death (0.3) or all deaths (0.6). Rates of any cardiovascular disease were 1.9, 1.9, 1.4 and 2.0 in the glargine, glimepiride, liraglutide and sitagliptin groups. Comparing each treatment against the combined other three, hazard ratios for any cardiovascular disease were 1.1 (95% CI 0.9 to 1.3) for glargine, 1.1 (95% CI 0.9 to 1.4) for glimepiride, 0.7 (95% CI 0.6 to 0.9) for liraglutide and 1.2 (95% CI 1.0 to 1.5) for sitagliptin. The authors state these confidence limits are not adjusted for multiple comparisons.',
-        evidenceSource:
-          'GRADE Study Research Group, N Engl J Med 2022;387:1075-1088 (NCT01794143)',
+        evidenceSource: 'GRADE Study Research Group, N Engl J Med 2022;387:1075-1088 (NCT01794143)',
         doi: '10.1056/NEJMoa2200436',
         measuredMetric:
           'Event rates per 100 participant-years for microvascular outcomes, MACE, heart-failure hospitalisation and death, and unadjusted hazard ratios for any cardiovascular disease by arm',
@@ -2751,7 +2775,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'gli-a6',
         category: 'measured',
-        title: 'The registration trial measured a 1.8-point HbA1c effect and 3.2 kg of weight with it',
+        title:
+          'The registration trial measured a 1.8-point HbA1c effect and 3.2 kg of weight with it',
         laymanSummary:
           'The 14-week trial that got the drug approved took 304 people off their existing sulfonylurea, then gave them placebo or glimepiride. The placebo group got 1.5 percentage points worse. The 8 mg group got 0.4 points better, and gained about three kilograms more than the placebo group lost.',
         technicalDetails:
@@ -2842,7 +2867,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'GRADE — glycaemic outcomes (NCT01794143)',
-        phase: 'Randomised comparative-effectiveness trial of four second-line agents, mean 5.0 years',
+        phase:
+          'Randomised comparative-effectiveness trial of four second-line agents, mean 5.0 years',
         sampleSize: 5047,
         primaryEndpoint:
           'Confirmed glycated haemoglobin of 7.0% or higher, comparing insulin glargine, glimepiride, liraglutide and sitagliptin added to metformin',
@@ -2973,13 +2999,15 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA prescribing information for glimepiride tablets — sections 5.1 to 5.5, 12.1 to 12.3 and 14.1 with Table 3',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glimepiride%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glimepiride%22',
         kind: 'regulatory',
       },
       {
         label:
           'openFDA Drugs@FDA — NDA 020496 (AMARYL, Sanofi-Aventis US, original approval 30 November 1995)',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22AMARYL%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22AMARYL%22',
         kind: 'regulatory',
       },
       {
@@ -3000,7 +3028,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     slug: 'pioglitazone',
     name: 'Pioglitazone',
     tradeName: 'Actos',
-    sponsor: 'Takeda Pharmaceuticals USA (originator, NDA 021073); marketed almost entirely as generics',
+    sponsor:
+      'Takeda Pharmaceuticals USA (originator, NDA 021073); marketed almost entirely as generics',
     targetGene: 'PPARG',
     targetProtein:
       'Peroxisome proliferator-activated receptor gamma (PPAR-gamma), a ligand-activated nuclear transcription factor that heterodimerises with the retinoid X receptor and binds PPAR response elements in adipose tissue, skeletal muscle and liver',
@@ -3009,7 +3038,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     approvalYear: 1999,
     indication:
       'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. It exerts its antihyperglycaemic effect only in the presence of endogenous insulin and should not be used to treat type 1 diabetes or diabetic ketoacidosis.',
-    patientFriendlyIndication: 'Type 2 diabetes — a tablet that makes the body respond to its own insulin',
+    patientFriendlyIndication:
+      'Type 2 diabetes — a tablet that makes the body respond to its own insulin',
     anatomicalSite:
       'Nuclei of adipocytes, skeletal muscle and hepatocytes; and the collecting duct of the kidney, where the same receptor drives the fluid retention',
     conditionContext: {
@@ -3163,8 +3193,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
           'The trial that was supposed to prove pioglitazone prevents cardiovascular events enrolled 5,238 people with type 2 diabetes and existing vascular disease. On the endpoint it had declared in advance, the result was not statistically significant. On a narrower endpoint declared as secondary, it was.',
         technicalDetails:
           'PROactive randomised 5,238 patients with type 2 diabetes and evidence of macrovascular disease to pioglitazone titrated from 15 mg to 45 mg (n=2,605) or matching placebo (n=2,633), on top of existing therapy, and observed them an average of 34.5 months. The prespecified primary endpoint was a composite of all-cause mortality, non-fatal myocardial infarction including silent infarction, stroke, acute coronary syndrome, endovascular or surgical intervention in the coronary or leg arteries, and above-ankle amputation. It occurred in 514 of 2,605 on pioglitazone and 572 of 2,633 on placebo: hazard ratio 0.90 (95% CI 0.80 to 1.02, p=0.095). The main secondary endpoint — the narrower composite of all-cause mortality, non-fatal myocardial infarction and stroke — occurred in 301 against 358 patients: hazard ratio 0.84 (95% CI 0.72 to 0.98, p=0.027). The published interpretation states that pioglitazone reduces the secondary composite. It does not claim the primary was met, because it was not.',
-        evidenceSource:
-          'Dormandy JA et al., Lancet 2005;366:1279-1289 (PROactive, NCT00174993)',
+        evidenceSource: 'Dormandy JA et al., Lancet 2005;366:1279-1289 (PROactive, NCT00174993)',
         doi: '10.1016/S0140-6736(05)67528-9',
         measuredMetric:
           'Hazard ratios for the prespecified primary composite endpoint and the main secondary composite endpoint over an average 34.5 months in 5,238 patients',
@@ -3175,7 +3204,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         id: 'pio-a2',
         category: 'failed',
-        title: 'In the same trial it put half as many people again into hospital with heart failure',
+        title:
+          'In the same trial it put half as many people again into hospital with heart failure',
         laymanSummary:
           'Alongside the cardiovascular result, PROactive counted admissions for heart failure. There were 149 in the pioglitazone group and 108 on placebo — 6% against 4%. This finding is the reason the drug carries a boxed warning.',
         technicalDetails:
@@ -3224,7 +3254,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
           'An interim analysis in 2011 suggested pioglitazone raised bladder cancer risk. France and Germany suspended it, the FDA added a warning, and prescribing collapsed. When the same cohort was followed for a decade and fully analysed, there was no significant association.',
         technicalDetails:
           'Lewis and colleagues followed 193,099 people aged 40 or over in the Kaiser Permanente Northern California cohort from 1997-2002 until December 2012, of whom 34,181 (18%) received pioglitazone for a median 2.8 years (range 0.2 to 13.2), with 1,261 incident bladder cancers. Crude incidence was 89.8 per 100,000 person-years in users and 75.9 in non-users. Ever use of pioglitazone was not associated with bladder cancer risk: adjusted hazard ratio 1.06 (95% CI 0.89 to 1.26). A nested case-control analysis of 464 cases and 464 matched controls agreed, adjusted odds ratio 1.18 (95% CI 0.78 to 1.80). No clear pattern of risk appeared for time since initiation, duration or cumulative dose. In a parallel cohort of 236,507 people examining ten further cancers, eight showed no association, while ever use was associated with prostate cancer (HR 1.13, 95% CI 1.02 to 1.26) and pancreatic cancer (HR 1.41, 95% CI 1.16 to 1.71), which the authors state merit further investigation as to whether they are causal or reflect chance, residual confounding or reverse causality. The authors are explicit that an increased bladder cancer risk could not be excluded. The current United States label still lists bladder cancer under warnings and precautions and advises against use in active bladder cancer.',
-        evidenceSource: 'Lewis JD et al., JAMA 2015;314:265-277 (Kaiser Permanente Northern California cohort)',
+        evidenceSource:
+          'Lewis JD et al., JAMA 2015;314:265-277 (Kaiser Permanente Northern California cohort)',
         doi: '10.1001/jama.2015.7996',
         measuredMetric:
           'Adjusted hazard ratio for bladder cancer with ever use of pioglitazone in 193,099 persons over up to fifteen years, with matched case-control confirmation',
@@ -3310,7 +3341,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'PROactive (NCT00174993)',
-        phase: 'Prospective randomised double-blind placebo-controlled outcome trial, average 34.5 months',
+        phase:
+          'Prospective randomised double-blind placebo-controlled outcome trial, average 34.5 months',
         sampleSize: 5238,
         primaryEndpoint:
           'Composite of all-cause mortality, non-fatal myocardial infarction including silent infarction, stroke, acute coronary syndrome, coronary or leg-artery intervention, and above-ankle amputation',
@@ -3336,7 +3368,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'PIVENS (NCT00063622)',
-        phase: 'Randomised double-blind placebo-controlled trial with paired liver biopsies, 96 weeks',
+        phase:
+          'Randomised double-blind placebo-controlled trial with paired liver biopsies, 96 weeks',
         sampleSize: 247,
         primaryEndpoint:
           'Improvement in histological features of non-alcoholic steatohepatitis, composite of steatosis, lobular inflammation, hepatocellular ballooning and fibrosis scores',
@@ -3461,7 +3494,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA prescribing information for pioglitazone tablets — BOXED WARNING (congestive heart failure), sections 5.1 to 5.8, 12.1 and 12.2',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22pioglitazone%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22pioglitazone%22',
         kind: 'regulatory',
       },
       {
@@ -3497,7 +3531,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     approvalYear: 1995,
     indication:
       'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus.',
-    patientFriendlyIndication: 'Type 2 diabetes — a tablet that slows the digestion of starch in the gut',
+    patientFriendlyIndication:
+      'Type 2 diabetes — a tablet that slows the digestion of starch in the gut',
     anatomicalSite:
       'The lumen and brush border of the small intestine. Less than 2% of a dose reaches the circulation as active drug.',
     conditionContext: {
@@ -3574,7 +3609,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString: 'C[C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O[C@@H]2[C@H](O[C@@H]([C@@H]([C@H]2O)O)O[C@H]([C@@H](CO)O)[C@@H]([C@H](C=O)O)O)CO)O)O)N[C@H]3C=C([C@H]([C@@H]([C@H]3O)O)O)CO',
+      smilesString:
+        'C[C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O[C@@H]2[C@H](O[C@@H]([C@@H]([C@H]2O)O)O[C@H]([C@@H](CO)O)[C@@H]([C@H](C=O)O)O)CO)O)O)N[C@H]3C=C([C@H]([C@@H]([C@H]3O)O)O)CO',
       chemicalFormula: 'C25H43NO18',
       molecularWeight: '645.60 g/mol',
       targetReceptorAffinity:
@@ -3926,7 +3962,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA prescribing information for acarbose tablets USP — DESCRIPTION, CLINICAL PHARMACOLOGY (Mechanism of Action, Pharmacokinetics) and PRECAUTIONS (Macrovascular Outcomes, Hypoglycemia, Elevated Serum Transaminase Levels)',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acarbose%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acarbose%22',
         kind: 'regulatory',
       },
       {
@@ -4267,7 +4304,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Niemi 2003 gemfibrozil and itraconazole interaction study',
-        phase: 'Randomised crossover pharmacokinetic and pharmacodynamic study in healthy volunteers',
+        phase:
+          'Randomised crossover pharmacokinetic and pharmacodynamic study in healthy volunteers',
         sampleSize: 12,
         primaryEndpoint:
           'Effect of gemfibrozil, itraconazole and their combination on repaglinide pharmacokinetics and blood glucose response',
@@ -4365,13 +4403,15 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA prescribing information for repaglinide tablets — section 4 CONTRAINDICATIONS (gemfibrozil), 5.1 to 5.3, 7 DRUG INTERACTIONS, 12.1 and 12.3',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22repaglinide%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22repaglinide%22',
         kind: 'regulatory',
       },
       {
         label:
           'openFDA Drugs@FDA — NDA 020741 (PRANDIN, original approval 22 December 1997; application now held by Gemini Laboratories LLC)',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22PRANDIN%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22PRANDIN%22',
         kind: 'regulatory',
       },
       {
@@ -4402,7 +4442,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     approvalYear: 2009,
     indication:
       'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not recommended for the treatment of type 1 diabetes mellitus or diabetic ketoacidosis.',
-    patientFriendlyIndication: 'Type 2 diabetes — a tablet that makes the gut hormone signal last longer',
+    patientFriendlyIndication:
+      'Type 2 diabetes — a tablet that makes the gut hormone signal last longer',
     anatomicalSite:
       'Plasma and the endothelial surface, where DPP-4 circulates and is membrane-anchored; the downstream effect is on pancreatic alpha and beta cells',
     conditionContext: {
@@ -4701,7 +4742,8 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'SAVOR-TIMI 53 (NCT01107886)',
-        phase: 'Randomised double-blind placebo-controlled cardiovascular outcome trial, median 2.1 years',
+        phase:
+          'Randomised double-blind placebo-controlled cardiovascular outcome trial, median 2.1 years',
         sampleSize: 16492,
         primaryEndpoint:
           'Composite of cardiovascular death, myocardial infarction or ischaemic stroke, in patients with type 2 diabetes with a history of or at risk for cardiovascular events',
@@ -4787,18 +4829,912 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       {
         label:
           'FDA prescribing information for saxagliptin tablets — sections 5.1 Pancreatitis, 5.2 Heart Failure, 5.4 Hypersensitivity-Related Events, 5.5 Arthralgia, 5.6 Bullous Pemphigoid, 12.1 and 12.3',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22saxagliptin%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22saxagliptin%22',
         kind: 'regulatory',
       },
       {
         label:
           'openFDA Drugs@FDA — NDA 022350 (ONGLYZA, AstraZeneca AB, original approval 31 July 2009)',
-        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22ONGLYZA%22',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22ONGLYZA%22',
         kind: 'regulatory',
       },
       {
         label: 'PubChem CID 11243969 — saxagliptin structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11243969',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 11. Alogliptin — five years and a complete response letter from filing to approval, and a heart
+  //     failure number that reads two different ways depending on which definition of the endpoint
+  //     you use. Both are on the record; only one is on the label.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'alogliptin',
+    name: 'Alogliptin',
+    tradeName: 'Nesina',
+    sponsor: 'Takeda Pharmaceuticals U.S.A., Inc. (NDA 022271); generics now marketed',
+    targetGene: 'DPP4',
+    targetProtein:
+      'Dipeptidyl peptidase-4 (DPP-4, CD26), the serine exopeptidase that inactivates GLP-1 and GIP within minutes of their release from the small intestine',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2013,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not for the treatment of type 1 diabetes or diabetic ketoacidosis.',
+    patientFriendlyIndication:
+      'Type 2 diabetes — a once-daily tablet that extends the gut hormone signal',
+    anatomicalSite:
+      'Plasma and endothelial surfaces where DPP-4 acts; downstream effects on pancreatic alpha and beta cells and on hepatic glucose output',
+    conditionContext: {
+      conditionExplainer:
+        'Alogliptin blocks the same enzyme as every other drug in its class, so the pharmacology is not what distinguishes it. What distinguishes it is its paperwork: it was the DPP-4 inhibitor that arrived after the FDA had already started demanding cardiovascular outcome data, and it took five years and a complete response letter to get through.',
+      whyItMatters:
+        'Its outcome trial, EXAMINE, was run in the sickest population any DPP-4 trial enrolled — people randomised within 15 to 90 days of a heart attack or unstable angina. That makes it the strongest safety test of the class, and it also makes its heart-failure numbers the most scrutinised.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, usually added to metformin. Now generic, though at United States acquisition cost it remains the most expensive drug on this page by a wide margin.',
+      clinicalGoals:
+        'Lower HbA1c without hypoglycaemia. In EXAMINE the mean HbA1c difference against placebo was 0.36 percentage points, and no cardiovascular endpoint moved in either direction.',
+    },
+    oneSentenceVerdict:
+      'A DPP-4 inhibitor licensed in 2013 after five years and a complete response letter, whose 5,380-patient outcome trial in people randomised within 90 days of a heart attack found major cardiovascular events at 11.3% against 11.8% on placebo and an HbA1c difference of 0.36 percentage points — and whose heart-failure result reads as 3.9% against 3.3% on the label and as a hazard ratio of 1.07 with a confidence interval from 0.79 to 1.46 in the dedicated analysis published by the trial group.',
+    laymanHowItWorks:
+      'Eating makes the gut release hormones that tell the pancreas to produce insulin, but only while blood sugar is high. An enzyme in the blood destroys those hormones within a couple of minutes. Alogliptin blocks that enzyme, so the hormones last longer and their message is stronger. More insulin after meals, less of the hormone that tells the liver to make sugar, and no hypoglycaemia from the drug on its own, because the signal it amplifies switches itself off when blood sugar is normal.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 64,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$5.18 per tablet at United States pharmacy acquisition cost, the median across 8 listed generic products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved as Nesina under NDA 022271 on 25 January 2013, from an application received on 27 December 2007. Now generic, but with only 8 products in the current NADAC file the median acquisition cost remains US$5.18 per tablet — roughly 139 times the price of glimepiride and about 4.5 times the price of generic saxagliptin. Fewer competitors, not different chemistry, is the visible difference.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'There is no evidence that any DPP-4 inhibitor is clinically better than another, and there is a great deal of evidence that they cost very different amounts. Alogliptin at US$5.18 per tablet is the most expensive drug on this page; generic saxagliptin, which does the same thing to the same enzyme, is US$1.14. Against a sulfonylurea the class trades a large hypoglycaemia advantage for a large price disadvantage and no demonstrated outcome benefit. Against SGLT2 inhibitors and GLP-1 receptor agonists it trades an outcome benefit away entirely.',
+      conventionalRx: [
+        {
+          name: 'Saxagliptin',
+          class: 'DPP-4 inhibitor',
+          howItCompares:
+            'Same mechanism, same enzyme, similar glycaemic effect, and one clear difference in the outcome record: SAVOR-TIMI 53 found a hazard ratio of 1.27 (95% CI 1.07 to 1.51) for heart-failure hospitalisation with saxagliptin, while the dedicated analysis of EXAMINE reported 1.07 (95% CI 0.79 to 1.46) for alogliptin and concluded it did not increase heart-failure risk. Both labels nonetheless carry a heart-failure warning.',
+          typicalCost: 'US$1.14 per tablet at NADAC, roughly a fifth of alogliptin',
+          prosAndCons:
+            'Pros: far cheaper for an identical mechanism. Cons: its outcome trial found a heart-failure signal that the dedicated analysis of EXAMINE did not.',
+        },
+        {
+          name: 'Glimepiride',
+          class: 'Second-generation sulfonylurea',
+          howItCompares:
+            'Lowers HbA1c at least as much for around four cents a tablet, at the cost of far more hypoglycaemia — 37.7% against 10.6% for a DPP-4 inhibitor over 6.3 years in the CAROLINA trial. Neither drug has demonstrated a cardiovascular benefit, and CAROLINA found no cardiovascular difference between the two classes.',
+          typicalCost:
+            'US$0.0373 per tablet at NADAC, about one hundred and thirty-ninth the price',
+          prosAndCons:
+            'Pros: overwhelmingly cheaper, and the only glucose-lowering tablet in this file with a six-year cardiovascular outcome trial of its own. Cons: hypoglycaemia, weight gain, and a class warning dating from 1970.',
+        },
+        {
+          name: 'SGLT2 inhibitors',
+          class: 'Sodium-glucose cotransporter 2 inhibitors',
+          howItCompares:
+            'Reduce heart-failure hospitalisation and renal endpoints on superiority testing, which no DPP-4 inhibitor has ever done. In the population EXAMINE enrolled — recent acute coronary syndrome — the difference in what the two classes have demonstrated is the whole argument.',
+          typicalCost: 'Mostly branded and expensive, though several are now generic',
+          prosAndCons:
+            'Pros: demonstrated benefit rather than demonstrated non-inferiority. Cons: genital mycotic infection, volume depletion, and rare euglycaemic ketoacidosis.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report blisters, severe joint pain or new breathlessness rather than assuming they are unrelated',
+          action:
+            'Three of the warnings on this label were written from postmarketing reports rather than from the trials: severe and disabling joint pain, a blistering skin condition serious enough to require hospital admission, and hepatic failure. All three were invisible in the registration programme and became visible only when millions of people had taken the drug.',
+          patientImpact:
+            'The label records postmarketing reports of fatal and non-fatal hepatic failure, of bullous pemphigoid requiring hospitalisation, and of severe and disabling arthralgia in patients taking DPP-4 inhibitors, as well as serious hypersensitivity reactions including anaphylaxis, angioedema and Stevens-Johnson syndrome. In EXAMINE, alanine aminotransferase rose above three times the upper reference limit in 2.4% on alogliptin against 1.8% on placebo.',
+          clinicalPrecaution:
+            'These need medical assessment. Any change to a diabetes regimen belongs with the prescribing clinician, and this page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1C(=O)C=C(N(C1=O)CC2=CC=CC=C2C#N)N3CCC[C@H](C3)N',
+      chemicalFormula: 'C18H21N5O2',
+      molecularWeight: '339.40 g/mol',
+      targetReceptorAffinity:
+        'A DPP-4 inhibitor. The label describes the chain in full: GLP-1 and GIP are released from the small intestine in response to meals, cause glucose-dependent insulin release from beta cells and are inactivated by DPP-4 within minutes; GLP-1 additionally lowers glucagon secretion from alpha cells and so reduces hepatic glucose production; in type 2 diabetes GLP-1 concentrations are reduced while the insulin response to GLP-1 is preserved. Structurally alogliptin is a quinazolinedione-free member of the class: a pyrimidinedione core carrying a cyanobenzyl group and a chiral 3-aminopiperidine, and unlike saxagliptin or vildagliptin it has no nitrile warhead and forms no covalent adduct. It is largely excreted unchanged in urine rather than extensively metabolised.',
+      structureSource: {
+        label:
+          'PubChem CID 11450633 (alogliptin) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11450633',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'alo-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric release of the (R)-3-aminopiperidine',
+          description:
+            'Confirm identity and enantiomeric purity of the (R)-3-aminopiperidine and of the 2-cyanobenzyl halide, and the identity of the 6-chloro-3-methyluracil core. The (R) configuration of the aminopiperidine is what places the primary amine into the S2 pocket of DPP-4; the (S) enantiomer is orders of magnitude weaker and is controlled as an impurity.',
+          reagentsAndBuffer:
+            'Chiral HPLC with polysaccharide stationary phase, optical rotation, nuclear magnetic resonance identity, Karl Fischer water determination, halide and residual solvent screening',
+        },
+        {
+          id: 'alo-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Sequential N-alkylation and displacement onto the uracil core',
+          description:
+            'Alkylate the uracil nitrogen with the 2-cyanobenzyl halide, then displace the 6-chloro substituent with the protected (R)-3-aminopiperidine and deprotect. Both are straightforward substitutions, which is why the difficulty and the cost of this molecule sit in the chiral amine rather than in the coupling chemistry.',
+          dependsOnStepId: 'alo-w1',
+          reagentsAndBuffer:
+            'Potassium or caesium carbonate base, dimethylformamide or acetonitrile, Boc-protected (R)-3-aminopiperidine, elevated-temperature displacement, acidic deprotection with controlled neutralisation',
+        },
+        {
+          id: 'alo-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Benzoate salt formation and chiral purity release',
+          description:
+            'Form the benzoate salt, recrystallise to the specified form and confirm enantiomeric excess and the level of the bis-alkylated and des-cyano impurities. Salt selection here is a solubility and stability decision that was made once and is now a monograph specification.',
+          dependsOnStepId: 'alo-w2',
+          reagentsAndBuffer:
+            'Benzoic acid in ethanol or isopropanol, controlled cooling crystallisation, chiral and achiral reversed-phase HPLC, X-ray powder diffraction, differential scanning calorimetry',
+        },
+        {
+          id: 'alo-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Renal clearance and transporter characterisation',
+          description:
+            'Characterise renal elimination and interaction with renal uptake and efflux transporters. Alogliptin is largely excreted unchanged, which makes kidney function the dominant determinant of exposure and makes the metabolic drug-interaction profile unusually quiet compared with saxagliptin, whose clearance depends on CYP3A4 and CYP3A5.',
+          dependsOnStepId: 'alo-w3',
+          reagentsAndBuffer:
+            'Pooled human liver microsomes and hepatocytes for a negative metabolic control, OAT1, OAT3, OCT2 and P-glycoprotein transfected cell lines, radiolabelled probe substrates, liquid chromatography with tandem mass spectrometry',
+        },
+        {
+          id: 'alo-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'DPP-4 inhibition with DPP-8, DPP-9 and FAP counter-screens',
+          description:
+            'Measure DPP-4 inhibition and ex vivo plasma DPP-4 activity, and counter-screen DPP-8, DPP-9 and fibroblast activation protein. Selectivity across this enzyme family is the property the class was optimised for after non-selective inhibitors produced severe preclinical toxicity, and it is measured rather than assumed for every candidate.',
+          dependsOnStepId: 'alo-w4',
+          reagentsAndBuffer:
+            'Recombinant human DPP-4, DPP-8, DPP-9 and fibroblast activation protein, Gly-Pro-aminomethylcoumarin fluorogenic substrate, human plasma for ex vivo activity, active GLP-1 (7-36 amide) immunoassay with DPP-4 inhibitor-stabilised collection tubes',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'alo-a1',
+        category: 'measured',
+        title: 'EXAMINE tested it in the sickest population any DPP-4 trial enrolled',
+        laymanSummary:
+          'Patients were randomised within 15 to 90 days of a heart attack or an admission for unstable angina — the highest-risk moment in the disease. Over a median 18 months, cardiovascular death, heart attack and stroke occurred in 11.3% on alogliptin and 11.8% on placebo.',
+        technicalDetails:
+          'EXAMINE randomised 5,380 patients with type 2 diabetes and either acute myocardial infarction or unstable angina requiring hospitalisation within the previous 15 to 90 days, to alogliptin or placebo on top of existing antihyperglycaemic and cardiovascular therapy, in a double-blind non-inferiority trial with a prespecified margin of 1.3. Follow-up ran up to 40 months with a median of 18. A primary endpoint event — the composite of death from cardiovascular causes, non-fatal myocardial infarction or non-fatal stroke — occurred in 305 patients on alogliptin (11.3%) and 316 on placebo (11.8%): hazard ratio 0.96, upper boundary of the one-sided repeated confidence interval 1.16, p<0.001 for non-inferiority. HbA1c was significantly lower on alogliptin, mean difference -0.36 percentage points (p<0.001). Incidences of hypoglycaemia, cancer, pancreatitis and initiation of dialysis were similar. The trial was funded by Takeda Development Center Americas.',
+        evidenceSource: 'White WB et al., N Engl J Med 2013;369:1327-1335 (EXAMINE, NCT00968708)',
+        doi: '10.1056/NEJMoa1305889',
+        measuredMetric:
+          'Hazard ratio for the primary three-point cardiovascular composite and mean HbA1c difference over a median 18 months in 5,380 post-acute-coronary-syndrome patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alo-a2',
+        category: 'conclusion_shift',
+        title: 'The heart-failure number reads two ways, and the label carries the larger one',
+        laymanSummary:
+          'The label says 3.9% of alogliptin patients and 3.3% of placebo patients were hospitalised for heart failure. The trial group published a dedicated analysis of the same data reporting 3.1% and 2.9% and concluding the drug did not increase heart failure risk. Both are true; they count different things.',
+        technicalDetails:
+          'Section 5.2 of the FDA label states that in EXAMINE, 106 (3.9%) patients treated with alogliptin and 89 (3.3%) treated with placebo were hospitalised for congestive heart failure, and requires prescribers to weigh risks and benefits before initiating in patients at risk. Zannad and colleagues then published a prespecified and post-hoc analysis of the same trial in the Lancet: among 5,380 patients followed a median 533 days, hospital admission for heart failure as the first event occurred in 85 (3.1%) on alogliptin and 79 (2.9%) on placebo, hazard ratio 1.07 (95% CI 0.79 to 1.46). The exploratory extended MACE endpoint was 16.0% against 16.5%, hazard ratio 0.98 (95% CI 0.86 to 1.12). The composite of cardiovascular death and heart-failure admission gave 1.00 (95% CI 0.82 to 1.21) and did not differ by baseline BNP; NT-pro-BNP fell similarly in both arms. Their stated interpretation is that alogliptin did not increase the risk of heart failure outcomes. The difference between 106 and 85 is the difference between all hospitalisations and first events only, and it is the reason the same trial supports a label warning and a published null result at once.',
+        evidenceSource:
+          'FDA prescribing information for alogliptin tablets, section 5.2; Zannad F et al., Lancet 2015;385:2067-2076 (EXAMINE, NCT00968708)',
+        doi: '10.1016/S0140-6736(14)62225-X',
+        measuredMetric:
+          'Heart-failure hospitalisation counts and rates under two endpoint definitions in the same 5,380-patient trial, with the hazard ratio for first-event analysis',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'alo-a3',
+        category: 'failed',
+        title: 'Five years and a complete response letter from filing to approval',
+        laymanSummary:
+          'The application was submitted at the end of 2007. The FDA did not approve it until January 2013, after issuing a complete response letter in 2012 and after the manufacturer had run a cardiovascular outcome trial. Approval came with required postmarketing surveillance for six separate serious risks.',
+        technicalDetails:
+          'The FDA approval letter for NDA 022271 records that the new drug application was dated and received on 27 December 2007, that the submission dated 26 July 2012 constituted a complete response to an action letter dated 25 April 2012, and that approval took effect on 25 January 2013 — five years and one month after filing. The letter imposes postmarketing requirements under section 505(o), stating that spontaneous adverse event reporting and the FDA pharmacovigilance system would not be sufficient to assess signals of serious risks of hepatotoxicity, acute pancreatitis, hypersensitivity reactions, cardiovascular events, serious hypoglycaemia and renal impairment. Requirement 2007-4 mandates enhanced pharmacovigilance with specialised follow-up on serious hepatic abnormalities, fatal pancreatitis, haemorrhagic or necrotising pancreatitis and severe hypersensitivity reactions, continuing for five years from approval for the pancreatitis categories.',
+        evidenceSource:
+          'FDA approval letter, NDA 022271 (NESINA, alogliptin tablets), 25 January 2013 (Reference ID 3250798), postmarketing requirement 2007-4',
+        measuredMetric:
+          'Dates of application receipt, complete response action and approval, and the enumerated serious risks requiring postmarketing surveillance',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alo-a4',
+        category: 'measured',
+        title: 'Acute pancreatitis and liver enzyme rises were numerically higher in both datasets',
+        laymanSummary:
+          'Pancreatitis occurred in 0.2% of glycaemic-control trial patients on alogliptin against under 0.1% on comparators, and in 0.4% against 0.3% in the cardiovascular trial. Liver enzyme rises above three times normal occurred in 2.4% against 1.8% in the same trial.',
+        technicalDetails:
+          'The label reports that in glycaemic control trials, acute pancreatitis occurred in 6 patients (0.2%) on alogliptin 25 mg and 2 (<0.1%) on active comparators or placebo; in EXAMINE it occurred in 10 (0.4%) against 7 (0.3%). It states that whether patients with a history of pancreatitis are at increased risk is unknown. For hepatic effects, the label records postmarketing reports of fatal and non-fatal hepatic failure, noting some reports contain insufficient information to establish probable cause; in glycaemic control trials alanine aminotransferase rose above three times the upper limit of normal in 1.3% on alogliptin against 1.7% on comparators, but in EXAMINE the same threshold was crossed by 2.4% on alogliptin against 1.8% on placebo. Each of these numbers is small, and each points the same way in the larger dataset — which is the pattern that produced six named postmarketing surveillance requirements rather than a contraindication.',
+        evidenceSource:
+          'FDA prescribing information for alogliptin tablets, sections 5.1 Pancreatitis and 5.4 Hepatic Effects',
+        measuredMetric:
+          'Acute pancreatitis and ALT elevation rates by arm in glycaemic control trials and in the cardiovascular outcome trial',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'alo-a5',
+        category: 'inferred',
+        title: 'A 0.36 percentage-point HbA1c difference is the entire measured benefit',
+        laymanSummary:
+          'Over 18 months in 5,380 people, average blood sugar was about a third of a percentage point lower on alogliptin. Nothing else was better. That is the whole of what the trial demonstrated.',
+        technicalDetails:
+          'EXAMINE was a non-inferiority trial designed to exclude a hazard ratio above 1.3 for major adverse cardiovascular events; it was not designed to show benefit, and it did not. The measured efficacy outcome was a mean HbA1c difference of -0.36 percentage points against placebo (p<0.001). The primary composite was 0.96 with an upper confidence boundary of 1.16, and the exploratory extended composite in the Lancet analysis was 0.98 (95% CI 0.86 to 1.12). The trial authors concluded that rates of major adverse cardiovascular events "were not increased" — an absence of harm, stated as such. No trial of alogliptin has demonstrated a reduction in any clinical event, and the class as a whole has none.',
+        evidenceSource:
+          'White WB et al., N Engl J Med 2013;369:1327-1335; Zannad F et al., Lancet 2015;385:2067-2076',
+        doi: '10.1056/NEJMoa1305889',
+        inferredClaim:
+          'That a 0.36 percentage-point HbA1c improvement translates into a clinical benefit — the trial that measured it was designed to exclude harm, and every cardiovascular estimate it produced sits on top of no effect',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'alo-a6',
+        category: 'measured',
+        title: 'Three class warnings came from postmarketing reports, not from the trials',
+        laymanSummary:
+          'Severe disabling joint pain, a blistering skin disease requiring hospital admission, and serious allergic reactions including Stevens-Johnson syndrome were all added to the label after approval, from reports collected in ordinary use.',
+        technicalDetails:
+          'Section 5.3 of the label records postmarketing reports of serious hypersensitivity reactions including anaphylaxis, angioedema and severe cutaneous adverse reactions including Stevens-Johnson syndrome, and advises caution in patients with a history of angioedema with another DPP-4 inhibitor because cross-reactivity is unknown. Section 5.5 records severe and disabling arthralgia reported in patients taking DPP-4 inhibitors, to be considered as a possible cause of severe joint pain. Section 5.6 records postmarketing reports of bullous pemphigoid requiring hospitalisation, with instructions that patients be told to report blisters or erosions and that the drug be discontinued if it is suspected. Section 5.4 records fatal and non-fatal hepatic failure. None of these appeared in the registration programme. All are class findings that accumulated only once exposure ran to millions of patient-years — which is the argument for the enhanced pharmacovigilance the FDA required at approval.',
+        evidenceSource:
+          'FDA prescribing information for alogliptin tablets, sections 5.3, 5.4, 5.5 and 5.6',
+        measuredMetric:
+          'Warnings added to the label from postmarketing surveillance rather than from the registration or outcome trials',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A meal triggers two short-lived gut hormones',
+        laymanDesc:
+          'Food reaching the small intestine causes cells there to release hormones into the blood that prime the pancreas for the glucose on its way.',
+        molecularDetail:
+          'GLP-1 from intestinal L cells and GIP from K cells. The label states these hormones cause insulin release from pancreatic beta cells in a glucose-dependent manner, and that in type 2 diabetes GLP-1 concentrations are reduced while the insulin response to GLP-1 is preserved.',
+        iconName: 'Utensils',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'An enzyme in the blood clips them apart within minutes',
+        laymanDesc:
+          'A protein-cutting enzyme circulating in blood removes the working end of both hormones almost as fast as they appear.',
+        molecularDetail:
+          'DPP-4 removes the N-terminal dipeptide from GLP-1 and GIP, inactivating both within minutes. That very short half-life is why the enzyme rather than the hormone is the practical oral drug target.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Alogliptin occupies the enzyme without reacting with it',
+        laymanDesc:
+          'The drug slots into the pocket where the enzyme grips the hormone and simply stays there. Unlike some others in the class it does not form a chemical bond with the enzyme.',
+        molecularDetail:
+          'A pyrimidinedione bearing a 2-cyanobenzyl group and an (R)-3-aminopiperidine whose primary amine occupies the S2 pocket. There is no nitrile warhead and no covalent adduct — inhibition is reversible and non-covalent, and selectivity over DPP-8, DPP-9 and fibroblast activation protein is a design requirement of the class.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The hormone signal survives longer and stays conditional on glucose',
+        laymanDesc:
+          'With the enzyme blocked, the gut hormones last longer and push harder — but only while blood sugar is high, which is why the drug alone does not cause hypoglycaemia.',
+        molecularDetail:
+          'The label states alogliptin reduces fasting and post-prandial glucose "in a glucose-dependent manner". That conditionality caps the achievable effect: the measured HbA1c difference against placebo in EXAMINE was 0.36 percentage points.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The kidney removes the drug, largely unchanged',
+        laymanDesc:
+          'Unlike some drugs in the class, this one is not extensively broken down by the liver. It is filtered out by the kidney more or less as it went in.',
+        molecularDetail:
+          'Alogliptin is largely excreted unchanged in urine, so renal function is the dominant determinant of exposure and the metabolic drug-interaction profile is quiet compared with saxagliptin, whose active metabolite is generated by CYP3A4 and CYP3A5.',
+        iconName: 'Recycle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'HbA1c falls a third of a point, and no cardiovascular endpoint moves',
+        laymanDesc:
+          'Average blood sugar comes down slightly. Heart attacks, strokes and cardiovascular deaths came out the same as on placebo, in the highest-risk population anyone has tested this class in.',
+        molecularDetail:
+          'In EXAMINE, the primary composite hazard ratio was 0.96 with an upper one-sided confidence boundary of 1.16, and the exploratory extended composite in the Lancet analysis was 0.98 (95% CI 0.86 to 1.12). Heart-failure admission as first event was 1.07 (95% CI 0.79 to 1.46), while the label reports total heart-failure hospitalisations at 3.9% against 3.3%.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'EXAMINE (NCT00968708)',
+        phase:
+          'Randomised double-blind placebo-controlled cardiovascular non-inferiority trial, median 18 months, up to 40 months',
+        sampleSize: 5380,
+        primaryEndpoint:
+          'Composite of death from cardiovascular causes, non-fatal myocardial infarction or non-fatal stroke in patients randomised 15 to 90 days after acute myocardial infarction or unstable angina, against a non-inferiority margin of 1.3',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 0.96, upper boundary of the one-sided repeated confidence interval 1.16, P < 0.001 for non-inferiority. Mean HbA1c difference -0.36 percentage points, P < 0.001',
+        unreportedAdverseSignals:
+          'The label records 106 (3.9%) heart-failure hospitalisations on alogliptin against 89 (3.3%) on placebo. Acute pancreatitis was 10 (0.4%) against 7 (0.3%), and ALT above three times the reference limit 2.4% against 1.8%. Funded by Takeda Development Center Americas.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'EXAMINE heart failure and mortality analysis (Zannad 2015)',
+        phase:
+          'Prespecified exploratory and post-hoc analysis of the same randomised trial, median 533 days',
+        sampleSize: 5380,
+        primaryEndpoint:
+          'Hospital admission for heart failure as a first event, extended MACE, and the composite of cardiovascular death and heart-failure admission',
+        endpointMet: true,
+        statisticalPValue:
+          'Heart-failure admission as first event hazard ratio 1.07 (95% CI 0.79 to 1.46); extended MACE 0.98 (95% CI 0.86 to 1.12); cardiovascular death plus heart-failure admission 1.00 (95% CI 0.82 to 1.21)',
+        unreportedAdverseSignals:
+          'These are exploratory and post-hoc analyses. The counts differ from the label because this analysis counts heart-failure admission only when it was the first event, and the label counts all such admissions.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A primary cardiovascular composite hazard ratio of 0.96 with an upper one-sided confidence boundary of 1.16 in 5,380 patients randomised within 90 days of an acute coronary syndrome',
+        'A mean HbA1c difference of -0.36 percentage points against placebo (p<0.001) over a median 18 months',
+        'Heart-failure hospitalisation of 106 (3.9%) against 89 (3.3%) on the label, and 85 (3.1%) against 79 (2.9%) as a first event, hazard ratio 1.07 (95% CI 0.79 to 1.46)',
+        'Acute pancreatitis in 10 (0.4%) against 7 (0.3%) in EXAMINE, and ALT above three times the reference limit in 2.4% against 1.8%',
+        'Five years and one month from application receipt on 27 December 2007 to approval on 25 January 2013, with a complete response action in between',
+      ],
+      unsupportedInferences: [
+        'That alogliptin reduces cardiovascular risk — EXAMINE was a non-inferiority trial and its conclusion is that event rates "were not increased"',
+        'That the heart-failure question is settled in either direction — the same trial supports a labelled warning and a published null result, depending on how the endpoint is counted',
+        'That a 0.36 percentage-point HbA1c improvement is clinically meaningful on its own — no outcome has been shown to follow from it for this drug or this class',
+        'That the class postmarketing harms are rare enough to disregard — the FDA required five years of enhanced surveillance for four of them at the time of approval',
+      ],
+      whatFailedInitially: [
+        'The original application was not approved; a complete response action letter was issued on 25 April 2012 and the drug reached the market five years and a month after filing',
+        'Approval carried postmarketing requirements for hepatotoxicity, acute pancreatitis, hypersensitivity reactions, cardiovascular events, serious hypoglycaemia and renal impairment — six named serious risks the trials had not resolved',
+        'Severe disabling arthralgia, bullous pemphigoid requiring hospitalisation, Stevens-Johnson syndrome and fatal hepatic failure all reached the label from postmarketing reports rather than from the trials',
+      ],
+      realWorldOutcome: [
+        'US$5.18 per tablet at United States pharmacy acquisition cost, the median across 8 listed generic products in the CMS NADAC survey — the most expensive drug on this page',
+        'Around 139 times the price of glimepiride and about 4.5 times the price of generic saxagliptin, for the same enzyme and a comparable glycaemic effect',
+        'The only DPP-4 inhibitor whose outcome trial was run entirely in patients within 90 days of an acute coronary syndrome',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, once daily, in 6.25 mg, 12.5 mg and 25 mg strengths',
+      description:
+        'A conventional immediate-release tablet of the benzoate salt. Alogliptin is largely excreted unchanged by the kidney rather than extensively metabolised, so renal function rather than hepatic enzyme activity is the dominant determinant of exposure — and which strength suits a given level of kidney function is a prescribing decision this page does not enter into.',
+      safetyProfile:
+        'Alogliptin alone does not cause hypoglycaemia because the incretin signal it prolongs is glucose-dependent; risk rises when it is combined with insulin or an insulin secretagogue. The label carries warnings for acute pancreatitis, heart failure (with the EXAMINE counts stated), serious hypersensitivity reactions including anaphylaxis, angioedema and Stevens-Johnson syndrome, fatal and non-fatal hepatic failure, severe and disabling arthralgia, and bullous pemphigoid requiring hospitalisation. Four of those six came from postmarketing reports rather than from the trials. The FDA required enhanced pharmacovigilance on serious hepatic abnormalities, fatal pancreatitis, haemorrhagic or necrotising pancreatitis and severe hypersensitivity at the time of approval.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does alogliptin cause heart failure?',
+        a: 'The honest answer is that the same trial supports two different statements and both are in the public record. The FDA label reports that in EXAMINE, 106 patients on alogliptin (3.9%) and 89 on placebo (3.3%) were hospitalised for congestive heart failure, and on that basis it requires prescribers to weigh risks and benefits before starting the drug in people at risk. The trial investigators then published a dedicated analysis in the Lancet counting heart-failure admission as a first event: 85 (3.1%) against 79 (2.9%), hazard ratio 1.07 with a confidence interval from 0.79 to 1.46, with no difference by baseline BNP and no difference in the composite of cardiovascular death plus heart-failure admission. Their interpretation was that alogliptin did not increase heart-failure risk. The difference between the numbers is a difference in what is being counted, not a disagreement about the data.',
+        auditNote:
+          'When a label and a peer-reviewed analysis of the same trial disagree, the disagreement is usually about endpoint definition. Here it demonstrably is.',
+      },
+      {
+        q: 'Did it help anyone?',
+        a: 'It lowered average blood sugar by about a third of a percentage point, and that is the whole of what EXAMINE demonstrated. The trial was a non-inferiority design built to exclude a hazard ratio above 1.3 for major cardiovascular events, and it did so — 11.3% against 11.8%, hazard ratio 0.96 with an upper confidence boundary of 1.16. Its authors phrased the conclusion precisely: rates of major adverse cardiovascular events "were not increased". That is an absence of harm, not a benefit. No trial of alogliptin has shown a reduction in any clinical event.',
+      },
+      {
+        q: 'Why did it take five years to get approved?',
+        a: 'The application was received on 27 December 2007. The FDA issued a complete response action letter dated 25 April 2012, the manufacturer responded on 26 July 2012, and approval took effect on 25 January 2013. The intervening years covered the period in which the FDA introduced its requirement that new diabetes drugs demonstrate they do not increase cardiovascular risk, and EXAMINE was the trial that met it. The approval letter also imposed postmarketing surveillance requirements, stating that ordinary adverse-event reporting would not be sufficient to assess signals of serious risks of hepatotoxicity, acute pancreatitis, hypersensitivity reactions, cardiovascular events, serious hypoglycaemia and renal impairment — six named risks the trial programme had not put to rest.',
+      },
+      {
+        q: 'Why is it so much more expensive than the others?',
+        a: 'Not because of the chemistry. Alogliptin is off patent and generic, and at United States pharmacy acquisition cost the median is US$5.18 per tablet. Generic saxagliptin, which blocks the same enzyme by the same logic, is US$1.14. Glimepiride is 3.73 cents. The visible difference is the number of competitors: the current NADAC file lists 8 alogliptin products against 16 saxagliptin and 56 glimepiride. This page can observe that association; it cannot demonstrate that the number of listed products causes the price, and it does not claim to.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for alogliptin could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$5.18 per tablet, the median across 8 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost, and the gap between the two is exactly the thing this page cannot measure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'White WB, Cannon CP, Heller SR et al. Alogliptin after acute coronary syndrome in patients with type 2 diabetes (EXAMINE). N Engl J Med 2013;369:1327-1335',
+        identifier: '10.1056/NEJMoa1305889',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Zannad F, Cannon CP, Cushman WC et al. Heart failure and mortality outcomes in patients with type 2 diabetes taking alogliptin versus placebo in EXAMINE: a multicentre, randomised, double-blind trial. Lancet 2015;385:2067-2076',
+        identifier: '10.1016/S0140-6736(14)62225-X',
+        kind: 'doi',
+      },
+      {
+        label:
+          'EXAMINE: Cardiovascular Outcomes Study of Alogliptin in Subjects With Type 2 Diabetes and Acute Coronary Syndrome',
+        identifier: 'NCT00968708',
+        kind: 'nct',
+      },
+      {
+        label:
+          'FDA approval letter, NDA 022271 (NESINA, alogliptin tablets), 25 January 2013 — records receipt on 27 December 2007, the 25 April 2012 complete response action, and postmarketing requirement 2007-4',
+        identifier:
+          'https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2013/022271Orig1s000ltr.pdf',
+        kind: 'regulatory',
+      },
+      {
+        label: 'FDA prescribing information for alogliptin tablets — sections 5.1 to 5.6 and 12.1',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22alogliptin%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA — NDA 022271 (NESINA, Takeda Pharmaceuticals U.S.A., original approval 25 January 2013)',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22NESINA%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 11450633 — alogliptin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11450633',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 12. Nateglinide — the only drug in this file whose outcome trial failed all three of its
+  //     co-primary endpoints at once, including the one it was expected to win. The point estimate
+  //     for preventing diabetes came out at 1.07, favouring placebo.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'nateglinide',
+    name: 'Nateglinide',
+    tradeName: 'Starlix',
+    sponsor: 'Novartis (NDA 021204); marketed as generics',
+    targetGene: 'ABCC8',
+    targetProtein:
+      'The ATP-sensitive potassium channel of the pancreatic beta cell — the SUR1 regulatory subunit with the Kir6.2 pore — engaged from a binding site distinct from the sulfonylurea site',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2000,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not for use in type 1 diabetes mellitus or for the treatment of diabetic ketoacidosis.',
+    patientFriendlyIndication: 'Type 2 diabetes — the fastest and weakest of the meal-time tablets',
+    anatomicalSite: 'Pancreatic islet beta cell plasma membrane',
+    conditionContext: {
+      conditionExplainer:
+        'Nateglinide is a modified amino acid — a derivative of D-phenylalanine, structurally unrelated to the sulfonylureas — that closes the same beta-cell potassium channel and forces an early, brief burst of insulin timed to a meal.',
+      whyItMatters:
+        'It is the only drug in this file whose whole rationale was tested properly and rejected. NAVIGATOR enrolled 9,306 people with pre-diabetes and cardiovascular disease or risk factors, gave half of them nateglinide for five years, and measured three co-primary outcomes. All three failed. The point estimate for preventing diabetes came out at 1.07, pointing the wrong way.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, usually where meal times are irregular. It is the weakest glucose-lowering agent in this batch and the second most expensive tablet in it.',
+      clinicalGoals:
+        'Cover the post-meal glucose rise. The label states there have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with nateglinide, and the 9,306-patient trial that looked found none.',
+    },
+    oneSentenceVerdict:
+      'A D-phenylalanine derivative that closes the beta-cell potassium channel for a fast, short insulin burst, lowering HbA1c by 0.2 to 0.6 percentage points across placebo-controlled trials — and the only drug on this site whose 9,306-participant, five-year outcome trial failed all three of its co-primary endpoints simultaneously, with the diabetes-prevention hazard ratio landing at 1.07 in favour of placebo.',
+    laymanHowItWorks:
+      'Insulin-producing cells stay quiet because potassium leaks out of them through an open channel. Nateglinide plugs that channel, the cell becomes electrically active, calcium rushes in, and insulin is released. The molecule is a modified amino acid rather than a sulfonylurea, it works within an hour, and half of it is gone within about ninety minutes — which is why it is taken around meals rather than once a day.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 38,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.2345 per tablet at United States pharmacy acquisition cost, the median across 18 listed generic products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved as Starlix under NDA 021204 on 22 December 2000 and long off patent, with 18 generic products in the current NADAC file. At 23.45 cents a tablet it is the second most expensive oral drug in this batch after alogliptin, and roughly six times the price of glimepiride — for a smaller measured effect on HbA1c and a failed outcome trial.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The Cochrane review of the class put nateglinide at an HbA1c reduction of 0.2 to 0.6 percentage points against placebo, against 0.1 to 2.1 for repaglinide, and found repaglinide better in the two head-to-head trials totalling 342 participants. Against metformin, in one trial of 355 participants, nateglinide had a similar or slightly less marked effect. Its distinguishing feature is not efficacy: it is that someone spent five years and 9,306 participants testing whether it prevents anything, and the answer was no on all three endpoints.',
+      conventionalRx: [
+        {
+          name: 'Repaglinide',
+          class: 'Meglitinide',
+          howItCompares:
+            'The other drug in the same class, with a stronger glycaemic effect. Cochrane found HbA1c reductions of 0.1% to 2.1% for repaglinide against 0.2% to 0.6% for nateglinide across placebo-controlled trials, and greater reduction with repaglinide in two direct comparisons of 342 participants. Repaglinide has never had an outcome trial; nateglinide has, and failed it.',
+          typicalCost: 'US$0.0937 per tablet at NADAC, roughly 40% of the price of nateglinide',
+          prosAndCons:
+            'Pros: cheaper and more effective on HbA1c. Cons: contraindicated with gemfibrozil, and no outcome evidence of any kind.',
+        },
+        {
+          name: 'Metformin',
+          class: 'Biguanide',
+          howItCompares:
+            'In the single trial of 355 participants pooled by Cochrane, nateglinide had a similar or slightly less marked effect on HbA1c than metformin. Weight gain was generally greater with meglitinides — up to three kilograms in three months — and hypoglycaemia more frequent, though rarely severe. Metformin does not cause hypoglycaemia on its own.',
+          typicalCost: 'Cheaper than nateglinide',
+          prosAndCons:
+            'Pros: cheaper, at least as effective, no hypoglycaemia alone. Cons: gastrointestinal intolerance, contraindicated at low kidney function.',
+        },
+        {
+          name: 'Glimepiride',
+          class: 'Second-generation sulfonylurea',
+          howItCompares:
+            'The same channel from a different binding site, once daily rather than with each meal, at about a sixth of the price. Glimepiride is the only glucose-lowering tablet in this file with a dedicated six-year cardiovascular outcome trial, and it met its non-inferiority endpoint. Nateglinide is the only one whose outcome trial failed outright.',
+          typicalCost: 'US$0.0373 per tablet at NADAC, about a sixth of the price',
+          prosAndCons:
+            'Pros: cheaper, once daily, larger HbA1c effect, an outcome trial that did not fail. Cons: far more hypoglycaemia — 37.7% of patients over 6.3 years in CAROLINA — and weight gain.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Do not treat pre-diabetes as a reason to want a tablet',
+          action:
+            'NAVIGATOR is the largest randomised test of the idea that a glucose-lowering tablet given at the pre-diabetes stage prevents progression and prevents cardiovascular events. It ran for five years in 9,306 people and answered no to both. The lifestyle programme every participant received is the intervention that trial does not call into question.',
+          patientImpact:
+            'In NAVIGATOR, the cumulative incidence of diabetes was 36% on nateglinide and 34% on placebo — hazard ratio 1.07 (95% CI 1.00 to 1.15, p=0.05) after adjustment for multiple testing. The core cardiovascular composite was 7.9% against 8.3% (HR 0.94, 95% CI 0.82 to 1.09, p=0.43) and the extended composite 14.2% against 15.2% (HR 0.93, 95% CI 0.83 to 1.03, p=0.16). Nateglinide did increase the risk of hypoglycaemia.',
+          clinicalPrecaution:
+            'This is a statement about what a trial found, not advice about anyone in particular. Decisions about treating impaired glucose tolerance belong with a clinician. This page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)C1CCC(CC1)C(=O)N[C@H](CC2=CC=CC=C2)C(=O)O',
+      chemicalFormula: 'C19H27NO3',
+      molecularWeight: '317.40 g/mol',
+      targetReceptorAffinity:
+        'The FDA label describes nateglinide as (-)-N-[(trans-4-isopropylcyclohexane)carbonyl]-D-phenylalanine and states plainly that it is "structurally unrelated to the oral sulfonylurea insulin secretagogues". It interacts with the ATP-sensitive potassium channel on beta cells; the subsequent depolarisation opens the calcium channel, producing calcium influx and insulin secretion. The label adds that the extent of insulin release is glucose-dependent and diminishes at low glucose levels, and that nateglinide is highly tissue selective with low affinity for heart and skeletal muscle. Absolute bioavailability is approximately 73%, peak concentration occurs within one hour when taken before a meal, protein binding is 98%, and the elimination half-life is approximately 1.5 hours. Metabolism is 70% CYP2C9 and 30% CYP3A4; the major metabolites are less potent than the parent, but a minor isoprene metabolite has similar potency.',
+      structureSource: {
+        label:
+          'PubChem CID 5311309 (nateglinide) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint and matched to the FDA label description section (molecular weight 317.43)',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5311309',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'nat-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Release of D-phenylalanine and the trans-4-isopropylcyclohexane carboxylic acid',
+          description:
+            'Confirm identity and optical purity of D-phenylalanine and the cis/trans ratio of 4-isopropylcyclohexanecarboxylic acid. Two independent stereochemical specifications sit here: the amino acid must be the D enantiomer, not the naturally abundant L, and the cyclohexane substituents must be trans. Both appear in the chemical name on the label, and either error yields a different and weaker molecule.',
+          reagentsAndBuffer:
+            'Chiral HPLC and optical rotation for the amino acid, gas chromatography for cis/trans ratio, nuclear magnetic resonance with nuclear Overhauser measurements, Karl Fischer water determination',
+        },
+        {
+          id: 'nat-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Acylation of D-phenylalanine with the cyclohexanecarbonyl group',
+          description:
+            'Convert the trans-4-isopropylcyclohexanecarboxylic acid to its acyl chloride or a mixed anhydride and acylate the amino group of D-phenylalanine under Schotten-Baumann conditions, then liberate the free acid. The reaction is a single amide bond formation; the process risk is racemisation of the D-phenylalanine centre under basic conditions at temperature.',
+          dependsOnStepId: 'nat-w1',
+          reagentsAndBuffer:
+            'Thionyl chloride or oxalyl chloride for acid activation, aqueous sodium hydroxide with organic co-solvent at low temperature, dilute hydrochloric acid for liberation of the free carboxylic acid',
+        },
+        {
+          id: 'nat-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation with polymorph and optical purity release',
+          description:
+            'Recrystallise to the specified polymorph while confirming optical purity and controlling the cis-isomer and the L-phenylalanine diastereomer. Nateglinide is practically insoluble in water and freely soluble in alcohols, so polymorph and particle size govern dissolution and therefore the roughly 73% bioavailability the clinical programme measured.',
+          dependsOnStepId: 'nat-w2',
+          reagentsAndBuffer:
+            'Ethanol-water or ethyl acetate-heptane recrystallisation, chiral and achiral reversed-phase HPLC, X-ray powder diffraction, differential scanning calorimetry, laser diffraction particle sizing',
+        },
+        {
+          id: 'nat-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'CYP2C9 and CYP3A4 fraction determination and the isoprene metabolite',
+          description:
+            'Determine the relative contribution of CYP2C9 and CYP3A4 in human liver microsomes and quantify the minor isoprene metabolite, which the label states has potency similar to the parent. A drug 70% cleared by CYP2C9 with an equipotent minor metabolite is a drug whose active exposure varies with CYP2C9 genotype in a way plasma parent concentration alone does not capture.',
+          dependsOnStepId: 'nat-w3',
+          reagentsAndBuffer:
+            'Pooled and CYP2C9-genotyped human liver microsomes, recombinant CYP2C9 and CYP3A4, sulfaphenazole and ketoconazole as selective inhibitors, synthesised hydroxylated and isoprene metabolite standards, liquid chromatography with tandem mass spectrometry',
+        },
+        {
+          id: 'nat-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Glucose-dependence of secretion and cardiac channel counter-screen',
+          description:
+            'Measure insulin secretion from islets at low and high glucose to test the label claim that release diminishes at low glucose, and counter-screen the cardiac SUR2A and vascular SUR2B channels against the pancreatic SUR1 channel to test the claim of tissue selectivity. Both statements are on the label and both are assay results; a page that repeats them as clinical findings has misdescribed their status.',
+          dependsOnStepId: 'nat-w4',
+          reagentsAndBuffer:
+            'Isolated rodent or human islets, static incubation at 2.8 and 16.7 mmol/L glucose, insulin ELISA, HEK293 cells expressing SUR1/Kir6.2, SUR2A/Kir6.2 and SUR2B/Kir6.1, inside-out patch clamp with ATP-free intracellular solution',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'nat-a1',
+        category: 'failed',
+        title: 'NAVIGATOR failed all three co-primary endpoints in 9,306 participants',
+        laymanSummary:
+          'A five-year trial gave nateglinide or placebo to 9,306 people with pre-diabetes and either heart disease or its risk factors. It measured three things: whether diabetes developed, and two composites of cardiovascular events. None of the three improved.',
+        technicalDetails:
+          'NAVIGATOR assigned 9,306 participants with impaired glucose tolerance and either cardiovascular disease or cardiovascular risk factors to nateglinide or placebo in a two-by-two factorial design with valsartan or placebo, on top of a lifestyle modification programme, and followed them a median 5.0 years for incident diabetes and 6.5 years for vital status. After adjustment for multiple testing, nateglinide did not significantly reduce the cumulative incidence of diabetes (36% against 34%, hazard ratio 1.07, 95% CI 1.00 to 1.15, p=0.05), the core composite cardiovascular outcome of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or hospitalisation for heart failure (7.9% against 8.3%, hazard ratio 0.94, 95% CI 0.82 to 1.09, p=0.43), or the extended composite adding hospitalisation for unstable angina and arterial revascularisation (14.2% against 15.2%, hazard ratio 0.93, 95% CI 0.83 to 1.03, p=0.16). Nateglinide did increase the risk of hypoglycaemia. The stated conclusion is that assignment to nateglinide for five years did not reduce the incidence of diabetes or the co-primary composite cardiovascular outcomes.',
+        evidenceSource:
+          'NAVIGATOR Study Group; Holman RR et al., N Engl J Med 2010;362:1463-1476 (NCT00097786)',
+        doi: '10.1056/NEJMoa1001122',
+        measuredMetric:
+          'Hazard ratios for incident diabetes and for the core and extended composite cardiovascular outcomes over a median 5.0 years in 9,306 randomised participants',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nat-a2',
+        category: 'conclusion_shift',
+        title: 'The diabetes hazard ratio pointed the wrong way',
+        laymanSummary:
+          'Nateglinide was given to people with pre-diabetes precisely because it was expected to delay the onset of diabetes. Over five years, 36% of the drug group developed diabetes against 34% on placebo. The estimate favoured placebo.',
+        technicalDetails:
+          'The cumulative incidence of diabetes in NAVIGATOR was 36% on nateglinide and 34% on placebo, with a hazard ratio of 1.07 (95% CI 1.00 to 1.15) and p=0.05 after adjustment for multiple testing. That interval touches 1.00 at its lower bound and reaches 1.15 at its upper, so the data are compatible with no effect and with a modest increase, and are not compatible with the reduction the hypothesis predicted. For comparison, acarbose reduced conversion to diabetes in the same population type with a relative hazard of 0.75 in STOP-NIDDM and 0.82 in ACE, and metformin has repeatedly done so. This is not a case of an underpowered trial: 9,306 participants over five years with 2,300-odd diabetes diagnoses is more than adequate to detect the effect that was expected. The result is an answer, not an absence of one.',
+        evidenceSource: 'NAVIGATOR Study Group; Holman RR et al., N Engl J Med 2010;362:1463-1476',
+        doi: '10.1056/NEJMoa1001122',
+        measuredMetric:
+          'Cumulative incidence of diabetes and hazard ratio with 95% confidence interval, nateglinide against placebo, over a median 5.0 years',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'nat-a3',
+        category: 'measured',
+        title: 'It is the weakest glucose-lowering drug in this batch',
+        laymanSummary:
+          'Pooling every placebo-controlled trial of at least ten weeks, nateglinide lowered average blood sugar by between 0.2 and 0.6 percentage points. Repaglinide, in the same review, ranged from 0.1 to 2.1.',
+        technicalDetails:
+          'The Cochrane review of meglitinide analogues included fifteen trials with 3,781 participants. Across eleven placebo-controlled studies, nateglinide reduced HbA1c by 0.2 to 0.6 percentage points against 0.1 to 2.1 for repaglinide. Two trials directly comparing the two, totalling 342 participants, found greater HbA1c reduction on repaglinide. One study of 355 participants comparing nateglinide against metformin found a similar or slightly less marked effect for nateglinide. Weight gain was generally greater with meglitinides than with metformin, up to three kilograms in three months; diarrhoea occurred less frequently and hypoglycaemia more frequently, but rarely severely enough to require assistance. The reviewers state that no included study reported the effect of meglitinides on mortality or morbidity — a statement that was true of nateglinide at the time and was answered three years later by NAVIGATOR, in the negative.',
+        evidenceSource:
+          'Black C et al., Cochrane Database Syst Rev 2007;(2):CD004654 (PMID 17443551)',
+        doi: '10.1002/14651858.CD004654.pub2',
+        measuredMetric:
+          'Range of HbA1c reduction against placebo, and head-to-head comparisons against repaglinide and metformin, across pooled randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nat-a4',
+        category: 'inferred',
+        title: 'Glucose-dependence and tissue selectivity are label claims from assays',
+        laymanSummary:
+          'The label states that insulin release on this drug falls off when blood sugar is low, and that the drug barely touches the equivalent channels in heart and muscle. Both are laboratory findings. The trial that tested clinical consequences found more hypoglycaemia and no cardiovascular benefit.',
+        technicalDetails:
+          'The mechanism section states that "the extent of insulin release is glucose dependent and diminishes at low glucose levels" and that "nateglinide is highly tissue selective with low affinity for heart and skeletal muscle". Both describe in vitro pharmacology. The clinical readouts run the other way: NAVIGATOR reported that nateglinide increased the risk of hypoglycaemia, and neither cardiovascular composite improved. The label separately carries, under section 5.2, the statement that there have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with nateglinide. A mechanistic argument for safety that has been tested and not confirmed is weaker evidence than one that has never been tested, not stronger.',
+        evidenceSource:
+          'FDA prescribing information for nateglinide tablets USP, sections 12.1 and 5.2; NAVIGATOR Study Group, N Engl J Med 2010;362:1463-1476',
+        inferredClaim:
+          'That glucose-dependent secretion and cardiac channel selectivity make nateglinide clinically safe — the largest trial ever run on it found more hypoglycaemia and no cardiovascular benefit',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'nat-a5',
+        category: 'measured',
+        title: 'In and out in about ninety minutes, with an equipotent minor metabolite',
+        laymanSummary:
+          'Roughly three-quarters of a dose reaches the blood, it peaks within an hour when taken before food, and half of it is cleared in about an hour and a half. One of its minor breakdown products is as strong as the drug itself.',
+        technicalDetails:
+          'The label reports absolute bioavailability of approximately 73%, peak plasma concentration within one hour when taken immediately before a meal, a steady-state volume of distribution of about 10 L, serum protein binding of 98% — primarily to albumin — and an average elimination half-life of approximately 1.5 hours. Pharmacokinetics are linear from 60 mg to 240 mg with no accumulation over seven days of three-times-daily dosing. Metabolism is predominantly by CYP2C9 (70%) and to a lesser extent CYP3A4 (30%), by hydroxylation followed by glucuronidation. The major metabolites are less potent than the parent, but the label states the minor isoprene metabolite "possesses potency similar to that of the parent compound". Eighty-three percent of a radiolabelled dose is excreted in urine and a further 10% in faeces.',
+        evidenceSource:
+          'FDA prescribing information for nateglinide tablets USP, sections 11 Description and 12.3 Pharmacokinetics',
+        measuredMetric:
+          'Absolute bioavailability, time to peak, volume of distribution, protein binding, elimination half-life, CYP fraction and radiolabelled recovery',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nat-a6',
+        category: 'inferred',
+        title: 'It costs six times glimepiride for a smaller measured effect',
+        laymanSummary:
+          'At what United States pharmacies pay, nateglinide is 23.45 cents a tablet against 3.73 cents for glimepiride — and it is taken with each meal rather than once a day. The measured HbA1c effect is smaller and the outcome trial failed.',
+        technicalDetails:
+          'The CMS National Average Drug Acquisition Cost survey effective 19 August 2026 puts the median across 18 listed nateglinide products at US$0.2345 per tablet, against US$0.0373 across 56 glimepiride products, US$0.0464 across 75 glipizide products and US$0.0937 across 17 repaglinide products. Nateglinide is therefore the most expensive secretagogue in this batch and the second most expensive oral drug in it after alogliptin. On measured effect it sits at the bottom: 0.2 to 0.6 HbA1c percentage points against placebo in the Cochrane pooling, below repaglinide in direct comparison, and similar to or slightly below metformin. This page observes the price and the effect side by side; it does not have data on how prescribing responded to either, and it does not claim to.',
+        evidenceSource:
+          'CMS National Average Drug Acquisition Cost survey, 19 August 2026 file; Black C et al., Cochrane Database Syst Rev 2007;(2):CD004654',
+        inferredClaim:
+          'That a higher acquisition price reflects a therapeutic advantage — on the measured HbA1c effect and on the outcome trial record, the opposite ordering holds within this class',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A modified amino acid, absorbed within the hour',
+        laymanDesc:
+          'The molecule is an amino acid with a ring attached — chemically unlike the older diabetes tablets. About three-quarters of a dose gets into the blood, peaking within an hour when taken before food.',
+        molecularDetail:
+          'The label names it (-)-N-[(trans-4-isopropylcyclohexane)carbonyl]-D-phenylalanine and states it is structurally unrelated to the oral sulfonylurea secretagogues. Absolute bioavailability is approximately 73%, peak concentration occurs within one hour before a meal, and protein binding is 98%, primarily to albumin.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It engages the beta-cell potassium channel from its own site',
+        laymanDesc:
+          'The target is the same potassium gate that the sulfonylureas close, but the drug grips it differently because it is a different kind of molecule entirely.',
+        molecularDetail:
+          'The label states nateglinide "interacts with the ATP-sensitive potassium channel on pancreatic beta-cells". The binding site is distinct from the classical sulfonylurea site on SUR1, and the association and dissociation kinetics are much faster, which is what produces the brief early insulin burst rather than a sustained one.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The cell depolarises and calcium enters',
+        laymanDesc:
+          'With the potassium gate shut, charge builds inside the cell, calcium channels open, and calcium floods in.',
+        molecularDetail:
+          'The label describes the sequence directly: the subsequent depolarisation of the beta cell opens the calcium channel, producing calcium influx and insulin secretion. It adds that the mechanism is highly tissue selective, with low affinity for heart and skeletal muscle.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'A fast, short insulin burst timed to the meal',
+        laymanDesc:
+          'Insulin comes out quickly and stops quickly. The label says the amount released depends on how high blood sugar is and falls off when it is low.',
+        molecularDetail:
+          'The extent of insulin release is described as glucose-dependent and diminishing at low glucose levels. The measured consequence is a smaller HbA1c effect than repaglinide — 0.2 to 0.6 percentage points against 0.1 to 2.1 across placebo-controlled trials — and, in NAVIGATOR, an increased risk of hypoglycaemia nonetheless.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Two liver enzymes clear it, and one minor product is as strong as the drug',
+        laymanDesc:
+          'The liver breaks it down using mainly one enzyme. Most of the products are weaker than the drug, but one minor one is just as potent.',
+        molecularDetail:
+          'Metabolism is 70% CYP2C9 and 30% CYP3A4, by hydroxylation followed by glucuronide conjugation. The label states the major metabolites are less potent antidiabetic agents than nateglinide but that "the isoprene minor metabolite possesses potency similar to that of the parent compound". Elimination half-life is approximately 1.5 hours; 83% is recovered in urine and 10% in faeces.',
+        iconName: 'Recycle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'HbA1c falls slightly — and five years of trial found nothing else',
+        laymanDesc:
+          'Average blood sugar comes down a little. In the only large long-term trial, diabetes was not prevented, cardiovascular events were not reduced, and hypoglycaemia went up.',
+        molecularDetail:
+          'NAVIGATOR: diabetes 36% against 34%, hazard ratio 1.07 (95% CI 1.00 to 1.15, p=0.05); core cardiovascular composite 0.94 (95% CI 0.82 to 1.09, p=0.43); extended composite 0.93 (95% CI 0.83 to 1.03, p=0.16); increased hypoglycaemia. The label states no clinical study has conclusively established macrovascular risk reduction with nateglinide.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NAVIGATOR, nateglinide comparison (NCT00097786)',
+        phase:
+          'Double-blind randomised two-by-two factorial trial, median 5.0 years for incident diabetes and 6.5 years for vital status',
+        sampleSize: 9306,
+        primaryEndpoint:
+          'Three co-primary outcomes — incident diabetes, a core composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke or heart-failure hospitalisation, and an extended composite adding unstable angina and revascularisation',
+        endpointMet: false,
+        statisticalPValue:
+          'Diabetes: hazard ratio 1.07 (95% CI 1.00 to 1.15), P = 0.05. Core cardiovascular composite: 0.94 (95% CI 0.82 to 1.09), P = 0.43. Extended composite: 0.93 (95% CI 0.83 to 1.03), P = 0.16. All three after adjustment for multiple testing',
+        unreportedAdverseSignals:
+          'Nateglinide increased the risk of hypoglycaemia. The diabetes point estimate of 1.07 favours placebo, in the population and for the outcome the drug was given to affect.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Cochrane review of meglitinide analogues, nateglinide comparisons',
+        phase: 'Systematic review and meta-analysis of 15 randomised trials of at least 10 weeks',
+        sampleSize: 3781,
+        primaryEndpoint:
+          'HbA1c reduction against placebo, against repaglinide and against metformin, with mortality and morbidity as co-equal review outcomes',
+        endpointMet: false,
+        statisticalPValue:
+          'HbA1c reduction of 0.2 to 0.6 percentage points for nateglinide across placebo-controlled studies; greater reduction with repaglinide in two direct comparisons of 342 participants',
+        unreportedAdverseSignals:
+          'The reviewers state that no included study reported the effect of meglitinides on mortality or morbidity. NAVIGATOR answered that question for nateglinide three years later, and the answer was negative on all three co-primary endpoints.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A diabetes-incidence hazard ratio of 1.07 (95% CI 1.00 to 1.15, p=0.05) against placebo over a median 5.0 years in 9,306 participants — 36% against 34%',
+        'A core cardiovascular composite hazard ratio of 0.94 (95% CI 0.82 to 1.09, p=0.43) and an extended composite of 0.93 (95% CI 0.83 to 1.03, p=0.16) in the same trial',
+        'An increased risk of hypoglycaemia in the same trial',
+        'An HbA1c reduction of 0.2 to 0.6 percentage points against placebo across pooled randomised trials, below repaglinide in direct comparison',
+        'Absolute bioavailability of approximately 73%, protein binding of 98%, an elimination half-life of approximately 1.5 hours and 70% CYP2C9 metabolism',
+      ],
+      unsupportedInferences: [
+        'That nateglinide delays the onset of type 2 diabetes — the largest trial of exactly that hypothesis returned a hazard ratio of 1.07, favouring placebo',
+        'That treating post-meal glucose spikes prevents cardiovascular events — both cardiovascular composites in NAVIGATOR were non-significant, and acarbose failed the same hypothesis in the ACE trial',
+        'That glucose-dependent secretion and cardiac channel selectivity make the drug clinically safe — the trial that could have shown this instead found increased hypoglycaemia',
+        'That the higher acquisition price reflects a therapeutic advantage — within this class the cheaper drug has the larger measured HbA1c effect',
+      ],
+      whatFailedInitially: [
+        'All three co-primary endpoints of NAVIGATOR failed simultaneously, in 9,306 participants over five years',
+        'The diabetes-prevention estimate came out at 1.07 with a confidence interval whose lower bound touches no effect — the hypothesis the trial was built on was rejected, not merely unproven',
+        'The Cochrane review had already recorded that no trial of the class had reported mortality or morbidity; when one finally did, the drug did not benefit either',
+      ],
+      realWorldOutcome: [
+        'US$0.2345 per tablet at United States pharmacy acquisition cost, the median across 18 listed generic products in the CMS NADAC survey — about six times glimepiride, for a smaller measured effect',
+        'The weakest HbA1c effect of the oral drugs in this batch, and the only one whose outcome trial failed outright',
+        'Approved 22 December 2000 under NDA 021204 and long off patent',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet taken in relation to meals, in 60 mg and 120 mg strengths',
+      description:
+        'A conventional immediate-release tablet of a practically water-insoluble modified amino acid. The pharmacokinetics are what tie the drug to meals rather than to a time of day: peak concentration within one hour when taken before eating, and an elimination half-life of about 1.5 hours. Taken under fasting conditions the plasma profile shows multiple peaks, an effect the label notes is diminished when the drug is taken before a meal. Meal composition does not change absorption, though peak levels are lower before a liquid meal than a solid one.',
+      safetyProfile:
+        'Hypoglycaemia can occur and can be severe, causing seizures and, rarely, death; the label notes that awareness may be blunted in longstanding diabetes, diabetic neuropathy, beta-blocker use or recurrent hypoglycaemia, and that impaired concentration and reaction time create risk while driving or operating machinery. NAVIGATOR found an increased risk of hypoglycaemia over five years. Weight gain occurs. Clearance is 70% dependent on CYP2C9, so inhibitors of that enzyme raise exposure. The label states there have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with nateglinide.',
+    },
+    commonQuestions: [
+      {
+        q: 'What happened in NAVIGATOR?',
+        a: 'Everything the trial set out to test came back negative. It randomised 9,306 people with impaired glucose tolerance and either established cardiovascular disease or risk factors to nateglinide or placebo, in a factorial design with valsartan, on top of a lifestyle programme, and followed them a median five years. It had three co-primary outcomes. Diabetes developed in 36% of the nateglinide group and 34% of the placebo group — hazard ratio 1.07, 95% CI 1.00 to 1.15, p=0.05. The core cardiovascular composite was 7.9% against 8.3%, hazard ratio 0.94 (95% CI 0.82 to 1.09, p=0.43). The extended composite was 14.2% against 15.2%, hazard ratio 0.93 (95% CI 0.83 to 1.03, p=0.16). Nateglinide increased the risk of hypoglycaemia. The authors concluded that five years of nateglinide did not reduce the incidence of diabetes or the co-primary composite cardiovascular outcomes.',
+        auditNote:
+          'This is not an underpowered trial with an inconclusive result. Nine thousand participants over five years is enough to detect the effect that was expected, and it was not there.',
+      },
+      {
+        q: 'Did it make diabetes more likely?',
+        a: 'The point estimate says slightly more likely and the confidence interval does not exclude no effect. Cumulative incidence was 36% on nateglinide against 34% on placebo, hazard ratio 1.07 with a 95% confidence interval from 1.00 to 1.15. The lower bound touches exactly 1.00, so the honest reading is that the data are compatible with no effect and with a small increase, and are not compatible with the reduction the trial was designed to find. It is worth setting beside the comparators: acarbose reduced conversion in the same kind of population with a relative hazard of 0.75 in one trial and 0.82 in another. Nateglinide is a drug that forces insulin out of beta cells, and a plausible reading — untested — is that five years of doing so in people whose beta cells are already under strain does not help.',
+      },
+      {
+        q: 'Is nateglinide weaker than repaglinide?',
+        a: 'Yes, on every comparison in the pooled evidence. The Cochrane review of the class found HbA1c reductions of 0.2 to 0.6 percentage points for nateglinide against placebo, and 0.1 to 2.1 for repaglinide. In two head-to-head trials totalling 342 participants, repaglinide reduced HbA1c more. Against metformin, one trial of 355 participants found nateglinide similar or slightly less effective. Repaglinide also costs less than half as much at United States pharmacy acquisition cost. What nateglinide has that repaglinide does not is a large long-term outcome trial — and the result of that trial was negative on all three of its endpoints.',
+      },
+      {
+        q: 'Why does it have to be taken around meals?',
+        a: 'Because its whole pharmacological profile is short. Absolute bioavailability is about 73%, peak plasma concentration occurs within an hour of a dose taken before food, and the elimination half-life is around 1.5 hours. The label also notes that taken while fasting the plasma profile shows multiple peaks, an effect that is reduced when the drug is taken before a meal. The design intent is a brief early insulin burst that matches the glucose from a single meal and then stops, rather than the day-long insulin release a sulfonylurea produces. Whether that structural advantage translates into anything clinically is the question NAVIGATOR asked and answered.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for nateglinide could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.2345 per tablet, the median across 18 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost. It is worth noting only that this price is roughly six times what pharmacies pay for glimepiride, and that nateglinide is taken with each meal rather than once a day.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'NAVIGATOR Study Group; Holman RR, Haffner SM, McMurray JJ et al. Effect of nateglinide on the incidence of diabetes and cardiovascular events. N Engl J Med 2010;362:1463-1476',
+        identifier: '10.1056/NEJMoa1001122',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NAVIGATOR: Nateglinide And Valsartan in Impaired Glucose Tolerance Outcomes Research',
+        identifier: 'NCT00097786',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Black C, Donnelly P, McIntyre L, Royle PL, Shepherd JP, Thomas S. Meglitinide analogues for type 2 diabetes mellitus. Cochrane Database Syst Rev 2007;(2):CD004654',
+        identifier: '10.1002/14651858.CD004654.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA prescribing information for nateglinide tablets USP — sections 5.1 Hypoglycemia, 5.2 Macrovascular Outcomes, 11 Description, 12.1 Mechanism of Action and 12.3 Pharmacokinetics',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22nateglinide%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA — NDA 021204 (STARLIX, Novartis, original approval 22 December 2000)',
+        identifier:
+          'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22STARLIX%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5311309 — nateglinide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5311309',
         kind: 'url',
       },
       NADAC_SOURCE,

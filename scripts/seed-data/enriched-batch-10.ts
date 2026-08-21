@@ -4172,4 +4172,1019 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Dexmedetomidine — a sedative that borrows the brain's own sleep switch, and that has now
+  //    failed to reduce mortality, delirium or atrial fibrillation in three separate large trials.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'dexmedetomidine',
+    name: 'Dexmedetomidine',
+    tradeName:
+      'Precedex; also marketed as dexmedetomidine hydrochloride in sodium chloride, and as Igalmi sublingual film',
+    sponsor:
+      'Hospira, a Pfizer company (US label holder for Precedex); developed at Orion in Finland as the dextro-enantiomer of medetomidine and approved in the United States in 1999',
+    targetGene: 'ADRA2A, ADRA2B, ADRA2C',
+    targetProtein:
+      'Alpha-2 adrenergic receptors, principally the alpha-2A subtype on noradrenergic neurons of the locus coeruleus; agonist occupancy reduces noradrenaline release and disinhibits the ventrolateral preoptic nucleus',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1999,
+    indication:
+      'Sedation of initially intubated and mechanically ventilated adult patients during treatment in an intensive care setting, by continuous infusion not exceeding 24 hours; and sedation of non-intubated adult patients before and during surgical and other procedures',
+    patientFriendlyIndication:
+      'Keeping someone calm and drowsy on a ventilator or during a procedure, without stopping them breathing',
+    anatomicalSite:
+      'Alpha-2A adrenoceptors on locus coeruleus neurons in the pons, and presynaptic alpha-2 receptors on sympathetic nerve terminals',
+    conditionContext: {
+      conditionExplainer:
+        'The locus coeruleus is a small cluster of cells in the brainstem that keeps the rest of the brain awake by releasing noradrenaline. Turning it down releases a brake on the ventrolateral preoptic nucleus, the switch the brain itself uses to fall asleep. Dexmedetomidine turns the locus coeruleus down, so the sedation it produces is closer to non-rapid-eye-movement sleep than to a general anaesthetic, and patients can be roused and will follow instructions.',
+      whyItMatters:
+        'Every other sedative in the intensive care unit works on the GABA-A receptor and depresses breathing. This one does not, so a patient can be sedated without being ventilated. That is a genuine and unusual property. Whether it also reduces delirium, atrial fibrillation or death is a different set of claims, and three large randomised trials have now answered no to all three.',
+      whoTakesThis:
+        'Intubated adults in intensive care, patients having awake fibreoptic intubation or procedural sedation, and increasingly children and adults as an adjunct in the operating theatre.',
+      clinicalGoals:
+        'A rousable, cooperative, spontaneously breathing patient at a target sedation score. Everything beyond that — less delirium, shorter ventilation, better survival — has been tested and is covered below.',
+    },
+    oneSentenceVerdict:
+      "A selective alpha-2A agonist that sedates by recruiting the brain's own non-REM sleep pathway rather than by depressing it, and which in 3,904 ventilated critically ill patients produced 90-day mortality of 29.1% against 29.1% on usual care, with more bradycardia and hypotension and with two thirds of patients needing propofol on top anyway.",
+    laymanHowItWorks:
+      "A small cluster of cells in the brainstem keeps you awake by spraying noradrenaline over the rest of the brain. Dexmedetomidine binds a receptor on those cells that tells them to stop releasing it. With that wakefulness signal turned down, the brain's own sleep switch is released and the patient drifts into something much closer to real sleep than to anaesthesia — they can be woken by voice, will follow a command, and go back to sleep afterwards. Because none of this touches the brainstem centres that drive breathing, they keep breathing on their own.",
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 62,
+    substitutes: {
+      summary:
+        'The alternatives are propofol and the benzodiazepines, and the randomised evidence draws a clear line. Against midazolam, dexmedetomidine measurably reduces delirium and shortens time to extubation. Against propofol, in ventilated septic adults, it made no difference to delirium-free days, ventilator-free days, death at 90 days or cognition at six months. Against usual care, it did not change 90-day mortality in 4,000 patients. Nothing in a diet substitutes for a sedative and nothing is listed here.',
+      conventionalRx: [
+        {
+          name: 'Propofol (Diprivan)',
+          class: 'Intravenous GABA-A general anaesthetic used at sedative doses',
+          howItCompares:
+            'Tested head to head in MENDS2 in 422 ventilated adults with sepsis: days alive without delirium or coma 10.7 versus 10.8 (odds ratio 0.96, 95% CI 0.74 to 1.26), ventilator-free days 23.7 versus 24.0, death at 90 days 38% versus 39% (hazard ratio 1.06, 95% CI 0.74 to 1.52). Propofol is faster on and off and cheaper; it also depresses respiration, which dexmedetomidine does not.',
+          typicalCost:
+            'US$0.1709 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 4 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: rapid titration, no bradycardia, decades of use. Cons: apnoea and hypotension, and propofol infusion syndrome on long high-rate infusions.',
+        },
+        {
+          name: 'Midazolam (Versed)',
+          class: 'Benzodiazepine, positive modulator at the GABA-A benzodiazepine site',
+          howItCompares:
+            'The one comparison dexmedetomidine clearly wins. In SEDCOM, 366 ventilated patients at 68 centres reached the target sedation range equally often — 77.3% versus 75.1% of the time — but delirium prevalence was 54% versus 76.6% (difference 22.6 percentage points, 95% CI 14 to 33, P<0.001) and median time to extubation was 1.9 days shorter.',
+          typicalCost:
+            'US$0.4200 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 23 listed products, effective 12 March 2025)',
+          prosAndCons:
+            'Pros: reliable amnesia, a specific antagonist exists, inexpensive. Cons: accumulation with an active metabolite, prolonged emergence, and substantially more delirium in the head-to-head trial.',
+        },
+        {
+          name: 'Clonidine',
+          class: 'Older, less selective alpha-2 adrenergic agonist',
+          howItCompares:
+            'The same receptor family with lower selectivity for the alpha-2A subtype and a much longer half-life, which makes it harder to titrate. It is far cheaper and is used as an alpha-2 sedative where dexmedetomidine is unaffordable.',
+          typicalCost:
+            'No NADAC value is held on this record for clonidine and none is asserted here',
+          prosAndCons:
+            'Pros: same mechanism at a fraction of the price. Cons: long half-life, oral or transdermal routes ill-suited to minute-by-minute titration.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Expect to remember some of it',
+          action:
+            "This drug produces rousable sedation rather than anaesthesia, and its amnestic effect is far weaker than a benzodiazepine's. Patients sedated with it for a procedure often recall parts of it.",
+          patientImpact:
+            'Knowing beforehand that recall is expected rather than a failure of sedation changes how the experience is interpreted afterwards, and is worth asking about in advance if it matters to you.',
+          clinicalPrecaution:
+            'Whether amnesia is wanted is a clinical decision made with the team, and nothing on this page addresses which drug should be used.',
+        },
+        {
+          name: 'Mention beta blockers, pacemakers and a slow resting pulse',
+          action:
+            'The commonest adverse effects of this drug are a slow heart rate and low blood pressure, and both were more frequent than usual care in the largest trial of it.',
+          patientImpact:
+            'A patient who already has a slow pulse, heart block or takes a rate-limiting drug is starting from a different place, and that is relevant information before sedation.',
+          clinicalPrecaution:
+            'History to hand over. Bradycardia and hypotension during an infusion are managed by the clinical team.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(C(=CC=C1)[C@H](C)C2=CN=CN2)C',
+      chemicalFormula: 'C13H16N2',
+      molecularWeight: '200.28 g/mol (free base); dispensed as dexmedetomidine hydrochloride',
+      targetReceptorAffinity:
+        'Dexmedetomidine is the pharmacologically active dextro-enantiomer of medetomidine and is selective for alpha-2 over alpha-1 adrenoceptors by a wide margin — the approved label states that alpha-2 selectivity is observed in animals during slow intravenous infusion of low and medium doses, and that both alpha-1 and alpha-2 activity appear at high doses or with rapid administration. That dose-dependence is not a footnote: the transient hypertension seen with a rapid loading infusion is peripheral alpha-2B vasoconstriction, and the loss of selectivity at high concentration is why the label distinguishes slow from rapid administration in its pharmacology section.',
+      structureSource: {
+        label:
+          'PubChem CID 5311068 (dexmedetomidine) — canonical SMILES with the S configuration, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5311068',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dex-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric excess against levomedetomidine',
+          description:
+            'Medetomidine is a racemate and only one enantiomer is active; the other contributes nothing useful and is the reason the veterinary product and the human product are different drugs. Establish enantiomeric excess as a release specification, not as a characterisation exercise.',
+          reagentsAndBuffer:
+            'Dexmedetomidine and levomedetomidine reference standards, chiral HPLC on a polysaccharide-derived stationary phase, optical rotation, nuclear magnetic resonance for imidazole substitution pattern',
+        },
+        {
+          id: 'dex-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Coupling of the 2,3-dimethylphenyl unit to the imidazole',
+          description:
+            'Build the 1-(2,3-dimethylphenyl)ethyl imidazole skeleton. The imidazole ring is the alpha-2 pharmacophore shared with clonidine and the whole imidazoline class; the ortho-methylated aryl group and the single chiral methyl are what make this member selective and short-acting rather than long and non-selective.',
+          dependsOnStepId: 'dex-w1',
+          reagentsAndBuffer:
+            '2,3-dimethylacetophenone or an equivalent aryl unit, imidazole coupling partner, base, aprotic solvent, controlled temperature under nitrogen',
+        },
+        {
+          id: 'dex-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Chiral resolution and hydrochloride salt formation',
+          description:
+            "Resolve the racemate to the dextro-enantiomer and form the hydrochloride. Resolution rather than asymmetric synthesis is the historically used route, which means half of the material is discarded as the inactive enantiomer and the release test is the resolution's only guarantee.",
+          dependsOnStepId: 'dex-w2',
+          reagentsAndBuffer:
+            'Chiral resolving acid for diastereomeric salt formation, recrystallisation solvent system, hydrogen chloride in isopropanol, chiral HPLC for enantiomeric purity at release',
+        },
+        {
+          id: 'dex-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'c-Fos mapping in sleep-promoting nuclei, with the knockout as the control',
+          description:
+            'Map neuronal activation across the locus coeruleus, tuberomammillary nucleus and ventrolateral preoptic nucleus after drug, and repeat it in animals lacking a functional alpha-2A receptor. Running the knockout alongside is what turns a pattern of activation into a causal claim about which receptor produces the sedation.',
+          dependsOnStepId: 'dex-w3',
+          reagentsAndBuffer:
+            'Rat brain sections for c-Fos immunohistochemistry and in situ hybridisation, alpha-2A-deficient mice, atipamezole as alpha-2 antagonist, ibotenic acid for discrete nucleus lesions, gabazine for local GABA-A antagonism',
+        },
+        {
+          id: 'dex-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Sedation depth and arousability, scored as two separate things',
+          description:
+            'Score the depth of sedation and the ability to be roused independently. The clinical selling point of this drug is that the two come apart — a deeply sedated patient who wakes to voice — and a single sedation number that collapses them hides exactly the property being claimed.',
+          dependsOnStepId: 'dex-w4',
+          reagentsAndBuffer:
+            'Richmond Agitation-Sedation Scale scored at fixed intervals, Confusion Assessment Method for the Intensive Care Unit for delirium, processed electroencephalography, blinded assessors independent of the treating team',
+        },
+        {
+          id: 'dex-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'Report supplemental sedative use beside the sedation score',
+          description:
+            'Record how much propofol or midazolam had to be added to reach the target, and publish it next to the sedation result. SPICE III makes the case for this step: 64% of the dexmedetomidine group received supplemental propofol in the first two days, which means the trial compared dexmedetomidine-plus-propofol with usual care rather than one drug against another.',
+          dependsOnStepId: 'dex-w5',
+          reagentsAndBuffer:
+            'Prospective capture of all supplemental sedative and analgesic doses, per-day totals by group, bradycardia and hypotension recorded as prespecified adverse events with treatment thresholds defined in advance',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dex-a1',
+        category: 'measured',
+        title: "It recruits the brain's own sleep pathway, and the knockout mouse proves it",
+        laymanSummary:
+          'Researchers showed the drug switches on the same brain cells that switch on during natural deep sleep, and switches off the ones that keep you awake. Mice engineered without the receptor did not become sedated at all.',
+        technicalDetails:
+          'Nelson and colleagues mapped c-Fos expression across sleep-regulating nuclei after dexmedetomidine and found a pattern qualitatively similar to normal non-rapid-eye-movement sleep: decreased in the locus coeruleus and tuberomammillary nucleus, increased in the ventrolateral preoptic nucleus. The pattern was attenuated by the alpha-2 antagonist atipamezole and was absent in mice lacking functional alpha-2A adrenoceptors, which show no sedative response to the drug. Bilateral lesions of the ventrolateral preoptic nucleus attenuated sedation, and the dose-response curve shifted right when the GABA-A antagonist gabazine was given systemically or directly into the tuberomammillary nucleus. Lesions and gabazine altered c-Fos in the tuberomammillary nucleus but not the locus coeruleus, establishing a hierarchical sequence: alpha-2A agonism silences the locus coeruleus, which disinhibits the ventrolateral preoptic nucleus, which then GABAergically inhibits the tuberomammillary nucleus. This is why the sedation is rousable, and it is a properly controlled mechanistic result rather than a mechanistic story.',
+        evidenceSource:
+          'Nelson LE, Lu J, Guo T, Saper CB, Franks NP, Maze M. The alpha2-adrenoceptor agonist dexmedetomidine converges on an endogenous sleep-promoting pathway to exert its sedative effects. Anesthesiology 2003;98:428-436',
+        doi: '10.1097/00000542-200302000-00024',
+        measuredMetric:
+          'c-Fos expression across locus coeruleus, tuberomammillary nucleus and ventrolateral preoptic nucleus, with alpha-2A knockout, antagonist, lesion and local GABA-A antagonist controls',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dex-a2',
+        category: 'failed',
+        title:
+          'SPICE III: identical 90-day mortality, more harm, and most patients needed propofol anyway',
+        laymanSummary:
+          'Four thousand critically ill patients were randomised to have this drug as their main sedative or to usual care. After ninety days, 29.1% of each group had died. Two thirds of the dexmedetomidine group had needed propofol added on top to keep them comfortable.',
+        technicalDetails:
+          'Shehabi and colleagues enrolled critically ill adults ventilated for less than 12 hours and expected to need ventilation beyond the next calendar day, randomising them open-label to dexmedetomidine as sole or primary sedative or to usual care with propofol, midazolam or other agents, targeting a Richmond Agitation-Sedation Scale score of -2 to +1. Four thousand patients were enrolled at a median 4.6 hours from eligibility. In the modified intention-to-treat analysis of 3,904 patients, death from any cause at 90 days occurred in 566 of 1,948 (29.1%) on dexmedetomidine and 569 of 1,956 (29.1%) on usual care — adjusted risk difference 0.0 percentage points, 95% CI -2.9 to 2.8. The ancillary finding matters as much as the primary: to reach the prescribed sedation level, 64% of the dexmedetomidine group received supplemental propofol in the first two days, 3% midazolam and 7% both. Bradycardia and hypotension were more common on dexmedetomidine, and more adverse events overall were reported in that group. A trial in which two thirds of the intervention arm receives the comparator drug is not a clean comparison of two sedatives, and the authors report it plainly.',
+        evidenceSource:
+          'Shehabi Y, Howe BD, Bellomo R, et al. Early sedation with dexmedetomidine in critically ill patients. N Engl J Med 2019;380:2506-2517 (SPICE III)',
+        doi: '10.1056/NEJMoa1904710',
+        measuredMetric:
+          'Death from any cause at 90 days, and supplemental sedative use in the first two days',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dex-a3',
+        category: 'failed',
+        title: 'MENDS2: no better than propofol on delirium, ventilation, death or cognition',
+        laymanSummary:
+          'Against propofol, in ventilated patients with sepsis, this drug produced the same number of days free of delirium or coma, the same ventilator-free days, the same death rate at three months and the same cognitive scores at six.',
+        technicalDetails:
+          'Hughes and colleagues ran a multicentre double-blind trial in mechanically ventilated adults with sepsis, randomising to dexmedetomidine or propofol with doses adjusted by bedside nurses to clinician-set Richmond Agitation-Sedation Scale targets. Of 432 randomised, 422 received a trial drug and were analysed: 214 on dexmedetomidine at a median 0.27 micrograms per kilogram per hour, 208 on propofol at a median 10.21 micrograms per kilogram per minute, for a median 3 days, at a median score of -2. The primary endpoint, days alive without delirium or coma over the 14-day intervention period, was 10.7 against 10.8 (odds ratio 0.96, 95% CI 0.74 to 1.26). Ventilator-free days at 28 days were 23.7 against 24.0 (odds ratio 0.98, 95% CI 0.63 to 1.51). Death at 90 days was 38% against 39% (hazard ratio 1.06, 95% CI 0.74 to 1.52). Age-adjusted cognition on the Telephone Interview for Cognitive Status at six months did not differ either. The trial was designed around a hypothesis that the two drugs differ in arousability, immunity and inflammation. On every outcome it measured, they did not.',
+        evidenceSource:
+          'Hughes CG, Mailloux PT, Devlin JW, et al. Dexmedetomidine or propofol for sedation in mechanically ventilated adults with sepsis. N Engl J Med 2021;384:1424-1436 (MENDS2)',
+        doi: '10.1056/NEJMoa2024922',
+        measuredMetric:
+          'Days alive without delirium or coma over 14 days, with ventilator-free days, 90-day death and 6-month cognition as secondary endpoints',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dex-a4',
+        category: 'failed',
+        title: 'DECADE: no reduction in atrial fibrillation, and delirium went the wrong way',
+        laymanSummary:
+          'A placebo-controlled trial after cardiac surgery tested whether this drug prevents the two commonest complications. Atrial fibrillation was not reduced, delirium was numerically higher on the drug, and serious adverse events were more than twice as common.',
+        technicalDetails:
+          "Turan and colleagues randomised 798 patients having cardiac surgery with cardiopulmonary bypass at six academic hospitals in the United States, 1:1, masked to patients, caregivers and evaluators, to a dexmedetomidine infusion started before incision and continued for 24 hours or to saline placebo. The trial was stopped per protocol after the last designated interim analysis; 794 were analysed. Atrial fibrillation occurred in 121 of 397 (30%) on dexmedetomidine and 134 of 395 (34%) on placebo — relative risk 0.90, 97.8% CI 0.72 to 1.15, P=0.34. Delirium was non-significantly increased, from 12% on placebo to 17% on dexmedetomidine, relative risk 1.48, 97.8% CI 0.99 to 2.23. Serious adverse events as determined by clinicians occurred in 21 of 394 (5%) on dexmedetomidine against 8 of 396 (2%) on placebo. The authors' conclusion is unusually direct: dexmedetomidine should not be infused to reduce atrial fibrillation or delirium in patients having cardiac surgery. The trial was funded by Hospira, which markets the drug.",
+        evidenceSource:
+          'Turan A, Duncan A, Leung S, et al. Dexmedetomidine for reduction of atrial fibrillation and delirium after cardiac surgery (DECADE): a randomised placebo-controlled trial. Lancet 2020;396:177-185 (NCT02004613)',
+        doi: '10.1016/S0140-6736(20)30631-0',
+        measuredMetric:
+          'Co-primary incidence of new-onset atrial fibrillation and of delirium between intensive care admission and postoperative day 5 or discharge',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dex-a5',
+        category: 'measured',
+        title: 'The one comparison it clearly wins is against a benzodiazepine',
+        laymanSummary:
+          'Against midazolam, the drug reached the same sedation targets but delirium fell from 77% to 54% and patients came off the ventilator nearly two days sooner.',
+        technicalDetails:
+          'SEDCOM was a prospective double-blind randomised trial at 68 centres in five countries among 375 medical and surgical intensive care patients expected to need more than 24 hours of ventilation, comparing dexmedetomidine (n=244) with midazolam (n=122) titrated to light sedation until extubation or 30 days. The primary endpoint, percentage of time within the target Richmond Agitation-Sedation Scale range, did not differ: 77.3% versus 75.1%, difference 2.2 percentage points, 95% CI -3.2 to 7.5, P=0.18. Delirium prevalence during treatment was 54% (132 of 244) against 76.6% (93 of 122) — a difference of 22.6 percentage points, 95% CI 14 to 33, P<0.001. Median time to extubation was 1.9 days shorter, 3.7 against 5.6 days, P=0.01, while intensive care length of stay was similar, 5.9 against 7.6 days, P=0.24. This audit is filed as measured and is the strongest positive result on the page. It is also worth reading against MENDS2: the delirium advantage exists against midazolam and disappears against propofol, which suggests the finding is as much about benzodiazepines being bad as about alpha-2 agonism being good.',
+        evidenceSource:
+          'Riker RR, Shehabi Y, Bokesch PM, et al. Dexmedetomidine vs midazolam for sedation of critically ill patients: a randomized trial. JAMA 2009;301:489-499 (SEDCOM)',
+        doi: '10.1001/jama.2009.56',
+        measuredMetric:
+          'Percentage of time within target sedation range, prevalence of delirium during treatment, and time to extubation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dex-a6',
+        category: 'inferred',
+        title: 'The delirium reputation was built on a comparator, not on an effect',
+        laymanSummary:
+          'This drug is widely described as delirium-sparing. It beat midazolam on delirium by 23 percentage points, tied with propofol, and in a placebo-controlled trial after cardiac surgery delirium was numerically higher on the drug than on saline.',
+        technicalDetails:
+          'Read the three trials together and the picture is consistent rather than contradictory. Against midazolam, delirium was 54% versus 76.6%. Against propofol, days alive without delirium or coma were 10.7 versus 10.8. Against placebo in cardiac surgery, delirium was 17% versus 12%, relative risk 1.48 with a 97.8% confidence interval of 0.99 to 2.23. A drug that beats a benzodiazepine, ties with propofol and does not beat saline is not exerting an anti-delirium effect; it is avoiding a pro-delirium one. That is still clinically useful — benzodiazepines really are associated with delirium, and replacing them really does help — but it is a different claim from the one usually made, and the difference matters when the alternative on offer is propofol rather than midazolam. This entry is filed as an inference because the sentence "dexmedetomidine reduces delirium" is true only with the comparator supplied, and the comparator is almost never supplied.',
+        evidenceSource:
+          'Riker RR et al. JAMA 2009;301:489-499; Hughes CG et al. N Engl J Med 2021;384:1424-1436; Turan A et al. Lancet 2020;396:177-185',
+        inferredClaim:
+          'That dexmedetomidine has an intrinsic delirium-reducing effect, rather than a delirium advantage that exists only relative to benzodiazepines',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'dex-a7',
+        category: 'measured',
+        title: 'Bradycardia and hypotension are the price, and they were measured in every trial',
+        laymanSummary:
+          "A slow heart rate and low blood pressure are not rare side effects here; they are the predictable consequence of turning down the body's own noradrenaline signalling, and every large trial recorded more of both.",
+        technicalDetails:
+          'SPICE III reported that bradycardia and hypotension were more common in the dexmedetomidine group and that more adverse events overall were reported in that group. DECADE recorded clinically important bradycardia requiring treatment and hypotension among its prespecified safety outcomes, with serious adverse events in 5% on dexmedetomidine against 2% on placebo. The mechanism is direct and unavoidable: alpha-2 agonism at presynaptic sympathetic terminals reduces noradrenaline release, lowering heart rate and vascular tone, and that is the same receptor action producing the sedation. There is no separation to engineer. The label also records the biphasic pattern — a transient rise in blood pressure with rapid administration, from peripheral alpha-2B vasoconstriction before central sympatholysis dominates — which is why it distinguishes slow from rapid infusion in describing alpha-2 selectivity.',
+        evidenceSource:
+          'Shehabi Y et al. N Engl J Med 2019;380:2506-2517; Turan A et al. Lancet 2020;396:177-185; FDA-approved US prescribing information for dexmedetomidine hydrochloride injection, Clinical Pharmacology',
+        measuredMetric:
+          'Incidence of bradycardia, hypotension and serious adverse events against comparator and against placebo in randomised trials',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Infused slowly, because speed changes which receptor it hits',
+        laymanDesc:
+          'Given slowly it acts on one kind of adrenaline receptor. Given fast it hits others too, and can briefly push blood pressure up instead of down.',
+        molecularDetail:
+          'The label states that alpha-2 selectivity is seen with slow intravenous infusion of low and medium doses, while both alpha-1 and alpha-2 activity appear at high doses or with rapid administration. The transient hypertension of a rapid load is peripheral alpha-2B-mediated vasoconstriction preceding central sympatholysis, which is a dose-rate phenomenon rather than a paradox.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It silences the brainstem cells that keep you awake',
+        laymanDesc:
+          'A small cluster of cells in the pons sprays noradrenaline over the brain to maintain wakefulness. This drug binds a receptor on those cells that tells them to stop.',
+        molecularDetail:
+          'Alpha-2A adrenoceptors on locus coeruleus neurons are inhibitory autoreceptors coupled to Gi. Agonist occupancy hyperpolarises the neuron and reduces noradrenaline release. In mice lacking a functional alpha-2A receptor, dexmedetomidine produces no sedative response at all.',
+        iconName: 'VolumeX',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: "The brain's own sleep switch is released",
+        laymanDesc:
+          "The wakefulness cells were holding down the brain's sleep switch. With them quiet, the switch flips, and the same cells that fire during natural deep sleep light up.",
+        molecularDetail:
+          'Reduced noradrenergic tone disinhibits the ventrolateral preoptic nucleus, whose c-Fos expression rises, matching the pattern of normal non-rapid-eye-movement sleep. Lesioning that nucleus bilaterally attenuates the sedative response, establishing it as a required node rather than a correlate.',
+        iconName: 'MoonStar',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'That switch shuts down the histamine centre through GABA',
+        laymanDesc:
+          "The sleep switch works by releasing an inhibitory signal onto the brain's histamine centre, which is the last relay that keeps the cortex alert.",
+        molecularDetail:
+          'The ventrolateral preoptic nucleus inhibits the tuberomammillary nucleus GABAergically. Gabazine given systemically or directly into the tuberomammillary nucleus shifts the dexmedetomidine dose-response curve to the right, and lesions and gabazine alter c-Fos in the tuberomammillary nucleus but not the locus coeruleus — which fixes the order of events rather than leaving it inferred.',
+        iconName: 'Network',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Sedation you can wake someone out of, and breathing that continues',
+        laymanDesc:
+          'The patient is deeply drowsy but will open their eyes to a voice, follow an instruction, and drift off again. And they keep breathing on their own, because nothing has touched the respiratory centres.',
+        molecularDetail:
+          'Because the sedation is produced by recruiting an endogenous sleep pathway rather than by generalised cortical depression, arousability is preserved. Respiratory drive is essentially unaffected at sedative concentrations, which is the property that distinguishes this drug from every GABA-A sedative and the reason it can be used in non-intubated patients. Amnesia is correspondingly weaker than with a benzodiazepine.',
+        iconName: 'Ear',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The heart slows and the pressure falls, for exactly the same reason',
+        laymanDesc:
+          'The receptor that quietens the brain also quietens the nerves driving the heart and blood vessels. The bradycardia and low blood pressure are not a side effect of a different action; they are the same action elsewhere.',
+        molecularDetail:
+          'Presynaptic alpha-2 agonism at sympathetic terminals and central sympatholysis reduce heart rate and vascular tone. There is no receptor-level separation to exploit between the wanted and unwanted effects, which is why bradycardia and hypotension were more frequent than usual care in SPICE III and why serious adverse events were 5% against 2% versus placebo in DECADE. Elimination is hepatic, by glucuronidation and CYP-mediated oxidation, and clearance falls in hepatic impairment.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SPICE III — early sedation with dexmedetomidine in critically ill patients',
+        phase: 'Open-label multicentre randomised controlled trial',
+        sampleSize: 4000,
+        primaryEndpoint: 'Death from any cause at 90 days',
+        endpointMet: false,
+        statisticalPValue:
+          '29.1% (566/1,948) with dexmedetomidine versus 29.1% (569/1,956) with usual care; adjusted risk difference 0.0 percentage points, 95% CI -2.9 to 2.8',
+        unreportedAdverseSignals:
+          'Reported and decisive: 64% of the dexmedetomidine group needed supplemental propofol in the first two days, 3% midazolam and 7% both, so the intervention arm was largely dexmedetomidine plus the comparator. Bradycardia, hypotension and overall adverse events were more common on dexmedetomidine.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId:
+          'MENDS2 — dexmedetomidine or propofol for sedation in ventilated adults with sepsis',
+        phase: 'Multicentre double-blind randomised controlled trial',
+        sampleSize: 432,
+        primaryEndpoint:
+          'Days alive without delirium or coma during the 14-day intervention period',
+        endpointMet: false,
+        statisticalPValue:
+          'Adjusted median 10.7 versus 10.8 days; odds ratio 0.96, 95% CI 0.74 to 1.26. Ventilator-free days 23.7 versus 24.0; death at 90 days 38% versus 39%, hazard ratio 1.06 (95% CI 0.74 to 1.52)',
+        unreportedAdverseSignals:
+          'Median exposure was only 3 days at a median sedation score of -2, so the trial tests light sedation over a short period rather than prolonged deep sedation. Six-month cognition also did not differ.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId:
+          'DECADE — dexmedetomidine for reduction of atrial fibrillation and delirium after cardiac surgery (NCT02004613)',
+        phase: 'Randomised, placebo-controlled, fully masked trial at six academic hospitals',
+        sampleSize: 798,
+        primaryEndpoint:
+          'Co-primary: new-onset atrial fibrillation, and delirium, between intensive care admission and postoperative day 5 or discharge',
+        endpointMet: false,
+        statisticalPValue:
+          'Atrial fibrillation 30% versus 34%, relative risk 0.90 (97.8% CI 0.72 to 1.15, P=0.34); delirium 17% versus 12%, relative risk 1.48 (97.8% CI 0.99 to 2.23)',
+        unreportedAdverseSignals:
+          'Serious adverse events in 21 of 394 (5%) on dexmedetomidine against 8 of 396 (2%) on placebo. The trial was funded by Hospira, which markets the drug, and stopped per protocol at the last designated interim analysis.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId:
+          'SEDCOM — dexmedetomidine versus midazolam for sedation of critically ill patients',
+        phase: 'Prospective double-blind randomised trial at 68 centres in 5 countries',
+        sampleSize: 375,
+        primaryEndpoint:
+          'Percentage of time within the target Richmond Agitation-Sedation Scale range',
+        endpointMet: false,
+        statisticalPValue:
+          'Primary endpoint not different: 77.3% versus 75.1%, difference 2.2 percentage points (95% CI -3.2 to 7.5), P=0.18. Secondary: delirium 54% versus 76.6%, difference 22.6 points (95% CI 14 to 33), P<0.001; time to extubation 1.9 days shorter, P=0.01',
+        unreportedAdverseSignals:
+          'The result the drug is known for is a secondary endpoint of a trial whose primary endpoint was neutral. Intensive care length of stay did not differ significantly.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Sedation requires the alpha-2A receptor: mice lacking a functional one show no sedative response, and the c-Fos pattern matches natural non-REM sleep',
+        '90-day mortality of 29.1% against 29.1% in 3,904 ventilated critically ill patients, with 64% of the dexmedetomidine arm needing supplemental propofol',
+        "Days alive without delirium or coma of 10.7 against propofol's 10.8 in ventilated adults with sepsis, with no difference in death or six-month cognition",
+        'Atrial fibrillation 30% against 34% on placebo after cardiac surgery, and delirium 17% against 12%, with serious adverse events 5% against 2%',
+        "Delirium prevalence 54% against midazolam's 76.6%, and extubation 1.9 days sooner, in 366 ventilated patients",
+      ],
+      unsupportedInferences: [
+        'That dexmedetomidine reduces delirium as a property of the drug — it beats midazolam, ties propofol and did not beat placebo',
+        'That preserved arousability and respiratory drive, which are real and measured, translate into any survival or organ-failure benefit',
+        'That an alpha-2 agonist protects the heart after cardiac surgery; the placebo-controlled trial found no reduction in atrial fibrillation and its authors advised against using it for that',
+        'That SPICE III compared dexmedetomidine with other sedatives, when two thirds of the dexmedetomidine arm received propofol as well',
+        'That bradycardia and hypotension are avoidable side effects rather than the same receptor action expressed outside the brain',
+      ],
+      whatFailedInitially: [
+        'SPICE III: no mortality difference at 90 days in 4,000 patients, with more adverse events on the drug',
+        'MENDS2: no advantage over propofol on delirium-free days, ventilator-free days, 90-day death or six-month cognition',
+        "DECADE: no reduction in atrial fibrillation, delirium numerically worse, serious adverse events more than doubled, and an explicit authors' recommendation against the indication",
+        'Even SEDCOM missed its own primary endpoint; the delirium result everyone quotes was secondary',
+      ],
+      realWorldOutcome: [
+        'The only sedative in routine intensive care use that does not depress respiration, which makes possible techniques — awake fibreoptic intubation, sedation without a ventilator — that no GABA-A drug supports',
+        'No CMS National Average Drug Acquisition Cost value is held on this record for dexmedetomidine, so no United States acquisition price is stated here',
+        'Displaced benzodiazepines from first-line intensive care sedation, which is a real change in practice supported by the one head-to-head trial it won',
+        'Three large randomised trials have now failed to show benefit on mortality, delirium against propofol, or atrial fibrillation, and the drug remains in widespread use for properties none of those trials measured',
+      ],
+    },
+    deliverySystem: {
+      type: 'Sterile solution for continuous intravenous infusion, as a concentrate for dilution and as premixed ready-to-use bags in sodium chloride; a sublingual film formulation is separately approved for agitation',
+      description:
+        'Premixed bags exist because the drug is given as a continuous infusion titrated over hours and dilution errors at the bedside are an avoidable hazard. The rate of administration is pharmacologically meaningful rather than merely practical: the label distinguishes slow from rapid intravenous administration when describing receptor selectivity, and rapid administration produces a transient pressor response from peripheral vasoconstriction. The approved intensive care indication specifies infusion not exceeding 24 hours, which is a labelling limit rather than a statement about what happens on day two.',
+      safetyProfile:
+        'Bradycardia and hypotension are the dominant adverse effects and are mechanistically inseparable from the sedative action; both were more common than usual care in SPICE III, and serious adverse events were 5% against 2% versus placebo in DECADE. Transient hypertension can occur with rapid administration. The drug does not meaningfully depress respiration, which is its distinguishing property and also means it does not guarantee airway protection. Amnesia is weak compared with a benzodiazepine and recall is common. Clearance falls in hepatic impairment. Withdrawal-type agitation and rebound hypertension have been described after abrupt cessation of prolonged infusion. No dosing guidance appears on this page.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is this really more like sleep than like anaesthesia?',
+        a: 'Yes, and it is one of the few claims in sedation that has been demonstrated rather than asserted. Nelson and colleagues mapped which brain nuclei switch on and off after the drug and found a pattern qualitatively matching natural non-rapid-eye-movement sleep: the locus coeruleus and tuberomammillary nucleus quiet, the ventrolateral preoptic nucleus active. Then they took the mechanism apart. An alpha-2 antagonist abolished the pattern. Mice engineered without a functional alpha-2A receptor showed no sedation at all. Lesioning the ventrolateral preoptic nucleus attenuated the effect. Blocking GABA-A directly in the tuberomammillary nucleus shifted the dose-response curve. That combination establishes not just that the pathway is involved but the order in which it operates, and it explains why a deeply sedated patient will still open their eyes when you speak to them.',
+      },
+      {
+        q: 'Does it reduce delirium?',
+        a: 'Compared with a benzodiazepine, clearly. Compared with propofol, no. Compared with nothing, apparently not. In SEDCOM, against midazolam, delirium was 54% versus 76.6%, a 22.6 percentage point difference. In MENDS2, against propofol in septic ventilated adults, days alive without delirium or coma were 10.7 versus 10.8. In DECADE, against saline placebo after cardiac surgery, delirium was 17% on the drug against 12% on placebo, a relative risk of 1.48 whose confidence interval just touched 1. Put those together and the most defensible reading is that dexmedetomidine avoids the delirium that benzodiazepines cause rather than preventing delirium in its own right. That is still worth having when the alternative is midazolam. It is not what the phrase "reduces delirium" usually conveys.',
+        auditNote:
+          'This is the clearest comparator-dependent claim in the file: the same sentence is true or false depending on which drug is in the other arm, and the other arm is almost never named.',
+      },
+      {
+        q: 'The big mortality trial was negative. Does that mean the drug does not work?',
+        a: 'It means it did not change 90-day death, which is what it measured. SPICE III enrolled 4,000 critically ill ventilated adults and found mortality of 29.1% in both arms, with an adjusted risk difference of exactly zero and a confidence interval from -2.9 to 2.8 percentage points. But the trial contains a finding that complicates any reading of it: 64% of the patients assigned to dexmedetomidine needed supplemental propofol within the first two days to reach the prescribed sedation level, with a further 7% needing both propofol and midazolam. So the comparison was largely dexmedetomidine plus propofol against usual care. What the trial does establish firmly is that making dexmedetomidine the primary early sedative does not improve survival, and that it comes with more bradycardia, more hypotension and more adverse events overall.',
+      },
+      {
+        q: 'Why does it slow the heart so much?',
+        a: 'Because that is the same receptor doing the same thing in a different place. Alpha-2 receptors sit on the noradrenaline-releasing neurons of the brainstem, where switching them off produces sedation, and they also sit on sympathetic nerve terminals throughout the body, where switching them off reduces heart rate and vascular tone. There is no version of this drug that sedates without slowing the heart, because sedation is the reduction in noradrenergic tone. SPICE III found bradycardia and hypotension more common than usual care; DECADE found serious adverse events in 5% of the dexmedetomidine group against 2% on placebo. A rapid loading infusion can do the opposite briefly, pushing blood pressure up through peripheral vasoconstriction before central sympatholysis takes over, which is why the label distinguishes slow from rapid administration.',
+      },
+      {
+        q: 'Will I remember the procedure?',
+        a: 'Quite possibly, and that is expected rather than a failure. Benzodiazepines produce strong anterograde amnesia; dexmedetomidine does not. It produces rousable sedation by recruiting the sleep pathway, and patients sedated with it commonly recall parts of a procedure, sometimes without finding it distressing. Whether that matters depends entirely on the procedure and the person, and it is a reasonable thing to raise before a planned sedation. It is also the flip side of the property that makes the drug useful: a patient who can follow an instruction during an awake intubation is a patient who can form a memory of it.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because the CMS National Average Drug Acquisition Cost survey holds no value for dexmedetomidine on this record. That survey measures what United States retail pharmacies pay to acquire a drug, and an intensive care infusion supplied in premixed bags to hospitals does not necessarily pass through retail pharmacy. Rather than substitute a list price or an estimate, this page shows nothing, and no verified per-dose cost-of-production figure exists for it either. What can be said is that the historical manufacturing route resolves a racemate and discards the inactive enantiomer, which is a real cost driver and not a number.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Nelson LE, Lu J, Guo T, Saper CB, Franks NP, Maze M. The alpha2-adrenoceptor agonist dexmedetomidine converges on an endogenous sleep-promoting pathway to exert its sedative effects. Anesthesiology 2003;98:428-436',
+        identifier: '10.1097/00000542-200302000-00024',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Shehabi Y, Howe BD, Bellomo R, et al. Early sedation with dexmedetomidine in critically ill patients (SPICE III). N Engl J Med 2019;380:2506-2517',
+        identifier: '10.1056/NEJMoa1904710',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hughes CG, Mailloux PT, Devlin JW, et al. Dexmedetomidine or propofol for sedation in mechanically ventilated adults with sepsis (MENDS2). N Engl J Med 2021;384:1424-1436',
+        identifier: '10.1056/NEJMoa2024922',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Turan A, Duncan A, Leung S, et al. Dexmedetomidine for reduction of atrial fibrillation and delirium after cardiac surgery (DECADE): a randomised placebo-controlled trial. Lancet 2020;396:177-185',
+        identifier: '10.1016/S0140-6736(20)30631-0',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NCT02004613 — DECADE, dexmedetomidine for reduction of atrial fibrillation and delirium after cardiac surgery',
+        identifier: 'NCT02004613',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Riker RR, Shehabi Y, Bokesch PM, et al. Dexmedetomidine vs midazolam for sedation of critically ill patients: a randomized trial (SEDCOM). JAMA 2009;301:489-499',
+        identifier: '10.1001/jama.2009.56',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 5311068 — dexmedetomidine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5311068',
+        kind: 'url',
+      },
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 10. Midazolam — the drug whose main effect is that you cannot remember what it did, which is
+  //     also the reason its harms took decades to surface.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'midazolam',
+    name: 'Midazolam',
+    tradeName: 'Versed; also marketed as midazolam hydrochloride injection and in sodium chloride',
+    sponsor:
+      'Hoffmann-La Roche (originator, US label holder at approval); synthesised by Armin Walser and Rodney Fryer at Roche in 1976 and approved in the United States in 1985. Long off patent.',
+    targetGene: 'GABRA1, GABRA2, GABRA3, GABRA5, GABRG2',
+    targetProtein:
+      'Type A gamma-aminobutyric acid receptor, at the benzodiazepine modulatory site formed at the interface between an alpha and the gamma2 subunit; the alpha1 subtype carries the sedative and amnesic actions, established by the alpha1(H101R) knock-in mouse',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1985,
+    indication:
+      'Intramuscular or intravenous preoperative sedation, anxiolysis and amnesia; intravenous sedation, anxiolysis and amnesia before or during diagnostic, therapeutic or endoscopic procedures, alone or with other central nervous system depressants; and intravenous induction of general anaesthesia before other anaesthetic agents',
+    patientFriendlyIndication:
+      'Making a person calm and drowsy for a procedure, and making sure they do not remember it',
+    anatomicalSite:
+      'Interface between the alpha and gamma2 subunits of the GABA-A receptor, on cortical, hippocampal and limbic neurons',
+    conditionContext: {
+      conditionExplainer:
+        "Benzodiazepines do not open the brain's inhibitory chloride channel themselves. They sit at a pocket on the outside of the receptor and make the channel respond more strongly to the GABA that is already there. That is why they have a ceiling on their own and why they are so much more dangerous when combined with an opioid, which depresses breathing through a different route entirely.",
+      whyItMatters:
+        "Midazolam made conscious sedation possible: awake enough to cooperate with an endoscopy, and with no memory of it afterwards. That amnesia is the product, and it is also the reason this drug's harms were slow to be recognised — the person who experienced them could not report them.",
+      whoTakesThis:
+        'Anyone having an endoscopy, a cardiac catheterisation, an awake procedure under sedation, an emergency intubation, or treatment for a prolonged seizure; and, historically, most ventilated patients in intensive care.',
+      clinicalGoals:
+        'Calm, cooperative, amnesic, breathing. Whether the drug improves any outcome beyond that is asked separately below, and the answer is that it does in status epilepticus and does not in intensive care sedation, where it is now the comparator other drugs beat.',
+    },
+    oneSentenceVerdict:
+      'A water-soluble benzodiazepine that potentiates the GABA-A receptor at the alpha-gamma interface — proved to sedate through the alpha1 subtype by a single histidine-to-arginine substitution that abolishes the effect in mice — and whose clearest patient benefit is a stopped seizure: 73.4% of 448 people in status epilepticus were seizure-free on arrival at hospital after an intramuscular injection, against 63.4% of 445 given intravenous lorazepam.',
+    laymanHowItWorks:
+      'The brain has a receptor that lets chloride into neurons and makes them harder to fire; GABA is the chemical that opens it. Midazolam does not open it. It binds a pocket on the side of the receptor and makes each GABA molecule work harder, so wherever the brain is already applying its own brake, the brake bites more. Because the hippocampus is where new memories are laid down, and it is dense with the receptor subtype midazolam works best on, the person stays awake and conversational and forms almost no memory of what happened.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 70,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.4200 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 23 listed generic products, survey effective 12 March 2025)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Off patent since the 1990s and made by many manufacturers, with 23 listed United States generic products. It is on the WHO Model List of Essential Medicines, and the buccal and intranasal formulations developed for out-of-hospital seizure treatment are later, separately protected products built on a molecule that costs almost nothing.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For procedural sedation, the alternative is propofol, which is faster in both directions and has no antagonist. For intensive care sedation, both propofol and dexmedetomidine beat midazolam on delirium, and the head-to-head against dexmedetomidine is the most unfavourable trial result on this page. For prolonged seizures midazolam is the drug that won its trial. Nothing in a diet substitutes for a sedative and nothing is listed here.',
+      conventionalRx: [
+        {
+          name: 'Propofol (Diprivan)',
+          class: 'Intravenous GABA-A general anaesthetic',
+          howItCompares:
+            'Acts on the same receptor but at a different site, on the beta subunit rather than the alpha-gamma interface. Faster on, much faster off, no active metabolite, and clear-headed recovery. Against that, no specific antagonist exists, and it causes apnoea more readily.',
+          typicalCost:
+            'US$0.1709 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 4 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: predictable offset with no accumulation, and less delirium in intensive care. Cons: no reversal agent, and profound respiratory and cardiovascular depression at induction doses.',
+        },
+        {
+          name: 'Dexmedetomidine (Precedex)',
+          class: 'Selective alpha-2 adrenergic agonist',
+          howItCompares:
+            'In SEDCOM, 366 ventilated patients reached the target sedation range equally often on either drug — 77.3% versus 75.1% of the time — but delirium prevalence was 54% on dexmedetomidine against 76.6% on midazolam, a difference of 22.6 percentage points (95% CI 14 to 33, P<0.001), and extubation came 1.9 days sooner.',
+          typicalCost:
+            'No NADAC value is held on this record for dexmedetomidine and none is asserted here',
+          prosAndCons:
+            'Pros: substantially less delirium, no respiratory depression. Cons: bradycardia and hypotension, weak amnesia, and no advantage over propofol in the trial that tested it.',
+        },
+        {
+          name: 'Lorazepam',
+          class: 'Benzodiazepine',
+          howItCompares:
+            'Longer acting, and the comparator midazolam beat in prehospital status epilepticus: seizures were absent on arrival without rescue therapy in 73.4% after intramuscular midazolam against 63.4% after intravenous lorazepam, a 10 percentage point difference (95% CI 4.0 to 16.1, P<0.001 for superiority).',
+          typicalCost:
+            'No NADAC value is held on this record for lorazepam and none is asserted here',
+          prosAndCons:
+            'Pros: longer duration, well established for status epilepticus. Cons: needs intravenous access in a convulsing patient, which is the practical reason it lost.',
+        },
+        {
+          name: 'Flumazenil',
+          class: 'Benzodiazepine receptor antagonist — an antidote rather than a substitute',
+          howItCompares:
+            "Not an alternative sedative but the reason midazolam is sometimes preferred to propofol: it competitively displaces benzodiazepines from the receptor and can reverse sedation. Its duration is shorter than midazolam's, so resedation is a real risk, and it can precipitate seizures in the benzodiazepine-dependent.",
+          typicalCost:
+            'No NADAC value is held on this record for flumazenil and none is asserted here',
+          prosAndCons:
+            'Pros: a specific antagonist exists at all, which is unusual. Cons: shorter-acting than the drug it reverses, and unsafe in chronic benzodiazepine use or mixed overdose.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'List every opioid and sedative you take, including the occasional ones',
+          action:
+            "The label's boxed warning states that concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma and death.",
+          patientImpact:
+            'This is the single most consequential piece of information a patient can supply before procedural sedation, and it is frequently under-reported because occasional or as-needed opioids do not feel like regular medication.',
+          clinicalPrecaution:
+            'A disclosure point, not a treatment. What is given and how it is monitored is decided by the clinical team.',
+        },
+        {
+          name: 'Bring someone, and do not plan the rest of your day',
+          action:
+            'The whole purpose of this drug is that you will not remember the procedure. Judgement, coordination and memory formation remain impaired well past the point where a person feels normal.',
+          patientImpact:
+            'People who have been given midazolam frequently believe they are fine, hold coherent conversations and remember none of it, which is exactly why discharge with a responsible adult is a rule rather than a suggestion.',
+          clinicalPrecaution:
+            'The discharge criteria belong to the unit that sedated you. This is a statement of why they exist.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=NC=C2N1C3=C(C=C(C=C3)Cl)C(=NC2)C4=CC=CC=C4F',
+      chemicalFormula: 'C18H13ClFN3',
+      molecularWeight: '325.80 g/mol (free base); dispensed as midazolam hydrochloride',
+      targetReceptorAffinity:
+        'The subtype attribution is genetic rather than a binding table. Rudolph and colleagues introduced a histidine-to-arginine substitution at position 101 of the murine alpha1 subunit, rendering alpha1-containing GABA-A receptors insensitive to benzodiazepine-site ligands while leaving their response to GABA itself intact. Those mice lost the sedative and amnesic actions of diazepam, and partly the anticonvulsant action, while the anxiolytic, myorelaxant, motor-impairing and ethanol-potentiating effects were fully retained — the latter attributed to the untouched alpha2, alpha3 and alpha5 receptors of the limbic system, monoaminergic neurons and motoneurons.',
+      structureSource: {
+        label: 'PubChem CID 4192 (midazolam) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4192',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mid-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Halogen placement on both aromatic rings',
+          description:
+            'Confirm the chlorine at the 8-position of the benzodiazepine ring and the fluorine at the 2-position of the pendant phenyl. Those two halogens are the whole molecule: the fluorine is what makes this benzodiazepine short-acting rather than long, and a positional isomer would be a different drug with a different duration and the same molecular formula.',
+          reagentsAndBuffer:
+            'Midazolam reference standard, nuclear magnetic resonance including fluorine-19, high-resolution mass spectrometry, reversed-phase HPLC with UV detection at 254 nm',
+        },
+        {
+          id: 'mid-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fusion of the imidazole ring onto the benzodiazepine core',
+          description:
+            'Build the fused imidazo[1,5-a][1,4]benzodiazepine system. That fused imidazole is the feature that makes midazolam unique in its class: it is a base whose ring opens reversibly at low pH, which is what allows an aqueous injectable benzodiazepine to exist at all.',
+          dependsOnStepId: 'mid-w1',
+          reagentsAndBuffer:
+            'Substituted benzodiazepinone intermediate, imidazole ring-forming reagents, anhydrous aprotic solvent, controlled temperature under nitrogen',
+        },
+        {
+          id: 'mid-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Salt formation at acidic pH with the ring-opened form as the specification',
+          description:
+            'Formulate the hydrochloride at a pH near 3, where the imidazole ring is open and the molecule is freely water-soluble. This is the reverse of the usual purification logic: the product in the vial is deliberately the open-ring form, and its conversion back to the closed lipophilic form happens in the patient at physiological pH rather than in the factory.',
+          dependsOnStepId: 'mid-w2',
+          reagentsAndBuffer:
+            'Hydrochloric acid to a target pH near 3, water for injection, benzyl alcohol as preservative in multiple-dose presentations, HPLC assay of the open-ring and closed-ring equilibrium against pH',
+        },
+        {
+          id: 'mid-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Recombinant receptors expressed subtype by subtype',
+          description:
+            'Express alpha1, alpha2, alpha3 and alpha5 receptor combinations separately and record GABA current potentiation in each. Because the different behavioural effects of a benzodiazepine map to different alpha subunits, a single averaged potency figure across a mixed receptor population conceals the only pharmacology that matters clinically.',
+          dependsOnStepId: 'mid-w3',
+          reagentsAndBuffer:
+            'HEK293 cells or Xenopus oocytes expressing defined alpha-beta-gamma2 combinations, GABA at its half-maximal effective concentration, flumazenil as competitive antagonist control, alpha1(H101R) construct alongside wild type',
+        },
+        {
+          id: 'mid-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Sedation and amnesia scored separately from anxiolysis',
+          description:
+            'Score loss of righting reflex, memory acquisition and anxiety-like behaviour as three independent readouts in wild type and in the alpha1(H101R) knock-in. The mutation dissociates them, and any protocol that collapses them into one behavioural score would have missed the finding entirely.',
+          dependsOnStepId: 'mid-w4',
+          reagentsAndBuffer:
+            'Loss of righting reflex timing, fear-conditioning or passive-avoidance memory tasks, elevated plus maze for anxiety-like behaviour, rotarod for motor impairment, pentylenetetrazole challenge for anticonvulsant action, alpha1(H101R) and wild-type littermates',
+        },
+        {
+          id: 'mid-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'Quantify the active metabolite, not just the parent',
+          description:
+            'Measure 1-hydroxymidazolam and its glucuronide alongside the parent drug. The hydroxy metabolite is pharmacologically active and its glucuronide accumulates in renal impairment, so a pharmacokinetic profile reporting only midazolam concentrations systematically understates exposure in exactly the patients most likely to be over-sedated.',
+          dependsOnStepId: 'mid-w5',
+          reagentsAndBuffer:
+            'Liquid chromatography with tandem mass spectrometry for midazolam, 1-hydroxymidazolam and 1-hydroxymidazolam glucuronide, deuterated internal standards, beta-glucuronidase hydrolysis step, samples stratified by renal function',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mid-a1',
+        category: 'measured',
+        title: 'One amino acid separates the sedation from the anxiety relief',
+        laymanSummary:
+          'Researchers changed a single amino acid in one subunit of the receptor. Mice carrying the change no longer became sedated or amnesic from a benzodiazepine — but the anti-anxiety and muscle-relaxing effects were completely unaffected.',
+        technicalDetails:
+          'Rudolph and colleagues introduced a histidine-to-arginine point mutation at position 101 of the murine alpha1 subunit gene, rendering alpha1-type GABA-A receptors — mainly expressed in cortex and thalamus — insensitive to allosteric modulation by benzodiazepine-site ligands while preserving their regulation by GABA itself. The alpha1(H101R) mice failed to show the sedative, amnesic and partly the anticonvulsant actions of diazepam. The anxiolytic-like, myorelaxant, motor-impairing and ethanol-potentiating effects were fully retained, attributed to the non-mutated receptors found in the limbic system (alpha2, alpha5), in monoaminergic neurons (alpha3) and in motoneurons (alpha2, alpha5). This is the experiment that turned "benzodiazepines have several effects" into a map of which receptor subtype in which circuit produces which effect, and it is why midazolam\'s amnesia is understood as a specific pharmacological action rather than a by-product of sedation.',
+        evidenceSource:
+          'Rudolph U, Crestani F, Benke D, et al. Benzodiazepine actions mediated by specific gamma-aminobutyric acid(A) receptor subtypes. Nature 1999;401:796-800',
+        doi: '10.1038/44579',
+        measuredMetric:
+          'Loss of sedative, amnesic and partial anticonvulsant action in alpha1(H101R) knock-in mice, with anxiolytic, myorelaxant and motor effects fully retained',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mid-a2',
+        category: 'measured',
+        title: 'RAMPART: an injection into the thigh beat a drip into the vein',
+        laymanSummary:
+          'For a person convulsing in the back of an ambulance, getting a drip in is the hard part. A trial of 893 people found an intramuscular injection of midazolam stopped more seizures than intravenous lorazepam — 73.4% against 63.4%.',
+        technicalDetails:
+          'Silbergleit and colleagues ran a double-blind, randomised, non-inferiority trial comparing intramuscular midazolam by autoinjector with intravenous lorazepam, in children and adults in status epilepticus treated by paramedics, whose convulsions had persisted beyond five minutes and who were still convulsing when paramedics arrived. The primary outcome was absence of seizures on arrival at the emergency department without rescue therapy, with a non-inferiority margin of 10 percentage points. Seizures were absent without rescue in 329 of 448 (73.4%) in the intramuscular midazolam group and 282 of 445 (63.4%) in the intravenous lorazepam group — absolute difference 10 percentage points, 95% CI 4.0 to 16.1, P<0.001 for both non-inferiority and superiority. Endotracheal intubation was needed in 14.1% and 14.4%, and seizures recurred in 11.4% and 10.6%. The mechanism of the advantage is logistical rather than pharmacological: an autoinjector into the thigh is delivered faster than intravenous access can be established in a convulsing patient. This is the clearest patient-relevant benefit on this page and it is a route-of-administration result as much as a drug result.',
+        evidenceSource:
+          'Silbergleit R, Durkalski V, Lowenstein D, et al. Intramuscular versus intravenous therapy for prehospital status epilepticus. N Engl J Med 2012;366:591-600 (RAMPART)',
+        doi: '10.1056/NEJMoa1107494',
+        measuredMetric:
+          'Absence of seizures on arrival at the emergency department without rescue therapy',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mid-a3',
+        category: 'failed',
+        title: 'SEDCOM: three quarters of midazolam-sedated patients became delirious',
+        laymanSummary:
+          'Compared head to head with dexmedetomidine in intensive care, both drugs kept patients at the target sedation level equally well — but 77% of the midazolam group became delirious against 54%, and they stayed on the ventilator nearly two days longer.',
+        technicalDetails:
+          'SEDCOM was a prospective, double-blind, randomised trial at 68 centres in five countries among 375 medical and surgical intensive care patients expected to need more than 24 hours of mechanical ventilation, comparing dexmedetomidine (n=244) with midazolam (n=122), each titrated to light sedation until extubation or 30 days. The primary endpoint, percentage of time within the target Richmond Agitation-Sedation Scale range, was 75.1% for midazolam against 77.3% for dexmedetomidine — no difference, P=0.18. On the secondary endpoints midazolam lost decisively: delirium prevalence during treatment was 76.6% (93 of 122) against 54% (132 of 244), a difference of 22.6 percentage points, 95% CI 14 to 33, P<0.001; and median time to extubation was 5.6 days against 3.7, a difference of 1.9 days, P=0.01. Intensive care length of stay did not differ significantly. The result did not remove midazolam from the intensive care unit overnight, but it is the principal evidence behind guidelines that now recommend non-benzodiazepine sedation for ventilated adults.',
+        evidenceSource:
+          'Riker RR, Shehabi Y, Bokesch PM, et al. Dexmedetomidine vs midazolam for sedation of critically ill patients: a randomized trial. JAMA 2009;301:489-499 (SEDCOM)',
+        doi: '10.1001/jama.2009.56',
+        measuredMetric:
+          'Prevalence of delirium during treatment and median time to extubation, against a neutral primary endpoint of time in target sedation range',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mid-a4',
+        category: 'measured',
+        title: 'A boxed warning written twice: about breathing, and about opioids',
+        laymanSummary:
+          'The label warns that intravenous midazolam has caused respiratory arrest and death when the drop in breathing was not spotted quickly, and separately that combining it with an opioid can cause profound sedation, coma and death.',
+        technicalDetails:
+          "The boxed warning states that intravenous midazolam has been associated with respiratory depression and respiratory arrest, especially when used for sedation in non-critical-care settings, and that in some cases where this was not recognised promptly and treated effectively, death or hypoxic encephalopathy has resulted. It restricts intravenous use to hospital or ambulatory settings — including physicians' and dental offices — that provide continuous monitoring of respiratory and cardiac function such as pulse oximetry, with immediate availability of resuscitative drugs, age- and size-appropriate bag-valve-mask and intubation equipment, and personnel trained and skilled in airway management. For deeply sedated paediatric patients it requires a dedicated individual other than the practitioner performing the procedure to monitor the patient throughout. A separate boxed section warns that concomitant use of benzodiazepines and opioids may result in profound sedation, respiratory depression, coma and death. The pharmacology behind the second warning is that the two drugs depress ventilation through independent mechanisms, so their combined effect exceeds what either produces alone.",
+        evidenceSource:
+          'FDA-approved US prescribing information for midazolam hydrochloride injection, BOXED WARNING (DailyMed SPL 1abda8b8-48a8-4995-af86-39220d1aa240)',
+        measuredMetric:
+          'Labelled requirement for continuous respiratory and cardiac monitoring, airway-skilled personnel, and a dedicated observer for deeply sedated children',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mid-a5',
+        category: 'inferred',
+        title: 'The amnesia is the product, and it is also why harms surface late',
+        laymanSummary:
+          'A drug whose purpose is that you will not remember what happened is a drug whose bad experiences are, by design, unreportable by the person who had them.',
+        technicalDetails:
+          "Midazolam is given for procedural sedation specifically because it produces dense anterograde amnesia through alpha1-containing receptors in hippocampus and cortex — an effect the alpha1(H101R) knock-in shows is a distinct pharmacological action rather than a consequence of depth of sedation. The consequence for evidence is structural. Distress, pain, awareness of a difficult procedure, and paradoxical agitation are all events the patient cannot subsequently report, so they must be captured by an observer at the time or not at all. Patient-reported outcome measures, the standard instrument for detecting this class of harm, are inapplicable in principle rather than merely absent. This page does not claim that midazolam causes unreported distress. It records that the drug's central therapeutic effect removes the mechanism by which such distress would ordinarily come to light, and that this is a reason to weight prospective observer-recorded data far more heavily here than in almost any other drug on this file.",
+        evidenceSource:
+          'Rudolph U et al. Nature 1999;401:796-800 (alpha1 subtype attribution of the amnesic action); FDA-approved US prescribing information for midazolam hydrochloride injection, Indications',
+        inferredClaim:
+          "That the absence of patient-reported harm during midazolam sedation indicates the absence of harm, when anterograde amnesia is the drug's intended effect",
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mid-a6',
+        category: 'measured',
+        title: 'An active metabolite that accumulates in exactly the wrong patients',
+        laymanSummary:
+          'The liver turns midazolam into a compound that is itself sedating, and then attaches a sugar to it for the kidneys to excrete. In kidney failure that sugar-conjugated form builds up, and it still sedates.',
+        technicalDetails:
+          "Midazolam is metabolised principally by CYP3A4 to 1-hydroxymidazolam, which is pharmacologically active, and thence to 1-hydroxymidazolam glucuronide, which is renally cleared and which retains sedative activity. In renal impairment the glucuronide accumulates, producing prolonged sedation that a plasma midazolam concentration would not predict. CYP3A4 dependence also makes the drug unusually sensitive to interaction: azole antifungals, macrolides, protease inhibitors and grapefruit juice inhibit it, while rifampicin and other inducers accelerate clearance. Two clinically consequential facts follow. Prolonged infusion produces a context-sensitive half-time that lengthens sharply with duration, unlike propofol's, so an intensive care patient sedated for days does not wake when the infusion stops. And the population in which this matters most — critically ill patients with renal and hepatic dysfunction on multiple interacting drugs — is precisely the population in which midazolam was for decades the default sedative.",
+        evidenceSource:
+          'FDA-approved US prescribing information for midazolam hydrochloride injection, Clinical Pharmacology and Drug Interactions',
+        measuredMetric:
+          'Formation of the active metabolite 1-hydroxymidazolam and its renally cleared active glucuronide, with CYP3A4-dependent clearance',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mid-a7',
+        category: 'measured',
+        title: 'The ring opens in the vial and closes in the patient',
+        laymanSummary:
+          'Benzodiazepines are greasy and do not dissolve in water. Midazolam solves that with a ring that springs open in the acidic vial, making it water-soluble, and snaps shut in the blood, making it fat-soluble enough to enter the brain.',
+        technicalDetails:
+          'The fused imidazole ring of midazolam undergoes reversible, pH-dependent ring opening. In the injection, formulated at a pH near 3, the ring is open and the molecule is a freely water-soluble salt requiring no organic co-solvent — which is why midazolam injection does not cause the venous irritation that propylene-glycol-solubilised diazepam does. On entering blood at pH 7.4 the ring closes, restoring a lipophilic molecule that crosses the blood-brain barrier rapidly. This single structural feature is the reason midazolam displaced diazepam for intravenous and intramuscular use, and it is a genuine formulation achievement built into the molecule rather than into the vehicle. It is on this page as a measured physicochemical property because it is the mechanistic answer to why this benzodiazepine and not another became the injectable standard.',
+        evidenceSource:
+          'FDA-approved US prescribing information for midazolam hydrochloride injection, Description and Clinical Pharmacology; PubChem CID 4192',
+        measuredMetric:
+          'Reversible pH-dependent ring opening of the fused imidazole, giving aqueous solubility below pH 4 and lipophilicity at physiological pH',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected as a water-soluble salt with no solvent needed',
+        laymanDesc:
+          'In the vial the drug is dissolved in plain acidified water. Older injectable benzodiazepines needed an oily solvent that stung the vein and could damage it.',
+        molecularDetail:
+          'At a formulation pH near 3 the fused imidazole ring is open and the molecule is freely water-soluble, so no propylene glycol or similar co-solvent is required. The intramuscular route works for the same reason, which is what made an autoinjector for seizures possible.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'In the blood the ring snaps shut and it becomes fat-soluble',
+        laymanDesc:
+          'At the pH of blood, the open ring closes again. The molecule turns greasy, crosses into the brain within a couple of minutes, and starts working.',
+        molecularDetail:
+          'Ring closure at physiological pH restores a lipophilic species that crosses the blood-brain barrier rapidly. This pH-dependent equilibrium is unique among the benzodiazepines in clinical use and is the structural reason midazolam is the injectable one.',
+        iconName: 'FlipHorizontal',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It binds a pocket on the side of the receptor, not the channel itself',
+        laymanDesc:
+          "It does not open the chloride gate. It binds the outside of the receptor, at the seam between two subunits, and makes the brain's own GABA work better.",
+        molecularDetail:
+          "The benzodiazepine site lies at the interface between an alpha and the gamma2 subunit, distinct from the GABA sites at the beta-alpha interfaces and from propofol's site on the beta subunit. Because midazolam is a positive allosteric modulator with no intrinsic activity, its effect has a ceiling set by how much GABA is present — which is why benzodiazepine overdose alone is far less lethal than barbiturate overdose, and why the addition of an opioid changes that arithmetic entirely.",
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The alpha1 subtype delivers the sedation and the amnesia',
+        laymanDesc:
+          'Different versions of the receptor sit in different parts of the brain and do different jobs. The version in the cortex and hippocampus is the one that makes you drowsy and stops memories forming.',
+        molecularDetail:
+          'The alpha1(H101R) knock-in mouse loses the sedative and amnesic actions of a benzodiazepine while retaining the anxiolytic, myorelaxant and motor-impairing ones, which are attributed to alpha2, alpha3 and alpha5 receptors in limbic, monoaminergic and motoneuron circuits. Dense alpha1 expression in hippocampus is the anatomical basis of anterograde amnesia at doses that leave a patient conversational.',
+        iconName: 'BrainCircuit',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Awake, calm, cooperative — and forming no memory',
+        laymanDesc:
+          'The patient can answer questions, follow instructions and swallow on request, and afterwards remembers essentially nothing from the moment the drug went in.',
+        molecularDetail:
+          'Conscious sedation with retained responsiveness and dense anterograde amnesia is the intended clinical state, and it is separable from depth of sedation. Respiratory depression is dose-dependent and is markedly potentiated by opioids acting on brainstem mu receptors, which is why the boxed warning names the combination specifically.',
+        iconName: 'EyeOff',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Cleared by CYP3A4 — into something that also sedates',
+        laymanDesc:
+          'The liver converts it into a compound that is itself active, then attaches a sugar for the kidney to remove. If the kidneys are failing, that form builds up and the sedation goes on.',
+        molecularDetail:
+          'CYP3A4 hydroxylation yields 1-hydroxymidazolam, which is active, and glucuronidation yields an active, renally cleared conjugate. Context-sensitive half-time lengthens substantially with infusion duration, so prolonged intensive care sedation does not offset promptly. CYP3A4 inhibitors and inducers alter clearance markedly. Flumazenil competitively displaces midazolam from the receptor but is shorter-acting than the drug it reverses, so resedation must be anticipated.',
+        iconName: 'RotateCcw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'RAMPART — intramuscular midazolam versus intravenous lorazepam for prehospital status epilepticus',
+        phase: 'Double-blind randomised non-inferiority trial',
+        sampleSize: 893,
+        primaryEndpoint:
+          'Absence of seizures on arrival at the emergency department without the need for rescue therapy',
+        endpointMet: true,
+        statisticalPValue:
+          '73.4% (329/448) with intramuscular midazolam versus 63.4% (282/445) with intravenous lorazepam; absolute difference 10 percentage points, 95% CI 4.0 to 16.1, P<0.001 for both non-inferiority and superiority',
+        unreportedAdverseSignals:
+          'Endotracheal intubation was needed in 14.1% versus 14.4% and seizures recurred in 11.4% versus 10.6% — the advantage is in stopping the seizure faster, not in avoiding intubation.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId:
+          'SEDCOM — dexmedetomidine versus midazolam for sedation of critically ill patients',
+        phase: 'Prospective double-blind randomised trial at 68 centres in 5 countries',
+        sampleSize: 375,
+        primaryEndpoint:
+          'Percentage of time within the target Richmond Agitation-Sedation Scale range',
+        endpointMet: false,
+        statisticalPValue:
+          'Primary endpoint neutral: 75.1% for midazolam versus 77.3% for dexmedetomidine, difference 2.2 percentage points (95% CI -3.2 to 7.5), P=0.18. Delirium 76.6% versus 54%, difference 22.6 points (95% CI 14 to 33), P<0.001; time to extubation 5.6 versus 3.7 days, P=0.01',
+        unreportedAdverseSignals:
+          'Intensive care length of stay did not differ significantly despite the extubation difference, which is a reminder that a ventilator-day advantage need not translate into a discharge advantage.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Rudolph alpha1(H101R) knock-in mouse dissociation of benzodiazepine actions',
+        phase: 'Genetic knock-in mechanism study',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Sedative, amnesic, anticonvulsant, anxiolytic, myorelaxant and motor effects of diazepam in alpha1(H101R) versus wild-type mice',
+        endpointMet: true,
+        statisticalPValue:
+          'Sedative, amnesic and partial anticonvulsant actions abolished in the knock-in; anxiolytic-like, myorelaxant, motor-impairing and ethanol-potentiating effects fully retained',
+        unreportedAdverseSignals:
+          'A mouse study of diazepam rather than midazolam. The subtype attribution is accepted for the benzodiazepine site as a class, but the specific quantitative profile of midazolam across subtypes is not established by this experiment.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A single histidine-to-arginine substitution at alpha1 position 101 abolishes benzodiazepine sedation and amnesia in mice while leaving anxiolysis and muscle relaxation intact',
+        'Seizures absent on arrival without rescue therapy in 73.4% after intramuscular midazolam against 63.4% after intravenous lorazepam, in 893 patients in status epilepticus',
+        'Delirium in 76.6% of midazolam-sedated ventilated patients against 54% on dexmedetomidine, with extubation 1.9 days later',
+        'Reversible pH-dependent ring opening giving aqueous solubility below pH 4 and lipophilicity at blood pH',
+        'Formation of an active metabolite and an active renally cleared glucuronide, with CYP3A4-dependent clearance',
+      ],
+      unsupportedInferences: [
+        "That the absence of complaints from sedated patients indicates the absence of distress, when dense anterograde amnesia is the drug's intended effect",
+        'That the benzodiazepine ceiling effect makes the drug safe in combination — the boxed warning exists because opioids depress ventilation by an independent route',
+        'That a plasma midazolam concentration predicts sedation in renal impairment, when an active glucuronide is accumulating that the assay does not see',
+        'That the RAMPART result is a pharmacological superiority of midazolam over lorazepam; it is substantially a demonstration that an intramuscular injection is delivered faster than an intravenous line can be sited in a convulsing patient',
+      ],
+      whatFailedInitially: [
+        'Midazolam lost the head-to-head against dexmedetomidine on delirium by 22.6 percentage points and on time to extubation by 1.9 days, and is no longer first-line for intensive care sedation in adults',
+        'Its boxed warning was written because respiratory depression in non-critical-care settings went unrecognised and caused death and hypoxic brain injury',
+        "Prolonged infusion in the critically ill produces accumulation and delayed emergence that the drug's short single-dose duration does not predict",
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines and the standard drug for procedural sedation and for out-of-hospital seizure treatment worldwide',
+        'About 42 cents per millilitre at United States pharmacy acquisition cost across 23 listed generic products',
+        'The one place it beat its comparator on a hard patient outcome is the ambulance: a thigh injection stops more seizures than a drip, and buccal and intranasal formulations built on that finding are now standard for community seizure rescue',
+        'Displaced from first-line intensive care sedation by the trials above, and still ubiquitous everywhere a person needs to cooperate with a procedure and not remember it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Sterile aqueous solution for intravenous and intramuscular injection, in single- and multiple-dose vials, premixed infusion bags, prefilled autoinjectors and an oral syrup; buccal and intranasal formulations exist for seizure rescue',
+      description:
+        'The range of routes is a direct consequence of the pH-dependent ring opening: because the molecule is genuinely water-soluble in an acidic vial, it can be injected intramuscularly, sprayed into a nostril or squirted into a cheek, none of which is practical for a benzodiazepine that needs an organic solvent. That is what made the RAMPART autoinjector trial possible and what underlies community seizure-rescue formulations. Multiple-dose presentations contain benzyl alcohol, which matters in neonates. The label restricts intravenous use to settings with continuous respiratory and cardiac monitoring and airway-skilled personnel immediately available.',
+      safetyProfile:
+        'The boxed warning covers two things. Intravenous midazolam has caused respiratory depression and respiratory arrest, particularly in non-critical-care settings, with death or hypoxic encephalopathy where this was not promptly recognised and treated; use is restricted to settings with continuous respiratory and cardiac monitoring, resuscitation drugs and equipment, and personnel skilled in airway management, with a dedicated observer for deeply sedated children. Separately, concomitant use with opioids may cause profound sedation, respiratory depression, coma and death. Beyond the warning: an active metabolite and an active glucuronide accumulate in renal impairment, clearance is CYP3A4-dependent and heavily interaction-prone, context-sensitive half-time lengthens with infusion duration, paradoxical agitation occurs particularly in children and older people, and flumazenil is shorter-acting than the drug it reverses. No dosing guidance appears on this page.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why will I not remember the procedure?',
+        a: 'Because that is a specific pharmacological effect and not a side effect of being sleepy. The GABA-A receptor comes in variants distinguished by which alpha subunit they contain, and they sit in different parts of the brain. The alpha1 variant is dense in cortex and hippocampus, and the hippocampus is where new memories are consolidated. Researchers showed how cleanly separable this is by engineering mice with one amino acid changed in the alpha1 subunit: those animals no longer became sedated or amnesic from a benzodiazepine, while the anti-anxiety and muscle-relaxing effects were entirely unaffected. So midazolam can leave you awake enough to answer questions and swallow on request while forming almost no memory of any of it, which is exactly what conscious sedation is for.',
+      },
+      {
+        q: 'Why does the label warn so strongly about opioids?',
+        a: 'Because the two drugs suppress breathing by independent routes, so their combined effect is worse than either alone. On its own, a benzodiazepine has a ceiling: it only amplifies the GABA that the brain is already releasing, so it cannot shut the system down completely, which is why benzodiazepine overdose alone is comparatively survivable. An opioid depresses the brainstem respiratory centres directly through mu receptors. Put them together and the ceiling stops protecting you. The boxed warning states plainly that concomitant use may result in profound sedation, respiratory depression, coma and death, and the same label separately restricts intravenous use to settings with continuous respiratory and cardiac monitoring and personnel skilled in airway management, because respiratory arrest that was not recognised promptly has caused death and hypoxic brain injury.',
+      },
+      {
+        q: 'Is it still the right drug for sedation in intensive care?',
+        a: 'Generally no, and the trial that changed that is worth reading carefully. SEDCOM randomised 375 ventilated intensive care patients at 68 centres to midazolam or dexmedetomidine, each titrated to light sedation. On its primary endpoint the two were identical: patients spent 75.1% and 77.3% of the time in the target sedation range. On the secondary endpoints midazolam did badly — delirium in 76.6% against 54%, and median time to extubation 5.6 days against 3.7. The pharmacology fits: midazolam has an active metabolite and an active renally cleared glucuronide, and its context-sensitive half-time lengthens with infusion duration, so days of sedation do not switch off when the pump does. Guidelines now recommend non-benzodiazepine sedation for ventilated adults.',
+        auditNote:
+          'The result that changed practice was a secondary endpoint of a trial whose primary endpoint was neutral, which is worth knowing even when the direction of the finding is not in doubt.',
+      },
+      {
+        q: 'Why is a shot in the leg better than a drip for a seizure?',
+        a: 'Because of time, not chemistry. RAMPART randomised 893 children and adults still convulsing when paramedics arrived, to intramuscular midazolam by autoinjector or intravenous lorazepam. Seizures were absent on arrival at hospital without rescue therapy in 73.4% against 63.4% — a 10 percentage point difference, statistically significant for superiority, not just non-inferiority. The reason is that siting an intravenous cannula in a convulsing person takes minutes and an autoinjector into the thigh takes seconds, and every minute a seizure continues makes it harder to stop. Midazolam can be given that way at all only because of its unusual chemistry: the ring in the molecule opens at acidic pH, making it genuinely water-soluble in the vial, so no irritant solvent is needed.',
+      },
+      {
+        q: 'Can it be reversed?',
+        a: 'Partly, and with a caveat that matters. Flumazenil competes with midazolam for the same binding site on the receptor and can reverse sedation. But flumazenil is shorter-acting than midazolam, so a patient who is woken up can become resedated as the antagonist wears off before the drug does, which is why reversal is not a substitute for monitoring. Flumazenil can also precipitate seizures in someone who takes benzodiazepines regularly, or in a mixed overdose involving a proconvulsant drug. The existence of an antagonist is genuinely unusual — propofol and the volatile agents have none — but it is a narrower tool than it sounds.',
+      },
+      {
+        q: 'Why does this page say the amnesia makes the drug hard to audit?',
+        a: "Because the ordinary way a drug's unpleasant effects come to light is that patients describe them, and this drug removes that channel by design. If a person is distressed during an endoscopy under midazolam, or experiences a paradoxical agitated reaction, or is aware of something painful, they will very often have no memory of it afterwards and no complaint to make. That is not a hypothetical: dense anterograde amnesia is the effect the drug is chosen for, and it was shown to be a specific action of the alpha1 receptor subtype rather than a by-product of sedation. This page does not claim midazolam causes hidden harm. It records that the usual detection mechanism is unavailable in principle, which is a reason to weight what an observer records at the time far more heavily than what a patient reports afterwards.",
+        auditNote:
+          'Filed as an inference about evidence rather than about pharmacology. It is a statement about what the literature can and cannot contain.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Rudolph U, Crestani F, Benke D, et al. Benzodiazepine actions mediated by specific gamma-aminobutyric acid(A) receptor subtypes. Nature 1999;401:796-800',
+        identifier: '10.1038/44579',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Silbergleit R, Durkalski V, Lowenstein D, et al. Intramuscular versus intravenous therapy for prehospital status epilepticus (RAMPART). N Engl J Med 2012;366:591-600',
+        identifier: '10.1056/NEJMoa1107494',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Riker RR, Shehabi Y, Bokesch PM, et al. Dexmedetomidine vs midazolam for sedation of critically ill patients: a randomized trial (SEDCOM). JAMA 2009;301:489-499',
+        identifier: '10.1001/jama.2009.56',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA-approved US prescribing information for midazolam hydrochloride injection (DailyMed structured product label, Hospira Inc) — boxed warning on respiratory depression and on concomitant opioid use, clinical pharmacology, drug interactions',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1abda8b8-48a8-4995-af86-39220d1aa240',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4192 — midazolam structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4192',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

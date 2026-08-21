@@ -247,7 +247,8 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         id: 'tam-a1',
         category: 'measured',
-        title: 'A real symptom effect over placebo, roughly two to three points on a 35-point scale',
+        title:
+          'A real symptom effect over placebo, roughly two to three points on a 35-point scale',
         laymanSummary:
           'In the two American registration trials, men on tamsulosin improved more than men on placebo. The placebo groups also improved substantially, and the difference between them was around two to three points on a scale that runs to 35.',
         technicalDetails:
@@ -295,10 +296,11 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         category: 'conclusion_shift',
         title: 'Intraoperative floppy iris syndrome was invisible for eight years after approval',
         laymanSummary:
-          'In 2005, eight years after approval, two eye surgeons noticed that a specific and dangerous behaviour of the iris during cataract surgery was happening almost exclusively in men on tamsulosin. It is now on the label. It was on nobody\'s list before.',
+          "In 2005, eight years after approval, two eye surgeons noticed that a specific and dangerous behaviour of the iris during cataract surgery was happening almost exclusively in men on tamsulosin. It is now on the label. It was on nobody's list before.",
         technicalDetails:
           'Chang and Campbell reviewed 706 eyes from 511 consecutive cataract patients retrospectively and 900 consecutive cases from 741 patients prospectively. In the retrospective series, IFIS occurred in 10 of the 16 tamsulosin patients (63.0%) and in none of the 11 patients taking other systemic alpha-1 blockers. In the prospective series the prevalence of IFIS was 2.2% of 741 patients, and 15 of those 16 cases were current or former tamsulosin users. Overall IFIS prevalence in the retrospective series was 2.0%. The current US label carries the warning and instructs patients to tell their ophthalmologist about current or prior use before eye surgery. Nothing in the registration programme could have found this: cataract surgery is not an endpoint in a BPH trial.',
-        evidenceSource: 'Chang DF, Campbell JR, J Cataract Refract Surg 2005;31:664-673 (PMID 15899440)',
+        evidenceSource:
+          'Chang DF, Campbell JR, J Cataract Refract Surg 2005;31:664-673 (PMID 15899440)',
         doi: '10.1016/j.jcrs.2005.02.027',
         measuredMetric:
           'Prevalence of intraoperative floppy iris syndrome in consecutive cataract series, by alpha-blocker exposure',
@@ -307,7 +309,8 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         id: 'tam-a5',
         category: 'measured',
-        title: 'Severe hypotension roughly doubles in the first four weeks, and again on restarting',
+        title:
+          'Severe hypotension roughly doubles in the first four weeks, and again on restarting',
         laymanSummary:
           'Tamsulosin is marketed as the alpha-blocker that does not drop blood pressure. In a study of 297,596 new users, hospital admission for severe low blood pressure was about twice as likely during the first month, and the risk returned each time a man restarted the drug.',
         technicalDetails:
@@ -343,7 +346,8 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           'The pooled adverse-event table in the US prescribing information reports abnormal ejaculation in 42 of 502 patients (8.4%) on 0.4 mg once daily and 89 of 492 (18.1%) on 0.8 mg once daily, against 1 of 493 (0.2%) on placebo. The dose-response is close to linear and is mechanistic rather than idiosyncratic: seminal vesicle and vas deferens smooth muscle carries the same alpha-1A receptor the drug was designed to prefer. This is the clearest example on the page of an on-target effect that is therapeutic in one organ and an adverse event in another.',
         evidenceSource:
           'US prescribing information for tamsulosin hydrochloride capsules, Adverse Reactions section, pooled 13-week placebo-controlled studies',
-        measuredMetric: 'Incidence of abnormal ejaculation by dose in the pooled registration trials',
+        measuredMetric:
+          'Incidence of abnormal ejaculation by dose in the pooled registration trials',
         auditFlag: 'verified',
       },
     ],
@@ -579,7 +583,8 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         label:
           'US prescribing information for tamsulosin hydrochloride capsules — mechanism of action, clinical pharmacology, clinical studies and adverse reactions (openFDA drug label endpoint)',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22tamsulosin+hydrochloride%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22tamsulosin+hydrochloride%22',
         kind: 'regulatory',
       },
       {
@@ -1292,7 +1297,8 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         id: 'sol-a2',
         category: 'measured',
-        title: 'The dry mouth is the same receptor, in the salivary gland, and it doubles with dose',
+        title:
+          'The dry mouth is the same receptor, in the salivary gland, and it doubles with dose',
         laymanSummary:
           'Dry mouth is not an unlucky side reaction. It is the drug doing exactly what it was designed to do, in the gland that makes saliva. At the higher dose more than one patient in four reports it.',
         technicalDetails:
@@ -1704,7 +1710,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           name: 'Vibegron (Gemtesa)',
           class: 'Beta-3 adrenergic agonist, the second in the class',
           howItCompares:
-            'EMPOWUR (NCT03492281) randomised 1,530 patients to vibegron 75 mg, tolterodine ER 4 mg or placebo. Vibegron beat placebo by 0.5 voids a day (p<0.001) and 0.6 urge incontinence episodes a day (p<0.0001). Its US label does not carry mirabegron\'s blood-pressure warning, and it is not a strong CYP2D6 inhibitor, which removes a drug-interaction problem mirabegron has.',
+            "EMPOWUR (NCT03492281) randomised 1,530 patients to vibegron 75 mg, tolterodine ER 4 mg or placebo. Vibegron beat placebo by 0.5 voids a day (p<0.001) and 0.6 urge incontinence episodes a day (p<0.0001). Its US label does not carry mirabegron's blood-pressure warning, and it is not a strong CYP2D6 inhibitor, which removes a drug-interaction problem mirabegron has.",
           typicalCost:
             'US$16.46 per tablet at United States pharmacy acquisition cost (CMS NADAC, brand, median across 2 listed products, effective 19 August 2026)',
           prosAndCons:
@@ -1845,11 +1851,12 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         id: 'mir-a3',
         category: 'conclusion_shift',
-        title: 'The blood-pressure warning stayed, and the measurement that tested it found nothing',
+        title:
+          'The blood-pressure warning stayed, and the measurement that tested it found nothing',
         laymanSummary:
           'Mirabegron carries a blood-pressure warning on its label. When 715 patients wore 24-hour blood-pressure monitors in a later trial, no consistent increase showed up.',
         technicalDetails:
-          'The US label states the drug can increase blood pressure, is not recommended in severe uncontrolled hypertension, and asks for periodic measurement; it quotes mean increases of approximately 0.5 to 1 mmHg over placebo at the 50 mg dose. The adverse-event table sits awkwardly beside that: hypertension was reported in 11.3% at 25 mg, 7.5% at 50 mg and 7.6% on placebo, with no dose gradient in the direction the warning implies. Weber and colleagues then reported an ambulatory blood-pressure monitoring substudy of SYNERGY in 715 patients, and found no consistent increase from baseline in mean 24-hour systolic or diastolic pressure for any active arm against placebo, no signal in the one-hour averages spanning both drugs\' Tmax, no difference on shift or outlier analysis, and no 24-hour heart-rate signal. The warning has not been removed. That is a defensible regulatory position for a chronic drug in an elderly population, and it is also a case where the most careful measurement disagrees with the label text.',
+          "The US label states the drug can increase blood pressure, is not recommended in severe uncontrolled hypertension, and asks for periodic measurement; it quotes mean increases of approximately 0.5 to 1 mmHg over placebo at the 50 mg dose. The adverse-event table sits awkwardly beside that: hypertension was reported in 11.3% at 25 mg, 7.5% at 50 mg and 7.6% on placebo, with no dose gradient in the direction the warning implies. Weber and colleagues then reported an ambulatory blood-pressure monitoring substudy of SYNERGY in 715 patients, and found no consistent increase from baseline in mean 24-hour systolic or diastolic pressure for any active arm against placebo, no signal in the one-hour averages spanning both drugs' Tmax, no difference on shift or outlier analysis, and no 24-hour heart-rate signal. The warning has not been removed. That is a defensible regulatory position for a chronic drug in an elderly population, and it is also a case where the most careful measurement disagrees with the label text.",
         evidenceSource:
           'US prescribing information for mirabegron extended-release tablets, Warnings and Precautions and Adverse Reactions; Weber MA et al., Blood Press Monit 2018;23:153-163 (PMID 29578880)',
         doi: '10.1097/MBP.0000000000000320',
@@ -1860,11 +1867,12 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         id: 'mir-a4',
         category: 'inferred',
-        title: 'The brown fat result everyone cites used four times the approved dose in twelve men',
+        title:
+          'The brown fat result everyone cites used four times the approved dose in twelve men',
         laymanSummary:
           'Mirabegron became famous outside urology for switching on brown fat and raising resting metabolic rate by 13%. That experiment gave twelve healthy men 200 mg — four times the licensed dose.',
         technicalDetails:
-          'Cypess and colleagues gave 200 mg of oral mirabegron to twelve healthy male subjects and measured brown adipose tissue activity by 18F-fluorodeoxyglucose PET-CT. All twelve showed higher brown fat metabolic activity than on placebo (p=0.001) and resting metabolic rate rose by 203 ± 40 kcal/day, a 13% increase (p=0.001). Brown fat activity significantly predicted the change in resting metabolic rate (p=0.006). The maximum licensed dose for overactive bladder is 50 mg, and the label\'s own QT data show the cardiovascular effect scaling with dose: mean QTcI difference from placebo of 3.7 msec at 50 mg against 8.1 msec at 200 mg. Twelve healthy young men receiving a single supratherapeutic dose is a physiology experiment, and it is a legitimate and important one. It is not evidence that the licensed dose does anything to body weight in anybody.',
+          "Cypess and colleagues gave 200 mg of oral mirabegron to twelve healthy male subjects and measured brown adipose tissue activity by 18F-fluorodeoxyglucose PET-CT. All twelve showed higher brown fat metabolic activity than on placebo (p=0.001) and resting metabolic rate rose by 203 ± 40 kcal/day, a 13% increase (p=0.001). Brown fat activity significantly predicted the change in resting metabolic rate (p=0.006). The maximum licensed dose for overactive bladder is 50 mg, and the label's own QT data show the cardiovascular effect scaling with dose: mean QTcI difference from placebo of 3.7 msec at 50 mg against 8.1 msec at 200 mg. Twelve healthy young men receiving a single supratherapeutic dose is a physiology experiment, and it is a legitimate and important one. It is not evidence that the licensed dose does anything to body weight in anybody.",
         evidenceSource: 'Cypess AM et al., Cell Metab 2015;21:33-38 (PMID 25565203)',
         doi: '10.1016/j.cmet.2014.12.009',
         measuredMetric:
@@ -1891,7 +1899,8 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         id: 'mir-a6',
         category: 'inferred',
-        title: 'BESIDE tested adding mirabegron against the low dose of the drug already prescribed',
+        title:
+          'BESIDE tested adding mirabegron against the low dose of the drug already prescribed',
         laymanSummary:
           'The trial behind the combination licence compared solifenacin plus mirabegron with solifenacin 5 mg. Against solifenacin 10 mg — simply raising the dose already prescribed — the difference nearly vanishes.',
         technicalDetails:
@@ -1925,7 +1934,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Mirabegron is off patent and there are seventeen listed products, yet pharmacies still pay about nine dollars sixty a tablet. Generic solifenacin costs eighteen cents.',
         technicalDetails:
-          'The CMS National Average Drug Acquisition Cost file effective 19 August 2026 lists mirabegron as generic with a median across seventeen products of US$9.60 per tablet. The comparable figures on the same file are US$0.1754 for solifenacin across forty products, US$0.2533 for tolterodine across fifty-four, and US$0.0817 for oxybutynin across ninety-two. Number of suppliers, not molecular complexity, is what these medicines\' prices track: the extended-release formulation is a real technical barrier, and seventeen listings that leave the median near ten dollars indicate a market that has not behaved the way a mature generic market does.',
+          "The CMS National Average Drug Acquisition Cost file effective 19 August 2026 lists mirabegron as generic with a median across seventeen products of US$9.60 per tablet. The comparable figures on the same file are US$0.1754 for solifenacin across forty products, US$0.2533 for tolterodine across fifty-four, and US$0.0817 for oxybutynin across ninety-two. Number of suppliers, not molecular complexity, is what these medicines' prices track: the extended-release formulation is a real technical barrier, and seventeen listings that leave the median near ten dollars indicate a market that has not behaved the way a mature generic market does.",
         evidenceSource:
           'CMS National Average Drug Acquisition Cost file, effective 19 August 2026, as stored on this record',
         measuredMetric:
@@ -2098,11 +2107,11 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does it raise blood pressure?',
-        a: 'The label says it can, and the best measurement of it found nothing. Mirabegron\'s US prescribing information warns about blood pressure, asks for periodic measurement, and quotes mean increases of roughly 0.5 to 1 mmHg over placebo at the 50 mg dose. Its own adverse-event table reports hypertension in 11.3% at 25 mg, 7.5% at 50 mg and 7.6% on placebo — no dose gradient at all. Then 715 patients in the SYNERGY trial wore 24-hour ambulatory blood-pressure monitors, and the analysis found no consistent increase in mean 24-hour systolic or diastolic pressure, no signal in the hourly averages around peak drug levels, and no heart-rate signal. The warning remains on the label. If you have severe uncontrolled hypertension you are outside every dataset described here, and that is the population the label is written for.',
+        a: "The label says it can, and the best measurement of it found nothing. Mirabegron's US prescribing information warns about blood pressure, asks for periodic measurement, and quotes mean increases of roughly 0.5 to 1 mmHg over placebo at the 50 mg dose. Its own adverse-event table reports hypertension in 11.3% at 25 mg, 7.5% at 50 mg and 7.6% on placebo — no dose gradient at all. Then 715 patients in the SYNERGY trial wore 24-hour ambulatory blood-pressure monitors, and the analysis found no consistent increase in mean 24-hour systolic or diastolic pressure, no signal in the hourly averages around peak drug levels, and no heart-rate signal. The warning remains on the label. If you have severe uncontrolled hypertension you are outside every dataset described here, and that is the population the label is written for.",
       },
       {
         q: 'I read this drug burns fat. Is that true?',
-        a: 'A real experiment produced a real result at a dose nobody is prescribed. Cypess and colleagues gave twelve healthy men 200 mg of mirabegron — four times the maximum licensed dose — and measured brown adipose tissue with PET-CT. All twelve showed increased brown fat activity, and resting metabolic rate rose by 203 calories a day, about 13%. That is a genuine finding and a genuinely interesting one about human physiology. It does not transfer to a 50 mg tablet taken for a bladder. It is also worth knowing that the drug\'s cardiovascular effects scale with dose in the label\'s own data: the QT effect is 3.7 milliseconds at 50 mg and 8.1 at 200 mg.',
+        a: "A real experiment produced a real result at a dose nobody is prescribed. Cypess and colleagues gave twelve healthy men 200 mg of mirabegron — four times the maximum licensed dose — and measured brown adipose tissue with PET-CT. All twelve showed increased brown fat activity, and resting metabolic rate rose by 203 calories a day, about 13%. That is a genuine finding and a genuinely interesting one about human physiology. It does not transfer to a 50 mg tablet taken for a bladder. It is also worth knowing that the drug's cardiovascular effects scale with dose in the label's own data: the QT effect is 3.7 milliseconds at 50 mg and 8.1 at 200 mg.",
         auditNote:
           'Twelve subjects, single dose, healthy young men, four times the approved dose. Each of those four facts limits what the result can be generalised to, and they compound.',
       },
@@ -2192,7 +2201,8 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         label:
           'US prescribing information for mirabegron extended-release tablets — mechanism of action, clinical pharmacology, warnings and precautions, adverse reactions (openFDA drug label endpoint)',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22mirabegron%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22mirabegron%22',
         kind: 'regulatory',
       },
       {
@@ -2470,7 +2480,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Oxybutynin was approved half a century ago, under a standard of evidence that no longer exists. The placebo-controlled numbers on its label today come from studies run decades later to register the once-daily version.',
         technicalDetails:
-          'The immediate-release tablet reached the US market in 1975. Overactive bladder as a defined syndrome, the standardised three-day bladder diary, and the regulatory expectation of a placebo-controlled trial with a diary primary endpoint all postdate it. The efficacy data now quoted for oxybutynin — the 15.8 against 7.6 weekly urge incontinence episodes — come from the extended-release registration programme, and the comparisons that establish the immediate-release form\'s effect are non-inferiority comparisons against that newer product rather than against placebo. The direction of inference is backwards from the usual one: the old drug\'s efficacy is supported by the new formulation\'s trials, and the new formulation\'s advantage is supported by a tolerability comparison against the old drug.',
+          "The immediate-release tablet reached the US market in 1975. Overactive bladder as a defined syndrome, the standardised three-day bladder diary, and the regulatory expectation of a placebo-controlled trial with a diary primary endpoint all postdate it. The efficacy data now quoted for oxybutynin — the 15.8 against 7.6 weekly urge incontinence episodes — come from the extended-release registration programme, and the comparisons that establish the immediate-release form's effect are non-inferiority comparisons against that newer product rather than against placebo. The direction of inference is backwards from the usual one: the old drug's efficacy is supported by the new formulation's trials, and the new formulation's advantage is supported by a tolerability comparison against the old drug.",
         evidenceSource:
           'US prescribing information for oxybutynin chloride extended-release tablets, Clinical Studies and Adverse Reactions sections; approval year as held on this record',
         measuredMetric:
@@ -2601,7 +2611,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       ],
       whatFailedInitially: [
         'The head-to-head against behavioural training, which oxybutynin lost on both the diary endpoint and on how many patients wanted to stop',
-        'The immediate-release formulation\'s tolerability, which drove fifty years of reformulation rather than replacement',
+        "The immediate-release formulation's tolerability, which drove fifty years of reformulation rather than replacement",
         'Correct use of the over-the-counter patch, misapplied by half the consumers studied before mitigation',
       ],
       realWorldOutcome: [
@@ -2620,7 +2630,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Why does the once-a-day version cost more but dry my mouth less?',
-        a: 'Because of what happens on the way in, not what the drug does when it arrives. A fast-dissolving tablet delivers a slug of drug to the liver, which converts a large part of it into a second compound, N-desethyloxybutynin, that is about as antimuscarinic as the original. That metabolite reaches the salivary glands in quantity. Slowing the release changes where and how much absorption happens and shifts that balance. The measured consequence in the label\'s own tables is dry mouth in 72.4% on immediate release against 34.9% on extended release, with dizziness falling from 16.6% to 5.0% and somnolence from 14.1% to 5.6%. Same molecule, same dose range, different delivery.',
+        a: "Because of what happens on the way in, not what the drug does when it arrives. A fast-dissolving tablet delivers a slug of drug to the liver, which converts a large part of it into a second compound, N-desethyloxybutynin, that is about as antimuscarinic as the original. That metabolite reaches the salivary glands in quantity. Slowing the release changes where and how much absorption happens and shifts that balance. The measured consequence in the label's own tables is dry mouth in 72.4% on immediate release against 34.9% on extended release, with dizziness falling from 16.6% to 5.0% and somnolence from 14.1% to 5.6%. Same molecule, same dose range, different delivery.",
         auditNote:
           'This is the rare case where a formulation change is the clinically significant innovation and the molecule is unchanged. The skin patch and the gel exist for the same reason.',
       },
@@ -2632,7 +2642,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         q: 'Should I worry about this drug and memory?',
         a: 'It is the honest thing to raise with a prescriber, and it is not settled. A prospective cohort of 3,434 people aged 65 and over, followed a mean of 7.3 years, found the risk of a later dementia diagnosis rose with total anticholinergic exposure over the preceding decade: hazard ratio 1.54 (95% CI 1.21 to 1.96) for the highest exposure group against nonusers, with a clear dose-response trend. The study deliberately ignored the most recent year of prescriptions to reduce the chance that early symptoms were causing the prescribing. Oxybutynin is the most fat-soluble drug in its class and therefore the one that enters the brain most readily, which makes it the molecule most often singled out — but that singling out is pharmacological reasoning, not a drug-specific trial result. No randomised trial in this indication has ever been powered for a cognitive endpoint.',
         auditNote:
-          'What the evidence supports is counting the total anticholinergic load across all a person\'s prescriptions. What it does not support is a claim about this one tablet in isolation.',
+          "What the evidence supports is counting the total anticholinergic load across all a person's prescriptions. What it does not support is a claim about this one tablet in isolation.",
       },
       {
         q: 'The patch is sold without a prescription. Does that mean it is safer?',
@@ -2732,7 +2742,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         'Fewer incontinence episodes and fewer voids on a diary, and a larger volume passed each time. The label reports all three, and all three margins over placebo are small.',
     },
     oneSentenceVerdict:
-      'A non-selective muscarinic antagonist that is mostly a delivery vehicle for its own metabolite: its US label reports 11.8 fewer weekly incontinence episodes against 6.9 on placebo and 1.8 fewer daily voids against 1.2, yet as the active control in other companies\' trials it failed to separate from placebo in SCORPIO (p=0.11 on both endpoints, n=2,336) and missed on micturitions in EMPOWUR (p=0.0988, n=1,530).',
+      "A non-selective muscarinic antagonist that is mostly a delivery vehicle for its own metabolite: its US label reports 11.8 fewer weekly incontinence episodes against 6.9 on placebo and 1.8 fewer daily voids against 1.2, yet as the active control in other companies' trials it failed to separate from placebo in SCORPIO (p=0.11 on both endpoints, n=2,336) and missed on micturitions in EMPOWUR (p=0.0988, n=1,530).",
     laymanHowItWorks:
       'Tolterodine blocks the receptors that acetylcholine uses to tell the bladder wall to contract, so the involuntary squeeze while the bladder is filling is weakened. The twist is that in most people the drug you swallow is not the drug that does the work: an enzyme in the liver converts it into a compound called 5-hydroxymethyl tolterodine, which blocks the same receptors and is present in larger quantity. About seven people in a hundred of European ancestry lack a working version of that enzyme, and they end up with almost none of the metabolite and much more of the parent drug. Both block the same receptor, so the drug still works — but what is circulating in one person is not what is circulating in another.',
     auditConfidence: 'Moderate / Debated',
@@ -2743,14 +2753,14 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         'US$0.2533 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, median across 54 listed products, effective 19 August 2026)',
       markupEstimate: '',
       openPatentNotes:
-        'Approved in the United States in 1998 and long off patent, with fifty-four products in the acquisition-cost file. Its own manufacturer\'s successor product, fesoterodine — which delivers tolterodine\'s active metabolite directly — is generic too, at US$0.8127 across sixteen products on the same file.',
+        "Approved in the United States in 1998 and long off patent, with fifty-four products in the acquisition-cost file. Its own manufacturer's successor product, fesoterodine — which delivers tolterodine's active metabolite directly — is generic too, at US$0.8127 across sixteen products on the same file.",
       synthesisComplexity: 'Moderate',
       costSource: COST_OF_PRODUCTION_SOURCE,
       priceSource: NADAC_SOURCE,
     },
     substitutes: {
       summary:
-        'Two of the alternatives here beat tolterodine in a randomised head-to-head, and one of them is chemically tolterodine\'s own metabolite. Solifenacin beat it in STAR. Fesoterodine beat it in two Pfizer trials totalling more than four thousand patients. Mirabegron beat it indirectly, by clearing placebo in the same trial where tolterodine did not.',
+        "Two of the alternatives here beat tolterodine in a randomised head-to-head, and one of them is chemically tolterodine's own metabolite. Solifenacin beat it in STAR. Fesoterodine beat it in two Pfizer trials totalling more than four thousand patients. Mirabegron beat it indirectly, by clearing placebo in the same trial where tolterodine did not.",
       conventionalRx: [
         {
           name: 'Fesoterodine (Toviaz)',
@@ -2880,7 +2890,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'In SCORPIO, 475 patients on this drug could not be told apart from placebo',
         laymanSummary:
-          'Mirabegron\'s registration trial included a tolterodine arm as the yardstick. On both main endpoints the yardstick missed. Mirabegron cleared placebo comfortably in the same trial, on the same days, in the same patients.',
+          "Mirabegron's registration trial included a tolterodine arm as the yardstick. On both main endpoints the yardstick missed. Mirabegron cleared placebo comfortably in the same trial, on the same days, in the same patients.",
         technicalDetails:
           'SCORPIO (NCT00689104) randomised 2,336 patients to placebo (480), mirabegron 50 mg (473), mirabegron 100 mg (478) or tolterodine SR 4 mg (475). Incontinence episodes per 24 hours fell 1.17 on placebo and 1.27 on tolterodine, p=0.11 (95% CI -0.42 to 0.21). Micturitions fell 1.34 and 1.59, p=0.11 (95% CI -0.55 to 0.06). Mirabegron 50 mg in the same trial reached p=0.003 and p<0.001. An active-control arm that misses is usually written off as a failure of assay sensitivity — but assay sensitivity was demonstrated in the same trial by the experimental drug clearing both endpoints. The remaining explanation is that the tolterodine effect is small enough that a 475-patient arm can miss it.',
         evidenceSource:
@@ -2895,7 +2905,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'It happened again in EMPOWUR, seven years later, with a different sponsor',
         laymanSummary:
-          'Vibegron\'s registration trial also used tolterodine as the comparator. Tolterodine again failed to beat placebo on the number of daily toilet trips.',
+          "Vibegron's registration trial also used tolterodine as the comparator. Tolterodine again failed to beat placebo on the number of daily toilet trips.",
         technicalDetails:
           'EMPOWUR (NCT03492281) randomised 1,530 patients to placebo (475), vibegron 75 mg (492) or tolterodine ER 4 mg (378). On the first co-primary endpoint, micturitions per 24 hours, vibegron beat placebo by 0.5 (p<0.001) while tolterodine reached only a 0.3 difference at p=0.0988, reported as descriptive. On urge urinary incontinence episodes in the wet subgroup, vibegron beat placebo by 0.6 (p<0.0001) and tolterodine by 0.4 (p=0.0123, descriptive). Two independent sponsors, seven years apart, using different beta-3 agonists, produced the same result for the tolterodine arm. Two replications of a null is not a coincidence about trial conduct.',
         evidenceSource: 'ClinicalTrials.gov results record, EMPOWUR NCT03492281',
@@ -2908,7 +2918,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'Where it did beat placebo, the margin was about a tenth of an episode a day',
         laymanSummary:
-          'Two large trials run by tolterodine\'s own manufacturer did show it beating placebo. The size of the win was 0.12 and 0.15 fewer leaks a day.',
+          "Two large trials run by tolterodine's own manufacturer did show it beating placebo. The size of the win was 0.12 and 0.15 fewer leaks a day.",
         technicalDetails:
           'Pfizer ran two 12-week double-blind, double-dummy, placebo-controlled trials of fesoterodine against tolterodine ER 4 mg. In the larger (NCT00611026, n=2,417), urgency incontinence episodes per 24 hours fell 1.62 ± 0.07 on placebo (n=448) and 1.74 ± 0.06 on tolterodine (n=926), p=0.0228 — a difference of 0.12 episodes a day. In the second (NCT00444925, n=1,712), placebo fell 1.46 (n=307) and tolterodine 1.61 (n=626), p=0.0107 — a difference of 0.15. The label reports the same order of magnitude in different units: 11.8 against 6.9 weekly incontinence episodes, 1.8 against 1.2 daily micturitions, and 34 mL against 14 mL added to the volume passed each time. These are positive results with defensible p-values and effect sizes measured in tenths of an episode.',
         evidenceSource:
@@ -2920,7 +2930,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         id: 'tol-a4',
         category: 'conclusion_shift',
-        title: 'The manufacturer developed this drug\'s own metabolite and beat it with it',
+        title: "The manufacturer developed this drug's own metabolite and beat it with it",
         laymanSummary:
           'Fesoterodine, sold as a separate newer drug, is a delivery vehicle for the exact compound tolterodine turns into inside the body. Pfizer tested it against tolterodine twice and won both times.',
         technicalDetails:
@@ -2968,7 +2978,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Nearly one in four patients gets a dry mouth, against one in twelve on placebo. As with every drug in this class, that is the identical receptor block happening in the salivary gland.',
         technicalDetails:
-          'The US label for the extended-release capsule reports dry mouth in 23% against 8% on placebo, constipation 6% against 4%, and headache 6% against 5%. Only the dry mouth separates convincingly. In patients aged 65 and over, dry mouth occurred with roughly six times the incidence on tolterodine ER 4 mg as on mirabegron over 12 weeks, and three times the incidence over a year. The extended-release capsule was itself developed to reduce this: it is the same molecule as the immediate-release tablet, released more slowly, on the same logic that produced oxybutynin\'s extended-release form.',
+          "The US label for the extended-release capsule reports dry mouth in 23% against 8% on placebo, constipation 6% against 4%, and headache 6% against 5%. Only the dry mouth separates convincingly. In patients aged 65 and over, dry mouth occurred with roughly six times the incidence on tolterodine ER 4 mg as on mirabegron over 12 weeks, and three times the incidence over a year. The extended-release capsule was itself developed to reduce this: it is the same molecule as the immediate-release tablet, released more slowly, on the same logic that produced oxybutynin's extended-release form.",
         evidenceSource:
           'US prescribing information for tolterodine tartrate extended-release capsules, Adverse Reactions section; Wagg A et al., Curr Med Res Opin 2016;32:621-638 (PMID 26828974)',
         doi: '10.1185/03007995.2016.1149806',
@@ -3123,7 +3133,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That an active-control arm missing against placebo reflects a failed trial — assay sensitivity was demonstrated in the same trial by the experimental arm',
         'That fesoterodine is a different mechanism from tolterodine — both labels name 5-hydroxymethyl tolterodine as the active moiety',
-        'That the label\'s efficacy figures apply equally to poor and extensive CYP2D6 metabolisers — no trial stratified on genotype',
+        "That the label's efficacy figures apply equally to poor and extensive CYP2D6 metabolisers — no trial stratified on genotype",
         'That tolterodine specifically raises dementia risk — the observational evidence is class-level and does not identify this molecule',
       ],
       whatFailedInitially: [
@@ -3134,14 +3144,14 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       ],
       realWorldOutcome: [
         'Twenty-five cents a unit at United States pharmacy acquisition cost, across fifty-four listed products',
-        'Now used more often as the comparator arm in other companies\' trials than it is discussed on its own terms',
+        "Now used more often as the comparator arm in other companies' trials than it is discussed on its own terms",
         'Real-world one-year persistence for oral antimuscarinics runs 12% to 25%, with median time to discontinuation under five months',
       ],
     },
     deliverySystem: {
       type: 'Oral extended-release capsule once daily, and immediate-release tablet twice daily',
       description:
-        'The extended-release capsule exists for the same reason oxybutynin\'s does: to smooth the concentration peak that drives the anticholinergic side effects, without changing the molecule. Dose is reduced in significant hepatic or renal impairment and in the presence of strong CYP3A4 inhibitors, and the extended-release form is not recommended in severe renal impairment.',
+        "The extended-release capsule exists for the same reason oxybutynin's does: to smooth the concentration peak that drives the anticholinergic side effects, without changing the molecule. Dose is reduced in significant hepatic or renal impairment and in the presence of strong CYP3A4 inhibitors, and the extended-release form is not recommended in severe renal impairment.",
       safetyProfile:
         'Dry mouth is the dominant effect at 23% against 8% on placebo, with constipation and headache barely separating. The label carries warnings for angioedema, urinary retention, gastric retention, narrow-angle glaucoma and central nervous system effects including somnolence, and reports a measured QT prolongation of 11.84 msec at twice the therapeutic dose with confidence intervals overlapping the positive control. The pharmacokinetic profile depends on CYP2D6 status, and in poor metabolisers CYP3A4 becomes the only remaining clearance route.',
     },
@@ -3294,7 +3304,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       whoTakesThis:
         'Men with moderate to severe lower urinary tract symptoms attributed to benign prostatic hyperplasia, particularly those who cannot tolerate the ejaculatory effects of the alpha-1A-preferring drugs.',
       clinicalGoals:
-        'Lower the International Prostate Symptom Score and raise peak urine flow. On the label\'s own three trials, the symptom margin over placebo is about two points on a thirty-five point scale and the flow margin missed significance in one of the three.',
+        "Lower the International Prostate Symptom Score and raise peak urine flow. On the label's own three trials, the symptom margin over placebo is about two points on a thirty-five point scale and the flow margin missed significance in one of the three.",
     },
     oneSentenceVerdict:
       'An alpha-1 adrenoceptor antagonist whose "uroselectivity" is a matter of formulation and dosing rather than of receptor subtype: across its three US registration trials it lowered the International Prostate Symptom Score by 3.6, 6.9 and 6.5 points against 1.6, 4.9 and 4.6 on placebo, a margin of about two points; over two years in 1,522 men it did not reduce acute urinary retention at all (2.1% against 1.8%, P=0.82); and in a 272-man randomised trial for chronic prostatitis it produced a response rate identical to placebo to within a tenth of a percentage point.',
@@ -3321,7 +3331,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           name: 'Tamsulosin (Flomax)',
           class: 'Alpha-1A-preferring adrenergic antagonist',
           howItCompares:
-            'Genuinely subtype-preferring where alfuzosin is not, which is why abnormal ejaculation appears in 8.4% at 0.4 mg and 18.1% at 0.8 mg against 0.2% on placebo. Alfuzosin\'s own adverse-event table has no comparable ejaculatory signal; its leading effect is dizziness at 5.7% against 2.8%. The symptom-score effects are of the same order.',
+            "Genuinely subtype-preferring where alfuzosin is not, which is why abnormal ejaculation appears in 8.4% at 0.4 mg and 18.1% at 0.8 mg against 0.2% on placebo. Alfuzosin's own adverse-event table has no comparable ejaculatory signal; its leading effect is dizziness at 5.7% against 2.8%. The symptom-score effects are of the same order.",
           typicalCost:
             'US$0.0509 per capsule at United States pharmacy acquisition cost (CMS NADAC, generic, median across 33 listed products, effective 19 August 2026)',
           prosAndCons:
@@ -3355,7 +3365,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           action:
             'Alfuzosin is contraindicated — not merely cautioned — for use with potent CYP3A4 inhibitors such as ketoconazole, itraconazole and ritonavir.',
           patientImpact:
-            'This is a hard contraindication in the US label, and it exists because those drugs remove the drug\'s clearance route. The same label contraindicates use in moderate to severe hepatic insufficiency (Child-Pugh B and C), where plasma clearance falls to a third or a quarter of normal and concentrations rise three to four-fold.',
+            "This is a hard contraindication in the US label, and it exists because those drugs remove the drug's clearance route. The same label contraindicates use in moderate to severe hepatic insufficiency (Child-Pugh B and C), where plasma clearance falls to a third or a quarter of normal and concentrations rise three to four-fold.",
           clinicalPrecaution:
             'Most drugs in this class carry a caution here. Alfuzosin carries a contraindication, which is a stronger statement and one worth raising specifically.',
         },
@@ -3463,7 +3473,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Alfuzosin was widely used for chronic pelvic pain in men on the strength of small trials. A properly powered NIH-network trial found the improvement rate identical in the drug and placebo groups — 49.3% each.',
         technicalDetails:
-          'Nickel and colleagues randomised 272 men with chronic prostatitis-chronic pelvic pain syndrome diagnosed within the previous two years and with no prior alpha-blocker exposure, to alfuzosin 10 mg daily or placebo for 12 weeks. The primary outcome was a reduction of at least 4 points on the NIH Chronic Prostatitis Symptom Index, which is the instrument\'s minimal clinically significant difference. In both groups 49.3% of participants achieved it: rate difference associated with alfuzosin 0.1% (95% CI -11.2 to 11.0), P=0.99. A global response assessment agreed: 33.6% on placebo and 34.8% on alfuzosin, P=0.90. Adverse event rates were similar. Two arms landing on the same number to a tenth of a percentage point is as clean a null as this literature produces, and the enrolment criterion — no previous alpha-blocker — was specifically designed to give the drug its best chance.',
+          "Nickel and colleagues randomised 272 men with chronic prostatitis-chronic pelvic pain syndrome diagnosed within the previous two years and with no prior alpha-blocker exposure, to alfuzosin 10 mg daily or placebo for 12 weeks. The primary outcome was a reduction of at least 4 points on the NIH Chronic Prostatitis Symptom Index, which is the instrument's minimal clinically significant difference. In both groups 49.3% of participants achieved it: rate difference associated with alfuzosin 0.1% (95% CI -11.2 to 11.0), P=0.99. A global response assessment agreed: 33.6% on placebo and 34.8% on alfuzosin, P=0.90. Adverse event rates were similar. Two arms landing on the same number to a tenth of a percentage point is as clean a null as this literature produces, and the enrolment criterion — no previous alpha-blocker — was specifically designed to give the drug its best chance.",
         evidenceSource: 'Nickel JC et al., N Engl J Med 2008;359:2663-2673 (PMID 19092152)',
         doi: '10.1056/NEJMoa0803240',
         measuredMetric:
@@ -3477,7 +3487,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'About two points of symptom score over placebo, in all three registration trials',
         laymanSummary:
-          'On the label\'s own three trials, men on alfuzosin improved by roughly two more points on a thirty-five point symptom questionnaire than men on placebo. The placebo groups improved substantially on their own.',
+          "On the label's own three trials, men on alfuzosin improved by roughly two more points on a thirty-five point symptom questionnaire than men on placebo. The placebo groups improved substantially on their own.",
         technicalDetails:
           'The Clinical Studies section reports three 12-week placebo-controlled trials. International Prostate Symptom Score total fell 3.6 against 1.6 on placebo (p=0.001), 6.9 against 4.9 (p=0.002) and 6.5 against 4.6 (p=0.007). The treatment effect is 2.0, 2.0 and 1.9 points respectively — remarkably consistent, and consistently around two points on an instrument that runs to 35 and whose commonly cited minimally important difference is around three. Note the placebo arms: 1.6, 4.9 and 4.6 points of improvement with no active drug, meaning that in the second and third trials placebo accounted for roughly seven-tenths of the total movement patients experienced.',
         evidenceSource:
@@ -3522,7 +3532,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'At the normal dose, alfuzosin lengthened a heart electrical interval by under 2 milliseconds, against 11 for the antibiotic used as the positive control. Even at four times the dose it reached 4.3.',
         technicalDetails:
-          'The US label reports mean QTc change of 1.8 msec at the therapeutic 10 mg dose using subject-specific correction, and 4.3 msec at 40 mg, against 11.1 msec for moxifloxacin 400 mg as positive control. No Torsade de Pointes signal emerged in non-US post-marketing experience. This is included as a measured audit point rather than omitted as good news, because it is the counterexample within this file: tolterodine\'s label reports 11.84 msec at twice its therapeutic dose with confidence intervals overlapping the same positive control. Identical study design, opposite result, both stated in the manufacturer\'s own words. It is what a genuinely negative safety study looks like when it is reported in full.',
+          "The US label reports mean QTc change of 1.8 msec at the therapeutic 10 mg dose using subject-specific correction, and 4.3 msec at 40 mg, against 11.1 msec for moxifloxacin 400 mg as positive control. No Torsade de Pointes signal emerged in non-US post-marketing experience. This is included as a measured audit point rather than omitted as good news, because it is the counterexample within this file: tolterodine's label reports 11.84 msec at twice its therapeutic dose with confidence intervals overlapping the same positive control. Identical study design, opposite result, both stated in the manufacturer's own words. It is what a genuinely negative safety study looks like when it is reported in full.",
         evidenceSource:
           'US prescribing information for alfuzosin hydrochloride extended-release tablets, Clinical Pharmacology section (openFDA drug label endpoint)',
         measuredMetric:
@@ -3536,7 +3546,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Alfuzosin must not be taken with certain antifungal and HIV drugs, and must not be taken by anyone with moderate or severe liver impairment. These are contraindications, not warnings.',
         technicalDetails:
-          'The US label contraindicates use with potent CYP3A4 inhibitors including ketoconazole, itraconazole and ritonavir, and contraindicates use in moderate to severe hepatic insufficiency (Child-Pugh B and C), where plasma clearance falls to one-third to one-quarter of normal and alfuzosin concentrations rise three- to four-fold. Tamsulosin\'s label handles strong CYP3A4 inhibitors with a warning rather than a contraindication. The difference is not arbitrary: alfuzosin has a single dominant clearance route and a formulation designed around a specific concentration profile, so removing that route defeats the design. The commonest adverse effects on the label are dizziness at 5.7% against 2.8% on placebo, upper respiratory infection 3.0% against 0.6%, headache 3.0% against 1.8% and fatigue 2.7% against 1.8%.',
+          "The US label contraindicates use with potent CYP3A4 inhibitors including ketoconazole, itraconazole and ritonavir, and contraindicates use in moderate to severe hepatic insufficiency (Child-Pugh B and C), where plasma clearance falls to one-third to one-quarter of normal and alfuzosin concentrations rise three- to four-fold. Tamsulosin's label handles strong CYP3A4 inhibitors with a warning rather than a contraindication. The difference is not arbitrary: alfuzosin has a single dominant clearance route and a formulation designed around a specific concentration profile, so removing that route defeats the design. The commonest adverse effects on the label are dizziness at 5.7% against 2.8% on placebo, upper respiratory infection 3.0% against 0.6%, headache 3.0% against 1.8% and fatigue 2.7% against 1.8%.",
         evidenceSource:
           'US prescribing information for alfuzosin hydrochloride extended-release tablets, Contraindications and Adverse Reactions sections (openFDA drug label endpoint)',
         measuredMetric:
@@ -3606,7 +3616,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'Acute urinary retention 2.1% on alfuzosin against 1.8% on placebo, P=0.82. Surgery 5.1% against 6.5%, P=0.18. Post hoc: symptom deterioration 11.7% against 16.8%, P=0.0013; overall clinical progression 16.3% against 22.1%, P<0.001',
         unreportedAdverseSignals:
-          'The endpoints that produced the trial\'s positive headline are identified by the publication as post hoc analyses. The pre-specified primary endpoint was not met and the secondary surgery endpoint did not reach significance.',
+          "The endpoints that produced the trial's positive headline are identified by the publication as post hoc analyses. The pre-specified primary endpoint was not met and the secondary surgery endpoint did not reach significance.",
         independentReplicationStatus: 'Unreplicated',
       },
       {
@@ -3671,7 +3681,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         'The 800-patient ALFAURUS trial in acute urinary retention, with no result posted on the public registry record',
       ],
       realWorldOutcome: [
-        'Eleven cents a tablet at United States pharmacy acquisition cost, across only twelve listed products — twice tamsulosin\'s price on a third of the supplier base',
+        "Eleven cents a tablet at United States pharmacy acquisition cost, across only twelve listed products — twice tamsulosin's price on a third of the supplier base",
         'Chosen in practice where ejaculatory function matters, because it has no alpha-1A subtype preference to disturb it',
         'Carries two hard contraindications — potent CYP3A4 inhibitors and Child-Pugh B or C hepatic impairment — where most of its class carries only warnings',
       ],
@@ -3679,7 +3689,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
     deliverySystem: {
       type: 'Oral extended-release tablet, once daily, taken with food',
       description:
-        'The extended-release geomatrix tablet is the drug\'s actual point of difference. Older quinazoline alpha-blockers required upward titration because their concentration peaked sharply after each dose and dropped blood pressure. Slowing release removes the peak and removes the titration. The tablet is swallowed whole, not crushed or chewed, and is taken with food because absorption depends on it.',
+        "The extended-release geomatrix tablet is the drug's actual point of difference. Older quinazoline alpha-blockers required upward titration because their concentration peaked sharply after each dose and dropped blood pressure. Slowing release removes the peak and removes the titration. The tablet is swallowed whole, not crushed or chewed, and is taken with food because absorption depends on it.",
       safetyProfile:
         'Commonest effects are dizziness at 5.7% against 2.8% on placebo, upper respiratory infection, headache and fatigue. The label contraindicates concomitant potent CYP3A4 inhibitors and moderate to severe hepatic insufficiency outright. Warnings cover postural hypotension and syncope, intraoperative floppy iris syndrome in cataract and glaucoma surgery, priapism, and caution in patients with congenital or acquired QT prolongation despite a dedicated QT study showing only 1.8 msec at the therapeutic dose. It states explicitly that the drug is not indicated for hypertension.',
     },
@@ -3706,7 +3716,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why does this page not show a manufacturing cost?',
-        a: 'Because no per-dose cost-of-production figure for alfuzosin could be verified and cited. The cost-of-production literature checked publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about eleven cents a tablet in the CMS acquisition-cost survey — which is a price, not a cost of manufacture. It is roughly twice tamsulosin\'s figure, and the acquisition-cost file lists twelve suppliers for alfuzosin against thirty-three for tamsulosin.',
+        a: "Because no per-dose cost-of-production figure for alfuzosin could be verified and cited. The cost-of-production literature checked publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about eleven cents a tablet in the CMS acquisition-cost survey — which is a price, not a cost of manufacture. It is roughly twice tamsulosin's figure, and the acquisition-cost file lists twelve suppliers for alfuzosin against thirty-three for tamsulosin.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -3822,7 +3832,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           name: 'Tamsulosin (Flomax)',
           class: 'Alpha-1A-preferring adrenergic antagonist',
           howItCompares:
-            'The same design idea, less far pursued. Abnormal ejaculation appears in 8.4% at 0.4 mg and 18.1% at 0.8 mg against 0.2% on placebo, against silodosin\'s 28.1% against 0.9%. Symptom-score effects are of the same order. The dose-response within tamsulosin is itself evidence that the ejaculatory effect tracks alpha-1A occupancy rather than being idiosyncratic.',
+            "The same design idea, less far pursued. Abnormal ejaculation appears in 8.4% at 0.4 mg and 18.1% at 0.8 mg against 0.2% on placebo, against silodosin's 28.1% against 0.9%. Symptom-score effects are of the same order. The dose-response within tamsulosin is itself evidence that the ejaculatory effect tracks alpha-1A occupancy rather than being idiosyncratic.",
           typicalCost:
             'US$0.0509 per capsule at United States pharmacy acquisition cost (CMS NADAC, generic, median across 33 listed products, effective 19 August 2026)',
           prosAndCons:
@@ -3832,7 +3842,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           name: 'Alfuzosin (Uroxatral)',
           class: 'Alpha-1 antagonist with no subtype preference, in an extended-release tablet',
           howItCompares:
-            'The opposite design choice: no subtype selectivity at all, with the cardiovascular problem solved by formulation instead. Its adverse-event table has no ejaculatory signal; its leading effect is dizziness at 5.7% against 2.8%. Symptom-score margins over placebo are about two points against silodosin\'s 2.9.',
+            "The opposite design choice: no subtype selectivity at all, with the cardiovascular problem solved by formulation instead. Its adverse-event table has no ejaculatory signal; its leading effect is dizziness at 5.7% against 2.8%. Symptom-score margins over placebo are about two points against silodosin's 2.9.",
           typicalCost:
             'US$0.1077 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 12 listed products, effective 19 August 2026)',
           prosAndCons:
@@ -4008,7 +4018,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Both registration trials found a real effect. The symptom score fell about three points more than placebo, and the flow rate improved by about one millilitre a second more.',
         technicalDetails:
-          'The label reports two 12-week placebo-controlled studies. International Prostate Symptom Score total fell 6.5 and 6.3 points against 3.6 and 3.4 on placebo, treatment effects of 2.9 points in both. Peak urine flow rose 2.2 to 2.9 mL/sec against 1.2 to 1.9 on placebo. The symptom-score margin is at the upper end of the alpha-blocker class — alfuzosin\'s three trials delivered about 2.0 points and tamsulosin\'s two delivered 2.8 and 1.5 — and it sits near the commonly cited minimally important difference of around three points for this instrument. That is worth stating precisely because it is unusual: most drugs in this file deliver margins that fall below their instrument\'s own threshold for a noticeable change, and this one lands close to it.',
+          "The label reports two 12-week placebo-controlled studies. International Prostate Symptom Score total fell 6.5 and 6.3 points against 3.6 and 3.4 on placebo, treatment effects of 2.9 points in both. Peak urine flow rose 2.2 to 2.9 mL/sec against 1.2 to 1.9 on placebo. The symptom-score margin is at the upper end of the alpha-blocker class — alfuzosin's three trials delivered about 2.0 points and tamsulosin's two delivered 2.8 and 1.5 — and it sits near the commonly cited minimally important difference of around three points for this instrument. That is worth stating precisely because it is unusual: most drugs in this file deliver margins that fall below their instrument's own threshold for a noticeable change, and this one lands close to it.",
         evidenceSource:
           'US prescribing information for silodosin capsules, Clinical Studies section (openFDA drug label endpoint)',
         measuredMetric:
@@ -4020,7 +4030,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'A dedicated QT study in 189 men found no increase at all',
         laymanSummary:
-          'At three times the usual dose for five days, silodosin did not lengthen the heart\'s electrical interval at any measured time point. The antibiotic used as a positive control in the same study did.',
+          "At three times the usual dose for five days, silodosin did not lengthen the heart's electrical interval at any measured time point. The antibiotic used as a positive control in the same study did.",
         technicalDetails:
           'A cardiac safety trial in 189 healthy males aged 18 to 45 tested silodosin at 8 mg and 24 mg daily for five days. The label states silodosin "was not associated with an increase in individual corrected (QTcI) QT interval at any time during steady state measurement," while moxifloxacin as active control produced a maximum increase of 9.59 msec. That is a genuine negative with a demonstrably sensitive assay — the positive control worked. It is recorded here rather than omitted because a clean negative reported with its positive control is a different object from silence, and because tolterodine\'s label in this same file reports 11.84 msec at twice its therapeutic dose with confidence intervals overlapping the same comparator.',
         evidenceSource:
@@ -4036,7 +4046,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Silodosin must not be taken by anyone with severe kidney impairment, severe liver impairment, or on a strong inhibitor of the enzyme that clears it. These are contraindications, not cautions.',
         technicalDetails:
-          'The US label lists four contraindications: severe renal impairment with creatinine clearance below 30 mL/min, severe hepatic impairment at Child-Pugh 10 or above, concomitant use of strong CYP3A4 inhibitors, and hypersensitivity. Two of those are clearance statements: the drug depends on CYP3A4 for metabolism and on the kidney for elimination of its metabolites, and removing either route raises exposure of a compound whose whole design point is high receptor occupancy. Alfuzosin\'s label carries a comparable CYP3A4 contraindication for the same structural reason. Tamsulosin, cleared by two enzymes rather than one, handles the same interaction with a warning.',
+          "The US label lists four contraindications: severe renal impairment with creatinine clearance below 30 mL/min, severe hepatic impairment at Child-Pugh 10 or above, concomitant use of strong CYP3A4 inhibitors, and hypersensitivity. Two of those are clearance statements: the drug depends on CYP3A4 for metabolism and on the kidney for elimination of its metabolites, and removing either route raises exposure of a compound whose whole design point is high receptor occupancy. Alfuzosin's label carries a comparable CYP3A4 contraindication for the same structural reason. Tamsulosin, cleared by two enzymes rather than one, handles the same interaction with a warning.",
         evidenceSource:
           'US prescribing information for silodosin capsules, Contraindications section (openFDA drug label endpoint)',
         measuredMetric:
@@ -4179,7 +4189,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
     deliverySystem: {
       type: 'Oral capsule, once daily with a meal',
       description:
-        'A conventional capsule taken with food, because absorption depends on it. There is no modified-release engineering here: silodosin solves the cardiovascular problem through receptor subtype preference rather than through a release profile, which is the opposite of alfuzosin\'s approach to the same problem. Dose is reduced in moderate renal impairment and the drug is contraindicated below a creatinine clearance of 30 mL/min.',
+        "A conventional capsule taken with food, because absorption depends on it. There is no modified-release engineering here: silodosin solves the cardiovascular problem through receptor subtype preference rather than through a release profile, which is the opposite of alfuzosin's approach to the same problem. Dose is reduced in moderate renal impairment and the drug is contraindicated below a creatinine clearance of 30 mL/min.",
       safetyProfile:
         'Retrograde or absent ejaculation dominates at 28.1% against 0.9% on placebo, and is the reason most discontinuations occur. Dizziness, orthostatic hypotension and diarrhoea each occur in under 4% and separate only modestly from placebo. Contraindicated in severe renal impairment, severe hepatic impairment, with strong CYP3A4 inhibitors, and in hypersensitivity. Warnings cover orthostatic hypotension, intraoperative floppy iris syndrome in cataract and glaucoma surgery, and priapism. A dedicated QT study at three times the therapeutic dose found no increase.',
     },
@@ -4196,13 +4206,13 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does silodosin help pass a kidney stone?',
-        a: 'The randomised trial that asked did not show it, for stones anywhere in the ureter. Sur and colleagues randomised adults with a unilateral 4 to 10 mm ureteric stone to silodosin 8 mg or placebo for up to four weeks. Passage of all stones was 52% on the drug against 44% on placebo, p=0.2. There were no significant differences in emergency-room visits, hospital admissions or painkiller use either. Distal stones did pass significantly more often on silodosin, p=0.01, and that is the number the trial is usually cited for — but the paper says in its own abstract that sample sizes were not calculated for the subgroup analyses, and that the analysed population was slightly below the trial\'s calculated size. The authors called for further studies rather than declaring the question settled, which is the right reading of it.',
+        a: "The randomised trial that asked did not show it, for stones anywhere in the ureter. Sur and colleagues randomised adults with a unilateral 4 to 10 mm ureteric stone to silodosin 8 mg or placebo for up to four weeks. Passage of all stones was 52% on the drug against 44% on placebo, p=0.2. There were no significant differences in emergency-room visits, hospital admissions or painkiller use either. Distal stones did pass significantly more often on silodosin, p=0.01, and that is the number the trial is usually cited for — but the paper says in its own abstract that sample sizes were not calculated for the subgroup analyses, and that the analysed population was slightly below the trial's calculated size. The authors called for further studies rather than declaring the question settled, which is the right reading of it.",
         auditNote:
           'A subgroup finding inside a trial that missed its primary endpoint is a hypothesis for the next trial. This is the same pattern that took a decade to unwind for tamsulosin and ureteric stones.',
       },
       {
         q: 'Why does this drug have contraindications rather than warnings?',
-        a: 'Because it has one metabolic route out and one elimination route out, and blocking either raises exposure of a drug whose design point is high receptor occupancy. The label contraindicates strong CYP3A4 inhibitors, severe renal impairment below a creatinine clearance of 30 mL/min, severe hepatic impairment at Child-Pugh 10 or above, and hypersensitivity. Tamsulosin, which is cleared by two enzymes rather than one, handles the same interaction with a warning instead. The trade is visible elsewhere in the drug\'s profile too: a dedicated QT study at three times the therapeutic dose found no increase in the corrected QT interval at any time point, while the moxifloxacin positive control in the same study produced 9.59 milliseconds.',
+        a: "Because it has one metabolic route out and one elimination route out, and blocking either raises exposure of a drug whose design point is high receptor occupancy. The label contraindicates strong CYP3A4 inhibitors, severe renal impairment below a creatinine clearance of 30 mL/min, severe hepatic impairment at Child-Pugh 10 or above, and hypersensitivity. Tamsulosin, which is cleared by two enzymes rather than one, handles the same interaction with a warning instead. The trade is visible elsewhere in the drug's profile too: a dedicated QT study at three times the therapeutic dose found no increase in the corrected QT interval at any time point, while the moxifloxacin positive control in the same study produced 9.59 milliseconds.",
       },
       {
         q: 'Why does this page not show a manufacturing cost?',
@@ -4220,7 +4230,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Sur RL, Shore N, L\'Esperance J, et al. Silodosin to facilitate passage of ureteral stones: a multi-institutional, randomized, double-blinded, placebo-controlled trial. Eur Urol 2015;67:959-964',
+          "Sur RL, Shore N, L'Esperance J, et al. Silodosin to facilitate passage of ureteral stones: a multi-institutional, randomized, double-blinded, placebo-controlled trial. Eur Urol 2015;67:959-964",
         identifier: '10.1016/j.eururo.2014.10.049',
         kind: 'doi',
       },
@@ -4243,7 +4253,8 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         label:
           'US prescribing information for silodosin capsules — mechanism of action, clinical pharmacology, contraindications, clinical studies and adverse reactions (openFDA drug label endpoint)',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22silodosin%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22silodosin%22',
         kind: 'regulatory',
       },
       {
@@ -4290,7 +4301,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         'Fewer weekly urge incontinence episodes on a diary. The label reports a placebo-adjusted reduction of 1.5 to 2.8 episodes a week at 7.5 mg and 2.1 to 4.3 at 15 mg — which is between a fifth and six-tenths of an episode a day.',
     },
     oneSentenceVerdict:
-      'The most M3-selective antimuscarinic licensed, marketed on the premise that M3 preference spares cognition: its label reports weekly urge incontinence episodes falling 1.5 to 2.8 more than placebo at 7.5 mg and 2.1 to 4.3 at 15 mg, and a three-week randomised trial in 150 healthy volunteers over 60 found no memory effect against placebo (p=0.908) while oxybutynin ER in the same trial produced impairment equivalent to ten years of brain ageing — but the label\'s own selectivity figure over M1, the receptor that governs memory, is only nine-fold.',
+      "The most M3-selective antimuscarinic licensed, marketed on the premise that M3 preference spares cognition: its label reports weekly urge incontinence episodes falling 1.5 to 2.8 more than placebo at 7.5 mg and 2.1 to 4.3 at 15 mg, and a three-week randomised trial in 150 healthy volunteers over 60 found no memory effect against placebo (p=0.908) while oxybutynin ER in the same trial produced impairment equivalent to ten years of brain ageing — but the label's own selectivity figure over M1, the receptor that governs memory, is only nine-fold.",
     laymanHowItWorks:
       'The bladder wall contracts when acetylcholine lands on muscarinic receptors, and darifenacin blocks them so the involuntary squeeze during filling is weakened. There are five varieties of that receptor. The bladder uses mostly one of them, called M3; the brain relies heavily on a different one, M1. Darifenacin binds M3 fifty-nine times more tightly than M2 or M4, which is a large margin — but only nine times more tightly than M1, which is the one the cognitive argument is actually about. That is why the evidence for brain-sparing rests on measured cognitive testing rather than on the binding numbers.',
     auditConfidence: 'Moderate / Debated',
@@ -4334,7 +4345,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           name: 'Solifenacin (Vesicare)',
           class: 'M3-preferring muscarinic antagonist',
           howItCompares:
-            'Also M3-preferring, less sharply so, and far cheaper. Dry mouth at 5 mg is 10.9% against darifenacin\'s 20.2% at 7.5 mg, though the doses are not equivalent and no head-to-head trial has compared them.',
+            "Also M3-preferring, less sharply so, and far cheaper. Dry mouth at 5 mg is 10.9% against darifenacin's 20.2% at 7.5 mg, though the doses are not equivalent and no head-to-head trial has compared them.",
           typicalCost:
             'US$0.1754 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 40 listed products, effective 19 August 2026)',
           prosAndCons:
@@ -4348,7 +4359,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           action:
             'If cognition is the reason a particular bladder drug was chosen, the check should be a conversation with someone who sees you regularly, not self-assessment.',
           patientImpact:
-            'In the 150-volunteer trial that established darifenacin\'s cognitive profile, oxybutynin ER produced memory impairment the authors described as comparable in magnitude to ten years of brain ageing — and there were no between-treatment differences in self-rated memory. The paper states plainly that subjects were unaware of the deterioration.',
+            "In the 150-volunteer trial that established darifenacin's cognitive profile, oxybutynin ER produced memory impairment the authors described as comparable in magnitude to ten years of brain ageing — and there were no between-treatment differences in self-rated memory. The paper states plainly that subjects were unaware of the deterioration.",
           clinicalPrecaution:
             'That finding applies to the comparator, not to darifenacin, which did not differ from placebo. Its importance here is methodological: an anticholinergic cognitive effect large enough to measure was invisible to the people experiencing it.',
         },
@@ -4369,7 +4380,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'C28H30N2O2',
       molecularWeight: '426.50 g/mol (free base); dispensed as darifenacin hydrobromide',
       targetReceptorAffinity:
-        'The US label quantifies the subtype preference directly, which is unusual in this group: 9-fold and 12-fold greater affinity for M3 than for M1 and M5 respectively, and 59-fold greater affinity for M3 than for either M2 or M4. Those four numbers are the drug\'s entire commercial case and its principal vulnerability at the same time — the largest margins are over the subtypes least relevant to cognition, and the smallest is over M1, which is the one that matters for it. One stereocentre, the (S) configuration, is carried in the structure. The diphenylacetamide head and the dihydrobenzofuran tail give the molecule a high calculated lipophilicity, which is the property that determines how readily it crosses membranes.',
+        "The US label quantifies the subtype preference directly, which is unusual in this group: 9-fold and 12-fold greater affinity for M3 than for M1 and M5 respectively, and 59-fold greater affinity for M3 than for either M2 or M4. Those four numbers are the drug's entire commercial case and its principal vulnerability at the same time — the largest margins are over the subtypes least relevant to cognition, and the smallest is over M1, which is the one that matters for it. One stereocentre, the (S) configuration, is carried in the structure. The diphenylacetamide head and the dihydrobenzofuran tail give the molecule a high calculated lipophilicity, which is the property that determines how readily it crosses membranes.",
       structureSource: {
         label: 'PubChem CID 444031 — darifenacin structure, molecular formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/444031',
@@ -4414,7 +4425,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           phase: 'Cellular_Delivery',
           name: 'Application to cell lines expressing all five human muscarinic subtypes',
           description:
-            'Apply the compound to five stable lines carrying human CHRM1 through CHRM5. For this molecule the five-subtype panel is not a formality: the label\'s selectivity claim is a set of four ratios, and every one of them comes from this experiment. Omitting M1 or reporting only the M2 and M4 ratios would state the case at its strongest and hide its weakest point.',
+            "Apply the compound to five stable lines carrying human CHRM1 through CHRM5. For this molecule the five-subtype panel is not a formality: the label's selectivity claim is a set of four ratios, and every one of them comes from this experiment. Omitting M1 or reporting only the M2 and M4 ratios would state the case at its strongest and hide its weakest point.",
           dependsOnStepId: 'dar-w3',
           reagentsAndBuffer:
             'CHO or HEK293 lines stably expressing human CHRM1 to CHRM5, DMEM or Ham F-12 with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4',
@@ -4425,7 +4436,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Radioligand competition across five subtypes, with functional confirmation at M1 and M3',
           description:
-            'Measure displacement of a labelled non-selective muscarinic antagonist at each of the five subtypes to obtain the affinity ratios the label quotes, then confirm functional antagonism at the two subtypes the clinical argument turns on — M3 for the bladder effect and M1 for the cognitive one. Affinity ratios and functional ratios do not always agree, and the drug\'s whole positioning rests on a ratio, so reporting both is the difference between a claim and a number.',
+            "Measure displacement of a labelled non-selective muscarinic antagonist at each of the five subtypes to obtain the affinity ratios the label quotes, then confirm functional antagonism at the two subtypes the clinical argument turns on — M3 for the bladder effect and M1 for the cognitive one. Affinity ratios and functional ratios do not always agree, and the drug's whole positioning rests on a ratio, so reporting both is the difference between a claim and a number.",
           dependsOnStepId: 'dar-w4',
           reagentsAndBuffer:
             'Tritiated N-methylscopolamine as radioligand, atropine for non-specific binding, GF/B filter plates, Fluo-4 AM calcium indicator for the Gq-coupled subtypes, carbachol as agonist, probenecid-containing assay buffer',
@@ -4466,7 +4477,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The selectivity margin over the memory receptor is nine-fold',
         laymanSummary:
-          'Darifenacin\'s case is that preferring the bladder receptor spares the brain. Its own label says it prefers the bladder receptor fifty-nine times over two irrelevant ones — and only nine times over the one the brain uses for memory.',
+          "Darifenacin's case is that preferring the bladder receptor spares the brain. Its own label says it prefers the bladder receptor fifty-nine times over two irrelevant ones — and only nine times over the one the brain uses for memory.",
         technicalDetails:
           'The US label states darifenacin has 9-fold and 12-fold greater affinity for M3 than for M1 and M5 respectively, and 59-fold greater affinity for M3 than for M2 or M4. M1 is the subtype most closely tied to cognitive function; M2 and M4 are the subtypes over which the drug\'s selectivity is greatest and whose blockade has least to do with memory. Presenting darifenacin as "M3-selective" without stating which ratios apply to which subtype describes the drug at its strongest and omits its weakest number. Nine-fold is a genuine preference — it is not nothing — but it is the margin on which the cognitive argument rests, and it is the smallest of the four.',
         evidenceSource:
@@ -4499,7 +4510,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Sparing the brain does not spare the mouth or the gut. One in five patients at the lower dose and one in three at the higher dose report dry mouth, and one in five at the higher dose reports constipation.',
         technicalDetails:
-          'The US label reports dry mouth in 20.2% at 7.5 mg and 35.3% at 15 mg against 8.2% on placebo, and constipation in 14.8% and 21.3% against 6.2%. Those rates sit at the higher end of the class: solifenacin reports 10.9% and 27.6% dry mouth against 4.2%, and trospium extended-release reported 8.7% against 3% in its pivotal trial. Constipation in particular is more prominent here than elsewhere in the group, which is consistent with the label\'s own selectivity data — M3 is the subtype that drives gut smooth muscle as well as bladder smooth muscle, so an M3-preferring drug has no route to sparing the intestine. Selectivity relocates the side-effect burden; it does not remove it.',
+          "The US label reports dry mouth in 20.2% at 7.5 mg and 35.3% at 15 mg against 8.2% on placebo, and constipation in 14.8% and 21.3% against 6.2%. Those rates sit at the higher end of the class: solifenacin reports 10.9% and 27.6% dry mouth against 4.2%, and trospium extended-release reported 8.7% against 3% in its pivotal trial. Constipation in particular is more prominent here than elsewhere in the group, which is consistent with the label's own selectivity data — M3 is the subtype that drives gut smooth muscle as well as bladder smooth muscle, so an M3-preferring drug has no route to sparing the intestine. Selectivity relocates the side-effect burden; it does not remove it.",
         evidenceSource:
           'US prescribing information for darifenacin extended-release tablets, Adverse Reactions section (openFDA drug label endpoint)',
         measuredMetric:
@@ -4511,7 +4522,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'A clean QT study at five times the maximum dose',
         laymanSummary:
-          'At doses up to 75 mg — five times the highest licensed dose — darifenacin did not lengthen the heart\'s electrical interval. The antibiotic used as a control in the same study did.',
+          "At doses up to 75 mg — five times the highest licensed dose — darifenacin did not lengthen the heart's electrical interval. The antibiotic used as a control in the same study did.",
         technicalDetails:
           'A controlled electrophysiology trial in 179 healthy adults receiving doses up to 75 mg found that darifenacin did not result in QT or QTc interval prolongation, while moxifloxacin as active control produced an increase of approximately 7 msec. Five times the maximum recommended dose with a demonstrably sensitive assay is about as strong as a negative QT finding gets. It is recorded rather than omitted because within this file the same study design produced 11.84 msec for tolterodine at twice its therapeutic dose with confidence intervals overlapping the positive control, and nothing at all for silodosin at three times its dose. A negative result is only interpretable next to the assay that produced it.',
         evidenceSource:
@@ -4577,7 +4588,7 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The drug picks out the receptor variety the bladder uses. It picks it out very strongly over two varieties that have little to do with memory, and only moderately over the one that does.',
         molecularDetail:
-          'Competitive muscarinic antagonism with the label-stated ratios: 59-fold M3 over M2 and M4, 12-fold over M5, 9-fold over M1. M1 is the subtype most implicated in cognitive function. The ordering of those four numbers is the drug\'s entire pharmacological story, and the smallest of them is the one the marketing argument depends on.',
+          "Competitive muscarinic antagonism with the label-stated ratios: 59-fold M3 over M2 and M4, 12-fold over M5, 9-fold over M1. M1 is the subtype most implicated in cognitive function. The ordering of those four numbers is the drug's entire pharmacological story, and the smallest of them is the one the marketing argument depends on.",
         iconName: 'Lock',
         visualStage: 'target_binding',
       },
@@ -4693,15 +4704,15 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
         q: 'Is this the bladder drug that is safe for the brain?',
         a: 'It is the one with the best short-term evidence, and the evidence is short-term. Kay and colleagues randomised 150 healthy people aged 60 and over to darifenacin, oxybutynin ER or placebo for three weeks and tested delayed recall. Darifenacin was indistinguishable from placebo, mean difference -0.06 with p=0.908. Oxybutynin scored significantly worse than both, and the authors put the size of that impairment at roughly ten years of brain ageing. That is a genuine, well-controlled result. What it is not is an answer to the question people are actually worried about, which concerns years of exposure in people who are already frail — a question the observational literature raises and no trial in this class has been designed to settle.',
         auditNote:
-          'The label\'s own selectivity figures are worth reading in this light: 59-fold over M2 and M4, and 9-fold over M1, which is the subtype cognition depends on.',
+          "The label's own selectivity figures are worth reading in this light: 59-fold over M2 and M4, and 9-fold over M1, which is the subtype cognition depends on.",
       },
       {
         q: 'Why is it so much more expensive than the others?',
-        a: 'Not because it is newer — it was approved in 2004, the same year as solifenacin and trospium. The CMS acquisition-cost file lists eighteen products for darifenacin at a median of fifty-eight cents a tablet, against forty products for solifenacin at eighteen cents, fifty-four for tolterodine at twenty-five cents, and ninety-two for oxybutynin at eight cents. Price in this market tracks the number of suppliers far more closely than it tracks anything about the molecule, and darifenacin\'s extended-release tablet is a technical barrier to entry. What that number is not is a manufacturing cost: it is what pharmacies pay, and no verifiable per-dose cost-of-production study exists for this molecule.',
+        a: "Not because it is newer — it was approved in 2004, the same year as solifenacin and trospium. The CMS acquisition-cost file lists eighteen products for darifenacin at a median of fifty-eight cents a tablet, against forty products for solifenacin at eighteen cents, fifty-four for tolterodine at twenty-five cents, and ninety-two for oxybutynin at eight cents. Price in this market tracks the number of suppliers far more closely than it tracks anything about the molecule, and darifenacin's extended-release tablet is a technical barrier to entry. What that number is not is a manufacturing cost: it is what pharmacies pay, and no verifiable per-dose cost-of-production study exists for this molecule.",
       },
       {
         q: 'Will it still dry my mouth out?',
-        a: 'Yes, and more than most of the class. The label reports dry mouth in 20.2% at 7.5 mg and 35.3% at 15 mg, against 8.2% on placebo — higher than solifenacin\'s 10.9% at its starting dose and far higher than trospium extended-release, which reported 8.7% in its pivotal trial. Constipation is also more prominent: 14.8% and 21.3% against 6.2%. There is a mechanistic reason. The salivary gland and the gut both use the M3 receptor, which is the receptor darifenacin was designed to prefer. Selectivity for M3 moves the side-effect burden away from the brain and towards the mouth and the gut; it does not shrink it.',
+        a: "Yes, and more than most of the class. The label reports dry mouth in 20.2% at 7.5 mg and 35.3% at 15 mg, against 8.2% on placebo — higher than solifenacin's 10.9% at its starting dose and far higher than trospium extended-release, which reported 8.7% in its pivotal trial. Constipation is also more prominent: 14.8% and 21.3% against 6.2%. There is a mechanistic reason. The salivary gland and the gut both use the M3 receptor, which is the receptor darifenacin was designed to prefer. Selectivity for M3 moves the side-effect burden away from the brain and towards the mouth and the gut; it does not shrink it.",
       },
       {
         q: 'How much better than placebo is it, in daily terms?',
@@ -4788,10 +4799,10 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
     patientFriendlyIndication:
       'An overactive bladder — sudden urgency, going too often, and leaking — treated with a drug built not to reach the brain',
     anatomicalSite:
-      'Detrusor smooth muscle of the bladder wall, reached from the bloodstream; central nervous system penetration is limited by the molecule\'s permanent charge',
+      "Detrusor smooth muscle of the bladder wall, reached from the bloodstream; central nervous system penetration is limited by the molecule's permanent charge",
     conditionContext: {
       conditionExplainer:
-        'Every other antimuscarinic in this indication is a tertiary amine: uncharged, fat-soluble, and free to cross the blood-brain barrier. Trospium is a quaternary ammonium compound with a permanent positive charge, which makes crossing a lipid membrane energetically expensive. That single structural difference is the drug\'s entire reason for existing.',
+        "Every other antimuscarinic in this indication is a tertiary amine: uncharged, fat-soluble, and free to cross the blood-brain barrier. Trospium is a quaternary ammonium compound with a permanent positive charge, which makes crossing a lipid membrane energetically expensive. That single structural difference is the drug's entire reason for existing.",
       whyItMatters:
         'It converts the cognitive-safety argument from a receptor-selectivity ratio, which darifenacin relies on, into a physical-chemistry property. A charge is not a preference — it applies to every tissue behind every lipid barrier at once. That is a stronger form of argument, and it has been no better tested against a long-term outcome.',
       whoTakesThis:
@@ -5228,6 +5239,1008 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 5284632 — trospium cation structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284632',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 11. Finasteride — the only drug on this page whose two-point symptom margin is accompanied by
+  //     halved rates of retention and surgery; the drug whose cancer-prevention trial succeeded and
+  //     produced a warning instead of an indication; and the drug the field then changed its mind
+  //     about twice, ending with eighteen years of follow-up and no survival difference at all.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'finasteride',
+    name: 'Finasteride',
+    tradeName: 'Proscar',
+    sponsor: 'Organon',
+    targetGene: 'SRD5A2',
+    targetProtein:
+      'Type II 5-alpha-reductase, the enzyme converting testosterone to dihydrotestosterone in prostate, liver and skin; the US label describes finasteride as a competitive and specific inhibitor of it',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1992,
+    indication:
+      'Treatment of symptomatic benign prostatic hyperplasia in men with an enlarged prostate, to improve symptoms, reduce the risk of acute urinary retention and reduce the risk of the need for surgery including transurethral resection and prostatectomy; and, in combination with doxazosin, to reduce the risk of symptomatic progression.',
+    patientFriendlyIndication:
+      'An enlarged prostate causing a weak stream and frequent urination, where the aim is to shrink the gland rather than relax it',
+    anatomicalSite:
+      'Prostatic epithelial and stromal cells, where type II 5-alpha-reductase converts testosterone to dihydrotestosterone',
+    conditionContext: {
+      conditionExplainer:
+        'Bladder outlet obstruction from an enlarged prostate has a static component, the bulk of the gland, and a dynamic component, smooth muscle tone. Every alpha-blocker on this page addresses the second. Finasteride is one of only two licensed drug classes that addresses the first, by removing the androgen that drives glandular growth.',
+      whyItMatters:
+        'That distinction is not theoretical, and finasteride is the drug that proved it. Its four-year trial delivered a symptom-score margin of 2.0 points over placebo — the same order as tamsulosin, alfuzosin or silodosin — while halving the rates of acute urinary retention and surgery. Alfuzosin, tested over two years with retention as its registered primary endpoint, moved it not at all.',
+      whoTakesThis:
+        'Men with a demonstrably enlarged prostate, in whom the aim is to change the course of the condition rather than to relieve the symptom today. It works over months, not hours.',
+      clinicalGoals:
+        'Reduce prostate volume, lower the symptom score, and — uniquely in this group — reduce the number of men who end up catheterised or operated on.',
+    },
+    oneSentenceVerdict:
+      'A type II 5-alpha-reductase inhibitor that lowers serum dihydrotestosterone by about 70% and shrinks the gland rather than relaxing it: over four years in 3,040 men it improved the symptom score by only 3.3 points against 1.3 on placebo, and in the same trial cut acute urinary retention from 7% to 3% (57% risk reduction, 95% CI 40 to 69) and surgery from 10% to 5% (55%, 41 to 65) — the only drug on this page whose small symptom margin is accompanied by a halved rate of hard outcomes.',
+    laymanHowItWorks:
+      'The prostate grows under the influence of a hormone called dihydrotestosterone, which the gland makes from testosterone using a specific enzyme. Finasteride blocks that enzyme, so the local supply of the growth signal falls by roughly seventy per cent and the gland slowly shrinks. Because this is a change in tissue rather than in muscle tone, nothing happens for months — and because the gland is genuinely smaller afterwards, the benefit is a different kind from the one an alpha-blocker gives. The same enzyme operates in hair follicles and in sexual tissue, which is why the drug also grows hair and why its adverse effects are sexual.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 81,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0684 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 50 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 1992 and long off patent, with fifty products in the acquisition-cost file covering both the 5 mg prostate tablet and the 1 mg hair-loss tablet. At seven cents it is among the cheapest drugs in this file, and it is the only one of them with a demonstrated effect on retention and surgery.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The real comparison is not against another drug but against another strategy. Alpha-blockers work within hours and, on the evidence of MTOPS, do not reduce retention or the need for an operation. Finasteride works over months and does. Dutasteride inhibits both isoenzymes rather than one. And the trial that settled the question found the combination better than either alone.',
+      conventionalRx: [
+        {
+          name: 'Doxazosin, or any alpha-blocker',
+          class: 'Alpha-1 adrenergic antagonist',
+          howItCompares:
+            'MTOPS randomised 3,047 men to placebo, doxazosin, finasteride or both for a mean 4.5 years. Overall clinical progression fell 39% on doxazosin (P<0.001) and 34% on finasteride (P=0.002), so on that composite they look similar. The separation is in the hard outcomes: acute urinary retention and the need for invasive therapy were significantly reduced by finasteride (P<0.001) and by combination (P<0.001), and not by doxazosin.',
+          typicalCost:
+            'US$0.0509 per capsule for tamsulosin at United States pharmacy acquisition cost (CMS NADAC, generic, median across 33 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: works within hours rather than months, and is marginally cheaper. Cons: does not reduce retention or surgery, and carries ejaculatory or postural effects depending on subtype preference.',
+        },
+        {
+          name: 'Dutasteride (Avodart)',
+          class: 'Dual type I and type II 5-alpha-reductase inhibitor',
+          howItCompares:
+            'Inhibits both isoenzymes rather than type II alone, producing a larger fall in serum dihydrotestosterone. Whether that translates into a better clinical outcome is the question the head-to-head comparison was built to answer, and the answer has never been a large separation on symptom scores.',
+          typicalCost:
+            'US$0.1606 per capsule at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: more complete enzyme inhibition, and the same class of hard-outcome benefit. Cons: more than twice the acquisition cost, a much longer half-life, and the same sexual adverse-effect profile.',
+        },
+        {
+          name: 'Combination of an alpha-blocker with a 5-alpha-reductase inhibitor',
+          class: 'Two mechanisms, static and dynamic components addressed together',
+          howItCompares:
+            'In MTOPS, combination therapy reduced overall clinical progression by 66% against placebo, significantly better than doxazosin alone (P<0.001) or finasteride alone (P<0.001), and improved symptom scores more than either (P=0.006 and P<0.001). It is the only arm in that trial that beat both monotherapies on both kinds of endpoint.',
+          typicalCost:
+            'The sum of the two component acquisition costs, both of which are listed as generic on the CMS file',
+          prosAndCons:
+            'Pros: the best-evidenced strategy for a man with a genuinely enlarged gland and severe symptoms. Cons: two drugs, two adverse-effect profiles, and no evidence that either component can later be withdrawn.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Saw palmetto (Serenoa repens) berry extract',
+          activeCompound: 'Free fatty acid and phytosterol fraction of the lipidosterolic extract',
+          biologicalMechanism:
+            'Proposed weak inhibition of 5-alpha-reductase — the same enzyme finasteride blocks — plus anti-inflammatory effects on prostatic tissue. The proposed mechanism is the reason it is sold as a natural alternative to this specific drug.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here. The CAMUS trial randomised 369 men to escalating doses of saw palmetto extract or placebo for 72 weeks, reaching three times the usual commercial dose. The AUA symptom index fell 2.20 points on extract and 2.99 on placebo — a difference of 0.79 points favouring placebo, one-sided P = 0.91.',
+          monthlyCost: '',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Tell any doctor ordering a PSA test that you take this drug',
+          action:
+            'Finasteride halves the PSA value, so an untreated-equivalent figure has to be reconstructed before the result can be interpreted.',
+          patientImpact:
+            'The label states that finasteride reduces serum PSA concentration by approximately 50% within six months, and that any confirmed increase in PSA while on treatment may signal prostate cancer even if the absolute value remains in the normal range. A PSA of 2.5 on finasteride is not a PSA of 2.5.',
+          clinicalPrecaution:
+            'This is the single most consequential practical fact about the drug, because the correction is arithmetic and forgetting it delays diagnosis rather than causing a side effect.',
+        },
+        {
+          name: 'Expect nothing for months, and judge it on that timescale',
+          action:
+            'Prostate volume falls slowly, so the benefit accumulates over months rather than appearing after the first dose.',
+          patientImpact:
+            'In PLESS the mean symptom score fell 3.3 points over four years against 1.3 on placebo. The retention and surgery differences — 3% against 7% and 5% against 10% — also accrued over the full four years rather than early.',
+          clinicalPrecaution:
+            'An alpha-blocker started on the same day works within hours, which is why the two are often begun together and why the combination arm of MTOPS beat both monotherapies.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2C(=O)NC(C)(C)C)CC[C@@H]4[C@@]3(C=CC(=O)N4)C',
+      chemicalFormula: 'C23H36N2O2',
+      molecularWeight: '372.50 g/mol',
+      targetReceptorAffinity:
+        'The US label describes finasteride as "a competitive and specific inhibitor of Type II 5α-reductase" and quantifies the pharmacodynamic consequence rather than the binding: 5 mg daily reduces serum dihydrotestosterone by approximately 70%. It is a 4-azasteroid — the A-ring nitrogen visible in the structure replaces the carbon a natural steroid carries there, which is what makes the molecule a transition-state mimic for the enzyme rather than a substrate for it. Six defined stereocentres are carried in the structure, which is why the synthesis starts from a natural steroid skeleton rather than building the ring system from scratch.',
+      structureSource: {
+        label: 'PubChem CID 57363 — finasteride structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/57363',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fin-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemical identity of the steroidal starting material',
+          description:
+            'Confirm the configuration at every ring-junction centre of the steroid precursor before the A-ring is opened. Six stereocentres are fixed in this molecule and none of them is created by the route — they are inherited from a natural product, so the only defensible place to establish them is at the input.',
+          reagentsAndBuffer:
+            'Nuclear magnetic resonance with nuclear Overhauser effect experiments for ring-junction assignment, optical rotation, reversed-phase HPLC against a reference standard, differential scanning calorimetry for polymorph identity',
+        },
+        {
+          id: 'fin-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'A-ring nitrogen insertion and tert-butyl amidation at C17',
+          description:
+            'Convert the steroid A-ring into the 4-azasteroid lactam that gives the molecule its inhibitory character, and install the tert-butylcarboxamide at C17. The nitrogen is the whole design: it makes the ring an electronic mimic of the enolate intermediate the enzyme forms, so the molecule occupies the active site and is not turned over.',
+          dependsOnStepId: 'fin-w1',
+          reagentsAndBuffer:
+            'Oxidative A-ring cleavage followed by ammonia or an ammonium source for lactam formation, tert-butylamine with a coupling reagent or via the acid chloride, selenium dioxide or a dehydrogenation catalyst to install the C1-C2 unsaturation, anhydrous conditions under nitrogen',
+        },
+        {
+          id: 'fin-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and control of the dihydro and epimeric impurities',
+          description:
+            'Crystallise and re-run the stereochemical and related-substances methods on the finished solid. Two impurity families dominate: the C1-C2 dihydro compound from incomplete dehydrogenation, and epimers at the ring junctions from any step run too forcefully. Polymorph identity is controlled because it governs dissolution.',
+          dependsOnStepId: 'fin-w2',
+          reagentsAndBuffer:
+            'Ethyl acetate or 2-propanol with heptane antisolvent, activated charcoal, reversed-phase HPLC with gradient elution, X-ray powder diffraction for polymorph identity, gas chromatography for residual solvents',
+        },
+        {
+          id: 'fin-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Application to cells expressing type I and type II 5-alpha-reductase separately',
+          description:
+            'Apply the compound to cell lines expressing human SRD5A1 or SRD5A2 individually. Unlike every other drug in this file, the target is an intracellular enzyme rather than a surface receptor, so the compound must actually cross the plasma membrane to reach it — the assay is not a formality. Running the two isoenzymes separately is what distinguishes this drug from dutasteride, which inhibits both.',
+          dependsOnStepId: 'fin-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO lines stably expressing human SRD5A1 or SRD5A2, DMEM with charcoal-stripped fetal bovine serum to remove endogenous androgens, geneticin selection, NADPH-supplemented lysis buffer for the enzyme preparations',
+        },
+        {
+          id: 'fin-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Testosterone-to-dihydrotestosterone conversion measured by mass spectrometry',
+          description:
+            'Quantify dihydrotestosterone formed from testosterone in each isoenzyme preparation with and without compound, by liquid chromatography with tandem mass spectrometry rather than by immunoassay. The distinction matters: androgen immunoassays cross-react between testosterone and dihydrotestosterone, and the clinical claim on the label is a 70% reduction in one of them while the other rises. An assay that cannot separate the two cannot test the claim.',
+          dependsOnStepId: 'fin-w4',
+          reagentsAndBuffer:
+            'Testosterone substrate, NADPH cofactor, deuterated dihydrotestosterone and testosterone internal standards, liquid-liquid or solid-phase extraction, LC-MS/MS with electrospray ionisation in positive mode, dutasteride as a dual-isoenzyme comparator',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fin-a1',
+        category: 'measured',
+        title: 'Retention and surgery both roughly halved over four years',
+        laymanSummary:
+          'Three thousand men took finasteride or placebo for four years. Ten per cent of the placebo group needed an operation against five per cent on the drug, and seven per cent went into urinary retention against three per cent.',
+        technicalDetails:
+          'PLESS randomised 3,040 men with moderate-to-severe symptoms and enlarged glands to finasteride 5 mg or placebo for four years. Surgery for benign prostatic hyperplasia was needed by 152 of 1,503 in the placebo group (10%) and 69 of 1,513 on finasteride (5%), a 55% risk reduction (95% CI 41 to 65). Acute urinary retention developed in 99 (7%) against 42 (3%), a 57% reduction (95% CI 40 to 69). The label states the same figures as 10.1% against 4.6% for surgery and 6.6% against 2.8% for retention. Prostate volume fell and flow rate rose, both P<0.001. This is the only entry in this file where an outcome a patient would recognise as serious — a catheter, an operation — is halved by a drug, and the numbers come from a four-year randomised trial rather than from a post hoc composite.',
+        evidenceSource: 'McConnell JD et al., N Engl J Med 1998;338:557-563 (PMID 9475762)',
+        doi: '10.1056/NEJM199802263380901',
+        measuredMetric:
+          'Four-year incidence of acute urinary retention and of BPH-related surgery, finasteride versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fin-a2',
+        category: 'measured',
+        title: 'The symptom-score margin is two points, the same as every alpha-blocker here',
+        laymanSummary:
+          'On the questionnaire, finasteride beat placebo by two points on a thirty-four point scale over four years. That is no better than the alpha-blockers manage in twelve weeks. The difference is in what else happened.',
+        technicalDetails:
+          'In PLESS, mean symptom score decreased 3.3 points on finasteride and 1.3 on placebo among men who completed the study, P<0.001 — a treatment effect of 2.0 points on a 34-point scale. For comparison within this file: alfuzosin delivered 2.0, 2.0 and 1.9 points across its three registration trials; silodosin 2.9 in both of its; tamsulosin 2.8 and 1.5. Finasteride is not better on the questionnaire and takes four years rather than four hours to get there. What separates it is that the same trial halved retention and surgery, and the alpha-blocker trials that measured those outcomes did not. Symptom score and disease course are different endpoints, and this pair of results is the clearest demonstration in urology that improving one does not imply improving the other.',
+        evidenceSource:
+          'McConnell JD et al., N Engl J Med 1998;338:557-563; US prescribing information for finasteride tablets, Clinical Studies section',
+        doi: '10.1056/NEJM199802263380901',
+        measuredMetric:
+          'Mean change in symptom score over four years against placebo, compared with the alpha-blocker registration trials in this file',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fin-a3',
+        category: 'measured',
+        title: 'MTOPS: the alpha-blocker did not reduce retention or surgery and this drug did',
+        laymanSummary:
+          'A three-thousand-man trial compared placebo, an alpha-blocker, finasteride and both together over four and a half years. On the composite score all the active arms looked similar. On catheters and operations, the alpha-blocker did nothing.',
+        technicalDetails:
+          'MTOPS followed 3,047 men for a mean 4.5 years. Overall clinical progression — defined as a 4-point rise in AUA symptom score, acute urinary retention, incontinence, renal insufficiency or recurrent urinary tract infection — fell 39% on doxazosin (P<0.001) and 34% on finasteride (P=0.002), with combination at 66% (P<0.001), significantly better than either alone. The decisive sentence concerns the hard endpoints: "The risks of acute urinary retention and the need for invasive therapy were significantly reduced by combination therapy (P<0.001) and finasteride (P<0.001) but not by doxazosin." A composite endpoint dominated by a symptom-score threshold can make two drugs look equivalent while one of them is changing the course of the disease and the other is not.',
+        evidenceSource: 'McConnell JD et al., N Engl J Med 2003;349:2387-2398 (PMID 14681504)',
+        doi: '10.1056/NEJMoa030656',
+        measuredMetric:
+          'Risk reduction for overall clinical progression, and separately for acute urinary retention and invasive therapy, by arm',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fin-a4',
+        category: 'conclusion_shift',
+        title: 'The prevention trial hit its endpoint and produced a warning, not an indication',
+        laymanSummary:
+          'Nearly nineteen thousand men were randomised for seven years to see whether finasteride prevents prostate cancer. It did — by about a quarter. It also found more high-grade tumours in the treated group, and the result became a label warning rather than a new use.',
+        technicalDetails:
+          'The Prostate Cancer Prevention Trial randomised 18,882 men aged 55 and over with normal digital rectal examination and PSA of 3.0 ng/mL or lower to finasteride 5 mg or placebo for seven years, with prevalence of prostate cancer as the primary endpoint. Cancer was detected in 803 of 4,368 evaluable men on finasteride (18.4%) and 1,147 of 4,692 on placebo (24.4%), a 24.8% reduction in prevalence (95% CI 18.6 to 30.6, P<0.001). Tumours of Gleason grade 7 to 10 were more common on finasteride: 280 of 757 tumours (37.0%) against 237 of 1,068 (22.2%), P<0.001; or 6.4% of treated men against 5.1% of placebo men, P=0.005. The current US label carries the Gleason 8-10 figure as 1.8% against 1.1%. A trial that met its primary endpoint decisively, in nearly nineteen thousand men, and whose result appears on the label as a warning is a rare object, and the reason is that the field could not agree whether the high-grade excess was real disease or a detection artefact of a shrunken gland.',
+        evidenceSource: 'Thompson IM et al., N Engl J Med 2003;349:215-224 (PMID 12824459)',
+        doi: '10.1056/NEJMoa030660',
+        measuredMetric:
+          'Seven-year prevalence of prostate cancer and of Gleason 7-10 disease, finasteride versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fin-a5',
+        category: 'conclusion_shift',
+        title: 'Eighteen years later, the survival curves are on top of each other',
+        laymanSummary:
+          'The high-grade cancer finding hung over this drug for a decade. When the same men were followed for up to eighteen years, fifteen-year survival was 78.0% on finasteride and 78.2% on placebo.',
+        technicalDetails:
+          'Thompson and colleagues followed the 18,880 randomised PCPT participants through October 2011 using the Social Security Death Index. Prostate cancer was diagnosed in 989 of 9,423 on finasteride (10.5%) and 1,412 of 9,457 on placebo (14.9%), relative risk 0.70 (95% CI 0.65 to 0.76, P<0.001). High-grade cancer occurred in 333 (3.5%) against 286 (3.0%), relative risk 1.17 (95% CI 1.00 to 1.37, P=0.05) — the confidence interval now touching unity. Deaths numbered 2,538 on finasteride and 2,496 on placebo; 15-year survival was 78.0% against 78.2%, unadjusted hazard ratio for death 1.02 (95% CI 0.97 to 1.08, P=0.46). Among men with high-grade cancer, 10-year survival was 73.0% against 73.6%. The excess of high-grade histology did not translate into an excess of deaths over eighteen years, which is the outcome that decides whether a grading artefact matters.',
+        evidenceSource: 'Thompson IM Jr et al., N Engl J Med 2013;369:603-610 (PMID 23944298)',
+        doi: '10.1056/NEJMoa1215932',
+        measuredMetric:
+          'Fifteen-year overall survival and hazard ratio for death, with up to 18 years of follow-up on the randomised cohort',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fin-a6',
+        category: 'measured',
+        title: 'It halves the PSA, which is a diagnostic problem rather than a side effect',
+        laymanSummary:
+          'Finasteride cuts the PSA blood test result in half within six months. If nobody doubles it back, a rising cancer signal can look like a normal result.',
+        technicalDetails:
+          'The label states that finasteride reduced serum PSA concentration by approximately 50% within six months, and that any confirmed increase in PSA while on treatment may signal the presence of prostate cancer even if the value remains within the range considered normal for untreated men. The correction is a straightforward doubling, and the failure mode is entirely one of communication rather than pharmacology: a PSA measured in a laboratory that does not know the patient is on finasteride, reported to a clinician who does not either, is a normal-looking number that should have triggered a biopsy. This interacts directly with the PCPT finding, because a shrunken gland is easier to biopsy accurately, which is one of the mechanisms proposed for the apparent high-grade excess.',
+        evidenceSource:
+          'US prescribing information for finasteride tablets 5 mg, Warnings and Precautions and Clinical Pharmacology sections (openFDA drug label endpoint)',
+        measuredMetric: 'Percentage reduction in serum PSA concentration within six months',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fin-a7',
+        category: 'measured',
+        title: 'Sexual adverse effects roughly double, and the label reports them by year',
+        laymanSummary:
+          'In the first year of the four-year trial, impotence was reported by 8.1% on finasteride against 3.7% on placebo, and reduced libido by 6.4% against 3.4%. Reduced ejaculate volume was nearly five times the placebo rate.',
+        technicalDetails:
+          "The US label reports year-one incidences from PLESS: impotence 8.1% against 3.7%, decreased libido 6.4% against 3.4%, decreased volume of ejaculate 3.7% against 0.8%. These are on-target effects rather than idiosyncratic ones: dihydrotestosterone is the androgen that mediates much of male sexual function, and lowering it by 70% is the drug's entire mechanism. The label reports the rates by year because in the pivotal trial they were highest in year one and fell thereafter, which is a real pattern and also the pattern a differential-dropout artefact would produce. The question of whether a minority of men experience effects persisting after discontinuation has been the subject of label revisions and continuing dispute, and no randomised trial has been designed to resolve it.",
+        evidenceSource:
+          'US prescribing information for finasteride tablets 5 mg, Adverse Reactions section, four-year PLESS data (openFDA drug label endpoint)',
+        measuredMetric:
+          'Year-one incidence of impotence, decreased libido and decreased ejaculate volume against placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fin-a8',
+        category: 'failed',
+        title: 'Saw palmetto, the supplement sold as its natural equivalent, has a negative trial',
+        laymanSummary:
+          'Saw palmetto is marketed as a natural 5-alpha-reductase inhibitor, the same mechanism as finasteride. A 369-man trial at up to three times the usual dose found placebo did slightly better.',
+        technicalDetails:
+          'The CAMUS trial randomised 369 men to escalating doses of saw palmetto extract or to placebo for 72 weeks, reaching three times the usual commercial dose. The AUA symptom index fell 2.20 points on extract and 2.99 points on placebo — a difference of 0.79 points favouring placebo, one-sided P = 0.91. The trial is included on this page because the proposed mechanism for saw palmetto is inhibition of the identical enzyme, which makes it the closest thing to a natural equivalent this drug has, and because the dose escalation removes the usual objection that commercial preparations are too weak. The mechanism was never the difficulty with saw palmetto; the outcome data were.',
+        evidenceSource: 'Barry MJ et al., CAMUS Study Group, JAMA 2011;306:1344-1351',
+        doi: '10.1001/jama.2011.1364',
+        measuredMetric:
+          'Change in AUA symptom index over 72 weeks, escalating-dose saw palmetto extract versus placebo',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A once-daily tablet with nothing to notice for months',
+        laymanDesc:
+          'One tablet daily. Unlike the drugs that relax muscle, nothing changes in the first days or weeks, because what has to happen is that the gland gets smaller.',
+        molecularDetail:
+          'Oral tablet, 5 mg once daily for the prostate indication. Serum dihydrotestosterone falls by approximately 70% within hours, but the tissue consequence — reduced glandular volume — accrues over months. In PLESS the retention and surgery separation accumulated across the full four years.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It has to get inside the cell, which nothing else on this page does',
+        laymanDesc:
+          'Every other drug in this group works on a receptor sitting on the outside of a cell. This one has to cross into the cell, because its target is an enzyme working inside.',
+        molecularDetail:
+          '5-alpha-reductase is a membrane-bound intracellular enzyme of the endoplasmic reticulum and nuclear membrane, not a cell-surface receptor. Finasteride is a lipophilic steroid analogue and crosses the plasma membrane passively. This is why the laboratory workflow for this drug needs a genuine cell-entry step where the antimuscarinics and alpha-blockers do not.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies the enzyme by pretending to be the reaction halfway through',
+        laymanDesc:
+          'The enzyme is built to grab testosterone and change it. Finasteride looks enough like testosterone mid-reaction that the enzyme grabs it and then cannot let go quickly.',
+        molecularDetail:
+          'The 4-azasteroid A-ring is an electronic mimic of the enolate intermediate formed during testosterone reduction, so finasteride binds the enzyme-NADPH complex and forms a slowly dissociating adduct. The label describes it as a competitive and specific inhibitor of type II 5-alpha-reductase; type I, expressed mainly in skin and liver, is inhibited far less, which is the difference from dutasteride.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Dihydrotestosterone falls seventy per cent and the gland stops being told to grow',
+        laymanDesc:
+          'The hormone that drives prostate growth drops by about seventy per cent. Deprived of it, the glandular tissue slowly involutes and the prostate becomes smaller.',
+        molecularDetail:
+          'Serum dihydrotestosterone falls approximately 70% on 5 mg daily. Intraprostatic dihydrotestosterone falls further, removing the androgen receptor signalling that sustains epithelial cell survival, and epithelial apoptosis reduces glandular volume. Serum testosterone rises modestly, which is why the drug does not produce the effects of androgen deprivation. Serum PSA falls by about 50% within six months as a direct consequence of the epithelial reduction.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Two points on the questionnaire, and half as many operations',
+        laymanDesc:
+          'The symptom questionnaire improves by about two points more than placebo over four years, which is unremarkable. The proportion of men needing a catheter or an operation is roughly halved, which is not.',
+        molecularDetail:
+          'Symptom score fell 3.3 against 1.3 on placebo over four years. Acute urinary retention 2.8% against 6.6%, surgery 4.6% against 10.1%, with risk reductions of 57% (95% CI 40 to 69) and 55% (41 to 65). In MTOPS, retention and invasive therapy were reduced by finasteride and by combination but not by doxazosin. The cost is sexual: impotence 8.1% against 3.7% and decreased libido 6.4% against 3.4% in year one.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'PLESS — Finasteride Long-Term Efficacy and Safety Study',
+        phase: 'Phase 3 randomised double-blind placebo-controlled, 4 years',
+        sampleSize: 3040,
+        primaryEndpoint:
+          'Incidence of acute urinary retention and of the need for BPH-related surgery over four years',
+        endpointMet: true,
+        statisticalPValue:
+          'Surgery 69/1513 (5%) on finasteride against 152/1503 (10%) on placebo, 55% risk reduction (95% CI 41 to 65). Acute urinary retention 42 (3%) against 99 (7%), 57% reduction (95% CI 40 to 69). Symptom score -3.3 against -1.3, P<0.001',
+        unreportedAdverseSignals:
+          'Complete outcome data were available for 2,760 of the 3,040 randomised. Year-one sexual adverse effects were roughly double placebo: impotence 8.1% against 3.7%, decreased libido 6.4% against 3.4%.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'MTOPS — Medical Therapy of Prostatic Symptoms (NCT00021814)',
+        phase: 'Randomised double-blind placebo-controlled four-arm, mean 4.5 years',
+        sampleSize: 3047,
+        primaryEndpoint:
+          'Overall clinical progression: a 4-point rise in AUA symptom score, acute urinary retention, incontinence, renal insufficiency or recurrent urinary tract infection',
+        endpointMet: true,
+        statisticalPValue:
+          'Risk reduction against placebo: doxazosin 39% (P<0.001), finasteride 34% (P=0.002), combination 66% (P<0.001, and superior to each monotherapy at P<0.001). Acute urinary retention and invasive therapy reduced by finasteride and combination (both P<0.001) but not by doxazosin',
+        unreportedAdverseSignals:
+          'The composite primary endpoint is dominated by the 4-point symptom-score threshold, which is why doxazosin and finasteride look comparable on it while diverging completely on catheters and operations.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'PCPT — Prostate Cancer Prevention Trial',
+        phase: 'Phase 3 randomised double-blind placebo-controlled, 7 years with 18-year follow-up',
+        sampleSize: 18882,
+        primaryEndpoint: 'Prevalence of prostate cancer over the seven years of the study',
+        endpointMet: true,
+        statisticalPValue:
+          'Prostate cancer 18.4% on finasteride against 24.4% on placebo, 24.8% reduction (95% CI 18.6 to 30.6, P<0.001). Gleason 7-10 in 6.4% against 5.1%, P=0.005. At 18-year follow-up, relative risk 0.70 (0.65 to 0.76) for any cancer and 1.17 (1.00 to 1.37, P=0.05) for high grade',
+        unreportedAdverseSignals:
+          'The trial met its primary endpoint decisively and produced a label warning rather than an indication. At up to 18 years, 15-year survival was 78.0% against 78.2% and the hazard ratio for death was 1.02 (95% CI 0.97 to 1.08, P=0.46).',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Long-term survival follow-up of PCPT (Thompson 2013)',
+        phase: 'Observational survival follow-up of a randomised cohort, up to 18 years',
+        sampleSize: 18880,
+        primaryEndpoint:
+          'Overall survival and survival after prostate cancer diagnosis among randomised participants',
+        endpointMet: true,
+        statisticalPValue:
+          '15-year survival 78.0% on finasteride against 78.2% on placebo; unadjusted hazard ratio for death 1.02 (95% CI 0.97 to 1.08, P=0.46). Ten-year survival among men with high-grade cancer 73.0% against 73.6%',
+        unreportedAdverseSignals:
+          'Survival status was ascertained from the Social Security Death Index rather than by active follow-up, and cause of death is not reported. The finding is an absence of difference in all-cause mortality, which is the strongest available answer to the high-grade question and not a direct measurement of prostate-cancer mortality.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Acute urinary retention over four years in 2.8% on finasteride against 6.6% on placebo, and surgery in 4.6% against 10.1%, in 3,040 men',
+        'Symptom score fell 3.3 points against 1.3 on placebo over four years — a two-point margin on a 34-point scale',
+        'In MTOPS, acute urinary retention and invasive therapy were reduced by finasteride and combination (both P<0.001) and not by doxazosin',
+        'Prostate cancer prevalence 18.4% against 24.4% over seven years in 18,882 men, a 24.8% reduction (95% CI 18.6 to 30.6)',
+        'Gleason 7-10 disease in 6.4% against 5.1% (P=0.005), and Gleason 8-10 on the label as 1.8% against 1.1%',
+        '15-year survival 78.0% against 78.2%, hazard ratio for death 1.02 (95% CI 0.97 to 1.08, P=0.46), with up to 18 years of follow-up',
+        'Serum dihydrotestosterone reduced approximately 70%, and serum PSA approximately 50% within six months',
+      ],
+      unsupportedInferences: [
+        'That a small symptom-score margin means a small clinical effect — the same two-point margin accompanies halved retention and surgery here and no change in retention for alfuzosin',
+        'That the high-grade cancer excess represents excess deaths — eighteen years of follow-up found no difference in overall survival or in survival after diagnosis',
+        'That composite progression endpoints let two drug classes be compared — MTOPS shows doxazosin and finasteride at 39% and 34% on the composite and completely divergent on catheters and operations',
+        'That saw palmetto delivers the same mechanism in a natural form — a 369-man trial at three times the commercial dose favoured placebo by 0.79 points',
+      ],
+      whatFailedInitially: [
+        'The prostate-cancer prevention indication, which the trial supported and the high-grade signal prevented',
+        'Saw palmetto as a natural equivalent, in the largest and best-dosed trial of it',
+        "Any expectation that the symptom questionnaire would show this drug's advantage — it does not, and the hard endpoints do",
+      ],
+      realWorldOutcome: [
+        'Seven cents a tablet at United States pharmacy acquisition cost across fifty listed products — among the cheapest drugs in this file and the only one that halves an operation rate',
+        'Now standard as combination therapy with an alpha-blocker in men with genuinely enlarged glands, on the strength of MTOPS',
+        'Its PSA-halving effect remains the most consequential practical fact about it, and the correction is arithmetic',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, once daily; 5 mg for benign prostatic hyperplasia and 1 mg for androgenetic alopecia',
+      description:
+        'A conventional film-coated tablet taken once daily with or without food. The same molecule is licensed at a fifth of the dose for male pattern hair loss, because the type II enzyme operates in hair follicles as well as in prostate. Crushed or broken tablets should not be handled by women who are or may become pregnant, because dihydrotestosterone is required for normal development of the male external genitalia.',
+      safetyProfile:
+        'Sexual adverse effects dominate and are on-target: impotence 8.1% against 3.7% on placebo, decreased libido 6.4% against 3.4% and decreased ejaculate volume 3.7% against 0.8% in year one of the four-year trial. The label carries the PCPT high-grade prostate cancer finding as a warning, states that PSA falls by about 50% and must be interpreted accordingly, and notes breast changes including breast cancer reports in post-marketing use. Whether sexual effects persist after discontinuation in a minority of men remains disputed and has never been the subject of a randomised trial designed to answer it.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why would I take a drug that takes months to work?',
+        a: 'Because of what the four-year trial found on the endpoints that are not questionnaires. On the symptom score, finasteride beat placebo by two points on a thirty-four point scale over four years — which is no better than an alpha-blocker manages in twelve weeks, and takes far longer. In the same 3,040-man trial, the proportion of men who developed acute urinary retention fell from 7% to 3%, and the proportion who needed an operation from 10% to 5%. The MTOPS trial made the contrast explicit: doxazosin and finasteride reduced a composite progression score by similar amounts, 39% and 34%, but only finasteride and the combination reduced acute urinary retention and the need for invasive therapy. Relaxing the muscle around the urethra and shrinking the gland feel similar today and are not the same thing over four years.',
+        auditNote:
+          'This is the clearest example in this file of a small symptom margin sitting alongside a large outcome effect. The two endpoints are not proxies for one another in either direction.',
+      },
+      {
+        q: 'I have heard this drug causes prostate cancer. Does it?',
+        a: 'The story is more interesting than either headline. The Prostate Cancer Prevention Trial randomised 18,882 men for seven years and found less prostate cancer on finasteride — 18.4% against 24.4%, a 24.8% reduction. It also found more high-grade tumours: 6.4% of treated men against 5.1%. That combination is why the trial produced a label warning rather than a new indication, and why the drug carried a cloud for a decade. Then the same men were followed for up to eighteen years. Fifteen-year survival was 78.0% on finasteride and 78.2% on placebo; the hazard ratio for death was 1.02, with a confidence interval from 0.97 to 1.08. Among men who did develop high-grade cancer, ten-year survival was 73.0% and 73.6%. The extra high-grade histology did not become extra deaths.',
+      },
+      {
+        q: 'Will it interfere with my PSA test?',
+        a: 'Yes, predictably and by about half, and that is the single most important practical thing to know about it. The label states that finasteride reduces serum PSA by approximately 50% within six months. The correction is to double the number, but only if everyone in the chain knows the drug is being taken — the laboratory does not, so it falls to you and your doctor. The label also makes a sharper point: any confirmed increase in PSA while on finasteride may signal prostate cancer even if the value still sits inside the normal range for untreated men, because on this drug it should have been falling. A rising PSA on finasteride is a more alarming finding than the same rise off it.',
+        auditNote:
+          'A shrunken gland is also easier to biopsy accurately, which is one of the proposed explanations for the apparent high-grade excess in the prevention trial.',
+      },
+      {
+        q: 'What about the sexual side effects?',
+        a: 'They are real, they are on-target, and their persistence after stopping is genuinely unsettled. In year one of the four-year trial the label reports impotence in 8.1% against 3.7% on placebo, decreased libido in 6.4% against 3.4%, and decreased ejaculate volume in 3.7% against 0.8%. These are not idiosyncratic reactions: dihydrotestosterone mediates much of male sexual function and lowering it by 70% is what the drug does. The label reports rates by year because they were highest in year one and declined afterwards — which is a real pattern, and also the pattern that differential dropout would create. Whether a minority of men experience effects that persist after discontinuation has driven label revisions and continuing dispute, and no randomised trial has been designed to settle it.',
+      },
+      {
+        q: 'Is saw palmetto a natural version of this?',
+        a: "It is sold on that basis, and the best trial of it does not support the claim. The proposed mechanism is genuinely the same — weak inhibition of 5-alpha-reductase, the enzyme finasteride blocks. The CAMUS trial randomised 369 men to escalating doses of saw palmetto extract or placebo for 72 weeks, going up to three times the usual commercial dose specifically to remove the objection that ordinary preparations are underdosed. The AUA symptom index fell 2.20 points on the extract and 2.99 points on placebo: a difference of 0.79 points in placebo's favour, with a one-sided P value of 0.91. The mechanism was never the problem with saw palmetto. The outcome data were.",
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'McConnell JD, Bruskewitz R, Walsh P, et al. The effect of finasteride on the risk of acute urinary retention and the need for surgical treatment among men with benign prostatic hyperplasia. N Engl J Med 1998;338:557-563',
+        identifier: '10.1056/NEJM199802263380901',
+        kind: 'doi',
+      },
+      {
+        label:
+          'McConnell JD, Roehrborn CG, Bautista OM, et al., MTOPS Research Group. The long-term effect of doxazosin, finasteride, and combination therapy on the clinical progression of benign prostatic hyperplasia. N Engl J Med 2003;349:2387-2398',
+        identifier: '10.1056/NEJMoa030656',
+        kind: 'doi',
+      },
+      {
+        label: 'MTOPS — Medical Therapy of Prostatic Symptoms',
+        identifier: 'NCT00021814',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Thompson IM, Goodman PJ, Tangen CM, et al. The influence of finasteride on the development of prostate cancer. N Engl J Med 2003;349:215-224',
+        identifier: '10.1056/NEJMoa030660',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thompson IM Jr, Goodman PJ, Tangen CM, et al. Long-term survival of participants in the Prostate Cancer Prevention Trial. N Engl J Med 2013;369:603-610',
+        identifier: '10.1056/NEJMoa1215932',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Barry MJ et al., CAMUS Study Group. Effect of increasing doses of saw palmetto extract on lower urinary tract symptoms: a randomized trial. JAMA 2011;306:1344-1351',
+        identifier: '10.1001/jama.2011.1364',
+        kind: 'doi',
+      },
+      {
+        label:
+          'US prescribing information for finasteride tablets 5 mg — mechanism of action, clinical pharmacology, warnings and precautions, clinical studies and adverse reactions (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22finasteride%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 57363 — finasteride structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/57363',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 12. Tadalafil for benign prostatic hyperplasia — a licensed indication whose own label states
+  //     the mechanism has not been established, whose responder analysis found 56% of the placebo
+  //     group meeting the threshold for clinically meaningful improvement, and which cannot be
+  //     combined with the drug class it is most often compared against.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tadalafil',
+    name: 'Tadalafil',
+    tradeName: 'Cialis',
+    sponsor: 'Lilly',
+    targetGene: 'PDE5A',
+    targetProtein:
+      'Phosphodiesterase type 5, the enzyme that degrades cyclic GMP in smooth muscle; the US label states that inhibiting it enhances erectile function by increasing cGMP, and that the mechanism for reducing benign prostatic hyperplasia symptoms has not been established',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2003,
+    indication:
+      'Erectile dysfunction; the signs and symptoms of benign prostatic hyperplasia; and both together. When used with finasteride to initiate treatment of benign prostatic hyperplasia, such use is recommended for up to 26 weeks. A separate product at a different dose is licensed for pulmonary arterial hypertension.',
+    patientFriendlyIndication:
+      'An enlarged prostate causing a weak stream and frequent urination — and, in the same tablet, erectile dysfunction',
+    anatomicalSite:
+      'Smooth muscle of the prostate, bladder and the blood vessels supplying both, where cyclic GMP signalling is amplified rather than a receptor being blocked',
+    conditionContext: {
+      conditionExplainer:
+        "Every other drug in this file has an agreed mechanism for what it does to the lower urinary tract: relax the muscle by blocking an adrenoceptor, quieten the bladder by blocking a muscarinic receptor, shrink the gland by removing an androgen. Tadalafil has a licensed indication and, by its own label's account, no established mechanism for it.",
+      whyItMatters:
+        'That is unusual and worth stating plainly rather than glossing. The drug works — the trials are randomised, placebo-controlled and positive — and nobody can say why. Candidate explanations include smooth muscle relaxation through the nitric oxide pathway, increased pelvic blood flow and reduced afferent nerve activity, and the label commits to none of them.',
+      whoTakesThis:
+        'Men with lower urinary tract symptoms who also have erectile dysfunction, which is the population in which a single tablet addressing both is genuinely different from the alternatives. In the head-to-head trial, tadalafil improved erectile function by 4.0 points on the IIEF domain and tamsulosin by -0.4.',
+      clinicalGoals:
+        'Lower the International Prostate Symptom Score. In the head-to-head trial it fell 2.1 points more than placebo, against 1.5 for tamsulosin, and the trial was explicitly not powered to compare the two drugs with each other.',
+    },
+    oneSentenceVerdict:
+      "A phosphodiesterase type 5 inhibitor licensed for benign prostatic hyperplasia on a mechanism its own label says has not been established: in a 511-man randomised trial it improved the International Prostate Symptom Score by 2.1 points over placebo against tamsulosin's 1.5, raised peak urine flow by 2.4 mL/sec against tamsulosin's 2.2, and improved erectile function by 4.0 points where tamsulosin managed -0.4 — while a pooled responder analysis of 1,499 patients found 71.1% of treated men reaching a clinically meaningful improvement and 56.0% of the placebo group reaching it too.",
+    laymanHowItWorks:
+      'Tadalafil blocks an enzyme that breaks down a signalling molecule called cyclic GMP. With the enzyme blocked, cyclic GMP accumulates and smooth muscle relaxes — which is a well-understood account of how the drug produces an erection. For the prostate, the honest answer is that nobody knows: the label says in as many words that the mechanism for reducing these symptoms has not been established. The leading guesses are that it relaxes prostate and bladder-neck muscle through the same pathway, improves blood flow to the pelvis, or quietens the sensory nerves in the bladder. The trials are positive; the explanation is not settled.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 63,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1400 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 137 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 2003 and now generic, with 137 products in the acquisition-cost file — by a wide margin the most crowded generic market of any drug in this file, and the reason a molecule that was among the most expensive brands in the world now costs fourteen cents. The same molecule is sold separately at a different dose for pulmonary arterial hypertension, and that listing is not covered by this median.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For a man whose only complaint is the urine stream, an alpha-blocker does the same job for a third of the price with an agreed mechanism. For a man who also has erectile dysfunction, tadalafil is the only option here that addresses both, and the head-to-head data on that point are unambiguous. What is not available is the combination: the label does not recommend using a PDE5 inhibitor with an alpha-blocker for this indication.',
+      conventionalRx: [
+        {
+          name: 'Tamsulosin (Flomax)',
+          class: 'Alpha-1A-preferring adrenergic antagonist',
+          howItCompares:
+            'The direct comparator, tested against tadalafil and placebo in the same 511-man trial. IPSS improved 2.1 points over placebo on tadalafil (p=0.001) and 1.5 on tamsulosin (p=0.023); peak flow rose 2.4 and 2.2 mL/sec. Erectile function separated completely: 4.0 points on tadalafil (p<0.001) against -0.4 on tamsulosin (p=0.699). Quality-of-life and treatment-satisfaction indices improved with tadalafil and not with tamsulosin.',
+          typicalCost:
+            'US$0.0509 per capsule at United States pharmacy acquisition cost (CMS NADAC, generic, median across 33 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: a third of the cost, an established mechanism, and no nitrate contraindication. Cons: abnormal ejaculation in 8.4% to 18.1%, and no effect on erectile function.',
+        },
+        {
+          name: 'Finasteride (Proscar)',
+          class: '5-alpha-reductase inhibitor',
+          howItCompares:
+            'A different objective entirely: it shrinks the gland over months and is the only class shown to halve acute urinary retention and surgery. The tadalafil label explicitly contemplates the pair, stating that if tadalafil is used with finasteride to initiate BPH treatment, such use is recommended for up to 26 weeks.',
+          typicalCost:
+            'US$0.0684 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 50 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: the only drug class in this file with a demonstrated effect on retention and surgery. Cons: works over months, halves PSA, and roughly doubles sexual adverse effects — the opposite of what tadalafil does.',
+        },
+        {
+          name: 'An alpha-blocker taken together with tadalafil',
+          class: 'Combination of two vasodilating mechanisms',
+          howItCompares:
+            'Not an available option on the label. The prescribing information advises caution when PDE5 inhibitors are coadministered with alpha-blockers because of additive blood-pressure lowering, and states that combination use for benign prostatic hyperplasia is not recommended.',
+          typicalCost: '',
+          prosAndCons:
+            'Pros: none established for this indication. Cons: the label does not recommend it, and both drug classes lower blood pressure through overlapping vascular effects.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Never combine with any nitrate, in any form, at any interval',
+          action:
+            'Organic nitrates include glyceryl trinitrate sprays and patches, isosorbide preparations, and amyl nitrite. The contraindication is absolute, not a caution.',
+          patientImpact:
+            'The label states that administration of tadalafil to patients using any form of organic nitrate is contraindicated. Coadministration with guanylate cyclase stimulators such as riociguat is likewise contraindicated. Both interactions act on the same cyclic GMP pathway the drug amplifies, so the effect is multiplicative rather than additive.',
+          clinicalPrecaution:
+            "This matters most in an emergency: a man with chest pain who does not mention a tadalafil tablet may be given a nitrate by someone who would not have given it. Tadalafil's long half-life makes the relevant window longer than for other drugs in its class.",
+        },
+        {
+          name: 'Stop and seek help for sudden vision or hearing loss',
+          action:
+            'Sudden loss of vision in one or both eyes, or a sudden decrease or loss of hearing, are both label-flagged reasons to stop the drug and get assessed promptly.',
+          patientImpact:
+            'The label describes sudden vision loss as a possible sign of non-arteritic anterior ischaemic optic neuropathy, and notes an approximately two-fold increased risk in observational studies. Sudden hearing loss carries its own instruction to stop and seek prompt attention.',
+          clinicalPrecaution:
+            'A two-fold increase on a rare baseline event is still a rare event, and the observational design cannot establish causation. It is on the label because the consequence is permanent, not because the evidence is conclusive.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1CC(=O)N2[C@@H](C1=O)CC3=C([C@H]2C4=CC5=C(C=C4)OCO5)NC6=CC=CC=C36',
+      chemicalFormula: 'C22H19N3O4',
+      molecularWeight: '389.40 g/mol',
+      targetReceptorAffinity:
+        'The US label states the pharmacology for the erectile indication in one sentence — inhibition of phosphodiesterase type 5 enhances erectile function by increasing the amount of cyclic GMP — and states for the urinary indication that "the mechanism for reducing BPH symptoms has not been established," so no receptor or enzyme claim for that indication is made here. Structurally the molecule is a beta-carboline rather than a sildenafil-like pyrazolopyrimidinone, which is why its selectivity profile against the other phosphodiesterases and its long half-life differ from the rest of its class. Two stereocentres are carried in the structure, and the methylenedioxyphenyl group is the fragment that distinguishes it.',
+      structureSource: {
+        label: 'PubChem CID 110635 — tadalafil structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/110635',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tad-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Diastereomeric purity of the Pictet-Spengler tetrahydro-beta-carboline',
+          description:
+            'Establish the diastereomeric ratio of the cis tetrahydro-beta-carboline before the diketopiperazine ring is closed. Two adjacent stereocentres are set in a single Pictet-Spengler condensation and the trans diastereomer is the specified impurity, so this is the one point in the route where the stereochemistry can be measured rather than inferred.',
+          reagentsAndBuffer:
+            'Chiral and achiral reversed-phase HPLC with UV detection at 285 nm, nuclear magnetic resonance with nuclear Overhauser effect experiments for cis and trans assignment, trans-diastereomer reference standard',
+        },
+        {
+          id: 'tad-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Chloroacetylation and diketopiperazine ring closure with methylamine',
+          description:
+            "Acylate the tetrahydro-beta-carboline nitrogen with chloroacetyl chloride, then close the six-membered diketopiperazine with methylamine. The ring closure is the step that fixes the molecule's rigid geometry, which is what gives it its selectivity profile among the phosphodiesterases and its long half-life.",
+          dependsOnStepId: 'tad-w1',
+          reagentsAndBuffer:
+            'Chloroacetyl chloride, triethylamine, anhydrous dichloromethane at reduced temperature, then methylamine in methanol or as an aqueous solution, nitrogen atmosphere',
+        },
+        {
+          id: 'tad-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation with control of the trans diastereomer and the open-chain amide',
+          description:
+            'Crystallise and re-run both the achiral and diastereomeric methods on the finished solid. Two impurities set the specification: the trans diastereomer carried through from the condensation, and the uncyclised chloroacetamide from incomplete ring closure. Polymorph identity is controlled because the compound is poorly soluble and dissolution governs exposure.',
+          dependsOnStepId: 'tad-w2',
+          reagentsAndBuffer:
+            'Ethanol or acetone with water as antisolvent, activated charcoal, reversed-phase HPLC with gradient elution for related substances, X-ray powder diffraction for polymorph identity, laser diffraction for particle size',
+        },
+        {
+          id: 'tad-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Application to preparations of PDE5 and of the other phosphodiesterase families',
+          description:
+            'Apply the compound to recombinant preparations of PDE5 and, in parallel, to PDE1 through PDE11. The target is an intracellular enzyme rather than a surface receptor, so the compound has to cross the plasma membrane in a cellular format — and the selectivity panel is where the differences between drugs in this class live, because PDE6 activity predicts visual disturbance and PDE11 activity is the one tadalafil is distinctive for.',
+          dependsOnStepId: 'tad-w3',
+          reagentsAndBuffer:
+            'Recombinant human PDE1 to PDE11 enzyme preparations, HEK293 cells for the cellular format, magnesium-containing assay buffer, cyclic GMP and cyclic AMP substrates, sildenafil and vardenafil as class comparators',
+        },
+        {
+          id: 'tad-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Cyclic GMP accumulation, with a prostatic smooth muscle arm for the unproven indication',
+          description:
+            'Quantify cyclic GMP hydrolysis inhibition at each phosphodiesterase family to obtain the selectivity profile, then measure cyclic GMP accumulation and relaxation in human prostatic and bladder-neck smooth muscle strips. The second arm is the one that matters most on this page and is the one least often run: the label says the mechanism for the urinary indication has not been established, and a tissue-level cyclic GMP measurement in the organ concerned is the experiment that would begin to establish it.',
+          dependsOnStepId: 'tad-w4',
+          reagentsAndBuffer:
+            'Scintillation proximity or HTRF cyclic nucleotide detection, IBMX as broad phosphodiesterase inhibitor control, sodium nitroprusside as nitric oxide donor, human prostatic and bladder-neck tissue strips in Krebs-Henseleit buffer gassed with 95% oxygen and 5% carbon dioxide, phenylephrine as precontracting agent, isometric force transducers',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tad-a1',
+        category: 'inferred',
+        title: 'The label states the mechanism for this indication has not been established',
+        laymanSummary:
+          'Tadalafil is licensed to treat the symptoms of an enlarged prostate. Its own prescribing information says nobody has established how it does that.',
+        technicalDetails:
+          'The Mechanism of Action section describes the erectile indication precisely — inhibition of phosphodiesterase type 5 enhances erectile function by increasing the amount of cyclic GMP — and then states of the urinary indication: "The mechanism for reducing BPH symptoms has not been established." Candidate explanations circulating in the literature include relaxation of prostatic and bladder-neck smooth muscle through nitric oxide and cyclic GMP signalling, increased pelvic and prostatic blood flow, and reduced afferent nerve activity from the bladder; the label commits to none of them. This is a licensed indication supported by randomised placebo-controlled evidence and unsupported by an agreed mechanism, which is an honest position for a regulator to take and an unusual one to find. It also means that every mechanistic explanation a reader encounters for this drug\'s urinary effect is an inference beyond what the manufacturer will assert.',
+        evidenceSource:
+          'US prescribing information for tadalafil tablets, Mechanism of Action section (openFDA drug label endpoint)',
+        measuredMetric:
+          'The mechanism-of-action statement carried on the current US label for the benign prostatic hyperplasia indication',
+        inferredClaim:
+          'That tadalafil relieves urinary symptoms by relaxing prostatic smooth muscle through cyclic GMP — a plausible account that the label declines to adopt',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'tad-a2',
+        category: 'measured',
+        title: 'Two points of symptom score over placebo, and a genuine flow-rate improvement',
+        laymanSummary:
+          'In the trial comparing it directly with tamsulosin, tadalafil improved the symptom score by 2.1 points more than placebo and the flow rate by 2.4 millilitres a second. Tamsulosin achieved 1.5 and 2.2.',
+        technicalDetails:
+          'Oelke and colleagues randomised 511 men aged 45 and over with an IPSS of 13 or more and a peak flow of 4 to 15 mL/s, after a four-week placebo run-in, to placebo (n=172), tadalafil 5 mg (n=171) or tamsulosin 0.4 mg (n=168) for 12 weeks. IPSS improved against placebo by 2.1 points with tadalafil (p=0.001, the primary efficacy outcome) and 1.5 with tamsulosin (p=0.023), with separation as early as week 1 for both (-1.5 each, p<0.01). Peak flow rose 2.4 mL/s with tadalafil (p=0.009) and 2.2 with tamsulosin (p=0.014). The four-week placebo run-in before randomisation is worth noting: it removes the earliest and largest part of the placebo response before the comparison begins, which makes these margins harder-won than they would be without it.',
+        evidenceSource: 'Oelke M et al., Eur Urol 2012;61:917-925 (PMID 22297243); NCT00970632',
+        doi: '10.1016/j.eururo.2012.01.013',
+        measuredMetric:
+          'Change in International Prostate Symptom Score and peak urine flow rate against placebo at 12 weeks, tadalafil and tamsulosin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tad-a3',
+        category: 'inferred',
+        title: 'The trial titled "similarly improved" was not powered to compare the two drugs',
+        laymanSummary:
+          'The paper is called "Monotherapy with tadalafil or tamsulosin similarly improved lower urinary tract symptoms". Its own limitations section says it was not powered to compare tadalafil against tamsulosin.',
+        technicalDetails:
+          'Both active arms were compared against placebo, and both beat it. The abstract then states: "This study was limited in not being powered to directly compare tadalafil versus tamsulosin." A word like "similarly" in a title is a comparative claim, and a trial that cannot support a comparative claim can support only the two separate placebo comparisons it was designed for. The observed differences run in tadalafil\'s favour on IPSS (2.1 against 1.5) and are essentially identical on peak flow (2.4 against 2.2), so nothing here is misleading about direction — but "similar" and "not statistically distinguishable in a trial that could not distinguish them" are different statements, and only the second is supported.',
+        evidenceSource: 'Oelke M et al., Eur Urol 2012;61:917-925 (PMID 22297243)',
+        doi: '10.1016/j.eururo.2012.01.013',
+        measuredMetric:
+          'Stated statistical power of the trial for the tadalafil versus tamsulosin comparison',
+        inferredClaim:
+          'That the two drugs were shown to be equivalent — the trial compared each against placebo and states it was not powered to compare them with each other',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tad-a4',
+        category: 'measured',
+        title: '71% of treated men reached the response threshold, and 56% of placebo men did too',
+        laymanSummary:
+          'A pooled analysis of 1,499 patients found about two thirds of tadalafil-treated men achieved a clinically meaningful improvement. More than half the placebo group achieved the same thing.',
+        technicalDetails:
+          "Nickel and colleagues ran a post hoc integrated analysis of four placebo-controlled 12-week studies, 752 patients on tadalafil 5 mg and 747 on placebo, all after a four-week placebo run-in. Using a threshold of a 3-point or greater IPSS improvement, 71.1% of tadalafil patients and 56.0% of placebo patients responded (odds ratio 1.9, 95% CI 1.5 to 2.4, P<0.001). Using a 25% or greater improvement, 61.7% and 45.5% responded (odds ratio 2.0, 95% CI 1.6 to 2.5, P<0.001). The paper's conclusion reports the first of each pair: about two-thirds of tadalafil-treated patients achieve a clinically meaningful improvement. Both numbers are true. Quoted alone, the treated-arm figure attributes to the drug a response that more than half the placebo group also produced, and the difference — 15.1 and 16.2 percentage points — is the part that belongs to it.",
+        evidenceSource: 'Nickel JC et al., BJU Int 2015;115:815-821 (PMID 25195970)',
+        doi: '10.1111/bju.12926',
+        measuredMetric:
+          'Proportion achieving a 3-point or 25% IPSS improvement at 12 weeks, tadalafil versus placebo, pooled across four trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tad-a5',
+        category: 'measured',
+        title:
+          'It is the only drug here that improves the urine stream and erectile function at once',
+        laymanSummary:
+          'In the head-to-head trial, erectile function improved by 4.0 points on tadalafil and by -0.4 on tamsulosin. That is the one place the two drugs separate completely.',
+        technicalDetails:
+          'In the 511-man trial, the International Index of Erectile Function erectile-function domain improved against placebo by 4.0 points with tadalafil (p<0.001) and by -0.4 with tamsulosin (p=0.699). The IPSS Quality-of-Life Index and the Treatment Satisfaction Scale for BPH both improved significantly with tadalafil (both p<0.05) and neither improved with tamsulosin (both p>0.1). Given that the two drugs produced near-identical symptom-score and flow-rate results in the same trial, the quality-of-life and satisfaction separation most plausibly follows from the erectile-function difference rather than from the urinary one — which is an inference, and a straightforward one. Erectile dysfunction and lower urinary tract symptoms coexist in a large fraction of men over 50, and this is the only entry in this file that addresses both with one tablet.',
+        evidenceSource: 'Oelke M et al., Eur Urol 2012;61:917-925 (PMID 22297243)',
+        doi: '10.1016/j.eururo.2012.01.013',
+        measuredMetric:
+          'Change in IIEF erectile function domain, IPSS quality-of-life index and treatment satisfaction against placebo, both active arms',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tad-a6',
+        category: 'failed',
+        title: 'It cannot be combined with the drug class it is compared against',
+        laymanSummary:
+          'The obvious next question — can you take this and an alpha-blocker together for an enlarged prostate — has an answer on the label, and the answer is no.',
+        technicalDetails:
+          'The label advises caution when PDE5 inhibitors are coadministered with alpha-blockers because of additive blood-pressure lowering, and states that combination use for benign prostatic hyperplasia is not recommended. Both classes relax vascular smooth muscle, so the interaction is mechanistic rather than idiosyncratic. This closes off the combination strategy that MTOPS validated for the other pairing in this indication, where an alpha-blocker plus a 5-alpha-reductase inhibitor reduced clinical progression by 66% against placebo and beat both monotherapies. The pairing the label does contemplate is with finasteride, and it contemplates it with a limit: if tadalafil is used with finasteride to initiate BPH treatment, such use is recommended for up to 26 weeks.',
+        evidenceSource:
+          'US prescribing information for tadalafil tablets, Warnings and Precautions, Drug Interactions and Indications sections (openFDA drug label endpoint)',
+        measuredMetric:
+          'Label position on combining a PDE5 inhibitor with an alpha-blocker for benign prostatic hyperplasia',
+        inferredClaim:
+          'That tadalafil can be added to an existing alpha-blocker for additional urinary benefit — the label does not recommend the combination for this indication',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tad-a7',
+        category: 'measured',
+        title: 'An absolute nitrate contraindication, and two rare permanent harms on the label',
+        laymanSummary:
+          'Tadalafil must never be taken with any nitrate. The label also warns about sudden loss of vision in one or both eyes and sudden hearing loss, both of which mean stopping the drug and getting help immediately.',
+        technicalDetails:
+          'The label contraindicates administration to patients using any form of organic nitrate, and to patients taking guanylate cyclase stimulators such as riociguat — both interactions amplifying the same cyclic GMP pathway the drug acts on, so the haemodynamic effect is multiplicative. It describes sudden loss of vision in one or both eyes as a possible sign of non-arteritic anterior ischaemic optic neuropathy, with an approximately two-fold increased risk reported in observational studies, and instructs patients to stop and seek prompt attention for sudden decrease or loss of hearing. A two-fold increase on a rare event remains a rare event, and observational data cannot establish causation. These sit on the label because the outcomes are permanent, not because the evidence is settled — which is the correct reason for a warning and a poor reason for a risk estimate.',
+        evidenceSource:
+          'US prescribing information for tadalafil tablets, Contraindications and Warnings and Precautions sections (openFDA drug label endpoint)',
+        measuredMetric:
+          'Contraindicated coadministrations and the reported relative risk of non-arteritic anterior ischaemic optic neuropathy',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tad-a8',
+        category: 'measured',
+        title: 'A hundred and thirty-seven generic suppliers, and fourteen cents a tablet',
+        laymanSummary:
+          'This was one of the most expensive branded drugs in the world. The acquisition-cost file now lists 137 products for it at a median of fourteen cents a tablet.',
+        technicalDetails:
+          "The CMS National Average Drug Acquisition Cost file effective 19 August 2026 lists tadalafil as generic with 137 products and a median of US$0.1400 per tablet. That is the largest supplier count of any drug in this file — more than tamsulosin's 33, oxybutynin's 92 or finasteride's 50 — and it is the clearest demonstration in this group that price in this market tracks the number of entrants rather than anything about the molecule. Mirabegron, off patent with seventeen listings, sits at US$9.60. Tadalafil, off patent with 137, sits at fourteen cents. The synthesis of a beta-carboline diketopiperazine with two controlled stereocentres is not simpler than that of an extended-release aminothiazole tablet; the market structure is different.",
+        evidenceSource:
+          'CMS National Average Drug Acquisition Cost file, effective 19 August 2026, as stored on this record',
+        measuredMetric:
+          'Median pharmacy acquisition cost per tablet and number of listed products, against the other drugs on the same file',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A low daily dose rather than an as-needed one',
+        laymanDesc:
+          'For the prostate indication the tablet is taken every day at a low dose, not before sex. The drug stays in the body far longer than others of its kind, which is what makes a daily schedule work.',
+        molecularDetail:
+          'Oral tablet, 5 mg once daily for the urinary indication. The long half-life relative to other PDE5 inhibitors follows from the rigid beta-carboline diketopiperazine geometry rather than from any formulation step. Cleared predominantly by CYP3A4, so strong inhibitors raise exposure.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It has to enter the cell, because the target is an enzyme inside it',
+        laymanDesc:
+          'Phosphodiesterase works inside the cell, not on its surface. The drug has to cross the cell membrane to reach it, which is different from most of the drugs used for this condition.',
+        molecularDetail:
+          'PDE5 is a cytosolic enzyme, so passive membrane permeation is required — unlike the alpha-1 and muscarinic antagonists in this file, whose targets face the extracellular space. This is the same structural situation as finasteride, and it is why both drugs need a genuine cell-entry step in any assay panel.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It stops cyclic GMP from being destroyed rather than blocking a receptor',
+        laymanDesc:
+          'Most drugs here block a signal. This one protects a signal: it stops the enzyme that clears away a relaxation messenger, so the messenger accumulates.',
+        molecularDetail:
+          'Competitive inhibition of PDE5 prevents hydrolysis of cyclic GMP, so nitric-oxide-driven cyclic GMP signalling is amplified rather than initiated. The distinction matters clinically: the drug depends on endogenous nitric oxide release to have anything to amplify, which is also the reason exogenous nitrates are an absolute contraindication rather than a caution.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Smooth muscle relaxes — and for the prostate, the label stops there',
+        laymanDesc:
+          'Accumulated cyclic GMP relaxes smooth muscle, which explains the erectile effect completely. For the urinary effect, the prescribing information says the mechanism has not been established.',
+        molecularDetail:
+          'Cyclic GMP activates protein kinase G, which lowers intracellular calcium and desensitises the contractile apparatus, relaxing smooth muscle. Whether the urinary benefit arises from that relaxation in prostatic and bladder-neck muscle, from increased pelvic perfusion, or from reduced bladder afferent activity, the label declines to say. The trials are positive and the explanation is open.',
+        iconName: 'HelpCircle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title:
+          'Two points of symptom score, 2.4 mL/sec of flow, and four points of erectile function',
+        laymanDesc:
+          'The symptom score improves by about two points more than placebo and the flow rate by 2.4 millilitres a second — much like an alpha-blocker. What is different is that erectile function improves by four points where the alpha-blocker managed nothing.',
+        molecularDetail:
+          'IPSS -2.1 against placebo (p=0.001) versus tamsulosin -1.5 (p=0.023); peak flow +2.4 mL/s (p=0.009) versus +2.2 (p=0.014); IIEF erectile function +4.0 (p<0.001) versus -0.4 (p=0.699). In a pooled responder analysis, 71.1% reached a 3-point IPSS improvement against 56.0% on placebo, odds ratio 1.9 (95% CI 1.5 to 2.4).',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Tadalafil versus tamsulosin versus placebo (NCT00970632)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled parallel-group, 12 weeks',
+        sampleSize: 511,
+        primaryEndpoint:
+          'Change in International Prostate Symptom Score through 12 weeks versus placebo, after a four-week placebo run-in',
+        endpointMet: true,
+        statisticalPValue:
+          'IPSS versus placebo: tadalafil -2.1 (p=0.001, primary outcome), tamsulosin -1.5 (p=0.023). Peak flow +2.4 mL/s (p=0.009) and +2.2 mL/s (p=0.014). IIEF erectile function +4.0 (p<0.001) and -0.4 (p=0.699)',
+        unreportedAdverseSignals:
+          'The paper\'s own limitations note that the study was not powered to compare tadalafil directly against tamsulosin, despite a title asserting that the two "similarly improved" symptoms. The four-week placebo run-in removes part of the placebo response before randomisation.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Integrated responder analysis of four placebo-controlled trials (Nickel 2015)',
+        phase: 'Post hoc integrated analysis of four randomised placebo-controlled 12-week studies',
+        sampleSize: 1499,
+        primaryEndpoint:
+          'Proportion achieving a 3-point or greater, or 25% or greater, improvement in total IPSS at week 12',
+        endpointMet: true,
+        statisticalPValue:
+          '3-point threshold: 71.1% on tadalafil against 56.0% on placebo, odds ratio 1.9 (95% CI 1.5 to 2.4), P<0.001. 25% threshold: 61.7% against 45.5%, odds ratio 2.0 (1.6 to 2.5), P<0.001',
+        unreportedAdverseSignals:
+          "The placebo response rate — 56.0% and 45.5% — is the number that does not appear in the paper's conclusion, which reports only that about two-thirds of tadalafil-treated patients achieved a clinically meaningful improvement.",
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'IPSS improved 2.1 points more than placebo on tadalafil and 1.5 on tamsulosin in a 511-man randomised trial',
+        'Peak urine flow rose 2.4 mL/s on tadalafil (p=0.009) and 2.2 mL/s on tamsulosin (p=0.014) in the same trial',
+        'IIEF erectile function domain improved 4.0 points on tadalafil (p<0.001) and -0.4 on tamsulosin (p=0.699)',
+        '71.1% of tadalafil patients and 56.0% of placebo patients reached a 3-point IPSS improvement across 1,499 pooled participants, odds ratio 1.9 (95% CI 1.5 to 2.4)',
+        'The US label states that the mechanism for reducing benign prostatic hyperplasia symptoms has not been established',
+        'The label reports an approximately two-fold increased risk of non-arteritic anterior ischaemic optic neuropathy in observational studies',
+      ],
+      unsupportedInferences: [
+        'That tadalafil relieves urinary symptoms by relaxing prostatic smooth muscle — a plausible mechanism the label explicitly declines to assert',
+        'That the trial showed tadalafil and tamsulosin to be equivalent — it was not powered to compare them and says so',
+        'That two-thirds of treated men benefit — more than half the placebo group met the same threshold, and the drug-attributable difference is about 15 percentage points',
+        'That a PDE5 inhibitor can be added to an existing alpha-blocker for extra urinary benefit — the label does not recommend that combination for this indication',
+      ],
+      whatFailedInitially: [
+        'The mechanistic account for this indication, which remains unestablished on the label more than a decade after approval',
+        'The combination strategy with alpha-blockers, closed off by additive blood-pressure lowering',
+        'Any attempt to read the responder headline as a drug effect — the placebo arm reached the threshold 56% of the time',
+      ],
+      realWorldOutcome: [
+        'Fourteen cents a tablet at United States pharmacy acquisition cost across 137 listed products, the most crowded generic market in this file',
+        'The only drug in this group that treats lower urinary tract symptoms and erectile dysfunction in one tablet, which is why it is chosen where both are present',
+        'Its nitrate contraindication remains the most consequential practical fact about it, and its long half-life widens the window in which that matters',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, once daily at the low dose for the urinary indication',
+      description:
+        'A conventional film-coated tablet taken once daily with or without food. The urinary indication uses a low daily dose rather than the as-needed dosing familiar from the erectile indication, and the same molecule is sold at a different dose under a different name for pulmonary arterial hypertension. The label limits combination with finasteride at initiation to 26 weeks.',
+      safetyProfile:
+        'Contraindicated absolutely with any organic nitrate and with guanylate cyclase stimulators such as riociguat, because all three act on the same cyclic GMP pathway. Combination with alpha-blockers for benign prostatic hyperplasia is not recommended, because both lower blood pressure. The label warns about sudden vision loss as a possible sign of non-arteritic anterior ischaemic optic neuropathy, with an approximately two-fold increased risk in observational studies, and about sudden hearing loss. Commonest adverse effects are the vasodilatory ones the mechanism predicts: headache, dyspepsia, back pain, flushing and nasal congestion.',
+    },
+    commonQuestions: [
+      {
+        q: 'How does an erectile dysfunction drug help my prostate symptoms?',
+        a: 'Nobody has established that, and the prescribing information says so. The label explains the erectile mechanism precisely — the drug blocks an enzyme that destroys cyclic GMP, cyclic GMP accumulates, smooth muscle relaxes — and then states of the urinary indication: "The mechanism for reducing BPH symptoms has not been established." The candidate explanations you will encounter are that it relaxes the smooth muscle of the prostate and bladder neck through the same pathway, that it improves blood flow to the pelvis, or that it reduces the sensory nerve traffic from the bladder. Each is plausible and none is asserted by the manufacturer. What is established is the outcome: in a 511-man randomised trial the symptom score improved 2.1 points more than placebo and the peak flow rate by 2.4 millilitres a second.',
+        auditNote:
+          'A licensed indication with randomised evidence and no agreed mechanism is unusual. It is stated here plainly rather than filled in, because filling it in would be inventing what the label declines to claim.',
+      },
+      {
+        q: 'Is it better or worse than tamsulosin?',
+        a: 'The trial that put them side by side could not answer that, and says so. Oelke and colleagues randomised 511 men to placebo, tadalafil or tamsulosin. Against placebo, symptom scores improved 2.1 points on tadalafil and 1.5 on tamsulosin; peak flow rose 2.4 and 2.2 millilitres a second. Both beat placebo; the trial\'s own limitations section states it "was limited in not being powered to directly compare tadalafil versus tamsulosin." So the honest reading is two separate positive placebo comparisons, not a demonstrated tie or a demonstrated win. Where the two drugs did separate unambiguously was erectile function: 4.0 points of improvement on tadalafil against -0.4 on tamsulosin. Quality-of-life and treatment-satisfaction scores also improved with tadalafil and not with tamsulosin, which most plausibly follows from that.',
+      },
+      {
+        q: 'I read that two thirds of men improve on it. Is that right?',
+        a: 'It is right, and it is half of a sentence. A pooled analysis of four placebo-controlled trials covering 1,499 patients found that 71.1% of men on tadalafil achieved at least a 3-point improvement in symptom score. In the same analysis, 56.0% of men on placebo achieved it. Using the alternative threshold of a 25% improvement, the figures were 61.7% and 45.5%. The odds ratios — 1.9 and 2.0, both with P<0.001 — are real and the drug is genuinely doing something. But the difference attributable to it is about fifteen to sixteen percentage points, not seventy-one. All four trials also ran a four-week placebo lead-in before randomisation, which means the 56% placebo response is what remains after the earliest and largest part of the placebo effect has already been removed.',
+        auditNote:
+          'Responder analyses are the easiest statistics in medicine to quote misleadingly, because the treated-arm percentage is a true number that describes the condition rather than the drug.',
+      },
+      {
+        q: 'Can I take this with my alpha-blocker?',
+        a: 'The label does not recommend it for this purpose. It advises caution when PDE5 inhibitors are given with alpha-blockers, because both lower blood pressure through overlapping vascular mechanisms, and states that combination use for benign prostatic hyperplasia is not recommended. That closes off the strategy that worked for the other pairing in this condition — MTOPS showed an alpha-blocker plus a 5-alpha-reductase inhibitor cut clinical progression by 66% against placebo and beat both single drugs. The pairing this label does contemplate is with finasteride, and it puts a limit on it: if tadalafil is used with finasteride to start treatment, that use is recommended for up to 26 weeks. Separately and absolutely: no nitrate, in any form, at any time, and tell anyone treating you for chest pain that you take this.',
+      },
+      {
+        q: 'Why does this page not show a manufacturing cost?',
+        a: 'Because no per-dose cost-of-production figure for tadalafil could be verified and cited. The cost-of-production literature checked publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about fourteen cents a tablet in the CMS acquisition-cost survey — which is a price, not a cost of manufacture. That file lists 137 products for tadalafil, the largest supplier count of any drug in this group, which is the clearest illustration available that price here tracks the number of entrants rather than the difficulty of the chemistry.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Oelke M, Giuliano F, Mirone V, Xu L, Cox D, Viktrup L. Monotherapy with tadalafil or tamsulosin similarly improved lower urinary tract symptoms suggestive of benign prostatic hyperplasia in an international, randomised, parallel, placebo-controlled clinical trial. Eur Urol 2012;61:917-925',
+        identifier: '10.1016/j.eururo.2012.01.013',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Tadalafil once daily for 12 weeks in men with signs and symptoms of benign prostatic hyperplasia, with a tamsulosin active control',
+        identifier: 'NCT00970632',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Nickel JC, Brock GB, Herschorn S, et al. Proportion of tadalafil-treated patients with clinically meaningful improvement in lower urinary tract symptoms associated with benign prostatic hyperplasia — integrated data from 1,499 study participants. BJU Int 2015;115:815-821',
+        identifier: '10.1111/bju.12926',
+        kind: 'doi',
+      },
+      {
+        label:
+          'McConnell JD, Roehrborn CG, Bautista OM, et al., MTOPS Research Group. The long-term effect of doxazosin, finasteride, and combination therapy on the clinical progression of benign prostatic hyperplasia. N Engl J Med 2003;349:2387-2398',
+        identifier: '10.1056/NEJMoa030656',
+        kind: 'doi',
+      },
+      {
+        label:
+          'US prescribing information for tadalafil tablets — mechanism of action, indications, contraindications, warnings and precautions and drug interactions (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22tadalafil%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 110635 — tadalafil structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/110635',
         kind: 'url',
       },
       NADAC_SOURCE,

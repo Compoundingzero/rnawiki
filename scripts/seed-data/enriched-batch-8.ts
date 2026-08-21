@@ -285,7 +285,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'bud-a4',
         category: 'measured',
-        title: 'The FDA-mandated safety trial: no excess of serious asthma events, in 11,693 people',
+        title:
+          'The FDA-mandated safety trial: no excess of serious asthma events, in 11,693 people',
         laymanSummary:
           'A trial ordered by the regulator asked whether adding formoterol to budesonide made asthma more dangerous. It did not, and the combination produced 16.5% fewer attacks.',
         technicalDetails:
@@ -401,7 +402,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'CAMP adult-height follow-up (NCT00000575)',
-        phase: 'Randomised controlled trial, 4 to 6 years of treatment, height measured at mean age 24.9',
+        phase:
+          'Randomised controlled trial, 4 to 6 years of treatment, height measured at mean age 24.9',
         sampleSize: 943,
         primaryEndpoint: 'Attained adult height compared with placebo',
         endpointMet: true,
@@ -475,8 +477,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Dry-powder inhaler, nebuliser suspension, nasal spray, and oral delayed-release capsules and extended-release tablets',
+      type: 'Dry-powder inhaler, nebuliser suspension, nasal spray, and oral delayed-release capsules and extended-release tablets',
       description:
         'The route is the drug. Inhaled budesonide reaches the airway lining and is then largely destroyed by the liver if swallowed; the delayed-release oral capsule is coated to release in the ileum and ascending colon and relies on the same first-pass metabolism to keep systemic exposure low. The nebuliser suspension exists because a young child cannot coordinate an inhaler, not because it is more effective.',
       safetyProfile:
@@ -777,14 +778,16 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'form-a4',
         category: 'measured',
-        title: 'Novel START: as-needed budesonide-formoterol halved exacerbations against albuterol',
+        title:
+          'Novel START: as-needed budesonide-formoterol halved exacerbations against albuterol',
         laymanSummary:
           'In an open trial that let people behave as they do in real life, using a combined steroid-and-formoterol inhaler for symptom relief produced half the attacks of using a plain rescue inhaler.',
         technicalDetails:
           'Novel START (ACTRN12615000999538) was a 52-week open-label trial in 675 adults with mild asthma, 668 analysed, randomised to as-needed albuterol, twice-daily budesonide with as-needed albuterol, or as-needed budesonide-formoterol, with electronic inhaler monitoring. The annualised exacerbation rate was 0.195 on budesonide-formoterol against 0.400 on albuterol (relative rate 0.49, 95% CI 0.33 to 0.72, P<0.001) and did not differ from budesonide maintenance (0.175; relative rate 1.12, 95% CI 0.70 to 1.79, P=0.65). Severe exacerbations numbered 9 on budesonide-formoterol against 23 on albuterol (relative risk 0.40, 95% CI 0.18 to 0.86) and 21 on budesonide maintenance (relative risk 0.44, 95% CI 0.20 to 0.96). Mean inhaled budesonide was 107 micrograms per day against 222 on maintenance. The trial was open-label by design, to capture the adherence behaviour a blinded trial removes.',
         evidenceSource: 'Beasley R et al., N Engl J Med 2019;380:2020-2030 (Novel START)',
         doi: '10.1056/NEJMoa1901963',
-        measuredMetric: 'Annualised asthma exacerbation rate over 52 weeks under electronic monitoring',
+        measuredMetric:
+          'Annualised asthma exacerbation rate over 52 weeks under electronic monitoring',
         auditFlag: 'verified',
       },
       {
@@ -805,12 +808,14 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'form-a6',
         category: 'failed',
-        title: 'The Cochrane pooling still cannot rule out a mortality signal, and children are unresolved',
+        title:
+          'The Cochrane pooling still cannot rule out a mortality signal, and children are unresolved',
         laymanSummary:
           'Pooling every randomised trial of formoterol with a steroid found six deaths on formoterol and one without it. The difference was not statistically significant, but the confidence interval is wide enough to contain real harm, and the paediatric data are thinner still.',
         technicalDetails:
           'Cates and colleagues pooled 20 studies in 10,578 adults and adolescents and seven studies in 2,788 children and adolescents comparing regular formoterol plus inhaled corticosteroid against the same dose of inhaled corticosteroid alone. Six deaths occurred on formoterol and one on the comparator (Peto odds ratio 3.56, 95% CI 0.79 to 16.03, graded low-quality evidence); all were in adults and one was believed asthma-related. Non-fatal serious adverse events of any cause were similar in adults (Peto OR 0.98, 95% CI 0.76 to 1.27) while asthma-related serious adverse events were significantly fewer on formoterol (Peto OR 0.49, 95% CI 0.28 to 0.88). In children, all-cause serious adverse events trended up (Peto OR 1.62, 95% CI 0.80 to 3.28) and asthma-related events too (Peto OR 1.49, 95% CI 0.48 to 4.61), both imprecise. The authors conclude it is not possible to reassure people that regular formoterol with an inhaled corticosteroid carries no increase in mortality, while finding no conclusive evidence of harm across more than 4,200 patient-years.',
-        evidenceSource: 'Cates CJ, Jaeschke R, Schmidt S, Ferrer M. Cochrane Database Syst Rev 2013;(6):CD006924',
+        evidenceSource:
+          'Cates CJ, Jaeschke R, Schmidt S, Ferrer M. Cochrane Database Syst Rev 2013;(6):CD006924',
         doi: '10.1002/14651858.CD006924.pub3',
         measuredMetric:
           'All-cause and asthma-related fatal and non-fatal serious adverse events, pooled across 27 randomised trials',
@@ -922,7 +927,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Time to first adjudicated serious asthma-related event, budesonide-formoterol versus budesonide alone',
         endpointMet: true,
-        statisticalPValue: 'Hazard ratio 1.07 (95% CI 0.70 to 1.65); non-inferiority margin 2.0 met',
+        statisticalPValue:
+          'Hazard ratio 1.07 (95% CI 0.70 to 1.65); non-inferiority margin 2.0 met',
         independentReplicationStatus: 'Replicated',
       },
       {
@@ -1328,7 +1334,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Vogelmeier C, Hederer B, Glaab T, et al. N Engl J Med 2011;364:1093-1103 (POET-COPD, NCT00563381)',
         doi: '10.1056/NEJMoa1008378',
-        measuredMetric: 'Time to first moderate or severe exacerbation, tiotropium against salmeterol',
+        measuredMetric:
+          'Time to first moderate or severe exacerbation, tiotropium against salmeterol',
         auditFlag: 'verified',
       },
       {
@@ -1595,12 +1602,14 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'AUSTRI — the FDA-mandated salmeterol-fluticasone safety trial in adolescents and adults',
+        label:
+          'AUSTRI — the FDA-mandated salmeterol-fluticasone safety trial in adolescents and adults',
         identifier: 'NCT01475721',
         kind: 'nct',
       },
       {
-        label: 'VESTRI — the FDA-mandated salmeterol-fluticasone safety trial in children aged 4 to 11',
+        label:
+          'VESTRI — the FDA-mandated salmeterol-fluticasone safety trial in children aged 4 to 11',
         identifier: 'NCT01462344',
         kind: 'nct',
       },
@@ -1615,14 +1624,16 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         kind: 'nct',
       },
       {
-        label: 'LARGE — genotype-stratified crossover trial of salmeterol by ADRB2 codon 16 genotype',
+        label:
+          'LARGE — genotype-stratified crossover trial of salmeterol by ADRB2 codon 16 genotype',
         identifier: 'NCT00200967',
         kind: 'nct',
       },
       {
         label:
           'SEREVENT DISKUS (salmeterol xinafoate inhalation powder) United States prescribing information — boxed warning, Contraindications, Warnings and Precautions 5.1, Clinical Pharmacology 12.1',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22salmeterol+xinafoate%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22salmeterol+xinafoate%22',
         kind: 'regulatory',
       },
       {
@@ -1740,15 +1751,13 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'C[N+]1([C@@H]2CC(C[C@H]1[C@H]3[C@@H]2O3)OC(=O)C(C4=CC=CS4)(C5=CC=CS5)O)C',
+      smilesString: 'C[N+]1([C@@H]2CC(C[C@H]1[C@H]3[C@@H]2O3)OC(=O)C(C4=CC=CS4)(C5=CC=CS5)O)C',
       chemicalFormula: 'C19H22NO4S2',
       molecularWeight: '392.50 g/mol',
       targetReceptorAffinity:
         'The label states similar affinity across muscarinic subtypes M1 to M5, with the airway effect arising from M3 inhibition on smooth muscle, and describes the antagonism as competitive and reversible. The duration is kinetic rather than affinity-driven: in the original characterisation, dissociation half-lives from human receptors were 34.7 hours at M3, 14.6 hours at M1 and 3.6 hours at M2, against 0.26, 0.11 and 0.035 hours for ipratropium. Faster release from M2 than from M3 is what the authors called kinetic receptor subtype selectivity.',
       structureSource: {
-        label:
-          'PubChem CID 5487427 (tiotropium) — canonical SMILES, molecular formula and weight',
+        label: 'PubChem CID 5487427 (tiotropium) — canonical SMILES, molecular formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5487427',
         kind: 'url',
       },
@@ -2016,7 +2025,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'PrimoTinA-asthma (NCT00772538 and NCT00776984)',
-        phase: 'Phase 3, two replicate randomised, double-blind, placebo-controlled trials, 48 weeks',
+        phase:
+          'Phase 3, two replicate randomised, double-blind, placebo-controlled trials, 48 weeks',
         sampleSize: 912,
         primaryEndpoint:
           'Peak and trough FEV1 at 24 weeks, and time to first severe exacerbation, added to inhaled glucocorticoid plus long-acting beta-agonist',
@@ -2154,7 +2164,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'UPLIFT — four-year tiotropium trial with rate of FEV1 decline as co-primary endpoint',
+        label:
+          'UPLIFT — four-year tiotropium trial with rate of FEV1 decline as co-primary endpoint',
         identifier: 'NCT00144339',
         kind: 'nct',
       },
@@ -2290,8 +2301,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'C1C[N+]2(CCC1(CC2)C(C3=CC=CC=C3)(C4=CC=CC=C4)O)CCOCC5=CC=CC=C5',
+      smilesString: 'C1C[N+]2(CCC1(CC2)C(C3=CC=CC=C3)(C4=CC=CC=C4)O)CCOCC5=CC=CC=C5',
       chemicalFormula: 'C29H34NO2',
       molecularWeight: '428.60 g/mol',
       targetReceptorAffinity:
@@ -2377,8 +2387,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'ume-a2',
         category: 'inferred',
-        title:
-          'The label’s exacerbation claim is borrowed from a trial of a three-drug inhaler',
+        title: 'The label’s exacerbation claim is borrowed from a trial of a three-drug inhaler',
         laymanSummary:
           'The prescribing information says outright where the evidence for preventing flare-ups comes from: a twelve-month trial of a combination containing umeclidinium plus two other drugs. Umeclidinium on its own has no exacerbation trial.',
         technicalDetails:
@@ -2407,7 +2416,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'ume-a4',
         category: 'measured',
-        title: 'IMPACT: adding a steroid beat the umeclidinium-vilanterol pair, and caused pneumonia',
+        title:
+          'IMPACT: adding a steroid beat the umeclidinium-vilanterol pair, and caused pneumonia',
         laymanSummary:
           'In the largest trial umeclidinium has appeared in, the two-bronchodilator combination containing it had the most flare-ups of the three arms. Adding an inhaled steroid cut flare-ups by a quarter and raised the risk of pneumonia by half.',
         technicalDetails:
@@ -2894,12 +2904,14 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'vil-a2',
         category: 'inferred',
-        title: 'SUMMIT missed its primary endpoint, and its authors said to read the rest carefully',
+        title:
+          'SUMMIT missed its primary endpoint, and its authors said to read the rest carefully',
         laymanSummary:
           'The trial was built to show that the combination improved survival. It did not, at p=0.137. The paper then says in its own findings that because the primary outcome was not met, the secondary outcomes should be interpreted with caution — including the finding about slowing lung-function decline that is most often quoted from it.',
         technicalDetails:
           'The primary outcome of SUMMIT was all-cause mortality; the secondary outcomes were on-treatment rate of FEV1 decline and a composite of cardiovascular events. The combination gave a hazard ratio of 0.88 (95% CI 0.74 to 1.04, a 12% relative reduction, p=0.137). The published findings state directly that because of this, secondary outcomes should be interpreted with caution. The 8 mL per year reduction in FEV1 decline attributed to fluticasone furoate is one of those secondary outcomes, and it is a difference of 8 mL against a placebo decline of 46 mL per year — around one sixth of the slope, in a trial whose statistical gatekeeper did not open.',
-        evidenceSource: 'Vestbo J, Anderson JA, Brook RD, et al. Lancet 2016;387:1817-1826 (SUMMIT)',
+        evidenceSource:
+          'Vestbo J, Anderson JA, Brook RD, et al. Lancet 2016;387:1817-1826 (SUMMIT)',
         doi: '10.1016/S0140-6736(16)30069-1',
         inferredClaim:
           'That fluticasone furoate with vilanterol slows lung-function decline in moderate COPD — a secondary outcome in a trial that missed its primary endpoint, which the authors flagged as requiring caution',
@@ -2953,7 +2965,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'vil-a6',
         category: 'measured',
-        title: 'Salford: an 8.4% exacerbation reduction in ordinary general practice, and nothing else',
+        title:
+          'Salford: an 8.4% exacerbation reduction in ordinary general practice, and nothing else',
         laymanSummary:
           'A trial run inside real general practices, with almost no exclusion criteria, put 2,799 people on the combination or on whatever they would have had anyway. Flare-ups fell by 8.4%. Nothing else the trial measured moved.',
         technicalDetails:
@@ -3047,8 +3060,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         trialId: 'SUMMIT (NCT01313676)',
         phase: 'Phase 3, randomised, double-blind, placebo-controlled, four-arm event-driven trial',
         sampleSize: 16590,
-        primaryEndpoint:
-          'All-cause mortality in moderate COPD with heightened cardiovascular risk',
+        primaryEndpoint: 'All-cause mortality in moderate COPD with heightened cardiovascular risk',
         endpointMet: false,
         statisticalPValue:
           'Combination hazard ratio 0.88 (95% CI 0.74 to 1.04), p=0.137; vilanterol alone 0.96 (0.81 to 1.14), p=0.655; fluticasone furoate alone 0.91 (0.77 to 1.08), p=0.284',
@@ -3071,7 +3083,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Decramer replicate trials (NCT01316900 and NCT01316913)',
-        phase: 'Phase 3, two multicentre, blinded, double-dummy, active-controlled trials, 24 weeks',
+        phase:
+          'Phase 3, two multicentre, blinded, double-dummy, active-controlled trials, 24 weeks',
         sampleSize: 2332,
         primaryEndpoint: 'Trough FEV1 on day 169',
         endpointMet: true,
@@ -3083,12 +3096,14 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       },
       {
         trialId: 'Salford Lung Study COPD (NCT01551758)',
-        phase: 'Phase 3, randomised, open-label, usual-care-controlled effectiveness trial, one year',
+        phase:
+          'Phase 3, randomised, open-label, usual-care-controlled effectiveness trial, one year',
         sampleSize: 2799,
         primaryEndpoint:
           'Rate of moderate or severe exacerbations among patients with an exacerbation in the year before the trial',
         endpointMet: true,
-        statisticalPValue: '8.4% lower with fluticasone furoate-vilanterol (95% CI 1.1 to 15.2), P=0.02',
+        statisticalPValue:
+          '8.4% lower with fluticasone furoate-vilanterol (95% CI 1.1 to 15.2), P=0.02',
         unreportedAdverseSignals:
           'No significant difference in COPD-related primary or secondary care contacts, and no significant difference in time to first moderate or severe exacerbation or first severe exacerbation. The single positive result is the annualised rate.',
         independentReplicationStatus: 'Unreplicated',
@@ -3314,7 +3329,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Ipratropium with albuterol (Combivent Respimat, DuoNeb)',
-          class: 'Fixed combination of a short-acting antimuscarinic and a short-acting beta-2 agonist',
+          class:
+            'Fixed combination of a short-acting antimuscarinic and a short-acting beta-2 agonist',
           howItCompares:
             'The same two molecules in one actuation, which removes the mixing step in a nebuliser and the two-inhaler problem at home. It is the same pharmacology, packaged.',
           typicalCost:
@@ -3353,8 +3369,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'Binding to human muscarinic receptors is in the sub-nanomolar to nanomolar range with little subtype preference; what distinguishes ipratropium from its successors is how quickly it leaves. Published dissociation half-lives from human receptors are 0.26 hours at M3, 0.11 hours at M1 and 0.035 hours at M2, against 34.7, 14.6 and 3.6 hours for tiotropium measured in the same experiments. The label describes the action as inhibiting vagally-mediated reflexes by antagonising acetylcholine, and attributes it, based on animal studies, to preventing the rise in intracellular calcium that acetylcholine causes at muscarinic receptors on bronchial smooth muscle.',
       structureSource: {
-        label:
-          'PubChem CID 657309 (ipratropium) — canonical SMILES, molecular formula and weight',
+        label: 'PubChem CID 657309 (ipratropium) — canonical SMILES, molecular formula and weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/657309',
         kind: 'url',
       },
@@ -3830,8 +3845,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Weigh yourself regularly and report unexplained loss',
-          action:
-            'Keep a record of weight from before the first tablet and check it periodically.',
+          action: 'Keep a record of weight from before the first tablet and check it periodically.',
           patientImpact:
             'The label instructs monitoring weight regularly and evaluating, with consideration of discontinuation, if unexplained or clinically significant weight loss occurs. In the pooled 52-week trials the difference in weight change against placebo was -2.17 kg.',
           clinicalPrecaution:
@@ -3936,7 +3950,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'rof-a2',
         category: 'failed',
-        title: 'REACT missed its primary analysis at p=0.0529 and is quoted from its sensitivity one',
+        title:
+          'REACT missed its primary analysis at p=0.0529 and is quoted from its sensitivity one',
         laymanSummary:
           'The trial that asked whether roflumilast helps people already on inhaled combination treatment reported a 13.2% reduction in flare-ups — and a p-value of 0.0529, just the wrong side of the line. The figure usually quoted from this trial comes from a different, prespecified statistical method that gave 0.0424.',
         technicalDetails:
@@ -3951,7 +3966,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'rof-a3',
         category: 'failed',
-        title: 'RE2SPOND failed outright in 2,354 patients, and reported a post hoc subgroup instead',
+        title:
+          'RE2SPOND failed outright in 2,354 patients, and reported a post hoc subgroup instead',
         laymanSummary:
           'The larger follow-up trial gave roflumilast or placebo to more than two thousand three hundred people already on inhaled combination treatment. Flare-ups fell by 8.5% and the difference was not statistically significant. The positive result from this trial is a subgroup found after the fact.',
         technicalDetails:
@@ -4088,7 +4104,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
     trials: [
       {
         trialId: 'M2-124 and M2-125 (NCT00297102 and NCT00297115)',
-        phase: 'Phase 3, two identically designed randomised, double-blind, placebo-controlled trials, 52 weeks',
+        phase:
+          'Phase 3, two identically designed randomised, double-blind, placebo-controlled trials, 52 weeks',
         sampleSize: 3091,
         primaryEndpoint:
           'Co-primary: change in prebronchodilator FEV1 and rate of moderate or severe exacerbations',
@@ -4119,7 +4136,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         primaryEndpoint:
           'Rate of moderate or severe COPD exacerbations per patient per year on inhaled corticosteroid plus long-acting beta-agonist, with or without a long-acting muscarinic antagonist',
         endpointMet: false,
-        statisticalPValue: 'Rate ratio 0.92 (95% CI 0.81 to 1.04), P=0.163 — an 8.5% reduction, not significant',
+        statisticalPValue:
+          'Rate ratio 0.92 (95% CI 0.81 to 1.04), P=0.163 — an 8.5% reduction, not significant',
         unreportedAdverseSignals:
           'The reported positive finding is a post hoc subgroup of participants with more than three prior exacerbations or at least one hospitalisation. Adverse-event-related discontinuation was 11.7% against 5.4%.',
         independentReplicationStatus: 'Failed to Replicate',
@@ -4918,8 +4936,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
           'Ninety-eight children aged 3 to 9 with year-round hay fever were given mometasone nasal spray or placebo for a full year, with height measured on a calibrated stadiometer seven times. They grew the same. Adrenal function testing showed no suppression either.',
         technicalDetails:
           'A randomised, placebo-controlled, double-blind, multicentre trial randomised 98 prepubertal children aged 3 to 9 with perennial allergic rhinitis to mometasone furoate aqueous nasal spray 100 micrograms once daily or placebo for one year, with baseline height between the 5th and 95th percentile and skeletal age within two years of chronological age. Eighty-two completed, 42 on drug and 40 on placebo, with 93% achieving at least 80% compliance. The primary safety variable was change in standing height. No growth suppression was seen; change in height at one year was 6.95 cm on mometasone against 6.35 cm on placebo, and growth rate averaged across all time points was 0.018 cm per day in both groups. Cosyntropin stimulation testing at baseline, 26 and 52 weeks showed no evidence of hypothalamic-pituitary-adrenal axis suppression at any time point. Treatment-related adverse events were 16% on drug against 22% on placebo.',
-        evidenceSource:
-          'Schenkel EJ, Skoner DP, Bronsky EA, et al. Pediatrics 2000;105:E22',
+        evidenceSource: 'Schenkel EJ, Skoner DP, Bronsky EA, et al. Pediatrics 2000;105:E22',
         doi: '10.1542/peds.105.2.e22',
         measuredMetric:
           'Change in standing height and growth rate over one year, and cosyntropin-stimulated cortisol response',
@@ -4956,7 +4973,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         id: 'mom-a4',
         category: 'measured',
-        title: 'SPIRO: 11,729 patients, no excess of serious asthma events, 11% fewer exacerbations',
+        title:
+          'SPIRO: 11,729 patients, no excess of serious asthma events, 11% fewer exacerbations',
         laymanSummary:
           'One of the four safety trials the FDA demanded after the long-acting beta-agonist deaths. Adding formoterol to mometasone in nearly twelve thousand people produced 45 serious asthma events against 36 — all hospitalisations, none fatal — and about a tenth fewer exacerbations.',
         technicalDetails:
@@ -5201,6 +5219,990 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 441335 — mometasone structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441335',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 11. Fluticasone — the most-prescribed inhaled steroid in the world, responsible for 30 of the
+  //     33 adrenal crises found in a national survey, and the only arm of TORCH that did worse
+  //     than placebo.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'fluticasone',
+    name: 'Fluticasone',
+    tradeName: 'Flovent / Flovent HFA / Flovent Diskus / Flonase / Arnuity Ellipta / Cutivate',
+    sponsor:
+      'GlaxoSmithKline (originator of fluticasone propionate as Flovent and Flonase, and of the furoate ester as Arnuity Ellipta); the propionate is now made by many manufacturers including Fougera',
+    targetGene: 'NR3C1',
+    targetProtein: 'Glucocorticoid receptor (nuclear receptor subfamily 3 group C member 1)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1990,
+    indication:
+      'Inhalation aerosol and powder: maintenance treatment of asthma as prophylactic therapy in adults and children aged 4 and over. Not indicated for the relief of acute bronchospasm. Nasal spray: seasonal and perennial allergic and non-allergic rhinitis. Cream and ointment: corticosteroid-responsive dermatoses. In combination with salmeterol it is additionally indicated in chronic obstructive pulmonary disease.',
+    patientFriendlyIndication:
+      'The daily preventer inhaler that keeps asthma quiet, and the same drug as a hay-fever spray and a skin cream',
+    anatomicalSite:
+      'Airway epithelium and submucosal inflammatory cells; nasal mucosa for the spray; epidermis and dermis for the cream',
+    conditionContext: {
+      conditionExplainer:
+        'Asthma is inflammation in the lining of the airway that persists between attacks. An inhaled corticosteroid enters those lining cells, binds a receptor and carries it into the nucleus, where it shuts down the genes producing inflammatory signals. It takes days to weeks to work and it does nothing during an attack.',
+      whyItMatters:
+        'Fluticasone propionate is among the most widely prescribed medicines in the world and, on its label’s own numbers, the most receptor-avid of the older inhaled steroids. Both of those facts make its systemic safety record worth reading carefully rather than assuming from the class.',
+      whoTakesThis:
+        'Anyone with persistent asthma from age 4 upward, on its own or inside a combination inhaler with salmeterol or vilanterol; people with allergic rhinitis, using the nasal spray; and people with inflammatory skin disease.',
+      clinicalGoals:
+        'Fewer exacerbations and fewer courses of oral steroids, with as little systemic corticosteroid exposure as possible. The second half of that sentence is where this drug’s specific problems live.',
+    },
+    oneSentenceVerdict:
+      'A trifluorinated corticosteroid the label reports as binding the human glucocorticoid receptor 18 times as tightly as dexamethasone and more than 3 times as tightly as budesonide — while stating the clinical significance is unknown; it cut severe asthma exacerbations by 21% when salmeterol was added in 11,679 patients, produced the only arm of TORCH with higher three-year mortality than placebo (16.0% against 15.2%), and accounted for 30 of the 33 cases of adrenal crisis found by a United Kingdom national survey, one of them fatal.',
+    laymanHowItWorks:
+      'Fluticasone is breathed or sprayed onto an inflamed surface, crosses into the cells there, binds a receptor and carries it into the nucleus, where it switches off the genes making inflammatory signals. It is designed to be destroyed rapidly by the liver, so very little of what is swallowed reaches the bloodstream intact. Two things break that design: doses above the licensed range, and any medicine that blocks the liver enzyme doing the destroying — which is how an inhaler has repeatedly produced full-blown Cushing syndrome.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 83,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.6920 per millilitre, the median across 51 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Fluticasone propionate is generic across 51 listed presentations, more than any other steroid in this file, and at about sixty-nine cents a millilitre it is one of the cheapest. The nasal spray is available without prescription in the United States. What is not generic is the newer furoate ester and the devices carrying it — Arnuity, Breo and Trelegy Ellipta — which is the same molecule family re-entering the market through a new ester and a new inhaler after the original went off patent.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Every inhaled corticosteroid acts on the same receptor and the head-to-head efficacy differences are small. Where they differ is systemic exposure, and on that measure fluticasone has the least reassuring record of the group: a national survey of adrenal crisis found almost all cases on this drug, and its interaction with common CYP3A4 inhibitors has repeatedly produced Cushing syndrome. Those are reasons to respect the licensed dose, not reasons to stop treating asthma.',
+      conventionalRx: [
+        {
+          name: 'Budesonide (Pulmicort, Rhinocort)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'Under a third of fluticasone’s in-vitro receptor affinity by the fluticasone label’s own comparison. It is the steroid with the best long-term paediatric data, including a measured 1.2 cm reduction in final adult height, and it appeared in only one of the 33 adrenal-crisis cases in the United Kingdom survey, alongside fluticasone.',
+          typicalCost:
+            'US$0.7198 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: nebuliser suspension for young children, WHO Model List of Essential Medicines, best-characterised growth effect. Cons: that growth effect is real and permanent, which is what having the data means.',
+        },
+        {
+          name: 'Mometasone furoate (Asmanex, Nasonex)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'About one and a half times fluticasone’s receptor affinity by the mometasone label’s comparison, with negligible intranasal systemic bioavailability demonstrated by a one-year randomised growth study in 98 children that found nothing.',
+          typicalCost:
+            'US$0.7141 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: a positive negative-safety trial for the nasal route, which fluticasone does not have in the same form. Cons: the same CYP3A4 interaction, and the inhaled product carries the same systemic warnings.',
+        },
+        {
+          name: 'Beclometasone dipropionate (Qvar, Beconase)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'About half fluticasone’s receptor affinity, comparing against beclometasone-17-monopropionate, its active metabolite. Extrafine formulations deposit further into the small airways, which changes the relationship between nominal dose and delivered dose.',
+          typicalCost:
+            'US$30.24 per gram at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: long track record, extrafine particle options. Cons: the intranasal form has a positive growth-suppression trial, 5.0 cm against 5.9 cm over a year.',
+        },
+        {
+          name: 'Fluticasone plus salmeterol in one inhaler (Advair)',
+          class: 'Inhaled corticosteroid plus long-acting beta-2 agonist',
+          howItCompares:
+            'Not an alternative to fluticasone but the usual next step from it. In AUSTRI, 11,679 patients, adding salmeterol cut severe exacerbations by 21% (hazard ratio 0.79, 95% CI 0.70 to 0.89) with no excess of serious asthma events.',
+          typicalCost:
+            'Priced separately from the single-ingredient products; salmeterol alone is US$6.74 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: fewer exacerbations, and the steroid cannot be dropped independently. Cons: in COPD the same combination carries the pneumonia signal, 19.6% against 12.3% on placebo in TORCH.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Do not exceed the licensed paediatric dose without specialist supervision',
+          action:
+            'Check what daily dose a child is actually on, counting every product that contains a steroid.',
+          patientImpact:
+            'A United Kingdom national survey identified 33 cases of acute adrenal crisis on inhaled corticosteroids, 30 of them on fluticasone, in patients taking 500 to 2,000 micrograms a day. Twenty-three children presented with acute hypoglycaemia; nine had coma and convulsions; one child died.',
+          clinicalPrecaution:
+            'The survey authors advised that the licensed paediatric fluticasone dose of 400 micrograms a day should not be exceeded unless the patient is supervised by a physician experienced in problematic asthma.',
+        },
+        {
+          name: 'Never stop a high-dose inhaled steroid abruptly',
+          action:
+            'Taper under medical supervision rather than stopping, particularly after months on high doses.',
+          patientImpact:
+            'The same survey emphasised that until adrenal function has been assessed, patients on high-dose inhaled corticosteroids should not have therapy abruptly terminated, because doing so can precipitate an adrenal crisis.',
+          clinicalPrecaution:
+            'A suppressed adrenal gland cannot respond to illness or injury. The danger is not the drug in the body; it is the sudden absence of it in a gland that has stopped working.',
+        },
+        {
+          name: 'Name every other medicine, especially HIV and antifungal drugs',
+          action:
+            'List ritonavir, atazanavir, itraconazole, ketoconazole, clarithromycin and similar drugs before starting an inhaled or intranasal steroid.',
+          patientImpact:
+            'The label states that use of strong CYP3A4 inhibitors with fluticasone propionate is not recommended, and records postmarketing reports of clinically significant interactions with ritonavir producing systemic corticosteroid effects including Cushing syndrome and adrenal suppression.',
+          clinicalPrecaution:
+            'This is the safety margin of the whole drug being removed. Fluticasone is safe systemically because the liver destroys it; block that enzyme and an inhaled dose behaves like an oral one.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@@H]1C[C@H]2[C@@H]3C[C@@H](C4=CC(=O)C=C[C@@]4([C@]3([C@H](C[C@@]2([C@]1(C(=O)SCF)O)C)O)F)C)F',
+      chemicalFormula: 'C22H27F3O4S',
+      molecularWeight: '444.50 g/mol',
+      targetReceptorAffinity:
+        'The label states that fluticasone propionate has been shown in vitro to exhibit a binding affinity for the human glucocorticoid receptor 18 times that of dexamethasone, almost twice that of beclomethasone-17-monopropionate — the active metabolite of beclometasone dipropionate — and over 3 times that of budesonide, that data from the McKenzie vasoconstrictor assay in man are consistent with these results, and that the clinical significance of these findings is unknown. It also notes that corticosteroids do not affect asthma symptoms immediately and that time to onset and degree of relief vary between individuals.',
+      structureSource: {
+        label:
+          'PubChem CID 444036 (fluticasone propionate) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/444036',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'flu-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the trifluorinated androstane core and the carbothioate',
+          description:
+            'Confirm all three fluorine positions and the 17-beta carbothioate before esterification. The fluoromethyl thioester in place of the usual 17-beta ketone side chain is what makes this molecule unusual: it raises receptor affinity sharply and it is also the group hydrolysed to the inactive 17-beta carboxylic acid, which is the basis of the low oral bioavailability.',
+          reagentsAndBuffer:
+            'Fluticasone propionate reference standard, reversed-phase HPLC with ultraviolet detection at 239 nm, 1H, 13C and 19F NMR in DMSO-d6, sulfur elemental analysis, loss on drying',
+        },
+        {
+          id: 'flu-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Propionylation of the 17-alpha hydroxyl and S-fluoromethylation',
+          description:
+            'Esterify the 17-alpha hydroxyl with propionic anhydride and alkylate the thioacid with a fluoromethyl halide. Doing these in the wrong order gives the 17-alpha-propionate isomer rather than the drug, and the two are separable only with difficulty.',
+          dependsOnStepId: 'flu-w1',
+          reagentsAndBuffer:
+            'Propionic anhydride with triethylamine and 4-dimethylaminopyridine, bromofluoromethane or chlorofluoromethane, sodium bicarbonate, anhydrous dimethylformamide or acetone, nitrogen atmosphere',
+        },
+        {
+          id: 'flu-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and micronisation to a controlled particle size distribution',
+          description:
+            'Recrystallise and micronise to a defined aerodynamic particle size. For an inhaled steroid this specification is the dose: particle size decides how much reaches the small airways rather than the oropharynx, and a shift in it changes both efficacy and swallowed fraction without changing a single number on the label.',
+          dependsOnStepId: 'flu-w2',
+          reagentsAndBuffer:
+            'Acetone or ethyl acetate recrystallisation, jet milling under nitrogen, cascade impaction for aerodynamic particle size distribution, X-ray powder diffraction for polymorph identity, HPLC purity with 17-alpha isomer limit',
+        },
+        {
+          id: 'flu-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Receptor translocation with a CYP3A4-inhibited arm',
+          description:
+            'Dose glucocorticoid-receptor-expressing cells and measure translocation and reporter activation, then repeat in the presence of a CYP3A4 inhibitor with hepatocytes in the system. Running the inhibited arm is not optional for this molecule: the entire systemic safety argument rests on hepatic first-pass destruction, and the clinically important failures of that argument all involve blocking CYP3A4.',
+          dependsOnStepId: 'flu-w3',
+          reagentsAndBuffer:
+            'A549 or human bronchial epithelial cells, charcoal-stripped fetal bovine serum, GRE-luciferase reporter, dexamethasone and budesonide as parallel references, cryopreserved human hepatocytes, ketoconazole or ritonavir as CYP3A4 inhibitor',
+        },
+        {
+          id: 'flu-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Affinity ranking reported with oral bioavailability and cortisol suppression',
+          description:
+            'Report the competition binding constant alongside oral bioavailability and a cortisol-suppression readout. An 18-fold affinity over dexamethasone is a topical potency statement, and quoting it without the systemic exposure data beside it is exactly the reading the label declines to endorse — and the reading under which a national survey found 30 adrenal crises.',
+          dependsOnStepId: 'flu-w4',
+          reagentsAndBuffer:
+            'Tritiated dexamethasone competition binding on cytosolic glucocorticoid receptor, human hepatocyte intrinsic clearance with LC-MS/MS, 24-hour urinary free cortisol or serum cortisol area under the curve in the clinical arm, equilibrium dialysis for plasma protein binding',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'flu-a1',
+        category: 'failed',
+        title:
+          'Thirty of 33 adrenal crises in a national survey were on this drug, and a child died',
+        laymanSummary:
+          'A survey of nearly three thousand United Kingdom specialists found 33 patients who had suffered acute adrenal collapse while on an inhaled steroid. Thirty of them were on fluticasone. Twenty-three children arrived with dangerously low blood sugar, nine of them in coma with seizures, and one of those children died.',
+        technicalDetails:
+          'Questionnaires were sent to all consultant paediatricians and adult endocrinologists in a United Kingdom medical directory. From 2,912 initial questionnaires, 33 patients met the diagnostic criteria for acute adrenal crisis associated with inhaled corticosteroids — 28 children and 5 adults — confirmed by symptoms and abnormal hypothalamic-pituitary-adrenal axis testing. Twenty-three children had acute hypoglycaemia: 13 with decreased consciousness or coma, nine with coma and convulsions, and one with coma, convulsions and death. Five children and four adults had insidious onset. All 33 were on 500 to 2,000 micrograms per day of inhaled corticosteroid; 30 (91%) had received fluticasone, one fluticasone and budesonide, and two beclometasone. The authors note that fluticasone was at the time the least prescribed and most recently introduced of the inhaled steroids and was associated with 94% of cases, and advise that the licensed paediatric dose of 400 micrograms per day should not be exceeded without specialist supervision.',
+        evidenceSource:
+          'Todd GRG, Acerini CL, Ross-Russell R, et al. Arch Dis Child 2002;87:457-461',
+        doi: '10.1136/adc.87.6.457',
+        measuredMetric:
+          'Cases of confirmed acute adrenal crisis on inhaled corticosteroids, by drug, from a national specialist survey',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'flu-a2',
+        category: 'failed',
+        title: 'TORCH: the fluticasone-only arm had the highest mortality of the four',
+        laymanSummary:
+          'In the three-year survival trial in six thousand people with chronic obstructive pulmonary disease, four groups were compared. The group on fluticasone alone had the most deaths of any of them — more than placebo — and got pneumonia half again as often.',
+        technicalDetails:
+          'TORCH randomised 6,112 patients in the efficacy population to salmeterol plus fluticasone propionate, salmeterol alone, fluticasone propionate alone, or placebo for three years. Three-year all-cause mortality was 12.6% on the combination, 13.5% on salmeterol, 15.2% on placebo and 16.0% on fluticasone alone. The paper states that mortality for salmeterol alone or fluticasone propionate alone did not differ significantly from placebo, so the fluticasone figure is a numerical rather than a statistical excess — but it is the highest of the four and it is the arm that was supposed to be treating the inflammation. Pneumonia reported as an adverse event was 18.3% on fluticasone alone and 19.6% on the combination, against 12.3% on placebo, P<0.001 for both comparisons against placebo. Inhaled corticosteroid monotherapy is no longer a treatment for chronic obstructive pulmonary disease.',
+        evidenceSource:
+          'Calverley PMA, Anderson JA, Celli B, et al. N Engl J Med 2007;356:775-789 (TORCH, NCT00268216)',
+        doi: '10.1056/NEJMoa063070',
+        measuredMetric:
+          'Three-year all-cause mortality and pneumonia incidence by treatment arm in chronic obstructive pulmonary disease',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'flu-a3',
+        category: 'measured',
+        title: 'AUSTRI: 11,679 patients, and adding salmeterol cut severe exacerbations by 21%',
+        laymanSummary:
+          'The largest trial of this drug asked whether adding a long-acting bronchodilator to it was dangerous. It was not, and it prevented attacks: 480 people had a severe exacerbation on the combination against 597 on fluticasone alone.',
+        technicalDetails:
+          'AUSTRI randomised 11,679 patients aged 12 and over with persistent asthma and a severe exacerbation in the preceding year to fluticasone plus salmeterol or fluticasone alone for 26 weeks. Serious asthma-related events were 36 events in 34 patients on the combination against 38 events in 33 patients on fluticasone alone, hazard ratio 1.03 (95% CI 0.64 to 1.66), meeting noninferiority at P=0.003. There were no asthma-related deaths, and the two asthma-related intubations that occurred were both in the fluticasone-only group. Severe exacerbations occurred in 480 of 5,834 (8%) against 597 of 5,845 (10%), hazard ratio 0.79 (95% CI 0.70 to 0.89), P<0.001.',
+        evidenceSource:
+          'Stempel DA, Raphiou IH, Kral KM, et al. N Engl J Med 2016;374:1822-1830 (AUSTRI, NCT01475721)',
+        doi: '10.1056/NEJMoa1511049',
+        measuredMetric:
+          'First serious asthma-related event and first severe exacerbation, fluticasone-salmeterol against fluticasone alone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'flu-a4',
+        category: 'failed',
+        title: 'An HIV drug or an antifungal turns the inhaler into an oral steroid',
+        laymanSummary:
+          'Fluticasone is safe systemically because the liver destroys almost all of what gets absorbed. Several common medicines block the enzyme that does the destroying, and when that happens people on an ordinary inhaler have developed full Cushing syndrome and adrenal failure.',
+        technicalDetails:
+          'The label states that fluticasone propionate is a CYP3A4 substrate and that use of strong CYP3A4 inhibitors — ritonavir, atazanavir, clarithromycin, indinavir, itraconazole, nefazodone, nelfinavir, saquinavir, ketoconazole, telithromycin — is not recommended because increased systemic corticosteroid adverse effects may occur. A drug interaction trial with fluticasone propionate aqueous nasal spray in healthy subjects showed that ritonavir significantly increased plasma fluticasone exposure and significantly reduced serum cortisol. During postmarketing use there have been reports of clinically significant interactions in patients receiving fluticasone propionate and ritonavir resulting in systemic corticosteroid effects including Cushing syndrome and adrenal suppression. This is not a rare idiosyncrasy: it is the drug behaving exactly as its pharmacology predicts once first-pass metabolism is removed.',
+        evidenceSource:
+          'FLOVENT HFA (fluticasone propionate) United States prescribing information, Drug Interactions 7.1 and Clinical Pharmacology 12.3',
+        measuredMetric:
+          'Plasma fluticasone exposure and serum cortisol with and without ritonavir, and postmarketing reports of Cushing syndrome',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'flu-a5',
+        category: 'inferred',
+        title: 'The 18-fold affinity number is a potency claim the label refuses to interpret',
+        laymanSummary:
+          'Fluticasone is described everywhere as the most potent of the older inhaled steroids, on the basis that it binds the receptor eighteen times as tightly as dexamethasone. The label gives that number and then says nobody knows what it means clinically.',
+        technicalDetails:
+          'The Mechanism of Action section reports in-vitro glucocorticoid receptor binding affinity 18 times that of dexamethasone, almost twice that of beclomethasone-17-monopropionate and over 3 times that of budesonide, adds that the McKenzie vasoconstrictor assay in man is consistent, and then states that the clinical significance of these findings is unknown. Receptor affinity is a statement about potency at the surface where the drug lands. It does not by itself predict clinical efficacy, which also depends on how much drug is deposited there, nor systemic risk, which depends on absorbed fraction and hepatic clearance. The adrenal-crisis survey is the clearest illustration: the drug with the highest affinity accounted for 91% of cases while being, at the time, the least prescribed of the three.',
+        evidenceSource:
+          'FLOVENT HFA United States prescribing information, Clinical Pharmacology 12.1; Todd GRG et al., Arch Dis Child 2002;87:457-461',
+        doi: '10.1136/adc.87.6.457',
+        inferredClaim:
+          'That an 18-fold in-vitro receptor affinity over dexamethasone establishes a clinical potency ranking — a translation the label explicitly declines, and one that the adrenal-crisis data complicate rather than support',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'flu-a6',
+        category: 'measured',
+        title: 'The label asks for four separate long-term surveillance measures',
+        laymanSummary:
+          'The prescribing information does not treat this as a drug with no systemic effect. It asks for children’s growth to be monitored, for bone density to be assessed initially and periodically, for referral to an eye specialist if vision changes, and for slow withdrawal if signs of steroid excess appear.',
+        technicalDetails:
+          'The FLOVENT HFA Warnings and Precautions require: monitoring for Candida albicans infection of the mouth and pharynx with rinsing after inhalation; caution in existing tuberculosis and fungal, bacterial, viral, parasitic and ocular herpes simplex infections, with a more serious or fatal course of chickenpox or measles possible in susceptible patients; slow tapering when transferring from systemic corticosteroids because of impaired adrenal function; recognition that hypercorticism and adrenal suppression may occur at very high dosages or at regular dosage in susceptible individuals, with slow discontinuation if they do; assessment for decreased bone mineral density initially and periodically; monitoring of growth in paediatric patients; and consideration of ophthalmologist referral for glaucoma and cataracts with long-term use. That list is what a well-characterised systemic risk profile looks like written into a label.',
+        evidenceSource:
+          'FLOVENT HFA (fluticasone propionate) United States prescribing information, Warnings and Precautions 5.1 to 5.9',
+        measuredMetric: 'Labelled long-term monitoring requirements for an inhaled corticosteroid',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Inhaled or sprayed onto the inflamed surface',
+        laymanDesc:
+          'A measured dose lands on the airway or nasal lining. A large part of every inhaled dose lands in the mouth instead and is swallowed, which is where the systemic story begins.',
+        molecularDetail:
+          'Fluticasone propionate as a pressurised HFA aerosol, a Diskus dry powder, an aqueous nasal suspension or a topical cream. Micronised particle size distribution determines the fraction reaching the small airways rather than the oropharynx and is a specification, not an accident.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The liver destroys almost everything that is swallowed',
+        laymanDesc:
+          'What goes down the throat is absorbed from the gut and passes through the liver, which breaks it down before it can circulate. That first pass is what makes an inhaled steroid different from a tablet.',
+        molecularDetail:
+          'Fluticasone propionate is a CYP3A4 substrate hydrolysed to an inactive 17-beta carboxylic acid metabolite, with negligible oral bioavailability. The systemic safety of the drug is a pharmacokinetic property rather than a pharmacodynamic one, which is why strong CYP3A4 inhibitors abolish it.',
+        iconName: 'Lock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It binds the glucocorticoid receptor very tightly',
+        laymanDesc:
+          'Inside a lining cell it binds a receptor waiting in the cytoplasm — more tightly than most other steroids, though the label declines to say what that means for a patient.',
+        molecularDetail:
+          'In-vitro glucocorticoid receptor binding affinity 18 times dexamethasone, almost twice beclomethasone-17-monopropionate and over 3 times budesonide, with the McKenzie vasoconstrictor assay in man consistent and clinical significance stated as unknown.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The pair enters the nucleus and rewrites which genes are read',
+        laymanDesc:
+          'The receptor carries the drug into the nucleus and switches off the inflammatory programme. It is a change in gene transcription, which is why it takes days and does nothing during an attack.',
+        molecularDetail:
+          'Activated receptor represses pro-inflammatory transcription factors and transactivates anti-inflammatory genes, with effects across mast cells, eosinophils, neutrophils, macrophages and lymphocytes and across histamine, eicosanoids, leukotrienes and cytokines. The label states that corticosteroids do not affect asthma symptoms immediately and that maximum benefit takes time.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Inflammation subsides and exacerbations become less frequent',
+        laymanDesc:
+          'The lining becomes less swollen and less twitchy. Adding a long-acting bronchodilator on top cut severe attacks by a further fifth in nearly twelve thousand people.',
+        molecularDetail:
+          'In AUSTRI, severe exacerbations occurred in 480 of 5,834 (8%) on fluticasone-salmeterol against 597 of 5,845 (10%) on fluticasone alone, hazard ratio 0.79 (95% CI 0.70 to 0.89, P<0.001), with a serious-asthma-event hazard ratio of 1.03 (95% CI 0.64 to 1.66).',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Where the design fails, it fails completely',
+        laymanDesc:
+          'Above the licensed dose, or alongside a medicine that blocks the liver enzyme, the same inhaler behaves like an oral steroid — adrenal collapse, low blood sugar, seizures, Cushing syndrome.',
+        molecularDetail:
+          'Thirty of 33 confirmed adrenal crises in a United Kingdom national survey were on fluticasone at 500 to 2,000 micrograms per day, including nine children with coma and convulsions and one death. Postmarketing reports of ritonavir coadministration record Cushing syndrome and adrenal suppression, and a formal interaction study showed significantly raised plasma fluticasone and significantly reduced serum cortisol.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'AUSTRI (NCT01475721)',
+        phase: 'Phase 4, randomised, double-blind, FDA-mandated safety trial, 26 weeks',
+        sampleSize: 11679,
+        primaryEndpoint:
+          'Time to first serious asthma-related event — death, endotracheal intubation or hospitalisation',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 1.03 (95% CI 0.64 to 1.66), noninferiority achieved at P=0.003; severe exacerbations hazard ratio 0.79 (95% CI 0.70 to 0.89), P<0.001',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'TORCH (NCT00268216)',
+        phase: 'Phase 3/4, randomised, double-blind, placebo-controlled, four-arm, three years',
+        sampleSize: 6112,
+        primaryEndpoint:
+          'Death from any cause, salmeterol-fluticasone combination against placebo, in chronic obstructive pulmonary disease',
+        endpointMet: false,
+        statisticalPValue:
+          'Combination against placebo hazard ratio 0.825 (95% CI 0.681 to 1.002), P=0.052. All-cause mortality by arm: 12.6% combination, 13.5% salmeterol, 15.2% placebo, 16.0% fluticasone alone; monotherapy arms did not differ significantly from placebo.',
+        unreportedAdverseSignals:
+          'The fluticasone-only arm had the numerically highest mortality of the four. Pneumonia was 18.3% on fluticasone alone and 19.6% on the combination against 12.3% on placebo, P<0.001.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'VESTRI (NCT01462344)',
+        phase: 'Phase 4, randomised, double-blind, FDA-mandated paediatric safety trial, 26 weeks',
+        sampleSize: 6208,
+        primaryEndpoint:
+          'Time to first serious asthma-related event in children aged 4 to 11 years',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 1.28 (95% CI 0.73 to 2.27), noninferiority against an upper bound of 2.675 achieved, P=0.006; severe exacerbations hazard ratio 0.86 (95% CI 0.73 to 1.01)',
+        unreportedAdverseSignals:
+          'Every serious asthma-related event in the trial was a hospitalisation. The noninferiority margin in children was wider than the adult one.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Todd 2002 — United Kingdom national survey of adrenal crisis',
+        phase: 'National questionnaire survey with case confirmation by HPA-axis testing',
+        sampleSize: 33,
+        primaryEndpoint:
+          'Confirmed cases of acute adrenal crisis associated with inhaled corticosteroids, and the drug involved',
+        endpointMet: true,
+        statisticalPValue:
+          '33 confirmed cases from 2,912 questionnaires — 28 children and 5 adults; 30 (91%) on fluticasone, 1 on fluticasone and budesonide, 2 on beclometasone',
+        unreportedAdverseSignals:
+          'A survey cannot give a rate, because the denominator of exposed patients is unknown. What it does establish is the distribution across drugs, and that distribution was strongly skewed toward the least-prescribed agent of the three at the time.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '30 of 33 confirmed adrenal crises in a United Kingdom national survey occurred on fluticasone, including nine children with coma and convulsions and one death',
+        'Three-year all-cause mortality of 16.0% on fluticasone alone against 15.2% on placebo in TORCH, the highest of the four arms',
+        'Pneumonia in 18.3% on fluticasone alone against 12.3% on placebo, P<0.001',
+        'Severe asthma exacerbations 21% lower when salmeterol was added, hazard ratio 0.79 (95% CI 0.70 to 0.89) in 11,679 patients',
+        'Significantly raised plasma fluticasone and significantly reduced serum cortisol with ritonavir in a formal interaction study',
+      ],
+      unsupportedInferences: [
+        'That an 18-fold in-vitro receptor affinity over dexamethasone establishes a clinical potency ranking — the label states the significance is unknown',
+        'That the negligible oral bioavailability makes systemic effects impossible, when a CYP3A4 inhibitor removes exactly that protection',
+        'That a national survey of 33 cases gives a rate, when the number of exposed patients is unknown',
+        'That inhaled corticosteroid monotherapy benefits chronic obstructive pulmonary disease, which TORCH’s four-arm design does not support',
+      ],
+      whatFailedInitially: [
+        'The fluticasone-only arm of TORCH had the highest three-year mortality of the four arms and 50% more pneumonia than placebo',
+        'A national survey found 91% of confirmed inhaled-steroid adrenal crises on this one drug, at doses within contemporary guideline ranges',
+        'Coadministration with ritonavir has produced Cushing syndrome and adrenal suppression in postmarketing use',
+        'The label requires bone density assessment, paediatric growth monitoring and ophthalmological referral — three surveillance obligations a drug with no systemic effect would not need',
+      ],
+      realWorldOutcome: [
+        'Among the most widely prescribed medicines in the world, generic across 51 listed presentations and available over the counter as a nasal spray in the United States',
+        'Inhaled corticosteroid monotherapy has been abandoned in chronic obstructive pulmonary disease, and the steroid is now given only with a bronchodilator',
+        'The licensed paediatric dose ceiling exists because of the adrenal-crisis cases, not in spite of them',
+        'The newer furoate ester re-entered the market in proprietary devices after the propionate went generic',
+      ],
+    },
+    deliverySystem: {
+      type: 'Pressurised HFA inhalation aerosol, Diskus dry-powder inhaler, aqueous nasal spray, and topical cream and ointment',
+      description:
+        'Inhaled twice daily for asthma maintenance and never for acute symptoms. A large fraction of every inhaled dose is deposited in the mouth and swallowed, which is why rinsing and spitting after each dose is part of the instructions and why hepatic first-pass metabolism carries the systemic safety of the whole product.',
+      safetyProfile:
+        'Candida albicans infection of the mouth and pharynx, with periodic monitoring and rinsing without swallowing after inhalation. Potential worsening of existing tuberculosis and of fungal, bacterial, viral, parasitic and ocular herpes simplex infections, with a more serious or fatal course of chickenpox or measles possible in susceptible patients. Risk of impaired adrenal function when transferring from systemic corticosteroids, requiring slow tapering. Hypercorticism and adrenal suppression may occur at very high dosages or at regular dosage in susceptible individuals. Assessment for decreased bone mineral density initially and periodically. Monitoring of growth in paediatric patients. Glaucoma and cataracts with long-term use, with ophthalmologist referral to be considered. Strong CYP3A4 inhibitors including ritonavir and ketoconazole are not recommended, with postmarketing reports of Cushing syndrome and adrenal suppression.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is my preventer inhaler safe for my child?',
+        a: 'At the licensed dose, for the great majority of children, yes — and the reason there is a licensed dose ceiling is worth knowing. A United Kingdom survey of nearly three thousand specialists identified 33 confirmed cases of acute adrenal collapse on inhaled steroids, 30 of them on fluticasone, all at 500 to 2,000 micrograms a day. Twenty-three of the children presented with dangerously low blood sugar, nine with coma and seizures, and one child died. The authors concluded that the licensed paediatric dose of 400 micrograms a day should not be exceeded without a specialist in problematic asthma supervising. Untreated asthma is also dangerous; the point is to stay inside the dose, not to stop the drug.',
+        auditNote:
+          'A survey cannot produce a rate, because nobody knows how many children were exposed. What it produces is a distribution across drugs, and that distribution was heavily skewed toward one.',
+      },
+      {
+        q: 'Why can I not take it with my HIV medicine?',
+        a: 'Because the drug’s entire systemic safety depends on the liver destroying what gets absorbed, and ritonavir blocks the enzyme that does it. A formal interaction study in healthy volunteers found that ritonavir significantly raised plasma fluticasone and significantly lowered serum cortisol, and postmarketing reports record people on the combination developing Cushing syndrome and adrenal suppression from an ordinary inhaler or nasal spray. The label states that strong CYP3A4 inhibitors — ritonavir, atazanavir, itraconazole, ketoconazole, clarithromycin and others — are not recommended. This is not an unpredictable reaction; it is the pharmacology working exactly as described with one step removed.',
+      },
+      {
+        q: 'Should I take it for COPD?',
+        a: 'Not on its own. TORCH compared four arms over three years in 6,112 people, and the fluticasone-alone group had the highest all-cause mortality of the four at 16.0%, against 15.2% on placebo — a numerical rather than a statistical excess, since neither monotherapy differed significantly from placebo. The same arm had pneumonia in 18.3% against 12.3% on placebo. Inhaled corticosteroid monotherapy is no longer used in this disease. Where a steroid is used it is added to bronchodilators, and the trade there is fewer exacerbations against more pneumonia.',
+      },
+      {
+        q: 'Is fluticasone stronger than budesonide?',
+        a: 'It binds the receptor more than three times as tightly in a test tube, and the label that reports that number says the clinical significance is unknown. Two drugs can differ threefold in receptor affinity and be used at similar microgram doses, because what reaches the airway depends on the device and the particle size as much as on the molecule. Where the difference does show up is systemic: the national adrenal-crisis survey found 30 cases on fluticasone and one involving budesonide, at a time when fluticasone was the least prescribed of the inhaled steroids. That is the comparison worth carrying, and it is about exposure rather than about strength.',
+      },
+      {
+        q: 'Do I really need to rinse my mouth?',
+        a: 'Yes, and it costs nothing. A large fraction of every inhaled dose lands in the mouth and throat rather than the lung. Left there it causes oral thrush, which the label asks prescribers to monitor for; swallowed, it adds to the systemic dose that the liver then has to deal with. The instruction is to rinse with water and spit without swallowing after each inhalation. It removes drug from the mouth and throat and takes nothing away from the dose that has already reached the lung.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Todd GRG, Acerini CL, Ross-Russell R, Zahra S, Warner JT, McCance D. Survey of adrenal crisis associated with inhaled corticosteroids in the United Kingdom. Arch Dis Child 2002;87:457-461',
+        identifier: '10.1136/adc.87.6.457',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Calverley PMA, Anderson JA, Celli B, et al. Salmeterol and fluticasone propionate and survival in chronic obstructive pulmonary disease. N Engl J Med 2007;356:775-789',
+        identifier: '10.1056/NEJMoa063070',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stempel DA, Raphiou IH, Kral KM, et al. Serious Asthma Events with Fluticasone plus Salmeterol versus Fluticasone Alone. N Engl J Med 2016;374:1822-1830',
+        identifier: '10.1056/NEJMoa1511049',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stempel DA, Szefler SJ, Pedersen S, et al. Safety of Adding Salmeterol to Fluticasone Propionate in Children with Asthma. N Engl J Med 2016;375:840-849',
+        identifier: '10.1056/NEJMoa1606356',
+        kind: 'doi',
+      },
+      {
+        label: 'AUSTRI — fluticasone propionate with and without salmeterol in 11,679 patients',
+        identifier: 'NCT01475721',
+        kind: 'nct',
+      },
+      {
+        label: 'TORCH — three-year four-arm survival trial including fluticasone monotherapy',
+        identifier: 'NCT00268216',
+        kind: 'nct',
+      },
+      {
+        label:
+          'FLOVENT HFA (fluticasone propionate inhalation aerosol) United States prescribing information — Warnings and Precautions 5.1 to 5.9, Drug Interactions 7.1, Clinical Pharmacology 12.1 and 12.3',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22FLOVENT+HFA%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'PubChem CID 444036 — fluticasone propionate structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/444036',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 12. Beclometasone — a prodrug 25 times less receptor-avid than its own metabolite, whose
+  //     nasal form measurably slows children's growth and whose propellant change altered the dose.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'beclomethasone',
+    name: 'Beclomethasone',
+    tradeName: 'Qvar / Qvar Redihaler / Qnasl / Beconase AQ / Vancenase AQ / Beclovent',
+    sponsor:
+      'Schering (originator of the United States nasal and inhaled products); the inhaled aerosol is now marketed by Teva as Qvar Redihaler',
+    targetGene: 'NR3C1',
+    targetProtein:
+      'Glucocorticoid receptor — bound not by the administered dipropionate but by its hydrolysis product, beclometasone-17-monopropionate',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1976,
+    indication:
+      'Inhalation aerosol: maintenance treatment of asthma as prophylactic therapy in adults and children aged 4 and over. Not indicated for the relief of acute bronchospasm. Nasal aerosol and nasal spray: seasonal and perennial allergic rhinitis, and non-allergic rhinitis in some presentations.',
+    patientFriendlyIndication:
+      'A daily preventer inhaler for asthma, and a nasal spray for hay fever',
+    anatomicalSite:
+      'Airway epithelium and submucosal inflammatory cells (inhaled); nasal mucosa (spray and nasal aerosol)',
+    conditionContext: {
+      conditionExplainer:
+        'Beclometasone is administered as a diester and is not itself the drug that acts. The airway and the bloodstream hydrolyse it rapidly to a monoester, and that monoester is what binds the glucocorticoid receptor — about twenty-five times more tightly than the molecule that was inhaled.',
+      whyItMatters:
+        'That two-step arrangement, plus a change of propellant that altered how deep the particles travel, means the number on the canister maps less directly onto the dose in the lung than it does for any other steroid in this file.',
+      whoTakesThis:
+        'People with persistent asthma from age 4, and people with allergic rhinitis. It is one of the oldest inhaled corticosteroids in use and remains widely prescribed worldwide.',
+      clinicalGoals:
+        'Control of airway or nasal inflammation. The trade-off is measurable: at the highest recommended inhaled dose, twenty-four-hour cortisol production falls by more than a third, and a year of the nasal spray cost children 0.9 cm of growth.',
+    },
+    oneSentenceVerdict:
+      'A corticosteroid diester that is a prodrug, hydrolysed to beclometasone-17-monopropionate which binds the glucocorticoid receptor about 13 times as tightly as dexamethasone and 25 times as tightly as the dose that was inhaled; at the highest recommended inhaled dose it reduced 24-hour urinary free cortisol by 37.3%, and a year of the nasal spray in 100 children produced 5.0 cm of growth against 5.9 cm on placebo.',
+    laymanHowItWorks:
+      'What comes out of the inhaler is not the active drug. It is a chemical precursor that the lining of the airway rapidly converts into the working form, which then enters the cells, binds a receptor and carries it into the nucleus to switch off inflammatory genes. Because the conversion happens where the drug lands, the effect is concentrated there — but not confined there, and the label carries the measurement that proves it: at the top licensed dose, the body’s own cortisol production drops by more than a third.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 78,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$30.24 per gram, the median across 4 listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Only four presentations are listed, all brand, at thirty dollars a gram — a striking figure for a molecule first used in asthma in the early 1970s. The reason is the same one that recurs across this file: the compound is ancient and free, and the breath-actuated pressurised inhaler that delivers it is not. A generic would have to reproduce a deposition profile, not a chemical, and the propellant change from CFC to HFA is direct evidence that deposition and not chemistry decides what the drug does.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The inhaled and intranasal corticosteroids are close substitutes for one another in efficacy and differ mainly in systemic exposure. Beclometasone is the one with a positive intranasal growth-suppression trial, which is the single most useful fact when choosing between them for a child. In asthma, its distinctive contribution is not the molecule but a strategy: the trial that showed a steroid taken only when symptoms occur can match one taken twice daily.',
+      conventionalRx: [
+        {
+          name: 'Mometasone furoate (Nasonex, Asmanex)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'The direct comparison is unusually clean. Two studies published in the same issue of the same journal, with the same entry criteria and nearly the same size, found 0.9 cm of growth suppression over a year with intranasal beclometasone and none with intranasal mometasone.',
+          typicalCost:
+            'US$0.7141 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: a matched negative growth trial, generic, far cheaper per unit. Cons: the inhaled product carries the same class warnings, and the reassuring result is for the nasal route only.',
+        },
+        {
+          name: 'Fluticasone propionate (Flovent, Flonase)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'About twice the receptor affinity of beclometasone-17-monopropionate by the fluticasone label’s comparison. It is also the drug that accounted for 30 of the 33 confirmed adrenal crises in a United Kingdom national survey, against two on beclometasone.',
+          typicalCost:
+            'US$0.6920 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: generic across 51 presentations, cheap, over the counter as a nasal spray. Cons: the adrenal-crisis distribution, and the same CYP3A4 interaction.',
+        },
+        {
+          name: 'Budesonide (Pulmicort, Rhinocort)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'About two-thirds the receptor affinity of beclometasone-17-monopropionate by the QVAR label’s comparison, and the steroid with the only measured final-adult-height outcome: 1.2 cm lower in children followed into adulthood.',
+          typicalCost:
+            'US$0.7198 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: nebuliser suspension for young children, WHO Model List of Essential Medicines, the best long-term data. Cons: those data document a permanent height cost.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Have a child’s height measured properly, not estimated',
+          action:
+            'Ask for a stadiometer measurement at every review for any child on a regular inhaled or intranasal steroid.',
+          patientImpact:
+            'In the one-year randomised trial of intranasal beclometasone, children grew 5.0 cm against 5.9 cm on placebo, and the difference was already evident at the one-month visit. Adrenal function testing in the same trial showed no difference between groups.',
+          clinicalPrecaution:
+            'Growth velocity was the sensitive measure and the cortisol test was not. A normal cortisol result does not exclude a systemic steroid effect in a child.',
+        },
+        {
+          name: 'Rinse and spit after every inhaled dose',
+          action: 'Rinse the mouth with water without swallowing after each inhalation.',
+          patientImpact:
+            'The label states that Candida albicans infection of the mouth and throat may occur, asks for periodic monitoring of the oral cavity, and gives this instruction directly.',
+          clinicalPrecaution:
+            'It removes drug deposited in the mouth and throat, which reduces both thrush and the swallowed fraction, and takes nothing away from the dose already in the lung.',
+        },
+        {
+          name: 'Treat sudden wheeze immediately after a dose as a reason to stop',
+          action:
+            'If wheezing increases right after inhaling, use a short-acting reliever and contact the prescriber before taking another dose.',
+          patientImpact:
+            'The label describes paradoxical bronchospasm with an immediate increase in wheezing after dosing, to be treated at once with an inhaled short-acting bronchodilator, with the product discontinued.',
+          clinicalPrecaution:
+            'This is the inhaler causing the symptom it is meant to prevent. Continuing to use it because it is the preventer is the error the warning exists to stop.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@H]1C[C@H]2[C@@H]3CCC4=CC(=O)C=C[C@@]4([C@]3([C@H](C[C@@]2([C@]1(C(=O)CO)O)C)O)Cl)C',
+      chemicalFormula: 'C22H29ClO5',
+      molecularWeight: '408.90 g/mol',
+      targetReceptorAffinity:
+        'The structure recorded here is beclometasone, the parent alcohol. The marketed drug substance is beclometasone dipropionate, molecular formula C28H37ClO7 and molecular weight 521.1 per the label, and it is a prodrug: it undergoes rapid and extensive conversion to beclometasone-17-monopropionate during absorption. The label states that beclometasone-17-monopropionate binds the human glucocorticoid receptor with an affinity approximately 13 times that of dexamethasone, 6 times that of triamcinolone acetonide, 1.5 times that of budesonide and 25 times that of beclometasone dipropionate itself — and that the clinical significance of these findings is unknown. It also differs from dexamethasone in carrying a chlorine at the 9-alpha position instead of a fluorine, and a 16-beta rather than 16-alpha methyl group.',
+      structureSource: {
+        label:
+          'PubChem CID 20469 (beclometasone) — canonical SMILES, molecular formula and weight for the parent alcohol; the dipropionate ester is the administered drug substance',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/20469',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bec-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the 9-alpha chloro, 16-beta methyl pregnadiene core',
+          description:
+            'Confirm the chlorine at the 9-alpha position and the 16-beta methyl configuration. Both distinguish this molecule from dexamethasone, which carries a fluorine and a 16-alpha methyl, and the 16-beta epimer is a different compound rather than a weaker one.',
+          reagentsAndBuffer:
+            'Beclometasone dipropionate reference standard, reversed-phase HPLC with ultraviolet detection at 240 nm, 1H and 13C NMR in DMSO-d6, chlorine elemental analysis, loss on drying',
+        },
+        {
+          id: 'bec-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Diesterification at the 17-alpha and 21 hydroxyls',
+          description:
+            'Acylate both hydroxyls with propionic anhydride to give the dipropionate. The diester is the prodrug: it is more lipophilic and far less receptor-avid than the monoester it becomes, and controlling the ratio of 17-mono, 21-mono and di-ester in the finished substance is the central purity problem of the route.',
+          dependsOnStepId: 'bec-w1',
+          reagentsAndBuffer:
+            'Propionic anhydride, pyridine or triethylamine, 4-dimethylaminopyridine catalyst, anhydrous dichloromethane, controlled temperature, nitrogen atmosphere',
+        },
+        {
+          id: 'bec-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and solution-aerosol formulation in HFA',
+          description:
+            'Crystallise the dipropionate and formulate it as a solution rather than a suspension in hydrofluoroalkane propellant. This is the step that changed the drug: a solution aerosol in HFA produces much finer particles than the old CFC suspension, and the label’s own cortisol data show the reformulated product behaves differently at a nominally similar dose.',
+          dependsOnStepId: 'bec-w2',
+          reagentsAndBuffer:
+            'Acetone or ethanol crystallisation, ethanol cosolvent, HFA-134a propellant, pressure-filling equipment, cascade impaction for aerodynamic particle size distribution, HPLC assay for the 17-mono and 21-mono ester impurities',
+        },
+        {
+          id: 'bec-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Hydrolysis to the monoester in human lung tissue and receptor translocation',
+          description:
+            'Incubate the dipropionate with human bronchial epithelial cells or lung homogenate, quantify formation of beclometasone-17-monopropionate, and only then measure receptor translocation. Running the receptor assay on the dipropionate alone would understate activity twenty-five-fold, because the compound applied is not the compound that binds.',
+          dependsOnStepId: 'bec-w3',
+          reagentsAndBuffer:
+            'Human bronchial epithelial cells or lung S9 fraction, esterase-containing buffer at 37C, LC-MS/MS quantification of beclometasone dipropionate, 17-BMP and beclometasone, GRE-luciferase reporter cells, dexamethasone and budesonide as parallel references',
+        },
+        {
+          id: 'bec-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Affinity ranking reported alongside a cortisol-suppression readout',
+          description:
+            'Report the monoester competition binding constant with a 24-hour urinary free cortisol measurement from the clinical programme. The label carries both, and the pairing is what makes the numbers interpretable: a 13-fold affinity over dexamethasone means little on its own, and a 37.3% cortisol reduction at the top recommended dose means a great deal.',
+          dependsOnStepId: 'bec-w4',
+          reagentsAndBuffer:
+            'Tritiated dexamethasone competition binding on cytosolic glucocorticoid receptor, 24-hour urinary free cortisol by LC-MS/MS, short cosyntropin stimulation testing, plasma protein binding by equilibrium dialysis',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bec-a1',
+        category: 'failed',
+        title: 'One year of the nasal spray cost children 0.9 cm, detectable within a month',
+        laymanSummary:
+          'A hundred prepubertal children with year-round hay fever were randomised to intranasal beclometasone or placebo for a year, with height measured seven times. The treated children grew 5.0 cm; the placebo children grew 5.9 cm. The gap was already visible at the first month.',
+        technicalDetails:
+          'A double-blind, randomised, parallel-group study treated 100 prepubertal children aged 6 to 9 with perennial allergic rhinitis with aqueous beclometasone dipropionate 168 micrograms twice daily (n=51) or placebo (n=49) for one year, with baseline height between the 5th and 95th percentile and skeletal age within two years of chronological age. Ninety completed. The primary safety parameter was the rate of change in standing height, analysed as the slope of a linear regression per subject. Overall growth rate was significantly slower on beclometasone in both the intention-to-treat and completer analyses; mean change in standing height at one year was 5.0 cm against 5.9 cm. The difference was evident by the one-month visit, was consistent across age and sex subgroups and across children with and without prior corticosteroid use, and survived a z-score normalisation against national height data that ruled out a baseline imbalance as the explanation. No significant between-group difference was found in hypothalamic-pituitary-adrenal axis assessments.',
+        evidenceSource: 'Skoner DP, Rachelefsky GS, Meltzer EO, et al. Pediatrics 2000;105:E23',
+        doi: '10.1542/peds.105.2.e23',
+        measuredMetric: 'Rate of change in standing height over one year against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bec-a2',
+        category: 'measured',
+        title: 'A matched trial of another nasal steroid published alongside it found nothing',
+        laymanSummary:
+          'The same journal issue carried an almost identical study of intranasal mometasone in 98 children, and it found no growth suppression at all. Two intranasal steroids, two matched designs, two opposite answers — which is why they cannot be treated as interchangeable.',
+        technicalDetails:
+          'Schenkel and colleagues randomised 98 prepubertal children aged 3 to 9 with perennial allergic rhinitis to mometasone furoate aqueous nasal spray 100 micrograms once daily or placebo for one year, with the same entry criteria on height percentile and skeletal age. Eighty-two completed. Change in height at one year was 6.95 cm on mometasone against 6.35 cm on placebo, growth rate averaged 0.018 cm per day in both groups, and cosyntropin stimulation testing at baseline, 26 and 52 weeks showed no HPA-axis suppression. The two studies together are the strongest available demonstration that systemic exposure differs between intranasal corticosteroids, and they also demonstrate that the design used is capable of detecting a difference — which is what makes the negative one credible.',
+        evidenceSource: 'Schenkel EJ, Skoner DP, Bronsky EA, et al. Pediatrics 2000;105:E22',
+        doi: '10.1542/peds.105.2.e22',
+        measuredMetric:
+          'Change in standing height over one year in a matched-design study of a different intranasal corticosteroid',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bec-a3',
+        category: 'failed',
+        title: 'At the top licensed inhaled dose, cortisol production falls by more than a third',
+        laymanSummary:
+          'The label reports the measurement directly. Forty steroid-naive patients were studied, and the highest recommended dose of the inhaler reduced the body’s own twenty-four-hour cortisol output by 37.3%. Even the lowest dose studied reduced it by 12.2%.',
+        technicalDetails:
+          'The effects on the hypothalamic-pituitary-adrenal axis were studied in 40 corticosteroid-naive patients, comparing QVAR MDI at 80, 160 or 320 micrograms twice daily with placebo and with 336 micrograms twice daily of CFC-formulated beclometasone dipropionate. Active treatment groups showed an expected dose-related reduction in 24-hour urinary free cortisol. At the highest recommended dose, 320 micrograms twice daily, the reduction was 37.3%, against 47.3% for CFC-BDP at 336 micrograms twice daily; 160 micrograms twice daily gave 24.6% and 80 micrograms twice daily gave 12.2%. A separate open-label study of 354 asthma patients treated at recommended doses for one year found that fewer than 1% had an abnormal response, defined as a peak below 18 micrograms per decilitre, to a short cosyntropin test. A dose-related fall in cortisol output at every studied dose, and a normal cosyntropin response in more than 99% of patients, are both true at once and describe different sensitivities of measurement.',
+        evidenceSource:
+          'QVAR REDIHALER (beclometasone dipropionate) United States prescribing information, Clinical Pharmacology 12.2 Pharmacodynamics',
+        measuredMetric:
+          'Percentage reduction in 24-hour urinary free cortisol by inhaled dose, and short cosyntropin response after one year',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bec-a4',
+        category: 'inferred',
+        title: 'The molecule in the canister is 25 times less active than the one that works',
+        laymanSummary:
+          'Beclometasone dipropionate is a prodrug. Its own label reports that the metabolite it turns into binds the receptor twenty-five times more tightly than it does — and then says nobody knows what the affinity numbers mean clinically.',
+        technicalDetails:
+          'The label states that beclometasone dipropionate is a prodrug rapidly activated by hydrolysis to the active monoester beclometasone-17-monopropionate, and that 17-BMP has been shown in vitro to bind the human glucocorticoid receptor with an affinity approximately 13 times that of dexamethasone, 6 times that of triamcinolone acetonide, 1.5 times that of budesonide and 25 times that of beclometasone dipropionate — followed by the statement that the clinical significance of these findings is unknown. The consequence is that any potency comparison against this drug depends on whether the parent or the metabolite is being compared, and the two differ by more than an order of magnitude. The fluticasone label, for example, compares itself to beclometasone-17-monopropionate rather than to beclometasone dipropionate, which is the right comparison and is easy to misread as a comparison against the marketed product.',
+        evidenceSource:
+          'QVAR REDIHALER United States prescribing information, Clinical Pharmacology 12.1; FLOVENT HFA United States prescribing information, Clinical Pharmacology 12.1',
+        inferredClaim:
+          'That a receptor-affinity ranking naming "beclomethasone" specifies a single potency — the administered diester and its active monoester differ 25-fold, and comparisons must name which one they mean',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bec-a5',
+        category: 'conclusion_shift',
+        title: 'Changing the propellant changed the drug, and the label’s own numbers show it',
+        laymanSummary:
+          'When CFC propellants were banned, this inhaler was reformulated. The new version produces much finer particles that travel deeper into the lung, so the same number of micrograms is no longer the same dose. The label compares them directly: 320 micrograms twice daily of the new formulation suppressed cortisol less than 336 micrograms twice daily of the old one.',
+        technicalDetails:
+          'The original beclometasone dipropionate metered-dose inhalers were chlorofluorocarbon-propelled suspensions. The current product is a hydrofluoroalkane solution aerosol, which produces a substantially finer aerosol and therefore a different distribution between oropharynx, large airways and small airways. The pharmacodynamic study in the label compares the two head to head on the most sensitive available systemic marker: 24-hour urinary free cortisol fell 37.3% on 320 micrograms twice daily of the HFA product against 47.3% on 336 micrograms twice daily of CFC-BDP. A near-identical microgram dose produced a measurably different systemic effect. That is the clearest demonstration in this file that for an inhaled drug, the number on the canister is a property of the product rather than of the molecule, and that dose-equivalence tables written for one formulation do not transfer to another.',
+        evidenceSource:
+          'QVAR REDIHALER United States prescribing information, Clinical Pharmacology 12.2 and Description 11',
+        inferredClaim:
+          'That "beclometasone 400 micrograms a day" names a defined exposure — it names a nominal canister dose, and the label’s own comparison shows two formulations at similar nominal doses producing different systemic effects',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bec-a6',
+        category: 'measured',
+        title: 'BEST: a steroid taken only when needed matched one taken twice daily',
+        laymanSummary:
+          'In 455 people with mild asthma, using a combined steroid-and-reliever inhaler only when symptoms occurred worked as well over six months as taking the steroid twice a day every day — and delivered a much smaller total amount of steroid.',
+        technicalDetails:
+          'A six-month double-blind, double-dummy, randomised, parallel-group trial assigned 455 patients with mild asthma, mean FEV1 2.96 L or 88.36% predicted, to one of four regimens after a four-week run-in: as-needed beclometasone 250 micrograms plus albuterol 100 micrograms in a single inhaler; as-needed albuterol 100 micrograms alone; regular beclometasone 250 micrograms twice daily with as-needed albuterol; or regular combination twice daily with as-needed albuterol. The primary outcome was morning peak expiratory flow. In the final two weeks, morning peak flow was higher in the as-needed combination group than in the as-needed albuterol group (P=0.04) and exacerbations over six months were fewer (P=0.002), while values in the as-needed combination group did not differ significantly from either regular-treatment group. The cumulative six-month dose of inhaled beclometasone was lower in the as-needed combination group than in either regular group (P<0.001 for both). This is the direct ancestor of the as-needed anti-inflammatory reliever strategy now built around budesonide-formoterol.',
+        evidenceSource:
+          'Papi A, Canonica GW, Maestrelli P, et al. N Engl J Med 2007;356:2040-2052 (BEST, NCT00382889)',
+        doi: '10.1056/NEJMoa063861',
+        measuredMetric:
+          'Morning peak expiratory flow, exacerbation count and cumulative inhaled corticosteroid dose over six months across four regimens',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Inhaled as a fine solution aerosol',
+        laymanDesc:
+          'A breath-actuated inhaler releases a mist that is much finer than the older versions of this product were. Finer particles travel further into the lung and less of the dose is left in the mouth.',
+        molecularDetail:
+          'Beclometasone dipropionate dissolved in hydrofluoroalkane propellant with an ethanol cosolvent, delivered by a breath-actuated pressurised metered-dose inhaler with a dose counter. The predecessor products were CFC-propelled suspensions with a coarser aerosol, and the label carries a head-to-head pharmacodynamic comparison of the two.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It is converted to the working molecule on arrival',
+        laymanDesc:
+          'What lands in the airway is a precursor. Enzymes in the tissue strip one of its two chemical side groups off, and the result is the molecule that actually does the work.',
+        molecularDetail:
+          'The label describes beclometasone dipropionate as a prodrug rapidly activated by hydrolysis to the active monoester, beclometasone-17-monopropionate, undergoing rapid and extensive conversion during absorption. The 17-monopropionate is the species with pharmacological activity.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The monoester binds the glucocorticoid receptor',
+        laymanDesc:
+          'The converted molecule binds a receptor waiting in the cell — about twenty-five times more tightly than the version that was inhaled would have done.',
+        molecularDetail:
+          'Beclometasone-17-monopropionate binds the human glucocorticoid receptor in vitro with an affinity approximately 13 times that of dexamethasone, 6 times triamcinolone acetonide, 1.5 times budesonide and 25 times beclometasone dipropionate, with clinical significance stated as unknown.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Inflammatory transcription is shut down',
+        laymanDesc:
+          'The receptor carries the drug into the nucleus and switches off the genes making inflammatory signals. It takes days, which is why this inhaler is useless during an attack.',
+        molecularDetail:
+          'The label states that the precise mechanism of corticosteroid action on asthma is not known, and describes inhibition of mast cells, eosinophils, basophils, lymphocytes, macrophages and neutrophils and of histamine, eicosanoids, leukotrienes and cytokines.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Airway inflammation subsides',
+        laymanDesc:
+          'The lining becomes less swollen and less reactive. In mild asthma, taking it only when symptoms occurred matched taking it twice daily on peak flow and exacerbations over six months.',
+        molecularDetail:
+          'In BEST, as-needed beclometasone-albuterol in a single inhaler gave higher morning peak expiratory flow (P=0.04) and fewer exacerbations (P=0.002) than as-needed albuterol alone, and did not differ significantly from regular twice-daily beclometasone, at a significantly lower cumulative corticosteroid dose (P<0.001).',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The systemic dose is small and measurable',
+        laymanDesc:
+          'At the highest recommended inhaled dose, the body’s own cortisol output falls by 37%. In children, a year of the nasal spray cost 0.9 cm of growth. Neither is a reason to leave asthma untreated; both are reasons to use the lowest dose that works.',
+        molecularDetail:
+          'Twenty-four-hour urinary free cortisol fell 12.2% at 80 micrograms twice daily, 24.6% at 160 and 37.3% at 320, with fewer than 1% of 354 patients showing an abnormal short-cosyntropin response after a year at recommended doses. The intranasal growth trial found 5.0 cm against 5.9 cm over a year with no HPA-axis difference — growth velocity being the more sensitive measure.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Skoner 2000 — one-year intranasal growth study in children',
+        phase: 'Randomised, double-blind, parallel-group, placebo-controlled, 52 weeks',
+        sampleSize: 100,
+        primaryEndpoint:
+          'Rate of change in standing height over one year in prepubertal children aged 6 to 9 with perennial allergic rhinitis',
+        endpointMet: true,
+        statisticalPValue:
+          'Growth rate significantly slower on beclometasone in both intention-to-treat and completer analyses; mean change in standing height 5.0 cm against 5.9 cm at one year, difference evident by the one-month visit',
+        unreportedAdverseSignals:
+          'There was a statistically significant baseline imbalance in standing height, handled by analysis of covariance and confirmed by z-score normalisation. No between-group difference was found in HPA-axis assessment, so a normal cortisol test did not detect the effect that height measurement did.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'BEST (NCT00382889)',
+        phase: 'Phase 4, randomised, double-blind, double-dummy, four-arm, six months',
+        sampleSize: 455,
+        primaryEndpoint: 'Morning peak expiratory flow rate',
+        endpointMet: true,
+        statisticalPValue:
+          'As-needed combination against as-needed albuterol: higher morning peak flow (P=0.04) and fewer exacerbations (P=0.002); not significantly different from either regular-treatment arm; cumulative beclometasone dose lower than both regular arms (P<0.001)',
+        unreportedAdverseSignals:
+          'The primary endpoint is a peak-flow measurement over the final two weeks of six months in mild asthma, not an exacerbation endpoint in a high-risk population. The exacerbation finding is a secondary result in 455 patients.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'QVAR HPA-axis pharmacodynamic study',
+        phase: 'Randomised, placebo- and active-controlled pharmacodynamic study',
+        sampleSize: 40,
+        primaryEndpoint:
+          '24-hour urinary free cortisol on QVAR MDI 80, 160 or 320 micrograms twice daily against placebo and against CFC-beclometasone 336 micrograms twice daily',
+        endpointMet: true,
+        statisticalPValue:
+          'Dose-related reduction in 24-hour urinary free cortisol: 12.2% at 80 micrograms twice daily, 24.6% at 160 and 37.3% at 320, against 47.3% for CFC-BDP 336 micrograms twice daily',
+        unreportedAdverseSignals:
+          'Forty corticosteroid-naive patients. The separate one-year open-label study in 354 patients found fewer than 1% with an abnormal short-cosyntropin response, so the dose-related cortisol suppression is detectable long before a clinical adrenal test becomes abnormal.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Mean growth of 5.0 cm against 5.9 cm over one year in 100 randomised children on intranasal beclometasone, evident by the one-month visit',
+        'A 37.3% reduction in 24-hour urinary free cortisol at the highest recommended inhaled dose, and 12.2% at the lowest studied dose',
+        'A 47.3% cortisol reduction on the CFC formulation at a near-identical microgram dose, against 37.3% on the HFA formulation',
+        'Receptor affinity of the active monoester approximately 25 times that of the administered dipropionate',
+        'As-needed beclometasone-albuterol matching regular twice-daily beclometasone on peak flow and exacerbations at a significantly lower cumulative steroid dose in 455 patients',
+      ],
+      unsupportedInferences: [
+        'That a normal cortisol stimulation test excludes a systemic steroid effect — the growth study detected one where the HPA-axis test did not',
+        'That a nominal microgram dose specifies exposure, when two formulations at similar nominal doses produced measurably different cortisol suppression',
+        'That an affinity ranking naming "beclomethasone" is unambiguous, when the prodrug and its metabolite differ 25-fold',
+        'That the intranasal growth finding transfers directly to the inhaled product, which is a different route and a different deposited dose',
+      ],
+      whatFailedInitially: [
+        'A year of the nasal spray produced measurable growth suppression in a randomised trial while the accompanying adrenal testing found nothing',
+        'Cortisol output fell in a dose-related way at every inhaled dose studied, including the lowest',
+        'The matched study of another intranasal steroid published alongside it found no growth effect, so the finding is drug-specific rather than class-wide',
+        'The propellant reformulation changed systemic effect at an equivalent nominal dose, invalidating the old dose-equivalence assumptions',
+      ],
+      realWorldOutcome: [
+        'One of the oldest inhaled corticosteroids still in use, and still widely prescribed worldwide',
+        'The BEST trial made it the origin of the as-needed anti-inflammatory reliever strategy that now dominates mild-asthma guidance',
+        'Only four listed presentations remain in the CMS acquisition survey, all brand, at about thirty dollars a gram',
+        'The paired 2000 growth studies established that intranasal corticosteroids differ from one another in systemic exposure, and that finding has outlived both products’ marketing',
+      ],
+    },
+    deliverySystem: {
+      type: 'Breath-actuated pressurised metered-dose inhalation aerosol with dose counter, and nasal aerosol and aqueous nasal spray',
+      description:
+        'Inhaled twice daily for asthma maintenance and never for acute symptoms. The current inhaler is a hydrofluoroalkane solution aerosol producing a much finer particle distribution than the chlorofluorocarbon suspensions it replaced, which changed how deep the drug travels and, on the label’s own cortisol data, how much systemic effect a given nominal dose produces.',
+      safetyProfile:
+        'Not for relief of acute symptoms; rapidly deteriorating asthma requires immediate re-evaluation. Oropharyngeal candidiasis with periodic monitoring and rinsing without swallowing after inhalation. Risk of impaired adrenal function when transferring from systemic corticosteroids, requiring slow tapering. Immunosuppression with potential worsening of tuberculosis and of fungal, bacterial, viral, parasitic and ocular herpes simplex infection, and a more serious or fatal course of chickenpox or measles in susceptible patients. Paradoxical bronchospasm with an immediate increase in wheezing after dosing requires immediate short-acting bronchodilator treatment and discontinuation. Dose-related reduction in 24-hour urinary free cortisol was measured at every dose studied, reaching 37.3% at the highest recommended dose.',
+    },
+    commonQuestions: [
+      {
+        q: 'Will the nasal spray affect my child’s growth?',
+        a: 'For beclometasone specifically, a randomised trial says yes, by about 0.9 cm over a year. A hundred children aged 6 to 9 were given intranasal beclometasone or placebo for twelve months with height measured seven times on a stadiometer; the treated group grew 5.0 cm and the placebo group 5.9 cm, and the difference was already visible at one month. Adrenal function testing in the same children found no difference, so a normal cortisol test would have missed it. In the same issue of the same journal, an almost identical study of intranasal mometasone found no growth effect at all. That is a reason to discuss which spray, not a reason to leave rhinitis untreated.',
+        auditNote:
+          'The two studies were designed and sized alike and published together. That is what makes the pair informative rather than two isolated results pointing different ways.',
+      },
+      {
+        q: 'Does the inhaler affect my hormones?',
+        a: 'Measurably, and the label publishes the numbers rather than hiding them. In 40 steroid-naive patients, 24-hour urinary free cortisol fell by 12.2% at the lowest dose studied, 24.6% at the middle dose and 37.3% at the highest recommended dose. In a separate one-year study of 354 patients at recommended doses, fewer than 1% had an abnormal response to a short cosyntropin stimulation test. Both are true: cortisol output is suppressed in a dose-related way, and clinical adrenal insufficiency is rare. The practical consequence is to use the lowest dose that controls the asthma, which is what every guideline says for reasons exactly like this.',
+      },
+      {
+        q: 'Why does the dose seem different from the old inhaler?',
+        a: 'Because the propellant change altered the drug’s behaviour. The old inhalers were chlorofluorocarbon suspensions producing a relatively coarse aerosol; the current one is a hydrofluoroalkane solution producing a much finer one that travels deeper into the lung and leaves less in the mouth. The label compares them directly on cortisol suppression: 320 micrograms twice daily of the new formulation gave a 37.3% reduction, against 47.3% for 336 micrograms twice daily of the old one. Near-identical microgram numbers, different systemic effect. Dose-equivalence tables written for one formulation do not carry over to the other.',
+      },
+      {
+        q: 'Is it true this drug is a prodrug?',
+        a: 'Yes, and it matters for reading any potency comparison. What is inhaled is beclometasone dipropionate, which is rapidly hydrolysed to beclometasone-17-monopropionate, and it is the monopropionate that binds the glucocorticoid receptor — about twenty-five times more tightly than the diester does. So a statement that another steroid binds "twice as tightly as beclomethasone" means twice as tightly as the metabolite, not as the product in the canister, and the two differ by more than an order of magnitude. The label reports all of these numbers and then says their clinical significance is unknown.',
+      },
+      {
+        q: 'Can I just use it when I have symptoms?',
+        a: 'That question was asked about this exact drug, in 455 people with mild asthma, and the answer was more interesting than expected. Using beclometasone and albuterol together in one inhaler only when symptoms occurred gave higher morning peak flow and fewer exacerbations over six months than reliever alone, and did not differ significantly from taking the steroid twice daily every day — at a much lower total steroid dose. That trial is the ancestor of the as-needed anti-inflammatory reliever strategy now recommended in mild asthma, which is built around budesonide with formoterol rather than around this combination. Whether it applies to a particular person is a question for a prescriber, not a rule this page can give.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Skoner DP, Rachelefsky GS, Meltzer EO, et al. Detection of growth suppression in children during treatment with intranasal beclomethasone dipropionate. Pediatrics 2000;105:E23',
+        identifier: '10.1542/peds.105.2.e23',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Schenkel EJ, Skoner DP, Bronsky EA, et al. Absence of growth retardation in children with perennial allergic rhinitis after one year of treatment with mometasone furoate aqueous nasal spray. Pediatrics 2000;105:E22',
+        identifier: '10.1542/peds.105.2.e22',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Papi A, Canonica GW, Maestrelli P, et al. Rescue use of beclomethasone and albuterol in a single inhaler for mild asthma. N Engl J Med 2007;356:2040-2052',
+        identifier: '10.1056/NEJMoa063861',
+        kind: 'doi',
+      },
+      {
+        label: 'BEST — as-needed beclometasone with albuterol in a single inhaler for mild asthma',
+        identifier: 'NCT00382889',
+        kind: 'nct',
+      },
+      {
+        label:
+          'QVAR REDIHALER (beclomethasone dipropionate inhalation aerosol) United States prescribing information — Indications and Limitations of Use, Warnings and Precautions 5.1 to 5.5, Description 11, Clinical Pharmacology 12.1 to 12.3',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22QVAR+REDIHALER%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'PubChem CID 20469 — beclometasone structure, formula and molecular weight for the parent alcohol',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/20469',
         kind: 'url',
       },
       NADAC_SOURCE,

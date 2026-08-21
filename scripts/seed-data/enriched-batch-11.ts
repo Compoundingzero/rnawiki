@@ -91,7 +91,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
     tradeName: 'Prilosec / Prilosec OTC',
     sponsor:
       'AstraZeneca — discovered at Astra AB’s Hässle laboratories in Sweden and approved in the United States under NDA 019810 in 1989; now made by more than 150 generic manufacturers',
-    targetGene: 'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
+    targetGene:
+      'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
     targetProtein:
       'Gastric H+/K+-ATPase, bound covalently through cysteine 813 (and cysteine 892) on the luminal face of the alpha subunit',
     modality: 'Small Molecule',
@@ -274,8 +275,7 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
           'People taking aspirin plus clopidogrel were randomly given omeprazole or a dummy capsule. Bleeding and ulcers in the upper gut fell by about two thirds. This is the cleanest placebo-controlled result the drug has on an outcome a patient would notice.',
         technicalDetails:
           'COGENT randomised patients with an indication for dual antiplatelet therapy to clopidogrel with omeprazole or with placebo, on a background of aspirin. Of a planned 5,000, 3,873 were randomised and 3,761 analysed before the trial stopped early when the sponsor lost its financing. Fifty-one patients had a gastrointestinal event: 1.1% on omeprazole against 2.9% on placebo at 180 days (hazard ratio 0.34, 95% CI 0.18 to 0.63, P<0.001). Overt upper gastrointestinal bleeding fell further (HR 0.13, 95% CI 0.03 to 0.56, P=0.001). Diarrhoea was more common on omeprazole.',
-        evidenceSource:
-          'Bhatt DL et al., N Engl J Med 2010;363:1909-1917 (COGENT, NCT00557921)',
+        evidenceSource: 'Bhatt DL et al., N Engl J Med 2010;363:1909-1917 (COGENT, NCT00557921)',
         doi: '10.1056/NEJMoa1007964',
         measuredMetric:
           'Composite of overt or occult bleeding, symptomatic gastroduodenal ulcer or erosion, obstruction or perforation at 180 days, against matching placebo',
@@ -641,7 +641,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
     tradeName: 'Protonix / Protonix IV',
     sponsor:
       'Wyeth Pharmaceuticals, now part of Pfizer — originated at Byk Gulden in Konstanz, Germany, and approved in the United States under NDA 020987 in 2000',
-    targetGene: 'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
+    targetGene:
+      'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
     targetProtein:
       'Gastric H+/K+-ATPase, bound covalently on the luminal face of the alpha subunit at cysteine 813 and, distinctively for this molecule, at cysteine 822 deep in the membrane domain',
     modality: 'Small Molecule',
@@ -817,7 +818,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
           'This is the trial the whole class was waiting for. Nearly eighteen thousand people were randomly given a proton pump inhibitor or a dummy tablet and followed for three years, with dementia, kidney disease, pneumonia, fractures, cancer and death all counted every six months. Nothing differed except gut infections, which were slightly more common on the drug.',
         technicalDetails:
           'A 3 x 2 partial factorial double-blind trial randomised 17,598 participants with stable cardiovascular and peripheral artery disease to pantoprazole 40 mg daily (n=8,791) or placebo (n=8,807), on top of a separate randomisation to rivaroxaban with aspirin, rivaroxaban alone or aspirin alone. Median follow-up was 3.01 years, 53,152 patient-years. Pneumonia, Clostridioides difficile infection, other enteric infections, fracture, gastric atrophy, chronic kidney disease, diabetes, chronic obstructive lung disease, dementia, cardiovascular disease, cancer, hospitalisation and all-cause mortality were collected every six months. No outcome differed significantly except enteric infections, 1.4% against 1.0% (odds ratio 1.33, 95% CI 1.01 to 1.75). C. difficile was roughly twice as common on pantoprazole but there were only 13 events in total, so the difference was not significant. Three years is not a lifetime, and the trial does not speak to longer exposure.',
-        evidenceSource: 'Moayyedi P et al., Gastroenterology 2019;157:682-691 (COMPASS, NCT01776424)',
+        evidenceSource:
+          'Moayyedi P et al., Gastroenterology 2019;157:682-691 (COMPASS, NCT01776424)',
         doi: '10.1053/j.gastro.2019.05.056',
         measuredMetric:
           'Fourteen prespecified safety outcomes collected six-monthly over a median 3.01 years, against matching placebo',
@@ -832,7 +834,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
           'The other half of the same trial asked whether routinely adding this drug to aspirin or a blood thinner prevents upper gut problems. It did not — the primary result was a statistical draw. It did reduce one specific kind of bleeding, but 982 people had to be treated to prevent one event.',
         technicalDetails:
           'The primary outcome was time to first upper gastrointestinal event: a composite of overt bleeding, upper gastrointestinal bleeding from a gastroduodenal lesion or of unknown origin, occult bleeding, symptomatic gastroduodenal ulcer or five or more erosions, obstruction, or perforation. Events occurred in 102 of 8,791 on pantoprazole against 116 of 8,807 on placebo, hazard ratio 0.88 (95% CI 0.67 to 1.15). The prespecified component of bleeding from a gastroduodenal lesion was reduced, hazard ratio 0.52 (95% CI 0.28 to 0.94, P=0.03), and a post-hoc definition gave 0.45 (95% CI 0.27 to 0.74) — but with a number needed to treat of 982 (95% CI 609 to 2,528). The authors concluded that routine use in this population does not reduce upper gastrointestinal events.',
-        evidenceSource: 'Moayyedi P et al., Gastroenterology 2019;157:403-412 (COMPASS, NCT01776424)',
+        evidenceSource:
+          'Moayyedi P et al., Gastroenterology 2019;157:403-412 (COMPASS, NCT01776424)',
         doi: '10.1053/j.gastro.2019.04.041',
         measuredMetric:
           'Time to first upper gastrointestinal event, composite, against matching placebo in 17,598 randomised patients',
@@ -890,8 +893,7 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
           'Starting acid suppression before someone with a gastrointestinal bleed is scoped makes the ulcer look less angry and reduces the need to treat it during the procedure. It does not change how many people die, rebleed or need surgery.',
         technicalDetails:
           'The Cochrane review of six randomised trials in 2,223 participants found no significant difference in mortality (6.1% against 5.5%, OR 1.12, 95% CI 0.72 to 1.73), rebleeding (13.9% against 16.6%, OR 0.81, 95% CI 0.61 to 1.09) or surgery (9.9% against 10.2%, OR 0.96, 95% CI 0.68 to 1.35). Proton pump inhibitor treatment did reduce the proportion with stigmata of recent haemorrhage at index endoscopy (37.2% against 46.5%, OR 0.67, 95% CI 0.54 to 0.84), though that finding was not robust to sensitivity analysis, and reduced the need for endoscopic therapy at index endoscopy (8.6% against 11.7%, OR 0.68, 95% CI 0.50 to 0.93). The practice is near-universal and the endpoints it improves are procedural.',
-        evidenceSource:
-          'Sreedharan A et al., Cochrane Database Syst Rev 2010;7:CD005415',
+        evidenceSource: 'Sreedharan A et al., Cochrane Database Syst Rev 2010;7:CD005415',
         doi: '10.1002/14651858.CD005415.pub3',
         inferredClaim:
           'That reducing visible stigmata of recent haemorrhage before endoscopy improves survival or rebleeding — a procedural surrogate that six randomised trials did not connect to any clinical outcome',
@@ -1021,8 +1023,7 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
         sampleSize: 3298,
         primaryEndpoint: 'Death by 90 days after randomisation',
         endpointMet: false,
-        statisticalPValue:
-          '31.1% against 30.4%; relative risk 1.02 (95% CI 0.91 to 1.13), P=0.76',
+        statisticalPValue: '31.1% against 30.4%; relative risk 1.02 (95% CI 0.91 to 1.13), P=0.76',
         unreportedAdverseSignals:
           'Clinically important gastrointestinal bleeding was 2.5% against 4.2%, but that was a secondary outcome and the trial was not designed to test it.',
         independentReplicationStatus: 'Replicated',
@@ -1166,7 +1167,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
     tradeName: 'Nexium / Nexium 24HR',
     sponsor:
       'AstraZeneca — approved in the United States under NDA 021153 on 20 February 2001, the year the omeprazole composition-of-matter patent expired',
-    targetGene: 'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
+    targetGene:
+      'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
     targetProtein:
       'Gastric H+/K+-ATPase, bound covalently at cysteine 813 on the luminal face of the alpha subunit — the same target, by the same chemistry, as its racemic parent',
     modality: 'Small Molecule',
@@ -1342,8 +1344,7 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
           'The trial that established esomeprazole as better than omeprazole gave twice as much of the new drug as of the old one. It healed more people. What it did not test is whether the same amount of each performs differently, which is the question a reader assumes was asked.',
         technicalDetails:
           'Richter, Kahrilas and colleagues randomised 2,425 patients with endoscopically confirmed erosive oesophagitis, Helicobacter pylori negative by serology, to esomeprazole 40 mg or omeprazole 20 mg once daily for eight weeks across 163 United States centres. Healing at week 8 was 93.7% against 84.2% (P<0.001, life-table estimates, intention-to-treat), and at week 4 was 81.7% against 68.7%. Esomeprazole was superior on every secondary measure, with a comparable safety profile. The comparison is between different milligram quantities of two molecules that act on the same target by the same chemistry, one of which is a component of the other. A dose-equivalence trial would answer the question the headline implies; none has been published.',
-        evidenceSource:
-          'Richter JE, Kahrilas PJ et al., Am J Gastroenterol 2001;96:656-665',
+        evidenceSource: 'Richter JE, Kahrilas PJ et al., Am J Gastroenterol 2001;96:656-665',
         doi: '10.1111/j.1572-0241.2001.03600.x',
         inferredClaim:
           'That the S-enantiomer is intrinsically more effective than its racemic parent — an inference from a trial that gave the S-enantiomer twice the milligram dose',
@@ -1383,7 +1384,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
       {
         id: 'eso-a4',
         category: 'failed',
-        title: 'It did nothing for poorly controlled asthma, and silent reflux did not identify anyone it helped',
+        title:
+          'It did nothing for poorly controlled asthma, and silent reflux did not identify anyone it helped',
         laymanSummary:
           'Reflux is common in asthma, often without symptoms, and treating it was widely expected to improve asthma control. A trial of 412 adults on high-dose esomeprazole found no difference at all — and testing people to find the ones who really did have reflux did not find a group that benefited either.',
         technicalDetails:
@@ -1667,7 +1669,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
     tradeName: 'Prevacid / Prevacid SoluTab / Prevacid 24HR',
     sponsor:
       'Takeda Pharmaceuticals — discovered at Takeda in Japan and approved in the United States under NDA 020406 on 10 May 1995',
-    targetGene: 'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
+    targetGene:
+      'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
     targetProtein:
       'Gastric H+/K+-ATPase, bound covalently at cysteine 813 and cysteine 321 on the luminal face of the alpha subunit',
     modality: 'Small Molecule',
@@ -1896,8 +1899,7 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
       {
         id: 'lan-a5',
         category: 'conclusion_shift',
-        title:
-          'Paediatric reflux treatment reversed direction once anyone ran a placebo arm',
+        title: 'Paediatric reflux treatment reversed direction once anyone ran a placebo arm',
         laymanSummary:
           'Prescribing of acid suppressants to infants rose sharply through the 2000s on the reasoning that unexplained crying and back-arching were reflux. Two placebo-controlled trials, one in infants and one in children with asthma, found no benefit and more infections in both. The guidelines that followed reversed the recommendation.',
         technicalDetails:
@@ -2384,8 +2386,7 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
           'In 2020 every ranitidine product was pulled worldwide because it contained a probable carcinogen. The petition that triggered it argued the drug turned into that carcinogen inside the body. A randomised trial then tested exactly that and found no increase at all. The contamination was in the product, not in the patient.',
         technicalDetails:
           'The FDA requested withdrawal of all ranitidine products in April 2020 after N-nitrosodimethylamine was detected and shown to increase in the product with time and with storage temperature. The 2019 citizen petition had proposed a second and more alarming mechanism: that ranitidine converts to NDMA within the human body, based largely on a small clinical study of urinary NDMA. A randomised, double-blind, placebo-controlled crossover trial in 18 healthy participants then measured 24-hour urinary NDMA excretion after 300 mg oral ranitidine against placebo, on both a non-cured-meats and a cured-meats diet. There was no statistically significant difference on either diet — median paired differences of 0 ng (IQR -6.9 to 0, P=0.54) and -1.1 ng (IQR -9.1 to 11.5, P=0.71). The cured-meats diet raised NDMA excretion far more than the drug did. The withdrawal stands on product contamination, which is a real and sufficient reason. The in-body conversion hypothesis, which drove much of the alarm, was tested and not supported.',
-        evidenceSource:
-          'Florian J et al., JAMA 2021;326:240-249 (NCT04397445)',
+        evidenceSource: 'Florian J et al., JAMA 2021;326:240-249 (NCT04397445)',
         doi: '10.1001/jama.2021.9199',
         inferredClaim:
           'That ranitidine is converted to a carcinogen inside the body — the hypothesis behind the citizen petition, tested in a randomised crossover trial and not supported',
@@ -2400,7 +2401,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
           'The largest comparison ever run between the two ways of preventing stress ulcers in intensive care found the stronger drug bled slightly fewer patients and the weaker drug had slightly fewer deaths. Neither difference in mortality reached the significance threshold.',
         technicalDetails:
           'PEPTIC was a cluster crossover randomised trial at 50 intensive care units in five countries, in which each unit used a preferential proton pump inhibitor strategy and a preferential H2 blocker strategy for six months each in random order. Of 26,982 randomised, 26,828 were analysed. In-hospital mortality by day 90 was 2,459 of 13,415 (18.3%) in the PPI group against 2,333 of 13,356 (17.5%) in the H2 blocker group — risk ratio 1.05 (95% CI 1.00 to 1.10), absolute difference 0.93 percentage points (95% CI -0.01 to 1.88), P=0.054. Clinically important upper gastrointestinal bleeding was 1.3% against 1.8%, risk ratio 0.73 (95% CI 0.57 to 0.92), P=0.009, favouring the proton pump inhibitor. C. difficile rates and lengths of stay did not differ. Interpretation is limited by crossover: an estimated 20.1% of patients randomised by site to H2 blockers actually received a proton pump inhibitor, which would bias the mortality comparison toward the null.',
-        evidenceSource: 'PEPTIC Investigators, Young PJ et al., JAMA 2020;323:616-626 (ACTRN12616000481471)',
+        evidenceSource:
+          'PEPTIC Investigators, Young PJ et al., JAMA 2020;323:616-626 (ACTRN12616000481471)',
         doi: '10.1001/jama.2019.22190',
         measuredMetric:
           'All-cause in-hospital mortality within 90 days, and clinically important upper gastrointestinal bleeding, PPI strategy against H2 blocker strategy',
@@ -2682,7 +2684,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
     approvalYear: 1981,
     indication:
       'Short-term treatment, up to 8 weeks, of active duodenal ulcer, and maintenance therapy for duodenal ulcer patients at reduced dosage after healing of acute ulcers',
-    patientFriendlyIndication: 'Duodenal ulcers, and keeping a healed duodenal ulcer from returning',
+    patientFriendlyIndication:
+      'Duodenal ulcers, and keeping a healed duodenal ulcer from returning',
     anatomicalSite:
       'The floor of the ulcer crater itself — a physical surface in the stomach or duodenum, not a cell and not a receptor',
     conditionContext: {
@@ -3337,8 +3340,7 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
           'Pooling 44 randomised trials in nearly ten thousand people, about 37 in a hundred taking mesalamine relapsed within six to twelve months against about 55 in a hundred on placebo. Cochrane graded the certainty of that finding as high, which is the top of their scale and rare.',
         technicalDetails:
           'The Cochrane review identified 44 studies in 9,967 participants, most at low risk of bias. For maintenance of clinical or endoscopic remission, 37% (335 of 907) of 5-ASA participants relapsed at six to twelve months against 55% (355 of 648) of placebo participants — risk ratio 0.68 (95% CI 0.61 to 0.76), 8 studies, 1,555 participants, high-certainty evidence. Serious adverse events were 1% (6 of 550) against 2% (5 of 276), risk ratio 0.60 (95% CI 0.19 to 1.84), low-certainty evidence, and there is probably little or no difference in adverse events overall (RR 0.93, 95% CI 0.73 to 1.18, moderate certainty). Once-daily dosing had a similar benefit and harm profile to conventional two- or three-times-daily dosing.',
-        evidenceSource:
-          'Murray A et al., Cochrane Database Syst Rev 2020;8:CD000544',
+        evidenceSource: 'Murray A et al., Cochrane Database Syst Rev 2020;8:CD000544',
         doi: '10.1002/14651858.CD000544.pub4',
         measuredMetric:
           'Failure to maintain clinical or endoscopic remission at six to twelve months, against placebo, pooled across 44 randomised trials',
@@ -3498,7 +3500,8 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
         trialId: 'Cochrane CD000544: oral 5-ASA for maintenance of remission in ulcerative colitis',
         phase: 'Systematic review and meta-analysis of 44 randomised trials',
         sampleSize: 9967,
-        primaryEndpoint: 'Failure to maintain clinical or endoscopic remission at six months or more',
+        primaryEndpoint:
+          'Failure to maintain clinical or endoscopic remission at six months or more',
         endpointMet: true,
         statisticalPValue:
           'Relapse 37% (335 of 907) against 55% (355 of 648) on placebo; risk ratio 0.68 (95% CI 0.61 to 0.76), 8 studies, 1,555 participants, high-certainty evidence',
@@ -3653,6 +3656,981 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
         label: 'PubChem CID 4075 — mesalamine structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4075',
         kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Loperamide — a full opioid sold off a supermarket shelf, kept out of the brain by a single
+  //    transporter, and lethal to the heart in the people who found a way past it.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'loperamide',
+    name: 'Loperamide',
+    tradeName: 'Imodium / Imodium A-D',
+    sponsor:
+      'Johnson & Johnson Consumer (Kenvue) — synthesised at Janssen Pharmaceutica in Belgium and approved in the United States under NDA 017694 on 28 December 1976, with the over-the-counter product following under NDA 019487 in 1988',
+    targetGene: 'OPRM1, with ABCB1 as the gatekeeper that decides where the drug is allowed to act',
+    targetProtein:
+      'Mu-opioid receptors on the neurons of the myenteric plexus in the bowel wall. P-glycoprotein, the ABCB1 gene product at the blood-brain barrier, pumps the drug back out of the brain and is the entire reason it is not a narcotic in practice.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1976,
+    indication:
+      'Control and symptomatic relief of acute non-specific diarrhoea and of chronic diarrhoea associated with inflammatory bowel disease, and reduction of the volume of discharge from an ileostomy. The over-the-counter product is indicated for control of symptoms of diarrhoea including travellers’ diarrhoea.',
+    patientFriendlyIndication:
+      'Diarrhoea — slowing the bowel down so stools become less frequent and more solid',
+    anatomicalSite:
+      'Myenteric plexus — the nerve network running between the two muscle layers of the bowel wall, which sets how fast the gut pushes its contents along',
+    conditionContext: {
+      conditionExplainer:
+        'Diarrhoea is a mismatch between how fast the bowel moves its contents along and how much water it can reabsorb. Opioid receptors on the nerves in the bowel wall are one of the body’s own brakes on that motion, which is why every opioid causes constipation and why the effect has been used deliberately since opium tincture.',
+      whyItMatters:
+        'Loperamide is the version of that idea designed so the drug can never reach the brain. What makes it worth auditing is what happens when the design is defeated — either by another drug that disables the barrier, or by taking a dose vastly larger than the barrier can handle.',
+      whoTakesThis:
+        'Almost anyone with acute diarrhoea, bought without a prescription, and a smaller group with chronic diarrhoea, ileostomy output or inflammatory bowel disease. Since around 2010 a further group has used it in very large doses as an opioid substitute, and some of them have died.',
+      clinicalGoals:
+        'The endpoint is symptomatic: fewer stools, shorter duration, less fluid loss. It is not a cure for anything, and where diarrhoea is the body clearing an infection, slowing it down can make matters worse.',
+    },
+    oneSentenceVerdict:
+      'A full mu-opioid agonist that acts only on the nerves of the bowel wall because a transporter at the blood-brain barrier pumps it straight back out — proved when 16 mg with a P-glycoprotein inhibitor produced respiratory depression in healthy volunteers that 16 mg alone did not, at plasma concentrations that were no higher: it shortens acute diarrhoea in children by 0.8 days, caused ileus, lethargy or death in 8 of 927 children under 3 against 0 of 764 on placebo, and at the doses used to defeat the barrier deliberately it blocks cardiac ion channels and kills.',
+    laymanHowItWorks:
+      'Loperamide is a genuine opioid, chemically related to the strong painkillers, and it works on opioid receptors on the nerves that control how fast the bowel pushes food along. Turning those down slows the gut, so there is more time to reabsorb water and stools become firmer and less frequent. The reason it is not a narcotic is a pump at the border of the brain called P-glycoprotein, which grabs the drug as it tries to cross and throws it back into the blood. That pump is the whole safety design of the drug. If another medicine disables it, or if someone takes a dose big enough to swamp it, the opioid gets into the brain — and at those doses the same molecule also blocks the electrical channels that keep the heart beating in rhythm.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 77,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0565 per capsule or tablet at United States pharmacy acquisition cost (CMS NADAC, median across 48 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Off patent for decades and sold over the counter worldwide. Its packaging, not its patent, became the regulatory issue: after reports of fatal cardiac events from very high doses taken as an opioid substitute, the FDA worked with manufacturers to limit over-the-counter package size and to move the product to blister packs, so that acquiring a supratherapeutic quantity requires deliberate effort rather than one purchase. It is on the WHO Model List of Essential Medicines and it is the drug the same list declines to recommend in young children.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For most acute diarrhoea the intervention that changes outcomes is oral rehydration, not an antimotility drug — loperamide shortens the illness and does not treat it. The pharmacological alternatives divide into a related opioid that cannot cross into the brain at all, an antisecretory drug that reduces fluid output rather than slowing transit, and bismuth. In any diarrhoea with blood or fever the whole class becomes a hazard rather than a choice.',
+      conventionalRx: [
+        {
+          name: 'Diphenoxylate with atropine (Lomotil)',
+          class: 'Opioid antimotility agent with an added anticholinergic deterrent',
+          howItCompares:
+            'The older option. It does cross into the central nervous system, which is why it is a scheduled substance and why subtherapeutic atropine was added to the formulation to discourage misuse. Loperamide was developed specifically to keep the antimotility effect and lose the central one.',
+          typicalCost:
+            'No NADAC value is held on this record for diphenoxylate with atropine and none is asserted here',
+          prosAndCons:
+            'Pros: effective, long-established. Cons: central opioid effects, anticholinergic toxicity in overdose, particularly dangerous in children, and controlled-substance status.',
+        },
+        {
+          name: 'Bismuth subsalicylate (Pepto-Bismol)',
+          class: 'Antisecretory and antimicrobial salicylate salt',
+          howItCompares:
+            'Reduces intestinal fluid secretion and has modest antimicrobial activity, rather than slowing transit. It does not carry the risk of trapping an infection in a slowed bowel, and it is the option usually preferred where the diarrhoea might be invasive.',
+          typicalCost:
+            'No NADAC value is held on this record for bismuth subsalicylate and none is asserted here',
+          prosAndCons:
+            'Pros: does not slow the gut, so it does not prolong an invasive infection. Cons: salicylate content matters in children and in anyone on anticoagulants, blackens the tongue and stool, and is weaker for symptom control.',
+        },
+        {
+          name: 'Oral rehydration solution',
+          class: 'Glucose-coupled sodium and water replacement',
+          howItCompares:
+            'Not a competitor so much as the actual treatment. It does nothing about stool frequency and everything about the thing that kills people in diarrhoeal illness, which is fluid and electrolyte loss. The paediatric meta-analysis of loperamide frames the drug as a possible adjunct to rehydration and early refeeding, never as a substitute for it.',
+          typicalCost:
+            'No NADAC value is held on this record for oral rehydration salts and none is asserted here',
+          prosAndCons:
+            'Pros: addresses the mechanism of harm, works at any age, essentially no risk. Cons: does not reduce stool frequency, which is what people generally want a tablet for.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Stop and seek help if there is blood or fever',
+          action:
+            'Do not take an antimotility drug for bloody diarrhoea or diarrhoea with a high fever.',
+          patientImpact:
+            'The label contraindicates use in these circumstances. Slowing the bowel when an invasive organism or Clostridioides difficile is present keeps the toxin in contact with the lining for longer and has caused toxic megacolon, which is a surgical emergency.',
+          clinicalPrecaution:
+            'This is the single most important warning on the product and it is on the packet. It is not a dosing instruction and not a matter of amount — it is a situation in which the drug should not be taken at all.',
+        },
+        {
+          name: 'Rehydrate first, always',
+          action: 'Treat the fluid loss with oral rehydration before treating the stool frequency.',
+          patientImpact:
+            'What harms people in diarrhoeal illness is dehydration and electrolyte loss, not the number of stools. In the paediatric evidence, loperamide is positioned as a possible adjunct to rehydration and early refeeding in children over three with minimal dehydration, and as net harmful below that.',
+          clinicalPrecaution:
+            'A drug that makes stools less frequent can conceal continuing fluid loss into the bowel rather than stopping it.',
+        },
+        {
+          name: 'Never take more than the packet says, and tell a doctor if you have',
+          action:
+            'Treat the stated maximum as an absolute rather than a starting point, and disclose any large ingestion.',
+          patientImpact:
+            'At doses far above the label this drug blocks cardiac ion channels. Published cases describe QRS and QT prolongation, ventricular dysrhythmia and death in people taking very large quantities as an opioid substitute. The cardiac effect appears at doses the brain barrier can no longer exclude.',
+          clinicalPrecaution:
+            'This is not a general warning about exceeding doses. It is specific to this molecule, and the arrhythmia can appear after the opioid effect and be missed.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(C)C(=O)C(CCN1CCC(CC1)(C2=CC=C(C=C2)Cl)O)(C3=CC=CC=C3)C4=CC=CC=C4',
+      chemicalFormula: 'C29H33ClN2O2',
+      molecularWeight: '477.00 g/mol',
+      targetReceptorAffinity:
+        'A full agonist at the mu-opioid receptor with affinity in the same range as the strong analgesic opioids — the difference between loperamide and a narcotic is distribution, not potency. Its calculated logP is about 5.5, which makes it lipophilic enough to enter the brain readily; it does not, because it is a high-affinity P-glycoprotein substrate and is exported at the blood-brain barrier faster than it diffuses in. At supratherapeutic concentrations it also blocks the hERG potassium channel, prolonging QT, and cardiac sodium channels, widening QRS — a combination reported in fatal overdose.',
+      structureSource: {
+        label:
+          'PubChem CID 3955 (loperamide) — canonical SMILES, molecular formula and molecular weight, as ingested onto this record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3955',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lop-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and control of the N-desmethyl impurity',
+          description:
+            'Confirm the structure and quantify N-desmethyl loperamide specifically. That metabolite is itself a well-characterised P-glycoprotein substrate — it is used as a positron emission tomography tracer for measuring transporter function at the human blood-brain barrier — and its presence changes the distribution behaviour of a batch, which for this molecule is the safety-critical property.',
+          reagentsAndBuffer:
+            'Loperamide hydrochloride and N-desmethylloperamide reference standards, 1H and 13C NMR in DMSO-d6, reversed-phase HPLC with UV and mass detection, chloride content by argentometric titration',
+        },
+        {
+          id: 'lop-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Piperidine core construction, then N-alkylation with the diphenyl amide chain',
+          description:
+            'Build 4-(4-chlorophenyl)-4-hydroxypiperidine by Grignard addition to the protected piperidinone, then alkylate the ring nitrogen with the 2,2-diphenyl-4-halo-N,N-dimethylbutanamide chain. The tertiary alcohol on the ring and the two phenyls on the amide are what make the molecule bulky enough to be recognised by P-glycoprotein, so the shape being built here is the safety mechanism.',
+          dependsOnStepId: 'lop-w1',
+          reagentsAndBuffer:
+            '4-chlorophenylmagnesium bromide in tetrahydrofuran under nitrogen, N-protected 4-piperidinone, then deprotection; 4-chloro-2,2-diphenylbutyramide alkylating agent with potassium carbonate and sodium iodide in dimethylformamide',
+        },
+        {
+          id: 'lop-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrochloride salt formation and crystallisation',
+          description:
+            'Convert to the hydrochloride and crystallise. The salt is what is dispensed and what the label strength refers to, and the free base and the salt differ in weight by enough that stating which one a figure describes is not pedantry.',
+          dependsOnStepId: 'lop-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in isopropanol or ethyl acetate, recrystallisation from ethanol or isopropanol, HPLC for related substances, differential scanning calorimetry for polymorph identity',
+        },
+        {
+          id: 'lop-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Bidirectional transport across an MDR1 monolayer — the assay that defines this drug',
+          description:
+            'Measure apical-to-basolateral and basolateral-to-apical flux across a cell monolayer over-expressing P-glycoprotein, then repeat with a transporter inhibitor present. The efflux ratio, and its collapse when the transporter is inhibited, is the single most important number about loperamide: it is what separates an antidiarrhoeal from a narcotic, and it is the property that fails in overdose and in the quinidine interaction.',
+          dependsOnStepId: 'lop-w3',
+          reagentsAndBuffer:
+            'MDCK-MDR1 or Caco-2 monolayers on permeable supports, transepithelial electrical resistance and lucifer yellow integrity checks, verapamil or elacridar as transporter inhibitor, LC-MS/MS quantification in both chambers',
+        },
+        {
+          id: 'lop-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Mu-opioid binding alongside hERG and cardiac sodium channel electrophysiology',
+          description:
+            'Quantify mu-opioid receptor affinity, then run patch clamp against hERG and Nav1.5 across a concentration range extending well above therapeutic. Running only the therapeutic range is how this molecule’s cardiac liability stayed invisible for thirty years: the receptor pharmacology is benign and the channel pharmacology only appears at concentrations the blood-brain barrier normally prevents.',
+          dependsOnStepId: 'lop-w4',
+          reagentsAndBuffer:
+            'Radioligand binding with [3H]-DAMGO on mu-opioid receptor membranes; whole-cell patch clamp on HEK293 cells stably expressing hERG and on cells expressing Nav1.5, concentration ranges spanning therapeutic to supratherapeutic plasma levels',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lop-a1',
+        category: 'measured',
+        title:
+          'Disable one transporter and the antidiarrhoeal becomes a respiratory depressant, at the same blood level',
+        laymanSummary:
+          'Eight healthy men took 16 mg of loperamide alone, and again with a drug that blocks the pump guarding the brain. Alone, it caused no breathing depression at all. With the blocker, it did — and the amount of drug in their blood was no higher. The barrier, not the dose, is what makes this drug safe.',
+        technicalDetails:
+          'On the basis of in vitro evidence that loperamide is a P-glycoprotein substrate, eight healthy male volunteers received 16 mg of loperamide with either 600 mg of quinidine, a known P-glycoprotein inhibitor, or placebo. Central nervous system effect was measured as the respiratory response to carbon dioxide rebreathing, a standard index of opioid-induced respiratory depression. Loperamide alone produced no respiratory depression. Loperamide with quinidine did (P<0.001). The changes were not explained by increased plasma loperamide concentrations. The study demonstrated a new class of drug interaction — transporter inhibition rather than metabolic inhibition — and demonstrated that the entire clinical distinction between this drug and a narcotic rests on one efflux pump.',
+        evidenceSource: 'Sadeque AJ et al., Clin Pharmacol Ther 2000;68:231-237',
+        doi: '10.1067/mcp.2000.109156',
+        measuredMetric:
+          'Respiratory response to carbon dioxide rebreathing after 16 mg loperamide with and without 600 mg quinidine, in a crossover of eight healthy volunteers',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lop-a2',
+        category: 'failed',
+        title:
+          'In children under three it caused ileus, lethargy or death in 8 of 927, against none of 764 on placebo',
+        laymanSummary:
+          'Pooling the randomised trials in children, loperamide did shorten diarrhoea — by about a fifth of a day at 24 hours, and 0.8 days overall. It also caused serious harm in nine children in a thousand, and every one of those cases was in a child under three years old. Nothing comparable happened on placebo.',
+        technicalDetails:
+          'A systematic review and meta-analysis of randomised placebo-controlled trials in children under 12 with acute diarrhoea found that loperamide reduced the likelihood of still having diarrhoea at 24 hours (prevalence ratio 0.66, 95% CI 0.57 to 0.78), shortened duration by 0.8 days (95% CI 0.7 to 0.9) and reduced stool count at 24 hours (ratio 0.84, 95% CI 0.77 to 0.92). Serious adverse events, defined as ileus, lethargy or death, occurred in 8 of 927 children allocated to loperamide (0.9%, 95% CI 0.4% to 1.7%) and in 0 of 764 allocated to placebo (0%, 95% CI 0% to 0.5%). Every serious adverse event on loperamide occurred in a child younger than three. The authors concluded that in children under three, malnourished, moderately or severely dehydrated, systemically ill, or with bloody diarrhoea, adverse events outweigh benefits even at doses at or below 0.25 mg/kg/day; and that above three years with minimal dehydration it may be a useful adjunct to rehydration and early refeeding.',
+        evidenceSource: 'Li ST, Grossman DC, Cummings P. PLoS Med 2007;4:e98',
+        doi: '10.1371/journal.pmed.0040098',
+        measuredMetric:
+          'Duration and severity of acute diarrhoea, and serious adverse events, in randomised trials of children under 12',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lop-a3',
+        category: 'conclusion_shift',
+        title:
+          'An over-the-counter antidiarrhoeal turned out to be a lethal cardiac drug at the doses people were taking it in',
+        laymanSummary:
+          'From around 2010, people trying to manage opioid withdrawal began taking loperamide in enormous quantities to get past the brain barrier. It worked, and it also stopped hearts. Published cases describe abnormal rhythms and deaths, and the packaging was changed as a result.',
+        technicalDetails:
+          'Loperamide is a mu-opioid agonist that produces no central effects at therapeutic oral doses because of poor bioavailability and P-glycoprotein-mediated exclusion from the central nervous system. At supratherapeutic oral doses, central opioid effects do occur, and reports of ventricular dysrhythmia with prolongation of the QRS duration and the QTc interval followed the rise in oral loperamide misuse as an opioid substitute among people attempting to self-treat opioid addiction. The 2017 case report describes two fatalities with significantly elevated loperamide concentrations. The mechanism is dual channel blockade — hERG potassium channel block giving QT prolongation, cardiac sodium channel block giving QRS widening — appearing only at concentrations the barrier normally prevents. The regulatory response was to the packaging rather than to the availability: over-the-counter package quantities were limited and unit-dose blister packaging introduced, so that acquiring a supratherapeutic quantity takes deliberate effort. A drug can be safe for thirty years and become lethal without changing, if the way people use it changes.',
+        evidenceSource:
+          'Eggleston W, Clark KH, Marraffa JM. Loperamide abuse associated with cardiac dysrhythmia and death. Ann Emerg Med 2017;69:83-86',
+        doi: '10.1016/j.annemergmed.2016.03.047',
+        inferredClaim:
+          'That a drug excluded from the brain at label doses is therefore safe at any dose — an inference the mechanism does not support, because the exclusion is saturable and the cardiac liability sits above it',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lop-a4',
+        category: 'failed',
+        title: 'Slowing the bowel is exactly wrong when the bowel is clearing an infection',
+        laymanSummary:
+          'In dysentery, in Clostridioides difficile and in any diarrhoea with blood or high fever, keeping the contents inside for longer keeps the toxin in contact with the lining. The label contraindicates the drug in those situations, and toxic megacolon has followed when it was used anyway.',
+        technicalDetails:
+          'The United States labels contraindicate loperamide in patients with acute dysentery, characterised by blood in the stool and high fever; in acute ulcerative colitis; in bacterial enterocolitis caused by invasive organisms including Salmonella, Shigella and Campylobacter; and in pseudomembranous colitis associated with broad-spectrum antibiotics. Abdominal distension, toxic megacolon and ileus have been reported, particularly in acute ulcerative colitis and in Clostridioides difficile-associated diarrhoea, and the label directs discontinuation at the first sign of abdominal distension. The mechanism is the drug working as designed: an antimotility agent prolongs contact between luminal toxin and mucosa. The paediatric meta-analysis places bloody diarrhoea in the same category, among the conditions in which harms outweigh benefits at any dose tested.',
+        evidenceSource:
+          'IMODIUM and IMODIUM A-D (loperamide hydrochloride) United States prescribing information and Drug Facts labelling, Contraindications and Warnings (NDA 017694 and NDA 019487)',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lop-a5',
+        category: 'measured',
+        title: 'What it actually does for adults is shorten an illness, not treat one',
+        laymanSummary:
+          'The endpoint this drug is licensed against is symptom control: fewer stools, firmer stools, a shorter episode. It does not kill an organism, does not replace lost fluid, and does not change whether someone gets better.',
+        technicalDetails:
+          'The registered indications are control and symptomatic relief of acute non-specific diarrhoea and of chronic diarrhoea associated with inflammatory bowel disease, and reduction of the volume of ileostomy discharge. In the paediatric randomised literature — the largest pooled dataset with a placebo comparator — the measured effects were a prevalence ratio of 0.66 for still having diarrhoea at 24 hours, a reduction in duration of 0.8 days, and a stool-count ratio of 0.84. The authors framed the drug as a possible adjunct to oral rehydration and early refeeding rather than as a treatment, which is the correct reading of an antimotility agent: what causes death in diarrhoeal illness is fluid and electrolyte loss, and this drug does not address it.',
+        evidenceSource:
+          'Li ST, Grossman DC, Cummings P. PLoS Med 2007;4:e98; IMODIUM United States prescribing information, Indications and Usage (NDA 017694)',
+        doi: '10.1371/journal.pmed.0040098',
+        measuredMetric:
+          'Prevalence of continuing diarrhoea at 24 hours, duration in days and stool count, against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lop-a6',
+        category: 'inferred',
+        title:
+          'The transporter interaction is documented for quinidine and assumed for everything else that inhibits it',
+        laymanSummary:
+          'Only one drug has actually been tested for the interaction that lets loperamide into the brain. A number of common medicines block the same pump, and the interaction is expected to apply to them too — but that is reasoning from the mechanism rather than from a trial.',
+        technicalDetails:
+          'The volunteer study that established the interaction used quinidine, a strong P-glycoprotein inhibitor, and measured a hard physiological endpoint. Many other agents inhibit P-glycoprotein to varying degrees — verapamil, ritonavir, ketoconazole, itraconazole, clarithromycin, ciclosporin among them — and the labels advise caution accordingly. No comparable volunteer study measuring respiratory depression has been published for any of them, so the extrapolation is from transporter chemistry rather than from measurement. The extrapolation is likely correct and is stated here as an inference because it has not been demonstrated. The same logic runs the other way for CYP3A4 and CYP2C8 inhibitors, which raise plasma loperamide by slowing its metabolism rather than by opening the barrier, and which the label also flags.',
+        evidenceSource:
+          'Sadeque AJ et al., Clin Pharmacol Ther 2000;68:231-237; loperamide United States prescribing information, Drug Interactions',
+        doi: '10.1067/mcp.2000.109156',
+        inferredClaim:
+          'That every P-glycoprotein inhibitor produces the central opioid effect quinidine produced — mechanistically sound, tested for one drug and assumed for the rest',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, and mostly never absorbed',
+        laymanDesc:
+          'Very little of the dose reaches the bloodstream. Most of it stays in the gut, which is the only place it is meant to work.',
+        molecularDetail:
+          'Oral bioavailability is under 1%, the result of poor absorption combined with extensive first-pass metabolism by CYP3A4 and CYP2C8 and by intestinal P-glycoprotein efflux returning absorbed drug to the lumen. The pharmacokinetics are those of a locally acting drug that happens to be a systemic opioid on paper.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It finds opioid receptors in the wall of the bowel',
+        laymanDesc:
+          'The gut has its own nervous system, and it carries the same opioid receptors as the brain. Loperamide acts on those.',
+        molecularDetail:
+          'Full agonism at mu-opioid receptors on neurons of the myenteric plexus, the network between the circular and longitudinal muscle layers that generates propulsive peristalsis. Receptor affinity is comparable to that of the strong analgesic opioids; the difference in effect is entirely one of where the drug is allowed to go.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The gut slows, and more water is reabsorbed',
+        laymanDesc:
+          'Peristalsis weakens, contents move more slowly, and the colon has longer to reabsorb water. Stools become firmer and less frequent. The anal sphincter also tightens, which is why it helps urgency.',
+        molecularDetail:
+          'Inhibition of acetylcholine and prostaglandin release from myenteric neurons reduces propulsive peristalsis and lengthens transit time, increasing water and electrolyte absorption. Anal sphincter tone increases, reducing urgency and incontinence — the mechanism behind the ileostomy-output indication as much as the diarrhoea one.',
+        iconName: 'TrendingDown',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'A pump at the brain’s border throws it back out',
+        laymanDesc:
+          'The molecule is fatty enough to cross into the brain easily. It does not, because a transporter at the blood-brain barrier catches it and pushes it back into the blood, over and over. That single pump is why this is sold in a supermarket and morphine is not.',
+        molecularDetail:
+          'Loperamide is a high-affinity P-glycoprotein substrate. At the blood-brain barrier the ABCB1 transporter effluxes it back to the luminal side faster than passive diffusion delivers it, holding brain concentrations near zero despite a logP around 5.5. Mdr1a-knockout mice show dramatically increased brain penetration of loperamide, and the human demonstration is the quinidine crossover.',
+        iconName: 'ShieldCheck',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 5,
+        title: 'Defeat the pump and it becomes a narcotic',
+        laymanDesc:
+          'Block that transporter with another drug, or take enough loperamide to overwhelm it, and the opioid reaches the brain. In volunteers given a transporter blocker, 16 mg depressed breathing — at blood levels that were no higher than without it.',
+        molecularDetail:
+          'Efflux is saturable and competitively inhibitable. With 600 mg quinidine, 16 mg loperamide produced significant respiratory depression on carbon dioxide rebreathing (P<0.001) where the same dose alone produced none, and plasma concentrations did not account for the difference. The safety of the drug is a transport phenomenon, not a pharmacodynamic one.',
+        iconName: 'Unlock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 6,
+        title: 'And above that dose it stops being an opioid problem',
+        laymanDesc:
+          'At the very high doses people use to get past the barrier, the same molecule blocks the electrical channels that control the heartbeat. That is what has killed people — not the opioid effect, but the rhythm.',
+        molecularDetail:
+          'At supratherapeutic plasma concentrations loperamide blocks the hERG potassium channel, prolonging repolarisation and the QT interval, and blocks cardiac sodium channels, widening the QRS complex. The reported presentation is ventricular dysrhythmia including torsades de pointes and Brugada-pattern conduction, with fatalities documented at significantly elevated loperamide concentrations. The cardiac liability sits entirely above the concentration range the blood-brain barrier normally enforces, which is why thirty years of use did not reveal it.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Loperamide with and without quinidine in healthy volunteers',
+        phase: 'Mechanistic crossover study in healthy male volunteers',
+        sampleSize: 8,
+        primaryEndpoint:
+          'Respiratory response to carbon dioxide rebreathing after 16 mg loperamide with 600 mg quinidine against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'No respiratory depression with loperamide alone; significant respiratory depression with loperamide plus quinidine, P<0.001, not explained by plasma loperamide concentrations',
+        unreportedAdverseSignals:
+          'Eight participants, all male, all healthy. The finding is mechanistically decisive and the sample is small, and one P-glycoprotein inhibitor was tested rather than the class.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Loperamide for acute diarrhoea in children — pooled randomised evidence',
+        phase: 'Systematic review and meta-analysis of randomised placebo-controlled trials',
+        sampleSize: 1691,
+        primaryEndpoint:
+          'Duration and severity of acute diarrhoea in children under 12, and serious adverse events',
+        endpointMet: true,
+        statisticalPValue:
+          'Still diarrhoeal at 24 hours, prevalence ratio 0.66 (95% CI 0.57 to 0.78); duration shorter by 0.8 days (95% CI 0.7 to 0.9); stool count ratio 0.84 (95% CI 0.77 to 0.92)',
+        unreportedAdverseSignals:
+          'Serious adverse events — ileus, lethargy or death — in 8 of 927 on loperamide (0.9%) against 0 of 764 on placebo, and every one of them in a child under three years old.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Loperamide abuse and cardiac dysrhythmia — published case series',
+        phase: 'Case reports and postmarketing surveillance, not a trial',
+        sampleSize: 2,
+        primaryEndpoint:
+          'Cardiac conduction abnormality and death in association with significantly elevated loperamide concentrations',
+        endpointMet: true,
+        statisticalPValue:
+          'Not applicable — two fatalities with measured elevated loperamide concentrations, reported alongside a documented rise in oral loperamide misuse',
+        unreportedAdverseSignals:
+          'Case reports establish that a harm occurs and cannot establish how often. They are included because the regulatory response — package size limits and blister packaging — followed from them rather than from a trial.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Respiratory depression from 16 mg loperamide with a P-glycoprotein inhibitor and none without it, at plasma concentrations that did not differ (P<0.001)',
+        'Diarrhoea duration shortened by 0.8 days and prevalence at 24 hours reduced by a third in the pooled paediatric randomised trials',
+        'Serious adverse events in 8 of 927 children on loperamide against 0 of 764 on placebo, all in children under three',
+        'Fatal cardiac dysrhythmia with significantly elevated loperamide concentrations in published overdose cases',
+      ],
+      unsupportedInferences: [
+        'That exclusion from the brain at label doses means safety at any dose; the efflux is saturable and the cardiac harm sits above it',
+        'That every P-glycoprotein inhibitor produces the effect quinidine produced — mechanistically sound and tested for one drug only',
+        'That reducing stool frequency treats diarrhoeal illness, when what harms people is fluid and electrolyte loss',
+        'That an antimotility drug is neutral in infective diarrhoea, when the label contraindicates it and toxic megacolon has followed',
+      ],
+      whatFailedInitially: [
+        'The design assumption that a peripherally restricted opioid could not be misused, defeated once people found the dose that saturates the transporter',
+        'Ileus, lethargy and death in children under three, at doses at or below 0.25 mg/kg/day',
+        'A cardiac liability that thirty years of therapeutic-dose use never revealed, because it lives above the concentration range the barrier enforces',
+        'Contraindication in dysentery, invasive enterocolitis and Clostridioides difficile, where slowing the bowel prolongs toxin contact',
+      ],
+      realWorldOutcome: [
+        'Approved under NDA 017694 in December 1976 and available without prescription in the United States since 1988',
+        'On the WHO Model List of Essential Medicines, and not recommended by the WHO or the American Academy of Pediatrics in young children',
+        'Over-the-counter package quantities limited and unit-dose blister packaging introduced in response to fatal misuse',
+        'The textbook demonstration that a transporter, not a receptor, can be what makes a drug safe',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule, tablet, orally disintegrating tablet and oral solution, all of the hydrochloride salt',
+      description:
+        'Every form is oral and the drug is meant to work in the gut it is passing through. Under 1% reaches the systemic circulation, the combined result of poor absorption, intestinal P-glycoprotein efflux and extensive first-pass metabolism — so the formulation problem here is the opposite of the proton pump inhibitors’, which have to be protected on the way through.',
+      safetyProfile:
+        'Contraindicated in acute dysentery with blood in the stool and high fever, in acute ulcerative colitis, in bacterial enterocolitis caused by invasive organisms, and in antibiotic-associated pseudomembranous colitis; discontinue at the first sign of abdominal distension. Ileus, abdominal distension and toxic megacolon have been reported. The labels warn of serious cardiac events including QT interval prolongation, torsades de pointes and cardiac arrest with doses higher than recommended — the reason over-the-counter package sizes were limited and blister packaging introduced. Concomitant P-glycoprotein inhibitors increase central nervous system exposure without necessarily raising plasma concentrations. Not recommended in children under two years, and the pooled paediatric randomised evidence places the harm threshold at three.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is this really an opioid?',
+        a: 'Yes, in every chemical and pharmacological sense. Loperamide is a full agonist at the mu-opioid receptor with affinity comparable to the strong painkillers, and it belongs to the same structural family. What separates it from a narcotic is not potency but geography. A transporter called P-glycoprotein sits at the blood-brain barrier and pumps the molecule back out into the blood faster than it can diffuse in, so brain concentrations stay near zero while the drug acts freely on the opioid receptors in the wall of the bowel. This was proved directly in eight volunteers: 16 mg alone caused no breathing depression, and 16 mg with a drug that blocks the transporter did — at blood levels that were no higher. The safety of loperamide is a transport property, and it is the reason the same molecular class sits in a supermarket and behind a pharmacy counter at the same time.',
+      },
+      {
+        q: 'Why does the packet say not to take it if there is blood in the stool?',
+        a: 'Because that is when the drug does the opposite of helping. Diarrhoea with blood and fever generally means an invasive organism, or Clostridioides difficile, and in that situation the flow is doing something useful: it is moving toxin and bacteria out. An antimotility drug keeps the contents in contact with the lining for longer. The label contraindicates it in dysentery, in acute ulcerative colitis, in bacterial enterocolitis from invasive organisms, and in antibiotic-associated pseudomembranous colitis, and the reported consequence of ignoring that is abdominal distension progressing to toxic megacolon, which is a surgical emergency. This is not a caution about how much to take. It is a situation in which the drug is the wrong tool entirely.',
+      },
+      {
+        q: 'Is it safe for my toddler?',
+        a: 'The pooled randomised evidence says no, and it is one of the clearer paediatric answers in this file. Across the placebo-controlled trials in children under 12, loperamide did shorten diarrhoea — by about 0.8 days, with a third fewer children still having it at 24 hours. It also caused serious adverse events, defined as ileus, lethargy or death, in 8 of 927 children on the drug against none of 764 on placebo. Every one of those eight was under three years old. The authors concluded that in children under three, or malnourished, or moderately dehydrated, or systemically ill, or with bloody diarrhoea, harms outweigh benefits even at low doses. Above three, with minimal dehydration, they described it as a possible adjunct to rehydration and refeeding — an adjunct, not a treatment. Both the WHO and the American Academy of Pediatrics have discouraged its use in young children.',
+      },
+      {
+        q: 'What happens if someone takes a lot of it?',
+        a: 'Two things in sequence, and the second is what kills. The transporter that keeps the drug out of the brain can be saturated, so at high enough doses the opioid effect appears — which is why loperamide came to be used as an opioid substitute by people trying to manage withdrawal. Above that, the same molecule blocks two kinds of cardiac ion channel: the potassium channel that ends each heartbeat, which prolongs the QT interval, and the sodium channel that starts it, which widens the QRS complex. The result is ventricular dysrhythmia, and published cases document deaths at significantly elevated drug concentrations. The important structural point is that this liability lives entirely above the concentration range the blood-brain barrier normally enforces. Thirty years of ordinary use could not have revealed it, and only a change in how people used the drug did.',
+        auditNote:
+          'The regulatory response was to package size and blister packaging rather than to availability. That is a deliberate design choice: make a supratherapeutic quantity take effort rather than one purchase.',
+      },
+      {
+        q: 'Does it actually treat the diarrhoea or just mask it?',
+        a: 'It controls the symptom, and that is what it is licensed to do. It does not kill an organism, does not repair a bowel and does not replace lost fluid. In diarrhoeal illness the thing that harms people is fluid and electrolyte loss, and this drug does not address it — a person can have fewer visible stools while fluid continues to pool in the bowel. That is why the paediatric meta-analysis positions it explicitly as a possible adjunct to oral rehydration and early refeeding rather than as a treatment. For an adult with an unpleasant but self-limiting episode, controlling the symptom is a reasonable goal in itself. Confusing it with treating the illness is the mistake, and it is the mistake that matters most in the people least able to tolerate it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Sadeque AJ, Wandel C, He H, Shah S, Wood AJ. Increased drug delivery to the brain by P-glycoprotein inhibition. Clin Pharmacol Ther 2000;68:231-237',
+        identifier: '10.1067/mcp.2000.109156',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Li ST, Grossman DC, Cummings P. Loperamide therapy for acute diarrhea in children: systematic review and meta-analysis. PLoS Med 2007;4:e98',
+        identifier: '10.1371/journal.pmed.0040098',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Eggleston W, Clark KH, Marraffa JM. Loperamide abuse associated with cardiac dysrhythmia and death. Ann Emerg Med 2017;69:83-86',
+        identifier: '10.1016/j.annemergmed.2016.03.047',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: IMODIUM (loperamide hydrochloride) capsules, NDA 017694, J&J Consumer — original approval 28 December 1976',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=017694',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: IMODIUM A-D (loperamide hydrochloride), NDA 019487 — over-the-counter approval 1 March 1988',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019487',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3955 — loperamide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3955',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Polyethylene glycol 3350 — not a molecule, not absorbed, not metabolised, and taken daily for
+  //    years by children on the strength of evidence Cochrane grades low to very low.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'polyethylene-glycol-3350',
+    name: 'Polyethylene Glycol 3350',
+    tradeName: 'MiraLAX / ClearLax / GlycoLax / GaviLax',
+    sponsor:
+      'Strides Pharma International (current US label holder for the generic powder). The molecule first reached the United States market as the bowel-preparation solution GoLYTELY under NDA 019011 in July 1984; MiraLAX was approved as a prescription laxative under NDA 020698 in February 1999 and became available over the counter under NDA 022015 in October 2006.',
+    targetGene:
+      'None. There is no receptor, no enzyme and no gene involved anywhere in the mechanism.',
+    targetProtein:
+      'None. The drug acts by physical chemistry — hydrogen bonding to water — and has no molecular target in the body at all.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1984,
+    indication:
+      'Relief of occasional constipation, described on the over-the-counter label as irregularity, with a stated duration of use of up to seven days. The higher-volume formulations containing added electrolytes are indicated for cleansing of the bowel before colonoscopy or barium enema.',
+    patientFriendlyIndication: 'Constipation — softening stool by keeping water in the bowel',
+    conditionContext: {
+      conditionExplainer:
+        'Stool becomes hard when the colon reabsorbs too much water from it, usually because it has been sitting there too long. Nothing about that involves a chemical signal that can be blocked. It is a physical problem about how much water stays in the bowel, and this drug is a physical answer to it.',
+      whyItMatters:
+        'It is one of the most widely used medicines in childhood, taken daily for months or years, on a label that specifies seven days. That gap between how the product is licensed and how it is actually used is the central audit on this page, and it is the reason the safety questions about it have been so hard to answer.',
+      whoTakesThis:
+        'Adults with occasional constipation, and a very large number of children with functional constipation, in whom it is the first-line agent in most guidelines worldwide. Also every adult preparing for a colonoscopy, in a different and much larger formulation.',
+      clinicalGoals:
+        'The measured endpoint in almost every trial is stools per week. That is a count of bowel movements, not a measure of how anyone feels, and the trials that measured symptom scores over a year found something less tidy.',
+    },
+    oneSentenceVerdict:
+      'A chain of ethylene oxide units, far too large to be absorbed and with no receptor anywhere in the body, that works purely by holding water in the bowel through hydrogen bonding: it adds a measured 2.61 stools per week over placebo in children, beats lactulose by 0.70 stools per week across six trials, and Cochrane grades the certainty of that primary evidence as low to very low, on 25 trials of which 14 were at high risk of bias — for a product licensed for seven days of use and given to children daily for years.',
+    laymanHowItWorks:
+      'Polyethylene glycol is a long chain of repeating units, each of which grabs onto water molecules and will not let go. Swallowed as a powder dissolved in a drink, it is far too large for the gut wall to absorb, so essentially the whole dose travels the length of the bowel carrying its water with it. That water cannot be reabsorbed while it is bound to the polymer, so the stool arriving at the rectum is softer and bulkier than it would otherwise be, and it moves more easily. Nothing is stimulated, nothing is blocked, and no nerve or receptor is involved — it is a physical effect, which is why it works the same way in a two-year-old and an eighty-year-old.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0286 per gram at United States pharmacy acquisition cost (CMS NADAC, median across 64 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Polyethylene glycol is an industrial commodity polymer made by tens of thousands of tonnes a year for cosmetics, food, solvents and pharmaceutical excipients. The pharmaceutical product is a purified, specified grade of the same material, and there is no molecule patent to expire. At under three cents a gram it is the cheapest substance in this file by a wide margin, and it is not on the WHO Model List of Essential Medicines, which lists other laxatives instead.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The comparison that has actually been run repeatedly is against lactulose, and polyethylene glycol wins it on every measure that has been pooled — while the pooled certainty is low. Below that sit the bulking agents, which need adequate fluid to work and can make things worse without it, and the stimulants, which act on the bowel wall rather than on the water content and are the class that carries the historical worries about long-term use. Dietary fibre and fluid are the honest first comparison and the one with the least commercial interest behind it.',
+      conventionalRx: [
+        {
+          name: 'Lactulose',
+          class: 'Non-absorbed disaccharide, osmotic and fermented by colonic bacteria',
+          howItCompares:
+            'The main comparator, and the loser in the pooled analyses. Across the randomised trials, polyethylene glycol produced better stool frequency, better stool form, better relief of abdominal pain and less need for additional products, in both adults and children. In the paediatric review the difference was 0.70 stools per week (95% CI 0.10 to 1.31) across six studies in 465 participants.',
+          typicalCost:
+            'No NADAC value is held on this record for lactulose and none is asserted here',
+          prosAndCons:
+            'Pros: very long history, useful in hepatic encephalopathy where the fermentation is the point. Cons: bacterial fermentation produces gas, so bloating, flatulence and cramping are markedly more common than with a polymer that is not fermented.',
+        },
+        {
+          name: 'Psyllium and other bulk-forming fibres',
+          class: 'Soluble fibre bulking agent',
+          howItCompares:
+            'Works by adding fermentable and water-holding bulk rather than by carrying free water through the colon. It needs adequate fluid intake to work, and in a dehydrated or immobile person it can worsen impaction rather than relieve it, which polyethylene glycol does not.',
+          typicalCost:
+            'No NADAC value is held on this record for psyllium and none is asserted here',
+          prosAndCons:
+            'Pros: a food-adjacent intervention with cardiometabolic evidence of its own. Cons: bloating and gas from fermentation, requires fluid, and is unsuitable where transit is severely slowed.',
+        },
+        {
+          name: 'Senna and bisacodyl',
+          class: 'Stimulant laxatives acting on the enteric nervous system and colonic mucosa',
+          howItCompares:
+            'A different mechanism: these provoke the bowel to contract rather than changing the water content of what is in it. They act faster and are the class around which the long-standing concerns about dependence and colonic damage have circled, most of which have not held up as well as the concern itself.',
+          typicalCost: 'No NADAC value is held on this record for senna and none is asserted here',
+          prosAndCons:
+            'Pros: rapid and reliable, useful for opioid-induced constipation where the problem is motility rather than water. Cons: cramping, and the Cochrane paediatric review found the evidence base for stimulants in children thinner still than for the osmotics.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Kiwifruit',
+          activeCompound: 'Actinidin, insoluble fibre and a high water-holding capacity',
+          biologicalMechanism:
+            'Holds water in the stool and adds bulk, which is the same physical effect the polymer produces by a different route. It is the food most often tested head-to-head against osmotic laxatives in constipation trials.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Studied as whole fruit eaten daily; this record states that the comparison has been made and does not prescribe a quantity',
+          monthlyCost: 'Ordinary grocery cost; no acquisition-cost dataset applies',
+        },
+        {
+          name: 'Prunes',
+          activeCompound: 'Sorbitol, a non-absorbed sugar alcohol, plus fibre',
+          biologicalMechanism:
+            'Sorbitol is osmotically active in the same way the polymer is — it holds water in the lumen because it is not absorbed. The difference is that sorbitol is fermented by colonic bacteria and polyethylene glycol is not, which is why prunes cause gas and the powder does not.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Studied as a daily portion of dried fruit; this record does not state a quantity',
+          monthlyCost: 'Ordinary grocery cost; no acquisition-cost dataset applies',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Ask what the plan is beyond seven days',
+          action:
+            'Establish, at the start, what the treatment course is meant to look like and when it is reviewed.',
+          patientImpact:
+            'The over-the-counter label specifies use for up to seven days. In practice this is given to children daily for months or years, which is where almost all of it is used and where almost none of the randomised evidence sits. The Cochrane review explicitly called for research into long-term use in childhood constipation.',
+          clinicalPrecaution:
+            'That gap is a reason to have the conversation, not a reason to stop. Functional constipation in children genuinely does need months of treatment, and the alternative to using this off label is not obviously better.',
+        },
+        {
+          name: 'Mention it if you have ever reacted to a colonoscopy prep or a steroid injection',
+          action:
+            'Report any previous unexplained allergic reaction, particularly to injected steroids, laxatives or bowel preparations.',
+          patientImpact:
+            'Polyethylene glycol is widely assumed to be biologically inert and immediate-type hypersensitivity to it is reported with increasing frequency, including life-threatening reactions. Because it is an excipient in an enormous range of products, people who are sensitised typically present with a history of repeated severe reactions to apparently unrelated products.',
+          clinicalPrecaution:
+            'Awareness among clinicians is low and product labelling of excipients is often insufficient. Naming the pattern is more useful than naming a product.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'generic_formula',
+      chemicalFormula: 'HO-(CH2CH2O)n-H, with n averaging approximately 75 to 77',
+      molecularWeight:
+        '3,350 g/mol nominal — a number-average across a distribution of chain lengths, not the mass of any single molecule. This substance has no single PubChem compound record, because it is not one compound.',
+      targetReceptorAffinity:
+        'None, and not for want of looking. There is no receptor, no enzyme, no transporter and no binding site anywhere in the mechanism. The pharmacology is hydrogen bonding: each ether oxygen along the chain coordinates water, and a polymer too large to cross the intestinal epithelium carries that water the length of the colon. It is one of the very few substances in this reference whose entire action can be stated in physical chemistry with no biology at all.',
+      structureSource: {
+        label:
+          'Drugs@FDA: MIRALAX (polyethylene glycol 3350) powder for oral solution, NDA 020698, Braintree — the regulatory record that defines the substance by nominal average molecular weight rather than by a structure, because no single structure exists',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020698',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'peg-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Molecular-weight distribution, and residual ethylene glycol and diethylene glycol',
+          description:
+            'Establish the chain-length distribution, not a single weight, and separately quantify the small-molecule glycols left over from manufacture. Ethylene glycol and diethylene glycol are toxic and are the impurities that matter in a polymer built from ethylene oxide; a batch is specified by its average, its spread and its residual monomer content rather than by a purity percentage.',
+          reagentsAndBuffer:
+            'Gel permeation or size-exclusion chromatography with refractive index detection against narrow polyethylene glycol standards, gas chromatography with flame ionisation or mass detection for ethylene glycol and diethylene glycol, hydroxyl value titration, residual ethylene oxide and 1,4-dioxane headspace GC',
+        },
+        {
+          id: 'peg-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Base-catalysed anionic ring-opening polymerisation of ethylene oxide',
+          description:
+            'Grow the chain by adding ethylene oxide to an initiator under base catalysis, stopping at the target average length. Chain length is set by the ratio of monomer to initiator rather than by an endpoint reaction, which is why the product is a distribution and why the specification is written as an average.',
+          dependsOnStepId: 'peg-w1',
+          reagentsAndBuffer:
+            'Ethylene oxide, ethylene glycol or water as initiator, potassium or sodium hydroxide catalyst, anhydrous conditions under nitrogen with strict temperature and pressure control',
+        },
+        {
+          id: 'peg-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Catalyst removal, stripping of volatile glycols and drying',
+          description:
+            'Neutralise and remove the catalyst, then strip residual ethylene oxide, 1,4-dioxane, ethylene glycol and diethylene glycol under vacuum. This is the step that separates a pharmaceutical grade from an industrial one: the polymer is chemically identical either way, and the impurity profile is not.',
+          dependsOnStepId: 'peg-w2',
+          reagentsAndBuffer:
+            'Acid neutralisation and adsorbent treatment, vacuum stripping with nitrogen sparge, spray drying or flaking, in-process GC monitoring of volatile residues',
+        },
+        {
+          id: 'peg-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Confirmation that essentially nothing crosses the intestinal wall',
+          description:
+            'Measure transepithelial permeability across an intestinal monolayer and confirm the polymer stays in the apical chamber. This is a negative result being sought deliberately: the entire safety case for daily long-term use rests on the substance not being absorbed, and shorter chains in a wide distribution are the fraction most likely to cross.',
+          dependsOnStepId: 'peg-w3',
+          reagentsAndBuffer:
+            'Caco-2 monolayers on permeable supports with transepithelial electrical resistance and mannitol integrity markers, size-exclusion chromatography of both chambers to detect any low-molecular-weight fraction crossing',
+        },
+        {
+          id: 'peg-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Water-binding capacity and resistance to bacterial fermentation',
+          description:
+            'Quantify how much water a gram of polymer holds against an osmotic gradient, and incubate it with faecal microbiota to confirm it is not fermented. The second measurement is the one that distinguishes this laxative from lactulose clinically: an unfermented polymer produces no gas, which is why the tolerability comparison goes the way it does.',
+          dependsOnStepId: 'peg-w4',
+          reagentsAndBuffer:
+            'Equilibrium dialysis or osmometry for water-binding capacity, anaerobic in vitro faecal fermentation with gas-volume and short-chain fatty acid measurement, size-exclusion chromatography of the residue to confirm the polymer is recovered intact',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'peg-a1',
+        category: 'measured',
+        title: 'It beats placebo by 2.61 stools per week — on two studies and 101 patients',
+        laymanSummary:
+          'Children given polyethylene glycol had about two and a half more bowel movements a week than children given a dummy. That is a real difference and the number of children it rests on is very small: two trials and a hundred and one patients, out of a review of twenty-five trials.',
+        technicalDetails:
+          'The Cochrane review of osmotic and stimulant laxatives in childhood constipation included 25 randomised trials in 2,310 participants. Meta-analysis of the two placebo-controlled studies, 101 patients in total, gave a mean difference of 2.61 stools per week in favour of polyethylene glycol (95% CI 1.15 to 4.08). A dose comparison in one study of 90 participants found high-dose (0.7 g/kg) gave 1.30 more stools per week than low-dose (0.3 g/kg) (95% CI 0.76 to 1.84). Common adverse events in the placebo-controlled studies were flatulence, abdominal pain, nausea, diarrhoea and headache. The GRADE assessment for the primary outcome was low or very low certainty, on grounds of sparse data, inconsistency and high risk of bias, and 14 of the 25 included studies were judged at high risk of bias from lack of blinding, incomplete outcome data and selective reporting.',
+        evidenceSource: 'Gordon M et al., Cochrane Database Syst Rev 2016;8:CD009118',
+        doi: '10.1002/14651858.CD009118.pub3',
+        measuredMetric:
+          'Stools per week against placebo, pooled across randomised trials in children',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'peg-a2',
+        category: 'measured',
+        title: 'It beats lactulose across ten trials, on every measure that was pooled',
+        laymanSummary:
+          'Against the older osmotic laxative it is usually compared with, polyethylene glycol produced more bowel movements, better stool consistency, more relief of abdominal pain and less need for additional products — in adults and children alike.',
+        technicalDetails:
+          'The Cochrane review of lactulose against polyethylene glycol for chronic constipation considered all ten randomised trials then published and found polyethylene glycol superior on stool frequency per week, stool form, relief of abdominal pain and need for additional products. Subgroup analysis showed the advantage in both adults and children, except for abdominal pain relief. The paediatric review found the same direction with a quantified effect: 0.70 more stools per week (95% CI 0.10 to 1.31) across six studies in 465 participants, with 18% (27 of 154) of polyethylene glycol patients requiring additional laxative therapy against a higher proportion on lactulose. The mechanistic explanation is straightforward: lactulose is fermented by colonic bacteria and produces gas, and polyethylene glycol is not fermented at all.',
+        evidenceSource:
+          'Lee-Robichaud H et al., Cochrane Database Syst Rev 2010;7:CD007570; Gordon M et al., Cochrane Database Syst Rev 2016;8:CD009118',
+        doi: '10.1002/14651858.CD007570.pub2',
+        measuredMetric:
+          'Stool frequency, stool form, abdominal pain relief and need for additional products, polyethylene glycol against lactulose',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'peg-a3',
+        category: 'failed',
+        title:
+          'The evidence supporting the most-used laxative in childhood is graded low to very low certainty',
+        laymanSummary:
+          'Twenty-five randomised trials exist. Fourteen of them were judged at high risk of bias. The reviewers who pooled them said the results should be interpreted with caution because of quality problems, inconsistency between studies and very short follow-up — for a drug children take for years.',
+        technicalDetails:
+          'The Cochrane review’s own summary is unusually blunt: the pooled analyses suggest polyethylene glycol may be superior to placebo, lactulose and milk of magnesia, but GRADE assessment indicated that overall quality of the evidence for the primary outcome, number of stools per week, was low or very low, owing to sparse data, inconsistency and high risk of bias in the pooled studies. Fourteen of 25 studies were at high risk of bias from lack of blinding, incomplete outcome data and selective reporting. The authors state that results should be interpreted with caution because of quality and methodological concerns, clinical heterogeneity and short follow-up, and that further research is needed into long-term use of polyethylene glycol for childhood constipation and into the optimal dose. That research has not arrived in the decade since. It is a striking position for a first-line, worldwide-guideline-recommended treatment in children.',
+        evidenceSource: 'Gordon M et al., Cochrane Database Syst Rev 2016;8:CD009118',
+        doi: '10.1002/14651858.CD009118.pub3',
+        measuredMetric:
+          'GRADE certainty rating for the primary outcome and risk-of-bias judgement across 25 included randomised trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'peg-a4',
+        category: 'failed',
+        title: 'The only 52-week paediatric head-to-head did not meet its non-inferiority margin',
+        laymanSummary:
+          'A trial followed children for a full year on one of two polyethylene glycol formulations. Half the children on each ended up with a satisfactory result. Formally, the trial failed to prove one was not worse than the other — the confidence interval was too wide to tell.',
+        technicalDetails:
+          'A double-blind randomised trial in children aged 0.5 to 16 years with constipation, defined as fewer than three bowel movements a week, compared polyethylene glycol 3350 with electrolytes against polyethylene glycol 4000 without electrolytes over 52 weeks. Ninety-seven were included and 82 completed. Mean reduction in total sum score, the sum of five constipation symptoms each rated 0 to 3, was -3.81 (95% CI -4.96 to -2.65) and -3.74 (95% CI -5.08 to -2.40) respectively. The prespecified non-inferiority margin was a difference of 1.5 or less; the observed maximum difference between groups spanned -1.81 to 1.68 and the criteria were not met. Treatment success — three or more bowel movements a week with fewer than one episode of faecal incontinence — was 50% and 45% at 52 weeks (P=0.69). Adverse event rates were similar and no drug-related serious adverse events occurred. The authors state that non-inferiority was not demonstrated while secondary outcomes suggest similar efficacy and safety, which is the honest reading and a weaker claim than the one usually made from this trial.',
+        evidenceSource: 'Bekkali NLH et al., J Pediatr Gastroenterol Nutr 2018;66:10-15',
+        doi: '10.1097/MPG.0000000000001726',
+        measuredMetric:
+          'Change in constipation total sum score at 52 weeks, and treatment success rate, between two polyethylene glycol formulations',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'peg-a5',
+        category: 'inferred',
+        title:
+          'Licensed for seven days, taken for years — and the long-term safety question is open by admission',
+        laymanSummary:
+          'The label on the box says use for up to seven days. Children with functional constipation take it daily for months or years, in every major guideline. Almost none of the randomised evidence covers that, and the reviewers who assembled it said so explicitly.',
+        technicalDetails:
+          'The over-the-counter labelling for polyethylene glycol 3350 specifies use for up to seven days. Guideline-recommended paediatric practice is maintenance therapy for months, often for more than a year, because functional constipation in children relapses when treatment stops early. The randomised literature does not follow that: the Cochrane review notes short follow-up as one of the reasons for caution and calls for research into long-term use. The single 52-week randomised trial included 97 children and found no drug-related serious adverse events, which is reassuring at that sample size and cannot exclude an uncommon harm. The proposed mechanism of safety — that the polymer is too large to be absorbed and is not metabolised — is chemically sound and is the basis of the extrapolation, but it is a mechanistic argument standing where trial data should be. This record states that as an inference rather than as a finding.',
+        evidenceSource:
+          'MiraLAX and generic polyethylene glycol 3350 United States over-the-counter Drug Facts labelling, Directions (NDA 022015); Gordon M et al., Cochrane Database Syst Rev 2016;8:CD009118',
+        doi: '10.1002/14651858.CD009118.pub3',
+        inferredClaim:
+          'That a substance safe for seven days of licensed use is safe for years of unlicensed daily use in children, on the grounds that it is not absorbed — the reasoning is sound and the trial evidence for it does not exist',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'peg-a6',
+        category: 'conclusion_shift',
+        title: 'The inert excipient turned out to be an allergen',
+        laymanSummary:
+          'Polyethylene glycol is in an enormous number of medicines, cosmetics and household products, and was treated for decades as biologically inert. Immediate allergic reactions to it, some life-threatening, are being reported with increasing frequency, and most clinicians do not know to look for it.',
+        technicalDetails:
+          'The 2016 review that established the pattern is explicit about the shape of the problem: polyethylene glycols are widely used and generally considered biologically inert, cases of mild to life-threatening immediate-type hypersensitivity are reported with increasing frequency, and awareness of allergenic potential remains low because of a general lack of suspicion toward excipients and insufficient product labelling. The information available is limited to anecdotal reports, and the potential for sensitisation and cross-sensitisation to PEGylated drugs and structurally related derivatives is likely underestimated. The characteristic presentation is a patient with a history of repeated severe reactions to a range of apparently unrelated products in hospital and at home — because the common factor is an excipient nobody is reading the label for. This is a change in how the field regards the substance rather than a change in the substance, and it is directly relevant to the polyethylene glycol content of lipid nanoparticle formulations.',
+        evidenceSource:
+          'Wenande E, Garvey LH. Immediate-type hypersensitivity to polyethylene glycols: a review. Clin Exp Allergy 2016;46:907-922',
+        doi: '10.1111/cea.12760',
+        inferredClaim:
+          'That polyethylene glycol is biologically inert and cannot be an allergen — a long-held assumption that a growing case literature has overturned, without yet establishing how common the reaction is',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Dissolved in a drink and swallowed',
+        laymanDesc:
+          'It is a powder that has to go into liquid. The liquid it goes into is part of how it works, not just how it is taken.',
+        molecularDetail:
+          'Polyethylene glycol 3350 is supplied as a powder for oral solution. The dissolved polymer enters the stomach already hydrated, and the water it arrives with is the water it carries onward. The higher-volume bowel-preparation products are the same polymer with added electrolytes, formulated so that the large fluid volume does not shift sodium and potassium.',
+        iconName: 'Beaker',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Far too big for the gut wall to take up',
+        laymanDesc:
+          'A chain of about seventy-five linked units is much too large to slip between or through the cells lining the intestine. Essentially the entire dose stays inside the bowel.',
+        molecularDetail:
+          'Absorption is negligible. There is no transporter for it, and passive paracellular transport is excluded by size at a nominal average molecular weight of 3,350. Nothing is metabolised, nothing enters the systemic circulation in meaningful quantity, and the whole administered mass is recovered in stool.',
+        iconName: 'ShieldCheck',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Every link in the chain holds onto water',
+        laymanDesc:
+          'The oxygen atoms spaced along the polymer each grab water molecules by hydrogen bonding. The water is held to the chain and cannot be reabsorbed while it is.',
+        molecularDetail:
+          'Each ether oxygen coordinates water through hydrogen bonding, giving the polymer a high water-binding capacity per gram. The bound water is osmotically unavailable to the colonic epithelium, so it remains in the lumen rather than being reabsorbed. No ion gradient is created and no secretion is stimulated — the effect is purely one of water retention.',
+        iconName: 'Droplets',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Bacteria cannot eat it, so there is no gas',
+        laymanDesc:
+          'Unlike lactulose and unlike the sugars in prunes, colonic bacteria cannot ferment this polymer. That is why it does not cause the bloating and wind that the older osmotic laxatives do.',
+        molecularDetail:
+          'The polyether backbone is not a substrate for colonic bacterial glycoside hydrolases, so it passes through the fermentative compartment intact and produces no short-chain fatty acids and no gas. Lactulose is fermented completely, which is the mechanistic reason for the tolerability difference that the pooled trials measure.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Softer, bulkier stool that moves more easily',
+        laymanDesc:
+          'What arrives at the rectum has more water in it and is easier to pass. Nothing has been stimulated and nothing has been forced — the physical properties of the stool have changed.',
+        molecularDetail:
+          'Retained luminal water increases stool volume and reduces consistency, which secondarily increases propulsive activity through normal stretch-mediated reflexes. The measured effect in randomised trials is 2.61 more stools per week than placebo in children, and 0.70 more per week than lactulose.',
+        iconName: 'TrendingUp',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the mechanism does not tell you',
+        laymanDesc:
+          'A substance that is not absorbed and not metabolised sounds like one that cannot cause harm over years. That reasoning is why the long-term trials were never thought necessary — and why the allergy reports came as a surprise.',
+        molecularDetail:
+          'The absence of absorption and metabolism is the entire safety argument for daily use over years, and it is an argument from chemistry rather than from trial data: the Cochrane review calls for long-term research that has not been done, and the largest randomised long-term study includes 97 children over 52 weeks. Separately, the assumption of biological inertness has already failed once — immediate-type hypersensitivity to polyethylene glycols is reported with increasing frequency, including life-threatening reactions.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane CD009118: osmotic and stimulant laxatives for childhood constipation',
+        phase: 'Systematic review and meta-analysis of 25 randomised trials',
+        sampleSize: 2310,
+        primaryEndpoint: 'Frequency of defecation, measured as stools per week',
+        endpointMet: true,
+        statisticalPValue:
+          'Polyethylene glycol against placebo, mean difference 2.61 stools per week (95% CI 1.15 to 4.08), 2 studies, 101 patients; against lactulose 0.70 (95% CI 0.10 to 1.31), 6 studies, 465 participants; high dose against low dose 1.30 (95% CI 0.76 to 1.84), 1 study, 90 participants',
+        unreportedAdverseSignals:
+          'GRADE certainty for the primary outcome was low or very low. Fourteen of the 25 included studies were at high risk of bias. The placebo comparison rests on 101 patients across two trials.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId:
+          'Polyethylene glycol against lactulose, pooled paediatric comparison (Cochrane CD009118)',
+        phase: 'Meta-analysis of 6 randomised trials within a Cochrane systematic review',
+        sampleSize: 465,
+        primaryEndpoint: 'Stools per week, polyethylene glycol against lactulose',
+        endpointMet: true,
+        statisticalPValue: 'Mean difference 0.70 stools per week (95% CI 0.10 to 1.31)',
+        unreportedAdverseSignals:
+          'Follow-up across the contributing studies was short. The separate Cochrane review of lactulose against polyethylene glycol in adults and children found the same direction on stool frequency, stool form, abdominal pain and need for additional products.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'PEG3350 with electrolytes against PEG4000, 52 weeks in children',
+        phase: 'Randomised, double-blind, non-inferiority trial',
+        sampleSize: 97,
+        primaryEndpoint:
+          'Change in constipation total sum score at week 52 against baseline, and dose range determination',
+        endpointMet: false,
+        statisticalPValue:
+          'Mean reduction -3.81 (95% CI -4.96 to -2.65) against -3.74 (95% CI -5.08 to -2.40); non-inferiority margin of 1.5 not met, observed maximum difference -1.81 to 1.68. Treatment success 50% against 45% at 52 weeks, P=0.69.',
+        unreportedAdverseSignals:
+          'Ninety-seven children randomised, 82 completing, is a small sample for a year-long safety question. No drug-related serious adverse events occurred, which at this sample size cannot exclude an uncommon harm.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '2.61 more stools per week than placebo in children (95% CI 1.15 to 4.08), from two trials in 101 patients',
+        '0.70 more stools per week than lactulose across six trials in 465 participants, with superiority also on stool form, abdominal pain and need for additional products',
+        '1.30 more stools per week on 0.7 g/kg than on 0.3 g/kg in one 90-participant dose comparison',
+        'Treatment success of 50% against 45% at 52 weeks between two polyethylene glycol formulations, with no drug-related serious adverse events in 97 children',
+      ],
+      unsupportedInferences: [
+        'That a substance safe for the seven days it is licensed for is safe for the years children actually take it, argued from non-absorption rather than measured',
+        'That polyethylene glycol is biologically inert — an assumption a growing case literature of immediate-type hypersensitivity has already overturned',
+        'That first-line guideline status reflects the strength of the underlying evidence, which Cochrane grades low to very low',
+        'That more stools per week is the same as a child feeling better; the 52-week symptom-score trial is the only one that asked and it did not meet its margin',
+      ],
+      whatFailedInitially: [
+        'The GRADE assessment: low or very low certainty for the primary outcome, with 14 of 25 trials at high risk of bias',
+        'The 52-week paediatric non-inferiority comparison, whose confidence interval was too wide to reach its own margin',
+        'The placebo evidence base, which for the most-used paediatric laxative in the world consists of two trials and 101 children',
+        'The assumption of inertness, contradicted by increasing reports of immediate-type hypersensitivity including life-threatening reactions',
+      ],
+      realWorldOutcome: [
+        'On the United States market as a bowel preparation since 1984, as a prescription laxative since 1999 and over the counter since 2006',
+        'First-line treatment for functional constipation in children in guidelines worldwide, given daily for months or years off label',
+        'Under three cents a gram at pharmacy acquisition cost, the cheapest substance in this file',
+        'The Cochrane call for research into long-term paediatric use, made in 2016, has not been answered',
+      ],
+    },
+    deliverySystem: {
+      type: 'Powder for oral solution, dissolved in water or another beverage; the bowel-preparation products are the same polymer in a large fluid volume with added electrolytes',
+      description:
+        'The formulation problem is the opposite of every other drug in this file. Nothing has to be protected, absorbed, targeted or delivered anywhere — the substance simply has to reach the colon dissolved in water, which it does by not being absorbable. The electrolyte-containing preparations exist because the fluid volumes used for colonoscopy preparation would otherwise shift sodium and potassium.',
+      safetyProfile:
+        'The over-the-counter label directs use for up to seven days and advises stopping and consulting a doctor if there is rectal bleeding or failure to have a bowel movement. Commonly reported adverse effects in the randomised trials are flatulence, abdominal pain, nausea, diarrhoea and headache, at rates broadly similar to comparators. The substance is not absorbed and not metabolised in meaningful quantity. Immediate-type hypersensitivity to polyethylene glycols is reported with increasing frequency, including life-threatening reactions, and is under-recognised because polyethylene glycol is an excipient in a very wide range of unrelated products. Electrolyte disturbance is a concern with the high-volume bowel-preparation formulations rather than with the laxative doses.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it safe to take this every day for years?',
+        a: 'The honest answer is that the reasoning says yes and the trials have not been done. The label on the box specifies up to seven days. In practice children with functional constipation take it daily for months or years, and every major paediatric guideline recommends exactly that, because stopping early is how the problem comes back. The argument for safety is mechanistic and it is a good argument: the polymer is far too large to be absorbed, there is no transporter for it, and it is not metabolised, so essentially the entire dose leaves in stool having done nothing except carry water. What does not exist is a large long-term randomised trial. The Cochrane reviewers said explicitly that research into long-term use is needed, and that was in 2016. The largest randomised study over a full year included 97 children and found no drug-related serious adverse events, which is reassuring and cannot rule out an uncommon one.',
+        auditNote:
+          'A mechanistic safety argument is not a null result. It is a reason nobody thought the trial was necessary, which is a different thing.',
+      },
+      {
+        q: 'Why is it better than lactulose?',
+        a: 'Mostly because bacteria cannot eat it. Lactulose is a sugar that reaches the colon undigested and is then fermented by the gut flora, and fermentation produces gas — which is why lactulose causes bloating, wind and cramping. Polyethylene glycol is a polyether that colonic bacteria have no enzyme for, so it passes through intact, holds its water and produces nothing. That mechanical difference shows up in the pooled trials: across ten randomised comparisons, polyethylene glycol came out ahead on stool frequency, stool form, relief of abdominal pain and the need to add another laxative, in adults and children both. In the paediatric review the frequency difference was 0.70 stools per week. It is a consistent advantage, and it is a modest one.',
+      },
+      {
+        q: 'How strong is the evidence for it, really?',
+        a: 'Weaker than its status suggests, and Cochrane says so directly. This is the first-line treatment for constipation in children in guidelines worldwide. The review that assembled the randomised evidence found 25 trials in 2,310 participants, judged 14 of them at high risk of bias, and graded the overall certainty of the main finding — stools per week — as low or very low, citing sparse data, inconsistency between studies and that risk of bias. The comparison against placebo, the most basic question anyone would ask, rests on two trials and 101 children. The reviewers wrote that the pooled results should be interpreted with caution. That is unusual language for a first-line treatment, and it is worth knowing that the drug is used the way it is partly because the alternatives are worse and partly because it is cheap and well tolerated, not because the trial base is strong.',
+      },
+      {
+        q: 'Can you be allergic to it?',
+        a: 'Yes, and until fairly recently almost nobody thought so. Polyethylene glycol is used as an excipient in an enormous number of medicines, cosmetics and household products, and was treated for decades as biologically inert. Immediate-type hypersensitivity reactions to it, from mild to life-threatening, are now reported with increasing frequency. The reason it is easy to miss is structural: because the substance is a hidden ingredient in many unrelated products, a sensitised person typically presents with a history of repeated severe reactions to things that appear to have nothing in common — an injected steroid, a laxative, a bowel preparation, a cosmetic. Awareness among clinicians is low and excipient labelling is often insufficient. If that pattern sounds familiar, it is worth naming to an allergist.',
+      },
+      {
+        q: 'What is the difference between this and the drink for a colonoscopy?',
+        a: 'The same polymer in a very different quantity, with salts added. The laxative is a small amount of powder in an ordinary drink and works by holding water in the stool that is already there. A bowel preparation is litres of solution containing the same polyethylene glycol plus sodium, potassium, chloride, bicarbonate and sometimes sulfate. The electrolytes are there for a specific reason: passing that much fluid through the colon in a few hours would otherwise pull sodium and potassium out of the body, so the solution is made close to isotonic to prevent it. That is also why bowel preparations carry warnings about electrolyte disturbance that the everyday laxative does not. The chemistry is identical; the dose, the volume and the risk profile are not.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Gordon M et al. Osmotic and stimulant laxatives for the management of childhood constipation. Cochrane Database Syst Rev 2016;8:CD009118',
+        identifier: '10.1002/14651858.CD009118.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lee-Robichaud H, Thomas K, Morgan J, Nelson RL. Lactulose versus polyethylene glycol for chronic constipation. Cochrane Database Syst Rev 2010;7:CD007570',
+        identifier: '10.1002/14651858.CD007570.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bekkali NLH et al. Polyethylene glycol 3350 with electrolytes versus polyethylene glycol 4000 for constipation: a randomized, controlled trial. J Pediatr Gastroenterol Nutr 2018;66:10-15',
+        identifier: '10.1097/MPG.0000000000001726',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wenande E, Garvey LH. Immediate-type hypersensitivity to polyethylene glycols: a review. Clin Exp Allergy 2016;46:907-922',
+        identifier: '10.1111/cea.12760',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: MIRALAX (polyethylene glycol 3350) powder for oral solution, NDA 020698, Braintree — original prescription approval 18 February 1999',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020698',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: MIRALAX (polyethylene glycol 3350), NDA 022015, Bayer HealthCare — over-the-counter approval 6 October 2006',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=022015',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: GOLYTELY (polyethylene glycol 3350 with electrolytes), NDA 019011 — original approval 13 July 1984, the first United States approval of this polymer',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019011',
+        kind: 'regulatory',
       },
       NADAC_SOURCE,
       COST_OF_PRODUCTION_SOURCE,

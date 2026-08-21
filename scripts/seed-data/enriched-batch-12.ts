@@ -3320,4 +3320,1355 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Linezolid — the first genuinely new antibacterial class in thirty-five years, which beat
+  //    vancomycin on cure without changing who died, and became a tuberculosis drug instead.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'linezolid',
+    name: 'Linezolid',
+    tradeName: 'Zyvox',
+    sponsor:
+      'Pharmacia & Upjohn (originator; the oxazolidinone scaffold came from a DuPont monoamine oxidase inhibitor programme), now Pfizer on NDA 021130, 021131 and 021132',
+    targetGene:
+      'Bacterial 23S ribosomal RNA genes (rrl) and the ribosomal protein gene rplC — resistance arises from mutations there or from the transferable cfr methyltransferase',
+    targetProtein: 'The bacterial 50S ribosomal subunit, at the peptidyl transferase centre A site',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2000,
+    indication:
+      'Nosocomial pneumonia, community-acquired pneumonia, complicated and uncomplicated skin and skin structure infections, and vancomycin-resistant Enterococcus faecium infections, caused by susceptible Gram-positive bacteria. It is not approved for catheter-related bloodstream infection and has no activity against Gram-negative organisms.',
+    patientFriendlyIndication:
+      'Serious infections caused by resistant Gram-positive bacteria, including MRSA and vancomycin-resistant enterococci',
+    anatomicalSite:
+      'The bacterial ribosome. Its harms come from the human mitochondrial ribosome, which is close enough in structure to be affected too.',
+    conditionContext: {
+      conditionExplainer:
+        'Linezolid stops bacteria from making proteins, by blocking the very first step rather than the assembly line further along. It was the first antibiotic of a genuinely new class to reach the market since the 1960s.',
+      whyItMatters:
+        'It is one of very few options against MRSA and vancomycin-resistant enterococci that works by mouth as well as by drip. It has also become one of the three drugs in the regimen that made extensively drug-resistant tuberculosis curable, which is not what it was licensed for.',
+      whoTakesThis:
+        'Adults and children with serious Gram-positive infection, and — outside its licensed indications — patients with highly drug-resistant tuberculosis.',
+      clinicalGoals:
+        'Clinical cure. For tuberculosis, a favourable outcome six months after the end of treatment, meaning no relapse.',
+    },
+    oneSentenceVerdict:
+      'The first new antibacterial class in thirty-five years, blocking assembly of the bacterial ribosome before protein synthesis can begin — it achieved clinical success in 57.6% of per-protocol MRSA pneumonia patients against vancomycin’s 46.6% (P=.042) without changing 60-day mortality, and in the Nix-TB study 90% of 109 patients with highly drug-resistant tuberculosis had a favourable outcome while 81% developed peripheral neuropathy and 48% myelosuppression.',
+    laymanHowItWorks:
+      'Bacteria build proteins on a two-part machine. Linezolid wedges itself into the larger part at the point where the first amino acid is loaded, so the machine can never start. Nothing else in medicine works at that step, which is why bacteria resistant to everything else are often still susceptible. Human cells have their own version of that machine inside their mitochondria, and it is similar enough that long courses damage nerves, eyes and bone marrow.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 82,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$1.38 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 17 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States on 18 April 2000 under NDA 021130, 021131 and 021132. It launched as an expensive branded hospital drug and is now generic at about US$1.38 a unit — the price collapse is why it became usable for months-long tuberculosis regimens in high-burden countries, which is a case of a patent expiry changing what a drug is for rather than merely what it costs.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Against MRSA the comparison is with vancomycin and daptomycin, and each wins somewhere: linezolid on clinical success in pneumonia, daptomycin on kidneys in bloodstream infection, vancomycin on price and familiarity. The distinguishing property is that linezolid is the only one of the three that works by mouth, which is what makes months-long treatment possible at all. Nothing sold as a food or supplement treats MRSA or tuberculosis.',
+      conventionalRx: [
+        {
+          name: 'Vancomycin',
+          class: 'Glycopeptide',
+          howItCompares:
+            'In the ZEPHyR trial of MRSA nosocomial pneumonia, dose-optimised vancomycin achieved clinical success in 46.6% of per-protocol patients against linezolid’s 57.6% (P=.042), with nephrotoxicity of 18.2% against 8.4%. Sixty-day mortality was the same. It is intravenous only, and cheap.',
+          typicalCost:
+            'US$2.31 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 35 listed generic products, survey effective 17 December 2025)',
+          prosAndCons:
+            'Pros: sixty years of experience, no marrow suppression, no serotonin interaction. Cons: intravenous only, more nephrotoxicity, requires blood-level monitoring, poorer lung penetration.',
+        },
+        {
+          name: 'Daptomycin',
+          class: 'Cyclic lipopeptide',
+          howItCompares:
+            'Matches vancomycin in Staphylococcus aureus bacteraemia with far less renal dysfunction and requires no marrow monitoring. It is inactivated by pulmonary surfactant, so it cannot be used in pneumonia — the exact indication where linezolid is strongest.',
+          typicalCost:
+            'US$21.85 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 41 listed generic products, survey effective 20 May 2026)',
+          prosAndCons:
+            'Pros: once daily, no marrow toxicity, no serotonin interaction. Cons: useless in pneumonia; intravenous only; creatine kinase elevation.',
+        },
+        {
+          name: 'Tedizolid',
+          class: 'Second-generation oxazolidinone',
+          howItCompares:
+            'The same mechanism with a shorter course and less marrow suppression, and it retains activity against some cfr-mediated linezolid-resistant strains. Its approved indication is narrower — acute bacterial skin and skin structure infection — and it costs orders of magnitude more per unit.',
+          typicalCost:
+            'US$472.95 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 3 listed products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: less myelosuppression, shorter course, active against some cfr-positive isolates. Cons: roughly three hundred times the unit price; a much narrower licensed indication.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'List every antidepressant, migraine drug and opioid before starting',
+          action:
+            'Name every serotonergic medication being taken — SSRIs, SNRIs, tricyclics, triptans, buspirone, and opioids including pethidine.',
+          patientImpact:
+            'Linezolid is a reversible non-selective monoamine oxidase inhibitor. The label records spontaneous reports of serotonin syndrome, including fatal cases, when it is combined with serotonergic agents.',
+          clinicalPrecaution:
+            'Symptoms include high temperature, sweating, agitation, exaggerated reflexes, clonus, muscle rigidity and tremor. Whether and how to combine these drugs is a clinical decision; the point here is that the interaction is real, documented and easily missed because linezolid is not thought of as a psychiatric drug.',
+        },
+        {
+          name: 'Report any change in vision during a long course',
+          action:
+            'Report blurring, changes in colour vision, loss of sharpness or any change in the visual field, at any point during treatment.',
+          patientImpact:
+            'The label records peripheral and optic neuropathy, primarily in patients treated beyond the maximum recommended 28 days, and notes that in cases of optic neuropathy progressing to loss of vision, patients had been treated for extended periods beyond that limit. Visual blurring has been reported in some patients treated for less than 28 days.',
+          clinicalPrecaution:
+            'In the Nix-TB tuberculosis study, where linezolid was given for 26 weeks, peripheral neuropathy occurred in 81% of patients. Prompt ophthalmic evaluation is advised by the label if visual symptoms occur; this page records that and does not give monitoring instructions.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(=O)NC[C@H]1CN(C(=O)O1)C2=CC(=C(C=C2)N3CCOCC3)F',
+      chemicalFormula: 'C16H20FN3O4',
+      molecularWeight: '337.35 g/mol',
+      targetReceptorAffinity:
+        'Linezolid binds the A site of the peptidyl transferase centre in the 50S ribosomal subunit, in a pocket formed by 23S ribosomal RNA. It prevents formation of the 70S initiation complex, so it acts before the first peptide bond rather than during elongation — a step no other clinically used antibacterial targets, which is why cross-resistance with other classes does not occur. Resistance arises from G2576T and related 23S rRNA mutations, from rplC mutations, or from the transferable cfr methyltransferase. The molecule also inhibits human mitochondrial ribosomes, which are bacterial in ancestry, and that off-target activity is the mechanistic origin of its myelosuppression, optic and peripheral neuropathy and lactic acidosis. It is additionally a reversible, non-selective monoamine oxidase inhibitor, a legacy of the DuPont antidepressant programme the scaffold came from.',
+      structureSource: {
+        label: 'PubChem CID 441401 (linezolid) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441401',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lzd-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'S-enantiomer purity of the oxazolidinone ring',
+          description:
+            'Confirm the (S) configuration at C5 of the oxazolidinone. The (R) enantiomer is essentially inactive against the ribosome, so enantiomeric purity is a potency specification. This is the first checkpoint because everything downstream assumes it.',
+          reagentsAndBuffer:
+            'Linezolid reference standard, chiral HPLC on an amylose or cellulose stationary phase, 19F NMR, optical rotation, gradient HPLC for related substances',
+        },
+        {
+          id: 'lzd-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Construction of the oxazolidinone from the fluorinated morpholinoaniline',
+          description:
+            'Couple the 3-fluoro-4-morpholinylaniline to a chiral glycidyl building block and close the oxazolidinone ring, then acetylate the aminomethyl group. Every substituent here was earned by structure-activity work: the fluorine and the morpholine raised potency and oral exposure over the earlier DuPont oxazolidinones, which were abandoned for toxicity.',
+          dependsOnStepId: 'lzd-w1',
+          reagentsAndBuffer:
+            '3-fluoro-4-morpholinylaniline, benzyl chloroformate, (R)-glycidyl butyrate, n-butyllithium in tetrahydrofuran at low temperature, acetic anhydride for the final acetylation',
+        },
+        {
+          id: 'lzd-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and control of the enantiomeric and des-fluoro impurities',
+          description:
+            'Crystallise the product and quantify the (R) enantiomer and the des-fluoro analogue. Both are pharmacologically distinct rather than merely inert, and the specification treats them as such.',
+          dependsOnStepId: 'lzd-w2',
+          reagentsAndBuffer:
+            'Ethyl acetate and heptane crystallisation, chiral HPLC for enantiomeric excess, gradient reversed-phase HPLC for organic impurities, Karl Fischer titration',
+        },
+        {
+          id: 'lzd-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Intracellular and alveolar-lining-fluid accumulation',
+          description:
+            'Measure accumulation inside macrophages and in alveolar lining fluid relative to plasma. This is the pharmacological reason linezolid outperformed vancomycin on clinical success in MRSA pneumonia, and the reason it works in tuberculosis, where the organism lives inside macrophages that most antibiotics never enter usefully.',
+          dependsOnStepId: 'lzd-w3',
+          reagentsAndBuffer:
+            'Human monocyte-derived macrophages, THP-1 cell line, bronchoalveolar lavage fluid with urea correction, LC-MS/MS quantification, plasma protein binding by ultrafiltration',
+        },
+        {
+          id: 'lzd-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Bacterial ribosome inhibition against a human mitochondrial ribosome counter-screen',
+          description:
+            'Measure inhibition of bacterial 70S initiation complex formation, then run the identical assay against isolated human mitochondrial ribosomes. The second half is the whole safety story of this drug in one experiment: the mitochondrial ribosome is bacterial in ancestry, linezolid inhibits it, and that is why marrow, optic nerves and peripheral nerves fail on long courses.',
+          dependsOnStepId: 'lzd-w4',
+          reagentsAndBuffer:
+            'Purified Staphylococcus aureus 70S ribosomes, coupled transcription-translation reporter system, isolated human mitochondrial ribosomes from HepG2 or platelet preparations, radiolabelled or luminescent readout, lactate measurement in treated cell culture',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lzd-a1',
+        category: 'measured',
+        title: 'ZEPHyR: 57.6% clinical success against vancomycin’s 46.6% in MRSA pneumonia',
+        laymanSummary:
+          'In the only large head-to-head trial in hospital-acquired MRSA pneumonia, more patients on linezolid were counted as cured, and less than half as many had kidney injury. The same proportion of each group was alive at sixty days.',
+        technicalDetails:
+          'ZEPHyR was a prospective, double-blind, controlled, multicentre trial in hospitalised adults with hospital-acquired or healthcare-associated MRSA pneumonia, comparing linezolid with a dose-optimised vancomycin regimen adjusted on trough levels. Of 1,184 patients treated, 448 entered the modified intention-to-treat population and 348 the per-protocol population. Clinical success at end of study in the per-protocol population was 95 of 165 (57.6%) with linezolid against 81 of 174 (46.6%) with vancomycin — 95% confidence interval for the difference 0.5% to 21.6%, P=.042. Nephrotoxicity occurred in 8.4% against 18.2%.',
+        evidenceSource: 'Wunderink RG et al., Clin Infect Dis 2012;54:621-629 (ZEPHyR)',
+        doi: '10.1093/cid/cir895',
+        measuredMetric: 'Clinical outcome at end of study in evaluable per-protocol patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lzd-a2',
+        category: 'inferred',
+        title: 'Better cure did not become better survival',
+        laymanSummary:
+          'Linezolid won on the endpoint the trial was designed around and did not change the number of people who died. That result is routinely reported as though it settled which drug is better.',
+        technicalDetails:
+          'In ZEPHyR, all-cause 60-day mortality was 15.7% with linezolid and 17.0% with vancomycin — similar, and not the primary endpoint. The primary endpoint was investigator-assessed clinical outcome in the per-protocol population, which comprised 348 of the 1,184 patients treated, under 30% of those exposed. A clinical-response endpoint assessed in a subset that excludes protocol deviations is more susceptible to differential dropout than an all-cause mortality endpoint in everyone randomised. The published conclusion states both results plainly; the citation practice that followed generally did not.',
+        evidenceSource:
+          'Wunderink RG et al., Clin Infect Dis 2012;54:621-629 (ZEPHyR), Results and Conclusions',
+        doi: '10.1093/cid/cir895',
+        inferredClaim:
+          'That linezolid is the better drug for MRSA nosocomial pneumonia — supported on a per-protocol clinical-response endpoint in under a third of treated patients, and not on 60-day mortality, which was the same',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'lzd-a3',
+        category: 'measured',
+        title: 'Nix-TB: 90% favourable outcomes, and 81% peripheral neuropathy',
+        laymanSummary:
+          'In patients with tuberculosis that had defeated everything else, a three-drug regimen containing linezolid produced a good outcome in nine out of ten — a result nothing had achieved before. Four in five of them developed nerve damage in the process, and half had their bone marrow suppressed.',
+        technicalDetails:
+          'Nix-TB was an open-label, single-group study at three South African sites in 109 patients with extensively drug-resistant tuberculosis, or multidrug-resistant tuberculosis that had failed or been discontinued for side effects. The regimen was bedaquiline, pretomanid and linezolid for 26 weeks. Six months after the end of treatment, in the intention-to-treat analysis, 98 patients (90%, 95% CI 83 to 95) had a favourable outcome and 11 (10%) an unfavourable one — seven deaths, one withdrawal of consent, two relapses and one loss to follow-up. The expected linezolid toxic effects occurred in most participants: peripheral neuropathy in 81% and myelosuppression in 48%, described by the investigators as manageable and often leading to linezolid dose reduction or interruption.',
+        evidenceSource: 'Conradie F et al., N Engl J Med 2020;382:893-902 (Nix-TB, NCT02333799)',
+        doi: '10.1056/NEJMoa1901814',
+        measuredMetric:
+          'Favourable outcome six months after end of therapy, and incidence of peripheral neuropathy and myelosuppression',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lzd-a4',
+        category: 'failed',
+        title: 'The toxicity is the human mitochondrial ribosome, and it is time-dependent',
+        laymanSummary:
+          'Linezolid works by jamming the bacterial protein factory. Human cells have an almost identical factory inside their mitochondria, inherited from bacteria a billion years ago, and linezolid jams that too. The longer the course, the more it shows.',
+        technicalDetails:
+          'Pooled clinical trial data showed thrombocytopenia and a slight increase in anaemia risk becoming evident at two weeks or more of treatment, with abnormalities consistent with mild, reversible, duration-dependent myelosuppression. The label records myelosuppression including anaemia, leukopenia, pancytopenia and thrombocytopenia, more often in severe renal impairment and moderate to severe hepatic impairment, with recovery toward pretreatment levels when the drug is stopped. It records peripheral and optic neuropathy primarily beyond the maximum recommended duration of 28 days, and notes that where optic neuropathy progressed to loss of vision, patients had been treated for extended periods beyond that limit. Lactic acidosis, rhabdomyolysis, hypoglycaemia in patients on insulin or oral hypoglycaemics, and hyponatraemia with SIADH are also recorded. All of these are consistent with inhibition of mitochondrial protein synthesis.',
+        evidenceSource:
+          'Gerson SL et al., Antimicrob Agents Chemother 2002;46:2723-2726; Linezolid United States prescribing information, Warnings and Precautions 5.1, 5.2, 5.9 to 5.11',
+        doi: '10.1128/AAC.46.8.2723-2726.2002',
+        measuredMetric:
+          'Onset of thrombocytopenia and anaemia by treatment duration in pooled phase 3 data',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lzd-a5',
+        category: 'failed',
+        title: 'A mortality imbalance in catheter infections it was never approved for',
+        laymanSummary:
+          'An open-label study in seriously ill patients with infected intravascular catheters found more deaths on linezolid than on the comparators. The excess was in patients whose infection turned out to be Gram-negative or unidentified — organisms linezolid cannot touch at all.',
+        technicalDetails:
+          'In an open-label investigational study in seriously ill patients with intravascular catheter-related infections, mortality was 78 of 363 (21.5%) with linezolid against 58 of 363 (16.0%) with vancomycin, dicloxacillin or oxacillin — odds ratio 1.426, 95% CI 0.97 to 2.098. The label states causality has not been established, and that the imbalance occurred primarily in linezolid-treated patients in whom Gram-negative pathogens, mixed Gram-negative and Gram-positive pathogens, or no pathogen were identified at baseline, and was not seen in patients with Gram-positive infections only. Linezolid has no clinical activity against Gram-negative organisms. The label states it is not approved and should not be used for catheter-related bloodstream infection or catheter-site infection.',
+        evidenceSource:
+          'Linezolid United States prescribing information, Warnings and Precautions 5.4 (NDA 021130)',
+        measuredMetric:
+          'All-cause mortality in an open-label investigational study of catheter-related infection',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lzd-a6',
+        category: 'conclusion_shift',
+        title: 'It was licensed as a hospital Gram-positive drug and became a tuberculosis drug',
+        laymanSummary:
+          'Linezolid was approved in 2000 for skin infections, pneumonia and resistant enterococci. Twenty years later its most important use is in a regimen for the most drug-resistant tuberculosis, which is not on its label and was not what anyone designed it for.',
+        technicalDetails:
+          'The approved indications remain nosocomial and community-acquired pneumonia, skin and skin structure infection, and vancomycin-resistant Enterococcus faecium infection. Mycobacterium tuberculosis was not among them. Three things converged: linezolid accumulates inside macrophages, where the organism lives; the oral formulation makes months-long treatment feasible; and generic pricing at about US$1.38 a unit brought it within reach of programmes in high-burden countries. Nix-TB then demonstrated 90% favourable outcomes at six months post-treatment in 109 patients with extensively drug-resistant or treatment-failed tuberculosis, an outcome without precedent in that population. The toxicity that constrains it — peripheral neuropathy in 81% and myelosuppression in 48% over 26 weeks — is the same mitochondrial mechanism that made 28 days the licensed ceiling for its original indications.',
+        evidenceSource:
+          'Conradie F et al., N Engl J Med 2020;382:893-902 (Nix-TB, NCT02333799); Linezolid United States prescribing information, Indications and Usage',
+        doi: '10.1056/NEJMoa1901814',
+        inferredClaim:
+          'That a drug’s licensed indications describe what it is for — here the most consequential use lies outside them, at a duration the label describes as beyond the maximum recommended, with the toxicity that implies',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed or infused, with no difference between them',
+        laymanDesc:
+          'Linezolid is absorbed essentially completely from the gut, so a tablet delivers what a drip delivers. That is rare among drugs for resistant infections, and it is why treatment can continue for months outside hospital.',
+        molecularDetail:
+          'Oral bioavailability is approximately 100%, so intravenous and oral forms are interchangeable at the same amount. Metabolism is non-enzymatic oxidation rather than cytochrome P450 mediated, which removes a large class of drug interactions.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It concentrates where the bacteria hide',
+        laymanDesc:
+          'It builds up inside the immune cells that engulf bacteria and in the fluid lining the lungs. That is why it does well in pneumonia and why it works in tuberculosis, where the organism lives inside those cells.',
+        molecularDetail:
+          'Alveolar lining fluid and intracellular macrophage concentrations exceed plasma concentrations. This distribution is the pharmacological basis of its performance in MRSA nosocomial pneumonia and of its role in intracellular mycobacterial infection.',
+        iconName: 'Layers',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the machine before it can start',
+        laymanDesc:
+          'Other antibiotics interfere with protein-building once it is under way. Linezolid wedges into the point where the first amino acid is loaded, so the machine never begins. Nothing else in use works there.',
+        molecularDetail:
+          'Linezolid binds the A site of the peptidyl transferase centre in the 50S subunit, formed by 23S ribosomal RNA, and prevents formation of the functional 70S initiation complex. Because the binding site and step are unique among clinical antibacterials, there is no cross-resistance with macrolides, tetracyclines, aminoglycosides or beta-lactams.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Bacteria stop growing rather than bursting',
+        laymanDesc:
+          'It stops bacteria multiplying rather than killing them outright against most organisms, which means the immune system has to finish the job.',
+        molecularDetail:
+          'Linezolid is bacteriostatic against staphylococci and enterococci and bactericidal against most streptococci. Bacteriostatic action is one proposed reason for the mortality imbalance seen in the catheter-infection study, alongside the absence of Gram-negative activity.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Escaping it needs a change to the ribosome itself',
+        laymanDesc:
+          'Because the target is part of the bacterium’s protein factory, resistance means altering that factory — either by mutation or by borrowing a gene that chemically masks the binding site.',
+        molecularDetail:
+          'Resistance arises from 23S rRNA mutations, most commonly G2576T, from rplC mutations affecting ribosomal protein L3, or from acquisition of the transferable cfr methyltransferase, which methylates A2503 of 23S rRNA and confers cross-resistance across several classes. Because staphylococci carry multiple copies of the 23S rRNA gene, mutational resistance emerges slowly and needs sustained exposure.',
+        iconName: 'Dna',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The same mechanism in human mitochondria',
+        laymanDesc:
+          'Mitochondria descend from ancient bacteria and still build proteins on a bacterial-style machine. Linezolid jams that too. Given for weeks it suppresses the bone marrow; given for months it damages nerves and, sometimes permanently, the optic nerve.',
+        molecularDetail:
+          'Inhibition of mitochondrial ribosomes underlies duration-dependent myelosuppression, peripheral and optic neuropathy, lactic acidosis and rhabdomyolysis. Thrombocytopenia and anaemia become evident from two weeks; the label sets 28 days as the maximum recommended duration for licensed indications, and in tuberculosis regimens run for 26 weeks, with peripheral neuropathy in 81% of Nix-TB participants. Separately, linezolid is a reversible non-selective monoamine oxidase inhibitor, with fatal serotonin syndrome reported alongside serotonergic drugs.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ZEPHyR (Wunderink 2012)',
+        phase: 'Phase 4, prospective, double-blind, controlled, multicentre',
+        sampleSize: 1184,
+        primaryEndpoint:
+          'Clinical outcome at end of study in evaluable per-protocol patients with MRSA nosocomial pneumonia',
+        endpointMet: true,
+        statisticalPValue:
+          '57.6% (95 of 165) against vancomycin 46.6% (81 of 174); 95% CI for the difference 0.5% to 21.6%, P=.042',
+        unreportedAdverseSignals:
+          'All-cause 60-day mortality was 15.7% against 17.0% — no difference. The primary endpoint rests on 348 of 1,184 treated patients, and the mortality result on the larger population, so the trial’s most robust comparison is its least favourable one.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Nix-TB (NCT02333799)',
+        phase: 'Open-label, single-group, three South African sites',
+        sampleSize: 109,
+        primaryEndpoint:
+          'Incidence of an unfavourable outcome — treatment failure or relapse — through six months after end of treatment',
+        endpointMet: true,
+        statisticalPValue:
+          '90% favourable outcome (95% CI 83 to 95); 11 unfavourable outcomes comprising 7 deaths, 1 withdrawal, 2 relapses and 1 loss to follow-up',
+        unreportedAdverseSignals:
+          'Single-group with no control arm, in a population where historical outcomes were very poor, so the comparison is against history rather than a concurrent group. Peripheral neuropathy occurred in 81% and myelosuppression in 48%, frequently requiring linezolid dose reduction or interruption — so the regimen as delivered was not the regimen as designed.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clinical success 57.6% against vancomycin’s 46.6% in per-protocol MRSA nosocomial pneumonia, P=.042',
+        'Nephrotoxicity 8.4% against vancomycin’s 18.2% in the same trial',
+        '90% favourable outcome (95% CI 83 to 95) six months after treatment in 109 patients with highly drug-resistant tuberculosis',
+        'Peripheral neuropathy in 81% and myelosuppression in 48% of those patients over 26 weeks',
+        'Mortality 21.5% against 16.0% in an open-label catheter-infection study, odds ratio 1.426 (95% CI 0.97 to 2.098)',
+      ],
+      unsupportedInferences: [
+        'That linezolid is the better drug for MRSA pneumonia — established on clinical response in under a third of treated patients, with identical 60-day mortality',
+        'That the Nix-TB result is attributable to linezolid, when it is a three-drug regimen tested with no control arm against historical outcomes',
+        'That myelosuppression is the limiting toxicity, when optic neuropathy progressing to vision loss is the one that does not reverse',
+        'That an oral drug with complete bioavailability is a safe drug for long courses; complete absorption is exactly what makes prolonged mitochondrial exposure possible',
+      ],
+      whatFailedInitially: [
+        'Mortality was higher on linezolid than on comparators in an open-label catheter-infection study, concentrated in patients with Gram-negative or unidentified organisms',
+        'It has no activity whatever against Gram-negative bacteria, and the label states it must not be used where they may be present without specific cover',
+        'Duration-dependent myelosuppression appears from two weeks and sets 28 days as the licensed ceiling, which the tuberculosis regimens exceed by design',
+        'Transferable cfr-mediated resistance appeared, conferring cross-resistance across several unrelated classes at once',
+      ],
+      realWorldOutcome: [
+        'Approved 18 April 2000, the first genuinely new antibacterial class to reach the market since the 1960s',
+        'Now generic at about US$1.38 a unit, which is what made months-long tuberculosis regimens affordable',
+        'A core component of the regimen that made extensively drug-resistant tuberculosis treatable, outside its licensed indications',
+        'One of very few options against vancomycin-resistant Enterococcus faecium, and the only one that works by mouth',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablets, oral suspension and intravenous infusion, interchangeable at the same amount',
+      description:
+        'Oral bioavailability of approximately 100% makes tablet and infusion equivalent, which is unusual for a drug used against resistant organisms and is the single feature that makes months-long outpatient treatment possible. Metabolism is non-enzymatic rather than cytochrome P450 mediated, so the usual hepatic interaction list does not apply — but the monoamine oxidase inhibition does. The oral suspension contains phenylalanine and is unsuitable in phenylketonuria.',
+      safetyProfile:
+        'Myelosuppression including anaemia, leukopenia, pancytopenia and thrombocytopenia, becoming evident from about two weeks and reversing when the drug is stopped, more frequent in severe renal or moderate to severe hepatic impairment. Peripheral and optic neuropathy, reported primarily beyond the maximum recommended 28-day duration, with vision loss in patients treated well beyond it; visual blurring has occurred inside 28 days. Serotonin syndrome, including fatal cases, with serotonergic drugs — linezolid is a reversible non-selective monoamine oxidase inhibitor. Lactic acidosis, rhabdomyolysis, hypoglycaemia in patients on insulin or oral hypoglycaemics, hyponatraemia and SIADH. A mortality imbalance was seen in an investigational study in catheter-related bloodstream infection, an indication for which the drug is not approved.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why can I take it as a tablet when other MRSA drugs need a drip?',
+        a: 'Because it is absorbed essentially completely — oral bioavailability is around 100%, so a tablet delivers what an infusion delivers. Vancomycin is far too large a molecule to be absorbed and daptomycin is not orally available either, so linezolid is the only one of the three that can be taken at home. That single property is what turned it into a tuberculosis drug: no regimen lasting six months is practical if it requires a cannula. It is also the property that makes prolonged toxicity possible, because complete absorption means uninterrupted exposure of your mitochondria as well as the bacteria.',
+      },
+      {
+        q: 'Is it better than vancomycin?',
+        a: 'On the endpoint the trial measured, yes; on the endpoint most people care about, no difference was found. ZEPHyR compared linezolid with dose-optimised vancomycin in MRSA hospital-acquired pneumonia. Clinical success in the per-protocol population was 57.6% against 46.6%, P=.042, and kidney injury was 8.4% against 18.2%. All-cause 60-day mortality was 15.7% against 17.0% — similar. The clinical-success figure comes from 348 of the 1,184 patients treated; the mortality figure comes from a larger group. When a trial’s most robust comparison is also its least favourable, both belong in the summary, and only one of them usually survives into practice.',
+        auditNote:
+          'This trial has not been independently replicated. It is the largest head-to-head comparison in this indication and it is also the only one.',
+      },
+      {
+        q: 'Why is there a two-week limit talked about?',
+        a: 'Because of your mitochondria. Mitochondria descend from bacteria absorbed by our ancestors, and they still make proteins on a bacterial-style ribosome — the exact machine linezolid was designed to jam. Pooled trial data showed thrombocytopenia and a slight rise in anaemia risk becoming evident from two weeks, mild, reversible and duration-dependent. The label sets 28 days as the maximum recommended duration and reports peripheral and optic neuropathy primarily beyond it, including optic neuropathy progressing to loss of vision in patients treated for extended periods past that ceiling. Marrow suppression recovers. Optic nerve damage may not.',
+      },
+      {
+        q: 'Why does it interact with antidepressants?',
+        a: 'Because of where the molecule came from. The oxazolidinone scaffold originated in a DuPont programme aimed at monoamine oxidase inhibitors — antidepressants — and linezolid retains that activity as a reversible, non-selective monoamine oxidase inhibitor. Combining it with serotonergic drugs has produced serotonin syndrome, including fatal cases, according to the label. The list of relevant drugs is long: SSRIs, SNRIs, tricyclics, buspirone, triptans and opioids including pethidine. The interaction is easy to miss precisely because nobody thinks of an antibiotic as a psychiatric drug, and the antibiotic is often started urgently by a team that does not have the psychiatric history.',
+      },
+      {
+        q: 'How did an antibiotic for skin infections become a tuberculosis drug?',
+        a: 'Three things converged. Linezolid accumulates inside macrophages, which is where Mycobacterium tuberculosis lives and where most antibiotics never reach a useful concentration. It is fully orally available, so a six-month regimen is feasible without hospital. And it went generic, dropping to around US$1.38 a unit, which put it within reach of programmes in high-burden countries. The Nix-TB study then combined it with bedaquiline and pretomanid in 109 patients with extensively drug-resistant tuberculosis or multidrug-resistant disease that had already failed treatment, and 90% had a favourable outcome six months after finishing — a result without precedent in that population. The cost was measured too: peripheral neuropathy in 81%, myelosuppression in 48%, and frequent dose reduction or interruption of the linezolid itself.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Wunderink RG, Niederman MS, Kollef MH, et al. Linezolid in methicillin-resistant Staphylococcus aureus nosocomial pneumonia: a randomized, controlled study. Clin Infect Dis 2012;54:621-629',
+        identifier: '10.1093/cid/cir895',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Conradie F, Diacon AH, Ngubane N, et al. Treatment of highly drug-resistant pulmonary tuberculosis. N Engl J Med 2020;382:893-902',
+        identifier: '10.1056/NEJMoa1901814',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gerson SL, Kaplan SL, Bruss JB, et al. Hematologic effects of linezolid: summary of clinical experience. Antimicrob Agents Chemother 2002;46:2723-2726',
+        identifier: '10.1128/AAC.46.8.2723-2726.2002',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nix-TB: bedaquiline, pretomanid and linezolid in highly drug-resistant tuberculosis',
+        identifier: 'NCT02333799',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: ZYVOX (linezolid), NDA 021130, 021131 and 021132, Pfizer — original approval 18 April 2000; United States prescribing information, Warnings and Precautions 5.1 to 5.12',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021130',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 441401 — linezolid structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441401',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Daptomycin — the only antibiotic known to be switched off by a specific human organ, and
+  //    the record behind this page named that organ as its indication.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'daptomycin',
+    name: 'Daptomycin',
+    tradeName: 'Cubicin',
+    sponsor:
+      'Eli Lilly (discovery, from Streptomyces roseosporus, shelved in the 1980s over muscle toxicity), licensed to and developed by Cubist Pharmaceuticals on NDA 021572, now part of Merck',
+    targetGene:
+      'None — daptomycin binds the membrane itself. Reduced susceptibility arises from mutations in mprF, yycFG/walKR and cls, which change membrane charge and composition.',
+    targetProtein:
+      'No protein target: daptomycin inserts calcium-dependently into the bacterial cytoplasmic membrane and disorganises it',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2003,
+    indication:
+      'Complicated skin and skin structure infections, and Staphylococcus aureus bloodstream infection including right-sided infective endocarditis, caused by susceptible isolates. It is explicitly not indicated for pneumonia.',
+    patientFriendlyIndication:
+      'Serious skin infections and bloodstream infections caused by resistant Gram-positive bacteria — not lung infections, which it cannot treat',
+    anatomicalSite:
+      'The bacterial cytoplasmic membrane. The human organ that matters most is the lung, where surfactant inactivates the drug, and skeletal muscle, where it causes myopathy.',
+    conditionContext: {
+      conditionExplainer:
+        'Daptomycin punches holes in the outer membrane of Gram-positive bacteria rather than interfering with any enzyme. It needs calcium to do it, and it does not work in the lung because the fluid lining the airways binds it and switches it off.',
+      whyItMatters:
+        'It is one of a handful of options for MRSA bloodstream infection and endocarditis, and it is the clearest known example of an antibiotic being inactivated by a specific human organ. That failure was found by a trial, explained by a laboratory experiment, and written into the label.',
+      whoTakesThis:
+        'Adults and children with complicated skin infection or Staphylococcus aureus bloodstream infection, including right-sided endocarditis.',
+      clinicalGoals:
+        'Clearance of bacteria from blood and clinical resolution. The registration trial in bacteraemia used treatment success 42 days after the end of therapy.',
+    },
+    oneSentenceVerdict:
+      'A calcium-dependent lipopeptide that inserts into the bacterial membrane and disorganises it rather than binding any protein — it was non-inferior to standard therapy in Staphylococcus aureus bacteraemia at 44.2% against 41.7% success with far less renal dysfunction (11.0% against 26.3%, P=.004), and it failed outright in community-acquired pneumonia because pulmonary surfactant binds and inactivates it.',
+    laymanHowItWorks:
+      'Daptomycin has a fatty tail. With the help of calcium, that tail buries itself in the outer wrapping of a Gram-positive bacterium and pulls the wrapping out of shape, so the cell leaks its contents and dies. The lungs are lined with a soapy substance that keeps the air sacs open, and that substance grabs daptomycin’s fatty tail and holds onto it — so in the lung the drug never reaches any bacteria at all.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 83,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$21.85 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 41 listed generic products, survey effective 20 May 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States on 12 September 2003 under NDA 021572. Discovered at Eli Lilly and abandoned in the 1980s after muscle toxicity at the schedules then being tested; Cubist licensed it, found that once-daily administration separated efficacy from myopathy, and brought it to market. It is now generic with 41 listed products at about US$21.85 a vial — roughly five times meropenem and ten times vancomycin, but a small fraction of its branded price.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The choice is driven almost entirely by where the infection is. In the bloodstream daptomycin matches vancomycin with much less kidney injury. In the lung it does not work at all and vancomycin or linezolid is the answer. In skin infection all three work and price decides. Nothing sold as a food or supplement treats a bloodstream infection, and this is a page where the alternatives question has a short answer.',
+      conventionalRx: [
+        {
+          name: 'Vancomycin',
+          class: 'Glycopeptide',
+          howItCompares:
+            'The comparator in the registration trial, where it formed part of the standard-therapy arm. Success at 42 days was 41.7% against daptomycin’s 44.2%, but clinically significant renal dysfunction was 26.3% against 11.0% (P=.004). Unlike daptomycin it works in the lung.',
+          typicalCost:
+            'US$2.31 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 35 listed generic products, survey effective 17 December 2025)',
+          prosAndCons:
+            'Pros: about a tenth of the price, works in pneumonia, sixty years of experience. Cons: more than twice the renal dysfunction, requires blood-level monitoring, slower killing.',
+        },
+        {
+          name: 'Linezolid',
+          class: 'Oxazolidinone',
+          howItCompares:
+            'The option when the infection is in the lung, where daptomycin cannot work. It is also the only one of the three available by mouth. Its limit is time rather than site: myelosuppression appears from about two weeks and neuropathy beyond 28 days.',
+          typicalCost:
+            'US$1.38 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 17 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: works in pneumonia, oral, no calcium dependence. Cons: duration-limited by marrow and nerve toxicity; serotonin syndrome with serotonergic drugs; bacteriostatic rather than bactericidal.',
+        },
+        {
+          name: 'Cefazolin',
+          class: 'First-generation cephalosporin',
+          howItCompares:
+            'Not an alternative for MRSA at all, but the preferred agent when the organism turns out to be methicillin-susceptible Staphylococcus aureus, where beta-lactams outperform the MRSA-active drugs. Identifying that the organism is susceptible is the single most consequential result in a staphylococcal bloodstream infection.',
+          typicalCost:
+            'US$1.03 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 9 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: narrower, cheaper, the evidence-favoured choice in methicillin-susceptible infection. Cons: useless against MRSA; requires the culture result before it can be chosen.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report muscle aching or weakness, especially in the hands and feet',
+          action:
+            'Report new muscle pain or weakness during treatment, particularly in the distal limbs.',
+          patientImpact:
+            'The label defines myopathy as muscle aching or weakness alongside creatine phosphokinase above ten times the upper limit of normal, and records rhabdomyolysis with and without acute renal failure. This is the toxicity that caused Eli Lilly to shelve the drug in the 1980s.',
+          clinicalPrecaution:
+            'The label advises weekly creatine phosphokinase monitoring and more frequent monitoring in patients on or recently on a statin. How that is done is a clinical matter; the point here is that muscle symptoms on this drug are a specific signal rather than a general complaint.',
+        },
+        {
+          name: 'Report new breathlessness or fever during a course',
+          action:
+            'Report new or worsening breathlessness, cough or fever appearing after several days of treatment.',
+          patientImpact:
+            'Daptomycin causes eosinophilic pneumonia — an inflammatory reaction in the lung to the drug itself, distinct from infection, and one the label directs be managed by stopping the drug and considering systemic steroids.',
+          clinicalPrecaution:
+            'The irony is exact: a drug that cannot treat pneumonia can cause one. New respiratory symptoms during daptomycin treatment need a diagnosis rather than an assumption that the infection is spreading.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CCCCCCCCCC(=O)N[C@@H](CC1=CNC2=CC=CC=C21)C(=O)N[C@H](CC(=O)N)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@H]3[C@H](OC(=O)[C@@H](NC(=O)[C@@H](NC(=O)[C@H](NC(=O)CNC(=O)[C@@H](NC(=O)[C@H](NC(=O)[C@@H](NC(=O)[C@@H](NC(=O)CNC3=O)CCCN)CC(=O)O)C)CC(=O)O)CO)[C@H](C)CC(=O)O)CC(=O)C4=CC=CC=C4N)C',
+      chemicalFormula: 'C72H101N17O26',
+      molecularWeight: '1620.70 g/mol',
+      targetReceptorAffinity:
+        'Daptomycin has no protein target and no receptor. It is a 13-residue cyclic lipopeptide with a decanoyl tail; in the presence of physiological calcium it oligomerises and inserts into the bacterial cytoplasmic membrane, preferentially at regions rich in phosphatidylglycerol, causing membrane depolarisation, potassium efflux and rapid concentration-dependent killing without lysis. Reduced susceptibility comes from mutations in mprF, which lysinylates phosphatidylglycerol and makes the membrane more positively charged, and in yycFG/walKR and cls. Because the target is a membrane rather than a protein, the same mutations that reduce daptomycin binding can also alter vancomycin susceptibility, and cross-resistance between the two has been observed. The structure is supplied as a connection table rather than a residue sequence: it is a cyclic, non-ribosomal peptide with a lipid tail and non-standard residues, which no linear sequence notation represents.',
+      structureSource: {
+        label: 'PubChem CID 21585658 (daptomycin) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/21585658',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dap-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Anhydro and beta-isomer quantification',
+          description:
+            'Quantify the anhydro-daptomycin and beta-isomer degradants, which form on storage and in solution and are the principal related substances for this molecule. A cyclic depsipeptide with an ester linkage in the ring has a specific failure mode — the ring opens — and this assay is what detects it.',
+          reagentsAndBuffer:
+            'Daptomycin reference standard, gradient reversed-phase HPLC with ultraviolet detection at 214 nm and 364 nm, mass spectrometric confirmation, Karl Fischer titration',
+        },
+        {
+          id: 'dap-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fermentation from Streptomyces roseosporus with decanoate feeding',
+          description:
+            'Daptomycin is a non-ribosomal peptide made by fermentation, with the decanoyl side chain directed by feeding decanoic acid to the culture. Feeding a different fatty acid produces a different lipopeptide, which is how the A21978C factor series was resolved and why the tail length is a manufacturing parameter rather than a synthetic choice.',
+          dependsOnStepId: 'dap-w1',
+          reagentsAndBuffer:
+            'Streptomyces roseosporus production strain, decanoic acid feed, complex fermentation medium with controlled dissolved oxygen and pH, antifoam',
+        },
+        {
+          id: 'dap-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange capture and lyophilisation',
+          description:
+            'Capture on anion-exchange resin, polish, and freeze-dry. The molecule is strongly anionic at neutral pH, which is what the capture exploits and also what makes it calcium-dependent in action — the calcium neutralises that charge so the peptide can approach a negatively charged bacterial membrane.',
+          dependsOnStepId: 'dap-w2',
+          reagentsAndBuffer:
+            'Anion-exchange resin, salt gradient elution, reversed-phase preparative chromatography, lyophilisation with controlled shelf temperature, endotoxin and sub-visible particle testing',
+        },
+        {
+          id: 'dap-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Calcium-dependent membrane insertion with a pulmonary surfactant counter-condition',
+          description:
+            'Measure oligomerisation and insertion into a model bacterial membrane at physiological calcium, then repeat the same experiment in the presence of pulmonary surfactant. This is the experiment that explained a failed phase 3 trial after the fact: surfactant binds daptomycin and abolishes its activity, and it is the first documented case of an antibiotic being inactivated by a specific human organ.',
+          dependsOnStepId: 'dap-w3',
+          reagentsAndBuffer:
+            'Phosphatidylglycerol-rich liposomes, physiological calcium chloride, fluorescence resonance energy transfer or perylene fluorescence for oligomerisation, bovine or synthetic pulmonary surfactant, Staphylococcus aureus and Streptococcus pneumoniae in cation- and calcium-adjusted Mueller-Hinton broth',
+        },
+        {
+          id: 'dap-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Membrane depolarisation kinetics and an mprF resistance counter-screen',
+          description:
+            'Track membrane potential collapse and potassium efflux to confirm the killing mechanism, then repeat against isolates carrying mprF gain-of-function mutations. The second run explains the emergent non-susceptibility seen in the registration trial: increased lysinylation of phosphatidylglycerol makes the membrane more positive and repels the calcium-daptomycin complex before it can insert.',
+          dependsOnStepId: 'dap-w4',
+          reagentsAndBuffer:
+            'DiSC3(5) or DiOC2(3) membrane-potential dye, potassium-selective electrode, characterised mprF gain-of-function Staphylococcus aureus isolates, calcium-supplemented Mueller-Hinton broth at 50 mg/L calcium as required for daptomycin susceptibility testing',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dap-a1',
+        category: 'measured',
+        title: 'Non-inferior in Staphylococcus aureus bacteraemia, with half the renal dysfunction',
+        laymanSummary:
+          'In the trial that approved it for bloodstream infection, daptomycin matched the older regimen. What separated them was the kidneys: about one patient in nine on daptomycin had significant kidney trouble, against about one in four on the older combination.',
+        technicalDetails:
+          'The trial randomised 124 patients with Staphylococcus aureus bacteraemia with or without endocarditis to daptomycin and 122 to initial low-dose gentamicin plus either an antistaphylococcal penicillin or vancomycin. Treatment success 42 days after the end of therapy in the modified intention-to-treat analysis was 53 of 120 (44.2%) against 48 of 115 (41.7%) — absolute difference 2.4%, 95% CI -10.2 to 15.1, meeting the pre-specified non-inferiority criteria. Success rates were similar in the subgroups with complicated bacteraemia, right-sided endocarditis and MRSA. Clinically significant renal dysfunction occurred in 11.0% against 26.3% (P=.004). Standard therapy was associated with a non-significantly higher rate of adverse events leading to discontinuation, 17 against 8 (P=.06).',
+        evidenceSource: 'Fowler VG Jr et al., N Engl J Med 2006;355:653-665 (NCT00093067)',
+        doi: '10.1056/NEJMoa053783',
+        measuredMetric:
+          'Treatment success 42 days after end of therapy, and clinically significant renal dysfunction',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dap-a2',
+        category: 'failed',
+        title: 'It failed community-acquired pneumonia outright, in two phase 3 trials',
+        laymanSummary:
+          'Two trials tested daptomycin against ceftriaxone in patients hospitalised with pneumonia. It lost both. The published conclusion is that daptomycin is not effective for treating community-acquired pneumonia.',
+        technicalDetails:
+          'Two double-blind phase 3 trials randomised adults hospitalised with community-acquired pneumonia to intravenous daptomycin or ceftriaxone once daily for 5 to 14 days. Pooled, the intent-to-treat population held 413 daptomycin and 421 ceftriaxone patients and the clinically evaluable population 369 and 371. Clinical cure in the intent-to-treat population was 70.9% with daptomycin against 77.4% with ceftriaxone (95% CI for the difference -12.4% to -0.6%), and in the clinically evaluable population 79.4% against 87.9% (95% CI -13.8% to -3.2%). Both intervals exclude zero against daptomycin. A post-hoc analysis found that among patients who had received up to 24 hours of prior effective therapy, cure rates were similar — 90.7% against 88.0%, 95% CI -6.1% to 11.5% — which the authors read as a warning about how pneumonia trials enrol rather than as a rescue of the drug.',
+        evidenceSource: 'Pertel PE et al., Clin Infect Dis 2008;46:1142-1151',
+        doi: '10.1086/533441',
+        measuredMetric:
+          'Clinical response at test of cure in the intent-to-treat and clinically evaluable populations',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dap-a3',
+        category: 'measured',
+        title: 'The reason it failed: the lung switches it off',
+        laymanSummary:
+          'After the pneumonia trials failed, a laboratory experiment found the explanation. The soapy substance that keeps the air sacs of the lung open binds daptomycin and stops it working. It is the only antibiotic known to be inactivated by a specific human organ.',
+        technicalDetails:
+          'Daptomycin showed an unusual pattern in animal pulmonary models: efficacy in Staphylococcus aureus haematogenous pneumonia and in inhalation anthrax, but no activity against Streptococcus pneumoniae in simple bronchial-alveolar pneumonia. In vitro, daptomycin interacts with pulmonary surfactant, inhibiting its antibacterial activity — an effect specific to daptomycin and consistent with its known mechanism, since surfactant phospholipids sequester the lipid tail that must insert into the bacterial membrane. The authors describe this as the first example of organ-specific inhibition of an antibiotic. The finding is why the label carries an explicit statement that daptomycin is not indicated for pneumonia.',
+        evidenceSource: 'Silverman JA et al., J Infect Dis 2005;191:2149-2152',
+        doi: '10.1086/430352',
+        measuredMetric:
+          'Loss of daptomycin antibacterial activity in the presence of pulmonary surfactant in vitro',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dap-a4',
+        category: 'failed',
+        title: 'Reduced susceptibility emerged during the registration trial itself',
+        laymanSummary:
+          'In the trial that approved the drug, more patients on daptomycin failed microbiologically than on the older regimen, and in six of those failures the bacteria had become less susceptible to daptomycin while the patient was on it.',
+        technicalDetails:
+          'Daptomycin therapy was associated with a higher rate of microbiological failure than standard therapy — 19 patients against 11, P=0.17, not statistically significant. In 6 of the 19 daptomycin microbiological failures, isolates with reduced susceptibility to daptomycin emerged during treatment; reduced susceptibility to vancomycin was similarly noted in isolates from vancomycin-treated patients. The mechanism is now understood as gain-of-function mutation in mprF and related loci, which increases the positive charge of the membrane and repels the calcium-daptomycin complex. The label carries a specific warning about persisting or relapsing Staphylococcus aureus bacteraemia or endocarditis, directing susceptibility testing and a search for sequestered foci of infection.',
+        evidenceSource:
+          'Fowler VG Jr et al., N Engl J Med 2006;355:653-665; Daptomycin for Injection United States prescribing information, Warnings and Precautions 5.9',
+        doi: '10.1056/NEJMoa053783',
+        measuredMetric:
+          'Emergent reduced daptomycin susceptibility among microbiological failures in a randomised trial',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dap-a5',
+        category: 'failed',
+        title: 'It causes the lung disease it cannot treat, and the muscle injury that shelved it',
+        laymanSummary:
+          'Daptomycin cannot treat pneumonia and can cause one — an inflammatory reaction in the lung that looks like infection and is treated by stopping the drug. Separately, it damages muscle, which is why Eli Lilly abandoned it in the 1980s.',
+        technicalDetails:
+          'The label carries warnings for anaphylaxis and hypersensitivity, myopathy and rhabdomyolysis, eosinophilic pneumonia, DRESS, tubulointerstitial nephritis, peripheral neuropathy, potential nervous and muscular system effects in children under 12 months in whom use is to be avoided, Clostridioides difficile-associated diarrhoea, persisting or relapsing Staphylococcus aureus infection, and decreased efficacy in adults with moderate baseline renal impairment. Myopathy is defined as muscle aching or weakness with creatine phosphokinase above ten times the upper limit of normal. The label states that in phase 1 and phase 2 studies creatine phosphokinase elevations appeared more frequent when daptomycin was given more than once daily, and that it should therefore not be given more often than once a day — the observation that turned a shelved Lilly compound into a marketed drug.',
+        evidenceSource:
+          'Daptomycin for Injection United States prescribing information, Warnings and Precautions 5.1 to 5.10 (NDA 021572)',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dap-a6',
+        category: 'conclusion_shift',
+        title: 'The enriched record named pneumonia as this drug’s indication',
+        laymanSummary:
+          'The automated record behind this page listed daptomycin’s patient-facing indication as pneumonia. Pneumonia is the one thing this drug is documented not to treat, in two failed trials and an explicit label statement. The error is recorded here rather than quietly corrected.',
+        technicalDetails:
+          'The machine-enriched record for this drug carried "Pneumonia" as its patient-friendly indication. The approved indications are complicated skin and skin structure infections and Staphylococcus aureus bloodstream infection including right-sided infective endocarditis. Two pooled phase 3 trials found clinical cure of 70.9% against ceftriaxone’s 77.4% in the intent-to-treat population, with the confidence interval excluding zero, and concluded that daptomycin is not effective for community-acquired pneumonia. The mechanism was subsequently characterised as inactivation by pulmonary surfactant. This is a case where automated indication extraction produced not an incomplete answer but an inverted one, and it is the reason this dossier is flagged as carrying a discrepancy.',
+        evidenceSource:
+          'Pertel PE et al., Clin Infect Dis 2008;46:1142-1151; Silverman JA et al., J Infect Dis 2005;191:2149-2152; Daptomycin for Injection United States prescribing information, Indications and Usage',
+        doi: '10.1086/533441',
+        inferredClaim:
+          'That an indication extracted automatically from a label or a trial registry describes what a drug treats — here it named the one organ where the drug is known to be pharmacologically inert',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given once a day, and never more often',
+        laymanDesc:
+          'The drug was abandoned in the 1980s because it damaged muscle. What rescued it was the discovery that giving it once a day rather than in split doses kept the antibacterial effect and largely removed the muscle injury.',
+        molecularDetail:
+          'Killing is concentration-dependent while myopathy tracks the time muscle spends exposed, so consolidating the same amount into a single daily administration separates the two. The label states that creatine phosphokinase elevations appeared more frequent when daptomycin was given more than once daily and that it should not be dosed more frequently than once a day.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Calcium turns it into a membrane-seeking molecule',
+        laymanDesc:
+          'On its own, daptomycin is strongly negatively charged and a bacterial membrane is negatively charged too, so they repel. Calcium sits between them and neutralises the repulsion, letting the fatty tail reach the membrane.',
+        molecularDetail:
+          'Calcium binding neutralises the anionic charge of the cyclic peptide and promotes oligomerisation, allowing the decanoyl tail to insert into phosphatidylglycerol-rich regions of the cytoplasmic membrane. Susceptibility testing must be performed in calcium-supplemented medium, or the result is meaningless.',
+        iconName: 'Sparkles',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It disorganises the membrane instead of binding a protein',
+        laymanDesc:
+          'There is no enzyme to jam. Daptomycin buries itself in the bacterium’s outer wrapping and pulls it out of shape, so the electrical gradient the cell depends on collapses.',
+        molecularDetail:
+          'Inserted oligomers cause membrane depolarisation and potassium efflux, disrupting the ion gradients that drive transport and synthesis. Killing is rapid and concentration-dependent and occurs without cell lysis, which reduces release of inflammatory cell-wall fragments compared with beta-lactams.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The bacterium dies without bursting',
+        laymanDesc:
+          'The cell shuts down rather than exploding, so less bacterial debris is released into the bloodstream.',
+        molecularDetail:
+          'Non-lytic killing is unusual for a bactericidal agent and is one proposed advantage in high-burden infection, where beta-lactam-induced lysis releases peptidoglycan and lipoteichoic acid that drive the inflammatory response.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The lung switches it off completely',
+        laymanDesc:
+          'The air sacs of the lung are lined with a soapy substance that keeps them from collapsing. That substance binds daptomycin’s fatty tail and holds it, so the drug never reaches bacteria in the lung. This is the only antibiotic known to be inactivated by a particular organ.',
+        molecularDetail:
+          'Pulmonary surfactant phospholipids sequester the decanoyl tail required for membrane insertion, abolishing antibacterial activity in vitro and in bronchial-alveolar animal models, while activity is retained in haematogenous pneumonia and inhalation anthrax. Two pooled phase 3 trials in community-acquired pneumonia found clinical cure of 79.4% against ceftriaxone’s 87.9% in evaluable patients, and the label states the drug is not indicated for pneumonia.',
+        iconName: 'Ban',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What it costs, and how bacteria escape',
+        laymanDesc:
+          'It damages muscle and can inflame the lung. Bacteria escape it not by changing a protein but by making their membrane more positively charged, so the calcium-loaded drug is pushed away before it can insert.',
+        molecularDetail:
+          'Gain-of-function mutations in mprF increase lysinylation of phosphatidylglycerol and raise membrane positive charge; yycFG/walKR and cls mutations contribute. Emergent reduced susceptibility appeared in 6 of 19 microbiological failures in the registration trial. Labelled harms include myopathy and rhabdomyolysis, eosinophilic pneumonia, DRESS, tubulointerstitial nephritis, peripheral neuropathy, and reduced efficacy in moderate baseline renal impairment.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Fowler 2006 Staphylococcus aureus bacteraemia trial (NCT00093067)',
+        phase: 'Phase 3, randomised, open-label, non-inferiority',
+        sampleSize: 246,
+        primaryEndpoint: 'Treatment success 42 days after the end of therapy',
+        endpointMet: true,
+        statisticalPValue:
+          '44.2% (53 of 120) against standard therapy 41.7% (48 of 115); absolute difference 2.4%, 95% CI -10.2 to 15.1, non-inferiority criteria met',
+        unreportedAdverseSignals:
+          'Success in both arms was below 45%, which is the more striking figure and is rarely quoted. Microbiological failure was more frequent with daptomycin (19 against 11, P=0.17) and reduced daptomycin susceptibility emerged during treatment in 6 of those 19.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Pertel 2008 pooled community-acquired pneumonia programme',
+        phase: 'Two phase 3, randomised, double-blind, active-controlled trials pooled',
+        sampleSize: 834,
+        primaryEndpoint:
+          'Clinical response at the test-of-cure visit in the intent-to-treat and clinically evaluable populations',
+        endpointMet: false,
+        statisticalPValue:
+          'Intent-to-treat 70.9% against ceftriaxone 77.4% (95% CI for the difference -12.4% to -0.6%); clinically evaluable 79.4% against 87.9% (95% CI -13.8% to -3.2%)',
+        unreportedAdverseSignals:
+          'A post-hoc subgroup of patients who had received up to 24 hours of prior effective therapy showed similar cure rates in both arms, 90.7% against 88.0%. That is a finding about trial enrolment rather than about the drug, and the authors presented it as such.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Treatment success 44.2% against standard therapy’s 41.7% at 42 days in 235 evaluable randomised patients with Staphylococcus aureus bacteraemia',
+        'Clinically significant renal dysfunction 11.0% against 26.3% (P=.004) in the same trial',
+        'Clinical cure 70.9% against ceftriaxone’s 77.4% in community-acquired pneumonia, confidence interval excluding zero',
+        'Loss of antibacterial activity in the presence of pulmonary surfactant in vitro, with retained activity in haematogenous pneumonia models',
+        'Emergent reduced daptomycin susceptibility in 6 of 19 microbiological failures during the registration trial',
+      ],
+      unsupportedInferences: [
+        'That the record’s stated indication of pneumonia describes what this drug treats — it names the one organ in which the drug is documented to be inert',
+        'That non-inferiority at 44.2% against 41.7% means the treatment works well; both arms failed more than half their patients',
+        'That less renal dysfunction than a vancomycin-and-gentamicin arm isolates a daptomycin advantage, when the comparator contained two nephrotoxic agents',
+        'That a post-hoc subgroup showing similar cure rates rescues the pneumonia result; the authors offered it as a criticism of trial design',
+      ],
+      whatFailedInitially: [
+        'Eli Lilly shelved the compound in the 1980s over muscle toxicity, and it was only revived when once-daily administration was found to separate efficacy from myopathy',
+        'It failed two phase 3 trials in community-acquired pneumonia and the label now states it is not indicated for pneumonia',
+        'Reduced susceptibility emerged during the registration trial itself, in patients being treated',
+        'It causes eosinophilic pneumonia, an inflammatory lung reaction, in an organ where it cannot treat infection',
+      ],
+      realWorldOutcome: [
+        'Approved 12 September 2003 under NDA 021572, now generic with 41 listed products at about US$21.85 a vial',
+        'A first-line option for MRSA bloodstream infection and right-sided endocarditis, and specifically excluded from pneumonia',
+        'The only antibiotic known to be inactivated by a specific human organ, characterised after the trial that found the failure',
+        'Susceptibility testing for it must be done in calcium-supplemented medium, or the result means nothing',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion or injection, once daily and never more often',
+      description:
+        'Parenteral only. The once-daily restriction is a safety requirement rather than a convenience: creatine phosphokinase elevations were more frequent when the drug was given more than once a day, and the once-daily schedule is what made a shelved compound marketable. Predominantly renally cleared, with reduced efficacy reported in adults with moderate baseline renal impairment. It must not be used for pneumonia, and its susceptibility testing requires calcium-supplemented medium.',
+      safetyProfile:
+        'Myopathy — muscle aching or weakness with creatine phosphokinase above ten times the upper limit of normal — and rhabdomyolysis with or without acute renal failure, with weekly creatine phosphokinase monitoring advised and more frequent monitoring alongside statins. Eosinophilic pneumonia, managed by discontinuation and consideration of systemic steroids. Anaphylaxis and hypersensitivity, DRESS, tubulointerstitial nephritis and peripheral neuropathy. Use is to be avoided in children under 12 months because of potential nervous and muscular system effects. Persisting or relapsing Staphylococcus aureus infection should prompt susceptibility testing and a search for sequestered foci, because reduced susceptibility can emerge during treatment.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why can it not be used for pneumonia?',
+        a: 'Because the lung inactivates it, and this is the clearest example of that phenomenon in all of antibiotic therapy. The air sacs are lined with pulmonary surfactant, a phospholipid film that stops them collapsing. Daptomycin kills bacteria by burying a fatty tail in their membrane, and surfactant binds that same fatty tail and holds onto it, so the drug never reaches any bacteria. The sequence in which this was discovered matters: two phase 3 trials in community-acquired pneumonia failed first — clinical cure 79.4% against ceftriaxone’s 87.9% in evaluable patients — and the laboratory explanation came afterwards. The animal data fit precisely: daptomycin worked in pneumonia that arrived through the bloodstream and in inhalation anthrax, and did nothing against pneumococcus in ordinary bronchial-alveolar pneumonia.',
+        auditNote:
+          'The record this page was built from listed pneumonia as the drug’s indication. That is not a small error, and it is recorded on this page as an audit rather than silently corrected.',
+      },
+      {
+        q: 'Is it better than vancomycin?',
+        a: 'For bloodstream infection it is about equal on cure and clearly better on kidneys; for pneumonia it is not an option at all. In the registration trial, treatment success 42 days after therapy was 44.2% with daptomycin against 41.7% with standard therapy, meeting non-inferiority with a confidence interval from -10.2 to 15.1. Clinically significant renal dysfunction was 11.0% against 26.3%, P=.004. The comparator arm was vancomycin or an antistaphylococcal penicillin plus initial low-dose gentamicin, so some of that renal difference belongs to the gentamicin. The number worth sitting with is that both arms succeeded in under 45% of patients: Staphylococcus aureus bloodstream infection remains badly treated by everything available.',
+      },
+      {
+        q: 'Why does it have to be given only once a day?',
+        a: 'Because that is what makes it safe enough to use. Eli Lilly discovered the compound and abandoned it in the 1980s when it damaged skeletal muscle at the schedules being tested. Cubist licensed it and found that killing is concentration-dependent — it depends on how high the peak gets — while muscle injury tracks how long muscle is exposed. Consolidating the same total amount into one administration a day raises the peak and shortens the exposure, keeping the antibacterial effect and largely removing the myopathy. The label states directly that creatine phosphokinase elevations were more frequent when the drug was given more than once daily and that it should not be dosed more often than once a day.',
+      },
+      {
+        q: 'Can bacteria become resistant to it during treatment?',
+        a: 'Yes, and it happened in the trial that approved the drug. Daptomycin had more microbiological failures than standard therapy — 19 against 11, a difference that did not reach statistical significance — and in 6 of those 19, isolates with reduced daptomycin susceptibility emerged while the patient was being treated. The mechanism is not a change in any protein target, because there is no protein target: the bacterium alters the electrical charge of its own membrane, chiefly through gain-of-function mutations in mprF, so that the calcium-loaded drug is repelled before it can insert. The label carries a specific warning to test susceptibility again and look for a sequestered focus of infection if a staphylococcal bloodstream infection persists or relapses.',
+      },
+      {
+        q: 'It cannot treat pneumonia but can it cause one?',
+        a: 'Yes, and the label treats that as a distinct warning. Eosinophilic pneumonia is an inflammatory reaction of the lung to the drug itself, not an infection, and it typically appears after several days of treatment with new breathlessness, cough, fever and infiltrates on imaging. The label directs that daptomycin be discontinued and systemic steroids considered. The trap is obvious once stated: a patient on an antibiotic who develops new lung signs is assumed to have a spreading infection, and the reflex is to escalate the antibiotic rather than stop it. On this drug that reflex is exactly wrong.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Fowler VG Jr, Boucher HW, Corey GR, et al. Daptomycin versus standard therapy for bacteremia and endocarditis caused by Staphylococcus aureus. N Engl J Med 2006;355:653-665',
+        identifier: '10.1056/NEJMoa053783',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pertel PE, Bernardo P, Fogarty C, et al. Effects of prior effective therapy on the efficacy of daptomycin and ceftriaxone for the treatment of community-acquired pneumonia. Clin Infect Dis 2008;46:1142-1151',
+        identifier: '10.1086/533441',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Silverman JA, Mortin LI, Vanpraagh AD, Li T, Alder J. Inhibition of daptomycin by pulmonary surfactant: in vitro modeling and clinical impact. J Infect Dis 2005;191:2149-2152',
+        identifier: '10.1086/430352',
+        kind: 'doi',
+      },
+      {
+        label: 'Daptomycin against standard therapy in Staphylococcus aureus bacteraemia',
+        identifier: 'NCT00093067',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: CUBICIN (daptomycin), NDA 021572, Cubist Pharmaceuticals — original approval 12 September 2003; United States prescribing information, Warnings and Precautions 5.1 to 5.10',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021572',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 21585658 — daptomycin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/21585658',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 10. Nitrofurantoin — approved in 1953, displaced twice, restored twice, and its own label
+  //     states that its pharmacodynamic effects are unknown.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'nitrofurantoin',
+    name: 'Nitrofurantoin',
+    tradeName: 'Furadantin / Macrodantin / Macrobid',
+    sponsor:
+      'Eaton Laboratories and Norwich Pharmacal (originator, from 1950s nitrofuran chemistry); the current United States application holder on this record is Casper Pharma, and dozens of generic products are marketed',
+    targetGene:
+      'None specific — the reduced drug damages DNA, ribosomal RNA and proteins at once. Activation depends on the bacterial nitroreductase genes nfsA and nfsB, and loss of both is the main route to resistance.',
+    targetProtein:
+      'No single target: bacterial flavoprotein nitroreductases convert the drug into reactive intermediates that attack macromolecules indiscriminately',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1953,
+    indication:
+      'Urinary tract infections when due to susceptible strains of Escherichia coli, enterococci, Staphylococcus aureus and certain susceptible strains of Klebsiella and Enterobacter species. It treats the bladder and nothing else, because it does not distribute into tissue.',
+    patientFriendlyIndication: 'Bladder infections caused by susceptible bacteria',
+    anatomicalSite:
+      'The bladder urine. Nitrofurantoin achieves antibacterial concentrations only in urine, and the label states plainly that it lacks the broader tissue distribution of other urinary tract agents.',
+    conditionContext: {
+      conditionExplainer:
+        'An uncomplicated urinary tract infection is bacteria multiplying in the bladder, usually Escherichia coli from the bowel. It is one of the most common bacterial infections in the world and one of the very few where the drug can be concentrated at the site of infection without going anywhere else.',
+      whyItMatters:
+        'Nitrofurantoin is over seventy years old, has been displaced twice by newer drugs and restored to first line twice, and has accumulated remarkably little resistance in that time. It is also the drug whose label openly states that its pharmacodynamic effects are unknown.',
+      whoTakesThis:
+        'Non-pregnant adults, mostly women, with uncomplicated bladder infection, and, in some countries, women with recurrent infection taking it long term.',
+      clinicalGoals:
+        'Resolution of symptoms without needing another antibiotic. The modern randomised trial measured exactly that, at 28 days after finishing treatment.',
+    },
+    oneSentenceVerdict:
+      'A nitrofuran that bacterial enzymes convert into reactive fragments which damage DNA, ribosomes and proteins simultaneously, concentrated in urine and essentially nowhere else — in the only large modern randomised trial it resolved symptoms in 70% of 244 women against single-dose fosfomycin’s 58% (difference 12%, 95% CI 4 to 21%, P=.004), and in a single interstitial lung disease service ten women, mean age 80, developed pulmonary fibrosis a mean of 17 months after being prescribed it.',
+    laymanHowItWorks:
+      'Nitrofurantoin is swallowed, absorbed, and then dumped almost immediately into the urine, where it becomes very concentrated. Bacteria in the bladder take it up and their own enzymes chop it into reactive fragments — and those fragments attack everything at once: the bacterium’s genetic material, its protein factory, its enzymes. There is no single target to mutate away from, which is why seventy years of use has produced so little resistance.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 76,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.2421 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 49 listed generic products, survey effective 17 June 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'First marketed in the United States in 1953. All composition-of-matter protection expired decades ago, forty-nine generic products appear in the acquisition-cost survey, and the drug is on the WHO Model List of Essential Medicines. It is roughly a hundredth the unit price of fosfomycin, the other revived old drug it was tested against, and beat it.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The alternatives divide into drugs that treat the infection and measures that reduce how often it happens. Among the treatments, nitrofurantoin beat single-dose fosfomycin head to head and costs a fraction as much; trimethoprim is cheaper still where local resistance permits. Where the aim is prevention rather than cure, methenamine hippurate is a different kind of agent that acidifies urine into formaldehyde rather than acting as an antibiotic. No food or supplement has been shown to cure a urinary tract infection.',
+      conventionalRx: [
+        {
+          name: 'Fosfomycin trometamol',
+          class: 'Phosphonic acid derivative, single oral dose',
+          howItCompares:
+            'Its advantage is a single dose. In the head-to-head randomised trial its clinical resolution through day 28 was 58% against nitrofurantoin’s 70% (difference 12%, 95% CI 4 to 21%, P=.004), and microbiologic resolution 63% against 74% (difference 11%, 95% CI 1 to 20%, P=.04).',
+          typicalCost:
+            'US$26.75 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 8 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: one dose, so adherence is not a variable; retains activity against many resistant Gram-negatives. Cons: more than a hundred times the unit price and measurably lower resolution in the only large head-to-head trial.',
+        },
+        {
+          name: 'Trimethoprim',
+          class: 'Dihydrofolate reductase inhibitor',
+          howItCompares:
+            'Cheaper than nitrofurantoin and effective where local Escherichia coli resistance is low, which in many regions it no longer is. Unlike nitrofurantoin it distributes into tissue, so it can treat kidney infection, which nitrofurantoin cannot.',
+          typicalCost:
+            'US$0.0448 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 32 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: about a fifth of the price, reaches tissue, shorter courses. Cons: widespread resistance in community Escherichia coli in many regions; contraindicated in early pregnancy as a folate antagonist.',
+        },
+        {
+          name: 'Methenamine hippurate',
+          class: 'Urinary antiseptic — not an antibiotic',
+          howItCompares:
+            'A prevention agent rather than a treatment. In acidic urine it hydrolyses to formaldehyde, which is bactericidal non-specifically, so no resistance develops to it. It does not treat an established infection and does not work if urine is not acidic.',
+          typicalCost:
+            'US$0.3114 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 11 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no resistance selection, an alternative to long-term antibiotics for recurrence. Cons: prevention only; depends on urinary pH; no role in an acute infection.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report new breathlessness or a persistent dry cough, at any point',
+          action:
+            'Report new breathlessness on exertion or a persistent dry cough during or after nitrofurantoin, and say that you are taking or have taken it.',
+          patientImpact:
+            'Nitrofurantoin causes both an acute lung reaction and a chronic interstitial one. In a single interstitial lung disease service, ten patients — mean age 80, all women — were diagnosed with nitrofurantoin-induced interstitial lung disease over eight years, a mean of 17 months after the prescription. Seven of ten had ground-glass opacity and traction bronchiectasis on CT.',
+          clinicalPrecaution:
+            'Those patients improved symptomatically after stopping the drug, with or without steroids, but the authors note that irreversible imaging changes may contribute to long-term illness. Their conclusion was that counselling should happen before prescription regardless of kidney function.',
+        },
+        {
+          name: 'Say if there is fever, back pain or feeling systemically unwell',
+          action:
+            'Distinguish bladder symptoms — burning, urgency, frequency — from fever, flank pain or feeling generally ill.',
+          patientImpact:
+            'Nitrofurantoin reaches antibacterial concentrations only in urine. The label states directly that it lacks the broader tissue distribution of other agents approved for urinary tract infection, so it does not treat a kidney infection or a bloodstream infection arising from one.',
+          clinicalPrecaution:
+            'Whether an infection has moved beyond the bladder is a clinical judgement, not a self-assessment. The point recorded here is that this is a drug defined by where it goes, and the boundary of where it goes is the boundary of what it treats.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1C(=O)NC(=O)N1/N=C/C2=CC=C(O2)[N+](=O)[O-]',
+      chemicalFormula: 'C8H6N4O5',
+      molecularWeight: '238.16 g/mol',
+      targetReceptorAffinity:
+        'Nitrofurantoin has no receptor and no single molecular target. The label states the mechanism directly: the drug is reduced by a wide range of enzymes including bacterial flavoproteins to reactive intermediates that damage macromolecules such as DNA and proteins. Because a bacterium must lose activity at multiple nitroreductases to escape, and because those enzymes have metabolic roles, resistance carries a fitness cost and has remained uncommon across seventy years of heavy use. The drug is not active against most Proteus or Serratia species and has no activity against Pseudomonas. The label also records in vitro antagonism between nitrofurantoin and quinolones.',
+      structureSource: {
+        label:
+          'PubChem CID 6604200 (nitrofurantoin) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6604200',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'nit-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Crystal size distribution and E-hydrazone geometry',
+          description:
+            'Confirm the E geometry of the hydrazone linkage and, critically, measure the crystal size distribution. Macrocrystalline and monohydrate-macrocrystal products dissolve more slowly than the microcrystalline form, which changes nausea rates and administration frequency without changing the molecule at all. For this drug, particle size is a clinically meaningful specification.',
+          reagentsAndBuffer:
+            'Nitrofurantoin reference standard, laser diffraction particle sizing, X-ray powder diffraction for the monohydrate form, ultraviolet spectroscopy at 367 nm, dissolution testing in simulated gastric fluid',
+        },
+        {
+          id: 'nit-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Condensation of 5-nitrofurfural with 1-aminohydantoin',
+          description:
+            'Condense 5-nitrofurfural, or its diacetate, with 1-aminohydantoin to form the hydrazone. This is one of the simplest syntheses in this file — two commodity intermediates and a condensation — and it is a direct reason the finished drug costs about twenty-four United States cents a unit.',
+          dependsOnStepId: 'nit-w1',
+          reagentsAndBuffer:
+            '5-nitrofurfural diacetate, 1-aminohydantoin hydrochloride, dilute sulfuric acid catalysis in aqueous medium, controlled temperature',
+        },
+        {
+          id: 'nit-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Controlled crystallisation to the target habit and nitrofurfural control',
+          description:
+            'Crystallise to the intended particle size and quantify residual 5-nitrofurfural. The crystallisation is not a cleanup step here but a formulation step: the macrocrystalline and microcrystalline products are the same compound with different clinical tolerability, and the crystallisation is where that is decided.',
+          dependsOnStepId: 'nit-w2',
+          reagentsAndBuffer:
+            'Controlled cooling crystallisation from dimethylformamide-water or acetone-water, seeded to the target habit, gradient HPLC for related substances, light protection throughout',
+        },
+        {
+          id: 'nit-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Urinary concentration against tissue partitioning',
+          description:
+            'Measure the concentration achieved in urine against plasma and tissue. This is the defining pharmacological experiment for nitrofurantoin, and the informative result is the negative one: blood concentrations at therapeutic amounts are usually low, and the drug does not partition into tissue. Everything the drug treats and everything it cannot treat follows from that single distribution profile.',
+          dependsOnStepId: 'nit-w3',
+          reagentsAndBuffer:
+            'Timed urine and plasma collection, LC-MS/MS quantification, renal tissue homogenate for partition measurement, artificial urine at pH 5.5 and 7.0 for activity confirmation',
+        },
+        {
+          id: 'nit-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Nitroreductase-dependent activation with an nfsA/nfsB knockout counter-screen',
+          description:
+            'Confirm that killing requires bacterial nitroreductase activity by repeating the susceptibility assay in isogenic nfsA and nfsB deletion strains. The counter-screen is the whole resistance story: a bacterium must lose both enzymes to escape, those enzymes have other jobs, and the resulting fitness cost is the best explanation for why a drug in continuous use since 1953 still works.',
+          dependsOnStepId: 'nit-w4',
+          reagentsAndBuffer:
+            'Escherichia coli K-12 with isogenic nfsA and nfsB single and double deletions, cation-adjusted Mueller-Hinton broth, artificial urine medium, competitive fitness assay against the wild type in mixed culture',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'nit-a1',
+        category: 'measured',
+        title: 'It beat single-dose fosfomycin, 70% against 58%, in 513 randomised women',
+        laymanSummary:
+          'The two old drugs that came back into first-line use for bladder infection were finally tested against each other. Five days of nitrofurantoin resolved symptoms in seven women in ten. A single dose of fosfomycin resolved them in fewer than six in ten.',
+        technicalDetails:
+          'A multinational, open-label, analyst-blinded randomised trial enrolled 513 non-pregnant women aged 18 and over with lower urinary tract symptoms, a positive urine dipstick, and no known colonisation or previous infection with organisms resistant to the study drugs, at sites in Geneva, Lodz and Petah-Tiqva between October 2013 and April 2017. Clinical resolution through day 28 after completing therapy was 171 of 244 (70%) with 5-day nitrofurantoin against 139 of 241 (58%) with single-dose fosfomycin — difference 12% (95% CI 4 to 21%), P=.004. Microbiologic resolution was 129 of 175 (74%) against 103 of 163 (63%) — difference 11% (95% CI 1 to 20%), P=.04. Adverse events were few and mainly gastrointestinal: nausea in 3% against 2%, diarrhoea in 1% in both arms.',
+        evidenceSource: 'Huttner A et al., JAMA 2018;319:1781-1789 (NCT01966653)',
+        doi: '10.1001/jama.2018.3627',
+        measuredMetric:
+          'Clinical resolution through 28 days after completing therapy, and microbiologic resolution',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nit-a2',
+        category: 'failed',
+        title: 'Three women in ten were not resolved, and a quarter may not have had an infection',
+        laymanSummary:
+          'The winning arm still left nearly a third of women without resolution at four weeks. And only about three-quarters of the participants had a urine culture confirming a bacterial infection in the first place, which is how urinary infection is actually diagnosed and treated in practice.',
+        technicalDetails:
+          'In the same trial, 70% clinical resolution means 73 of 244 women in the nitrofurantoin arm did not achieve resolution through day 28. Entry required lower urinary tract symptoms plus a positive dipstick for nitrites or leukocyte esterase; only 377 of 513 participants (73%) had a confirmed positive baseline culture. That is representative of real practice rather than a flaw — urinary infection is usually treated on symptoms and a dipstick — but it means roughly a quarter of the randomised population may not have had a culture-confirmed bacterial infection for either drug to resolve. The trial was open-label with analyst blinding rather than double-blind, unavoidable given a five-day course against a single dose.',
+        evidenceSource:
+          'Huttner A et al., JAMA 2018;319:1781-1789, Design and Results (NCT01966653)',
+        doi: '10.1001/jama.2018.3627',
+        measuredMetric:
+          'Proportion without clinical resolution, and proportion with a confirmed positive baseline culture',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'nit-a3',
+        category: 'failed',
+        title: 'Ten women, mean age 80, with lung fibrosis a mean of 17 months after prescription',
+        laymanSummary:
+          'Nitrofurantoin can scar the lungs. In one specialist clinic over eight years, ten patients were diagnosed with it — all women, average age eighty, and on average nearly a year and a half after the prescription that caused it. Stopping the drug helped, but the scarring on the scans did not always reverse.',
+        technicalDetails:
+          'A case series from a single interstitial lung disease service reviewed its database from 2012 to 2020 and identified ten patients with nitrofurantoin-induced interstitial lung disease. Mean age was 80 years and all were female. Mean time from prescription to presentation was 17 months. Mean pre-treatment eGFR was 76 mL/min/1.73m2 — that is, normal kidney function, which is the usual reassurance and did not protect them. Seven of ten had ground-glass opacity and traction bronchiectasis on CT; four received prednisolone. Patients improved symptomatically after stopping the drug with or without steroids, but the authors record that irreversible imaging changes may contribute to long-term morbidity, and conclude that counselling should precede prescription regardless of renal function. The context they give is that national prescribing of nitrofurantoin in England rose significantly over the preceding decade, largely as prophylaxis in women with recurrent infection.',
+        evidenceSource:
+          'Long term nitrofurantoin induced interstitial lung disease: a case series and literature review. Sarcoidosis Vasc Diffuse Lung Dis 2023;40:e2023050',
+        doi: '10.36141/svdld.v40i4.13827',
+        measuredMetric:
+          'Case count, latency, renal function and CT findings in a single-service interstitial lung disease cohort',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'nit-a4',
+        category: 'inferred',
+        title: 'The label states its pharmacodynamic effects are unknown',
+        laymanSummary:
+          'The current FDA label says, in the section that is supposed to describe what the drug does to the body, that its pharmacodynamic effects are unknown. It also says its pharmacokinetics are unknown in older people, children, people with liver disease and pregnant women. This is a drug taken by millions.',
+        technicalDetails:
+          'Section 12.2 of the label reads in full that pharmacodynamic effects of nitrofurantoin are unknown. Section 12.3 states that the pharmacokinetics of nitrofurantoin are unknown for geriatric patients, paediatric patients, patients with hepatic impairment or pregnant women, and that differences between male and female patients and between racial or ethnic groups are unknown. What is documented is distribution and excretion: nitrofurantoin is highly soluble in urine, lacks the broader tissue distribution of other agents approved for urinary tract infection, is rapidly excreted in urine to which it may impart a brown colour, and recovered roughly 42.7% to 43.6% of a daily amount in the first 24 hours. The therapeutic rationale is therefore that urinary concentration exceeds what the organism needs, rather than any measured concentration-effect relationship. That is a reasonable inference for a drug that acts only in urine. It is still an inference, and the label says so.',
+        evidenceSource:
+          'Nitrofurantoin United States prescribing information, Clinical Pharmacology 12.2 and 12.3',
+        inferredClaim:
+          'That the concentration achieved in urine translates into a predictable clinical effect — the assumption the whole indication rests on, with the label itself stating that the pharmacodynamics are unknown and the pharmacokinetics unstudied in most groups who take it',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'nit-a5',
+        category: 'conclusion_shift',
+        title: 'Displaced twice, restored twice, and still not resistant after seventy years',
+        laymanSummary:
+          'Nitrofurantoin was pushed aside first by trimethoprim-sulfamethoxazole and then by the fluoroquinolones, both newer and easier to take. Both of those then ran into resistance and, in the quinolones’ case, serious safety warnings. Nitrofurantoin came back — and unlike them, it had barely accumulated any resistance in the intervening decades.',
+        technicalDetails:
+          'The reason is mechanistic and is stated in the label: nitrofurantoin is reduced by a wide range of enzymes including bacterial flavoproteins to reactive intermediates that damage macromolecules such as DNA and proteins. There is no single target to alter. Escape requires losing activity at multiple nitroreductases, principally nfsA and nfsB, and those enzymes have metabolic roles, so the resistant organism pays a fitness cost. Trimethoprim inhibits one enzyme and fluoroquinolones inhibit two related ones; single-step target mutations therefore work against both, and community Escherichia coli resistance to them rose accordingly. The 2018 head-to-head trial against fosfomycin is the modern evidence base for a drug whose original approval predates the framework that would now be required to obtain one.',
+        evidenceSource:
+          'Nitrofurantoin United States prescribing information, Microbiology 12.4; Huttner A et al., JAMA 2018;319:1781-1789',
+        doi: '10.1001/jama.2018.3627',
+        inferredClaim:
+          'That newer antibacterials supersede older ones — here two successors were displaced by resistance and safety findings while the 1953 drug held, because a multi-target mechanism is harder to escape than a single-enzyme one',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'nit-a6',
+        category: 'failed',
+        title: 'It is contraindicated in four populations, three of them for the same reason',
+        laymanSummary:
+          'The drug must not be used when the kidneys are not working, because it is cleared by the kidneys and cannot reach the urine — and it accumulates instead. It must not be used at the very end of pregnancy or in newborns, because their red blood cells cannot defend themselves against it.',
+        technicalDetails:
+          'The label contraindicates nitrofurantoin in known hypersensitivity; in a previous history of cholestatic jaundice or hepatic dysfunction associated with the drug; in anuria, oliguria or significant renal impairment defined as creatinine clearance under 60 mL per minute or a clinically significant elevated serum creatinine, because impaired excretion increases toxicity; in pregnancy at term from 38 to 42 weeks, during labour and delivery, or when labour is imminent; and in infants under one month of age. The last two share a mechanism: immature erythrocyte enzyme systems with unstable glutathione cannot withstand the drug’s oxidative intermediates, and haemolytic anaemia results. The renal contraindication is a double bind — the same failure that prevents the drug from reaching the urine where it works also prevents it leaving the body. The label additionally records in vitro antagonism between nitrofurantoin and quinolones, and no activity against Pseudomonas or most Proteus and Serratia species.',
+        evidenceSource:
+          'Nitrofurantoin United States prescribing information, Contraindications 4 and Microbiology 12.4',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed, then dumped straight into the urine',
+        laymanDesc:
+          'Nitrofurantoin is absorbed from the gut and then cleared by the kidney almost immediately. Blood levels stay low. Urine levels get very high. That is the entire design.',
+        molecularDetail:
+          'The label states that blood concentrations at therapeutic amounts are usually low, that the drug is highly soluble in urine, that it lacks the broader tissue distribution of other agents approved for urinary tract infection, and that roughly 42.7% to 43.6% of a daily amount is recovered in urine in the first 24 hours. Food or anything delaying gastric emptying increases bioavailability.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The crystal size decides how it is tolerated',
+        laymanDesc:
+          'The same compound is sold in different crystal sizes. The larger crystals dissolve more slowly, which causes less nausea. Nothing about the molecule changes — only how fast it goes into solution.',
+        molecularDetail:
+          'Microcrystalline, macrocrystalline and monohydrate-macrocrystal products differ in dissolution rate and hence in gastrointestinal tolerability and administration frequency. Particle size is a clinically relevant specification for this drug in a way it is not for most.',
+        iconName: 'Layers',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'Bacteria take it up and activate it themselves',
+        laymanDesc:
+          'The drug arriving in the bladder is inert. Bacteria absorb it and their own enzymes convert it into something reactive. The bacterium manufactures its own poison.',
+        molecularDetail:
+          'Bacterial flavoprotein nitroreductases, principally NfsA and NfsB, reduce the nitro group to reactive intermediates. Human cells reduce it far less efficiently, which is the basis of selectivity.',
+        iconName: 'Sparkles',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'The fragments attack everything at once',
+        laymanDesc:
+          'Those reactive fragments do not have a single target. They damage the bacterium’s genetic material, its protein-building machinery and its enzymes simultaneously.',
+        molecularDetail:
+          'The label states that the reactive intermediates damage macromolecules such as DNA and proteins. Ribosomal RNA, cell-wall synthesis and aerobic energy metabolism are all affected. There is no discrete binding site, so there is no discrete resistance mutation.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Escaping it costs the bacterium something',
+        laymanDesc:
+          'To resist, a bacterium has to switch off the enzymes that activate the drug — but those enzymes do other jobs, so the resistant organism is worse at being a bacterium. That is the best explanation for seventy years without widespread resistance.',
+        molecularDetail:
+          'Resistance requires loss of function at both nfsA and nfsB, a two-step process with an associated fitness cost, in contrast with single-step target mutations that confer trimethoprim and fluoroquinolone resistance. Nitrofurantoin has no useful activity against Pseudomonas and most Proteus and Serratia species — an intrinsic limit rather than acquired resistance.',
+        iconName: 'Dna',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the reactive chemistry does to the person',
+        laymanDesc:
+          'The same reactive fragments that kill bacteria can damage lungs, liver, nerves and, in newborns, red blood cells. Lung damage on long courses is the one to know about, and it can appear more than a year after starting.',
+        molecularDetail:
+          'Acute pulmonary hypersensitivity and chronic interstitial lung disease both occur; in one specialist series of ten patients, mean age 80, all female, mean latency was 17 months and mean pre-treatment eGFR was 76 mL/min/1.73m2. Chronic active hepatitis and peripheral neuropathy are also documented. Haemolytic anaemia in neonates and at term reflects immature erythrocyte glutathione systems and is the basis of two label contraindications.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Huttner 2018 nitrofurantoin against fosfomycin (NCT01966653)',
+        phase: 'Phase 4, multinational, open-label, analyst-blinded, randomised',
+        sampleSize: 513,
+        primaryEndpoint:
+          'Clinical response in the 28 days following completion of therapy in non-pregnant women with uncomplicated lower urinary tract infection',
+        endpointMet: true,
+        statisticalPValue:
+          'Clinical resolution 70% (171 of 244) against fosfomycin 58% (139 of 241); difference 12% (95% CI 4 to 21%), P=.004. Microbiologic resolution 74% against 63%; difference 11% (95% CI 1 to 20%), P=.04',
+        unreportedAdverseSignals:
+          'Open-label rather than double-blind, unavoidable when comparing a five-day course with a single dose. Only 377 of 513 participants (73%) had a confirmed positive baseline culture, so roughly a quarter of the population may not have had culture-confirmed bacterial infection. Thirty percent of the winning arm did not achieve resolution.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clinical resolution 70% against single-dose fosfomycin’s 58% through day 28, difference 12% (95% CI 4 to 21%), P=.004',
+        'Microbiologic resolution 74% against 63%, difference 11% (95% CI 1 to 20%), P=.04',
+        'Roughly 42.7% to 43.6% of a daily amount recovered in urine within 24 hours, with low blood concentrations',
+        'Ten cases of nitrofurantoin-induced interstitial lung disease over eight years at one service, mean age 80, mean latency 17 months, mean pre-treatment eGFR 76',
+      ],
+      unsupportedInferences: [
+        'That urinary concentration predicts clinical effect — the label states the pharmacodynamic effects of nitrofurantoin are unknown',
+        'That the pharmacokinetics are understood in the people who take it; the label states they are unknown in older adults, children, hepatic impairment and pregnancy',
+        'That normal kidney function protects against pulmonary toxicity — mean pre-treatment eGFR in the fibrosis series was 76 mL/min/1.73m2',
+        'That a trial enrolling on symptoms and a dipstick measures the drug against a confirmed bacterial infection in every participant',
+      ],
+      whatFailedInitially: [
+        'Three women in ten in the winning arm did not achieve clinical resolution at 28 days',
+        'It cannot treat pyelonephritis, bloodstream infection or anything outside the bladder, because it does not distribute into tissue',
+        'It is contraindicated below a creatinine clearance of 60 mL per minute, at term pregnancy and under one month of age, and after any previous cholestatic reaction to it',
+        'Long-term prophylactic prescribing, which rose substantially in England over a decade, is the pattern that produced the pulmonary fibrosis series',
+      ],
+      realWorldOutcome: [
+        'First marketed in 1953, displaced twice by newer agents and restored to first line twice',
+        'On the WHO Model List of Essential Medicines at about twenty-four United States cents a unit, roughly a hundredth of fosfomycin',
+        'Still has low resistance in community Escherichia coli after seventy years, because there is no single target to mutate',
+        'The only large modern randomised trial supporting it was published in 2018, sixty-five years after approval',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsules and suspension, in microcrystalline, macrocrystalline and monohydrate-macrocrystal forms',
+      description:
+        'Absorbed readily and then cleared rapidly into urine, where it reaches antibacterial concentrations that plasma and tissue never do. Bioavailability rises with food or anything delaying gastric emptying. The crystalline form is a genuine clinical variable rather than a manufacturing detail: larger crystals dissolve more slowly, which reduces nausea and changes how often the drug is given. Nitrofurantoin is dialysable, and it may turn urine brown.',
+      safetyProfile:
+        'Contraindicated in known hypersensitivity, in previous cholestatic jaundice or hepatic dysfunction associated with the drug, in anuria, oliguria or creatinine clearance under 60 mL per minute, in pregnancy at term from 38 to 42 weeks and during labour, and in infants under one month of age — the last two because immature erythrocyte enzyme systems cannot withstand oxidative stress and haemolytic anaemia results. Acute pulmonary hypersensitivity and chronic interstitial lung disease with fibrosis both occur, the chronic form typically after months of prophylactic use and with a mean latency of 17 months in one specialist series, in patients whose kidney function was normal. Chronic active hepatitis and peripheral neuropathy are also documented. The label records in vitro antagonism with quinolones.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does it only treat bladder infections?',
+        a: 'Because that is the only place it goes. The label states it directly: nitrofurantoin lacks the broader tissue distribution of other therapeutic agents approved for urinary tract infections, and blood concentrations at therapeutic amounts are usually low. It is absorbed from the gut and then cleared into urine so rapidly that it never builds up anywhere else, with roughly 43% of a daily amount recovered in urine within 24 hours. That is what makes it a good bladder drug — very high concentration exactly where the bacteria are, and almost no exposure elsewhere — and it is also why it does nothing for a kidney infection or a bloodstream infection. The boundary of where the drug goes is the boundary of what it treats.',
+      },
+      {
+        q: 'How has it avoided resistance for seventy years?',
+        a: 'Because there is nothing single to mutate. Most antibiotics bind one target, and a bacterium that alters that target escapes. Nitrofurantoin arrives inert and is converted by the bacterium’s own enzymes into reactive fragments that damage DNA, RNA, proteins and cell-wall synthesis all at once. To escape, an organism has to lose function at multiple nitroreductase enzymes, and those enzymes have other metabolic jobs, so the resistant bacterium is a less capable bacterium. Compare that with trimethoprim, which inhibits one enzyme, or the fluoroquinolones, which inhibit two related ones: both accumulated community resistance in Escherichia coli within decades. Both were once considered to have superseded nitrofurantoin.',
+      },
+      {
+        q: 'Can it really damage my lungs?',
+        a: 'Yes, in two different ways, and the chronic one is the one people do not see coming. There is an acute reaction, an allergic-type pneumonitis within days to weeks, and a chronic one that develops over months of continuous use and can scar the lung. A single specialist interstitial lung disease service reviewed eight years of its database and found ten patients with nitrofurantoin-induced disease — all women, mean age 80, presenting a mean of 17 months after the prescription. Their mean kidney function before treatment was normal, at 76 mL/min/1.73m2, which is the reassurance that usually gets offered and did not protect them. Seven had ground-glass changes and traction bronchiectasis on CT. Everyone improved symptomatically once the drug was stopped, but the authors record that irreversible imaging changes may cause long-term problems, and they specifically concluded that counselling should happen before prescription regardless of kidney function.',
+        auditNote:
+          'This is a single-centre case series, not an incidence estimate. It tells you the reaction is real and characterises what it looks like; it cannot tell you how often it happens per prescription.',
+      },
+      {
+        q: 'Why is it contraindicated if my kidneys are not working well?',
+        a: 'Because the same problem does two things at once. Nitrofurantoin only works because the kidney concentrates it into urine. If filtration falls, less drug reaches the urine — so the antibacterial effect drops — while more stays in the body, where the reactive chemistry that kills bacteria has nothing useful to do and can damage nerves and other tissue. The label puts the threshold at a creatinine clearance under 60 mL per minute, or a clinically significant elevated serum creatinine, and describes it as a contraindication rather than a caution. The trap is that reduced efficacy and increased toxicity move together, so there is no window in which giving less would help.',
+      },
+      {
+        q: 'The label says its effects are unknown. What does that mean?',
+        a: 'It means what it says, and it is worth reading directly. Section 12.2 of the current label states that pharmacodynamic effects of nitrofurantoin are unknown. Section 12.3 states that its pharmacokinetics are unknown in older adults, in children, in people with liver impairment and in pregnant women, and that differences between male and female patients and between racial and ethnic groups are unknown. This is a drug approved in 1953, before any of that was required, and taken since by an enormous number of people — predominantly women, and often older women. What is known is where it goes and how fast it leaves. The rest is inference from the fact that it works, plus one large randomised trial published in 2018, sixty-five years after approval.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Huttner A, Kowalczyk A, Turjeman A, et al. Effect of 5-day nitrofurantoin vs single-dose fosfomycin on clinical resolution of uncomplicated lower urinary tract infection in women: a randomized clinical trial. JAMA 2018;319:1781-1789',
+        identifier: '10.1001/jama.2018.3627',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Long term nitrofurantoin induced interstitial lung disease: a case series and literature review. Sarcoidosis Vasc Diffuse Lung Dis 2023;40:e2023050',
+        identifier: '10.36141/svdld.v40i4.13827',
+        kind: 'doi',
+      },
+      {
+        label: 'Nitrofurantoin against fosfomycin in uncomplicated lower urinary tract infection',
+        identifier: 'NCT01966653',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Nitrofurantoin United States prescribing information — Contraindications 4, Clinical Pharmacology 12.2 and 12.3, Microbiology 12.4 (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22nitrofurantoin%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 6604200 — nitrofurantoin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6604200',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
 ]
