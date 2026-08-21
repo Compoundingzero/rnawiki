@@ -22,6 +22,12 @@ import { SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS } from './small-molecule-infecti
 import { NUTRACEUTICAL_CORE_DOSSIERS } from './nutraceutical-core'
 import { NUTRACEUTICAL_BOTANICAL_DOSSIERS } from './nutraceutical-botanical'
 import { WITHDRAWN_AND_RESTRICTED_DOSSIERS } from './withdrawn-and-restricted'
+import { ENRICHED_BATCH_20_DOSSIERS } from './enriched-batch-20'
+import { ENRICHED_BATCH_19_DOSSIERS } from './enriched-batch-19'
+import { ENRICHED_BATCH_18_DOSSIERS } from './enriched-batch-18'
+import { ENRICHED_BATCH_17_DOSSIERS } from './enriched-batch-17'
+import { ENRICHED_BATCH_16_DOSSIERS } from './enriched-batch-16'
+import { ENRICHED_BATCH_15_DOSSIERS } from './enriched-batch-15'
 import { ENRICHED_BATCH_10_DOSSIERS } from './enriched-batch-10'
 import { ENRICHED_BATCH_14_DOSSIERS } from './enriched-batch-14'
 import { ENRICHED_BATCH_13_DOSSIERS } from './enriched-batch-13'
@@ -53,6 +59,12 @@ export const ALL_SEED_DOSSIERS: SeedDossier[] = [
   ...NUTRACEUTICAL_CORE_DOSSIERS,
   ...NUTRACEUTICAL_BOTANICAL_DOSSIERS,
   ...WITHDRAWN_AND_RESTRICTED_DOSSIERS,
+  ...ENRICHED_BATCH_20_DOSSIERS,
+  ...ENRICHED_BATCH_19_DOSSIERS,
+  ...ENRICHED_BATCH_18_DOSSIERS,
+  ...ENRICHED_BATCH_17_DOSSIERS,
+  ...ENRICHED_BATCH_16_DOSSIERS,
+  ...ENRICHED_BATCH_15_DOSSIERS,
   ...ENRICHED_BATCH_10_DOSSIERS,
   ...ENRICHED_BATCH_14_DOSSIERS,
   ...ENRICHED_BATCH_13_DOSSIERS,

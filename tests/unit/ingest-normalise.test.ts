@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { baseMoiety } from '@/scripts/ingest/normalise'
 import { rejoinParenSplits } from '@/scripts/ingest/openfda'
+import { assignUniqueSlugs, type DrugInsert } from '@/scripts/ingest/build-dossier'
 
 describe('rejoinParenSplits', () => {
   it('rejoins an ingredient name torn at a comma inside brackets', () => {
@@ -83,5 +84,84 @@ describe('baseMoiety', () => {
   it('takes the first ingredient of a combination and drops a parenthesised synonym', () => {
     expect(baseMoiety('ABACAVIR || DOLUTEGRAVIR || LAMIVUDINE')).toBe('ABACAVIR')
     expect(baseMoiety('VITAMIN D (CHOLECALCIFEROL)')).toBe('VITAMIN D')
+  })
+})
+
+describe('assignUniqueSlugs', () => {
+  const row = (over: Partial<DrugInsert>): DrugInsert =>
+    ({
+      id: '',
+      slug: 'vitamin-c',
+      name: 'Vitamin C',
+      tradeName: null,
+      sponsor: '',
+      targetGene: '',
+      targetProtein: '',
+      modality: 'Nutraceutical / Botanical',
+      approvalStatus: 'Non-FDA / Dietary Supplement',
+      approvalYear: null,
+      indication: '',
+      patientFriendlyIndication: '',
+      oneSentenceVerdict: '',
+      laymanHowItWorks: '',
+      dossierDepth: 'stub',
+      molecularSchema: null,
+      sourceProvenance: [],
+      productCount: 0,
+      moiety: 'VITAMIN C',
+      saltForms: [],
+      brandNames: [],
+      classificationRules: { modality: '', approval: '' },
+      ...over,
+    }) as DrugInsert
+
+  it('merges two records that carry the same display name', () => {
+    const rich = row({
+      indication: 'Vitamin C deficiency',
+      sourceProvenance: ['openFDA Drugs@FDA', 'NIH DSLD'],
+      approvalStatus: 'FDA Approved',
+      productCount: 40,
+    })
+    const thin = row({ sourceProvenance: ['NIH DSLD'], brandNames: ['Ester-C'] })
+
+    const out = assignUniqueSlugs([rich, thin])
+
+    expect(out).toHaveLength(1)
+    expect(out[0]?.slug).toBe('vitamin-c')
+    expect(out[0]?.indication).toBe('Vitamin C deficiency')
+    // Nothing the loser alone knew is lost.
+    expect(out[0]?.brandNames).toContain('Ester-C')
+    expect(out[0]?.sourceProvenance).toEqual(['openFDA Drugs@FDA', 'NIH DSLD'])
+    expect(out[0]?.productCount).toBe(40)
+  })
+
+  it('keeps the richer record whichever order they arrive in', () => {
+    const thin = row({ sourceProvenance: ['NIH DSLD'] })
+    const rich = row({ indication: 'Vitamin C deficiency', sourceProvenance: ['openFDA', 'DSLD'] })
+
+    const out = assignUniqueSlugs([thin, rich])
+
+    expect(out).toHaveLength(1)
+    expect(out[0]?.indication).toBe('Vitamin C deficiency')
+    expect(out[0]?.slug).toBe('vitamin-c')
+  })
+
+  it('an approval on either record survives the merge', () => {
+    const supplement = row({ sourceProvenance: ['a', 'b', 'c'], indication: 'x' })
+    const approved = row({ approvalStatus: 'FDA Approved' })
+
+    const out = assignUniqueSlugs([supplement, approved])
+
+    expect(out[0]?.approvalStatus).toBe('FDA Approved')
+  })
+
+  it('still suffixes records that slugify alike but are named differently', () => {
+    const a = row({ name: 'Vitamin B-12', slug: 'vitamin-b-12' })
+    const b = row({ name: 'Vitamin B 12', slug: 'vitamin-b-12' })
+
+    const out = assignUniqueSlugs([a, b])
+
+    expect(out).toHaveLength(2)
+    expect(out.map((r) => r.slug)).toEqual(['vitamin-b-12', 'vitamin-b-12-2'])
   })
 })

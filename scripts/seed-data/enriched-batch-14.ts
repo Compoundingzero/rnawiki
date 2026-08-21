@@ -51,8 +51,8 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
   //    of the cleanest null trial on this shelf.
   // ---------------------------------------------------------------------------------------------
   {
-    slug: 'levocetirizine-dihydrochloride',
-    name: 'Levocetirizine Dihydrochloride',
+    slug: 'levocetirizine',
+    name: 'Levocetirizine',
     tradeName: 'Xyzal / Xyzal Allergy 24HR',
     sponsor:
       'UCB Pharma developed it; the United States applications NDA 022064 (prescription, 2007) and NDA 209089 and 209090 (over-the-counter, 2017) are held by Chattem, a Sanofi company',
@@ -93,13 +93,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for levocetirizine; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 20 listed levocetirizine products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -682,17 +682,17 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       markupEstimate: '',
       synthesisComplexity: 'Moderate',
       openPatentNotes:
-        'The original prescription capsule, NDA 020625, is listed as discontinued with a Federal Register determination that the product was not withdrawn for safety or effectiveness reasons. The tablet application NDA 020872, approved 25 February 2000, is now over-the-counter, as are the pseudoephedrine combinations NDA 020786 (1997) and NDA 021704 (2004) and the children’s suspension NDA 201373 (2011). It remains the most expensive per unit of the common generic oral antihistamines in the CMS survey.',
+        'The original prescription capsule, NDA 020625, is listed as discontinued with a Federal Register determination that the product was not withdrawn for safety or effectiveness reasons. The tablet application NDA 020872, approved 25 February 2000, is now over-the-counter, as are the pseudoephedrine combinations NDA 020786 (1997) and NDA 021704 (2004) and the children’s suspension NDA 201373 (2011). At $0.2407 per unit it costs several times what loratadine ($0.0532) or cetirizine ($0.0629) cost pharmacies, and about as much as prescription desloratadine ($0.2553).',
       costSource: {
         label:
           'No published cost-of-production study exists for fexofenadine; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 52 listed fexofenadine products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -1137,7 +1137,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why does it cost more than the other generic antihistamines?',
-        a: 'On the CMS acquisition survey it is the most expensive of the common oral generics: $0.2407 per unit against $0.0532 for loratadine and $0.0629 for cetirizine, all as median generic prices effective 19 August 2026. Those are what pharmacies pay to buy the drug, not what a patient is charged, and United States list prices are not published. There is no published cost-of-production study for any of them, so no manufacturing figure exists to compare against.',
+        a: 'On the CMS acquisition survey it is the dearest of the widely used oral generics: $0.2407 per unit against $0.0532 for loratadine and $0.0629 for cetirizine, all as median generic prices effective 19 August 2026. Those are what pharmacies pay to buy the drug, not what a patient is charged, and United States list prices are not published. There is no published cost-of-production study for any of them, so no manufacturing figure exists to compare against.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -1280,13 +1280,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for diphenhydramine; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 120 listed diphenhydramine products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -1852,13 +1852,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for pseudoephedrine; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 33 listed pseudoephedrine products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -2343,13 +2343,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for guaifenesin; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 189 listed guaifenesin products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -2850,13 +2850,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for benzonatate; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 39 listed benzonatate products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -3324,13 +3324,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for azelastine; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 17 listed azelastine products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -3839,13 +3839,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for olopatadine; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 30 listed olopatadine products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -4331,13 +4331,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for cromolyn; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 6 listed cromolyn products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },
@@ -4798,13 +4798,13 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       costSource: {
         label:
           'No published cost-of-production study exists for loratadine; the field is left empty rather than estimated',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
       priceSource: {
         label:
           'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 109 listed loratadine products',
-        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'regulatory',
       },
     },

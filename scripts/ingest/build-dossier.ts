@@ -242,10 +242,59 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
 }
 
 /**
- * Slugs must be unique, and two different substances can normalise to the same one
- * ("Vitamin B-12" and "Vitamin B 12"). Resolving collisions in memory before any insert is far
- * cheaper than a round trip per row, and it makes a --dry-run report the real final slugs.
+ * Slugs must be unique, and two source records can normalise to the same one.
+ *
+ * The original comment here said that happened because "two different substances" could share a
+ * slug, and gave "Vitamin B-12" and "Vitamin B 12" as the example — which is one substance spelled
+ * two ways, and describes the bug rather than the case. Suffixing produced eleven pairs of pages
+ * with identical titles: `vitamin-c` carrying six sources and a real indication, and `vitamin-c-2`
+ * carrying one source and nothing at all, both called "Vitamin C".
+ *
+ * Rows with the same display name are now merged. Rows that merely slugify alike keep the suffix
+ * and are reported, because those the pipeline genuinely cannot judge.
  */
+
+/** The row that knows more, and how much more it knows. */
+function informationScore(row: DrugInsert): number {
+  const filled = [
+    row.tradeName,
+    row.sponsor,
+    row.targetGene,
+    row.indication,
+    row.patientFriendlyIndication,
+    row.laymanHowItWorks,
+  ].filter((value) => typeof value === 'string' && value.trim().length > 0).length
+  return filled * 1000 + row.sourceProvenance.length * 100 + row.productCount
+}
+
+/**
+ * Folds `other` into `keep`. Every field the survivor left empty is taken from the loser, and the
+ * list fields are unioned — the loser is about to stop existing, and anything it alone knew would
+ * go with it.
+ */
+function mergeDuplicate(keep: DrugInsert, other: DrugInsert): void {
+  const preferString = (a: string, b: string): string => (a.trim().length > 0 ? a : b)
+  keep.tradeName = keep.tradeName ?? other.tradeName
+  keep.sponsor = preferString(keep.sponsor, other.sponsor)
+  keep.targetGene = preferString(keep.targetGene, other.targetGene)
+  keep.targetProtein = preferString(keep.targetProtein, other.targetProtein)
+  keep.indication = preferString(keep.indication, other.indication)
+  keep.patientFriendlyIndication = preferString(
+    keep.patientFriendlyIndication,
+    other.patientFriendlyIndication,
+  )
+  keep.oneSentenceVerdict = preferString(keep.oneSentenceVerdict, other.oneSentenceVerdict)
+  keep.laymanHowItWorks = preferString(keep.laymanHowItWorks, other.laymanHowItWorks)
+  keep.approvalYear = keep.approvalYear ?? other.approvalYear
+  keep.molecularSchema = keep.molecularSchema ?? other.molecularSchema
+  keep.sourceProvenance = [...new Set([...keep.sourceProvenance, ...other.sourceProvenance])]
+  keep.saltForms = [...new Set([...keep.saltForms, ...other.saltForms])]
+  keep.brandNames = [...new Set([...keep.brandNames, ...other.brandNames])]
+  keep.productCount += other.productCount
+  // An FDA approval outranks a supplement listing: the same substance sold both ways is still an
+  // approved drug, and saying otherwise on the page understates what is known about it.
+  if (other.approvalStatus === 'FDA Approved') keep.approvalStatus = other.approvalStatus
+}
 /** Truncate to a column width without leaving a dangling separator. */
 function cap(value: string, max: number): string {
   if (value.length <= max) return value
@@ -253,10 +302,40 @@ function cap(value: string, max: number): string {
 }
 
 export function assignUniqueSlugs(rows: DrugInsert[]): DrugInsert[] {
+  // Same display name, same substance. Done first, so the survivor takes the unsuffixed slug.
+  const byName = new Map<string, DrugInsert>()
+  const merged: string[] = []
+  const kept: DrugInsert[] = []
+
+  for (const row of rows) {
+    const key = row.name.trim().toLowerCase()
+    const existing = byName.get(key)
+    if (!existing) {
+      byName.set(key, row)
+      kept.push(row)
+      continue
+    }
+    if (informationScore(row) > informationScore(existing)) {
+      // The newcomer knows more: it takes the survivor's place in the output, in position.
+      mergeDuplicate(row, existing)
+      kept[kept.indexOf(existing)] = row
+      byName.set(key, row)
+    } else {
+      mergeDuplicate(existing, row)
+    }
+    merged.push(row.name)
+  }
+
+  if (merged.length > 0) {
+    console.log(
+      `[build] merged ${merged.length} records that shared a display name: ${merged.slice(0, 8).join(', ')}`,
+    )
+  }
+
   const taken = new Set<string>()
   const collisions: string[] = []
 
-  for (const row of rows) {
+  for (const row of kept) {
     let candidate = row.slug
     let suffix = 2
     while (taken.has(candidate)) {
@@ -264,16 +343,17 @@ export function assignUniqueSlugs(rows: DrugInsert[]): DrugInsert[] {
       candidate = `${row.slug.slice(0, 92 - marker.length)}${marker}`
       suffix += 1
     }
-    if (candidate !== row.slug) collisions.push(`${row.slug} -> ${candidate}`)
+    if (candidate !== row.slug) collisions.push(`${row.name} (${row.slug} -> ${candidate})`)
     taken.add(candidate)
     row.slug = candidate
     row.id = candidate
   }
 
+  // These are different names that slugify alike. Reported in full rather than sampled: each one
+  // is a judgement the pipeline could not make, and there should never be many.
   if (collisions.length > 0) {
-    console.log(
-      `[build] resolved ${collisions.length} slug collisions, e.g. ${collisions.slice(0, 5).join(', ')}`,
-    )
+    console.log(`[build] ${collisions.length} slugs collided between differently-named records:`)
+    for (const line of collisions) console.log(`   ${line}`)
   }
-  return rows
+  return kept
 }
