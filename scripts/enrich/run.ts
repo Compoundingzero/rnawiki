@@ -43,14 +43,15 @@ interface Options {
   skipBotanicals: boolean
   only: string | null
   /**
-   * Re-derive the label-sourced fields even where a value is already stored.
+   * Re-derive machine-written fields even where a value is already stored.
    *
    * Off by default, because the normal rule is that this pipeline fills gaps and never overwrites.
    * It exists for the case where the DERIVATION changed rather than the source — a cleaner that
-   * strips a section heading the SPL author retyped, say — and the stored value is stale in a way
-   * no gap-filling run will ever reach. It skips any record a person has edited.
+   * strips a section heading the SPL author retyped, a sentence that told supplements they had an
+   * FDA record — and the stored value is then stale in a way no gap-filling run will ever reach.
+   * It skips any record a person has edited.
    */
-  refreshLabels: boolean
+  refreshDerived: boolean
 }
 
 function parseArgs(argv: readonly string[]): Options {
@@ -60,7 +61,7 @@ function parseArgs(argv: readonly string[]): Options {
     dryRun: argv.includes('--dry-run'),
     skipTrials: argv.includes('--skip-trials'),
     skipBotanicals: argv.includes('--skip-botanicals'),
-    refreshLabels: argv.includes('--refresh-labels'),
+    refreshDerived: argv.includes('--refresh-derived') || argv.includes('--refresh-labels'),
     limit: limitIndex >= 0 ? Number.parseInt(argv[limitIndex + 1] ?? '0', 10) || null : null,
     only: onlyIndex >= 0 ? (argv[onlyIndex + 1] ?? null) : null,
   }
@@ -191,7 +192,7 @@ async function main(): Promise<void> {
   // Records a person has edited are never re-derived, whatever the flags say. A revision is the
   // one thing on this site that no pipeline can reproduce.
   const editedByAPerson = new Set<string>()
-  if (options.refreshLabels) {
+  if (options.refreshDerived) {
     const edited = await db.execute(sql`SELECT DISTINCT drug_id FROM revisions`)
     for (const row of edited.rows as Array<{ drug_id: string }>) editedByAPerson.add(row.drug_id)
     console.log(`[enrich] ${editedByAPerson.size} records have edits and will not be re-derived`)
@@ -228,6 +229,7 @@ async function main(): Promise<void> {
 
     const patch: Record<string, unknown> = {}
     let provenance = row.sourceProvenance ?? []
+    const refreshable = options.refreshDerived && !editedByAPerson.has(row.id)
 
     // --- Label text -------------------------------------------------------
     const fromLabel = enrichFromLabel(moiety, {
@@ -235,7 +237,7 @@ async function main(): Promise<void> {
       dosageForms: substance ? [...substance.dosageForms.keys()] : [],
     })
     if (fromLabel) {
-      const refresh = options.refreshLabels && !editedByAPerson.has(row.id)
+      const refresh = refreshable
       if (fromLabel.laymanHowItWorks && (refresh || !row.laymanHowItWorks)) {
         patch.laymanHowItWorks = fromLabel.laymanHowItWorks
         counts.mechanism += 1
@@ -328,10 +330,9 @@ async function main(): Promise<void> {
     // much has been published — including, often, that almost nothing has.
     if (
       !options.skipBotanicals &&
-      !row.conditionContext &&
       !patch.conditionContext &&
-      !row.laymanHowItWorks &&
-      !patch.laymanHowItWorks
+      !patch.laymanHowItWorks &&
+      (refreshable || (!row.conditionContext && !row.laymanHowItWorks))
     ) {
       const literature = await lookupLiterature(row.name)
       const record: SubstanceRecord | null = substance

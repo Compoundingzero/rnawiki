@@ -3486,4 +3486,456 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 8. Ketoconazole — the first oral azole, de-indicated by its own boxed warning for the
+  //    infections it was famous for, and re-approved in 2021 for the side effect.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ketoconazole',
+    name: 'Ketoconazole',
+    tradeName: 'Nizoral / Nizoral Anti-Dandruff / Extina / Xolegel / Ketoconazole shampoo 2%',
+    sponsor: 'Janssen Pharmaceuticals, which discovered it',
+    targetGene:
+      'ERG11 (CYP51) in fungi. Off-target in humans, CYP3A4 and the steroidogenic cytochromes CYP17A1 and CYP11B1',
+    targetProtein:
+      'Fungal lanosterol 14-alpha-demethylase, a cytochrome P450 enzyme of the ergosterol pathway; human cytochrome P450 enzymes are inhibited too, which is the source of both its dangers and its second career',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1981,
+    indication:
+      'Ketoconazole shampoo 2% is indicated for the treatment of tinea (pityriasis) versicolor; topical cream, gel and foam are used for seborrhoeic dermatitis and superficial dermatophyte infection. Ketoconazole tablets are explicitly not indicated for onychomycosis, cutaneous dermatophyte infections or Candida infections, and are restricted to systemic mycoses in patients who have failed or cannot tolerate other therapies',
+    patientFriendlyIndication:
+      'Dandruff and seborrhoeic dermatitis, and the pale or dark patches of tinea versicolor',
+    anatomicalSite:
+      'The scalp and sebaceous skin, where Malassezia yeasts live in the oil, and the fungal cell membrane they build from ergosterol',
+    conditionContext: {
+      conditionExplainer:
+        'Seborrhoeic dermatitis and dandruff are an inflammatory reaction to a yeast, Malassezia, that lives in the oil on almost everybody’s skin. Tinea versicolor is the same organism growing enough to interfere with pigment, leaving pale or dark patches. Neither is an infection in the ordinary sense — the organism is a normal resident and the problem is the response to it.',
+      whyItMatters:
+        'Ketoconazole is the clearest case in this batch of a drug whose reputation and whose regulatory status point in opposite directions. On skin it is a cheap, well-evidenced first choice. Swallowed, its own label opens by listing the things it must not be used for.',
+      whoTakesThis:
+        'People with dandruff, seborrhoeic dermatitis or tinea versicolor use the shampoo, cream or foam. The tablets are now a last-resort drug for deep systemic fungal infection.',
+      clinicalGoals:
+        'Clearance of scale and redness. For tinea versicolor the label sets a lower expectation than most people bring to it, and says so in the indication itself.',
+    },
+    oneSentenceVerdict:
+      'An imidazole that blocks the fungal enzyme converting lanosterol into ergosterol, and blocks the structurally similar human enzymes too — a 31% lower risk of failed clearance in seborrhoeic dermatitis against placebo across eight trials, indistinguishable from a topical steroid but with 44% fewer side effects, and carrying a boxed warning that removes the tablets from every infection they were famous for treating.',
+    laymanHowItWorks:
+      'Fungal cell membranes are built from ergosterol, and one step in making it is done by an enzyme with an iron atom at its centre. Ketoconazole binds that iron and shuts the enzyme down. The fungus cannot finish its membrane and stops growing. Human cells contain a family of enzymes built the same way — the ones that metabolise most medicines, and the ones that make cortisol and testosterone — and ketoconazole binds those too. On skin that barely matters. Swallowed, it is the whole story: it is why the tablets can cause liver failure and dangerous heart rhythms, and why the same molecule is now approved as a treatment for a hormone disease.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.3029 per gram, the median United States pharmacy acquisition cost across 32 listed ketoconazole products (CMS NADAC, generic, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Off patent since the 1990s, with 32 listed products and 1% shampoo sold over the counter. The commercially live version of this molecule is not the antifungal at all: it is levoketoconazole, the single enantiomer approved as Recorlev under NDA 214133 on 30 December 2021 for a hormonal disease, whose label states that it is not approved for the treatment of fungal infections.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The Cochrane review compared topical ketoconazole against placebo, against topical steroids and against the other topical antifungals. It beat placebo, drew with steroids while causing fewer side effects, and drew with ciclopirox. Its authors state that limited evidence suggests any agent in this class is more effective than any other.',
+      conventionalRx: [
+        {
+          name: 'Ciclopirox 1%',
+          class: 'Hydroxypyridone antifungal, a metal chelator rather than an ergosterol inhibitor',
+          howItCompares:
+            'Lower failed-remission rate than placebo at four weeks (RR 0.79, 95% CI 0.67 to 0.94, eight studies, moderate-quality evidence) with similar side effect rates. Compared directly with ketoconazole, remission failure was indistinguishable (RR 1.09, 95% CI 0.95 to 1.26, three studies, low-quality evidence).',
+          typicalCost: 'Generic; sold as shampoo and cream',
+          prosAndCons:
+            'Pros: an entirely different mechanism, so it is a genuine alternative rather than a variation. Cons: no measurable efficacy advantage, and the evidence base has the same weaknesses.',
+        },
+        {
+          name: 'Topical corticosteroid',
+          class: 'Glucocorticoid receptor agonist',
+          howItCompares:
+            'Ketoconazole produced a remission rate similar to steroids (RR 1.17, 95% CI 0.95 to 1.44, six studies, low-quality evidence), with side effects 44% lower in the ketoconazole group (RR 0.56, 95% CI 0.32 to 0.96, eight studies, moderate-quality evidence). The tolerability difference is the strongest single finding in the comparison.',
+          typicalCost: 'Generic and inexpensive; many scalp preparations available',
+          prosAndCons:
+            'Pros: fast, familiar, effective. Cons: more side effects than ketoconazole in the pooled comparison, and the atrophy problem on facial skin that recurs throughout this batch.',
+        },
+        {
+          name: 'Selenium sulfide or zinc pyrithione shampoo',
+          class: 'Over-the-counter antifungal and antiproliferative agents',
+          howItCompares:
+            'Widely used for the same condition. The Cochrane review found treatment effects on individual symptoms less clear and inconsistent across the field, and evidence insufficient to conclude that dose or mode of delivery influenced outcome.',
+          typicalCost: 'Sold over the counter at low cost',
+          prosAndCons:
+            'Pros: no prescription, very cheap. Cons: less well characterised in randomised comparisons than ketoconazole, and the same four-week evidence horizon applies.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Clearing the yeast will not immediately restore skin colour',
+          action:
+            'The shampoo label states this directly in its Indications section for tinea versicolor.',
+          patientImpact:
+            'Tinea versicolor leaves hyperpigmented or hypopigmented patches. The label notes that treatment of the infection may not immediately result in normalisation of pigment at the affected sites — the organism can be gone while the visible problem remains for months.',
+          clinicalPrecaution:
+            'Persisting patches after treatment are not necessarily treatment failure, and this is a distinction worth raising with a clinician rather than treating repeatedly.',
+        },
+        {
+          name: 'The tablets and the shampoo are not interchangeable in risk',
+          action:
+            'The oral formulation carries a boxed warning; the topical formulations do not.',
+          patientImpact:
+            'Oral ketoconazole has caused hepatotoxicity with fatal outcome or requiring liver transplantation, in some patients with no obvious risk factors, and prolongs the QT interval with nine drugs contraindicated for co-administration. None of that applies to a shampoo.',
+          clinicalPrecaution:
+            'The oral label states the tablets are not indicated for onychomycosis, cutaneous dermatophyte infections or Candida infections at all.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(=O)N1CCN(CC1)C2=CC=C(C=C2)OC[C@@H]3CO[C@@](O3)(CN4C=CN=C4)C5=C(C=C(C=C5)Cl)Cl',
+      chemicalFormula: 'C26H28Cl2N4O4',
+      molecularWeight: '531.40 g/mol',
+      targetReceptorAffinity:
+        'Coordinates the heme iron of fungal lanosterol 14-alpha-demethylase through the imidazole nitrogen, which is the binding mode shared by the whole azole class. The same coordination chemistry applies to human cytochrome P450 enzymes: ketoconazole is a potent CYP3A4 inhibitor and inhibits CYP17A1 and CYP11B1 in the steroid pathway. Selectivity for the fungal enzyme is a matter of degree, not of kind, which is the single fact that explains this drug’s entire regulatory history.',
+      structureSource: {
+        label:
+          'PubChem CID 456201 (ketoconazole) — canonical SMILES, molecular formula and weight, as held on the record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/456201',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ket-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Cis-dioxolane stereochemistry and enantiomeric composition',
+          description:
+            'Confirm the cis relationship across the dioxolane ring and determine the enantiomeric ratio. Ketoconazole as marketed is a racemate of two cis enantiomers, and this is not a technicality: the 2S,4R enantiomer alone is levoketoconazole, a separately approved drug for a different disease. A batch record that reports only chemical purity has not reported the thing that distinguishes the two products.',
+          reagentsAndBuffer:
+            'Ketoconazole reference standard, chiral HPLC on polysaccharide stationary phase, 1H NMR nuclear Overhauser experiments for ring stereochemistry, chloride content by ion chromatography',
+        },
+        {
+          id: 'ket-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Imidazole installation and piperazine coupling',
+          description:
+            'Attach the imidazole that will coordinate the heme iron, then couple the acetylpiperazine-phenol fragment. The imidazole is the pharmacophore and everything else is a delivery scaffold — which is why the whole azole class shares one mechanism and differs mainly in how it distributes.',
+          dependsOnStepId: 'ket-w1',
+          reagentsAndBuffer:
+            'Imidazole with base in polar aprotic solvent, 1-acetyl-4-(4-hydroxyphenyl)piperazine, phase-transfer catalyst, anhydrous conditions under nitrogen',
+        },
+        {
+          id: 'ket-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and formulation into shampoo, cream, gel or foam',
+          description:
+            'Crystallise the free base and formulate. Vehicle choice is doing real work here: a shampoo has contact time measured in minutes, a cream in hours and a foam somewhere between, and the Cochrane review found the evidence insufficient to conclude that mode of delivery influenced outcome at all.',
+          dependsOnStepId: 'ket-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from organic solvent, surfactant base for shampoo or emulsion base for cream, sodium lauryl sulfate, hydrochloric acid or sodium hydroxide for pH adjustment',
+        },
+        {
+          id: 'ket-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Retention on scalp after rinsing, and systemic absorption counter-screen',
+          description:
+            'Measure how much drug is still on the scalp after a shampoo is rinsed off, and measure plasma concentrations. Both matter: the first determines whether a two-minute contact time can work at all, and the second is what separates a shampoo from a drug carrying a boxed warning.',
+          dependsOnStepId: 'ket-w3',
+          reagentsAndBuffer:
+            'Scalp swab and tape-strip recovery after standardised rinsing, LC-MS/MS quantification on scalp and in plasma, sebum collection for reservoir measurement',
+        },
+        {
+          id: 'ket-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Malassezia susceptibility and human CYP inhibition panel',
+          description:
+            'Measure minimum inhibitory concentration against Malassezia isolates, then run the compound against a panel of human cytochrome P450 enzymes. The second assay is not a formality for this molecule — the human CYP inhibition is the reason the oral drug was restricted and the reason a single enantiomer of it is now sold as an endocrine medicine.',
+          dependsOnStepId: 'ket-w4',
+          reagentsAndBuffer:
+            'Malassezia furfur and M. globosa isolates in lipid-supplemented medium, CLSI-adapted broth microdilution, recombinant human CYP3A4, CYP17A1 and CYP11B1 with fluorogenic or LC-MS/MS substrates',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ket-a1',
+        category: 'measured',
+        title: 'A 31% lower failure rate than placebo, on low-quality evidence',
+        laymanSummary:
+          'Pooling eight trials, ketoconazole shampoo left about a third fewer people with unresolved rash than a dummy shampoo. The reviewers graded the evidence low quality, and the trials disagreed with each other substantially.',
+        technicalDetails:
+          'The 2015 Cochrane review included 51 studies with 9,052 participants, of which 45 assessed outcomes at five weeks or less. Topical ketoconazole 2% showed a 31% lower risk of failed clearance of rashes compared with placebo (RR 0.69, 95% CI 0.59 to 0.81; eight studies, low-quality evidence) at four weeks, with substantial heterogeneity between studies (I² = 74%). The median proportion who did not clear in the placebo groups was 69%. The effect on side effects against placebo was uncertain on very low-quality evidence (RR 0.97, 95% CI 0.58 to 1.64, six studies). The reviewers believe 24 of the 51 trials had some form of conflict of interest, such as pharmaceutical company funding.',
+        evidenceSource:
+          'Okokon EO et al., Cochrane Database Syst Rev 2015;5:CD008138 (PMID 25933684)',
+        doi: '10.1002/14651858.CD008138.pub3',
+        measuredMetric:
+          'Risk ratio for failed clearance of rash at four weeks against placebo, pooled across eight trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ket-a2',
+        category: 'measured',
+        title: 'As good as a steroid, with 44% fewer side effects',
+        laymanSummary:
+          'Head to head against topical steroids, remission rates were the same. Side effects were nearly half as common on the antifungal. That tolerability difference, not the clearance rate, is the strongest reason to choose it.',
+        technicalDetails:
+          'Ketoconazole treatment resulted in a remission rate similar to that of steroids (RR 1.17, 95% CI 0.95 to 1.44; six studies, low-quality evidence), and occurrence of side effects was 44% lower in the ketoconazole group (RR 0.56, 95% CI 0.32 to 0.96; eight studies, moderate-quality evidence). The side effect comparison carries a higher certainty grade than the efficacy comparison, which is unusual and worth noticing: the better-supported claim about this drug is about what it does not do.',
+        evidenceSource:
+          'Okokon EO et al., Cochrane Database Syst Rev 2015;5:CD008138 (PMID 25933684)',
+        doi: '10.1002/14651858.CD008138.pub3',
+        measuredMetric:
+          'Remission rate ratio and side effect rate ratio against topical corticosteroids, pooled',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ket-a3',
+        category: 'inferred',
+        title: 'Nothing in the class beats anything else, and nobody measured quality of life',
+        laymanSummary:
+          'Ketoconazole, ciclopirox and the rest came out level with one another. Of fifty-one trials in nine thousand people, not one measured whether patients felt better. Only one recorded whether they used the treatment as intended.',
+        technicalDetails:
+          'The reviewers’ conclusion is that ketoconazole and ciclopirox are more effective than placebo, but limited evidence suggests that either is more effective than any other agent within the same class. Ketoconazole yielded a similar remission failure rate to ciclopirox (RR 1.09, 95% CI 0.95 to 1.26, three studies, low-quality evidence), and most comparisons between ketoconazole and other antifungals rested on single studies showing comparability. Treatment effects on individual symptoms were less clear and inconsistent. Evidence was insufficient to conclude that dose or mode of delivery influenced outcome. Only one study reported on treatment compliance. No study assessed quality of life. One study assessed maximum rash-free period and provided insufficient data to analyse.',
+        evidenceSource:
+          'Okokon EO et al., Cochrane Database Syst Rev 2015;5:CD008138 (PMID 25933684)',
+        doi: '10.1002/14651858.CD008138.pub3',
+        inferredClaim:
+          'That one topical antifungal is better than another for seborrhoeic dermatitis, and that clearing scale is the same as the patient being better — neither was measured across 51 trials and 9,052 participants',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ket-a4',
+        category: 'conclusion_shift',
+        title: 'The tablets were de-indicated for the infections that made them famous',
+        laymanSummary:
+          'Ketoconazole was the first azole that could be swallowed, and it treated fungal nail and skin infections for two decades. Its label now opens by saying it is not indicated for any of those, and that it should only be used when nothing else works.',
+        technicalDetails:
+          'The current oral ketoconazole label opens: "Because ketoconazole tablets have been associated with serious adverse reactions, ketoconazole tablets are not indicated for treatment of onychomycosis, cutaneous dermatophyte infections, or Candida infections. Ketoconazole tablets should be used only when other effective antifungal therapy is not available or tolerated." It records serious hepatotoxicity including cases with a fatal outcome or requiring liver transplantation, in some patients with no obvious risk factors. It contraindicates co-administration with dofetilide, quinidine, pimozide, lurasidone, cisapride, methadone, disopyramide, dronedarone and ranolazine because ketoconazole raises their plasma concentrations and may prolong the QT interval, sometimes causing torsades de pointes. The remaining indications are blastomycosis, coccidioidomycosis, histoplasmosis, chromomycosis and paracoccidioidomycosis in patients who have failed or cannot tolerate other therapies, and it is excluded from fungal meningitis because it penetrates cerebrospinal fluid poorly.',
+        evidenceSource:
+          'Ketoconazole tablets United States prescribing information, boxed warning and Indications and Usage (ANDA 075912, openFDA label endpoint)',
+        inferredClaim:
+          'That an early, broadly effective antifungal remains a reasonable oral option for skin and nail infection — its own label removes it from all three indications and confines it to deep mycoses of last resort',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ket-a5',
+        category: 'conclusion_shift',
+        title: 'The side effect became the indication, and the indication became a disclaimer',
+        laymanSummary:
+          'Ketoconazole blocks the human enzymes that make cortisol — an unwanted effect for an antifungal. In 2021 half the molecule was approved as a treatment for a disease of too much cortisol, on a label that states it is not approved for fungal infections.',
+        technicalDetails:
+          'Levoketoconazole, the 2S,4R enantiomer of ketoconazole, was approved as Recorlev under NDA 214133 on 30 December 2021 for the treatment of endogenous hypercortisolemia in adult patients with Cushing’s syndrome for whom surgery is not an option or has not been curative. Its Limitations of Use state: "RECORLEV is not approved for the treatment of fungal infections. The safety and effectiveness of RECORLEV for the treatment of fungal infections have not been established." It is described in its own label as a cortisol synthesis inhibitor. It carries the same boxed warning for hepatotoxicity and QT prolongation as the racemic antifungal, with contraindications in cirrhosis, acute or poorly controlled chronic liver disease, recurrent symptomatic cholelithiasis, prior azole-induced liver injury requiring discontinuation, and extensive metastatic liver disease.',
+        evidenceSource:
+          'RECORLEV (levoketoconazole) United States prescribing information, Indications and Usage and boxed warning (NDA 214133, approved 30 December 2021)',
+        inferredClaim:
+          'That off-target activity is a defect — here the off-target inhibition of human steroidogenic cytochromes outlived the on-target antifungal indication and became a separately approved medicine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ket-a6',
+        category: 'failed',
+        title: 'Curing the infection does not fix what the patient came in about',
+        laymanSummary:
+          'Tinea versicolor shows up as pale or dark patches. The shampoo label says, in the Indications section itself, that treating the infection may not immediately normalise the colour of the skin.',
+        technicalDetails:
+          'The ketoconazole shampoo 2% label states the indication as treatment of tinea (pityriasis) versicolor caused by or presumed to be caused by Pityrosporum orbiculare, also known as Malassezia furfur, and then adds: "Note: Tinea (pityriasis) versicolor may give rise to hyperpigmented or hypopigmented patches on the trunk which may extend to the neck, arms and upper thighs. Treatment of the infection may not immediately result in normalization of pigment to the affected sites." The measured endpoint is mycological, the presenting complaint is cosmetic, and the label is unusually explicit that the two come apart — the same structure as terbinafine’s 70% mycological cure against 38% normal nails.',
+        evidenceSource:
+          'Ketoconazole shampoo 2% United States prescribing information, Indications and Usage, as held on the record',
+        measuredMetric:
+          'Regulatory label text — clearance of the organism stated not to imply resolution of the visible sign',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Applied to skin or scalp, and mostly staying there',
+        laymanDesc:
+          'As a shampoo, cream or foam the drug sits in the oily layer where the yeast lives. Almost none of it reaches the bloodstream, which is why the topical products carry none of the tablet’s warnings.',
+        molecularDetail:
+          'Ketoconazole is lipophilic and accumulates in the sebaceous reservoir where Malassezia species reside. Systemic absorption from topical application is minimal, so the CYP3A4 and steroidogenic inhibition that dominates the oral drug’s safety profile does not arise.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The imidazole ring grabs an iron atom',
+        laymanDesc:
+          'At the centre of the target enzyme is a single iron atom. One nitrogen on the drug latches onto it and will not let go, which stops the enzyme working.',
+        molecularDetail:
+          'The imidazole nitrogen coordinates the heme iron of fungal lanosterol 14-alpha-demethylase (CYP51/ERG11), blocking oxygen activation at the catalytic centre. This is the binding mode of the entire azole class; the rest of each molecule determines where it goes, not what it does.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The fungus cannot finish its membrane',
+        laymanDesc:
+          'Without that step the fungus cannot convert its raw material into the sterol its membrane needs, and it stops growing.',
+        molecularDetail:
+          'Blocking 14-alpha-demethylation halts conversion of lanosterol to ergosterol and causes accumulation of 14-methylated sterol intermediates that disorder the membrane. The effect is largely fungistatic — a difference from terbinafine, which kills by a second mechanism.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'The same chemistry works on human enzymes',
+        laymanDesc:
+          'Humans use enzymes built the same way to break down medicines and to make hormones. The drug binds those too. On skin this does not matter. Swallowed, it is the whole problem.',
+        molecularDetail:
+          'Ketoconazole is a potent CYP3A4 inhibitor and inhibits CYP17A1 and CYP11B1 in the adrenal steroid pathway. This produces the oral drug’s hepatotoxicity risk, its QT prolongation through raised concentrations of co-administered drugs, and — repurposed — the cortisol synthesis inhibition for which levoketoconazole was approved in 2021.',
+        iconName: 'AlertTriangle',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 5,
+        title: 'The scale and redness settle',
+        laymanDesc:
+          'Fewer yeasts means less inflammation. About a third fewer people are left with unresolved rash than on a dummy shampoo, and it works about as well as a steroid with fewer side effects.',
+        molecularDetail:
+          'Against placebo, risk of failed clearance RR 0.69 (95% CI 0.59 to 0.81) at four weeks, eight studies, low-quality evidence, I² = 74%. Against topical steroids, remission RR 1.17 (95% CI 0.95 to 1.44) and side effects RR 0.56 (95% CI 0.32 to 0.96).',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the endpoint does not measure',
+        laymanDesc:
+          'Forty-five of fifty-one trials stopped looking at five weeks or less. None of them measured whether patients felt better about their skin. And for tinea versicolor the label warns that clearing the yeast may not restore the colour.',
+        molecularDetail:
+          'No study in the 51-trial review assessed quality of life; one reported compliance; one measured maximum rash-free period and provided insufficient data to analyse. Twenty-four of the 51 trials were judged to carry some form of conflict of interest.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane pooled ketoconazole 2% against placebo (CD008138)',
+        phase: 'Systematic review and meta-analysis of randomised controlled trials',
+        sampleSize: 3253,
+        primaryEndpoint: 'Failed clearance of rash at four weeks against placebo or vehicle',
+        endpointMet: true,
+        statisticalPValue:
+          'RR 0.69 (95% CI 0.59 to 0.81), eight studies, low-quality evidence, I² = 74%; median non-clearance in placebo groups 69%',
+        unreportedAdverseSignals:
+          'Substantial heterogeneity between trials, 24 of the 51 trials in the review judged to carry a conflict of interest, and no study anywhere in the review assessed quality of life.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane pooled ketoconazole against topical steroids (CD008138)',
+        phase: 'Pooled head-to-head comparison within the same systematic review',
+        sampleSize: 632,
+        primaryEndpoint: 'Remission rate and side effect occurrence against topical corticosteroids',
+        endpointMet: false,
+        statisticalPValue:
+          'Remission RR 1.17 (95% CI 0.95 to 1.44), six studies, low-quality evidence — no significant difference. Side effects RR 0.56 (95% CI 0.32 to 0.96), eight studies, moderate-quality evidence — 44% lower',
+        unreportedAdverseSignals:
+          'The efficacy comparison is a draw. The result that survives is about tolerability, and it carries a higher certainty grade than the efficacy result does.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane pooled ketoconazole against ciclopirox (CD008138)',
+        phase: 'Pooled head-to-head comparison within the same systematic review',
+        sampleSize: 3029,
+        primaryEndpoint: 'Remission failure rate, ketoconazole against ciclopirox',
+        endpointMet: false,
+        statisticalPValue: 'RR 1.09 (95% CI 0.95 to 1.26), three studies, low-quality evidence',
+        unreportedAdverseSignals:
+          'Most comparisons between ketoconazole and other antifungals rested on single studies. The review concludes that limited evidence suggests any agent in the class is more effective than any other.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Risk of failed clearance 31% lower than placebo at four weeks (RR 0.69, 95% CI 0.59 to 0.81) across eight trials',
+        'Remission rate indistinguishable from topical corticosteroids (RR 1.17, 95% CI 0.95 to 1.44)',
+        'Side effects 44% lower than with topical corticosteroids (RR 0.56, 95% CI 0.32 to 0.96), moderate-quality evidence',
+        'Remission failure indistinguishable from ciclopirox (RR 1.09, 95% CI 0.95 to 1.26)',
+        'Levoketoconazole approved 30 December 2021 for endogenous hypercortisolemia, on a label stating it is not approved for fungal infections',
+      ],
+      unsupportedInferences: [
+        'That one topical antifungal in this class outperforms another — the pooled comparisons cannot separate them',
+        'That clearance of scale corresponds to a patient feeling better, an outcome no study in the 51-trial review measured',
+        'That an oral azole with a broad historical spectrum is still a reasonable choice for skin or nail infection',
+        'That the four-week trial horizon tells you anything about a relapsing lifelong condition, when 45 of 51 trials stopped at five weeks or less',
+      ],
+      whatFailedInitially: [
+        'Oral ketoconazole was de-indicated by its own boxed warning for onychomycosis, cutaneous dermatophyte infections and Candida infections',
+        'Serious hepatotoxicity with fatal outcome or requiring liver transplantation occurred in patients with no obvious risk factors',
+        'Nine drugs are contraindicated for co-administration because of QT prolongation through CYP3A4 inhibition',
+        'For tinea versicolor, the label states that treating the infection may not immediately normalise the pigment the patient came in about',
+      ],
+      realWorldOutcome: [
+        'Still a first-choice topical for seborrhoeic dermatitis and dandruff, at a median United States acquisition cost of US$0.3029 per gram across 32 listed products',
+        'The 1% shampoo is sold over the counter; the tablets are a last-resort systemic antifungal',
+        'The strongest evidence about the topical drug concerns its tolerability rather than its efficacy',
+        'The molecule’s commercially live form is now an endocrine drug whose label disclaims antifungal use',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical shampoo, cream, gel and foam; oral tablets, restricted',
+      description:
+        'The topical forms sit in the sebaceous reservoir where Malassezia lives, with minimal systemic absorption. Contact time differs by an order of magnitude between a shampoo and a leave-on cream, and the Cochrane review found the evidence insufficient to conclude that mode of delivery influences outcome. The oral tablets are a different risk category entirely and their label says so in its first sentence.',
+      safetyProfile:
+        'Topical use: local irritation, and side effects 44% less frequent than with topical corticosteroids in the pooled comparison, though the comparison against placebo was too uncertain to interpret. Oral use carries a boxed warning for serious hepatotoxicity including fatal cases and cases requiring liver transplantation, in some patients with no obvious risk factors, and for QT prolongation through CYP3A4 inhibition, with dofetilide, quinidine, pimozide, lurasidone, cisapride, methadone, disopyramide, dronedarone and ranolazine contraindicated for co-administration.',
+    },
+    commonQuestions: [
+      {
+        q: 'How well does ketoconazole shampoo work for dandruff?',
+        a: 'Better than a dummy shampoo and about the same as a steroid. Pooling eight trials, the risk of not clearing was 31% lower than placebo at four weeks — and the useful context is that 69% of people on placebo did not clear either, so the absolute movement is real but not dramatic. Against a topical steroid the remission rates were indistinguishable, while side effects were 44% lower on ketoconazole. Cochrane graded the efficacy evidence low quality with substantial disagreement between trials, and graded the side effect comparison moderate — so the better-supported claim about this drug is the one about what it does not do.',
+      },
+      {
+        q: 'Is it better than ciclopirox or the drugstore shampoos?',
+        a: 'Nobody has shown that it is. Against ciclopirox the remission failure rate was 1.09 with an interval from 0.95 to 1.26 — a draw. Most comparisons against other antifungals came from single studies showing comparability. The reviewers’ own conclusion is that ketoconazole and ciclopirox both beat placebo, but limited evidence suggests either is more effective than any other agent in the class. Choosing between them on efficacy grounds is choosing on grounds the evidence does not support.',
+      },
+      {
+        q: 'Why is oral ketoconazole barely used any more?',
+        a: 'Because of what its own label now says. It opens with a boxed warning stating that the tablets are not indicated for onychomycosis, cutaneous dermatophyte infections or Candida infections, and should be used only when other effective antifungal therapy is unavailable or not tolerated. Serious hepatotoxicity — including fatal cases and cases requiring liver transplantation — has occurred, sometimes in people with no risk factors for liver disease. And because it blocks the enzyme that metabolises most other drugs, it raises their blood levels enough to prolong the QT interval, with nine specific drugs contraindicated alongside it. It was the first oral azole and it was superseded by ones that do the same job with less collateral damage.',
+      },
+      {
+        q: 'Why is a version of it approved for Cushing’s syndrome?',
+        a: 'Because the enzymes it blocks in fungi are structurally the same family as the ones that make cortisol in the human adrenal gland. That was an adverse effect for an antifungal and it is a therapeutic effect for a disease of too much cortisol. Levoketoconazole — the single 2S,4R enantiomer — was approved as Recorlev on 30 December 2021 for endogenous hypercortisolemia in adults with Cushing’s syndrome where surgery is not an option or has not been curative. The Limitations of Use on that label are worth the read: "RECORLEV is not approved for the treatment of fungal infections." The molecule’s side effect outlived its indication.',
+        auditNote:
+          'It carries the same hepatotoxicity and QT boxed warning in its new role. The repurposing changed what the effect is called, not how dangerous it is.',
+      },
+      {
+        q: 'Will it get rid of the pale patches on my skin?',
+        a: 'Not straight away, and the label says so where you would least expect it — in the Indications section itself. Tinea versicolor produces hyperpigmented or hypopigmented patches on the trunk that can extend to the neck, arms and upper thighs. The label adds that treatment of the infection may not immediately result in normalisation of pigment at the affected sites. So a successful treatment and an unchanged appearance are entirely compatible for some time afterwards, and repeating treatment because the patches are still visible is treating the wrong thing.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Okokon EO, Verbeek JH, Ruotsalainen JH, Ojo OA, Bakhoya VN. Topical antifungals for seborrhoeic dermatitis. Cochrane Database Syst Rev 2015;5:CD008138',
+        identifier: '10.1002/14651858.CD008138.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ketoconazole tablets United States prescribing information, boxed warning and Indications and Usage — ANDA 075912, retrieved from the openFDA label endpoint',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA075912%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'RECORLEV (levoketoconazole) United States prescribing information, Indications and Usage with Limitations of Use, and boxed warning — NDA 214133',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22RECORLEV%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA record for NDA 214133 (RECORLEV levoketoconazole), original approval 30 December 2021, Strongbridge',
+        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA214133%22',
+        kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

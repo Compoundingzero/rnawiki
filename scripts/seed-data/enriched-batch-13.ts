@@ -3369,4 +3369,544 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 7. Tacrolimus — fewer rejections than cyclosporine, more diabetes and more nephrotoxicity, and
+  //    a chronic kidney injury that was called universal and then called overstated.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tacrolimus',
+    name: 'Tacrolimus',
+    tradeName: 'Prograf / Astagraf XL / Envarsus XR / Protopic',
+    sponsor:
+      'Astellas Pharma, formerly Fujisawa Pharmaceutical, which isolated the compound from Streptomyces tsukubaensis in a soil sample from Tsukuba, Japan, in 1984. Prograf was approved in the United States in 1994; the molecule is now generic in its immediate-release form.',
+    targetGene: 'FKBP1A, acting on PPP3CA/PPP3CB (calcineurin) and NFATC1/NFATC2',
+    targetProtein:
+      'FK506-binding protein 12 (FKBP12). The tacrolimus-FKBP12 complex, not tacrolimus itself, is what inhibits the phosphatase calcineurin and so prevents dephosphorylation of nuclear factor of activated T cells.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1994,
+    indication:
+      'Prophylaxis of organ rejection in patients receiving allogeneic liver, kidney, heart or lung transplants, in combination with other immunosuppressants; and, as a topical ointment, moderate to severe atopic dermatitis in patients who have failed or cannot tolerate conventional therapies',
+    patientFriendlyIndication:
+      'Stopping the body rejecting a transplanted organ, and severe eczema that has not responded to steroid creams',
+    anatomicalSite:
+      'The cytoplasm of T lymphocytes, where the drug-protein complex blocks a phosphatase before the cell has committed to making interleukin-2',
+    conditionContext: {
+      conditionExplainer:
+        'A T cell recognising a foreign organ has to convert that recognition into a decision: to divide, and to recruit other cells by releasing interleukin-2. That conversion runs through a calcium signal and an enzyme called calcineurin, which switches on the transcription factor that turns the interleukin-2 gene on.',
+      whyItMatters:
+        'Tacrolimus blocks that step, and it does so upstream of everything else in this batch — before the cell divides, before the antimetabolites would have any target. It halved corticosteroid-resistant rejection compared with cyclosporine and became the backbone of transplant immunosuppression. It also damages the kidney it is often protecting, causes diabetes, and has a therapeutic window narrow enough to require blood level monitoring for life.',
+      whoTakesThis:
+        'Recipients of liver, kidney, heart and lung transplants, generally for the rest of the graft’s life; people with severe eczema, as an ointment; and, off-licence, people with myasthenia gravis, membranous nephropathy and several other autoimmune conditions.',
+      clinicalGoals:
+        'Keep blood levels inside a narrow band that prevents rejection without poisoning the kidney or precipitating diabetes. Almost every clinical decision about this drug is about that trade, and it never resolves.',
+    },
+    oneSentenceVerdict:
+      'A macrolide from a Japanese soil bacterium that binds FKBP12 and, as that complex, blocks calcineurin so T cells cannot switch on interleukin-2 — it reduced corticosteroid-resistant liver-transplant rejection from 82 to 43 patients out of 529 randomised against cyclosporine with identical one-year survival, gave the best kidney function and lowest rejection rate of four regimens in 1,645 kidney recipients, and caused new-onset diabetes or impaired fasting glucose in 33.6% against 26.0% on cyclosporine at six months.',
+    laymanHowItWorks:
+      'When an immune cell spots something foreign, calcium floods in and switches on an enzyme that releases the cell’s instruction to multiply and call for reinforcements. Tacrolimus does not touch that enzyme directly. It first grabs a small carrier protein inside the cell, and the pair of them together jam the enzyme. The instruction never gets sent, so the immune attack never assembles. The same carrier protein and the same enzyme exist in kidney and pancreas cells too, which is why the drug damages kidneys and raises blood sugar at doses close to the ones that protect the transplant.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 76,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.6591 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Discovered by Fujisawa in 1984 and approved in 1994; immediate-release tacrolimus capsules have been generic in the United States since 2009 and cost about 66 cents a unit. The extended-release products Astagraf XL and Envarsus XR remain separately branded and priced, and their claimed advantage is once-daily administration and a smoother concentration profile rather than a different molecule. Because the therapeutic window is narrow and the products are not bioequivalent to one another, substitution between tacrolimus formulations is a clinical decision requiring level monitoring, not a pharmacy one.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The direct alternative is cyclosporine, the other calcineurin inhibitor, and the honest comparison is a set of trades rather than a winner: tacrolimus gives fewer and less refractory rejections and better kidney function in the head-to-head trials, cyclosporine gives less diabetes and worse lipids. The mTOR inhibitors sirolimus and everolimus and the costimulation blocker belatacept exist largely to avoid calcineurin inhibition altogether, and each buys that with a different problem. Nothing sold as a food or supplement substitutes for transplant immunosuppression, and grapefruit and St John’s wort do the opposite of substituting: they change tacrolimus blood levels enough to cause rejection or toxicity.',
+      conventionalRx: [
+        {
+          name: 'Cyclosporine',
+          class: 'Calcineurin inhibitor, cyclic peptide',
+          howItCompares:
+            'Same target reached through a different intracellular partner, cyclophilin rather than FKBP12. In the 529-patient liver transplant trial, one-year patient survival was 88% in both arms; acute rejection occurred in 154 against 173 patients (P<0.002), corticosteroid-resistant rejection in 43 against 82 (P<0.001) and refractory rejection in 6 against 32 (P<0.001), favouring tacrolimus. In DIRECT, new-onset diabetes or impaired fasting glucose at six months was 26.0% on cyclosporine against 33.6% on tacrolimus (P=0.046), favouring cyclosporine.',
+          typicalCost:
+            'US$1.24 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: less new-onset diabetes. Cons: more rejection including steroid-resistant rejection, worse lipid profile, gum hypertrophy and hirsutism, and lower measured GFR in the four-arm comparison.',
+        },
+        {
+          name: 'Sirolimus or everolimus',
+          class: 'mTOR inhibitors',
+          howItCompares:
+            'Bind the same FKBP12 protein but then inhibit mTOR rather than calcineurin, so they suppress proliferation without the direct vascular effect on the kidney. In ELITE-Symphony, low-dose sirolimus performed worst of the four arms: biopsy-proven acute rejection 37.2% against 12.3% for low-dose tacrolimus, allograft survival 89.3% against 94.2%, and serious adverse events in 53.2% against 43.4% to 44.3% in the other arms.',
+          typicalCost: 'Both are generic oral drugs in the United States',
+          prosAndCons:
+            'Pros: avoid calcineurin-mediated vasoconstriction of the kidney. Cons: impaired wound healing, proteinuria, mouth ulcers, pneumonitis, and clearly worse rejection and graft survival in the one large four-arm comparison.',
+        },
+        {
+          name: 'Belatacept',
+          class: 'Selective T-cell costimulation blocker, intravenous fusion protein',
+          howItCompares:
+            'Blocks the second signal a T cell needs rather than the calcium signal, and so avoids calcineurin nephrotoxicity entirely. It is contraindicated in Epstein-Barr-seronegative recipients because of post-transplant lymphoproliferative disease risk, which is a hard exclusion rather than a caution.',
+          typicalCost:
+            'Substantially more expensive than generic tacrolimus and requires monthly intravenous infusion indefinitely',
+          prosAndCons:
+            'Pros: better long-term measured kidney function, no drug-level monitoring, no diabetes signal of this size. Cons: infusion for life, higher rates of early acute rejection, and an absolute contraindication in EBV-seronegative patients.',
+        },
+        {
+          name: 'Topical corticosteroids (for eczema)',
+          class: 'Topical glucocorticoids',
+          howItCompares:
+            'The first-line comparison for the ointment formulation, which is licensed as second-line. Topical tacrolimus does not cause skin thinning, which is its main advantage on the face and in skin folds. In the JOELLE cohort, adults using moderate- to high-potency topical corticosteroids had a substantially higher incidence of cutaneous T-cell lymphoma than untreated subjects (IRR 10.66, 95% CI 2.60 to 43.75), a finding usually attributed to misdiagnosed early lymphoma being treated as eczema.',
+          typicalCost:
+            'US$0.1824 per unit for oral hydrocortisone at United States pharmacy acquisition cost; topical preparations are separate products and the over-the-counter 1% cream is inexpensive',
+          prosAndCons:
+            'Pros: cheaper, faster acting, decades of use. Cons: dermal atrophy, telangiectasia and striae with repeated use on thin skin, which is precisely where the calcineurin inhibitor ointments were developed to be used.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Do not eat grapefruit or take St John’s wort',
+          action:
+            'Avoid grapefruit and grapefruit juice entirely, and check any herbal product with the transplant team before taking it.',
+          patientImpact:
+            'Tacrolimus is cleared almost entirely by CYP3A4 and CYP3A5. Grapefruit inhibits intestinal CYP3A4 and can raise levels into the toxic range; St John’s wort induces CYP3A4 and can drop them low enough for the graft to be rejected.',
+          clinicalPrecaution:
+            'The therapeutic window is narrow enough that this is not a theoretical interaction. It applies to any CYP3A inhibitor or inducer, including some antifungals, some antibiotics and some anticonvulsants.',
+        },
+        {
+          name: 'Treat sun protection as part of the treatment',
+          action:
+            'Use high-factor sun protection daily and have skin checked regularly, indefinitely.',
+          patientImpact:
+            'Skin cancer is the commonest malignancy after organ transplantation, and the risk rises with the duration and intensity of immunosuppression rather than with any single drug. The label carries a boxed warning for malignancies and serious infections.',
+          clinicalPrecaution:
+            'This applies to the systemic drug. For the topical ointment the label also advises minimising sun exposure, on the basis of animal photocarcinogenicity data rather than a demonstrated human effect.',
+        },
+        {
+          name: 'Take it the same way every time and never switch product without being told',
+          action:
+            'Keep the timing consistent relative to food, and never accept a different tacrolimus product at the pharmacy without the transplant team knowing.',
+          patientImpact:
+            'Food substantially reduces tacrolimus absorption, and the immediate-release, extended-release and once-daily products are not interchangeable milligram for milligram. An unannounced switch can move blood levels enough to cause rejection or toxicity.',
+          clinicalPrecaution:
+            'This is a description of why level monitoring exists, not instruction about timing or amount. Both belong to the prescriber.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@@H]1C[C@@H]([C@@H]2[C@H](C[C@H]([C@@](O2)(C(=O)C(=O)N3CCCC[C@H]3C(=O)O[C@@H]([C@@H]([C@H](CC(=O)[C@@H](/C=C(/C1)\\C)CC=C)O)C)/C(=C/[C@@H]4CC[C@H]([C@@H](C4)OC)O)/C)O)C)OC)OC',
+      chemicalFormula: 'C44H69NO12',
+      molecularWeight: '804.00 g/mol',
+      targetReceptorAffinity:
+        'Binds FK506-binding protein 12 with high affinity; the resulting complex, not the free drug, inhibits calcineurin phosphatase activity. Roughly 100 times more potent than cyclosporine on a molar basis in mixed lymphocyte reaction assays. It is a 23-membered macrolide lactone with 14 stereocentres, which is why it is produced by fermentation rather than synthesis.',
+      structureSource: {
+        label:
+          'PubChem CID 445643 (tacrolimus) — canonical SMILES, molecular formula C44H69NO12 and molecular weight 804 g/mol, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445643',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tac-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Resolve the tautomers and confirm all fourteen stereocentres',
+          description:
+            'Tacrolimus exists in solution as an equilibrium of rotamers about the pipecolate amide, which broadens NMR signals and can be mistaken for impurity. Confirm the stereochemistry of all fourteen centres and check for the 8-epi and 19-epi isomers, which the fermentation produces and which have markedly lower activity.',
+          reagentsAndBuffer:
+            'Tacrolimus reference standard, variable-temperature 1H and 13C NMR in DMSO-d6 or benzene-d6 to coalesce rotamers, reversed-phase HPLC at elevated column temperature, high-resolution mass spectrometry',
+        },
+        {
+          id: 'tac-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fermentation of Streptomyces tsukubaensis',
+          description:
+            'Tacrolimus is a polyketide-nonribosomal peptide hybrid with a 23-membered macrolactone and fourteen stereocentres, and total synthesis is a research exercise rather than a manufacturing route. Production is by submerged fermentation of Streptomyces tsukubaensis, the organism isolated from a Tsukuba soil sample in 1984.',
+          dependsOnStepId: 'tac-w1',
+          reagentsAndBuffer:
+            'Streptomyces tsukubaensis production strain, complex medium with glucose or soluble starch and soybean meal, controlled dissolved oxygen and pH over a multi-day fed-batch run, resin adsorption or solvent extraction for recovery',
+        },
+        {
+          id: 'tac-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Chromatographic separation from ascomycin and the epimers',
+          description:
+            'Separate tacrolimus from the closely related fermentation products, principally ascomycin (FK520), which differs by a single substituent and is itself a drug scaffold, and from the 8-epi and 19-epi isomers. These co-metabolites are not removable by crystallisation alone.',
+          dependsOnStepId: 'tac-w2',
+          reagentsAndBuffer:
+            'Silica and reversed-phase preparative chromatography, acetonitrile-water gradients, crystallisation from ethanol-water, LC-MS confirmation against ascomycin and epimer standards',
+        },
+        {
+          id: 'tac-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'FKBP12 complex formation and calcineurin inhibition in T cells',
+          description:
+            'Confirm that the compound forms the ternary complex rather than merely binding FKBP12. This distinction is the whole pharmacology: rapamycin also binds FKBP12 with high affinity, and the resulting complex inhibits mTOR instead of calcineurin. An assay that measures only FKBP12 binding cannot tell the two apart.',
+          dependsOnStepId: 'tac-w3',
+          reagentsAndBuffer:
+            'Recombinant human FKBP12, purified calcineurin A and B with calmodulin and calcium, RII phosphopeptide substrate with malachite green phosphate detection, rapamycin as a discriminating control, Jurkat T cells for the cellular arm',
+        },
+        {
+          id: 'tac-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'NFAT nuclear translocation and interleukin-2 output',
+          description:
+            'Measure both the translocation of nuclear factor of activated T cells into the nucleus and the interleukin-2 the cell actually secretes. Reporting only IL-2 suppression conflates calcineurin inhibition with general toxicity; reporting only translocation misses whether the functional consequence follows.',
+          dependsOnStepId: 'tac-w4',
+          reagentsAndBuffer:
+            'Anti-CD3 and anti-CD28 stimulated primary human T cells, NFAT nuclear translocation imaging or NFAT-luciferase reporter, IL-2 ELISA on culture supernatant, cyclosporine as a mechanistic comparator, viability counterscreen',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tac-a1',
+        category: 'measured',
+        title: 'Liver transplantation: fewer refractory rejections, identical survival',
+        laymanSummary:
+          'Five hundred and twenty-nine liver transplant patients were randomly given tacrolimus or cyclosporine. The same proportion were alive a year later. But rejection that resisted steroid treatment happened half as often on tacrolimus, and rejection that resisted everything happened five times less often.',
+        technicalDetails:
+          'An open-label randomised multicentre trial assigned 478 adults and 51 children receiving a first liver transplant to tacrolimus (n=263) or cyclosporine (n=266) and followed them for a year. One-year patient survival was 88% in both groups (P=0.85, 95% CI for the difference -5.4 to +6.6) and graft survival 82% against 79% (P=0.55, 95% CI -4.8 to +9.7). Acute rejection occurred in 154 against 173 patients (P<0.002), corticosteroid-resistant rejection in 43 against 82 (P<0.001) and refractory rejection in 6 against 32 (P<0.001). Withdrawal for adverse events, primarily nephrotoxicity and neurotoxicity, was 37 against 13 patients (P<0.001).',
+        evidenceSource:
+          'US Multicenter FK506 Liver Study Group, N Engl J Med 1994;331:1110-1115',
+        doi: '10.1056/NEJM199410273311702',
+        measuredMetric:
+          'Patient and graft survival at one year, and rates of acute, corticosteroid-resistant and refractory rejection, against cyclosporine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tac-a2',
+        category: 'measured',
+        title: 'ELITE-Symphony: best kidney function, lowest rejection, best graft survival of four arms',
+        laymanSummary:
+          'A trial of 1,645 kidney transplant patients compared four regimens head to head. Low-dose tacrolimus came first on every measure that mattered: kidney function, rejection rate and graft survival. This is the trial that made it the default.',
+        technicalDetails:
+          'ELITE-Symphony randomised 1,645 renal transplant recipients to standard-dose cyclosporine with mycophenolate mofetil and corticosteroids, or to daclizumab induction with mycophenolate mofetil and corticosteroids plus low-dose cyclosporine, low-dose tacrolimus or low-dose sirolimus. Mean calculated glomerular filtration rate at 12 months, the primary endpoint, was 65.4 mL/min on low-dose tacrolimus against 56.7 to 59.4 in the other three arms. Biopsy-proven acute rejection was 12.3% against 25.8% for standard-dose cyclosporine, 24.0% for low-dose cyclosporine and 37.2% for low-dose sirolimus. Allograft survival differed across arms (P=0.02) and was highest on low-dose tacrolimus at 94.2%. Serious adverse events were commonest in the sirolimus arm at 53.2%.',
+        evidenceSource: 'Ekberg H et al., N Engl J Med 2007;357:2562-2575 (NCT00231764)',
+        doi: '10.1056/NEJMoa067411',
+        measuredMetric:
+          'Estimated glomerular filtration rate at 12 months, biopsy-proven acute rejection and allograft survival, four-arm randomised comparison',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tac-a3',
+        category: 'failed',
+        title: 'DIRECT: more new-onset diabetes than cyclosporine',
+        laymanSummary:
+          'A trial designed specifically to measure blood sugar problems found that a third of patients on tacrolimus had developed diabetes or pre-diabetes by six months, against a quarter on cyclosporine. The rejection rates were not significantly different.',
+        technicalDetails:
+          'DIRECT was a six-month, open-label, randomised multicentre study using American Diabetes Association and WHO criteria, in 682 de novo renal transplant patients (336 cyclosporine microemulsion with C2 monitoring, 346 tacrolimus), 567 of whom were non-diabetic at baseline, all with mycophenolic acid, steroids and basiliximab. The primary safety endpoint — new-onset diabetes after transplant or impaired fasting glucose at 6 months — occurred in 73 cyclosporine patients (26.0%) and 96 tacrolimus patients (33.6%, P=0.046). The primary efficacy endpoint of biopsy-proven acute rejection, graft loss or death was 12.8% against 9.8% (P=0.211). Mean GFR did not differ significantly (63.6 against 65.9 mL/min/1.73 m2, P=0.285) though serum creatinine did (139 against 133 micromol/L, P=0.005). Total cholesterol, LDL and triglycerides were significantly higher on cyclosporine.',
+        evidenceSource: 'Vincenti F et al., DIRECT Investigators, Am J Transplant 2007;7:1506-1514',
+        doi: '10.1111/j.1600-6143.2007.01749.x',
+        measuredMetric:
+          'New-onset diabetes after transplant or impaired fasting glucose at 6 months by ADA/WHO criteria, against cyclosporine',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tac-a4',
+        category: 'conclusion_shift',
+        title: 'Calcineurin nephrotoxicity: called almost universal, then called overstated',
+        laymanSummary:
+          'A landmark Australian study took kidney biopsies from transplant patients every year for a decade and found drug-related kidney damage in essentially all of them by ten years. That finding drove a generation of attempts to withdraw the drug. A rebuttal in the same journal argued the damage had been attributed to the drug when other causes fit as well.',
+        technicalDetails:
+          'Nankivell and colleagues obtained 961 protocol biopsies from 120 kidney-pancreas recipients from transplantation to ten years. They described two phases: early tubulointerstitial damage from ischaemic injury and rejection, present as mild disease in 94.2% by one year; then a later phase of microvascular and glomerular injury with progressive high-grade arteriolar hyalinosis accompanied by calcineurin inhibitor use, with nephrotoxicity "almost universal at 10 years, even in grafts with excellent early histologic findings". Severe chronic allograft nephropathy was present in 58.4% at ten years with sclerosis of 37.3% of glomeruli. Matas subsequently argued in the same journal that chronic progressive calcineurin nephrotoxicity is an overstated concept, on the grounds that arteriolar hyalinosis is not specific to calcineurin inhibitors, that donor age, hypertension and diabetes produce the same histology, and that trials of calcineurin withdrawal did not reliably improve long-term function.',
+        evidenceSource:
+          'Nankivell BJ et al., N Engl J Med 2003;349:2326-2333; Matas AJ, Am J Transplant 2011;11:687-692',
+        doi: '10.1056/NEJMoa020009',
+        inferredClaim:
+          'That the arteriolar and glomerular damage seen on late protocol biopsies is caused by the calcineurin inhibitor — the histology is real and consistent, the attribution rests on association rather than on a randomised comparison, and it has been formally disputed in print',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'tac-a5',
+        category: 'inferred',
+        title: 'A boxed malignancy warning on the ointment, from animal data and case reports',
+        laymanSummary:
+          'The eczema ointment carries a warning about lymphoma and skin cancer. It was added on the basis of animal studies and scattered case reports rather than a study showing it happens in people. A large European cohort later found a raised lymphoma rate in children, on very small numbers, and the authors themselves listed several explanations other than the drug.',
+        technicalDetails:
+          'The JOELLE cohort study across databases in the Netherlands, Denmark, Sweden and the United Kingdom included 19,948 children and 66,127 adults initiating topical tacrolimus, 23,840 children and 37,417 adults initiating pimecrolimus, 584,121 topical corticosteroid users and 257,074 untreated subjects. Lymphoma incidence per 100,000 person-years was 10.4 in children and 41.0 in adults on tacrolimus. The incidence rate ratio for lymphoma against topical corticosteroids was 3.74 (95% CI 1.00 to 14.06) in children and 1.27 (0.94 to 1.71) in adults. Adults using moderate- to high-potency topical corticosteroids had a markedly raised cutaneous T-cell lymphoma rate against untreated subjects (IRR 10.66, 95% CI 2.60 to 43.75), which points to reverse causation — early cutaneous lymphoma misdiagnosed and treated as eczema. The authors concluded that the low absolute incidence means that even a causal excess would be small per patient, and named residual confounding by eczema severity, increased monitoring and reverse causation as alternative explanations.',
+        evidenceSource: 'Castellsague J et al., Clin Epidemiol 2018;10:299-310 (JOELLE)',
+        doi: '10.2147/CLEP.S146442',
+        inferredClaim:
+          'That topical tacrolimus causes lymphoma — a boxed warning built on animal photocarcinogenicity and case reports, with the largest observational study finding a wide, barely significant ratio on very small numbers and offering three non-causal explanations for it',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'tac-a6',
+        category: 'measured',
+        title: 'The window is narrow enough that food and grapefruit are clinical events',
+        laymanSummary:
+          'The gap between too little and too much is small, and both ends are serious: too little means the transplant is rejected, too much means the kidney is damaged. What a person ate, and which version of the tablet the pharmacy handed over, can move levels across that gap.',
+        technicalDetails:
+          'Tacrolimus is metabolised almost entirely by CYP3A4 and CYP3A5 and is a P-glycoprotein substrate, giving high inter-individual and intra-individual variability in exposure from the same dose. Food substantially reduces absorption. CYP3A5 expressers, more common in people of African ancestry, require substantially higher doses to reach the same trough concentration, and the label addresses this. Strong CYP3A inhibitors — azole antifungals, some macrolides, grapefruit — raise concentrations, and inducers such as rifampicin and St John’s wort lower them. Immediate-release, extended-release and once-daily formulations are not bioequivalent to one another. Whole-blood trough monitoring is therefore continuous and lifelong rather than an initial titration exercise.',
+        evidenceSource:
+          'PROGRAF (tacrolimus) United States prescribing information, Clinical Pharmacology, Drug Interactions and Dosage sections',
+        measuredMetric:
+          'Whole-blood trough concentration as the routine surrogate governing every dosing decision for this drug',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tac-a7',
+        category: 'inferred',
+        title: 'Trough concentration is a surrogate that has never been validated against outcomes',
+        laymanSummary:
+          'Every tacrolimus dose in the world is decided by a blood level taken just before the next dose. That single number is a convenient stand-in for total drug exposure, and no trial has shown that targeting one range rather than another changes how long grafts survive.',
+        technicalDetails:
+          'The trough concentration correlates reasonably with the area under the concentration-time curve, which is the exposure measure that pharmacology would prefer, but it is a single point on a curve. The target ranges in use were derived from early trial experience and from association studies relating troughs to rejection and toxicity, not from randomised comparisons of one target against another with graft survival as an endpoint. Randomised trials of genotype-guided initial dosing have shown faster attainment of target concentration without demonstrating better clinical outcomes, which illustrates the same gap: the surrogate can be hit more reliably without the thing the surrogate stands for improving. This does not mean monitoring is useless — the toxicity relationship is real — but the specific numbers are convention supported by association.',
+        evidenceSource:
+          'PROGRAF (tacrolimus) United States prescribing information, Dosage and Administration and Clinical Pharmacology sections; Ekberg H et al., N Engl J Med 2007;357:2562-2575',
+        doi: '10.1056/NEJMoa067411',
+        inferredClaim:
+          'That the conventional trough target ranges are the ranges that maximise graft survival — they were derived from association and early experience, and no randomised comparison of target ranges against a hard endpoint has established them',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tac-a8',
+        category: 'failed',
+        title: 'Every attempt to get off it has cost something',
+        laymanSummary:
+          'If calcineurin inhibitors damage kidneys over years, the obvious answer is to stop using them. Every large trial that tried a substitute paid for it somewhere: more rejection with the mTOR inhibitors, an absolute contraindication and monthly infusions with the costimulation blocker.',
+        technicalDetails:
+          'In ELITE-Symphony the low-dose sirolimus arm — the calcineurin-free option — had biopsy-proven acute rejection of 37.2% against 12.3% for low-dose tacrolimus, allograft survival of 89.3% against 94.2%, a mean GFR of 56.7 to 59.4 rather than 65.4 mL/min, and serious adverse events in 53.2% against 43.4% to 44.3% elsewhere. Belatacept avoids calcineurin inhibition and produces better long-term measured renal function, at the cost of higher early acute rejection rates, indefinite monthly intravenous administration, and an absolute contraindication in Epstein-Barr-seronegative recipients because of post-transplant lymphoproliferative disease. Twenty years after the nephrotoxicity literature made calcineurin withdrawal an explicit goal, low-dose tacrolimus remains the standard, which is itself the finding.',
+        evidenceSource:
+          'Ekberg H et al., N Engl J Med 2007;357:2562-2575; PROGRAF United States prescribing information',
+        doi: '10.1056/NEJMoa067411',
+        measuredMetric:
+          'Biopsy-proven acute rejection, allograft survival and GFR in the calcineurin-free arm of a four-arm randomised comparison',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A fungal-scale molecule that has to be fermented',
+        laymanDesc:
+          'Tacrolimus is far too complicated to build in a factory from simple chemicals. It is made by growing the bacterium that produces it naturally, in a soil organism found in Japan in 1984.',
+        molecularDetail:
+          'A 23-membered macrolide lactone of 804 g/mol with fourteen stereocentres, produced by Streptomyces tsukubaensis as a polyketide-nonribosomal peptide hybrid. Absorption is variable and substantially reduced by food; clearance is almost entirely through CYP3A4 and CYP3A5 with P-glycoprotein efflux.',
+        iconName: 'FlaskConical',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Inside the T cell, it grabs a small carrier protein',
+        laymanDesc:
+          'On its own the drug does nothing useful. Its first move is to bind a small protein that is abundant inside cells, and that pair is the actual working unit.',
+        molecularDetail:
+          'Binds FK506-binding protein 12, a peptidyl-prolyl isomerase, forming a composite surface neither molecule has alone. Rapamycin binds the same protein and forms a different composite surface, which is why two drugs sharing an intracellular partner have entirely different targets.',
+        iconName: 'Link',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The pair jams the enzyme that reads the calcium signal',
+        laymanDesc:
+          'When a T cell recognises something foreign, calcium floods in and switches on an enzyme. The drug-protein pair sits on that enzyme and stops it working.',
+        molecularDetail:
+          'The tacrolimus-FKBP12 complex binds at the interface of the calcineurin A catalytic and calcineurin B regulatory subunits, blocking substrate access to the phosphatase active site. Calcineurin is a calcium- and calmodulin-dependent serine-threonine phosphatase, and this inhibition is non-competitive with respect to substrate.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The order to make interleukin-2 is never issued',
+        laymanDesc:
+          'That enzyme’s job is to unlock a transcription factor so it can enter the nucleus and turn on the gene for the immune system’s main recruitment signal. Blocked, the factor stays in the cytoplasm and the gene stays off.',
+        molecularDetail:
+          'Nuclear factor of activated T cells remains phosphorylated and cytoplasmic, so transcription of IL2, IL4, IFNG, TNF and CD40LG is not initiated. The block is at the earliest committed step of T-cell activation, upstream of the proliferation the antimetabolites in this batch act on.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The transplant is not attacked, and less often needs rescuing',
+        laymanDesc:
+          'Rejection episodes happen less often than with the older drug in the class, and when they do happen they respond to steroids more often.',
+        molecularDetail:
+          'In 529 randomised liver transplant patients, corticosteroid-resistant rejection occurred in 43 against 82 and refractory rejection in 6 against 32 with cyclosporine. In 1,645 kidney recipients, biopsy-proven acute rejection was 12.3% on low-dose tacrolimus against 24.0% to 37.2% in the other three arms.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Calcineurin is also in the kidney and the pancreatic beta cell',
+        laymanDesc:
+          'The same enzyme does other jobs elsewhere. In the kidney it helps control the tone of small arteries; in the pancreas it is part of how insulin is produced. Blocking it there is where the two big harms come from.',
+        molecularDetail:
+          'Afferent arteriolar vasoconstriction produces acute, reversible falls in glomerular filtration; chronic exposure is associated with arteriolar hyalinosis, striped interstitial fibrosis and glomerulosclerosis, described as almost universal at ten years on protocol biopsy and subsequently disputed as an attribution. Calcineurin-NFAT signalling in the pancreatic beta cell supports insulin gene transcription and beta-cell mass, which is the mechanistic basis of the 33.6% against 26.0% new-onset diabetes finding.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'US Multicenter FK506 Liver Study (1994)',
+        phase: 'Phase 3, randomised, open-label, multicentre, active-controlled',
+        sampleSize: 529,
+        primaryEndpoint: 'Patient and graft survival at one year after first liver transplant',
+        endpointMet: true,
+        statisticalPValue:
+          'Patient survival 88% in both arms (P=0.85, 95% CI -5.4 to +6.6); graft survival 82% against 79% (P=0.55). Corticosteroid-resistant rejection 43 against 82 patients (P<0.001); refractory rejection 6 against 32 (P<0.001)',
+        unreportedAdverseSignals:
+          'Withdrawal for adverse events was 37 against 13 patients (P<0.001), primarily for nephrotoxicity and neurotoxicity. The primary endpoint was survival and it was identical; the rejection advantage is a secondary endpoint.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'ELITE-Symphony (NCT00231764)',
+        phase: 'Phase 4, randomised, open-label, four-arm',
+        sampleSize: 1645,
+        primaryEndpoint:
+          'Estimated glomerular filtration rate by Cockcroft-Gault at 12 months after renal transplantation',
+        endpointMet: true,
+        statisticalPValue:
+          'Mean GFR 65.4 mL/min on low-dose tacrolimus against 56.7 to 59.4 in the other three arms; biopsy-proven acute rejection 12.3% against 24.0% to 37.2%; allograft survival 94.2%, P=0.02 across arms',
+        unreportedAdverseSignals:
+          'Open-label, and the four arms differ in more than one component — the standard-dose cyclosporine arm had no induction agent while the three low-dose arms all received daclizumab, so the comparison is between regimens rather than between drugs.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'DIRECT (Vincenti 2007)',
+        phase: 'Phase 4, randomised, open-label, multicentre',
+        sampleSize: 682,
+        primaryEndpoint:
+          'New-onset diabetes after transplant or impaired fasting glucose at 6 months, by ADA/WHO criteria',
+        endpointMet: false,
+        statisticalPValue: '33.6% on tacrolimus against 26.0% on cyclosporine microemulsion, P=0.046',
+        unreportedAdverseSignals:
+          'Open-label, six months only, and glucose endpoints in the first months after transplantation are heavily influenced by corticosteroid exposure, which was reported as similar between arms. Cyclosporine produced significantly worse lipids, which the diabetes headline tends to displace.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Nankivell protocol biopsy cohort (2003)',
+        phase: 'Prospective protocol-biopsy cohort study, not randomised',
+        sampleSize: 120,
+        primaryEndpoint:
+          'Natural history of chronic allograft nephropathy on serial protocol biopsy to ten years',
+        endpointMet: true,
+        statisticalPValue:
+          '961 biopsies; mild chronic allograft nephropathy in 94.2% at one year, severe in 58.4% at ten years with 37.3% glomerulosclerosis; calcineurin inhibitor nephrotoxicity described as almost universal at ten years',
+        unreportedAdverseSignals:
+          'Observational, in 120 patients almost all of whom received simultaneous kidney-pancreas transplants for type 1 diabetes — a population with its own vascular risk. Attribution of the late arteriolar hyalinosis to the drug rather than to donor age, hypertension or diabetes has been formally disputed.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'One-year liver transplant patient survival 88% on both tacrolimus and cyclosporine in 529 randomised patients',
+        'Corticosteroid-resistant rejection in 43 against 82 patients and refractory rejection in 6 against 32, favouring tacrolimus (both P<0.001)',
+        'Mean GFR 65.4 mL/min against 56.7 to 59.4 and acute rejection 12.3% against 24.0% to 37.2% in 1,645 kidney recipients across four regimens',
+        'New-onset diabetes or impaired fasting glucose 33.6% against 26.0% on cyclosporine at six months, P=0.046',
+        'Withdrawal for adverse events in 37 against 13 liver transplant patients, primarily nephrotoxicity and neurotoxicity, P<0.001',
+      ],
+      unsupportedInferences: [
+        'That late arteriolar hyalinosis and glomerulosclerosis on protocol biopsy are caused by the calcineurin inhibitor — an attribution disputed in print by the same journal',
+        'That conventional trough target ranges are the ranges that maximise graft survival; they come from association and early experience, not from a randomised comparison of targets',
+        'That the topical ointment causes lymphoma, on a boxed warning derived from animal data and case reports and an observational ratio of 3.74 with a lower bound of 1.00',
+        'That the survival benefit follows from the rejection benefit — survival was identical in the trial that measured both',
+      ],
+      whatFailedInitially: [
+        'DIRECT met its primary safety endpoint against tacrolimus: a third of patients developed diabetes or impaired fasting glucose by six months',
+        'The calcineurin-free sirolimus arm of ELITE-Symphony was worst of four on rejection, graft survival, kidney function and serious adverse events',
+        'Nephrotoxicity and neurotoxicity forced nearly three times as many withdrawals as cyclosporine in the pivotal liver trial',
+        'Twenty years of trying to withdraw calcineurin inhibitors on nephrotoxicity grounds has not displaced low-dose tacrolimus as the standard',
+      ],
+      realWorldOutcome: [
+        'The backbone of transplant immunosuppression worldwide since ELITE-Symphony reported in 2007',
+        'Generic immediate-release capsules cost about 66 cents a unit at United States pharmacy acquisition cost',
+        'Lifelong whole-blood trough monitoring is standard, making this one of very few chronic drugs whose dose is set by a laboratory number rather than by a schedule',
+        'The topical ointment remains second-line for eczema on thin skin, carrying a boxed warning whose evidential basis is still contested',
+      ],
+    },
+    deliverySystem: {
+      type:
+        'Immediate-release oral capsules, granules for oral suspension, extended-release capsules and tablets, intravenous solution, and 0.03% and 0.1% topical ointment',
+      description:
+        'Oral absorption is incomplete and highly variable between people and within the same person, and is substantially reduced by food. Clearance is almost entirely hepatic and intestinal CYP3A4 and CYP3A5, with P-glycoprotein efflux, so any CYP3A inhibitor or inducer moves concentrations. The immediate-release, extended-release and once-daily products are not bioequivalent to one another and are not interchangeable milligram for milligram. The topical ointment exploits the molecule’s size: at 804 g/mol it penetrates inflamed skin adequately and intact skin poorly, which limits systemic absorption as the barrier repairs.',
+      safetyProfile:
+        'Boxed warning for malignancies and serious infections due to immunosuppression, including lymphoma; for the extended-release products, an additional boxed warning against use in liver transplant recipients because of increased mortality in female patients in a trial. Nephrotoxicity is dose-related and both acute and chronic. New-onset diabetes after transplantation occurred in 33.6% against 26.0% on cyclosporine in a dedicated trial. Neurotoxicity ranges from tremor and headache to posterior reversible encephalopathy syndrome. Hyperkalaemia, hypertension, hypomagnesaemia, QT prolongation, pure red cell aplasia and anaphylaxis to the intravenous vehicle are all labelled. The topical ointment carries a boxed warning about long-term safety and reported cases of lymphoma and skin malignancy.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why do I need blood tests forever?',
+        a: 'Because the gap between too little and too much is narrow, and both ends are serious. Below the target range the graft can be rejected; above it the kidney is damaged. Tacrolimus absorption varies a great deal between people and even within the same person from week to week, it is cut substantially by food, and it is cleared by an enzyme system that dozens of other drugs and grapefruit interfere with. Genetics matter too: people who express the CYP3A5 enzyme need substantially more drug to reach the same level, and that is on the label. The blood level is measured just before a dose, which is called a trough, and every dose decision is made from it.',
+        auditNote:
+          'The trough is a surrogate for total exposure and the target ranges come from association studies and early trial experience, not from randomised comparisons of one target against another with graft survival as the endpoint.',
+      },
+      {
+        q: 'Is tacrolimus better than cyclosporine?',
+        a: 'On rejection, clearly. On everything, no. The 529-patient liver transplant trial found identical one-year survival — 88% in both arms — while corticosteroid-resistant rejection occurred in 43 patients on tacrolimus against 82 on cyclosporine, and refractory rejection in 6 against 32. In the four-arm kidney trial, low-dose tacrolimus gave the best kidney function, the lowest rejection rate and the best graft survival. Against that, DIRECT found new-onset diabetes or impaired fasting glucose in 33.6% on tacrolimus against 26.0% on cyclosporine, and the pivotal liver trial had nearly three times as many withdrawals for adverse events, mostly nephrotoxicity and neurotoxicity. It is a better drug on the endpoint transplantation cares most about and a worse one on metabolic harm.',
+      },
+      {
+        q: 'Does it damage the kidney it is meant to protect?',
+        a: 'The acute effect is not in doubt: tacrolimus constricts the small artery entering the filtering unit of the kidney, which lowers filtration and is reversible. The chronic question is genuinely contested. A study that took nearly a thousand protocol biopsies from 120 patients over ten years described calcineurin inhibitor nephrotoxicity as almost universal by ten years, even in grafts that looked excellent early on. That finding drove two decades of attempts to withdraw the drug. A rebuttal published in the same journal argued the concept is overstated: the arteriolar hyalinosis being attributed to the drug is not specific to it, donor age, hypertension and diabetes produce the same picture, and calcineurin withdrawal trials did not reliably improve long-term function. Both positions are in the literature and neither has been settled by a randomised comparison.',
+      },
+      {
+        q: 'Why can I not eat grapefruit?',
+        a: 'Because grapefruit inhibits the enzyme in the gut wall that would otherwise destroy a large part of each dose before it reaches the bloodstream. Removing that first-pass destruction can raise tacrolimus concentrations substantially, and this is a drug where a substantial rise means kidney injury, tremor and, at the extreme, encephalopathy. The interaction runs the other way too: St John’s wort and rifampicin induce the same enzyme and can drop levels far enough for the graft to be rejected. This is why transplant teams want to know about every new medicine, including things bought without a prescription.',
+      },
+      {
+        q: 'Is the eczema ointment dangerous?',
+        a: 'It carries a boxed warning about lymphoma and skin cancer, and the evidence behind that warning is weaker than the warning’s prominence suggests. It was added on the basis of animal studies and case reports. The largest observational study, covering nearly 20,000 children and 66,000 adults starting topical tacrolimus across four European countries, found a lymphoma incidence rate ratio against topical steroids of 3.74 in children with a confidence interval from 1.00 to 14.06, and 1.27 in adults. The same study found that adults on potent topical steroids had ten times the cutaneous T-cell lymphoma rate of untreated people, which strongly suggests that early lymphoma being mistaken for eczema explains part of the signal in both groups. The authors named residual confounding, monitoring and reverse causation as explanations. The absolute rate is about 10 lymphomas per 100,000 child-years.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'US Multicenter FK506 Liver Study Group. A comparison of tacrolimus (FK 506) and cyclosporine for immunosuppression in liver transplantation. N Engl J Med 1994;331:1110-1115',
+        identifier: '10.1056/NEJM199410273311702',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ekberg H et al. Reduced exposure to calcineurin inhibitors in renal transplantation. N Engl J Med 2007;357:2562-2575 (ELITE-Symphony)',
+        identifier: '10.1056/NEJMoa067411',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vincenti F et al. Results of an international, randomized trial comparing glucose metabolism disorders and outcome with cyclosporine versus tacrolimus. Am J Transplant 2007;7:1506-1514 (DIRECT)',
+        identifier: '10.1111/j.1600-6143.2007.01749.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nankivell BJ et al. The natural history of chronic allograft nephropathy. N Engl J Med 2003;349:2326-2333',
+        identifier: '10.1056/NEJMoa020009',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Matas AJ. Chronic progressive calcineurin nephrotoxicity: an overstated concept. Am J Transplant 2011;11:687-692',
+        identifier: '10.1111/j.1600-6143.2011.03505.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Castellsague J et al. A cohort study on the risk of lymphoma and skin cancer in users of topical tacrolimus, pimecrolimus, and corticosteroids (JOELLE). Clin Epidemiol 2018;10:299-310',
+        identifier: '10.2147/CLEP.S146442',
+        kind: 'doi',
+      },
+      {
+        label: 'ELITE-Symphony: efficacy limiting toxicity elimination in renal transplantation',
+        identifier: 'NCT00231764',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 445643 — tacrolimus structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445643',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]
