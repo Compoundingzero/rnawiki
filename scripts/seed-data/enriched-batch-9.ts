@@ -2511,4 +2511,972 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Glimepiride — the only sulfonylurea with a large cardiovascular outcome trial, which tested
+  //    a competitor against it rather than it against placebo, and which lost the durability
+  //    comparison in GRADE while producing the most severe hypoglycaemia of four arms.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'glimepiride',
+    name: 'Glimepiride',
+    tradeName: 'Amaryl',
+    sponsor: 'Sanofi-Aventis US (originator, NDA 020496); marketed almost entirely as generics',
+    targetGene: 'ABCC8',
+    targetProtein:
+      'Sulfonylurea receptor 1 (SUR1), the regulatory subunit of the ATP-sensitive potassium channel formed with the Kir6.2 pore (KCNJ11) in the pancreatic beta-cell membrane',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1995,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not for treating type 1 diabetes mellitus or diabetic ketoacidosis.',
+    patientFriendlyIndication: 'Type 2 diabetes — the sulfonylurea with the largest outcome trial behind it',
+    anatomicalSite: 'Pancreatic islet beta cell plasma membrane',
+    conditionContext: {
+      conditionExplainer:
+        'Glimepiride is the last sulfonylurea to reach the market, in 1995, and the only one for which someone eventually ran a six-year randomised trial with adjudicated heart attacks and strokes as the primary endpoint.',
+      whyItMatters:
+        'That trial, CAROLINA, is routinely described as having exonerated sulfonylureas of the cardiovascular concern that has sat on their labels since 1970. It did not have a placebo arm. What it showed is that a DPP-4 inhibitor was no better than glimepiride — which is a different statement, and the difference is the whole point of reading the design rather than the headline.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, usually added to metformin. It costs under four cents a tablet and is one of the most-dispensed diabetes drugs in the world.',
+      clinicalGoals:
+        'Lower HbA1c and keep it down. In GRADE, the largest head-to-head comparison of second-line agents ever run, it did that less durably than insulin glargine or liraglutide and caused the most severe hypoglycaemia of the four arms.',
+    },
+    oneSentenceVerdict:
+      'A sulfonylurea that closes the beta-cell ATP-sensitive potassium channel to force insulin release, lowering HbA1c by 1.8 percentage points against placebo in its 304-patient registration trial while adding 3.2 kg of weight — and the only drug of its class with a dedicated cardiovascular outcome trial, in which 37.7% of the 3,010 patients taking it had at least one hypoglycaemic event over 6.3 years against 10.6% on the comparator.',
+    laymanHowItWorks:
+      'Cells in the pancreas that make insulin stay quiet because potassium leaks out through an open channel. Rising blood sugar closes that channel and the cell releases insulin. Glimepiride closes it chemically instead, so insulin is released whether or not blood sugar is high. It works within two to three hours, is broken down by a liver enzyme into one product that still works and a second that does not, and it needs surviving beta cells to act on at all.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 62,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0373 per tablet at United States pharmacy acquisition cost, the median across 56 listed generic products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved as Amaryl under NDA 020496 on 30 November 1995 and long off patent. Fifty-six distinct generic products appear in the current NADAC file, which is why the median acquisition cost is under four cents a tablet — the cheapest drug in this file.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'GRADE is the comparison that answers this question, because it randomised 5,047 people already on metformin to glimepiride, insulin glargine, liraglutide or sitagliptin and followed them for five years. Glargine and liraglutide held HbA1c below 7.0% more durably than glimepiride; sitagliptin did worse than all three. Severe hypoglycaemia was rare in every arm but most frequent on glimepiride, at 2.2% against 0.7% on sitagliptin. Microvascular outcomes and death did not differ between the four. On price, nothing competes: glimepiride is under four cents a tablet and liraglutide is an injection costing orders of magnitude more.',
+      conventionalRx: [
+        {
+          name: 'Insulin glargine U100',
+          class: 'Long-acting insulin analogue',
+          howItCompares:
+            'In GRADE, the rate of failing to hold HbA1c below 7.0% was 26.5 per 100 participant-years on glargine against 30.4 on glimepiride, part of a global difference across four arms at p<0.001. Severe hypoglycaemia was 1.3% on glargine against 2.2% on glimepiride. Microvascular outcomes, MACE, heart-failure hospitalisation and death did not differ between the arms.',
+          typicalCost: 'Substantially more expensive and requires injection',
+          prosAndCons:
+            'Pros: more durable glycaemic control and less severe hypoglycaemia than glimepiride in a five-year randomised comparison. Cons: injection, titration, cost, and weight gain of its own.',
+        },
+        {
+          name: 'Liraglutide',
+          class: 'GLP-1 receptor agonist',
+          howItCompares:
+            'Matched glargine on durability in GRADE (26.1 per 100 participant-years against 30.4 for glimepiride), had the lowest severe hypoglycaemia rate of the arms at 1.0%, and produced more weight loss. It was the only arm with a signal on any cardiovascular disease: hazard ratio 0.7 (95% CI 0.6 to 0.9) against the other three combined, in an analysis the authors state is not adjusted for multiple comparisons.',
+          typicalCost: 'Injectable and among the most expensive options in type 2 diabetes',
+          prosAndCons:
+            'Pros: durability, weight loss, the only favourable cardiovascular signal in GRADE. Cons: gastrointestinal side effects were the most frequent of the four arms, injection, and cost.',
+        },
+        {
+          name: 'Linagliptin',
+          class: 'DPP-4 inhibitor',
+          howItCompares:
+            'The comparator in CAROLINA, the only large cardiovascular outcome trial involving a sulfonylurea. Over a median 6.3 years in 6,033 patients, the primary composite of cardiovascular death, non-fatal myocardial infarction and non-fatal stroke occurred in 11.8% on linagliptin and 12.0% on glimepiride — hazard ratio 0.98 (95.47% CI 0.84 to 1.14), meeting non-inferiority but not superiority (p=0.76). Hypoglycaemic adverse events occurred in 10.6% against 37.7%, hazard ratio 0.23 (95% CI 0.21 to 0.26).',
+          typicalCost: 'Branded and far more expensive than glimepiride',
+          prosAndCons:
+            'Pros: roughly a quarter of the hypoglycaemia at equivalent cardiovascular outcomes. Cons: no cardiovascular benefit over glimepiride was demonstrated, and it is a great deal more expensive.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Say something before the first hypoglycaemic episode, not after',
+          action:
+            'Over a third of the people randomised to glimepiride in CAROLINA had at least one hypoglycaemic event across six years. Most were not severe; the pattern that precedes a severe one — episodes around missed meals, exercise or alcohol — is the information a clinician needs and the thing patients most often normalise and do not report.',
+          patientImpact:
+            'In CAROLINA, 1,132 of 3,010 patients on glimepiride (37.7%) had at least one hypoglycaemic adverse event, against 320 of 3,023 (10.6%) on linagliptin. In GRADE, severe hypoglycaemia — an episode needing another person to help — occurred in 2.2% of the glimepiride arm over five years, the highest of the four treatment groups.',
+          clinicalPrecaution:
+            'The label warns that impaired concentration and reaction from hypoglycaemia present a risk while driving or operating machinery, and that severe episodes can cause unconsciousness, convulsions, lasting brain injury or death. This page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCC1=C(CN(C1=O)C(=O)NCCC2=CC=C(C=C2)S(=O)(=O)NC(=O)NC3CCC(CC3)C)C',
+      chemicalFormula: 'C24H34N4O5S',
+      molecularWeight: '490.60 g/mol',
+      targetReceptorAffinity:
+        'Binds the sulfonylurea receptor in the beta-cell plasma membrane and closes the ATP-sensitive potassium channel, which the FDA label states in exactly those terms. Protein binding exceeds 99.5%. Peak concentrations occur 2 to 3 hours after a dose and time to minimum blood glucose in healthy subjects is the same 2 to 3 hours. Clearance is linear across the 1 mg to 8 mg range and there is no accumulation on repeated dosing. Metabolism is complete and oxidative: cytochrome P450 2C9 converts the parent to the cyclohexyl hydroxymethyl derivative M1, which in animals retains about one third of the pharmacological activity, and cytosolic enzymes convert M1 to the inactive carboxyl derivative M2.',
+      structureSource: {
+        label:
+          'PubChem CID 3476 (glimepiride) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3476',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'gli-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the pyrroline carboxamide and trans-methylcyclohexyl fragments',
+          description:
+            'Confirm the identity and stereochemistry of the 3-ethyl-4-methyl-2-oxo-3-pyrroline-1-carboxamide head and the trans-4-methylcyclohexylamine tail before coupling. The trans configuration of the methylcyclohexyl group is a specification, not a preference: the cis isomer is a different molecule with different receptor kinetics and is controlled as an impurity, not tolerated as an equivalent.',
+          reagentsAndBuffer:
+            'Reference standards, nuclear magnetic resonance with nuclear Overhauser measurements for cis/trans assignment, chiral and achiral HPLC, Karl Fischer water determination, residual solvent screening',
+        },
+        {
+          id: 'gli-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Amide coupling then sulfonylurea closure with the methylcyclohexyl isocyanate',
+          description:
+            'Acylate the aminoethyl side chain of 4-(2-aminoethyl)benzenesulfonamide with the pyrroline carboxylic acid derivative, then react the sulfonamide nitrogen with trans-4-methylcyclohexyl isocyanate to close the sulfonylurea bridge. The chemistry is the same two-step condensation as glipizide and glyburide; the fragments are what differ.',
+          dependsOnStepId: 'gli-w1',
+          reagentsAndBuffer:
+            'Carbodiimide or mixed-anhydride activation, tertiary amine base, trans-4-methylcyclohexyl isocyanate, anhydrous acetonitrile or toluene, jacketed reactor under inert gas',
+        },
+        {
+          id: 'gli-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation with cis-isomer and related-substance control',
+          description:
+            'Recrystallise to the specified polymorph while resolving the cis-methylcyclohexyl isomer and the uncyclised sulfonamide intermediate to below monograph limits. Glimepiride is practically insoluble in water, so polymorph and particle size govern dissolution and therefore the 2-to-3-hour time to peak that the label reports.',
+          dependsOnStepId: 'gli-w2',
+          reagentsAndBuffer:
+            'Methanol-water or acetone-water recrystallisation, reversed-phase HPLC with ultraviolet detection, X-ray powder diffraction and differential scanning calorimetry for polymorph identity, laser diffraction particle sizing',
+        },
+        {
+          id: 'gli-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Dissolution and CYP2C9 metabolite generation',
+          description:
+            'Run comparative dissolution in biorelevant media, then generate and quantify the M1 and M2 metabolites in human liver microsomes and hepatocytes. M1 is not an analytical curiosity: the label states it retains about a third of the pharmacological activity in animals, so the exposure that matters clinically is parent plus M1, and CYP2C9 genotype changes the ratio.',
+          dependsOnStepId: 'gli-w3',
+          reagentsAndBuffer:
+            'USP apparatus 2 dissolution in phosphate buffer with surfactant, fasted and fed simulated intestinal fluids, pooled and CYP2C9-genotyped human liver microsomes, NADPH regenerating system, synthesised M1 and M2 reference standards, liquid chromatography with tandem mass spectrometry',
+        },
+        {
+          id: 'gli-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Channel block, isoform selectivity and insulin secretion',
+          description:
+            'Measure block of the pancreatic SUR1/Kir6.2 channel by patch clamp, run the cardiac SUR2A and vascular SUR2B isoforms in the same experiment, and read glucose-stimulated insulin secretion from islets. Isoform selectivity is the mechanistic claim most often made for the newer sulfonylureas and least often measured alongside the clinical data, so it belongs in the same run rather than in a citation.',
+          dependsOnStepId: 'gli-w4',
+          reagentsAndBuffer:
+            'HEK293 cells co-transfected with SUR1/Kir6.2, SUR2A/Kir6.2 and SUR2B/Kir6.1, inside-out excised patches with ATP-free intracellular solution, isolated rodent or human islets, static incubation at low and high glucose, insulin ELISA',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'gli-a1',
+        category: 'measured',
+        title: 'CAROLINA is the only large cardiovascular outcome trial of a sulfonylurea',
+        laymanSummary:
+          'Six thousand people with early type 2 diabetes and raised cardiovascular risk were randomly given glimepiride or a newer tablet, and followed for more than six years with heart attacks, strokes and cardiovascular deaths counted and adjudicated. The two arms came out the same.',
+        technicalDetails:
+          'CAROLINA (NCT01243424) randomised 6,042 adults at 607 sites in 43 countries — 6,033 treated and analysed — with type 2 diabetes, HbA1c 6.5% to 8.5% and elevated cardiovascular risk, to linagliptin 5 mg daily (n=3,023) or glimepiride 1 to 4 mg daily (n=3,010), double-blind, on top of usual care. Mean age was 64.0 years, mean HbA1c 7.2%, median diabetes duration 6.3 years, 42% had macrovascular disease and 59% were on metformin monotherapy. Over a median 6.3 years the primary composite of cardiovascular death, non-fatal myocardial infarction or non-fatal stroke occurred in 356 of 3,023 (11.8%) on linagliptin and 362 of 3,010 (12.0%) on glimepiride: hazard ratio 0.98 (95.47% CI 0.84 to 1.14), meeting the prespecified non-inferiority margin of 1.3 (p<0.001) but not superiority (p=0.76). Adjudicated acute pancreatitis occurred in 0.5% of each arm.',
+        evidenceSource: 'Rosenstock J et al., JAMA 2019;322:1155-1166 (CAROLINA, NCT01243424)',
+        doi: '10.1001/jama.2019.13772',
+        measuredMetric:
+          'Hazard ratio for adjudicated three-point MACE over a median 6.3 years, linagliptin against glimepiride, in 6,033 treated patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'gli-a2',
+        category: 'inferred',
+        title: 'CAROLINA did not show glimepiride is cardiovascularly safe — it had no placebo arm',
+        laymanSummary:
+          'The trial is widely described as clearing sulfonylureas of the cardiovascular suspicion they have carried since 1970. It compared glimepiride against another active drug, not against nothing. Two treatments coming out equal does not establish that either one is harmless.',
+        technicalDetails:
+          'CAROLINA was designed as an active-controlled non-inferiority trial of linagliptin against glimepiride, with the stated objective of establishing that the upper bound of the two-sided 95.47% confidence interval for the hazard ratio of linagliptin relative to glimepiride was below 1.3. There was no placebo group and no untreated group. The conclusion the authors state is that linagliptin resulted in a non-inferior risk of a composite cardiovascular outcome — a statement about linagliptin. Reading the same result backwards as evidence that glimepiride does not increase cardiovascular risk requires assuming linagliptin itself is cardiovascularly neutral, which rests on separate placebo-controlled trials of linagliptin, and it exports a conclusion the trial was not designed to license. The label continues to carry both a warning on potential increased risk of cardiovascular mortality with sulfonylureas and the statement that no clinical study has established conclusive evidence of macrovascular risk reduction with glimepiride or any other antidiabetic drug.',
+        evidenceSource:
+          'Rosenstock J et al., JAMA 2019;322:1155-1166; FDA prescribing information for glimepiride tablets, sections 5.4 and 5.5',
+        doi: '10.1001/jama.2019.13772',
+        inferredClaim:
+          'That CAROLINA proves sulfonylureas are cardiovascularly safe — the trial had no placebo arm, and its stated conclusion is about the comparator, not about glimepiride',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'gli-a3',
+        category: 'failed',
+        title: 'Over a third of the glimepiride arm had a hypoglycaemic event across six years',
+        laymanSummary:
+          'In the same trial, 1,132 of the 3,010 people on glimepiride had at least one episode of low blood sugar. On the comparator it was 320 of 3,023. That is more than three times as many people affected.',
+        technicalDetails:
+          'At least one hypoglycaemic adverse event occurred in 320 of 3,023 participants (10.6%) in the linagliptin group and 1,132 of 3,010 (37.7%) in the glimepiride group, hazard ratio 0.23 (95% CI 0.21 to 0.26) for linagliptin against glimepiride. Overall adverse events were similar — 93.4% against 94.9% — so the difference is specific to hypoglycaemia rather than a general tolerability gap. In GRADE, run in a different population over five years, severe hypoglycaemia requiring assistance occurred in 2.2% of the glimepiride arm against 1.3% on insulin glargine, 1.0% on liraglutide and 0.7% on sitagliptin: rare in absolute terms, and significantly more frequent on glimepiride than on any of the three comparators, insulin included.',
+        evidenceSource:
+          'Rosenstock J et al., JAMA 2019;322:1155-1166 (CAROLINA); GRADE Study Research Group, N Engl J Med 2022;387:1063-1074 (NCT01794143)',
+        doi: '10.1056/NEJMoa2200433',
+        measuredMetric:
+          'Proportion of participants with at least one hypoglycaemic adverse event over 6.3 years, and proportion with severe hypoglycaemia over 5 years by treatment arm',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'gli-a4',
+        category: 'failed',
+        title: 'In GRADE it held blood sugar down less durably than glargine or liraglutide',
+        laymanSummary:
+          'The largest trial ever run of what to add after metformin gave 5,047 people one of four drugs and followed them for five years. Glimepiride lost control of blood sugar more often than insulin glargine or liraglutide, and less often than sitagliptin.',
+        technicalDetails:
+          'GRADE (NCT01794143) randomised 5,047 participants with type 2 diabetes of less than ten years duration, on metformin, with HbA1c 6.8% to 8.5%, to insulin glargine U-100, glimepiride, liraglutide or sitagliptin, and followed them a mean of 5.0 years. The primary metabolic outcome was a confirmed HbA1c of 7.0% or higher. Cumulative incidence differed significantly across the four groups (p<0.001 for the global test): 26.5 per 100 participant-years on glargine, 26.1 on liraglutide, 30.4 on glimepiride and 38.1 on sitagliptin. Differences on the secondary outcome of confirmed HbA1c above 7.5% paralleled the primary. There were no material differences across prespecified subgroups by sex, age or race and ethnicity, though among participants with higher baseline HbA1c glargine, liraglutide and glimepiride all appeared to do better than sitagliptin. The cohort was 19.8% Black and 18.6% Hispanic or Latinx.',
+        evidenceSource:
+          'GRADE Study Research Group; Nathan DM et al., N Engl J Med 2022;387:1063-1074 (NCT01794143)',
+        doi: '10.1056/NEJMoa2200433',
+        measuredMetric:
+          'Cumulative incidence per 100 participant-years of a confirmed HbA1c of 7.0% or higher, by randomised second-line agent, over a mean 5.0 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'gli-a5',
+        category: 'measured',
+        title: 'GRADE found no difference between the four drugs on complications or death',
+        laymanSummary:
+          'The same trial also counted kidney damage, nerve damage, heart attacks, heart failure and deaths. Across five years, the four drugs were indistinguishable on all of them. The only signal was a modest one favouring liraglutide on any cardiovascular disease.',
+        technicalDetails:
+          'Over a mean 5.0 years in 5,047 participants, GRADE found no material differences between glargine, glimepiride, liraglutide and sitagliptin in the development of hypertension or dyslipidaemia, or in microvascular outcomes: overall rates per 100 participant-years were 2.6 for moderately increased albuminuria, 1.1 for severely increased albuminuria, 2.9 for renal impairment and 16.7 for diabetic peripheral neuropathy. The groups did not differ on MACE (overall rate 1.0), hospitalisation for heart failure (0.4), cardiovascular death (0.3) or all deaths (0.6). Rates of any cardiovascular disease were 1.9, 1.9, 1.4 and 2.0 in the glargine, glimepiride, liraglutide and sitagliptin groups. Comparing each treatment against the combined other three, hazard ratios for any cardiovascular disease were 1.1 (95% CI 0.9 to 1.3) for glargine, 1.1 (95% CI 0.9 to 1.4) for glimepiride, 0.7 (95% CI 0.6 to 0.9) for liraglutide and 1.2 (95% CI 1.0 to 1.5) for sitagliptin. The authors state these confidence limits are not adjusted for multiple comparisons.',
+        evidenceSource:
+          'GRADE Study Research Group, N Engl J Med 2022;387:1075-1088 (NCT01794143)',
+        doi: '10.1056/NEJMoa2200436',
+        measuredMetric:
+          'Event rates per 100 participant-years for microvascular outcomes, MACE, heart-failure hospitalisation and death, and unadjusted hazard ratios for any cardiovascular disease by arm',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'gli-a6',
+        category: 'measured',
+        title: 'The registration trial measured a 1.8-point HbA1c effect and 3.2 kg of weight with it',
+        laymanSummary:
+          'The 14-week trial that got the drug approved took 304 people off their existing sulfonylurea, then gave them placebo or glimepiride. The placebo group got 1.5 percentage points worse. The 8 mg group got 0.4 points better, and gained about three kilograms more than the placebo group lost.',
+        technicalDetails:
+          'A 14-week multicentre randomised double-blind placebo-controlled trial enrolled 304 patients with type 2 diabetes already on sulfonylurea therapy, withdrew it, ran a three-week placebo washout, then randomised to placebo (n=74) or glimepiride 1 mg (n=78), 4 mg (n=76) or 8 mg (n=76). Baseline HbA1c was 7.9% to 8.0% across arms. Adjusted mean change from baseline was +1.5 percentage points on placebo, +0.3 on 1 mg, -0.3 on 4 mg and -0.4 on 8 mg; differences from placebo were -1.2 (95% CI -1.5 to -0.8, p<0.001), -1.8 (95% CI -2.1 to -1.4) and -1.8 (95% CI -2.2 to -1.5). Weight fell 2.3 kg on placebo and rose 1.0 kg on 8 mg, a difference from placebo of 3.2 kg (95% CI 2.5 to 4.0). Completion was 66% on placebo against 92% on 4 mg or 8 mg. The design matters to the number: much of the apparent effect size is deterioration in a placebo arm withdrawn from an active drug, not improvement on glimepiride, and the entire between-group HbA1c difference is bought with a 3.2 kg weight difference.',
+        evidenceSource:
+          'FDA prescribing information for glimepiride tablets, section 14.1 Monotherapy, Table 3',
+        measuredMetric:
+          'Adjusted mean change in HbA1c and body weight from baseline at 14 weeks by dose, with differences from placebo and 95% confidence intervals',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed and at peak within two to three hours',
+        laymanDesc:
+          'Blood levels peak two to three hours after a dose, and that is also when blood sugar hits its lowest point. Taking it with food shifts things only slightly.',
+        molecularDetail:
+          'Peak plasma concentration occurs 2 to 3 hours post-dose, and time to minimum blood glucose in healthy subjects is the same 2 to 3 hours. Food reduces mean peak concentration by 8% and exposure by 9%. Clearance is linear from 1 mg to 8 mg and there is no accumulation on repeated dosing. Protein binding exceeds 99.5%.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It binds the receptor sitting on the beta-cell potassium channel',
+        laymanDesc:
+          'On the surface of insulin-producing cells is a gate that lets potassium out, with a control protein attached. Glimepiride binds that control protein.',
+        molecularDetail:
+          'The label states the mechanism directly: sulfonylureas bind the sulfonylurea receptor in the pancreatic beta-cell plasma membrane, leading to closure of the ATP-sensitive potassium channel. The receptor is SUR1, an ABC-transporter-family protein encoded by ABCC8, assembled four-to-four with the Kir6.2 pore encoded by KCNJ11.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The channel shuts and the cell depolarises',
+        laymanDesc:
+          'With potassium no longer leaking out, positive charge accumulates inside. That voltage change is exactly what the cell normally waits for glucose to produce.',
+        molecularDetail:
+          'Channel closure removes the resting potassium conductance and depolarises the membrane toward the threshold for voltage-gated L-type calcium channels. Physiologically the trigger is a rising ATP-to-ADP ratio from glucose metabolism; here it is pharmacological and glucose-independent.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Calcium enters and insulin granules empty',
+        laymanDesc:
+          'Calcium channels open, calcium floods the cell, and the packets of insulin already sitting at the membrane fuse with it and release their contents into the blood.',
+        molecularDetail:
+          'Rising cytosolic calcium triggers SNARE-mediated exocytosis of docked insulin granules. Because the drug supplies the depolarisation, secretion proceeds at normal and low glucose as well as high — the mechanistic origin of sulfonylurea hypoglycaemia.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The liver makes one product that still works and one that does not',
+        laymanDesc:
+          'A liver enzyme converts the drug into a first breakdown product that retains roughly a third of the activity, then a second enzyme converts that into an inactive one.',
+        molecularDetail:
+          'Metabolism is complete and oxidative. Cytochrome P450 2C9 converts glimepiride to the cyclohexyl hydroxymethyl derivative M1, which in animals possesses about one third of the pharmacological activity of the parent; cytosolic enzymes then convert M1 to the carboxyl derivative M2, which is inactive. CYP2C9 activity therefore shifts the active exposure, not just the clearance rate.',
+        iconName: 'Recycle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'HbA1c falls, weight rises, and the effect wears off over years',
+        laymanDesc:
+          'Average blood sugar comes down and stays down for a while. Weight goes up. Over five years the control slips faster than on insulin or a GLP-1 drug, because the drug depends on beta cells that are still being lost.',
+        molecularDetail:
+          'In the registration trial the 8 mg arm differed from placebo by -1.8 HbA1c percentage points and +3.2 kg. In GRADE, the rate of losing HbA1c control below 7.0% was 30.4 per 100 participant-years on glimepiride against 26.5 on insulin glargine and 26.1 on liraglutide, with severe hypoglycaemia at 2.2% against 1.3% and 1.0%.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'CAROLINA (NCT01243424)',
+        phase:
+          'Randomised, double-blind, active-controlled non-inferiority cardiovascular outcome trial, median 6.3 years',
+        sampleSize: 6033,
+        primaryEndpoint:
+          'Time to first cardiovascular death, non-fatal myocardial infarction or non-fatal stroke, linagliptin against glimepiride, non-inferiority margin 1.3',
+        endpointMet: true,
+        statisticalPValue:
+          'P < 0.001 for non-inferiority; hazard ratio 0.98 (95.47% CI 0.84 to 1.14). Superiority not met (P = 0.76)',
+        unreportedAdverseSignals:
+          'There was no placebo arm, so the trial cannot establish that either drug is cardiovascularly neutral in absolute terms. At least one hypoglycaemic adverse event occurred in 37.7% of the glimepiride arm against 10.6% on linagliptin.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'GRADE — glycaemic outcomes (NCT01794143)',
+        phase: 'Randomised comparative-effectiveness trial of four second-line agents, mean 5.0 years',
+        sampleSize: 5047,
+        primaryEndpoint:
+          'Confirmed glycated haemoglobin of 7.0% or higher, comparing insulin glargine, glimepiride, liraglutide and sitagliptin added to metformin',
+        endpointMet: false,
+        statisticalPValue:
+          'P < 0.001 for the global test across arms; 26.5, 26.1, 30.4 and 38.1 events per 100 participant-years for glargine, liraglutide, glimepiride and sitagliptin',
+        unreportedAdverseSignals:
+          'Severe hypoglycaemia was significantly more frequent on glimepiride (2.2%) than on glargine (1.3%), liraglutide (1.0%) or sitagliptin (0.7%) — more than on insulin.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'GRADE — microvascular and cardiovascular outcomes (NCT01794143)',
+        phase: 'Prespecified secondary outcomes of the same randomised trial, mean 5.0 years',
+        sampleSize: 5047,
+        primaryEndpoint:
+          'Albuminuria, renal impairment, peripheral neuropathy, MACE, heart-failure hospitalisation, any cardiovascular disease and death across the four arms',
+        endpointMet: false,
+        statisticalPValue:
+          'No material differences on microvascular outcomes or death; hazard ratios against the combined other three arms for any cardiovascular disease were 1.1 (95% CI 0.9 to 1.4) for glimepiride and 0.7 (95% CI 0.6 to 0.9) for liraglutide',
+        unreportedAdverseSignals:
+          'The authors state the confidence limits are not adjusted for multiple comparisons, which applies to the liraglutide signal as much as to the rest.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Glimepiride 14-week placebo-controlled monotherapy registration trial',
+        phase: 'Multicentre randomised double-blind placebo-controlled trial, 14 weeks',
+        sampleSize: 304,
+        primaryEndpoint: 'Change in HbA1c from baseline at 14 weeks against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'P < 0.001 for the 1 mg arm; adjusted mean differences from placebo of -1.2 (95% CI -1.5 to -0.8), -1.8 (95% CI -2.1 to -1.4) and -1.8 (95% CI -2.2 to -1.5) percentage points at 1, 4 and 8 mg',
+        unreportedAdverseSignals:
+          'Patients were withdrawn from existing sulfonylurea therapy before randomisation, so the placebo arm deteriorated by 1.5 percentage points and supplies most of the between-group difference. Weight differed from placebo by 3.2 kg at 8 mg, and only 66% of the placebo arm completed against 92% on the higher doses.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A hazard ratio of 0.98 (95.47% CI 0.84 to 1.14) for three-point MACE, linagliptin against glimepiride, over a median 6.3 years in 6,033 patients',
+        'At least one hypoglycaemic adverse event in 37.7% of the glimepiride arm against 10.6% of the comparator arm across the same 6.3 years',
+        'A rate of 30.4 per 100 participant-years for losing HbA1c control below 7.0%, against 26.5 on insulin glargine and 26.1 on liraglutide, in 5,047 randomised patients over five years',
+        'Severe hypoglycaemia in 2.2% of the glimepiride arm of GRADE, the highest of the four groups and higher than the insulin arm',
+        'Adjusted mean HbA1c differences from placebo of -1.8 percentage points at 4 mg and 8 mg, with a 3.2 kg weight difference at 8 mg, in the 304-patient registration trial',
+      ],
+      unsupportedInferences: [
+        'That CAROLINA established the cardiovascular safety of sulfonylureas — the trial had no placebo arm and its conclusion is a statement about linagliptin',
+        'That glimepiride reduces macrovascular events — its label states no clinical study has conclusively established macrovascular risk reduction for this or any antidiabetic drug',
+        'That the -1.8 percentage-point registration effect is what a person starting the drug should expect — the placebo arm had been withdrawn from an active sulfonylurea and deteriorated by 1.5 points',
+        'That SUR1 selectivity translates into a clinical cardiovascular advantage over older sulfonylureas — that is a mechanistic argument, and no trial has compared glimepiride against glyburide or glipizide for cardiovascular outcomes',
+      ],
+      whatFailedInitially: [
+        'Glimepiride was the least durable of the three effective arms in GRADE, and the only one whose severe hypoglycaemia rate exceeded insulin glargine',
+        'CAROLINA met non-inferiority but not superiority (p=0.76), so no cardiovascular advantage was demonstrated in either direction',
+        'The 1970 UGDP class warning survives on the label, in modern format as "Potential Increased Risk of Cardiovascular Mortality with Sulfonylureas", unresolved by the largest trial ever run in this class',
+      ],
+      realWorldOutcome: [
+        'US$0.0373 per tablet at United States pharmacy acquisition cost, the median across 56 listed generic products in the CMS NADAC survey — the cheapest drug on this page',
+        'On the WHO Model List of Essential Medicines as a therapeutic alternative within the sulfonylurea class',
+        'The only sulfonylurea with a dedicated cardiovascular outcome trial, and the sulfonylurea most guidelines name when one is used at all',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, once daily, in 1 mg, 2 mg and 4 mg strengths',
+      description:
+        'A conventional immediate-release tablet of a practically water-insoluble sulfonylurea. Absorption is complete enough that food changes exposure by less than a tenth, and pharmacokinetics are linear across the marketed dose range with no accumulation. The drug is fully metabolised — nothing is excreted unchanged — through CYP2C9 to an active M1 metabolite and then to inactive M2.',
+      safetyProfile:
+        'Hypoglycaemia is the defining risk and can be severe: the label warns that impaired concentration and reaction may present a risk while driving or operating machinery, and that severe hypoglycaemia can cause unconsciousness, convulsions, temporary or permanent brain impairment, or death. Older patients and those with renal impairment are at higher risk. Weight gain is expected — 3.2 kg against placebo at the highest dose in the registration trial. Postmarketing hypersensitivity reports include anaphylaxis, angioedema and Stevens-Johnson syndrome. Haemolytic anaemia can occur in glucose-6-phosphate dehydrogenase deficiency, and the label suggests a non-sulfonylurea alternative in that setting. The label carries both a warning on potential increased cardiovascular mortality with sulfonylureas and a statement that no macrovascular benefit has been conclusively established for any antidiabetic drug.',
+    },
+    commonQuestions: [
+      {
+        q: 'Did CAROLINA prove sulfonylureas are safe for the heart?',
+        a: 'It proved something narrower than that, and the difference matters. CAROLINA randomised 6,033 people with early type 2 diabetes and raised cardiovascular risk to linagliptin or glimepiride, double-blind, for a median 6.3 years, and counted adjudicated cardiovascular deaths, heart attacks and strokes. The rates were 11.8% and 12.0%, hazard ratio 0.98 with a 95.47% confidence interval from 0.84 to 1.14. There was no placebo arm. What the trial established is that linagliptin was not worse than glimepiride; reading it backwards to mean glimepiride is not worse than nothing requires assuming linagliptin is itself neutral, which comes from other trials. The FDA label still carries a warning on potential increased cardiovascular mortality with sulfonylureas.',
+        auditNote:
+          'A non-inferiority trial without a placebo arm bounds the difference between two treatments. It does not locate either of them relative to no treatment.',
+      },
+      {
+        q: 'How much hypoglycaemia does it actually cause?',
+        a: 'More than most people expect and less than the word implies. In CAROLINA, 1,132 of 3,010 people on glimepiride — 37.7% — had at least one hypoglycaemic adverse event over 6.3 years, against 10.6% on the comparator. Most of those episodes were mild. In GRADE, which counted severe episodes specifically, meaning ones needing another person to intervene, 2.2% of the glimepiride arm had one over five years, against 1.3% on insulin glargine, 1.0% on liraglutide and 0.7% on sitagliptin. So the severe rate is low in absolute terms, and it was still the highest of the four arms — higher than insulin.',
+      },
+      {
+        q: 'Why does the drug seem to stop working?',
+        a: 'Because it works by pushing on beta cells, and type 2 diabetes progressively destroys them. GRADE measured this directly: over five years the rate of losing control of HbA1c below 7.0% was 30.4 per 100 participant-years on glimepiride, against 26.5 on insulin glargine and 26.1 on liraglutide. Sitagliptin was worse still at 38.1. Injected insulin does not depend on surviving beta cells, which is the mechanistic reason it held up better. The same trial found no difference between any of the four drugs in kidney damage, nerve damage, heart attacks or deaths over those five years.',
+      },
+      {
+        q: 'Why does the registration trial show such a large effect?',
+        a: 'Because of how the placebo group was constructed. All 304 patients were already taking a sulfonylurea. They were taken off it, given three weeks of placebo washout, then randomised. Over the following 14 weeks the placebo arm got 1.5 percentage points worse, while the 8 mg glimepiride arm got 0.4 points better. The reported difference from placebo of 1.8 percentage points is therefore mostly the deterioration of people withdrawn from an active drug, not improvement on a new one. In the same table, the 8 mg arm ended 3.2 kg heavier than placebo, and only 66% of the placebo arm completed the trial against 92% of the higher-dose arms.',
+        auditNote:
+          'This is a withdrawal-design effect size. It is a real measurement and it is not the same quantity as the effect of starting the drug from untreated baseline.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for glimepiride could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.0373 per tablet, the median across 56 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost, and this page will not guess at the difference.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Rosenstock J, Kahn SE, Johansen OE et al. Effect of Linagliptin vs Glimepiride on Major Adverse Cardiovascular Outcomes in Patients With Type 2 Diabetes: The CAROLINA Randomized Clinical Trial. JAMA 2019;322:1155-1166',
+        identifier: '10.1001/jama.2019.13772',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CAROLINA: Cardiovascular Outcome Study of Linagliptin Versus Glimepiride in Patients With Type 2 Diabetes',
+        identifier: 'NCT01243424',
+        kind: 'nct',
+      },
+      {
+        label:
+          'GRADE Study Research Group; Nathan DM, Lachin JM, Balasubramanyam A et al. Glycemia Reduction in Type 2 Diabetes — Glycemic Outcomes. N Engl J Med 2022;387:1063-1074',
+        identifier: '10.1056/NEJMoa2200433',
+        kind: 'doi',
+      },
+      {
+        label:
+          'GRADE Study Research Group. Glycemia Reduction in Type 2 Diabetes — Microvascular and Cardiovascular Outcomes. N Engl J Med 2022;387:1075-1088',
+        identifier: '10.1056/NEJMoa2200436',
+        kind: 'doi',
+      },
+      {
+        label:
+          'GRADE: Glycemia Reduction Approaches in Diabetes — A Comparative Effectiveness Study',
+        identifier: 'NCT01794143',
+        kind: 'nct',
+      },
+      {
+        label:
+          'FDA prescribing information for glimepiride tablets — sections 5.1 to 5.5, 12.1 to 12.3 and 14.1 with Table 3',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22glimepiride%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA — NDA 020496 (AMARYL, Sanofi-Aventis US, original approval 30 November 1995)',
+        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22AMARYL%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3476 — glimepiride structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3476',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Pioglitazone — a nuclear receptor drug that missed its own cardiovascular primary endpoint,
+  //    is remembered for the secondary one, carries a boxed warning for heart failure, and had a
+  //    bladder cancer restriction imposed in 2011 that a 193,099-person cohort later did not support.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'pioglitazone',
+    name: 'Pioglitazone',
+    tradeName: 'Actos',
+    sponsor: 'Takeda Pharmaceuticals USA (originator, NDA 021073); marketed almost entirely as generics',
+    targetGene: 'PPARG',
+    targetProtein:
+      'Peroxisome proliferator-activated receptor gamma (PPAR-gamma), a ligand-activated nuclear transcription factor that heterodimerises with the retinoid X receptor and binds PPAR response elements in adipose tissue, skeletal muscle and liver',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1999,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. It exerts its antihyperglycaemic effect only in the presence of endogenous insulin and should not be used to treat type 1 diabetes or diabetic ketoacidosis.',
+    patientFriendlyIndication: 'Type 2 diabetes — a tablet that makes the body respond to its own insulin',
+    anatomicalSite:
+      'Nuclei of adipocytes, skeletal muscle and hepatocytes; and the collecting duct of the kidney, where the same receptor drives the fluid retention',
+    conditionContext: {
+      conditionExplainer:
+        'Most diabetes drugs push the pancreas to make more insulin or replace it. Pioglitazone does neither. It changes which genes fat cells transcribe, so that fat is stored where it belongs instead of in the liver and muscle, and the insulin already circulating starts working again.',
+      whyItMatters:
+        'That mechanism is slow — it takes weeks, because it acts through gene transcription — and it is not selective for the tissues you want. The same receptor in the kidney retains sodium, which is why this drug causes oedema and why it carries a boxed warning for congestive heart failure.',
+      whoTakesThis:
+        'Adults with type 2 diabetes and marked insulin resistance, usually after metformin. Use collapsed after 2011 when a bladder cancer restriction was added, and has partly recovered since the definitive cohort study reported.',
+      clinicalGoals:
+        'Lower HbA1c by restoring insulin sensitivity. Its own label states there is no conclusive evidence of macrovascular risk reduction with pioglitazone, and its cardiovascular outcome trial missed its primary endpoint.',
+    },
+    oneSentenceVerdict:
+      'A nuclear receptor agonist that reprograms fat cells to restore insulin sensitivity rather than forcing insulin release — which missed its primary composite endpoint in a 5,238-patient cardiovascular outcome trial (HR 0.90, 95% CI 0.80 to 1.02, p=0.095) while hitting the secondary one (HR 0.84, 95% CI 0.72 to 0.98, p=0.027), reduced stroke and heart attack by 24% in 3,876 non-diabetic patients after a stroke, and does all of this at the cost of oedema, weight gain, fractures and a boxed warning for congestive heart failure.',
+    laymanHowItWorks:
+      'Fat cells decide what to do with fat by switching genes on and off, and a protein inside their nucleus makes that decision. Pioglitazone binds that protein and changes the decision: store fat in fat, not in liver and muscle. Once fat leaves the liver and muscle, the insulin the body already makes starts working again. Because the drug works by changing gene transcription rather than by blocking something, it takes weeks to show its full effect — and the same protein in the kidney tells the body to hold on to salt and water, which is where the swelling and the heart failure risk come from.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 61,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0903 per tablet at United States pharmacy acquisition cost, the median across 67 listed generic products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved as Actos under NDA 021073 on 15 July 1999 and long off patent; 67 distinct generic products appear in the current NADAC file. Rosiglitazone, the other thiazolidinedione marketed in the United States, was restricted in 2010 and its restrictions lifted in 2013 — the episode that made cardiovascular outcome trials mandatory for new diabetes drugs, and the reason PROactive exists.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Pioglitazone is the only insulin sensitiser other than metformin still on the United States market, and it does something no other oral diabetes drug does: it moves fat out of the liver. That is why it kept being tested in steatohepatitis, and why it failed the primary endpoint there too. Against the drugs it competes with in type 2 diabetes, its distinguishing features are a genuine cardiovascular signal in a non-diabetic stroke population, and a boxed warning for heart failure that none of the others carry.',
+      conventionalRx: [
+        {
+          name: 'Metformin',
+          class: 'Biguanide',
+          howItCompares:
+            'The other insulin sensitiser and the standard first drug. It does not cause fluid retention, weight gain, fractures or heart failure, and it has no boxed warning. It also does not clear fat from the liver the way a PPAR-gamma agonist does.',
+          typicalCost: 'Comparable — both are inexpensive generics',
+          prosAndCons:
+            'Pros: no oedema, no heart failure warning, weight neutral or slightly favourable. Cons: gastrointestinal intolerance, contraindicated at low kidney function.',
+        },
+        {
+          name: 'Vitamin E (in non-diabetic steatohepatitis specifically)',
+          class: 'Antioxidant, 800 IU daily as studied',
+          howItCompares:
+            'In PIVENS, 247 adults with biopsy-proven non-alcoholic steatohepatitis and without diabetes were randomised to pioglitazone 30 mg, vitamin E 800 IU or placebo for 96 weeks. Vitamin E improved histology in 43% against 19% on placebo (p=0.001, meeting the prespecified 0.025 threshold). Pioglitazone improved histology in 34% against 19% (p=0.04), which did not meet that threshold. Neither improved fibrosis scores.',
+          typicalCost: 'Inexpensive over the counter',
+          prosAndCons:
+            'Pros: met the primary endpoint in the trial pioglitazone missed, and did not cause weight gain. Cons: this is one trial in a non-diabetic population, no fibrosis benefit was shown, and high-dose vitamin E carries its own long-term safety literature.',
+        },
+        {
+          name: 'SGLT2 inhibitors and GLP-1 receptor agonists',
+          class: 'Newer glucose-lowering drugs with cardiovascular and renal outcome trials',
+          howItCompares:
+            'Both classes have placebo-controlled outcome trials that met their primary endpoints, which pioglitazone did not. SGLT2 inhibitors reduce heart-failure hospitalisation, the specific harm pioglitazone causes.',
+          typicalCost: 'Branded and far more expensive than a nine-cent generic tablet',
+          prosAndCons:
+            'Pros: outcome trials that hit their primary endpoints, no fluid retention. Cons: cost, and neither clears hepatic fat the way pioglitazone does.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Weigh yourself and watch your ankles in the first weeks',
+          action:
+            'The boxed warning asks for exactly this: after starting, and after any dose increase, watch for rapid weight gain, breathlessness and swelling. Fluid retention from this drug is dose-related and is the mechanism by which it precipitates heart failure.',
+          patientImpact:
+            'In PROactive, 149 patients in the pioglitazone group and 108 on placebo were admitted to hospital with heart failure — 6% against 4% — although heart-failure mortality did not differ between the groups. In IRIS, oedema occurred in 35.6% of the pioglitazone arm against 24.9% on placebo (p<0.001), and 52.2% gained more than 4.5 kg against 33.7% (p<0.001).',
+          clinicalPrecaution:
+            'Pioglitazone is contraindicated in New York Heart Association class III or IV heart failure and not recommended in symptomatic heart failure of any class. Any change to the regimen belongs with the prescribing clinician. This page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCC1=CN=C(C=C1)CCOC2=CC=C(C=C2)CC3C(=O)NC(=O)S3',
+      chemicalFormula: 'C19H20N2O3S',
+      molecularWeight: '356.40 g/mol',
+      targetReceptorAffinity:
+        'A PPAR-gamma agonist. The FDA label states the mechanism depends on the presence of insulin: pioglitazone decreases insulin resistance in the periphery and the liver, increasing insulin-dependent glucose disposal and decreasing hepatic glucose output, and it is explicitly not an insulin secretagogue. Activation of PPAR-gamma nuclear receptors modulates transcription of insulin-responsive genes controlling glucose and lipid metabolism in adipose tissue, skeletal muscle and liver. Because it enhances the effect of circulating insulin rather than supplying it, it does not lower glucose in animal models lacking endogenous insulin. The thiazolidinedione head group is the pharmacophore that engages the receptor ligand-binding pocket.',
+      structureSource: {
+        label:
+          'PubChem CID 4829 (pioglitazone) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4829',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'pio-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the ethylpyridine ethanol and the thiazolidinedione fragments',
+          description:
+            'Confirm identity and purity of 2-(5-ethylpyridin-2-yl)ethanol, the 4-fluorobenzaldehyde or 4-hydroxybenzaldehyde coupling partner and 2,4-thiazolidinedione. The thiazolidinedione ring is the pharmacophore that occupies the PPAR-gamma ligand pocket; a batch in which it is partially hydrolysed is a batch of inactive material that still assays as organic solid.',
+          reagentsAndBuffer:
+            'Reference standards, nuclear magnetic resonance and infrared identity, Karl Fischer water determination, residual solvent screening by headspace gas chromatography, sulphated ash',
+        },
+        {
+          id: 'pio-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Ether formation, Knoevenagel condensation and reduction of the benzylidene',
+          description:
+            'Couple the pyridyl ethanol to the benzaldehyde through an ether linkage, condense the resulting aldehyde with 2,4-thiazolidinedione under Knoevenagel conditions to give the benzylidene, then reduce the exocyclic double bond. The reduction generates a stereocentre at position 5 of the thiazolidinedione ring; the marketed drug is a racemate, and the two enantiomers interconvert in vivo through the acidic ring proton, which is why resolving them would be pointless as well as expensive.',
+          dependsOnStepId: 'pio-w1',
+          reagentsAndBuffer:
+            'Potassium carbonate or sodium hydride for etherification, piperidine or piperidinium acetate catalyst in toluene with azeotropic water removal, catalytic hydrogenation over palladium on carbon or borohydride reduction, dimethylformamide',
+        },
+        {
+          id: 'pio-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrochloride salt formation and polymorph control',
+          description:
+            'Form the hydrochloride salt, recrystallise to the specified polymorph and control the unreduced benzylidene intermediate, which is coloured, more potent in some in vitro assays and a specified impurity rather than an acceptable contaminant. Polymorph identity governs dissolution and therefore the exposure the clinical programme was built on.',
+          dependsOnStepId: 'pio-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in isopropanol or ethyl acetate, ethanol-water recrystallisation, reversed-phase HPLC with photodiode-array detection, X-ray powder diffraction and differential scanning calorimetry',
+        },
+        {
+          id: 'pio-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Adipocyte differentiation and hepatocyte lipid-clearance assays',
+          description:
+            'Treat pre-adipocytes and differentiated adipocytes and measure lipid accumulation, adiponectin secretion and the transcriptional signature; separately, load hepatocytes with fatty acids and measure triglyceride clearance. This is the cellular step the drug exists to produce, and it takes days rather than minutes, because the effect is transcriptional. A receptor binding number alone cannot show it.',
+          dependsOnStepId: 'pio-w3',
+          reagentsAndBuffer:
+            '3T3-L1 pre-adipocytes with differentiation cocktail, primary human adipocytes, Oil Red O staining, adiponectin and leptin ELISA, quantitative PCR panel for PPAR-gamma target genes, primary human hepatocytes with oleate loading, triglyceride quantitation',
+        },
+        {
+          id: 'pio-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'PPAR-gamma transactivation with alpha and delta counter-screens, and renal sodium handling',
+          description:
+            'Run a PPAR-gamma reporter transactivation assay with PPAR-alpha and PPAR-delta counter-screens, and separately measure epithelial sodium channel activity in collecting-duct cells. The sodium arm is not optional: PPAR-gamma activation in the renal collecting duct is the accepted mechanism of the fluid retention behind the boxed warning, and a compound optimised only on the glucose readout would never see it.',
+          dependsOnStepId: 'pio-w4',
+          reagentsAndBuffer:
+            'GAL4-PPAR-gamma, alpha and delta ligand-binding-domain chimaeras with luciferase reporter in HEK293 cells, coactivator recruitment by time-resolved fluorescence, mouse inner medullary collecting duct cells with amiloride-sensitive short-circuit current measurement in Ussing chambers',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'pio-a1',
+        category: 'failed',
+        title: 'PROactive missed its primary endpoint and is remembered for its secondary one',
+        laymanSummary:
+          'The trial that was supposed to prove pioglitazone prevents cardiovascular events enrolled 5,238 people with type 2 diabetes and existing vascular disease. On the endpoint it had declared in advance, the result was not statistically significant. On a narrower endpoint declared as secondary, it was.',
+        technicalDetails:
+          'PROactive randomised 5,238 patients with type 2 diabetes and evidence of macrovascular disease to pioglitazone titrated from 15 mg to 45 mg (n=2,605) or matching placebo (n=2,633), on top of existing therapy, and observed them an average of 34.5 months. The prespecified primary endpoint was a composite of all-cause mortality, non-fatal myocardial infarction including silent infarction, stroke, acute coronary syndrome, endovascular or surgical intervention in the coronary or leg arteries, and above-ankle amputation. It occurred in 514 of 2,605 on pioglitazone and 572 of 2,633 on placebo: hazard ratio 0.90 (95% CI 0.80 to 1.02, p=0.095). The main secondary endpoint — the narrower composite of all-cause mortality, non-fatal myocardial infarction and stroke — occurred in 301 against 358 patients: hazard ratio 0.84 (95% CI 0.72 to 0.98, p=0.027). The published interpretation states that pioglitazone reduces the secondary composite. It does not claim the primary was met, because it was not.',
+        evidenceSource:
+          'Dormandy JA et al., Lancet 2005;366:1279-1289 (PROactive, NCT00174993)',
+        doi: '10.1016/S0140-6736(05)67528-9',
+        measuredMetric:
+          'Hazard ratios for the prespecified primary composite endpoint and the main secondary composite endpoint over an average 34.5 months in 5,238 patients',
+        inferredClaim:
+          'That PROactive demonstrated pioglitazone prevents macrovascular events — the endpoint it was designed and powered around returned p=0.095',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'pio-a2',
+        category: 'failed',
+        title: 'In the same trial it put half as many people again into hospital with heart failure',
+        laymanSummary:
+          'Alongside the cardiovascular result, PROactive counted admissions for heart failure. There were 149 in the pioglitazone group and 108 on placebo — 6% against 4%. This finding is the reason the drug carries a boxed warning.',
+        technicalDetails:
+          'In PROactive, 149 patients in the pioglitazone group and 108 in the placebo group were admitted to hospital with heart failure, 6% against 4%; mortality from heart failure did not differ between the groups. The United States label carries a boxed warning stating that thiazolidinediones including pioglitazone cause or exacerbate congestive heart failure in some patients, that patients must be monitored after initiation and after dose increases for excessive rapid weight gain, dyspnoea and oedema, that the drug is not recommended in symptomatic heart failure, and that initiation in established New York Heart Association class III or IV heart failure is contraindicated. The mechanism is not idiosyncratic: PPAR-gamma activation in the renal collecting duct promotes sodium reabsorption, and the label describes the fluid retention as dose-related and most common in combination with insulin.',
+        evidenceSource:
+          'Dormandy JA et al., Lancet 2005;366:1279-1289; FDA prescribing information for pioglitazone tablets, BOXED WARNING and section 5.1',
+        doi: '10.1016/S0140-6736(05)67528-9',
+        measuredMetric:
+          'Hospital admissions for heart failure by arm in a 5,238-patient randomised trial, and the resulting boxed warning text',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pio-a3',
+        category: 'measured',
+        title: 'IRIS found a 24% reduction in stroke and heart attack — in people without diabetes',
+        laymanSummary:
+          'A different trial gave pioglitazone to 3,876 people who had recently had a stroke or mini-stroke, were insulin resistant, and did not have diabetes. Over almost five years, strokes and heart attacks fell from 11.8% to 9.0%, and new diabetes fell by half.',
+        technicalDetails:
+          'IRIS (Insulin Resistance Intervention after Stroke) was a multicentre double-blind trial randomising 3,876 patients with a recent ischaemic stroke or transient ischaemic attack, without diabetes, and with a HOMA-IR score above 3.0, to pioglitazone at a target dose of 45 mg daily or placebo. The primary outcome — fatal or non-fatal stroke or myocardial infarction — occurred by 4.8 years in 175 of 1,939 (9.0%) on pioglitazone and 228 of 1,937 (11.8%) on placebo: hazard ratio 0.76 (95% CI 0.62 to 0.93, p=0.007). New-onset diabetes occurred in 73 (3.8%) against 149 (7.7%): hazard ratio 0.48 (95% CI 0.33 to 0.69, p<0.001). All-cause mortality did not differ: hazard ratio 0.93 (95% CI 0.73 to 1.17, p=0.52). This is the only trial in which pioglitazone met its own prespecified primary endpoint, and it was run in a population without the disease the drug is licensed for.',
+        evidenceSource: 'Kernan WN et al., N Engl J Med 2016;374:1321-1331 (IRIS)',
+        doi: '10.1056/NEJMoa1506930',
+        measuredMetric:
+          'Hazard ratios for fatal or non-fatal stroke or myocardial infarction, new-onset diabetes and all-cause mortality by 4.8 years in 3,876 non-diabetic patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pio-a4',
+        category: 'failed',
+        title: 'The same trial measured what it cost: weight, oedema and fractures',
+        laymanSummary:
+          'IRIS reported the harms alongside the benefit. Over half the pioglitazone group gained more than 4.5 kg, a third developed swelling, and fractures serious enough to need surgery or hospital admission rose from 3.2% to 5.1%.',
+        technicalDetails:
+          'In IRIS, weight gain exceeding 4.5 kg occurred in 52.2% of the pioglitazone group against 33.7% on placebo (p<0.001); oedema in 35.6% against 24.9% (p<0.001); and bone fracture requiring surgery or hospitalisation in 5.1% against 3.2% (p=0.003). The fracture signal is a class effect of thiazolidinediones with a mechanistic explanation: PPAR-gamma activation drives mesenchymal stem cells toward adipocyte rather than osteoblast lineage, reducing bone formation. The United States label lists fractures among warnings and precautions, noting an increased incidence in female patients and advising that current standards of care for bone health be applied. Set against the primary result, the arithmetic is that treating for 4.8 years avoided about 2.8 strokes or heart attacks per 100 patients and caused about 1.9 additional serious fractures per 100.',
+        evidenceSource:
+          'Kernan WN et al., N Engl J Med 2016;374:1321-1331; FDA prescribing information for pioglitazone tablets, sections 5.5 and 5.6',
+        doi: '10.1056/NEJMoa1506930',
+        measuredMetric:
+          'Proportions with weight gain above 4.5 kg, oedema and fracture requiring surgery or hospitalisation, by arm, over 4.8 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pio-a5',
+        category: 'conclusion_shift',
+        title: 'The bladder cancer restriction of 2011 was not supported by the definitive cohort',
+        laymanSummary:
+          'An interim analysis in 2011 suggested pioglitazone raised bladder cancer risk. France and Germany suspended it, the FDA added a warning, and prescribing collapsed. When the same cohort was followed for a decade and fully analysed, there was no significant association.',
+        technicalDetails:
+          'Lewis and colleagues followed 193,099 people aged 40 or over in the Kaiser Permanente Northern California cohort from 1997-2002 until December 2012, of whom 34,181 (18%) received pioglitazone for a median 2.8 years (range 0.2 to 13.2), with 1,261 incident bladder cancers. Crude incidence was 89.8 per 100,000 person-years in users and 75.9 in non-users. Ever use of pioglitazone was not associated with bladder cancer risk: adjusted hazard ratio 1.06 (95% CI 0.89 to 1.26). A nested case-control analysis of 464 cases and 464 matched controls agreed, adjusted odds ratio 1.18 (95% CI 0.78 to 1.80). No clear pattern of risk appeared for time since initiation, duration or cumulative dose. In a parallel cohort of 236,507 people examining ten further cancers, eight showed no association, while ever use was associated with prostate cancer (HR 1.13, 95% CI 1.02 to 1.26) and pancreatic cancer (HR 1.41, 95% CI 1.16 to 1.71), which the authors state merit further investigation as to whether they are causal or reflect chance, residual confounding or reverse causality. The authors are explicit that an increased bladder cancer risk could not be excluded. The current United States label still lists bladder cancer under warnings and precautions and advises against use in active bladder cancer.',
+        evidenceSource: 'Lewis JD et al., JAMA 2015;314:265-277 (Kaiser Permanente Northern California cohort)',
+        doi: '10.1001/jama.2015.7996',
+        measuredMetric:
+          'Adjusted hazard ratio for bladder cancer with ever use of pioglitazone in 193,099 persons over up to fifteen years, with matched case-control confirmation',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'pio-a6',
+        category: 'failed',
+        title: 'In fatty liver disease it missed the primary endpoint that vitamin E met',
+        laymanSummary:
+          'A trial of 247 adults with fatty liver inflammation and no diabetes compared pioglitazone, vitamin E and placebo over almost two years, with liver biopsies at both ends. Vitamin E met the prespecified threshold. Pioglitazone did not, though it improved several individual measurements.',
+        technicalDetails:
+          'PIVENS randomised 247 adults with non-alcoholic steatohepatitis and without diabetes to pioglitazone 30 mg daily (n=80), vitamin E 800 IU daily (n=84) or placebo (n=83) for 96 weeks. Because two primary comparisons were planned, p values below 0.025 were prespecified as significant. Vitamin E improved histology in 43% against 19% on placebo (p=0.001); pioglitazone improved histology in 34% against 19% (p=0.04), which does not meet the threshold. Both agents reduced alanine and aspartate aminotransferase against placebo (p<0.001 for both), hepatic steatosis (p=0.005 vitamin E, p<0.001 pioglitazone) and lobular inflammation (p=0.02 and p=0.004), but neither improved fibrosis scores (p=0.24 and p=0.12). Subjects on pioglitazone gained more weight than either other group. The authors state there was no benefit of pioglitazone over placebo for the primary outcome, with significant benefits on some secondary outcomes.',
+        evidenceSource: 'Sanyal AJ et al., N Engl J Med 2010;362:1675-1685 (PIVENS, NCT00063622)',
+        doi: '10.1056/NEJMoa0907929',
+        measuredMetric:
+          'Proportion with histological improvement in non-alcoholic steatohepatitis at 96 weeks against a prespecified significance threshold of 0.025, with secondary biochemical and histological components',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed and carried into the cell nucleus',
+        laymanDesc:
+          'The tablet is absorbed and the drug moves into cells, and then into their nuclei — the compartment where genes are read. That is unusual: most drugs act on the cell surface.',
+        molecularDetail:
+          'Pioglitazone is a lipophilic thiazolidinedione that crosses membranes passively and enters the nucleus. It is metabolised largely by CYP2C8 and, to a lesser extent, CYP3A4, and several of its metabolites are pharmacologically active, which is why the effect outlasts the parent compound.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It binds a receptor that is itself a gene switch',
+        laymanDesc:
+          'Inside the nucleus sits a protein whose job is to sit on DNA and decide whether nearby genes get read. The drug slots into a pocket in that protein and changes its shape.',
+        molecularDetail:
+          'PPAR-gamma is a ligand-activated nuclear receptor. The thiazolidinedione head hydrogen-bonds within the ligand-binding pocket, stabilising helix 12 of the activation function 2 surface. The label states that PPAR receptors are found in tissues important for insulin action — adipose tissue, skeletal muscle and liver.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The changed switch pairs up and rewrites which genes get read',
+        laymanDesc:
+          'The reshaped protein pairs with a partner, sits down on specific stretches of DNA, and recruits the machinery that turns genes on. Dozens of genes controlling how fat is handled change their output.',
+        molecularDetail:
+          'Ligand binding releases corepressors and recruits coactivators. PPAR-gamma heterodimerises with the retinoid X receptor and binds PPAR response elements, modulating transcription of insulin-responsive genes controlling glucose and lipid metabolism — adiponectin, lipoprotein lipase, fatty acid transporters and GLUT4 among them.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Fat is redirected out of liver and muscle and back into fat tissue',
+        laymanDesc:
+          'Fat cells become better at their job of storing fat, so fat stops accumulating in the liver and in muscle. Those are the tissues where fat interferes with insulin working.',
+        molecularDetail:
+          'Subcutaneous adipocytes proliferate and increase triglyceride storage capacity while adiponectin secretion rises; ectopic lipid in hepatocytes and myocytes falls, restoring insulin signalling in both. In PIVENS, hepatic steatosis improved significantly against placebo (p<0.001) — the mechanism visible directly on biopsy.',
+        iconName: 'ArrowRightLeft',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 5,
+        title: 'Circulating insulin starts working again — over weeks, not hours',
+        laymanDesc:
+          'The insulin the body already makes becomes more effective, so blood sugar and insulin levels both fall. This takes weeks, because the drug works by changing which proteins the cell makes.',
+        molecularDetail:
+          'The label states that decreased insulin resistance produces lower plasma glucose, lower plasma insulin and lower HbA1c, that pioglitazone is not an insulin secretagogue, and that it does not lower glucose in models lacking endogenous insulin. Triglycerides fall and HDL cholesterol rises, with no consistent change in LDL or total cholesterol.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The same receptor in the kidney holds on to salt and water',
+        laymanDesc:
+          'The gene switch this drug flips is not only in fat. In the kidney it tells the body to keep sodium, which means keeping water. That is why ankles swell and why the drug can tip a weak heart into failure.',
+        molecularDetail:
+          'PPAR-gamma activation in the renal collecting duct increases epithelial sodium channel-mediated sodium reabsorption and plasma volume expansion. The label describes the fluid retention as dose-related and most common in combination with insulin. In IRIS oedema occurred in 35.6% against 24.9% on placebo; in PROactive, 149 pioglitazone patients against 108 on placebo were hospitalised for heart failure.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'PROactive (NCT00174993)',
+        phase: 'Prospective randomised double-blind placebo-controlled outcome trial, average 34.5 months',
+        sampleSize: 5238,
+        primaryEndpoint:
+          'Composite of all-cause mortality, non-fatal myocardial infarction including silent infarction, stroke, acute coronary syndrome, coronary or leg-artery intervention, and above-ankle amputation',
+        endpointMet: false,
+        statisticalPValue:
+          'Hazard ratio 0.90 (95% CI 0.80 to 1.02, P = 0.095) — primary endpoint not met. Main secondary endpoint hazard ratio 0.84 (95% CI 0.72 to 0.98, P = 0.027)',
+        unreportedAdverseSignals:
+          'Hospital admission for heart failure occurred in 149 patients on pioglitazone against 108 on placebo (6% against 4%), though heart-failure mortality did not differ. The drug is generally cited for the secondary endpoint, not for the endpoint it was designed around.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'IRIS — Insulin Resistance Intervention after Stroke',
+        phase: 'Multicentre randomised double-blind placebo-controlled trial, 4.8 years',
+        sampleSize: 3876,
+        primaryEndpoint:
+          'Fatal or non-fatal stroke or myocardial infarction in patients without diabetes with recent ischaemic stroke or TIA and HOMA-IR above 3.0',
+        endpointMet: true,
+        statisticalPValue:
+          'P = 0.007; hazard ratio 0.76 (95% CI 0.62 to 0.93). New-onset diabetes hazard ratio 0.48 (95% CI 0.33 to 0.69, P < 0.001)',
+        unreportedAdverseSignals:
+          'All-cause mortality did not differ (HR 0.93, 95% CI 0.73 to 1.17, P = 0.52). Weight gain above 4.5 kg occurred in 52.2% against 33.7%, oedema in 35.6% against 24.9%, and fracture requiring surgery or hospitalisation in 5.1% against 3.2% (P = 0.003).',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'PIVENS (NCT00063622)',
+        phase: 'Randomised double-blind placebo-controlled trial with paired liver biopsies, 96 weeks',
+        sampleSize: 247,
+        primaryEndpoint:
+          'Improvement in histological features of non-alcoholic steatohepatitis, composite of steatosis, lobular inflammation, hepatocellular ballooning and fibrosis scores',
+        endpointMet: false,
+        statisticalPValue:
+          'Pioglitazone 34% against placebo 19%, P = 0.04 against a prespecified significance threshold of 0.025 — not met. Vitamin E 43% against 19%, P = 0.001 — met',
+        unreportedAdverseSignals:
+          'Neither agent improved fibrosis scores (P = 0.12 for pioglitazone). Subjects receiving pioglitazone gained more weight than either other group.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Lewis 2015 Kaiser Permanente Northern California bladder cancer cohort',
+        phase: 'Population cohort with nested case-control analysis, 1997 to December 2012',
+        sampleSize: 193099,
+        primaryEndpoint:
+          'Incident bladder cancer associated with ever use, duration, cumulative dose and time since initiation of pioglitazone',
+        endpointMet: false,
+        statisticalPValue:
+          'Adjusted hazard ratio 1.06 (95% CI 0.89 to 1.26) for ever use — no significant association; nested case-control adjusted odds ratio 1.18 (95% CI 0.78 to 1.80)',
+        unreportedAdverseSignals:
+          'In a parallel cohort of 236,507 persons examining ten other cancers, ever use was associated with prostate cancer (HR 1.13, 95% CI 1.02 to 1.26) and pancreatic cancer (HR 1.41, 95% CI 1.16 to 1.71). The authors state an increased bladder cancer risk still could not be excluded.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A hazard ratio of 0.90 (95% CI 0.80 to 1.02, p=0.095) on the prespecified primary composite endpoint in 5,238 patients — not statistically significant',
+        'A hazard ratio of 0.84 (95% CI 0.72 to 0.98, p=0.027) on the main secondary composite of death, non-fatal myocardial infarction and stroke in the same trial',
+        'A hazard ratio of 0.76 (95% CI 0.62 to 0.93) for stroke or myocardial infarction in 3,876 non-diabetic patients with insulin resistance after stroke, over 4.8 years',
+        'Weight gain above 4.5 kg in 52.2% against 33.7%, oedema in 35.6% against 24.9%, and serious fracture in 5.1% against 3.2%, in the same trial',
+        'An adjusted hazard ratio of 1.06 (95% CI 0.89 to 1.26) for bladder cancer with ever use, in 193,099 people followed up to fifteen years',
+      ],
+      unsupportedInferences: [
+        'That PROactive demonstrated a macrovascular benefit — the primary endpoint returned p=0.095, and the label states there is no conclusive evidence of macrovascular risk reduction with pioglitazone',
+        'That the IRIS result transfers to people with type 2 diabetes — IRIS enrolled patients who did not have diabetes, selected on a HOMA-IR score above 3.0 after a stroke',
+        'That the bladder cancer question is closed — the definitive cohort found no significant association and its authors state an increased risk could not be excluded, while the label warning remains',
+        'That pioglitazone treats fatty liver disease — it missed the prespecified primary histological endpoint in PIVENS and improved no fibrosis score',
+      ],
+      whatFailedInitially: [
+        'PROactive missed the primary composite endpoint it was designed and powered around, and the drug is remembered for the secondary one',
+        'Hospital admissions for heart failure rose from 4% to 6% in PROactive, producing the boxed warning the drug still carries',
+        'PIVENS did not meet its prespecified significance threshold in non-alcoholic steatohepatitis, in a trial where vitamin E did',
+        'The 2011 bladder cancer signal drove regulatory restriction and a collapse in prescribing that a decade of follow-up in 193,099 people did not confirm',
+      ],
+      realWorldOutcome: [
+        'US$0.0903 per tablet at United States pharmacy acquisition cost, the median across 67 listed generic products in the CMS NADAC survey',
+        'The only thiazolidinedione in routine use in the United States, and the only oral diabetes drug that measurably clears fat from the liver',
+        'Carries a boxed warning for congestive heart failure and is contraindicated in New York Heart Association class III or IV heart failure',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, once daily, in 15 mg, 30 mg and 45 mg strengths',
+      description:
+        'A conventional immediate-release tablet of the hydrochloride salt. The clinically important property is not the formulation but the time course: because the drug acts through gene transcription and adipose tissue remodelling, the full glycaemic effect takes weeks to appear and persists for weeks after stopping. The label states the antihyperglycaemic effect occurs only in the presence of endogenous insulin.',
+      safetyProfile:
+        'A boxed warning states that thiazolidinediones including pioglitazone cause or exacerbate congestive heart failure in some patients; the drug is not recommended in symptomatic heart failure and is contraindicated in NYHA class III or IV. Dose-related oedema occurs and is most common in combination with insulin. Fractures are increased, particularly in female patients. Bladder cancer is listed under warnings and precautions with advice not to use in active bladder cancer and caution with prior history. Postmarketing reports include hepatic failure, sometimes fatal, and macular oedema. Hypoglycaemia is not caused by pioglitazone alone but can occur when it is combined with insulin or an insulin secretagogue. The label states there have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with pioglitazone.',
+    },
+    commonQuestions: [
+      {
+        q: 'Did PROactive show pioglitazone prevents heart attacks?',
+        a: 'Not on the question it set out to answer. PROactive randomised 5,238 people with type 2 diabetes and existing vascular disease, and declared in advance that its primary endpoint was a broad composite including deaths, heart attacks, strokes, acute coronary syndromes, artery procedures and amputations. That endpoint returned a hazard ratio of 0.90 with a confidence interval from 0.80 to 1.02 and p=0.095 — not statistically significant. A narrower secondary composite of death, non-fatal heart attack and stroke returned 0.84 (0.72 to 0.98, p=0.027). Both numbers are real; only the second is significant, and it was not the endpoint the trial was designed around. The label continues to say there is no conclusive evidence of macrovascular risk reduction with pioglitazone.',
+        auditNote:
+          'A secondary endpoint that reaches significance after the primary fails is a hypothesis for the next trial, not a demonstration.',
+      },
+      {
+        q: 'Then why is it still used?',
+        a: 'Largely because of IRIS and because of what it does to the liver. IRIS gave pioglitazone to 3,876 people who had recently had a stroke or mini-stroke, were insulin resistant, and did not have diabetes, and it met its primary endpoint: stroke or heart attack fell from 11.8% to 9.0% over 4.8 years, hazard ratio 0.76 (95% CI 0.62 to 0.93, p=0.007). New diabetes fell by half. It is also the only oral diabetes drug that measurably clears fat from the liver, which is why it keeps being tested in steatohepatitis. And it costs nine cents a tablet. Against that: over half the IRIS pioglitazone group gained more than 4.5 kg, a third developed oedema, and serious fractures rose from 3.2% to 5.1%.',
+      },
+      {
+        q: 'Does it cause bladder cancer?',
+        a: 'The best available study says no significant association, and its authors decline to rule one out. In 2011 an interim analysis prompted an FDA safety communication, a label warning, and suspensions in France and Germany. The full analysis, published in 2015, followed 193,099 people in Kaiser Permanente Northern California from 1997 to the end of 2012, including 34,181 who took pioglitazone for a median of 2.8 years, and found 1,261 bladder cancers. The adjusted hazard ratio for ever use was 1.06 (95% CI 0.89 to 1.26), and a matched case-control analysis agreed. No pattern appeared by duration, dose or time since starting. The same paper found associations with prostate cancer (HR 1.13) and pancreatic cancer (HR 1.41) that it says need further investigation. The bladder warning remains on the label.',
+        auditNote:
+          'This is the clearest conclusion shift on this page, and it runs in the direction people rarely expect: a restriction imposed on an interim signal that the completed study did not support.',
+      },
+      {
+        q: 'Why does it cause swelling and heart failure?',
+        a: 'Because the gene switch it flips is not only in fat cells. PPAR-gamma is also expressed in the collecting duct of the kidney, where activating it increases sodium reabsorption through the epithelial sodium channel. Holding on to sodium means holding on to water, which expands plasma volume. In a healthy heart that is swollen ankles; in a weak one it is decompensation. PROactive recorded 149 heart-failure admissions on pioglitazone against 108 on placebo, and the boxed warning followed. The label describes the fluid retention as dose-related and most common when the drug is combined with insulin.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for pioglitazone could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.0903 per tablet, the median across 67 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost, and this page will not guess at the difference.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Dormandy JA, Charbonnel B, Eckland DJ et al. Secondary prevention of macrovascular events in patients with type 2 diabetes in the PROactive Study (PROspective pioglitAzone Clinical Trial In macroVascular Events): a randomised controlled trial. Lancet 2005;366:1279-1289',
+        identifier: '10.1016/S0140-6736(05)67528-9',
+        kind: 'doi',
+      },
+      {
+        label: 'PROactive: PROspective pioglitAzone Clinical Trial In macroVascular Events',
+        identifier: 'NCT00174993',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Kernan WN, Viscoli CM, Furie KL et al. Pioglitazone after Ischemic Stroke or Transient Ischemic Attack (IRIS). N Engl J Med 2016;374:1321-1331',
+        identifier: '10.1056/NEJMoa1506930',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lewis JD, Habel LA, Quesenberry CP et al. Pioglitazone Use and Risk of Bladder Cancer and Other Common Cancers in Persons With Diabetes. JAMA 2015;314:265-277',
+        identifier: '10.1001/jama.2015.7996',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sanyal AJ, Chalasani N, Kowdley KV et al. Pioglitazone, vitamin E, or placebo for nonalcoholic steatohepatitis (PIVENS). N Engl J Med 2010;362:1675-1685',
+        identifier: '10.1056/NEJMoa0907929',
+        kind: 'doi',
+      },
+      {
+        label:
+          'PIVENS: Pioglitazone Versus Vitamin E Versus Placebo for the Treatment of Nondiabetic Patients With Nonalcoholic Steatohepatitis',
+        identifier: 'NCT00063622',
+        kind: 'nct',
+      },
+      {
+        label:
+          'FDA prescribing information for pioglitazone tablets — BOXED WARNING (congestive heart failure), sections 5.1 to 5.8, 12.1 and 12.2',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22pioglitazone%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA — NDA 021073 (ACTOS, Takeda Pharmaceuticals USA, original approval 15 July 1999)',
+        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22ACTOS%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4829 — pioglitazone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4829',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

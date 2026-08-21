@@ -978,4 +978,921 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 3. Ceftriaxone — the once-daily injectable that runs emergency medicine, and the only drug in
+  //    this file whose commonest serious harm was quantified by a placebo-controlled trial in a
+  //    disease it does not treat.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ceftriaxone',
+    name: 'Ceftriaxone',
+    tradeName: 'Rocephin',
+    sponsor:
+      'Hoffmann-La Roche (originator, approved 1984); now made generically by dozens of manufacturers worldwide',
+    targetGene:
+      'Bacterial cell-wall genes ftsI (PBP3) and relatives — bacterial penicillin-binding-protein genes, not human ones',
+    targetProtein:
+      'Bacterial penicillin-binding proteins, principally PBP3 in Gram-negative organisms (DD-transpeptidases)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1984,
+    indication:
+      'Lower respiratory tract, skin and skin structure, urinary tract, intra-abdominal and gynaecologic infections, bacterial septicaemia, bone and joint infection, bacterial meningitis, acute bacterial otitis media, uncomplicated gonorrhoea and surgical prophylaxis, caused by susceptible organisms',
+    patientFriendlyIndication:
+      'Serious bacterial infections given by injection — pneumonia, meningitis, bloodstream, bone, urinary and sexually transmitted infection',
+    anatomicalSite:
+      'The bacterial cell envelope. Clinically the other site that matters is the biliary tree and the renal collecting system, where the drug precipitates as an insoluble calcium salt.',
+    conditionContext: {
+      conditionExplainer:
+        'Ceftriaxone is not for one disease. It is the drug reached for when someone is admitted with a serious infection and nobody yet knows which bacterium it is — pneumonia, meningitis, a bloodstream infection, a bone infection, gonorrhoea.',
+      whyItMatters:
+        'It is one of a very small number of antibiotics that reach the fluid around the brain in useful amounts, and it is the last agent that reliably cures gonorrhoea. Both of those positions are being eroded from different directions.',
+      whoTakesThis:
+        'Adults, children and newborns with serious bacterial infection, given by injection or infusion. It is used at enormous volume in emergency departments because it lasts long enough to give once a day.',
+      clinicalGoals:
+        'Clinical cure, and in meningitis and bloodstream infection, survival. Most of its indications were approved on cure rates in the mid-1980s rather than on mortality.',
+    },
+    oneSentenceVerdict:
+      'A third-generation cephalosporin whose side chain resists the beta-lactamases that destroy older penicillins and whose long half-life allows once-daily injection — it cured 87.9% of clinically evaluable community-acquired pneumonia patients in two pooled phase 3 trials, and in the only large placebo-controlled trial it has ever had, 62% of the 340 people who received it developed hepatobiliary adverse events against 11% on placebo.',
+    laymanHowItWorks:
+      'Bacteria hold their shape with a mesh wall they constantly rebuild. Ceftriaxone jams the tool that does the rebuilding, so the wall thins and the cell bursts. It is built with a chemical shield that stops most bacterial defence enzymes from cutting it apart, and it sticks to blood proteins so tightly that one injection lasts a day. It leaves partly through the bile, and in the gallbladder it can clump into sludge.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 83,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$1.44 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 39 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 1984 as Rocephin. Composition-of-matter protection expired long ago and the drug is on the WHO Model List of Essential Medicines. At about US$1.44 a vial it is one of the cheapest ways to deliver a full day of broad-spectrum antibacterial cover, which is a large part of why it is prescribed as heavily as it is.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Ceftriaxone is chosen for a combination of spectrum, brain penetration and once-a-day convenience, and every alternative gives up at least one of those. The narrower agents are better where the organism is known; the carbapenems cover what ceftriaxone has lost to extended-spectrum beta-lactamases; the oral agents avoid a cannula. Nothing sold as a food or a supplement treats meningitis, pneumonia or gonorrhoea, and this is a page where that has to be said plainly.',
+      conventionalRx: [
+        {
+          name: 'Cefazolin',
+          class: 'First-generation cephalosporin',
+          howItCompares:
+            'Far narrower, and better where the organism is known to be methicillin-susceptible Staphylococcus aureus — it binds staphylococcal penicillin-binding proteins more effectively than ceftriaxone does. It does not enter the cerebrospinal fluid usefully, so it is not an option in meningitis, and it needs more frequent administration.',
+          typicalCost:
+            'US$1.03 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 9 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: narrower selection pressure, stronger against staphylococci, similar cost. Cons: no meningeal penetration, no useful cover for the Gram-negative range ceftriaxone was built for.',
+        },
+        {
+          name: 'Ertapenem',
+          class: 'Carbapenem, once daily',
+          howItCompares:
+            'Keeps the once-daily schedule and covers the extended-spectrum beta-lactamase producers that ceftriaxone has lost — the exact organisms the MERINO trial was built around. It has no useful activity against Pseudomonas, which the other carbapenems do.',
+          typicalCost:
+            'US$27.76 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 14 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: covers ESBL producers, once daily. Cons: about nineteen times the price per day, and every carbapenem prescription is selection pressure on the class held in reserve for organisms nothing else reaches.',
+        },
+        {
+          name: 'Levofloxacin',
+          class: 'Fluoroquinolone',
+          howItCompares:
+            'Covers the respiratory organisms including the atypicals ceftriaxone misses entirely, and is absorbed so well by mouth that it removes the need for a cannula. It carries class warnings for tendon rupture, peripheral neuropathy and aortic events that ceftriaxone does not.',
+          typicalCost:
+            'US$0.1339 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 26 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: oral, atypical cover, a tenth of the cost. Cons: serious class-wide adverse events, QT prolongation, and rapid resistance selection in Enterobacterales.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report right upper abdominal pain during or after a course',
+          action:
+            'Tell the treating team about new pain under the right ribs, nausea after fatty food, or pain on passing urine during or shortly after a course of ceftriaxone.',
+          patientImpact:
+            'Ceftriaxone forms an insoluble calcium salt in bile and in urine. In the placebo-controlled ALS trial, 62% of ceftriaxone recipients had hepatobiliary adverse events against 11% on placebo, and 12% had serious ones — despite every one of them also receiving ursodeoxycholic acid specifically to prevent this.',
+          clinicalPrecaution:
+            'Most sludge is reversible when the drug is stopped, and the pooled paediatric urolithiasis frequency is about 7% with wide uncertainty. This is a reason to report a symptom, not a reason to stop an antibiotic without advice.',
+        },
+        {
+          name: 'Say if the patient is a newborn, or is receiving calcium-containing fluids',
+          action:
+            'Make sure the team knows the exact age in days for a newborn, and flag any calcium-containing intravenous fluid running at the same time.',
+          patientImpact:
+            'Ceftriaxone and intravenous calcium can precipitate together. The FDA warned against the combination in all patients in 2007 and narrowed the warning in April 2009 to neonates aged 28 days or younger, in whom the combination remains contraindicated.',
+          clinicalPrecaution:
+            'The narrowing was based on evidence that the adult risk was not supported. It was not a withdrawal of the neonatal contraindication, which stands.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CN1C(=NC(=O)C(=O)N1)SCC2=C(N3[C@@H]([C@@H](C3=O)NC(=O)/C(=N\\OC)/C4=CSC(=N4)N)SC2)C(=O)O',
+      chemicalFormula: 'C18H18N8O7S3',
+      molecularWeight: '554.60 g/mol',
+      targetReceptorAffinity:
+        'Ceftriaxone acylates bacterial DD-transpeptidases, with highest affinity for PBP3 in Gram-negative organisms — the enzyme that builds the septum during division, which is why sub-lethal exposure produces filamentous cells. Its aminothiazolyl methoxyimino side chain sterically obstructs hydrolysis by staphylococcal penicillinase and by the common TEM-1 and SHV-1 enzymes, but not by extended-spectrum derivatives of those same enzymes or by AmpC. Human protein binding is concentration-dependent and high, around 85 to 95%, which is the source of the long half-life rather than slow clearance.',
+      structureSource: {
+        label: 'PubChem CID 5479530 (ceftriaxone) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5479530',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cro-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Syn-oxime geometry and triazinedione tautomer confirmation',
+          description:
+            'Confirm the methoxyimino group is in the syn configuration and check the tautomeric state of the triazinedione leaving group. The anti isomer is markedly less stable to beta-lactamase and markedly less active, so this is not a purity check but an identity one: the geometry at that double bond is most of what separates a third-generation cephalosporin from a first.',
+          reagentsAndBuffer:
+            'Ceftriaxone sodium reference standard, 1H and 13C NMR in D2O and DMSO-d6, ultraviolet spectroscopy, gradient HPLC for related substances',
+        },
+        {
+          id: 'cro-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Acylation of the 7-ACA nucleus and installation of the triazinedione thiol',
+          description:
+            'Acylate the 7-aminocephalosporanic acid nucleus with the activated aminothiazolyl methoxyimino acid, then displace the 3-acetoxy group with the triazinedione thiol. The second substitution is what gives ceftriaxone its half-life and, unavoidably, its calcium-binding behaviour: the same electron-rich heterocycle that slows clearance is the group that chelates.',
+          dependsOnStepId: 'cro-w1',
+          reagentsAndBuffer:
+            'Activated 2-(2-aminothiazol-4-yl)-2-methoxyiminoacetic acid ester, 7-aminocephalosporanic acid, 2-methyl-1,2,4-triazine-3,5-dione-6-thiol, sodium bicarbonate buffer, controlled temperature under nitrogen',
+        },
+        {
+          id: 'cro-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Isolation as the disodium hemiheptahydrate and polymer control',
+          description:
+            'Crystallise the sodium salt and quantify polymeric degradation products by size-exclusion chromatography. Beta-lactam polymers, not the intact drug, are a principal immunogen in beta-lactam hypersensitivity, so this assay is a safety specification rather than a cosmetic one.',
+          dependsOnStepId: 'cro-w2',
+          reagentsAndBuffer:
+            'Sodium 2-ethylhexanoate, aqueous-ethanol crystallisation, size-exclusion chromatography with ultraviolet detection, Karl Fischer titration for the hydrate stoichiometry',
+        },
+        {
+          id: 'cro-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Outer-membrane transit and a calcium-precipitation counter-screen',
+          description:
+            'Confirm porin-mediated entry into the Gram-negative periplasm, then run the same drug against physiological calcium concentrations in simulated bile and urine. The second half of this step exists because ceftriaxone has two delivery problems, not one: getting into the bacterium, and staying in solution on the way out of the body.',
+          dependsOnStepId: 'cro-w3',
+          reagentsAndBuffer:
+            'Isogenic Escherichia coli porin-deletion panel, simulated bile with taurocholate and physiological calcium chloride, artificial urine at pH 5.5 and 7.0, dynamic light scattering and polarised light microscopy for precipitate detection',
+        },
+        {
+          id: 'cro-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'PBP3 affinity, filamentation imaging and an ESBL panel',
+          description:
+            'Measure binding to the penicillin-binding-protein set and image the morphological signature: preferential PBP3 inhibition stops septum formation, so Gram-negative rods elongate into filaments before they lyse. Then run minimum inhibitory concentrations against a defined panel of TEM, SHV, CTX-M and AmpC producers, because the boundary of what ceftriaxone can still treat is defined entirely by which enzyme an isolate carries.',
+          dependsOnStepId: 'cro-w4',
+          reagentsAndBuffer:
+            'Membrane preparations from Escherichia coli, Bocillin FL fluorescent penicillin, SDS-PAGE with fluorescence imaging, phase-contrast microscopy, characterised CTX-M-15, SHV-12 and AmpC-hyperproducing clinical isolates in cation-adjusted Mueller-Hinton broth',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cro-a1',
+        category: 'measured',
+        title:
+          'Ceftriaxone cured 87.9% of evaluable pneumonia patients in two pooled phase 3 trials',
+        laymanSummary:
+          'In two randomised trials designed to test a rival drug, ceftriaxone was the comparator and won. Roughly nine in ten evaluable patients hospitalised with pneumonia were cured.',
+        technicalDetails:
+          'Two double-blind phase 3 trials in adults hospitalised with community-acquired pneumonia randomised patients to intravenous daptomycin or ceftriaxone once daily for 5 to 14 days. Pooled, the intent-to-treat population held 421 ceftriaxone and 413 daptomycin patients and the clinically evaluable population held 371 and 369. Clinical cure at test of cure was 87.9% with ceftriaxone against 79.4% with daptomycin in the clinically evaluable population (95% CI for the difference -13.8% to -3.2%) and 77.4% against 70.9% in the intent-to-treat population (95% CI -12.4% to -0.6%). Both intervals exclude zero in ceftriaxone’s favour.',
+        evidenceSource: 'Pertel PE et al., Clin Infect Dis 2008;46:1142-1151',
+        doi: '10.1086/533441',
+        measuredMetric:
+          'Clinical cure at test of cure in hospitalised community-acquired pneumonia, ceftriaxone against daptomycin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cro-a2',
+        category: 'measured',
+        title: '62% hepatobiliary adverse events against 11% on placebo, with prophylaxis in place',
+        laymanSummary:
+          'The best measurement of ceftriaxone’s gallbladder problem comes from a trial in a completely different disease, because it is the only large placebo-controlled trial the drug has ever had. Nearly two in three people on ceftriaxone had a liver or gallbladder problem. One in nine had a serious one. Every one of them was also taking a drug meant to prevent exactly that.',
+        technicalDetails:
+          'In the three-stage ALS trial, 340 participants received intravenous ceftriaxone and 173 placebo, at home through a central venous catheter, for a median of many months. Hepatobiliary adverse events occurred in 211 of 340 (62%) against 19 of 173 (11%), P<0.0001, and serious hepatobiliary adverse events in 41 participants (12%). Gastrointestinal adverse events occurred in 245 of 340 (72%) against 97 of 173 (56%), P=0.0004. Every ceftriaxone participant also received 300 mg ursodeoxycholic acid twice daily specifically to minimise biliary effects, and placebo participants received matched placebo capsules — so these rates are on top of prophylaxis, not instead of it.',
+        evidenceSource:
+          'Cudkowicz ME et al., Lancet Neurol 2014;13:1083-1091 (NCT00349622), Safety findings',
+        doi: '10.1016/S1474-4422(14)70222-4',
+        measuredMetric:
+          'Hepatobiliary and gastrointestinal adverse event rates against matching placebo over prolonged exposure',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cro-a3',
+        category: 'failed',
+        title: 'Roughly one child in fourteen forms a stone in the urinary tract',
+        laymanSummary:
+          'The gallbladder problem is well known. The kidney one is less so. Pooling eight studies, about seven in a hundred children given ceftriaxone developed a stone in the urinary tract — with the caveat that the studies disagree wildly and the smallest ones are probably missing.',
+        technicalDetails:
+          'A 2026 systematic review and meta-analysis pooled eight studies of urolithiasis in children receiving ceftriaxone. The pooled frequency was 7% (95% CI 2 to 12%), with substantial heterogeneity (I2 = 89.8%) and a 95% prediction interval of 2.7 to 15.8%. Retrospective studies from Asian regions reported rates up to 34% while prospective Western studies reported consistently lower ones. Excluding the main outlier reduced the pooled estimate to 4% (p=0.004). Egger’s test detected publication bias (p=0.006) in the direction of underreporting low-event studies, which cuts against the headline figure rather than for it. The authors concluded that well-powered prospective studies with standardised imaging are still required.',
+        evidenceSource:
+          'Pooled frequency of ceftriaxone-induced urolithiasis in pediatric patients: a systematic review and meta-analysis. Pediatr Nephrol 2026, published online 9 June 2026',
+        doi: '10.1007/s00467-026-07358-8',
+        measuredMetric:
+          'Pooled proportion of paediatric ceftriaxone recipients developing urolithiasis across eight studies',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cro-a4',
+        category: 'conclusion_shift',
+        title: 'The 2007 calcium contraindication was narrowed to newborns in 2009',
+        laymanSummary:
+          'In 2007 regulators told clinicians never to give ceftriaxone and intravenous calcium to any patient, after fatal precipitation in newborns. In April 2009 that was narrowed to newborns only, because the evidence that adults were at risk did not hold up when it was examined.',
+        technicalDetails:
+          'The original warning asserted that ceftriaxone and intravenous calcium products should not be coadministered to any patient. In April 2009 the FDA retracted the universal form of that assertion, leaving the contraindication in place for neonates aged 28 days or younger. A subsequent structured analysis of the FDA Adverse Event Reporting System compared 104 ceftriaxone-calcium events against 99 ceftazidime-calcium events as a comparator. Among ceftriaxone-calcium reports, 7.7% were classified probable and 20.2% possible for embolism; ceftazidime-calcium produced fewer probable (4%) but more possible (30.3%) events. Restricting to cases where either drug was primary or secondary suspect left a single probable embolic event — a patient who received ceftriaxone and calcium and died, with causality not attributable. The authors concluded the analysis supported the revised, narrower recommendation.',
+        evidenceSource:
+          'Steadman E et al., Evaluation of a potential clinical interaction between ceftriaxone and calcium. Antimicrob Agents Chemother 2010;54:1534-1540',
+        doi: '10.1128/AAC.01111-09',
+        inferredClaim:
+          'That an in vitro precipitation risk demonstrated in neonates generalises to adults — the inference the 2007 warning rested on, and the one the pharmacovigilance analysis did not support',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cro-a5',
+        category: 'conclusion_shift',
+        title: 'The ALS signal was real at stage 2 and gone at stage 3',
+        laymanSummary:
+          'Ceftriaxone raises the level of a protein that clears glutamate from around nerve cells, and in mice that slowed motor neurone disease. A trial ran in three stages. The middle stage found a statistically significant slowing of decline. The final stage, in five hundred people, found nothing at all.',
+        technicalDetails:
+          'In stages 1 and 2 of the trial, mean ALSFRS-R declined more slowly on 4 g daily ceftriaxone than on placebo — a difference of 0.51 units per month (95% CI 0.02 to 1.00, P=0.0416). In stage 3, which included 66 continuing participants and 448 new ones, with 340 allocated to ceftriaxone and 173 to placebo, the difference in functional decline was 0.09 units per month (95% CI -0.06 to 0.24, P=0.2370) and there was no survival difference (hazard ratio 0.90, 95% CI 0.71 to 1.15, P=0.4146). The trial stopped for futility. The stage 2 result was not fraud or error: it is what a borderline P value in a small cohort looks like when the underlying effect is zero.',
+        evidenceSource: 'Cudkowicz ME et al., Lancet Neurol 2014;13:1083-1091 (NCT00349622)',
+        doi: '10.1016/S1474-4422(14)70222-4',
+        inferredClaim:
+          'That raising EAAT2 glutamate-transporter activity, which delays onset and prolongs survival in mouse models, would slow human amyotrophic lateral sclerosis — a mechanistically strong inference that a 513-person randomised trial did not support',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cro-a6',
+        category: 'inferred',
+        title: 'In gonorrhoea, cure is inferred from a laboratory number that is moving',
+        laymanSummary:
+          'Ceftriaxone is the last drug that reliably cures gonorrhoea. What is measured routinely is not cure but a laboratory value — the concentration needed to stop the bacterium growing in a dish — and that value is rising in several countries.',
+        technicalDetails:
+          'Surveillance rather than trials carries this indication. In a Hangzhou surveillance series, high-level ceftriaxone resistance defined as a minimum inhibitory concentration of 0.5 mg/L or above reached 35% of surveyed isolates in 2024 and 19% in 2025, driven by expansion of strains carrying penA allele 60.001. Genomic analysis showed a shift in which lineage carries that allele: early isolates from 2019 to 2021 belonged to the internationally disseminated FC428 clone (ST1903), but from 2022 the resistant isolates were predominantly the endemic ST8123 lineage, a genetically distinct clade. Whether an isolate above a breakpoint predicts an individual treatment failure is supported by case reports and by pharmacodynamic reasoning rather than by any randomised comparison, because no such trial exists or is likely to.',
+        evidenceSource:
+          'Rapid expansion of penA allele 60.001-containing endemic ceftriaxone-resistant gonococcal ST8123 lineage in Hangzhou, China. Infection 2026, published online 10 July 2026',
+        doi: '10.1007/s15010-026-02889-6',
+        inferredClaim:
+          'That a minimum inhibitory concentration below the breakpoint predicts cure in gonorrhoea and one above it predicts failure — the surrogate the entire treatment guideline rests on, validated by mechanism and case reports rather than by a randomised endpoint',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given by injection, because it cannot survive the gut',
+        laymanDesc:
+          'There is no tablet form. The molecule is destroyed by stomach acid and is too charged to be absorbed, so it goes in through a vein or a muscle. One injection covers a day.',
+        molecularDetail:
+          'Ceftriaxone is administered intravenously or intramuscularly only. Its terminal half-life of roughly 6 to 9 hours in adults comes from concentration-dependent plasma protein binding of about 85 to 95%, not from slow intrinsic clearance — bound drug is a reservoir rather than a cleared fraction.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches places most antibiotics cannot',
+        laymanDesc:
+          'Very few antibiotics cross into the fluid around the brain and spinal cord in useful amounts. This one does, especially when the lining is inflamed — which is exactly when it is needed.',
+        molecularDetail:
+          'Penetration into cerebrospinal fluid is limited under normal conditions and rises substantially when the meninges are inflamed, which is what makes ceftriaxone a first-line agent in bacterial meningitis. It also concentrates in bile, reaching many times the plasma concentration, and that biliary concentration is the origin of the pseudolithiasis on this page.',
+        iconName: 'Brain',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'Its shield deflects the older bacterial defences',
+        laymanDesc:
+          'Bacteria carry enzymes that chop penicillins in half. Ceftriaxone carries a bulky chemical group positioned so those enzymes cannot get a grip. Newer versions of the same enzymes can.',
+        molecularDetail:
+          'The 2-aminothiazolyl ring with a syn-methoxyimino group sterically hinders hydrolysis by staphylococcal penicillinase and by classical TEM-1 and SHV-1 beta-lactamases. Extended-spectrum derivatives of those enzymes, the CTX-M family and AmpC cephalosporinases hydrolyse it efficiently, and that is the entire definition of the "ceftriaxone-nonsusceptible" organisms around which the MERINO trial was designed.',
+        iconName: 'Shield',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It jams the enzyme that builds the dividing wall',
+        laymanDesc:
+          'When a rod-shaped bacterium divides it builds a wall across its middle. Ceftriaxone preferentially blocks the tool that builds that cross-wall, so the cell keeps growing longer without ever splitting.',
+        molecularDetail:
+          'Highest affinity in Gram-negative organisms is for PBP3, the septal transpeptidase. Selective PBP3 inhibition produces the characteristic filamentation seen at sub-lethal concentrations, and lysis follows as autolysins continue to cleave peptidoglycan that is no longer being cross-linked.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The bacterium bursts',
+        laymanDesc:
+          'With repair blocked and demolition continuing, internal pressure does the rest. This only works on bacteria that are actively growing.',
+        molecularDetail:
+          'Killing is time-dependent and requires active division. In meningitis, rapid lysis releases cell-wall fragments that drive the inflammatory response, which is the pharmacological reason adjunctive dexamethasone was studied in that setting at all.',
+        iconName: 'Zap',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'On the way out, it can turn solid',
+        laymanDesc:
+          'Ceftriaxone leaves partly through the bile and partly through the kidneys. In both places it can bind calcium and drop out of solution as sludge or as a stone.',
+        molecularDetail:
+          'Roughly 33 to 67% is excreted unchanged in urine and the remainder in bile. The triazinedione moiety chelates calcium, forming a poorly soluble calcium-ceftriaxone salt that precipitates in concentrated bile and in urine. This is the mechanism behind biliary pseudolithiasis, paediatric urolithiasis at a pooled 7%, the 62% hepatobiliary adverse event rate in the ALS trial, and the neonatal contraindication with intravenous calcium.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Pertel 2008 pooled community-acquired pneumonia programme',
+        phase: 'Two phase 3, randomised, double-blind, active-controlled trials pooled',
+        sampleSize: 834,
+        primaryEndpoint:
+          'Clinical response at the test-of-cure visit in the intent-to-treat and clinically evaluable populations',
+        endpointMet: true,
+        statisticalPValue:
+          'Clinically evaluable 87.9% ceftriaxone against 79.4% daptomycin (95% CI for the difference -13.8% to -3.2%); intent-to-treat 77.4% against 70.9% (95% CI -12.4% to -0.6%)',
+        unreportedAdverseSignals:
+          'The trials were designed to test daptomycin, not ceftriaxone, so ceftriaxone’s own adverse-event profile is reported as a comparator arm rather than as a primary safety analysis. A post-hoc finding that as little as 24 hours of prior effective therapy erased the difference between arms is a warning about how pneumonia trials are read generally.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Ceftriaxone in amyotrophic lateral sclerosis (NCT00349622)',
+        phase: 'Combined phase 1, 2 and 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 513,
+        primaryEndpoint:
+          'Coprimary: survival and rate of functional decline on the ALSFRS-R over stage 3',
+        endpointMet: false,
+        statisticalPValue:
+          'Functional decline difference 0.09 units per month (95% CI -0.06 to 0.24), P=0.2370; survival hazard ratio 0.90 (95% CI 0.71 to 1.15), P=0.4146. Stopped for futility.',
+        unreportedAdverseSignals:
+          'The stage 2 signal that justified stage 3 was 0.51 units per month (95% CI 0.02 to 1.00, P=0.0416) and did not survive. Hepatobiliary adverse events reached 62% against 11% on placebo despite universal ursodeoxycholic acid prophylaxis in the ceftriaxone arm — the largest placebo-controlled quantification of this harm anywhere in the literature.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clinical cure 87.9% in 371 clinically evaluable pneumonia patients, against 79.4% for the comparator, with the confidence interval excluding zero',
+        'Hepatobiliary adverse events 62% against 11% on matching placebo in 513 participants, with ursodeoxycholic acid prophylaxis in every ceftriaxone recipient',
+        'Serious hepatobiliary adverse events in 41 of 340 ceftriaxone participants (12%)',
+        'Pooled paediatric urolithiasis frequency of 7% (95% CI 2 to 12%) across eight studies, falling to 4% when the main outlier is removed',
+        'High-level ceftriaxone-resistant gonococci at 35% of surveyed isolates in one Chinese city in 2024',
+      ],
+      unsupportedInferences: [
+        'That raising EAAT2 glutamate-transporter activity would slow human ALS — a strong animal-model inference that a 513-person trial refuted',
+        'That the neonatal calcium precipitation risk generalises to adults, the basis of the 2007 universal warning that was narrowed in 2009',
+        'That a minimum inhibitory concentration below the breakpoint predicts cure in gonorrhoea — the surrogate the whole guideline rests on, never validated against a randomised endpoint',
+        'That once-daily convenience and a broad in vitro spectrum imply outcome superiority; most of ceftriaxone’s indications were approved on cure rates without a mortality comparison',
+      ],
+      whatFailedInitially: [
+        'The ALS programme failed outright at stage 3 after a significant stage 2 signal, and stopped for futility',
+        'Biliary and urinary precipitation were not designed out of the molecule: the triazinedione group that gives the long half-life is the group that chelates calcium',
+        'Extended-spectrum beta-lactamases and AmpC enzymes hydrolyse ceftriaxone efficiently, and ceftriaxone-nonsusceptible Enterobacterales are now common enough to build a nine-country trial around',
+        'Gonococcal minimum inhibitory concentrations are rising, and the resistance determinant has moved out of an imported clone into endemic lineages',
+      ],
+      realWorldOutcome: [
+        'Approved in 1984, on the WHO Model List of Essential Medicines, and available at about US$1.44 a vial',
+        'A first-line agent in bacterial meningitis, one of a small number of antibacterials that reach cerebrospinal fluid usefully',
+        'The last remaining reliable single-agent treatment for gonorrhoea, and under measurable pressure',
+        'Contraindicated with intravenous calcium in neonates aged 28 days or younger; the wider 2007 warning was narrowed in April 2009',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion or intramuscular injection; no oral formulation exists',
+      description:
+        'Given once daily in most indications because concentration-dependent plasma protein binding of about 85 to 95% holds the drug in circulation, not because it is cleared slowly. Eliminated by two routes at once — roughly a third to two-thirds unchanged in urine and the balance in bile — which is why it needs no dose reduction for moderate impairment of either organ alone, and why both organs are where its characteristic harm appears.',
+      safetyProfile:
+        'Contraindicated in neonates aged 28 days or younger who are receiving or expected to receive calcium-containing intravenous solutions, and in hyperbilirubinaemic neonates, because ceftriaxone displaces bilirubin from albumin. Biliary pseudolithiasis and urolithiasis are the characteristic harms: the only large placebo-controlled trial recorded hepatobiliary adverse events in 62% against 11% on placebo, and serious ones in 12%, despite universal ursodeoxycholic acid prophylaxis. Immune haemolytic anaemia is rare and has been fatal. Clostridioides difficile-associated diarrhoea is reported as with essentially all antibacterials. Hypersensitivity reactions occur and cross-reactivity with penicillins is far lower for third-generation agents than for first-generation ones.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why is it given as an injection when other antibiotics are tablets?',
+        a: 'Because it cannot survive the journey. Ceftriaxone is broken down by stomach acid and is too polar to be absorbed across the gut wall in useful amounts, and unlike cephalexin it is not carried across by the intestinal peptide transporter. There is no oral form of the molecule anywhere in the world. What it offers in exchange is a once-daily schedule: it binds plasma proteins so extensively that a single injection maintains active concentrations for about a day, which is why it dominates emergency departments and outpatient parenteral antibiotic services.',
+      },
+      {
+        q: 'Can it damage my gallbladder?',
+        a: 'It can form sludge in it, and the size of that effect is better measured than for almost any other antibiotic harm — from an unlikely source. The only large placebo-controlled trial ceftriaxone has ever had was in motor neurone disease, where 340 people received it for months at a time. Hepatobiliary adverse events occurred in 62% of them against 11% on placebo, and 12% had serious ones. Every ceftriaxone participant was also given ursodeoxycholic acid specifically to prevent this, so those figures are on top of prophylaxis. The mechanism is straightforward: ceftriaxone concentrates in bile and binds calcium to form a poorly soluble salt. In ordinary short courses the sludge is usually silent and reverses when the drug stops.',
+        auditNote:
+          'That trial gave the drug for far longer than any infection would. It quantifies the mechanism, not the risk of a three-day course, and this page does not treat the two as the same number.',
+      },
+      {
+        q: 'Is it safe to give to a newborn?',
+        a: 'That depends on two specific things, and both are label contraindications rather than cautions. Ceftriaxone must not be given to a neonate aged 28 days or younger who is receiving or expected to receive calcium-containing intravenous fluids, because the two can precipitate together and this has been fatal. It is also contraindicated in hyperbilirubinaemic neonates, because ceftriaxone competes with bilirubin for albumin binding and can raise free bilirubin. In 2007 the FDA extended the calcium warning to every patient of any age; in April 2009 it narrowed it back to neonates, after the evidence for an adult risk did not hold up when examined in the adverse-event reporting system.',
+      },
+      {
+        q: 'Why does gonorrhoea keep being mentioned with this drug?',
+        a: 'Because ceftriaxone is the last one that reliably works, and that is not a stable position. Gonorrhoea has already defeated sulphonamides, penicillins, tetracyclines, fluoroquinolones and the oral cephalosporins in turn. Surveillance is now picking up high-level resistance: in one Chinese city, isolates needing a minimum inhibitory concentration of 0.5 mg/L or more reached 35% of those surveyed in 2024. What has changed genetically is the more worrying part — the resistance gene variant driving it has moved out of an imported international clone and into locally common lineages, which is how a rarity becomes an epidemiology.',
+      },
+      {
+        q: 'It was tested in motor neurone disease. Did that work?',
+        a: 'No. Ceftriaxone raises the activity of EAAT2, a transporter that clears glutamate from around nerve cells, and in mouse models of ALS that delayed onset and prolonged survival. A three-stage trial ran from 2006 to 2012 across 59 sites. Stage 2 found decline was slower on ceftriaxone by 0.51 ALSFRS-R units per month, with a confidence interval of 0.02 to 1.00 and a P value of 0.0416 — statistically significant, barely. Stage 3, with 513 participants, found a difference of 0.09 units per month, a confidence interval spanning zero, and no survival difference at all. The trial stopped for futility. It is a clean illustration of what a borderline result in a small cohort looks like when the true effect is nothing.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Pertel PE, Bernardo P, Fogarty C, et al. Effects of prior effective therapy on the efficacy of daptomycin and ceftriaxone for the treatment of community-acquired pneumonia. Clin Infect Dis 2008;46:1142-1151',
+        identifier: '10.1086/533441',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cudkowicz ME, Titus S, Kearney M, et al. Safety and efficacy of ceftriaxone for amyotrophic lateral sclerosis: a multi-stage, randomised, double-blind, placebo-controlled trial. Lancet Neurol 2014;13:1083-1091',
+        identifier: '10.1016/S1474-4422(14)70222-4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Steadman E, Raisch DW, Bennett CL, et al. Evaluation of a potential clinical interaction between ceftriaxone and calcium. Antimicrob Agents Chemother 2010;54:1534-1540',
+        identifier: '10.1128/AAC.01111-09',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pooled frequency of ceftriaxone-induced urolithiasis in pediatric patients: a systematic review and meta-analysis. Pediatr Nephrol 2026, published online 9 June 2026',
+        identifier: '10.1007/s00467-026-07358-8',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rapid expansion of penA allele 60.001-containing endemic ceftriaxone-resistant gonococcal ST8123 lineage in Hangzhou, China. Infection 2026, published online 10 July 2026',
+        identifier: '10.1007/s15010-026-02889-6',
+        kind: 'doi',
+      },
+      {
+        label: 'Ceftriaxone in amyotrophic lateral sclerosis, three-stage placebo-controlled trial',
+        identifier: 'NCT00349622',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 5479530 — ceftriaxone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5479530',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Cefepime — accused of killing people by one meta-analysis, cleared by the regulator's own,
+  //    and then shown by a 2,511-patient randomised trial to cause the harm nobody was arguing
+  //    about.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'cefepime',
+    name: 'Cefepime',
+    tradeName: 'Maxipime',
+    sponsor:
+      'Bristol-Myers Squibb (originator); the current United States application holder on NDA 050679 is Hospira, and generics are widely marketed',
+    targetGene:
+      'Bacterial cell-wall genes ftsI (PBP3), mrcA/mrcB and relatives — bacterial penicillin-binding-protein genes, not human ones',
+    targetProtein:
+      'Bacterial penicillin-binding proteins, principally PBP3 and PBP2 in Gram-negative organisms',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1996,
+    indication:
+      'Pneumonia, empirical therapy of febrile neutropenia, complicated and uncomplicated urinary tract infection including pyelonephritis, uncomplicated skin and skin structure infection, and complicated intra-abdominal infection, caused by susceptible strains of the designated microorganisms',
+    patientFriendlyIndication:
+      'Serious hospital infections, including pneumonia and fever in patients whose white cell count has collapsed',
+    anatomicalSite:
+      'The bacterial cell envelope. In humans the organ that matters most for its harms is the brain, where accumulation produces encephalopathy and non-convulsive seizures.',
+    conditionContext: {
+      conditionExplainer:
+        'Cefepime is a hospital antibiotic used when the infection could be caused by almost anything, including Pseudomonas, and there is no time to wait for a culture. Febrile neutropenia — fever in someone whose white cells have been wiped out by chemotherapy — is the situation it was designed for.',
+      whyItMatters:
+        'It sits in the middle of the two biggest empirical-therapy arguments in hospital medicine: whether it increases mortality, which took thirteen years and two meta-analyses to resolve, and whether it or piperacillin-tazobactam is the safer default, which took a 2,511-patient randomised trial in 2023.',
+      whoTakesThis:
+        'Hospitalised adults and children with serious infection, and patients with fever during chemotherapy-induced neutropenia.',
+      clinicalGoals:
+        'Clinical cure and survival. The debates on this page are not about whether it kills bacteria — it does — but about what it does to the patient while doing so.',
+    },
+    oneSentenceVerdict:
+      'A fourth-generation cephalosporin whose zwitterionic charge lets it cross the Gram-negative outer membrane quickly and whose ring resists AmpC enzymes — a 2007 meta-analysis of 57 trials reported higher all-cause mortality than other beta-lactams (RR 1.26, 95% CI 1.08 to 1.49), the FDA’s own analysis of 88 trials in 17,755 patients found no significant increase, and the 2,511-patient ACORN trial in 2023 found no kidney difference against piperacillin-tazobactam but fewer days free of delirium and coma (OR 0.79, 95% CI 0.65 to 0.95).',
+    laymanHowItWorks:
+      'Cefepime carries a positive and a negative charge at the same time, which lets it slip through the pores in a Gram-negative bacterium’s outer skin far faster than older cephalosporins. Once inside, it jams the tools the bacterium uses to build its wall, and the cell bursts. It is shaped so that one common family of bacterial defence enzymes cannot destroy it. Its own weakness is that it is cleared by the kidneys, and when it builds up it reaches the brain.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 72,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$3.73 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 8 listed generic products, survey effective 20 August 2025)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 1996 under NDA 050679. Composition-of-matter protection has expired and generics are marketed, but only eight products appear in the acquisition-cost survey — a thin supply base for an antibiotic in this position, and thin supply is itself a clinical risk for a drug used empirically in neutropenic fever.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The comparison that matters is against piperacillin-tazobactam, and for once it has been settled by a randomised trial rather than by databases: no difference in kidney injury or death, more neurological dysfunction on cefepime. Beyond that pair, the alternatives are the carbapenems, which cover more and cost more in resistance terms, and ceftazidime, which covers less. None of these is a food, and nothing in a supplement aisle treats neutropenic fever.',
+      conventionalRx: [
+        {
+          name: 'Piperacillin-tazobactam',
+          class: 'Antipseudomonal penicillin plus beta-lactamase inhibitor',
+          howItCompares:
+            'Covers anaerobes, which cefepime does not, and in the ACORN trial produced no more acute kidney injury or death than cefepime (odds ratio 0.95, 95% CI 0.80 to 1.13) while producing less neurological dysfunction. It is the more common empirical choice in intra-abdominal infection for the anaerobic cover.',
+          typicalCost:
+            'US$3.49 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 12 listed generic tazobactam-containing products, survey effective 21 January 2026)',
+          prosAndCons:
+            'Pros: anaerobic cover, no measured excess kidney injury, less delirium in the head-to-head trial. Cons: failed its non-inferiority comparison against meropenem in ceftriaxone-resistant bloodstream infection; more frequent administration.',
+        },
+        {
+          name: 'Meropenem',
+          class: 'Carbapenem',
+          howItCompares:
+            'Covers the extended-spectrum beta-lactamase producers that hydrolyse cefepime, plus anaerobes, and has the lowest seizure liability of the carbapenems. It is the drug cefepime is meant to spare, and every prescription of it is selection pressure on the last broadly reliable class.',
+          typicalCost:
+            'US$4.67 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 13 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: broadest reliable cover, best evidence in ceftriaxone-resistant bloodstream infection. Cons: carbapenem selection pressure; reserved for a reason.',
+        },
+        {
+          name: 'Ceftazidime',
+          class: 'Third-generation antipseudomonal cephalosporin',
+          howItCompares:
+            'The older antipseudomonal cephalosporin cefepime was built to improve on. It is readily hydrolysed by AmpC enzymes that cefepime resists, and has essentially no Gram-positive activity, so it is a narrower and less reliable empirical choice.',
+          typicalCost:
+            'US$3.70 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 2 listed generic products, survey effective 17 December 2025)',
+          prosAndCons:
+            'Pros: long track record, similar price. Cons: no useful Gram-positive cover, vulnerable to AmpC derepression, only two listed products.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report new confusion in someone receiving it',
+          action:
+            'Tell the treating team about new confusion, twitching, unusual drowsiness or a change in speech in a patient on cefepime, especially if their kidney function is reduced.',
+          patientImpact:
+            'Cefepime neurotoxicity presents as encephalopathy, aphasia, myoclonus, seizures or non-convulsive status epilepticus, and the label records life-threatening and fatal cases. In the randomised ACORN trial, patients on cefepime had fewer days alive and free of delirium and coma than those on piperacillin-tazobactam.',
+          clinicalPrecaution:
+            'Most cases occurred in renal impairment without appropriate adjustment, but the label states explicitly that some occurred in patients whose dosage was appropriately adjusted. Symptoms are usually reversible on stopping. Nothing here is a monitoring or dosing instruction.',
+        },
+        {
+          name: 'Make sure the fever is being treated as an emergency during chemotherapy',
+          action:
+            'If a patient on chemotherapy develops fever, treat it as an emergency rather than waiting to see how it develops.',
+          patientImpact:
+            'Febrile neutropenia is the indication cefepime exists for. It is a situation where the antibiotic is started before any organism is known, because the delay costs more than the wrong choice does.',
+          clinicalPrecaution:
+            'This describes why the drug is given empirically. It is not advice about what to take, and the decision belongs to the treating oncology team.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[N+]1(CCCC1)CC2=C(N3[C@@H]([C@@H](C3=O)NC(=O)/C(=N\\OC)/C4=CSC(=N4)N)SC2)C(=O)[O-]',
+      chemicalFormula: 'C19H24N6O5S2',
+      molecularWeight: '480.60 g/mol',
+      targetReceptorAffinity:
+        'Cefepime acylates bacterial DD-transpeptidases with high affinity for PBP3 and PBP2 in Gram-negative organisms. The structural feature that defines it is the quaternary N-methylpyrrolidinium group at position 3: it makes the molecule a zwitterion, which accelerates passage through outer-membrane porins, and it lowers affinity for AmpC cephalosporinases so that derepressed AmpC producers remain susceptible. It is still hydrolysed by extended-spectrum beta-lactamases and by carbapenemases. It has no mammalian receptor; its central nervous system toxicity is instead concentration-dependent antagonism at the GABA-A receptor, shared across beta-lactams.',
+      structureSource: {
+        label: 'PubChem CID 5479537 (cefepime) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5479537',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fep-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Zwitterion confirmation and syn-oxime geometry',
+          description:
+            'Confirm the quaternary pyrrolidinium cation and the carboxylate anion are both present and that the methoxyimino group is syn. The permanent positive charge is not a formulation detail: it is the entire reason cefepime crosses the Gram-negative outer membrane faster than ceftazidime, and a batch that has lost it is a third-generation cephalosporin wearing a fourth-generation name.',
+          reagentsAndBuffer:
+            'Cefepime hydrochloride reference standard, 1H and 13C NMR in D2O, capillary electrophoresis for charge-state confirmation, gradient HPLC for related substances',
+        },
+        {
+          id: 'fep-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Acylation of the 7-ACA nucleus and quaternisation at position 3',
+          description:
+            'Acylate the aminocephalosporanic nucleus with the aminothiazolyl methoxyimino side chain, then displace the 3-acetoxy group with N-methylpyrrolidine to install the quaternary ammonium centre. The order matters: quaternising first leaves a substrate that resists clean acylation.',
+          dependsOnStepId: 'fep-w1',
+          reagentsAndBuffer:
+            'Activated 2-(2-aminothiazol-4-yl)-2-methoxyiminoacetic acid derivative, 7-aminocephalosporanic acid, N-methylpyrrolidine, sodium iodide catalysis, controlled temperature under nitrogen',
+        },
+        {
+          id: 'fep-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Isolation as the hydrochloride with L-arginine and degradant control',
+          description:
+            'Isolate the salt and control the degradation products, particularly N-methylpyrrolidine released by hydrolysis at position 3. The commercial product is co-formulated with L-arginine as a pH buffer, and the finished vial specification includes limits on that released amine.',
+          dependsOnStepId: 'fep-w2',
+          reagentsAndBuffer:
+            'L-arginine, aqueous-alcohol crystallisation, ion chromatography for N-methylpyrrolidine, size-exclusion chromatography for polymeric impurities, Karl Fischer titration',
+        },
+        {
+          id: 'fep-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Porin flux measurement against a third-generation comparator',
+          description:
+            'Measure the rate of periplasmic accumulation in an intact Gram-negative organism against ceftazidime as a comparator. This is the step that either demonstrates or fails to demonstrate cefepime’s actual design claim: not that it binds the target better, but that it arrives faster and in higher periplasmic concentration for the same external concentration.',
+          dependsOnStepId: 'fep-w3',
+          reagentsAndBuffer:
+            'Enterobacter cloacae and Pseudomonas aeruginosa with defined porin genotypes, osmotic shock periplasmic fractionation, LC-MS/MS quantification, ceftazidime as paired comparator in the same assay',
+        },
+        {
+          id: 'fep-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'AmpC stability panel and inoculum-effect testing against ESBL producers',
+          description:
+            'Run minimum inhibitory concentrations against derepressed AmpC producers, where cefepime should hold and ceftazidime should fail, then repeat against extended-spectrum beta-lactamase producers at standard and hundred-fold inoculum. The second test is the one that matters clinically: cefepime shows a marked inoculum effect against ESBL producers, so a susceptible result at standard inoculum can overstate what happens in a high-burden infection.',
+          dependsOnStepId: 'fep-w4',
+          reagentsAndBuffer:
+            'Characterised AmpC-derepressed Enterobacter and CTX-M-producing Escherichia coli isolates, cation-adjusted Mueller-Hinton broth at 5x10^5 and 5x10^7 CFU/mL, broth microdilution panels read at 16 to 20 hours',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fep-a1',
+        category: 'conclusion_shift',
+        title: 'Accused of increasing mortality in 2007, cleared by the regulator’s data in 2010',
+        laymanSummary:
+          'A pooled analysis of 57 trials reported that more people died on cefepime than on other antibiotics of the same family. It caused a genuine scare. The FDA then went back to the raw data from 88 trials, including unpublished ones, and found no significant difference.',
+        technicalDetails:
+          'Yahav and colleagues systematically reviewed randomised trials comparing cefepime with another beta-lactam and found all-cause mortality higher with cefepime across 57 trials (risk ratio 1.26, 95% CI 1.08 to 1.49). Sensitivity analysis by methodological quality made the signal larger, not smaller: RR 1.52 (1.20 to 1.92) in trials reporting adequate allocation-sequence generation and 1.36 (1.09 to 1.70) with adequate concealment. There were no significant differences in treatment failure, superinfection or adverse events. The FDA then accessed published and unpublished trial data directly. The trial-level meta-analysis covered 88 trials, 9,467 cefepime and 8,288 comparator patients: 30-day all-cause mortality was 6.21% against 6.00%, adjusted risk difference 5.38 per 1,000 (95% CI -1.53 to 12.28). The patient-level analysis covered 35 trials, 5,058 and 3,976 patients: 5.63% against 5.68%, adjusted risk difference 4.83 per 1,000 (95% CI -4.72 to 14.38). A sensitivity analysis restricted to the 24 febrile neutropenia trials also showed no significant increase (9.67 per 1,000, 95% CI -2.87 to 22.21).',
+        evidenceSource:
+          'Yahav D et al., Lancet Infect Dis 2007;7:338-348; Kim PW et al., Clin Infect Dis 2010;51:381-389',
+        doi: '10.1086/655131',
+        inferredClaim:
+          'That cefepime increases mortality relative to other beta-lactams — a signal that survived quality-based sensitivity analysis in the published literature and did not survive access to the underlying patient-level data',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fep-a2',
+        category: 'measured',
+        title: 'No kidney difference against piperacillin-tazobactam in 2,511 randomised patients',
+        laymanSummary:
+          'For years hospitals switched patients from piperacillin-tazobactam to cefepime to protect their kidneys, on the strength of database studies. When it was finally tested by randomisation, there was no kidney difference at all.',
+        technicalDetails:
+          'The ACORN trial randomised 2,511 adults for whom a clinician ordered antipseudomonal antibiotics within 12 hours of presenting to an emergency department or medical intensive care unit at a United States academic centre. The primary outcome, the highest stage of acute kidney injury or death by day 14 on a five-level ordinal scale, did not differ: 85 of 1,214 in the cefepime group (7.0%) reached stage 3 acute kidney injury and 92 (7.6%) died, against 97 of 1,297 (7.5%) and 78 (6.0%) with piperacillin-tazobactam — odds ratio 0.95 (95% CI 0.80 to 1.13), P=.56. Major adverse kidney events at day 14 were 10.2% against 8.8%, absolute difference 1.4% (95% CI -1.0 to 3.8). Median age was 58, 42.7% were female, 94.7% were enrolled in the emergency department, and 77.2% were receiving vancomycin at enrolment.',
+        evidenceSource: 'Qian ET et al., JAMA 2023;330:1557-1567 (ACORN, NCT05094154)',
+        doi: '10.1001/jama.2023.20583',
+        measuredMetric:
+          'Highest stage of acute kidney injury or death by day 14 on a five-level ordinal scale',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fep-a3',
+        category: 'failed',
+        title: 'The same trial found cefepime caused more delirium and coma',
+        laymanSummary:
+          'The trial was designed to settle a kidney argument. It settled it, and then found the harm nobody was arguing about: patients on cefepime spent fewer days awake and clear-headed.',
+        technicalDetails:
+          'In ACORN, days alive and free of delirium and coma within 14 days were a mean 11.9 (SD 4.6) in the cefepime group against 12.2 (SD 4.3) with piperacillin-tazobactam, odds ratio 0.79 (95% CI 0.65 to 0.95). The published conclusion states it directly: treatment with cefepime resulted in more neurological dysfunction. This is consistent with the label, which records life-threatening and fatal encephalopathy, aphasia, myoclonus, seizures and non-convulsive status epilepticus, and which notes that although most cases occurred in renal impairment without appropriate dosage adjustment, some occurred in patients whose dosage was appropriately adjusted. The mechanism is concentration-dependent GABA-A receptor antagonism.',
+        evidenceSource:
+          'Qian ET et al., JAMA 2023;330:1557-1567 (ACORN, NCT05094154); Cefepime for Injection United States prescribing information, Warnings and Precautions 5.2',
+        doi: '10.1001/jama.2023.20583',
+        measuredMetric: 'Days alive and free of delirium and coma within 14 days',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fep-a4',
+        category: 'inferred',
+        title: 'A decade of substitution to protect kidneys rested on database associations',
+        laymanSummary:
+          'The reason so many patients were switched to cefepime was a set of observational studies linking piperacillin-tazobactam plus vancomycin to kidney injury. Those studies could not separate the drug from the patients who received it. The randomised answer, when it came, was no difference.',
+        technicalDetails:
+          'The hypothesis that piperacillin-tazobactam causes acute kidney injury, particularly with vancomycin, came from retrospective cohorts and pharmacovigilance analyses in which treatment assignment was decided by clinicians who could see how sick each patient was. ACORN removed that by randomising, and found the primary ordinal outcome unchanged (OR 0.95, 95% CI 0.80 to 1.13) and major adverse kidney events at 14 days statistically indistinguishable. Notably 77.2% of ACORN participants were receiving vancomycin at enrolment, so the trial tested the combination that generated the concern rather than an artificial monotherapy comparison. What the substitution did buy, measurably, was more delirium and coma.',
+        evidenceSource: 'Qian ET et al., JAMA 2023;330:1557-1567 (ACORN, NCT05094154)',
+        doi: '10.1001/jama.2023.20583',
+        inferredClaim:
+          'That piperacillin-tazobactam causes acute kidney injury and cefepime avoids it — an inference from non-randomised cohorts that a 2,511-patient randomised trial did not confirm, and which came with an unmeasured neurological cost',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'fep-a5',
+        category: 'failed',
+        title: 'A susceptible laboratory result overstates what happens in a heavy infection',
+        laymanSummary:
+          'Against bacteria carrying extended-spectrum defence enzymes, cefepime can look effective in the laboratory at the standard bacterial density and much less effective when there are far more bacteria — which is the situation in a real abscess or bloodstream infection.',
+        technicalDetails:
+          'Cefepime remains stable to AmpC cephalosporinases, which is the advantage it was designed around, but it is hydrolysed by extended-spectrum beta-lactamases. Against ESBL producers it shows a pronounced inoculum effect: minimum inhibitory concentrations rise substantially when the test inoculum is raised from the standard 5x10^5 CFU/mL toward the densities found in undrained infection, so an isolate reported susceptible on a routine plate may not behave that way clinically. This is why cefepime is not the agent supported by the randomised evidence in ceftriaxone-resistant bloodstream infection, and why that evidence points to a carbapenem instead.',
+        evidenceSource:
+          'Cefepime for Injection United States prescribing information, Microbiology and Warnings and Precautions; Harris PNA et al., JAMA 2018;320:984-994 (MERINO, for the comparative bloodstream evidence)',
+        doi: '10.1001/jama.2018.12163',
+        measuredMetric:
+          'Shift in minimum inhibitory concentration with increasing inoculum against ESBL-producing Enterobacterales',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given into a vein, carrying two opposite charges at once',
+        laymanDesc:
+          'The molecule has a permanent positive charge at one end and a negative one at the other. That balance is deliberate, and it is what lets the drug slip through the pores of a bacterium’s outer skin faster than its predecessors.',
+        molecularDetail:
+          'The quaternary N-methylpyrrolidinium group at position 3 gives cefepime a permanent cation and, with the C4 carboxylate, a zwitterionic character. Zwitterions traverse Gram-negative porin channels more rapidly than anionic cephalosporins, which raises the periplasmic concentration achieved for a given plasma concentration.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the periplasm before the defences can act',
+        laymanDesc:
+          'Bacteria keep their defence enzymes in the gap between the outer skin and the wall. A drug that crosses quickly is exposed to them for less time, which is part of how cefepime survives where older cephalosporins do not.',
+        molecularDetail:
+          'Rapid porin flux reduces the residence time available for periplasmic beta-lactamase hydrolysis. Combined with poor affinity for AmpC enzymes, this is why derepressed AmpC producers such as Enterobacter that defeat ceftazidime often remain susceptible to cefepime.',
+        iconName: 'DoorOpen',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Its ring is a poor meal for one whole enzyme family',
+        laymanDesc:
+          'Bacteria have several different families of enzyme that destroy this class of drug. Cefepime is built to be a bad fit for one of the most troublesome families. It remains vulnerable to the others.',
+        molecularDetail:
+          'Low affinity for class C AmpC cephalosporinases is the defining resistance advantage. Class A extended-spectrum beta-lactamases including the CTX-M family, and class B and class D carbapenemases, hydrolyse cefepime efficiently, so the advantage is enzyme-specific rather than general.',
+        iconName: 'Shield',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It jams the wall-building tools',
+        laymanDesc:
+          'Inside the periplasm it latches onto the enzymes that stitch the bacterial wall together, chiefly the one that builds the wall across the middle when the cell divides.',
+        molecularDetail:
+          'Cefepime acylates PBP3 preferentially and PBP2 substantially in Gram-negative organisms, and retains meaningful activity against Gram-positive penicillin-binding proteins, which is the basis of its unusual dual-spectrum profile compared with ceftazidime.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The cell lyses',
+        laymanDesc:
+          'With cross-linking blocked, the bacterium keeps cutting its own wall to grow and cannot repair it. Internal pressure does the rest.',
+        molecularDetail:
+          'Killing is time-dependent, driven by the fraction of the dosing interval during which free drug concentration exceeds the minimum inhibitory concentration, and requires actively dividing organisms.',
+        iconName: 'Zap',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What happens when it does not leave',
+        laymanDesc:
+          'Cefepime is cleared almost entirely by the kidneys. When the kidneys are not working, it accumulates, reaches the brain, and interferes with the signal that quietens nerve cells — producing confusion, twitching, or seizures that do not look like seizures.',
+        molecularDetail:
+          'Elimination is predominantly renal and unchanged. Accumulation produces concentration-dependent GABA-A receptor antagonism and the syndrome described in the label: encephalopathy, aphasia, myoclonus, seizures and non-convulsive status epilepticus, life-threatening or fatal in reported cases, mostly reversible on discontinuation or after haemodialysis. In the randomised ACORN comparison, cefepime recipients had fewer days alive and free of delirium and coma (OR 0.79, 95% CI 0.65 to 0.95).',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ACORN (NCT05094154)',
+        phase: 'Phase 4, pragmatic, randomised, unblinded, single-centre',
+        sampleSize: 2511,
+        primaryEndpoint:
+          'Highest stage of acute kidney injury or death by day 14, on a five-level ordinal scale',
+        endpointMet: false,
+        statisticalPValue: 'Odds ratio 0.95 (95% CI 0.80 to 1.13), P=.56 — no difference detected',
+        unreportedAdverseSignals:
+          'The trial found what it was not looking for: days alive and free of delirium and coma were fewer with cefepime, odds ratio 0.79 (95% CI 0.65 to 0.95). It was run at a single academic centre, 94.7% of enrolment was in the emergency department, and 77.2% of participants were receiving vancomycin, so it tests the combination in practice rather than either drug alone.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'FDA cefepime mortality meta-analysis (88 trials, trial- and patient-level)',
+        phase: 'Regulatory meta-analysis of published and unpublished randomised trials',
+        sampleSize: 17755,
+        primaryEndpoint: '30-day all-cause mortality, cefepime against other antibacterials',
+        endpointMet: true,
+        statisticalPValue:
+          'Trial level 6.21% against 6.00%, adjusted risk difference 5.38 per 1,000 (95% CI -1.53 to 12.28); patient level 5.63% against 5.68%, 4.83 per 1,000 (95% CI -4.72 to 14.38)',
+        unreportedAdverseSignals:
+          'This analysis is the answer to a published meta-analysis that reached the opposite conclusion from the same literature. It was performed by the regulator with access to unpublished trials, which is both its strength and the reason it cannot be independently reproduced from public data.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'All-cause mortality 6.21% against 6.00% across 88 trials in 17,755 patients, adjusted risk difference 5.38 per 1,000 (95% CI -1.53 to 12.28)',
+        'No difference in the highest stage of acute kidney injury or death by day 14 against piperacillin-tazobactam in 2,511 randomised patients (OR 0.95, 95% CI 0.80 to 1.13)',
+        'Fewer days alive and free of delirium and coma on cefepime, odds ratio 0.79 (95% CI 0.65 to 0.95)',
+        'Major adverse kidney events at day 14: 10.2% against 8.8%, absolute difference 1.4% (95% CI -1.0 to 3.8)',
+      ],
+      unsupportedInferences: [
+        'That cefepime increases mortality — a published signal of RR 1.26 that did not survive access to patient-level data from 88 trials',
+        'That piperacillin-tazobactam damages kidneys and cefepime spares them, the inference behind a decade of substitution, unconfirmed by randomisation',
+        'That an in vitro susceptible result predicts clinical success against ESBL producers, where cefepime shows a marked inoculum effect',
+        'That a single-centre pragmatic trial in one American academic hospital transfers unchanged to other systems and case mixes',
+      ],
+      whatFailedInitially: [
+        'The 2007 meta-analysis signal was strengthened rather than weakened by restricting to higher-quality trials, and still did not replicate in patient-level data',
+        'Neurotoxicity is not confined to unadjusted dosing in renal impairment; the label states some cases occurred with appropriate adjustment',
+        'The substitution away from piperacillin-tazobactam achieved no measurable kidney benefit and produced measurable neurological harm',
+        'Only eight generic products appear in the United States acquisition-cost survey, a thin base for an empirical agent in neutropenic fever',
+      ],
+      realWorldOutcome: [
+        'Approved in 1996 under NDA 050679 and still a first-line empirical agent in febrile neutropenia',
+        'Available at about US$3.73 a vial, comparable to piperacillin-tazobactam and cheaper than meropenem',
+        'The 2007 mortality controversy is settled in the negative and is still routinely cited as though it were open',
+        'ACORN made neurological dysfunction, not renal injury, the measured reason to prefer the alternative',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion or intramuscular injection, supplied as cefepime hydrochloride with L-arginine',
+      description:
+        'Parenteral only; there is no oral form. Eliminated almost entirely by the kidney as unchanged drug, which is why exposure rises steeply when renal function falls and why the drug is removed by haemodialysis. Co-formulated with L-arginine as a buffer.',
+      safetyProfile:
+        'The distinctive harm is neurological: the label records life-threatening and fatal encephalopathy, aphasia, myoclonus, seizures and non-convulsive status epilepticus, mostly but not exclusively in renal impairment without appropriate dosage adjustment, and usually reversible on discontinuation or after haemodialysis. The randomised ACORN comparison quantified this as fewer days alive and free of delirium and coma than piperacillin-tazobactam. Cross-hypersensitivity among beta-lactams may occur in up to 10% of patients with a history of penicillin allergy, per the label. Clostridioides difficile-associated diarrhoea is reported as with essentially all antibacterials. The mortality question raised in 2007 was not confirmed by the regulator’s analysis of 88 trials.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it true that cefepime kills people?',
+        a: 'No, and the story of how that question was raised and answered is worth knowing. In 2007 a systematic review of 57 randomised trials found all-cause mortality higher with cefepime than with other beta-lactams — a risk ratio of 1.26, confidence interval 1.08 to 1.49 — and the signal got stronger, not weaker, when the authors restricted to the better-conducted trials. That is exactly the pattern that usually means a finding is real. The FDA then obtained the underlying data from 88 trials, including unpublished ones. At the trial level, 30-day mortality was 6.21% on cefepime against 6.00% on comparators; at the patient level, 5.63% against 5.68%. Neither difference was statistically significant, and neither was the febrile neutropenia subset. The published-literature signal did not survive contact with the full dataset.',
+        auditNote:
+          'The regulator’s analysis is the more complete one and cannot be independently reproduced from public data, because part of what makes it more complete is access to trials nobody else can see. That is a real limitation of the answer, not a reason to prefer the question.',
+      },
+      {
+        q: 'I was switched from piperacillin-tazobactam to cefepime to protect my kidneys. Did that help?',
+        a: 'On the randomised evidence, no. That practice grew out of observational studies in which patients given piperacillin-tazobactam with vancomycin appeared to have more kidney injury — studies that could not separate the drug from how sick the patients were. The ACORN trial randomised 2,511 adults, three-quarters of whom were also on vancomycin, and found no difference at all in the highest stage of kidney injury or death by day 14: odds ratio 0.95, confidence interval 0.80 to 1.13. Major adverse kidney events at 14 days were 10.2% against 8.8%. What the trial did find was that the cefepime group spent fewer days alive and free of delirium and coma.',
+      },
+      {
+        q: 'Why does it cause confusion?',
+        a: 'Cefepime, like other beta-lactams, blocks the GABA-A receptor, the main brake on electrical activity in the brain. Ordinarily almost none of the drug reaches the brain in a concentration that matters. Cefepime is cleared almost entirely by the kidneys as unchanged drug, so when kidney function is reduced it accumulates, and at high enough concentrations that braking system is antagonised. The result can be confusion, hallucinations, stupor, coma, difficulty speaking, muscle jerking, seizures, or non-convulsive status epilepticus — seizure activity without visible convulsions, which is easy to mistake for delirium. The label records life-threatening and fatal cases. Most occurred where dosing had not been adjusted for kidney function, but the label states explicitly that some occurred where it had been.',
+      },
+      {
+        q: 'What can it not treat?',
+        a: 'Three important gaps. It has no useful activity against anaerobic bacteria, which is why it is generally paired with something else in intra-abdominal infection while piperacillin-tazobactam is not. It is hydrolysed by extended-spectrum beta-lactamases and by carbapenemases, so it is not the agent supported by randomised evidence in ceftriaxone-resistant bloodstream infection. And against ESBL producers it shows a marked inoculum effect: an isolate reported susceptible at the standard laboratory bacterial density can behave very differently at the densities found in an undrained collection. Its real advantage is narrower than "broad-spectrum" suggests — it is stability to AmpC enzymes, which is a specific and genuine one.',
+      },
+      {
+        q: 'Only eight products are listed. Does that matter?',
+        a: 'It is a risk that does not appear in any safety table. Cefepime is off patent and cheap, at about US$3.73 a vial, but the United States acquisition-cost survey lists only eight generic products. A drug used empirically for fever in patients whose immune systems have been destroyed by chemotherapy is one where a supply interruption is a clinical event, and a thin manufacturer base is how supply interruptions happen. That is a structural fact about the market rather than about the molecule, and it is the sort of thing an evidence audit ought to record.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Yahav D, Paul M, Fraser A, Sarid N, Leibovici L. Efficacy and safety of cefepime: a systematic review and meta-analysis. Lancet Infect Dis 2007;7:338-348',
+        identifier: '10.1016/S1473-3099(07)70109-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kim PW, Wu YT, Cooper C, et al. Meta-analysis of a possible signal of increased mortality associated with cefepime use. Clin Infect Dis 2010;51:381-389',
+        identifier: '10.1086/655131',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Qian ET, Casey JD, Wright A, et al. Cefepime vs piperacillin-tazobactam in adults hospitalized with acute infection: the ACORN randomized clinical trial. JAMA 2023;330:1557-1567',
+        identifier: '10.1001/jama.2023.20583',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Harris PNA, Tambyah PA, Lye DC, et al. Effect of piperacillin-tazobactam vs meropenem on 30-day mortality for patients with E coli or Klebsiella pneumoniae bloodstream infection and ceftriaxone resistance. JAMA 2018;320:984-994',
+        identifier: '10.1001/jama.2018.12163',
+        kind: 'doi',
+      },
+      {
+        label: 'ACORN: cefepime against piperacillin-tazobactam in hospitalised adults',
+        identifier: 'NCT05094154',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: MAXIPIME (cefepime hydrochloride), NDA 050679 — United States prescribing information, Warnings and Precautions 5.2 Neurotoxicity',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=050679',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5479537 — cefepime structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5479537',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
 ]

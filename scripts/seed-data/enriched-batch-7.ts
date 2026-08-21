@@ -2698,4 +2698,1070 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 6. Tolterodine — the drug everyone else's trial uses as the yardstick, which twice failed to
+  //    beat placebo in trials of over fifteen hundred patients, and whose own manufacturer
+  //    developed its active metabolite into a separate product and then beat it with it.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tolterodine',
+    name: 'Tolterodine',
+    tradeName: 'Detrol',
+    sponsor: 'Upjohn',
+    targetGene: 'CHRM3',
+    targetProtein:
+      'Postganglionic muscarinic acetylcholine receptors, non-selectively across subtypes; the active moiety in most people is the CYP2D6-derived metabolite 5-hydroxymethyl tolterodine rather than the parent drug',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1998,
+    indication:
+      'Treatment of overactive bladder with symptoms of urge urinary incontinence, urgency and frequency.',
+    patientFriendlyIndication:
+      'An overactive bladder — sudden urgency, going too often, and leaking before you reach the toilet',
+    anatomicalSite:
+      'Detrusor smooth muscle of the bladder wall, and the salivary glands where the same receptor sits',
+    conditionContext: {
+      conditionExplainer:
+        'Tolterodine was the first antimuscarinic designed specifically for the bladder rather than inherited from general antispasmodic use, and it became the default comparator for everything that followed. Almost every large trial in this indication since 2008 has included a tolterodine arm as the active control.',
+      whyItMatters:
+        'That makes tolterodine the most independently tested drug in the class, and the results are not what a decade of prescribing implies. In two separate large trials run by other companies, the tolterodine arm could not be distinguished from placebo. In two trials run by its own manufacturer, it beat placebo by 0.12 and 0.15 incontinence episodes per 24 hours.',
+      whoTakesThis:
+        'Adults with overactive bladder, and — in a much larger number — trial participants randomised to it as the yardstick against which a newer drug is being measured.',
+      clinicalGoals:
+        'Fewer incontinence episodes and fewer voids on a diary, and a larger volume passed each time. The label reports all three, and all three margins over placebo are small.',
+    },
+    oneSentenceVerdict:
+      'A non-selective muscarinic antagonist that is mostly a delivery vehicle for its own metabolite: its US label reports 11.8 fewer weekly incontinence episodes against 6.9 on placebo and 1.8 fewer daily voids against 1.2, yet as the active control in other companies\' trials it failed to separate from placebo in SCORPIO (p=0.11 on both endpoints, n=2,336) and missed on micturitions in EMPOWUR (p=0.0988, n=1,530).',
+    laymanHowItWorks:
+      'Tolterodine blocks the receptors that acetylcholine uses to tell the bladder wall to contract, so the involuntary squeeze while the bladder is filling is weakened. The twist is that in most people the drug you swallow is not the drug that does the work: an enzyme in the liver converts it into a compound called 5-hydroxymethyl tolterodine, which blocks the same receptors and is present in larger quantity. About seven people in a hundred of European ancestry lack a working version of that enzyme, and they end up with almost none of the metabolite and much more of the parent drug. Both block the same receptor, so the drug still works — but what is circulating in one person is not what is circulating in another.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 52,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.2533 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, median across 54 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 1998 and long off patent, with fifty-four products in the acquisition-cost file. Its own manufacturer\'s successor product, fesoterodine — which delivers tolterodine\'s active metabolite directly — is generic too, at US$0.8127 across sixteen products on the same file.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Two of the alternatives here beat tolterodine in a randomised head-to-head, and one of them is chemically tolterodine\'s own metabolite. Solifenacin beat it in STAR. Fesoterodine beat it in two Pfizer trials totalling more than four thousand patients. Mirabegron beat it indirectly, by clearing placebo in the same trial where tolterodine did not.',
+      conventionalRx: [
+        {
+          name: 'Fesoterodine (Toviaz)',
+          class: 'Prodrug of 5-hydroxymethyl tolterodine',
+          howItCompares:
+            'The FDA label states fesoterodine is rapidly hydrolysed by nonspecific esterases to 5-hydroxymethyl tolterodine, which is the same compound tolterodine is converted into by CYP2D6, and which the label names as responsible for the antimuscarinic activity. In two Pfizer trials it beat tolterodine ER 4 mg on urgency incontinence episodes: -1.95 against -1.74 (p=0.0072, n=2,417) and -1.72 against -1.61 (p=0.0172, n=1,712).',
+          typicalCost:
+            'US$0.8127 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 16 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no dependence on CYP2D6 to generate the active moiety, and two head-to-head wins. Cons: three times the acquisition cost, and the wins are 0.11 and 0.21 episodes a day.',
+        },
+        {
+          name: 'Solifenacin (Vesicare)',
+          class: 'M3-preferring muscarinic antagonist',
+          howItCompares:
+            'The STAR trial compared flexibly dosed solifenacin against tolterodine ER 4 mg in a double-blind, double-dummy design and found solifenacin superior on most efficacy variables. At four weeks on the starting doses, incontinence episodes fell 1.30 a day on solifenacin 5 mg against 0.90 on tolterodine ER 4 mg (p=0.0181), and pad use fell 1.21 against 0.80 (p=0.0089).',
+          typicalCost:
+            'US$0.1754 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 40 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheaper, and it won the head-to-head. Cons: dry mouth rises steeply with dose, and it carries the same class-level anticholinergic concern.',
+        },
+        {
+          name: 'Mirabegron (Myrbetriq)',
+          class: 'Beta-3 adrenergic agonist',
+          howItCompares:
+            'In SCORPIO, both drugs were tested against placebo in the same 2,336-patient trial. Mirabegron 50 mg reached p=0.003 on incontinence episodes and p<0.001 on micturitions; tolterodine SR 4 mg reached p=0.11 on both. No direct superiority test between the two was performed, but the placebo comparison was run in the same population on the same days.',
+          typicalCost:
+            'US$9.60 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 17 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no anticholinergic burden, roughly double the one-year persistence, and it cleared placebo where tolterodine did not. Cons: nearly forty times the acquisition cost, and a blood-pressure warning.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask whether anything else you take is metabolised by CYP2D6 or blocks CYP3A4',
+          action:
+            'Tolterodine needs CYP2D6 to generate its main active metabolite and CYP3A4 to clear the parent, so both pathways matter and interference with either changes what is circulating.',
+          patientImpact:
+            'The label states that poor metabolisers — roughly 7% of Caucasians — form negligible 5-hydroxymethyl tolterodine and instead reach significantly higher serum concentrations of the parent drug through CYP3A4 dealkylation. In those individuals a strong CYP3A4 inhibitor removes the remaining clearance route.',
+          clinicalPrecaution:
+            'This is a labelled pharmacokinetic fact rather than a rare event, and it is one of the reasons a successor drug was developed that delivers the active metabolite directly and needs neither enzyme to work.',
+        },
+        {
+          name: 'Structured behavioural training, delivered as sessions rather than advice',
+          action:
+            'Pelvic floor muscle exercises with biofeedback plus urge-suppression strategy, taught over several supervised visits.',
+          patientImpact:
+            'In a randomised trial of 197 community-dwelling women aged 55 and over, behavioural training reduced incontinence episodes by 80.7% against 68.5% for an antimuscarinic (P=.04) and 39.4% for placebo, with 14.0% of the training group wanting to change treatment against 75.5% of the drug group.',
+          clinicalPrecaution:
+            'The drug arm in that trial was oxybutynin, not tolterodine, and no equivalent head-to-head against tolterodine exists. It is evidence about the comparator, not about this specific molecule.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=CC(=C(C=C1)O)[C@H](CCN(C(C)C)C(C)C)C2=CC=CC=C2',
+      chemicalFormula: 'C22H31NO',
+      molecularWeight: '325.50 g/mol (free base); dispensed as tolterodine tartrate',
+      targetReceptorAffinity:
+        'The US label describes the pharmacology functionally: tolterodine "acts as a competitive antagonist of acetylcholine at postganglionic muscarinic receptors," with no subtype selectivity claimed and no binding constant quoted, so none is given here. The single stereocentre is the (R) configuration. The pharmacologically decisive fact is metabolic rather than structural: CYP2D6 hydroxylates the 5-methyl group to give 5-hydroxymethyl tolterodine, an equally active antimuscarinic that is the principal active moiety in extensive metabolisers, and which is marketed separately as the active moiety of fesoterodine.',
+      structureSource: {
+        label: 'PubChem CID 443879 — tolterodine structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/443879',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tol-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric excess of the (R)-3-aryl-3-phenylpropylamine core',
+          description:
+            'Establish enantiomeric excess before the amine is alkylated. Tolterodine is a single enantiomer and the (S) antipode is the specified chiral impurity, so the stereochemistry is measured where it is set rather than argued about in the finished salt.',
+          reagentsAndBuffer:
+            'Chiral stationary-phase HPLC on an amylose or cellulose carbamate column, n-hexane with 2-propanol and diethylamine, UV detection at 220 nm, (S)-enantiomer reference standard',
+        },
+        {
+          id: 'tol-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Reductive amination to the diisopropylamino tail and phenol deprotection',
+          description:
+            'Install the bulky diisopropylamino group on the propyl chain and unmask the phenol. The free phenol is not decoration: it is the hydrogen-bond donor the receptor pocket uses, and the 5-methyl group ortho to it is the position CYP2D6 will later hydroxylate in the body.',
+          dependsOnStepId: 'tol-w1',
+          reagentsAndBuffer:
+            'Diisopropylamine, sodium triacetoxyborohydride or catalytic hydrogenation, benzyl or methyl phenol protecting group with palladium on carbon or boron tribromide for removal, anhydrous dichloromethane or methanol under nitrogen',
+        },
+        {
+          id: 'tol-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Tartrate salt formation and control of the phenolic oxidation products',
+          description:
+            'Form the L-tartrate salt and recrystallise, then re-run the chiral assay on the finished salt. Free phenols oxidise, so the related-substances specification is written around quinone-type degradants as well as the residual (S)-enantiomer.',
+          dependsOnStepId: 'tol-w2',
+          reagentsAndBuffer:
+            'L-tartaric acid, ethanol or acetone with water, nitrogen sparging to limit oxidation, reversed-phase HPLC with photodiode-array detection for related substances, chiral HPLC for enantiomeric purity',
+        },
+        {
+          id: 'tol-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Parallel application of tolterodine and 5-hydroxymethyl tolterodine to each subtype',
+          description:
+            'Apply the parent and, in parallel wells, authentic 5-hydroxymethyl tolterodine to five stable lines carrying human CHRM1 through CHRM5. Testing the parent alone would describe a drug that most patients barely have in circulation, because CYP2D6 converts a large fraction of it before it reaches the bladder. Poor metabolisers are the mirror case, and the two-compound design is the only one that covers both.',
+          dependsOnStepId: 'tol-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 lines stably expressing human CHRM1 to CHRM5, DMEM with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4, authentic 5-hydroxymethyl tolterodine reference standard',
+        },
+        {
+          id: 'tol-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Muscarinic functional antagonism plus a hERG patch-clamp arm',
+          description:
+            'Measure radioligand displacement and carbachol-evoked calcium blockade for both compounds at every subtype, then run whole-cell patch clamp on a hERG-expressing line for both. The second assay is not optional for this molecule: the label carries a measured QT effect of 11.84 msec at twice the therapeutic dose, and the cardiac channel is where that comes from, not the muscarinic receptor.',
+          dependsOnStepId: 'tol-w4',
+          reagentsAndBuffer:
+            'Tritiated N-methylscopolamine as radioligand, atropine for non-specific binding, Fluo-4 AM calcium indicator, carbachol as agonist, HEK293 line stably expressing hERG, external and internal patch solutions with 4 mM potassium, E-4031 as positive control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tol-a1',
+        category: 'failed',
+        title: 'In SCORPIO, 475 patients on this drug could not be told apart from placebo',
+        laymanSummary:
+          'Mirabegron\'s registration trial included a tolterodine arm as the yardstick. On both main endpoints the yardstick missed. Mirabegron cleared placebo comfortably in the same trial, on the same days, in the same patients.',
+        technicalDetails:
+          'SCORPIO (NCT00689104) randomised 2,336 patients to placebo (480), mirabegron 50 mg (473), mirabegron 100 mg (478) or tolterodine SR 4 mg (475). Incontinence episodes per 24 hours fell 1.17 on placebo and 1.27 on tolterodine, p=0.11 (95% CI -0.42 to 0.21). Micturitions fell 1.34 and 1.59, p=0.11 (95% CI -0.55 to 0.06). Mirabegron 50 mg in the same trial reached p=0.003 and p<0.001. An active-control arm that misses is usually written off as a failure of assay sensitivity — but assay sensitivity was demonstrated in the same trial by the experimental drug clearing both endpoints. The remaining explanation is that the tolterodine effect is small enough that a 475-patient arm can miss it.',
+        evidenceSource:
+          'ClinicalTrials.gov results record, SCORPIO NCT00689104; Khullar V et al., Eur Urol 2013;63:283-295',
+        doi: '10.1016/j.eururo.2012.10.016',
+        measuredMetric:
+          'Tolterodine SR 4 mg versus placebo on both co-primary endpoints, in a 2,336-patient trial',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tol-a2',
+        category: 'failed',
+        title: 'It happened again in EMPOWUR, seven years later, with a different sponsor',
+        laymanSummary:
+          'Vibegron\'s registration trial also used tolterodine as the comparator. Tolterodine again failed to beat placebo on the number of daily toilet trips.',
+        technicalDetails:
+          'EMPOWUR (NCT03492281) randomised 1,530 patients to placebo (475), vibegron 75 mg (492) or tolterodine ER 4 mg (378). On the first co-primary endpoint, micturitions per 24 hours, vibegron beat placebo by 0.5 (p<0.001) while tolterodine reached only a 0.3 difference at p=0.0988, reported as descriptive. On urge urinary incontinence episodes in the wet subgroup, vibegron beat placebo by 0.6 (p<0.0001) and tolterodine by 0.4 (p=0.0123, descriptive). Two independent sponsors, seven years apart, using different beta-3 agonists, produced the same result for the tolterodine arm. Two replications of a null is not a coincidence about trial conduct.',
+        evidenceSource: 'ClinicalTrials.gov results record, EMPOWUR NCT03492281',
+        measuredMetric:
+          'Tolterodine ER 4 mg versus placebo on micturitions and urge incontinence episodes per 24 hours',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tol-a3',
+        category: 'measured',
+        title: 'Where it did beat placebo, the margin was about a tenth of an episode a day',
+        laymanSummary:
+          'Two large trials run by tolterodine\'s own manufacturer did show it beating placebo. The size of the win was 0.12 and 0.15 fewer leaks a day.',
+        technicalDetails:
+          'Pfizer ran two 12-week double-blind, double-dummy, placebo-controlled trials of fesoterodine against tolterodine ER 4 mg. In the larger (NCT00611026, n=2,417), urgency incontinence episodes per 24 hours fell 1.62 ± 0.07 on placebo (n=448) and 1.74 ± 0.06 on tolterodine (n=926), p=0.0228 — a difference of 0.12 episodes a day. In the second (NCT00444925, n=1,712), placebo fell 1.46 (n=307) and tolterodine 1.61 (n=626), p=0.0107 — a difference of 0.15. The label reports the same order of magnitude in different units: 11.8 against 6.9 weekly incontinence episodes, 1.8 against 1.2 daily micturitions, and 34 mL against 14 mL added to the volume passed each time. These are positive results with defensible p-values and effect sizes measured in tenths of an episode.',
+        evidenceSource:
+          'ClinicalTrials.gov results records NCT00611026 and NCT00444925; US prescribing information for tolterodine tartrate extended-release capsules, Clinical Studies section',
+        measuredMetric:
+          'Change from baseline in urgency incontinence episodes per 24 hours, tolterodine ER versus placebo, in two trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tol-a4',
+        category: 'conclusion_shift',
+        title: 'The manufacturer developed this drug\'s own metabolite and beat it with it',
+        laymanSummary:
+          'Fesoterodine, sold as a separate newer drug, is a delivery vehicle for the exact compound tolterodine turns into inside the body. Pfizer tested it against tolterodine twice and won both times.',
+        technicalDetails:
+          'The fesoterodine label states that after oral administration fesoterodine is rapidly and extensively hydrolysed by nonspecific esterases to 5-hydroxymethyl tolterodine, "which is responsible for the antimuscarinic activity of fesoterodine," and names the compound explicitly. The tolterodine label states that tolterodine is metabolised by CYP2D6 to the same 5-hydroxymethyl metabolite. So the two products deliver the same active moiety by different routes — one requiring a polymorphic liver enzyme, one requiring only ubiquitous esterases. In the head-to-heads, fesoterodine escalated to 8 mg beat tolterodine ER 4 mg on urgency incontinence episodes: -1.95 against -1.74 (p=0.0072) and -1.72 against -1.61 (p=0.0172). A fair reading is that the newer drug is a real pharmacokinetic improvement over the older one whose clinical size is about a tenth of an episode a day, and that the dose comparison was 8 mg against 4 mg rather than a like-for-like exposure.',
+        evidenceSource:
+          'US prescribing information for fesoterodine fumarate extended-release tablets, Mechanism of Action and Clinical Pharmacology; US prescribing information for tolterodine tartrate extended-release capsules, Clinical Pharmacology; ClinicalTrials.gov results records NCT00611026 and NCT00444925',
+        measuredMetric:
+          'Fesoterodine 8 mg versus tolterodine ER 4 mg on urgency incontinence episodes per 24 hours, in two trials totalling 4,129 patients',
+        inferredClaim:
+          'That fesoterodine represents a new mechanism rather than a new route to the same active molecule — the labels of both drugs name the identical active moiety',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tol-a5',
+        category: 'measured',
+        title: 'About seven Caucasians in a hundred get a different drug from the same capsule',
+        laymanSummary:
+          'The enzyme that converts tolterodine into its active form is missing or non-functional in roughly 7% of people of European ancestry. Those people end up with almost none of the metabolite and much more of the parent drug.',
+        technicalDetails:
+          'The US label states that poor metabolisers, approximately 7% of Caucasians, cannot efficiently form 5-hydroxymethyl tolterodine via CYP2D6, and that dealkylation via CYP3A4 becomes the primary route instead, "resulting in significantly higher serum concentrations of tolterodine and negligible concentrations of 5-HMT". Both compounds are antimuscarinic, so the therapeutic effect does not vanish; what changes is the identity, exposure and clearance route of the circulating active species. It also removes the redundancy: in a poor metaboliser, CYP3A4 is the only clearance pathway left, which is why the label handles strong CYP3A4 inhibitors differently in that group. Trials of this drug did not stratify on CYP2D6 status, so every efficacy figure quoted for tolterodine is an average over two pharmacologically distinct populations.',
+        evidenceSource:
+          'US prescribing information for tolterodine tartrate extended-release capsules, Clinical Pharmacology section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Proportion of poor metabolisers and their relative parent-drug and metabolite concentrations',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tol-a6',
+        category: 'measured',
+        title: 'A measured 11.84 msec QT effect at twice the therapeutic dose',
+        laymanSummary:
+          'At double the normal daily dose, tolterodine lengthened an electrical interval in the heart by about 12 milliseconds. The label compares it with a known QT-prolonging antibiotic and notes the confidence intervals overlapped.',
+        technicalDetails:
+          'The US label reports a dedicated QT study. At tolterodine 4 mg twice daily — twice the therapeutic 4 mg once-daily extended-release exposure — the mean QT interval change by manual measurement was 11.84 msec (7.11, 16.58). The label states the effect at 8 mg/day "was not as large as that observed after four days of therapeutic dosing with moxifloxacin. However, the confidence intervals overlapped." That last sentence is doing real work: overlapping confidence intervals with the positive control is not the same as a clean negative, and the label chose to say so rather than to summarise. The mechanism is hERG channel block, which is unrelated to the muscarinic receptor the drug was designed for.',
+        evidenceSource:
+          'US prescribing information for tolterodine tartrate extended-release capsules, Clinical Pharmacology section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Mean QT interval change at twice the therapeutic dose, with 95% confidence interval, against a moxifloxacin positive control',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tol-a7',
+        category: 'measured',
+        title: 'Dry mouth in 23% against 8% on placebo, and it is the same receptor',
+        laymanSummary:
+          'Nearly one in four patients gets a dry mouth, against one in twelve on placebo. As with every drug in this class, that is the identical receptor block happening in the salivary gland.',
+        technicalDetails:
+          'The US label for the extended-release capsule reports dry mouth in 23% against 8% on placebo, constipation 6% against 4%, and headache 6% against 5%. Only the dry mouth separates convincingly. In patients aged 65 and over, dry mouth occurred with roughly six times the incidence on tolterodine ER 4 mg as on mirabegron over 12 weeks, and three times the incidence over a year. The extended-release capsule was itself developed to reduce this: it is the same molecule as the immediate-release tablet, released more slowly, on the same logic that produced oxybutynin\'s extended-release form.',
+        evidenceSource:
+          'US prescribing information for tolterodine tartrate extended-release capsules, Adverse Reactions section; Wagg A et al., Curr Med Res Opin 2016;32:621-638 (PMID 26828974)',
+        doi: '10.1185/03007995.2016.1149806',
+        measuredMetric: 'Incidence of dry mouth, constipation and headache against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tol-a8',
+        category: 'inferred',
+        title: 'The class dementia association applies here and has never been tested in a trial',
+        laymanSummary:
+          'Large database studies associate bladder antimuscarinics as a group with later dementia. Tolterodine is one of them. No randomised trial in this indication has ever measured cognition as an endpoint.',
+        technicalDetails:
+          'Coupland and colleagues, in 58,769 dementia cases and 225,574 controls, reported an adjusted odds ratio of 1.65 (95% CI 1.56 to 1.75) for bladder antimuscarinic drugs as a class, and a rise from 1.06 (1.03 to 1.09) to 1.49 (1.44 to 1.54) across cumulative anticholinergic exposure bands. Gray and colleagues, following 3,434 people aged 65 and over for a mean 7.3 years, reported an adjusted hazard ratio of 1.54 (1.21 to 1.96) above 1,095 total standardised daily doses. Neither study can attribute risk to tolterodine specifically, and neither randomised anyone. What makes the inference harder rather than easier here is that most patients discontinue within months: the cumulative-exposure bands that carry the signal are populated by the minority who stayed on treatment, who differ from everyone else in ways no adjustment fully captures.',
+        evidenceSource:
+          'Coupland CAC et al., JAMA Intern Med 2019;179:1084-1093 (PMID 31233095); Gray SL et al., JAMA Intern Med 2015;175:401-407 (PMID 25621434)',
+        doi: '10.1001/jamainternmed.2019.0677',
+        inferredClaim:
+          'That tolterodine specifically raises dementia risk — the evidence is class-level and observational, and this drug is not separately identified in it',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, then converted into the compound that does most of the work',
+        laymanDesc:
+          'The capsule releases the drug slowly. On the way through the liver, an enzyme turns most of it into a second compound that blocks the same receptors. In most people, that second compound is what reaches the bladder in quantity.',
+        molecularDetail:
+          'Extended-release capsule, once daily. CYP2D6 hydroxylates the 5-methyl group to 5-hydroxymethyl tolterodine, an equally active antimuscarinic. In poor metabolisers, roughly 7% of Caucasians, that pathway is unavailable and CYP3A4 dealkylation dominates instead, giving significantly higher parent concentrations and negligible metabolite.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Both compounds reach the receptor from outside the cell',
+        laymanDesc:
+          'The target sits on the outer surface of the bladder muscle cell. Neither the drug nor its metabolite needs to get inside anything — they arrive from the bloodstream and sit down.',
+        molecularDetail:
+          'Muscarinic receptors are plasma-membrane G-protein-coupled receptors with an outward-facing orthosteric pocket, so no transporter step exists. Tolterodine is a tertiary amine and lipophilic, and the hydroxymethyl metabolite is more polar than the parent — a difference that matters for tissue distribution but not for reaching a surface receptor.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It competes with acetylcholine at every muscarinic receptor',
+        laymanDesc:
+          'The nerve chemical that tells the bladder to squeeze finds its seat taken. The same thing happens in the salivary gland, which is where the dry mouth comes from.',
+        molecularDetail:
+          'The label describes competitive antagonism at postganglionic muscarinic receptors, with no subtype selectivity claimed. Competition is surmountable, so a large enough acetylcholine release still produces a contraction. The free phenol on the aromatic ring is the hydrogen-bond donor the binding pocket uses, and the methyl group next to it is the site CYP2D6 attacks.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Calcium release falls and the bladder holds more',
+        laymanDesc:
+          'The internal calcium burst that drives a contraction is weakened, so the bladder tolerates more filling before it demands emptying. Each void is larger as a result.',
+        molecularDetail:
+          'Reduced M3-Gq/11 coupling lowers phospholipase C activity, inositol trisphosphate and sarcoplasmic reticulum calcium release, and myosin light-chain phosphorylation falls. The label captures the functional consequence directly: volume passed per void rose 34 mL against 14 mL on placebo.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Five fewer leaks a week than placebo, or none at all depending on the trial',
+        laymanDesc:
+          'On its own label, about five fewer leaks a week than placebo. In two large trials run by other companies, no measurable difference from placebo at all.',
+        molecularDetail:
+          'Label figures: incontinence episodes -11.8 per week against -6.9 on placebo, micturitions -1.8 per day against -1.2, volume per void +34 mL against +14 mL. Against that, the tolterodine arm missed both co-primary endpoints in SCORPIO (p=0.11) and missed on micturitions in EMPOWUR (p=0.0988). Dry mouth 23% against 8%. A measured QT effect of 11.84 msec at twice the therapeutic dose.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SCORPIO (NCT00689104) — tolterodine SR 4 mg as active control',
+        phase: 'Phase 3 randomised double-blind placebo- and active-controlled, 12 weeks',
+        sampleSize: 2336,
+        primaryEndpoint:
+          'Change from baseline to week 12 in mean incontinence episodes and mean micturitions per 24 hours',
+        endpointMet: false,
+        statisticalPValue:
+          'Tolterodine SR 4 mg: incontinence -1.27 versus placebo -1.17, p=0.11 (95% CI -0.42 to 0.21); micturitions -1.59 versus -1.34, p=0.11 (95% CI -0.55 to 0.06)',
+        unreportedAdverseSignals:
+          'Assay sensitivity was demonstrated in the same trial by the mirabegron arms clearing both endpoints at p=0.003 and p<0.001, which removes the usual excuse for an active control missing.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'EMPOWUR (NCT03492281) — tolterodine ER 4 mg as active control',
+        phase: 'Phase 3 randomised double-blind placebo- and active-controlled, 12 weeks',
+        sampleSize: 1530,
+        primaryEndpoint:
+          'Change from baseline at week 12 in average micturitions per 24 hours, and in urge urinary incontinence episodes in the wet subgroup',
+        endpointMet: false,
+        statisticalPValue:
+          'Tolterodine versus placebo: micturitions difference -0.3, p=0.0988 (descriptive); urge incontinence difference -0.4, p=0.0123 (descriptive). Vibegron reached p<0.001 and p<0.0001 in the same trial.',
+        unreportedAdverseSignals:
+          'A different sponsor, a different experimental drug and seven years later, with the same outcome for the tolterodine arm on the first co-primary endpoint.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Fesoterodine versus tolterodine ER, A0221046 (NCT00611026)',
+        phase: 'Phase 3 randomised double-blind double-dummy placebo-controlled, 12 weeks',
+        sampleSize: 2417,
+        primaryEndpoint:
+          'Change from baseline in mean urgency urinary incontinence episodes per 24 hours at week 12',
+        endpointMet: true,
+        statisticalPValue:
+          'Placebo -1.62 ± 0.07 (n=448), tolterodine ER -1.74 ± 0.06 (n=926, p=0.0228 versus placebo), fesoterodine -1.95 ± 0.05 (n=908, p<0.0001 versus placebo and p=0.0072 versus tolterodine)',
+        unreportedAdverseSignals:
+          'The comparison was fesoterodine escalated to 8 mg against tolterodine ER 4 mg, not a matched-exposure comparison of the same active moiety by two routes.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Fesoterodine versus tolterodine ER (NCT00444925)',
+        phase: 'Phase 3 randomised double-blind double-dummy placebo-controlled, 12 weeks',
+        sampleSize: 1712,
+        primaryEndpoint:
+          'Change from baseline in mean urgency urinary incontinence episodes per 24 hours at week 12',
+        endpointMet: true,
+        statisticalPValue:
+          'Placebo -1.46 (n=307), tolterodine ER -1.61 (n=626, p=0.0107 versus placebo), fesoterodine -1.72 (n=619, p<0.0001 versus placebo and p=0.0172 versus tolterodine)',
+        unreportedAdverseSignals:
+          'The tolterodine margin over placebo here is 0.15 incontinence episodes per 24 hours. It is statistically significant and it is fifteen hundredths of an episode.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'TAURUS (NCT00688688) — tolterodine ER 4 mg as active control',
+        phase: 'Phase 3 randomised double-blind active-controlled long-term safety, 12 months',
+        sampleSize: 2792,
+        primaryEndpoint:
+          'Number and severity of treatment-emergent adverse events over 12 months, mirabegron versus tolterodine ER 4 mg',
+        endpointMet: true,
+        statisticalPValue:
+          'A safety endpoint with no efficacy hypothesis test and no placebo arm; the trial establishes 12-month tolerability, not 12-month effect',
+        unreportedAdverseSignals:
+          'This is the longest randomised exposure to tolterodine in the public record, and it carries no placebo arm.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Incontinence episodes fell 11.8 per week on tolterodine ER against 6.9 on placebo, and micturitions 1.8 per day against 1.2, on the US label',
+        'Volume passed per void rose 34 mL against 14 mL on placebo',
+        'Urgency incontinence episodes fell 1.74 against 1.62 on placebo (p=0.0228, n=2,417) and 1.61 against 1.46 (p=0.0107, n=1,712) in two Pfizer trials',
+        'The tolterodine arm missed both co-primary endpoints against placebo in SCORPIO at p=0.11, and missed micturitions in EMPOWUR at p=0.0988',
+        'Dry mouth in 23% against 8% on placebo',
+        'Mean QT interval change of 11.84 msec (7.11, 16.58) at twice the therapeutic dose, with confidence intervals overlapping the moxifloxacin positive control',
+        'Approximately 7% of Caucasians form negligible 5-hydroxymethyl tolterodine and reach significantly higher parent-drug concentrations instead',
+      ],
+      unsupportedInferences: [
+        'That an active-control arm missing against placebo reflects a failed trial — assay sensitivity was demonstrated in the same trial by the experimental arm',
+        'That fesoterodine is a different mechanism from tolterodine — both labels name 5-hydroxymethyl tolterodine as the active moiety',
+        'That the label\'s efficacy figures apply equally to poor and extensive CYP2D6 metabolisers — no trial stratified on genotype',
+        'That tolterodine specifically raises dementia risk — the observational evidence is class-level and does not identify this molecule',
+      ],
+      whatFailedInitially: [
+        'The active-control arm in SCORPIO, which missed both co-primary endpoints against placebo in 475 patients',
+        'The active-control arm in EMPOWUR seven years later, under a different sponsor, on the first co-primary endpoint',
+        'The head-to-head against solifenacin in STAR, which tolterodine ER lost on most efficacy variables',
+        'The head-to-head against its own active metabolite, which tolterodine lost twice',
+      ],
+      realWorldOutcome: [
+        'Twenty-five cents a unit at United States pharmacy acquisition cost, across fifty-four listed products',
+        'Now used more often as the comparator arm in other companies\' trials than it is discussed on its own terms',
+        'Real-world one-year persistence for oral antimuscarinics runs 12% to 25%, with median time to discontinuation under five months',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral extended-release capsule once daily, and immediate-release tablet twice daily',
+      description:
+        'The extended-release capsule exists for the same reason oxybutynin\'s does: to smooth the concentration peak that drives the anticholinergic side effects, without changing the molecule. Dose is reduced in significant hepatic or renal impairment and in the presence of strong CYP3A4 inhibitors, and the extended-release form is not recommended in severe renal impairment.',
+      safetyProfile:
+        'Dry mouth is the dominant effect at 23% against 8% on placebo, with constipation and headache barely separating. The label carries warnings for angioedema, urinary retention, gastric retention, narrow-angle glaucoma and central nervous system effects including somnolence, and reports a measured QT prolongation of 11.84 msec at twice the therapeutic dose with confidence intervals overlapping the positive control. The pharmacokinetic profile depends on CYP2D6 status, and in poor metabolisers CYP3A4 becomes the only remaining clearance route.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why did this drug fail to beat placebo in two big trials?',
+        a: 'Because in both of them it was the comparator, not the drug being registered, and its true effect is small enough that a few hundred patients can miss it. In SCORPIO, 475 patients on tolterodine SR 4 mg were compared with 480 on placebo: incontinence episodes fell 1.27 a day against 1.17, p=0.11, and voids fell 1.59 against 1.34, p=0.11. In EMPOWUR, 378 patients on tolterodine ER missed against placebo on daily voids at p=0.0988. The usual explanation for an active control missing is that the trial lacked the sensitivity to detect anything — but in both cases the experimental drug in the same trial cleared both endpoints comfortably. When the trials that were designed to detect a difference did find one, as in the two Pfizer studies, the difference was 0.12 and 0.15 incontinence episodes a day.',
+        auditNote:
+          'A statistically significant result and a clinically noticeable one are different claims. Both of the positive trials here reported the first without asserting the second.',
+      },
+      {
+        q: 'Is fesoterodine actually a different drug from this one?',
+        a: 'Chemically the tablet is different; pharmacologically the active compound is the same. Tolterodine is converted by the liver enzyme CYP2D6 into 5-hydroxymethyl tolterodine. Fesoterodine is broken down by general-purpose esterases into the same compound — its own FDA label names it as "5-hydroxymethyl tolterodine" and states it "is responsible for the antimuscarinic activity of fesoterodine". The practical difference is that fesoterodine does not need a polymorphic enzyme to become active, and in two head-to-head trials it produced a slightly larger effect: 1.95 against 1.74 incontinence episodes a day, and 1.72 against 1.61. Those comparisons were 8 mg of fesoterodine against 4 mg of tolterodine, so part of the gap is dose rather than route.',
+      },
+      {
+        q: 'I heard some people process this drug differently. Does that affect me?',
+        a: 'It affects about seven people in a hundred of European ancestry, and the label says so directly. Those people are poor CYP2D6 metabolisers: they cannot efficiently make 5-hydroxymethyl tolterodine, so they end up with negligible amounts of it and significantly higher concentrations of the parent drug, cleared instead by CYP3A4. Both compounds block the same receptors, so the drug still works. What changes is which molecule is doing the blocking, how much of it there is, and what happens if you take something that inhibits CYP3A4 — because in a poor metaboliser that is the only clearance route left. None of the efficacy trials for this drug stratified patients by CYP2D6 status, so every published figure is an average across both groups.',
+      },
+      {
+        q: 'Should I worry about the heart rhythm warning?',
+        a: 'The label reports a measured effect and is unusually candid about its limits. At 4 mg twice daily — twice the therapeutic exposure — the mean QT interval lengthened by 11.84 milliseconds, with a confidence interval of 7.11 to 16.58. The label compares this with moxifloxacin, an antibiotic used as the positive control in QT studies, and says the tolterodine effect was not as large but that "the confidence intervals overlapped". That sentence is a deliberate refusal to round a partial overlap down to nothing. The mechanism is blockade of a cardiac potassium channel, which has nothing to do with the muscarinic receptor the drug was designed for. It is a reason to raise the question with a prescriber if you have a known QT problem or take other drugs that lengthen it.',
+        auditNote:
+          'Labels rarely volunteer that a confidence interval overlapped the positive control. This one does, and the sentence is worth more than the point estimate.',
+      },
+      {
+        q: 'Why does this page not show a manufacturing cost?',
+        a: 'Because no per-dose cost-of-production figure for tolterodine could be verified and cited. The cost-of-production literature checked here publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about twenty-five cents a unit in the CMS acquisition-cost survey across fifty-four listed products — which is a price, not a cost of manufacture.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'SCORPIO — phase 3 placebo- and tolterodine-controlled trial of mirabegron in overactive bladder',
+        identifier: 'NCT00689104',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Khullar V, Amarenco G, Angulo JC, et al. Efficacy and tolerability of mirabegron, a beta(3)-adrenoceptor agonist, in patients with overactive bladder: results from a randomised European-Australian phase 3 trial. Eur Urol 2013;63:283-295',
+        identifier: '10.1016/j.eururo.2012.10.016',
+        kind: 'doi',
+      },
+      {
+        label:
+          'EMPOWUR — phase 3 placebo- and tolterodine-controlled trial of vibegron in overactive bladder',
+        identifier: 'NCT03492281',
+        kind: 'nct',
+      },
+      {
+        label:
+          'A0221046 — 12-week placebo-controlled trial of fesoterodine compared with tolterodine ER in overactive bladder',
+        identifier: 'NCT00611026',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Second 12-week placebo-controlled trial of fesoterodine compared with tolterodine ER in overactive bladder',
+        identifier: 'NCT00444925',
+        kind: 'nct',
+      },
+      {
+        label:
+          'TAURUS — 12-month randomised active-controlled long-term safety study of mirabegron versus tolterodine ER',
+        identifier: 'NCT00688688',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Chapple CR et al., STAR study group. A comparison of the efficacy and tolerability of solifenacin succinate and extended release tolterodine at treating overactive bladder syndrome: results of the STAR trial. Eur Urol 2005;48:464-470',
+        identifier: '10.1016/j.eururo.2005.05.015',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chapple CR et al., STAR study group. Treatment outcomes in the STAR study: a subanalysis of solifenacin 5 mg and tolterodine ER 4 mg. Eur Urol 2007;52:1195-1203',
+        identifier: '10.1016/j.eururo.2007.05.027',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Coupland CAC, Hill T, Dening T, Morriss R, Moore M, Hippisley-Cox J. Anticholinergic drug exposure and the risk of dementia: a nested case-control study. JAMA Intern Med 2019;179:1084-1093',
+        identifier: '10.1001/jamainternmed.2019.0677',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gray SL, Anderson ML, Dublin S, et al. Cumulative use of strong anticholinergics and incident dementia: a prospective cohort study. JAMA Intern Med 2015;175:401-407',
+        identifier: '10.1001/jamainternmed.2014.7663',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wagg A, Nitti VW, Kelleher C, Castro-Diaz D, Siddiqui E, Berner T. Oral pharmacotherapy for overactive bladder in older patients: mirabegron as a potential alternative to antimuscarinics. Curr Med Res Opin 2016;32:621-638',
+        identifier: '10.1185/03007995.2016.1149806',
+        kind: 'doi',
+      },
+      {
+        label:
+          'US prescribing information for tolterodine tartrate extended-release capsules — mechanism of action, clinical pharmacology, clinical studies and adverse reactions (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22tolterodine+tartrate%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'US prescribing information for fesoterodine fumarate extended-release tablets — mechanism of action and clinical pharmacology, naming 5-hydroxymethyl tolterodine as the active moiety (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22fesoterodine+fumarate%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 443879 — tolterodine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/443879',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 7. Alfuzosin — sold on the word "uroselective", which describes a formulation rather than a
+  //    receptor; missed its registered two-year endpoint outright and reported post hoc composites
+  //    instead; and produced one of the cleanest null results in urology when tried on prostatitis.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'alfuzosin',
+    name: 'Alfuzosin',
+    tradeName: 'Uroxatral',
+    sponsor: 'Advanz Pharma',
+    targetGene: 'ADRA1A',
+    targetProtein:
+      'Post-synaptic alpha-1 adrenoceptors in the prostate, bladder base, bladder neck, prostatic capsule and prostatic urethra; the US label claims selectivity for the alpha-1 class and locates it anatomically, and does not claim preference for any alpha-1 subtype',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2003,
+    indication:
+      'Treatment of the signs and symptoms of benign prostatic hyperplasia. The label states that it is not indicated for the treatment of hypertension and not indicated for use in the paediatric population.',
+    patientFriendlyIndication:
+      'A weak or hesitant stream, going often, and getting up at night, caused by an enlarged prostate',
+    anatomicalSite:
+      'Smooth muscle of the prostatic stroma, prostatic capsule, prostatic urethra, bladder neck and bladder base',
+    conditionContext: {
+      conditionExplainer:
+        'The obstruction an enlarged prostate causes has two components: the bulk of the gland, and the tension in the smooth muscle running through it. Alfuzosin, like every alpha-blocker, addresses only the second. Nothing about the gland changes.',
+      whyItMatters:
+        'Alfuzosin is the drug that tested that distinction most directly. It was given to 1,522 men at raised risk of urinary retention for two years, with the first episode of acute retention as the registered primary endpoint. Retention occurred in 2.1% on the drug and 1.8% on placebo.',
+      whoTakesThis:
+        'Men with moderate to severe lower urinary tract symptoms attributed to benign prostatic hyperplasia, particularly those who cannot tolerate the ejaculatory effects of the alpha-1A-preferring drugs.',
+      clinicalGoals:
+        'Lower the International Prostate Symptom Score and raise peak urine flow. On the label\'s own three trials, the symptom margin over placebo is about two points on a thirty-five point scale and the flow margin missed significance in one of the three.',
+    },
+    oneSentenceVerdict:
+      'An alpha-1 adrenoceptor antagonist whose "uroselectivity" is a matter of formulation and dosing rather than of receptor subtype: across its three US registration trials it lowered the International Prostate Symptom Score by 3.6, 6.9 and 6.5 points against 1.6, 4.9 and 4.6 on placebo, a margin of about two points; over two years in 1,522 men it did not reduce acute urinary retention at all (2.1% against 1.8%, P=0.82); and in a 272-man randomised trial for chronic prostatitis it produced a response rate identical to placebo to within a tenth of a percentage point.',
+    laymanHowItWorks:
+      'The prostate and the neck of the bladder are wrapped in muscle that nerves hold permanently tense, and that tension narrows the tube urine leaves through. Alfuzosin blocks the receptor those nerve signals use, so the muscle relaxes and the channel widens. The gland is the same size afterwards. Unlike some drugs in its class, alfuzosin does not prefer one receptor subtype over another — what it has instead is an extended-release tablet and a once-daily schedule designed to keep blood-pressure effects small, which is a different kind of selectivity and worth knowing the difference.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1077 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 12 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 2003 as an extended-release tablet and now generic, with twelve products in the acquisition-cost file — the thinnest generic market of any alpha-blocker in this group, and about twice the per-tablet cost of tamsulosin as a result.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Within the alpha-blocker class the choice is mostly about which side effect you would rather have: tamsulosin and silodosin prefer the alpha-1A subtype and cause ejaculatory dysfunction, alfuzosin and terazosin do not and are more likely to affect blood pressure. Across classes the choice is different in kind: a 5-alpha-reductase inhibitor shrinks the gland over months and is the only drug type that has been shown to reduce retention and surgery.',
+      conventionalRx: [
+        {
+          name: 'Tamsulosin (Flomax)',
+          class: 'Alpha-1A-preferring adrenergic antagonist',
+          howItCompares:
+            'Genuinely subtype-preferring where alfuzosin is not, which is why abnormal ejaculation appears in 8.4% at 0.4 mg and 18.1% at 0.8 mg against 0.2% on placebo. Alfuzosin\'s own adverse-event table has no comparable ejaculatory signal; its leading effect is dizziness at 5.7% against 2.8%. The symptom-score effects are of the same order.',
+          typicalCost:
+            'US$0.0509 per capsule at United States pharmacy acquisition cost (CMS NADAC, generic, median across 33 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: half the acquisition cost, thirty-three generic suppliers, and no CYP3A4 contraindication. Cons: dose-dependent abnormal ejaculation, and the same intraoperative floppy iris warning.',
+        },
+        {
+          name: 'Dutasteride (Avodart) or finasteride (Proscar)',
+          class: '5-alpha-reductase inhibitor',
+          howItCompares:
+            'Attacks the gland rather than the muscle. This matters precisely where alfuzosin failed: alfuzosin did not reduce acute urinary retention over two years in ALTESS (2.1% against 1.8%, P=0.82), whereas the 5-alpha-reductase inhibitor arm of CombAT was the one that carried the retention and surgery benefit over four years.',
+          typicalCost:
+            'US$0.0684 per tablet for finasteride at United States pharmacy acquisition cost (CMS NADAC, generic, median across 50 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: the only drug class with a demonstrated effect on retention and surgery. Cons: works over months not hours, halves serum PSA, and carries sexual adverse effects that persist during treatment.',
+        },
+        {
+          name: 'Silodosin (Rapaflo)',
+          class: 'Alpha-1A adrenergic antagonist, the most subtype-selective of the class',
+          howItCompares:
+            'The opposite design choice from alfuzosin: maximise alpha-1A preference and accept the ejaculatory consequence in exchange for the least cardiovascular effect. Alfuzosin achieves a similar cardiovascular result by pharmacokinetics rather than by receptor preference, and keeps ejaculation intact.',
+          typicalCost:
+            'US$0.3137 per capsule at United States pharmacy acquisition cost (CMS NADAC, generic, median across 21 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: least blood-pressure effect of the class by design. Cons: three times the cost of alfuzosin, and retrograde or absent ejaculation in a large minority.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Check the interaction list before any antifungal or protease inhibitor is started',
+          action:
+            'Alfuzosin is contraindicated — not merely cautioned — for use with potent CYP3A4 inhibitors such as ketoconazole, itraconazole and ritonavir.',
+          patientImpact:
+            'This is a hard contraindication in the US label, and it exists because those drugs remove the drug\'s clearance route. The same label contraindicates use in moderate to severe hepatic insufficiency (Child-Pugh B and C), where plasma clearance falls to a third or a quarter of normal and concentrations rise three to four-fold.',
+          clinicalPrecaution:
+            'Most drugs in this class carry a caution here. Alfuzosin carries a contraindication, which is a stronger statement and one worth raising specifically.',
+        },
+        {
+          name: 'Tell an eye surgeon before cataract surgery, as for every alpha-blocker',
+          action:
+            'The intraoperative floppy iris warning applies across the alpha-blocker class, not only to the drug in which it was first described.',
+          patientImpact:
+            'The syndrome was first identified in tamsulosin users and the warning has since been extended across the class. A surgeon told in advance can change technique; one who meets it mid-operation cannot.',
+          clinicalPrecaution:
+            'Stopping the drug before surgery has not been shown to prevent the syndrome. Disclosure is what changes the outcome.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(CCCNC(=O)C1CCCO1)C2=NC3=CC(=C(C=C3C(=N2)N)OC)OC',
+      chemicalFormula: 'C19H27N5O4',
+      molecularWeight: '389.40 g/mol (free base); dispensed as alfuzosin hydrochloride',
+      targetReceptorAffinity:
+        'The US label states that alfuzosin is "a selective antagonist of post-synaptic alpha 1-adrenoreceptors, which are located in the prostate, bladder base, bladder neck, prostatic capsule, and prostatic urethra". That sentence claims selectivity between alpha-1 and alpha-2, and then locates the receptors anatomically. It does not claim preference among the alpha-1A, alpha-1B and alpha-1D subtypes, and no such preference is quoted here. The molecule is achiral — it has no stereocentre, which is unusual in this group and removes the chiral-purity step every other dossier in this file carries. It shares the 4-amino-6,7-dimethoxyquinazoline head with prazosin, terazosin and doxazosin, and differs in the tail.',
+      structureSource: {
+        label: 'PubChem CID 2092 — alfuzosin structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2092',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'alf-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Purity of the 4-amino-2-chloro-6,7-dimethoxyquinazoline intermediate',
+          description:
+            'Establish identity and purity of the quinazoline head before the aminopropyl tail is attached. There is deliberately no chiral specification anywhere in this route: alfuzosin has no stereocentre, which is why the whole quinazoline family of alpha-blockers is manufactured without the chiral analytics that tamsulosin and silodosin require.',
+          reagentsAndBuffer:
+            'Reversed-phase HPLC with UV detection at 254 nm, gas chromatography for residual solvents, nuclear magnetic resonance for identity, loss-on-drying and Karl Fischer titration',
+        },
+        {
+          id: 'alf-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'N-methylaminopropylamine displacement, then tetrahydrofuroyl amidation',
+          description:
+            'Displace the 2-chloro substituent with N-methyl-1,3-propanediamine to install the tertiary amine linkage, then acylate the remaining primary amine with tetrahydrofuran-2-carboxylic acid. Because the acyl fragment is racemic and the finished drug is sold as such, no resolution step follows.',
+          dependsOnStepId: 'alf-w1',
+          reagentsAndBuffer:
+            'N-methyl-1,3-propanediamine, tetrahydrofuran-2-carbonyl chloride or the free acid with a carbodiimide coupling reagent, triethylamine or diisopropylethylamine, isopropanol or dimethylformamide, nitrogen atmosphere',
+        },
+        {
+          id: 'alf-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrochloride salt formation and control of the unacylated amine',
+          description:
+            'Precipitate the hydrochloride and recrystallise. The specification is written around the unacylated intermediate, which is the most likely process impurity, and around the hydrolysis product that regenerates it on storage.',
+          dependsOnStepId: 'alf-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in isopropanol, ethanol and water for recrystallisation, activated charcoal, reversed-phase HPLC with gradient elution for related substances, accelerated stability chambers at 40 degrees Celsius and 75% relative humidity',
+        },
+        {
+          id: 'alf-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Application to cells expressing each human alpha-1 subtype separately',
+          description:
+            'Apply the compound to three stable lines carrying human ADRA1A, ADRA1B or ADRA1D. The receptor faces outward from the plasma membrane, so nothing has to be carried into a cell. For this molecule the three-subtype panel is the assay that tests the marketing claim directly: a drug described as uroselective either shows a subtype preference here or it does not, and the label makes no such claim.',
+          dependsOnStepId: 'alf-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 lines stably expressing human ADRA1A, ADRA1B or ADRA1D, Ham F-12 or DMEM with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4',
+        },
+        {
+          id: 'alf-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Radioligand competition, calcium mobilisation, and a hERG counter-screen',
+          description:
+            'Measure displacement of a labelled alpha-1 antagonist at each subtype, then blockade of phenylephrine-evoked calcium to confirm functional antagonism. The hERG counter-screen belongs here because the label carries a quantified QT result: 1.8 msec at the therapeutic 10 mg dose and 4.3 msec at 40 mg, against 11.1 msec for moxifloxacin as positive control. That is a clean negative, and a clean negative is only interpretable if the assay that produced it is stated.',
+          dependsOnStepId: 'alf-w4',
+          reagentsAndBuffer:
+            'Tritiated prazosin as radioligand, phentolamine for non-specific binding, GF/C filter plates, Fluo-4 AM calcium indicator, phenylephrine as agonist, HEK293 line stably expressing hERG, E-4031 as positive control',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'alf-a1',
+        category: 'failed',
+        title: 'ALTESS missed its primary endpoint: no reduction in acute urinary retention',
+        laymanSummary:
+          'Fifteen hundred men at raised risk of urinary retention took alfuzosin or placebo for two years. Retention happened to 2.1% on the drug and 1.8% on placebo. The endpoint the trial was built around was not met.',
+        technicalDetails:
+          'ALTESS (NCT00029822) randomised 1,522 men at risk of BPH progression to alfuzosin 10 mg once daily (759) or placebo (763) for two years, with occurrence of a first episode of acute urinary retention as the primary endpoint and BPH-related surgery as a secondary. Alfuzosin did not reduce the risk of retention: 2.1% against 1.8%, P=0.82. Surgery trended in the drug\'s favour without reaching significance: 5.1% against 6.5%, P=0.18, relative risk reduction 22% (95% CI -18 to 48). The findings that were significant — symptom deterioration 11.7% against 16.8%, P=0.0013, and the composite "overall clinical progression" 16.3% against 22.1%, P<0.001 — are described by the publication itself as post hoc analyses. The paper\'s own title states the conclusion in full: prevents overall clinical progression but not acute urinary retention.',
+        evidenceSource: 'Roehrborn CG, BJU Int 2006;97:734-741 (PMID 16536764); NCT00029822',
+        doi: '10.1111/j.1464-410X.2006.06110.x',
+        measuredMetric:
+          'Incidence of first episode of acute urinary retention over two years, alfuzosin versus placebo',
+        inferredClaim:
+          'That an alpha-blocker slows the disease — the endpoints that support this in ALTESS are post hoc, and the pre-specified one failed',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alf-a2',
+        category: 'failed',
+        title: 'For chronic prostatitis the response rate was 49.3% in both arms',
+        laymanSummary:
+          'Alfuzosin was widely used for chronic pelvic pain in men on the strength of small trials. A properly powered NIH-network trial found the improvement rate identical in the drug and placebo groups — 49.3% each.',
+        technicalDetails:
+          'Nickel and colleagues randomised 272 men with chronic prostatitis-chronic pelvic pain syndrome diagnosed within the previous two years and with no prior alpha-blocker exposure, to alfuzosin 10 mg daily or placebo for 12 weeks. The primary outcome was a reduction of at least 4 points on the NIH Chronic Prostatitis Symptom Index, which is the instrument\'s minimal clinically significant difference. In both groups 49.3% of participants achieved it: rate difference associated with alfuzosin 0.1% (95% CI -11.2 to 11.0), P=0.99. A global response assessment agreed: 33.6% on placebo and 34.8% on alfuzosin, P=0.90. Adverse event rates were similar. Two arms landing on the same number to a tenth of a percentage point is as clean a null as this literature produces, and the enrolment criterion — no previous alpha-blocker — was specifically designed to give the drug its best chance.',
+        evidenceSource: 'Nickel JC et al., N Engl J Med 2008;359:2663-2673 (PMID 19092152)',
+        doi: '10.1056/NEJMoa0803240',
+        measuredMetric:
+          'Proportion achieving a 4-point or greater fall in NIH-CPSI score at 12 weeks, alfuzosin versus placebo',
+        inferredClaim:
+          'That alpha-blockade relieves chronic pelvic pain in men because it relieves obstructive urinary symptoms — a mechanistic extrapolation supported by small trials and refuted by the adequately powered one',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alf-a3',
+        category: 'measured',
+        title: 'About two points of symptom score over placebo, in all three registration trials',
+        laymanSummary:
+          'On the label\'s own three trials, men on alfuzosin improved by roughly two more points on a thirty-five point symptom questionnaire than men on placebo. The placebo groups improved substantially on their own.',
+        technicalDetails:
+          'The Clinical Studies section reports three 12-week placebo-controlled trials. International Prostate Symptom Score total fell 3.6 against 1.6 on placebo (p=0.001), 6.9 against 4.9 (p=0.002) and 6.5 against 4.6 (p=0.007). The treatment effect is 2.0, 2.0 and 1.9 points respectively — remarkably consistent, and consistently around two points on an instrument that runs to 35 and whose commonly cited minimally important difference is around three. Note the placebo arms: 1.6, 4.9 and 4.6 points of improvement with no active drug, meaning that in the second and third trials placebo accounted for roughly seven-tenths of the total movement patients experienced.',
+        evidenceSource:
+          'US prescribing information for alfuzosin hydrochloride extended-release tablets, Clinical Studies section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Change in International Prostate Symptom Score total at 12 weeks against placebo, in three registration trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alf-a4',
+        category: 'failed',
+        title: 'The flow-rate endpoint missed in one of the three registration trials',
+        laymanSummary:
+          'Peak urine flow is the one objective measurement in this indication. In the third registration trial, alfuzosin did not beat placebo on it.',
+        technicalDetails:
+          'Peak urine flow rate rose 1.7 mL/sec against 0.2 on placebo in Trial 1 (p=0.0004), 2.3 against 1.4 in Trial 2 (p=0.03), and 1.5 against 0.9 in Trial 3 (p=0.22). The third result did not reach significance. Peak flow matters more than it appears to, because it is the only endpoint in this indication that a patient cannot influence by how they feel about their treatment — the symptom score is entirely self-reported. A drug whose objective endpoint separates in two trials out of three, by 1.5 and 0.9 mL/sec, is being described accurately when both facts are stated together.',
+        evidenceSource:
+          'US prescribing information for alfuzosin hydrochloride extended-release tablets, Clinical Studies section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Change in peak urine flow rate at 12 weeks against placebo, in three registration trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'alf-a5',
+        category: 'inferred',
+        title: '"Uroselective" describes the tablet, not the receptor',
+        laymanSummary:
+          'Alfuzosin is routinely called uroselective, which sounds like it means the drug picks out bladder receptors. The label makes no such claim: it says the drug is selective for one broad receptor family and then lists where in the body those receptors sit.',
+        technicalDetails:
+          'The US label states alfuzosin is "a selective antagonist of post-synaptic alpha 1-adrenoreceptors, which are located in the prostate, bladder base, bladder neck, prostatic capsule, and prostatic urethra." Read carefully, that is a claim of alpha-1 versus alpha-2 selectivity followed by an anatomical statement about where alpha-1 receptors are found. It is not a claim of preference for the alpha-1A subtype, which is the claim tamsulosin\'s and silodosin\'s labels do make. The term "uroselective" nonetheless appears routinely in the peer-reviewed literature describing this drug — the opening sentence of Mondaini and colleagues\' 2006 European Urology paper calls it "a uroselective alpha(1)-adrenoceptor antagonist". What the extended-release formulation and once-daily schedule genuinely deliver is a lower peak concentration and a smaller haemodynamic effect: in a randomised crossover of 14 healthy young men, 10 mg produced no significant change in systolic or diastolic pressure or heart rate, and no hypotensive episode. That is a real and useful property. It is a pharmacokinetic property, and calling it selectivity moves a claim from one category into another.',
+        evidenceSource:
+          'US prescribing information for alfuzosin hydrochloride extended-release tablets, Mechanism of Action; Mondaini N et al., Eur Urol 2006;50:1292-1298 (PMID 16837126)',
+        doi: '10.1016/j.eururo.2006.06.016',
+        inferredClaim:
+          'That alfuzosin is receptor-subtype selective for the lower urinary tract — the label claims alpha-1 class selectivity and anatomical distribution, and the clinical difference from the older quinazolines is delivered by formulation',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'alf-a6',
+        category: 'measured',
+        title: 'The QT study is a clean negative, and the label reports the numbers',
+        laymanSummary:
+          'At the normal dose, alfuzosin lengthened a heart electrical interval by under 2 milliseconds, against 11 for the antibiotic used as the positive control. Even at four times the dose it reached 4.3.',
+        technicalDetails:
+          'The US label reports mean QTc change of 1.8 msec at the therapeutic 10 mg dose using subject-specific correction, and 4.3 msec at 40 mg, against 11.1 msec for moxifloxacin 400 mg as positive control. No Torsade de Pointes signal emerged in non-US post-marketing experience. This is included as a measured audit point rather than omitted as good news, because it is the counterexample within this file: tolterodine\'s label reports 11.84 msec at twice its therapeutic dose with confidence intervals overlapping the same positive control. Identical study design, opposite result, both stated in the manufacturer\'s own words. It is what a genuinely negative safety study looks like when it is reported in full.',
+        evidenceSource:
+          'US prescribing information for alfuzosin hydrochloride extended-release tablets, Clinical Pharmacology section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Mean QTc change at 10 mg and 40 mg against a moxifloxacin positive control',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'alf-a7',
+        category: 'measured',
+        title: 'Two hard contraindications where most of this class carries only cautions',
+        laymanSummary:
+          'Alfuzosin must not be taken with certain antifungal and HIV drugs, and must not be taken by anyone with moderate or severe liver impairment. These are contraindications, not warnings.',
+        technicalDetails:
+          'The US label contraindicates use with potent CYP3A4 inhibitors including ketoconazole, itraconazole and ritonavir, and contraindicates use in moderate to severe hepatic insufficiency (Child-Pugh B and C), where plasma clearance falls to one-third to one-quarter of normal and alfuzosin concentrations rise three- to four-fold. Tamsulosin\'s label handles strong CYP3A4 inhibitors with a warning rather than a contraindication. The difference is not arbitrary: alfuzosin has a single dominant clearance route and a formulation designed around a specific concentration profile, so removing that route defeats the design. The commonest adverse effects on the label are dizziness at 5.7% against 2.8% on placebo, upper respiratory infection 3.0% against 0.6%, headache 3.0% against 1.8% and fatigue 2.7% against 1.8%.',
+        evidenceSource:
+          'US prescribing information for alfuzosin hydrochloride extended-release tablets, Contraindications and Adverse Reactions sections (openFDA drug label endpoint)',
+        measuredMetric:
+          'Contraindicated interactions and hepatic clearance reduction, with adverse-event incidences against placebo',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An extended-release tablet built to avoid a peak',
+        laymanDesc:
+          'The tablet releases the drug gradually so the level in the blood never spikes. That is the whole design: the older drugs in this family dropped blood pressure because their concentration rose sharply after each dose.',
+        molecularDetail:
+          'Once-daily extended-release tablet, taken with food. Cleared predominantly by CYP3A4, which is why potent inhibitors of that enzyme are a contraindication rather than a caution, and why moderate to severe hepatic impairment is also contraindicated. In 14 healthy young men, 10 mg produced no significant change in systolic pressure, diastolic pressure or heart rate against placebo.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the receptor without entering any cell',
+        laymanDesc:
+          'The target is on the outer face of the smooth muscle cell. The drug arrives from the bloodstream and occupies it directly; nothing has to be transported inside.',
+        molecularDetail:
+          'Alpha-1 adrenoceptors are plasma-membrane G-protein-coupled receptors with an extracellular-facing orthosteric pocket, so there is no transporter step and no intracellular accumulation requirement. This is why alpha-blocker effects appear within days rather than months, and disappear as quickly on stopping.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the alpha-1 receptor without preferring a subtype',
+        laymanDesc:
+          'Noradrenaline released by nerves keeps prostate muscle tense. Alfuzosin occupies the receptor it uses. Unlike some drugs in its class it does not favour one variant of that receptor over another.',
+        molecularDetail:
+          'Competitive antagonism at post-synaptic alpha-1 adrenoceptors. The label names the anatomical sites — prostate, bladder base, bladder neck, prostatic capsule and prostatic urethra — and claims no subtype preference among alpha-1A, alpha-1B and alpha-1D. That absence is the structural reason the drug leaves ejaculation largely alone where the alpha-1A-preferring drugs do not.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The calcium signal holding the muscle tense falls away',
+        laymanDesc:
+          'Smooth muscle tension is maintained by a continuous internal calcium signal. With the receptor blocked, that signal weakens and the muscle relaxes.',
+        molecularDetail:
+          'Loss of Gq/11 coupling ends phospholipase C activation, inositol trisphosphate falls, sarcoplasmic reticulum calcium release drops and myosin light-chain kinase activity declines. Prostatic and bladder-neck smooth muscle relaxes. Prostate volume is unchanged, which is why two years of this drug in ALTESS did not reduce acute urinary retention.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Two points of symptom score, and no fewer episodes of retention',
+        laymanDesc:
+          'The questionnaire improves by about two points more than placebo, and the flow rate by one to two millilitres a second in two of three trials. Over two years, the number of men who ended up unable to pass urine was the same as on placebo.',
+        molecularDetail:
+          'IPSS fell 3.6, 6.9 and 6.5 against 1.6, 4.9 and 4.6 on placebo across three registration trials. Peak flow rose 1.7, 2.3 and 1.5 mL/sec against 0.2, 1.4 and 0.9, with the third comparison at p=0.22. In ALTESS, acute urinary retention over two years occurred in 2.1% on alfuzosin and 1.8% on placebo, P=0.82.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ALTESS / EFC4485 (NCT00029822)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled, 2 years',
+        sampleSize: 1522,
+        primaryEndpoint: 'Occurrence of a first episode of acute urinary retention',
+        endpointMet: false,
+        statisticalPValue:
+          'Acute urinary retention 2.1% on alfuzosin against 1.8% on placebo, P=0.82. Surgery 5.1% against 6.5%, P=0.18. Post hoc: symptom deterioration 11.7% against 16.8%, P=0.0013; overall clinical progression 16.3% against 22.1%, P<0.001',
+        unreportedAdverseSignals:
+          'The endpoints that produced the trial\'s positive headline are identified by the publication as post hoc analyses. The pre-specified primary endpoint was not met and the secondary surgery endpoint did not reach significance.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Alfuzosin for chronic prostatitis-chronic pelvic pain syndrome (Nickel 2008)',
+        phase: 'Randomised double-blind placebo-controlled multicentre, 12 weeks',
+        sampleSize: 272,
+        primaryEndpoint:
+          'Proportion with a reduction of at least 4 points in NIH Chronic Prostatitis Symptom Index score from baseline to 12 weeks',
+        endpointMet: false,
+        statisticalPValue:
+          '49.3% in both groups; rate difference 0.1% (95% CI -11.2 to 11.0), P=0.99. Global response 34.8% against 33.6%, P=0.90',
+        unreportedAdverseSignals:
+          'Enrolment was restricted to men diagnosed within two years and never previously treated with an alpha-blocker, a design chosen to give the drug its best chance. Adverse event rates were similar between groups.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'ALFAURUS (NCT00290030)',
+        phase: 'Randomised double-blind placebo-controlled, 6 months',
+        sampleSize: 800,
+        primaryEndpoint:
+          'Successful voiding at an active voiding trial after a first episode of acute urinary retention, absence of relapse over 6 months, and no requirement for surgery',
+        endpointMet: false,
+        statisticalPValue:
+          'No results are posted on the registry record and no linked publication is recorded there. `endpointMet: false` records the absence of a public result, not a missed endpoint.',
+        unreportedAdverseSignals:
+          'An 800-patient placebo-controlled trial addressing exactly the question ALTESS failed on — whether this drug helps in acute urinary retention — with no result in the public registry record.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'US registration programme, three 12-week placebo-controlled trials (US label)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled, 12 weeks',
+        sampleSize: 1177,
+        primaryEndpoint:
+          'Change in International Prostate Symptom Score total, with peak urine flow rate as a co-reported endpoint',
+        endpointMet: true,
+        statisticalPValue:
+          'IPSS -3.6 vs -1.6 (p=0.001), -6.9 vs -4.9 (p=0.002), -6.5 vs -4.6 (p=0.007). Peak flow +1.7 vs +0.2 (p=0.0004), +2.3 vs +1.4 (p=0.03), +1.5 vs +0.9 (p=0.22)',
+        unreportedAdverseSignals:
+          'The peak flow comparison — the only objective endpoint in this indication — missed significance in the third trial at p=0.22. The sample size given is the enrolment of the largest registered US symptom-score trial on this record, NCT00399464, not the pooled registration total.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'International Prostate Symptom Score fell 3.6, 6.9 and 6.5 points against 1.6, 4.9 and 4.6 on placebo in the three registration trials',
+        'Peak urine flow rose 1.7, 2.3 and 1.5 mL/sec against 0.2, 1.4 and 0.9, with the third comparison at p=0.22',
+        'Acute urinary retention over two years occurred in 2.1% on alfuzosin and 1.8% on placebo (P=0.82) in 1,522 men',
+        'For chronic prostatitis, 49.3% of both arms achieved a 4-point NIH-CPSI improvement; rate difference 0.1% (95% CI -11.2 to 11.0), P=0.99',
+        'Mean QTc change of 1.8 msec at 10 mg and 4.3 msec at 40 mg, against 11.1 msec for moxifloxacin',
+        'In 14 healthy young men, 10 mg produced no significant change in systolic or diastolic pressure or heart rate and no hypotensive episode',
+      ],
+      unsupportedInferences: [
+        'That "uroselective" denotes receptor-subtype selectivity — the label claims alpha-1 class selectivity and anatomical distribution, and the clinical advantage comes from the extended-release formulation',
+        'That relaxing prostatic smooth muscle prevents urinary retention — ALTESS tested exactly that in 1,522 men over two years and found no difference',
+        'That alpha-blockade relieves chronic pelvic pain — a 272-man trial produced identical response rates in both arms',
+        'That ALTESS showed alfuzosin slows disease progression — the endpoints supporting that are post hoc, and the pre-specified primary endpoint failed',
+      ],
+      whatFailedInitially: [
+        'The registered two-year primary endpoint of ALTESS: acute urinary retention, 2.1% against 1.8%, P=0.82',
+        'The chronic prostatitis indication, refuted by an NIH-network trial after years of off-label use built on small studies',
+        'The peak flow endpoint in the third registration trial, at p=0.22',
+        'The 800-patient ALFAURUS trial in acute urinary retention, with no result posted on the public registry record',
+      ],
+      realWorldOutcome: [
+        'Eleven cents a tablet at United States pharmacy acquisition cost, across only twelve listed products — twice tamsulosin\'s price on a third of the supplier base',
+        'Chosen in practice where ejaculatory function matters, because it has no alpha-1A subtype preference to disturb it',
+        'Carries two hard contraindications — potent CYP3A4 inhibitors and Child-Pugh B or C hepatic impairment — where most of its class carries only warnings',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral extended-release tablet, once daily, taken with food',
+      description:
+        'The extended-release geomatrix tablet is the drug\'s actual point of difference. Older quinazoline alpha-blockers required upward titration because their concentration peaked sharply after each dose and dropped blood pressure. Slowing release removes the peak and removes the titration. The tablet is swallowed whole, not crushed or chewed, and is taken with food because absorption depends on it.',
+      safetyProfile:
+        'Commonest effects are dizziness at 5.7% against 2.8% on placebo, upper respiratory infection, headache and fatigue. The label contraindicates concomitant potent CYP3A4 inhibitors and moderate to severe hepatic insufficiency outright. Warnings cover postural hypotension and syncope, intraoperative floppy iris syndrome in cataract and glaucoma surgery, priapism, and caution in patients with congenital or acquired QT prolongation despite a dedicated QT study showing only 1.8 msec at the therapeutic dose. It states explicitly that the drug is not indicated for hypertension.',
+    },
+    commonQuestions: [
+      {
+        q: 'What does "uroselective" actually mean for this drug?',
+        a: 'Less than it sounds like. The label says alfuzosin is "a selective antagonist of post-synaptic alpha 1-adrenoreceptors, which are located in the prostate, bladder base, bladder neck, prostatic capsule, and prostatic urethra". Read that carefully: it claims selectivity between two broad receptor families, alpha-1 and alpha-2, and then tells you where alpha-1 receptors are found in the body. It does not claim that the drug prefers the alpha-1A subtype the prostate is richest in — which is a claim tamsulosin\'s and silodosin\'s labels do make. What alfuzosin genuinely has is an extended-release tablet that avoids the concentration spike older drugs in its family produced, which is why it needs no dose titration and why it left blood pressure and heart rate unchanged in a crossover study of healthy young men. That is a real advantage delivered by the formulation.',
+        auditNote:
+          'The word appears throughout the peer-reviewed literature on this drug, including in the opening sentence of papers about it. Its currency is not in doubt; what it denotes is.',
+      },
+      {
+        q: 'Will this stop me ending up unable to pass urine?',
+        a: 'The trial designed to answer that found it does not. ALTESS randomised 1,522 men at raised risk of progression to alfuzosin or placebo for two years, with the first episode of acute urinary retention as the primary endpoint. It occurred in 2.1% on the drug and 1.8% on placebo, P=0.82. Surgery was 5.1% against 6.5%, which did not reach significance either at P=0.18. The trial did find less symptom deterioration on the drug, 11.7% against 16.8%, and the publication states plainly that this and the composite progression endpoint were post hoc analyses. The drug relaxes the muscle around the urethra and does nothing to the size of the gland, and over two years that distinction showed up exactly where the mechanism predicts it would.',
+      },
+      {
+        q: 'My doctor mentioned this for pelvic pain. Does it work for that?',
+        a: 'The largest and best-designed trial says no, and the numbers are unusually stark. Nickel and colleagues randomised 272 men with chronic prostatitis-chronic pelvic pain syndrome to alfuzosin or placebo for 12 weeks, restricting entry to men diagnosed within two years and never previously given an alpha-blocker — conditions chosen to give the drug the best possible chance. The primary outcome was a fall of at least 4 points on the NIH symptom index, the smallest change considered clinically meaningful. Exactly 49.3% of each group achieved it. The rate difference attributable to alfuzosin was 0.1%, with a confidence interval from -11.2% to 11.0% and P=0.99. A separate global assessment agreed. Note that half of each group improved: the condition responds to being in a trial, which is why smaller uncontrolled studies had looked encouraging.',
+        auditNote:
+          'Two arms landing within a tenth of a percentage point of each other is the shape of a genuine null, not of an underpowered miss.',
+      },
+      {
+        q: 'Why does this one have contraindications when similar drugs only have warnings?',
+        a: 'Because its clearance depends heavily on a single enzyme and its formulation depends on a specific concentration profile. The label contraindicates potent CYP3A4 inhibitors — ketoconazole, itraconazole, ritonavir — outright, rather than cautioning against them, because blocking that enzyme removes the route the drug leaves the body by. For the same reason it contraindicates moderate to severe liver impairment: in Child-Pugh B and C, plasma clearance falls to a third or a quarter of normal and concentrations rise three- to four-fold. The extended-release design that makes this drug tolerable at a fixed dose is the same design that makes it unforgiving when clearance is impaired.',
+      },
+      {
+        q: 'Why does this page not show a manufacturing cost?',
+        a: 'Because no per-dose cost-of-production figure for alfuzosin could be verified and cited. The cost-of-production literature checked publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about eleven cents a tablet in the CMS acquisition-cost survey — which is a price, not a cost of manufacture. It is roughly twice tamsulosin\'s figure, and the acquisition-cost file lists twelve suppliers for alfuzosin against thirty-three for tamsulosin.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Roehrborn CG. Alfuzosin 10 mg once daily prevents overall clinical progression of benign prostatic hyperplasia but not acute urinary retention: results of a 2-year placebo-controlled study. BJU Int 2006;97:734-741',
+        identifier: '10.1111/j.1464-410X.2006.06110.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'ALTESS / EFC4485 — two-year placebo-controlled trial of alfuzosin 10 mg on acute urinary retention and need for surgery',
+        identifier: 'NCT00029822',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Nickel JC, Krieger JN, McNaughton-Collins M, et al. Alfuzosin and symptoms of chronic prostatitis-chronic pelvic pain syndrome. N Engl J Med 2008;359:2663-2673',
+        identifier: '10.1056/NEJMoa0803240',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mondaini N, Giubilei G, Ungar A, et al. Alfuzosin (10 mg) does not affect blood pressure in young healthy men. Eur Urol 2006;50:1292-1298',
+        identifier: '10.1016/j.eururo.2006.06.016',
+        kind: 'doi',
+      },
+      {
+        label:
+          'ALFAURUS — placebo-controlled trial of alfuzosin 10 mg in the management of a first episode of acute urinary retention',
+        identifier: 'NCT00290030',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Placebo-controlled trial of alfuzosin with change in International Prostate Symptom Score as primary endpoint',
+        identifier: 'NCT00399464',
+        kind: 'nct',
+      },
+      {
+        label:
+          'US prescribing information for alfuzosin hydrochloride extended-release tablets — mechanism of action, clinical pharmacology, contraindications, clinical studies and adverse reactions (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22alfuzosin+hydrochloride%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2092 — alfuzosin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2092',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

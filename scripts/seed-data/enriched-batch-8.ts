@@ -2700,4 +2700,1047 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       NADAC_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Vilanterol trifenatate — a beta-agonist that has never been sold on its own, whose largest
+  //    monotherapy dataset is a control arm in a trial that missed its primary endpoint.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'vilanterol-trifenatate',
+    name: 'Vilanterol Trifenatate',
+    tradeName: 'Breo Ellipta / Anoro Ellipta / Trelegy Ellipta',
+    sponsor: 'Glaxo Grp Ltd. (developed as GW642444)',
+    targetGene: 'ADRB2',
+    targetProtein: 'Beta-2 adrenergic receptor — a Gs-coupled G-protein-coupled receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2013,
+    indication:
+      'Only as a component of a fixed-dose combination. With fluticasone furoate (Breo Ellipta): maintenance treatment of chronic obstructive pulmonary disease and maintenance treatment of asthma in patients aged 5 years and older. With umeclidinium (Anoro Ellipta) and with fluticasone furoate plus umeclidinium (Trelegy Ellipta): maintenance treatment of COPD. Not indicated for relief of acute bronchospasm.',
+    patientFriendlyIndication:
+      'The airway-relaxing half of a once-daily combination inhaler — never prescribed by itself',
+    anatomicalSite:
+      'Beta-2 adrenoceptors on bronchial smooth muscle, reached by dry powder deposited in the conducting airways',
+    conditionContext: {
+      conditionExplainer:
+        'Long-acting beta-agonists relax the ring of muscle around the airway and hold it relaxed. Vilanterol holds it for a full twenty-four hours rather than twelve, which is the property the molecule was designed for and the reason the inhalers built on it are used once a day.',
+      whyItMatters:
+        'Once-daily dosing is a real advantage, because the medicine most often skipped is the second dose of the day. But a component of a combination cannot be judged on its own from trials of the combination, and vilanterol is the clearest case of that problem in this file.',
+      whoTakesThis:
+        'People prescribed Breo, Anoro or Trelegy. Nobody takes vilanterol alone, because no such product exists in any market.',
+      clinicalGoals:
+        'Fewer symptoms and better lung function. In the one trial that gave vilanterol by itself to thousands of people for years, it changed neither mortality nor the rate at which lung function declined.',
+    },
+    oneSentenceVerdict:
+      'A once-daily beta-2 agonist whose functional selectivity the label describes as similar to salmeterol’s, sold only inside combination inhalers; in SUMMIT, where 4,118 people took it alone until the trial’s target number of deaths had accrued, all-cause mortality was unchanged (hazard ratio 0.96, 95% CI 0.81 to 1.14, p=0.655) and the rate of FEV1 decline was unchanged (-2 mL per year, 95% CI -8 to 5), while the steroid it is usually paired with did move that second number.',
+    laymanHowItWorks:
+      'Vilanterol switches on the same receptor on airway muscle that adrenaline uses, raising a chemical messenger inside the cell that makes the muscle relax. It is built to stay in place for a full day rather than half of one, so the inhaler is used once every twenty-four hours. It does nothing to the inflammation or the tissue damage underneath — which is why it is never sold on its own, and why the products containing it always pair it with a steroid, an antimuscarinic, or both.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 66,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$6.50 per unit, the median across 14 listed products at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Vilanterol is the newest beta-agonist in this file and has no standalone product to price. The 14 listed presentations are all combinations in the Ellipta device, all brand. There is a structural point buried in that: a molecule that is only ever sold inside a combination cannot go generic on its own schedule, because a generic entrant would have to reproduce the whole product — two or three actives, the blister, the device and its deposition profile.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Because vilanterol is not sold alone, the real comparison is between the inhalers it lives in and the inhalers built on older beta-agonists. The differences are once-daily against twice-daily dosing and device design, not a demonstrated difference in what the beta-agonist itself does. On the one occasion vilanterol was compared head to head against a long-acting antimuscarinic on trough lung function, it did not come out ahead.',
+      conventionalRx: [
+        {
+          name: 'Salmeterol (in Advair and Serevent)',
+          class: 'Long-acting beta-2 agonist, twice daily',
+          howItCompares:
+            'The label describes vilanterol’s functional selectivity in vitro as similar to salmeterol’s and says the clinical relevance of that finding is unknown. The practical difference is dosing interval: twelve hours against twenty-four.',
+          typicalCost:
+            'US$6.74 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: decades of outcome data, including two FDA-mandated safety trials in 17,887 people. Cons: twice daily, and slow onset for a beta-agonist.',
+        },
+        {
+          name: 'Formoterol (in Symbicort)',
+          class: 'Long-acting beta-2 agonist, twice daily, full agonist',
+          howItCompares:
+            'Works within one to three minutes rather than tens of minutes, which lets its combination products double as relievers. Vilanterol has no such role: its products are maintenance only.',
+          typicalCost:
+            'US$4.35 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: fast onset, generic in several presentations, usable in the as-needed anti-inflammatory reliever strategy. Cons: twice daily.',
+        },
+        {
+          name: 'Tiotropium (Spiriva)',
+          class: 'Long-acting muscarinic antagonist, once daily',
+          howItCompares:
+            'A different class with the same dosing interval. In a 24-week trial of 1,141 patients, umeclidinium plus vilanterol beat tiotropium alone on trough FEV1 by 0.088 to 0.090 L, but adding vilanterol to umeclidinium 125 micrograms in the replicate trial produced no significant gain at all (0.037 L, 95% CI -0.012 to 0.087, p=0.14).',
+          typicalCost:
+            'US$11.73 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: a four-year outcome trial and a 17,135-patient safety trial. Cons: does not treat inflammation, so in asthma it is an add-on rather than a foundation.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Rinse your mouth after every dose',
+          action:
+            'Rinse with water and spit it out after inhaling any product containing an inhaled corticosteroid — which every vilanterol product except Anoro does.',
+          patientImpact:
+            'The label states that Candida albicans infection of the mouth and pharynx may occur and advises rinsing without swallowing to reduce the risk.',
+          clinicalPrecaution:
+            'This is about the steroid partner, not about vilanterol. It applies to Breo and Trelegy and not to Anoro, which is a point worth being clear on rather than blurring across the family.',
+        },
+        {
+          name: 'Never carry two long-acting beta-agonist inhalers',
+          action:
+            'Check that no second inhaler in use also contains a long-acting beta-agonist before adding anything.',
+          patientImpact:
+            'The label warns explicitly against using a vilanterol product together with additional therapy containing a long-acting beta-agonist, because of the risk of overdose.',
+          clinicalPrecaution:
+            'This is easy to do accidentally when a person is switched between brands and keeps the old inhaler. The names differ; the class does not.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C1=CC=C(C=C1)C(C2=CC=CC=C2)(C3=CC=CC=C3)C(=O)O.C1=CC(=C(C(=C1)Cl)COCCOCCCCCCNC[C@@H](C2=CC(=C(C=C2)O)CO)O)Cl',
+      chemicalFormula: 'C44H49Cl2NO7',
+      molecularWeight: '774.80 g/mol',
+      targetReceptorAffinity:
+        'The label reports only that in vitro tests showed the functional selectivity of vilanterol to be similar to that of salmeterol, and states that the clinical relevance of that finding is unknown. It also records that beta-2 receptors comprise 10% to 50% of total beta-adrenergic receptors in the human heart, so selectivity for the airway receptor does not imply the absence of cardiac effect. No numeric selectivity ratio for vilanterol appears in the prescribing information, and none is stated here.',
+      structureSource: {
+        label:
+          'PubChem CID 44482554 (vilanterol trifenatate) — canonical SMILES, molecular formula and weight; the formula and mass include the triphenylacetate counter-ion',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/44482554',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'vil-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Chiral identity of the saligenin ethanolamine head',
+          description:
+            'Confirm the single (R) configuration at the benzylic alcohol before anything else. Vilanterol is a single enantiomer; the opposite one is not a weaker bronchodilator but a different pharmacology, and separating them after the fact is far harder than controlling the step that sets them.',
+          reagentsAndBuffer:
+            'Vilanterol trifenatate reference standard, chiral HPLC on a polysaccharide stationary phase, 1H NMR in DMSO-d6, optical rotation, Karl Fischer titration',
+        },
+        {
+          id: 'vil-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Alkylation joining the head to the dichlorobenzyl ether tail',
+          description:
+            'Couple the protected saligenin amino alcohol to the 2,6-dichlorobenzyl-oxyethoxy-hexyl arm. Two chlorines and two ether oxygens in that tail are what push the duration from twelve hours to twenty-four; the head group is essentially the same pharmacophore that salmeterol and formoterol carry.',
+          dependsOnStepId: 'vil-w1',
+          reagentsAndBuffer:
+            'N-protected (R)-saligenin amine, 6-[2-(2,6-dichlorobenzyloxy)ethoxy]hexyl bromide, potassium carbonate or diisopropylethylamine base, anhydrous acetonitrile or dimethylformamide, nitrogen atmosphere',
+        },
+        {
+          id: 'vil-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Deprotection and formation of the triphenylacetate salt',
+          description:
+            'Remove protection and crystallise the free base as the trifenatate. Triphenylacetic acid is a bulky, lipophilic counter-ion chosen for crystallinity and powder handling, and it is why the stated formula and molecular weight of the drug substance are far larger than those of the active cation.',
+          dependsOnStepId: 'vil-w2',
+          reagentsAndBuffer:
+            'Hydrogenolysis over palladium on carbon or acid deprotection, triphenylacetic acid, ethanol or isopropanol crystallisation, X-ray powder diffraction and differential scanning calorimetry for polymorph identity',
+        },
+        {
+          id: 'vil-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Exposure of ADRB2-expressing cells with a washout arm',
+          description:
+            'Dose cells stably expressing human ADRB2, then wash repeatedly and re-measure. For a molecule whose entire selling point is a twenty-four-hour duration, the washout arm is the experiment; a single-timepoint potency measurement would make vilanterol indistinguishable from a short-acting agonist.',
+          dependsOnStepId: 'vil-w3',
+          reagentsAndBuffer:
+            'CHO-K1 cells stably transfected with human ADRB2, Ham F-12 medium with 10% fetal bovine serum and selection antibiotic, HEPES-buffered assay saline, 3-isobutyl-1-methylxanthine to block phosphodiesterase, serial serum-free washes',
+        },
+        {
+          id: 'vil-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'cAMP response and beta-1 counter-screen run in parallel',
+          description:
+            'Measure cyclic AMP accumulation against a full agonist, and run the same curve on cells expressing beta-1 receptors on the same plate. Reporting a beta-2 potency without the parallel beta-1 arm gives a number that cannot support any selectivity claim, which is precisely why the label makes none.',
+          dependsOnStepId: 'vil-w4',
+          reagentsAndBuffer:
+            'Homogeneous time-resolved fluorescence cAMP kit, isoprenaline as full-agonist reference, ADRB1-expressing counter-screen line, ICI 118,551 and CGP 20712A as subtype-selective antagonist controls',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'vil-a1',
+        category: 'failed',
+        title: 'SUMMIT: 4,118 people took vilanterol alone, and it changed nothing measurable',
+        laymanSummary:
+          'The largest trial ever to give vilanterol by itself put more than four thousand people on it until the trial had counted enough deaths to stop. Deaths were unchanged. The rate at which lung function fell was unchanged. The steroid arm of the same trial did slow that decline; the vilanterol arm did not.',
+        technicalDetails:
+          'SUMMIT randomised 16,590 patients aged 40 to 80 with post-bronchodilator FEV1 of 50% to 70% predicted and a history of or increased risk of cardiovascular disease, one-to-one-to-one-to-one, to placebo, fluticasone furoate 100 micrograms, vilanterol 25 micrograms, or the combination, once daily. Compared with placebo, all-cause mortality was unaffected by vilanterol alone (hazard ratio 0.96, 95% CI 0.81 to 1.14, p=0.655), by fluticasone furoate alone (0.91, 0.77 to 1.08, p=0.284) or by the combination (0.88, 0.74 to 1.04, p=0.137). The rate of FEV1 decline was reduced by the combination (38 mL per year against 46 for placebo, difference 8 mL per year, 95% CI 1 to 15) and by fluticasone furoate (difference 8 mL per year, 95% CI 1 to 14), but not by vilanterol (difference -2 mL per year, 95% CI -8 to 5). Composite cardiovascular events were unaffected by all three (vilanterol hazard ratio 0.99, 95% CI 0.80 to 1.22).',
+        evidenceSource:
+          'Vestbo J, Anderson JA, Brook RD, et al. Lancet 2016;387:1817-1826 (SUMMIT, NCT01313676)',
+        doi: '10.1016/S0140-6736(16)30069-1',
+        measuredMetric:
+          'All-cause mortality, rate of FEV1 decline and composite cardiovascular events, vilanterol monotherapy against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vil-a2',
+        category: 'inferred',
+        title: 'SUMMIT missed its primary endpoint, and its authors said to read the rest carefully',
+        laymanSummary:
+          'The trial was built to show that the combination improved survival. It did not, at p=0.137. The paper then says in its own findings that because the primary outcome was not met, the secondary outcomes should be interpreted with caution — including the finding about slowing lung-function decline that is most often quoted from it.',
+        technicalDetails:
+          'The primary outcome of SUMMIT was all-cause mortality; the secondary outcomes were on-treatment rate of FEV1 decline and a composite of cardiovascular events. The combination gave a hazard ratio of 0.88 (95% CI 0.74 to 1.04, a 12% relative reduction, p=0.137). The published findings state directly that because of this, secondary outcomes should be interpreted with caution. The 8 mL per year reduction in FEV1 decline attributed to fluticasone furoate is one of those secondary outcomes, and it is a difference of 8 mL against a placebo decline of 46 mL per year — around one sixth of the slope, in a trial whose statistical gatekeeper did not open.',
+        evidenceSource: 'Vestbo J, Anderson JA, Brook RD, et al. Lancet 2016;387:1817-1826 (SUMMIT)',
+        doi: '10.1016/S0140-6736(16)30069-1',
+        inferredClaim:
+          'That fluticasone furoate with vilanterol slows lung-function decline in moderate COPD — a secondary outcome in a trial that missed its primary endpoint, which the authors flagged as requiring caution',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vil-a3',
+        category: 'failed',
+        title: 'One of the two replicate exacerbation trials did not reach significance',
+        laymanSummary:
+          'Two identical year-long trials asked whether adding a steroid to vilanterol prevents more flare-ups than vilanterol alone. The second one said yes at every dose. The first one did not reach significance even at the highest dose, and the way the statistics were ordered meant the lower doses in that trial could not be tested at all.',
+        technicalDetails:
+          'Two replicate double-blind parallel-group one-year trials randomised 1,622 and 1,633 patients to vilanterol 25 micrograms alone or with fluticasone furoate 50, 100 or 200 micrograms once daily, with yearly rate of moderate and severe exacerbations as the primary endpoint. In study 1 there was no significant difference between fluticasone furoate/vilanterol 200/25 and vilanterol alone (0.90 against 1.05 events per year; ratio 0.9, 95% CI 0.7 to 1.0), and because of the statistical hierarchy used, significance could not be inferred for the 50 and 100 microgram groups. In study 2 all three combination groups beat vilanterol alone (p=0.0398, 0.0244 and 0.0004). The pooled analysis was significant for all three doses. Pneumonia and fractures were reported more frequently with fluticasone furoate and vilanterol than with vilanterol alone.',
+        evidenceSource:
+          'Dransfield MT, Bourbeau J, Jones PW, et al. Lancet Respir Med 2013;1:210-223 (NCT01009463 and NCT01017952)',
+        doi: '10.1016/S2213-2600(13)70040-7',
+        measuredMetric:
+          'Yearly rate of moderate and severe COPD exacerbations, fluticasone furoate/vilanterol against vilanterol alone',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vil-a4',
+        category: 'failed',
+        title: 'Eight deaths from pneumonia in the steroid arms, none in the vilanterol-only arm',
+        laymanSummary:
+          'In the same pair of trials, eight people died of pneumonia among those taking the steroid with vilanterol. Nobody taking vilanterol alone did.',
+        technicalDetails:
+          'Across the two replicate one-year trials, pneumonia and fractures were reported more frequently in the fluticasone furoate/vilanterol groups than in the vilanterol-only group, and eight deaths from pneumonia were recorded in the fluticasone furoate/vilanterol groups against none in the vilanterol-only group. In IMPACT, the 10,355-patient triple-therapy trial, clinician-diagnosed pneumonia was significantly more likely on the fluticasone furoate-containing triple regimen than on umeclidinium-vilanterol, hazard ratio 1.53 (95% CI 1.22 to 1.92, P<0.001). SUMMIT, in a milder population, reported no excess pneumonia — 6% on combination against 5% on placebo. The signal is real, it belongs to the inhaled corticosteroid rather than to vilanterol, and its size depends on how severe the population is.',
+        evidenceSource:
+          'Dransfield MT et al., Lancet Respir Med 2013;1:210-223; Lipson DA et al., N Engl J Med 2018;378:1671-1680; Vestbo J et al., Lancet 2016;387:1817-1826',
+        doi: '10.1016/S2213-2600(13)70040-7',
+        measuredMetric:
+          'Deaths from pneumonia and pneumonia incidence, inhaled corticosteroid arms against non-steroid arms',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vil-a5',
+        category: 'measured',
+        title: 'Adding vilanterol to umeclidinium 125 micrograms produced no significant gain',
+        laymanSummary:
+          'Two replicate trials tested the combination against each of its parts. Against tiotropium and against vilanterol alone the pair won. Against the higher dose of umeclidinium alone it did not — the confidence interval crossed zero twice.',
+        technicalDetails:
+          'Two 24-week randomised, blinded, double-dummy trials recruited 1,141 and 1,191 participants to umeclidinium 125 plus vilanterol 25, umeclidinium 62.5 plus vilanterol 25, tiotropium 18, and either vilanterol 25 (study 1) or umeclidinium 125 (study 2), with trough FEV1 on day 169 as the primary endpoint. Both combination doses beat tiotropium (0.088 and 0.090 L in study 1, 0.074 and 0.060 L in study 2) and both beat vilanterol monotherapy (0.088 L, 95% CI 0.036 to 0.140, p=0.0010; 0.090 L, 0.039 to 0.142, p=0.0006). Neither beat umeclidinium 125 micrograms monotherapy: 0.037 L (95% CI -0.012 to 0.087, p=0.14) and 0.022 L (-0.027 to 0.072, p=0.38). There were no significant differences in symptoms, health status or exacerbation risk between the combination and tiotropium.',
+        evidenceSource:
+          'Decramer M, Anzueto A, Kerwin E, et al. Lancet Respir Med 2014;2:472-486 (NCT01316900 and NCT01316913)',
+        doi: '10.1016/S2213-2600(14)70065-7',
+        measuredMetric:
+          'Trough FEV1 on day 169, umeclidinium plus vilanterol against each monotherapy and against tiotropium',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vil-a6',
+        category: 'measured',
+        title: 'Salford: an 8.4% exacerbation reduction in ordinary general practice, and nothing else',
+        laymanSummary:
+          'A trial run inside real general practices, with almost no exclusion criteria, put 2,799 people on the combination or on whatever they would have had anyway. Flare-ups fell by 8.4%. Nothing else the trial measured moved.',
+        technicalDetails:
+          'The Salford Lung Study randomised 2,799 patients with COPD across 75 general practices to once-daily fluticasone furoate 100 micrograms plus vilanterol 25 micrograms or to usual care, with the rate of moderate or severe exacerbations among those with an exacerbation in the previous year as the primary outcome. That rate was 8.4% lower with the combination (95% CI 1.1 to 15.2, P=0.02). There was no significant difference in the annual rate of COPD-related contacts with primary or secondary care, and no significant between-group difference in time to first moderate or severe exacerbation or time to first severe exacerbation. There were no excess serious adverse events of pneumonia.',
+        evidenceSource:
+          'Vestbo J, Leather D, Diar Bakerly N, et al. N Engl J Med 2016;375:1253-1260 (Salford Lung Study, NCT01551758)',
+        doi: '10.1056/NEJMoa1608033',
+        measuredMetric:
+          'Rate of moderate or severe COPD exacerbations under everyday general-practice conditions',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vil-a7',
+        category: 'inferred',
+        title: 'Everything claimed for this molecule is claimed for a product containing it',
+        laymanSummary:
+          'Vilanterol has never been marketed on its own, in any country. The two-drug and three-drug inhalers it lives in carry all the evidence, and separating out what the beta-agonist contributes is an inference rather than a measurement — except in SUMMIT, where it was given alone and produced nothing.',
+        technicalDetails:
+          'Vilanterol trifenatate exists commercially only in Breo Ellipta (with fluticasone furoate), Anoro Ellipta (with umeclidinium) and Trelegy Ellipta (with both). The label’s pharmacology section says only that in vitro functional selectivity was similar to salmeterol’s and that the clinical relevance is unknown; no numeric selectivity ratio, receptor affinity or dissociation half-life appears in it. The monotherapy evidence that does exist comes from control arms: 4,118 patients in the vilanterol arm of SUMMIT, where mortality, cardiovascular events and FEV1 decline were all unchanged, and roughly 209 patients over 24 weeks in one of the Decramer trials, where the pair beat it by about 90 mL. On this page the combination results are labelled as combination results throughout.',
+        evidenceSource:
+          'BREO ELLIPTA United States prescribing information, Clinical Pharmacology 12.1; Vestbo J et al., Lancet 2016;387:1817-1826; Decramer M et al., Lancet Respir Med 2014;2:472-486',
+        inferredClaim:
+          'That vilanterol’s contribution to the products containing it can be read from trials of those products — a component attribution that only SUMMIT tested directly, and that SUMMIT did not support',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One inhalation from a foil blister',
+        laymanDesc:
+          'Opening the inhaler cover indexes a blister and pierces it. The powder is drawn in by the breath. Every product containing vilanterol works this way and no other.',
+        molecularDetail:
+          'Vilanterol trifenatate 25 micrograms of the base, micronised with lactose carrier, in an Ellipta dry-powder inhaler alongside fluticasone furoate, umeclidinium, or both in separate blister strips inhaled together.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The dichlorobenzyl tail anchors it near the receptor',
+        laymanDesc:
+          'Like the older long-acting beta-agonists, half the molecule is a long chain that does not act on the receptor at all. It lodges in the fatty membrane so the working end stays within reach for a full day.',
+        molecularDetail:
+          'A saligenin ethanolamine head connected through a hexyl-ethoxy linker to a 2,6-dichlorobenzyl ether. The lipophilic halogenated tail is the structural difference from salmeterol’s phenylbutoxy chain and is the accepted basis for the extension from about twelve hours to twenty-four.',
+        iconName: 'Anchor',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It activates the beta-2 receptor on airway muscle',
+        laymanDesc:
+          'The active end fits into the same receptor adrenaline uses and switches it on. The label says its selectivity in the test tube looks like salmeterol’s, and that nobody knows what that means in a patient.',
+        molecularDetail:
+          'Agonism at ADRB2. The label states only that in vitro functional selectivity was similar to that of salmeterol, with clinical relevance unknown, and notes that beta-2 receptors comprise 10% to 50% of total beta-adrenoceptors in the human heart.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Cyclic AMP rises and the muscle lets go',
+        laymanDesc:
+          'The switched-on receptor makes the cell produce a signalling chemical, and the more of it there is the more the muscle relaxes.',
+        molecularDetail:
+          'The receptor couples to Gs, activating adenylyl cyclase and converting ATP to cyclic AMP. The label attributes the pharmacologic effect at least in part to that step, together with inhibition of mediator release from mast cells.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The airway stays open for twenty-four hours',
+        laymanDesc:
+          'One dose covers a full day, which is the entire design goal. In practice that means one inhaler, once, in the morning — and one fewer dose to forget.',
+        molecularDetail:
+          'Twenty-four-hour bronchodilation supports once-daily dosing across all three combination products. In head-to-head 24-week trials, adding umeclidinium to vilanterol raised trough FEV1 by about 90 mL over vilanterol alone.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'On its own it moved no long-term outcome',
+        laymanDesc:
+          'In the one large trial where thousands of people took vilanterol by itself for about two years, deaths, heart events and the rate of lung-function loss were all the same as on placebo.',
+        molecularDetail:
+          'In SUMMIT, vilanterol monotherapy in 4,118 patients gave a mortality hazard ratio of 0.96 (95% CI 0.81 to 1.14, p=0.655), a cardiovascular composite hazard ratio of 0.99 (0.80 to 1.22) and a change in the rate of FEV1 decline of -2 mL per year (95% CI -8 to 5). Exacerbation rates fell with all active treatments including vilanterol.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SUMMIT (NCT01313676)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, four-arm event-driven trial',
+        sampleSize: 16590,
+        primaryEndpoint:
+          'All-cause mortality in moderate COPD with heightened cardiovascular risk',
+        endpointMet: false,
+        statisticalPValue:
+          'Combination hazard ratio 0.88 (95% CI 0.74 to 1.04), p=0.137; vilanterol alone 0.96 (0.81 to 1.14), p=0.655; fluticasone furoate alone 0.91 (0.77 to 1.08), p=0.284',
+        unreportedAdverseSignals:
+          'The published findings state that because the primary outcome was not met, secondary outcomes should be interpreted with caution. The 8 mL per year reduction in FEV1 decline widely quoted from this trial is one of those secondary outcomes, and vilanterol alone did not produce it (-2 mL per year, 95% CI -8 to 5).',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Dransfield replicate trials (NCT01009463 and NCT01017952)',
+        phase: 'Phase 3, two replicate double-blind, parallel-group, randomised trials, one year',
+        sampleSize: 3255,
+        primaryEndpoint:
+          'Yearly rate of moderate and severe COPD exacerbations, fluticasone furoate/vilanterol against vilanterol alone',
+        endpointMet: false,
+        statisticalPValue:
+          'Study 1: 200/25 against vilanterol alone 0.90 against 1.05 events per year, ratio 0.9 (95% CI 0.7 to 1.0) — not significant, and the statistical hierarchy blocked inference for the lower doses. Study 2: all three doses significant (p=0.0398, 0.0244, 0.0004). Pooled: all three significant.',
+        unreportedAdverseSignals:
+          'Pneumonia and fractures were more frequent with fluticasone furoate and vilanterol than with vilanterol alone, and there were eight deaths from pneumonia in the combination groups against none in the vilanterol-only group.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Decramer replicate trials (NCT01316900 and NCT01316913)',
+        phase: 'Phase 3, two multicentre, blinded, double-dummy, active-controlled trials, 24 weeks',
+        sampleSize: 2332,
+        primaryEndpoint: 'Trough FEV1 on day 169',
+        endpointMet: true,
+        statisticalPValue:
+          'Umeclidinium plus vilanterol above vilanterol alone by 0.088 L (95% CI 0.036 to 0.140, p=0.0010) and 0.090 L (0.039 to 0.142, p=0.0006); above tiotropium by 0.060 to 0.090 L; not above umeclidinium 125 micrograms alone (0.037 L, -0.012 to 0.087, p=0.14 and 0.022 L, -0.027 to 0.072, p=0.38)',
+        unreportedAdverseSignals:
+          'No significant differences in symptoms, health status or exacerbation risk between the combination and tiotropium monotherapy. The lung-function advantage did not translate into a difference on any of those endpoints over 24 weeks.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Salford Lung Study COPD (NCT01551758)',
+        phase: 'Phase 3, randomised, open-label, usual-care-controlled effectiveness trial, one year',
+        sampleSize: 2799,
+        primaryEndpoint:
+          'Rate of moderate or severe exacerbations among patients with an exacerbation in the year before the trial',
+        endpointMet: true,
+        statisticalPValue: '8.4% lower with fluticasone furoate-vilanterol (95% CI 1.1 to 15.2), P=0.02',
+        unreportedAdverseSignals:
+          'No significant difference in COPD-related primary or secondary care contacts, and no significant difference in time to first moderate or severe exacerbation or first severe exacerbation. The single positive result is the annualised rate.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'IMPACT (NCT02164513)',
+        phase: 'Phase 3, randomised, double-blind, three-arm, 52 weeks',
+        sampleSize: 10355,
+        primaryEndpoint: 'Annual rate of moderate or severe COPD exacerbations',
+        endpointMet: true,
+        statisticalPValue:
+          'Triple 0.91/year against fluticasone furoate-vilanterol 1.07 (rate ratio 0.85, 95% CI 0.80 to 0.90, P<0.001) and against umeclidinium-vilanterol 1.21 (rate ratio 0.75, 95% CI 0.70 to 0.81, P<0.001)',
+        unreportedAdverseSignals:
+          'Clinician-diagnosed pneumonia was more likely on triple therapy than on umeclidinium-vilanterol, hazard ratio 1.53 (95% CI 1.22 to 1.92, P<0.001). Vilanterol is present in all three arms, so this trial says nothing about the vilanterol component.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'All-cause mortality hazard ratio 0.96 (95% CI 0.81 to 1.14) for vilanterol alone against placebo in 16,590 randomised patients',
+        'Change in rate of FEV1 decline of -2 mL per year (95% CI -8 to 5) for vilanterol alone, against 8 mL per year for fluticasone furoate',
+        'Trough FEV1 0.088 to 0.090 L higher on umeclidinium plus vilanterol than on vilanterol alone at 24 weeks',
+        'No significant trough FEV1 gain from adding vilanterol to umeclidinium 125 micrograms (0.037 L, 95% CI -0.012 to 0.087)',
+        'An 8.4% lower exacerbation rate against usual care in 2,799 patients in ordinary general practice (95% CI 1.1 to 15.2)',
+      ],
+      unsupportedInferences: [
+        'That the benefits of Breo, Anoro and Trelegy can be apportioned to the vilanterol component, which only SUMMIT tested directly',
+        'That fluticasone furoate with vilanterol slows lung-function decline — a secondary outcome the trial’s own authors flagged after the primary endpoint failed',
+        'That vilanterol is more beta-2 selective than older agents, a claim the label declines to quantify and calls of unknown clinical relevance',
+        'That the pneumonia and fracture excess in the combination trials belongs to vilanterol, when it tracks the inhaled corticosteroid arm',
+      ],
+      whatFailedInitially: [
+        'SUMMIT missed its primary mortality endpoint at p=0.137 in 16,590 patients',
+        'Vilanterol monotherapy changed neither mortality, nor cardiovascular events, nor the rate of FEV1 decline in that trial',
+        'One of the two replicate exacerbation trials failed to show a difference against vilanterol alone even at the highest steroid dose',
+        'Adding vilanterol to umeclidinium 125 micrograms gave no significant lung-function gain in the head-to-head trial designed to test it',
+      ],
+      realWorldOutcome: [
+        'Approved in 2013 and now the beta-agonist in three widely used once-daily inhalers, none of which contains it alone',
+        'The first once-daily long-acting beta-agonist to reach the market in a combination product',
+        'Extended into asthma down to age 5 as part of fluticasone furoate-vilanterol, never as a single agent',
+        'All 14 listed presentations in the CMS survey remain brand-priced, and none of them is vilanterol by itself',
+      ],
+    },
+    deliverySystem: {
+      type: 'Inhalation powder, 25 micrograms per blister, in the Ellipta dry-powder inhaler, always co-formulated',
+      description:
+        'One inhalation once daily. The Ellipta device holds one or two blister strips inhaled together, which is how a three-drug regimen fits into one actuation. Vilanterol has never been supplied in any other device or as a single-ingredient product, so its device and its evidence are the same object.',
+      safetyProfile:
+        'Long-acting beta-agonist monotherapy increases the risk of serious asthma-related events, which is why no single-ingredient vilanterol product exists. Not to be initiated in acutely deteriorating COPD or asthma and not for acute symptoms. Not to be combined with any other long-acting beta-agonist because of overdose risk. Paradoxical bronchospasm requires discontinuation, and caution applies in cardiovascular disorders because of beta-adrenergic stimulation. The corticosteroid-containing products add oropharyngeal candidiasis, increased pneumonia risk in COPD, worsening of existing infections, adrenal suppression on transfer from systemic steroids, and reduced bone mineral density.',
+    },
+    commonQuestions: [
+      {
+        q: 'Can I get vilanterol on its own?',
+        a: 'No, and that is deliberate rather than commercial. Long-acting beta-agonist monotherapy in asthma increases the risk of serious asthma-related events, and no single-ingredient vilanterol product has ever been marketed anywhere. It exists in three inhalers: with fluticasone furoate as Breo, with umeclidinium as Anoro, and with both as Trelegy. One practical consequence is that almost every published result about vilanterol is a result about a product containing it, and this page keeps that distinction visible rather than attributing combination results to the component.',
+      },
+      {
+        q: 'What did vilanterol do when it was given by itself?',
+        a: 'Very little, in the one place it was tested at scale. SUMMIT gave vilanterol alone to 4,118 people with moderate COPD and raised cardiovascular risk, in an event-driven trial that ran from January 2011 to March 2014. All-cause mortality was unchanged, hazard ratio 0.96 with a confidence interval of 0.81 to 1.14. Cardiovascular events were unchanged. The rate at which lung function declined was unchanged, at -2 mL per year with a confidence interval from -8 to 5, while the steroid arm of the same trial showed 8 mL per year. Exacerbation rates did fall with all active treatments including vilanterol. It is a bronchodilator, and the trial found exactly what a bronchodilator does.',
+        auditNote:
+          'A negative monotherapy arm is not an argument against the combination products. It is an argument against reading the combination products’ results as though they were the beta-agonist’s.',
+      },
+      {
+        q: 'Is once a day better than twice a day?',
+        a: 'For adherence, plausibly. For measured outcomes, no trial has shown it. Vilanterol’s twenty-four-hour duration is the reason its products are once-daily, and the dose most often missed in any twice-daily regimen is the evening one. What does not exist is a randomised comparison of a once-daily against a twice-daily inhaler powered on exacerbations, so the adherence argument remains an argument rather than a result.',
+      },
+      {
+        q: 'Why does the molecular weight look so large for an inhaled drug?',
+        a: 'Because the figure includes a counter-ion. Vilanterol is supplied as vilanterol trifenatate, a salt with triphenylacetic acid, chosen because it crystallises well and handles well as a micronised powder. The salt has a formula of C44H49Cl2NO7 and a mass of 774.8 g/mol; the active cation is roughly half of that. The stated dose of 25 micrograms refers to the vilanterol base, not to the salt.',
+      },
+      {
+        q: 'Should the steroid worry me?',
+        a: 'It is worth knowing about rather than worrying about, and the size of the risk depends on how severe the disease is. In the two replicate one-year trials, pneumonia and fractures were more frequent on fluticasone furoate with vilanterol than on vilanterol alone, and eight people died of pneumonia in the combination arms against none in the vilanterol-only arm. In the larger IMPACT trial, clinician-diagnosed pneumonia was 53% more likely on the steroid-containing triple regimen. In SUMMIT, run in a milder population, pneumonia was 6% on combination against 5% on placebo. Against that sits a clear reduction in exacerbations. Which way the trade falls is a judgement about a particular patient, not a fact about the drug.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Vestbo J, Anderson JA, Brook RD, et al. Fluticasone furoate and vilanterol and survival in COPD with heightened cardiovascular risk (SUMMIT). Lancet 2016;387:1817-1826',
+        identifier: '10.1016/S0140-6736(16)30069-1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dransfield MT, Bourbeau J, Jones PW, et al. Once-daily inhaled fluticasone furoate and vilanterol versus vilanterol only for prevention of exacerbations of COPD. Lancet Respir Med 2013;1:210-223',
+        identifier: '10.1016/S2213-2600(13)70040-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Decramer M, Anzueto A, Kerwin E, et al. Efficacy and safety of umeclidinium plus vilanterol versus tiotropium, vilanterol, or umeclidinium monotherapies over 24 weeks. Lancet Respir Med 2014;2:472-486',
+        identifier: '10.1016/S2213-2600(14)70065-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vestbo J, Leather D, Diar Bakerly N, et al. Effectiveness of Fluticasone Furoate-Vilanterol for COPD in Clinical Practice. N Engl J Med 2016;375:1253-1260',
+        identifier: '10.1056/NEJMoa1608033',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lipson DA, Barnhart F, Brealey N, et al. Once-Daily Single-Inhaler Triple versus Dual Therapy in Patients with COPD. N Engl J Med 2018;378:1671-1680',
+        identifier: '10.1056/NEJMoa1713901',
+        kind: 'doi',
+      },
+      {
+        label: 'SUMMIT — fluticasone furoate and vilanterol and survival in COPD',
+        identifier: 'NCT01313676',
+        kind: 'nct',
+      },
+      {
+        label: 'Salford Lung Study COPD — effectiveness against usual care in general practice',
+        identifier: 'NCT01551758',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Umeclidinium/vilanterol against vilanterol and against tiotropium, 24 weeks (Decramer study 1)',
+        identifier: 'NCT01316900',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Umeclidinium/vilanterol against umeclidinium and against tiotropium, 24 weeks (Decramer study 2)',
+        identifier: 'NCT01316913',
+        kind: 'nct',
+      },
+      {
+        label: 'IMPACT — single-inhaler triple against dual therapy in 10,355 patients',
+        identifier: 'NCT02164513',
+        kind: 'nct',
+      },
+      {
+        label:
+          'BREO ELLIPTA (fluticasone furoate and vilanterol inhalation powder) United States prescribing information — Indications, Warnings and Precautions 5.1 to 5.12, Clinical Pharmacology 12.1',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22BREO+ELLIPTA%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'PubChem CID 44482554 — vilanterol trifenatate structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/44482554',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Ipratropium — the drug the whole antimuscarinic class descends from, whose best evidence is
+  //    for a use its label does not carry, and whose five-year trial showed it changes nothing.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ipratropium',
+    name: 'Ipratropium',
+    tradeName: 'Atrovent / Atrovent HFA / Ipratropium Bromide Inhalation Solution',
+    sponsor: 'Boehringer Ingelheim (originator); now made by many manufacturers',
+    targetGene: 'CHRM3',
+    targetProtein:
+      'Muscarinic acetylcholine receptors M1, M2 and M3 on airway smooth muscle and submucosal glands',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1986,
+    indication:
+      'Maintenance treatment of bronchospasm associated with chronic obstructive pulmonary disease, including chronic bronchitis and emphysema (inhalation aerosol and nebuliser solution). Nasal solution 0.06% is indicated for symptomatic relief of rhinorrhoea associated with the common cold or seasonal allergic rhinitis in adults and children aged 5 and over, and does not relieve nasal congestion or sneezing. Not indicated for initial treatment of acute episodes of bronchospasm requiring rapid response.',
+    patientFriendlyIndication:
+      'A short-acting inhaler or nebuliser that blocks the nerve signal tightening the airway, and a nasal spray for a running nose',
+    anatomicalSite:
+      'Muscarinic receptors on bronchial smooth muscle and submucosal glands; nasal mucosal glands for the nasal spray',
+    conditionContext: {
+      conditionExplainer:
+        'The vagus nerve keeps the airway muscle under constant mild tension and drives the glands that make mucus. Ipratropium blocks the receptor that nerve signal arrives at. In the nose, the same nerve drives the watery secretion that runs during a cold, and the same block dries it.',
+      whyItMatters:
+        'This is the original molecule of a class that now includes tiotropium, umeclidinium and several others, and it is the one against which they were all measured. It is also the cheapest drug in this entire file by an order of magnitude, at about eleven cents a millilitre.',
+      whoTakesThis:
+        'People with chronic obstructive pulmonary disease, as maintenance treatment or nebulised in hospital; children and adults in the emergency department during an asthma attack, mixed with salbutamol; and people with a persistently running nose from a cold or hay fever.',
+      clinicalGoals:
+        'Immediate relief of airflow obstruction and of a running nose. Not a change in the course of any disease: a five-year trial in 5,887 people settled that.',
+    },
+    oneSentenceVerdict:
+      'A quaternary derivative of atropine that blocks muscarinic receptors on airway muscle and falls off them within about fifteen minutes, so it is dosed four times a day; over five years in 5,887 smokers it produced a small non-cumulative gain in lung function that vanished the moment it was stopped, and its strongest evidence is somewhere else entirely — added to salbutamol during a child’s asthma attack it cut hospital admission from 23 in 100 to 17 in 100 across 15 trials in 2,497 children.',
+    laymanHowItWorks:
+      'A nerve running to the lungs constantly signals the muscle around each airway to stay slightly tightened, and signals the glands to produce mucus. Ipratropium sits on the receptor that signal lands on and blocks it, so the muscle relaxes and secretion falls. It carries a fixed electrical charge, which keeps it in the airway and out of the rest of the body — the reason it does not cause the confusion and dry eyes that atropine does. It lets go of the receptor within about a quarter of an hour, which is why it has to be taken four times a day.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 79,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1089 per millilitre of inhalation solution, the median across 60 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Ipratropium is the one genuinely commoditised drug in this file: 60 listed presentations, all generic, at about eleven cents a millilitre. It is what an inhaled medicine costs when neither the molecule nor the device is protected — the nebuliser solution needs no proprietary inhaler at all, only a compressor and a mask. Every other page in this group shows the opposite arrangement, and the price difference between this entry and the branded once-daily antimuscarinics is roughly a hundredfold per dose.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Ipratropium is the cheap short-acting member of a class whose long-acting members beat it on maintenance endpoints and cost about a hundred times more per dose. In the emergency department it has no substitute in its own role: it is added to a beta-agonist, not instead of one, and the trials that support that are among the cleanest in respiratory medicine.',
+      conventionalRx: [
+        {
+          name: 'Tiotropium (Spiriva)',
+          class: 'Long-acting muscarinic antagonist',
+          howItCompares:
+            'The same target with a thirty-five-hour receptor residence instead of fifteen minutes. In two identical one-year trials in 535 people, trough FEV1 rose 0.12 L on tiotropium and fell 0.03 L on ipratropium (p<0.001), with 24% fewer exacerbations on tiotropium (p<0.01).',
+          typicalCost:
+            'US$11.73 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: once daily, better trough lung function, fewer exacerbations, a four-year outcome trial. Cons: roughly a hundred times the acquisition cost per dose, and still brand-only.',
+        },
+        {
+          name: 'Albuterol / salbutamol',
+          class: 'Short-acting beta-2 agonist',
+          howItCompares:
+            'A different mechanism with a faster onset, and the drug ipratropium is added to rather than compared with in acute asthma. The combination cut hospital admission in children by 27% relative in the pooled trials; the beta-agonist alone did not.',
+          typicalCost:
+            'Generic and inexpensive; the CMS acquisition survey lists many presentations of both the solution and the metered-dose inhaler',
+          prosAndCons:
+            'Pros: faster and stronger bronchodilation, the first-line reliever everywhere. Cons: tremor, palpitations and hypokalaemia — all of which were less frequent when ipratropium was added, because less beta-agonist was needed.',
+        },
+        {
+          name: 'Ipratropium with albuterol (Combivent Respimat, DuoNeb)',
+          class: 'Fixed combination of a short-acting antimuscarinic and a short-acting beta-2 agonist',
+          howItCompares:
+            'The same two molecules in one actuation, which removes the mixing step in a nebuliser and the two-inhaler problem at home. It is the same pharmacology, packaged.',
+          typicalCost:
+            'Listed separately in the CMS acquisition survey; the combination products are priced well above the generic single-agent solution',
+          prosAndCons:
+            'Pros: one device, one dose, no mixing errors. Cons: fixed ratio, so neither component can be adjusted without abandoning the product.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Keep the nebuliser mist out of your eyes',
+          action:
+            'Use a well-fitting mouthpiece rather than a loose mask where possible, and keep eyes closed if a mask is used.',
+          patientImpact:
+            'The label warns of ocular effects and asks patients to consult a physician immediately if signs of narrow-angle glaucoma develop — eye pain or discomfort, blurred vision, visual haloes or coloured images with red eyes.',
+          clinicalPrecaution:
+            'Nebulised drug escaping around a mask reaches the eye directly. This is a delivery problem, not a systemic one, and it is preventable by how the device is held.',
+        },
+        {
+          name: 'Say if you have prostate trouble or glaucoma',
+          action:
+            'Mention narrow-angle glaucoma, prostatic hyperplasia or bladder-neck obstruction before starting, and report new difficulty passing urine.',
+          patientImpact:
+            'The label asks for caution in exactly these conditions and instructs immediate contact if symptoms of urinary retention appear.',
+          clinicalPrecaution:
+            'These are the mechanism acting at muscarinic receptors outside the lung. Ipratropium’s permanent charge limits this, but does not abolish it.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)[N+]1([C@@H]2CC[C@H]1CC(C2)OC(=O)C(CO)C3=CC=CC=C3)C',
+      chemicalFormula: 'C20H30NO3',
+      molecularWeight: '332.50 g/mol',
+      targetReceptorAffinity:
+        'Binding to human muscarinic receptors is in the sub-nanomolar to nanomolar range with little subtype preference; what distinguishes ipratropium from its successors is how quickly it leaves. Published dissociation half-lives from human receptors are 0.26 hours at M3, 0.11 hours at M1 and 0.035 hours at M2, against 34.7, 14.6 and 3.6 hours for tiotropium measured in the same experiments. The label describes the action as inhibiting vagally-mediated reflexes by antagonising acetylcholine, and attributes it, based on animal studies, to preventing the rise in intracellular calcium that acetylcholine causes at muscarinic receptors on bronchial smooth muscle.',
+      structureSource: {
+        label:
+          'PubChem CID 657309 (ipratropium) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/657309',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ipr-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the tropane ester and its stereochemistry',
+          description:
+            'Confirm the tropane bicyclic core, the tropic acid ester and the configuration at both bridgehead positions. Ipratropium is N-isopropyl noratropine quaternised at the nitrogen; the difference from atropine is that single alkylation, and it is the whole reason the drug can be inhaled safely.',
+          reagentsAndBuffer:
+            'Ipratropium bromide reference standard, reversed-phase HPLC with ultraviolet detection, 1H and 13C NMR in D2O, ion chromatography for bromide, Karl Fischer titration',
+        },
+        {
+          id: 'ipr-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'N-dealkylation of atropine and quaternisation with isopropyl bromide',
+          description:
+            'Remove the N-methyl group from atropine to give noratropine, alkylate with isopropyl bromide, then quaternise with methyl bromide. The quaternary nitrogen is the design decision: it converts a centrally active belladonna alkaloid into a drug that stays in the airway and does not cause the confusion, dry mouth and pupillary dilation atropine does.',
+          dependsOnStepId: 'ipr-w1',
+          reagentsAndBuffer:
+            'Atropine free base, chloroformate or von Braun demethylation reagents, isopropyl bromide, methyl bromide in acetonitrile, potassium carbonate, nitrogen atmosphere',
+        },
+        {
+          id: 'ipr-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation of the monohydrate and preparation of the nebuliser solution',
+          description:
+            'Crystallise the bromide monohydrate and formulate as a sterile, preservative-free, isotonic unit-dose solution. Preservative-free matters clinically rather than cosmetically: benzalkonium chloride in older multi-dose nebuliser solutions can itself provoke bronchoconstriction, which is one route to the paradoxical bronchospasm the label warns about.',
+          dependsOnStepId: 'ipr-w2',
+          reagentsAndBuffer:
+            'Water for injection, sodium chloride for tonicity, hydrochloric acid for pH adjustment, 0.2 micron sterile filtration, blow-fill-seal unit-dose vials, sterility and endotoxin testing',
+        },
+        {
+          id: 'ipr-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Radioligand occupancy and washout on human muscarinic receptor membranes',
+          description:
+            'Load membranes expressing human M1, M2 and M3 with labelled compound, dilute heavily and follow the fall in bound tracer over minutes. For ipratropium the whole measurement is over inside an hour, and running it alongside a slow-dissociating comparator is what makes the result interpretable rather than merely fast.',
+          dependsOnStepId: 'ipr-w3',
+          reagentsAndBuffer:
+            'CHO membranes expressing human CHRM1, CHRM2 and CHRM3, tritiated N-methylscopolamine tracer, HEPES-buffered assay medium, atropine for non-specific binding, tiotropium as slow-dissociating reference, rapid glass-fibre filtration',
+        },
+        {
+          id: 'ipr-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Dissociation half-life and duration of bronchoprotection',
+          description:
+            'Fit the washout curve per subtype and pair it with a functional protection assay against acetylcholine challenge. The point of the pairing is that the receptor number predicts the dosing interval: a fifteen-minute off-rate at M3 is what four-times-daily dosing looks like at the molecular level.',
+          dependsOnStepId: 'ipr-w4',
+          reagentsAndBuffer:
+            'Scintillation counting of filter-bound tracer, guinea pig tracheal ring organ bath with acetylcholine challenge, non-linear regression to one-phase exponential decay, tiotropium run in parallel',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ipr-a1',
+        category: 'failed',
+        title: 'The Lung Health Study: five years, 5,887 smokers, and the benefit evaporated',
+        laymanSummary:
+          'The largest trial ipratropium has ever been in gave it three times a day for five years to smokers with early lung disease. It produced a small improvement in lung function that never accumulated, and disappeared as soon as the drug was stopped. What did slow the decline was quitting smoking.',
+        technicalDetails:
+          'The Lung Health Study randomised 5,887 smokers aged 35 to 60 with spirometric signs of early chronic obstructive pulmonary disease, with equal probability, to smoking intervention plus ipratropium two puffs three times daily, smoking intervention plus placebo, or no intervention. The main outcome measures were rate of change and cumulative change in FEV1 over five years. Both smoking-intervention groups declined significantly more slowly than the control group, with most of the difference occurring in the first year and attributable to cessation, and the largest benefit in those who stayed abstinent. The authors record that the small non-cumulative benefit associated with the active bronchodilator vanished after it was discontinued at the end of the study, and that use of the bronchodilator did not influence the long-term decline of FEV1.',
+        evidenceSource:
+          'Anthonisen NR, Connett JE, Kiley JP, et al. JAMA 1994;272:1497-1505 (The Lung Health Study)',
+        measuredMetric:
+          'Rate of change and cumulative change in FEV1 over five years, ipratropium against placebo on a background of smoking intervention',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ipr-a2',
+        category: 'measured',
+        title: 'In a child’s asthma attack it takes admissions from 23 in 100 to 17 in 100',
+        laymanSummary:
+          'This is the strongest evidence ipratropium has, and it is for something its label does not mention. Adding it to a salbutamol nebuliser during a child’s asthma attack reduces the chance of being admitted to hospital by about a quarter.',
+        technicalDetails:
+          'A Cochrane review of 20 trials generating 24 comparisons in 2,697 randomised children aged one to 18 with predominantly moderate or severe exacerbations found that adding an inhaled anticholinergic to a short-acting beta-2 agonist reduced the risk of hospital admission, risk ratio 0.73 (95% CI 0.63 to 0.85; 15 studies, 2,497 children, graded high-quality evidence). Twenty-three of 100 children given beta-agonist alone were admitted, against 17 (95% CI 15 to 20) of 100 given the combination — a number needed to treat of 16 (95% CI 12 to 29). Lung function, clinical score at 120 minutes, oxygen saturation at 60 minutes and the need for repeat bronchodilators before discharge all favoured the combination. Relapse rates did not differ. Nausea and tremor were reported less often on the combination than on beta-agonist alone.',
+        evidenceSource:
+          'Griffiths B, Ducharme FM. Combined inhaled anticholinergics and short-acting beta2-agonists for initial treatment of acute asthma in children. Cochrane Database Syst Rev 2013;(8):CD000060',
+        doi: '10.1002/14651858.CD000060',
+        measuredMetric:
+          'Risk of hospital admission after emergency-department treatment of an acute asthma exacerbation in children',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ipr-a3',
+        category: 'inferred',
+        title: 'Its best evidence and its label indication are for different diseases',
+        laymanSummary:
+          'The United States inhaler label says maintenance treatment of chronic obstructive pulmonary disease, and adds that the drug is not for the initial treatment of an acute attack. The high-quality evidence is for the initial treatment of an acute asthma attack in children.',
+        technicalDetails:
+          'The ATROVENT HFA prescribing information indicates the product as a bronchodilator for maintenance treatment of bronchospasm associated with COPD, and Warnings and Precautions 5.1 states it is not indicated for the initial treatment of acute episodes of bronchospasm where rescue therapy is required for rapid response. Asthma does not appear in the indication. Meanwhile the Cochrane review graded as high-quality evidence covers exactly that setting — nebulised ipratropium, typically three doses of 250 micrograms or two of 500 micrograms over 30 to 90 minutes, added to a beta-agonist during a paediatric asthma exacerbation. Emergency guidelines worldwide recommend it there. This is a legitimate off-label practice supported by better evidence than most on-label ones, and the mismatch is a fact about how labels are written, not a criticism of the practice.',
+        evidenceSource:
+          'ATROVENT HFA United States prescribing information, Indications and Warnings and Precautions 5.1; Griffiths B, Ducharme FM. Cochrane Database Syst Rev 2013;(8):CD000060',
+        doi: '10.1002/14651858.CD000060',
+        inferredClaim:
+          'That the label indication describes where the drug is best supported — here it describes a different disease from the one the strongest randomised evidence covers',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ipr-a4',
+        category: 'measured',
+        title: 'The nasal spray dries a running nose and does nothing for a blocked one',
+        laymanSummary:
+          'Seven trials in 2,144 people found the nasal spray consistently reduced a running nose during a cold. It had no effect at all on congestion, which is the symptom most people actually want treated, and it doubled the rate of side effects.',
+        technicalDetails:
+          'A Cochrane review of seven randomised trials with 2,144 participants found that four studies in 1,959 participants addressing subjective change in severity of rhinorrhoea all reported statistically significant changes favouring intranasal ipratropium. Four studies reported nasal congestion and found no significant difference. Two studies found a positive response for global assessment of overall improvement. Side effects were more frequent with ipratropium, odds ratio 2.09 (95% CI 1.40 to 3.11), commonly nasal dryness, blood-tinged mucus and epistaxis. Overall risk of bias across the included studies was judged moderate. The United States nasal label states the same limitation in its own words: the spray does not relieve nasal congestion or sneezing.',
+        evidenceSource:
+          'AlBalawi ZH, Othman SS, AlFaleh K. Intranasal ipratropium bromide for the common cold. Cochrane Database Syst Rev 2013;(6):CD008231',
+        doi: '10.1002/14651858.CD008231.pub2',
+        measuredMetric:
+          'Subjective severity of rhinorrhoea and of nasal congestion, and side-effect rate, against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ipr-a5',
+        category: 'failed',
+        title: 'Beaten head to head by its own successor',
+        laymanSummary:
+          'Two identical year-long trials compared ipratropium four times a day with tiotropium once a day. Lung function rose on tiotropium and fell on ipratropium, and flare-ups were about a quarter less frequent on the newer drug.',
+        technicalDetails:
+          'Two identical one-year randomised, double-blind, double-dummy trials compared tiotropium 18 micrograms once daily (n=356) with ipratropium 40 micrograms four times daily (n=179) in patients with screening FEV1 around 40% predicted. Trough FEV1 at one year improved by 0.12±0.01 L on tiotropium and declined by 0.03±0.02 L on ipratropium (P<0.001). Peak expiratory flow, rescue salbutamol use, Transition Dyspnea Index focal score and St George’s Respiratory Questionnaire total and impact scores all favoured tiotropium (P<0.01). Exacerbations fell by 24% (P<0.01), with longer time to first exacerbation (P<0.01) and to first hospitalisation for exacerbation (P<0.05). The mechanistic reason is in the receptor kinetics: 0.26 hours at M3 against 34.7.',
+        evidenceSource:
+          'Vincken W, van Noord JA, Greefhorst APM, et al. Eur Respir J 2002;19:209-216; Disse B et al., Life Sci 1993;52:537-544',
+        doi: '10.1183/09031936.02.00238702',
+        measuredMetric:
+          'Trough FEV1 and exacerbation rate at one year, ipratropium four times daily against tiotropium once daily',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ipr-a6',
+        category: 'conclusion_shift',
+        title: 'It was inside the 2008 cardiovascular meta-analysis that the class outgrew',
+        laymanSummary:
+          'A pooled analysis in 2008 reported that inhaled anticholinergics — ipratropium and tiotropium together — raised the risk of heart attack, cardiovascular death or stroke by about sixty per cent. The two very large trials that followed, both of tiotropium, did not find it.',
+        technicalDetails:
+          'Singh and colleagues pooled 17 randomised trials of inhaled anticholinergics enrolling 13,645 patients with COPD. The composite of cardiovascular death, myocardial infarction or stroke occurred in 134 of 6,984 (1.9%) against 83 of 6,661 (1.2%) on control, relative risk 1.60 (95% CI 1.22 to 2.10, P<0.001, I2=0%), with all-cause mortality relative risk 1.29 (1.00 to 1.65, P=0.05). UPLIFT (5,993 patients, four years) and TIOSPIR (17,135 patients, mean 2.3 years) both reported similar cardiovascular event rates between arms. Those two trials studied tiotropium, not ipratropium, so strictly the meta-analytic signal for ipratropium itself has never been directly refuted — it has been overtaken. The class inference that raised the alarm and the class inference that settled it have the same weakness in opposite directions.',
+        evidenceSource:
+          'Singh S, Loke YK, Furberg CD. JAMA 2008;300:1439-1450; Tashkin DP et al., N Engl J Med 2008;359:1543-1554; Wise RA et al., N Engl J Med 2013;369:1491-1501',
+        doi: '10.1001/jama.300.12.1439',
+        inferredClaim:
+          'That the large tiotropium trials cleared ipratropium too — a class-level conclusion resting on trials of a different molecule, which is the same reasoning that produced the original alarm',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ipr-a7',
+        category: 'measured',
+        title: 'A hundredfold price gap for the same receptor',
+        laymanSummary:
+          'The CMS acquisition survey lists sixty generic ipratropium products at about eleven cents a millilitre. The once-daily antimuscarinics that replaced it are listed at ten to twelve dollars per dose, and are brand-only.',
+        technicalDetails:
+          'The CMS National Average Drug Acquisition Cost file effective 19 August 2026 lists ipratropium inhalation solution at a median US$0.1089 per millilitre across 60 generic presentations, tiotropium at US$11.73 per unit across 7 brand presentations and umeclidinium at US$10.28 per unit across 3. NADAC is what a United States pharmacy pays to acquire the product, not what a patient is charged and not a cost of manufacture. The gap is not explained by the molecules, which are close chemical relatives acting on the same receptor family; it is explained by patent status and by the fact that a nebuliser solution requires no proprietary device while a dry-powder or soft-mist product does.',
+        evidenceSource:
+          'CMS National Average Drug Acquisition Cost (NADAC) 2026 file, prices effective 19 August 2026',
+        measuredMetric:
+          'Median pharmacy acquisition cost per listed unit, ipratropium against the branded long-acting antimuscarinics',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given as a mist, a puff or a nasal spray',
+        laymanDesc:
+          'It exists in more forms than almost anything else here: a nebuliser solution driven by a compressor, a pressurised inhaler, and a nasal spray for a running nose.',
+        molecularDetail:
+          'Ipratropium bromide as a preservative-free 0.02% unit-dose nebuliser solution, a 17 microgram per actuation HFA inhalation aerosol, and 0.03% and 0.06% nasal solutions. The nebuliser route is why it dominates emergency and inpatient use: it needs no inspiratory effort and no coordination from a breathless patient.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The quaternary nitrogen keeps it out of the brain',
+        laymanDesc:
+          'It is atropine with one extra chemical group that gives it a permanent electrical charge. That single change stops it crossing into the brain, which is the difference between a bronchodilator and a deliriant.',
+        molecularDetail:
+          'N-isopropyl noratropine quaternised at the tropane nitrogen. The fixed positive charge limits passive membrane permeation and blood-brain barrier penetration, so systemic absorption from the airway and from swallowed drug is minimal and central antimuscarinic effects do not occur at therapeutic doses.',
+        iconName: 'Lock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the acetylcholine receptor on airway muscle',
+        laymanDesc:
+          'The nerve releases acetylcholine, which normally lands on a receptor and makes the muscle squeeze and the glands secrete. Ipratropium occupies that receptor instead.',
+        molecularDetail:
+          'The label describes ipratropium as inhibiting vagally-mediated reflexes by antagonising acetylcholine at the neuromuscular junctions of the lung, and states that, based on animal studies, anticholinergics prevent the rise in intracellular calcium caused by acetylcholine interacting with muscarinic receptors on bronchial smooth muscle.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It falls off again within about fifteen minutes',
+        laymanDesc:
+          'It does not stay on the receptor. Within a quarter of an hour most of it has let go, which is why it is taken four times a day rather than once.',
+        molecularDetail:
+          'Published dissociation half-lives from human receptors: 0.26 hours at M3, 0.11 hours at M1 and 0.035 hours at M2, against 34.7, 14.6 and 3.6 hours respectively for tiotropium in the same experiments. Duration of bronchoprotection in dogs was correspondingly shorter than for an equipotent dose of tiotropium.',
+        iconName: 'Timer',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The airway opens and secretions fall',
+        laymanDesc:
+          'Bronchodilation begins within minutes and lasts a few hours. In the nose the same block dries the watery running that a cold produces.',
+        molecularDetail:
+          'Onset is slower and peak effect weaker than a short-acting beta-2 agonist, which is why the two are combined rather than substituted. The nasal effect is on the seromucous glands, which is why the label says the spray relieves rhinorrhoea and explicitly not congestion or sneezing.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Nothing about the disease has changed',
+        laymanDesc:
+          'Five years of the drug in nearly six thousand smokers produced a small lung-function gain that never built up and vanished when the drug stopped. The thing that changed the trajectory in that trial was quitting smoking.',
+        molecularDetail:
+          'The Lung Health Study reports the bronchodilator benefit as small, non-cumulative and reversed on discontinuation, with no influence on the long-term rate of FEV1 decline. The smoking-cessation arms showed a significantly slower decline, concentrated in the first year and largest in sustained quitters.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'The Lung Health Study (Anthonisen 1994)',
+        phase: 'Phase 4, randomised, three-arm, placebo-controlled, five years',
+        sampleSize: 5887,
+        primaryEndpoint: 'Rate of change and cumulative change in FEV1 over five years',
+        endpointMet: false,
+        statisticalPValue:
+          'The bronchodilator benefit was small, non-cumulative and reversed after discontinuation; use of ipratropium did not influence the long-term decline in FEV1. The smoking-intervention groups declined significantly more slowly than control.',
+        unreportedAdverseSignals:
+          'The trial is remembered as proof that smoking cessation slows lung-function decline, which it is. It is equally a negative trial of ipratropium over five years, and that half is rarely cited.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Cochrane CD000060 — anticholinergic plus beta-agonist in acute paediatric asthma',
+        phase: 'Systematic review and meta-analysis of 20 randomised trials',
+        sampleSize: 2697,
+        primaryEndpoint:
+          'Risk of hospital admission after emergency treatment of an acute asthma exacerbation in children',
+        endpointMet: true,
+        statisticalPValue:
+          'Risk ratio 0.73 (95% CI 0.63 to 0.85) across 15 studies and 2,497 children, graded high-quality evidence; number needed to treat 16 (95% CI 12 to 29)',
+        unreportedAdverseSignals:
+          'Relapse rates after discharge did not differ. Trends toward greater benefit with higher treatment intensity and greater asthma severity did not reach significance, so who benefits most within the group remains unresolved.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane CD008231 — intranasal ipratropium for the common cold',
+        phase: 'Systematic review and meta-analysis of 7 randomised trials',
+        sampleSize: 2144,
+        primaryEndpoint: 'Severity of rhinorrhoea and of nasal congestion against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'All four studies addressing rhinorrhoea (1,959 participants) favoured ipratropium; nasal congestion showed no significant difference in four studies; side effects odds ratio 2.09 (95% CI 1.40 to 3.11)',
+        unreportedAdverseSignals:
+          'Overall risk of bias across included studies was judged moderate, and the review calls for larger high-quality trials. Nasal dryness, blood-tinged mucus and epistaxis were the common side effects.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Vincken 2002 — ipratropium against tiotropium, two identical one-year trials',
+        phase: 'Phase 3, randomised, double-blind, double-dummy, active comparator, one year',
+        sampleSize: 535,
+        primaryEndpoint: 'Trough FEV1 at one year',
+        endpointMet: false,
+        statisticalPValue:
+          'Trough FEV1 -0.03±0.02 L on ipratropium against +0.12±0.01 L on tiotropium, P<0.001; 24% more exacerbations on ipratropium, P<0.01',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'No influence on the five-year rate of FEV1 decline in 5,887 smokers, with the small benefit reversed on discontinuation',
+        'Hospital admission risk ratio 0.73 (95% CI 0.63 to 0.85) when added to a beta-agonist in acute paediatric asthma, across 2,497 children',
+        'Consistent reduction in rhinorrhoea and no effect on nasal congestion across seven common-cold trials in 2,144 people',
+        'Trough FEV1 falling 0.03 L over a year on ipratropium against rising 0.12 L on tiotropium',
+        'Dissociation half-lives of 0.26 hours at M3 and 0.035 hours at M2, roughly a hundredth of tiotropium’s',
+      ],
+      unsupportedInferences: [
+        'That an inhaled anticholinergic slows the progression of chronic obstructive pulmonary disease — a five-year randomised trial says it does not',
+        'That the drug’s label indication marks where its evidence is strongest, when the strongest evidence is in a disease absent from the indication',
+        'That the nasal spray treats a cold, when it treats one symptom of a cold and explicitly not congestion or sneezing',
+        'That the large tiotropium safety trials settled the 2008 cardiovascular question for ipratropium, which they did not study',
+      ],
+      whatFailedInitially: [
+        'Five years of treatment in 5,887 people produced no change in the rate of lung-function decline',
+        'Trough lung function fell over a year on ipratropium while rising on the once-daily successor in the same trials',
+        'The 2008 class meta-analysis put a cardiovascular signal on ipratropium that has been overtaken rather than directly refuted',
+        'The nasal spray doubles the odds of a side effect and does nothing for the blocked nose most users want relieved',
+      ],
+      realWorldOutcome: [
+        'Approved in 1986 and now fully generic across 60 listed presentations at about eleven cents a millilitre',
+        'The standard addition to a beta-agonist in emergency-department asthma care worldwide, on evidence its label does not carry',
+        'Displaced from maintenance COPD by the long-acting antimuscarinics it made possible',
+        'The cheapest drug in this file by roughly a hundredfold, acting on the same receptor family as the most expensive ones',
+      ],
+    },
+    deliverySystem: {
+      type: 'HFA inhalation aerosol (17 micrograms per actuation), preservative-free unit-dose nebuliser solution 0.02%, and nasal spray 0.03% and 0.06%',
+      description:
+        'Four times daily for maintenance in COPD. The nebuliser solution is the form that matters in acute care: it needs no inspiratory effort, no breath-hold and no coordination, which is what makes it usable in a child mid-attack or an adult too breathless to use an inhaler. It is routinely mixed with salbutamol in the same nebuliser chamber, and fixed combinations of the two exist for that reason.',
+      safetyProfile:
+        'Not indicated for the initial treatment of acute episodes of bronchospasm where rescue therapy is required for rapid response. Hypersensitivity reactions including urticaria, angioedema, rash, bronchospasm, anaphylaxis and oropharyngeal oedema require immediate discontinuation. Paradoxical bronchospasm can occur. Ocular effects require caution in narrow-angle glaucoma, with patients instructed to seek advice immediately if eye pain, blurred vision or visual haloes develop — a risk raised by nebulised mist escaping around a loose face mask. Urinary retention may worsen in prostatic hyperplasia or bladder-neck obstruction. The most common adverse reactions above 5% in the 12-week placebo-controlled trials were bronchitis, COPD exacerbation, dyspnoea and headache.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does ipratropium slow down COPD?',
+        a: 'No. The Lung Health Study gave it three times a day for five years to 5,887 smokers with early disease and reported that the benefit was small, never accumulated, and disappeared once the drug was stopped — with no effect on the long-term rate of decline in lung function. The same trial found that quitting smoking did slow the decline, most of the effect appearing in the first year and the largest benefit going to those who stayed abstinent. That result has held for thirty years and is the single most important thing on this page.',
+        auditNote:
+          'This trial is almost always cited for its smoking result and almost never for its bronchodilator result. Both come from the same randomisation.',
+      },
+      {
+        q: 'Why is it given in the emergency department for asthma if the label says COPD?',
+        a: 'Because the evidence there is better than the evidence for most on-label uses. A Cochrane review of 20 trials in 2,697 children found that adding an inhaled anticholinergic to a nebulised beta-agonist cut the risk of hospital admission from 23 in 100 to 17 in 100, risk ratio 0.73 with a confidence interval of 0.63 to 0.85, graded high-quality. Lung function, clinical score, oxygen saturation and the need for repeat bronchodilators all improved, and nausea and tremor were less common because less beta-agonist was needed. The United States inhaler label covers maintenance treatment in COPD and states the product is not for the initial treatment of acute bronchospasm. Labels record what a manufacturer applied for; they are not a ranking of evidence.',
+      },
+      {
+        q: 'Why four times a day when newer inhalers are once a day?',
+        a: 'Because of how quickly it leaves the receptor. Ipratropium comes off the M3 receptor on airway muscle with a half-life of about fifteen minutes; tiotropium takes about thirty-five hours to do the same thing. That single number is the difference between the two drugs, and it is why a molecule from 1986 needs four doses to cover what one dose of a molecule from 2004 covers. In a direct one-year comparison, trough lung function fell slightly on ipratropium and rose on tiotropium.',
+      },
+      {
+        q: 'Will the nasal spray fix my cold?',
+        a: 'It will dry a running nose and do nothing else. Seven trials in 2,144 people found consistent improvement in rhinorrhoea and no significant effect on nasal congestion. The label says the same thing in one sentence: it does not relieve nasal congestion or sneezing. Side effects were about twice as common as on placebo, odds ratio 2.09, most often nasal dryness, blood-tinged mucus and nosebleeds. If the blocked nose is the problem, this is the wrong medicine.',
+      },
+      {
+        q: 'Why is it so much cheaper than the others?',
+        a: 'Because nothing about it is protected any more. The CMS acquisition survey lists 60 generic presentations at a median of about eleven cents a millilitre, against ten to twelve dollars a dose for the brand-only once-daily antimuscarinics. Part of that is patent expiry. Part of it is the delivery route: a nebuliser solution is a sterile liquid in a plastic ampoule, while a dry-powder or soft-mist product is a piece of engineered hardware carrying its own patents, and a generic of one of those has to reproduce the deposition profile as well as the chemistry.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Anthonisen NR, Connett JE, Kiley JP, et al. Effects of smoking intervention and the use of an inhaled anticholinergic bronchodilator on the rate of decline of FEV1: the Lung Health Study. JAMA 1994;272:1497-1505',
+        identifier: '7966841',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Griffiths B, Ducharme FM. Combined inhaled anticholinergics and short-acting beta2-agonists for initial treatment of acute asthma in children. Cochrane Database Syst Rev 2013;(8):CD000060',
+        identifier: '10.1002/14651858.CD000060',
+        kind: 'doi',
+      },
+      {
+        label:
+          'AlBalawi ZH, Othman SS, AlFaleh K. Intranasal ipratropium bromide for the common cold. Cochrane Database Syst Rev 2013;(6):CD008231',
+        identifier: '10.1002/14651858.CD008231.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vincken W, van Noord JA, Greefhorst APM, et al. Improved health outcomes in patients with COPD during 1 yr’s treatment with tiotropium. Eur Respir J 2002;19:209-216',
+        identifier: '10.1183/09031936.02.00238702',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Disse B, Speck GA, Rominger KL, Witek TJ, Hammer R. Ba 679 BR, a novel long-acting anticholinergic bronchodilator. Life Sci 1993;52:537-544',
+        identifier: '10.1016/0024-3205(93)90312-q',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Singh S, Loke YK, Furberg CD. Inhaled anticholinergics and risk of major adverse cardiovascular events in patients with COPD. JAMA 2008;300:1439-1450',
+        identifier: '10.1001/jama.300.12.1439',
+        kind: 'doi',
+      },
+      {
+        label:
+          'ATROVENT HFA (ipratropium bromide HFA inhalation aerosol) United States prescribing information — Indications, Warnings and Precautions 5.1 to 5.5, Adverse Reactions 6.1, Clinical Pharmacology 12.1',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22ATROVENT+HFA%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 657309 — ipratropium structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/657309',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
 ]

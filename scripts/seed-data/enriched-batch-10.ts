@@ -2120,4 +2120,545 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Sevoflurane — a gas whose two safety warnings rest on animals and on a biomarker, and whose
+  //    one properly randomised human neurodevelopmental test came back equivalent.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'sevoflurane',
+    name: 'Sevoflurane',
+    tradeName: 'Ultane, Sojourn',
+    sponsor:
+      'AbbVie (Ultane); synthesised at Baxter Travenol in the late 1960s, developed by Maruishi Pharmaceutical in Japan where it was marketed from 1990, and approved in the United States in 1995',
+    targetGene: 'GABRA1, GABRB3, GLRA1, KCNK3, GRIN1',
+    targetProtein:
+      'No single protein. Volatile anaesthetics potentiate GABA-A and glycine receptors, activate two-pore-domain potassium channels including TASK and TREK, and inhibit NMDA receptors and presynaptic sodium channels; the beta3(N265M) knock-in mouse that abolishes propofol and etomidate anaesthesia is only slightly affected by volatile agents, which is the direct evidence that this class acts through a broader spectrum of targets',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1995,
+    indication:
+      'Induction and maintenance of general anaesthesia in adult and paediatric patients for inpatient and outpatient surgery, administered only by persons trained in the administration of general anaesthesia and only from vaporisers producing predictable concentrations',
+    patientFriendlyIndication:
+      'A gas that puts a person to sleep for surgery and keeps them asleep, breathed in rather than injected',
+    anatomicalSite:
+      'Lipid-facing pockets and subunit interfaces of ion channels throughout the cortex, thalamus, brainstem and spinal cord',
+    conditionContext: {
+      conditionExplainer:
+        'An inhaled anaesthetic is unusual among drugs in that its concentration in the brain can be inferred from the concentration in exhaled breath, breath by breath. That is what a MAC value is: the minimum alveolar concentration at which half of patients do not move in response to a surgical incision. For sevoflurane in oxygen in a 40-year-old adult, that is 2.1%, and it falls with age.',
+      whyItMatters:
+        'Sevoflurane is the only agent in routine use that a child will breathe without complaint, because it does not sting the airway. That single physical property — non-pungency — is why paediatric anaesthesia is done the way it is done, and why the FDA warning about anaesthetic neurotoxicity in the developing brain lands hardest on this drug.',
+      whoTakesThis:
+        'Most children having an operation, and a very large fraction of adults. It is on the WHO Model List of Essential Medicines.',
+      clinicalGoals:
+        'A smooth induction, a controllable and directly measurable depth, and rapid emergence. Whether the choice of a gas over an intravenous agent changes survival, cancer recurrence or a child\'s later intelligence is a separate set of claims, and each of them has now been tested.',
+    },
+    oneSentenceVerdict:
+      'A fluorinated ether so insoluble in blood — a blood-gas partition coefficient of 0.63 to 0.69 — that alveolar and arterial concentrations equilibrate within minutes, giving anaesthesia you can titrate off the exhaled breath; the largest randomised test of the fear attached to it found that just under an hour of it in infancy left full-scale IQ at age five at 98.97 against 99.08 for awake-regional anaesthesia, a difference of 0.23 points.',
+    laymanHowItWorks:
+      'Sevoflurane is breathed in, crosses from the lung into the blood and then into the brain. It barely dissolves in blood at all, which sounds like a disadvantage and is the opposite: because the blood cannot soak much of it up, the amount in the lungs and the amount in the brain come into balance within a few minutes, in both directions. So the anaesthetist can raise or lower the depth quickly and can read the concentration off the patient\'s own exhaled breath. Once there, it does not act on one receptor. It nudges several kinds of ion channel at once, mostly in the direction of making neurons harder to excite.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 75,
+    substitutes: {
+      summary:
+        'Within inhalational anaesthesia the choice is between three fluorinated ethers that differ mainly in solubility, pungency, degradation chemistry and greenhouse-gas potency. Outside it, the alternative is total intravenous anaesthesia with propofol, and the largest randomised comparison of the two found identical one-year mortality. Nothing in a diet or a home remedy produces general anaesthesia and nothing is listed here.',
+      conventionalRx: [
+        {
+          name: 'Desflurane (Suprane)',
+          class: 'Halogenated ether inhalational anaesthetic',
+          howItCompares:
+            'Even less soluble in blood, so on and off faster still, and it does not form Compound A. Against that it is pungent enough to cause coughing and laryngospasm on induction, so it is not used to send anyone to sleep, and its 100-year global warming potential is 1,620 against sevoflurane\'s 210.',
+          typicalCost: 'No NADAC value is held on this record for desflurane and none is asserted here',
+          prosAndCons:
+            'Pros: the fastest emergence of the three. Cons: airway irritation, and roughly eight times sevoflurane\'s climate impact per molecule emitted.',
+        },
+        {
+          name: 'Isoflurane (Forane)',
+          class: 'Halogenated ether inhalational anaesthetic',
+          howItCompares:
+            'More soluble in blood, so slower on and slower off, and pungent. Cheap, extremely well characterised, and still the workhorse in much of the world. Global warming potential 510 over 100 years.',
+          typicalCost: 'No NADAC value is held on this record for isoflurane and none is asserted here',
+          prosAndCons:
+            'Pros: inexpensive and predictable. Cons: slower recovery and an airway too irritant for gas induction.',
+        },
+        {
+          name: 'Propofol (Diprivan)',
+          class: 'Intravenous general anaesthetic',
+          howItCompares:
+            'The direct alternative for maintenance, and the comparison has been made at scale: in 5,400 elective coronary bypass patients, one-year mortality was 2.8% with a volatile agent and 3.0% with total intravenous anaesthesia, relative risk 0.94, P=0.71, trial stopped for futility. Propofol causes less postoperative nausea; sevoflurane can be given to a frightened child through a mask without a needle.',
+          typicalCost:
+            'US$0.1709 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 4 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no operating-theatre greenhouse gas, less nausea. Cons: no equivalent of an end-tidal concentration measurement, so the dose runs on a pharmacokinetic model rather than a reading.',
+        },
+        {
+          name: 'Nitrous oxide',
+          class: 'Inhaled anaesthetic and analgesic gas',
+          howItCompares:
+            'Cannot produce surgical anaesthesia on its own at safe concentrations and is used as a carrier that reduces how much of the potent agent is needed. Its global warming potential is far higher and its atmospheric lifetime far longer than sevoflurane\'s.',
+          typicalCost: 'Piped medical gas; no NADAC value applies and none is asserted here',
+          prosAndCons:
+            'Pros: genuine analgesia, which the volatile ethers do not provide. Cons: expands into gas-filled spaces, inactivates vitamin B12-dependent enzymes on prolonged exposure, and is a long-lived greenhouse gas.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Tell the anaesthetist about family reactions to anaesthesia',
+          action:
+            'Malignant hyperthermia is inherited, is triggered by every volatile agent including sevoflurane, and a family history is often the only warning available before the first episode.',
+          patientImpact:
+            'A known or suspected susceptibility changes the entire anaesthetic plan, from the agent chosen to the machine used.',
+          clinicalPrecaution:
+            'This is information to hand over, not a treatment. Malignant hyperthermia is a resuscitation emergency managed with dantrolene by the clinical team.',
+        },
+        {
+          name: 'Expect a confused half hour in a small child',
+          action:
+            'Emergence agitation after sevoflurane in young children is common, self-limiting and distressing to watch: the child wakes inconsolable, thrashing and not recognising a parent, and it resolves within roughly half an hour.',
+          patientImpact:
+            'Knowing it is a described property of the drug rather than pain or a psychological injury changes how frightening the recovery room is for a parent.',
+          clinicalPrecaution:
+            'Pain must still be excluded rather than assumed away, and that judgement belongs to the recovery staff.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C(OC(C(F)(F)F)C(F)(F)F)F',
+      chemicalFormula: 'C4H3F7O',
+      molecularWeight: '200.05 g/mol; a volatile liquid delivered as vapour, never as a solution',
+      targetReceptorAffinity:
+        'Volatile anaesthetics have no single dissociation constant because they have no single target. The clinically used potency measure is the minimum alveolar concentration: for sevoflurane in oxygen in a 40-year-old adult it is 2.1%, falling with age. The property that governs how the drug behaves minute to minute is solubility, not affinity: the blood-gas partition coefficient at 37 degrees C is 0.63 to 0.69, meaning very little needs to dissolve in blood before alveolar and arterial partial pressures equilibrate.',
+      structureSource: {
+        label: 'PubChem CID 5206 (sevoflurane) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5206',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sev-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Water content and Lewis acid inhibitor in the drug substance',
+          description:
+            'Sevoflurane degrades on contact with Lewis acids such as alumina, and the finished product is stabilised with water for exactly that reason. Confirm water content within specification before anything else: for this molecule an unusually dry batch is an out-of-specification batch, which is the reverse of almost every other pharmaceutical.',
+          reagentsAndBuffer:
+            'Karl Fischer titration for water, gas chromatography with mass spectrometry for hydrogen fluoride and degradant screening, ion chromatography for fluoride ion, glass or epoxy-lined containers rather than aluminium',
+        },
+        {
+          id: 'sev-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fluoromethylation of hexafluoroisopropanol',
+          description:
+            'Build the ether by attaching a fluoromethyl group to hexafluoroisopropanol. The seven fluorines are what make the molecule inert enough to pass through a person almost unchanged, and the single remaining acidic proton on the fluoromethyl carbon is what makes it vulnerable to strong base in a carbon dioxide absorber, which is the origin of Compound A.',
+          dependsOnStepId: 'sev-w1',
+          reagentsAndBuffer:
+            'Hexafluoroisopropanol, a fluoromethylating agent, anhydrous conditions, hydrogen fluoride handling with corrosion-resistant reactors and scrubbers',
+        },
+        {
+          id: 'sev-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Distillation to a single volatile species and water addition',
+          description:
+            'Distil to remove hexafluoroisopropanol, fluoride and reaction by-products, then add the specified water content back. Purity here is assessed by what boils rather than by what crystallises, and the acceptance criterion includes the absence of degradants that would signal acid exposure in the plant.',
+          dependsOnStepId: 'sev-w2',
+          reagentsAndBuffer:
+            'Fractional distillation, purified water to specification, gas chromatography for assay and related substances, fluoride-specific ion electrode',
+        },
+        {
+          id: 'sev-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Closed-circuit degradation study against soda lime and desiccated absorbent',
+          description:
+            'Circulate vapour through a carbon dioxide absorber under controlled temperature, fresh gas flow and absorbent hydration, and measure inspired Compound A. This is the delivery step that matters for this molecule, because the patient does not receive what the vaporiser produces — they receive what survives the breathing circuit, and desiccated potassium hydroxide absorbents change that dramatically.',
+          dependsOnStepId: 'sev-w3',
+          reagentsAndBuffer:
+            'Circle absorber system, soda lime and potassium hydroxide-containing absorbent, controlled fresh gas flows from 0.5 to 6 L/min, absorbent temperature probes, gas chromatography with mass spectrometry for pentafluoroisopropenyl fluoromethyl ether',
+        },
+        {
+          id: 'sev-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Sensitive renal biomarkers, not creatinine',
+          description:
+            'Measure urinary albumin, glucose, alpha-glutathione-S-transferase and pi-glutathione-S-transferase before and after exposure. This is the step the reassurance literature skipped. Eger and colleagues showed that serum creatinine and blood urea nitrogen failed to reveal the injury the sensitive markers detected in the same volunteers, and the large pooled study that followed used creatinine and urea as its outcome.',
+          dependsOnStepId: 'sev-w4',
+          reagentsAndBuffer:
+            'Timed 24-hour urine collections, immunoassay for urinary albumin, enzymatic glucose assay, enzyme-linked immunosorbent assays for alpha-GST and pi-GST, serum creatinine and blood urea nitrogen as insensitive comparators, vasopressin concentrating test',
+        },
+        {
+          id: 'sev-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'Infrared cross-section and atmospheric lifetime',
+          description:
+            'Measure the infrared absorption spectrum and derive the radiative efficiency and global warming potential. A theatre vents essentially all of the delivered agent unchanged to the atmosphere, so the environmental term is a measured property of the molecule rather than an externality that can be argued about.',
+          dependsOnStepId: 'sev-w5',
+          reagentsAndBuffer:
+            'Fourier transform infrared spectroscopy across the atmospheric window, calibrated gas cells, atmospheric lifetime estimation, radiative forcing calculation weighted by absorption wavelength',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sev-a1',
+        category: 'measured',
+        title: 'GAS: an hour of sevoflurane in infancy left IQ at five years unchanged',
+        laymanSummary:
+          'The strongest fear about this drug is that it damages a developing brain. Seven hundred and twenty-two babies were randomly assigned to a sevoflurane anaesthetic or to an awake spinal for the same hernia operation, and their intelligence was measured at five. The difference was a quarter of a point.',
+        technicalDetails:
+          'The GAS trial recruited infants under 60 weeks postmenstrual age, born after 26 weeks gestation, undergoing inguinal herniorrhaphy, with no previous general anaesthesia and no risk factors for neurological injury, at 28 hospitals in seven countries. They were randomised 1:1 to awake-regional anaesthesia or sevoflurane-based general anaesthesia; assessors were masked. The primary outcome was full-scale IQ on the Wechsler Preschool and Primary Scale of Intelligence, third edition, at five years, with a predefined clinical equivalence margin of 5 points. Of 4,023 infants screened, 722 were randomised, 363 to awake-regional and 359 to general anaesthesia. Median duration of general anaesthesia was 54 minutes (IQR 41 to 70). Mean full-scale IQ was 99.08 (SD 18.35) with awake-regional and 98.97 (SD 19.66) with general anaesthesia, a difference in means of 0.23 (95% CI -2.59 to 3.06) — strong evidence of equivalence, with the confidence interval well inside the margin. The intention-to-treat analysis agreed. The trial is explicit about its scope: it tested slightly under an hour of anaesthesia, once, in a predominantly male population.',
+        evidenceSource:
+          'McCann ME, de Graaff JC, Dorris L, et al. Neurodevelopmental outcome at 5 years of age after general anaesthesia or awake-regional anaesthesia in infancy (GAS). Lancet 2019;393:664-677 (NCT00756600)',
+        doi: '10.1016/S0140-6736(18)32485-1',
+        measuredMetric:
+          'Full-scale intelligence quotient at five years, per protocol, against a predefined equivalence margin of 5 points',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sev-a2',
+        category: 'inferred',
+        title: 'The paediatric neurotoxicity warning on the label rests on animal studies',
+        laymanSummary:
+          'The label warns that anaesthetics used for more than three hours in a very young child may cause lasting cognitive harm. In the label\'s own words, that comes from published animal studies, and the clinical significance is not clear.',
+        technicalDetails:
+          'The approved United States label states that published animal studies demonstrate that anaesthetic and sedation drugs which block NMDA receptors or potentiate GABA activity increase neuronal apoptosis in the developing brain and result in long-term cognitive deficits when used for longer than three hours, and that the clinical significance of these findings is not clear. It places the window of vulnerability from the third trimester through the first several months of life, possibly extending to about three years of age in humans. It notes that some published studies in children suggest similar deficits after repeated or prolonged exposure, that those studies have substantial limitations, and that it is not clear whether the observed effects are due to the drugs or to the surgery and underlying illness. This audit is not a claim that the warning is wrong. It is a statement of what supports it: an animal model, plus observational human studies the label itself describes as substantially limited, against one randomised human trial of a single short exposure that found equivalence. The warning is an inference from apoptosis in rodent brains to intelligence in human children, and the label says so.',
+        evidenceSource:
+          'FDA-approved US prescribing information for sevoflurane, WARNINGS — Pediatric Neurotoxicity (DailyMed SPL 22700993-851a-48aa-941e-1d2b6b04081f)',
+        inferredClaim:
+          'That anaesthetic-induced neuronal apoptosis in developing animal brains predicts cognitive harm in young children — an extrapolation the label explicitly declines to confirm',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sev-a3',
+        category: 'conclusion_shift',
+        title: 'Compound A: real biomarker injury in volunteers, then reassurance measured the wrong thing',
+        laymanSummary:
+          'Sevoflurane breaks down in the anaesthetic machine into a compound that damages rat kidneys. In volunteers, careful urine tests found genuine kidney injury markers — and the routine blood tests missed it entirely. The large study that reassured everyone used those routine blood tests.',
+        technicalDetails:
+          'Sevoflurane reacts with the strong base in carbon dioxide absorbents to form pentafluoroisopropenyl fluoromethyl ether, known as Compound A, and the amount formed rises as fresh gas flow falls. Eger and colleagues gave fluid-restricted volunteers eight hours of 1.25 MAC sevoflurane (n=10) or desflurane (n=9) at 2 L/min in a standard circle absorber. Mean inspired Compound A was 41 +/- 3 ppm. Desflurane produced no renal injury. Sevoflurane produced transient injury at three sites: glomerular, shown by post-anaesthetic albuminuria; proximal tubular, shown by glucosuria and raised urinary alpha-glutathione-S-transferase; and distal tubular, shown by raised urinary pi-glutathione-S-transferase. The magnitude varied enormously between subjects — on day 3, 24-hour albumin excretion ranged from normal in one volunteer to 4.4 g in another. Critically, neither agent changed serum creatinine or blood urea nitrogen, and neither changed urinary concentrating ability in response to vasopressin: in the authors\' words, these measures failed to reveal the injury produced. Three years later Mazze and colleagues pooled 22 trials with 3,436 adult surgical patients — 1,941 sevoflurane, 1,495 control — and found similar incidences of raised serum creatinine and blood urea nitrogen, with no trend by fresh gas flow rate or absorbent type. That is a real and useful result about clinically apparent nephrotoxicity, and it uses precisely the two measurements the volunteer study had shown to be insensitive to the injury in question. The label still restricts fresh gas flow.',
+        evidenceSource:
+          'Eger EI 2nd, Koblin DD, Bowland T, et al. Anesth Analg 1997;84:160-168; Mazze RI, Callan CM, Galvez ST, Delgado-Herrera L, Mayer DB. Anesth Analg 2000;90:683-688',
+        doi: '10.1097/00000539-199701000-00029',
+        inferredClaim:
+          'That normal postoperative serum creatinine and blood urea nitrogen across 3,436 patients rules out the renal injury Compound A produces — using the two markers the volunteer study reported as insensitive to it',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'sev-a4',
+        category: 'failed',
+        title: 'MYRIAD: volatile cardioprotection did not exist at the scale of a mortality trial',
+        laymanSummary:
+          'Laboratory work had shown for decades that these gases protect heart muscle from injury during interrupted blood supply. Five thousand four hundred bypass patients were randomised to gas or intravenous anaesthesia, and after a year the death rates were 2.8% and 3.0%.',
+        technicalDetails:
+          'Landoni and colleagues randomised 5,400 patients at 36 centres in 13 countries scheduled for elective coronary artery bypass grafting to an intraoperative regimen including desflurane, isoflurane or sevoflurane, or to total intravenous anaesthesia. On-pump bypass was used in 64%, mean bypass duration 79 minutes. Death from any cause at one year, the primary outcome, was 2.8% versus 3.0% (relative risk 0.94, 95% CI 0.69 to 1.29, P=0.71), with data for 99.1% of patients; 30-day mortality was 1.4% versus 1.3%. No secondary outcome and no prespecified adverse event differed, including myocardial infarction. The data and safety monitoring board stopped the trial for futility at the second interim analysis. Anaesthetic preconditioning is a well-replicated laboratory phenomenon, and this is what happened when it was asked to move a clinical endpoint in the population where it should have been easiest to see.',
+        evidenceSource:
+          'Landoni G, Lomivorotov VV, Nigro Neto C, et al. Volatile anesthetics versus total intravenous anesthesia for cardiac surgery. N Engl J Med 2019;380:1214-1225 (NCT02105610)',
+        doi: '10.1056/NEJMoa1816476',
+        measuredMetric: 'Death from any cause at one year after elective coronary artery bypass grafting',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sev-a5',
+        category: 'failed',
+        title: 'BALANCED: running the gas deeper or lighter did not change one-year survival',
+        laymanSummary:
+          'Observational studies had linked deeper anaesthesia to dying sooner afterwards. Six and a half thousand older patients were randomised to a light or a deep target on a brain monitor. One-year death was 6.5% and 7.2%.',
+        technicalDetails:
+          'Short and colleagues recruited patients aged 60 and over with significant comorbidity, having surgery expected to last more than two hours, at 73 centres in seven countries, and randomised 6,644 to light general anaesthesia at a bispectral index target of 50 or deep general anaesthesia at a target of 35. The separation achieved was real: median bispectral index 47.2 against 38.8, mean arterial pressure 3.5 mmHg higher in the light group, and volatile anaesthetic use 0.26 minimum alveolar concentration — about 30% — lower in the light group. One-year all-cause mortality, the primary outcome, was 6.5% (212 patients) against 7.2% (238), hazard ratio 0.88, 95% CI 0.73 to 1.07, absolute risk reduction 0.8% (95% CI -0.5 to 2.0). Grade 3 and grade 4 adverse events were the same in both arms. The trial defines a broad range of anaesthetic depth over which no mortality difference is detectable, and it is included here because the observational association it tested was widely believed and is a textbook example of confounding by patient frailty.',
+        evidenceSource:
+          'Short TG, Campbell D, Frampton C, et al. Anaesthetic depth and complications after major surgery: an international, randomised controlled trial. Lancet 2019;394:1907-1914 (ACTRN12612000632897)',
+        doi: '10.1016/S0140-6736(19)32315-3',
+        measuredMetric: 'One-year all-cause mortality in older patients at increased risk after major surgery',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sev-a6',
+        category: 'measured',
+        title: 'A 100-year global warming potential of 210, measured from its infrared spectrum',
+        laymanSummary:
+          'Almost all of the gas a patient breathes in is breathed straight back out and vented to the atmosphere unchanged. Its heat-trapping power was measured directly: 210 times that of carbon dioxide over a century.',
+        technicalDetails:
+          'Sulbaek Andersen and colleagues measured the infrared spectra of isoflurane, desflurane and sevoflurane and calculated their contribution to radiative forcing, accounting for the wavelength dependence of the effect. Radiative efficiencies were 0.453, 0.469 and 0.351 W m^-2 ppb^-1 and 100-year global warming potentials were 510, 1,620 and 210 respectively. On that basis the average climate impact per anaesthetic procedure at the University of Michigan was equivalent to about 22 kg of carbon dioxide, and global emissions of inhalation anaesthetics were estimated to have a climate impact comparable to one coal-fired power plant or a million passenger cars. This is on the page because it is a directly measured property of the molecule that differs eightfold between agents that are otherwise interchangeable, and it is a real basis for choosing between them that has nothing to do with the patient in front of you.',
+        evidenceSource:
+          'Sulbaek Andersen MP, Sander SP, Nielsen OJ, Wagner DS, Sanford TJ Jr, Wallington TJ. Inhalation anaesthetics and climate change. Br J Anaesth 2010;105:760-766',
+        doi: '10.1093/bja/aeq259',
+        measuredMetric:
+          'Radiative efficiency in W m^-2 ppb^-1 and 100-year global warming potential derived from measured infrared spectra',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sev-a7',
+        category: 'measured',
+        title: 'Malignant hyperthermia is a labelled trigger, and it is inherited',
+        laymanSummary:
+          'In people with a particular inherited muscle variant, this gas can set off a runaway rise in body temperature and muscle breakdown. It is on the label as a contraindication and it is genetic.',
+        technicalDetails:
+          'The approved label contraindicates sevoflurane in patients with known or suspected genetic susceptibility to malignant hyperthermia, and its warnings describe the hypermetabolic state with muscle rigidity, hyperkalaemia and resistant arrhythmias, advising early and aggressive treatment of hyperkalaemia and subsequent evaluation for latent neuromuscular disease. Susceptibility is associated with variants in the ryanodine receptor gene RYR1 and in CACNA1S, and the label notes that variant pathogenicity should be assessed on clinical experience, functional studies and prevalence data. This audit is filed as measured rather than inferred because the trigger relationship is a labelled, mechanistically characterised, genetically defined phenomenon and not a statistical association.',
+        evidenceSource:
+          'FDA-approved US prescribing information for sevoflurane, CONTRAINDICATIONS and WARNINGS — Malignant Hyperthermia (DailyMed SPL 22700993-851a-48aa-941e-1d2b6b04081f)',
+        measuredMetric:
+          'Labelled contraindication with named susceptibility genes RYR1 and CACNA1S',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Vaporised into the breathing circuit at a set percentage',
+        laymanDesc:
+          'A calibrated vaporiser turns the liquid into a precise percentage of the gas being breathed. Unlike an injected drug, the dose can be turned down as easily as it was turned up.',
+        molecularDetail:
+          'The label requires vaporisers producing predictable concentrations, because the depth of anaesthesia can change rapidly. Saturated vapour pressure and the agent-specific vaporiser design are what make a percentage dial meaningful; sevoflurane\'s non-pungency, unusual in this class, is what allows a mask induction without airway irritation.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It barely dissolves in blood, which is why it is fast',
+        laymanDesc:
+          'Blood can only soak up a small amount of it. That means the concentration in the lungs and the concentration reaching the brain come into balance within minutes, in both directions.',
+        molecularDetail:
+          'The blood-gas partition coefficient at 37 degrees C is 0.63 to 0.69, among the lowest of the agents in routine use. Low solubility means a small amount dissolved is needed before alveolar partial pressure equals arterial partial pressure, so wash-in and wash-out are both rapid and the end-tidal concentration is a usable proxy for the brain concentration.',
+        iconName: 'Gauge',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It acts on many channels, not one receptor',
+        laymanDesc:
+          'There is no single lock this key fits. It nudges several kinds of ion channel at once, all in the direction of quietening neurons.',
+        molecularDetail:
+          'Volatile anaesthetics potentiate GABA-A and glycine receptors, activate two-pore-domain potassium channels of the TASK and TREK families, inhibit NMDA receptors and depress presynaptic sodium channels and transmitter release. The decisive evidence that this is genuinely multi-target is genetic: beta3(N265M) knock-in mice lose the anaesthetic action of propofol and etomidate entirely and are only slightly less sensitive to enflurane and halothane.',
+        iconName: 'Network',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Cortical and thalamic communication breaks down',
+        laymanDesc:
+          'As the concentration rises, the parts of the brain that normally talk to each other stop doing so in a coordinated way, and consciousness ends.',
+        molecularDetail:
+          'The practical potency measure is minimum alveolar concentration: 2.1% in oxygen for a 40-year-old adult, falling with age, and defined as the concentration preventing movement to surgical incision in half of subjects. Immobility at MAC is largely a spinal cord effect, while unconsciousness occurs at lower concentrations, so the single number conflates two separable endpoints.',
+        iconName: 'Activity',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Some of it is degraded in the machine, not in the patient',
+        laymanDesc:
+          'The carbon dioxide absorber in the anaesthetic machine contains a strong base, and it attacks the molecule to produce a breakdown product that is toxic to rat kidneys. The lower the fresh gas flow, the more of it forms.',
+        molecularDetail:
+          'Strong base extracts the acidic proton from the fluoromethyl group, eliminating hydrogen fluoride to give pentafluoroisopropenyl fluoromethyl ether, Compound A, with trace Compound B. Formation rises with absorbent temperature, sevoflurane concentration, desiccation of the absorbent — especially potassium hydroxide-containing types — and falling fresh gas flow. The label restricts exposure at flows of 1 to under 2 L/min and does not recommend flows below 1 L/min.',
+        iconName: 'FlaskConical',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'It is breathed back out almost entirely unchanged',
+        laymanDesc:
+          'Only a small fraction is metabolised. The rest leaves through the lungs the way it came in, and then leaves the building through the theatre\'s scavenging system into the atmosphere.',
+        molecularDetail:
+          'Roughly 3 to 5% undergoes hepatic defluorination by CYP2E1, producing inorganic fluoride and hexafluoroisopropanol, which is glucuronidated; the rest is exhaled. Because elimination is by ventilation rather than metabolism, emergence tracks the same low solubility that made induction fast. The exhaled remainder is vented, which is why a measured 100-year global warming potential of 210 is a property of the treatment and not a footnote to it.',
+        iconName: 'RotateCcw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'GAS — general anaesthesia versus awake-regional anaesthesia in infancy (NCT00756600)',
+        phase: 'International assessor-masked randomised controlled equivalence trial',
+        sampleSize: 722,
+        primaryEndpoint:
+          'Full-scale intelligence quotient on WPPSI-III at five years of age, equivalence margin 5 points',
+        endpointMet: true,
+        statisticalPValue:
+          'Mean FSIQ 99.08 (SD 18.35) awake-regional versus 98.97 (SD 19.66) general anaesthesia; difference in means 0.23 (95% CI -2.59 to 3.06) — equivalence demonstrated',
+        unreportedAdverseSignals:
+          'The trial tested a median 54 minutes of anaesthesia, once, in a predominantly male population, and there were 74 protocol violations in the awake-regional arm against two in the general anaesthesia arm. It cannot speak to repeated or prolonged exposure.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'MYRIAD — volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery (NCT02105610)',
+        phase: 'Pragmatic multicentre single-blind randomised controlled trial',
+        sampleSize: 5400,
+        primaryEndpoint: 'Death from any cause at one year after elective coronary artery bypass grafting',
+        endpointMet: false,
+        statisticalPValue:
+          '2.8% volatile versus 3.0% intravenous; relative risk 0.94, 95% CI 0.69 to 1.29, P=0.71',
+        unreportedAdverseSignals:
+          'Stopped for futility at the second interim analysis; no secondary outcome or prespecified adverse event differed, including myocardial infarction.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'BALANCED — anaesthetic depth and complications after major surgery',
+        phase: 'International randomised controlled trial at 73 centres in 7 countries',
+        sampleSize: 6644,
+        primaryEndpoint: 'One-year all-cause mortality in older patients at increased risk after major surgery',
+        endpointMet: false,
+        statisticalPValue:
+          '6.5% at bispectral index target 50 versus 7.2% at target 35; hazard ratio 0.88, 95% CI 0.73 to 1.07, absolute risk reduction 0.8% (95% CI -0.5 to 2.0)',
+        unreportedAdverseSignals:
+          'Separation was achieved — median bispectral index 47.2 versus 38.8 and 30% less volatile agent in the light group — so this is a negative result rather than a failed intervention.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Eger volunteer comparison of sevoflurane and desflurane renal injury markers',
+        phase: 'Controlled volunteer study',
+        sampleSize: 19,
+        primaryEndpoint:
+          'Urinary albumin, glucose, alpha-glutathione-S-transferase and pi-glutathione-S-transferase after 8 hours at 1.25 MAC',
+        endpointMet: true,
+        statisticalPValue:
+          'Sevoflurane produced transient glomerular, proximal tubular and distal tubular injury markers at a mean inspired Compound A of 41 +/- 3 ppm; desflurane produced none. Serum creatinine and blood urea nitrogen were unchanged by either agent.',
+        unreportedAdverseSignals:
+          'Between-subject variation was extreme: 24-hour albumin excretion on day 3 ranged from normal to 4.4 g. Sevoflurane also produced small rises in serum alanine aminotransferase, suggesting mild transient hepatic injury.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Mazze pooled analysis of renal function across 22 sevoflurane trials',
+        phase: 'Retrospective pooled analysis of 22 clinical trials',
+        sampleSize: 3436,
+        primaryEndpoint: 'Postoperative change in serum creatinine and blood urea nitrogen',
+        endpointMet: true,
+        statisticalPValue:
+          'Similar incidences of raised serum creatinine and blood urea nitrogen between 1,941 sevoflurane and 1,495 control patients; no trend by fresh gas flow rate, nephrotoxic antibiotic co-treatment or absorbent type, for exposures under 4 MAC-hours',
+        unreportedAdverseSignals:
+          'The two outcome measures are the two the volunteer study explicitly reported as having failed to reveal the injury it detected with sensitive markers. This is a valid result about clinically apparent nephrotoxicity and not a refutation of the biomarker finding.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A blood-gas partition coefficient of 0.63 to 0.69 at 37 degrees C, and a minimum alveolar concentration of 2.1% in oxygen for a 40-year-old adult',
+        'Full-scale IQ at five years of 98.97 after infant sevoflurane anaesthesia against 99.08 after awake-regional, difference 0.23 points (95% CI -2.59 to 3.06)',
+        'One-year mortality of 2.8% with a volatile agent against 3.0% with total intravenous anaesthesia in 5,400 bypass patients',
+        'One-year mortality of 7.2% at deep against 6.5% at light anaesthetic depth in 6,644 older surgical patients',
+        'Transient glomerular and tubular injury markers in volunteers at a mean inspired Compound A of 41 ppm, with serum creatinine and urea unchanged',
+        'A radiative efficiency of 0.351 W m^-2 ppb^-1 and a 100-year global warming potential of 210, measured from the infrared spectrum',
+      ],
+      unsupportedInferences: [
+        'That neuronal apoptosis in developing animal brains predicts cognitive harm in children — the label states the clinical significance is not clear, and the one randomised human test found equivalence',
+        'That normal creatinine and urea across 3,436 patients rules out Compound A renal injury, when the volunteer study reported those exact measures as insensitive to it',
+        'That laboratory anaesthetic preconditioning of myocardium translates into fewer deaths after bypass surgery',
+        'That the observed association between deep anaesthesia and later death is causal rather than a marker of how sick the patient was',
+        'That a gas induction avoiding a needle in a frightened child is a trivial advantage; it is not measured in any trial here, and it is the main reason this agent exists in paediatric practice',
+      ],
+      whatFailedInitially: [
+        'Volatile cardioprotection, tested in 5,400 bypass patients and stopped for futility',
+        'The depth-of-anaesthesia mortality hypothesis, tested in 6,644 patients with a real 9-point bispectral index separation and no survival difference',
+        'The original assumption that Compound A was a rodent-only concern — sensitive urinary markers found real, if transient, human injury',
+        'Equally, the assumption that Compound A causes clinically important nephrotoxicity in ordinary practice, which 3,436 patients did not support',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines, and the standard agent for inhalational induction in children worldwide because it does not irritate the airway',
+        'No CMS National Average Drug Acquisition Cost value is held on this record for sevoflurane, so no United States acquisition price is stated here',
+        'Its label still restricts fresh gas flow because of Compound A, three decades after the human outcome data failed to show clinically apparent renal injury — a warning that has outlived the strength of its evidence in either direction',
+        'Its measured global warming potential of 210, against desflurane\'s 1,620, has become a real basis for institutional agent choice',
+      ],
+    },
+    deliverySystem: {
+      type:
+        'Volatile liquid for inhalation, delivered as vapour from an agent-specific calibrated vaporiser into a circle breathing system, with a carbon dioxide absorber and scavenging',
+      description:
+        'The delivery system is a machine, not a formulation, and the machine changes the drug. Fresh gas flow, absorbent chemistry and absorbent hydration determine how much Compound A the patient inhales, so the same vaporiser setting delivers different exposures on different circuits. The agent is stabilised with water because it degrades on contact with Lewis acids. Uniquely among the agents in routine use it is non-pungent, which is why a child can be anaesthetised through a mask without a cannula, and that property is a physical fact about the molecule rather than a clinical claim.',
+      safetyProfile:
+        'Contraindicated in known or suspected genetic susceptibility to malignant hyperthermia, which every volatile agent triggers. The label warns of Compound A-associated renal injury and restricts fresh gas flow accordingly, and carries the class Pediatric Neurotoxicity warning describing animal evidence of neuronal apoptosis with exposures over three hours in the developing brain, with the clinical significance stated as unclear. Emergence agitation in young children is common and self-limiting. Reaction with desiccated carbon dioxide absorbents, particularly potassium hydroxide-containing types, has caused extreme absorber heating and fire. Depth changes rapidly, which is the drug\'s main advantage and the reason the label restricts administration to trained personnel with vaporisers of predictable output. No dosing guidance appears on this page.',
+    },
+    commonQuestions: [
+      {
+        q: 'Will an anaesthetic damage my child\'s brain?',
+        a: 'The best evidence available says a single short anaesthetic in infancy does not. The GAS trial randomised 722 babies having the same hernia operation to either a sevoflurane general anaesthetic or an awake spinal, and measured full-scale IQ at age five with masked assessors and a predefined equivalence margin of 5 points. Median anaesthetic duration was 54 minutes. Mean IQ was 98.97 with general anaesthesia and 99.08 with awake-regional — a difference of 0.23 points, with a confidence interval from -2.59 to 3.06, comfortably inside the margin. That is a positive demonstration of equivalence, not merely a failure to find a difference. What it does not cover is repeated anaesthetics or exposures of several hours, which is exactly what the FDA warning is about, and there is no randomised trial of those.',
+      },
+      {
+        q: 'Then why does the label carry a neurotoxicity warning?',
+        a: 'Because of what happens to animals. The label says it plainly: published animal studies show that drugs blocking NMDA receptors or potentiating GABA increase neuronal apoptosis in the developing brain and cause long-term cognitive deficits when used for longer than three hours, and that the clinical significance of those findings is not clear. It places the vulnerable window from the third trimester through the first months of life, possibly to about three years. It acknowledges human studies suggesting similar deficits after repeated or prolonged exposure, and says those studies have substantial limitations and cannot separate the drug from the surgery and the underlying illness. So the warning is an extrapolation from rodent apoptosis, hedged in the label\'s own text, and this page records it as one.',
+        auditNote:
+          'The warning may well be right for long or repeated exposures. It is filed as an inference because that is what the label itself calls it.',
+      },
+      {
+        q: 'What is Compound A and should I care?',
+        a: 'It is what sevoflurane turns into inside the anaesthetic machine. The carbon dioxide absorber contains a strong base, which strips a proton off the molecule and produces a fluorinated alkene that is nephrotoxic to rats. Less fresh gas flow means more of it. In volunteers given eight hours at 1.25 MAC with 41 parts per million of Compound A, sensitive urine tests picked up genuine injury to the filtering unit and both tubules — but serum creatinine and urea, the tests a hospital actually runs, showed nothing, and the authors said so explicitly. A later pooled analysis of 3,436 surgical patients then used creatinine and urea and found no difference. Both results are true and they answer different questions. What is fair to say is that clinically apparent kidney injury from sevoflurane has not been demonstrated in ordinary practice, and that the reassurance rests on a measurement already known to be insensitive.',
+        auditNote:
+          'This is the clearest measurement-selection problem in the file: the confirming study used the endpoint the earlier study had reported as blind to the effect.',
+      },
+      {
+        q: 'Is gas or intravenous anaesthesia better?',
+        a: 'On death at one year, neither. MYRIAD randomised 5,400 patients having elective coronary bypass — the population where a difference should have been easiest to find, because volatile agents were believed to protect heart muscle — to a gas or to propofol. One-year mortality was 2.8% and 3.0%, relative risk 0.94, P=0.71, and the trial stopped for futility. Thirty-day mortality and myocardial infarction were the same too. There are real differences between the two: gas gives you a breath-by-breath concentration measurement that propofol has no equivalent of, propofol causes less postoperative nausea, gas allows a needle-free induction in a child, and propofol vents no greenhouse gas. Survival is not on that list.',
+      },
+      {
+        q: 'Does the anaesthetist keep me deeper than necessary, and is that dangerous?',
+        a: 'It was believed to be, and then it was tested. Observational studies had repeatedly found that patients kept more deeply anaesthetised died sooner afterwards. The BALANCED trial randomised 6,644 older patients with significant illness to a light target or a deep target on a processed EEG monitor, and achieved a real separation — a median bispectral index of 47 against 39, with 30% less volatile agent used in the light group. One-year mortality was 6.5% against 7.2%, hazard ratio 0.88 with a confidence interval crossing 1. The most likely explanation for the original association is that sicker patients need less anaesthetic to reach a given depth, so depth was acting as a marker of frailty rather than a cause of death.',
+      },
+      {
+        q: 'Is it true that anaesthetic gases are a climate problem?',
+        a: 'Yes, and the size of it has been measured rather than estimated. Almost all of the agent a patient breathes in is breathed straight back out and vented unchanged. Researchers measured the infrared absorption spectra of the three agents in routine use and calculated radiative efficiencies of 0.453, 0.469 and 0.351 W m^-2 ppb^-1 for isoflurane, desflurane and sevoflurane, giving 100-year global warming potentials of 510, 1,620 and 210. On that basis an average anaesthetic at one large United States hospital was equivalent to about 22 kg of carbon dioxide, and global inhalational anaesthetic emissions were put on a par with one coal-fired power plant or a million cars. Sevoflurane is the least damaging of the three fluorinated ethers by a wide margin, which is one reason desflurane use has fallen sharply.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because the CMS National Average Drug Acquisition Cost survey holds no value for sevoflurane on this record. That survey measures what United States retail pharmacies pay, and a volatile liquid supplied in bottles to hospital operating theatres does not pass through retail pharmacy. Rather than substitute a list price or an estimate, this page shows nothing. No verified per-dose cost-of-production figure exists for it either.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'McCann ME, de Graaff JC, Dorris L, et al. Neurodevelopmental outcome at 5 years of age after general anaesthesia or awake-regional anaesthesia in infancy (GAS): an international, multicentre, randomised, controlled equivalence trial. Lancet 2019;393:664-677',
+        identifier: '10.1016/S0140-6736(18)32485-1',
+        kind: 'doi',
+      },
+      {
+        label: 'NCT00756600 — GAS, general anaesthesia compared to spinal anaesthesia in infancy',
+        identifier: 'NCT00756600',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Eger EI 2nd, Koblin DD, Bowland T, et al. Nephrotoxicity of sevoflurane versus desflurane anesthesia in volunteers. Anesth Analg 1997;84:160-168',
+        identifier: '10.1097/00000539-199701000-00029',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mazze RI, Callan CM, Galvez ST, Delgado-Herrera L, Mayer DB. The effects of sevoflurane on serum creatinine and blood urea nitrogen concentrations: a retrospective, twenty-two-center, comparative evaluation of renal function in adult surgical patients. Anesth Analg 2000;90:683-688',
+        identifier: '10.1097/00000539-200003000-00032',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Landoni G, Lomivorotov VV, Nigro Neto C, et al. Volatile anesthetics versus total intravenous anesthesia for cardiac surgery. N Engl J Med 2019;380:1214-1225',
+        identifier: '10.1056/NEJMoa1816476',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Short TG, Campbell D, Frampton C, et al. Anaesthetic depth and complications after major surgery: an international, randomised controlled trial. Lancet 2019;394:1907-1914',
+        identifier: '10.1016/S0140-6736(19)32315-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sulbaek Andersen MP, Sander SP, Nielsen OJ, Wagner DS, Sanford TJ Jr, Wallington TJ. Inhalation anaesthetics and climate change. Br J Anaesth 2010;105:760-766',
+        identifier: '10.1093/bja/aeq259',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA-approved US prescribing information for sevoflurane (DailyMed structured product label, Baxter Healthcare Corporation) — Pediatric Neurotoxicity warning, Compound A and fresh gas flow restriction, malignant hyperthermia contraindication',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=22700993-851a-48aa-941e-1d2b6b04081f',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5206 — sevoflurane structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5206',
+        kind: 'url',
+      },
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

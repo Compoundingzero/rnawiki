@@ -1156,4 +1156,1001 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 3. Esomeprazole — half of omeprazole, patented separately, launched the year its parent went
+  //    generic, and shown to be better than it in a trial that gave the new drug twice the dose.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'esomeprazole',
+    name: 'Esomeprazole',
+    tradeName: 'Nexium / Nexium 24HR',
+    sponsor:
+      'AstraZeneca — approved in the United States under NDA 021153 on 20 February 2001, the year the omeprazole composition-of-matter patent expired',
+    targetGene: 'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
+    targetProtein:
+      'Gastric H+/K+-ATPase, bound covalently at cysteine 813 on the luminal face of the alpha subunit — the same target, by the same chemistry, as its racemic parent',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2001,
+    indication:
+      'Healing of erosive esophagitis and maintenance of healing, and treatment of symptomatic gastroesophageal reflux disease, in adults and in paediatric patients; risk reduction of NSAID-associated gastric ulcer; Helicobacter pylori eradication in combination with antibacterials; and pathological hypersecretory conditions including Zollinger-Ellison syndrome',
+    patientFriendlyIndication:
+      'Reflux and heartburn, including reflux that has visibly damaged the gullet, and prevention of stomach ulcers caused by anti-inflammatory painkillers',
+    anatomicalSite:
+      'Gastric parietal cell — the secretory canaliculus, reached through the bloodstream rather than from the stomach lumen',
+    conditionContext: {
+      conditionExplainer:
+        'Omeprazole is a mixture of two mirror-image forms of the same molecule, present in equal amounts. Mirror-image molecules are chemically identical in most respects but the body’s enzymes are themselves handed, so they can clear one form faster than the other. Esomeprazole is the slower-cleared half, isolated and sold on its own.',
+      whyItMatters:
+        'This is the textbook case of what the pharmaceutical literature calls the chiral switch. The pharmacology is real and modest; the commercial timing is the part worth auditing, and so is the design of the trials that were used to demonstrate superiority.',
+      whoTakesThis:
+        'Adults and children with reflux disease, and — through the over-the-counter version approved in 2014 — a very large number of people self-treating heartburn without a diagnosis.',
+      clinicalGoals:
+        'The registered endpoint is healing of erosive oesophagitis seen at endoscopy. Whether that healing changes anything a person would notice a decade later is a separate question, and the one trial that ran long enough to ask it is audited below.',
+    },
+    oneSentenceVerdict:
+      'The single slower-cleared mirror image of omeprazole, isolated and patented as a new product the year its parent went generic: it healed erosive oesophagitis in 93.7% of patients against 84.2% for omeprazole in 2,425 people — at 40 mg against 20 mg, twice the dose — and in the one trial that ran nearly nine years, high-dose esomeprazole delayed death, oesophageal cancer or high-grade dysplasia in Barrett’s oesophagus with a time ratio of 1.27 and a number needed to treat of 34.',
+    laymanHowItWorks:
+      'Omeprazole comes as a 50:50 mixture of two forms that are mirror images of each other, like a left and a right hand. The liver enzyme that clears them is itself handed, and it clears one of the two faster. Esomeprazole is just the slower-cleared half on its own, so for the same milligram it stays in the blood a little longer and reaches the stomach pump in slightly greater quantity. Once there it does exactly what omeprazole does: the stomach’s own acid converts it into a reactive form that bonds permanently to the acid pump, and the cell has to build a new pump before it can make acid again.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 72,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1533 per delayed-release capsule at United States pharmacy acquisition cost (CMS NADAC, median across 142 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Nexium was approved on 20 February 2001, the same year the omeprazole composition-of-matter patent expired, and became one of the highest-grossing drugs in history. The manoeuvre — isolate an enantiomer of a drug about to go generic, patent it separately, and move prescribers across before the switch — is the standard illustration of evergreening in the health-policy literature. Both molecules are now generic, and the esomeprazole capsule costs pharmacies roughly twice what the omeprazole capsule costs.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The nearest substitute is the drug esomeprazole was carved out of. Omeprazole contains this molecule plus an equal quantity of its mirror image, targets the same pump by the same covalent chemistry, and costs pharmacies about half as much per capsule. The case for paying the difference rests on trials that compared unequal doses, which is the central audit on this page. Below the class the alternatives are measurably weaker, and there is no food or supplement that heals an erosion.',
+      conventionalRx: [
+        {
+          name: 'Omeprazole (Prilosec, Prilosec OTC)',
+          class: 'Proton pump inhibitor, racemic mixture containing esomeprazole',
+          howItCompares:
+            'Literally contains this drug, as half of its content. Cleared somewhat faster because the R-enantiomer is a better CYP2C19 substrate, so plasma exposure per milligram is lower. Every published superiority comparison against it used 40 mg of esomeprazole against 20 mg of omeprazole.',
+          typicalCost:
+            'US$0.0816 per delayed-release capsule at United States pharmacy acquisition cost (CMS NADAC, median across 151 listed generic products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: half the acquisition cost, longest clinical history, available off the shelf. Cons: more CYP2C19-dependent, and the clopidogrel interaction warning attaches to it most prominently.',
+        },
+        {
+          name: 'Pantoprazole (Protonix)',
+          class: 'Proton pump inhibitor, substituted benzimidazole',
+          howItCompares:
+            'Same pump, same covalent chemistry, least CYP2C19-dependent of the four and the only one with a three-year placebo-controlled safety trial behind it in 17,598 people. It is also the cheapest of the four at pharmacy acquisition cost.',
+          typicalCost:
+            'US$0.0428 per delayed-release tablet at United States pharmacy acquisition cost (CMS NADAC, median across 81 listed generic products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheapest, fewest interactions, best long-term safety evidence. Cons: no randomised evidence in acute ulcer bleeding after endoscopy, where esomeprazole has a trial.',
+        },
+        {
+          name: 'Famotidine (Pepcid, Pepcid AC)',
+          class: 'Histamine H2-receptor antagonist',
+          howItCompares:
+            'A different and weaker mechanism: it blocks one stimulatory receptor rather than destroying the pump. Pooled across 43 randomised trials, H2 blockers healed 51.9% of erosive oesophagitis against 83.6% for proton pump inhibitors.',
+          typicalCost:
+            'US$0.0494 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 139 listed generic products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: acts within the hour, no covalent binding, minimal interactions. Cons: much weaker healing and tolerance within days of continuous use.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask what the same money buys as omeprazole',
+          action:
+            'Establish whether the prescription was written for a clinical reason specific to this molecule or by habit.',
+          patientImpact:
+            'Esomeprazole is one half of omeprazole. The published head-to-head superiority was measured at 40 mg against 20 mg, and no trial has compared equal milligrams of the two on a patient outcome. The acquisition-cost difference is roughly twofold per capsule.',
+          clinicalPrecaution:
+            'There are situations where the specific molecule matters — the intravenous ulcer-bleeding evidence is esomeprazole’s, not omeprazole’s. This is a question for a prescriber, not a switching instruction.',
+        },
+        {
+          name: 'If you have Barrett’s oesophagus, ask about the AspECT result',
+          action:
+            'Raise the trial of high-dose esomeprazole with and without aspirin in Barrett’s oesophagus.',
+          patientImpact:
+            'AspECT followed 2,557 people for a median of 8.9 years and found high-dose proton pump inhibition delayed a composite of death, oesophageal adenocarcinoma and high-grade dysplasia, with a number needed to treat of 34. It is the only trial in this file that ran long enough to count cancers.',
+          clinicalPrecaution:
+            'The trial was unblinded, the endpoint was a composite dominated by all-cause mortality, and the aspirin arm carries its own bleeding risk. Nothing here recommends a dose or a regimen.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=CN=C(C(=C1OC)C)C[S@](=O)C2=NC3=C(N2)C=C(C=C3)OC',
+      chemicalFormula: 'C17H19N3O3S',
+      molecularWeight: '345.40 g/mol',
+      targetReceptorAffinity:
+        'Identical to omeprazole at the target, because it is one of omeprazole’s two components and the activated sulfenamide it forms is achiral at the reacting centre. The difference between the two drugs is entirely pharmacokinetic: the S-enantiomer is a poorer substrate for CYP2C19, so it is cleared more slowly and area under the plasma concentration curve is higher per milligram. There is no dissociation constant, because inhibition is a covalent disulfide bond.',
+      structureSource: {
+        label:
+          'PubChem CID 9568614 (esomeprazole) — canonical isomeric SMILES showing the S configuration at the sulfoxide, molecular formula and weight, as ingested onto this record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9568614',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'eso-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Chiral purity at the sulfoxide, which is the entire product claim',
+          description:
+            'Establish the enantiomeric excess before anything else. This molecule differs from omeprazole in exactly one way — the configuration at the sulfur — so a batch with poor enantiomeric excess is not a weaker drug, it is the parent drug sold at the daughter’s price. Nothing else about the identity check distinguishes the two.',
+          reagentsAndBuffer:
+            'Chiral HPLC on an amylose or cellulose carbamate stationary phase, circular dichroism or optical rotation against a reference standard, 1H NMR in DMSO-d6, buffered mobile phase held at pH 7.4 or above',
+        },
+        {
+          id: 'eso-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Asymmetric oxidation of the sulfide to a single sulfoxide enantiomer',
+          description:
+            'Oxidise the prochiral sulfide to the sulfoxide using a chiral titanium-tartrate catalyst system so that one enantiomer forms preferentially. This is the step the whole product exists for; the alternative route, resolving racemic omeprazole, throws half the material away and was not commercially viable at scale.',
+          dependsOnStepId: 'eso-w1',
+          reagentsAndBuffer:
+            'Titanium tetraisopropoxide with (S,S)- or (R,R)-diethyl tartrate, cumene hydroperoxide as oxidant, diisopropylethylamine, toluene, controlled water stoichiometry, run cold with in-process chiral HPLC',
+        },
+        {
+          id: 'eso-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Magnesium salt formation and enantiomeric upgrading by crystallisation',
+          description:
+            'Crystallise as the magnesium trihydrate, which is the dispensed form, and use the crystallisation to raise enantiomeric excess above what the reaction delivered. All handling stays alkaline, because the free base is destroyed by acid within minutes.',
+          dependsOnStepId: 'eso-w2',
+          reagentsAndBuffer:
+            'Magnesium methoxide or magnesium acetate in methanol and water, controlled water activity to fix the trihydrate, chiral HPLC before and after crystallisation, HPLC against a sulfone reference standard',
+        },
+        {
+          id: 'eso-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Acid trapping and activation in isolated gastric vesicles, run against the R-enantiomer',
+          description:
+            'Load hog gastric microsomal vesicles and compare accumulation and inhibition for the S- and R-forms side by side. The expected and important result is that they are the same: the enantiomers differ in how the liver handles them, not in what they do to the pump, and an assay that showed otherwise would contradict the accepted account of the molecule.',
+          dependsOnStepId: 'eso-w3',
+          reagentsAndBuffer:
+            'Hog gastric H+/K+-ATPase microsomal vesicles, ATP and magnesium for the pH gradient, matched R-enantiomer comparator, LC-MS/MS quantification of vesicle-associated drug',
+        },
+        {
+          id: 'eso-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'CYP2C19 turnover comparison — where the two enantiomers actually differ',
+          description:
+            'Measure metabolic clearance of both enantiomers in human liver microsomes and in recombinant CYP2C19, and repeat in microsomes from a poor-metaboliser genotype. The whole clinical case for the single enantiomer rests on this measurement, so it belongs in the quantification step rather than being asserted from the marketing literature.',
+          dependsOnStepId: 'eso-w4',
+          reagentsAndBuffer:
+            'Pooled and genotyped human liver microsomes, recombinant CYP2C19 and CYP3A4 supersomes, NADPH regenerating system, chiral LC-MS/MS to resolve the two enantiomers and their hydroxy and sulfone metabolites',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'eso-a1',
+        category: 'inferred',
+        title:
+          'The superiority result was measured at 40 mg against 20 mg, and no equal-dose comparison exists',
+        laymanSummary:
+          'The trial that established esomeprazole as better than omeprazole gave twice as much of the new drug as of the old one. It healed more people. What it did not test is whether the same amount of each performs differently, which is the question a reader assumes was asked.',
+        technicalDetails:
+          'Richter, Kahrilas and colleagues randomised 2,425 patients with endoscopically confirmed erosive oesophagitis, Helicobacter pylori negative by serology, to esomeprazole 40 mg or omeprazole 20 mg once daily for eight weeks across 163 United States centres. Healing at week 8 was 93.7% against 84.2% (P<0.001, life-table estimates, intention-to-treat), and at week 4 was 81.7% against 68.7%. Esomeprazole was superior on every secondary measure, with a comparable safety profile. The comparison is between different milligram quantities of two molecules that act on the same target by the same chemistry, one of which is a component of the other. A dose-equivalence trial would answer the question the headline implies; none has been published.',
+        evidenceSource:
+          'Richter JE, Kahrilas PJ et al., Am J Gastroenterol 2001;96:656-665',
+        doi: '10.1111/j.1572-0241.2001.03600.x',
+        inferredClaim:
+          'That the S-enantiomer is intrinsically more effective than its racemic parent — an inference from a trial that gave the S-enantiomer twice the milligram dose',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'eso-a2',
+        category: 'measured',
+        title:
+          'AspECT: nearly nine years of follow-up, and high-dose PPI delayed cancer, dysplasia or death',
+        laymanSummary:
+          'This is the only trial on any page in this file that ran long enough to count cancers. Two and a half thousand people with a pre-cancerous change in the gullet took high-dose or low-dose esomeprazole, with or without aspirin, for at least eight years. High dose delayed the composite of death, oesophageal cancer and severe dysplasia, and 34 people had to be treated to prevent one event.',
+        technicalDetails:
+          'AspECT was a 2 x 2 factorial trial at 84 centres in the United Kingdom and one in Canada. Between March 2005 and March 2009 it recruited 2,557 patients with Barrett’s oesophagus of at least 1 cm, randomising to high-dose (40 mg twice daily) or low-dose (20 mg once daily) esomeprazole, with or without aspirin, for at least eight years. Median follow-up and treatment duration was 8.9 years (IQR 8.2 to 9.8), with 20,095 follow-up years and 99.9% of planned data collected. The primary composite endpoint was time to all-cause mortality, oesophageal adenocarcinoma or high-grade dysplasia; 313 primary events occurred. High-dose gave 139 events in 1,270 patients against 174 in 1,265 on low dose, time ratio 1.27 (95% CI 1.01 to 1.58, P=0.038), number needed to treat 34. Aspirin alone did not reach significance (TR 1.24, 95% CI 0.98 to 1.57, P=0.068) unless NSAID users were censored. The combination against low-dose PPI alone gave TR 1.59 (95% CI 1.14 to 2.23, P=0.0068). The trial was unblinded, though reporting pathologists were masked, and the composite is dominated by all-cause mortality rather than by cancer.',
+        evidenceSource:
+          'Jankowski JAZ et al., Lancet 2018;392:400-408 (AspECT, EudraCT 2004-003836-77)',
+        doi: '10.1016/S0140-6736(18)31388-6',
+        measuredMetric:
+          'Time to all-cause mortality, oesophageal adenocarcinoma or high-grade dysplasia over a median 8.9 years, high-dose against low-dose esomeprazole',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eso-a3',
+        category: 'measured',
+        title:
+          'Intravenous esomeprazole after endoscopic haemostasis: rebleeding 5.9% against 10.3%',
+        laymanSummary:
+          'After a bleeding ulcer has been treated through an endoscope, a 72-hour drip of high-dose esomeprazole nearly halved the chance of bleeding again in the next three days. Deaths and operations were fewer too, but not by enough to be certain.',
+        technicalDetails:
+          'A randomised, blinded trial across 91 emergency departments in 16 countries assigned patients with peptic ulcer bleeding from a single gastric or duodenal ulcer showing high-risk stigmata, after successful endoscopic haemostasis, to an 80 mg intravenous esomeprazole bolus followed by an 8 mg/h infusion over 72 hours, or matching placebo; both groups then received oral esomeprazole for 27 days. Of 767 randomised, 764 were analysed. Clinically significant recurrent bleeding within 72 hours occurred in 22 of 375 (5.9%) against 40 of 389 (10.3%), a difference of 4.4 percentage points (95% CI 0.6 to 8.3, P=0.026), sustained at 7 and 30 days (P=0.010). Endoscopic re-treatment fell from 11.6% to 6.4% (difference 5.2 points, 95% CI 1.1 to 9.2, P=0.012). Surgery was 2.7% against 5.4% and all-cause mortality 0.8% against 2.1%, neither significant. The trial was funded by AstraZeneca and endoscopic therapy was not fully standardised.',
+        evidenceSource: 'Sung JJ et al., Ann Intern Med 2009;150:455-464',
+        doi: '10.7326/0003-4819-150-7-200904070-00105',
+        measuredMetric:
+          'Clinically significant recurrent bleeding within 72 hours after endoscopic haemostasis, against matching placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eso-a4',
+        category: 'failed',
+        title: 'It did nothing for poorly controlled asthma, and silent reflux did not identify anyone it helped',
+        laymanSummary:
+          'Reflux is common in asthma, often without symptoms, and treating it was widely expected to improve asthma control. A trial of 412 adults on high-dose esomeprazole found no difference at all — and testing people to find the ones who really did have reflux did not find a group that benefited either.',
+        technicalDetails:
+          'A parallel-group, double-blind trial randomised 412 participants with inadequately controlled asthma despite inhaled corticosteroids and with minimal or no reflux symptoms to esomeprazole 40 mg twice daily or matching placebo, following them for 24 weeks with daily asthma diaries, four-weekly spirometry and symptom questionnaires. Episodes of poor asthma control occurred at 2.3 against 2.5 events per person-year (P=0.66). There was no effect on any component of the primary outcome or on any secondary outcome: pulmonary function, airway reactivity, asthma control, symptom scores, nocturnal awakening or quality of life. Ambulatory pH monitoring documented reflux in 40% of participants with minimal or no symptoms, and that subgroup did not benefit either. Serious adverse events were fewer on esomeprazole (11 against 17).',
+        evidenceSource:
+          'Mastronarde JG et al., N Engl J Med 2009;360:1487-1499 (SARA, NCT00069823)',
+        doi: '10.1056/NEJMoa0806290',
+        measuredMetric:
+          'Rate of episodes of poor asthma control over 24 weeks, against matching placebo, with a prespecified pH-monitored subgroup',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eso-a5',
+        category: 'conclusion_shift',
+        title: 'The chiral switch: launched the year its parent went generic',
+        laymanSummary:
+          'Esomeprazole reached the United States market in February 2001, the year the omeprazole patent expired. It is one half of omeprazole with its own patent. The strategy has a name in the health-policy literature and this drug is its standard example.',
+        technicalDetails:
+          'Omeprazole was approved under NDA 019810 in 1989 and its composition-of-matter protection expired in 2001. Esomeprazole magnesium was approved under NDA 021153 on 20 February 2001 as a separately patented product, and became one of the highest-grossing pharmaceuticals in history. The pharmacological difference is genuine but narrow — the S-enantiomer is a poorer CYP2C19 substrate, so exposure per milligram is higher — and the clinical demonstration rests on comparisons at unequal doses. The field’s reading of this drug has shifted accordingly: the pharmacology textbooks describe a modest and real pharmacokinetic advantage, while the health-policy literature uses it as the worked example of enantiomer evergreening. Both descriptions are of the same molecule and neither is wrong.',
+        evidenceSource:
+          'Drugs@FDA records for NDA 019810 (PRILOSEC, approved 14 September 1989) and NDA 021153 (NEXIUM, approved 20 February 2001)',
+        inferredClaim:
+          'That a separately patented single enantiomer represented a therapeutic advance proportional to its price — a commercial claim whose clinical support is a set of unequal-dose comparisons',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'eso-a6',
+        category: 'inferred',
+        title: 'The long-term safety evidence for this molecule is borrowed, not its own',
+        laymanSummary:
+          'The reassuring three-year randomised safety data that this class now has came from a trial of pantoprazole. Esomeprazole has no equivalent. What it does have is AspECT, which followed people for nearly nine years and found study-treatment-related serious adverse events in 1% of participants.',
+        technicalDetails:
+          'COMPASS randomised 17,598 people to pantoprazole or placebo for a median 3.01 years and found no significant excess of pneumonia, C. difficile, fracture, gastric atrophy, chronic kidney disease, dementia, cancer or death, with enteric infections at 1.4% against 1.0% (OR 1.33, 95% CI 1.01 to 1.75). No comparable placebo-controlled trial of esomeprazole exists. AspECT provides the longest exposure data for this molecule specifically — a median 8.9 years in 2,557 patients — and reports study-treatment-related serious adverse events in 28 participants (1%), but it randomised dose rather than drug against placebo, so it cannot separate drug effects from background rates. Reading the pantoprazole safety result across to esomeprazole is a class inference from shared mechanism.',
+        evidenceSource:
+          'Moayyedi P et al., Gastroenterology 2019;157:682-691 (COMPASS); Jankowski JAZ et al., Lancet 2018;392:400-408 (AspECT)',
+        doi: '10.1053/j.gastro.2019.05.056',
+        inferredClaim:
+          'That the placebo-controlled safety record established for pantoprazole applies to esomeprazole — a mechanistic inference, not a measurement of this molecule',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One hand of a two-handed molecule',
+        laymanDesc:
+          'Omeprazole exists as two mirror-image forms in equal amounts. Esomeprazole is one of those two, separated out and sold on its own. Nothing about the target or the chemistry changes.',
+        molecularDetail:
+          'The stereocentre is the sulfoxide sulfur. Esomeprazole is the S-enantiomer, manufactured by asymmetric oxidation with a titanium-tartrate catalyst rather than by resolving the racemate, and dispensed as the magnesium trihydrate.',
+        iconName: 'FlipHorizontal',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Cleared more slowly by a handed enzyme',
+        laymanDesc:
+          'The liver enzyme that breaks these drugs down is itself asymmetric, so it handles the two mirror images at different speeds. This one is the slower of the two, which means more of it reaches the stomach for a given tablet.',
+        molecularDetail:
+          'CYP2C19 is a poorer catalyst for the S-enantiomer than for the R-enantiomer, so a larger fraction of the S-form is cleared by CYP3A4 to the sulfone instead. Area under the plasma concentration curve per milligram is correspondingly higher, and the difference widens with repeated dosing. This is the entire pharmacological distinction between the two drugs.',
+        iconName: 'Timer',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'Trapped in the acid pocket, exactly as omeprazole is',
+        laymanDesc:
+          'From the blood it drifts into the acid-secreting channel of the stomach cell, picks up a charge, and can no longer get out. The trapping is identical for both mirror images.',
+        molecularDetail:
+          'Pyridine pKa near 4; protonation in a compartment at pH 1 gives roughly thousandfold accumulation relative to plasma. Accumulation is a property of the weak base, not of its handedness, and the two enantiomers behave identically here.',
+        iconName: 'Lock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'The acid rearranges it, and the handedness disappears',
+        laymanDesc:
+          'The reactive form the acid produces is the same for both mirror images. Whatever advantage the isolated form had, it ends here — from this point on the two are the same molecule.',
+        molecularDetail:
+          'Second protonation drives rearrangement to the cyclic sulfenamide. The reacting centre in that species is not a stereocentre, so the activated intermediates from the R- and S-enantiomers are identical. Any difference in effect must therefore be a difference in how much drug arrived, not in what it does.',
+        iconName: 'Flame',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 5,
+        title: 'A permanent disulfide bond to the pump',
+        laymanDesc:
+          'The reactive form welds itself to the pump. That pump is finished, and the cell must build a replacement before it can make acid again.',
+        molecularDetail:
+          'The sulfenamide forms a disulfide with cysteine 813 on the luminal loop of the H+/K+-ATPase alpha subunit. Inhibition is reversed in vitro by dithiothreitol. Recovery in vivo depends on pump resynthesis with a half-life near 50 hours, which is why a one-to-one-and-a-half-hour plasma half-life produces a multi-day effect.',
+        iconName: 'Link',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'What nine years of it bought, and what it did not',
+        laymanDesc:
+          'In Barrett’s oesophagus, high-dose treatment over nearly nine years delayed cancer, severe dysplasia or death, with 34 people treated per event prevented. In poorly controlled asthma it did nothing at all, including in the people proven by pH testing to have silent reflux.',
+        molecularDetail:
+          'AspECT gives a time ratio of 1.27 (95% CI 1.01 to 1.58) for high dose against low dose on a composite dominated by all-cause mortality. SARA gives 2.5 against 2.3 episodes of poor asthma control per person-year (P=0.66), with no effect in the 40% of participants with pH-documented reflux. Acid suppression is not a general anti-inflammatory, and the two results together mark where its reach ends.',
+        iconName: 'CircleSlash',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Esomeprazole 40 mg against omeprazole 20 mg in erosive oesophagitis',
+        phase: 'Phase 3, randomised, double-blind, active-controlled, 163 United States centres',
+        sampleSize: 2425,
+        primaryEndpoint: 'Proportion of patients with healed erosive oesophagitis at week 8',
+        endpointMet: true,
+        statisticalPValue:
+          '93.7% against 84.2% at 8 weeks, P<0.001 (life-table estimates, intention-to-treat); 81.7% against 68.7% at 4 weeks',
+        unreportedAdverseSignals:
+          'The comparison is 40 mg against 20 mg. No published trial compares equal milligram doses of the two molecules, so the result cannot distinguish a molecular advantage from a dose difference.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'AspECT (EudraCT 2004-003836-77)',
+        phase: 'Randomised, 2 x 2 factorial, unblinded with masked reporting pathologists',
+        sampleSize: 2557,
+        primaryEndpoint:
+          'Time to all-cause mortality, oesophageal adenocarcinoma or high-grade dysplasia over a median 8.9 years',
+        endpointMet: true,
+        statisticalPValue:
+          'High-dose against low-dose PPI: time ratio 1.27 (95% CI 1.01 to 1.58), P=0.038, number needed to treat 34. Combination with aspirin against low-dose PPI alone: TR 1.59 (95% CI 1.14 to 2.23), P=0.0068.',
+        unreportedAdverseSignals:
+          'Unblinded treatment allocation, and a composite endpoint dominated by all-cause mortality rather than by cancer. Aspirin alone missed significance at P=0.068 and only reached it after censoring NSAID users.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Intravenous esomeprazole after endoscopic haemostasis',
+        phase: 'Phase 3, randomised, blinded, placebo-controlled, 91 centres in 16 countries',
+        sampleSize: 764,
+        primaryEndpoint: 'Clinically significant recurrent bleeding within 72 hours',
+        endpointMet: true,
+        statisticalPValue:
+          '5.9% against 10.3%; difference 4.4 percentage points (95% CI 0.6 to 8.3), P=0.026, sustained at 7 and 30 days (P=0.010)',
+        unreportedAdverseSignals:
+          'Surgery (2.7% against 5.4%) and all-cause mortality (0.8% against 2.1%) both favoured esomeprazole and neither reached significance. Endoscopic technique was not standardised. Funded by AstraZeneca.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'SARA (NCT00069823)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 412,
+        primaryEndpoint:
+          'Rate of episodes of poor asthma control over 24 weeks in adults with inadequately controlled asthma and minimal or no reflux symptoms',
+        endpointMet: false,
+        statisticalPValue: '2.5 against 2.3 episodes per person-year, P=0.66',
+        unreportedAdverseSignals:
+          'The prespecified rescue hypothesis also failed: pH monitoring found reflux in 40% of participants and that subgroup showed no benefit either.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Erosive oesophagitis healed in 93.7% on esomeprazole 40 mg against 84.2% on omeprazole 20 mg at eight weeks in 2,425 randomised patients',
+        'Time ratio 1.27 (95% CI 1.01 to 1.58) for death, oesophageal adenocarcinoma or high-grade dysplasia on high-dose against low-dose esomeprazole over a median 8.9 years in 2,557 patients with Barrett’s oesophagus',
+        'Recurrent bleeding 5.9% against 10.3% at 72 hours after endoscopic haemostasis in 764 randomised patients (P=0.026)',
+        'No effect whatever on poorly controlled asthma: 2.5 against 2.3 episodes per person-year in 412 randomised adults (P=0.66)',
+      ],
+      unsupportedInferences: [
+        'That the S-enantiomer is intrinsically superior to its racemic parent, when the trial that established superiority gave twice the dose',
+        'That the placebo-controlled long-term safety record of pantoprazole applies to this molecule, which has no equivalent trial of its own',
+        'That treating silent reflux improves asthma control — refuted, including in the pH-documented subgroup',
+        'That a composite endpoint dominated by all-cause mortality is a measurement of cancer prevention',
+      ],
+      whatFailedInitially: [
+        'SARA: no effect on any asthma outcome, and no subgroup identified by pH monitoring that benefited',
+        'The AspECT aspirin arm missed its endpoint at P=0.068 and only reached significance after censoring NSAID users post hoc',
+        'Surgery and mortality both favoured intravenous esomeprazole after endoscopy and neither reached significance',
+        'No dose-equivalence trial against omeprazole has ever been published, twenty-five years after launch',
+      ],
+      realWorldOutcome: [
+        'Approved under NDA 021153 on 20 February 2001, the year the omeprazole patent expired, and one of the highest-grossing drugs ever sold',
+        'Available without prescription in the United States since 2014 under NDA 204655',
+        'The standard worked example of enantiomer evergreening in the health-policy literature',
+        'Now generic at about fifteen cents a capsule, roughly twice the acquisition cost of omeprazole',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral delayed-release capsule, delayed-release granules for oral suspension, and intravenous powder for injection (sodium salt)',
+      description:
+        'All oral forms are enteric-protected, because the free base is destroyed by gastric acid within minutes. The intravenous sodium salt exists specifically for the acute ulcer-bleeding indication, which is where the randomised evidence for this molecule rather than its parent is strongest.',
+      safetyProfile:
+        'The label carries warnings for acute tubulointerstitial nephritis, Clostridioides difficile-associated diarrhoea, bone fracture with long-term high-dose use, cutaneous and systemic lupus erythematosus, cyanocobalamin deficiency, hypomagnesaemia, and fundic gland polyps with use beyond one year. Commonest adverse events are headache, diarrhoea, nausea, flatulence and abdominal pain. Because it is the more CYP2C19-avid of the two omeprazole enantiomers at the inhibitory step, the clopidogrel interaction statement applies. In AspECT, at a median 8.9 years of exposure, study-treatment-related serious adverse events were reported by 1% of participants.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is Nexium actually better than omeprazole?',
+        a: 'It is a genuinely different pharmacokinetic object and the evidence that it is a better drug is weaker than the marketing implied. Esomeprazole is one of the two mirror-image halves of omeprazole. The liver enzyme CYP2C19 clears it more slowly than it clears the other half, so blood levels run higher for a given milligram. The trial everyone cites healed 93.7% of erosive oesophagitis against 84.2% for omeprazole in 2,425 patients — but it used 40 mg of esomeprazole against 20 mg of omeprazole. Nobody has published a comparison at equal milligrams. So the honest statement is that more drug heals more oesophagitis, which is not surprising, and that whether the isolated enantiomer is better molecule-for-molecule remains untested.',
+        auditNote:
+          'A dose-equivalence trial would settle this in one study. Twenty-five years after launch, none has been published.',
+      },
+      {
+        q: 'Why did it come out exactly when omeprazole went generic?',
+        a: 'Because that was the point. Omeprazole’s composition-of-matter patent expired in 2001 and esomeprazole was approved in the United States in February of that year as a separately patented product. Isolating a single enantiomer of a drug about to lose protection, patenting it, and moving prescribers across before the generic arrives is a recognised strategy — the health-policy literature calls it a chiral switch or evergreening, and this drug is its standard textbook example. That is a description of the commercial history, not an argument that the molecule does nothing. Both things are true: the pharmacokinetic difference is real, and the timing was not a coincidence.',
+      },
+      {
+        q: 'Does it prevent oesophageal cancer if I have Barrett’s?',
+        a: 'AspECT is the best evidence anyone has and it is more equivocal than the headline. It randomised 2,557 people with Barrett’s oesophagus to high-dose or low-dose esomeprazole, with or without aspirin, and followed them for a median of 8.9 years — nearly 20,000 person-years. High dose delayed the composite of all-cause death, oesophageal adenocarcinoma and high-grade dysplasia, with a time ratio of 1.27 and a number needed to treat of 34. The combination with aspirin did better still. But the trial was unblinded, the endpoint was a composite in which all-cause mortality dominates, and the aspirin arm alone missed significance until NSAID users were censored. It is real evidence of benefit on a composite. It is not a clean demonstration that the drug prevents cancer.',
+      },
+      {
+        q: 'My doctor suggested it for a cough or for asthma. Does that work?',
+        a: 'For asthma, no, and the trial that tested it was designed carefully enough to be convincing. Four hundred and twelve adults with poorly controlled asthma despite inhaled steroids, and with minimal or no reflux symptoms, took 40 mg of esomeprazole twice daily or placebo for 24 weeks. Episodes of poor asthma control ran at 2.5 per person-year on the drug and 2.3 on placebo. Nothing moved: not lung function, not airway reactivity, not symptom scores, not quality of life. The obvious objection — that only people with real reflux would benefit — was anticipated: pH monitoring found silent reflux in 40% of participants, and that subgroup did not benefit either. The same design in 306 children, using lansoprazole, found the same nothing plus more respiratory infections.',
+      },
+      {
+        q: 'Why does the hospital give the intravenous form after a bleeding ulcer?',
+        a: 'Because that specific use has a randomised trial behind it, and it is esomeprazole’s trial rather than the class’s. After a bleeding ulcer has been treated through the endoscope, 764 patients across 16 countries received either a 72-hour high-dose infusion or placebo. Rebleeding within 72 hours was 5.9% against 10.3%, and the difference held at seven and thirty days. Repeat endoscopic treatment fell from 11.6% to 6.4%. Surgery and death both favoured the drug without reaching statistical significance, so the trial establishes a rebleeding benefit and does not establish a survival one. Note that this is the opposite situation from starting a drip before the endoscopy, which six trials found changes what the endoscopist sees and nothing else.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Richter JE, Kahrilas PJ et al. Efficacy and safety of esomeprazole compared with omeprazole in GERD patients with erosive esophagitis: a randomized controlled trial. Am J Gastroenterol 2001;96:656-665',
+        identifier: '10.1111/j.1572-0241.2001.03600.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jankowski JAZ et al. Esomeprazole and aspirin in Barrett’s oesophagus (AspECT): a randomised factorial trial. Lancet 2018;392:400-408',
+        identifier: '10.1016/S0140-6736(18)31388-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sung JJ et al. Intravenous esomeprazole for prevention of recurrent peptic ulcer bleeding: a randomized trial. Ann Intern Med 2009;150:455-464',
+        identifier: '10.7326/0003-4819-150-7-200904070-00105',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mastronarde JG et al. Efficacy of esomeprazole for treatment of poorly controlled asthma. N Engl J Med 2009;360:1487-1499',
+        identifier: '10.1056/NEJMoa0806290',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Moayyedi P et al. Safety of proton pump inhibitors based on a large, multi-year, randomized trial of patients receiving rivaroxaban or aspirin. Gastroenterology 2019;157:682-691',
+        identifier: '10.1053/j.gastro.2019.05.056',
+        kind: 'doi',
+      },
+      {
+        label: 'SARA: study of acid reflux in asthma, esomeprazole against placebo',
+        identifier: 'NCT00069823',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: NEXIUM (esomeprazole magnesium) delayed-release capsules, NDA 021153, AstraZeneca — original approval 20 February 2001',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021153',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: PRILOSEC (omeprazole), NDA 019810, AstraZeneca — original approval 14 September 1989, for the patent-expiry timeline',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019810',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 9568614 — esomeprazole structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9568614',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Lansoprazole — the proton pump inhibitor with the clearest record of being given to people it
+  //    does not help: infants who cried, children who wheezed, and everyone whose ulcer was caused
+  //    by a bacterium the drug does not touch.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'lansoprazole',
+    name: 'Lansoprazole',
+    tradeName: 'Prevacid / Prevacid SoluTab / Prevacid 24HR',
+    sponsor:
+      'Takeda Pharmaceuticals — discovered at Takeda in Japan and approved in the United States under NDA 020406 on 10 May 1995',
+    targetGene: 'ATP4A and ATP4B — the catalytic and glycoprotein subunits of the gastric proton pump',
+    targetProtein:
+      'Gastric H+/K+-ATPase, bound covalently at cysteine 813 and cysteine 321 on the luminal face of the alpha subunit',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1995,
+    indication:
+      'Short-term treatment of active duodenal ulcer and maintenance of healed duodenal ulcer; eradication of Helicobacter pylori in combination with amoxicillin and clarithromycin to reduce duodenal ulcer recurrence; short-term treatment of active benign gastric ulcer; healing and risk reduction of NSAID-associated gastric ulcer; symptomatic gastroesophageal reflux disease and erosive esophagitis in adults and children aged 1 year and older; and pathological hypersecretory conditions including Zollinger-Ellison syndrome',
+    patientFriendlyIndication:
+      'Stomach and duodenal ulcers, reflux that has damaged the gullet, and prevention of ulcers caused by anti-inflammatory painkillers',
+    anatomicalSite:
+      'Gastric parietal cell — the secretory canaliculus, reached through the bloodstream after enteric-coated release in the small intestine',
+    conditionContext: {
+      conditionExplainer:
+        'Most duodenal ulcers are not caused by too much acid. They are caused by Helicobacter pylori, a bacterium that colonises the stomach lining, or by anti-inflammatory drugs that strip away the mucus layer protecting it. Acid is what turns the damage into an ulcer, which is why suppressing it heals the ulcer — and why the ulcer comes back if the cause is still there.',
+      whyItMatters:
+        'Lansoprazole was the drug used in the trial that made the distinction unmissable: given on its own for two weeks it eradicated the bacterium in 2% of patients and the ulcer came back within six months in 69% of them. Combined with two antibiotics it eradicated in 94% and recurrence fell to 7%.',
+      whoTakesThis:
+        'Adults and children from age 1 upwards with reflux or ulcer disease, and — through the over-the-counter version approved in 2009 — a large number of adults treating heartburn without a diagnosis.',
+      clinicalGoals:
+        'The registered endpoints are ulcer healing and erosive oesophagitis healing seen at endoscopy, and Helicobacter pylori eradication confirmed by testing. The uses that failed — infant reflux symptoms and childhood asthma control — were tested against symptom endpoints and are audited below.',
+    },
+    oneSentenceVerdict:
+      'A proton pump inhibitor that the stomach’s own acid converts into a molecule that welds itself shut onto the acid pump, and the one whose trials show most clearly what acid suppression cannot do: on its own it eradicated Helicobacter pylori in 2% of 53 patients and 69% of them had a recurrent ulcer within six months, while adding two antibiotics took eradication to 94% and recurrence to 7% — and in 162 crying infants and 306 wheezing children it performed identically to placebo while causing more respiratory infections in both.',
+    laymanHowItWorks:
+      'Lansoprazole is swallowed inside granules that survive stomach acid, are absorbed from the small intestine, and travel round in the blood. It has no effect anywhere in the body until it drifts into the acid-secreting channel of a stomach cell, which is the only place acidic enough to activate it. There the acid rearranges it into a reactive form that bonds permanently to the pump making the acid, so that pump never works again and the cell must build a new one. It suppresses acid extremely well and it does nothing at all to a bacterium or to a painkiller, which is why an ulcer with either of those causes heals and then returns.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 79,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.4283 per delayed-release capsule at United States pharmacy acquisition cost (CMS NADAC, median across 83 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Prevacid went generic in the United States in 2009 and the over-the-counter version launched the same year. Takeda’s follow-on was dexlansoprazole, the single R-enantiomer in a dual delayed-release formulation, approved in 2009 as a separately patented product — the same chiral-switch pattern AstraZeneca had used with esomeprazole eight years earlier. Lansoprazole remains, at forty-three cents a capsule, the most expensive of the four proton pump inhibitors in this file at pharmacy acquisition cost.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Every proton pump inhibitor in this file acts on the same pump by the same covalent chemistry, and no head-to-head trial has shown one changing a patient outcome the others do not. On price, lansoprazole is the outlier: it costs pharmacies roughly ten times what pantoprazole does per unit. Where lansoprazole has something specific is the paediatric formulation and the American triple-therapy licence. Below the class, misoprostol beat it outright at preventing anti-inflammatory ulcers, which is the honest comparison and the one least often made.',
+      conventionalRx: [
+        {
+          name: 'Pantoprazole (Protonix)',
+          class: 'Proton pump inhibitor, substituted benzimidazole',
+          howItCompares:
+            'Same pump, same chemistry, least CYP2C19-dependent of the four, and the only one with a three-year placebo-controlled safety trial in 17,598 people. It costs about a tenth as much per unit at pharmacy acquisition cost.',
+          typicalCost:
+            'US$0.0428 per delayed-release tablet at United States pharmacy acquisition cost (CMS NADAC, median across 81 listed generic products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheapest, fewest interactions, best long-term randomised safety data. Cons: no paediatric orally disintegrating formulation of the kind lansoprazole has.',
+        },
+        {
+          name: 'Misoprostol (Cytotec)',
+          class: 'Synthetic prostaglandin E1 analogue',
+          howItCompares:
+            'The head-to-head comparison most people never see. In 537 Helicobacter-negative long-term NSAID users with a history of gastric ulcer, 12 weeks left 93% of the misoprostol group ulcer-free against 80% and 82% on lansoprazole 15 mg and 30 mg, and 51% on placebo. Misoprostol replaces the prostaglandin the anti-inflammatory drug removed; the proton pump inhibitor works around the problem instead.',
+          typicalCost:
+            'No NADAC value is held on this record for misoprostol and none is asserted here',
+          prosAndCons:
+            'Pros: the only agent that restores the defence NSAIDs destroy, and the best result in the head-to-head. Cons: diarrhoea and cramping caused significantly more treatment-related adverse events and early withdrawal; it is an abortifacient and cannot be used in pregnancy. Counting withdrawals as failures, the two strategies came out level at 69%.',
+        },
+        {
+          name: 'Famotidine (Pepcid, Pepcid AC)',
+          class: 'Histamine H2-receptor antagonist',
+          howItCompares:
+            'Blocks one stimulatory receptor instead of destroying the pump, and heals about half as much erosive oesophagitis — 51.9% against 83.6% pooled across 43 randomised trials. It works within the hour and loses effect within days of continuous use.',
+          typicalCost:
+            'US$0.0494 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 139 listed generic products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: fast, very cheap, minimal drug interactions. Cons: weaker healing, and tachyphylaxis with continuous dosing.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask whether the ulcer has a cause that acid suppression does not address',
+          action:
+            'Establish whether Helicobacter pylori has been tested for, and whether an anti-inflammatory drug is still being taken.',
+          patientImpact:
+            'In the trial that licensed lansoprazole triple therapy, two weeks of lansoprazole alone eradicated the bacterium in 1 of 53 patients and 69% of that group had a recurrent ulcer within six months. Adding two antibiotics took eradication to 94% and recurrence to 7%.',
+          clinicalPrecaution:
+            'Taking a proton pump inhibitor makes breath and stool tests for the bacterium read falsely negative, so the order of testing matters. That is a diagnostic point, not a dosing instruction.',
+        },
+        {
+          name: 'For an unsettled infant, ask what the placebo arm did',
+          action:
+            'Before accepting a reflux diagnosis for infant crying, ask about the randomised evidence.',
+          patientImpact:
+            'In 162 infants aged 1 to 12 months with persisting symptoms attributed to reflux, 54% responded on lansoprazole and 54% responded on placebo — identical. Serious adverse events, mostly lower respiratory tract infections, occurred in 10 infants on the drug against 2 on placebo (P=0.032).',
+          clinicalPrecaution:
+            'Infant crying has many causes and some are serious. This is a reason to ask what is being treated and why, not a reason to withhold assessment.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C(C=CN=C1CS(=O)C2=NC3=CC=CC=C3N2)OCC(F)(F)F',
+      chemicalFormula: 'C16H14F3N3O2S',
+      molecularWeight: '369.40 g/mol',
+      targetReceptorAffinity:
+        'No reversible affinity constant applies, because inhibition is covalent. The trifluoroethoxy substituent on the pyridine gives this molecule the highest lipophilicity of the four in this file, which is reflected in its logP of about 3.7 and in the rapidity with which it accumulates in the canaliculus. Recovery of acid secretion requires new pump protein.',
+      structureSource: {
+        label:
+          'PubChem CID 3883 (lansoprazole) — canonical SMILES, molecular formula and molecular weight, as ingested onto this record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3883',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lan-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the trifluoroethoxy pyridine and the unsubstituted benzimidazole',
+          description:
+            'Confirm both fragments. Unlike omeprazole and pantoprazole, the benzimidazole here carries no methoxy substituent, and the pyridine carries a trifluoroethoxy group instead. Fluorine NMR distinguishes this molecule from every other member of the class in a single spectrum.',
+          reagentsAndBuffer:
+            '2-mercaptobenzimidazole and 2-chloromethyl-3-methyl-4-(2,2,2-trifluoroethoxy)pyridine reference standards, 19F and 1H NMR in DMSO-d6, buffered HPLC at pH 7.4 or above, Karl Fischer titration',
+        },
+        {
+          id: 'lan-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Thioether coupling and single-step oxidation to the racemic sulfoxide',
+          description:
+            'Couple the fragments to the sulfide, then oxidise exactly one step to the sulfoxide. Lansoprazole is sold as the racemate; the single R-enantiomer is dexlansoprazole and is a separate product with a separate application, so an asymmetric oxidation here would be making a different drug.',
+          dependsOnStepId: 'lan-w1',
+          reagentsAndBuffer:
+            'Sodium hydroxide in methanol for the coupling; meta-chloroperoxybenzoic acid or sodium hypochlorite for the oxidation, run cold, with in-process HPLC monitoring for sulfone breakthrough',
+        },
+        {
+          id: 'lan-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation under base and enteric encapsulation',
+          description:
+            'Crystallise with the mother liquor held alkaline, then coat the granules for release above pH 5.5. The orally disintegrating tablet is a distinct formulation problem: it has to fall apart in the mouth while leaving the enteric coat on each individual granule intact, which is why the tablet contains coated microgranules rather than coated tablet cores.',
+          dependsOnStepId: 'lan-w2',
+          reagentsAndBuffer:
+            'Crystallisation from acetone or ethanol with aqueous ammonia or triethylamine to hold pH above 9, methacrylic acid copolymer enteric coating on microgranules, HPLC against a sulfone reference standard',
+        },
+        {
+          id: 'lan-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Acid-dependent trapping and activation in isolated gastric vesicles',
+          description:
+            'Load hog gastric microsomal vesicles, generate an interior acid load with ATP, and confirm accumulation and inhibition. The parallel run on vesicles held at neutral pH is the control that proves the selectivity is chemical rather than an artefact of the preparation.',
+          dependsOnStepId: 'lan-w3',
+          reagentsAndBuffer:
+            'Hog gastric H+/K+-ATPase microsomal vesicles, ATP and magnesium, nigericin and valinomycin as gradient-collapsing controls, LC-MS/MS quantification of vesicle-associated drug',
+        },
+        {
+          id: 'lan-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'ATPase inhibition, reducing-agent reversal, and a Helicobacter counter-screen',
+          description:
+            'Measure loss of potassium-stimulated ATPase activity and confirm reversal by a reducing agent. Then run the compound against Helicobacter pylori in culture. The point of the counter-screen is negative: whatever weak activity appears in a dish, the clinical trial showed 2% eradication with the drug alone, and an in vitro antibacterial reading is not an eradication rate.',
+          dependsOnStepId: 'lan-w4',
+          reagentsAndBuffer:
+            'Potassium-stimulated ATPase assay with colorimetric phosphate readout, dithiothreitol reversal arm, sodium-potassium ATPase counter-screen, Helicobacter pylori microdilution in Brucella broth with 5% fetal bovine serum under microaerophilic conditions',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lan-a1',
+        category: 'measured',
+        title:
+          'On its own it eradicated the bacterium in 1 of 53 patients, and 69% had a recurrent ulcer',
+        laymanSummary:
+          'The clearest demonstration anywhere that acid suppression treats the symptom and not the cause. Two weeks of lansoprazole alone cleared Helicobacter pylori in one patient out of fifty-three, and seven in ten of that group had an ulcer again within six months. Two weeks of lansoprazole with two antibiotics cleared it in 94% and only 7% relapsed.',
+        technicalDetails:
+          'A double-blind, multicentre United States study randomised 396 patients with active or recent duodenal ulcer and Helicobacter pylori infection to one of six 14-day regimens, with 352 meeting entry criteria. At 4 to 6 weeks after the end of therapy, eradication was 94% (44 of 47) with lansoprazole, clarithromycin and amoxicillin; 77% with lansoprazole and amoxicillin three times daily; 75% with lansoprazole twice daily and clarithromycin three times daily; 57% and 53% with the twice-daily dual regimens; and 2% (1 of 53) with lansoprazole monotherapy. All comparisons P<=0.05. Among patients ulcer-free at 4 to 6 weeks, ulcers recurred within six months in 7% on triple therapy, 13 to 23% on dual therapy and 69% on lansoprazole alone. Patients Helicobacter-negative at 4 to 6 weeks relapsed in 11% of cases against 47% of those still positive.',
+        evidenceSource: 'Schwartz H et al., Am J Gastroenterol 1998;93:584-590',
+        doi: '10.1111/j.1572-0241.1998.169_b.x',
+        measuredMetric:
+          'Helicobacter pylori eradication at 4 to 6 weeks and duodenal ulcer recurrence at six months, across six randomised regimens',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lan-a2',
+        category: 'failed',
+        title:
+          'In crying infants it matched placebo exactly, and caused five times as many serious adverse events',
+        laymanSummary:
+          'One hundred and sixty-two infants with persistent crying attributed to reflux were given lansoprazole or placebo for four weeks. Fifty-four per cent responded in each group — the same number, forty-four infants out of eighty-one, on both sides. Ten infants on the drug had a serious adverse event, mostly chest infections, against two on placebo.',
+        technicalDetails:
+          'A multicentre, double-blind, parallel-group study randomised 162 infants aged 1 to 12 months whose symptoms attributed to gastro-oesophageal reflux disease had persisted despite at least a week of non-pharmacological management. The primary efficacy definition was a 50% or greater reduction in measures of feeding-related crying. Responders were 44 of 81 (54%) in each group — identical. No significant difference was detected in any secondary measure or analysis. Treatment-emergent adverse events occurred in 62% on lansoprazole against 46% on placebo (P=0.058). Serious adverse events, particularly lower respiratory tract infections, occurred in 12 infants and were significantly more frequent on lansoprazole, 10 against 2 (P=0.032).',
+        evidenceSource: 'Orenstein SR et al., J Pediatr 2009;154:514-520',
+        doi: '10.1016/j.jpeds.2008.09.054',
+        measuredMetric:
+          'Proportion of infants with a 50% or greater reduction in feeding-related crying over four weeks, against matching placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lan-a3',
+        category: 'failed',
+        title:
+          'In 306 children with poorly controlled asthma it changed nothing and caused more infections',
+        laymanSummary:
+          'Silent reflux is common in children with asthma and treating it was expected to help. Three hundred and six children on inhaled steroids took lansoprazole or placebo for 24 weeks. Asthma control did not improve, lung function did not improve, quality of life did not improve, and the children on the drug caught more respiratory infections.',
+        technicalDetails:
+          'The Study of Acid Reflux in Children with Asthma randomised 306 children with poor asthma control despite inhaled corticosteroid treatment and without overt reflux symptoms, at 19 United States academic centres, to lansoprazole (15 mg daily under 30 kg, 30 mg at or above 30 kg; n=149) or placebo (n=157) for 24 weeks. Mean age was 11. The mean difference in change in Asthma Control Questionnaire score was 0.2 units (95% CI 0.0 to 0.3), against a 0.5-unit threshold for clinical meaning. No significant differences appeared in FEV1 (0.0 L, 95% CI -0.1 to 0.1), asthma-related quality of life (-0.1, 95% CI -0.3 to 0.1) or episodes of poor asthma control (relative risk 1.2, 95% CI 0.9 to 1.5). Among 115 children with oesophageal pH studies, 43% had reflux, and that subgroup showed no treatment effect on any asthma outcome. Children on lansoprazole reported more respiratory infections (relative risk 1.3, 95% CI 1.1 to 1.6).',
+        evidenceSource: 'Holbrook JT et al., JAMA 2012;307:373-381 (SARA, NCT00442013)',
+        doi: '10.1001/jama.2011.2035',
+        measuredMetric:
+          'Change in Asthma Control Questionnaire score over 24 weeks, against matching placebo, with a prespecified pH-monitored subgroup',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lan-a4',
+        category: 'failed',
+        title: 'It lost the head-to-head against misoprostol for preventing NSAID ulcers',
+        laymanSummary:
+          'Proton pump inhibitors are the standard way to protect the stomach from anti-inflammatory painkillers. In the trial that compared them directly, misoprostol left 93% of patients ulcer-free at twelve weeks against 80 to 82% on lansoprazole. Misoprostol also caused far more side effects, and once early withdrawals were counted as failures the two strategies came out level.',
+        technicalDetails:
+          'A prospective, double-blind, multicentre, active- and placebo-controlled study enrolled 537 Helicobacter pylori-negative long-term NSAID users with a history of endoscopically documented gastric ulcer, randomising to placebo, misoprostol 200 micrograms four times daily, or lansoprazole 15 mg or 30 mg once daily for 12 weeks, with endoscopy at 4, 8 and 12 weeks. Gastric ulcer-free proportions at week 12 were 51% on placebo (95% CI 41.1 to 61.3), 93% on misoprostol (87.2 to 97.9), 80% on lansoprazole 15 mg (72.5 to 87.3) and 82% on lansoprazole 30 mg (75.0 to 89.6). Both lansoprazole arms beat placebo (P<0.001) and both were beaten by misoprostol. Significantly more misoprostol patients reported treatment-related adverse events and withdrew early; treating withdrawals as failures gave 69% success for each active treatment against 35% for placebo.',
+        evidenceSource: 'Graham DY et al., Arch Intern Med 2002;162:169-175',
+        doi: '10.1001/archinte.162.2.169',
+        measuredMetric:
+          'Proportion free of endoscopic gastric ulcer at 12 weeks, against placebo and against misoprostol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lan-a5',
+        category: 'conclusion_shift',
+        title:
+          'Paediatric reflux treatment reversed direction once anyone ran a placebo arm',
+        laymanSummary:
+          'Prescribing of acid suppressants to infants rose sharply through the 2000s on the reasoning that unexplained crying and back-arching were reflux. Two placebo-controlled trials, one in infants and one in children with asthma, found no benefit and more infections in both. The guidelines that followed reversed the recommendation.',
+        technicalDetails:
+          'Two randomised, placebo-controlled trials of this molecule in children were published within three years. In 162 infants, response was 54% in both arms and serious adverse events, chiefly lower respiratory tract infections, were 10 against 2 (P=0.032). In 306 children with poorly controlled asthma, the Asthma Control Questionnaire difference was 0.2 units against a 0.5-unit threshold for clinical meaning, with a relative risk of 1.3 (95% CI 1.1 to 1.6) for respiratory infections on the drug. The infection signal is mechanistically coherent: gastric acid is a barrier to swallowed and aspirated organisms, and removing it in a small airway-prone child is not neutral. The field moved from treating infant irritability as reflux to reserving acid suppression for objectively documented disease, and both trials are cited in the guidelines that made that shift.',
+        evidenceSource:
+          'Orenstein SR et al., J Pediatr 2009;154:514-520; Holbrook JT et al., JAMA 2012;307:373-381',
+        doi: '10.1016/j.jpeds.2008.09.054',
+        inferredClaim:
+          'That infant crying and childhood asthma symptoms are caused by acid reflux and respond to acid suppression — an inference from prevalence and plausibility that two placebo-controlled trials refuted',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lan-a6',
+        category: 'inferred',
+        title: 'The long-term safety data for this class is not lansoprazole’s',
+        laymanSummary:
+          'The three-year randomised safety evidence that reassures people about proton pump inhibitors came from a trial of pantoprazole. Lansoprazole has no equivalent, and the one signal it has generated in its own randomised trials — more respiratory infections in children — points the same way as the gut-infection excess that trial did find.',
+        technicalDetails:
+          'COMPASS randomised 17,598 adults to pantoprazole or placebo for a median of 3.01 years and found no significant excess of pneumonia, C. difficile, fracture, gastric atrophy, chronic kidney disease, dementia, cancer or death, with enteric infections at 1.4% against 1.0% (odds ratio 1.33, 95% CI 1.01 to 1.75). No placebo-controlled trial of comparable size exists for lansoprazole in adults. The paediatric trials of lansoprazole are the class’s only placebo-controlled randomised infection signals: relative risk 1.3 (95% CI 1.1 to 1.6) for respiratory infections in 306 children, and 10 against 2 serious adverse events dominated by lower respiratory tract infection in 162 infants. Reading the adult safety reassurance across to this molecule, and to children, is an inference in both directions.',
+        evidenceSource:
+          'Moayyedi P et al., Gastroenterology 2019;157:682-691 (COMPASS); Holbrook JT et al., JAMA 2012;307:373-381; Orenstein SR et al., J Pediatr 2009;154:514-520',
+        doi: '10.1053/j.gastro.2019.05.056',
+        inferredClaim:
+          'That the placebo-controlled adult safety record of pantoprazole describes lansoprazole, and describes children — two separate extrapolations, one of which the paediatric trials contradict',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Coated granules that survive the stomach',
+        laymanDesc:
+          'The drug is destroyed by stomach acid, so it travels inside granules with an acid-proof shell. The orally disintegrating tablet melts on the tongue, but each granule inside it keeps its shell intact.',
+        molecularDetail:
+          'Enteric-coated microgranules release above pH 5.5 in the duodenum. Oral bioavailability is above 80%, and food substantially reduces absorption. Plasma half-life is about 1.5 hours, far shorter than the duration of effect.',
+        iconName: 'Package',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed and circulated, still inert',
+        laymanDesc:
+          'It enters the blood from the small intestine and reaches every tissue in the body, where it does nothing at all. It has no receptor and no target it recognises.',
+        molecularDetail:
+          'Circulating lansoprazole is a neutral weak base, about 97% protein bound, with no meaningful reversible affinity. It is the most lipophilic of the four in this file, with a logP near 3.7, which speeds diffusion into the canaliculus but does not give it a target anywhere else.',
+        iconName: 'Droplets',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'Trapped where the pH falls below 2',
+        laymanDesc:
+          'It diffuses into the acid-secreting channel of the stomach cell, picks up a proton, and becomes electrically charged. A charged molecule cannot cross back out through the membrane.',
+        molecularDetail:
+          'Pyridine pKa near 4. Protonation in a compartment at pH 1 gives roughly thousandfold accumulation relative to plasma, achieved without any transporter. No other compartment in the body is acidic enough to trap it in this way.',
+        iconName: 'Lock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Acid converts it into a thiol trap',
+        laymanDesc:
+          'A second proton triggers a rearrangement into a highly reactive form that grabs the first sulfur atom it meets. That form survives for a fraction of a second, so it cannot leak out and react anywhere else.',
+        molecularDetail:
+          'Rearrangement gives a tetracyclic cyclic sulfenamide, a short-lived electrophile with high affinity for accessible cysteine thiols. Its half-life at canalicular pH is measured in seconds, which is the structural basis of the drug’s tissue selectivity.',
+        iconName: 'Flame',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 5,
+        title: 'Welded to the pump at two cysteines',
+        laymanDesc:
+          'It bonds permanently to the pump. That pump is finished, and acid production only recovers when the cell has built replacements, which takes days.',
+        molecularDetail:
+          'The sulfenamide forms disulfides with cysteine 813 and, for this molecule, also cysteine 321 on the luminal face of the H+/K+-ATPase alpha subunit. Inhibition is reversed in vitro by dithiothreitol. Recovery in vivo depends on pump resynthesis with a half-life near 50 hours.',
+        iconName: 'Link',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'What the mechanism cannot reach',
+        laymanDesc:
+          'It has no effect on the bacterium that causes most duodenal ulcers, no effect on the prostaglandin that painkillers strip away, and no effect on asthma or on a crying baby. Every one of those was tested and every one came back negative.',
+        molecularDetail:
+          'Two weeks of monotherapy eradicated Helicobacter pylori in 1 of 53 patients, with 69% ulcer recurrence at six months. Misoprostol, which replaces the missing prostaglandin, left 93% of NSAID users ulcer-free against 80 to 82% for lansoprazole. In asthma the Asthma Control Questionnaire difference was 0.2 units against a 0.5-unit threshold, and in infants the response rate was identical to placebo at 54%.',
+        iconName: 'CircleSlash',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Lansoprazole triple against dual therapy and monotherapy for Helicobacter pylori',
+        phase: 'Phase 3, randomised, double-blind, multicentre, six-arm',
+        sampleSize: 352,
+        primaryEndpoint:
+          'Eradication of Helicobacter pylori at 4 to 6 weeks after therapy, and duodenal ulcer recurrence at six months',
+        endpointMet: true,
+        statisticalPValue:
+          'Eradication 94% (44 of 47) on triple therapy against 2% (1 of 53) on lansoprazole alone, P<=0.05 for triple against each dual and each dual against monotherapy. Ulcer recurrence at six months 7% against 69%.',
+        unreportedAdverseSignals:
+          'The monotherapy arm is the interpretable result and it is rarely quoted: acid suppression alone did not clear the organism and the ulcer came back in more than two thirds of patients.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Lansoprazole in infants with symptoms attributed to reflux',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, multicentre',
+        sampleSize: 162,
+        primaryEndpoint:
+          'Proportion of infants with a 50% or greater reduction in feeding-related crying over four weeks',
+        endpointMet: false,
+        statisticalPValue: '44 of 81 (54%) responders in each group — identical',
+        unreportedAdverseSignals:
+          'Serious adverse events, particularly lower respiratory tract infections, occurred in 10 infants on lansoprazole against 2 on placebo (P=0.032). Treatment-emergent adverse events were 62% against 46% (P=0.058).',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'SARA in children (NCT00442013)',
+        phase: 'Phase 4, randomised, masked, placebo-controlled, 19 academic centres',
+        sampleSize: 306,
+        primaryEndpoint:
+          'Change in Asthma Control Questionnaire score over 24 weeks in children with poor asthma control on inhaled corticosteroids and without overt reflux symptoms',
+        endpointMet: false,
+        statisticalPValue:
+          'Mean difference in change 0.2 units (95% CI 0.0 to 0.3), against a 0.5-unit threshold for clinical meaning',
+        unreportedAdverseSignals:
+          'Respiratory infections were more common on lansoprazole (relative risk 1.3, 95% CI 1.1 to 1.6). The pH-documented reflux subgroup, 43% of the 115 tested, showed no benefit either.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Lansoprazole against misoprostol for NSAID ulcer prevention',
+        phase: 'Phase 3, randomised, double-blind, active- and placebo-controlled',
+        sampleSize: 537,
+        primaryEndpoint:
+          'Proportion free of endoscopic gastric ulcer at 12 weeks in Helicobacter-negative long-term NSAID users with prior gastric ulcer',
+        endpointMet: true,
+        statisticalPValue:
+          'Placebo 51% (95% CI 41.1 to 61.3), misoprostol 93% (87.2 to 97.9), lansoprazole 15 mg 80% (72.5 to 87.3), lansoprazole 30 mg 82% (75.0 to 89.6); both lansoprazole arms beat placebo at P<0.001',
+        unreportedAdverseSignals:
+          'Misoprostol beat lansoprazole on the endoscopic endpoint and lost on tolerability. Counting early withdrawals as failures, both active strategies came out at 69% against 35% for placebo — a reframing that changes the conclusion.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Helicobacter pylori eradication 94% on lansoprazole with clarithromycin and amoxicillin against 2% on lansoprazole alone, with six-month ulcer recurrence 7% against 69%',
+        'Identical 54% response rate on lansoprazole and on placebo in 162 infants, with 10 against 2 serious adverse events dominated by lower respiratory tract infection',
+        'Asthma Control Questionnaire difference of 0.2 units against a 0.5-unit clinical threshold in 306 randomised children, with relative risk 1.3 for respiratory infection',
+        'Gastric ulcer-free at 12 weeks: 93% on misoprostol, 80 to 82% on lansoprazole, 51% on placebo, in 537 randomised NSAID users',
+      ],
+      unsupportedInferences: [
+        'That infant crying attributed to reflux responds to acid suppression, refuted by an exactly identical placebo response rate',
+        'That treating silent reflux improves childhood asthma control, refuted including in the pH-documented subgroup',
+        'That a proton pump inhibitor is the best available protection against NSAID ulcers, when the head-to-head comparator beat it on the endoscopic endpoint',
+        'That the adult placebo-controlled safety record of pantoprazole describes this molecule, or describes children',
+      ],
+      whatFailedInitially: [
+        'Lansoprazole monotherapy for Helicobacter pylori: 1 eradication in 53 patients, and 69% ulcer recurrence within six months',
+        'Infant reflux: no separation from placebo on any measure, and five times as many serious adverse events',
+        'Childhood asthma: nothing moved, and respiratory infections rose',
+        'Misoprostol outperformed it on the endoscopic ulcer endpoint it was licensed for',
+      ],
+      realWorldOutcome: [
+        'Approved under NDA 020406 on 10 May 1995, and the first proton pump inhibitor licensed in the United States as part of a Helicobacter pylori triple therapy',
+        'Available without prescription in the United States since 2009, the same year the brand went generic',
+        'The paediatric trials became the evidence base for reversing routine acid suppression in infants',
+        'Takeda’s follow-on, dexlansoprazole, repeated the chiral-switch pattern esomeprazole had established eight years earlier',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral delayed-release capsule, orally disintegrating tablet containing enteric-coated microgranules, and delayed-release oral suspension',
+      description:
+        'Every form protects the drug from gastric acid, because the free base is destroyed by it within minutes. The orally disintegrating tablet exists so the drug can be given to small children and to people who cannot swallow capsules, without breaking the enteric coat — the tablet disperses while each microgranule inside it stays sealed.',
+      safetyProfile:
+        'The label carries warnings for acute tubulointerstitial nephritis, Clostridioides difficile-associated diarrhoea, bone fracture with long-term high-dose use, cutaneous and systemic lupus erythematosus, cyanocobalamin deficiency, hypomagnesaemia, and fundic gland polyps with use beyond one year. Commonest trial adverse events are diarrhoea, abdominal pain, nausea and headache. The two placebo-controlled paediatric trials of this molecule both reported an excess of respiratory infection: relative risk 1.3 (95% CI 1.1 to 1.6) in 306 children, and serious adverse events dominated by lower respiratory tract infection in 10 of 81 infants against 2 of 81 (P=0.032).',
+    },
+    commonQuestions: [
+      {
+        q: 'If it heals my ulcer, why does the ulcer come back?',
+        a: 'Because acid is what makes an ulcer hurt and bleed, and it is usually not what caused it. Most duodenal ulcers are caused by Helicobacter pylori, and the rest mostly by anti-inflammatory drugs. The trial that licensed this drug for triple therapy makes the point better than any explanation: two weeks of lansoprazole alone cleared the bacterium in one patient out of fifty-three, and within six months 69% of that group had an ulcer again. Two weeks of the same drug with clarithromycin and amoxicillin cleared it in 94%, and 7% relapsed. Suppressing acid heals the crater. Removing the cause is what keeps it closed.',
+      },
+      {
+        q: 'My baby was prescribed this for reflux and crying. Does it work?',
+        a: 'The randomised answer is no, and it is unusually clear-cut. One hundred and sixty-two infants aged 1 to 12 months, whose symptoms had already persisted through at least a week of feeding and positioning changes, were randomly given lansoprazole or placebo for four weeks. Exactly 44 of 81 responded in each group — 54% on both sides, an identical number. Nothing separated on any secondary measure either. What did separate was harm: serious adverse events, mostly chest infections, occurred in ten infants on the drug and two on placebo. That is a reason to ask what is being treated and why, and it is a question for the paediatrician rather than something to act on alone.',
+        auditNote:
+          'Fifty-four per cent of infants improved on placebo over four weeks, which is the more useful number in the trial: most infant crying settles by itself.',
+      },
+      {
+        q: 'Would treating reflux help my child’s asthma?',
+        a: 'It was a reasonable hypothesis and it was tested properly. Three hundred and six children with poorly controlled asthma despite inhaled steroids, and without obvious reflux symptoms, took lansoprazole or placebo for 24 weeks. The difference in asthma control was 0.2 units on a scale where 0.5 is the smallest change anyone can feel. Lung function, quality of life and episodes of poor control were all unchanged. The obvious objection was anticipated: 115 children had oesophageal pH studies, 43% of them had reflux, and that subgroup did not benefit either. Children on the drug reported more respiratory infections. The adult version of the same trial, using esomeprazole in 412 people, found the same nothing.',
+      },
+      {
+        q: 'Is a proton pump inhibitor the best way to protect my stomach from anti-inflammatories?',
+        a: 'It is the most used and it was not the best in the one trial that compared the options directly. Five hundred and thirty-seven long-term NSAID users with a previous gastric ulcer took placebo, misoprostol, or lansoprazole at one of two strengths for twelve weeks with repeated endoscopy. Ulcer-free at twelve weeks: 51% on placebo, 80 and 82% on lansoprazole, 93% on misoprostol. Misoprostol works by replacing the prostaglandin the anti-inflammatory drug destroys, which is the actual mechanism of the injury. The catch is that it caused significantly more side effects and early withdrawals, and once withdrawals were counted as failures both active strategies landed at 69%. So the honest summary is that misoprostol is more effective and harder to take.',
+        auditNote:
+          'Separately, CONDOR found that adding a proton pump inhibitor to an anti-inflammatory produced 4.3 times the whole-gut event rate of a coxib alone, because the drug protects only the acid-secreting part of the gut.',
+      },
+      {
+        q: 'Why is this one so much more expensive than the others?',
+        a: 'There is no clinical reason on the record. At United States pharmacy acquisition cost the lansoprazole capsule runs about forty-three cents against four cents for pantoprazole, eight for omeprazole and fifteen for esomeprazole — all four generic, all four acting on the same pump by the same covalent chemistry, and no head-to-head trial showing any of them changing an outcome the others do not. The delayed-release and orally disintegrating formulations are genuinely more complex to make than a plain enteric-coated tablet, which accounts for some of it. Whether it accounts for a tenfold difference is not something the published record answers.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Schwartz H et al. Triple versus dual therapy for eradicating Helicobacter pylori and preventing ulcer recurrence: a randomized, double-blind, multicenter study of lansoprazole, clarithromycin, and/or amoxicillin. Am J Gastroenterol 1998;93:584-590',
+        identifier: '10.1111/j.1572-0241.1998.169_b.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Orenstein SR et al. Multicenter, double-blind, randomized, placebo-controlled trial assessing the efficacy and safety of lansoprazole in infants with symptoms of gastroesophageal reflux disease. J Pediatr 2009;154:514-520',
+        identifier: '10.1016/j.jpeds.2008.09.054',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Holbrook JT et al. Lansoprazole for children with poorly controlled asthma: a randomized controlled trial. JAMA 2012;307:373-381',
+        identifier: '10.1001/jama.2011.2035',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Graham DY et al. Ulcer prevention in long-term users of nonsteroidal anti-inflammatory drugs: a double-blind, randomized, multicenter, active- and placebo-controlled study of misoprostol vs lansoprazole. Arch Intern Med 2002;162:169-175',
+        identifier: '10.1001/archinte.162.2.169',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Moayyedi P et al. Safety of proton pump inhibitors based on a large, multi-year, randomized trial of patients receiving rivaroxaban or aspirin. Gastroenterology 2019;157:682-691',
+        identifier: '10.1053/j.gastro.2019.05.056',
+        kind: 'doi',
+      },
+      {
+        label: 'SARA: lansoprazole to treat children with asthma',
+        identifier: 'NCT00442013',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: PREVACID (lansoprazole) delayed-release capsules, NDA 020406, Takeda Pharmaceuticals USA — original approval 10 May 1995',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020406',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3883 — lansoprazole structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3883',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]
