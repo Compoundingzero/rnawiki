@@ -498,16 +498,19 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
           </div>
         </div>
 
-        {/* Target and Indication Line */}
-        <p className="text-sm sm:text-base font-semibold text-[#0071E3] leading-relaxed">
-          {hasText(drug.targetGene) ? (
-            <>
-              Targets {drug.targetGene} &bull; {drug.patientFriendlyIndication}
-            </>
-          ) : (
-            drug.patientFriendlyIndication
-          )}
-        </p>
+        {/* Target and Indication Line — either half can be absent, and joining them
+            unconditionally left a dangling bullet ("Targets EGFR •") or an empty line taking up
+            space above the fold. */}
+        {(hasText(drug.targetGene) || hasText(drug.patientFriendlyIndication)) && (
+          <p className="text-sm sm:text-base font-semibold text-[#0071E3] leading-relaxed">
+            {[
+              hasText(drug.targetGene) ? `Targets ${drug.targetGene}` : '',
+              hasText(drug.patientFriendlyIndication) ? drug.patientFriendlyIndication : '',
+            ]
+              .filter(Boolean)
+              .join(' • ')}
+          </p>
+        )}
 
         {/* Prominent, Aesthetic Edit Wiki Dossier Button */}
         <div className="pt-1">
