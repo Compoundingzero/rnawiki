@@ -243,6 +243,14 @@ const HYDRATE_SUFFIXES = new Set([
   'TRIHYDRATE',
 ])
 
+/**
+ * CAS writes Greek letters as a dotted word: ".ALPHA.-LIPOIC ACID", ".BETA.-CAROTENE". Some FDA
+ * records carry that convention and some spell it out, so the same substance arrived under two
+ * names — "Alpha-Lipoic Acid" and "Alpha.-Lipoic Acid" — and got two pages.
+ */
+const GREEK_LETTERS =
+  /\.?\b(ALPHA|BETA|GAMMA|DELTA|EPSILON|ZETA|ETA|THETA|IOTA|KAPPA|LAMBDA|OMICRON|SIGMA|TAU|UPSILON|OMEGA)\./g
+
 export function baseMoiety(name: string): string {
   // Source data uses "||" to join the ingredients of a combination product, and DSLD group names
   // carry a parenthesised synonym ("Vitamin D (Cholecalciferol)"). Left in, the first produces a
@@ -254,7 +262,14 @@ export function baseMoiety(name: string): string {
       .replace(/\s+/g, ' ')
       .trim()
       .toUpperCase()
-      .replace(/^[\s,.;]+|[\s,.;]+$/g, '') ?? ''
+      .replace(GREEK_LETTERS, '$1')
+      // A comma with no space between two WORDS is a typing slip in the source, not a different
+      // substance: CARBIDOPA,LEVODOPA and CARBIDOPA, LEVODOPA were two pages for one combination
+      // product. Between digits it is a locant — 1,2-HEXANEDIOL — and spacing it is vandalism.
+      .replace(/(?<=[A-Z]),(?=[A-Z])/g, ', ')
+      // The hyphen belongs in the trailing class too. Stripping a stereo descriptor out of
+      // "ACONITIC ACID, (E)-" leaves "ACONITIC ACID, -", which is a name for nothing.
+      .replace(/^[\s,.;-]+|[\s,.;-]+$/g, '') ?? ''
   let changed = true
   while (changed) {
     changed = false
@@ -270,7 +285,7 @@ export function baseMoiety(name: string): string {
   }
   // Again after the loop: stripping HEPTAHYDRATE off "SODIUM PHOSPHATE, DIBASIC, HEPTAHYDRATE"
   // leaves a name ending in a comma, and the first pass ran before the suffix was removed.
-  return n.replace(/[\s,.;]+$/, '')
+  return n.replace(/[\s,.;-]+$/, '')
 }
 
 // ---------------------------------------------------------------------------

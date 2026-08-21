@@ -81,6 +81,22 @@ describe('baseMoiety', () => {
     expect(baseMoiety('SODIUM PHOSPHATE, DIBASIC, HEPTAHYDRATE')).toBe('SODIUM PHOSPHATE, DIBASIC')
   })
 
+  it('reads CAS Greek notation as the letter it stands for', () => {
+    expect(baseMoiety('.ALPHA.-LIPOIC ACID')).toBe(baseMoiety('ALPHA-LIPOIC ACID'))
+    expect(baseMoiety('.BETA.-CAROTENE')).toBe('BETA-CAROTENE')
+  })
+
+  it('leaves nothing behind when a stereo descriptor is stripped', () => {
+    expect(baseMoiety('ACONITIC ACID, (E)-')).toBe('ACONITIC ACID')
+    expect(baseMoiety('CAMPHOR, (1R)-')).toBe('CAMPHOR')
+    expect(baseMoiety('MENTHOL, (-)-')).toBe('MENTHOL')
+  })
+
+  it('spaces a comma between words but never between locants', () => {
+    expect(baseMoiety('CARBIDOPA,LEVODOPA')).toBe('CARBIDOPA, LEVODOPA')
+    expect(baseMoiety('1,2-HEXANEDIOL')).toBe('1,2-HEXANEDIOL')
+  })
+
   it('takes the first ingredient of a combination and drops a parenthesised synonym', () => {
     expect(baseMoiety('ABACAVIR || DOLUTEGRAVIR || LAMIVUDINE')).toBe('ABACAVIR')
     expect(baseMoiety('VITAMIN D (CHOLECALCIFEROL)')).toBe('VITAMIN D')
