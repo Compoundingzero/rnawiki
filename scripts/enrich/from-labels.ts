@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import type { ConditionContext, DeliverySystem } from '@/lib/types'
 import { CACHE_FILES, sourceFileExists } from '../ingest/paths'
-import { attributeToLabel, SOURCE_LABELS, trimToSentence } from './provenance'
+import { attributeToLabel, cleanLabelProse, SOURCE_LABELS, trimToSentence } from './provenance'
 
 /**
  * Fills the narrative fields that have a real source, from the FDA label text already extracted
@@ -314,12 +314,12 @@ export function enrichFromLabel(
   const indications = label.indications_and_usage ?? label.purpose
   if (indications) {
     const explainer = label.description
-      ? trimToSentence(label.description, 600)
-      : trimToSentence(indications, 600)
+      ? trimToSentence(cleanLabelProse(label.description), 600)
+      : trimToSentence(cleanLabelProse(indications), 600)
     result.conditionContext = {
       conditionExplainer: attributeToLabel(explainer),
       whyItMatters: '',
-      whoTakesThis: trimToSentence(indications, 420),
+      whoTakesThis: trimToSentence(cleanLabelProse(indications), 420),
       clinicalGoals: undefined,
     }
     if (!sources.includes(SOURCE_LABELS.fdaLabel)) sources.push(SOURCE_LABELS.fdaLabel)

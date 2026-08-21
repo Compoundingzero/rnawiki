@@ -1795,4 +1795,494 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Pseudoephedrine — the decongestant that works, moved behind the counter because it makes
+  //    methamphetamine, and replaced on the open shelf by one the FDA has now proposed removing
+  //    for not working at all.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'pseudoephedrine',
+    name: 'Pseudoephedrine',
+    tradeName: 'Sudafed / Sudogest / Nasal Decongestant',
+    sponsor:
+      'Marketed in the United States from 1963, originally by Schering-Plough as Sudafed; now generic across dozens of labellers and sold only from behind the pharmacy counter under the Combat Methamphetamine Epidemic Act of 2005',
+    targetGene: 'ADRA1A and SLC6A2 — acting mostly indirectly, through the noradrenaline transporter',
+    targetProtein:
+      'Alpha-1 adrenergic receptors on nasal venous sinusoids, reached mainly by displacing stored noradrenaline from sympathetic nerve terminals rather than by binding the receptor directly',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1963,
+    indication:
+      'Temporary relief of nasal congestion due to the common cold, hay fever or other upper respiratory allergies; temporary relief of sinus congestion and pressure; promotion of nasal and sinus drainage',
+    patientFriendlyIndication: 'A blocked nose and sinus pressure',
+    anatomicalSite:
+      'Nasal venous sinusoids — the spongy blood-filled tissue in the turbinates whose swelling is what a blocked nose actually is',
+    conditionContext: {
+      conditionExplainer:
+        'A blocked nose is not mucus filling a tube. The lining of the nose contains large blood spaces that swell when their vessels dilate, and the swollen tissue narrows the airway. That is why blowing your nose does not fix it and why a drug that constricts blood vessels does.',
+      whyItMatters:
+        'This is the one ingredient on the cough-and-cold shelf whose mechanism is straightforward and whose measured effect, though small, is real. Its story is about regulation rather than pharmacology: it was moved behind the counter because it can be cooked into methamphetamine, and what replaced it on the open shelf turned out not to work.',
+      whoTakesThis:
+        'Adults and children, sold without a prescription but only from behind the pharmacy counter in the United States, with identification, a logbook entry and quantity limits.',
+      clinicalGoals:
+        'Reduced subjective nasal congestion. The Cochrane review that pooled the randomised evidence found a small effect on that measure and could not say whether it matters clinically.',
+    },
+    oneSentenceVerdict:
+      'A mixed-acting sympathomimetic that constricts the swollen blood spaces in the nasal lining, mostly by releasing the body’s own noradrenaline — the pooled randomised evidence gives a standardised mean difference of 0.49 (95% CI 0.07 to 0.92) for multiple doses against placebo, which the Cochrane authors called a small effect of unknown clinical relevance, and a meta-analysis of 24 trials in 1,285 patients puts its effect on systolic blood pressure at 0.99 mm Hg and on heart rate at 2.83 beats per minute.',
+    laymanHowItWorks:
+      'The stuffiness of a cold is swollen tissue, not mucus: the nose is lined with spongy blood-filled spaces that fill up and squeeze the airway shut. Pseudoephedrine makes the muscle around those blood vessels tighten, so the spaces empty and the airway opens. It does this mostly by pushing out the body’s own noradrenaline from nerve endings rather than by acting on the vessel directly, which is why it also nudges heart rate and blood pressure everywhere else in the body.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        '$0.0785 per unit, median across 33 listed products (CMS National Average Drug Acquisition Cost, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      synthesisComplexity: 'Low',
+      openPatentNotes:
+        'Long off patent and cheap to make, which is precisely the problem: the molecule is one reduction step away from methamphetamine. The Combat Methamphetamine Epidemic Act of 2005, signed in March 2006, moved it behind the pharmacy counter with identification checks, logbooks and daily and monthly purchase limits, and the DEA implemented it by interim final rule on 26 September 2006, finalised at 85 FR 68450 on 29 October 2020. Its regulatory cost is therefore not in the price but in the access.',
+      costSource: {
+        label:
+          'No published cost-of-production study exists for pseudoephedrine; the field is left empty rather than estimated',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'url',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 33 listed pseudoephedrine products',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'regulatory',
+      },
+    },
+    substitutes: {
+      summary:
+        'The substitution that actually happened — oral phenylephrine on the open shelf — is the one the FDA has proposed removing from the monograph because it does not work. The alternatives with evidence are topical: a spray reaches the tissue directly, at the cost of rebound congestion if used beyond a few days, or a corticosteroid spray works more slowly with no rebound at all.',
+      conventionalRx: [
+        {
+          name: 'Oral phenylephrine',
+          class: 'Direct alpha-1 agonist, the ingredient that replaced pseudoephedrine on the open shelf',
+          howItCompares:
+            'This is the comparison that matters and it goes only one way. On 8 November 2024 the FDA announced proposed administrative order OTC000036 to amend monograph M012 and remove orally administered phenylephrine hydrochloride and phenylephrine bitartrate as nasal decongestant active ingredients on the stated ground that they are not effective. Pseudoephedrine was not part of that action.',
+          typicalCost:
+            '$5.13 per mL at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026) — the listed products are injectable rather than the oral tablets at issue',
+          prosAndCons:
+            'Pros: available on the open shelf without identification. Cons: the FDA has proposed removing it from the monograph as not effective when taken by mouth; extensive gut and liver metabolism leaves very little of an oral dose in the circulation.',
+        },
+        {
+          name: 'Oxymetazoline nasal spray',
+          class: 'Topical alpha agonist applied directly to the nasal lining',
+          howItCompares:
+            'Delivers the same vasoconstriction to the tissue that is swollen without passing through the whole circulation, so it works faster and does not raise heart rate the way an oral dose does. The Cochrane review of nasal decongestants included three oxymetazoline studies among its fifteen trials.',
+          typicalCost:
+            '$0.1049 per mL at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: fast, local, no systemic cardiovascular effect of consequence. Cons: rebound congestion — rhinitis medicamentosa — on continued use, which is why the label limits the number of consecutive days.',
+        },
+        {
+          name: 'Intranasal corticosteroid',
+          class: 'Topical anti-inflammatory, a different mechanism',
+          howItCompares:
+            'Where the congestion is allergic rather than viral, a steroid spray treats the inflammation causing the swelling instead of squeezing the vessels shut. It takes days rather than minutes and carries no rebound.',
+          typicalCost:
+            'US$0.6920 per millilitre of fluticasone, median across 51 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no rebound, no cardiovascular effect, works on the cause in allergic disease. Cons: useless for immediate relief tonight; needs days of regular use and correct technique.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Saline irrigation and steam',
+          action: 'Rinsing the nasal cavity with salt water; warm humidified air.',
+          patientImpact:
+            'Clears secretions and moistens the lining. It does not constrict the swollen blood spaces, so it addresses a different part of the problem than this drug does, and the two are not substitutes for each other.',
+          clinicalPrecaution:
+            'Use only sterile, distilled or previously boiled water for irrigation. Fatal amoebic meningoencephalitis has been traced to untreated tap water.',
+        },
+        {
+          name: 'Read the label if your blood pressure is not controlled',
+          action:
+            'Check the "ask a doctor before use" list on the carton, and mention any monoamine oxidase inhibitor.',
+          patientImpact:
+            'The label directs people with heart disease, high blood pressure, thyroid disease, diabetes or difficulty passing urine from an enlarged prostate to ask a doctor first, and forbids use with a prescription MAOI or within two weeks of stopping one.',
+          clinicalPrecaution:
+            'Since March 2024 the European Union additionally contraindicates pseudoephedrine outright in severe or uncontrolled hypertension and in severe acute or chronic kidney disease, after a review of posterior reversible encephalopathy syndrome and reversible cerebral vasoconstriction syndrome.',
+        },
+        {
+          name: 'Know the warning signs the European regulator added',
+          action:
+            'Stop and seek help for a sudden severe headache, nausea or vomiting, confusion, seizures or visual disturbance.',
+          patientImpact:
+            'These are the symptoms of the two brain blood-flow syndromes that prompted the European review. Both are rare and both usually resolve if treated promptly, which is why recognising them matters more than the absolute risk figure.',
+          clinicalPrecaution:
+            'A headache during a cold is ordinary. A sudden, severe, unlike-anything-before headache while taking a decongestant is the specific pattern the warning describes.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@@H]([C@H](C1=CC=CC=C1)O)NC',
+      chemicalFormula: 'C10H15NO',
+      molecularWeight: '165.23 g/mol',
+      targetReceptorAffinity:
+        'Direct affinity for alpha-adrenergic receptors is weak, and most of the effect is indirect: the molecule is taken up by the noradrenaline transporter into sympathetic nerve terminals and displaces stored noradrenaline into the synapse. That is why the pharmacology is systemic rather than local — a meta-analysis of 24 randomised placebo-controlled trials in 1,285 patients measured a systolic blood pressure rise of 0.99 mm Hg (95% CI 0.08 to 1.90) and a heart rate rise of 2.83 beats per minute (95% CI 2.0 to 3.6), with no significant change in diastolic pressure.',
+      structureSource: {
+        label:
+          'PubChem CID 7028 (pseudoephedrine) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/7028',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'pse-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Diastereomer identity: pseudoephedrine against ephedrine',
+          description:
+            'Confirm which of the two adjacent stereocentres arrangement is present. Ephedrine and pseudoephedrine are diastereomers differing at one carbon; they have different potencies, different regulatory treatment and different melting points, and a mislabelled batch is a controlled-substance problem as much as a pharmaceutical one.',
+          reagentsAndBuffer:
+            'Ephedrine and pseudoephedrine hydrochloride reference standards, chiral HPLC, optical rotation, melting point, 1H NMR coupling constant analysis across the C1-C2 bond',
+        },
+        {
+          id: 'pse-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fermentative carboligation to (R)-phenylacetylcarbinol, then reductive amination',
+          description:
+            'The industrial route is biological at its first step: yeast pyruvate decarboxylase condenses benzaldehyde with pyruvate to give (R)-phenylacetylcarbinol, setting one stereocentre enzymatically, and reductive amination with methylamine sets the second. Building the chirality in with an enzyme is what makes the diastereomeric purity achievable at commodity scale.',
+          dependsOnStepId: 'pse-w1',
+          reagentsAndBuffer:
+            'Saccharomyces cerevisiae or isolated pyruvate decarboxylase, benzaldehyde fed under controlled dosing to limit toxicity to the culture, pyruvate or fermentable sugar, then methylamine with a platinum or palladium catalyst under hydrogen',
+        },
+        {
+          id: 'pse-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Separation from the ephedrine diastereomer and hydrochloride crystallisation',
+          description:
+            'Separate the two diastereomers and crystallise the pseudoephedrine hydrochloride. Because the two differ in solubility rather than in chromatographic behaviour alone, fractional crystallisation does most of the work, and the specification on residual ephedrine is set by diversion-control rules as well as by pharmacopoeial limits.',
+          dependsOnStepId: 'pse-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in isopropanol, fractional crystallisation from water or ethanol, chiral HPLC on the isolated salt, ICP-MS for residual catalyst metals',
+        },
+        {
+          id: 'pse-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Noradrenaline transporter uptake and displacement assay',
+          description:
+            'Apply the compound to cells expressing the human noradrenaline transporter preloaded with labelled noradrenaline, and measure release rather than binding. This is the assay that distinguishes an indirect sympathomimetic from a direct agonist, and testing only receptor affinity would understate the drug substantially, because most of what it does is release the body’s own transmitter.',
+          dependsOnStepId: 'pse-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells expressing human SLC6A2, [3H]noradrenaline preload, Krebs-HEPES buffer with ascorbate and pargyline to prevent oxidation, desipramine as transporter blocker control, superfusion apparatus for release kinetics',
+        },
+        {
+          id: 'pse-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Nasal airway resistance by rhinomanometry against symptom score',
+          description:
+            'Measure the physical quantity — resistance to airflow through the nose — alongside the subjective congestion score, in the same subjects. The two are only loosely correlated, and the Cochrane review found that the trials which reported them did so in ways too diverse to pool. Reporting both is the only way to distinguish an opened airway from a changed sensation.',
+          dependsOnStepId: 'pse-w4',
+          reagentsAndBuffer:
+            'Active anterior rhinomanometry or acoustic rhinometry, controlled temperature and humidity, standardised acclimatisation period, parallel visual analogue and categorical congestion scales at matched timepoints',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'pse-a1',
+        category: 'measured',
+        title: 'A small effect on congestion, from evidence Cochrane graded low quality',
+        laymanSummary:
+          'Pooling the randomised trials, taking repeated doses gave a modest improvement in how blocked people said their nose felt, about three hours after the last dose. The reviewers described the size as small and said they could not tell whether it was clinically meaningful.',
+        technicalDetails:
+          'The Cochrane review of nasal decongestants in monotherapy for the common cold included 15 trials with 1,838 participants, nine of them using pseudoephedrine. For multiple doses against placebo, subjective congestion was significantly better in the treatment group approximately three hours after the last dose, standardised mean difference 0.49 (95% CI 0.07 to 0.92, p=0.02), graded low-quality evidence. That pooling rested on two studies only, one oral and one topical, so oral and topical effects could not be separated. For single doses, the ten available trials measured and reported congestion so diversely that no pooling was possible at all, and the authors drew no conclusion. There is no defined minimal clinically important difference for subjective congestion, so the reviewers used the standardised mean difference itself as the yardstick and classed 0.49 as small.',
+        evidenceSource: 'Deckx L, De Sutter AI, Guo L, Mir NA, van Driel ML. Cochrane Database Syst Rev 2016;10:CD009612',
+        doi: '10.1002/14651858.CD009612.pub2',
+        measuredMetric:
+          'Standardised mean difference in subjective nasal congestion, multiple doses against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pse-a2',
+        category: 'conclusion_shift',
+        title:
+          'The replacement it was pushed aside for is now proposed for removal as not effective',
+        laymanSummary:
+          'Because the drug can be cooked into methamphetamine, a 2005 law moved it behind the pharmacy counter. Manufacturers reformulated the open-shelf products around phenylephrine instead. In 2024 the FDA proposed taking oral phenylephrine out of the rulebook altogether, on the ground that it does not work.',
+        technicalDetails:
+          'The Combat Methamphetamine Epidemic Act of 2005 was signed in March 2006, and the DEA implemented retail restrictions by interim final rule on 26 September 2006, finalised at 85 FR 68450 on 29 October 2020: identification, logbooks, and daily and monthly quantity limits. Manufacturers responded by substituting oral phenylephrine in open-shelf formulations. On 8 November 2024 the FDA announced proposed administrative order OTC000036 at 89 FR 88787, which if finalised amends Final Administrative Order OTC000026 to remove orally administered phenylephrine hydrochloride and phenylephrine bitartrate in an effervescent dosage as nasal decongestant active ingredients "because they are not effective." Pseudoephedrine was not part of that action. As of this audit the phenylephrine order is proposed and not final.',
+        evidenceSource:
+          'FDA, Amending Over-the-Counter Monograph M012, proposed order OTC000036, 89 FR 88787, 8 November 2024; DEA, Implementation of the Combat Methamphetamine Epidemic Act of 2005; Retail Sales, 85 FR 68450, 29 October 2020',
+        inferredClaim:
+          'That the open-shelf decongestant which replaced pseudoephedrine was pharmacologically equivalent — the FDA has proposed removing it as not effective, so the practical result of the diversion-control law was to move consumers from a weakly effective drug to an ineffective one',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pse-a3',
+        category: 'measured',
+        title: 'The blood pressure effect is real, and much smaller than its reputation',
+        laymanSummary:
+          'People are routinely told to avoid this drug if their blood pressure is high. Pooling 24 randomised trials, the average rise in the top blood pressure number was about one point, and the pulse rose by under three beats a minute. In people whose high blood pressure was controlled, the rise was the same size.',
+        technicalDetails:
+          'A meta-analysis of English-language randomised placebo-controlled trials of oral pseudoephedrine in adults found 24 trials with extractable vital signs, comprising 45 treatment arms and 1,285 patients. Random-effects weighted mean differences were: systolic blood pressure +0.99 mm Hg (95% CI 0.08 to 1.90), heart rate +2.83 beats per minute (95% CI 2.0 to 3.6), diastolic blood pressure +0.63 mm Hg (95% CI -0.10 to 1.35, not significant). In patients with controlled hypertension the systolic rise was of similar magnitude, +1.20 mm Hg (95% CI 0.56 to 1.84). Higher doses and immediate-release preparations produced greater rises; shorter duration of use was associated with greater increases; studies with more women showed less effect.',
+        evidenceSource: 'Salerno SM, Jackson JL, Berbano EP. Arch Intern Med 2005;165:1686-1694',
+        doi: '10.1001/archinte.165.15.1686',
+        measuredMetric:
+          'Weighted mean difference in systolic and diastolic blood pressure and heart rate against placebo across 45 treatment arms',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pse-a4',
+        category: 'failed',
+        title: 'Europe added outright contraindications in 2024 for two brain blood-flow syndromes',
+        laymanSummary:
+          'European regulators reviewed reports of two rare conditions in which blood flow to the brain is disturbed, and concluded the drug can cause them. They banned its use in severe or uncontrolled high blood pressure and in severe kidney disease, and told patients which symptoms mean stop immediately.',
+        technicalDetails:
+          'The European Medicines Agency’s Pharmacovigilance Risk Assessment Committee reviewed pseudoephedrine-containing medicines and recommended new measures on 30 November 2023; the CHMP endorsed them on 25 January 2024 and the European Commission issued its decision in March 2024. The risks identified were posterior reversible encephalopathy syndrome and reversible cerebral vasoconstriction syndrome, both involving reduced blood supply to the brain with potentially life-threatening complications, described as rare and usually resolving with prompt treatment. The medicines are now contraindicated in severe or uncontrolled hypertension and in severe acute or chronic kidney disease or renal failure. Patients are to stop treatment and seek help for sudden severe headache, nausea, vomiting, confusion, seizures or visual disturbance. The United States label carries no equivalent contraindication; it directs people with high blood pressure to ask a doctor before use.',
+        evidenceSource:
+          'European Medicines Agency, referral procedure on pseudoephedrine-containing medicinal products, PRAC recommendation 30 November 2023, CHMP 25 January 2024, Commission decision March 2024',
+        measuredMetric:
+          'Regulatory risk assessment outcome — new contraindications and warning symptoms',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pse-a5',
+        category: 'inferred',
+        title: 'Nobody has shown it works in children, and it is sold for them anyway',
+        laymanSummary:
+          'Of the fifteen randomised trials in the systematic review, fourteen enrolled only adults. The reviewers stated plainly that effectiveness and safety in children remain to be determined.',
+        technicalDetails:
+          'The Cochrane review reports that fourteen of its fifteen included studies enrolled adults aged 18 and over only, and concludes that the effectiveness and safety of nasal decongestants in children, and the clinical relevance of the small effect seen in adults, are yet to be determined. Separately, the FDA announced in 2011 its intention to take enforcement action against unapproved and misbranded oral prescription-labelled cold, cough and allergy products, noting that many were inappropriately labelled for use in infants and young children (76 FR 11794).',
+        evidenceSource:
+          'Deckx L et al., Cochrane Database Syst Rev 2016;10:CD009612, Authors’ conclusions; FDA, 76 FR 11794, 3 March 2011',
+        doi: '10.1002/14651858.CD009612.pub2',
+        inferredClaim:
+          'That an effect measured almost entirely in adults transfers to children — the systematic review says explicitly that it has not been determined',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pse-a6',
+        category: 'measured',
+        title: 'Short-term adverse events were no more common than on placebo',
+        laymanSummary:
+          'Across the trials that recorded them, side effects happened about as often on the drug as on the dummy. Roughly one person in eight reported something in each group.',
+        technicalDetails:
+          'Seven of the fifteen Cochrane-included trials recorded adverse events, six with an oral decongestant and one topical. Meta-analysis found no statistical difference between groups: 125 events per 1,000 in the treatment group against 126 per 1,000 on placebo, odds ratio 0.98 (95% CI 0.68 to 1.40, p=0.90), graded low-quality evidence. Restricting to oral decongestants only gave an odds ratio of 0.95 (95% CI 0.65 to 1.39, p=0.80). These are short-term data in adults; they say nothing about the rare neurological events that prompted the European contraindications, which no trial of this size and duration could detect.',
+        evidenceSource: 'Deckx L et al., Cochrane Database Syst Rev 2016;10:CD009612',
+        doi: '10.1002/14651858.CD009612.pub2',
+        measuredMetric: 'Pooled odds ratio for adverse events, decongestant against placebo',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, and it goes everywhere',
+        laymanDesc:
+          'A tablet reaches the whole circulation, not just the nose. That is the reason it also touches heart rate and blood pressure, and the reason a spray does not.',
+        molecularDetail:
+          'Well absorbed orally with limited metabolism and largely renal excretion of unchanged drug, so exposure rises when urine is alkaline and when kidney function is reduced. Systemic distribution is unavoidable by this route, which is what separates it pharmacologically from a topical alpha agonist applied to the mucosa.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It is carried into sympathetic nerve endings',
+        laymanDesc:
+          'Rather than acting on the blood vessel itself, the molecule is taken up into the nerve endings that control the vessel — using the same doorway the body uses to recycle its own signalling chemical.',
+        molecularDetail:
+          'Pseudoephedrine is a substrate for the noradrenaline transporter SLC6A2 and is carried into the sympathetic nerve terminal. Its own affinity for alpha-adrenergic receptors is weak; the transporter step, not receptor binding, is the committed step of its pharmacology.',
+        iconName: 'ArrowRightLeft',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It pushes out the body’s own noradrenaline',
+        laymanDesc:
+          'Inside the nerve ending it displaces the stored signalling chemical into the gap between nerve and vessel. The vessel then receives a much stronger version of the message it normally gets.',
+        molecularDetail:
+          'Displacement of vesicular noradrenaline into the synaptic cleft produces indirect alpha-1 agonism at the vascular smooth muscle. Because the transmitter released is the body’s own, the effect is not confined to the nose: it is a generalised sympathomimetic action expressed most visibly where the tissue is most vascular.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The blood spaces in the nose empty and the airway opens',
+        laymanDesc:
+          'The swollen spongy tissue in the nose shrinks as its blood vessels tighten, and there is suddenly room to breathe through. Nothing has been done to the infection or the allergy.',
+        molecularDetail:
+          'Alpha-1 mediated constriction of the venous sinusoids in the turbinates reduces mucosal volume and nasal airway resistance. The effect is purely mechanical and purely temporary; viral replication, inflammatory mediator release and mucus production are unaffected.',
+        iconName: 'Wind',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A small measured improvement, and an unsettled question about how much it matters',
+        laymanDesc:
+          'Pooled across trials, repeated doses improved how blocked people said they felt by a small amount. The reviewers were explicit that they could not say whether a difference that size is one a person would notice as worthwhile.',
+        molecularDetail:
+          'Standardised mean difference 0.49 (95% CI 0.07 to 0.92) for multi-dose against placebo, graded low-quality and pooled from two studies. Ten single-dose trials could not be pooled at all because congestion was measured and reported too diversely.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The systemic price of an oral route',
+        laymanDesc:
+          'Because the drug reaches the whole body, it raises the pulse slightly, nudges the top blood pressure number, and in rare cases has been linked to two conditions in which blood flow to the brain is disturbed.',
+        molecularDetail:
+          'Pooled systolic rise 0.99 mm Hg and heart rate rise 2.83 beats per minute across 45 treatment arms in 1,285 patients, greater with higher doses and immediate-release preparations. European regulators contraindicated the drug in severe or uncontrolled hypertension and severe renal disease in 2024 after reviewing posterior reversible encephalopathy syndrome and reversible cerebral vasoconstriction syndrome.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane CD009612.pub2 — nasal decongestants in monotherapy for the common cold',
+        phase: 'Systematic review and meta-analysis of 15 randomised trials',
+        sampleSize: 1838,
+        primaryEndpoint: 'Subjective symptom scores for nasal congestion against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Multi-dose SMD 0.49 (95% CI 0.07 to 0.92), p=0.02, low-quality evidence; single-dose not poolable',
+        unreportedAdverseSignals:
+          'The multi-dose pooling rested on two studies, one oral and one topical, so oral and topical effects could not be separated. Fourteen of fifteen trials enrolled adults only.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Salerno 2005 meta-analysis (Arch Intern Med 165:1686-1694)',
+        phase: 'Meta-analysis of 24 randomised placebo-controlled trials, 45 treatment arms',
+        sampleSize: 1285,
+        primaryEndpoint: 'Systolic and diastolic blood pressure and heart rate against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'SBP +0.99 mm Hg (95% CI 0.08 to 1.90); HR +2.83 beats/min (95% CI 2.0 to 3.6); DBP +0.63 mm Hg (95% CI -0.10 to 1.35, not significant)',
+        unreportedAdverseSignals:
+          'English-language trials only. Trials of this size and duration cannot detect the rare cerebrovascular events that later prompted European contraindications.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane CD009612.pub2 adverse-event analysis',
+        phase: 'Meta-analysis of 7 randomised trials reporting adverse events',
+        sampleSize: 1838,
+        primaryEndpoint: 'Adverse events, decongestant against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Odds ratio 0.98 (95% CI 0.68 to 1.40), p=0.90; oral only OR 0.95 (95% CI 0.65 to 1.39), p=0.80; low-quality evidence',
+        unreportedAdverseSignals:
+          'Short-term adult data. Absence of a signal at this scale is not evidence about rare events.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Standardised mean difference 0.49 (95% CI 0.07 to 0.92) in subjective nasal congestion for multiple doses against placebo, graded low-quality',
+        'Systolic blood pressure +0.99 mm Hg and heart rate +2.83 beats per minute across 45 treatment arms in 1,285 patients',
+        'Systolic rise of similar magnitude, +1.20 mm Hg (95% CI 0.56 to 1.84), in patients with controlled hypertension',
+        'Adverse events 125 per 1,000 on treatment against 126 per 1,000 on placebo, odds ratio 0.98 (95% CI 0.68 to 1.40)',
+      ],
+      unsupportedInferences: [
+        'That the effect measured in adults applies to children — fourteen of fifteen trials enrolled adults only and the reviewers say it is undetermined',
+        'That the small standardised mean difference is a difference a patient would call worthwhile — no minimal clinically important difference is defined for this outcome',
+        'That the drug is dangerous to blood pressure in the way its reputation suggests — the pooled systolic rise is about one millimetre of mercury',
+        'That the open-shelf product that replaced it did the same job — the FDA has proposed removing oral phenylephrine as not effective',
+      ],
+      whatFailedInitially: [
+        'Ten single-dose randomised trials could not be pooled at all because congestion was measured and reported too diversely',
+        'Europe contraindicated the drug in severe or uncontrolled hypertension and severe renal disease in 2024, after reviewing two cerebrovascular syndromes',
+        'The 2005 diversion-control law moved it behind the counter, and the substitute that filled the shelf is now proposed for removal as ineffective',
+        'The multi-dose efficacy conclusion rests on two studies, one of them topical, which is thin ground for a product sold in the hundreds of millions',
+      ],
+      realWorldOutcome: [
+        'Marketed in the United States since 1963 and still the only oral decongestant on the monograph that the FDA has not proposed removing',
+        'Sold behind the pharmacy counter since 2006 with identification, logbook and quantity limits under the Combat Methamphetamine Epidemic Act',
+        'Contraindicated in the European Union since March 2024 in severe or uncontrolled hypertension and in severe kidney disease',
+        'Cheap and generic at $0.0785 per unit across 33 listed products in the CMS acquisition survey',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, extended-release tablet and liquid, sold from behind the pharmacy counter',
+      description:
+        'Taken by mouth, so the vasoconstriction it produces is systemic rather than confined to the nose. Immediate-release preparations produced larger blood pressure rises than extended-release in the pooled analysis. Purchase requires photographic identification and a logbook entry, with daily and monthly quantity limits.',
+      safetyProfile:
+        'Short-term adverse events in randomised trials were indistinguishable from placebo. The label forbids use with a prescription monoamine oxidase inhibitor or within two weeks of stopping one, and directs people with heart disease, high blood pressure, thyroid disease, diabetes or difficulty passing urine from prostatic enlargement to ask a doctor first; it tells users to stop for nervousness, dizziness or sleeplessness, or if symptoms persist beyond seven days or occur with fever. Since March 2024 the European Union contraindicates it in severe or uncontrolled hypertension and in severe acute or chronic kidney disease, after a review of posterior reversible encephalopathy syndrome and reversible cerebral vasoconstriction syndrome.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why do I have to ask the pharmacist for it?',
+        a: 'Because it is one chemical step away from methamphetamine. The Combat Methamphetamine Epidemic Act of 2005 was signed in March 2006 and the DEA implemented retail controls later that year: products containing pseudoephedrine moved behind the counter, purchasers show identification and sign a logbook, and daily and monthly quantities are capped. Nothing about the drug’s safety or effectiveness prompted this; it is a diversion-control measure. What it changed in practice is what sits on the open shelf, and that is the more consequential part of the story.',
+      },
+      {
+        q: 'Is the version on the open shelf just as good?',
+        a: 'The FDA has proposed removing it. When pseudoephedrine went behind the counter, manufacturers reformulated the open-shelf products around oral phenylephrine. On 8 November 2024 the FDA announced a proposed administrative order to amend the cough-and-cold monograph and remove orally administered phenylephrine hydrochloride and phenylephrine bitartrate as nasal decongestant active ingredients, stating in the announcement that they are not effective. The order is proposed rather than final as of this audit. Pseudoephedrine was not included in that action.',
+        auditNote:
+          'The pharmacology behind this is that oral phenylephrine is heavily metabolised in the gut wall and liver, so very little of a swallowed dose reaches the circulation. The same molecule sprayed into the nose is a different proposition.',
+      },
+      {
+        q: 'How well does it actually work?',
+        a: 'A little, and the evidence is thin. The Cochrane review pooled fifteen randomised trials in 1,838 people. For repeated doses it found subjective congestion significantly better than placebo about three hours after the last dose, with a standardised mean difference of 0.49 — which the authors classed as a small effect, graded the evidence low quality, and noted rested on only two studies. For single doses, the ten available trials measured congestion so differently from each other that pooling was impossible and no conclusion could be drawn. There is no agreed threshold for what size of change on a congestion score a patient would call worthwhile, so the reviewers could not say whether this one is.',
+      },
+      {
+        q: 'I have high blood pressure. Is it really that risky?',
+        a: 'The average effect is much smaller than the reputation. A meta-analysis of 24 randomised placebo-controlled trials with 45 treatment arms and 1,285 patients measured an average systolic rise of 0.99 mm Hg and a heart rate rise of 2.83 beats per minute, with no significant change in diastolic pressure. In people whose hypertension was controlled, the systolic rise was 1.20 mm Hg. Higher doses and immediate-release forms raised it more. That said, an average is not a promise about an individual, and since March 2024 the European Union has contraindicated the drug outright in severe or uncontrolled hypertension after reviewing two rare brain blood-flow syndromes. The United States label stops short of that and tells people with high blood pressure to ask a doctor first.',
+        auditNote:
+          'The two positions are not in conflict. The meta-analysis measures the average haemodynamic effect; the European action responds to rare severe events that a trial programme of this size could not detect.',
+      },
+      {
+        q: 'Can I give it to my child?',
+        a: 'The evidence does not answer that question. Of the fifteen randomised trials in the Cochrane review, fourteen enrolled adults aged 18 and over only. The authors concluded in plain terms that the effectiveness and safety of nasal decongestants in children remain to be determined. Separately, the FDA announced in 2011 that it intended to act against unapproved oral cold, cough and allergy products, noting that many were inappropriately labelled for use in infants and young children.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Deckx L, De Sutter AI, Guo L, Mir NA, van Driel ML. Nasal decongestants in monotherapy for the common cold. Cochrane Database Syst Rev 2016;10:CD009612',
+        identifier: '10.1002/14651858.CD009612.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Salerno SM, Jackson JL, Berbano EP. Effect of oral pseudoephedrine on blood pressure and heart rate: a meta-analysis. Arch Intern Med 2005;165:1686-1694',
+        identifier: '10.1001/archinte.165.15.1686',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA. Amending Over-the-Counter Monograph M012: Cold, Cough, Allergy, Bronchodilator, and Antiasthmatic Drug Products — proposed order OTC000036 removing orally administered phenylephrine as not effective. 89 FR 88787, 8 November 2024',
+        identifier:
+          'https://www.federalregister.gov/documents/2024/11/08/2024-25910/amending-over-the-counter-monograph-m012-cold-cough-allergy-bronchodilator-and-antiasthmatic-drug',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'DEA. Implementation of the Combat Methamphetamine Epidemic Act of 2005; Retail Sales. 85 FR 68450, 29 October 2020',
+        identifier:
+          'https://www.federalregister.gov/documents/2020/10/29/2020-19311/implementation-of-the-combat-methamphetamine-epidemic-act-of-2005-retail-sales-notice-of-transfers',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'European Medicines Agency. Pseudoephedrine-containing medicinal products — referral outcome: new contraindications in severe or uncontrolled hypertension and severe renal disease, following review of PRES and RCVS',
+        identifier:
+          'https://www.ema.europa.eu/en/medicines/human/referrals/pseudoephedrine-containing-medicinal-products',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'FDA. Drugs for Human Use; Unapproved and Misbranded Oral Drugs Labeled for Prescription Use and Offered for Relief of Symptoms of Cold, Cough, or Allergy; Enforcement Action Dates. 76 FR 11794, 3 March 2011',
+        identifier:
+          'https://www.federalregister.gov/documents/2011/03/03/2011-4703/drugs-for-human-use-unapproved-and-misbranded-oral-drugs-labeled-for-prescription-use-and-offered',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 7028 — pseudoephedrine structure, formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/7028',
+        kind: 'url',
+      },
+    ],
+  },
 ]

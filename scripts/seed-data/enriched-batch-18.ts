@@ -2505,4 +2505,495 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 6. Calcipotriene — a psoriasis drug that loses to steroids on the scalp and irritates more,
+  //    which turned out to be an immune adjuvant that cut three-year skin cancer on treated faces.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'calcipotriene',
+    name: 'Calcipotriene',
+    tradeName: 'Dovonex / Sorilux / Calcitrene / Taclonex (with betamethasone dipropionate)',
+    sponsor: 'LEO Pharma AS, which discovered it and holds the originator applications',
+    targetGene: 'VDR — the vitamin D receptor gene',
+    targetProtein:
+      'Vitamin D receptor, acting as a heterodimer with retinoid X receptor at vitamin D response elements in keratinocyte DNA',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1993,
+    indication:
+      'Topical treatment of plaque psoriasis of the scalp and body. The foam is indicated in adults and paediatric patients 4 years of age and older; combination products with betamethasone dipropionate are separately approved',
+    patientFriendlyIndication: 'Plaque psoriasis — the raised, red, scaly patches',
+    anatomicalSite:
+      'The epidermal keratinocyte nucleus, in the thickened plaque where cell division has run out of control',
+    conditionContext: {
+      conditionExplainer:
+        'In a psoriasis plaque the skin cells divide far too fast and never finish maturing, so they pile up as scale instead of shedding. The immune system drives that acceleration and is driven by it in turn. Calcipotriene is a modified vitamin D that tells those cells to slow down and grow up.',
+      whyItMatters:
+        'It was introduced as the steroid-free alternative for a disease people treat for decades. Whether it delivers on that promise is the central unanswered question on this page, and the Cochrane review that examined it said the evidence to answer it does not exist for either drug.',
+      whoTakesThis:
+        'Adults and children from age 4 with plaque psoriasis, usually now in a fixed combination with a corticosteroid rather than alone.',
+      clinicalGoals:
+        'Flatter, less scaly, less red plaques on a graded scale. The interesting secondary story is what the same molecule does to sun-damaged skin, which has nothing to do with psoriasis at all.',
+    },
+    oneSentenceVerdict:
+      'A vitamin D analogue that binds the vitamin D receptor in keratinocytes and forces them to stop dividing and differentiate — significantly better than placebo on the body across a 177-trial, 34,808-participant Cochrane review, significantly worse than potent corticosteroids on the scalp and more irritating than they are everywhere, and, in an unrelated four-day use, the agent that cut three-year squamous cell carcinoma on treated faces from 28% to 7%.',
+    laymanHowItWorks:
+      'Vitamin D is not really a vitamin — it is a hormone, and skin cells have a receptor for it sitting on their DNA. Calcipotriene is vitamin D redesigned so that it still fits that receptor but is destroyed within hours, so it acts on skin and does not raise the calcium in your blood the way real vitamin D would. When it binds, the receptor switches off the genes that keep the cell dividing and switches on the genes that make it mature and shed. The plaque thins. Separately and unexpectedly, the same receptor makes keratinocytes release an alarm signal that pulls immune cells in, which is why the drug ended up in a skin cancer trial.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 70,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$1.48 per gram, the median United States pharmacy acquisition cost across 22 listed calcipotriene products (CMS NADAC, generic, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Generic since the Dovonex patents expired, with 22 listed products. The commercially live objects are the fixed combinations with betamethasone dipropionate and the newer foam and suspension vehicles, not the molecule — a pattern this batch shows repeatedly for drugs nobody can own.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The Cochrane review put the answer bluntly: corticosteroids perform at least as well as vitamin D analogues and cause fewer local adverse events, and the combination of the two beats either alone on both body and scalp. The case for calcipotriene rests on avoiding long-term steroid atrophy, and the same review reports there is not enough evidence to know how large that risk is.',
+      conventionalRx: [
+        {
+          name: 'Potent topical corticosteroid',
+          class: 'Glucocorticoid receptor agonist',
+          howItCompares:
+            'Pooled standardised mean difference against placebo -0.89 (95% CI -1.06 to -0.72) for potent and -1.56 (95% CI -1.87 to -1.26) for very potent steroids, which on a six-point improvement scale is 1.0 and 1.8 points. On the scalp, vitamin D analogues were significantly less effective than both. Steroids also caused fewer local adverse events than vitamin D.',
+          typicalCost: 'Most potent topical corticosteroids are generic and inexpensive',
+          prosAndCons:
+            'Pros: at least as effective, less burning and irritation, faster. Cons: dermal atrophy with prolonged use, and the Cochrane authors state there remains a lack of evidence about how large that risk actually is.',
+        },
+        {
+          name: 'Calcipotriene with betamethasone dipropionate (Taclonex and generics)',
+          class: 'Fixed-dose vitamin D analogue plus potent corticosteroid',
+          howItCompares:
+            'For both body and scalp psoriasis, combined treatment performed significantly better than vitamin D alone or corticosteroid alone in the Cochrane review, and was tolerated as well as potent corticosteroids and significantly better than vitamin D alone.',
+          typicalCost: 'Sold as a combination product; not comparable to the per-gram calcipotriene figure',
+          prosAndCons:
+            'Pros: the best-supported topical option in the review, and better tolerated than calcipotriene by itself. Cons: carries the corticosteroid’s HPA-axis suppression, cataract and glaucoma warnings alongside calcipotriene’s hypercalcaemia warning.',
+        },
+        {
+          name: 'Coal tar preparations',
+          class: 'Crude complex mixture, mechanism not fully defined',
+          howItCompares:
+            'Vitamin D generally performed better than coal tar in the pooled head-to-head comparisons. Findings against dithranol were mixed, and dithranol itself beat placebo.',
+          typicalCost: 'Inexpensive and widely available without prescription in many formulations',
+          prosAndCons:
+            'Pros: decades of use, very cheap. Cons: staining, smell, and generally outperformed by vitamin D analogues in the pooled comparisons.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Calcium in the blood is a real, monitored risk',
+          action:
+            'The label directs that treatment be discontinued if hypercalcaemia or hypercalciuria develops, until calcium metabolism normalises.',
+          patientImpact:
+            'Calcipotriene was engineered to be destroyed quickly so it would not raise blood calcium, and mostly it succeeds. Hypercalcaemia and hypercalciuria have nonetheless been observed with the combination product and appear in its Warnings and Precautions.',
+          clinicalPrecaution:
+            'This is a label-directed monitoring point, not a dosing instruction. How much to use and where is a clinician’s decision.',
+        },
+        {
+          name: 'Expect more irritation than from a steroid, not less',
+          action:
+            'Local adverse events such as burning and irritation were significantly more common with vitamin D than with potent corticosteroids on both body and scalp.',
+          patientImpact:
+            'This surprises people who assume the non-steroid option must be the gentler one. Adding a corticosteroid to calcipotriene improves tolerability rather than worsening it — the combination was tolerated significantly better than calcipotriene alone.',
+          clinicalPrecaution:
+            'Persistent burning, or irritation spreading beyond treated plaques, is a reason to consult rather than continue.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@H](/C=C/[C@H](C1CC1)O)[C@H]2CC[C@@H]\\3[C@@]2(CCC/C3=C\\C=C/4\\C[C@H](C[C@@H](C4=C)O)O)C',
+      chemicalFormula: 'C27H40O3',
+      molecularWeight: '412.60 g/mol',
+      targetReceptorAffinity:
+        'Binds the vitamin D receptor with affinity comparable to calcitriol, the natural hormone, which is the design target: equal receptor engagement with a side chain — a 22,23-double bond and a terminal cyclopropyl ring — that is metabolised within hours. The short half-life, not weaker binding, is what separates the skin effect from the systemic calcium effect.',
+      structureSource: {
+        label:
+          'PubChem CID 5288783 (calcipotriol) — canonical SMILES, molecular formula and weight, as held on the record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5288783',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cal-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Triene identity and 5,6-trans isomer content',
+          description:
+            'Confirm the intact secosteroid triene and quantify the 5,6-trans isomer. Vitamin D analogues carry an open B-ring with a conjugated triene that light and acid both isomerise. The trans isomer is far less active, so this is a potency assay disguised as an identity test.',
+          reagentsAndBuffer:
+            'Calcipotriol reference standard, reversed-phase HPLC with ultraviolet detection at 264 nm, amber glassware under argon, butylated hydroxytoluene as antioxidant, 1H NMR for triene geometry',
+        },
+        {
+          id: 'cal-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Side-chain construction and formulation at controlled pH',
+          description:
+            'Build the cyclopropyl-bearing side chain that gives the molecule its short half-life, then formulate into ointment, cream, foam or scalp solution. The pH of the vehicle matters more than usual: calcipotriene is degraded by acid, which is why co-formulating it with certain other topicals destroys it.',
+          dependsOnStepId: 'cal-w1',
+          reagentsAndBuffer:
+            'Protected vitamin D side-chain intermediates, Wittig or Julia coupling under inert atmosphere, white petrolatum or foam vehicle, pH adjusted to the alkaline side, disodium edetate',
+        },
+        {
+          id: 'cal-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Photostability and compatibility testing of the finished product',
+          description:
+            'Expose the finished product to light and, separately, to acidic co-formulants. This is the analytical basis for a practical fact: calcipotriene and salicylic acid are incompatible, and combination with a corticosteroid required a vehicle designed so both survive.',
+          dependsOnStepId: 'cal-w2',
+          reagentsAndBuffer:
+            'ICH Q1B photostability chamber, acid challenge at defined pH, accelerated stability at 40C and 75% relative humidity, HPLC assay of calcipotriol and 5,6-trans isomer before and after',
+        },
+        {
+          id: 'cal-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Penetration into plaque skin and systemic calcium counter-screen',
+          description:
+            'Measure delivery into thickened psoriatic plaque, then measure serum and urinary calcium. Both readouts are needed together: the whole design of the molecule is a trade between reaching the keratinocyte and not reaching the parathyroid axis, and only measuring one of them cannot show whether the trade worked.',
+          dependsOnStepId: 'cal-w3',
+          reagentsAndBuffer:
+            'Excised plaque or lesional biopsy, Franz diffusion cells for intact skin comparison, LC-MS/MS for calcipotriol and its ketone and alcohol metabolites, serum calcium, albumin and 24-hour urinary calcium in vivo',
+        },
+        {
+          id: 'cal-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'VDR transactivation, keratinocyte differentiation and TSLP induction',
+          description:
+            'Run a vitamin D response element reporter, then measure both keratinocyte differentiation markers and thymic stromal lymphopoietin. The last of those is not a psoriasis readout at all — it is the cytokine that turned this drug into an immunotherapy, and a laboratory that only assays differentiation would never have found it.',
+          dependsOnStepId: 'cal-w4',
+          reagentsAndBuffer:
+            'VDRE-luciferase reporter line, primary normal human epidermal keratinocytes, calcitriol as reference agonist, quantitative PCR and ELISA for involucrin, transglutaminase 1 and TSLP',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cal-a1',
+        category: 'measured',
+        title: 'Better than placebo on the body, across 177 trials and 34,808 participants',
+        laymanSummary:
+          'The Cochrane review of topical psoriasis treatments is one of the largest in dermatology. Vitamin D analogues beat placebo on the body, by roughly one point on a six-point improvement scale.',
+        technicalDetails:
+          'The 2013 Cochrane review included 177 randomised controlled trials with 34,808 participants, including 26 trials of scalp psoriasis. Most vitamin D analogues used on the body were significantly more effective than placebo, with standardised mean differences ranging from -0.67 (95% CI -1.04 to -0.30) for twice-daily becocalcidiol to -1.66 (95% CI -2.66 to -0.67) for once-daily paricalcitol — on a six-point global improvement scale, 0.8 and 1.9 points respectively. Vitamin D generally performed better than coal tar; findings against dithranol were mixed. No comparison of topical agents found a significant difference in systemic adverse effects.',
+        evidenceSource:
+          'Mason AR, Mason J, Cork M, Dooley G, Hancock H. Cochrane Database Syst Rev 2013;3:CD005028 (PMID 23543539)',
+        doi: '10.1002/14651858.CD005028.pub3',
+        measuredMetric:
+          'Standardised mean difference in global improvement against placebo, pooled across randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cal-a2',
+        category: 'failed',
+        title: 'On the scalp it lost to steroids, and it irritated more everywhere',
+        laymanSummary:
+          'Applied to the scalp, the vitamin D analogue was significantly worse than both potent and very potent steroid preparations. And on both body and scalp it caused more burning and irritation than the steroids did.',
+        technicalDetails:
+          'The Cochrane review states that when applied to psoriasis of the scalp, vitamin D was significantly less effective than both potent corticosteroids and very potent corticosteroids, and that indirect evidence from placebo-controlled trials supported the finding. Head-to-head comparisons on the body had mixed findings. For both body and scalp, potent corticosteroids were less likely than vitamin D to cause local adverse events such as burning or irritation. The authors’ overall conclusion is that corticosteroids perform at least as well as vitamin D analogues and are associated with a lower incidence of local adverse events.',
+        evidenceSource:
+          'Mason AR et al., Cochrane Database Syst Rev 2013;3:CD005028 (PMID 23543539)',
+        doi: '10.1002/14651858.CD005028.pub3',
+        measuredMetric:
+          'Head-to-head effectiveness and local adverse event rates against potent and very potent corticosteroids',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cal-a3',
+        category: 'inferred',
+        title: 'The reason to avoid steroids has never been properly measured',
+        laymanSummary:
+          'People use a vitamin D analogue instead of a steroid to protect the skin from thinning over years. Of 177 trials, twenty-five looked for skin thinning at all, found almost none, and did not report enough detail to know whether they would have detected it.',
+        technicalDetails:
+          'The review records that only 25 trials assessed clinical cutaneous dermal atrophy, few cases were detected, and trials reported insufficient information to determine whether the assessment methods were robust. It adds that clinical measurements of dermal atrophy are insensitive and detect only the most severe cases. The authors conclude that for people receiving long-term corticosteroid treatment there remains a lack of evidence about the risk of skin dermal atrophy, and that further research is required to inform long-term maintenance treatment. Psoriasis is treated for decades and the trials are measured in weeks; the comparison that would justify the whole steroid-sparing strategy has not been run at the necessary duration on either side.',
+        evidenceSource:
+          'Mason AR et al., Cochrane Database Syst Rev 2013;3:CD005028 (PMID 23543539)',
+        doi: '10.1002/14651858.CD005028.pub3',
+        inferredClaim:
+          'That using a vitamin D analogue instead of a corticosteroid protects skin from atrophy over years of treatment — the rationale for the entire drug class, and unmeasured in 152 of the 177 trials that could have measured it',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cal-a4',
+        category: 'measured',
+        title: 'The combination beats either component, and is gentler than calcipotriene alone',
+        laymanSummary:
+          'Putting the vitamin D analogue and a steroid in one product worked better than either separately, on the body and on the scalp. It also stung less than the vitamin D on its own.',
+        technicalDetails:
+          'For both body and scalp psoriasis, combined treatment with vitamin D and corticosteroid performed significantly better than vitamin D alone or corticosteroid alone. Combined treatment on either site was tolerated as well as potent corticosteroids and significantly better than vitamin D alone. The combination product’s own label reports the most common adverse reactions at 1% or more as pruritus and scaly rash, from a safety database of 2,448 subjects with plaque psoriasis, of whom 1,992 were exposed for 4 weeks and 289 for 8 weeks.',
+        evidenceSource:
+          'Mason AR et al., Cochrane Database Syst Rev 2013;3:CD005028 (PMID 23543539); calcipotriene and betamethasone dipropionate ointment United States prescribing information, section 6.1 (ANDA 200174)',
+        doi: '10.1002/14651858.CD005028.pub3',
+        measuredMetric:
+          'Effectiveness and local tolerability of the fixed combination against each component alone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cal-a5',
+        category: 'conclusion_shift',
+        title: 'Four days of it cleared 87.8% of precancerous lesions, in a different disease',
+        laymanSummary:
+          'A trial gave people four days of calcipotriene mixed with a chemotherapy cream, on sun-damaged faces and scalps, and counted precancerous spots. Almost nine in ten disappeared, against about one in four with the chemotherapy cream alone.',
+        technicalDetails:
+          'A randomised double-blind trial in 131 participants compared 0.005% calcipotriol ointment plus 5% 5-fluorouracil cream against Vaseline plus 5-fluorouracil, self-applied to the whole of qualified anatomical sites — face, scalp and upper extremities — twice daily for four consecutive days. Mean reduction in actinic keratosis count was 87.8% against 26.3% (P<0.0001). The combination induced thymic stromal lymphopoietin, HLA class II and NKG2D ligand expression in lesional keratinocytes with a marked CD4+ T cell infiltrate peaking at days 10 to 11, without pain, crusting or ulceration. The mechanism was worked out first in genetically engineered mice, where calcipotriol suppressed skin carcinogenesis in a TSLP-dependent manner. Registered as NCT02019355 and investigator-initiated.',
+        evidenceSource:
+          'Cunningham TJ et al., J Clin Invest 2017;127:106-116 (PMID 27869649; NCT02019355)',
+        doi: '10.1172/JCI89820',
+        measuredMetric:
+          'Percentage reduction in actinic keratosis count after a four-day course, against 5-fluorouracil with an inert vehicle',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cal-a6',
+        category: 'inferred',
+        title: 'The cancer-prevention follow-up is real, small, and narrower than it sounds',
+        laymanSummary:
+          'Following those same patients for three years, fewer of the calcipotriene group developed squamous cell carcinoma on the treated face and scalp — two of thirty against eleven of forty. Across the whole body and the whole follow-up period, the difference did not reach significance.',
+        technicalDetails:
+          'A blinded prospective cohort study of the trial participants assessed squamous cell and basal cell carcinoma at 1, 2 and 3 years. Significantly fewer participants developed SCC on the treated face and scalp within 3 years: 2 of 30 (7%) against 11 of 40 (28%), hazard ratio 0.215 (95% CI 0.048 to 0.972), P=0.032. Over the full follow-up of more than 1,500 days the proportion remaining SCC-free favoured the treated group but did not reach significance (P=0.0765). There was no difference in basal cell carcinoma. Epidermal tissue-resident memory T cells persisted in treated face and scalp skin (P=0.0028). Two of the authors are co-inventors on a filed patent for the use of calcipotriol plus 5-fluorouracil for precancerous skin lesions, which the paper discloses.',
+        evidenceSource: 'Rosenberg AR et al., JCI Insight 2019;4:e125476 (PMID 30895944)',
+        doi: '10.1172/jci.insight.125476',
+        inferredClaim:
+          'That calcipotriene prevents skin cancer — the significant result is a 3-year, single-site, 70-person subgroup; the whole-follow-up comparison did not reach significance and basal cell carcinoma did not move at all',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cal-a7',
+        category: 'failed',
+        title: 'It was engineered not to raise blood calcium, and sometimes does anyway',
+        laymanSummary:
+          'The entire point of redesigning vitamin D was to keep the skin effect and lose the effect on blood calcium. The label still records that raised blood and urine calcium have been seen, and instructs stopping treatment when they are.',
+        technicalDetails:
+          'The calcipotriene and betamethasone dipropionate ointment label lists hypercalcaemia and hypercalciuria in Warnings and Precautions, directing that treatment be discontinued until parameters of calcium metabolism normalise. The same label carries the corticosteroid class warnings for the combination product: reversible hypothalamic-pituitary-adrenal axis suppression with potential glucocorticosteroid insufficiency during and after withdrawal, with risk raised by high potency, large surface area, occlusion, prolonged use, altered skin barrier, liver failure and paediatric use, plus increased risk of cataract and glaucoma. The Cochrane review separately found no comparison of topical agents showing a significant difference in systemic adverse effects, so the label warning and the pooled trial data are describing different resolutions of the same question.',
+        evidenceSource:
+          'Calcipotriene and betamethasone dipropionate ointment United States prescribing information, section 5 Warnings and Precautions (ANDA 200174, openFDA label endpoint)',
+        measuredMetric:
+          'Regulatory label warning — hypercalcaemia and hypercalciuria observed in use, with directed discontinuation',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Vitamin D, redesigned to self-destruct',
+        laymanDesc:
+          'The molecule is real vitamin D hormone with its tail rebuilt so the body breaks it down within hours. That is what lets it work on skin without raising blood calcium the way vitamin D would.',
+        molecularDetail:
+          'Calcipotriol is calcitriol with a 22,23-double bond and a terminal cyclopropyl ring on the side chain. Receptor affinity is comparable to calcitriol; systemic half-life is not. The molecule is rapidly metabolised to a 24-oxo and then a 24-hydroxy derivative with far lower activity, which is the entire safety design.',
+        iconName: 'Timer',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It finds a receptor already sitting on the DNA',
+        laymanDesc:
+          'Inside a skin cell the drug binds a receptor that is parked on specific stretches of the genome, waiting for a signal.',
+        molecularDetail:
+          'The vitamin D receptor heterodimerises with retinoid X receptor and binds vitamin D response elements. Ligand binding exchanges corepressors for coactivators, the same architecture the retinoid receptors use — which is why a retinoid and a vitamin D analogue can be described in almost identical terms and still do different things.',
+        iconName: 'Dna',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The runaway cell division stops',
+        laymanDesc:
+          'The genes that keep psoriatic skin cells dividing get switched off, and the genes that make a cell mature and shed get switched on. The plaque thins.',
+        molecularDetail:
+          'VDR activation induces cyclin-dependent kinase inhibitors and drives transcription of involucrin, transglutaminase 1 and other terminal differentiation markers, reversing the hyperproliferation and parakeratosis that define the plaque. It also suppresses T-cell derived IL-2 and interferon-gamma, so the effect is not purely on the keratinocyte.',
+        iconName: 'Layers',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The same receptor releases an immune alarm signal',
+        laymanDesc:
+          'Unexpectedly, the same switch makes skin cells release a cytokine that summons immune cells. In psoriasis that is a side note. On sun-damaged skin it turned out to be the main event.',
+        molecularDetail:
+          'VDR activation induces thymic stromal lymphopoietin in keratinocytes. In genetically engineered mice calcipotriol suppressed skin carcinogenesis in a TSLP-dependent manner, and in human skin the calcipotriol plus 5-fluorouracil combination induced TSLP, HLA class II and NKG2D ligand expression with a CD4+ T cell infiltrate peaking at days 10 to 11.',
+        iconName: 'Siren',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Plaques flatten, and steroids do it at least as well',
+        laymanDesc:
+          'On the body the drug clearly beats a placebo. Against a steroid it is a draw on the body, a loss on the scalp, and it stings more in both places.',
+        molecularDetail:
+          'Vitamin D analogues on the body: standardised mean difference against placebo -0.67 to -1.66. Potent corticosteroids -0.89 (95% CI -1.06 to -0.72) and very potent -1.56 (95% CI -1.87 to -1.26). On the scalp, vitamin D was significantly less effective than both, and less well tolerated locally than potent corticosteroids on both sites.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the endpoint does not measure',
+        laymanDesc:
+          'Psoriasis is treated for decades and these trials ran for weeks. The reason to pick this drug over a steroid is what happens to skin over years, and only twenty-five of a hundred and seventy-seven trials even looked.',
+        molecularDetail:
+          'Only 25 of 177 trials assessed clinical cutaneous dermal atrophy; few cases were found and reporting was insufficient to judge whether the assessment methods could have detected it. The review states that clinical measurements of dermal atrophy are insensitive and detect only the most severe cases.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane topical psoriasis review, vitamin D analogues against placebo (CD005028)',
+        phase: 'Systematic review and meta-analysis of 177 randomised controlled trials',
+        sampleSize: 34808,
+        primaryEndpoint:
+          'Global improvement in chronic plaque psoriasis against placebo and against other topical treatments',
+        endpointMet: true,
+        statisticalPValue:
+          'Standardised mean difference against placebo on the body from -0.67 (95% CI -1.04 to -0.30) to -1.66 (95% CI -2.66 to -0.67), equivalent to 0.8 to 1.9 points on a six-point scale',
+        unreportedAdverseSignals:
+          'Only 25 of 177 trials assessed dermal atrophy, and reporting was too sparse to judge whether the assessment methods were adequate. The review states that the long-term safety comparison which motivates the whole drug class has not been made.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane topical psoriasis review, vitamin D against corticosteroids on the scalp',
+        phase: 'Pooled head-to-head comparison within the same systematic review',
+        sampleSize: 34808,
+        primaryEndpoint:
+          'Global improvement in scalp psoriasis, vitamin D against potent and very potent corticosteroids',
+        endpointMet: false,
+        statisticalPValue:
+          'Vitamin D significantly less effective than both potent and very potent corticosteroids on the scalp, supported by indirect evidence from placebo-controlled trials',
+        unreportedAdverseSignals:
+          'Potent corticosteroids also caused fewer local adverse events than vitamin D on both body and scalp, which reverses the usual assumption about which of the two is gentler.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Calcipotriol plus 5-fluorouracil actinic keratosis trial (NCT02019355)',
+        phase: 'Randomised, double-blind, investigator-initiated clinical trial',
+        sampleSize: 131,
+        primaryEndpoint:
+          'Percentage reduction in actinic keratosis count after a four-day course, against Vaseline plus 5-fluorouracil',
+        endpointMet: true,
+        statisticalPValue: '87.8% against 26.3% mean reduction, P<0.0001',
+        unreportedAdverseSignals:
+          'Four days of treatment and a lesion-count endpoint. The cancer question was answered separately in a follow-up cohort of the same participants rather than in this trial.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Rosenberg 2019 three-year squamous cell carcinoma follow-up cohort (PMID 30895944)',
+        phase: 'Blinded prospective cohort study of participants from the randomised trial',
+        sampleSize: 70,
+        primaryEndpoint:
+          'Squamous cell and basal cell carcinoma incidence at 1, 2 and 3 years after treatment',
+        endpointMet: true,
+        statisticalPValue:
+          'SCC on treated face and scalp within 3 years: 2 of 30 (7%) against 11 of 40 (28%), hazard ratio 0.215 (95% CI 0.048 to 0.972), P=0.032. Overall SCC-free survival over more than 1,500 days P=0.0765',
+        unreportedAdverseSignals:
+          'The significant result is confined to one anatomical site and one time horizon in 70 people. Basal cell carcinoma did not differ, and two authors hold a filed patent on the combination.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Vitamin D analogues significantly better than placebo on the body, standardised mean difference -0.67 to -1.66 across 177 trials and 34,808 participants',
+        'Significantly less effective than both potent and very potent corticosteroids on the scalp',
+        'More local adverse events than potent corticosteroids on both body and scalp',
+        'The fixed combination with a corticosteroid better than either component alone, and better tolerated than calcipotriene alone',
+        '87.8% against 26.3% reduction in actinic keratosis count after four days of calcipotriol plus 5-fluorouracil in 131 randomised participants (P<0.0001)',
+        'Squamous cell carcinoma on treated face and scalp within 3 years: 7% against 28%, hazard ratio 0.215 (95% CI 0.048 to 0.972)',
+      ],
+      unsupportedInferences: [
+        'That a vitamin D analogue spares skin from atrophy over years of psoriasis treatment — the rationale for the class, unmeasured in 152 of 177 trials',
+        'That the non-steroid option is the gentler one, when the pooled data show the opposite on local tolerability',
+        'That calcipotriene prevents skin cancer, when the significant result is a single-site three-year subgroup of 70 people',
+        'That the actinic keratosis result transfers to psoriasis or the psoriasis result to skin cancer — they are different endpoints in different diseases',
+      ],
+      whatFailedInitially: [
+        'Lost significantly to both potent and very potent corticosteroids on scalp psoriasis',
+        'Caused more burning and irritation than the steroids it was meant to replace',
+        'Was designed to avoid affecting blood calcium and still carries hypercalcaemia and hypercalciuria in its Warnings and Precautions',
+        'Overall squamous cell carcinoma-free survival across the whole follow-up period did not reach significance (P=0.0765), and basal cell carcinoma did not move at all',
+      ],
+      realWorldOutcome: [
+        'Approved in 1993 and still first-line for plaque psoriasis, now usually inside a fixed combination with a corticosteroid',
+        'Twenty-two listed generic products at a median United States acquisition cost of US$1.48 per gram',
+        'The Cochrane conclusion that corticosteroids perform at least as well with fewer local adverse events has not been overturned',
+        'Repurposed as a topical immune adjuvant against sun-damaged skin, on the strength of a cytokine nobody was looking for',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical ointment, cream, foam and scalp solution; also a fixed combination ointment and suspension with betamethasone dipropionate',
+      description:
+        'Applied to plaques. The molecule is degraded by acid and by light, so the vehicle is formulated on the alkaline side and packaged accordingly, and it is chemically incompatible with acidic co-applied products such as salicylic acid. The foam vehicle carries the paediatric indication from age 4. Rapid metabolism after absorption is what confines the effect to skin.',
+      safetyProfile:
+        'Local burning and irritation are the commonest effects and are significantly more frequent than with potent topical corticosteroids. Hypercalcaemia and hypercalciuria have been observed and the label directs discontinuation until calcium metabolism normalises. The fixed combination with betamethasone adds the corticosteroid warnings: reversible HPA-axis suppression with potential glucocorticosteroid insufficiency, and increased risk of cataract and glaucoma. The pooled review found no significant difference between topical agents in systemic adverse effects.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it better than a steroid cream for psoriasis?',
+        a: 'No, and on the scalp it is worse. The Cochrane review of 177 trials in 34,808 people concluded that corticosteroids perform at least as well as vitamin D analogues and are associated with a lower incidence of local adverse events. On the scalp specifically, vitamin D was significantly less effective than both potent and very potent corticosteroids, and indirect evidence from the placebo-controlled trials pointed the same way. What did beat both was the two of them combined in one product, on the body and on the scalp — and that combination was also better tolerated than calcipotriene by itself.',
+      },
+      {
+        q: 'Then why use it instead of a steroid at all?',
+        a: 'Because steroids thin skin over years and this does not. That is a real and well-understood pharmacological difference, and it is the reason the drug class exists. It is also, on the evidence, an assumption rather than a measurement. Of the 177 trials in the Cochrane review, 25 assessed dermal atrophy at all. Few cases were detected, and the review says the trials did not report enough detail to know whether the assessment methods were robust — adding that clinical measurement of atrophy is insensitive and picks up only the most severe cases. Psoriasis is treated for decades; the trials ran for weeks. The comparison that would settle this has not been done.',
+        auditNote:
+          'The absence of evidence here cuts both ways. It does not show steroids are safe long-term either — the review calls specifically for research on exactly that question.',
+      },
+      {
+        q: 'Does it burn less than a steroid because it is not a steroid?',
+        a: 'The opposite. For both body and scalp psoriasis, potent corticosteroids were less likely than vitamin D to cause local adverse events such as burning or irritation. This is one of the more reliably counterintuitive findings in the review, and it has a practical consequence: adding a corticosteroid to calcipotriene improves how it feels, so the combination product was tolerated significantly better than calcipotriene alone.',
+      },
+      {
+        q: 'Is it true that this psoriasis cream prevents skin cancer?',
+        a: 'Something real happened, and it is narrower than the headline. In a randomised double-blind trial, 131 people applied calcipotriol plus 5-fluorouracil or Vaseline plus 5-fluorouracil to their face, scalp and arms for four days. Precancerous lesion counts fell 87.8% against 26.3%. A blinded follow-up of those participants then found that squamous cell carcinoma on the treated face and scalp within three years occurred in 2 of 30 treated against 11 of 40 controls — a hazard ratio of 0.215. That is a striking result in 70 people at one anatomical site over one time window. Across the whole follow-up of more than 1,500 days the difference did not reach significance, and basal cell carcinoma did not change. Two authors hold a patent on the combination, which the paper discloses.',
+        auditNote:
+          'The mechanism is unusually well worked out for a result this small — it runs through a cytokine, TSLP, that calcipotriol induces in keratinocytes, and it was demonstrated in genetically engineered mice before the human trial.',
+      },
+      {
+        q: 'Can it raise the calcium in my blood?',
+        a: 'It was specifically engineered not to, and it still sometimes does. Calcipotriene is vitamin D hormone with its side chain rebuilt so the body destroys it within hours — same receptor binding, far shorter systemic life. That design mostly works, and the Cochrane review found no significant difference between topical agents in systemic adverse effects. But the label for the combination product lists hypercalcaemia and hypercalciuria in its Warnings and Precautions and directs that treatment be stopped until calcium metabolism normalises. The two statements are not in conflict: a pooled trial comparison and a postmarketing label warning are looking at different resolutions of the same question.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Mason AR, Mason J, Cork M, Dooley G, Hancock H. Topical treatments for chronic plaque psoriasis. Cochrane Database Syst Rev 2013;3:CD005028',
+        identifier: '10.1002/14651858.CD005028.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cunningham TJ et al. Randomized trial of calcipotriol combined with 5-fluorouracil for skin cancer precursor immunotherapy. J Clin Invest 2017;127:106-116',
+        identifier: '10.1172/JCI89820',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rosenberg AR et al. Skin cancer precursor immunotherapy for squamous cell carcinoma prevention. JCI Insight 2019;4:e125476',
+        identifier: '10.1172/jci.insight.125476',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Calcipotriol plus 5-fluorouracil actinic keratosis randomised trial registration record, 131 participants',
+        identifier: 'NCT02019355',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Calcipotriene and betamethasone dipropionate ointment United States prescribing information, Warnings and Precautions and Adverse Reactions — ANDA 200174, retrieved from the openFDA label endpoint',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA200174%22',
+        kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

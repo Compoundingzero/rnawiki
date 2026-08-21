@@ -2069,4 +2069,1037 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Bimatoprost — the strongest single glaucoma drop, sold under one name for pressure and
+  //    another for eyelashes, and the subject of a decade-long argument about what it binds to.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'bimatoprost',
+    name: 'Bimatoprost',
+    tradeName: 'Lumigan',
+    sponsor: 'AbbVie — developed and originally marketed by Allergan',
+    targetGene: 'PTGFR — the human prostaglandin F2-alpha receptor gene',
+    targetProtein:
+      'FP prostanoid receptor, reached largely through the hydrolysed free acid, on ciliary muscle and trabecular meshwork',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2001,
+    indication:
+      'Reduction of elevated intraocular pressure in patients with open-angle glaucoma or ocular hypertension; separately, under a different trade name and concentration, treatment of hypotrichosis of the eyelashes',
+    patientFriendlyIndication:
+      'High pressure inside the eye — and, sold under a different name, thin eyelashes',
+    anatomicalSite:
+      'Ciliary muscle and uveoscleral outflow pathway at the front of the eye; and, for the cosmetic product, the hair follicles at the upper eyelid margin',
+    conditionContext: {
+      conditionExplainer:
+        'Glaucoma damages the optic nerve, and the only risk factor anyone can change is the pressure inside the eye. Fluid leaves the eye by two routes, and bimatoprost widens the slower one, through the muscle behind the iris.',
+      whyItMatters:
+        'Of the fourteen first-line drops ranked in the pooled analysis of 114 trials, this is the one that lowers pressure most. It is also the one that reddens the eye most, and the one whose effect on eyelashes was large enough that the manufacturer registered it as a separate cosmetic drug.',
+      whoTakesThis:
+        'Adults with open-angle glaucoma or ocular hypertension, as a once-daily evening drop. The eyelash product is a different concentration applied to the lid margin and is not a glaucoma treatment.',
+      clinicalGoals:
+        'A reduction in millimetres of mercury, sustained through the day and through the year. The one-year trial reported the peak-timolol-effect comparison, which is the most demanding time of day to be measured at.',
+    },
+    oneSentenceVerdict:
+      'A synthetic prostamide that reaches the FP prostanoid receptor mostly as its hydrolysed free acid and widens the eye’s secondary drainage route, producing the largest pressure reduction of any single first-line drop — 5.61 mmHg at three months across 114 pooled trials, and 7.6 mmHg (30%) against timolol’s 5.3 mmHg (21%) at one year in 1,198 patients — while causing the highest rate of red eye in its class and eyelash growth marked enough to be sold separately as a cosmetic.',
+    laymanHowItWorks:
+      'Fluid drains out of the eye through two routes, and one of them runs through the ring of muscle behind the iris. Bimatoprost switches on a receptor there, and the cells respond by dismantling some of the connective tissue packed between the muscle fibres. The spaces widen, fluid leaves faster, and pressure falls. The same receptor sits in hair follicles and in the fat pads around the eye, which is why lashes grow and the eye socket can hollow.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 83,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$8.87 per millilitre, median across the 31 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Lumigan 0.03% was approved 16 March 2001 under NDA 021275 and the reformulated 0.01% on 31 August 2010 under NDA 022184. The same molecule was separately approved in 2008 at a cosmetic concentration for eyelash hypotrichosis, and in 2020 as a biodegradable intracameral implant, so one compound supports three regulatory identities with three price structures. The generic listing carries 31 products and a median acquisition cost of US$8.87 per millilitre, about five and a half times generic latanoprost.',
+      synthesisComplexity: 'Moderate',
+      costSource: {
+        label:
+          'Nearest published cost-of-production analysis: Hill AM, Barber MJ, Gotham D. Estimated costs of production and potential prices for the WHO Essential Medicines List. BMJ Glob Health 2018;3:e000571. Its methods restrict the analysis to solid oral formulations and exclude eye drops, which is why the synthesis cost field on this page is empty.',
+        identifier: '10.1136/bmjgh-2017-000571',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Bimatoprost’s competitors are the other prostaglandin analogues, and the pooled ranking separates the top three by less than a millimetre of mercury with overlapping credible intervals. What separates them in practice is the side effect profile: bimatoprost reddens eyes most and lengthens lashes most. The alternative that changes the terms rather than the molecule is the intracameral implant of bimatoprost itself, or selective laser trabeculoplasty.',
+      conventionalRx: [
+        {
+          name: 'Latanoprost (Xalatan)',
+          class: 'Prostaglandin F2-alpha analogue',
+          howItCompares:
+            'Second in the pooled ranking at 4.85 mmHg against bimatoprost’s 5.61, with overlapping credible intervals and a difference the analysis’s authors describe as possibly not clinically meaningful. Latanoprost is the only glaucoma drop with a placebo-controlled visual field trial.',
+          typicalCost:
+            'US$1.57 per millilitre, median across the 13 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: about one sixth the acquisition cost, less conjunctival redness, a randomised placebo-controlled vision outcome. Cons: slightly less pressure lowering, and the same iris pigmentation and periorbitopathy.',
+        },
+        {
+          name: 'Travoprost (Travatan)',
+          class: 'Prostaglandin F2-alpha analogue',
+          howItCompares:
+            'Third at 4.83 mmHg, statistically indistinguishable from latanoprost. Approved on the same day as Lumigan in March 2001.',
+          typicalCost:
+            'US$9.33 per millilitre, median across the 14 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: comparable efficacy, a benzalkonium-free formulation available. Cons: comparable acquisition cost to bimatoprost with slightly less pressure lowering, and the same class side effects.',
+        },
+        {
+          name: 'Bimatoprost intracameral implant (Durysta)',
+          class: 'The same molecule as a biodegradable implant placed inside the eye',
+          howItCompares:
+            'Removes the daily drop entirely by releasing drug from a implant placed in the anterior chamber. In the pooled phase 3 analysis of 372 patients receiving the 10-microgram implant, 82% of implants were absent or at 25% or less of their initial size by 52 weeks and 95% by month 20.',
+          typicalCost:
+            'Not listed in the CMS National Average Drug Acquisition Cost survey consulted for this page — it is a physician-administered implant, not a dispensed drop',
+          prosAndCons:
+            'Pros: no daily instillation, no ocular surface preservative exposure. Cons: an intraocular procedure, variable biodegradation between patients, and the trials are still working out when re-administration is appropriate.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Wipe any excess off the eyelid skin straight away',
+          action:
+            'Blot the lid and surrounding skin after instilling, rather than letting the drop run.',
+          patientImpact:
+            'Bimatoprost darkens eyelid skin and lengthens and darkens eyelashes wherever it makes prolonged contact. The eyelash effect is large enough that the same molecule at a cosmetic concentration is separately approved and marketed for increasing eyelash length, thickness and darkness.',
+          clinicalPrecaution:
+            'If only one eye is treated, unwiped run-off produces visible asymmetry in lash length and lid colour. Neither effect is dangerous, and the lid darkening is generally reported to reverse while the lash change is slower to.',
+        },
+        {
+          name: 'Say if the redness is not settling after the first few weeks',
+          action:
+            'Report persistent conjunctival redness rather than assuming it is a break-in effect.',
+          patientImpact:
+            'Hyperemia was the commonest adverse effect in the one-year trial and significantly more frequent with bimatoprost than timolol. It is the reason the manufacturer developed a lower 0.01% concentration, in which moderate to severe hyperemia occurred in 3.2% of patients against 9.1% on 0.03%.',
+          clinicalPrecaution:
+            'The lower concentration was shown equivalent on pressure across twelve months, with between-group differences under 0.9 mmHg. Persistent redness is therefore a reason to discuss concentration rather than to abandon the class.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CCNC(=O)CCC/C=C\\C[C@H]1[C@H](C[C@H]([C@@H]1/C=C/[C@H](CCC2=CC=CC=C2)O)O)O',
+      chemicalFormula: 'C25H37NO4',
+      molecularWeight: '415.60 g/mol',
+      targetReceptorAffinity:
+        'Bimatoprost is an ethylamide — a prostamide — rather than an ester, which is what distinguishes it chemically from latanoprost and travoprost. Its free acid, 17-phenyl-trinor prostaglandin F2-alpha, is a potent FP prostanoid receptor agonist. Aqueous humour sampled from human eyes before cataract surgery contained free acid at 22.0 nmol/l (SEM 7.0) two hours after a dose and 7.0 nmol/l (4.6) at twelve hours, against intact amide at 5.7 and 1.1 nmol/l, with both undetectable after vehicle. The manufacturer has argued for a distinct prostamide-sensitive receptor, and that measurement is the principal evidence against the argument being necessary.',
+      structureSource: {
+        label: 'PubChem CID 5311027 (bimatoprost) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5311027',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bim-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemistry of the prostaglandin core and geometry of both alkene bonds',
+          description:
+            'Confirm all five stereocentres plus the cis geometry of the 5,6 alkene and the trans geometry of the 13,14 alkene. The 13,14 double bond is the feature that separates bimatoprost from latanoprost, which is saturated there, and the difference is not cosmetic: it is part of why the two molecules behave differently at the receptor and in the orbit.',
+          reagentsAndBuffer:
+            'Bimatoprost reference standard, chiral HPLC with polysaccharide stationary phase, 1H NMR with nuclear Overhauser measurements to assign alkene geometry, optical rotation',
+        },
+        {
+          id: 'bim-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Amidation of the carboxylic acid with ethylamine',
+          description:
+            'Couple 17-phenyl-trinor prostaglandin F2-alpha to ethylamine to form the ethylamide. This single step is what makes the compound a prostamide rather than another ester prodrug, and it is the step the entire mechanistic argument about this drug turns on: an amide is hydrolysed far more slowly than an ester.',
+          dependsOnStepId: 'bim-w1',
+          reagentsAndBuffer:
+            'Ethylamine, peptide coupling reagent or mixed anhydride activation, mild base, anhydrous aprotic solvent, low temperature to protect the allylic alcohols',
+        },
+        {
+          id: 'bim-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Removal of residual free acid and 15-keto degradant',
+          description:
+            'Separate unreacted free acid and the 15-position oxidation product. Residual free acid matters here more than in most syntheses because it is itself the active species in the eye, so an uncontrolled amount of it changes the effective potency of the finished product rather than merely its purity.',
+          dependsOnStepId: 'bim-w2',
+          reagentsAndBuffer:
+            'Preparative reversed-phase chromatography, ethyl acetate and heptane or acetonitrile and water gradients, amber glassware, stability-indicating HPLC with free acid as a named impurity',
+        },
+        {
+          id: 'bim-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Aqueous humour sampling for amide and free acid after topical dosing',
+          description:
+            'Dose the eye, then sample aqueous humour and quantify both the intact amide and the free acid separately. This is the assay that settled the mechanism argument in humans, and it only works if both species are measured: an assay reporting total drug-related material cannot distinguish a prostamide receptor from a slow-hydrolysing prodrug.',
+          dependsOnStepId: 'bim-w3',
+          reagentsAndBuffer:
+            'Anterior chamber paracentesis samples, high-pressure liquid chromatography with mass spectrometric detection, deuterated internal standards for both amide and acid, vehicle-treated control eyes',
+        },
+        {
+          id: 'bim-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'FP receptor functional assay with adipocyte differentiation counter-screen',
+          description:
+            'Measure agonist potency of the free acid at the recombinant FP receptor, then run a preadipocyte differentiation assay. The second is not an off-target screen in the usual sense: FP activation inhibits adipogenesis, and that on-target effect in orbital fat is the mechanism of the periorbitopathy this class causes.',
+          dependsOnStepId: 'bim-w4',
+          reagentsAndBuffer:
+            'Cells expressing recombinant human FP receptor, calcium-sensitive fluorescent dye, preadipocyte cultures with differentiation medium, lipid staining for quantification, prostaglandin F2-alpha as reference agonist',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bim-a1',
+        category: 'measured',
+        title: 'First of fourteen first-line drops, and the margin is under a millimetre',
+        laymanSummary:
+          'Pooling 114 trials, bimatoprost lowers pressure more than any other single drop: 5.61 millimetres of mercury. Latanoprost is at 4.85 and travoprost at 4.83. The authors say the differences within the class may not be clinically meaningful.',
+        technicalDetails:
+          'In the Bayesian network meta-analysis of 114 randomised trials with data from 20,275 participants, mean reduction in intraocular pressure at 3 months was 5.61 mmHg (95% credible interval 4.94 to 6.29) for bimatoprost, the highest of fourteen first-line agents. Latanoprost followed at 4.85 (4.24 to 5.46) and travoprost at 4.83 (4.12 to 5.54), with credible intervals overlapping bimatoprost’s. Timolol was at 3.70 and the carbonic anhydrase inhibitors at roughly 2.4. The authors state that bimatoprost, latanoprost and travoprost are among the most efficacious drugs, that the within-class differences were small and may not be clinically meaningful, and that adverse effects, patient preferences and cost should all enter the choice.',
+        evidenceSource: 'Li T et al., Ophthalmology 2016;123:129-140',
+        doi: '10.1016/j.ophtha.2015.09.005',
+        measuredMetric:
+          'Mean intraocular pressure reduction at 3 months, pooled across 114 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bim-a2',
+        category: 'measured',
+        title: 'Beat timolol at every hour of every visit across a full year',
+        laymanSummary:
+          'Two identical year-long trials put 1,198 patients on bimatoprost once daily, bimatoprost twice daily or timolol. Once-daily bimatoprost lowered pressure more than timolol at every measurement time at every visit, and got more patients to a low target.',
+        technicalDetails:
+          'Two identical multicentre, randomised, double-masked, one-year trials enrolled 474 patients on bimatoprost 0.03% once daily, 483 on bimatoprost 0.03% twice daily and 241 on timolol 0.5% twice daily. Bimatoprost once daily gave significantly lower mean intraocular pressure than timolol at every time of day at each study visit (P<.001). At 10 AM, the peak timolol effect, at month 12, mean reduction from baseline was 7.6 mmHg (30%) with bimatoprost against 5.3 mmHg (21%) with timolol (P<.001). Pressure at or below 17 mmHg was reached by 58% of bimatoprost once-daily patients against 37% on timolol (P<.001). Twice-daily bimatoprost was significantly better than timolol at most time points but worse than the once-daily regimen. Hyperemia was the commonest adverse effect and significantly more frequent on bimatoprost once daily than timolol (P<.001).',
+        evidenceSource: 'Higginbotham EJ et al., Arch Ophthalmol 2002;120:1286-1293',
+        doi: '10.1001/archopht.120.10.1286',
+        measuredMetric:
+          'Diurnal intraocular pressure at 12 months, bimatoprost once and twice daily against timolol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bim-a3',
+        category: 'failed',
+        title: 'More often is worse: twice daily lowered pressure less than once daily',
+        laymanSummary:
+          'In both the three-month and the twelve-month trials, taking bimatoprost twice a day worked less well than taking it once. That is the opposite of what a dose-response curve should look like.',
+        technicalDetails:
+          'In the three-month trial of 596 patients randomised 2:2:1, mean reduction from baseline at 8 AM at month 3 was 9.16 mmHg (35.2%) with bimatoprost 0.03% once daily, 7.78 mmHg (30.4%) twice daily and 6.74 mmHg (26.2%) with timolol twice daily. The one-year trials reproduced the pattern: once-daily dosing was superior to twice-daily at most time points, and the authors state directly that bimatoprost once daily provides pressure lowering superior to timolol or to bimatoprost twice daily. Once-daily dosing also produced better ocular tolerability. The usual explanation offered is receptor downregulation or desensitisation with more frequent exposure, and it remains an explanation rather than a measurement. What is not in doubt is the observation, in two independent trials totalling nearly 1,800 patients.',
+        evidenceSource:
+          'Brandt JD et al., Ophthalmology 2001;108:1023-1031; Higginbotham EJ et al., Arch Ophthalmol 2002;120:1286-1293',
+        doi: '10.1016/s0161-6420(01)00584-x',
+        measuredMetric:
+          'Intraocular pressure reduction, once-daily against twice-daily dosing of the same drug',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bim-a4',
+        category: 'failed',
+        title: 'Reddest eye in the class, and the maker cut the dose to fix it',
+        laymanSummary:
+          'Conjunctival redness was the commonest side effect in every trial and clearly worse than with timolol. Allergan responded by developing a formulation at one third the concentration, and it lowered pressure just as well.',
+        technicalDetails:
+          'A twelve-month randomised, double-masked trial compared bimatoprost 0.01% (n=186), 0.0125% (n=188) and 0.03% (n=187). Differences in mean intraocular pressure between the lower concentrations and 0.03% were under 0.9 mmHg throughout follow-up, and bimatoprost 0.01% met predetermined equivalence criteria against 0.03% — 95% confidence interval of the between-group difference within plus or minus 1.5 mmHg at all time points and within plus or minus 1 mmHg at most. Treatment-related adverse events were significantly reduced at both lower concentrations (P ≤ .034). Moderate to severe increase from baseline in macroscopic hyperemia occurred in 3.2% on 0.01%, 9.0% on 0.0125% and 9.1% on 0.03% (P = .019 for 0.01% against 0.03%). The finding that a third of the concentration is equally effective and a third as red is a retrospective judgement on the original dose selection.',
+        evidenceSource: 'Katz LJ et al., Am J Ophthalmol 2010;149:661-671',
+        doi: '10.1016/j.ajo.2009.12.003',
+        measuredMetric:
+          'Macroscopic conjunctival hyperemia and intraocular pressure across three concentrations over 12 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bim-a5',
+        category: 'failed',
+        title: 'The orbit hollows, and the receptor being hit is the intended one',
+        laymanSummary:
+          'Long-term users can develop a sunken look around the treated eye. Bimatoprost is the agent in the class where it is worst, and switching to latanoprost has been shown to reverse part of it.',
+        technicalDetails:
+          'Prostaglandin-associated periorbitopathy — deepening of the upper eyelid sulcus, orbital fat atrophy, ptosis, periocular skin darkening — was described from clinical practice rather than from registration trials. A Japanese series specifically documented recovery from deepening of the upper eyelid sulcus after switching from bimatoprost to latanoprost, which establishes both that the effect is real and that it is dose- or agent-dependent within the class. Experimental work then showed that activation of the prostanoid FP receptor inhibits adipogenesis, giving a mechanism in which the orbital fat loss is an on-target consequence of the receptor the drug is prescribed to activate. Unilateral treatment produces visible facial asymmetry, which is how it is usually noticed, and no study provides a reliable incidence figure.',
+        evidenceSource:
+          'Sakata R et al., Jpn J Ophthalmol 2013;57:179-184; Taketani Y et al., Invest Ophthalmol Vis Sci 2014;55:1269-1276',
+        doi: '10.1167/iovs.13-12589',
+        measuredMetric:
+          'Upper eyelid sulcus depth on switching from bimatoprost to latanoprost, and FP-mediated inhibition of adipogenesis in vitro',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bim-a6',
+        category: 'conclusion_shift',
+        title: 'The prostamide receptor argument met a mass spectrometer',
+        laymanSummary:
+          'The manufacturer argued for years that bimatoprost works through a receptor of its own, distinct from the one latanoprost hits. Then someone measured what was actually inside treated human eyes, and found plenty of the ordinary active acid.',
+        technicalDetails:
+          'Bimatoprost is an ethylamide rather than an ester, and the manufacturer’s position was that it acts intact at a distinct prostamide-sensitive receptor rather than as a prodrug of an FP agonist. A prospective, masked, vehicle-controlled study treated one eye of each of 31 cataract patients with bimatoprost 0.03% or vehicle once daily for seven days before surgery and assayed aqueous humour by high-pressure liquid chromatography and mass spectrometry at paracentesis. Free acid concentrations were 22.0 nmol/l (SEM 7.0, n=12) at two hours and 7.0 nmol/l (4.6, n=8) at twelve hours, against 5.7 and 1.1 nmol/l for the intact amide, with both undetectable after vehicle. The authors concluded that sufficient free acid — a potent FP prostanoid receptor agonist — is present to account for the pressure reduction. That does not disprove a prostamide receptor. It removes the need to invoke one, and the burden of proof moved with it.',
+        evidenceSource: 'Camras CB et al., Ophthalmology 2004;111:2193-2198',
+        doi: '10.1016/j.ophtha.2004.06.028',
+        inferredClaim:
+          'That bimatoprost acts intact at a distinct prostamide receptor rather than as a slow prodrug of an FP agonist — a mechanism claim that human aqueous humour measurement made unnecessary rather than impossible',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'bim-a7',
+        category: 'inferred',
+        title: 'The pressure result is real, the vision result is borrowed',
+        laymanSummary:
+          'Every trial of this drug measures pressure. The evidence that lowering pressure preserves sight comes from trials of other drugs, and the strongest of those tested latanoprost, not this one.',
+        technicalDetails:
+          'The registration programme for bimatoprost, from the three-month trial in 596 patients through the one-year trials in 1,198, used intraocular pressure as the outcome throughout. No trial of bimatoprost has used visual field progression or optic disc deterioration as a primary endpoint. The placebo-controlled visual function evidence in this therapeutic area comes from UKGTS, which randomised 516 patients to latanoprost or identical placebo drops and found time to visual field deterioration delayed with an adjusted hazard ratio of 0.44 (95% CI 0.28 to 0.69). The Ocular Hypertension Treatment Study and the Early Manifest Glaucoma Trial support pressure lowering at class level, using any commercially available agent and betaxolol respectively. Bimatoprost’s claim to preserve vision is therefore an inference from its superior pressure lowering plus the class-level evidence, and the class-level evidence was not generated with this molecule.',
+        evidenceSource:
+          'Garway-Heath DF et al., Lancet 2015;385:1295-1304 (UKGTS); Kass MA et al., Arch Ophthalmol 2002;120:701-713 (OHTS, NCT00000125)',
+        doi: '10.1016/S0140-6736(14)62111-5',
+        inferredClaim:
+          'That the largest pressure reduction in the class produces the best preserved vision — never tested for this drug, and the drug that was tested against placebo for vision is the one that lowers pressure slightly less',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One evening drop, and most of it drains away',
+        laymanDesc:
+          'A single drop at night. The eye holds a fraction of it and the rest goes down the tear duct. Trying to help by using it twice a day makes it work less well, which is unusual for a drug.',
+        molecularDetail:
+          'Bimatoprost 0.03% or 0.01% is instilled once daily in the evening. Two independent randomised trials found once-daily dosing superior to twice-daily on pressure and on tolerability, a departure from ordinary dose-response usually attributed to receptor desensitisation with more frequent exposure.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It crosses the cornea, and enzymes cut the amide slowly',
+        laymanDesc:
+          'The molecule carries a chemical group that is cut off inside the eye to release the active form. Unlike similar drugs it is an amide, which is cut far more slowly than an ester, so both forms are present at once.',
+        molecularDetail:
+          'Bimatoprost is an ethylamide, hydrolysed by ocular amidases to 17-phenyl-trinor prostaglandin F2-alpha. In human aqueous humour after seven days of once-daily dosing, free acid reached 22.0 nmol/l at two hours against 5.7 nmol/l for the intact amide, and 7.0 against 1.1 nmol/l at twelve hours. Slow amide hydrolysis, rather than a distinct receptor, is the parsimonious explanation for the drug’s pharmacology.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The free acid switches on the FP receptor',
+        laymanDesc:
+          'The released active form binds the same receptor latanoprost and travoprost bind, on the muscle ring behind the iris.',
+        molecularDetail:
+          '17-phenyl-trinor prostaglandin F2-alpha is a potent agonist at the FP prostanoid receptor expressed on ciliary muscle and trabecular meshwork. The measured aqueous concentration is sufficient to account for the observed pressure reduction, which is the basis for treating bimatoprost as a slow prodrug rather than a distinct pharmacological class.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Connective tissue is remodelled and the drain widens',
+        laymanDesc:
+          'The receptor tells the cells to break down some of the packing between the muscle bundles. Channels open where there were none, over days to weeks rather than instantly.',
+        molecularDetail:
+          'FP receptor activation upregulates matrix metalloproteinases in the ciliary muscle, remodelling the extracellular matrix of the uveoscleral outflow pathway and reducing its hydraulic resistance. The response is transcriptional, which is why the full effect takes weeks to establish and why the pressure reduction is sustained rather than pulsatile.',
+        iconName: 'Wrench',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Pressure falls further than with any other single drop',
+        laymanDesc:
+          'Pressure drops by around five and a half millimetres of mercury on average, more than any competitor. At the twelve-month mark in the big trial it was down 30% against timolol’s 21%.',
+        molecularDetail:
+          'Pooled reduction is 5.61 mmHg (95% credible interval 4.94 to 6.29) at three months, first of fourteen agents. At month 12 at the 10 AM peak-timolol time point, reduction was 7.6 mmHg (30%) against timolol’s 5.3 mmHg (21%), P<.001, with 58% of bimatoprost patients at or below 17 mmHg against 37%.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The same receptor is in lashes, lids and orbital fat',
+        laymanDesc:
+          'Hair follicles have this receptor too, so lashes grow longer, thicker and darker — enough that the same drug is sold as a cosmetic. The fat pads around the eye have it as well, and there the effect is loss rather than growth.',
+        molecularDetail:
+          'FP activation in eyelash follicles lengthens the anagen growth phase, an effect large enough that the molecule is separately approved at a cosmetic concentration for eyelash hypotrichosis. FP activation in orbital preadipocytes inhibits adipogenesis, producing the deepened upper eyelid sulcus and orbital fat atrophy of prostaglandin-associated periorbitopathy. Both are on-target effects of the intended receptor in unintended tissue.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Bimatoprost Study Groups 1 and 2, one-year (Higginbotham 2002)',
+        phase: 'Two identical multicentre, randomised, double-masked, 12-month trials',
+        sampleSize: 1198,
+        primaryEndpoint: 'Diurnal intraocular pressure at 8 AM, 10 AM and 4 PM over 12 months',
+        endpointMet: true,
+        statisticalPValue:
+          'At 10 AM month 12, -7.6 mmHg (30%) bimatoprost once daily against -5.3 mmHg (21%) timolol, P < .001; 58% against 37% at or below 17 mmHg, P < .001',
+        unreportedAdverseSignals:
+          'Twice-daily bimatoprost performed worse than once-daily, an inverse dose-response the paper reports without explaining. Hyperemia was significantly more frequent on bimatoprost than timolol.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Bimatoprost Study Group three-month trial (Brandt 2001)',
+        phase: 'Multicentre, 3-month, randomised, double-masked, 2:2:1 allocation',
+        sampleSize: 596,
+        primaryEndpoint:
+          'Reduction in intraocular pressure in the eye with higher baseline pressure at month 3',
+        endpointMet: true,
+        statisticalPValue:
+          'At 8 AM month 3, -9.16 mmHg (35.2%) once daily, -7.78 mmHg (30.4%) twice daily, -6.74 mmHg (26.2%) timolol; P < 0.001 for once daily against timolol at all time points',
+        unreportedAdverseSignals:
+          'Bimatoprost caused significantly more hyperemia and eyelash growth than timolol. The eyelash finding was later developed into a separate cosmetic product rather than treated only as a side effect.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Bimatoprost concentration comparison (Katz 2010)',
+        phase: 'Prospective, randomised, double-masked, multicentre, 12-month',
+        sampleSize: 561,
+        primaryEndpoint:
+          'Intraocular pressure over 12 months, bimatoprost 0.01% and 0.0125% against 0.03%',
+        endpointMet: true,
+        statisticalPValue:
+          'Between-group differences under 0.9 mmHg throughout; 0.01% met equivalence criteria; moderate to severe hyperemia 3.2% against 9.1%, P = .019',
+        unreportedAdverseSignals:
+          'Sponsored by the manufacturer to support a lower-concentration product. The result is that the concentration marketed for nine years was three times what was needed, which the trial reports without saying so.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ARTEMIS implant biodegradation (NCT02247804, NCT02250651)',
+        phase: 'Two identical randomised phase 3 studies, 20-month follow-up',
+        sampleSize: 372,
+        primaryEndpoint:
+          'Time course of biodegradation of the 10-microgram intracameral bimatoprost implant on gonioscopy',
+        endpointMet: true,
+        statisticalPValue:
+          '82% of implants absent or ≤25% of initial size by 52 weeks, 95% by month 20; reported descriptively',
+        unreportedAdverseSignals:
+          'Biodegradation was variable between patients and implants frequently swelled between weeks 6 and 28 before shrinking. The paper states that studies are still in progress to determine appropriate timing for re-administration.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Mean pressure reduction of 5.61 mmHg (95% credible interval 4.94 to 6.29) at three months, first of fourteen first-line agents across 114 pooled trials',
+        '7.6 mmHg (30%) reduction at month 12 against timolol’s 5.3 mmHg (21%) at the peak-timolol time point, P < .001, in 1,198 randomised patients',
+        'Bimatoprost 0.01% equivalent to 0.03% over 12 months with moderate to severe hyperemia in 3.2% against 9.1% (P = .019)',
+        'Free acid at 22.0 nmol/l against intact amide at 5.7 nmol/l in human aqueous humour two hours after dosing, both undetectable after vehicle',
+      ],
+      unsupportedInferences: [
+        'That the strongest pressure lowering in the class produces the best preserved vision — no trial of this drug has used a visual outcome',
+        'That bimatoprost acts intact at a distinct prostamide receptor, an argument human aqueous humour measurement made unnecessary',
+        'That the sub-millimetre advantage over latanoprost and travoprost is clinically meaningful; the pooling authors say it may not be',
+        'That eyelash growth and periorbitopathy are separable phenomena — both follow from FP activation in tissue the drop was not aimed at',
+      ],
+      whatFailedInitially: [
+        'Twice-daily dosing lowered pressure less than once-daily in both the three-month and the twelve-month trials, the opposite of a dose-response',
+        'Conjunctival hyperemia was the commonest adverse effect throughout and drove development of a formulation at one third the concentration nine years after launch',
+        'Prostaglandin-associated periorbitopathy was not identified in the registration programme and is worst with this agent in the class',
+        'The mechanism the drug was marketed on — a distinct prostamide receptor — lost its necessity to a mass spectrometry study of 31 human eyes',
+      ],
+      realWorldOutcome: [
+        'Approved 16 March 2001 under NDA 021275, with a lower-concentration formulation approved in 2010 under NDA 022184',
+        'The same molecule separately approved in 2008 at a cosmetic concentration for eyelash hypotrichosis, turning a side effect into a product line',
+        'Approved in 2020 as a biodegradable intracameral implant, removing the daily drop for a subset of patients',
+        'Now generic with 31 listed products, at a median United States acquisition cost of US$8.87 per millilitre',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical ophthalmic solution 0.03% and 0.01%, once daily in the evening; also a biodegradable intracameral implant',
+      description:
+        'An aqueous solution instilled once daily. Twice-daily dosing was tested in both pivotal programmes and lowered pressure less than once-daily, so the schedule is not a convenience choice. The intracameral implant places the same molecule inside the anterior chamber and biodegrades over roughly a year, with 82% of implants absent or at a quarter of their initial size by 52 weeks.',
+      safetyProfile:
+        'Conjunctival hyperemia, the commonest adverse effect and significantly more frequent than with timolol, reduced from 9.1% to 3.2% moderate-to-severe by the lower concentration. Eyelash lengthening, thickening and darkening, marked enough to support a separate cosmetic approval. Increased brown iris pigmentation, permanent. Eyelid skin darkening. Prostaglandin-associated periorbitopathy with deepening of the upper eyelid sulcus and orbital fat atrophy, described after approval, worst in this agent within the class, and partially reversible on switching. Rare macular oedema, chiefly in aphakic or pseudophakic eyes with a torn posterior capsule. No systemic beta-blockade and no respiratory or cardiac contraindications.',
+    },
+    commonQuestions: [
+      {
+        q: 'It is the strongest drop. Does that make it the best choice?',
+        a: 'Not automatically, and the people who produced the ranking say so. Across 114 pooled trials bimatoprost lowers pressure 5.61 millimetres of mercury against latanoprost’s 4.85 and travoprost’s 4.83, with overlapping credible intervals, and the authors state that within-class differences were small and may not be clinically meaningful. Against that under-a-millimetre advantage, bimatoprost reddens eyes more than anything else in the class, produces the most marked eyelash growth, and is the agent where periorbital fat loss is worst. It also costs about five and a half times generic latanoprost per millilitre. And the only glaucoma drop with a placebo-controlled trial showing preserved visual field is latanoprost, not this one.',
+        auditNote:
+          'Ranking a class by its most precisely measured number and choosing the winner is how a sub-millimetre difference comes to outweigh three side effects and a sixfold price gap.',
+      },
+      {
+        q: 'Why once a day and not twice?',
+        a: 'Because twice a day works less well, which is genuinely odd and was found twice. In the three-month trial of 596 patients, once-daily bimatoprost lowered pressure 9.16 mmHg and twice-daily 7.78 mmHg. In the two one-year trials of 1,198 patients, once-daily was superior to twice-daily at most time points and the paper says so in its conclusion. Once-daily was also better tolerated. The usual explanation is that more frequent exposure desensitises the receptor, which is plausible and has not been measured directly in humans. The observation itself is solid: two independent trials, nearly 1,800 patients, same direction.',
+      },
+      {
+        q: 'Is this the same drug they sell for eyelashes?',
+        a: 'Yes — same molecule, different concentration, different trade name, different regulatory approval. The eyelash effect turned up in the glaucoma trials as a side effect: the three-month trial recorded significantly more eyelash growth with bimatoprost than timolol. Allergan then developed and registered it as a cosmetic product for eyelash hypotrichosis, applied to the lid margin rather than dropped into the eye. The mechanism is the same receptor doing the same thing in a different tissue: FP activation extends the growth phase of the hair follicle. This is why any bimatoprost that runs onto the eyelid should be wiped off, and why treating one eye only can leave you with visibly different lashes.',
+      },
+      {
+        q: 'My eyes are constantly red. Is there anything to do about it?',
+        a: 'Ask about the lower concentration, because this is a solved problem. Hyperemia was the commonest adverse effect in every trial of the 0.03% formulation and clearly worse than timolol. A twelve-month randomised trial then compared 0.01%, 0.0125% and 0.03% in 561 patients and found that 0.01% lowered pressure equivalently — all differences under 0.9 mmHg — while moderate to severe hyperemia fell from 9.1% to 3.2%. The 0.01% formulation was approved in 2010. In other words, for nine years the marketed concentration was three times what was needed, and a third of the dose gets the same pressure with a third of the redness.',
+      },
+      {
+        q: 'What is a prostamide, and does it matter?',
+        a: 'It matters mostly as a case study in how a mechanism claim gets settled. Bimatoprost is chemically an amide where latanoprost and travoprost are esters, and Allergan argued for years that it therefore acts intact at a distinct receptor — a prostamide receptor — rather than being converted into an ordinary FP agonist like the others. A group then treated one eye each of 31 patients before cataract surgery, sampled the fluid from inside the eye at surgery, and ran it through a mass spectrometer. The active free acid was there at 22 nanomolar two hours after a dose, four times the concentration of the intact amide, and absent in the vehicle-treated eyes. That does not prove a prostamide receptor does not exist. It does mean you no longer need one to explain what the drug does.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Higginbotham EJ et al. One-year, randomized study comparing bimatoprost and timolol in glaucoma and ocular hypertension. Arch Ophthalmol 2002;120:1286-1293',
+        identifier: '10.1001/archopht.120.10.1286',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Brandt JD, VanDenburgh AM, Chen K, Whitcup SM. Comparison of once- or twice-daily bimatoprost with twice-daily timolol in patients with elevated IOP: a 3-month clinical trial. Ophthalmology 2001;108:1023-1031',
+        identifier: '10.1016/s0161-6420(01)00584-x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Katz LJ, Cohen JS, Batoosingh AL, Felix C, Shu V, Schiffman RM. Twelve-month, randomized, controlled trial of bimatoprost 0.01%, 0.0125%, and 0.03% in patients with glaucoma or ocular hypertension. Am J Ophthalmol 2010;149:661-671',
+        identifier: '10.1016/j.ajo.2009.12.003',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Camras CB et al. Detection of the free acid of bimatoprost in aqueous humor samples from human eyes treated with bimatoprost before cataract surgery. Ophthalmology 2004;111:2193-2198',
+        identifier: '10.1016/j.ophtha.2004.06.028',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Weinreb RN et al. Bimatoprost implant biodegradation in the phase 3, randomized, 20-month ARTEMIS studies. J Ocul Pharmacol Ther 2023;39:55-62',
+        identifier: '10.1089/jop.2022.0137',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Li T et al. Comparative effectiveness of first-line medications for primary open-angle glaucoma: a systematic review and network meta-analysis. Ophthalmology 2016;123:129-140',
+        identifier: '10.1016/j.ophtha.2015.09.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Taketani Y et al. Activation of the prostanoid FP receptor inhibits adipogenesis leading to deepening of the upper eyelid sulcus in prostaglandin-associated periorbitopathy. Invest Ophthalmol Vis Sci 2014;55:1269-1276',
+        identifier: '10.1167/iovs.13-12589',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sakata R et al. Recovery from deepening of the upper eyelid sulcus after switching from bimatoprost to latanoprost. Jpn J Ophthalmol 2013;57:179-184',
+        identifier: '10.1007/s10384-012-0219-3',
+        kind: 'doi',
+      },
+      {
+        label: 'ARTEMIS bimatoprost implant phase 3 study 1',
+        identifier: 'NCT02247804',
+        kind: 'nct',
+      },
+      {
+        label: 'ARTEMIS bimatoprost implant phase 3 study 2',
+        identifier: 'NCT02250651',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: LUMIGAN (bimatoprost ophthalmic solution) 0.03%, NDA 021275, AbbVie — original approval 16 March 2001; LUMIGAN 0.01% is NDA 022184, approved 31 August 2010',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021275',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5311027 — bimatoprost structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5311027',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Travoprost — approved the same day as bimatoprost, statistically tied with latanoprost, and
+  //    carrying a race-based subgroup sentence on its label that has gone unresolved for 25 years.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'travoprost',
+    name: 'Travoprost',
+    tradeName: 'Travatan Z',
+    sponsor: 'Alcon Pharmaceuticals Ltd',
+    targetGene: 'PTGFR — the human prostaglandin F2-alpha receptor gene',
+    targetProtein: 'FP prostanoid receptor on ciliary muscle and trabecular meshwork cells',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2001,
+    indication:
+      'Reduction of elevated intraocular pressure in patients with open-angle glaucoma or ocular hypertension',
+    patientFriendlyIndication: 'High pressure inside the eye, and the nerve damage it causes',
+    anatomicalSite:
+      'Ciliary muscle and the uveoscleral outflow pathway at the front of the eye, reached through the cornea',
+    conditionContext: {
+      conditionExplainer:
+        'Glaucoma is optic nerve damage that follows sustained pressure inside the eye. The pressure comes from an imbalance between fluid produced and fluid drained. Travoprost widens the slower of the eye’s two drainage routes.',
+      whyItMatters:
+        'Travoprost, latanoprost and bimatoprost are separated in the pooled ranking by less than a millimetre of mercury with overlapping intervals. Which one a patient ends up on is decided by tolerability, formulation and price rather than by measured superiority, and this page is about what actually distinguishes them.',
+      whoTakesThis:
+        'Adults with open-angle glaucoma or ocular hypertension, as a once-daily evening drop. A preservative-free-of-benzalkonium formulation exists for people whose ocular surface cannot tolerate the standard preservative, and an intracameral implant exists for people who cannot manage drops at all.',
+      clinicalGoals:
+        'A reduction in millimetres of mercury. The label reports 7 to 8 mmHg reductions from a baseline of 25 to 27 mmHg, and then adds a subgroup sentence about race that it has never been able to explain.',
+    },
+    oneSentenceVerdict:
+      'A trifluoromethylphenoxy prostaglandin analogue that reaches the FP receptor as its hydrolysed free acid and opens the uveoscleral outflow route, lowering pressure 4.83 mmHg at three months across 114 pooled trials — third of fourteen, statistically tied with latanoprost — and carrying on its label since 2001 an unresolved subgroup finding that the reduction in black patients was up to 1.8 mmHg greater, which the label itself says may be race or may be iris pigmentation.',
+    laymanHowItWorks:
+      'The eye drains fluid two ways, and the slower route passes through the muscle ring behind the iris. Travoprost is inactive as supplied: enzymes in the cornea strip a chemical tail off it on the way in, releasing the working form. That switches on a receptor in the muscle, the cells break down some of the connective tissue between the fibres, gaps widen and fluid leaves faster.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 80,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$9.33 per millilitre, median across the 14 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Travatan was approved 16 March 2001 under NDA 021257, the same day as Lumigan, and Travatan Z followed on 21 September 2006 under NDA 021994 with the benzalkonium chloride replaced by a borate-zinc ionic buffer. A travoprost intracameral implant was approved 13 December 2023 under NDA 218010. Generic travoprost carries 14 listed products at a median acquisition cost of US$9.33 per millilitre, roughly six times generic latanoprost for a drug the pooled analysis cannot distinguish from it.',
+      synthesisComplexity: 'Moderate',
+      costSource: {
+        label:
+          'Nearest published cost-of-production analysis: Hill AM, Barber MJ, Gotham D. Estimated costs of production and potential prices for the WHO Essential Medicines List. BMJ Glob Health 2018;3:e000571. Its methods restrict the analysis to solid oral formulations and exclude eye drops, which is why the synthesis cost field on this page is empty.',
+        identifier: '10.1136/bmjgh-2017-000571',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Travoprost’s nearest competitor is latanoprost, and the pooled analysis puts them 0.02 mmHg apart, which is nothing. The 12-month head-to-head trial found travoprost 0.8 mmHg lower at one time of day, on a sponsor-run study. Against that, latanoprost costs about a sixth as much per millilitre and has the only placebo-controlled visual field trial in the field. The genuinely different alternatives are the travoprost implant and laser.',
+      conventionalRx: [
+        {
+          name: 'Latanoprost (Xalatan)',
+          class: 'Prostaglandin F2-alpha analogue',
+          howItCompares:
+            'Second in the pooled ranking at 4.85 mmHg against travoprost’s 4.83, a difference of 0.02 mmHg with heavily overlapping credible intervals. In the manufacturer-run 12-month comparison, travoprost 0.004% was 0.8 mmHg lower than latanoprost at 4 PM across pooled visits (P = .0191) with response rates of 54.7% against 49.6%.',
+          typicalCost:
+            'US$1.57 per millilitre, median across the 13 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: roughly one sixth the acquisition cost, and the only glaucoma drop with a placebo-controlled visual field outcome. Cons: iris pigmentation change occurred in 5.2% against 3.1% on travoprost 0.004% in the head-to-head trial.',
+        },
+        {
+          name: 'Bimatoprost (Lumigan)',
+          class: 'Prostamide, reaching the same receptor through its free acid',
+          howItCompares:
+            'First in the pooled ranking at 5.61 mmHg against travoprost’s 4.83, again with overlapping intervals. Approved on the same day as Travatan in March 2001.',
+          typicalCost:
+            'US$8.87 per millilitre, median across the 31 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: the largest pooled pressure reduction of any single drop. Cons: the most conjunctival redness in the class and the most marked periorbital fat loss.',
+        },
+        {
+          name: 'Travoprost intracameral implant (iDose TR)',
+          class: 'The same molecule as a slow-eluting implant placed inside the eye',
+          howItCompares:
+            'In a 590-patient randomised double-masked pivotal trial, the slow-eluting implant was non-inferior to twice-daily timolol drops at months 3, 6, 9 and 12. Of patients on glaucoma medication at screening, 83.5% of implant patients were on fewer topical medications at month 12 against 23.9% of the timolol group (P<0.0001).',
+          typicalCost:
+            'Not listed in the CMS National Average Drug Acquisition Cost survey consulted for this page — it is a physician-administered implant rather than a dispensed drop',
+          prosAndCons:
+            'Pros: removes daily instillation and preservative exposure for most patients. Cons: an intraocular procedure, treatment-emergent adverse events in 39.5% of implant patients against 20.1% on timolol, and non-inferiority was demonstrated against timolol, not against a prostaglandin analogue.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask which formulation you are being given',
+          action:
+            'Ask whether the bottle is preserved with benzalkonium chloride or with the borate-zinc ionic buffer, particularly if you already have dry eye or surface irritation.',
+          patientImpact:
+            'Travatan Z substitutes a borate, propylene glycol, sorbitol and zinc chloride buffer for benzalkonium chloride. The reformulation exists because benzalkonium damages the ocular surface over years of daily use, and generic travoprost is supplied in both preserved and ionic-buffered versions.',
+          clinicalPrecaution:
+            'This is a formulation difference, not a difference in the drug. Both deliver travoprost 0.04 mg per millilitre at approximately pH 5.7, and the pressure-lowering evidence applies to both.',
+        },
+        {
+          name: 'Get a baseline iris photograph if your eyes are mixed-coloured',
+          action:
+            'Ask for a photograph before the first drop, especially if only one eye is being treated.',
+          patientImpact:
+            'Iris pigmentation change was documented in 6 of 196 patients on travoprost 0.004% (3.1%) and 10 of 201 on travoprost 0.0015% (5.0%) in the 12-month comparative trial, against 10 of 194 on latanoprost (5.2%) and none of 196 on timolol.',
+          clinicalPrecaution:
+            'The change is an increase in melanin within existing iris cells rather than new cells, and it does not reverse when the drug is stopped. A single treated eye can end up visibly darker than the other.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(C)OC(=O)CCC/C=C\\C[C@H]1[C@H](C[C@H]([C@@H]1/C=C/[C@H](COC2=CC=CC(=C2)C(F)(F)F)O)O)O',
+      chemicalFormula: 'C26H35F3O6',
+      molecularWeight: '500.50 g/mol',
+      targetReceptorAffinity:
+        'Supplied as an isopropyl ester prodrug and hydrolysed by corneal esterases to travoprost free acid, a highly selective and potent FP prostanoid receptor agonist. The structural difference from latanoprost is at the omega end: a 3-trifluoromethylphenoxy group joined through an ether oxygen, replacing latanoprost’s simple phenyl on a saturated chain, and a 13,14 double bond that latanoprost lacks. The label describes the compound as a pale yellow to yellowish viscous oil, freely soluble in acetonitrile, toluene, ethyl acetate and methanol and practically insoluble in water, which is why the finished product is a buffered aqueous solution containing a castor-oil solubiliser.',
+      structureSource: {
+        label: 'PubChem CID 5282226 (travoprost) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5282226',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'trv-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemistry of the cyclopentane core and the 15R configuration',
+          description:
+            'Confirm every stereocentre, and in particular the configuration at C15 bearing the secondary alcohol next to the trifluoromethylphenoxy ether. The label’s chemical name specifies 3R* at that position, and the epimer is a substantially weaker FP agonist rather than an equivalent one.',
+          reagentsAndBuffer:
+            'Travoprost reference standard, chiral HPLC with polysaccharide stationary phase, 1H, 13C and 19F NMR in deuterochloroform, optical rotation',
+        },
+        {
+          id: 'trv-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Ether coupling of the 3-trifluoromethylphenol to the omega chain',
+          description:
+            'Join 3-(trifluoromethyl)phenol through an ether linkage to the omega side chain, then esterify the acid to the isopropyl ester. The aryl ether is the design element that distinguishes travoprost from latanoprost, and the trifluoromethyl group is what raises FP potency and metabolic stability at that end of the molecule.',
+          dependsOnStepId: 'trv-w1',
+          reagentsAndBuffer:
+            '3-(trifluoromethyl)phenol, Mitsunobu or Williamson conditions, isopropyl esterification reagents, anhydrous aprotic solvent, nitrogen atmosphere, low temperature to protect the allylic alcohols',
+        },
+        {
+          id: 'trv-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Removal of the 15-keto and 5,6-trans impurities from the viscous oil',
+          description:
+            'Separate the 15-position oxidation product and the alkene isomer. Travoprost is isolated as an oil rather than a crystalline solid, so there is no recrystallisation step to fall back on and the entire purity burden sits on chromatography and on protecting the material from light and air afterwards.',
+          dependsOnStepId: 'trv-w2',
+          reagentsAndBuffer:
+            'Preparative reversed-phase or normal-phase chromatography, ethyl acetate and heptane gradient, amber glassware under nitrogen, stability-indicating HPLC with 19F NMR confirmation',
+        },
+        {
+          id: 'trv-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Corneal esterase hydrolysis with solubiliser present',
+          description:
+            'Run permeation across excised cornea in the actual finished vehicle, including the polyoxyl 40 hydrogenated castor oil solubiliser, and quantify free acid on the far side. Testing the drug in a simple buffer misses the point: the compound is practically insoluble in water and its delivery depends on the surfactant system as much as on its own lipophilicity.',
+          dependsOnStepId: 'trv-w3',
+          reagentsAndBuffer:
+            'Excised cornea in a Franz-type diffusion cell, the finished ionic buffered vehicle at pH 5.7 and 290 mOsmol/kg, LC-MS/MS quantification of travoprost and travoprost free acid',
+        },
+        {
+          id: 'trv-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'FP potency and melanin-binding measurement in pigmented iris tissue',
+          description:
+            'Measure agonist potency of the free acid at the recombinant FP receptor, then measure binding to melanin in pigmented iris preparations. The second assay is the one that speaks to the label’s unresolved subgroup sentence: if heavily pigmented irides sequester or release drug differently, that is a pharmacological explanation for a difference the label attributes to race or pigmentation without deciding which.',
+          dependsOnStepId: 'trv-w4',
+          reagentsAndBuffer:
+            'Cells expressing recombinant human FP receptor, calcium-sensitive fluorescent dye, synthetic and natural melanin preparations, pigmented and albino iris tissue, prostaglandin F2-alpha as reference agonist',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'trv-a1',
+        category: 'measured',
+        title: 'Third of fourteen, and 0.02 mmHg from second',
+        laymanSummary:
+          'Pooling 114 trials, travoprost lowers pressure 4.83 millimetres of mercury. Latanoprost is at 4.85. The two are indistinguishable, and both sit just behind bimatoprost.',
+        technicalDetails:
+          'In the Bayesian network meta-analysis of 114 randomised trials with data from 20,275 participants, travoprost reduced intraocular pressure at 3 months by 4.83 mmHg (95% credible interval 4.12 to 5.54), third of fourteen first-line agents. Latanoprost was 4.85 (4.24 to 5.46) and bimatoprost 5.61 (4.94 to 6.29). Timolol, the standard comparator, was 3.70 (3.16 to 4.24). The authors state that bimatoprost, latanoprost and travoprost are among the most efficacious drugs, that within-class differences were small and may not be clinically meaningful, and that adverse effects, patient preference and cost should be weighed alongside.',
+        evidenceSource: 'Li T et al., Ophthalmology 2016;123:129-140',
+        doi: '10.1016/j.ophtha.2015.09.005',
+        measuredMetric:
+          'Mean intraocular pressure reduction at 3 months, pooled across 114 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'trv-a2',
+        category: 'measured',
+        title: 'Twelve months against both rivals in 801 patients',
+        laymanSummary:
+          'A year-long four-arm trial compared two strengths of travoprost, latanoprost and timolol. Travoprost was equal or slightly better than latanoprost and clearly better than timolol, with the advantage over latanoprost amounting to 0.8 millimetres of mercury at one time of day.',
+        technicalDetails:
+          'Eight hundred and one patients with open-angle glaucoma or ocular hypertension were randomly assigned to travoprost 0.0015%, travoprost 0.004%, latanoprost 0.005% or timolol 0.5% for 12 months. Mean intraocular pressure over visits and time of day ranged from 17.9 to 19.1 mmHg on travoprost 0.0015%, 17.7 to 19.1 on travoprost 0.004%, 18.5 to 19.2 on latanoprost and 19.4 to 20.3 on timolol. Pooled across visits at 4 PM, travoprost was 0.7 mmHg lower than latanoprost at 0.0015% (P = .0502) and 0.8 mmHg lower at 0.004% (P = .0191). By the criterion of a 30% or greater reduction from diurnal baseline or a pressure of 17 mmHg or less, response was 49.3% and 54.7% for the two travoprost strengths, 49.6% for latanoprost and 39.0% for timolol. Average ocular hyperemia scored under 1 on a 0 to 3 scale in every arm.',
+        evidenceSource: 'Netland PA et al., Am J Ophthalmol 2001;132:472-484',
+        doi: '10.1016/s0002-9394(01)01177-1',
+        measuredMetric:
+          'Mean intraocular pressure over visits and time of day across 12 months, four arms',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'trv-a3',
+        category: 'inferred',
+        title: 'A race-based subgroup claim has been on the label since 2001, unresolved',
+        laymanSummary:
+          'The label states that pressure fell up to 1.8 millimetres of mercury more in black patients, then says it is not known whether that is because of race or because of darker irises. Twenty-five years later the sentence is still there, and still says that.',
+        technicalDetails:
+          'The Clinical Studies section of the current travoprost label reads: "In sub-group analyses of these studies, mean IOP reduction in black patients was up to 1.8 mmHg greater than in non-black patients. It is not known at this time whether this difference is attributed to race or to heavily pigmented irides." The finding originates in the registration programme and appears in the 12-month comparative trial, where travoprost 0.004% was more effective than latanoprost by up to 2.4 mmHg and than timolol by up to 4.6 mmHg in black patients, and the abstract states it as a conclusion. Three separate problems sit on top of each other. It is a subgroup analysis in trials not designed or powered for it. Race in these trials is self-identified social category, not a biological variable, while iris melanin is measurable and was not measured. And the mechanistic hypothesis the label raises — that melanin binding alters drug availability — is testable and, on the evidence of the label’s own wording, still untested after a quarter of a century.',
+        evidenceSource:
+          'TRAVATAN Z (travoprost ophthalmic solution) 0.004% US prescribing information, Clinical Studies section (NDA 021994); Netland PA et al., Am J Ophthalmol 2001;132:472-484',
+        doi: '10.1016/s0002-9394(01)01177-1',
+        inferredClaim:
+          'That travoprost works better in black patients — a subgroup finding from trials not designed to test it, resting on a self-identified social category as a proxy for an unmeasured biological one, and printed on the label for 25 years with the mechanism still declared unknown',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'trv-a4',
+        category: 'failed',
+        title: 'The sponsor ran the trial its own drug won by 0.8 mmHg',
+        laymanSummary:
+          'The head-to-head study that showed travoprost slightly ahead of latanoprost was run by the company that makes travoprost. The margin was 0.8 millimetres of mercury at one time of day, and the second strength missed statistical significance at 0.0502.',
+        technicalDetails:
+          'The 801-patient 12-month comparison was conducted by the Travoprost Study Group with authorship including multiple Alcon employees. The efficacy conclusion rests on differences of 0.7 and 0.8 mmHg against latanoprost at a single time of day pooled across visits, with the 0.0015% comparison at P = .0502 — a value on the wrong side of the conventional threshold reported without adjustment for the multiple time points and arms examined. Response rates by the trial’s own responder criterion were 54.7% for travoprost 0.004% against 49.6% for latanoprost, a difference of five percentage points. The independent pooled analysis of 114 trials, which is not sponsor-run, separates the two drugs by 0.02 mmHg. The safety comparison ran the other way: iris pigmentation change occurred in 5.2% of latanoprost patients against 3.1% on travoprost 0.004% and 5.0% on 0.0015%, so the sponsor’s own trial reports its drug ahead on efficacy at one dose and behind at the other on the same endpoint.',
+        evidenceSource:
+          'Netland PA et al., Am J Ophthalmol 2001;132:472-484; Li T et al., Ophthalmology 2016;123:129-140',
+        doi: '10.1016/j.ophtha.2015.09.005',
+        measuredMetric:
+          'Sponsor-run head-to-head difference against independent pooled network estimate',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'trv-a5',
+        category: 'failed',
+        title: 'Two reformulations for problems the original formulation caused',
+        laymanSummary:
+          'Travatan Z exists because the preservative in the original damaged the ocular surface. The implant exists because a daily drop is a treatment many people cannot keep up for decades. Neither improves the molecule.',
+        technicalDetails:
+          'Travatan Z replaced benzalkonium chloride with an ionic buffered system of boric acid, propylene glycol, sorbitol and zinc chloride, and was approved 21 September 2006 under NDA 021994, five years after the original. Benzalkonium chloride is a quaternary ammonium detergent that damages corneal and conjunctival epithelium with chronic exposure, and a glaucoma drop is chronic exposure by definition. The travoprost intracameral implant was approved 13 December 2023 under NDA 218010 after a 590-patient randomised, double-masked trial in which the slow-eluting implant was non-inferior to twice-daily timolol at months 3, 6, 9 and 12, and 83.5% of implant patients on medication at screening were on fewer topical medications at month 12 against 23.9% of the timolol group (P<0.0001). Treatment-emergent adverse events, mostly mild, occurred in 39.5% of implant eyes against 20.1% on timolol. The implant’s comparator was timolol, not a prostaglandin analogue, so it establishes non-inferiority to a weaker drug.',
+        evidenceSource:
+          'Sarkisian SR et al., Ophthalmol Ther 2024;13:995-1014 (NCT03519386); TRAVATAN Z US prescribing information, Description section',
+        doi: '10.1007/s40123-024-00898-y',
+        measuredMetric:
+          'Non-inferiority of the slow-eluting implant to twice-daily timolol at 12 months, and medication burden at month 12',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'trv-a6',
+        category: 'conclusion_shift',
+        title: 'Two drugs approved on the same day, and the field never separated them',
+        laymanSummary:
+          'Travoprost and bimatoprost were both approved on 16 March 2001, each with trials showing superiority to timolol. Twenty-five years and 114 pooled trials later, nobody can show a clinically meaningful difference between them or latanoprost.',
+        technicalDetails:
+          'Travatan was approved under NDA 021257 and Lumigan under NDA 021275 on the same date. Each brought registration trials establishing superiority to timolol, and each subsequently generated head-to-head trials against latanoprost and against each other. The independent Bayesian network meta-analysis of 114 randomised trials in 20,275 participants placed all three within 0.78 mmHg of one another with overlapping credible intervals, and its authors concluded that within-class differences were small and may not be clinically meaningful. The practical consequence is that the choice between the three prostaglandin analogues is not an efficacy question at all: the acquisition-cost survey separates them by a factor of six, from US$1.57 per millilitre for latanoprost to US$9.33 for travoprost and US$8.87 for bimatoprost, and the side effect profiles differ more than the pressure numbers do.',
+        evidenceSource:
+          'Li T et al., Ophthalmology 2016;123:129-140; Drugs@FDA NDA 021257 and NDA 021275',
+        doi: '10.1016/j.ophtha.2015.09.005',
+        inferredClaim:
+          'That the three prostaglandin analogues are meaningfully different from one another on efficacy — a premise every head-to-head trial was built on and the independent pooled analysis dissolved',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One evening drop of an oil made water-compatible',
+        laymanDesc:
+          'Travoprost is an oil that does not dissolve in water. The bottle contains a detergent-like ingredient whose only job is to keep it suspended in a watery drop.',
+        molecularDetail:
+          'The label describes travoprost as a viscous oil, practically insoluble in water. The finished product is a buffered aqueous solution at approximately pH 5.7 and 290 mOsmol/kg containing 0.04 mg per millilitre of drug with polyoxyl 40 hydrogenated castor oil as solubiliser. Travatan Z uses an ionic borate-zinc buffer in place of benzalkonium chloride as preservative.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The cornea cuts the ester off as the drug passes through',
+        laymanDesc:
+          'What goes in is not what works. Enzymes in the cornea snip off a chemical tail during the crossing, releasing the active acid on the inside.',
+        molecularDetail:
+          'Corneal esterases hydrolyse the isopropyl ester to travoprost free acid during passage through the epithelium and stroma. The ester exists to raise lipophilicity for corneal penetration; the acid is the species that binds the receptor and penetrates the cornea poorly on its own.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The free acid switches on the FP receptor',
+        laymanDesc:
+          'The active form binds a single receptor on the muscle behind the iris — the same one latanoprost and bimatoprost reach. The fluorinated ring on this molecule makes it stick harder.',
+        molecularDetail:
+          'Travoprost free acid is a highly selective and potent agonist at the FP prostanoid receptor on ciliary muscle and trabecular meshwork. The 3-trifluoromethylphenoxy group at the omega end raises FP potency and metabolic stability relative to latanoprost’s unsubstituted phenyl, and the 13,14 double bond that latanoprost lacks contributes to the conformation at the binding site.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Connective tissue is remodelled and the secondary drain opens',
+        laymanDesc:
+          'The receptor tells the cells to dismantle some of the packing between the muscle bundles. Channels widen over days to weeks and fluid leaves faster.',
+        molecularDetail:
+          'FP activation upregulates matrix metalloproteinases in the ciliary muscle, remodelling the extracellular matrix of the uveoscleral outflow pathway and reducing hydraulic resistance. The transcriptional nature of the response explains the lag to full effect and the sustained rather than pulsatile pressure reduction.',
+        iconName: 'Wrench',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Pressure settles about five millimetres lower',
+        laymanDesc:
+          'Pressure falls by roughly five millimetres of mercury on average. The label reports seven to eight from a high starting point, and holds it for a full year in the trials.',
+        molecularDetail:
+          'Pooled reduction is 4.83 mmHg (95% credible interval 4.12 to 5.54) at three months, third of fourteen. The label reports 7 to 8 mmHg reductions from a baseline of 25 to 27 mmHg. In the 12-month comparison, mean pressure on travoprost 0.004% ranged 17.7 to 19.1 mmHg across visits and times of day against latanoprost’s 18.5 to 19.2.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'And a sentence about race the label cannot explain',
+        laymanDesc:
+          'The label adds that pressure fell up to 1.8 millimetres more in black patients, then immediately says nobody knows whether that is about race or about darker irises. Both halves have been printed unchanged since 2001.',
+        molecularDetail:
+          'The proposed pharmacological mechanism is melanin binding: heavily pigmented irides contain more melanin, prostaglandin analogues bind melanin, and bound drug may be released differently over time. That hypothesis is measurable in pigmented and albino iris tissue and has not resolved the label’s wording. Meanwhile the variable actually recorded in the trials was self-identified race, which is not the same measurement as iris melanin content and cannot substitute for it.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Travoprost Study Group 12-month comparison (Netland 2001)',
+        phase: 'Randomised, active-controlled, four-arm, 12-month',
+        sampleSize: 801,
+        primaryEndpoint:
+          'Mean intraocular pressure over visits and time of day, two travoprost strengths against latanoprost and timolol',
+        endpointMet: true,
+        statisticalPValue:
+          'Travoprost 0.004% 0.8 mmHg below latanoprost at 4 PM pooled across visits (P = .0191); travoprost 0.0015% 0.7 mmHg below (P = .0502)',
+        unreportedAdverseSignals:
+          'Sponsor-run, with the winning drug’s manufacturer among the authors. One of the two efficacy comparisons missed significance at P = .0502, and iris pigmentation change was higher on travoprost 0.0015% (5.0%) than on travoprost 0.004% (3.1%), an inconsistency the paper does not address.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'iDose TR pivotal phase 3 (NCT03519386)',
+        phase: 'Prospective, multicentre, randomised, double-masked, sham-controlled, 12-month',
+        sampleSize: 590,
+        primaryEndpoint:
+          'Mean change from baseline intraocular pressure at 8 AM and 10 AM at day 10, week 6 and month 3, implant against twice-daily timolol',
+        endpointMet: true,
+        statisticalPValue:
+          'Non-inferiority met at all six timepoints and at months 6, 9 and 12 for the slow-eluting implant; 83.5% against 23.9% on fewer topical medications at month 12, P < 0.0001',
+        unreportedAdverseSignals:
+          'The comparator is timolol, which the pooled analysis ranks 1.13 mmHg below travoprost drops, so non-inferiority here is against a weaker treatment. Treatment-emergent adverse events occurred in 39.5% of implant eyes against 20.1% on timolol. Every listed author affiliation includes the sponsor or sponsor funding.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'UKGTS (ISRCTN96423140), class-level vision evidence',
+        phase: 'Randomised, triple-masked, placebo-controlled',
+        sampleSize: 516,
+        primaryEndpoint: 'Time to visual field deterioration within 24 months',
+        endpointMet: true,
+        statisticalPValue: 'Adjusted hazard ratio 0.44 (95% CI 0.28 to 0.69), P = 0.0003',
+        unreportedAdverseSignals:
+          'Tested latanoprost, not travoprost. It is cited here because it is the only placebo-controlled visual function trial of any drop in this class, and travoprost’s claim to preserve vision is inherited from it.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Mean pressure reduction of 4.83 mmHg (95% credible interval 4.12 to 5.54) at three months, third of fourteen agents across 114 pooled trials',
+        'Mean pressure 17.7 to 19.1 mmHg on travoprost 0.004% against latanoprost’s 18.5 to 19.2 across 12 months in 801 randomised patients',
+        'Iris pigmentation change in 3.1% on travoprost 0.004%, 5.0% on 0.0015%, 5.2% on latanoprost and 0% on timolol',
+        'Non-inferiority of the slow-eluting intracameral implant to twice-daily timolol at 12 months in 590 randomised patients',
+      ],
+      unsupportedInferences: [
+        'That travoprost works better in black patients — a subgroup finding the label itself cannot attribute to race or to iris pigmentation, printed unchanged since 2001',
+        'That the 0.8 mmHg advantage over latanoprost at one time of day in a sponsor-run trial is real; the independent pooled analysis separates them by 0.02 mmHg',
+        'That travoprost preserves vision — no trial of this drug has used a visual outcome, and the placebo-controlled field trial in this class tested latanoprost',
+        'That the implant is equivalent to travoprost drops, when its trial demonstrated non-inferiority to timolol',
+      ],
+      whatFailedInitially: [
+        'The original benzalkonium-preserved formulation was replaced five years later by an ionic buffered version because the preservative damages the ocular surface with chronic use',
+        'One of the two head-to-head efficacy comparisons against latanoprost missed significance at P = .0502 and is reported alongside the one that did not',
+        'The race subgroup sentence has sat on the label for 25 years with its mechanism explicitly declared unknown, and the measurable alternative explanation was never measured',
+        'The implant produced treatment-emergent adverse events in 39.5% of eyes against 20.1% on timolol drops',
+      ],
+      realWorldOutcome: [
+        'Approved 16 March 2001 under NDA 021257, the same day as bimatoprost, with the benzalkonium-free Travatan Z following in 2006 under NDA 021994',
+        'A travoprost intracameral implant was approved 13 December 2023 under NDA 218010, the first sustained-release prostaglandin analogue for the eye',
+        'Now generic with 14 listed products at a median United States acquisition cost of US$9.33 per millilitre, roughly six times generic latanoprost',
+        'Statistically indistinguishable from latanoprost in the independent pooled analysis, which makes price and formulation the operative difference',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical ophthalmic solution 0.004%, once daily in the evening; also a slow-eluting intracameral implant',
+      description:
+        'A buffered aqueous solution at approximately pH 5.7 containing an oil that is practically insoluble in water, held in suspension by a castor-oil-derived solubiliser. Travatan Z substitutes a boric acid, propylene glycol, sorbitol and zinc chloride ionic buffer for benzalkonium chloride. The intracameral implant places the same molecule inside the anterior chamber and elutes it over months, removing daily instillation.',
+      safetyProfile:
+        'Increased brown iris pigmentation, permanent, in roughly 3% of patients on the 0.004% strength in the 12-month comparison. Eyelash lengthening, thickening and darkening. Conjunctival hyperemia, scored below 1 on a 0 to 3 scale on average in the comparative trial. Eyelid skin darkening and prostaglandin-associated periorbitopathy, both class effects described after approval. Rare macular oedema, chiefly in aphakic or pseudophakic eyes with a torn posterior capsule. No systemic beta-blockade and no respiratory or cardiac contraindications. The intracameral implant carries the additional risks of an intraocular procedure, with treatment-emergent adverse events in 39.5% of implant eyes against 20.1% for timolol drops in its pivotal trial.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is travoprost better than latanoprost?',
+        a: 'The independent evidence says they are the same drug for practical purposes. The pooled analysis of 114 randomised trials in 20,275 people puts travoprost at 4.83 millimetres of mercury and latanoprost at 4.85, a difference of 0.02 mmHg with heavily overlapping intervals. There is one head-to-head trial in 801 patients that found travoprost 0.8 mmHg lower at 4 PM, and it was run by travoprost’s manufacturer, with the second strength missing significance at 0.0502. Against that, latanoprost costs about a sixth as much per millilitre in the same acquisition survey, and it is the one drop in this class with a placebo-controlled trial showing preserved visual field. If there is a reason to choose travoprost it is formulation or tolerability, not pressure.',
+        auditNote:
+          'A sponsor-run head-to-head showing 0.8 mmHg and an independent network of 114 trials showing 0.02 mmHg is the usual shape of this comparison across the whole class.',
+      },
+      {
+        q: 'The label says it works better in black patients. What does that mean?',
+        a: 'It means less than it appears to, and the label says so in the next sentence. The wording is: mean pressure reduction in black patients was up to 1.8 mmHg greater than in non-black patients, and it is not known whether this difference is attributed to race or to heavily pigmented irides. Three things are wrong with treating that as a prescribing fact. It comes from subgroup analyses of trials that were not designed or powered to test it. Race as recorded in a trial is a self-identified social category, not a biological measurement. And the biological explanation the label reaches for — that melanin in the iris binds and releases the drug differently — is measurable in tissue and, judging by the fact that the sentence has not changed since 2001, has not been settled. The honest reading is that a difference was observed, the reason is unknown, and the variable actually recorded is a proxy for something nobody measured.',
+        auditNote:
+          'This is the clearest example in this batch of a subgroup finding surviving on a label for a quarter of a century because nobody was required to resolve it.',
+      },
+      {
+        q: 'What is Travatan Z and why does it exist?',
+        a: 'It is the same drug with the preservative changed. The original formulation used benzalkonium chloride, a detergent that keeps the bottle sterile and damages corneal and conjunctival surface cells with prolonged exposure. A glaucoma drop is taken daily for decades, so prolonged exposure is the whole point. Travatan Z replaced it with an ionic buffered system of boric acid, propylene glycol, sorbitol and zinc chloride, approved in 2006, five years after the original. Generic travoprost is available in both versions. If your eyes are already dry or irritated, which formulation you get is a more consequential question than which prostaglandin analogue you are on.',
+      },
+      {
+        q: 'Will my eye colour change?',
+        a: 'It can, and less often than with latanoprost according to the one trial that measured both. In the 12-month four-arm comparison, iris pigmentation change was documented in 6 of 196 patients on travoprost 0.004% (3.1%), 10 of 201 on travoprost 0.0015% (5.0%), 10 of 194 on latanoprost (5.2%) and none of 196 on timolol. Note that the lower travoprost strength produced more pigmentation change than the higher one, which the paper does not explain and which is a reason not to read too much into a difference of a few patients. The change itself is an increase in melanin inside existing iris cells, it is most visible in mixed-colour irides, and it does not reverse when the drug is stopped.',
+      },
+      {
+        q: 'There is an implant now. Should I have that instead of drops?',
+        a: 'It depends what problem you are solving, and the trial answers a narrower question than it first appears. The pivotal study randomised 590 patients to a slow-eluting travoprost implant, a fast-eluting one, or twice-daily timolol drops, and the slow-eluting implant was non-inferior to timolol at 3, 6, 9 and 12 months. Of patients who were on glaucoma medication at screening, 83.5% of implant patients were on fewer topical medications at 12 months against 23.9% in the timolol group. That is a real result about treatment burden. But the comparator was timolol, which the pooled analysis ranks more than a millimetre below travoprost drops, so the trial does not show the implant matches travoprost drops. And treatment-emergent adverse events occurred in 39.5% of implant eyes against 20.1% on timolol, because it is an intraocular procedure and drops are not.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Netland PA et al. Travoprost compared with latanoprost and timolol in patients with open-angle glaucoma or ocular hypertension. Am J Ophthalmol 2001;132:472-484',
+        identifier: '10.1016/s0002-9394(01)01177-1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Li T et al. Comparative effectiveness of first-line medications for primary open-angle glaucoma: a systematic review and network meta-analysis. Ophthalmology 2016;123:129-140',
+        identifier: '10.1016/j.ophtha.2015.09.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sarkisian SR et al. Travoprost intracameral implant for open-angle glaucoma or ocular hypertension: 12-month results of a randomized, double-masked trial. Ophthalmol Ther 2024;13:995-1014',
+        identifier: '10.1007/s40123-024-00898-y',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Garway-Heath DF et al. Latanoprost for open-angle glaucoma (UKGTS): a randomised, multicentre, placebo-controlled trial. Lancet 2015;385:1295-1304',
+        identifier: '10.1016/S0140-6736(14)62111-5',
+        kind: 'doi',
+      },
+      {
+        label: 'iDose TR travoprost intracameral implant pivotal phase 3 trial',
+        identifier: 'NCT03519386',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: TRAVATAN Z (travoprost ophthalmic solution) 0.004%, NDA 021994, Alcon — approved 21 September 2006; the original TRAVATAN is NDA 021257, approved 16 March 2001. Clinical Studies and Description sections quoted.',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021994',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: iDOSE TR (travoprost intracameral implant), NDA 218010, Glaukos — original approval 13 December 2023',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=218010',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5282226 — travoprost structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5282226',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
 ]

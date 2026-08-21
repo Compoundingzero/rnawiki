@@ -1646,4 +1646,470 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Nebivolol — sold as the beta-blocker that widens arteries through nitric oxide, by a label
+  //    that never mentions nitric oxide and says the mechanism has not been established.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'nebivolol',
+    name: 'Nebivolol',
+    tradeName: 'Bystolic',
+    sponsor: 'Allergan (current holder of NDA 021742); originated at Janssen and licensed to Mylan and then Forest Laboratories',
+    targetGene: 'ADRB1',
+    targetProtein:
+      'Beta-1 adrenergic receptor, blocked by the d-nebivolol isomer; the l-isomer contributes little at the receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2007,
+    indication:
+      'Treatment of hypertension in adults, to lower blood pressure, alone or in combination with other antihypertensive agents',
+    patientFriendlyIndication: 'High blood pressure',
+    anatomicalSite:
+      'Beta-1 adrenergic receptor on cardiac myocytes; the claimed second site on the vascular endothelium is not in the United States label',
+    conditionContext: {
+      conditionExplainer:
+        'High blood pressure is treated because of what it does over decades rather than because of how it feels. Beta-blockers lower it by slowing the heart and cutting renin release, and their main cost is that a slower heart makes people tired.',
+      whyItMatters:
+        'Nebivolol was launched as a different kind of beta-blocker: one that also widens arteries, through nitric oxide, and therefore avoids the fatigue and metabolic penalties of the class. That story is scientifically interesting and it is not in the drug United States label, which says the antihypertensive mechanism has not been definitively established and does not use the phrase nitric oxide anywhere.',
+      whoTakesThis:
+        'Adults with high blood pressure. Not people with decompensated heart failure, severe bradycardia, heart block beyond first degree or severe liver impairment, all of which are contraindications.',
+      clinicalGoals:
+        'A lower number on a cuff. The label states outright that there are no controlled trials demonstrating risk reduction with this drug, so nothing beyond the number has been shown for it in hypertension.',
+    },
+    oneSentenceVerdict:
+      'A beta-1 selective blocker marketed on nitric-oxide-mediated vasodilation that its own FDA label never mentions, whose only outcome trial — SENIORS, in 2,128 patients over 70 — met a composite of death or cardiovascular admission at 31.1% against 35.3% (p=0.039) while all-cause death alone did not differ (15.8% against 18.1%, p=0.21).',
+    laymanHowItWorks:
+      'Nebivolol blocks the beta-1 receptor that adrenaline uses on heart muscle, so the heart beats slower and less forcefully and the kidney releases less of the hormone that tightens arteries. Blood pressure falls. It is often described as also relaxing arteries directly by releasing nitric oxide, the same molecule that makes blood vessels dilate during exercise. The laboratory evidence for that is real; the drug regulator has not accepted it as the explanation, and the official label lists five possible contributors to the pressure drop without naming nitric oxide among them.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 62,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1438 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 94 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States on 17 December 2007 under NDA 021742, and generic since 2021. Before genericisation it was one of the most heavily promoted branded antihypertensives in the United States, at a branded price, for an indication in which several equally effective molecules had been generic for over a decade.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The honest comparison for nebivolol is not against other beta-blockers on blood pressure — they all lower it — but against the drugs with outcome trials in the indication it is licensed for. Nebivolol has none. Where a beta-blocker is genuinely indicated, in heart failure or after infarction, three other molecules have their own mortality trials and nebivolol has one marginal composite in the elderly.',
+      conventionalRx: [
+        {
+          name: 'Bisoprolol (Zebeta)',
+          class: 'Beta-1 selective adrenergic blocker',
+          howItCompares:
+            'Beta-1 selective like nebivolol and about the same price, with a mortality trial nebivolol does not have: CIBIS-II found all-cause mortality of 11.8% against 17.3% in 2,647 heart failure patients (HR 0.66, p<0.0001).',
+          typicalCost:
+            'US$0.2096 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 93 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: an independent mortality trial; long generic history. Cons: like nebivolol, its United States label covers hypertension only; selectivity is lost at higher doses.',
+        },
+        {
+          name: 'Carvedilol (Coreg)',
+          class: 'Non-selective beta-blocker with alpha-1 blockade',
+          howItCompares:
+            'Actually does what nebivolol is marketed for — vasodilatation alongside beta blockade — by a mechanism that is not disputed, alpha-1 blockade, and has three outcome trials. Nebivolol, by contrast, does not demonstrate alpha-1 blockade at clinically relevant doses, according to its own label.',
+          typicalCost:
+            'US$0.0214 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 88 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: about a seventh of the price; mortality evidence in severe heart failure and after infarction. Cons: twice daily; non-selective, so contraindicated in asthma; more postural hypotension.',
+        },
+        {
+          name: 'Amlodipine, or a thiazide-like diuretic, or an ACE inhibitor',
+          class: 'Calcium channel blocker, diuretic or renin-angiotensin blocker',
+          howItCompares:
+            'For uncomplicated high blood pressure, these classes have hard-endpoint trials against each other in tens of thousands of patients, and beta-blockers have been demoted from first-line in most guidelines partly because they prevent stroke less well at equal blood pressure.',
+          typicalCost:
+            'Among the cheapest prescription drugs in the United States at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: outcome evidence in the actual indication; no bradycardia, no fatigue, no rebound risk on stopping. Cons: each has its own adverse effects, from ankle swelling to cough to electrolyte disturbance.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Dietary nitrate — beetroot, rocket, spinach and other leafy greens',
+          activeCompound: 'Inorganic nitrate, reduced to nitrite by oral bacteria and then to nitric oxide',
+          biologicalMechanism:
+            'The nitrate-nitrite-nitric oxide pathway raises circulating nitric oxide independently of the endothelial enzyme, which is the same end-point nebivolol is claimed to reach by a different route. Antibacterial mouthwash abolishes the effect, which is unusually direct evidence that the oral bacteria are the necessary step.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here as advice. For scale only: the randomised trials of dietary nitrate in hypertension are short, mostly under six weeks, and measure blood pressure rather than events. None has reported a cardiovascular outcome, and the reductions reported are smaller than those of a first-line antihypertensive.',
+          monthlyCost: '',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Do not stop it abruptly',
+          action: 'Taper rather than stop, and say if you are running low.',
+          patientImpact:
+            'The label warns of severe exacerbation of angina, myocardial infarction and ventricular arrhythmias after abrupt discontinuation of beta-blockers in coronary disease, with or without preceding worsening of angina, and directs tapering over one to two weeks.',
+          clinicalPrecaution:
+            'The warning is extended to people without known coronary disease. If angina worsens during the taper, the label directs restarting the drug at least temporarily.',
+        },
+        {
+          name: 'Mention it before any operation',
+          action: 'Tell the anaesthetist you are taking a beta-blocker.',
+          patientImpact:
+            'The label states that patients already on beta-blockers should generally continue treatment through the perioperative period, because withdrawal is associated with increased risk of infarction and chest pain. This is the opposite advice from starting one before surgery.',
+          clinicalPrecaution:
+            'If it is continued, the label directs close monitoring with anaesthetics that depress myocardial function.',
+        },
+        {
+          name: 'Ask whether you are a poor metaboliser',
+          action:
+            'Mention any known CYP2D6 result, and any strong CYP2D6 inhibitor such as paroxetine, fluoxetine or quinidine.',
+          patientImpact:
+            'The label records that poor metabolisers attain a 5-fold higher peak concentration and 10-fold higher total exposure of the active d-isomer than extensive metabolisers at the same dose, and that beta-1 selectivity is lost in poor metabolisers and at higher doses.',
+          clinicalPrecaution:
+            'The label argues this matters less than usual because active metabolites contribute to beta blockade. It still means the same tablet is a different drug in different people, and the selectivity argument weakens in exactly the people with most exposure.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CC2=C(C=CC(=C2)F)OC1C(CNCC(C3CCC4=C(O3)C=CC(=C4)F)O)O',
+      chemicalFormula: 'C22H25F2NO4',
+      molecularWeight: '405.40 g/mol (free base); dispensed as the hydrochloride at 441.90 g/mol',
+      targetReceptorAffinity:
+        'A racemate of d-nebivolol (SRRR) and l-nebivolol (RSSS). The label states that d-nebivolol beta receptor affinity is more than 1,000-fold higher than that of l-nebivolol, and that l-nebivolol contributes little to activity despite reaching higher exposure. In extensive metabolisers at 10 mg and below the drug is preferentially beta-1 selective; in poor metabolisers and at higher doses it blocks beta-1 and beta-2 alike. At clinically relevant doses it does not demonstrate alpha-1 blockade. Plasma protein binding is about 98%, mostly to albumin.',
+      structureSource: {
+        label:
+          'PubChem CID 71301 (nebivolol) — canonical SMILES, molecular formula and weight, as carried on the enriched record; stereochemical designations and hydrochloride weight from the BYSTOLIC label, section 11',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/71301',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'neb-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Resolve and quantify all four stereoisomers',
+          description:
+            'Nebivolol has four stereocentres and the marketed product is a specific pair of enantiomers, SRRR and RSSS, at equal proportion. The other diastereomers are not the drug. Because activity sits more than a thousand-fold in one isomer, a stereochemical impurity is a potency problem that a normal assay cannot see.',
+          reagentsAndBuffer:
+            'Nebivolol hydrochloride reference standard, chiral HPLC on an amylose or cellulose phase, circular dichroism detection, 19F NMR to confirm both fluorochroman rings, Karl Fischer titration',
+        },
+        {
+          id: 'neb-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Build two fluorinated chroman epoxides and join them through a nitrogen',
+          description:
+            'The molecule is two 6-fluoro-3,4-dihydro-2H-1-benzopyran units linked by an iminodiethanol bridge. Each chroman is elaborated to an epoxide and the two are opened in sequence by a single nitrogen, which is why the synthesis is long and why the marketed material is a defined mixture of two of the possible diastereomers rather than a single compound.',
+          dependsOnStepId: 'neb-w1',
+          reagentsAndBuffer:
+            '6-fluorochroman-2-carboxylic acid derivatives, reduction and epoxidation reagents, benzylamine as the nitrogen source with subsequent hydrogenolytic debenzylation, palladium on carbon, anhydrous solvents under nitrogen',
+        },
+        {
+          id: 'neb-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Separate the diastereomer pairs and form the hydrochloride',
+          description:
+            'Separate the RSSS/SRRR pair from the SRRS/RSSR pair by fractional crystallisation or chromatography, then form the hydrochloride salt. This separation is the reason nebivolol is expensive to make relative to other beta-blockers and is the step where most of the process yield is lost.',
+          dependsOnStepId: 'neb-w2',
+          reagentsAndBuffer:
+            'Fractional crystallisation from ethanol or acetone, preparative chiral chromatography where required, hydrogen chloride in isopropanol, HPLC release testing against a specified diastereomeric ratio',
+        },
+        {
+          id: 'neb-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Beta-1 against beta-2 occupancy for each isomer separately',
+          description:
+            'Run d-nebivolol and l-nebivolol as separate materials against human beta-1 and beta-2. Testing the racemate alone reports an average that belongs to neither isomer, and the entire selectivity claim depends on the d-isomer profile at low occupancy.',
+          dependsOnStepId: 'neb-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 cells stably expressing human ADRB1 or ADRB2, isoproterenol as agonist, cyclic AMP accumulation readout, resolved d- and l-nebivolol as separate test articles',
+        },
+        {
+          id: 'neb-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Test the nitric oxide claim against an endothelium-denuded control',
+          description:
+            'The marketing mechanism is endothelium-dependent vasodilatation through nitric oxide. The assay that tests it, rather than assumes it, is relaxation of a precontracted vessel ring with and without an intact endothelium, and with and without a nitric oxide synthase inhibitor. A relaxation that survives denudation or L-NAME is not a nitric oxide effect, whatever the mechanism diagram says.',
+          dependsOnStepId: 'neb-w4',
+          reagentsAndBuffer:
+            'Rat or human artery rings precontracted with phenylephrine, paired endothelium-intact and endothelium-denuded preparations, L-NAME as nitric oxide synthase inhibitor, ODQ as soluble guanylate cyclase inhibitor, isometric force transducers',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'neb-a1',
+        category: 'inferred',
+        title: 'The nitric oxide story is not in the label',
+        laymanSummary:
+          'Nebivolol is sold as the beta-blocker that also relaxes arteries by releasing nitric oxide. Its official prescribing information says the mechanism of the blood pressure effect has not been definitively established, and the phrase nitric oxide does not appear anywhere in the document.',
+        technicalDetails:
+          'Section 12.1 of the BYSTOLIC label reads: "The mechanism of action of the antihypertensive response of BYSTOLIC has not been definitively established." It lists five possible contributing factors — decreased heart rate, decreased myocardial contractility, diminished tonic sympathetic outflow, suppression of renin activity, and vasodilation with decreased peripheral vascular resistance — and does not attribute the fifth to nitric oxide or to any named pathway. Section 12 also states that at clinically relevant doses nebivolol does not demonstrate alpha-1 adrenergic blockade, closing off the other obvious vasodilator route, and that l-nebivolol contributes little to the drug activity because d-nebivolol beta receptor affinity is more than 1,000-fold higher. The laboratory literature on endothelial nitric oxide release by nebivolol is genuine and it has not translated into a mechanism the regulator will state, nor into an outcome the drug has been shown to produce.',
+        evidenceSource:
+          'BYSTOLIC (nebivolol) United States prescribing information, sections 12 and 12.1 (NDA 021742)',
+        inferredClaim:
+          'That nebivolol lowers blood pressure by nitric-oxide-mediated vasodilation — a mechanism supported in isolated tissue, absent from the label, and never linked to a clinical outcome',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'neb-a2',
+        category: 'inferred',
+        title: 'The label says there are no controlled trials showing this drug reduces risk',
+        laymanSummary:
+          'It lowers blood pressure. Whether it prevents strokes and heart attacks has not been tested, and the package insert says exactly that.',
+        technicalDetails:
+          'Section 1.1 reads: "There are no controlled trials demonstrating risk reduction with BYSTOLIC." The benefit is inferred from the general proposition that lowering blood pressure reduces fatal and nonfatal cardiovascular events, which the label states has been shown for drugs from a wide variety of pharmacologic classes including the one nebivolol belongs to. That inference is weaker for beta-blockers than for other classes: this is the class that has been demoted from first-line in most hypertension guidelines because, at equal blood pressure reduction, it prevented fewer strokes in the outcome trial record. Section 5.2 adds that the drug was not studied in patients with angina pectoris or recent myocardial infarction.',
+        evidenceSource:
+          'BYSTOLIC (nebivolol) United States prescribing information, sections 1.1 and 5.2 (NDA 021742)',
+        inferredClaim:
+          'That the blood pressure reduction measured with nebivolol converts into fewer cardiovascular events — a class-level inference the label declines to make for this molecule',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'neb-a3',
+        category: 'measured',
+        title: 'SENIORS: the composite was met, and deaths alone were not different',
+        laymanSummary:
+          'The one outcome trial randomised over two thousand people aged seventy and above with heart failure. The combined measure of death or heart admission improved, just, at a p value of 0.039. Deaths on their own were no different.',
+        technicalDetails:
+          'SENIORS randomised 2,128 patients aged 70 or over with a history of heart failure — hospital admission within the previous year or known ejection fraction at or below 35% — to nebivolol titrated from 1.25 mg to 10 mg daily (n=1,067) or placebo (n=1,061), for a mean 21 months. Mean age was 76 and mean ejection fraction 36%, with 35% having ejection fraction above 35%. The primary composite of all-cause mortality or cardiovascular hospital admission occurred in 332 (31.1%) against 375 (35.3%), hazard ratio 0.86 (95% CI 0.74 to 0.99, p=0.039). Death from any cause occurred in 169 (15.8%) against 192 (18.1%), hazard ratio 0.88 (95% CI 0.71 to 1.08, p=0.21) — not significant. Age, sex and ejection fraction did not modify the effect. This is a real result at the edge of significance on a composite, in a population the drug is not licensed for in the United States, and it is the entire outcome evidence base for the molecule.',
+        evidenceSource: 'Flather MD et al., Eur Heart J 2005;26:215-225 (SENIORS)',
+        doi: '10.1093/eurheartj/ehi115',
+        measuredMetric:
+          'Composite of all-cause mortality or cardiovascular hospital admission in patients aged 70 and over',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'neb-a4',
+        category: 'failed',
+        title: 'The one outcome trial is in a condition the United States label does not cover',
+        laymanSummary:
+          'SENIORS studied heart failure. In the United States, nebivolol is licensed only for blood pressure, and decompensated heart failure is a contraindication. The trial everyone cites is about a use the label does not authorise.',
+        technicalDetails:
+          'The United States indication is hypertension alone. Contraindications include decompensated cardiac failure, severe bradycardia, heart block greater than first degree, cardiogenic shock, sick sinus syndrome without a pacemaker, and severe hepatic impairment at Child-Pugh above B. SENIORS enrolled 2,128 patients with a history of heart failure and reported the only outcome data the molecule has. Nebivolol carries heart failure indications in several European jurisdictions. So the outcome trial and the United States label describe different drugs in practice: the evidence that exists is for a use the label does not cover, and the use the label covers has no outcome evidence.',
+        evidenceSource:
+          'BYSTOLIC United States prescribing information, sections 1.1 and 4 (NDA 021742); Flather MD et al., Eur Heart J 2005;26:215-225',
+        doi: '10.1093/eurheartj/ehi115',
+        measuredMetric:
+          'Licensed indication against the population in which the only outcome trial was run',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'neb-a5',
+        category: 'failed',
+        title: 'Selectivity fails in the people who get the most drug',
+        laymanSummary:
+          'Nebivolol is heart-selective in most people at ordinary strengths. In people who metabolise it slowly — who also end up with ten times the drug exposure — it blocks the lung receptors too.',
+        technicalDetails:
+          'The label states that in extensive metabolisers, most of the population, and at doses at or below 10 mg, nebivolol is preferentially beta-1 selective; in poor metabolisers and at higher doses it inhibits both beta-1 and beta-2 receptors. For the same dose, poor metabolisers attain a 5-fold higher peak concentration and a 10-fold higher area under the curve of the active d-isomer, and its effective half-life extends from about 12 to about 19 hours. The two failure modes therefore coincide: the people in whom selectivity is lost are the people carrying the most drug. Section 5.3 states that in general, patients with bronchospastic diseases should not receive beta-blockers.',
+        evidenceSource:
+          'BYSTOLIC United States prescribing information, sections 12, 12.3 and 5.3 (NDA 021742)',
+        measuredMetric:
+          'Beta-1 selectivity as a function of CYP2D6 metaboliser status and dose, from the label pharmacology section',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'neb-a6',
+        category: 'conclusion_shift',
+        title: 'A racemate in which one isomer does almost nothing at the receptor',
+        laymanSummary:
+          'The tablet contains equal amounts of two mirror-image molecules. One does the beta blocking. The other is present at higher levels in the blood and, according to the label, contributes little.',
+        technicalDetails:
+          'Nebivolol is a racemate of d-nebivolol (SRRR) and l-nebivolol (RSSS). The label states that exposure to l-nebivolol is higher than to d-nebivolol, but that l-nebivolol contributes little to the drug activity because d-nebivolol beta receptor affinity is more than 1,000-fold higher. Much of the published mechanistic work attributing nitric-oxide-mediated vasodilation to nebivolol assigns that activity to the l-isomer or to the racemate rather than to d-nebivolol. The label position — that the l-isomer contributes little and that the antihypertensive mechanism is not established — sits uneasily with a marketing account in which the l-isomer supplies the distinguishing pharmacology. Both statements cannot carry equal weight, and the label is the document with regulatory standing.',
+        evidenceSource:
+          'BYSTOLIC United States prescribing information, sections 11, 12 and 12.3 (NDA 021742)',
+        inferredClaim:
+          'That the l-isomer supplies a clinically meaningful vasodilator effect — asserted in the mechanistic literature, contradicted by the label statement that it contributes little to activity',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One tablet, two mirror-image molecules',
+        laymanDesc:
+          'The tablet contains equal amounts of two forms of the same molecule. Only one of them meaningfully blocks the heart receptor; the other reaches higher levels in the blood and does much less.',
+        molecularDetail:
+          'A racemate of d-nebivolol (SRRR) and l-nebivolol (RSSS). The label states d-nebivolol beta receptor affinity is more than 1,000-fold higher and that l-nebivolol contributes little to activity despite higher exposure. Plasma protein binding is about 98%, and food does not alter the pharmacokinetics.',
+        iconName: 'Split',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'How fast your liver works decides your dose',
+        laymanDesc:
+          'The active half is broken down by a liver enzyme that some people have little of. Those people end up with about ten times as much active drug from the same tablet.',
+        molecularDetail:
+          'Metabolism is predominantly direct glucuronidation with N-dealkylation and oxidation by CYP2D6. Poor metabolisers attain a 5-fold higher peak concentration and 10-fold higher area under the curve of d-nebivolol, with effective half-life rising from about 12 to 19 hours. Active metabolites, including the hydroxyl metabolite and glucuronides, contribute to beta blockade, which the label argues blunts the clinical importance of the difference.',
+        iconName: 'Filter',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The heart receptor is blocked, mostly selectively',
+        laymanDesc:
+          'The active half sits on the beta-1 receptor, which is mainly on the heart, and leaves the lung receptor largely alone — at ordinary strengths, in most people.',
+        molecularDetail:
+          'Competitive beta-1 antagonism without intrinsic sympathomimetic or membrane-stabilising activity at therapeutic concentrations. Preferential beta-1 selectivity holds in extensive metabolisers at 10 mg and below; in poor metabolisers and at higher doses both beta-1 and beta-2 are inhibited. There is no alpha-1 blockade at clinically relevant doses.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Pressure falls, by a route the label will not name',
+        laymanDesc:
+          'Blood pressure comes down. The prescribing information lists five things that may be responsible and declines to say which, and never mentions nitric oxide.',
+        molecularDetail:
+          'Section 12.1 states the mechanism of the antihypertensive response has not been definitively established and lists decreased heart rate, decreased contractility, diminished tonic sympathetic outflow, renin suppression, and vasodilation with decreased peripheral resistance as possible contributors. The endothelial nitric oxide account rests on isolated tissue and forearm plethysmography work, not on anything the label endorses.',
+        iconName: 'Gauge',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'In the elderly with heart failure, a marginal composite',
+        laymanDesc:
+          'The only outcome trial found a small advantage on a combined measure of death or hospital admission. Deaths on their own were not different.',
+        molecularDetail:
+          'SENIORS: primary composite 31.1% against 35.3%, hazard ratio 0.86 (95% CI 0.74 to 0.99, p=0.039), in 2,128 patients aged 70 or over over a mean 21 months. All-cause death 15.8% against 18.1%, hazard ratio 0.88 (0.71 to 1.08, p=0.21).',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What has never been measured',
+        laymanDesc:
+          'Nothing in hypertension. The label states there are no controlled trials showing this drug reduces cardiovascular risk, and it was never studied in angina or after a heart attack.',
+        molecularDetail:
+          'Section 1.1: "There are no controlled trials demonstrating risk reduction with BYSTOLIC." Section 5.2: the drug was not studied in patients with angina pectoris or recent myocardial infarction. The outcome evidence that exists, SENIORS, is in a heart failure population the United States label does not cover and in which decompensated failure is a contraindication.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SENIORS (Eur Heart J 2005;26:215-225)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 2128,
+        primaryEndpoint:
+          'Composite of all-cause mortality or cardiovascular hospital admission, time to first event, in patients aged 70 or over with heart failure',
+        endpointMet: true,
+        statisticalPValue:
+          '31.1% against 35.3%; hazard ratio 0.86 (95% CI 0.74 to 0.99), p=0.039 over a mean 21 months',
+        unreportedAdverseSignals:
+          'All-cause death alone was not significantly different: 15.8% against 18.1%, HR 0.88 (95% CI 0.71 to 1.08), p=0.21. The composite result sits at the edge of significance, and 35% of the enrolled population had an ejection fraction above 35%.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Three 12-week placebo-controlled monotherapy hypertension trials (NDA 021742)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 1802,
+        primaryEndpoint: 'Change from baseline in sitting blood pressure at 12 weeks',
+        endpointMet: true,
+        statisticalPValue:
+          'Blood pressure endpoints met; discontinuation for adverse reactions 2.8% on nebivolol against 2.2% on placebo across the placebo-controlled programme',
+        unreportedAdverseSignals:
+          'These are blood pressure trials of twelve weeks. No cardiovascular outcome was measured, which is why the label states there are no controlled trials demonstrating risk reduction with the drug.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Composite of all-cause mortality or cardiovascular hospital admission 31.1% against 35.3% in 2,128 patients aged 70 or over (HR 0.86, 95% CI 0.74 to 0.99, p=0.039)',
+        'All-cause mortality in the same trial 15.8% against 18.1%, not significant (HR 0.88, 95% CI 0.71 to 1.08, p=0.21)',
+        'Blood pressure reduction across three 12-week placebo-controlled monotherapy trials in 1,597 treated hypertensive patients',
+        'A 5-fold higher peak concentration and 10-fold higher exposure to the active isomer in CYP2D6 poor metabolisers at the same dose',
+      ],
+      unsupportedInferences: [
+        'That nebivolol works through nitric-oxide-mediated vasodilation — a phrase that appears nowhere in its United States label, which says the mechanism has not been definitively established',
+        'That the l-isomer supplies a clinically meaningful vasodilator effect, when the label states it contributes little to activity',
+        'That the drug reduces cardiovascular events in hypertension, which the label explicitly declines to claim',
+        'That SENIORS demonstrated a mortality benefit, when all-cause death alone was not significantly different',
+      ],
+      whatFailedInitially: [
+        'All-cause mortality in SENIORS, the only outcome trial, did not separate from placebo',
+        'Beta-1 selectivity is lost in CYP2D6 poor metabolisers and at doses above 10 mg, in exactly the people with highest exposure',
+        'The drug was never studied in angina or after myocardial infarction, and its label says so',
+        'The one outcome trial was conducted in heart failure, a condition the United States label does not cover and whose decompensated form is a contraindication',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States on 17 December 2007 under NDA 021742 and generic since 2021',
+        'Among the most heavily promoted branded antihypertensives of its era, in an indication where several equally effective molecules were already generic',
+        'Now priced at about fourteen United States cents a tablet, which is where the marketing argument and the pharmacology argument stop being separable from the price argument',
+        'Carries heart failure indications in several European jurisdictions on the strength of SENIORS, and none in the United States',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet at 2.5, 5, 10 and 20 mg of nebivolol base, taken once daily',
+      description:
+        'Absorption resembles that of an oral solution and is unaffected by food; peak plasma concentration comes at about 1.5 to 4 hours. Absolute bioavailability has not been determined. The effective half-life of the active d-isomer is about 12 hours in extensive metabolisers and 19 hours in poor metabolisers, and active metabolites contribute to beta blockade.',
+      safetyProfile:
+        'Contraindicated in severe bradycardia, heart block greater than first degree, cardiogenic shock, decompensated cardiac failure, sick sinus syndrome without a pacemaker and severe hepatic impairment. Do not stop abruptly: severe exacerbation of angina, myocardial infarction and ventricular arrhythmias have been reported after abrupt beta-blocker withdrawal in coronary disease, and the label directs tapering over one to two weeks. In general, patients with bronchospastic disease should not receive beta-blockers. It may mask the symptoms of hypoglycaemia and alter glucose levels. Discontinuation for adverse reactions in placebo-controlled trials was 2.8% against 2.2% on placebo, most often for headache, nausea or bradycardia.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is nebivolol really different from other beta-blockers?',
+        a: 'It is chemically different and the clinical case for it being a different kind of drug is thinner than the marketing suggests. The claim is that it also relaxes arteries by releasing nitric oxide. There is genuine laboratory work behind that, in isolated vessels and forearm blood-flow studies. But the United States prescribing information says the mechanism of the blood pressure effect has not been definitively established, lists five possible contributors, and does not use the phrase nitric oxide anywhere in the document. It also says the drug shows no alpha-1 blockade at clinically relevant doses, and that the isomer usually credited with the vasodilator effect contributes little to activity. What has actually been shown is that it lowers blood pressure, and that it is beta-1 selective in most people at ordinary doses.',
+        auditNote:
+          'A mechanism can be true in a tissue bath and irrelevant in a patient. The test for the difference is an outcome trial, and this drug has one, in a population its United States label does not cover.',
+      },
+      {
+        q: 'Does it prevent heart attacks and strokes?',
+        a: 'Unknown for this drug, and the label says so: there are no controlled trials demonstrating risk reduction with it. What exists is the general finding that lowering blood pressure reduces cardiovascular events, shown for drugs across many classes. That inference is weaker for beta-blockers than for the others, because in the outcome trial record they prevented fewer strokes than alternatives at the same blood pressure, which is why most guidelines moved them off first-line for uncomplicated hypertension. The label also records that nebivolol was never studied in angina or after a heart attack.',
+      },
+      {
+        q: 'Why does the dose seem to affect me differently from other people?',
+        a: 'Because it probably does. The active half of nebivolol is partly cleared by the liver enzyme CYP2D6, and roughly 5 to 10% of people of European ancestry have little functional CYP2D6. In those people, the same tablet produces about five times the peak level and ten times the total exposure of the active isomer, and the half-life stretches from about twelve hours to nineteen. The label argues this matters less than it sounds because the metabolites also block beta receptors. It still means the heart-selectivity that is the drug main safety argument is lost in exactly the people carrying the most of it, and drugs like paroxetine, fluoxetine and quinidine can turn a normal metaboliser into a functional poor one.',
+      },
+      {
+        q: 'It was studied in heart failure. Can I take it for that?',
+        a: 'In much of Europe, yes; in the United States, that is off-label and the label lists decompensated cardiac failure as a contraindication. SENIORS randomised 2,128 people aged seventy and over with a history of heart failure and found the combined rate of death or cardiovascular admission fell from 35.3% to 31.1%, a hazard ratio of 0.86 at p=0.039. Deaths alone were 15.8% against 18.1% and that difference was not statistically significant. It is a real but marginal result on a composite, and it is the only outcome trial this molecule has. Where a beta-blocker is being chosen for heart failure, carvedilol, bisoprolol and metoprolol succinate each have a larger and cleaner mortality result.',
+      },
+      {
+        q: 'Can I stop it if I feel fine?',
+        a: 'Not abruptly. The label warns that severe worsening of angina, myocardial infarction and ventricular arrhythmias have been reported after abrupt discontinuation of beta-blockers in people with coronary disease, sometimes without any preceding warning worsening of angina, and it extends that caution to people without known coronary disease. The direction is to taper over one to two weeks with reduced physical activity, and to restart the drug at least temporarily if angina worsens during the taper. Separately, if you are having an operation, the label says people already established on a beta-blocker should generally continue it through the perioperative period rather than stop.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Flather MD, Shibata MC, Coats AJ, et al. Randomized trial to determine the effect of nebivolol on mortality and cardiovascular hospital admission in elderly patients with heart failure (SENIORS). Eur Heart J 2005;26:215-225',
+        identifier: '10.1093/eurheartj/ehi115',
+        kind: 'doi',
+      },
+      {
+        label:
+          'BYSTOLIC (nebivolol) United States prescribing information — Indications 1.1, Contraindications 4, Warnings 5.1 to 5.5, Description 11, Clinical Pharmacology 12, 12.1 and 12.3',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021742',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'CIBIS-II Investigators and Committees. The Cardiac Insufficiency Bisoprolol Study II (CIBIS-II): a randomised trial. Lancet 1999;353:9-13',
+        identifier: '10.1016/S0140-6736(98)11181-9',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Packer M, Coats AJ, Fowler MB, et al. Effect of carvedilol on survival in severe chronic heart failure. N Engl J Med 2001;344:1651-1658 (COPERNICUS)',
+        identifier: '10.1056/NEJM200105313442201',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — nebivolol, 94 listed generic products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 71301 — nebivolol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/71301',
+        kind: 'url',
+      },
+    ],
+  },
 ]

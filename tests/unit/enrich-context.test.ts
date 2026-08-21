@@ -4,6 +4,7 @@ import { describeEvidence } from '@/scripts/enrich/botanical-context'
 import { looksBinomial, splitPlantName } from '@/scripts/enrich/botanicals'
 import { biologicStem, isKnownBiologicStem } from '@/scripts/enrich/suffixed-biologics'
 import { describeRecord } from '@/scripts/enrich/substance-context'
+import { cleanLabelProse } from '@/scripts/enrich/provenance'
 
 describe('splitPlantName', () => {
   it('separates the part from the binomial and fixes the case both APIs require', () => {
@@ -125,6 +126,44 @@ describe('describeEvidence', () => {
   it('records an absence as a finding rather than a gap', () => {
     expect(describeEvidence(facts(0, 0, 0), 'Nothing At All')).toContain(
       'not evidence that it does nothing',
+    )
+  })
+})
+
+describe('cleanLabelProse', () => {
+  it('drops a section heading the SPL author typed inside the section', () => {
+    expect(cleanLabelProse('INDICATIONS For the temporary relief of minor aches.')).toBe(
+      'For the temporary relief of minor aches.',
+    )
+    expect(cleanLabelProse('Uses  temporarily relieves pain')).toBe('Temporarily relieves pain')
+  })
+
+  it('moves a homeopathic footnote out of the sentence it was appended to', () => {
+    const out = cleanLabelProse(
+      'May relieve sneezing.** **Claims based on traditional homeopathic practice, not accepted medical evidence.',
+    )
+    expect(out).toBe(
+      'May relieve sneezing. Label footnote: Claims based on traditional homeopathic practice, not accepted medical evidence.',
+    )
+  })
+
+  it('stops the label shouting without changing what it says', () => {
+    const out = cleanLabelProse(
+      'Relieves trembling.* *CLAIMS BASED ON TRADITIONAL HOMEOPATHIC PRACTICE, NOT FDA EVALUATED.',
+    )
+    expect(out).toContain('Claims based on traditional homeopathic practice, not FDA evaluated.')
+    expect(out).not.toContain('not fda evaluated')
+  })
+
+  it('reads a marker between two words as the list separator it replaced', () => {
+    expect(cleanLabelProse('For relief of minor: congestion* coughing* wheezing*')).toBe(
+      'For relief of minor: congestion, coughing, wheezing',
+    )
+  })
+
+  it('leaves an asterisk that is part of a name', () => {
+    expect(cleanLabelProse('patients who are HLA-A*02:01P positive')).toBe(
+      'Patients who are HLA-A*02:01P positive',
     )
   })
 })

@@ -2291,4 +2291,547 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 5. Azathioprine — a 1962 prodrug that made organ transplantation possible, carries a boxed
+  //    warning for lymphoma, and lost to placebo in newly diagnosed Crohn's disease.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'azathioprine',
+    name: 'Azathioprine',
+    tradeName: 'Imuran / Azasan',
+    sponsor:
+      'Discovered at Burroughs Wellcome by Gertrude Elion and George Hitchings, whose work on purine antimetabolites won the 1988 Nobel Prize in Physiology or Medicine. IMURAN is now held under NDA 016324; the molecule has been generic for decades.',
+    targetGene: 'IMPDH1 / IMPDH2 (through the active metabolite), with TPMT and NUDT15 governing who tolerates it',
+    targetProtein:
+      'De novo purine synthesis enzymes, reached through the thioguanine nucleotides formed from 6-mercaptopurine. The clinically decisive proteins are the two that inactivate it: thiopurine S-methyltransferase (TPMT) and the nucleotide diphosphatase NUDT15.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1968,
+    indication:
+      'Adjunct for the prevention of rejection in renal homotransplantation, and management of active rheumatoid arthritis to reduce signs and symptoms in patients who have not responded adequately to rest, aspirin or other non-steroidal anti-inflammatory drugs',
+    patientFriendlyIndication:
+      'Stopping the immune system rejecting a transplanted kidney, and severe rheumatoid arthritis that has not responded to other treatment',
+    anatomicalSite:
+      'Dividing lymphocytes. The drug works because T and B cells depend almost entirely on de novo purine synthesis, while most other tissues can use the salvage pathway instead.',
+    conditionContext: {
+      conditionExplainer:
+        'A transplanted organ carries proteins the recipient’s immune system has never seen and treats as foreign. Lymphocytes must divide rapidly to mount that attack, and dividing cells need a supply of purines to build DNA.',
+      whyItMatters:
+        'Azathioprine was the drug that made organ transplantation something other than an experiment. Between 1962 and the arrival of cyclosporine in 1983 it was, with steroids, essentially the whole of transplant immunosuppression. It is still widely used, and it carries a boxed warning for malignancy that the drugs which replaced it also carry.',
+      whoTakesThis:
+        'Kidney transplant recipients, people with rheumatoid arthritis unresponsive to other treatment, and — off the licensed indication but at very large scale — people with inflammatory bowel disease, autoimmune hepatitis, myasthenia gravis, vasculitis and lupus.',
+      clinicalGoals:
+        'Suppress lymphocyte proliferation enough to prevent rejection or control autoimmunity, without suppressing the bone marrow, and without the cumulative cancer risk outweighing the benefit. Whether a given patient can achieve that is partly decided by two genes before the first tablet.',
+    },
+    oneSentenceVerdict:
+      'A purine antimetabolite prodrug that starves dividing lymphocytes of the building blocks for DNA — it made kidney transplantation survivable in the 1960s and still prevents rejection, and it failed to beat placebo for sustained corticosteroid-free remission in newly diagnosed Crohn’s disease (44.1% against 36.5%, difference 7.6%, 95% CI -9.2 to 24.4, P=0.48) while carrying a boxed warning for lymphoma and a measured hazard ratio of 5.28 for lymphoproliferative disorder in 19,486 followed patients.',
+    laymanHowItWorks:
+      'Azathioprine is swallowed as an inert molecule and broken apart in the body into 6-mercaptopurine, which cells then convert into counterfeit versions of the building blocks used to make DNA. Immune cells are hit hardest because when they are activated they must divide fast, and unlike most cells in the body they cannot recycle old building blocks — they have to make new ones. Starving that supply stops the immune response before it can be mounted. Two enzymes decide how much of the counterfeit accumulates in any given person, and the genes for them vary enough that some people accumulate a dangerous amount at an ordinary dose.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1249 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 14 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Synthesised at Burroughs Wellcome in 1957 and long out of patent, with generic tablets at about 12 cents each. Azathioprine appears on the WHO Model List of Essential Medicines. The cost that matters here is not the tablet but the test: TPMT and NUDT15 genotyping or phenotyping before starting is recommended by the label, and access to that testing rather than to the drug is what varies between health systems.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'In transplantation azathioprine has largely been displaced by mycophenolate, which acts on the same pathway more selectively; in inflammatory bowel disease and rheumatology the alternatives are methotrexate, mycophenolate, and — where the evidence is strongest — the biologics. The comparison that matters most is SONIC, where azathioprine alone put 30.0% of Crohn’s patients into corticosteroid-free remission at 26 weeks against 44.4% for infliximab alone and 56.8% for the two together. Nothing sold as a food or supplement substitutes for an immunosuppressant, and stopping one to try an alternative risks rejection or an uncontrolled flare.',
+      conventionalRx: [
+        {
+          name: 'Mycophenolate mofetil or mycophenolic acid',
+          class: 'Inosine monophosphate dehydrogenase inhibitor',
+          howItCompares:
+            'Blocks the same de novo purine pathway one step further along, and inhibits the type II isoform of the enzyme that lymphocytes preferentially express, so it is more selective for lymphocytes than azathioprine is. It replaced azathioprine as the standard antimetabolite in kidney transplantation in the 1990s. It is strongly teratogenic and carries a pregnancy risk-management programme that azathioprine does not.',
+          typicalCost:
+            'US$0.2265 per unit for mycophenolic acid and US$0.2698 for mycophenolate mofetil at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: more lymphocyte-selective, better rejection outcomes in the transplant trials that displaced azathioprine. Cons: gastrointestinal intolerance, and an embryo-fetal toxicity profile severe enough to require a REMS programme.',
+        },
+        {
+          name: 'Methotrexate',
+          class: 'Dihydrofolate reductase inhibitor and antifolate',
+          howItCompares:
+            'The first-line conventional disease-modifying drug in rheumatoid arthritis, with a far larger randomised evidence base in that disease than azathioprine has. It is also used in Crohn’s disease. It is teratogenic and requires the same kind of blood monitoring.',
+          typicalCost: 'Generic; among the cheapest disease-modifying antirheumatic drugs available',
+          prosAndCons:
+            'Pros: the reference DMARD in rheumatoid arthritis, weekly rather than daily. Cons: teratogenic, hepatotoxic, and interacts badly with alcohol.',
+        },
+        {
+          name: 'Infliximab and other anti-TNF biologics',
+          class: 'Monoclonal antibodies against tumour necrosis factor alpha',
+          howItCompares:
+            'In SONIC, a blinded trial in 508 patients with moderate-to-severe Crohn’s disease who had never had immunosuppressive or biologic therapy, corticosteroid-free clinical remission at week 26 was 30.0% on azathioprine alone, 44.4% on infliximab alone (P=0.006 against combination) and 56.8% on the two combined (P<0.001 against azathioprine). Mucosal healing was 16.5%, 30.1% and 43.9% respectively.',
+          typicalCost:
+            'Substantially more expensive than azathioprine even after biosimilar entry; administered by infusion or injection',
+          prosAndCons:
+            'Pros: markedly better remission and mucosal healing in Crohn’s disease. Cons: cost, infusion burden, and serious infection rates in SONIC were similar across all three arms at 3.9% to 5.6%.',
+        },
+        {
+          name: 'Tacrolimus-based regimens without an antimetabolite',
+          class: 'Calcineurin inhibitor',
+          howItCompares:
+            'A different mechanism entirely — blocking the signal that activates T cells rather than starving them of DNA precursors. In practice the two are used together rather than as alternatives, because their toxicities do not overlap: calcineurin inhibitors damage the kidney, antimetabolites damage the marrow.',
+          typicalCost:
+            'US$0.6591 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no myelosuppression, no thiopurine pharmacogenetics. Cons: nephrotoxicity, new-onset diabetes, narrow therapeutic window requiring blood level monitoring.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask whether TPMT and NUDT15 have been checked before the first tablet',
+          action:
+            'Confirm that thiopurine methyltransferase and NUDT15 status has been tested, as the label directs, before treatment starts.',
+          patientImpact:
+            'About 1 in 300 people of European or African ancestry carry two loss-of-function TPMT alleles and have essentially no enzyme activity; among people of East Asian ancestry, 2% carry two loss-of-function NUDT15 alleles and about 21% carry one. In those people an ordinary dose accumulates toxic thioguanine nucleotides and can destroy the bone marrow.',
+          clinicalPrecaution:
+            'The label states that patients with TPMT or NUDT15 deficiency require alternative therapy or dose modification. This is a description of a labelled testing requirement, not dosing guidance.',
+        },
+        {
+          name: 'Never take allopurinol or febuxostat alongside it without the prescriber knowing',
+          action:
+            'Tell whoever prescribes a gout drug that you are taking azathioprine, and tell the azathioprine prescriber if a gout drug is added.',
+          patientImpact:
+            'Xanthine oxidase is one of the two routes that dispose of the active metabolite. Blocking it with allopurinol or febuxostat causes the metabolite to accumulate, and the interaction has caused fatal bone marrow failure.',
+          clinicalPrecaution:
+            'The label addresses this interaction explicitly. The combination is sometimes used deliberately under specialist supervision with a reduced thiopurine dose, which is precisely why it must never happen by accident.',
+        },
+        {
+          name: 'Cover up in the sun and get skin checks',
+          action:
+            'Use sun protection routinely and have new or changing skin lesions looked at rather than watched.',
+          patientImpact:
+            'Thiopurines sensitise skin to ultraviolet A and the associated non-melanoma skin cancer risk is one of the best-documented harms of long-term use. The boxed warning on the label covers malignancy generally, including post-transplant lymphoma and hepatosplenic T-cell lymphoma.',
+          clinicalPrecaution:
+            'The risk relates to ongoing exposure and accumulates with duration, which is one of the arguments for periodically reviewing whether the drug is still needed.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1C=NC(=C1SC2=NC=NC3=C2NC=N3)[N+](=O)[O-]',
+      chemicalFormula: 'C9H7N7O2S',
+      molecularWeight: '277.27 g/mol',
+      targetReceptorAffinity:
+        'Azathioprine binds nothing. It is a nitroimidazolyl derivative of 6-mercaptopurine designed to survive the gut and release 6-MP after non-enzymatic attack by glutathione and other thiols. The active species are the 6-thioguanine nucleotides formed several steps later, which are incorporated into DNA and RNA and inhibit de novo purine synthesis; their intracellular concentration, not any binding affinity, is what determines both effect and toxicity.',
+      structureSource: {
+        label:
+          'PubChem CID 2265 (azathioprine) — canonical SMILES, molecular formula C9H7N7O2S and molecular weight 277.27 g/mol, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2265',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'aza-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the nitroimidazole carrier and its thioether linkage',
+          description:
+            'Verify that the 1-methyl-4-nitroimidazol-5-yl group is attached to the purine sulphur. That linkage is the entire design: it protects 6-mercaptopurine from first-pass metabolism and is cleaved by thiols in vivo. Free 6-mercaptopurine as an impurity is a different marketed drug with different kinetics.',
+          reagentsAndBuffer:
+            'Azathioprine USP reference standard, 1H and 13C NMR in DMSO-d6, reversed-phase HPLC resolving free 6-mercaptopurine, ultraviolet detection at 280 nm',
+        },
+        {
+          id: 'aza-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Nucleophilic aromatic substitution of 6-mercaptopurine onto the nitroimidazole',
+          description:
+            'Couple the thiolate of 6-mercaptopurine to 5-chloro-1-methyl-4-nitroimidazole. The nitro group activates the ring for substitution and later makes the thioether labile to glutathione. This is a single-step coupling and is why azathioprine is one of the cheapest immunosuppressants in existence.',
+          dependsOnStepId: 'aza-w1',
+          reagentsAndBuffer:
+            '6-mercaptopurine monohydrate, 5-chloro-1-methyl-4-nitroimidazole, sodium hydroxide or sodium carbonate base, aqueous dimethylformamide or ethanol, controlled pH to avoid purine ring hydrolysis',
+        },
+        {
+          id: 'aza-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Remove residual 6-mercaptopurine and the hydrolysed imidazole',
+          description:
+            'Recrystallise away from unreacted 6-mercaptopurine and from the hydroxy-imidazole formed by hydrolysis. Free 6-mercaptopurine matters as an impurity because it bypasses the intended slow release and delivers a bolus of active drug.',
+          dependsOnStepId: 'aza-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from aqueous dimethylformamide or acetone-water, reversed-phase HPLC against USP related-compounds standards, limit test for 6-mercaptopurine',
+        },
+        {
+          id: 'aza-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Thiol-mediated release and thioguanine nucleotide accumulation in lymphocytes',
+          description:
+            'Incubate with activated primary human lymphocytes and measure intracellular 6-thioguanine nucleotide accumulation. The assay must be run in cells with known TPMT and NUDT15 genotype, because those two enzymes set the accumulation rate and a cell line with normal activity will not predict what happens in a deficient patient.',
+          dependsOnStepId: 'aza-w3',
+          reagentsAndBuffer:
+            'Phytohaemagglutinin-activated peripheral blood mononuclear cells, RPMI-1640 with 10% fetal bovine serum, reduced glutathione to model thiolytic release, LC-MS/MS quantification of 6-TGN and 6-methylmercaptopurine nucleotides, TPMT and NUDT15 genotyping of each donor',
+        },
+        {
+          id: 'aza-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Lymphocyte proliferation inhibition with a salvage-pathway control',
+          description:
+            'Measure inhibition of activated lymphocyte proliferation, and repeat it with hypoxanthine supplied in the medium. The selectivity of this whole drug class rests on lymphocytes lacking an effective salvage pathway; if adding hypoxanthine rescues proliferation, the assay is measuring de novo purine blockade and not general cytotoxicity.',
+          dependsOnStepId: 'aza-w4',
+          reagentsAndBuffer:
+            'CFSE dilution or tritiated thymidine incorporation in activated lymphocytes, hypoxanthine-supplemented and unsupplemented parallel arms, mycophenolic acid as a mechanistic comparator, allopurinol arm to demonstrate the xanthine oxidase interaction',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'aza-a1',
+        category: 'failed',
+        title: 'AZTEC: early azathioprine did not beat placebo in newly diagnosed Crohn’s disease',
+        laymanSummary:
+          'The reasoning was that starting an immunosuppressant early, before damage accumulates, would change the course of Crohn’s disease. A blinded trial gave azathioprine or placebo to adults diagnosed within the previous eight weeks. After a year and a half, the two groups were not meaningfully different, and more people stopped the drug because of side effects.',
+        technicalDetails:
+          'AZTEC randomised 131 adults diagnosed with Crohn’s disease within the previous 8 weeks at 31 Spanish hospitals to azathioprine 2.5 mg/kg/day (n=68) or placebo (n=63), with corticosteroids permitted but no other concomitant medication. After 76 weeks, sustained corticosteroid-free remission was achieved by 30 (44.1%) against 23 (36.5%), a difference of 7.6% (95% CI -9.2 to 24.4, P=0.48). Relapse rates using a Crohn’s Disease Activity Index threshold of 175 and corticosteroid requirements were similar. A post hoc analysis using a threshold of 220 did favour azathioprine (11.8% against 30.2%, P=0.01). Serious adverse events occurred in 20.6% against 11.1% (P=0.16), and discontinuation for adverse events in 20.6% against 6.35% (P=0.02).',
+        evidenceSource:
+          'Panés J et al., AZTEC Study Group, Gastroenterology 2013;145:766-774',
+        doi: '10.1053/j.gastro.2013.06.009',
+        measuredMetric: 'Sustained corticosteroid-free remission at 76 weeks, against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aza-a2',
+        category: 'measured',
+        title: 'SONIC: azathioprine alone was the weakest of the three arms',
+        laymanSummary:
+          'Five hundred and eight people with moderate to severe Crohn’s disease who had never had either drug were randomly given azathioprine, infliximab, or both. Three in ten were in remission off steroids at six months on azathioprine, four and a half in ten on infliximab, and nearly six in ten on the combination.',
+        technicalDetails:
+          'SONIC randomised 508 immunosuppressive-naive and biologic-naive adults with moderate-to-severe Crohn’s disease. Corticosteroid-free clinical remission at week 26 was 51 of 170 (30.0%) on azathioprine 2.5 mg/kg/day alone, 75 of 169 (44.4%) on infliximab alone, and 96 of 169 (56.8%) on the combination — P<0.001 for combination against azathioprine and P=0.006 for infliximab against combination. Mucosal healing at week 26 was 18 of 109 (16.5%), 28 of 93 (30.1%) and 47 of 107 (43.9%) respectively. Serious infections were 5.6%, 4.9% and 3.9% — no worse on combination therapy.',
+        evidenceSource: 'Colombel JF et al., N Engl J Med 2010;362:1383-1395 (SONIC, NCT00094458)',
+        doi: '10.1056/NEJMoa0904492',
+        measuredMetric:
+          'Corticosteroid-free clinical remission and mucosal healing at week 26, three-arm randomised comparison',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aza-a3',
+        category: 'measured',
+        title: 'CESAME: a fivefold hazard for lymphoproliferative disorder on current thiopurine',
+        laymanSummary:
+          'A French cohort followed nearly twenty thousand people with inflammatory bowel disease. Those currently taking a thiopurine developed lymphoma at about five times the rate of those who never had. Those who had stopped were back near baseline. The absolute numbers are small — about nine cases per ten thousand patient-years — and the ratio is large.',
+        technicalDetails:
+          'A prospective nationwide French observational cohort enrolled 19,486 patients with inflammatory bowel disease reported by 680 gastroenterologists, with a median follow-up of 35 months. At baseline 5,867 (30.1%) were receiving thiopurines, 2,809 (14.4%) had discontinued and 10,810 (55.5%) had never received them. Twenty-three lymphoproliferative disorders were diagnosed. Incidence was 0.90 per 1,000 patient-years (95% CI 0.50 to 1.49) in current users, 0.20 (0.02 to 0.72) in past users and 0.26 (0.10 to 0.57) in never-users (P=0.0054). The multivariate-adjusted hazard ratio for current against never use was 5.28 (95% CI 2.01 to 13.9, P=0.0007). Most cases matched the pathological range of post-transplant lymphoproliferative disease, consistent with an Epstein-Barr-driven mechanism.',
+        evidenceSource: 'Beaugerie L et al., CESAME Study Group, Lancet 2009;374:1617-1625',
+        doi: '10.1016/S0140-6736(09)61302-7',
+        measuredMetric:
+          'Incidence of lymphoproliferative disorder per 1,000 patient-years by thiopurine exposure status, with multivariate adjustment',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aza-a4',
+        category: 'failed',
+        title: 'PANTHER-IPF: prednisone with azathioprine killed patients with pulmonary fibrosis',
+        laymanSummary:
+          'A steroid plus azathioprine plus an antioxidant had been standard treatment for idiopathic pulmonary fibrosis for years without ever being tested against placebo. When it finally was, the trial stopped that arm early: eight deaths against one, and three times as many hospitalisations.',
+        technicalDetails:
+          'PANTHER-IPF randomised patients with idiopathic pulmonary fibrosis and mild-to-moderate lung function impairment to prednisone plus azathioprine plus N-acetylcysteine, to N-acetylcysteine alone, or to placebo. At a planned interim analysis with about half the data collected — 77 patients in the combination group and 78 in the placebo group — the combination arm showed an increased rate of death (8 against 1, P=0.01) and hospitalisation (23 against 7, P<0.001), with no evidence of physiological or clinical benefit. The independent data and safety monitoring board recommended termination of the combination arm at a mean follow-up of 32 weeks.',
+        evidenceSource:
+          'Idiopathic Pulmonary Fibrosis Clinical Research Network, Raghu G et al., N Engl J Med 2012;366:1968-1977 (PANTHER-IPF, NCT00650091)',
+        doi: '10.1056/NEJMoa1113354',
+        measuredMetric:
+          'Death and hospitalisation at planned interim analysis, combination therapy against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aza-a5',
+        category: 'measured',
+        title: 'Two genes decide who can take it, and the label says so',
+        laymanSummary:
+          'A small proportion of people inherit two broken copies of one of the enzymes that disposes of this drug. In them, a normal dose accumulates until it destroys the bone marrow. Which gene matters depends on ancestry, and the label carries the numbers.',
+        technicalDetails:
+          'Azathioprine releases 6-mercaptopurine, which is inactivated by two routes: thiol methylation by thiopurine S-methyltransferase and oxidation by xanthine oxidase, while NUDT15 converts active thioguanine nucleotides to inactive monophosphates. The label states that approximately 0.3% (1 in 300) of patients of European or African ancestry carry two loss-of-function TPMT alleles with little or no activity, and approximately 10% carry one; the TPMT*2, *3A and *3C alleles account for about 95% of reduced-activity individuals. NUDT15 deficiency is found in under 1% of patients of European or African ancestry, but among patients of East Asian ancestry 2% carry two loss-of-function alleles and approximately 21% carry one, most commonly the p.R139C variant. The label states that patients with TPMT or NUDT15 deficiency require alternative therapy or dose modification because of the risk of severe myelosuppression.',
+        evidenceSource:
+          'IMURAN (azathioprine) tablets United States prescribing information, Clinical Pharmacology and Warnings sections (NDA 016324)',
+        measuredMetric:
+          'Population frequencies of loss-of-function TPMT and NUDT15 alleles, and their association with severe myelosuppression, as stated on the label',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aza-a6',
+        category: 'inferred',
+        title: 'A boxed warning for malignancy, on a risk that is hard to separate from the disease',
+        laymanSummary:
+          'The label warns that long-term use raises the risk of cancer, including two specific lymphomas. That warning rests on observational data, and the diseases the drug treats also raise cancer risk on their own. Untangling the two has proved difficult and the field has not fully done it.',
+        technicalDetails:
+          'The IMURAN boxed warning states that chronic immunosuppression with a purine antimetabolite increases the risk of malignancy in humans, and specifically names post-transplant lymphoma and hepatosplenic T-cell lymphoma in patients with inflammatory bowel disease. The supporting evidence is observational: transplant registries, and cohorts such as CESAME, which measured an adjusted hazard ratio of 5.28 for lymphoproliferative disorder in current thiopurine users. Confounding by indication and by disease severity is the standing objection — people on thiopurines have more active disease — and the CESAME finding that past users return to near-baseline incidence (0.20 against 0.26 per 1,000 patient-years) is the strongest argument against that objection, since disease severity does not reverse when the drug stops. Hepatosplenic T-cell lymphoma in particular is reported overwhelmingly in young men on combined thiopurine and anti-TNF therapy, which makes attribution to either drug alone unresolvable from case series.',
+        evidenceSource:
+          'IMURAN (azathioprine) tablets United States prescribing information, boxed warning; Beaugerie L et al., Lancet 2009;374:1617-1625',
+        doi: '10.1016/S0140-6736(09)61302-7',
+        inferredClaim:
+          'That the measured lymphoma excess is caused by the drug rather than by the disease it treats — the reversal on discontinuation supports the drug, and the trials that would settle it have not been run',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'aza-a7',
+        category: 'conclusion_shift',
+        title: 'From first-line immunosuppressant to a drug used because it is cheap',
+        laymanSummary:
+          'For twenty years azathioprine and steroids were the whole of transplant medicine. Cyclosporine displaced it as the main agent in the 1980s, mycophenolate displaced it as the antimetabolite in the 1990s, and the biologics beat it in Crohn’s disease in 2010. It is still used, and the reason has changed from being the best option to being an affordable one.',
+        technicalDetails:
+          'Azathioprine was introduced into clinical transplantation in 1962 and, with corticosteroids, constituted standard immunosuppression until cyclosporine arrived in 1983. Mycophenolate mofetil, which inhibits the same de novo purine pathway with selectivity for the type II isoform of inosine monophosphate dehydrogenase expressed preferentially in lymphocytes, replaced it in most kidney transplant protocols after trials in the mid-1990s. In inflammatory bowel disease, SONIC established in 2010 that infliximab alone outperformed azathioprine alone on corticosteroid-free remission (44.4% against 30.0%) and on mucosal healing (30.1% against 16.5%), and AZTEC established in 2013 that early azathioprine did not beat placebo in newly diagnosed disease. The drug remains in wide use, and at US$0.12 a tablet the reason is not obscure.',
+        evidenceSource:
+          'Colombel JF et al., N Engl J Med 2010;362:1383-1395; Panés J et al., Gastroenterology 2013;145:766-774; CMS National Average Drug Acquisition Cost file, effective 19 August 2026',
+        doi: '10.1056/NEJMoa0904492',
+        inferredClaim:
+          'That continued widespread use reflects continued first-line efficacy — each of the three head-to-head comparisons in this batch places it behind the alternative, and the case for it now rests substantially on cost and on familiarity',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'aza-a8',
+        category: 'inferred',
+        title: 'The licensed indications are two; the actual uses are a dozen',
+        laymanSummary:
+          'The label covers kidney transplant rejection and rheumatoid arthritis. The drug is used routinely for Crohn’s disease, ulcerative colitis, autoimmune hepatitis, myasthenia gravis, lupus, vasculitis and several skin diseases, none of which is on the label. Some of those have good trial support and some have almost none, and the label does not distinguish.',
+        technicalDetails:
+          'The IMURAN indications section covers adjunctive prevention of rejection in renal homotransplantation and the management of active rheumatoid arthritis in patients who have not responded adequately to rest, aspirin or other non-steroidal anti-inflammatory drugs. Inflammatory bowel disease, autoimmune hepatitis, myasthenia gravis, systemic lupus erythematosus, ANCA-associated vasculitis, bullous pemphigoid and atopic dermatitis are all treated with azathioprine off-label. The evidence quality across those uses is highly uneven: maintenance of remission in ANCA vasculitis and in autoimmune hepatitis has randomised support, while induction of remission in Crohn’s disease does not — Cochrane review evidence and the AZTEC result both point against it. Off-label use is lawful and often appropriate; the audit point is that a reader looking at the label learns nothing about which of these uses is well supported.',
+        evidenceSource:
+          'IMURAN (azathioprine) tablets United States prescribing information, Indications and Usage section (NDA 016324); Panés J et al., Gastroenterology 2013;145:766-774',
+        inferredClaim:
+          'That because the drug is widely used for a condition it is effective for that condition — the licensed indications and the actual indications overlap only partly, and the evidence behind the unlicensed ones ranges from randomised to almost none',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed with a chemical wrapper that survives the stomach',
+        laymanDesc:
+          'Azathioprine is a delivery device for a second molecule. On its own it does nothing; it exists so that 6-mercaptopurine can survive being swallowed and reach the bloodstream.',
+        molecularDetail:
+          'A nitroimidazolyl thioether of 6-mercaptopurine, designed by Elion and Hitchings specifically to slow the release of 6-MP and reduce its first-pass loss. Cleavage is largely non-enzymatic, by glutathione and other cellular thiols attacking the activated nitroimidazole ring.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Cellular thiols cut it in half',
+        laymanDesc:
+          'Inside cells, the body’s own antioxidant molecules break the link and release the working drug. This happens throughout the body, not in one organ.',
+        molecularDetail:
+          'Glutathione-mediated nucleophilic attack releases 6-mercaptopurine and 1-methyl-4-nitro-5-thioimidazole. Roughly 88% of an oral dose is absorbed; the released 6-MP then enters a branching metabolic network with three competing fates.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Three enzymes compete for it, and two of them are gatekeepers',
+        laymanDesc:
+          'The released drug can be turned into the active form, methylated into an inactive form, or oxidised into waste. How much ends up active depends on two enzymes whose genes vary between people.',
+        molecularDetail:
+          'Hypoxanthine-guanine phosphoribosyltransferase begins the activation route to 6-thioguanine nucleotides. Thiopurine S-methyltransferase diverts 6-MP to inactive 6-methylmercaptopurine, and xanthine oxidase oxidises it to 6-thiouric acid. NUDT15 additionally dephosphorylates active thioguanine triphosphates back to inactive monophosphates. TPMT and NUDT15 loss-of-function variants shift the balance towards accumulation, and xanthine oxidase inhibition by allopurinol does the same.',
+        iconName: 'GitBranch',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Counterfeit nucleotides go into DNA and block new purine synthesis',
+        laymanDesc:
+          'The active form is incorporated into the cell’s DNA in place of a real building block, and it also shuts down the factory that makes those building blocks from scratch.',
+        molecularDetail:
+          '6-thioguanine nucleotides are incorporated into DNA and RNA, and the intermediate 6-thioinosine monophosphate inhibits the first committed step of de novo purine synthesis, amidophosphoribosyltransferase. A separate and probably important mechanism is 6-thio-GTP binding to Rac1 in T cells, blocking the co-stimulatory signal and inducing apoptosis — the effect that best explains the drug’s selectivity for activated T cells.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Activated lymphocytes cannot divide, so the immune attack does not happen',
+        laymanDesc:
+          'Immune cells must multiply rapidly to mount a response. Most other cells in the body can recycle old building blocks; lymphocytes largely cannot, which is why they are hit hardest.',
+        molecularDetail:
+          'Lymphocytes depend disproportionately on de novo purine synthesis rather than the hypoxanthine salvage pathway, which is the basis of the therapeutic window for this whole antimetabolite class. The clinical effect takes weeks to months to develop because it depends on turnover of the existing lymphocyte pool, not on immediate inhibition.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Bone marrow and long-term cancer risk come from the same mechanism',
+        laymanDesc:
+          'The bone marrow is also full of rapidly dividing cells, so it is affected too. And a mechanism that damages DNA and suppresses immune surveillance over years carries a measured cancer risk.',
+        molecularDetail:
+          'Myelosuppression is dose-limiting and is severe in TPMT- or NUDT15-deficient patients. Thioguanine incorporated into DNA sensitises skin to ultraviolet A, and prolonged suppression of Epstein-Barr-specific T-cell surveillance underlies the lymphoproliferative signal — an adjusted hazard ratio of 5.28 in current users against never-users in 19,486 followed patients, returning towards baseline after discontinuation.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SONIC (NCT00094458)',
+        phase: 'Phase 3, randomised, double-blind, three-arm',
+        sampleSize: 508,
+        primaryEndpoint: 'Corticosteroid-free clinical remission at week 26 in Crohn’s disease',
+        endpointMet: false,
+        statisticalPValue:
+          'Azathioprine alone 30.0% against infliximab alone 44.4% and combination 56.8%; P<0.001 for combination against azathioprine',
+        unreportedAdverseSignals:
+          'Azathioprine monotherapy was the comparator arm and lost on both remission and mucosal healing (16.5% against 43.9%). Serious infections were similar across arms at 3.9% to 5.6%, which undercuts the usual assumption that combining immunosuppressants necessarily multiplies infection risk.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'AZTEC (Panés 2013)',
+        phase: 'Phase 3, multicentre, randomised, double-blind, placebo-controlled',
+        sampleSize: 131,
+        primaryEndpoint:
+          'Sustained corticosteroid-free remission at 76 weeks in Crohn’s disease diagnosed within the previous 8 weeks',
+        endpointMet: false,
+        statisticalPValue:
+          '44.1% against 36.5%; difference 7.6% (95% CI -9.2 to 24.4), P=0.48',
+        unreportedAdverseSignals:
+          'Discontinuation for adverse events was 20.6% against 6.35% (P=0.02). A post hoc analysis using a higher activity threshold did favour azathioprine (11.8% against 30.2%, P=0.01) and is frequently cited as though it were the trial result.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'PANTHER-IPF combination arm (NCT00650091)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, three-arm',
+        sampleSize: 155,
+        primaryEndpoint: 'Change in forced vital capacity over 60 weeks',
+        endpointMet: false,
+        statisticalPValue:
+          'Terminated at interim analysis: 8 deaths against 1 (P=0.01) and 23 hospitalisations against 7 (P<0.001) with no physiological or clinical benefit',
+        unreportedAdverseSignals:
+          'The combination — prednisone, azathioprine and N-acetylcysteine — had been standard practice for idiopathic pulmonary fibrosis for years without a placebo-controlled trial. The arm was stopped at a mean follow-up of 32 weeks with roughly half the planned data.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'CESAME prospective cohort (Beaugerie 2009)',
+        phase: 'Prospective nationwide observational cohort, not randomised',
+        sampleSize: 19486,
+        primaryEndpoint: 'Incidence of lymphoproliferative disorder by thiopurine exposure status',
+        endpointMet: true,
+        statisticalPValue:
+          'Multivariate-adjusted hazard ratio 5.28 (95% CI 2.01 to 13.9), P=0.0007, current users against never-users; incidence 0.90 against 0.26 per 1,000 patient-years',
+        unreportedAdverseSignals:
+          'Observational and therefore open to confounding by indication. Only 23 events occurred in total, which is why the confidence interval spans a sevenfold range. Median follow-up was 35 months, short for a cancer endpoint.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Corticosteroid-free remission at week 26 in Crohn’s disease: 30.0% on azathioprine against 44.4% on infliximab and 56.8% on both, in 508 randomised patients',
+        'Sustained corticosteroid-free remission at 76 weeks in new Crohn’s disease: 44.1% against 36.5% on placebo, difference 7.6% (95% CI -9.2 to 24.4), P=0.48',
+        'Lymphoproliferative disorder hazard ratio 5.28 (95% CI 2.01 to 13.9) in current thiopurine users against never-users, in 19,486 followed patients',
+        '8 deaths against 1 and 23 hospitalisations against 7 in the prednisone-azathioprine-acetylcysteine arm of PANTHER-IPF',
+        'Loss-of-function TPMT alleles in about 0.3% of people of European or African ancestry, and loss-of-function NUDT15 in 2% of people of East Asian ancestry, both stated on the label',
+      ],
+      unsupportedInferences: [
+        'That starting the drug early in Crohn’s disease changes the course of the disease — the trial designed to show it did not',
+        'That the measured lymphoma excess is entirely attributable to the drug rather than partly to the disease it treats',
+        'That an unlicensed use with long-standing practice behind it has evidence behind it; the label covers two indications and the drug is used for a dozen',
+        'That the drug remains a first-line choice on efficacy, when all three head-to-head comparisons on this page place it behind the alternative',
+      ],
+      whatFailedInitially: [
+        'AZTEC found no significant benefit over placebo at 76 weeks in newly diagnosed Crohn’s disease, with three times the discontinuation rate for adverse events',
+        'SONIC placed azathioprine monotherapy last of three arms on both remission and mucosal healing',
+        'PANTHER-IPF was stopped early because the combination containing azathioprine increased death and hospitalisation in pulmonary fibrosis',
+        'Mycophenolate displaced it as the standard transplant antimetabolite in the 1990s on the strength of head-to-head rejection data',
+      ],
+      realWorldOutcome: [
+        'With corticosteroids, the drug that made organ transplantation a routine procedure between 1962 and 1983',
+        'On the WHO Model List of Essential Medicines, at about 12 cents a tablet at United States pharmacy acquisition cost',
+        'Its discoverers, Gertrude Elion and George Hitchings, shared the 1988 Nobel Prize in Physiology or Medicine for the rational drug design that produced it',
+        'One of the first drugs anywhere to carry a genotype-based safety statement on its label, for TPMT and later for NUDT15',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet (50 mg, and 75 mg and 100 mg as Azasan) and intravenous sodium salt',
+      description:
+        'Roughly 88% of an oral dose is absorbed. The molecule is a prodrug twice over: azathioprine releases 6-mercaptopurine, which must then be converted to thioguanine nucleotides inside cells before anything happens. The clinical effect takes weeks to months to appear because it depends on turnover of the existing lymphocyte population, which is why it is never used to treat an acute flare on its own.',
+      safetyProfile:
+        'Boxed warning for malignancy: chronic immunosuppression with a purine antimetabolite increases the risk of malignancy in humans, with post-transplant lymphoma and hepatosplenic T-cell lymphoma specifically named. Dose-limiting myelosuppression, severe and potentially fatal in patients deficient in TPMT or NUDT15, whose testing the label addresses. Serious and fatal interaction with xanthine oxidase inhibitors, allopurinol and febuxostat. Increased susceptibility to infection, hepatotoxicity, pancreatitis, a hypersensitivity syndrome with fever and rash that can mimic sepsis, and photosensitivity with an associated non-melanoma skin cancer risk.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why do I need a blood test before I can start it?',
+        a: 'Because two genes decide whether a normal dose is safe for you. Azathioprine releases 6-mercaptopurine, which cells convert into the active molecules. Two enzymes — thiopurine methyltransferase and NUDT15 — dispose of the excess. About 1 in 300 people of European or African ancestry carry two broken copies of the TPMT gene and have essentially no enzyme; among people of East Asian ancestry, 2% carry two broken copies of NUDT15 and about 21% carry one. In those people the active metabolite accumulates until it destroys the bone marrow. The label states that patients with either deficiency require alternative therapy or dose modification. It is one of the earliest and clearest examples of pharmacogenetics changing a label.',
+      },
+      {
+        q: 'Does it cause cancer?',
+        a: 'The label says chronic immunosuppression with this drug increases the risk of malignancy in humans, and names post-transplant lymphoma and hepatosplenic T-cell lymphoma. The best single measurement is a French cohort of 19,486 people with inflammatory bowel disease: lymphoproliferative disorder occurred at 0.90 per 1,000 patient-years in current thiopurine users against 0.26 in never-users, an adjusted hazard ratio of 5.28. Two things temper that. The absolute numbers are small — 23 cases in the whole cohort — and the diseases the drug treats carry their own cancer risk. What argues for the drug being causal is that people who had stopped taking it had an incidence of 0.20 per 1,000 patient-years, close to never-users. Disease severity does not reverse when a drug is stopped. Non-melanoma skin cancer is the other well-documented risk, and it is the reason sun protection is advised.',
+        auditNote:
+          'A hazard ratio of 5 on a base rate of 0.26 per 1,000 patient-years is a large relative increase on a small absolute risk. Both halves of that sentence belong in any honest description.',
+      },
+      {
+        q: 'Is it as good as the newer drugs for Crohn’s disease?',
+        a: 'The head-to-head trial says no. SONIC randomised 508 people with moderate-to-severe Crohn’s disease who had never had either drug. At 26 weeks, corticosteroid-free remission was 30.0% on azathioprine alone, 44.4% on infliximab alone and 56.8% on both. Mucosal healing — actual visible repair of the bowel lining — was 16.5%, 30.1% and 43.9%. Serious infections were similar in all three arms. A separate trial, AZTEC, tested whether starting azathioprine early in newly diagnosed disease helps and found 44.1% in sustained corticosteroid-free remission against 36.5% on placebo, a difference that was not significant, with three times the rate of stopping for side effects.',
+      },
+      {
+        q: 'Why must I not take allopurinol with it?',
+        a: 'Because allopurinol blocks one of the two disposal routes for the active metabolite. Azathioprine releases 6-mercaptopurine, which is cleared partly by methylation and partly by oxidation through xanthine oxidase — the enzyme allopurinol and febuxostat are designed to inhibit. Blocking it pushes the whole load down the activation pathway and the active thioguanine nucleotides accumulate, with fatal bone marrow failure the documented outcome. The combination is sometimes used deliberately, under specialist supervision, with a substantially reduced thiopurine dose and close blood monitoring. That is precisely why it must never happen because two prescribers did not know about each other.',
+      },
+      {
+        q: 'How long before it works?',
+        a: 'Weeks to months, and that is inherent to the mechanism rather than a matter of dose. The drug works by preventing lymphocytes from dividing, so the existing population of activated lymphocytes has to turn over before any effect appears. Nothing about that can be accelerated. It is the reason azathioprine is never used to control an acute flare on its own, and the reason it is almost always started alongside a corticosteroid that works within hours — with the intention that the steroid can be withdrawn once the slower drug has taken hold.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Colombel JF et al. Infliximab, azathioprine, or combination therapy for Crohn’s disease. N Engl J Med 2010;362:1383-1395 (SONIC)',
+        identifier: '10.1056/NEJMoa0904492',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Panés J et al. Early azathioprine therapy is no more effective than placebo for newly diagnosed Crohn’s disease. Gastroenterology 2013;145:766-774 (AZTEC)',
+        identifier: '10.1053/j.gastro.2013.06.009',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Beaugerie L et al. Lymphoproliferative disorders in patients receiving thiopurines for inflammatory bowel disease: a prospective observational cohort study. Lancet 2009;374:1617-1625 (CESAME)',
+        identifier: '10.1016/S0140-6736(09)61302-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Idiopathic Pulmonary Fibrosis Clinical Research Network. Prednisone, azathioprine, and N-acetylcysteine for pulmonary fibrosis. N Engl J Med 2012;366:1968-1977 (PANTHER-IPF)',
+        identifier: '10.1056/NEJMoa1113354',
+        kind: 'doi',
+      },
+      {
+        label: 'SONIC: study of biologic and immunomodulator naive patients in Crohn’s disease',
+        identifier: 'NCT00094458',
+        kind: 'nct',
+      },
+      {
+        label: 'PANTHER-IPF: prednisone, azathioprine and N-acetylcysteine in pulmonary fibrosis',
+        identifier: 'NCT00650091',
+        kind: 'nct',
+      },
+      {
+        label:
+          'DailyMed: IMURAN (azathioprine) tablets — boxed warning for malignancy, TPMT and NUDT15 pharmacogenetics, and xanthine oxidase inhibitor interaction',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=606101a0-6244-7eff-e053-2a91aa0acadd',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: IMURAN (azathioprine), NDA 016324 — label and approval history',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=016324',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2265 — azathioprine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2265',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

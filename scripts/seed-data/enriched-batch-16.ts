@@ -3020,4 +3020,443 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 7. Calcitriol — the finished hormone, not the vitamin. Approved for kidney disease and
+  //    hypoparathyroidism, and the class where seventy-six trials failed to show a patient benefit.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'calcitriol',
+    name: 'Calcitriol',
+    tradeName: 'Rocaltrol / Calcijex / Vectical',
+    sponsor:
+      'Roche (originator, Rocaltrol, approved 1978); now made generically by many manufacturers, and the United States application holder on this record is Esjay Pharma',
+    targetGene: 'VDR — the vitamin D receptor gene',
+    targetProtein:
+      'Vitamin D receptor, a nuclear hormone receptor that heterodimerises with the retinoid X receptor and binds vitamin D response elements in DNA',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1978,
+    indication:
+      'Management of secondary hyperparathyroidism and resultant metabolic bone disease in moderate to severe chronic renal failure not yet on dialysis; management of hypocalcaemia and resultant metabolic bone disease in patients on chronic renal dialysis; and management of hypocalcaemia and its manifestations in hypoparathyroidism and pseudohypoparathyroidism. A separate topical product is indicated for plaque psoriasis',
+    patientFriendlyIndication:
+      'Low calcium and overactive parathyroid glands caused by kidney failure, and low calcium caused by absent parathyroid hormone',
+    anatomicalSite:
+      'The nucleus of the intestinal absorptive cell and of the parathyroid chief cell — a gene switch, not a mineral supplement',
+    conditionContext: {
+      conditionExplainer:
+        'Vitamin D from sun or diet is inert. The liver adds one hydroxyl to it and the kidney adds a second, and only then is it a hormone. Failing kidneys cannot perform that final step, so calcium absorption falls, the parathyroid glands are driven hard, and bone is dismantled to keep blood calcium up. Calcitriol is the finished hormone, given directly because the kidney can no longer make it.',
+      whyItMatters:
+        'This is the point in the file where a vitamin stops being a nutrient and becomes a drug. It is also the clearest case of a treatment that reliably fixes a laboratory number, and whose effect on anything a patient experiences remains unproven after seventy-six randomised trials.',
+      whoTakesThis:
+        'People with chronic kidney disease before and during dialysis, and people whose parathyroid glands are absent or unresponsive.',
+      clinicalGoals:
+        'Raise calcium, suppress parathyroid hormone, and prevent the bone disease that follows. The first two are measured routinely; the third is what the evidence does not establish.',
+    },
+    oneSentenceVerdict:
+      'The finished, kidney-activated form of vitamin D given as a drug when the kidney can no longer make it — a nuclear receptor ligand that switches on calcium-absorption genes in the gut and switches off parathyroid hormone transcription in the gland, and whose class, across 76 randomised trials in 3667 people, did not reduce death, bone pain, vascular calcification or parathyroidectomy while roughly doubling the risk of hypercalcaemia.',
+    laymanHowItWorks:
+      'Ordinary vitamin D has to be modified twice before it does anything: once by the liver, once by the kidney. When the kidney fails, the second step stops, and calcium absorption fails with it. This drug is the finished molecule. It enters cells, binds a receptor that sits directly on DNA, and turns on the genes that pull calcium out of food — and turns down the gene that makes parathyroid hormone.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 62,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1607 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 23 listed generic products, survey effective 17 June 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 1978 and generic for decades. At about sixteen cents a capsule it is one of the cheapest drugs in this file. The commonest cost associated with it is not the drug but the repeated calcium, phosphate and parathyroid hormone measurements its use requires.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Nothing that is called vitamin D substitutes for this in a person whose kidneys have failed, because the missing step is the one the kidney performs. Cholecalciferol and ergocalciferol raise the storage form and cannot be converted onward. The real alternatives are the newer analogues designed to suppress parathyroid hormone with less hypercalcaemia, and cinacalcet, which lowers parathyroid hormone by an entirely different route.',
+      conventionalRx: [
+        {
+          name: 'Paricalcitol and doxercalciferol',
+          class: 'Later vitamin D receptor activators',
+          howItCompares:
+            'Designed to suppress parathyroid hormone with less effect on gut calcium absorption. In the pooled analysis of the class they did reduce parathyroid hormone, by a weighted mean difference of -10.77 pmol/L, where the established sterols did not do so consistently — but they were associated with hypercalcaemia at a relative risk of 5.15 against placebo.',
+          typicalCost:
+            'Not stated: no verified CMS acquisition price for these analogues was held on this record at the time of writing',
+          prosAndCons:
+            'Pros: a consistent parathyroid hormone reduction, which calcitriol does not deliver across trials. Cons: hypercalcaemia risk was higher, not lower, in the pooled comparison against placebo, and patient-level benefit is equally unproven.',
+        },
+        {
+          name: 'Cinacalcet',
+          class: 'Calcium-sensing receptor agonist (calcimimetic)',
+          howItCompares:
+            'Lowers parathyroid hormone by making the gland behave as though blood calcium were higher, so calcium falls rather than rises. That is the opposite direction to a vitamin D sterol, which is why the two are often used together.',
+          typicalCost:
+            'US$0.7581 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 31 listed generic products, survey effective 20 May 2026)',
+          prosAndCons:
+            'Pros: lowers parathyroid hormone without raising calcium or phosphate. Cons: its own large outcome trial missed its primary endpoint in the unadjusted analysis, and hypocalcaemia and nausea were significantly more common.',
+        },
+        {
+          name: 'Cholecalciferol or ergocalciferol',
+          class: 'Native vitamin D, requiring two activation steps',
+          howItCompares:
+            'Not a substitute in kidney failure, because the second activation step is the one that is missing. They remain the right choice for ordinary vitamin D deficiency in people with working kidneys, where giving the finished hormone would bypass the body’s own regulation.',
+          typicalCost:
+            'Not separately priced on this record; both are widely sold as inexpensive supplements and as prescription strengths',
+          prosAndCons:
+            'Pros: self-limiting, since the kidney regulates the final activation step. Cons: cannot correct the deficiency that kidney failure creates.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Sunlight on skin',
+          activeCompound: 'Cholecalciferol formed from 7-dehydrocholesterol',
+          biologicalMechanism:
+            'Ultraviolet B converts a cholesterol precursor in skin into cholecalciferol, which the liver then hydroxylates. It supplies the raw material for this hormone, and cannot supply the hormone itself when the kidney cannot perform the final step.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'Not stated: this page carries no exposure guidance. The relevant fact is mechanistic — sun exposure feeds the pathway upstream of the block that makes this drug necessary.',
+          monthlyCost: 'None',
+        },
+        {
+          name: 'Oily fish, egg yolk, fortified milk',
+          activeCompound: 'Cholecalciferol and ergocalciferol',
+          biologicalMechanism:
+            'Dietary vitamin D enters the same pathway as skin-synthesised vitamin D and is subject to the same two activation steps.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'Not stated: this page carries no intake guidance. Dietary vitamin D is upstream of the kidney step and does not substitute for it.',
+          monthlyCost: 'Ordinary grocery cost; not separately priced',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Know the early signs of too much calcium',
+          action:
+            'Report new weakness, headache, nausea, dry mouth, constipation, muscle or bone pain, a metallic taste or loss of appetite.',
+          patientImpact:
+            'These are the early features of hypercalcaemia listed in the label, and hypercalcaemia is the characteristic hazard of this drug rather than a rare one.',
+          clinicalPrecaution:
+            'Because calcitriol has a short biological half-life, elevated calcium normalises within a few days of stopping — much faster than with vitamin D3 preparations, which the label states explicitly.',
+        },
+        {
+          name: 'Do not add calcium or vitamin D products without telling the prescriber',
+          action: 'Include over-the-counter antacids containing calcium carbonate.',
+          patientImpact:
+            'This drug exists to increase calcium absorption. Adding calcium on top of it is the commonest route to hypercalcaemia, and concurrent hyperphosphataemia can cause soft-tissue calcification visible on x-ray.',
+          clinicalPrecaution:
+            'In the trials of hypoparathyroidism and pseudohypoparathyroidism, hypercalcaemia was recorded at least once in about one in three patients and hypercalciuria in about one in seven.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@H](CCCC(C)(C)O)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C/3\\C[C@H](C[C@@H](C3=C)O)O)C',
+      chemicalFormula: 'C27H44O3',
+      molecularWeight: '416.60 g/mol',
+      targetReceptorAffinity:
+        'Binds the vitamin D receptor, a nuclear hormone receptor, with roughly a thousandfold higher affinity than its immediate precursor 25-hydroxyvitamin D. The 1-alpha hydroxyl added by the kidney and the 25-hydroxyl added by the liver are both required for high-affinity binding, which is why neither cholecalciferol nor 25-hydroxyvitamin D can substitute in renal failure. The label notes a short biological half-life, so elevated serum calcium normalises within days of withdrawal rather than the weeks required after vitamin D3 preparations.',
+      structureSource: {
+        label:
+          'PubChem CID 5280453 (calcitriol) — canonical SMILES, molecular formula and weight, as held on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280453',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cal-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemical identity and previtamin D content',
+          description:
+            'Confirm the 1-alpha and 3-beta hydroxyl configurations and quantify the previtamin D isomer. Secosteroids sit in thermal equilibrium with their previtamin form and photoisomerise under ordinary laboratory light, so an assay run on the bench without amber glassware measures a mixture rather than the drug.',
+          reagentsAndBuffer:
+            'Reference standard, chiral and reversed-phase HPLC under amber conditions, ultraviolet spectrophotometry at 265 nm, 1H NMR in deuterochloroform, nitrogen-purged solvents',
+        },
+        {
+          id: 'cal-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Construction of the secosteroid and installation of the 1-alpha hydroxyl',
+          description:
+            'Build the broken-ring steroid skeleton and hydroxylate at the 1-alpha position, the step the failing kidney cannot perform. Getting that single hydroxyl in the right configuration is the whole synthetic problem: the 1-beta epimer is essentially inactive at the receptor.',
+          dependsOnStepId: 'cal-w1',
+          reagentsAndBuffer:
+            'Steroidal or convergent Lythgoe-type route with a Horner-Wadsworth-Emmons or Wittig coupling, protected A-ring synthon carrying the 1-alpha and 3-beta hydroxyls, controlled photochemical ring opening under inert atmosphere',
+        },
+        {
+          id: 'cal-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Chromatography and formulation under light and oxygen exclusion',
+          description:
+            'Purify away the 5,6-trans isomer and oxidation products, then formulate. The dose is measured in tenths of a microgram, so content uniformity in a soft capsule or oral solution is a harder problem than the chemistry that preceded it.',
+          dependsOnStepId: 'cal-w2',
+          reagentsAndBuffer:
+            'Preparative normal-phase chromatography, butylated hydroxyanisole or equivalent antioxidant in the medium-chain triglyceride vehicle, amber packaging under nitrogen headspace, content uniformity testing by validated HPLC',
+        },
+        {
+          id: 'cal-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Vitamin D receptor binding and nuclear translocation',
+          description:
+            'Measure competitive binding against a labelled reference ligand and confirm that the receptor moves to the nucleus and dimerises with the retinoid X receptor. Binding alone is not the mechanism: the receptor has to reach DNA with its partner, and a ligand that binds without permitting dimerisation is an antagonist.',
+          dependsOnStepId: 'cal-w3',
+          reagentsAndBuffer:
+            'Recombinant vitamin D receptor ligand-binding domain, tritiated 1,25-dihydroxyvitamin D3 competitor, RXR-alpha for dimerisation assay, electrophoretic mobility shift assay with a vitamin D response element oligonucleotide',
+        },
+        {
+          id: 'cal-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Target gene transcription and calcium safety readout',
+          description:
+            'Quantify transcription of the calcium transport genes in intestinal cells and of the parathyroid hormone gene in parathyroid cells, and pair both with serum and urinary calcium. The two arms of this drug are the therapy and the toxicity, and they are the same action measured in two tissues.',
+          dependsOnStepId: 'cal-w4',
+          reagentsAndBuffer:
+            'Caco-2 intestinal monolayers and bovine parathyroid cell preparations, quantitative PCR for TRPV6, calbindin-D9k and PTH transcripts, albumin-corrected serum calcium and 24-hour urinary calcium in the corresponding in vivo model',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cal-a1',
+        category: 'failed',
+        title: 'Seventy-six trials, and no demonstrated benefit to a patient',
+        laymanSummary:
+          'All the randomised trials of vitamin D drugs in kidney disease were pooled: seventy-six of them, in 3667 people. They did not reduce deaths, bone pain, hardening of arteries or the need for parathyroid surgery. They roughly doubled the chance of a high calcium level.',
+        technicalDetails:
+          'Palmer and colleagues identified 76 randomised controlled trials of vitamin D compounds in chronic kidney disease enrolling 3667 participants. The compounds did not reduce the risk of death, bone pain, vascular calcification or parathyroidectomy. Against placebo, established vitamin D sterols — the group calcitriol belongs to — increased hypercalcaemia (relative risk 2.37, 95% CI 1.16 to 4.85) and hyperphosphataemia (relative risk 1.77, 95% CI 1.15 to 2.74) and did not show a consistent reduction in parathyroid hormone. Newer analogues did reduce parathyroid hormone (weighted mean difference -10.77 pmol/L, 95% CI -20.51 to -1.03) but were associated with hypercalcaemia at a relative risk of 5.15 (1.06 to 24.97). Only 8 of the 76 trials reported mortality. The authors concluded that vitamin D compounds do not consistently reduce parathyroid hormone and that beneficial effects on patient-level outcomes are unproven.',
+        evidenceSource: 'Palmer SC et al., Ann Intern Med 2007;147:840-853',
+        doi: '10.7326/0003-4819-147-12-200712180-00004',
+        measuredMetric:
+          'Hypercalcaemia relative risk 2.37 (95% CI 1.16 to 4.85) for established sterols; no reduction in death, bone pain, vascular calcification or parathyroidectomy across 76 trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cal-a2',
+        category: 'inferred',
+        title: 'It is prescribed to move a number, and the number is not the outcome',
+        laymanSummary:
+          'Treatment is guided by parathyroid hormone levels in blood. Bringing that number down is what the drug is judged on. Whether doing so makes anyone live longer, break fewer bones or feel better has not been established.',
+        technicalDetails:
+          'The label defines the predialysis indication around a serum intact parathyroid hormone level of 100 pg/mL or above as strongly suggestive of secondary hyperparathyroidism, and describes the dialysis indication in terms of enhanced calcium absorption, reduced serum alkaline phosphatase, possible reduction of parathyroid hormone and the histological manifestations of osteitis fibrosa cystica. Every one of those is a laboratory or histological measure. The pooled trial evidence found only 8 of 76 trials reported mortality at all, and found no reduction in bone pain, the one patient-level outcome that was reported. Treating a biochemical target is a reasonable clinical strategy in the absence of outcome trials; it is not the same as having them.',
+        evidenceSource:
+          'Calcitriol United States prescribing information, Indications and Usage (openFDA label endpoint); Palmer SC et al., Ann Intern Med 2007;147:840-853',
+        doi: '10.7326/0003-4819-147-12-200712180-00004',
+        inferredClaim:
+          'That normalising parathyroid hormone and alkaline phosphatase translates into fewer fractures, less vascular calcification or longer life — the surrogate is measured routinely and the outcome has not been demonstrated',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cal-a3',
+        category: 'conclusion_shift',
+        title: 'The 1992 osteoporosis trial was never replicated and never led to an indication',
+        laymanSummary:
+          'A New Zealand trial in 622 women reported that this drug cut spinal fractures dramatically compared with calcium alone. It was only single-blind, the comparison group fractured at an extraordinary rate, the effect appeared only in a subgroup, and it never became an approved use.',
+        technicalDetails:
+          'Tilyard and colleagues randomised 622 postmenopausal women with one or more vertebral compression fractures to calcitriol 0.25 micrograms twice daily or 1 g of elemental calcium daily for three years, in a single-blind multicentre study. New vertebral fractures were 9.3 against 25.0 per 100 patient-years in year two and 9.9 against 31.5 in year three, P<0.001. The effect was present only in the subgroup with five or fewer vertebral fractures at baseline, where the figures were 5.2 against 25.3 and 4.2 against 31.0. Peripheral fractures were 11 in 11 women against 24 in 22 women, P<0.05. Three features limit it: single-blind design in a fracture trial read radiographically, a calcium-group fracture rate several times higher than in contemporaneous placebo arms of other osteoporosis trials, and a treatment effect confined to a baseline-severity subgroup. Postmenopausal osteoporosis is not an approved indication for calcitriol in the United States, and the result has not been reproduced at that magnitude.',
+        evidenceSource: 'Tilyard MW et al., N Engl J Med 1992;326:357-362',
+        doi: '10.1056/NEJM199202063260601',
+        inferredClaim:
+          'That calcitriol is an osteoporosis treatment — a single-blind trial against a calcium comparator with an implausibly high event rate, positive only in a subgroup, that no regulator converted into an indication',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cal-a4',
+        category: 'measured',
+        title: 'Hypercalcaemia is common and the label quantifies it',
+        laymanSummary:
+          'In the hypoparathyroidism studies, about one in three patients had a high calcium level at least once and about one in seven had too much calcium in the urine. About one in six had a rise in a kidney blood test.',
+        technicalDetails:
+          'The label reports that in clinical studies in hypoparathyroidism and pseudohypoparathyroidism, hypercalcaemia was noted on at least one occasion in about one in three patients and hypercalciuria in about one in seven, while elevated serum creatinine was observed in about one in six, roughly half of whom had normal values at baseline. Where hypercalcaemia and hyperphosphataemia coexist, soft-tissue calcification can occur and can be seen radiographically. In patients with normal renal function, chronic hypercalcaemia may itself raise serum creatinine. Because the drug has a short biological half-life, calcium normalises within a few days of withdrawal, much faster than after vitamin D3 preparations.',
+        evidenceSource:
+          'Calcitriol United States prescribing information, Adverse Reactions and Warnings (openFDA label endpoint)',
+        measuredMetric:
+          'Hypercalcaemia in about 1 in 3 patients, hypercalciuria in about 1 in 7, elevated serum creatinine in about 1 in 6, in the hypoparathyroidism programme',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cal-a5',
+        category: 'measured',
+        title: 'This is a gene switch, not a mineral',
+        laymanSummary:
+          'The drug does not carry calcium into the body. It binds a receptor that sits on DNA and turns on the genes for the transporters that carry calcium across the gut wall, and turns down the gene for parathyroid hormone.',
+        technicalDetails:
+          'Calcitriol binds the vitamin D receptor, which heterodimerises with the retinoid X receptor and occupies vitamin D response elements in target gene promoters. In intestinal epithelium this raises transcription of the apical calcium channel TRPV6 and of the cytosolic shuttle calbindin, increasing transcellular calcium absorption. In the parathyroid chief cell the same complex acts on a negative response element in the parathyroid hormone gene, suppressing its transcription — which is the basis of the secondary hyperparathyroidism indication and, in the same action, of the hypercalcaemia risk. The label describes the drug as the active hormone exerting vitamin D activity, and describes its adverse effects as in general those of excessive vitamin D intake.',
+        evidenceSource:
+          'Calcitriol United States prescribing information, Indications and Usage and Adverse Reactions (openFDA label endpoint)',
+        measuredMetric:
+          'Roughly thousandfold higher vitamin D receptor affinity than 25-hydroxyvitamin D, requiring both the hepatic 25- and renal 1-alpha hydroxyls',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given as the finished hormone because the kidney cannot finish it',
+        laymanDesc:
+          'Vitamin D needs two chemical changes to work, one in the liver and one in the kidney. When the kidney fails, the second never happens. This capsule is the molecule that would have been made.',
+        molecularDetail:
+          'Cholecalciferol is 25-hydroxylated in the liver, then 1-alpha-hydroxylated by CYP27B1 in the proximal renal tubule. Loss of functioning tubular mass removes that enzyme, so 25-hydroxyvitamin D accumulates and the active hormone falls. Calcitriol bypasses both steps, which also means it bypasses the feedback that normally regulates the last one.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It enters cells and binds a receptor that lives on DNA',
+        laymanDesc:
+          'Unlike most drugs it does not act at the cell surface. It travels into the nucleus and binds a protein that is already sitting on the genes it controls.',
+        molecularDetail:
+          'The vitamin D receptor is a nuclear hormone receptor. Both the hepatic 25-hydroxyl and the renal 1-alpha-hydroxyl are required for high-affinity binding, which is roughly a thousandfold greater than for 25-hydroxyvitamin D — the structural reason the precursor cannot substitute.',
+        iconName: 'Dna',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It pairs with a partner receptor and grips the response element',
+        laymanDesc:
+          'The drug-bound receptor joins with a partner protein, and the pair clamps onto specific sequences in front of the genes they control.',
+        molecularDetail:
+          'The ligand-bound receptor heterodimerises with the retinoid X receptor and occupies vitamin D response elements — direct repeats separated by three nucleotides — recruiting coactivators and the transcriptional machinery.',
+        iconName: 'Link',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'In the gut, calcium transport genes switch on',
+        laymanDesc:
+          'The cells lining the intestine start making the channels and carriers that pull calcium out of food. That is why calcium in blood rises.',
+        molecularDetail:
+          'Transcription of TRPV6, the apical calcium channel, and of calbindin, the cytosolic buffer that shuttles calcium to the basolateral pump, both rise. Transcellular absorption increases, which the label describes as enhanced calcium absorption and reduced serum alkaline phosphatase.',
+        iconName: 'ArrowUpCircle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'In the parathyroid gland, hormone production is switched down',
+        laymanDesc:
+          'The same receptor in the parathyroid gland does the opposite: it turns the parathyroid hormone gene down. Combined with the rise in blood calcium, that is what relieves the overactive gland.',
+        molecularDetail:
+          'The receptor complex acts at a negative vitamin D response element in the parathyroid hormone gene promoter, lowering transcription directly, while the rise in serum calcium suppresses secretion through the calcium-sensing receptor. Both arms converge, which is why hypercalcaemia and parathyroid hormone suppression are inseparable for this molecule.',
+        iconName: 'ArrowDownCircle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'The numbers move; whether anything else does is unresolved',
+        laymanDesc:
+          'Calcium rises and parathyroid hormone falls, which is what treatment is aimed at. Across seventy-six trials, deaths, bone pain, artery hardening and parathyroid surgery did not fall, and high calcium became more common.',
+        molecularDetail:
+          'Pooled across 76 randomised trials in 3667 participants, vitamin D compounds did not reduce death, bone pain, vascular calcification or parathyroidectomy; established sterols raised hypercalcaemia (RR 2.37) and hyperphosphataemia (RR 1.77) without a consistent parathyroid hormone reduction. Only 8 trials reported mortality.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Palmer 2007 meta-analysis of vitamin D compounds in chronic kidney disease',
+        phase: 'Systematic review and meta-analysis of 76 randomised controlled trials',
+        sampleSize: 3667,
+        primaryEndpoint:
+          'Mortality, cardiovascular outcomes and biochemical markers of mineral metabolism',
+        endpointMet: false,
+        statisticalPValue:
+          'No reduction in death, bone pain, vascular calcification or parathyroidectomy; hypercalcaemia relative risk 2.37 (95% CI 1.16 to 4.85) for established sterols',
+        unreportedAdverseSignals:
+          'Only 8 of 76 trials reported mortality at all, and only 5 directly compared newer with established compounds. The evidence base is large in trial count and thin in outcomes.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Tilyard 1992 — calcitriol against calcium in postmenopausal osteoporosis',
+        phase: 'Prospective, multicentre, single-blind, randomised, three years',
+        sampleSize: 622,
+        primaryEndpoint: 'New vertebral fracture rate per 100 patient-years',
+        endpointMet: true,
+        statisticalPValue:
+          'Year 3: 9.9 against 31.5 fractures per 100 patient-years, P<0.001; effect confined to women with five or fewer baseline fractures',
+        unreportedAdverseSignals:
+          'Single-blind, with a comparator-group fracture rate several times higher than placebo arms of contemporaneous osteoporosis trials, and a treatment effect present only in a baseline-severity subgroup. Postmenopausal osteoporosis never became an approved indication.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Increased intestinal calcium absorption and reduced serum alkaline phosphatase, stated in the label as the basis of the dialysis indication',
+        'Hypercalcaemia relative risk 2.37 (95% CI 1.16 to 4.85) and hyperphosphataemia 1.77 (1.15 to 2.74) against placebo for established vitamin D sterols',
+        'Hypercalcaemia in about one in three, hypercalciuria in about one in seven and raised serum creatinine in about one in six in the hypoparathyroidism programme',
+        'Vertebral fracture rate 9.9 against 31.5 per 100 patient-years in the third year of the 1992 New Zealand trial',
+      ],
+      unsupportedInferences: [
+        'That suppressing parathyroid hormone and normalising alkaline phosphatase translates into fewer deaths, fractures or less vascular calcification',
+        'That calcitriol is a treatment for postmenopausal osteoporosis, which is not an approved indication and rests on one unreplicated single-blind trial',
+        'That the newer analogues are safer, when the pooled hypercalcaemia relative risk against placebo was higher for them, at 5.15, than for the established sterols',
+        'That ordinary vitamin D supplements do the same thing — they cannot, because the missing activation step is the one the kidney performs',
+      ],
+      whatFailedInitially: [
+        'Across 76 randomised trials the class did not reduce death, bone pain, vascular calcification or parathyroidectomy',
+        'Established sterols did not show a consistent reduction in parathyroid hormone, the biochemical target they are prescribed to move',
+        'Only 8 of 76 trials reported mortality, so the outcome question was largely never asked rather than answered',
+        'The 1992 osteoporosis result was never reproduced and never converted into an indication',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in 1978 and generic for decades, at about sixteen cents a capsule',
+        'Remains standard care for hypoparathyroidism, where replacing the missing hormonal end-product is the entire rationale and calcium is the direct outcome',
+        'In chronic kidney disease it is prescribed to a biochemical target, and the value of doing so remains, in the pooled reviewers’ word, uncertain',
+        'The calcimimetic cinacalcet was developed in part because lowering parathyroid hormone with a vitamin D sterol raises calcium as an inseparable consequence',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule and oral solution; an intravenous form and a topical ointment also exist',
+      description:
+        'Given by mouth in microgram doses, or intravenously during dialysis where higher doses suppress parathyroid hormone more effectively. A topical form is a separate product for plaque psoriasis and is not interchangeable.',
+      safetyProfile:
+        'No boxed warning. The characteristic hazard is hypercalcaemia, and the label states that adverse effects are in general those of excessive vitamin D intake. Early features are weakness, headache, somnolence, nausea, vomiting, dry mouth, constipation, muscle and bone pain, metallic taste and loss of appetite; later features include polyuria, weight loss, ectopic calcification, nephrocalcinosis, hypertension and arrhythmia. Concurrent hypercalcaemia and hyperphosphataemia can cause radiographically visible soft-tissue calcification. Because the biological half-life is short, elevated calcium normalises within days of stopping.',
+    },
+    commonQuestions: [
+      {
+        q: 'How is this different from a vitamin D supplement?',
+        a: 'It is the finished hormone rather than the raw material. Vitamin D from sun or diet is inert; the liver adds one hydroxyl to make 25-hydroxyvitamin D, the form measured in a blood test, and the kidney adds a second to make calcitriol, which is roughly a thousand times better at binding its receptor. In kidney failure the second step is what has been lost, so giving more of the raw material achieves nothing. It also means calcitriol bypasses the body’s own regulation of that final step, which is exactly why hypercalcaemia is its characteristic hazard and is not a hazard of ordinary supplements.',
+      },
+      {
+        q: 'Does it prevent fractures?',
+        a: 'That has not been shown. In chronic kidney disease, the pooled analysis of 76 randomised trials in 3667 people found no reduction in death, bone pain, vascular calcification or the need for parathyroid surgery, and did not find a consistent reduction in parathyroid hormone for the older sterols. In postmenopausal osteoporosis there is one 1992 New Zealand trial in 622 women reporting a large reduction in spinal fractures, but it was single-blind, the calcium comparison group fractured at a rate several times higher than placebo arms of other trials from the same era, and the effect appeared only in women with five or fewer fractures at the start. It has not been reproduced and postmenopausal osteoporosis is not an approved indication.',
+        auditNote:
+          'A trial where the control arm fractures at 31.5 per 100 patient-years is a trial to be curious about. Either the population was unlike any other studied, or something else differed between the groups.',
+      },
+      {
+        q: 'Why does it raise calcium so easily?',
+        a: 'Because raising calcium is the mechanism, not a side effect of it. The drug turns on the genes for the transporters that pull calcium out of food, and that is what relieves the low calcium of kidney failure and hypoparathyroidism. The same action, applied a little too hard, is hypercalcaemia. In the hypoparathyroidism studies about one in three patients had a raised calcium at least once. The consolation is speed: because the molecule has a short biological half-life, calcium comes back down within a few days of stopping, where a high dose of vitamin D3 can take weeks.',
+      },
+      {
+        q: 'Why is cinacalcet sometimes used with it?',
+        a: 'Because they lower parathyroid hormone by opposite routes on calcium. A vitamin D sterol suppresses the parathyroid hormone gene and simultaneously raises blood calcium, so the amount you can give is limited by the calcium. Cinacalcet makes the gland behave as though calcium were already high, so parathyroid hormone falls and calcium falls with it. Using both allows the parathyroid hormone target to be reached without pushing calcium in either direction too far. Whether reaching that target improves anything a patient experiences is the unresolved question on both pages.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Palmer SC et al. Meta-analysis: vitamin D compounds in chronic kidney disease. Ann Intern Med 2007;147:840-853',
+        identifier: '10.7326/0003-4819-147-12-200712180-00004',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Tilyard MW, Spears GF, Thomson J, Dovey S. Treatment of postmenopausal osteoporosis with calcitriol or calcium. N Engl J Med 1992;326:357-362',
+        identifier: '10.1056/NEJM199202063260601',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Calcitriol United States prescribing information (openFDA label endpoint) — indications and usage, warnings, adverse reactions',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22calcitriol%22',
+        kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

@@ -42,6 +42,15 @@ interface Options {
   skipTrials: boolean
   skipBotanicals: boolean
   only: string | null
+  /**
+   * Re-derive the label-sourced fields even where a value is already stored.
+   *
+   * Off by default, because the normal rule is that this pipeline fills gaps and never overwrites.
+   * It exists for the case where the DERIVATION changed rather than the source — a cleaner that
+   * strips a section heading the SPL author retyped, say — and the stored value is stale in a way
+   * no gap-filling run will ever reach. It skips any record a person has edited.
+   */
+  refreshLabels: boolean
 }
 
 function parseArgs(argv: readonly string[]): Options {
@@ -51,6 +60,7 @@ function parseArgs(argv: readonly string[]): Options {
     dryRun: argv.includes('--dry-run'),
     skipTrials: argv.includes('--skip-trials'),
     skipBotanicals: argv.includes('--skip-botanicals'),
+    refreshLabels: argv.includes('--refresh-labels'),
     limit: limitIndex >= 0 ? Number.parseInt(argv[limitIndex + 1] ?? '0', 10) || null : null,
     only: onlyIndex >= 0 ? (argv[onlyIndex + 1] ?? null) : null,
   }
@@ -177,6 +187,15 @@ async function main(): Promise<void> {
     untouched: 0,
   }
 
+  // Records a person has edited are never re-derived, whatever the flags say. A revision is the
+  // one thing on this site that no pipeline can reproduce.
+  const editedByAPerson = new Set<string>()
+  if (options.refreshLabels) {
+    const edited = await db.execute(sql`SELECT DISTINCT drug_id FROM revisions`)
+    for (const row of edited.rows as Array<{ drug_id: string }>) editedByAPerson.add(row.drug_id)
+    console.log(`[enrich] ${editedByAPerson.size} records have edits and will not be re-derived`)
+  }
+
   // Every network lookup the loop below would make, made first and in parallel. The loop then
   // reads the cache; see warmCache.
   if (!options.skipBotanicals) {
@@ -215,11 +234,12 @@ async function main(): Promise<void> {
       dosageForms: substance ? [...substance.dosageForms.keys()] : [],
     })
     if (fromLabel) {
-      if (fromLabel.laymanHowItWorks && !row.laymanHowItWorks) {
+      const refresh = options.refreshLabels && !editedByAPerson.has(row.id)
+      if (fromLabel.laymanHowItWorks && (refresh || !row.laymanHowItWorks)) {
         patch.laymanHowItWorks = fromLabel.laymanHowItWorks
         counts.mechanism += 1
       }
-      if (fromLabel.conditionContext && !row.conditionContext) {
+      if (fromLabel.conditionContext && (refresh || !row.conditionContext)) {
         patch.conditionContext = fromLabel.conditionContext
         counts.context += 1
       }
@@ -255,7 +275,9 @@ async function main(): Promise<void> {
       // "may help temporarily relieve allergy symptoms", which on a reference page reads as the
       // site saying so. What belongs there is which species this is and what the literature
       // actually contains.
-      const existing = row.conditionContext as { whoTakesThis?: string } | null
+      const existing = (patch.conditionContext ?? row.conditionContext) as {
+        whoTakesThis?: string
+      } | null
       const purpose = trimToSentence(existing?.whoTakesThis || row.indication || '', 300)
       const context = botanicalContext(facts, row.name, purpose)
       if (context) {

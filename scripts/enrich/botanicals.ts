@@ -255,10 +255,13 @@ async function fetchLiterature(term: string): Promise<Literature | null> {
   // Counting trials separately is the whole point: a substance with two thousand papers and no
   // controlled trial in humans is a different thing from one with twenty papers and four trials,
   // and the difference is invisible from a total.
-  await sleep(120)
-  const clinicalTrials = await countPapers(`${phrase} AND PUB_TYPE:"Clinical Trial"`)
-  await sleep(120)
-  const reviews = await countPapers(`${phrase} AND PUB_TYPE:"Review"`)
+  // The two sub-counts are independent of each other and of everything else in flight. They were
+  // separated by fixed sleeps, which paced a caller that no longer exists: the concurrency pool in
+  // warmCache is what bounds the request rate now, and sleeping inside a worker only idles it.
+  const [clinicalTrials, reviews] = await Promise.all([
+    countPapers(`${phrase} AND PUB_TYPE:"Clinical Trial"`),
+    countPapers(`${phrase} AND PUB_TYPE:"Review"`),
+  ])
   // A subset cannot exceed its parent; if the API disagrees, the totals are not comparable and
   // publishing them side by side would invite a reader to subtract them.
   if (clinicalTrials > total || reviews > total)
@@ -343,15 +346,17 @@ export async function lookupLiterature(term: string): Promise<Literature | null>
  * spent waiting. The lookups themselves have no order and no shared state, so they are done first,
  * against the same cache the loop reads, and the loop then runs at the speed of Postgres.
  *
- * Six at a time is deliberate restraint. Both APIs are free public infrastructure funded by
- * research budgets, and this is a bulk read of a few thousand records that will be repeated
- * whenever the corpus is rebuilt.
+ * Ten at a time, and no more. Both APIs are free public infrastructure funded by research budgets,
+ * and this is a bulk read of several thousand records that repeats whenever the corpus is rebuilt.
+ * Ten concurrent requests against a two-second response is about five a second — the load of a
+ * handful of people using the site normally, sustained for half an hour. That is the ceiling this
+ * is willing to take.
  */
 export async function warmCache(
   jobs: ReadonlyArray<{ name: string; kind: 'organism' | 'literature' }>,
   onProgress?: (done: number, total: number) => void,
 ): Promise<void> {
-  const CONCURRENCY = 6
+  const CONCURRENCY = 10
   const store = load()
 
   const pending = jobs.filter((job) => {
