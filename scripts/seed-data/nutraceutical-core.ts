@@ -561,8 +561,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
   // general-population effect, against roughly 50,000 randomised participants of null results.
   // ---------------------------------------------------------------------------------------------
   {
-    slug: 'vitamin-d3-cholecalciferol',
-    name: 'Vitamin D3 (cholecalciferol)',
+    slug: 'vitamin-d3',
+    name: 'Vitamin D3',
     sponsor:
       'No single sponsor — a secosteroid made commercially by ultraviolet irradiation of 7-dehydrocholesterol from lanolin',
     targetGene: 'VDR',

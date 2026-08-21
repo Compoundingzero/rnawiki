@@ -155,7 +155,80 @@ const ELEMENTAL_CATIONS = new Set([
   'TITANIUM',
   'ZINC',
   'ZIRCONIUM',
+  // The rest of the periodic table that turns up in an FDA ingredient list, mostly as trace
+  // minerals, contrast agents and homeopathic listings. Missing entries are not harmless: without
+  // BERYLLIUM, "Beryllium Sulfate Tetrahydrate" reduced to "Beryllium".
+  'ARSENIC',
+  'AURIC',
+  'BERYLLIUM',
+  'CADMIUM',
+  'CESIUM',
+  'CHROMIC',
+  'COBALTIC',
+  'COBALTOUS',
+  'CUPROUS',
+  'GERMANIUM',
+  'HAFNIUM',
+  'IRIDIUM',
+  'LANTHANUM',
+  'LEAD',
+  'LITHIC',
+  'MERCUROUS',
+  'MOLYBDENUM',
+  'NICKELOUS',
+  'NIOBIUM',
+  'OSMIUM',
+  'PALLADIUM',
+  'PLUMBOUS',
+  'POLONIUM',
+  'RADIUM',
+  'RHENIUM',
+  'RHODIUM',
+  'RUBIDIUM',
+  'RUTHENIUM',
+  'SAMARIUM',
+  'SCANDIUM',
+  'STANNIC',
+  'TANTALUM',
+  'TELLURIUM',
+  'THALLIUM',
+  'THORIUM',
+  'TUNGSTEN',
+  'URANIUM',
+  'VANADIUM',
+  'YTTRIUM',
 ])
+
+/**
+ * Where a trailing phosphate is part of the molecule rather than a counterion.
+ *
+ * Adenosine diphosphate is not a diphosphate salt of adenosine; the phosphates are covalently
+ * bonded and ADP is a different substance with a different function. Left ungated, the salt loop
+ * merged ADP's page into adenosine's. Oritavancin diphosphate really is a salt, so the rule has to
+ * turn on what is being phosphorylated, not on the word.
+ */
+const PHOSPHATE_COVALENT_BASES = new Set([
+  'ADENOSINE',
+  'ADENINE',
+  'CREATINE',
+  'CYTIDINE',
+  'FRUCTOSE',
+  'GLUCOSAMINE',
+  'GLUCOSE',
+  'GUANINE',
+  'GUANOSINE',
+  'INOSINE',
+  'NICOTINAMIDE',
+  'PYRIDOXAL',
+  'PYRIDOXINE',
+  'RIBOFLAVIN',
+  'RIBOSE',
+  'THIAMINE',
+  'THYMIDINE',
+  'URIDINE',
+])
+
+const PHOSPHATE_SUFFIXES = new Set(['PHOSPHATE', 'DIPHOSPHATE'])
 
 const HYDRATE_SUFFIXES = new Set([
   'ANHYDROUS',
@@ -189,12 +262,15 @@ export function baseMoiety(name: string): string {
       if (n.endsWith(` ${suffix}`) && n.length > suffix.length + 2) {
         const remainder = n.slice(0, -(suffix.length + 1)).trim()
         if (!HYDRATE_SUFFIXES.has(suffix) && ELEMENTAL_CATIONS.has(remainder)) continue
+        if (PHOSPHATE_SUFFIXES.has(suffix) && PHOSPHATE_COVALENT_BASES.has(remainder)) continue
         n = remainder
         changed = true
       }
     }
   }
-  return n
+  // Again after the loop: stripping HEPTAHYDRATE off "SODIUM PHOSPHATE, DIBASIC, HEPTAHYDRATE"
+  // leaves a name ending in a comma, and the first pass ran before the suffix was removed.
+  return n.replace(/[\s,.;]+$/, '')
 }
 
 // ---------------------------------------------------------------------------

@@ -1757,7 +1757,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'The label states similar affinity across muscarinic subtypes M1 to M5, with the airway effect arising from M3 inhibition on smooth muscle, and describes the antagonism as competitive and reversible. The duration is kinetic rather than affinity-driven: in the original characterisation, dissociation half-lives from human receptors were 34.7 hours at M3, 14.6 hours at M1 and 3.6 hours at M2, against 0.26, 0.11 and 0.035 hours for ipratropium. Faster release from M2 than from M3 is what the authors called kinetic receptor subtype selectivity.',
       structureSource: {
-        label: 'PubChem CID 5487427 (tiotropium) — canonical SMILES, molecular formula and weight',
+        label:
+          'PubChem CID 5487427 — the tiotropium cation, matching the stored canonical SMILES, molecular formula C19H22NO4S2 and molecular weight 392.5; the marketed drug substance is tiotropium bromide monohydrate',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5487427',
         kind: 'url',
       },
@@ -4866,7 +4867,8 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       targetReceptorAffinity:
         'The label states that mometasone furoate has been shown in vitro to exhibit a binding affinity for the human glucocorticoid receptor approximately 12 times that of dexamethasone, 7 times that of triamcinolone acetonide, 5 times that of budesonide and 1.5 times that of fluticasone — and then states that the clinical significance of these findings is unknown. It also states that the precise mechanism of corticosteroid action in asthma is not known, and attributes efficacy to inhibitory effects across mast cells, eosinophils, neutrophils, macrophages and lymphocytes and across histamine, eicosanoids, leukotrienes and cytokines.',
       structureSource: {
-        label: 'PubChem CID 441335 (mometasone) — canonical SMILES, molecular formula and weight',
+        label:
+          'PubChem CID 441335 — mometasone, the parent alcohol, matching the stored canonical SMILES; the marketed drug substance in every product on this page is the 17-furoate ester',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441335',
         kind: 'url',
       },

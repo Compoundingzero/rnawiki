@@ -5277,8 +5277,8 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
   //     the company that discovered it.
   // ---------------------------------------------------------------------------------------------
   {
-    slug: 'daclatasvir-dihydrochloride',
-    name: 'Daclatasvir Dihydrochloride',
+    slug: 'daclatasvir',
+    name: 'Daclatasvir',
     tradeName: 'Daklinza',
     sponsor: 'Bristol-Myers Squibb',
     targetGene: 'HCV NS5A — a hepatitis C viral gene, not a human one',

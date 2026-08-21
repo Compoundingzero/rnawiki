@@ -5187,4 +5187,491 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 11. Etomidate — an induction agent chosen for the blood pressure it does not drop, whose
+  //     off-target enzyme inhibition ended one of its uses and has never stopped being argued about.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'etomidate',
+    name: 'Etomidate',
+    tradeName: 'Amidate',
+    sponsor:
+      "Hospira, a Pfizer company (US label holder for Amidate); synthesised by Paul Janssen's group at Janssen Pharmaceutica in 1964 and approved in the United States in 1982. Long off patent.",
+    targetGene: 'GABRB2, GABRB3, CYP11B1',
+    targetProtein:
+      'Type A gamma-aminobutyric acid receptor at a site involving asparagine 265 in the second transmembrane region of the beta subunit — the same residue propofol depends on — and, as an off-target action, steroid 11-beta-hydroxylase (CYP11B1) in the adrenal cortex',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1982,
+    indication:
+      'Induction of general anaesthesia by intravenous injection, and supplementation of subpotent anaesthetic agents such as nitrous oxide in oxygen during maintenance of anaesthesia for short operative procedures; explicitly not intended for administration by prolonged infusion',
+    patientFriendlyIndication:
+      'Putting a person to sleep for surgery when their blood pressure will not tolerate the usual drug',
+    anatomicalSite:
+      'Chloride channel of the type A GABA receptor throughout the brain, and — unintentionally — the mitochondria of adrenal cortical cells',
+    conditionContext: {
+      conditionExplainer:
+        'Every induction agent has to switch consciousness off within about a minute, and most of them drop blood pressure while doing it. In a patient who is bleeding, septic or in cardiac failure, that drop is the thing that can kill them. Etomidate exists because it does not cause it — the label notes that intravenous administration to patients with severe cardiovascular disease has little or no effect on cardiac output or peripheral circulation.',
+      whyItMatters:
+        'That haemodynamic stability made it the induction agent of choice for the sickest patients. It then turned out that the same imidazole ring which gives it that stability also inhibits the enzyme that makes cortisol, and the argument about whether that matters has now run for more than forty years without resolving.',
+      whoTakesThis:
+        'Patients being intubated in an emergency department, in shock, or with severe cardiac disease; and patients having electroconvulsive therapy, where its seizure characteristics are useful.',
+      clinicalGoals:
+        'Loss of consciousness in about a minute without a fall in blood pressure. Nothing else is claimed for it, and this page is mostly about what the drug does in the eight hours afterwards.',
+    },
+    oneSentenceVerdict:
+      'The induction agent that abolishes consciousness without dropping blood pressure — proved to act at the GABA-A beta3 subunit by the same single-residue knock-in that abolishes propofol anaesthesia — and which, in the trial that compared it with ketamine for emergency intubation of 469 critically ill patients, produced no significant difference in organ failure (maximum SOFA 10.3 against 9.6, P=0.056) alongside a sixfold higher odds of adrenal insufficiency (odds ratio 6.7, 95% CI 3.5 to 12.7).',
+    laymanHowItWorks:
+      "Etomidate holds open the brain's main inhibitory gate, the same one propofol uses, and consciousness stops within a minute. What makes it different is what it does not do: it barely touches the nerves and receptors that set blood pressure, so a patient who is already shocked does not get worse at the moment of induction. The problem is a coincidence of chemistry. The ring that makes the molecule work also fits the active site of an enzyme in the adrenal gland that makes cortisol, and after a single dose that enzyme stays blocked for six to eight hours.",
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 61,
+    substitutes: {
+      summary:
+        'The alternatives are ketamine, which also preserves blood pressure and was found non-inferior on organ failure in the one randomised head-to-head, and propofol, which is faster and cleaner but drops blood pressure in exactly the patients etomidate exists for. Nothing in a diet induces anaesthesia and nothing is listed here.',
+      conventionalRx: [
+        {
+          name: 'Ketamine',
+          class: 'NMDA receptor antagonist, dissociative anaesthetic',
+          howItCompares:
+            'The head-to-head comparator in KETASED: 469 critically ill patients analysed, maximum sequential organ failure assessment score over the first three intensive care days 10.3 against 9.6 (mean difference 0.7, 95% CI 0.0 to 1.4, P=0.056), intubation conditions identical (median difficulty score 1 in both, P=0.70), and adrenal insufficiency six to seven times more likely with etomidate (odds ratio 6.7, 95% CI 3.5 to 12.7). The authors concluded ketamine is a safe and valuable alternative and should be considered in sepsis.',
+          typicalCost:
+            'No NADAC value is held on this record for ketamine and none is asserted here',
+          prosAndCons:
+            'Pros: preserves blood pressure and respiratory drive, provides analgesia, no adrenal effect. Cons: emergence phenomena, rise in secretions, and sympathomimetic effects that are unhelpful in some cardiac patients.',
+        },
+        {
+          name: 'Propofol (Diprivan)',
+          class: 'Intravenous GABA-A general anaesthetic',
+          howItCompares:
+            'Acts at the same beta3 residue — the N265M knock-in mouse loses the anaesthetic response to both drugs — but causes marked vasodilatation and myocardial depression, which is precisely the effect etomidate was chosen to avoid. No adrenal effect.',
+          typicalCost:
+            'US$0.1709 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 4 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cleaner recovery, no myoclonus, no adrenal suppression, and antiemetic. Cons: hypotension and apnoea, which is disqualifying in shock.',
+        },
+        {
+          name: 'Midazolam (Versed)',
+          class: 'Benzodiazepine',
+          howItCompares:
+            'Used as an induction agent where haemodynamic caution is needed, but slower in onset, less reliable at abolishing consciousness in one dose, and with a much longer offset. Its own head-to-head record in intensive care sedation is poor.',
+          typicalCost:
+            'US$0.4200 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 23 listed products, effective 12 March 2025)',
+          prosAndCons:
+            'Pros: strong amnesia, an antagonist exists. Cons: slow, unreliable as a sole induction agent, and accumulates.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Expect the arm to sting, and expect to twitch',
+          action:
+            'The label records transient venous pain on injection in about 20% of patients and transient skeletal muscle movements including myoclonus in about 32%, with reported incidences ranging from 22.7% to 63%.',
+          patientImpact:
+            'Both are described in the approved label as frequent, mostly mild to moderate, and occasionally disturbing. Neither is a sign that something has gone wrong.',
+          clinicalPrecaution:
+            'These are labelled expected reactions and not treatment advice. Nothing on this page addresses how they are managed.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCOC(=O)C1=CN=CN1[C@H](C)C2=CC=CC=C2',
+      chemicalFormula: 'C14H16N2O2',
+      molecularWeight:
+        '244.29 g/mol; formulated as a 2 mg/mL solution in 35% v/v propylene glycol, not in water alone',
+      targetReceptorAffinity:
+        'The anaesthetic site is established genetically rather than by a binding constant. Mice carrying a single N265M substitution in the second transmembrane region of the GABA-A beta3 subunit lose the suppression of noxious-evoked movement by etomidate entirely, and show a profound reduction in loss of righting reflex, while enflurane and halothane remain largely effective in the same animals. The off-target affinity is the clinically decisive one: the label attributes the reduced plasma cortisol and aldosterone after an induction dose to blockade of 11-beta-hydroxylation within the adrenal cortex, an effect persisting six to eight hours and unresponsive to ACTH stimulation.',
+      structureSource: {
+        label:
+          'PubChem CID 667484 (etomidate) — canonical SMILES with the R configuration, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/667484',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'eto-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric purity of the R-(+) form',
+          description:
+            'The label identifies the drug specifically as R-(+)-ethyl-1-(1-phenylethyl)-1H-imidazole-5-carboxylate. The S-enantiomer is far less potent as an anaesthetic, so enantiomeric excess is an identity specification and not a nicety; and because both enantiomers carry the same imidazole, a racemic batch would deliver the adrenal effect with less of the anaesthetic one.',
+          reagentsAndBuffer:
+            'R-(+)-etomidate reference standard, chiral HPLC on a polysaccharide-derived stationary phase, optical rotation, nuclear magnetic resonance for imidazole substitution position',
+        },
+        {
+          id: 'eto-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'N-alkylation of the imidazole-5-carboxylate with 1-phenylethyl',
+          description:
+            'Attach the chiral 1-phenylethyl group to the imidazole nitrogen. The regiochemistry matters: alkylation at the wrong ring nitrogen gives an isomer with the same formula, the same mass and different pharmacology, and the imidazole nitrogen that remains free is the one that will coordinate the haem iron of 11-beta-hydroxylase.',
+          dependsOnStepId: 'eto-w1',
+          reagentsAndBuffer:
+            'Ethyl imidazole-5-carboxylate, chiral 1-phenylethyl halide or equivalent, base, aprotic solvent, controlled temperature under nitrogen, regiochemistry confirmed by nuclear Overhauser experiments',
+        },
+        {
+          id: 'eto-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Ester integrity and formulation into propylene glycol',
+          description:
+            'Purify against hydrolysis of the ethyl ester to the carboxylic acid — which is the chief urinary metabolite and an inactive one — then dissolve at 2 mg/mL in 35% v/v propylene glycol at pH 6. The co-solvent is not cosmetic: it is the reason the injection stings in about a fifth of patients, and it is the reason prolonged infusion carries a solvent load as well as a pharmacological one.',
+          dependsOnStepId: 'eto-w2',
+          reagentsAndBuffer:
+            'Propylene glycol 35% v/v, water for injection, pH adjusted to 6.0 within a 4.0 to 7.0 range, reversed-phase HPLC for the carboxylic acid degradant, osmolality measurement',
+        },
+        {
+          id: 'eto-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Adrenal cortical cells assayed alongside neurons, from the start',
+          description:
+            'Run a steroidogenesis assay in adrenal cortical cells in parallel with the GABA-A electrophysiology, not after a mortality signal appears. Etomidate is the case study for why a selectivity panel should include the enzymes an imidazole is expected to inhibit: the adrenal effect was discovered clinically in 1983, nineteen years after the molecule was made.',
+          dependsOnStepId: 'eto-w3',
+          reagentsAndBuffer:
+            'Adrenocortical cell culture with ACTH stimulation, 11-deoxycortisol and cortisol quantified by liquid chromatography with tandem mass spectrometry, recombinant CYP11B1 activity assay, HEK293 cells expressing alpha1-beta3-gamma2 GABA-A receptors run in parallel',
+        },
+        {
+          id: 'eto-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Beta3(N265M) knock-in against wild type for the anaesthetic endpoint',
+          description:
+            'Score suppression of noxious-evoked movement and loss of righting reflex in beta3(N265M) mice and wild-type littermates, with a volatile anaesthetic as an in-animal control. Running the volatile alongside is what shows the knock-in animals are not simply anaesthesia-resistant, which is the difference between a site attribution and a phenotype.',
+          dependsOnStepId: 'eto-w4',
+          reagentsAndBuffer:
+            'Beta3(N265M) knock-in and wild-type mice, tail-clamp or hindpaw withdrawal scoring, timed loss of righting reflex, enflurane and halothane comparators, cortical slice recordings of GABA-A current and spontaneous firing',
+        },
+        {
+          id: 'eto-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'Cortisol response to ACTH, timed out to eight hours',
+          description:
+            "Measure the cortisol response to corticotropin stimulation at intervals after a single induction dose, out to at least eight hours. A baseline cortisol taken at one hour tells you nothing, because the label's finding is not a low cortisol but an unresponsive adrenal: the levels persist for six to eight hours and are unresponsive to ACTH.",
+          dependsOnStepId: 'eto-w5',
+          reagentsAndBuffer:
+            'Corticotropin stimulation test with serial cortisol and aldosterone sampling, 11-deoxycortisol as the substrate accumulating behind the block, timed sampling to 8 hours or beyond, non-etomidate induction agent control arm',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'eto-a1',
+        category: 'measured',
+        title: 'The same single residue that carries propofol carries etomidate',
+        laymanSummary:
+          'Mice with one amino acid changed in the GABA receptor stopped responding to etomidate entirely, while gas anaesthetics still worked on them. It is the same mutation that abolishes propofol anaesthesia.',
+        technicalDetails:
+          "Jurd and colleagues generated mice carrying an N265M point mutation in the second transmembrane region of the GABA-A receptor beta3 subunit. In those animals, suppression of noxious-evoked movement by intravenous etomidate and propofol was completely abolished, while it was only slightly decreased for enflurane and halothane. The mutants also showed a profound reduction in loss of righting reflex duration in response to intravenous but not volatile anaesthetics, and cortical slice recordings showed the anaesthetics were significantly less effective at enhancing GABA-A currents and at reducing spontaneous action potential firing. The result establishes that a single residue in the beta3 subunit is a major determinant of the behavioural response to both intravenous agents, and that the volatiles act through a broader spectrum of targets. For etomidate specifically it also frames the drug's central problem: the anaesthetic action is precisely localised and well understood, and the action that has generated forty years of argument happens somewhere else entirely.",
+        evidenceSource:
+          'Jurd R, Arras M, Lambert S, et al. General anesthetic actions in vivo strongly attenuated by a point mutation in the GABA(A) receptor beta3 subunit. FASEB J 2003;17:250-252',
+        doi: '10.1096/fj.02-0611fje',
+        measuredMetric:
+          'Suppression of noxious-evoked movement and loss of righting reflex in beta3(N265M) knock-in mice versus wild type, with volatile anaesthetic controls',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eto-a2',
+        category: 'conclusion_shift',
+        title: "1983: a one-page Lancet letter ended the drug's use as an infusion",
+        laymanSummary:
+          'An intensive care unit noticed that badly injured patients sedated with an etomidate infusion were dying more often than expected. The finding was published in a single page in the Lancet, and infusion use of the drug stopped worldwide.',
+        technicalDetails:
+          'Ledingham and Watt reported an association between etomidate infusion sedation and increased mortality in critically ill multiple trauma patients in a one-page Lancet correspondence in 1983. The mechanism was identified shortly afterwards as inhibition of adrenal steroidogenesis, and the approved United States label now carries it in capitals in its warnings: because of the hazards of prolonged suppression of endogenous cortisol and aldosterone production, this formulation is not intended for administration by prolonged infusion. This is a genuine reversal and an unusually consequential one. Etomidate had been introduced as a sedative infusion for intensive care precisely because of its cardiovascular stability, that use was abandoned within about a year of a short observational report, and the abandonment has never been seriously challenged. It also set up the argument that has followed ever since: if hours of infusion are lethal, what does a single induction dose do?',
+        evidenceSource:
+          'Ledingham IM, Watt I. Influence of sedation on mortality in critically ill multiple trauma patients. Lancet 1983;1:1270; FDA-approved US prescribing information for AMIDATE (etomidate) injection, WARNINGS',
+        doi: '10.1016/s0140-6736(83)92712-5',
+        inferredClaim:
+          "That a drug's haemodynamic stability makes it suitable for prolonged sedation — an inference that ignored an off-target enzyme inhibition nobody had assayed for",
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eto-a3',
+        category: 'measured',
+        title: 'One induction dose blocks cortisol synthesis for six to eight hours',
+        laymanSummary:
+          'The label states it plainly: after a single dose used to induce anaesthesia, cortisol and aldosterone fall, stay down for six to eight hours, and do not respond to the hormone that normally tells the adrenal gland to make more.',
+        technicalDetails:
+          'The approved label reports that reduced plasma cortisol and aldosterone levels have been reported following induction doses of etomidate, that these persist for approximately six to eight hours, and that they appear to be unresponsive to adrenocorticotropic hormone administration — which it attributes to blockade of 11-beta-hydroxylation within the adrenal cortex. The chemistry is straightforward and was foreseeable: the free nitrogen of the imidazole ring coordinates the haem iron of the cytochrome P450 enzyme steroid 11-beta-hydroxylase, the same way the imidazole antifungals inhibit their P450 targets. The important detail is not that cortisol is low but that the gland cannot be stimulated. A single blood cortisol drawn after etomidate can look adequate; the defect is in the response to stress, which is exactly the reserve a critically ill patient is drawing on.',
+        evidenceSource:
+          'FDA-approved US prescribing information for AMIDATE (etomidate) injection, CLINICAL PHARMACOLOGY (DailyMed SPL b7ed5bf8-ba75-44dc-8f81-96b4ad5766be)',
+        measuredMetric:
+          'Duration of reduced plasma cortisol and aldosterone after an induction dose, and unresponsiveness to ACTH stimulation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'eto-a4',
+        category: 'failed',
+        title: 'KETASED: sixfold more adrenal insufficiency, and organ failure that just missed',
+        laymanSummary:
+          'Six hundred and fifty-five critically ill patients were randomised to etomidate or ketamine for emergency intubation. Adrenal insufficiency was six to seven times more common with etomidate. Organ failure over the next three days was slightly worse and just missed statistical significance.',
+        technicalDetails:
+          'Jabre and colleagues ran a randomised, single-blind, controlled trial at 12 emergency medical services or emergency departments and 65 intensive care units in France, enrolling 655 patients needing sedation for emergency intubation and assigning them to etomidate (n=328) or ketamine (n=327). In the modified intention-to-treat analysis of 469 patients — 234 etomidate, 235 ketamine — the primary endpoint, mean maximum sequential organ failure assessment score during the first three intensive care days, was 10.3 (SD 3.7) against 9.6 (SD 3.9): mean difference 0.7, 95% CI 0.0 to 1.4, P=0.056. Intubation conditions did not differ, with a median intubation difficulty score of 1 in both groups (P=0.70). Adrenal insufficiency was significantly more common with etomidate, odds ratio 6.7 (95% CI 3.5 to 12.7). No serious adverse events were recorded with either drug. The authors concluded that ketamine is a safe and valuable alternative and should be considered in patients with sepsis. A confidence interval running from exactly 0.0 to 1.4 with P=0.056 is a result that cannot be read as reassurance in either direction, and this page does not read it as one.',
+        evidenceSource:
+          'Jabre P, Combes X, Lapostolle F, et al. Etomidate versus ketamine for rapid sequence intubation in acutely ill patients: a multicentre randomised controlled trial. Lancet 2009;374:293-300 (KETASED, NCT00440102)',
+        doi: '10.1016/S0140-6736(09)60949-1',
+        measuredMetric:
+          'Maximum sequential organ failure assessment score over the first three intensive care days, and incidence of adrenal insufficiency',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'eto-a5',
+        category: 'failed',
+        title: 'CORTICUS sub-study: higher 28-day mortality, and steroids did not fix it',
+        laymanSummary:
+          'Among 499 patients with septic shock, the 96 who had received etomidate before enrolment were much more likely to fail an adrenal stimulation test and more likely to be dead at 28 days. Giving them hydrocortisone did not change that.',
+        technicalDetails:
+          'Cuthbertson and colleagues ran an a-priori sub-study of CORTICUS, a multicentre randomised double-blind placebo-controlled trial of hydrocortisone in septic shock, collecting use and timing of etomidate administration. Of 500 patients recruited, 499 were analysable, and 96 (19.2%) had received etomidate within the 72 hours before inclusion. Non-response to corticotropin was significantly more frequent in those patients: 61.0% against 44.6%, P=0.004. Etomidate was associated with higher 28-day mortality in univariate analysis (P=0.02) and, after correction for severity of illness, 42.7% against 30.5% with P=0.06 in one multivariate model and P=0.03 in the other. Crucially for the mechanism, hydrocortisone administration did not change mortality among those who had received etomidate — 45% against 40% — which is difficult to reconcile with a purely steroid-deficiency explanation and is exactly the kind of result that keeps an argument alive. The authors recommended extreme caution. This remains a post-hoc analysis of a non-randomised exposure within a randomised trial, and confounding by indication is unavoidable: the sickest patients are the ones an anaesthetist chooses etomidate for.',
+        evidenceSource:
+          'Cuthbertson BH, Sprung CL, Annane D, et al. The effects of etomidate on adrenal responsiveness and mortality in patients with septic shock. Intensive Care Med 2009;35:1868-1876',
+        doi: '10.1007/s00134-009-1603-4',
+        measuredMetric:
+          'Proportion of non-responders to corticotropin and all-cause 28-day mortality in patients given etomidate within 72 hours before inclusion',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'eto-a6',
+        category: 'inferred',
+        title: 'Forty years on, the induction-dose question is still not settled either way',
+        laymanSummary:
+          'Everyone agrees a single dose suppresses the adrenal gland for several hours. Whether that harms the patient has been argued since 1983 without a trial large enough to answer it, and the drug is still used because nothing else does its job as well.',
+        technicalDetails:
+          'The evidence has a consistent shape and an unresolved conclusion. The biochemical effect is certain and labelled: cortisol and aldosterone fall for six to eight hours and do not respond to ACTH. The infusion harm is accepted, on the strength of a 1983 observational report and a label warning written in capitals. The single-dose harm is where it stops. KETASED randomised the question and its primary endpoint came back at P=0.056 with a confidence interval touching zero. The CORTICUS sub-study found more deaths but is a non-randomised exposure analysed within a randomised trial, and found that hydrocortisone did not rescue those patients, which weakens the very mechanism it appears to support. What no one has produced is a randomised trial powered for mortality in the population where it matters. This page files the induction-dose harm as an open inference rather than as an established harm or an established non-harm, and notes that a drug this useful in shock has an unusually strong incentive structure working against that trial ever being run.',
+        evidenceSource:
+          'Jabre P et al. Lancet 2009;374:293-300; Cuthbertson BH et al. Intensive Care Med 2009;35:1868-1876; FDA-approved US prescribing information for AMIDATE, WARNINGS and CLINICAL PHARMACOLOGY',
+        inferredClaim:
+          'Both directions are inferred here: that a single induction dose meaningfully increases mortality, and that it is safe because the biochemical effect is transient. Neither has been established by an adequately powered randomised trial.',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'eto-a7',
+        category: 'measured',
+        title: 'A third of patients twitch and a fifth report a burning arm',
+        laymanSummary:
+          "The label puts numbers on the two commonest problems: involuntary muscle movements in about a third of patients and pain on injection in about a fifth, and the indication section says these should be weighed against the drug's advantages.",
+        technicalDetails:
+          "The label records transient venous pain immediately after intravenous injection in about 20% of patients, with reported incidences from 1.2% to 42%, usually mild to moderate and occasionally judged disturbing, less frequent in larger proximal arm veins and more frequent in small distal hand or wrist veins; it notes the pain is not associated with more than the usual incidence of thrombosis or thrombophlebitis. Transient skeletal muscle movements including myoclonus were noted in about 32% of patients, with reported incidences from 22.7% to 63%, mostly mild to moderate and some judged disturbing. The indications section is unusually candid in telling the prescriber to weigh the usefulness of the drug's haemodynamic properties against the high frequency of transient skeletal muscle movements. The venous pain is at least partly the vehicle rather than the drug: the injection is 35% v/v propylene glycol, not an aqueous solution.",
+        evidenceSource:
+          'FDA-approved US prescribing information for AMIDATE (etomidate) injection, INDICATIONS AND USAGE, ADVERSE REACTIONS and DESCRIPTION',
+        measuredMetric:
+          'Labelled incidence of transient venous pain (about 20%) and transient skeletal muscle movements including myoclonus (about 32%)',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected in a solvent, not in water',
+        laymanDesc:
+          'The molecule does not dissolve well in water, so it is supplied dissolved in a syrupy alcohol. That solvent is a large part of why the injection stings.',
+        molecularDetail:
+          'The injection is 2 mg/mL in 35% v/v propylene glycol at pH 6. Transient venous pain occurs in about 20% of patients, more often in small distal veins than in larger proximal ones, and the label notes it is not associated with an increased incidence of thrombophlebitis. The co-solvent load is also part of why prolonged infusion was never a benign proposition independent of the adrenal problem.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Consciousness stops in about a minute',
+        laymanDesc:
+          'Onset is within roughly one circulation of the blood, and the effect of a single dose is over in three to five minutes as the drug redistributes out of the brain.',
+        molecularDetail:
+          'The label describes rapid onset usually within one minute and a dose-dependent but brief duration. Plasma concentrations fall rapidly for the first 30 minutes and then more slowly, with a half-life around 75 minutes; offset of a single dose is redistribution rather than elimination. Volume of distribution and half-life are roughly doubled in cirrhosis, and initial distribution volume, clearance and albumin binding are all reduced in older patients.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It holds the GABA gate open at the beta subunit',
+        laymanDesc:
+          "It binds the brain's main inhibitory receptor at the same spot propofol uses, on a different part of the protein from where benzodiazepines act.",
+        molecularDetail:
+          "The site involves asparagine 265 in transmembrane domain 2 of the beta subunit. Beta3(N265M) knock-in mice lose etomidate's immobilising action entirely and most of its hypnotic action, while volatile anaesthetics still work in the same animals — a positive and a negative control in one experiment.",
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Blood pressure barely moves, which is the entire point',
+        laymanDesc:
+          'Unlike almost every other induction agent, this one does not open up the blood vessels or weaken the heart. In a patient who is already shocked, that is the difference that matters.',
+        molecularDetail:
+          'The label reports that intravenous administration of up to 0.6 mg/kg to patients with severe cardiovascular disease has little or no effect on myocardial metabolism, cardiac output, peripheral circulation or pulmonary circulation, with haemodynamic effects mostly similar to thiopental except for the heart rate response. It also notes that in older patients, particularly those with hypertension, decreases in heart rate, cardiac index and mean arterial pressure can occur — so the stability is a strong tendency rather than a guarantee.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'The same ring plugs an adrenal enzyme',
+        laymanDesc:
+          'The imidazole ring that makes the drug work also fits the iron atom at the heart of the enzyme that makes cortisol. That enzyme stays blocked for six to eight hours after a single dose.',
+        molecularDetail:
+          'The free imidazole nitrogen coordinates the haem iron of steroid 11-beta-hydroxylase, the same mechanism by which imidazole antifungals inhibit their cytochrome P450 targets. The label attributes reduced plasma cortisol and aldosterone after induction doses to this blockade, persisting six to eight hours and unresponsive to ACTH. The defect is in stimulated output rather than in a resting level, which is why a single cortisol measurement can be misleading.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'Hydrolysed to an inactive acid and excreted',
+        laymanDesc:
+          'An enzyme snips the ester off the molecule, leaving an inactive acid that the kidneys remove. About three quarters of the dose is out within a day.',
+        molecularDetail:
+          'The chief metabolite is R-(+)-1-(1-phenylethyl)-1H-imidazole-5-carboxylic acid, formed by ester hydrolysis and accounting for about 80% of urinary excretion; approximately 75% of the administered dose appears in the urine on the first day. Notably, recovery of consciousness runs well ahead of recovery of adrenal function: the anaesthetic is gone in minutes and the enzyme block persists for hours, which is the pharmacokinetic root of the entire controversy.',
+        iconName: 'RotateCcw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'KETASED — etomidate versus ketamine for rapid sequence intubation in acutely ill patients (NCT00440102)',
+        phase: 'Multicentre randomised single-blind controlled trial',
+        sampleSize: 655,
+        primaryEndpoint:
+          'Maximum sequential organ failure assessment score during the first three days in the intensive care unit',
+        endpointMet: false,
+        statisticalPValue:
+          'Mean maximum SOFA 10.3 (SD 3.7) with etomidate versus 9.6 (SD 3.9) with ketamine; mean difference 0.7, 95% CI 0.0 to 1.4, P=0.056. Adrenal insufficiency odds ratio 6.7 (95% CI 3.5 to 12.7)',
+        unreportedAdverseSignals:
+          'Analysed as modified intention-to-treat in 469 of 655 enrolled, excluding those who died before hospital arrival or left intensive care within three days — an exclusion rule that removes the sickest and the least sick from a severity-scored endpoint. Intubation conditions were identical, median difficulty score 1 in both groups.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'CORTICUS a-priori sub-study of etomidate exposure in septic shock',
+        phase:
+          'Prospective a-priori sub-study within a randomised double-blind placebo-controlled trial',
+        sampleSize: 499,
+        primaryEndpoint:
+          'Corticotropin response and all-cause 28-day mortality in patients receiving etomidate',
+        endpointMet: true,
+        statisticalPValue:
+          'Non-responders to corticotropin 61.0% versus 44.6%, P=0.004. 28-day mortality 42.7% versus 30.5%; P=0.02 univariate, P=0.06 and P=0.03 in two multivariate models correcting for severity of illness',
+        unreportedAdverseSignals:
+          'Hydrocortisone did not change mortality among those who had received etomidate, 45% versus 40% — a finding that undercuts the steroid-deficiency mechanism the mortality signal is usually attributed to. Etomidate exposure was not randomised, so confounding by indication cannot be excluded.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Ledingham and Watt observation of etomidate infusion sedation in multiple trauma',
+        phase: 'Observational report',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Mortality in critically ill multiple trauma patients sedated by etomidate infusion',
+        endpointMet: true,
+        statisticalPValue:
+          'A one-page correspondence rather than a controlled comparison. No effect estimate is quoted here because the report is not a trial and this page does not manufacture one.',
+        unreportedAdverseSignals:
+          'The strength of the response — worldwide abandonment of infusion use and a capitalised label warning — is out of proportion to the strength of the study design, which is itself worth recording in an audit.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        "A single N265M substitution in the GABA-A beta3 subunit abolishes etomidate's immobilising action in mice while volatile anaesthetics still work in the same animals",
+        'Plasma cortisol and aldosterone fall after an induction dose, persist low for six to eight hours and are unresponsive to ACTH, attributed by the label to 11-beta-hydroxylase blockade',
+        'Adrenal insufficiency six to seven times more likely than with ketamine after a single dose for emergency intubation, odds ratio 6.7 (95% CI 3.5 to 12.7)',
+        "Maximum three-day organ failure score of 10.3 against ketamine's 9.6, mean difference 0.7 (95% CI 0.0 to 1.4), P=0.056",
+        'Corticotropin non-response in 61.0% of septic shock patients exposed to etomidate against 44.6%, with 28-day mortality 42.7% against 30.5%',
+        'Labelled incidence of transient skeletal muscle movements about 32% and venous pain about 20%',
+      ],
+      unsupportedInferences: [
+        "That a single induction dose causes clinically important harm — the randomised trial's primary endpoint came back at P=0.056 and the mortality signal comes from a non-randomised exposure",
+        'That the transience of the biochemical effect makes a single dose safe — no adequately powered randomised mortality trial exists in the population where it matters',
+        'That the mortality association is explained by steroid deficiency, when giving hydrocortisone to the exposed patients did not change their mortality',
+        'That haemodynamic stability at induction translates into any downstream benefit; nothing measured here shows that it does',
+      ],
+      whatFailedInitially: [
+        'Prolonged infusion sedation was abandoned worldwide after a one-page 1983 report, and the label now forbids it in capital letters',
+        'KETASED failed to show organ-failure equivalence cleanly, landing at P=0.056 with a confidence interval touching zero, and its authors recommended ketamine in sepsis',
+        'The steroid-deficiency explanation for the mortality signal failed its own test: hydrocortisone did not rescue etomidate-exposed patients in CORTICUS',
+        'The original development programme failed to assay adrenal steroidogenesis at all, despite the molecule being an imidazole — the same chemistry used deliberately to inhibit P450 enzymes in antifungals',
+      ],
+      realWorldOutcome: [
+        'Still widely used for emergency intubation of shocked patients, because no alternative combines its speed with its haemodynamic stability except ketamine, which has its own drawbacks',
+        'No CMS National Average Drug Acquisition Cost value is held on this record for etomidate, so no United States acquisition price is stated here',
+        'Its label forbids prolonged infusion in capital letters, four decades after a single page in the Lancet',
+        'The induction-dose question has been open since 1983 and the trial that would close it has never been run',
+      ],
+    },
+    deliverySystem: {
+      type: 'Sterile non-pyrogenic solution of 2 mg/mL etomidate in 35% v/v propylene glycol at pH 6, for intravenous injection only; single-dose vials and prefilled syringes',
+      description:
+        "The vehicle is part of the drug's clinical profile rather than an inert detail. Etomidate is poorly water-soluble and the marketed formulation dissolves it in 35% propylene glycol, which accounts for much of the venous pain reported in about a fifth of patients and adds a solvent burden that would compound over any prolonged administration. Lipid emulsion formulations exist in some markets specifically to reduce injection pain. The label restricts the drug to intravenous injection for induction and for supplementing subpotent agents in short procedures, and states in capitals that it is not intended for administration by prolonged infusion.",
+      safetyProfile:
+        "The label's central warning, in capitals, is that because of the hazards of prolonged suppression of endogenous cortisol and aldosterone production, the formulation is not intended for prolonged infusion. A single induction dose reduces cortisol and aldosterone for six to eight hours and leaves the adrenal unresponsive to ACTH. Transient skeletal muscle movements including myoclonus occur in about 32% of patients and venous pain in about 20%. The drug has no analgesic activity whatsoever. It carries the class Pediatric Neurotoxicity warning describing animal evidence of neuronal apoptosis with exposures over three hours in the developing brain, with clinical significance stated as unclear. Distribution volume and half-life roughly double in cirrhosis, and clearance falls in older patients. No dosing guidance appears on this page.",
+    },
+    commonQuestions: [
+      {
+        q: 'Why use this drug at all if it suppresses the adrenal gland?',
+        a: 'Because of what it does not do to blood pressure. Almost every drug that reliably abolishes consciousness in under a minute also dilates blood vessels or depresses the heart, and in a patient who is bleeding, septic or in cardiac failure that drop can be the fatal event. The label reports that intravenous etomidate at up to 0.6 mg/kg in patients with severe cardiovascular disease has little or no effect on myocardial metabolism, cardiac output, or peripheral and pulmonary circulation. That is a genuinely unusual property and it is the whole reason the drug survives. The adrenal effect is real, labelled and undisputed. What is disputed, and has been since 1983, is whether a single dose of it harms anyone.',
+      },
+      {
+        q: 'What exactly happens to the adrenal gland?',
+        a: 'The imidazole ring that makes the molecule an anaesthetic also makes it an enzyme inhibitor. Its free nitrogen coordinates the iron atom at the centre of steroid 11-beta-hydroxylase, the cytochrome P450 enzyme that performs the last step in cortisol synthesis — the same chemical trick the imidazole antifungals use deliberately on their P450 targets. The label states that reduced plasma cortisol and aldosterone follow induction doses, persist for approximately six to eight hours, and appear unresponsive to ACTH. That last part is the important one. The problem is not simply a low cortisol level; it is that the gland cannot respond when it is asked to. A resting cortisol drawn after etomidate can look acceptable while the stress reserve is gone.',
+      },
+      {
+        q: 'Does one dose actually kill anybody?',
+        a: 'Nobody has established that it does, and nobody has established that it does not, and that state of affairs has lasted forty years. The best randomised evidence is KETASED: 655 critically ill patients needing emergency intubation, randomised to etomidate or ketamine. Adrenal insufficiency was six to seven times more common with etomidate, odds ratio 6.7 with a confidence interval from 3.5 to 12.7 — that part is not in doubt. The primary endpoint, maximum organ failure score over three days, was 10.3 against 9.6, a mean difference of 0.7 with a confidence interval of exactly 0.0 to 1.4 and P=0.056. That is a result you cannot honestly call negative or positive. Separately, among 499 patients in septic shock, the 96 who had received etomidate beforehand had 28-day mortality of 42.7% against 30.5% — but that exposure was not randomised, and the sickest patients are the ones etomidate is chosen for.',
+        auditNote:
+          'The most telling detail is that giving hydrocortisone to the etomidate-exposed patients did not change their mortality, 45% against 40%. That is hard to square with a pure steroid-deficiency mechanism, and it is why the argument has not closed.',
+      },
+      {
+        q: 'If a single page in the Lancet ended one use, why did it not end the other?',
+        a: 'Because the two uses differ by orders of magnitude in exposure, and because nothing replaced etomidate for the second one. Ledingham and Watt described increased mortality among critically ill trauma patients sedated with an etomidate infusion, and infusion use stopped worldwide within about a year; the label now states in capital letters that the formulation is not intended for prolonged infusion. A single induction dose delivers a fraction of that exposure and blocks the enzyme for six to eight hours rather than days. It is also given at a moment when the alternatives carry their own immediate risk of killing the patient through hypotension. So the same evidence produced a total prohibition in one setting and a continuing argument in the other, which is a reasonable response to a real difference in dose — and it is worth noticing that the prohibition rests on a one-page observational report.',
+      },
+      {
+        q: 'Why does my arm burn and why did I twitch?',
+        a: "Both are common and both are in the label with numbers attached. Transient venous pain immediately after injection was observed in about 20% of patients, with reported rates ranging from 1.2% to 42%, usually mild to moderate, less frequent in larger proximal arm veins and more frequent in small hand or wrist veins. Much of that is the vehicle rather than the drug: the injection is 35% propylene glycol, not water. Transient skeletal muscle movements including myoclonus occurred in about 32% of patients, with reported rates from 22.7% to 63%. The indications section of the label is unusually blunt about this, telling the prescriber to weigh the usefulness of the drug's haemodynamic properties against the high frequency of those movements.",
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because the CMS National Average Drug Acquisition Cost survey holds no value for etomidate on this record. That survey covers what United States retail pharmacies pay to acquire a drug, and a single-use emergency induction agent supplied to hospitals and ambulance services may not appear in it. Rather than substitute a wholesale list price or an estimate, this page shows nothing. No verified per-dose cost-of-production study exists for it either, so no synthesis cost is shown.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Jurd R, Arras M, Lambert S, et al. General anesthetic actions in vivo strongly attenuated by a point mutation in the GABA(A) receptor beta3 subunit. FASEB J 2003;17:250-252',
+        identifier: '10.1096/fj.02-0611fje',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ledingham IM, Watt I. Influence of sedation on mortality in critically ill multiple trauma patients. Lancet 1983;1:1270',
+        identifier: '10.1016/s0140-6736(83)92712-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jabre P, Combes X, Lapostolle F, et al. Etomidate versus ketamine for rapid sequence intubation in acutely ill patients: a multicentre randomised controlled trial (KETASED). Lancet 2009;374:293-300',
+        identifier: '10.1016/S0140-6736(09)60949-1',
+        kind: 'doi',
+      },
+      {
+        label: 'NCT00440102 — KETASED, etomidate versus ketamine for rapid sequence intubation',
+        identifier: 'NCT00440102',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Cuthbertson BH, Sprung CL, Annane D, et al. The effects of etomidate on adrenal responsiveness and mortality in patients with septic shock. Intensive Care Med 2009;35:1868-1876',
+        identifier: '10.1007/s00134-009-1603-4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA-approved US prescribing information for AMIDATE (etomidate) injection, Hospira Inc — warnings on prolonged infusion, cortisol and aldosterone suppression, adverse reaction incidences, description of the propylene glycol vehicle',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b7ed5bf8-ba75-44dc-8f81-96b4ad5766be',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 667484 — etomidate structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/667484',
+        kind: 'url',
+      },
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]
