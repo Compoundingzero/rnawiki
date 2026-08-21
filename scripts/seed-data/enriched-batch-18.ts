@@ -2996,4 +2996,494 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 7. Terbinafine — 70% mycological cure and 38% normal-looking nails, from the same trial, on the
+  //    same label, and a resistant dermatophyte species that did not have a name until 2020.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'terbinafine',
+    name: 'Terbinafine',
+    tradeName: 'Lamisil / Lamisil AT (topical, over the counter)',
+    sponsor: 'Novartis, which developed it; the topical over-the-counter line is now held elsewhere',
+    targetGene: 'ERG1 — the fungal squalene epoxidase gene. The human enzyme is not meaningfully inhibited',
+    targetProtein: 'Fungal squalene epoxidase (squalene monooxygenase), the first committed step of ergosterol biosynthesis',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1992,
+    indication:
+      'Oral tablets are indicated for onychomycosis of the toenail or fingernail due to dermatophytes (tinea unguium), with laboratory confirmation of the diagnosis before treatment. Topical cream, gel, solution and spray are indicated for tinea pedis, tinea cruris and tinea corporis',
+    patientFriendlyIndication: 'Fungal nail infection, athlete’s foot and ringworm',
+    anatomicalSite:
+      'The fungal cell membrane, in the nail bed and the keratinised layers of skin where the dermatophyte lives',
+    conditionContext: {
+      conditionExplainer:
+        'A dermatophyte is a fungus that eats keratin. In a nail it grows underneath the plate, in tissue that no blood vessel reaches, and the nail takes about a year to grow out. That is why nail infections take months to treat and why the treatment is judged twelve months after it stopped.',
+      whyItMatters:
+        'Terbinafine is one of very few drugs where the label prints both the flattering endpoint and the unflattering one side by side, and the difference between them is nearly two to one. It is also the first drug in this batch to be losing to a genuinely new organism.',
+      whoTakesThis:
+        'People with laboratory-confirmed dermatophyte nail infection for the tablets, and people with athlete’s foot or ringworm for the cream, which is sold without prescription.',
+      clinicalGoals:
+        'The label defines three: mycological cure, meaning negative microscopy and culture; effective treatment, meaning mycological cure plus new clear nail growth; and mycological plus clinical cure, meaning a normal nail. Those three numbers are 70%, 59% and 38% in the same trial.',
+    },
+    oneSentenceVerdict:
+      'An allylamine that blocks squalene epoxidase so the fungus can neither make its membrane nor stop making squalene, killing it outright — six times as likely as placebo to produce clinical cure across 1,006 randomised patients on high-quality evidence, better than every azole compared with it, and printing 70% mycological cure against 38% normal-looking nails on the same page of its own label.',
+    laymanHowItWorks:
+      'Fungi build their cell membranes out of ergosterol, and the first step is an enzyme that adds oxygen to a molecule called squalene. Terbinafine jams that enzyme. Two things then go wrong at once: the fungus runs out of the material its membrane is made of, and squalene piles up inside the cell to the point where it dissolves the membrane from within. That second effect is why terbinafine kills the fungus rather than merely stopping its growth, which is the difference between it and the azoles. Human cells use a related enzyme for cholesterol, but the fungal one is about a thousand times more sensitive.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 78,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1356 per unit, the median United States pharmacy acquisition cost across 20 listed terbinafine products (CMS NADAC, generic, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Long off patent, with 20 listed products and the topical line sold over the counter. The Lamisil cream application, NDA 020192, was approved on 30 December 1992. Nobody has a commercial reason to develop a successor allylamine, which is one reason the arrival of a terbinafine-resistant dermatophyte matters more than it otherwise would.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The Cochrane review compared terbinafine with the azoles head to head across 17 studies and terbinafine won on both cure definitions with no difference in adverse events. That ordering is now conditional: against Trichophyton indotineae, which carries squalene epoxidase mutations, the ranking inverts and the azoles become the option that still works.',
+      conventionalRx: [
+        {
+          name: 'Itraconazole',
+          class: 'Triazole, inhibits fungal lanosterol 14-alpha-demethylase',
+          howItCompares:
+            'In the 496-patient LION study, mycological cure at week 72 was 75.7% and 80.8% on the two terbinafine arms against 38.3% and 49.1% on the two intermittent itraconazole arms, all comparisons P<0.0001, with no difference in the number or type of adverse events. Pooled across the Cochrane review, terbinafine was probably more effective than azoles for clinical cure (RR 0.82, 95% CI 0.72 to 0.95) and mycological cure (RR 0.77, 95% CI 0.68 to 0.88).',
+          typicalCost: 'Generic; priced per capsule rather than per gram',
+          prosAndCons:
+            'Pros: retains activity against Trichophyton indotineae, where terbinafine does not, and covers non-dermatophyte moulds and yeasts that terbinafine covers poorly. Cons: beaten decisively on cure rate in the dermatophyte trials, and carries substantial drug-interaction and cardiac cautions terbinafine does not.',
+        },
+        {
+          name: 'Fluconazole',
+          class: 'Triazole',
+          howItCompares:
+            'Included among the azoles that lost to terbinafine in the pooled comparison. The 2024 resistance review states that fluconazole and griseofulvin are generally not effective against Trichophyton indotineae, so it does not solve the problem terbinafine now has.',
+          typicalCost: 'Generic and inexpensive',
+          prosAndCons:
+            'Pros: well tolerated, familiar, once-weekly regimens exist. Cons: inferior to terbinafine on both cure definitions, and no answer to the resistant species.',
+        },
+        {
+          name: 'Topical terbinafine (Lamisil AT and generics)',
+          class: 'The same molecule applied to skin rather than swallowed',
+          howItCompares:
+            'A different product for a different problem: licensed for athlete’s foot, jock itch and ringworm, not for nails. The Cochrane review of oral drugs notes that topical treatments traditionally have low success rates in nail disease because of the physical properties of the nail plate.',
+          typicalCost:
+            'Sold over the counter; included in the same CMS median of US$0.1356 per unit across 20 listed products',
+          prosAndCons:
+            'Pros: no liver monitoring, no taste loss, no prescription. Cons: does not reliably penetrate a nail plate, which is why the oral drug exists at all.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Get the diagnosis confirmed in a laboratory first',
+          action:
+            'The label instructs that appropriate nail specimens — potassium hydroxide preparation, fungal culture or nail biopsy — be obtained before treatment begins.',
+          patientImpact:
+            'About half of thickened, discoloured nails are not fungal at all. Committing to months of a drug that can cause liver failure, on the strength of how a nail looks, is the specific mistake the label is written to prevent.',
+          clinicalPrecaution:
+            'Species identification is now more consequential than it used to be: Trichophyton indotineae responds poorly to terbinafine and requires molecular methods to distinguish from its close relatives.',
+        },
+        {
+          name: 'Report loss of taste or smell, and do not wait to see whether it returns',
+          action:
+            'The label directs discontinuation if taste or smell disturbance occurs.',
+          patientImpact:
+            'Taste disturbance including complete taste loss can be severe, prolonged or permanent, and the same is true of smell. These are not nuisance side effects — they are irreversible in some people, and the treatment being given is for the appearance of a nail.',
+          clinicalPrecaution:
+            'The label also lists depressive symptoms, severe neutropenia and severe cutaneous reactions including Stevens-Johnson syndrome and DRESS as reasons to stop.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)(C)C#C/C=C/CN(C)CC1=CC=CC2=CC=CC=C21',
+      chemicalFormula: 'C21H25N',
+      molecularWeight: '291.40 g/mol',
+      targetReceptorAffinity:
+        'Non-competitively inhibits fungal squalene epoxidase at nanomolar concentrations, roughly three orders of magnitude below the concentration needed to inhibit the mammalian enzyme, which is the basis for selectivity. Resistance in Trichophyton indotineae maps to point substitutions in the squalene epoxidase gene, principally Leu393Phe and Phe397Leu, which alter the binding site rather than the amount of enzyme.',
+      structureSource: {
+        label:
+          'PubChem CID 1549008 (terbinafine) — canonical SMILES, molecular formula and weight, as held on the record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/1549008',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ter-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enyne geometry and identity of the tert-butyl acetylene',
+          description:
+            'Confirm the E configuration of the double bond in the enyne side chain. Terbinafine’s entire pharmacophore is a rigid conjugated ene-yne terminating in a tert-butyl group, and the Z isomer is markedly less active. This is a small molecule with almost no functional groups to check, which makes the geometry the whole assay.',
+          reagentsAndBuffer:
+            'Terbinafine hydrochloride reference standard, reversed-phase HPLC with ultraviolet detection at 224 nm, 1H NMR coupling constant analysis for alkene geometry, residual palladium by ICP-MS',
+        },
+        {
+          id: 'ter-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Naphthylmethylamine alkylation and salt formation',
+          description:
+            'Alkylate N-methyl-1-naphthalenemethylamine with the enyne halide and form the hydrochloride salt. The naphthalene is the lipophilic anchor that drives accumulation in keratin, and it is why the drug persists in nail and skin for weeks after the last tablet.',
+          dependsOnStepId: 'ter-w1',
+          reagentsAndBuffer:
+            'N-methyl-1-naphthalenemethylamine, 6,6-dimethylhept-2-en-4-ynyl halide, base in polar aprotic solvent, hydrogen chloride in isopropanol for salt formation',
+        },
+        {
+          id: 'ter-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and isomeric purity of the finished salt',
+          description:
+            'Crystallise the hydrochloride and re-assay for the Z isomer and for residual amine. Free amine left in the product is both an impurity and a stability liability, and the isomer ratio must be checked after crystallisation as well as before it.',
+          dependsOnStepId: 'ter-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from isopropanol or ethanol-water, gradient HPLC with photodiode array detection, Karl Fischer water determination, differential scanning calorimetry for polymorph identity',
+        },
+        {
+          id: 'ter-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Keratin binding and distribution into nail plate and stratum corneum',
+          description:
+            'Measure how much drug partitions into keratin and how long it stays. This is the pharmacokinetic fact that makes a twelve-week course treat a twelve-month problem: the drug reaches the nail through the matrix and the bed, binds keratin avidly, and persists there long after plasma concentrations have gone.',
+          dependsOnStepId: 'ter-w3',
+          reagentsAndBuffer:
+            'Human nail clippings and stratum corneum, keratin powder binding assay, LC-MS/MS quantification in nail, plasma and sebum, serial sampling out to several months after dosing',
+        },
+        {
+          id: 'ter-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Squalene epoxidase inhibition, minimum inhibitory concentration and SQLE genotyping',
+          description:
+            'Measure enzyme inhibition, then the minimum inhibitory concentration against clinical isolates, then sequence the squalene epoxidase gene. The third step is new: distinguishing Trichophyton indotineae from its close relatives is not reliably possible by culture morphology, and a susceptibility result without a genotype no longer answers the question being asked.',
+          dependsOnStepId: 'ter-w4',
+          reagentsAndBuffer:
+            'Fungal microsomal squalene epoxidase preparation, radiolabelled squalene substrate, CLSI M38 broth microdilution against dermatophyte isolates, PCR and sequencing of the squalene epoxidase gene covering codons 393 and 397',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ter-a1',
+        category: 'measured',
+        title: 'High-quality evidence, six times the clinical cure rate of placebo',
+        laymanSummary:
+          'Cochrane graded the evidence for this drug against placebo as high quality, which is rare in dermatology. Across eight trials in a thousand people, clinical cure was six times as likely on terbinafine, and side effects were no more common.',
+        technicalDetails:
+          'The 2017 Cochrane review included 48 studies in 10,200 participants. It found high-quality evidence that terbinafine is more effective than placebo for clinical cure (RR 6.00, 95% CI 3.96 to 9.08; 8 studies, 1,006 participants) and for mycological cure (RR 4.53, 95% CI 2.47 to 8.33; same 8 studies). Adverse events among terbinafine-treated participants included gastrointestinal symptoms, infections and headache, with probably no significant difference in risk between groups (RR 1.13, 95% CI 0.87 to 1.47; 4 studies, 399 participants, moderate-quality evidence). One study was at low risk of bias in all domains and 18 were at high risk in at least one, most commonly blinding of personnel and participants.',
+        evidenceSource:
+          'Kreijkamp-Kaspers S et al., Cochrane Database Syst Rev 2017;7:CD010031 (PMID 28707751)',
+        doi: '10.1002/14651858.CD010031.pub2',
+        measuredMetric:
+          'Risk ratio for clinical and mycological cure against placebo, pooled across 8 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a2',
+        category: 'measured',
+        title: 'LION: it doubled the cure rate of the drug it was compared against',
+        laymanSummary:
+          'Nearly five hundred patients in six countries were randomised to terbinafine or to intermittent itraconazole and followed for seventy-two weeks. Around four in five terbinafine patients were culture-negative at the end. Around two in five itraconazole patients were.',
+        technicalDetails:
+          'The LION study was a prospective, randomised, double-blind, double-dummy, multicentre parallel-group study over 72 weeks at 35 centres in six European countries, in 496 patients aged 18 to 75 with clinically and mycologically confirmed dermatophyte toenail onychomycosis. Four arms received terbinafine for 12 or 16 weeks or intermittent itraconazole for 12 or 16 weeks. The primary endpoint at week 72 was mycological cure, defined as negative microscopy and negative culture from the target toenail: 75.7% (81/107) and 80.8% (80/99) on the terbinafine arms against 38.3% (41/107) and 49.1% (53/108) on the itraconazole arms, every pairwise comparison P<0.0001. All secondary clinical outcomes favoured terbinafine at week 72, and there were no differences in the number or type of adverse events between the drugs.',
+        evidenceSource: 'Evans EG, Sigurgeirsson B. BMJ 1999;318:1031-1035 (PMID 10205099)',
+        doi: '10.1136/bmj.318.7190.1031',
+        measuredMetric:
+          'Mycological cure at week 72, negative microscopy plus negative culture, four randomised arms',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a3',
+        category: 'failed',
+        title: '70% cure, 38% normal nail — both printed on the same label',
+        laymanSummary:
+          'The label reports three numbers from one trial. Seventy per cent of patients had no fungus left. Fifty-nine per cent had no fungus and some clear new nail. Thirty-eight per cent had a nail with no involvement at all. The number people remember is the first one.',
+        technicalDetails:
+          'The terbinafine tablets label reports the first United States and Canadian placebo-controlled toenail trial assessed at week 48, after 12 weeks of treatment and 36 weeks of follow-up: mycological cure, defined as simultaneous negative KOH and negative culture, in 70% of subjects; effective treatment, defined as mycological cure plus zero per cent nail involvement or more than 5 mm of new unaffected nail growth, in 59%; and mycological cure plus clinical cure, defined as zero per cent nail involvement, in 38%. Mean time to overall success was approximately 10 months. In the fingernail trial at week 24, the corresponding figures were 79%, 75% and 59%, with a mean time to success of about 4 months. The gap between the first and third numbers is the gap between killing the fungus and restoring the nail, and the second is a composite that sits between them.',
+        evidenceSource:
+          'Terbinafine tablets United States prescribing information, section 14 Clinical Studies (ANDA 078297, openFDA label endpoint)',
+        measuredMetric:
+          'Mycological cure 70%, effective treatment 59%, mycological plus clinical cure 38%, same trial, week 48',
+        inferredClaim:
+          'That a 70% cure rate means seven in ten people end up with a normal nail — the label’s own third figure for that outcome is 38%',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ter-a4',
+        category: 'failed',
+        title: 'Liver failure, permanent loss of taste and smell, for a nail',
+        laymanSummary:
+          'The Warnings section lists liver failure leading to transplant or death, taste loss that may be permanent, smell loss that may be permanent, depression, severe drops in white cells, and life-threatening skin reactions. The condition being treated is a discoloured nail.',
+        technicalDetails:
+          'The label directs obtaining pretreatment serum transaminases, assessing liver function before and periodically during therapy, and discontinuing if liver injury develops; the tablets are contraindicated in chronic or active liver disease. Taste disturbance including taste loss can be severe, prolonged or permanent, and smell disturbance may also be prolonged or permanent; both are grounds for discontinuation. The label further lists depressive symptoms, severe neutropenia with discontinuation at a neutrophil count of 1,000 cells/mm3 or below, and Stevens-Johnson syndrome, toxic epidermal necrolysis, erythema multiforme, exfoliative dermatitis, bullous dermatitis and DRESS. The Cochrane review separately found probably no significant difference in overall adverse event risk against placebo (RR 1.13, 95% CI 0.87 to 1.47), which is the expected pattern for rare severe harms: trials of a thousand people cannot detect them and postmarketing surveillance can.',
+        evidenceSource:
+          'Terbinafine tablets United States prescribing information, section 5 Warnings and Precautions (ANDA 078297); Kreijkamp-Kaspers S et al., Cochrane Database Syst Rev 2017;7:CD010031',
+        doi: '10.1002/14651858.CD010031.pub2',
+        measuredMetric:
+          'Regulatory warnings from postmarketing surveillance, against a pooled trial adverse event risk ratio of 1.13 (95% CI 0.87 to 1.47)',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ter-a5',
+        category: 'conclusion_shift',
+        title: 'A resistant dermatophyte that did not have a name until 2020',
+        laymanSummary:
+          'For thirty years terbinafine was the reliable answer to ringworm and nail fungus. A new species that carries mutations in the exact enzyme terbinafine blocks spread out of South Asia, and the first United States cases were reported from New York in 2023.',
+        technicalDetails:
+          'Trichophyton indotineae is a recently named species within the T. mentagrophytes complex, distinguishable from its close relatives only by molecular methods, and usually responding poorly to terbinafine. The reduced susceptibility is attributed to point substitutions in the squalene epoxidase gene, principally Leu393Phe and Phe397Leu, which alter the drug binding site. The first reported United States cases were described in Notes from the Field covering New York City between December 2021 and March 2023. Most cases outside South Asia are linked to international travel, with mounting evidence of local person-to-person and animal-to-human transmission. Fluconazole and griseofulvin are generally not effective against it. Because terbinafine is decades off patent and no successor allylamine is in development, the field’s response has been to fall back on the drug class terbinafine displaced.',
+        evidenceSource:
+          'Caplan AS et al., MMWR Morb Mortal Wkly Rep 2023;72:536-537 (PMID 37167192); Gupta AK et al., Expert Rev Anti Infect Ther 2024;22:739-751 (PMID 39114868)',
+        doi: '10.15585/mmwr.mm7219a4',
+        inferredClaim:
+          'That the head-to-head ranking of terbinafine over the azoles is a stable fact — it was measured against the dermatophytes circulating in 1990s Europe, and a species carrying squalene epoxidase mutations inverts it',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ter-a6',
+        category: 'inferred',
+        title: 'The durability claim rests on thirty-five people',
+        laymanSummary:
+          'Nail infections come back. The pooled evidence that terbinafine reduces recurrence compared with placebo comes from a single trial of thirty-five patients, and Cochrane rates it low quality.',
+        technicalDetails:
+          'The Cochrane review states that terbinafine and azoles may lower the recurrence rate when compared individually with placebo — terbinafine RR 0.05 (95% CI 0.01 to 0.38) from 1 study in 35 participants, azoles RR 0.55 (95% CI 0.29 to 1.07) from 1 study in 26 participants — both graded low-quality evidence. A point estimate of 0.05 from 35 people with a confidence interval spanning nearly an order of magnitude is not a number to plan around. Recurrence is the outcome that determines whether a twelve-week course of a hepatotoxic drug was worth taking, and it is the outcome with the least evidence behind it in the entire review.',
+        evidenceSource:
+          'Kreijkamp-Kaspers S et al., Cochrane Database Syst Rev 2017;7:CD010031 (PMID 28707751)',
+        doi: '10.1002/14651858.CD010031.pub2',
+        inferredClaim:
+          'That terbinafine durably prevents recurrence of nail infection — pooled from a single 35-participant study graded low quality, for the outcome that matters most',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ter-a7',
+        category: 'measured',
+        title: 'It beat the azoles head to head, on both definitions of cure',
+        laymanSummary:
+          'Across fifteen to seventeen trials in more than two thousand patients each, terbinafine cured more people than the azole drugs did, on both the laboratory measure and the appearance measure, with no difference in side effects.',
+        technicalDetails:
+          'Moderate-quality evidence that terbinafine was probably more effective than azoles for clinical cure (RR 0.82, 95% CI 0.72 to 0.95; 15 studies, 2,168 participants) and for mycological cure (RR 0.77, 95% CI 0.68 to 0.88; 17 studies, 2,544 participants), with the risk ratios expressed for the azole arms. There was probably no difference in adverse event risk between the two classes (RR 1.00, 95% CI 0.86 to 1.17; 9 studies, 1,762 participants, moderate-quality evidence). The LION study is the largest single contributor to that ordering and it used an intermittent itraconazole schedule, which is one reason the pooled advantage is smaller than LION’s alone.',
+        evidenceSource:
+          'Kreijkamp-Kaspers S et al., Cochrane Database Syst Rev 2017;7:CD010031 (PMID 28707751)',
+        doi: '10.1002/14651858.CD010031.pub2',
+        measuredMetric:
+          'Risk ratios for clinical and mycological cure, terbinafine against azoles, pooled across 15 and 17 trials',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, then parked in keratin',
+        laymanDesc:
+          'The drug is absorbed and then collects in exactly the tissues the fungus lives in — nail, skin and the oily layer on it — and stays there for weeks after the last tablet.',
+        molecularDetail:
+          'Terbinafine is highly lipophilic and binds keratin avidly. It reaches the nail through both the matrix and the nail bed and persists in nail plate long after plasma concentrations fall, which is why a 12-week course is assessed at week 48 and why the mean time to success is around 10 months.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It blocks the first step of membrane building',
+        laymanDesc:
+          'Fungi make their cell membranes from a molecule called ergosterol. Terbinafine jams the very first enzyme in that assembly line.',
+        molecularDetail:
+          'Non-competitive inhibition of fungal squalene epoxidase, the enzyme that epoxidises squalene to 2,3-oxidosqualene at the committed step of ergosterol biosynthesis. Inhibition occurs at nanomolar concentrations, roughly a thousandfold below what is needed against the mammalian enzyme.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'And the blocked material poisons the cell',
+        laymanDesc:
+          'Two things go wrong at once. The fungus cannot finish its membrane, and the unused raw material builds up until it dissolves the membrane from inside. That second effect is what kills it.',
+        molecularDetail:
+          'Ergosterol depletion is fungistatic on its own; the fungicidal effect comes from intracellular squalene accumulation, which disrupts membrane organisation and lipid storage. This dual mechanism is the structural reason allylamines kill dermatophytes where azoles, which act further down the same pathway, largely inhibit them.',
+        iconName: 'Flame',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'The fungus dies and the nail grows out',
+        laymanDesc:
+          'Killing the fungus does not repair the nail. The damaged nail has to grow off the end of the finger or toe, which takes about a year on a toenail.',
+        molecularDetail:
+          'This is why the primary endpoint in LION was assessed at week 72 after 12 or 16 weeks of treatment, and why the label’s trial was read at week 48. Mycological cure and clinical cure are separated in time by the growth rate of the nail plate, not by the pharmacology.',
+        iconName: 'Timer',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'Unless the fungus is one that has changed the enzyme',
+        laymanDesc:
+          'A species that spread out of South Asia carries changes in the exact enzyme this drug blocks. The drug still reaches it and no longer works on it.',
+        molecularDetail:
+          'Trichophyton indotineae carries squalene epoxidase substitutions, principally Leu393Phe and Phe397Leu, that reduce terbinafine binding. The species cannot be reliably distinguished from Trichophyton mentagrophytes by culture morphology, so identification requires molecular methods, and the first reported United States cases date from New York City between December 2021 and March 2023.',
+        iconName: 'Bug',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the endpoint does not measure',
+        laymanDesc:
+          'Every headline figure for this drug is a laboratory result. Whether the nail ends up looking normal is a different number and it is close to half the size. Whether the infection stays away is a third number, and it comes from thirty-five people.',
+        molecularDetail:
+          'Label figures from the same trial: mycological cure 70%, effective treatment 59%, mycological plus clinical cure 38%. Recurrence against placebo: RR 0.05 (95% CI 0.01 to 0.38) from a single 35-participant study, graded low-quality by Cochrane.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'LION study (PMID 10205099)',
+        phase: 'Prospective, randomised, double-blind, double-dummy, multicentre, four-arm, 72 weeks',
+        sampleSize: 496,
+        primaryEndpoint:
+          'Mycological cure of the target toenail at week 72, negative microscopy plus negative culture',
+        endpointMet: true,
+        statisticalPValue:
+          '75.7% (81/107) and 80.8% (80/99) on terbinafine against 38.3% (41/107) and 49.1% (53/108) on intermittent itraconazole; all four pairwise comparisons P<0.0001',
+        unreportedAdverseSignals:
+          'The comparator used an intermittent schedule while terbinafine was continuous, which flatters the difference. Mycological cure is a laboratory endpoint; the trial’s clinical outcomes also favoured terbinafine but the nail-appearance gap seen on the label applies here too.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane pooled terbinafine against placebo (CD010031)',
+        phase: 'Systematic review and meta-analysis of randomised controlled trials',
+        sampleSize: 1006,
+        primaryEndpoint: 'Clinical cure and mycological cure against placebo',
+        endpointMet: true,
+        statisticalPValue:
+          'Clinical cure RR 6.00 (95% CI 3.96 to 9.08) and mycological cure RR 4.53 (95% CI 2.47 to 8.33), 8 studies, high-quality evidence',
+        unreportedAdverseSignals:
+          'Of 48 studies in the full review, one was at low risk of bias in all domains and 18 at high risk in at least one, most often blinding of personnel and participants.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane pooled terbinafine against azoles (CD010031)',
+        phase: 'Systematic review and meta-analysis of randomised controlled trials',
+        sampleSize: 2544,
+        primaryEndpoint: 'Clinical cure and mycological cure, terbinafine against azole comparators',
+        endpointMet: true,
+        statisticalPValue:
+          'Clinical cure RR 0.82 (95% CI 0.72 to 0.95; 15 studies, 2,168 participants) and mycological cure RR 0.77 (95% CI 0.68 to 0.88; 17 studies, 2,544 participants), moderate-quality evidence; adverse events RR 1.00 (95% CI 0.86 to 1.17)',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane pooled recurrence, terbinafine against placebo (CD010031)',
+        phase: 'Single randomised trial within the systematic review',
+        sampleSize: 35,
+        primaryEndpoint: 'Recurrence of onychomycosis after treatment against placebo',
+        endpointMet: true,
+        statisticalPValue: 'RR 0.05 (95% CI 0.01 to 0.38), 1 study, low-quality evidence',
+        unreportedAdverseSignals:
+          'Thirty-five participants, one study, low-quality evidence, for the outcome that determines whether the course was worth taking. The confidence interval spans nearly an order of magnitude.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clinical cure six times as likely as placebo (RR 6.00, 95% CI 3.96 to 9.08) on high-quality evidence across 1,006 participants',
+        'Mycological cure 75.7% and 80.8% against 38.3% and 49.1% for intermittent itraconazole at week 72 in 496 randomised patients (P<0.0001)',
+        'More effective than azoles for clinical cure (RR 0.82) and mycological cure (RR 0.77) across 15 and 17 pooled trials',
+        'Label figures from one trial: mycological cure 70%, effective treatment 59%, mycological plus clinical cure 38%',
+        'Squalene epoxidase substitutions Leu393Phe and Phe397Leu in Trichophyton indotineae, with the first United States cases reported from New York City in 2023',
+      ],
+      unsupportedInferences: [
+        'That a 70% cure rate means a normal-looking nail in 70% of people — the label’s figure for that is 38%',
+        'That terbinafine durably prevents recurrence, an inference resting on 35 participants in one low-quality study',
+        'That the head-to-head advantage over the azoles is a stable property, when it was measured before the resistant species existed',
+        'That the pooled adverse event risk ratio of 1.13 describes the drug’s safety, when the harms that matter are too rare for a 1,000-person trial to see',
+      ],
+      whatFailedInitially: [
+        'Clinical cure — a nail with no involvement at all — was reached by 38% of patients against 70% mycological cure in the same trial',
+        'Mean time to overall success was approximately 10 months for toenails, after a 12-week course',
+        'Postmarketing surveillance added liver failure, permanent taste and smell loss, depression, severe neutropenia and DRESS, none visible in the trials',
+        'Against Trichophyton indotineae the drug is now poorly effective, and no successor allylamine is in development',
+      ],
+      realWorldOutcome: [
+        'Lamisil cream approved under NDA 020192 on 30 December 1992; the topical line is now sold over the counter',
+        'Twenty listed generic products at a median United States acquisition cost of US$0.1356 per unit',
+        'Still the first-line oral treatment for dermatophyte nail infection, with laboratory confirmation required before starting',
+        'Its position is now conditional on species identification, which culture morphology cannot reliably provide',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablets and granules; topical cream, gel, solution and spray sold over the counter',
+      description:
+        'The tablets are absorbed and concentrate in keratin — nail, stratum corneum and sebum — where they persist for weeks after the course ends, which is why a twelve-week course is assessed at week 48. The topical forms treat skin infections only: the Cochrane review notes that topical treatments traditionally have low success rates in nail disease because of the physical properties of the nail plate.',
+      safetyProfile:
+        'Contraindicated in chronic or active liver disease. Liver failure, sometimes leading to transplant or death, has occurred; the label directs pretreatment serum transaminases and periodic liver function testing, with discontinuation if injury develops. Taste disturbance including complete taste loss can be severe, prolonged or permanent, as can smell disturbance; both are grounds for stopping. Depressive symptoms, severe neutropenia and severe cutaneous adverse reactions including Stevens-Johnson syndrome, toxic epidermal necrolysis and DRESS are also listed. In the pooled randomised trials, overall adverse event risk did not differ significantly from placebo (RR 1.13, 95% CI 0.87 to 1.47) — the pattern expected when the serious harms are rarer than a trial can detect.',
+    },
+    commonQuestions: [
+      {
+        q: 'What does a 70% cure rate actually mean here?',
+        a: 'It means the laboratory could not find the fungus any more. The label prints three numbers from the same trial and they are worth reading together: mycological cure — negative microscopy and negative culture — in 70% of subjects; effective treatment, meaning mycological cure plus either a clear nail or more than 5 mm of new unaffected growth, in 59%; and mycological cure plus clinical cure, meaning zero per cent nail involvement, in 38%. So the fungus is gone in seven of ten and the nail looks normal in fewer than four of ten. Mean time to success was about ten months, because a toenail has to grow out.',
+        auditNote:
+          'This is a rare case of a label doing the audit for you. Both numbers are there, in order, on the same page. The one that gets quoted is the first.',
+      },
+      {
+        q: 'Is it really worth risking liver failure for a toenail?',
+        a: 'That is the right question and this page will not answer it for you. What can be set out is what is on each side. On the benefit side: high-quality evidence, six times the clinical cure rate of placebo, better than every azole compared with it, and a 38% chance of a normal-looking nail. On the harm side: the label lists liver failure sometimes leading to transplant or death, taste loss and smell loss that may be permanent, depressive symptoms, severe neutropenia and life-threatening skin reactions. Those harms are rare enough that in pooled trials of a thousand people the adverse event risk was no different from placebo — which is exactly what a rare severe harm looks like in trial data. The label requires liver function tests before and during treatment for that reason.',
+      },
+      {
+        q: 'Why does the doctor want a nail sample first?',
+        a: 'Because roughly half of thickened, discoloured nails are not fungal, and because it now matters which fungus it is. The label instructs obtaining a potassium hydroxide preparation, a fungal culture or a nail biopsy before starting treatment. Historically that was about not giving a hepatotoxic drug for psoriasis or trauma. Now there is a second reason: Trichophyton indotineae responds poorly to terbinafine, and it cannot be told apart from its close relatives by looking at a culture plate — it takes molecular identification.',
+      },
+      {
+        q: 'What is Trichophyton indotineae?',
+        a: 'A dermatophyte species that was only named in 2020, spread out of South Asia, and carries point mutations in the squalene epoxidase gene — Leu393Phe and Phe397Leu — which is the exact enzyme terbinafine blocks. Terbinafine is becoming less effective against it as a first-line agent, and fluconazole and griseofulvin are generally not effective either. The first reported United States cases were described from New York City covering December 2021 to March 2023. Most cases outside South Asia are still travel-associated, but reports of local transmission are accumulating. This is the clearest example in this batch of an evidence base having a shelf life: the head-to-head trials that established terbinafine’s superiority were run in Europe in the 1990s against the organisms circulating then.',
+      },
+      {
+        q: 'Will it come back?',
+        a: 'Often, and the evidence on this is unusually thin. Cochrane found that terbinafine may lower the recurrence rate compared with placebo, with a risk ratio of 0.05 — but that comes from a single study of 35 participants, with a confidence interval from 0.01 to 0.38, graded low quality. For azoles it was one study of 26 participants and the interval crossed no effect. Recurrence is the outcome that decides whether a twelve-week course was worth it, and across 48 studies and 10,200 participants it is the outcome with the least evidence behind it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Kreijkamp-Kaspers S et al. Oral antifungal medication for toenail onychomycosis. Cochrane Database Syst Rev 2017;7:CD010031',
+        identifier: '10.1002/14651858.CD010031.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Evans EG, Sigurgeirsson B. Double blind, randomised study of continuous terbinafine compared with intermittent itraconazole in treatment of toenail onychomycosis. The LION Study Group. BMJ 1999;318:1031-1035',
+        identifier: '10.1136/bmj.318.7190.1031',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Caplan AS et al. Notes from the field: first reported U.S. cases of tinea caused by Trichophyton indotineae — New York City, December 2021-March 2023. MMWR Morb Mortal Wkly Rep 2023;72:536-537',
+        identifier: '10.15585/mmwr.mm7219a4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gupta AK et al. Antifungal resistance in dermatophytes — review of the epidemiology, diagnostic challenges and treatment strategies for managing Trichophyton indotineae infections. Expert Rev Anti Infect Ther 2024;22:739-751',
+        identifier: '10.1080/14787210.2024.2390629',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Terbinafine tablets United States prescribing information, section 5 Warnings and Precautions and section 14 Clinical Studies — ANDA 078297, retrieved from the openFDA label endpoint',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA078297%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA record for NDA 020192 (LAMISIL cream), original approval 30 December 1992, Novartis',
+        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA020192%22',
+        kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

@@ -2834,4 +2834,539 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 6. Mycophenolate (mycophenolic acid, Myfortic) — approved on equivalence to the drug it was
+  //    designed to improve on, for a benefit its two blinded pivotal trials did not find.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'mycophenolate',
+    name: 'Mycophenolate',
+    tradeName: 'Myfortic (mycophenolic acid, enteric-coated mycophenolate sodium)',
+    sponsor:
+      'Novartis Pharmaceuticals. The parent molecule, mycophenolic acid, was isolated from Penicillium in 1893 by Bartolomeo Gosio and rediscovered as an immunosuppressant nearly a century later; the enteric-coated sodium salt was approved in the United States in 2004.',
+    targetGene: 'IMPDH2',
+    targetProtein:
+      'Inosine-5-monophosphate dehydrogenase, with roughly fivefold greater potency against the type II isoform (IMPDH2) that activated lymphocytes preferentially express than against the type I isoform found in most other cells',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Prophylaxis of organ rejection in adult patients receiving a kidney transplant, and in paediatric patients 5 years of age and older who are at least 6 months post kidney transplant, in combination with cyclosporine and corticosteroids',
+    patientFriendlyIndication: 'Stopping the body rejecting a transplanted kidney',
+    anatomicalSite:
+      'The cytoplasm of activated T and B lymphocytes, where the type II isoform of inosine monophosphate dehydrogenase is the rate-limiting enzyme for making guanosine nucleotides from scratch',
+    conditionContext: {
+      conditionExplainer:
+        'A transplanted kidney carries surface proteins the recipient has never encountered. Lymphocytes recognise them, multiply, and destroy the graft. Multiplying requires guanosine nucleotides, and activated lymphocytes must build those from scratch because they have almost no capacity to recycle them.',
+      whyItMatters:
+        'Mycophenolate exploits that dependence more selectively than azathioprine does, and it displaced azathioprine as the standard antimetabolite in kidney transplantation. This particular product, the enteric-coated sodium salt, was developed for a narrower reason: to reduce the upper gastrointestinal side effects of mycophenolate mofetil. Both of its pivotal blinded trials found gastrointestinal adverse events at similar rates in both arms.',
+      whoTakesThis:
+        'Kidney transplant recipients, alongside cyclosporine and a corticosteroid. Mycophenolate is also used extensively off the licensed indication in lupus nephritis, other autoimmune kidney disease, vasculitis and interstitial lung disease.',
+      clinicalGoals:
+        'Prevent acute rejection without the marrow suppression of azathioprine and without adding to the kidney damage caused by the calcineurin inhibitor it is given with. The unavoidable cost is infection risk, and, for anyone who could become pregnant, one of the most severe teratogenic profiles of any widely used drug.',
+    },
+    oneSentenceVerdict:
+      'A fungal metabolite that blocks the enzyme activated lymphocytes need to build guanosine nucleotides, hitting the isoform those cells express about five times harder than the one everything else uses — it was approved not on superiority but on therapeutic equivalence to mycophenolate mofetil (efficacy failure 25.8% against 26.2% at six months in 423 de novo kidney transplant patients), and the upper gastrointestinal tolerability it was designed to improve was no better in either pivotal blinded trial.',
+    laymanHowItWorks:
+      'To divide, a cell needs a supply of the four chemical letters that make up DNA. Immune cells that have just been activated cannot recycle the letter G from old material the way most cells can; they have to manufacture it, and one enzyme controls that manufacture. Mycophenolate blocks that enzyme, and it blocks the particular version of it that activated immune cells make far more strongly than the version found elsewhere in the body. The result is that dividing lymphocytes run out of raw material and stop, while cells that can recycle carry on largely unaffected.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 71,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.2265 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Mycophenolic acid itself has been known since 1893 and is not patentable; the protected asset was the enteric-coated sodium salt formulation approved in 2004, and generic delayed-release mycophenolic acid tablets are now available at about 23 cents each. The label states that Myfortic delayed-release tablets and mycophenolate mofetil tablets and capsules should not be used interchangeably, because the salts deliver different molar amounts of mycophenolic acid — which means the formulation distinction survives the loss of exclusivity as a prescribing constraint.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The immediate alternative is mycophenolate mofetil, which delivers the same active molecule through a different ester and has the larger evidence base and the broader licence. Azathioprine is the older antimetabolite it replaced, and in lupus nephritis maintenance the head-to-head result goes the other way — mycophenolate mofetil beat azathioprine on time to treatment failure with a hazard ratio of 0.44. For anyone who might become pregnant, the substitute question is not about efficacy: azathioprine is the drug most often moved to, because mycophenolate causes first-trimester pregnancy loss in 45% to 49% of exposed pregnancies and congenital malformations in 23% to 27% of live births.',
+      conventionalRx: [
+        {
+          name: 'Mycophenolate mofetil (CellCept)',
+          class: 'Morpholinoethyl ester prodrug of the same active molecule',
+          howItCompares:
+            'Delivers identical mycophenolic acid. In the pivotal de novo trial the two were therapeutically equivalent: efficacy failure at 6 months 25.8% against 26.2% (95% CI -8.7 to +8.0). It carries the broader licence, covering kidney, heart and liver transplantation, and it is what the great majority of the published outcome literature actually studied.',
+          typicalCost:
+            'US$0.2698 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: broader indications, far larger evidence base, more formulations including intravenous and oral suspension. Cons: the upper gastrointestinal intolerance that motivated the enteric-coated alternative in the first place.',
+        },
+        {
+          name: 'Azathioprine',
+          class: 'Purine antimetabolite prodrug',
+          howItCompares:
+            'The drug mycophenolate displaced in kidney transplantation, blocking the same pathway less selectively. In lupus nephritis maintenance it lost decisively to mycophenolate mofetil: treatment failure 32.4% against 16.4%, hazard ratio 0.44 (95% CI 0.25 to 0.77, P=0.003). Its advantage is that it is not a known human teratogen at the same level, which makes it the usual substitute in pregnancy.',
+          typicalCost:
+            'US$0.1249 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheaper, usable in pregnancy, decades of accumulated experience. Cons: less selective, TPMT and NUDT15 pharmacogenetic risk, worse on the one head-to-head maintenance endpoint measured.',
+        },
+        {
+          name: 'Intravenous cyclophosphamide (for lupus nephritis induction)',
+          class: 'Alkylating agent',
+          howItCompares:
+            'The comparator in the ALMS induction study, which randomised 370 patients with class III to V lupus nephritis. Response was 56.2% on mycophenolate mofetil against 53.0% on cyclophosphamide, with similar secondary endpoints and similar adverse event, serious adverse event and infection rates. The trial did not meet its objective of showing mycophenolate superior.',
+          typicalCost: 'Generic; administered as monthly intravenous pulses in a hospital setting',
+          prosAndCons:
+            'Pros: equivalent measured response, long track record. Cons: gonadal toxicity and infertility risk, cumulative bladder and malignancy risk, and the need for infusion visits.',
+        },
+        {
+          name: 'Belatacept-based or mTOR-inhibitor-based regimens',
+          class: 'Costimulation blocker or mTOR inhibitor',
+          howItCompares:
+            'Different mechanisms used when the standard combination cannot be tolerated — belatacept avoids calcineurin-inhibitor nephrotoxicity, sirolimus and everolimus avoid it differently. Neither substitutes for the antimetabolite in most protocols; they substitute for the calcineurin inhibitor alongside it.',
+          typicalCost:
+            'Belatacept is an intravenous biologic and substantially more expensive; sirolimus and everolimus are generic oral drugs',
+          prosAndCons:
+            'Pros: spare the kidney from calcineurin inhibitor damage. Cons: belatacept requires monthly infusion and is contraindicated in Epstein-Barr-seronegative recipients because of post-transplant lymphoproliferative disease risk.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Pregnancy prevention is not optional advice with this drug',
+          action:
+            'Anyone of reproductive potential should have the pregnancy risk discussed before the first dose, and should raise it again before any planned pregnancy.',
+          patientImpact:
+            'Published pregnancy registry data report first-trimester pregnancy loss in 45% to 49% of exposed pregnancies and a spectrum of congenital malformations in 23% to 27% of live births — external ear, eye and other facial abnormalities including cleft lip and palate, and anomalies of the distal limbs, heart, oesophagus, kidney and nervous system. Background rates are 15% to 20% and 2% to 4%.',
+          clinicalPrecaution:
+            'This is the first item in the boxed warning. The label also advises against blood donation during treatment and for six weeks after, and against semen donation during treatment and for 90 days after.',
+        },
+        {
+          name: 'Report unexplained tiredness or breathlessness rather than attributing it to the transplant',
+          action:
+            'Mention new fatigue, pallor or breathlessness promptly; do not assume it is a normal part of recovery.',
+          patientImpact:
+            'Pure red cell aplasia — a specific and reversible shutdown of red cell production — is a labelled adverse reaction of mycophenolate products, alongside more general blood dyscrasias. It is detected on a blood count, not by how a person feels.',
+          clinicalPrecaution:
+            'The label lists blood dyscrasias including pure red cell aplasia among its Warnings and Precautions, and cases have resolved on dose reduction or withdrawal.',
+        },
+        {
+          name: 'Take vaccination timing seriously and avoid live vaccines',
+          action:
+            'Ask which vaccines are safe and get non-live ones scheduled where possible before immunosuppression starts.',
+          patientImpact:
+            'Immunosuppression reduces the response to vaccination and makes live vaccines hazardous. The label addresses immunisations directly and advises that live attenuated vaccines should be avoided.',
+          clinicalPrecaution:
+            'This applies to household contacts’ live vaccines in some circumstances too, which is a question worth asking rather than assuming.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC1=C2COC(=O)C2=C(C(=C1OC)C/C=C(\\C)/CCC(=O)[O-])O',
+      chemicalFormula: 'C17H19O6',
+      molecularWeight: '319.30 g/mol',
+      targetReceptorAffinity:
+        'Mycophenolic acid is an uncompetitive, reversible inhibitor of inosine-5-monophosphate dehydrogenase, and is roughly five times more potent against the type II isoform than the type I. Activated lymphocytes upregulate the type II isoform, which is the structural basis for the drug’s selectivity. The stored structure is the mycophenolate anion, the form present at physiological pH; the sodium salt is what the delayed-release tablet contains.',
+      structureSource: {
+        label:
+          'PubChem CID 6918995 (mycophenolate anion) — canonical SMILES, molecular formula C17H19O6- and molecular weight 319.3 g/mol, re-checked against the PUG REST property endpoint; the parent acid is CID 446541',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6918995',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mpa-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the E-geometry of the side-chain double bond',
+          description:
+            'Establish that the trisubstituted alkene in the hexenoic acid side chain is in the E configuration. The Z isomer has substantially reduced activity, and because it is identical in mass and nearly identical by ultraviolet spectrum, only chromatography or NMR will separate it from the drug.',
+          reagentsAndBuffer:
+            'Mycophenolic acid reference standard, 1H NMR in DMSO-d6 with nuclear Overhauser measurement across the alkene, reversed-phase HPLC resolving the Z isomer, ultraviolet detection at 250 nm',
+        },
+        {
+          id: 'mpa-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fermentation of Penicillium brevicompactum and recovery of the free acid',
+          description:
+            'Mycophenolic acid is a natural product, produced by submerged fermentation of Penicillium species rather than by total synthesis. It holds the distinction of being the first antibiotic ever isolated in crystalline form, by Gosio in 1893, and the manufacturing route is still fermentation because the phthalide-hexenoic acid framework is awkward to build chemically.',
+          dependsOnStepId: 'mpa-w1',
+          reagentsAndBuffer:
+            'Penicillium brevicompactum or P. stoloniferum submerged culture, glucose and corn steep liquor medium, controlled pH and dissolved oxygen, acidified solvent extraction into ethyl acetate or butyl acetate',
+        },
+        {
+          id: 'mpa-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and removal of co-metabolites',
+          description:
+            'Separate mycophenolic acid from the structurally related metabolites Penicillium produces alongside it, and from the Z isomer generated during processing. Purity here determines the mass of active moiety per tablet, which matters more than usual for this drug because the two marketed salts deliver different molar amounts and are not interchangeable.',
+          dependsOnStepId: 'mpa-w2',
+          reagentsAndBuffer:
+            'Activated charcoal treatment, crystallisation from aqueous methanol or acetone, preparative reversed-phase chromatography, potentiometric assay of the free acid content',
+        },
+        {
+          id: 'mpa-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Form the sodium salt and apply the enteric coat',
+          description:
+            'Convert the free acid to the sodium salt and coat the tablet with a polymer that does not dissolve until it leaves the stomach. This is the entire product concept: mycophenolic acid irritates the upper gastrointestinal tract, so release is delayed past it. Whether that translated into fewer gastrointestinal adverse events is the central audit on this page, and in two blinded trials it did not.',
+          dependsOnStepId: 'mpa-w3',
+          reagentsAndBuffer:
+            'Sodium hydroxide or sodium carbonate for salt formation, methacrylic acid copolymer enteric film, USP <711> dissolution testing in pH 1.2 acid stage followed by pH 6.8 buffer stage',
+        },
+        {
+          id: 'mpa-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'IMPDH isoform selectivity assay with a guanosine rescue arm',
+          description:
+            'Measure inhibition of the type I and type II isoforms separately, and repeat the lymphocyte proliferation assay with exogenous guanosine supplied. Adding guanosine bypasses the blocked de novo pathway through salvage; if proliferation is rescued, the assay is measuring the intended mechanism rather than general cytotoxicity.',
+          dependsOnStepId: 'mpa-w4',
+          reagentsAndBuffer:
+            'Recombinant human IMPDH1 and IMPDH2 with IMP and NAD substrates, NADH absorbance readout at 340 nm, activated peripheral blood mononuclear cells with and without guanosine supplementation, mizoribine as a mechanistic comparator',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mpa-a1',
+        category: 'measured',
+        title: 'ERL B301: approved on equivalence, not on being better',
+        laymanSummary:
+          'The registration trial did not ask whether this drug worked better than the one already on the market. It asked whether it worked the same. Four hundred and twenty-three kidney transplant patients were randomised, and the two arms came out within half a percentage point of each other.',
+        technicalDetails:
+          'A 12-month double-blind study in 423 de novo kidney transplant patients compared enteric-coated mycophenolate sodium 720 mg twice daily against mycophenolate mofetil 1,000 mg twice daily, both with cyclosporine microemulsion and corticosteroids. Efficacy failure at 6 months — biopsy-proven acute rejection, graft loss, death or loss to follow-up — was 25.8% against 26.2% (95% CI -8.7 to +8.0), demonstrating therapeutic equivalence. At 12 months, biopsy-proven acute rejection, graft loss or death was 26.3% against 28.1%, and biopsy-proven acute rejection alone 22.5% against 24.3%. Among those with rejection, severe acute rejection was 2.1% against 9.8%, not statistically significant.',
+        evidenceSource:
+          'Salvadori M et al., ERL B301 Study Groups, Am J Transplant 2004;4:231-236',
+        doi: '10.1046/j.1600-6143.2003.00337.x',
+        measuredMetric:
+          'Efficacy failure at 6 months against mycophenolate mofetil, equivalence design with a prespecified confidence interval',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mpa-a2',
+        category: 'failed',
+        title: 'The gastrointestinal advantage it was designed for was not found in either trial',
+        laymanSummary:
+          'The whole reason this version exists is that ordinary mycophenolate upsets the stomach, and coating it so it dissolves further down should help. Both blinded trials measured that directly. In neither did the coated version produce significantly fewer gastrointestinal side effects.',
+        technicalDetails:
+          'In the de novo trial, the safety profile and incidence of gastrointestinal adverse events were similar in both groups, and within 12 months 15.0% of enteric-coated mycophenolate sodium patients and 19.5% of mycophenolate mofetil patients required dose changes for gastrointestinal adverse events, not significant. In the conversion trial, the primary endpoint was the incidence of gastrointestinal adverse events at 3 months: 26.4% against 20.9%, not significant, numerically favouring mycophenolate mofetil; at 12 months 29.6% against 24.5%, also not significant. The adjusted increase from baseline in mean gastrointestinal adverse event severity score tended lower with the enteric-coated product (0.23 against 0.47 at 12 months) but did not reach significance. Serious infections were significantly lower with the enteric-coated product in the conversion study (8.8% against 16.0%, P<0.05), a finding not predicted by the product’s rationale and not replicated in the de novo study.',
+        evidenceSource:
+          'Salvadori M et al., Am J Transplant 2004;4:231-236; Budde K et al., ERL B302 Study Group, Am J Transplant 2004;4:237-243',
+        doi: '10.1046/j.1600-6143.2003.00321.x',
+        measuredMetric:
+          'Incidence of gastrointestinal adverse events at 3 and 12 months, the prespecified primary endpoint of the conversion study',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mpa-a3',
+        category: 'measured',
+        title: 'The teratogenic risk is among the largest quantified for any prescribed drug',
+        laymanSummary:
+          'Registry data put first-trimester pregnancy loss after exposure at roughly one in two, against a background of about one in six. Birth defects were reported in around a quarter of live births, against a background of two to four in a hundred. This is the first thing on the boxed warning.',
+        technicalDetails:
+          'The label states that a spectrum of congenital malformations, including multiple malformations in individual newborns, has been reported in 23% to 27% of live births in mycophenolate-exposed pregnancies based on published pregnancy registry data, and that the risk of first-trimester pregnancy loss has been reported at 45% to 49%. Documented malformations include external ear, eye and other facial abnormalities including cleft lip and palate, and anomalies of the distal limbs, heart, oesophagus, kidney and nervous system. The label gives the United States general-population background risks as 2% to 4% for major birth defects and 15% to 20% for miscarriage in clinically recognised pregnancies. In rats, malformations including anophthalmia, exencephaly and umbilical hernia occurred at a systemic exposure 0.05 times the clinical exposure at 1,440 mg per day.',
+        evidenceSource:
+          'MYFORTIC (mycophenolic acid) delayed-release tablets United States prescribing information, boxed warning, Warnings and Precautions 5.1 and Use in Specific Populations 8.1',
+        measuredMetric:
+          'Rates of first-trimester pregnancy loss and congenital malformation in exposed pregnancies from published registries, against stated background rates',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mpa-a4',
+        category: 'failed',
+        title: 'ALMS induction: mycophenolate did not beat cyclophosphamide in lupus nephritis',
+        laymanSummary:
+          'The largest international trial in lupus kidney disease set out to show mycophenolate was better than the older intravenous chemotherapy drug. Response rates were 56% against 53%. The trial says plainly that it did not meet its objective.',
+        technicalDetails:
+          'The Aspreva Lupus Management Study randomised 370 patients with class III to V lupus nephritis to open-label mycophenolate mofetil at a target of 3 g per day or intravenous cyclophosphamide 0.5 to 1.0 g/m2 in monthly pulses, both with tapering prednisone, over a 24-week induction phase. The primary endpoint combined a prespecified decrease in urine protein-to-creatinine ratio with stabilisation or improvement in serum creatinine. Response was 104 of 185 (56.2%) on mycophenolate against 98 of 185 (53.0%) on cyclophosphamide. Secondary endpoints were similar. There were nine deaths in the mycophenolate group and five in the cyclophosphamide group. Rates of adverse events, serious adverse events and infections did not differ significantly. The authors state the study did not meet its primary objective of showing superiority.',
+        evidenceSource:
+          'Appel GB et al., Aspreva Lupus Management Study Group, J Am Soc Nephrol 2009;20:1103-1112 (ALMS, NCT00377637)',
+        doi: '10.1681/ASN.2008101028',
+        measuredMetric:
+          'Composite renal response at 24 weeks, mycophenolate mofetil against intravenous cyclophosphamide, superiority design',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mpa-a5',
+        category: 'measured',
+        title: 'ALMS maintenance: it clearly beat azathioprine at keeping the response',
+        laymanSummary:
+          'The second half of the same study asked a different question and got a clear answer. Among patients who had responded, those kept on mycophenolate failed treatment half as often as those switched to azathioprine, and fewer of them stopped because of side effects.',
+        technicalDetails:
+          'The maintenance phase re-randomised 227 patients who had met response criteria during induction to mycophenolate mofetil (n=116) or azathioprine 2 mg/kg/day (n=111), with matching placebo in each group and up to 10 mg prednisone daily permitted. The primary endpoint was time to treatment failure, defined as death, end-stage renal disease, doubling of serum creatinine, renal flare or rescue therapy. Mycophenolate was superior: hazard ratio 0.44 (95% CI 0.25 to 0.77, P=0.003), with observed treatment failure in 19 of 116 (16.4%) against 36 of 111 (32.4%). Time to renal flare and time to rescue therapy also favoured mycophenolate. Adverse events occurred in more than 95% of patients in both groups. Withdrawal due to adverse events was 25.2% against 39.6% (P=0.02).',
+        evidenceSource:
+          'Dooley MA et al., ALMS Group, N Engl J Med 2011;365:1886-1895 (NCT00377637)',
+        doi: '10.1056/NEJMoa1014460',
+        measuredMetric:
+          'Time to treatment failure in lupus nephritis maintenance, against azathioprine, in a double-blind randomised comparison',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mpa-a6',
+        category: 'inferred',
+        title: 'The lupus evidence is for mycophenolate mofetil, and this product is not it',
+        laymanSummary:
+          'Almost everything published about mycophenolate in lupus was done with the older ester, not with this enteric-coated salt. The label itself says the two are not interchangeable. That has not stopped the evidence being read across.',
+        technicalDetails:
+          'ALMS, both phases, used mycophenolate mofetil. The Myfortic licence covers kidney transplant prophylaxis only, in combination with cyclosporine and corticosteroids, and its Limitations of Use section states that Myfortic delayed-release tablets and mycophenolate mofetil tablets and capsules should not be used interchangeably. The two salts deliver different molar quantities of mycophenolic acid per milligram of product, and their release profiles differ by design. The pharmacological argument that both deliver the same active moiety is sound; the regulatory position is that substitution is not automatic; and the clinical literature in lupus, vasculitis and interstitial lung disease was generated almost entirely with the mofetil ester. A reader told "mycophenolate works in lupus nephritis" is being told something true about a related product.',
+        evidenceSource:
+          'MYFORTIC delayed-release tablets United States prescribing information, Indications and Usage 1.1 and Limitations of Use 1.2; Appel GB et al., J Am Soc Nephrol 2009;20:1103-1112',
+        inferredClaim:
+          'That trial evidence generated with mycophenolate mofetil transfers unchanged to enteric-coated mycophenolate sodium — pharmacologically defensible, and explicitly not what the label permits',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'mpa-a7',
+        category: 'measured',
+        title: 'A 3.6-fold difference in severe rejection that was not statistically significant',
+        laymanSummary:
+          'Among patients who did reject the kidney, severe rejection happened in 2.1% on the enteric-coated version and 9.8% on the comparator. That looks like a large advantage. The trial reported it as not significant, and the honest reading is that the trial was not built to answer that question.',
+        technicalDetails:
+          'In the de novo study, among patients with biopsy-proven acute rejection, severe acute rejection occurred in 2.1% of enteric-coated mycophenolate sodium patients and 9.8% of mycophenolate mofetil patients, reported as not significant. The trial was powered for equivalence on a composite efficacy-failure endpoint in 423 patients, not for a subgroup comparison of rejection severity among the roughly one quarter who rejected. A difference of this size on a small denominator with a non-significant p-value is exactly the kind of finding that gets quoted forward as though it were established. It is a hypothesis the trial generated, not a result the trial demonstrated, and no subsequent adequately powered study has tested it.',
+        evidenceSource: 'Salvadori M et al., Am J Transplant 2004;4:231-236',
+        doi: '10.1046/j.1600-6143.2003.00337.x',
+        measuredMetric:
+          'Incidence of severe acute rejection among patients with biopsy-proven acute rejection, an unpowered subgroup comparison',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mpa-a8',
+        category: 'conclusion_shift',
+        title: 'From "a better-tolerated mycophenolate" to "a second mycophenolate"',
+        laymanSummary:
+          'The product was launched on a tolerability promise that its own trials did not deliver. Twenty years on, the case for it is that some individual patients do better on it, which is a much smaller claim than the one it was built on.',
+        technicalDetails:
+          'The stated development objective of enteric-coated mycophenolate sodium, in both pivotal publications, was improving the upper gastrointestinal tolerability of mycophenolic acid. The de novo study found gastrointestinal adverse events and dose changes for them similar between arms. The conversion study made gastrointestinal adverse event incidence at 3 months its primary endpoint and found 26.4% against 20.9%, not significant and numerically the wrong way. Subsequent open-label conversion studies reported symptom improvement, but open-label symptom endpoints in patients converted because of symptoms are subject to regression to the mean and to expectation effects in a way that the blinded incidence comparison is not. The position the field has settled into — that the two are equivalent and that individual tolerance varies — is defensible and is not the claim the product was introduced with.',
+        evidenceSource:
+          'Salvadori M et al., Am J Transplant 2004;4:231-236; Budde K et al., Am J Transplant 2004;4:237-243',
+        doi: '10.1046/j.1600-6143.2003.00321.x',
+        inferredClaim:
+          'That enteric coating delivers better gastrointestinal tolerability — the mechanism is plausible, the blinded incidence data did not show it, and the supportive evidence that followed was open-label',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'The tablet is built not to dissolve in the stomach',
+        laymanDesc:
+          'Mycophenolic acid irritates the upper gut. The tablet is coated in a polymer that stays intact in stomach acid and only breaks down further along, in the small intestine.',
+        molecularDetail:
+          'A methacrylic acid copolymer enteric film delays release until the pH rises above roughly 5.5. The active moiety is mycophenolate sodium rather than the morpholinoethyl ester used in mycophenolate mofetil, so the milligram strengths are not interchangeable: 720 mg of the sodium salt is the counterpart of 1,000 mg of the mofetil ester.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Absorbed and then recycled through the liver and back',
+        laymanDesc:
+          'The drug is absorbed, processed by the liver, sent out in bile, and then reabsorbed from the gut hours later. That second wave is why blood levels rise twice from a single dose.',
+        molecularDetail:
+          'Mycophenolic acid is glucuronidated by UGT enzymes to the inactive 7-O-glucuronide, excreted in bile, and deconjugated by gut bacterial beta-glucuronidase, producing enterohepatic recirculation and a secondary plasma peak at 6 to 12 hours. Antibiotics that suppress gut flora reduce that second peak and therefore total exposure, which is a real and underappreciated interaction.',
+        iconName: 'Repeat',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It jams one enzyme in the guanosine assembly line',
+        laymanDesc:
+          'Building the DNA letter G from scratch requires one particular enzyme. The drug locks that enzyme in a dead-end state so the assembly line stops.',
+        molecularDetail:
+          'Mycophenolic acid is an uncompetitive, reversible inhibitor of inosine-5-monophosphate dehydrogenase, trapping the covalent enzyme-IMP intermediate and blocking conversion of IMP to xanthosine monophosphate, the rate-limiting step of de novo guanosine nucleotide synthesis.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It picks the version of that enzyme immune cells use',
+        laymanDesc:
+          'There are two versions of the enzyme. Activated immune cells make far more of one of them, and this drug blocks that one about five times more strongly. That is where the selectivity comes from.',
+        molecularDetail:
+          'Roughly fivefold greater potency against IMPDH2, upregulated in activated lymphocytes, than against the constitutively expressed IMPDH1. Combined with the fact that lymphocytes depend on de novo synthesis rather than the hypoxanthine-guanine phosphoribosyltransferase salvage pathway available to most other cells, this gives a therapeutic window that azathioprine, acting further upstream, does not have.',
+        iconName: 'Target',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Lymphocytes cannot proliferate, and the graft is not attacked',
+        laymanDesc:
+          'Without a supply of that building block, activated T and B cells cannot multiply, so the immune attack on the transplanted kidney does not get off the ground.',
+        molecularDetail:
+          'Cytostatic rather than cytotoxic: proliferation is arrested rather than cells killed. In the pivotal trial, efficacy failure at 6 months — biopsy-proven acute rejection, graft loss, death or loss to follow-up — was 25.8%, statistically equivalent to 26.2% on mycophenolate mofetil.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The same block acts on any dividing cell that cannot salvage',
+        laymanDesc:
+          'Gut lining cells, bone marrow and a developing embryo all divide fast. The gut effects are why the enteric coating exists; the marrow effects are monitored with blood tests; the embryo effects are the reason for the boxed warning.',
+        molecularDetail:
+          'Gastrointestinal mucosal turnover produces the diarrhoea and gastritis that motivated this formulation. Marrow effects include neutropenia and pure red cell aplasia. Embryo-fetal toxicity is the most severe: 45% to 49% first-trimester pregnancy loss and 23% to 27% congenital malformation in live births from published registry data, against background rates of 15% to 20% and 2% to 4%.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ERL B301 de novo kidney transplant study (Salvadori 2004)',
+        phase: 'Phase 3, 12-month, randomised, double-blind, therapeutic equivalence',
+        sampleSize: 423,
+        primaryEndpoint:
+          'Efficacy failure at 6 months — biopsy-proven acute rejection, graft loss, death or loss to follow-up',
+        endpointMet: true,
+        statisticalPValue:
+          '25.8% against 26.2%; 95% CI for the difference -8.7 to +8.0, meeting the prespecified equivalence margin',
+        unreportedAdverseSignals:
+          'An equivalence design cannot show superiority and was not intended to. The incidence of gastrointestinal adverse events — the reason the product was developed — was similar in both arms, and dose changes for gastrointestinal adverse events were 15.0% against 19.5%, not significant.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'ERL B302 maintenance conversion study (Budde 2004)',
+        phase: 'Phase 3, 12-month, randomised, double-blind',
+        sampleSize: 322,
+        primaryEndpoint: 'Incidence of gastrointestinal adverse events at 3 months after conversion',
+        endpointMet: false,
+        statisticalPValue:
+          '26.4% against 20.9% at 3 months, not significant; 29.6% against 24.5% at 12 months, not significant',
+        unreportedAdverseSignals:
+          'The primary endpoint numerically favoured the comparator. Serious infections were significantly lower on the enteric-coated product (8.8% against 16.0%, P<0.05) — a finding the product’s rationale does not predict, from a trial of 322 patients, not replicated in the de novo study.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'ALMS induction phase (NCT00377637)',
+        phase: 'Phase 3, multinational, randomised, open-label, superiority',
+        sampleSize: 370,
+        primaryEndpoint:
+          'Prespecified decrease in urine protein-to-creatinine ratio with stabilisation or improvement in serum creatinine at 24 weeks',
+        endpointMet: false,
+        statisticalPValue:
+          '56.2% against 53.0% for intravenous cyclophosphamide; the study did not meet its objective of showing superiority',
+        unreportedAdverseSignals:
+          'Nine deaths in the mycophenolate group against five in the cyclophosphamide group, in an open-label trial. Adverse event, serious adverse event and infection rates did not differ significantly. The trial used mycophenolate mofetil, not the enteric-coated sodium salt.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'ALMS maintenance phase (NCT00377637)',
+        phase: 'Phase 3, randomised, double-blind, double-dummy',
+        sampleSize: 227,
+        primaryEndpoint:
+          'Time to treatment failure — death, end-stage renal disease, doubling of serum creatinine, renal flare or rescue therapy',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 0.44 (95% CI 0.25 to 0.77), P=0.003; observed treatment failure 16.4% against 32.4% on azathioprine',
+        unreportedAdverseSignals:
+          'Adverse events occurred in more than 95% of patients in both arms. Only patients who had already responded to induction were re-randomised, so the result applies to maintenance of a response and not to achieving one.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Efficacy failure at 6 months 25.8% against 26.2% for mycophenolate mofetil in 423 de novo kidney transplant patients, 95% CI -8.7 to +8.0',
+        'Gastrointestinal adverse events at 3 months after conversion 26.4% against 20.9%, the primary endpoint, not significant',
+        'First-trimester pregnancy loss 45% to 49% and congenital malformation in 23% to 27% of live births after exposure, from published registries',
+        'Lupus nephritis induction response 56.2% against 53.0% for intravenous cyclophosphamide in 370 patients — superiority not shown',
+        'Lupus nephritis maintenance treatment failure 16.4% against 32.4% for azathioprine, hazard ratio 0.44 (95% CI 0.25 to 0.77)',
+      ],
+      unsupportedInferences: [
+        'That the enteric coating produces better gastrointestinal tolerability — neither blinded trial found it, and the supportive evidence that followed was open-label',
+        'That trial results generated with mycophenolate mofetil apply to this product, when the label states the two should not be used interchangeably',
+        'That 2.1% against 9.8% severe rejection is an advantage, when it is an unpowered subgroup comparison reported as not significant',
+        'That the lupus, vasculitis and interstitial lung disease uses are covered by this licence; the licence covers kidney transplant prophylaxis and nothing else',
+      ],
+      whatFailedInitially: [
+        'The conversion study missed its own primary endpoint, with gastrointestinal adverse events numerically higher on the enteric-coated product',
+        'ALMS induction failed to show mycophenolate superior to intravenous cyclophosphamide in lupus nephritis',
+        'The product was approved on equivalence to an existing drug rather than on any demonstrated advantage over it',
+        'The embryo-fetal toxicity was severe enough to move to the front of the boxed warning and to generate a risk-management programme',
+      ],
+      realWorldOutcome: [
+        'Mycophenolate displaced azathioprine as the standard antimetabolite in kidney transplantation, and this salt is one of two ways to deliver it',
+        'Generic delayed-release mycophenolic acid is now about 23 cents a tablet at United States pharmacy acquisition cost',
+        'Used far beyond its licence — lupus nephritis, vasculitis, interstitial lung disease — on evidence generated with the other ester',
+        'The pregnancy risk is now managed through a formal programme, and it is the reason many patients of reproductive potential are moved to azathioprine',
+      ],
+    },
+    deliverySystem: {
+      type: 'Delayed-release (enteric-coated) oral tablet, 180 mg and 360 mg of mycophenolic acid',
+      description:
+        'The enteric coat holds the tablet intact through the stomach and releases mycophenolic acid in the small intestine, the design intended to spare the upper gastrointestinal tract. Absorption is followed by glucuronidation in the liver, biliary excretion and bacterial deconjugation in the gut, giving a second plasma peak 6 to 12 hours after a dose. The label states this product and mycophenolate mofetil should not be used interchangeably, because equal milligram amounts do not deliver equal amounts of mycophenolic acid.',
+      safetyProfile:
+        'Boxed warning covering embryo-fetal toxicity, malignancies and serious infections. Pregnancy exposure carries a reported 45% to 49% risk of first-trimester loss and 23% to 27% risk of congenital malformation in live births. Increased risk of lymphoma and other malignancies, particularly of the skin. Increased susceptibility to bacterial, viral, fungal and protozoal infection including opportunistic infection, with BK virus nephropathy and progressive multifocal leukoencephalopathy specifically relevant. Blood dyscrasias including pure red cell aplasia, serious gastrointestinal tract complications including bleeding and perforation, an acute inflammatory syndrome associated with mycophenolate products, and hypersensitivity reactions. Live vaccines should be avoided. The label advises against blood donation during treatment and for six weeks after, and against semen donation during treatment and for 90 days after.',
+    },
+    commonQuestions: [
+      {
+        q: 'What is the difference between this and CellCept?',
+        a: 'They deliver the same active molecule, mycophenolic acid, through different chemistry. CellCept is mycophenolate mofetil, an ester that the body cleaves to release the acid. Myfortic is the sodium salt of the acid itself, in a tablet coated so it does not dissolve until it has left the stomach. Because the salt and the ester have different molecular weights, equal milligram amounts do not deliver equal amounts of drug — 720 mg of the sodium salt corresponds to 1,000 mg of the mofetil ester — and the label states the two should not be used interchangeably. The registration trial found them therapeutically equivalent on efficacy: failure at six months was 25.8% against 26.2%.',
+      },
+      {
+        q: 'Does the enteric coating actually reduce stomach side effects?',
+        a: 'The blinded trials did not show that it does. That was the stated development objective, and the conversion study made it the primary endpoint: gastrointestinal adverse events at three months were 26.4% on the enteric-coated product against 20.9% on mycophenolate mofetil, not significant and numerically the wrong way. The de novo study found similar gastrointestinal rates in both arms and dose changes for gastrointestinal reasons in 15.0% against 19.5%, also not significant. Later open-label conversion studies did report symptom improvement, but converting people because they have symptoms and then asking them whether their symptoms improved is not the same evidence as a blinded incidence comparison. Some individual patients genuinely do better on one than the other; that is a smaller claim than the one the product launched with.',
+        auditNote:
+          'A severity score did trend lower with the enteric-coated product (0.23 against 0.47 at 12 months) without reaching significance. That is a real signal in an underpowered secondary endpoint, and it is not a demonstrated benefit.',
+      },
+      {
+        q: 'Why is pregnancy such a serious issue with this drug?',
+        a: 'Because the numbers are large enough to be unmistakable. Published pregnancy registry data report first-trimester pregnancy loss in 45% to 49% of exposed pregnancies, against a background of 15% to 20%, and a spectrum of congenital malformations in 23% to 27% of live births, against a background of 2% to 4%. The pattern is characteristic: external ear, eye and other facial abnormalities including cleft lip and palate, and anomalies of the distal limbs, heart, oesophagus, kidney and nervous system. The mechanism is straightforward — an embryo is entirely composed of rapidly dividing cells that need the guanosine nucleotides this drug blocks. Azathioprine is the immunosuppressant most often used instead, which is one of the few situations where the older drug in this batch is clearly preferred.',
+      },
+      {
+        q: 'Is it used for lupus?',
+        a: 'Very widely, and not under this licence. The Myfortic indication is prophylaxis of organ rejection in kidney transplant recipients, in combination with cyclosporine and corticosteroids, and nothing else. The lupus evidence comes from the Aspreva Lupus Management Study, which used mycophenolate mofetil. In induction it did not beat intravenous cyclophosphamide — response was 56.2% against 53.0% in 370 patients, and the paper states the study did not meet its objective. In maintenance it clearly beat azathioprine: treatment failure 16.4% against 32.4%, hazard ratio 0.44. Both of those are real results and neither was generated with this product.',
+      },
+      {
+        q: 'Why do antibiotics change how well it works?',
+        a: 'Because part of the dose is delivered twice. Mycophenolic acid is processed by the liver into an inactive glucuronide, sent out in bile, and then converted back to the active drug by bacteria in the gut, from where it is reabsorbed. That recycling produces a second peak in the blood six to twelve hours after a dose and contributes a substantial share of total exposure. Antibiotics that suppress gut bacteria interrupt it, and total drug exposure falls. It is one of the reasons transplant teams want to know about any antibiotic course, and it is an interaction that comes from the microbiome rather than from any enzyme in the patient.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Salvadori M et al. Enteric-coated mycophenolate sodium is therapeutically equivalent to mycophenolate mofetil in de novo renal transplant patients. Am J Transplant 2004;4:231-236',
+        identifier: '10.1046/j.1600-6143.2003.00337.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Budde K et al. Enteric-coated mycophenolate sodium can be safely administered in maintenance renal transplant patients: results of a 1-year study. Am J Transplant 2004;4:237-243',
+        identifier: '10.1046/j.1600-6143.2003.00321.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Appel GB et al. Mycophenolate mofetil versus cyclophosphamide for induction treatment of lupus nephritis. J Am Soc Nephrol 2009;20:1103-1112 (ALMS induction)',
+        identifier: '10.1681/ASN.2008101028',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dooley MA et al. Mycophenolate versus azathioprine as maintenance therapy for lupus nephritis. N Engl J Med 2011;365:1886-1895 (ALMS maintenance)',
+        identifier: '10.1056/NEJMoa1014460',
+        kind: 'doi',
+      },
+      {
+        label: 'ALMS: Aspreva Lupus Management Study, induction and maintenance phases',
+        identifier: 'NCT00377637',
+        kind: 'nct',
+      },
+      {
+        label:
+          'DailyMed: MYFORTIC (mycophenolic acid) delayed-release tablets, Novartis — boxed warning, embryo-fetal toxicity data and Limitations of Use',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=eed26501-890d-4ff6-88e7-6dbea4726e53',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'PubChem CID 6918995 — mycophenolate anion structure, formula and molecular weight (parent acid CID 446541)',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6918995',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

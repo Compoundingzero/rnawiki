@@ -7,6 +7,7 @@ import { countAuditPoints } from '@/lib/dossier'
 import type { MolecularSchema } from '@/lib/types'
 import type { SeedDossier } from '@/lib/seed-types'
 import { SEED_DOSSIERS } from './seed-data'
+import { baseMoiety, titleCaseDrugName } from './ingest/normalise'
 
 /**
  * Loads the curated flagship dossiers.
@@ -127,6 +128,39 @@ async function main(): Promise<void> {
   const seeds = only ? SEED_DOSSIERS.filter((seed) => seed.slug.includes(only)) : SEED_DOSSIERS
 
   console.log(`[seed] loading ${seeds.length} curated dossiers`)
+
+  // A dossier's slug is written by hand, months apart from the ingest that generates the record it
+  // is meant to land on. When the two disagree the seed does not fail — it inserts, and the drug
+  // ends up with two pages, one researched and one generated, neither linking to the other.
+  // Daclatasvir and Vitamin D3 spent two days like that.
+  //
+  // This cannot be an assertion: plenty of dossiers are for substances the FDA corpus has no
+  // record of at all, and those legitimately have no counterpart. It reports the collisions and
+  // leaves the judgement to a person.
+  const existing = await db.execute(
+    sql`SELECT slug, name, dossier_depth FROM drugs WHERE dossier_depth <> 'flagship'`,
+  )
+  const slugsInDb = new Set((existing.rows as Array<{ slug: string }>).map((row) => row.slug))
+  const byMoiety = new Map(
+    (existing.rows as Array<{ slug: string; name: string }>).map((row) => [
+      titleCaseDrugName(baseMoiety(row.name.toUpperCase())).toLowerCase(),
+      row.slug,
+    ]),
+  )
+  const collisions: string[] = []
+  for (const seed of seeds) {
+    if (slugsInDb.has(seed.slug)) continue
+    const generated = byMoiety.get(
+      titleCaseDrugName(baseMoiety(seed.name.toUpperCase())).toLowerCase(),
+    )
+    if (generated) collisions.push(`${seed.slug} -> the ingest generates "${generated}"`)
+  }
+  if (collisions.length > 0) {
+    console.log(
+      `[seed] ${collisions.length} dossiers will create a second page beside a generated record:`,
+    )
+    for (const line of collisions) console.log(`   ${line}`)
+  }
 
   const outcomes: SeedOutcome[] = []
 

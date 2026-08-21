@@ -2285,4 +2285,508 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Guaifenesin — the only expectorant American regulation recognises, sold on the promise that
+  //    it thins mucus, with the direct measurement of mucus finding no effect at all.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'guaifenesin',
+    name: 'Guaifenesin',
+    tradeName: 'Mucinex / Mucus Relief',
+    sponsor:
+      'Reckitt Benckiser holds the extended-release applications — NDA 021282 (Mucinex, approved 12 July 2002), NDA 021620 (Mucinex DM, 29 April 2004) and NDA 021585 (Mucinex D, 22 June 2004); immediate-release products are sold under the over-the-counter monograph by many labellers',
+    targetGene: 'None identified',
+    targetProtein:
+      'No molecular target has been established. The proposed action is reflex stimulation of airway secretion through gastric vagal afferents, a mechanism inherited from the ipecac tradition rather than demonstrated for this molecule',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2002,
+    indication:
+      'Helps loosen phlegm (mucus) and thin bronchial secretions to rid the bronchial passageways of bothersome mucus and make coughs more productive',
+    patientFriendlyIndication: 'A chesty cough with mucus you are trying to clear',
+    anatomicalSite:
+      'Proposed rather than demonstrated: gastric mucosa, via a vagal reflex to airway submucosal glands. Direct measurement of airway secretions has not confirmed an effect',
+    conditionContext: {
+      conditionExplainer:
+        'A productive cough is the airway clearing itself. Mucus traps debris and infection, and coughing moves it up and out. The theory behind an expectorant is that thinner, more copious mucus is easier to move, so the cough does its job faster.',
+      whyItMatters:
+        'That theory is old, plausible, and has never been confirmed by direct measurement in this molecule. Guaifenesin is nonetheless the sole ingredient American regulation recognises as an expectorant, which makes it the clearest case on this shelf of a claim that outran its evidence and then became a regulatory category.',
+      whoTakesThis:
+        'Adults and children aged 12 and over for the extended-release products, sold without a prescription. It appears in a large fraction of combination cough and cold products.',
+      clinicalGoals:
+        'Thinner mucus and a more productive cough. Both have been measured directly, and neither measurement supports the claim.',
+    },
+    oneSentenceVerdict:
+      'The only active ingredient the FDA’s over-the-counter monograph recognises as an expectorant, sold on the claim that it thins mucus — and when 378 people with acute respiratory infection were given the recommended extended-release amount for a week and their sputum was measured, there was no difference from placebo in volume (p=0.41), percent solids (p=0.69), viscosity (p=0.45), elasticity (p=0.71), interfacial tension (p=0.88) or mechanical impedance (p=0.75).',
+    laymanHowItWorks:
+      'The idea is that the drug irritates the stomach lining slightly, and a nerve reflex from stomach to airway makes the glands in your chest produce more, thinner fluid — so the mucus becomes easier to cough up. That is the theory the whole product category rests on. When researchers actually collected and measured people’s sputum on the drug, it was not thinner, there was no more of it, and it did not flow any differently.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 38,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        '$0.0903 per unit, median across 189 listed products (CMS National Average Drug Acquisition Cost, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      synthesisComplexity: 'Low',
+      openPatentNotes:
+        'The molecule itself is unpatentable and ancient; what was protected was the extended-release tablet, approved as NDA 021282 on 12 July 2002. Generic extended-release versions followed after litigation, and the CMS acquisition survey now lists 189 separate guaifenesin products — the largest number for any drug in this group. 21 CFR 341.18 names guaifenesin as the expectorant active ingredient of the over-the-counter monograph, and no other ingredient holds that status.',
+      costSource: {
+        label:
+          'No published cost-of-production study exists for guaifenesin; the field is left empty rather than estimated',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'url',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 189 listed guaifenesin products',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'regulatory',
+      },
+    },
+    substitutes: {
+      summary:
+        'There is no second expectorant to compare against, because regulation recognises only this one. The honest comparison set is therefore made up of things that address a cough by a different route, plus water — and the Cochrane review that looked at the whole over-the-counter cough shelf concluded there is no good evidence for or against any of it.',
+      conventionalRx: [
+        {
+          name: 'Dextromethorphan',
+          class: 'Central antitussive — suppresses the cough rather than assisting it',
+          howItCompares:
+            'Aims at the opposite thing. Where guaifenesin is supposed to make coughing more effective, dextromethorphan is supposed to make it happen less. The Cochrane review found variable results across six adult antitussive trials and none of the three paediatric antitussive datasets beat placebo. It also found adverse effects were more numerous in participants taking preparations containing dextromethorphan.',
+          typicalCost:
+            'No median acquisition cost is listed for dextromethorphan alone in the CMS survey; it appears in combination products',
+          prosAndCons:
+            'Pros: aims at the symptom people actually want stopped. Cons: no better than placebo in children in the pooled review, more adverse effects, and a recognised pattern of adolescent misuse.',
+        },
+        {
+          name: 'Honey',
+          class: 'Demulcent — coats and soothes the pharynx',
+          howItCompares:
+            'The only intervention in the Cochrane review’s paediatric section that beat placebo. The reviewers record that one trial found three types of honey more effective than placebo over a three-day period, against a paediatric section in which antitussives, antihistamines and antihistamine-decongestant combinations were all no better than placebo.',
+          typicalCost: 'No drug acquisition cost; sold as food',
+          prosAndCons:
+            'Pros: the best-supported option in the paediatric part of the review, and cheap. Cons: a single trial, short follow-up, and it must never be given to infants under one year because of the risk of botulism.',
+        },
+        {
+          name: 'Hypertonic saline nebulisation',
+          class: 'Osmotic mucoactive agent, delivered directly to the airway',
+          howItCompares:
+            'Acts on airway mucus where the mucus is, rather than through a proposed reflex from the stomach. It is used in cystic fibrosis and bronchiolitis rather than for a common cold, and it requires a nebuliser, so it is not an over-the-counter substitute.',
+          typicalCost:
+            '$1.32 per mL of acetylcysteine at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026), as the nearest listed mucoactive comparator',
+          prosAndCons:
+            'Pros: a directly delivered mucoactive with a measurable physical mechanism. Cons: needs equipment and a clinical indication; can provoke bronchospasm; not a self-care option for an ordinary cough.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Drink water',
+          action: 'Maintain fluid intake while you have a productive cough.',
+          patientImpact:
+            'Hydration is the intervention the expectorant claim is modelled on. The direct measurement of sputum hydration on guaifenesin found no difference from placebo, so the drug does not appear to be doing what fluid is supposed to do.',
+          clinicalPrecaution:
+            'This is not evidence that drinking extra water thins mucus either — that claim is also weakly supported. It is a note that the drug has not been shown to outperform doing nothing in particular.',
+        },
+        {
+          name: 'Check whether the product contains anything else',
+          action:
+            'Read the active ingredients panel: guaifenesin is frequently sold combined with dextromethorphan, pseudoephedrine or paracetamol.',
+          patientImpact:
+            'The combination products carry the risks of every ingredient in them. Mucinex DM adds dextromethorphan and Mucinex D adds pseudoephedrine, and each brings its own warnings and its own evidence base.',
+          clinicalPrecaution:
+            'Doubling up on two branded products that both contain the same active ingredient is a common route to exceeding a limit without noticing, particularly where paracetamol is involved.',
+        },
+        {
+          name: 'Watch the calendar rather than the mucus',
+          action:
+            'Note how long the cough has lasted and whether fever or breathlessness is present.',
+          patientImpact:
+            'Acute cough from a viral infection resolves on its own. In the trial that measured it, symptoms improved to a similar degree over time on drug and on placebo — the improvement was real, and it was the illness ending.',
+          clinicalPrecaution:
+            'A cough persisting beyond a few weeks, or accompanied by fever, breathlessness, weight loss or blood, is a reason to be assessed rather than to buy another packet.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'COC1=CC=CC=C1OCC(CO)O',
+      chemicalFormula: 'C10H14O4',
+      molecularWeight: '198.22 g/mol',
+      targetReceptorAffinity:
+        'None reported, because no receptor has been identified. Guaifenesin is glyceryl guaiacolate, a simple ether of guaiacol and glycerol, and it is the rare marketed drug for which the field cannot be filled in — there is no binding constant to quote, no target to quote it against, and the proposed mechanism is a reflex rather than a molecular interaction.',
+      structureSource: {
+        label: 'PubChem CID 3516 (guaifenesin) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3516',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'gua-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Guaiacol identity and residual limit',
+          description:
+            'Confirm the guaiacol starting material and set the limit on how much of it can remain. Guaiacol is the smoky-phenolic component of wood creosote; it is what gives the finished drug its taste and, in excess, its irritancy, and it is the single specification that most affects whether a syrup is tolerable to swallow.',
+          reagentsAndBuffer:
+            'Guaiacol reference standard, gas chromatography with flame ionisation detection, ultraviolet spectrophotometry at 275 nm, loss on drying',
+        },
+        {
+          id: 'gua-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Ring-opening of glycidol onto the guaiacol phenoxide',
+          description:
+            'Deprotonate guaiacol and open glycidol at the less hindered carbon to give the 3-(2-methoxyphenoxy)propane-1,2-diol. Two things make this cheap: both starting materials are commodity chemicals, and the product is racemic and sold as such, so no resolution step is needed. The absence of a resolution is a large part of why the finished drug costs nine cents a unit.',
+          dependsOnStepId: 'gua-w1',
+          reagentsAndBuffer:
+            'Guaiacol, glycidol or 3-chloro-1,2-propanediol, sodium or potassium hydroxide, water or toluene, 60 to 100 degrees Celsius with controlled addition to limit polymerisation',
+        },
+        {
+          id: 'gua-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and removal of the regioisomer',
+          description:
+            'Crystallise the diol away from the minor regioisomer produced by attack at the hindered epoxide carbon, and from residual guaiacol. The product is a low-melting solid, so the crystallisation window is narrow and the process is run on cooling profile rather than on solvent choice.',
+          dependsOnStepId: 'gua-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from water or toluene with controlled cooling, HPLC with ultraviolet detection for regioisomer content, melting point determination, Karl Fischer titration',
+        },
+        {
+          id: 'gua-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Airway epithelial culture with mucin secretion readout',
+          description:
+            'Apply the compound to differentiated primary human bronchial epithelial cells at an air-liquid interface and measure mucin output. This is the experiment that would demonstrate a direct action on airway secretion, and its absence from the literature is the reason the mechanism is stated as a reflex: nobody has shown the molecule doing anything to airway cells at concentrations a person achieves.',
+          dependsOnStepId: 'gua-w3',
+          reagentsAndBuffer:
+            'Primary human bronchial epithelial cells differentiated at air-liquid interface, ALI medium, apical washes collected at fixed intervals, MUC5AC and MUC5B enzyme-linked immunosorbent assay, ATP or interleukin-13 as positive secretagogue controls',
+        },
+        {
+          id: 'gua-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Sputum rheology: viscosity, elasticity, interfacial tension and percent solids',
+          description:
+            'Collect sputum and measure its physical properties on an instrument rather than asking the patient how thick it feels. This is the assay that decides the expectorant claim, and it is the one that has been done in a proper randomised trial: 378 subjects, and no difference from placebo on any measure.',
+          dependsOnStepId: 'gua-w4',
+          reagentsAndBuffer:
+            'Magnetic microrheometer for viscoelasticity, du Nouy ring or maximum bubble pressure tensiometry for interfacial tension, gravimetric drying for percent solids, 24-hour timed sputum collection for volume',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'gua-a1',
+        category: 'failed',
+        title: 'Sputum was measured directly in 378 people, and nothing changed',
+        laymanSummary:
+          'A trial gave the recommended extended-release amount for a week to people with a chesty cough, collected their sputum, and put it on instruments. It was not thinner, there was not more of it, and it did not flow differently. Symptoms improved on the drug and on the dummy at the same rate.',
+        technicalDetails:
+          'An eight-day multi-centre randomised trial gave two 600 mg extended-release guaifenesin tablets twice daily or placebo for one week to 378 otherwise healthy adolescents and adults with productive cough from an acute respiratory infection of up to five days’ duration, requiring at least two of cough, thickened mucus and chest congestion. Single sputum samples were taken on days 1, 3, 4 and 8, with 24-hour collections on days 1 and 4. There were no significant differences between guaifenesin and placebo for sputum volume (p=0.41), percent solids (p=0.69), interfacial tension (p=0.88), elasticity (p=0.71), viscosity (p=0.45) or mechanical impedance (p=0.75). Symptoms improved to a similar degree in both groups over time. The authors concluded the recommended amount is unlikely to be an expectorant or a mucolytic in acute respiratory infection.',
+        evidenceSource:
+          'Hoffer-Schaefer A, Rozycki HJ, Yopp MA, Rubin BK. Respir Care 2014;59:631-636 (NCT01046136)',
+        doi: '10.4187/respcare.02640',
+        measuredMetric:
+          'Sputum volume, percent solids, interfacial tension, elasticity, viscosity and mechanical impedance against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'gua-a2',
+        category: 'conclusion_shift',
+        title:
+          'A tape recorder heard no change in coughing while the questionnaire reported thinner mucus',
+        laymanSummary:
+          'In a 1982 trial, coughs were recorded on tape and counted, and the drug made no difference to how much people coughed. The same patients filled in a questionnaire, and almost all of them said their mucus felt thinner. The subjective answer is the one the product claim was built on.',
+        technicalDetails:
+          'Forty-two patients with acute respiratory disease had their coughs recorded on tape over a 24-hour baseline and a 36-hour treatment period, comparing a guaifenesin preparation with its syrup vehicle in double-blind fashion, with efficacy assessed between equivalent six-hour periods on successive days to control for the pronounced diurnal variation in cough frequency. No antitussive effect was demonstrated. A questionnaire given to 65 patients including those 42 found that 25 of 26 patients with productive cough on guaifenesin (96%) reported a decrease in sputum thickness against 13 of 24 (54%) on vehicle (p=0.01, Fisher exact test), and 23 of 26 (88%) reported reduced sputum quantity against 15 of 24 (62.5%) on vehicle (p=0.07). The paper also records that the diurnal variation the tape recorder detected was not apparent in the patients’ own estimates of how often they coughed.',
+        evidenceSource: 'Kuhn JJ, Hendley JO, Adams KF, Clark JW, Gwaltney JM Jr. Chest 1982;82:713-718',
+        doi: '10.1378/chest.82.6.713',
+        inferredClaim:
+          'That patients reporting thinner mucus establishes that the mucus is thinner — the objective cough count in the same trial was null, and the instrumented sputum measurement thirty-two years later found no change in any physical property',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'gua-a3',
+        category: 'measured',
+        title:
+          'It did reduce cough reflex sensitivity in people with a cold — in 14 subjects, by a route nobody expected',
+        laymanSummary:
+          'A small study measured how much capsaicin it took to make someone cough five times. People with a cold needed more of it after taking the drug, so their cough reflex was less twitchy. Healthy volunteers showed no change at all.',
+        technicalDetails:
+          'A randomised, double-blind, placebo-controlled crossover gave a single 400 mg guaifenesin capsule or matched placebo to 14 subjects with acute viral upper respiratory infection and 14 healthy volunteers, with capsaicin cough challenge 1 to 2 hours later. Among subjects with infection, mean log C5 — the concentration inducing five or more coughs — was 0.92 ± 0.17 after guaifenesin against 0.66 ± 0.14 after placebo (p=0.028). No effect was seen in healthy volunteers. The authors proposed either a central antitussive effect or a peripheral effect in which increased sputum volume shields cough receptors, and noted explicitly that studies of the drug’s action had yielded contrasting results.',
+        evidenceSource: 'Dicpinigaitis PV, Gayle YE. Chest 2003;124:2178-2181',
+        doi: '10.1378/chest.124.6.2178',
+        measuredMetric:
+          'Log capsaicin concentration inducing five or more coughs, guaifenesin against placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'gua-a4',
+        category: 'inferred',
+        title: 'Cochrane looked at the whole shelf and found no good evidence either way',
+        laymanSummary:
+          'The systematic review of every over-the-counter cough medicine tested against a dummy found the trials too few, too different and too poorly reported to combine. Of the three adult trials of this drug, one showed benefit and two did not.',
+        technicalDetails:
+          'The Cochrane review of over-the-counter medications for acute cough in community settings included 29 placebo-controlled randomised trials in 4,835 people, 19 in adults and 10 in children. The authors judged pooling inappropriate because of the small number of trials in each category, the limited quantitative data and marked differences in participants, interventions and outcome measurement, and noted that risk-of-bias assessment was limited by poor reporting particularly in earlier studies. Three adult trials compared guaifenesin with placebo: one indicated significant benefit and two did not. No studies using expectorants in children met the inclusion criteria at all. The overall conclusion was that there is no good evidence for or against the effectiveness of over-the-counter medicines in acute cough.',
+        evidenceSource: 'Smith SM, Schroeder K, Fahey T. Cochrane Database Syst Rev 2014;11:CD001831',
+        doi: '10.1002/14651858.CD001831.pub5',
+        inferredClaim:
+          'That an ingredient sold in 189 separate products across a shelf worth billions rests on a settled evidence base — the systematic review found no good evidence for or against, and no paediatric expectorant trial that met inclusion criteria at all',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'gua-a5',
+        category: 'inferred',
+        title: 'It is the only recognised expectorant, and there is no molecular target to describe',
+        laymanSummary:
+          'Federal regulation names exactly one ingredient as an expectorant, and this is it. Nobody has identified what the molecule binds to in the body. The mechanism given in textbooks is a nerve reflex from the stomach, inherited from an older class of medicines.',
+        technicalDetails:
+          '21 CFR 341.18 states that the expectorant active ingredient of the monograph is guaifenesin when used within the specified dosage limits — no other ingredient holds that status. No receptor, enzyme or transporter has been established as a target. The mechanism usually offered, reflex stimulation of bronchial secretion via gastric vagal afferents, descends from the ipecac and ammonium chloride tradition and has not been demonstrated for this molecule at achievable plasma concentrations; the direct test of its consequence, sputum rheology, was negative in 378 subjects. This is a regulatory category with one occupant and no mechanism, which is a different situation from a drug whose mechanism is disputed.',
+        evidenceSource:
+          '21 CFR 341.18, Expectorant active ingredient; Hoffer-Schaefer A et al., Respir Care 2014;59:631-636',
+        inferredClaim:
+          'That recognition as the monograph expectorant implies a demonstrated expectorant action — the regulation defines the category, and the direct measurement of the effect it names has been negative',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'gua-a6',
+        category: 'measured',
+        title: 'Both groups got better, and that is the result most often mistaken for the drug working',
+        laymanSummary:
+          'In the trial that measured sputum, people on the drug improved over the week. So did people on the dummy tablet, by the same amount. Acute cough from a virus resolves on its own, which is why an untreated comparison group is the only way to see whether a medicine did anything.',
+        technicalDetails:
+          'In the 378-subject trial, symptoms in both the guaifenesin and placebo groups improved to a similar degree over the eight days. Of 188 subjects randomised to guaifenesin and 190 to placebo, 151 and 144 respectively completed the full protocol. The natural history of acute viral cough — improvement over one to two weeks regardless of treatment — is the dominant effect in any uncontrolled observation of this drug, and it is what a person taking it experiences.',
+        evidenceSource: 'Hoffer-Schaefer A et al., Respir Care 2014;59:631-636 (NCT01046136)',
+        doi: '10.4187/respcare.02640',
+        measuredMetric: 'Cold symptom improvement over 8 days, guaifenesin against placebo',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed and absorbed quickly',
+        laymanDesc:
+          'A small, water-soluble molecule that enters the blood fast and leaves fast. The extended-release tablet exists because the plain form clears too quickly to be dosed conveniently.',
+        molecularDetail:
+          'Glyceryl guaiacolate is rapidly absorbed with a short elimination half-life, metabolised largely to beta-(2-methoxyphenoxy)-lactic acid and excreted renally. The bilayer extended-release tablet approved as NDA 021282 in 2002 was the pharmaceutical innovation; the molecule itself dates to the 1940s.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The proposed step: mild gastric irritation',
+        laymanDesc:
+          'The classical explanation is that the drug slightly irritates the stomach lining. This is where the mechanism becomes a proposal rather than an observation.',
+        molecularDetail:
+          'The gastric-irritant model is inherited from ipecac and ammonium chloride, agents that provoke secretion at doses close to emetic ones. No study has demonstrated that guaifenesin produces gastric afferent activation at the plasma concentrations reached from an ordinary tablet.',
+        iconName: 'HelpCircle',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The proposed step: a vagal reflex to the airway glands',
+        laymanDesc:
+          'The irritation is supposed to travel by nerve to the glands lining the airways and make them release more, thinner fluid. Nobody has recorded that reflex happening with this drug.',
+        molecularDetail:
+          'The postulated pathway runs from gastric vagal afferents through brainstem nuclei to efferent parasympathetic innervation of bronchial submucosal glands. There is no established receptor for guaifenesin anywhere along it, and no direct measurement of increased submucosal gland output in humans on the drug.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The measured step: sputum, unchanged',
+        laymanDesc:
+          'This is where the theory meets an instrument. Sputum collected from people taking the drug for a week was no thinner, no more copious and no different in how it flowed than sputum from people taking a dummy.',
+        molecularDetail:
+          'In 378 randomised subjects, guaifenesin against placebo gave p=0.41 for sputum volume, p=0.69 for percent solids, p=0.88 for interfacial tension, p=0.71 for elasticity, p=0.45 for viscosity and p=0.75 for mechanical impedance. Interfacial tension and mechanical impedance are the properties most closely tied to whether mucus can be cleared by cough, and neither moved.',
+        iconName: 'Ban',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'One measured effect that is not the advertised one',
+        laymanDesc:
+          'A small study did find something: in people with a cold, the cough reflex became less easily triggered. It had no effect in healthy volunteers, and it is not what the packet claims.',
+        molecularDetail:
+          'Log C5 on capsaicin challenge rose from 0.66 ± 0.14 on placebo to 0.92 ± 0.17 on guaifenesin in 14 subjects with upper respiratory infection (p=0.028), with no change in 14 healthy volunteers. The authors offered a central antitussive action or a peripheral shielding effect as candidate explanations, without distinguishing between them.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the person experiences is the infection ending',
+        laymanDesc:
+          'Coughs from a virus get better over one to two weeks whatever you take. In the trial, drug and dummy groups improved by the same amount over the same eight days.',
+        molecularDetail:
+          'Symptom trajectories in the guaifenesin and placebo arms of the 378-subject trial were similar throughout. The Cochrane review of 29 placebo-controlled trials in 4,835 people concluded there is no good evidence for or against the effectiveness of over-the-counter cough medicines in acute cough.',
+        iconName: 'Clock',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT01046136 (Hoffer-Schaefer 2014, Respir Care 59:631-636)',
+        phase: 'Multi-centre, randomised, double-blind, placebo-controlled, 8 days',
+        sampleSize: 378,
+        primaryEndpoint:
+          'Sputum volume and physical properties, and cold symptoms, on extended-release guaifenesin against placebo',
+        endpointMet: false,
+        statisticalPValue:
+          'Volume p=0.41, percent solids p=0.69, interfacial tension p=0.88, elasticity p=0.71, viscosity p=0.45, mechanical impedance p=0.75; symptoms improved similarly in both arms',
+        unreportedAdverseSignals:
+          '151 of 188 on guaifenesin and 144 of 190 on placebo completed the protocol, so roughly a fifth of each arm did not. Sputum collection depends on subjects being able to produce a sample.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Kuhn 1982 (Chest 82:713-718)',
+        phase: 'Randomised, double-blind, vehicle-controlled, objective cough counting',
+        sampleSize: 42,
+        primaryEndpoint:
+          'Cough frequency by tape recording over a 24-hour baseline and 36-hour treatment period',
+        endpointMet: false,
+        statisticalPValue:
+          'No antitussive effect demonstrated on recorded cough counts; on questionnaire, 96% against 54% reported decreased sputum thickness (p=0.01) and 88% against 62.5% reported reduced quantity (p=0.07)',
+        unreportedAdverseSignals:
+          'The objective and subjective results point in opposite directions in the same patients, and the paper notes that patients’ own estimates of cough frequency failed to detect the diurnal variation the recorder measured.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Dicpinigaitis 2003 (Chest 124:2178-2181)',
+        phase: 'Randomised, double-blind, placebo-controlled crossover, capsaicin challenge',
+        sampleSize: 28,
+        primaryEndpoint:
+          'Log capsaicin concentration inducing five or more coughs, 1 to 2 hours after a single 400 mg dose',
+        endpointMet: true,
+        statisticalPValue:
+          'In subjects with upper respiratory infection, log C5 0.92 ± 0.17 against 0.66 ± 0.14 on placebo (p=0.028); no effect in healthy volunteers',
+        unreportedAdverseSignals:
+          'Fourteen subjects per group, single dose, a challenge model rather than a clinical cough outcome. The effect measured is cough suppression, which is not the expectorant claim on the label.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Cochrane CD001831.pub5 — over-the-counter medications for acute cough',
+        phase: 'Systematic review of 29 placebo-controlled randomised trials',
+        sampleSize: 4835,
+        primaryEndpoint: 'Cough outcomes against placebo in community settings',
+        endpointMet: false,
+        statisticalPValue:
+          'Pooling judged inappropriate. Of three adult guaifenesin trials, one indicated significant benefit and two did not; no paediatric expectorant trial met inclusion criteria',
+        unreportedAdverseSignals:
+          'Risk-of-bias assessment was limited by poor reporting, particularly in the earlier studies. Twenty-one trials reported adverse effects, with higher numbers in preparations containing antihistamines and dextromethorphan.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'No difference from placebo in sputum volume, percent solids, interfacial tension, elasticity, viscosity or mechanical impedance in 378 randomised subjects',
+        'No antitussive effect on tape-recorded cough counts in 42 patients in 1982',
+        'A rise in log capsaicin C5 from 0.66 to 0.92 in 14 subjects with upper respiratory infection (p=0.028), and no effect in 14 healthy volunteers',
+        '96% against 54% of patients reporting decreased sputum thickness on questionnaire (p=0.01), in the same 1982 trial whose objective measure was null',
+      ],
+      unsupportedInferences: [
+        'That the drug thins mucus — the property was measured directly on an instrument and did not change',
+        'That being the monograph’s sole recognised expectorant reflects a demonstrated expectorant action',
+        'That the gastric-vagal reflex mechanism operates at concentrations reached from a tablet — it is inherited from ipecac and has not been shown for this molecule',
+        'That patient-reported improvement in mucus thickness measures mucus thickness rather than the experience of an illness resolving',
+      ],
+      whatFailedInitially: [
+        'Every physical property of sputum measured in the 378-subject trial was unchanged, with p-values from 0.41 to 0.88',
+        'The 1982 objective cough-counting trial found no antitussive effect while the questionnaire in the same patients did',
+        'Two of the three adult guaifenesin trials in the Cochrane review found no benefit',
+        'No paediatric expectorant trial met the Cochrane inclusion criteria at all, in a category sold widely for children',
+      ],
+      realWorldOutcome: [
+        'Named at 21 CFR 341.18 as the expectorant active ingredient of the over-the-counter monograph, with no other ingredient holding that status',
+        'The extended-release tablet approved as NDA 021282 on 12 July 2002, with combination products following in 2004',
+        'The most widely marketed molecule in this batch: 189 separate products in the CMS acquisition survey at a median $0.0903 per unit',
+        'Still recommended and sold at scale for a claim that direct measurement has not supported',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral extended-release bilayer tablet (600 mg), immediate-release tablet, and liquid',
+      description:
+        'The extended-release tablet must be swallowed whole with a full glass of water and not crushed, chewed or broken, because breaking the bilayer destroys the release profile that the application was approved on. It can be taken without regard to meals.',
+      safetyProfile:
+        'Adverse effects are few and mild, and this is one of the few genuinely reassuring facts about the drug. In the Cochrane review, the higher adverse event counts across the cough shelf were in preparations containing antihistamines and dextromethorphan rather than expectorants. The practical hazards attach to the combination products — pseudoephedrine in one, dextromethorphan in another — rather than to guaifenesin itself. Reported effects include nausea and vomiting, and very high intake has been associated with kidney stones containing guaifenesin metabolites.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it actually thin mucus?',
+        a: 'Measured directly, no. A multi-centre randomised trial gave 378 people with a productive cough the recommended extended-release amount for a week, collected their sputum on days 1, 3, 4 and 8 with 24-hour collections on days 1 and 4, and put the samples on instruments. There was no significant difference from placebo in volume, percent solids, interfacial tension, elasticity, viscosity or mechanical impedance — the p-values run from 0.41 to 0.88. The authors concluded the recommended amount is unlikely to be an expectorant or a mucolytic in acute respiratory infection. Symptoms improved on the drug and on the placebo at the same rate.',
+        auditNote:
+          'Patients do report thinner mucus on it. A 1982 trial found 96% of patients on guaifenesin reported decreased sputum thickness against 54% on the vehicle. The same trial recorded their coughs on tape and found no reduction in coughing.',
+      },
+      {
+        q: 'Then why is it the only expectorant on the shelf?',
+        a: 'Because a regulation says so. 21 CFR 341.18 states that the expectorant active ingredient of the over-the-counter monograph is guaifenesin when used within the specified dosage limits, and no other ingredient holds that status. That is a fact about the structure of American drug regulation — a category with one occupant — rather than a conclusion from comparing candidates. The extended-release tablet was separately approved as a new drug application in 2002, but that approval concerns the release profile of the tablet, not a fresh demonstration that the molecule is an expectorant.',
+      },
+      {
+        q: 'It seems to help me. Am I imagining it?',
+        a: 'Something is happening, and it may not be what the label says. Two things are going on. First, acute cough from a virus improves over one to two weeks by itself, and in the trial that measured sputum, the placebo group improved just as much as the treated group. Second, there is one measured effect that is real: in a small crossover study, people with a cold needed more capsaicin to be made to cough after taking guaifenesin than after placebo, so their cough reflex was genuinely less twitchy. That is cough suppression, not expectoration, it was measured in fourteen people, and it did not happen at all in healthy volunteers.',
+      },
+      {
+        q: 'What about the version with the letters after it?',
+        a: 'Those are different drugs with different evidence. Mucinex DM adds dextromethorphan, a cough suppressant, under NDA 021620. Mucinex D adds pseudoephedrine, a decongestant, under NDA 021585. Each added ingredient brings its own warnings — pseudoephedrine is sold from behind the counter and carries cardiovascular cautions, dextromethorphan accounted for a disproportionate share of the adverse effects across the cough trials in the Cochrane review. The guaifenesin component of a combination product carries the same evidence as the guaifenesin component of a plain one.',
+      },
+      {
+        q: 'Is there anything better for a chesty cough?',
+        a: 'The systematic review that looked at the whole shelf found no good evidence for or against any of it. Twenty-nine placebo-controlled randomised trials in 4,835 people were too few per category, too different from each other and too poorly reported to pool. The one thing that came out favourably in the paediatric section was honey: a trial found three types of honey more effective than placebo over three days, in a section where antitussives, antihistamines and antihistamine-decongestant combinations were all no better than placebo. Honey must never be given to a child under one year because of the risk of botulism.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Hoffer-Schaefer A, Rozycki HJ, Yopp MA, Rubin BK. Guaifenesin has no effect on sputum volume or sputum properties in adolescents and adults with acute respiratory tract infections. Respir Care 2014;59:631-636',
+        identifier: '10.4187/respcare.02640',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Guaifenesin extended release in acute respiratory tract infection — sputum volume and properties',
+        identifier: 'NCT01046136',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Kuhn JJ, Hendley JO, Adams KF, Clark JW, Gwaltney JM Jr. Antitussive effect of guaifenesin in young adults with natural colds: objective and subjective assessment. Chest 1982;82:713-718',
+        identifier: '10.1378/chest.82.6.713',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dicpinigaitis PV, Gayle YE. Effect of guaifenesin on cough reflex sensitivity. Chest 2003;124:2178-2181',
+        identifier: '10.1378/chest.124.6.2178',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Smith SM, Schroeder K, Fahey T. Over-the-counter (OTC) medications for acute cough in children and adults in community settings. Cochrane Database Syst Rev 2014;11:CD001831',
+        identifier: '10.1002/14651858.CD001831.pub5',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 341.18 — expectorant active ingredient: the active ingredient of the product is guaifenesin when used within the dosage limits',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-341',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: MUCINEX (guaifenesin extended-release tablet), NDA 021282, approved 12 July 2002; MUCINEX DM, NDA 021620, 29 April 2004; MUCINEX D, NDA 021585, 22 June 2004',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021282',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3516 — guaifenesin structure, formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3516',
+        kind: 'url',
+      },
+    ],
+  },
 ]

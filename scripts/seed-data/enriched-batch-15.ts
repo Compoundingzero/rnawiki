@@ -2112,4 +2112,492 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Diltiazem — the calcium blocker whose own harm signal became a line in its contraindications,
+  //    and which quietly raises the level of two of the most-prescribed anticoagulants.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'diltiazem',
+    name: 'Diltiazem',
+    tradeName: 'Cardizem / Cardizem CD / Cardizem LA / Tiadylt / Cartia XT',
+    sponsor: 'Bausch Health (current holder of NDA 018602); originated at Tanabe Seiyaku in Japan',
+    targetGene: 'CACNA1C',
+    targetProtein:
+      'Alpha-1C subunit of the L-type voltage-gated calcium channel (Cav1.2), bound at the benzothiazepine site rather than the dihydropyridine site',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1982,
+    indication:
+      'Hypertension; chronic stable angina and angina due to coronary artery spasm, by the oral route. The intravenous formulation is indicated for temporary control of rapid ventricular rate in atrial fibrillation or flutter and for rapid conversion of paroxysmal supraventricular tachycardia',
+    patientFriendlyIndication:
+      'Chest pain from narrowed or spasming arteries, high blood pressure, and a heart racing out of rhythm',
+    anatomicalSite:
+      'Atrioventricular node and coronary vascular smooth muscle — the benzothiazepine binding site on the L-type calcium channel',
+    conditionContext: {
+      conditionExplainer:
+        'Calcium entering a cell through the L-type channel does two different jobs in two different places. In artery muscle it produces contraction, so blocking it widens the vessel. In the atrioventricular node it carries the electrical impulse from atria to ventricles, so blocking it slows the pulse. Diltiazem does both, which is why one drug treats angina, high blood pressure and a fast atrial fibrillation.',
+      whyItMatters:
+        'Diltiazem sits between the two ends of the calcium blocker family: more rate-slowing than amlodipine, less negatively inotropic than verapamil. That middle position is its selling point and the reason its harms are specific rather than general — they appear in the people whose hearts cannot afford either effect.',
+      whoTakesThis:
+        'Adults with angina, including the vasospastic form where it is a first choice; adults with high blood pressure; and, intravenously, patients whose atrial fibrillation is running too fast. Not people with sick sinus syndrome or high-grade heart block without a pacemaker, and not people with a recent infarction and fluid on the lungs.',
+      clinicalGoals:
+        'Fewer episodes of chest pain, a controlled ventricular rate, a lower blood pressure. All three are symptom or physiology endpoints. The trials that looked for a survival benefit did not find one.',
+    },
+    oneSentenceVerdict:
+      'A non-dihydropyridine calcium blocker that widens coronary arteries and slows conduction through the AV node, which in 2,466 post-infarction patients produced identical total mortality to placebo while cutting cardiac events by 23% in the 1,909 without pulmonary congestion and raising them by 41% in the 490 who had it — a finding now written into its own contraindications.',
+    laymanHowItWorks:
+      'Muscle cells in artery walls need calcium flowing in before they can squeeze, and the electrical relay between the top and bottom chambers of the heart uses the same kind of calcium channel to pass its signal. Diltiazem blocks that channel. Arteries widen, including the coronary arteries feeding the heart itself, so chest pain from narrowing or spasm eases. At the same time the electrical relay slows, which is why the pulse comes down and why the drug can control a racing, irregular heartbeat.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 72,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.3196 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 177 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'First approved in the United States on 5 November 1982 under NDA 018602 and generic for decades, though the extended-release formulations were the subject of a long series of patent and bioequivalence disputes that kept individual products branded well past the expiry of protection on the molecule itself. The 177 listed products reflect how many different release profiles are sold under one name.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The alternatives divide by what you want from the drug. If the aim is rate control in atrial fibrillation, the comparison is against a beta-blocker, and the 2024 Medicare analysis of 204,155 patients is the strongest reason to prefer one in a specific circumstance. If the aim is blood pressure, amlodipine does that without touching conduction. If the aim is vasospastic angina, the non-dihydropyridines and the nitrates are the classes with a mechanism that fits.',
+      conventionalRx: [
+        {
+          name: 'Metoprolol or another beta-blocker, for rate control',
+          class: 'Beta-1 adrenergic blocker',
+          howItCompares:
+            'Slows the same AV node by a different route and does not inhibit CYP3A4. In 204,155 Medicare patients with atrial fibrillation on apixaban or rivaroxaban, those started on diltiazem had a 21% higher rate of serious bleeding than those started on metoprolol (HR 1.21, 95% CI 1.13 to 1.29).',
+          typicalCost: 'Generic; a few United States cents per tablet at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: no interaction with the direct oral anticoagulants; mortality evidence in heart failure and after infarction that diltiazem does not have. Cons: contraindicated or hazardous in asthma; fatigue; no coronary vasodilatation, so no use in vasospastic angina.',
+        },
+        {
+          name: 'Verapamil',
+          class: 'Non-dihydropyridine calcium channel blocker, phenylalkylamine class',
+          howItCompares:
+            'The other rate-slowing calcium blocker, binding a different site on the same channel. More negatively inotropic than diltiazem and more constipating, with a similar CYP3A4 interaction profile. In INVEST, a verapamil-based strategy matched an atenolol-based one in 22,576 hypertensive patients with coronary disease (RR 0.98, 95% CI 0.90 to 1.06).',
+          typicalCost:
+            'US$0.1803 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 43 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: stronger rate control; cheaper. Cons: more depression of contractility, so worse in a weak ventricle; constipation limits it in a substantial minority.',
+        },
+        {
+          name: 'Amlodipine',
+          class: 'Dihydropyridine calcium channel blocker',
+          howItCompares:
+            'Blocks the same channel at a different site, with a strong effect on vascular smooth muscle and essentially none on the AV node. For blood pressure it does the job without any conduction risk; for rate control it does nothing at all.',
+          typicalCost:
+            'Among the cheapest prescription drugs in the United States at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: no bradycardia, no heart block, no meaningful CYP3A4 inhibition, large outcome trial base. Cons: ankle swelling; no rate control; reflex tachycardia at the start of treatment.',
+        },
+        {
+          name: 'Isosorbide mononitrate, for angina',
+          class: 'Organic nitrate',
+          howItCompares:
+            'Dilates veins and coronary arteries and reduces angina episodes, with no effect on heart rate control and no survival benefit: in 58,050 patients in ISIS-4 there was no reduction in five-week mortality.',
+          typicalCost:
+            'US$0.0977 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 35 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheap, no conduction effects, works quickly on symptoms. Cons: tolerance develops within a day of continuous exposure; headache; no effect on events.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Say what else you are taking, in full',
+          action:
+            'List every medicine including anticoagulants, statins, immunosuppressants and anything bought without a prescription.',
+          patientImpact:
+            'Diltiazem inhibits CYP3A4 and raises the blood level of a long list of drugs. In 204,155 Medicare patients taking apixaban or rivaroxaban, starting diltiazem rather than metoprolol was associated with an extra 10.6 serious bleeding events per 1,000 patient-years, rising to 15.1 at doses above 120 mg daily.',
+          clinicalPrecaution:
+            'The interaction is pharmacokinetic and silent. Nothing feels different until the bleed, which is why the drug list matters more here than the symptom history.',
+        },
+        {
+          name: 'Report a slow pulse or fainting',
+          action: 'Say if your pulse is unusually slow, or if you have felt faint or blacked out.',
+          patientImpact:
+            'The label records second- or third-degree AV block in 13 of 3,290 patients, or 0.40%, and one patient with Prinzmetal angina who developed 2 to 5 second periods of asystole after a single 60 mg dose. The effect is additive with beta-blockers and with digitalis.',
+          clinicalPrecaution:
+            'Sick sinus syndrome and second- or third-degree block are contraindications unless a functioning pacemaker is in place.',
+        },
+        {
+          name: 'Mention a recent heart attack, particularly with breathlessness',
+          action:
+            'Say if you have had a myocardial infarction, and whether there was fluid on the lungs at the time.',
+          patientImpact:
+            'Acute myocardial infarction with pulmonary congestion documented by chest x-ray on admission is a contraindication. That line exists because of a trial: in MDPIT, patients with pulmonary congestion had 41% more cardiac events on diltiazem than on placebo.',
+          clinicalPrecaution:
+            'The same trial found 23% fewer events in patients without congestion. The drug is not generally harmful after infarction and it is specifically harmful in one subgroup.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(=O)O[C@@H]1[C@@H](SC2=CC=CC=C2N(C1=O)CCN(C)C)C3=CC=C(C=C3)OC',
+      chemicalFormula: 'C22H26N2O4S',
+      molecularWeight: '414.50 g/mol (free base); dispensed as diltiazem hydrochloride',
+      targetReceptorAffinity:
+        'Binds the benzothiazepine site on the alpha-1C subunit of Cav1.2, distinct from both the dihydropyridine site used by amlodipine and the phenylalkylamine site used by verapamil. It prolongs AV node refractory periods without significantly prolonging sinus node recovery time, except in sick sinus syndrome. It is a moderate inhibitor of CYP3A4 and a substrate for the same enzyme, which is the origin of its interaction profile.',
+      structureSource: {
+        label:
+          'PubChem CID 39186 (diltiazem) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/39186',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dtz-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the (2S,3S) configuration and the acetate ester',
+          description:
+            'Diltiazem is a single enantiomer with two adjacent stereocentres on the benzothiazepine ring, and only the (2S,3S) form is the drug. The 3-acetate ester is hydrolysed in vivo to the less potent deacetyl metabolite, so free deacetyldiltiazem in the starting material is a potency loss rather than an inert impurity.',
+          reagentsAndBuffer:
+            'Diltiazem hydrochloride reference standard, chiral HPLC on a cellulose phase, 1H NMR in DMSO-d6, specified limit for deacetyldiltiazem, Karl Fischer titration',
+        },
+        {
+          id: 'dtz-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Build the benzothiazepinone ring and acetylate at C3',
+          description:
+            'Open a chiral glycidate ester with 2-aminothiophenol, cyclise to the seven-membered benzothiazepinone lactam, alkylate the ring nitrogen with a dimethylaminoethyl chain, then acetylate the C3 hydroxyl. The seven-membered sulfur-containing ring is what places this molecule at the benzothiazepine site rather than the dihydropyridine site, and it is the whole reason the drug slows the AV node.',
+          dependsOnStepId: 'dtz-w1',
+          reagentsAndBuffer:
+            'Methyl (2R,3S)-3-(4-methoxyphenyl)glycidate, 2-aminothiophenol, xylene at reflux for cyclisation, 2-dimethylaminoethyl chloride with potassium carbonate, acetic anhydride with pyridine, nitrogen atmosphere',
+        },
+        {
+          id: 'dtz-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Resolve residual trans isomer and form the hydrochloride',
+          description:
+            'Remove the cis/trans isomer arising at the ring-closure step, then crystallise the hydrochloride. The trans isomer has markedly lower channel affinity and is the impurity that determines potency at release.',
+          dependsOnStepId: 'dtz-w2',
+          reagentsAndBuffer:
+            'Fractional crystallisation from ethanol or acetone, hydrogen chloride in isopropanol, chiral HPLC release testing with specified limits for the trans isomer and for deacetyldiltiazem',
+        },
+        {
+          id: 'dtz-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Use-dependent block measured on Cav1.2-expressing cells',
+          description:
+            'Measure block at different stimulation frequencies rather than at one. Non-dihydropyridine calcium blockers show use-dependence — they bind more when the channel is opening often — and that property is precisely why diltiazem slows a fast AV node more than a slow one. A single-frequency assay reports a number that does not describe the clinical behaviour.',
+          dependsOnStepId: 'dtz-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells expressing human Cav1.2 with beta and alpha2-delta subunits, whole-cell patch clamp at 0.1, 1 and 3 Hz, barium as charge carrier, external solution buffered at physiological pH',
+        },
+        {
+          id: 'dtz-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'CYP3A4 inhibition constant against a probe substrate',
+          description:
+            'Quantify the inhibition of CYP3A4 with a standard probe such as midazolam hydroxylation, including the time-dependent component. This is not an optional characterisation step for this molecule: the largest recent safety finding for diltiazem is a drug interaction, not a direct pharmacological effect.',
+          dependsOnStepId: 'dtz-w4',
+          reagentsAndBuffer:
+            'Human liver microsomes and recombinant CYP3A4, midazolam or testosterone as probe substrate, NADPH regenerating system, LC-MS/MS quantification of metabolite formation, preincubation arm to detect mechanism-based inhibition',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dtz-a1',
+        category: 'failed',
+        title: 'MDPIT: no overall effect on death, and clear harm in one subgroup',
+        laymanSummary:
+          'Nearly two and a half thousand people were given diltiazem or a dummy tablet after a heart attack. Exactly as many died in each group. Underneath that flat result were two opposite effects: fewer heart events in patients with clear lungs, and more in patients whose lungs had fluid.',
+        technicalDetails:
+          'The Multicenter Diltiazem Postinfarction Trial randomised 2,466 patients with previous infarction to diltiazem 240 mg daily (n=1,234) or placebo (n=1,232), followed 12 to 52 months with a mean of 25. Total mortality was nearly identical: 167 against 166. First recurrent cardiac events, defined as cardiac death or non-fatal reinfarction, were 202 against 226 (Cox hazard ratio 0.90, 95% CI 0.74 to 1.08). A significant bidirectional interaction with radiographic pulmonary congestion was found at p=0.0042: in the 1,909 patients without congestion the hazard ratio was 0.77 (95% CI 0.61 to 0.98), and in the 490 with congestion it was 1.41 (95% CI 1.01 to 1.96). The same pattern appeared when ejection fraction was dichotomised at 0.40. The authors conclusion is that the neutral overall effect concealed a benefit in the majority without left ventricular dysfunction and an increase in events in the minority with it.',
+        evidenceSource:
+          'Multicenter Diltiazem Postinfarction Trial Research Group, N Engl J Med 1988;319:385-392',
+        doi: '10.1056/NEJM198808183190701',
+        measuredMetric:
+          'Total mortality and first recurrent cardiac events after myocardial infarction, with a prespecified interaction by pulmonary congestion',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dtz-a2',
+        category: 'conclusion_shift',
+        title: 'The harm signal became a line in the contraindications',
+        laymanSummary:
+          'A trial found that a particular group of patients did worse on this drug. Thirty-odd years later, that group is named in the contraindications on the box. This is what the evidence system is supposed to do and rarely gets credit for.',
+        technicalDetails:
+          'The Cardizem CD label lists among its contraindications: patients with acute myocardial infarction and pulmonary congestion documented by x-ray on admission. That sentence is MDPIT written into regulatory text — the 490-patient subgroup in which cardiac events rose 41% on diltiazem. The Warnings section adds the corresponding physiology: although hemodynamic studies in humans with normal ventricular function have not shown a reduction in cardiac index or consistent negative effects on contractility, worsening of congestive heart failure has been reported in patients with pre-existing impairment of ventricular function, and experience of the combination with beta-blockers in that setting is limited. A subgroup finding that becomes a contraindication is unusual; most disappear into a discussion section.',
+        evidenceSource:
+          'CARDIZEM CD United States prescribing information, Contraindications and Warnings sections (NDA 020062); Multicenter Diltiazem Postinfarction Trial Research Group, N Engl J Med 1988;319:385-392',
+        doi: '10.1056/NEJM198808183190701',
+        inferredClaim:
+          'That a neutral overall trial result means a drug is neutral for everyone in the trial — MDPIT is the counter-example, and its subgroup is now on the label',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dtz-a3',
+        category: 'failed',
+        title: 'A 21% higher rate of serious bleeding with two of the commonest anticoagulants',
+        laymanSummary:
+          'Diltiazem slows the breakdown of apixaban and rivaroxaban, so more of the blood thinner stays in the body. In two hundred thousand Medicare patients, those started on diltiazem bled seriously more often than those started on a beta-blocker.',
+        technicalDetails:
+          'A retrospective cohort of 204,155 United States Medicare beneficiaries aged 65 or over with atrial fibrillation, newly started on apixaban or rivaroxaban and simultaneously on diltiazem (n=53,275) or metoprolol (n=150,880), followed a median of 120 days. The primary composite of bleeding-related hospitalisation and death with recent evidence of bleeding was raised on diltiazem: rate difference 10.6 per 1,000 person-years (95% CI 7.0 to 14.2), hazard ratio 1.21 (95% CI 1.13 to 1.29). Bleeding-related hospitalisation alone had a hazard ratio of 1.22 (1.13 to 1.31), and death with recent evidence of bleeding 1.19 (1.05 to 1.34). The effect was dose-related: above 120 mg daily the rate difference was 15.1 per 1,000 person-years (HR 1.29, 1.19 to 1.39) against 6.7 at lower doses (HR 1.13, 1.04 to 1.24), and comparing high against low dose directly gave a hazard ratio of 1.14 (1.02 to 1.26). Ischaemic stroke, systemic embolism and death without evidence of bleeding did not differ. This is a cohort study, not a randomised trial, and the exposure comparison is between two drugs given for the same purpose in the same population, which is the design that gets closest to randomisation without being it.',
+        evidenceSource:
+          'Ray WA et al. Serious bleeding in patients with atrial fibrillation using diltiazem with apixaban or rivaroxaban. JAMA 2024;331:1565-1575',
+        doi: '10.1001/jama.2024.3867',
+        measuredMetric:
+          'Composite of bleeding-related hospitalisation and death with recent evidence of bleeding, diltiazem against metoprolol',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dtz-a4',
+        category: 'measured',
+        title: 'NORDIL: as good as the old drugs on events, and worse at lowering blood pressure',
+        laymanSummary:
+          'Ten thousand people with high blood pressure were randomised to diltiazem or to the standard combination of a diuretic and a beta-blocker. The rate of strokes and heart attacks came out identical, even though diltiazem lowered the top number by three points less.',
+        technicalDetails:
+          'NORDIL was a prospective, randomised, open, blinded-endpoint study of 10,881 patients aged 50 to 74 with diastolic pressure of 100 mmHg or more, in Norwegian and Swedish health centres. Blood pressure fell 20.3/18.7 mmHg on diltiazem against 23.3/18.7 mmHg on diuretics, beta-blockers or both, a significant difference in systolic reduction (p<0.001). The combined primary endpoint of fatal and non-fatal stroke, myocardial infarction and other cardiovascular death occurred in 403 against 400 patients, 16.6 against 16.2 events per 1,000 patient-years, relative risk 1.00 (95% CI 0.87 to 1.15, p=0.97). Stroke alone favoured diltiazem: 6.4 against 7.9 per 1,000 patient-years, RR 0.80 (0.65 to 0.99, p=0.04). Myocardial infarction went the other way without reaching significance: 7.4 against 6.3 per 1,000 patient-years, RR 1.16 (0.94 to 1.44, p=0.17). Equal outcomes at unequal blood pressure is an interesting result and it is also the kind of result that generates two opposite press releases.',
+        evidenceSource: 'Hansson L et al., Lancet 2000;356:359-365 (NORDIL)',
+        doi: '10.1016/s0140-6736(00)02526-5',
+        measuredMetric:
+          'Composite of fatal and non-fatal stroke, myocardial infarction and other cardiovascular death, diltiazem against diuretic or beta-blocker therapy',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dtz-a5',
+        category: 'inferred',
+        title: 'Exercise tolerance is the measured angina endpoint, and it is not an event count',
+        laymanSummary:
+          'What the drug is licensed to do in angina is improve how far you can walk on a treadmill before the chest pain starts. No trial has shown it prevents heart attacks in stable angina.',
+        technicalDetails:
+          'The Cardizem LA indication is improving exercise tolerance in patients with chronic stable angina, and the mechanism section attributes that to reduced myocardial oxygen demand through lower heart rate and blood pressure at submaximal and maximal workloads, plus coronary dilatation. The label also records that diltiazem is a potent dilator of both epicardial and subendocardial coronary arteries and inhibits spontaneous and ergonovine-induced spasm, which is the basis for the vasospastic angina indication. None of that is an outcome claim. In the one large post-infarction trial, total mortality was identical, and in the one large hypertension outcome trial the composite was identical to the comparator. Diltiazem is a symptomatic and physiological drug with no demonstrated effect on survival in any population studied.',
+        evidenceSource:
+          'CARDIZEM LA and CARDIZEM CD United States prescribing information, Indications and Clinical Pharmacology sections; MDPIT, N Engl J Med 1988;319:385-392; NORDIL, Lancet 2000;356:359-365',
+        inferredClaim:
+          'That better exercise tolerance and fewer anginal episodes translate into fewer infarctions or deaths — not shown for this drug in any trial that looked',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dtz-a6',
+        category: 'failed',
+        title: 'Conduction block is rare, additive and occasionally abrupt',
+        laymanSummary:
+          'Diltiazem slows the electrical relay between the heart chambers. In four cases per thousand that slowing becomes a block. Added to a beta-blocker or digoxin, the effect compounds.',
+        technicalDetails:
+          'The label records that diltiazem prolongs AV node refractory periods without significantly prolonging sinus node recovery time except in sick sinus syndrome, and that this rarely produces abnormally slow heart rates or second- or third-degree AV block in 13 of 3,290 patients, or 0.40%. Concomitant use with beta-blockers or digitalis may have additive effects on conduction. One patient with Prinzmetal angina developed periods of asystole of 2 to 5 seconds after a single 60 mg dose. Contraindications include sick sinus syndrome and second- or third-degree AV block without a functioning ventricular pacemaker, and systolic pressure below 90 mmHg.',
+        evidenceSource:
+          'CARDIZEM CD United States prescribing information, Warnings and Contraindications sections',
+        measuredMetric:
+          'Second- or third-degree AV block in 13 of 3,290 patients (0.40%) in the trial database',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A different door on the same channel',
+        laymanDesc:
+          'The calcium channel this drug blocks has several separate binding pockets. Diltiazem uses one of its own, which is why it behaves differently from amlodipine even though both are called calcium channel blockers.',
+        molecularDetail:
+          'Diltiazem binds the benzothiazepine site on the alpha-1C subunit of Cav1.2, distinct from the dihydropyridine site used by amlodipine and the phenylalkylamine site used by verapamil. Block is use-dependent, so tissue that is depolarising frequently is blocked more than tissue that is not.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 2,
+        title: 'Artery muscle cannot squeeze without calcium',
+        laymanDesc:
+          'With calcium entry blocked, the muscle wrapped around arteries relaxes. The coronary arteries feeding the heart widen along with the rest.',
+        molecularDetail:
+          'Inhibition of calcium influx during membrane depolarisation reduces vascular smooth muscle contraction and peripheral resistance. The label describes diltiazem as a potent dilator of both epicardial and subendocardial coronary arteries, and records that spontaneous and ergonovine-induced coronary spasm is inhibited.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 3,
+        title: 'The electrical relay between chambers slows',
+        laymanDesc:
+          'The signal passing from the top chambers to the bottom ones travels on the same kind of calcium current. Slowing it is how the drug brings down a racing pulse in atrial fibrillation.',
+        molecularDetail:
+          'Diltiazem prolongs AV nodal refractory period without significantly prolonging sinus node recovery time except in sick sinus syndrome. Use-dependence means the effect is larger at high atrial rates, which is why the intravenous form controls a fast ventricular response.',
+        iconName: 'Timer',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Less oxygen demand, so less chest pain',
+        laymanDesc:
+          'A slower heart working against lower pressure needs less oxygen, and wider coronary arteries deliver more. Angina eases from both directions at once.',
+        molecularDetail:
+          'The label attributes increased exercise tolerance to reduced myocardial oxygen demand through lower heart rate and systemic pressure at submaximal and maximal workloads, combined with coronary dilatation at drug levels causing little or no negative inotropic effect in humans with normal ventricular function.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'The same effect is harmful in a heart that is already failing',
+        laymanDesc:
+          'A heart that has just been damaged and is holding fluid cannot afford any reduction in its squeezing power. In that group, this drug made things worse.',
+        molecularDetail:
+          'In MDPIT, patients with radiographic pulmonary congestion had a cardiac event hazard ratio of 1.41 (95% CI 1.01 to 1.96) on diltiazem, against 0.77 (0.61 to 0.98) in patients without it, interaction p=0.0042. The label now contraindicates use in acute myocardial infarction with pulmonary congestion documented on admission.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The enzyme it blocks on the way past',
+        laymanDesc:
+          'Diltiazem also slows the liver enzyme that clears many other drugs, so those drugs build up. With modern blood thinners this shows up as bleeding.',
+        molecularDetail:
+          'Diltiazem is a CYP3A4 substrate and moderate inhibitor. In 204,155 Medicare patients on apixaban or rivaroxaban, starting diltiazem rather than metoprolol was associated with a serious bleeding hazard ratio of 1.21 (95% CI 1.13 to 1.29), rising to 1.29 above 120 mg daily.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MDPIT (N Engl J Med 1988;319:385-392)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 2466,
+        primaryEndpoint:
+          'Total mortality and first recurrent cardiac event after myocardial infarction',
+        endpointMet: false,
+        statisticalPValue:
+          'Total mortality 167 against 166, nearly identical; first recurrent cardiac events HR 0.90 (95% CI 0.74 to 1.08); interaction with pulmonary congestion p=0.0042',
+        unreportedAdverseSignals:
+          'In the 490 patients with pulmonary congestion the hazard ratio was 1.41 (95% CI 1.01 to 1.96) — a 41% increase in cardiac events. That subgroup is now a contraindication on the label.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NORDIL (Lancet 2000;356:359-365)',
+        phase: 'Phase 4, prospective, randomised, open, blinded endpoint',
+        sampleSize: 10881,
+        primaryEndpoint:
+          'Combined fatal and non-fatal stroke, myocardial infarction and other cardiovascular death',
+        endpointMet: true,
+        statisticalPValue:
+          '16.6 against 16.2 events per 1,000 patient-years; relative risk 1.00 (95% CI 0.87 to 1.15), p=0.97',
+        unreportedAdverseSignals:
+          'Open-label design with blinded endpoint adjudication. Systolic pressure fell 3 mmHg less on diltiazem (p<0.001), so equal outcomes were achieved at unequal blood pressure — which can be read as a drug advantage or as a chance finding, and the trial cannot distinguish them.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Ray et al. Medicare cohort (JAMA 2024;331:1565-1575)',
+        phase: 'Retrospective cohort with overlap weighting, not randomised',
+        sampleSize: 204155,
+        primaryEndpoint:
+          'Composite of bleeding-related hospitalisation and death with recent evidence of bleeding, diltiazem against metoprolol in users of apixaban or rivaroxaban',
+        endpointMet: true,
+        statisticalPValue:
+          'Rate difference 10.6 per 1,000 person-years (95% CI 7.0 to 14.2); hazard ratio 1.21 (95% CI 1.13 to 1.29), with a dose gradient above and below 120 mg daily',
+        unreportedAdverseSignals:
+          'Observational. Channelling by indication is possible even between two rate-control drugs, and the median follow-up was 120 days, which is short relative to the anticoagulation itself.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Total mortality after infarction identical to placebo in 2,466 patients: 167 deaths against 166',
+        'Cardiac events raised 41% in the 490 patients with pulmonary congestion and lowered 23% in the 1,909 without it (interaction p=0.0042)',
+        'No difference in the cardiovascular composite against diuretic or beta-blocker therapy in 10,881 hypertensive patients (RR 1.00, p=0.97)',
+        'A 21% higher rate of serious bleeding than metoprolol among 204,155 Medicare patients on apixaban or rivaroxaban',
+      ],
+      unsupportedInferences: [
+        'That improving exercise tolerance in stable angina translates into fewer infarctions or deaths, which no diltiazem trial has shown',
+        'That a neutral trial result means a neutral drug — MDPIT concealed benefit and harm of similar size in opposite subgroups',
+        'That the lower stroke rate in NORDIL is a diltiazem property rather than one of several secondary endpoints in a trial whose primary was flat',
+        'That being a calcium channel blocker makes diltiazem interchangeable with amlodipine — they bind different sites and do different things to the AV node',
+      ],
+      whatFailedInitially: [
+        'MDPIT found no overall mortality benefit after infarction and a clear harm signal in patients with pulmonary congestion',
+        'NORDIL lowered systolic pressure 3 mmHg less than the comparator regimen and matched it on events, which answers neither question cleanly',
+        'The CYP3A4 interaction with the direct oral anticoagulants was quantified in 2024, more than forty years after approval and a decade after those anticoagulants launched',
+        'Second- or third-degree AV block occurred in 0.40% of the trial database, and one patient had 2 to 5 second asystole after a single 60 mg dose',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States on 5 November 1982 under NDA 018602 and available in 177 listed generic products across many release profiles',
+        'A first-choice drug for vasospastic angina, where its coronary dilatation and spasm inhibition are the mechanism that fits',
+        'One of the few drugs whose harmful subgroup from a 1988 trial is quoted verbatim in its own contraindications',
+        'The 2024 anticoagulant bleeding finding has changed rate-control prescribing in atrial fibrillation more than anything else about the drug in thirty years',
+      ],
+    },
+    deliverySystem: {
+      type: 'Immediate-release tablet, several extended-release capsule and tablet formats, and an intravenous bolus and infusion',
+      description:
+        'The oral forms are not interchangeable: the many extended-release products differ in release profile and are approved separately, which is why 177 distinct products are listed in the pricing survey. The intravenous route exists for one job the oral route cannot do quickly enough — bringing down a fast ventricular rate in atrial fibrillation or flutter, and converting paroxysmal supraventricular tachycardia.',
+      safetyProfile:
+        'Contraindicated in sick sinus syndrome and in second- or third-degree AV block without a functioning ventricular pacemaker, in systolic pressure below 90 mmHg, in hypersensitivity, and in acute myocardial infarction with pulmonary congestion documented by x-ray on admission. Conduction effects are additive with beta-blockers and digitalis. Worsening congestive heart failure has been reported where ventricular function was already impaired. As a CYP3A4 inhibitor it raises exposure to a long list of co-prescribed drugs, and the largest quantified consequence is bleeding on apixaban or rivaroxaban.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is diltiazem the same as amlodipine?',
+        a: 'They are both called calcium channel blockers and they are not the same drug. They bind different pockets on the same channel and produce different clinical effects. Amlodipine acts almost entirely on artery muscle: it lowers blood pressure and does essentially nothing to the electrical conduction of the heart. Diltiazem acts on both, so it also slows the pulse and can control a fast atrial fibrillation, which amlodipine cannot. The corollary is that diltiazem carries risks amlodipine does not — heart block, worsening of a weak heart, and a drug interaction with several common medicines through the liver enzyme CYP3A4.',
+      },
+      {
+        q: 'I take a blood thinner. Does that matter?',
+        a: 'If it is apixaban or rivaroxaban, it matters and it is worth raising. Diltiazem slows the enzyme that clears both drugs, so more of the anticoagulant stays in the blood. A study of 204,155 Medicare patients with atrial fibrillation compared people started on diltiazem against people started on metoprolol, all of them on one of those two anticoagulants. Serious bleeding was 21% more common on diltiazem — about 10.6 extra events per thousand patient-years — and the excess was roughly twice as large at daily doses above 120 mg. Strokes and clots were no different. This is an observational study rather than a randomised trial, and it is the largest and most direct evidence there is on the question.',
+        auditNote:
+          'The comparison is between two drugs used for the same job in the same patients, which is the design that comes closest to randomisation without being it. It is still a cohort study and cannot exclude channelling by indication.',
+      },
+      {
+        q: 'Will it stop me having a heart attack?',
+        a: 'No trial has shown that. In the largest trial after myocardial infarction, 2,466 patients, deaths were identical: 167 on diltiazem and 166 on placebo. In the largest hypertension trial, 10,881 patients, the combined rate of stroke, heart attack and cardiovascular death was identical to a diuretic and beta-blocker regimen. What diltiazem is licensed to do is improve exercise tolerance in stable angina, lower blood pressure, and control heart rate — all of which are things you can feel or measure directly, and none of which is an event count. That is not a criticism of the drug so much as a description of what it is for.',
+      },
+      {
+        q: 'Why is there a warning about heart attacks with fluid on the lungs?',
+        a: 'Because of a specific trial finding that is now on the label. In MDPIT, the drug looked neutral overall — the same number of deaths in both groups — but underneath, patients whose chest x-ray showed pulmonary congestion had 41% more cardiac events on diltiazem, while those with clear lungs had 23% fewer. The interaction was strong enough (p=0.0042) that it made its way into the contraindications, which now name acute myocardial infarction with pulmonary congestion documented on admission. It is a good example of why a flat overall result is not the end of the analysis, and an unusual example of a subgroup finding being acted on rather than discussed.',
+      },
+      {
+        q: 'Can I take it with a beta-blocker?',
+        a: 'Sometimes, carefully, and the two together do compound each other. Both slow conduction through the AV node, and the label says explicitly that concomitant use with beta-blockers or digitalis may have additive effects on cardiac conduction. Second- or third-degree block occurred in 0.40% of patients in the diltiazem trial database on the drug alone. The label also notes that experience with the combination in patients whose ventricular function is already impaired is limited, which is the situation in which both drugs are most likely to be wanted and least likely to be safe.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Multicenter Diltiazem Postinfarction Trial Research Group. The effect of diltiazem on mortality and reinfarction after myocardial infarction. N Engl J Med 1988;319:385-392',
+        identifier: '10.1056/NEJM198808183190701',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hansson L, Hedner T, Lund-Johansen P, et al. Randomised trial of effects of calcium antagonists compared with diuretics and beta-blockers on cardiovascular morbidity and mortality in hypertension: the Nordic Diltiazem (NORDIL) study. Lancet 2000;356:359-365',
+        identifier: '10.1016/s0140-6736(00)02526-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ray WA, Chung CP, Stein CM, et al. Serious bleeding in patients with atrial fibrillation using diltiazem with apixaban or rivaroxaban. JAMA 2024;331:1565-1575',
+        identifier: '10.1001/jama.2024.3867',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pepine CJ, Handberg EM, Cooper-DeHoff RM, et al. A calcium antagonist vs a non-calcium antagonist hypertension treatment strategy for patients with coronary artery disease (INVEST). JAMA 2003;290:2805-2816',
+        identifier: '10.1001/jama.290.21.2805',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: CARDIZEM (diltiazem hydrochloride), NDA 018602 — original approval 5 November 1982; CARDIZEM CD NDA 020062 and CARDIZEM LA NDA 021392 prescribing information',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018602',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — diltiazem, 177 listed generic products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 39186 — diltiazem structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/39186',
+        kind: 'url',
+      },
+    ],
+  },
 ]

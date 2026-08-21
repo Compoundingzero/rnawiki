@@ -3459,4 +3459,427 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 8. Cinacalcet — the first calcimimetic, and a drug whose two biggest results are both null
+  //    unadjusted and positive adjusted, in the same trial.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'cinacalcet',
+    name: 'Cinacalcet',
+    tradeName: 'Sensipar',
+    sponsor:
+      'Amgen (originator, Sensipar, approved 2004, developed from NPS Pharmaceuticals chemistry); now made generically',
+    targetGene: 'CASR — the calcium-sensing receptor gene',
+    targetProtein:
+      'Calcium-sensing receptor on the parathyroid chief cell, a class C G-protein-coupled receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Secondary hyperparathyroidism in adults with chronic kidney disease on dialysis; hypercalcaemia in adults with parathyroid carcinoma; and hypercalcaemia in adults with primary hyperparathyroidism for whom parathyroidectomy would be indicated on serum calcium but who are unable to undergo it. The label states it is not indicated in chronic kidney disease without dialysis, because of hypocalcaemia risk',
+    patientFriendlyIndication:
+      'Overactive parathyroid glands, mainly in people on dialysis, and high blood calcium caused by a parathyroid tumour',
+    anatomicalSite:
+      'The surface of the parathyroid chief cell — the sensor that decides how much parathyroid hormone the gland releases',
+    conditionContext: {
+      conditionExplainer:
+        'The parathyroid gland measures blood calcium with a receptor on its own surface. When calcium is low, the receptor is quiet and the gland releases hormone. In kidney failure the gland is driven hard for years, grows, and starts releasing hormone almost regardless of calcium. This drug makes the receptor more sensitive, so the gland behaves as though calcium were higher than it is.',
+      whyItMatters:
+        'It was the first drug of its kind: an allosteric modulator of a G-protein-coupled receptor at a site away from where the natural ligand binds. It is also the clearest case in this file of the same trial being null in its headline analysis and positive after adjustment, twice, for two different endpoints.',
+      whoTakesThis:
+        'Adults on dialysis with secondary hyperparathyroidism, and adults with hypercalcaemia from parathyroid carcinoma or from primary hyperparathyroidism when surgery is not possible.',
+      clinicalGoals:
+        'Lower parathyroid hormone without raising calcium, which a vitamin D sterol cannot do. Whether that translates into fewer deaths, cardiovascular events or fractures is the question EVOLVE was built to answer.',
+    },
+    oneSentenceVerdict:
+      'The first calcimimetic — a molecule that binds the calcium-sensing receptor away from the calcium site and makes it read the same calcium as higher — whose 3883-patient cardiovascular outcome trial missed its primary endpoint in the unadjusted intention-to-treat analysis at a hazard ratio of 0.93 (95% CI 0.85 to 1.02, P=0.11), and whose prespecified fracture endpoint was likewise null unadjusted at 0.89 (0.75 to 1.07) and positive after adjustment at 0.83 (0.72 to 0.98).',
+    laymanHowItWorks:
+      'The parathyroid gland has a sensor on its surface that reads how much calcium is in the blood. This drug does not block that sensor or imitate calcium. It binds to a different part of the same sensor and makes it more responsive, so the same amount of calcium produces a louder signal. The gland concludes calcium is adequate and releases less hormone — and because it is not raising calcium to achieve this, calcium falls rather than rises.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 66,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.7581 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 31 listed generic products, survey effective 20 May 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in March 2004 and generic since 2018 after protracted patent litigation. At about seventy-six cents a tablet at acquisition it costs roughly three times a generic alendronate tablet and a fraction of what it cost on patent.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The options for an overactive parathyroid gland in dialysis are a vitamin D sterol, a calcimimetic, or surgery, and they differ mainly in what they do to calcium. Vitamin D sterols lower parathyroid hormone by raising calcium; cinacalcet lowers it by lowering calcium; parathyroidectomy removes the gland. Combinations exist because the calcium effects offset.',
+      conventionalRx: [
+        {
+          name: 'Calcitriol and the later vitamin D receptor activators',
+          class: 'Vitamin D receptor agonists',
+          howItCompares:
+            'Suppress the parathyroid hormone gene directly and raise gut calcium absorption at the same time, so how much can be given is limited by calcium. In the pooled analysis of 76 trials the established sterols raised hypercalcaemia at a relative risk of 2.37 without showing a consistent parathyroid hormone reduction.',
+          typicalCost:
+            'US$0.1607 per unit at United States pharmacy acquisition cost for calcitriol (CMS NADAC, median across 23 listed generic products, survey effective 17 June 2026)',
+          prosAndCons:
+            'Pros: cheap, decades of use, corrects the hormonal deficiency that failing kidneys create. Cons: raises calcium and phosphate; patient-level benefit unproven across a large trial literature.',
+        },
+        {
+          name: 'Etelcalcetide',
+          class: 'Intravenous calcimimetic peptide, given with dialysis',
+          howItCompares:
+            'The same receptor by a different chemistry, given intravenously at the end of a dialysis session rather than swallowed daily, which removes the adherence problem and the nausea associated with an oral calcimimetic.',
+          typicalCost:
+            'Not stated: no verified CMS acquisition price for etelcalcetide was held on this record at the time of writing',
+          prosAndCons:
+            'Pros: administered by the dialysis unit, so it is taken; less gastrointestinal upset. Cons: hypocalcaemia remains the defining risk; no outcome trial of the size of EVOLVE.',
+        },
+        {
+          name: 'Parathyroidectomy',
+          class: 'Surgical removal of parathyroid tissue',
+          howItCompares:
+            'The definitive option, and the comparator that matters for the primary hyperparathyroidism indication — the label restricts that use to people for whom surgery is indicated but not possible.',
+          typicalCost: 'A surgical episode; not a drug cost and not captured by this dataset',
+          prosAndCons:
+            'Pros: permanent. Cons: irreversible, with a risk of persistent hypoparathyroidism afterwards, which is the condition calcitriol on the neighbouring page is used to treat.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report tingling, muscle cramps or spasms straight away',
+          action:
+            'Describe tingling around the mouth or in the fingers, cramps, or twitching, and say when it started.',
+          patientImpact:
+            'These are the early features of low calcium. The label records that life-threatening events and fatal outcomes associated with hypocalcaemia have been reported, including in children.',
+          clinicalPrecaution:
+            'Significant lowering of calcium can prolong the QT interval, lower the seizure threshold and cause ventricular arrhythmia. This is the reason the drug is not indicated in chronic kidney disease without dialysis.',
+        },
+        {
+          name: 'Say if you take a drug metabolised by CYP2D6',
+          action:
+            'Mention antidepressants, some antiarrhythmics, and tamoxifen, which needs CYP2D6 to become active.',
+          patientImpact:
+            'Cinacalcet is a strong inhibitor of that enzyme, so it can raise the level of drugs cleared by it and lower the effect of drugs activated by it.',
+          clinicalPrecaution:
+            'This is an interaction to be checked by a prescriber or pharmacist rather than managed by the patient, and it is easy to miss because the drug sits with the dialysis team rather than with the prescriber of the other medicine.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@H](C1=CC=CC2=CC=CC=C21)NCCCC3=CC(=CC=C3)C(F)(F)F',
+      chemicalFormula: 'C22H22F3N',
+      molecularWeight: '357.40 g/mol',
+      targetReceptorAffinity:
+        'A positive allosteric modulator of the calcium-sensing receptor: it does not activate the receptor on its own and instead increases its sensitivity to extracellular calcium. Maximum plasma concentration is reached in about 2 to 6 hours, with an initial half-life of about 6 hours and a terminal half-life of 30 to 40 hours; steady state is reached within 7 days. Volume of distribution is approximately 1000 L and plasma protein binding 93% to 97%. A high-fat meal raises Cmax by 82% and AUC by 68% against fasting.',
+      structureSource: {
+        label:
+          'PubChem CID 156419 (cinacalcet) — canonical SMILES, molecular formula and weight, as held on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/156419',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cin-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric purity of the naphthylethylamine fragment',
+          description:
+            'Confirm the R configuration at the single stereocentre before coupling. The two enantiomers differ substantially in calcimimetic potency at the receptor, and because the molecule has only one stereocentre there is no other structural feature to distinguish them by a routine achiral method.',
+          reagentsAndBuffer:
+            '(R)-1-(1-naphthyl)ethylamine reference standard, chiral HPLC on a polysaccharide stationary phase, optical rotation measurement, 1H NMR in deuterochloroform',
+        },
+        {
+          id: 'cin-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Reductive amination to join the two aromatic halves',
+          description:
+            'Couple the naphthylethylamine to the trifluoromethylphenyl propanal by reductive amination, forming the single secondary amine that is the molecule’s only ionisable group. The three-carbon linker length is the structure-activity feature that matters: shortening or lengthening it loses activity at the receptor.',
+          dependsOnStepId: 'cin-w1',
+          reagentsAndBuffer:
+            '3-(3-trifluoromethylphenyl)propionaldehyde, sodium triacetoxyborohydride or catalytic hydrogenation, methanol or dichloroethane, controlled pH to favour imine formation before reduction',
+        },
+        {
+          id: 'cin-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrochloride salt formation and polymorph control',
+          description:
+            'Form and crystallise the hydrochloride. Polymorph control matters here because the free base is a lipophilic oil and the marketed product is a tablet: which crystal form is isolated decides dissolution, and dissolution decides exposure in a drug whose absorption is already strongly food-dependent.',
+          dependsOnStepId: 'cin-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in isopropanol or ethyl acetate, seeded cooling crystallisation, X-ray powder diffraction and differential scanning calorimetry for form identity, chiral HPLC on the isolated salt',
+        },
+        {
+          id: 'cin-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Calcium-response curve shift in a receptor-expressing cell line',
+          description:
+            'Measure intracellular calcium flux across a range of extracellular calcium concentrations with and without the compound, and confirm the curve shifts left rather than rising. A left shift with no change in maximum is the signature of positive allosteric modulation, and a compound that raises the response at zero calcium is an agonist and a different, more dangerous drug.',
+          dependsOnStepId: 'cin-w3',
+          reagentsAndBuffer:
+            'HEK293 cells stably expressing the human calcium-sensing receptor, Fluo-4 or aequorin calcium indicator, buffered calcium series across the physiological range, parental untransfected cells as the specificity control',
+        },
+        {
+          id: 'cin-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Parathyroid hormone suppression against a serum calcium safety readout',
+          description:
+            'Quantify parathyroid hormone secretion from parathyroid cells and pair it with serum calcium in vivo. The two readouts move in the same direction here, which is the opposite of a vitamin D sterol, and it is why the safety limit of this drug is a low calcium rather than a high one.',
+          dependsOnStepId: 'cin-w4',
+          reagentsAndBuffer:
+            'Bovine or human parathyroid cell preparations, intact PTH immunoradiometric or chemiluminescent assay, albumin-corrected serum calcium in the corresponding in vivo model, QT interval monitoring in the safety pharmacology package',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cin-a1',
+        category: 'failed',
+        title: 'EVOLVE missed its primary endpoint in the analysis it declared',
+        laymanSummary:
+          'The largest trial of this drug enrolled 3883 dialysis patients and followed them for up to five years. In the analysis it had committed to in advance, deaths and major cardiovascular events were not significantly reduced.',
+        technicalDetails:
+          'EVOLVE randomised 3883 haemodialysis patients with moderate-to-severe secondary hyperparathyroidism — median intact parathyroid hormone 693 pg/mL — to cinacalcet or placebo, with all patients eligible for conventional therapy including phosphate binders and vitamin D sterols, and followed them for up to 64 months. The primary composite of death, myocardial infarction, hospitalisation for unstable angina, heart failure or a peripheral vascular event occurred in 938 of 1948 (48.2%) on cinacalcet and 952 of 1935 (49.2%) on placebo, relative hazard 0.93 (95% CI 0.85 to 1.02, P=0.11), in the prespecified intention-to-treat analysis. Median study-drug exposure was 21.2 months on cinacalcet against 17.5 months on placebo, a difference that is itself part of the interpretive problem. Hypocalcaemia and gastrointestinal adverse events were significantly more frequent on cinacalcet.',
+        evidenceSource:
+          'EVOLVE Trial Investigators, N Engl J Med 2012;367:2482-2494 (NCT00345839)',
+        doi: '10.1056/NEJMoa1205624',
+        measuredMetric:
+          'Primary composite endpoint relative hazard 0.93 (95% CI 0.85 to 1.02), P=0.11 — not met',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cin-a2',
+        category: 'inferred',
+        title: 'The fracture endpoint tells the same story: null unadjusted, positive adjusted',
+        laymanSummary:
+          'Clinical fractures were counted as a planned secondary outcome. Unadjusted, there was no significant difference. Adjusted for baseline differences and repeated fractures it became significant, and adjusted further for how long people actually took the drug it grew larger.',
+        technicalDetails:
+          'Clinical fractures occurred in 255 of 1935 placebo patients (13.2%) and 238 of 1948 cinacalcet patients (12.2%). Unadjusted intention-to-treat relative hazard was 0.89 (95% CI 0.75 to 1.07). After adjustment for baseline characteristics and multiple fractures it was 0.83 (0.72 to 0.98). Using the prespecified lag-censoring analysis, a measure of actual drug exposure, it was 0.72 (0.58 to 0.90); censoring at cointerventions such as parathyroidectomy, transplantation or commercial cinacalcet gave 0.71 (0.58 to 0.87). The authors state both halves plainly: in the unadjusted intention-to-treat analysis cinacalcet did not reduce fracture, and after accounting for baseline differences, multiple fractures and discontinuation it reduced fracture by 16% to 29%. Every adjustment moves the estimate the same way, which is either a real effect obscured by crossover and dropout, or the signature of analytical flexibility. The trial cannot distinguish between those.',
+        evidenceSource: 'Moe SM et al., J Am Soc Nephrol 2015;26:1466-1475 (EVOLVE fracture analysis)',
+        doi: '10.1681/ASN.2014040414',
+        inferredClaim:
+          'That cinacalcet reduces fractures — the declared unadjusted analysis says it does not, and every adjusted analysis says it does by between 16% and 29%',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cin-a3',
+        category: 'measured',
+        title: 'Low calcium is the defining harm, and it has been fatal',
+        laymanSummary:
+          'Because the drug works by lowering calcium, pushing it too far is the main danger. The label records life-threatening events and deaths associated with low calcium, including in children, and the drug is not approved for children.',
+        technicalDetails:
+          'The label states that significant lowering of serum calcium can cause paraesthesias, myalgias, muscle spasms, tetany, seizures, QT prolongation and ventricular arrhythmia, and that life-threatening events and fatal outcomes associated with hypocalcaemia have been reported, including in paediatric patients. Safety and effectiveness in children have not been established. The drug is explicitly not indicated in chronic kidney disease without dialysis because of increased hypocalcaemia risk. Other labelled warnings cover upper gastrointestinal bleeding in patients with risk factors, postmarketing reports of hypotension, worsening heart failure and arrhythmia in impaired cardiac function, and adynamic bone disease if intact parathyroid hormone is suppressed below 100 pg/mL — the last being an iatrogenic bone disease produced by treating the bone disease.',
+        evidenceSource:
+          'Cinacalcet United States prescribing information, Warnings and Precautions 5.1 to 5.4 and Indications and Usage Limitations (openFDA label endpoint)',
+        measuredMetric:
+          'Hypocalcaemia and gastrointestinal adverse events significantly more frequent than placebo in 3883 randomised patients',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cin-a4',
+        category: 'measured',
+        title: 'It is a modulator, not an agonist, and that distinction is the safety margin',
+        laymanSummary:
+          'The drug does not switch the calcium sensor on. It makes the sensor more responsive to the calcium already there. That means its effect is bounded by how much calcium is present rather than being open-ended.',
+        technicalDetails:
+          'Cinacalcet binds the transmembrane domain of the calcium-sensing receptor, away from the extracellular calcium-binding site, and increases the receptor’s sensitivity to activation by extracellular calcium. The label describes it as a calcimimetic that directly lowers parathyroid hormone by increasing that sensitivity, with the reduction in parathyroid hormone accompanied by a concomitant fall in serum calcium. The pharmacodynamic signature is a leftward shift in the calcium-response curve rather than a raised baseline response: the nadir in intact parathyroid hormone occurs 2 to 6 hours after a dose, matching the maximum plasma concentration, and serum calcium then remains constant across the dosing interval once steady state is reached within 7 days.',
+        evidenceSource:
+          'Cinacalcet United States prescribing information, Clinical Pharmacology 12.1 and 12.2 (openFDA label endpoint)',
+        measuredMetric:
+          'Intact parathyroid hormone nadir 2 to 6 hours post dose, matching Cmax; steady state within 7 days',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cin-a5',
+        category: 'inferred',
+        title: 'A drug whose exposure was 21 months against a placebo group’s 17.5',
+        laymanSummary:
+          'The two groups did not take their assigned treatment for the same length of time. That difference on its own can move a result in a long trial, and it is why the adjusted analyses exist at all.',
+        technicalDetails:
+          'Median duration of study-drug exposure was 21.2 months on cinacalcet against 17.5 months on placebo, in a trial with up to 64 months of follow-up. Differential discontinuation in a trial of this length undermines an intention-to-treat comparison in the direction of the null, because placebo patients who left the study could and did receive commercial cinacalcet — which is precisely what the censoring-at-cointervention analysis of the fracture endpoint was designed to handle, and which returned a relative hazard of 0.71. Interpreting this trial therefore requires choosing between an analysis that is unbiased by design but diluted by crossover, and analyses that correct for crossover at the cost of no longer being randomised comparisons.',
+        evidenceSource:
+          'EVOLVE Trial Investigators, N Engl J Med 2012;367:2482-2494; Moe SM et al., J Am Soc Nephrol 2015;26:1466-1475',
+        doi: '10.1056/NEJMoa1205624',
+        inferredClaim:
+          'That the intention-to-treat null is the final answer, or that the adjusted positives are — neither analysis is clean, and the trial has not been repeated',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed daily, and much better absorbed with food',
+        laymanDesc:
+          'A tablet taken once or twice a day. Taking it with a meal substantially increases how much gets into the blood.',
+        molecularDetail:
+          'Maximum plasma concentration is reached in about 2 to 6 hours. A high-fat meal raises Cmax by 82% and AUC by 68% against fasting; a low-fat meal raises them 65% and 50%. Concentrations then decline biphasically with an initial half-life of about 6 hours and a terminal half-life of 30 to 40 hours.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the parathyroid gland’s calcium sensor',
+        laymanDesc:
+          'The molecule spreads widely through the body and finds a receptor that sits on the surface of the cells in the parathyroid gland.',
+        molecularDetail:
+          'Volume of distribution is approximately 1000 L, indicating extensive tissue distribution, with 93% to 97% plasma protein binding. The target is the calcium-sensing receptor, a class C G-protein-coupled receptor whose principal role is regulating parathyroid hormone synthesis and secretion.',
+        iconName: 'Target',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'It binds a different part of the receptor from calcium',
+        laymanDesc:
+          'Calcium binds at the outside end of the receptor. This drug binds within the part embedded in the membrane, somewhere else entirely.',
+        molecularDetail:
+          'The binding site is in the seven-transmembrane domain, spatially separate from the large extracellular Venus flytrap domain where calcium binds. That separation is what makes the drug an allosteric modulator rather than a competitor, and it is why the receptor still requires calcium to respond.',
+        iconName: 'Wrench',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The sensor now reads the same calcium as higher',
+        laymanDesc:
+          'Nothing about the blood has changed, but the gland behaves as though calcium had risen. It releases less hormone.',
+        molecularDetail:
+          'Positive allosteric modulation shifts the calcium concentration-response curve leftward without raising the maximal response. Receptor activation raises intracellular calcium through Gq and phospholipase C and suppresses parathyroid hormone secretion and, over time, synthesis. Intact parathyroid hormone reaches its nadir 2 to 6 hours after a dose, tracking the plasma concentration.',
+        iconName: 'ArrowDownCircle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Calcium falls with the hormone rather than rising',
+        laymanDesc:
+          'Less parathyroid hormone means less calcium pulled out of bone and less reabsorbed by the kidney, so calcium in blood goes down. That is the opposite of what a vitamin D drug does.',
+        molecularDetail:
+          'The label states the reduction in parathyroid hormone is associated with a concomitant decrease in serum calcium. Because the calcium fall is intrinsic to the mechanism rather than an off-target effect, hypocalcaemia is the dose-limiting toxicity and cannot be engineered away within this class.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The biochemistry moves reliably; the outcomes are contested',
+        laymanDesc:
+          'Parathyroid hormone comes down, which is what the drug is prescribed for. Whether that means fewer deaths, heart attacks or fractures depends entirely on which analysis of the same trial you read.',
+        molecularDetail:
+          'EVOLVE primary composite relative hazard 0.93 (95% CI 0.85 to 1.02, P=0.11) unadjusted. Fracture relative hazard 0.89 (0.75 to 1.07) unadjusted, 0.83 (0.72 to 0.98) adjusted for baseline and multiple fractures, 0.72 (0.58 to 0.90) with lag censoring and 0.71 (0.58 to 0.87) censoring at cointervention. Every correction moves the estimate the same way and none of them is a randomised comparison.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'EVOLVE (NCT00345839)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, up to 64 months',
+        sampleSize: 3883,
+        primaryEndpoint:
+          'Time to death, myocardial infarction, hospitalisation for unstable angina, heart failure or a peripheral vascular event',
+        endpointMet: false,
+        statisticalPValue:
+          '48.2% against 49.2%; relative hazard 0.93 (95% CI 0.85 to 1.02), P=0.11 in the prespecified unadjusted intention-to-treat analysis',
+        unreportedAdverseSignals:
+          'Median study-drug exposure was 21.2 months on cinacalcet against 17.5 on placebo, and placebo patients could receive commercial cinacalcet after discontinuing. Hypocalcaemia and gastrointestinal adverse events were significantly more frequent on treatment.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'EVOLVE prespecified fracture analysis (Moe 2015)',
+        phase: 'Prespecified secondary endpoint of the same randomised trial',
+        sampleSize: 3883,
+        primaryEndpoint: 'First clinical fracture event',
+        endpointMet: false,
+        statisticalPValue:
+          'Unadjusted relative hazard 0.89 (95% CI 0.75 to 1.07); adjusted 0.83 (0.72 to 0.98); lag-censored 0.72 (0.58 to 0.90); censored at cointervention 0.71 (0.58 to 0.87)',
+        unreportedAdverseSignals:
+          'The paper reports the unadjusted null and the adjusted positive with equal prominence. Secondary citations of it overwhelmingly quote the adjusted figures.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Primary composite cardiovascular endpoint 48.2% against 49.2%, relative hazard 0.93 (95% CI 0.85 to 1.02), P=0.11',
+        'Clinical fractures 12.2% against 13.2%, unadjusted relative hazard 0.89 (95% CI 0.75 to 1.07)',
+        'Hypocalcaemia and gastrointestinal adverse events significantly more frequent than placebo in 3883 patients',
+        'Intact parathyroid hormone nadir 2 to 6 hours after a dose, matching maximum plasma concentration',
+      ],
+      unsupportedInferences: [
+        'That the trial showed a cardiovascular benefit — its declared analysis did not, and it is routinely cited as though the adjusted analysis were the result',
+        'That the fracture reduction of 16% to 29% is established, when it appears only after adjustments that dissolve the randomisation',
+        'That lowering parathyroid hormone is itself the benefit, rather than a surrogate for outcomes the trial could not demonstrate',
+        'That the drug is suitable in chronic kidney disease before dialysis — the label states the opposite, on hypocalcaemia grounds',
+      ],
+      whatFailedInitially: [
+        'The primary endpoint of a 3883-patient, 64-month trial was missed at P=0.11',
+        'Differential exposure of 21.2 against 17.5 months, plus access to commercial drug after discontinuation, left the intention-to-treat comparison diluted',
+        'Hypocalcaemia has caused life-threatening events and deaths, including in children, and the drug has no established paediatric safety',
+        'Suppressing parathyroid hormone below 100 pg/mL can produce adynamic bone disease, an iatrogenic version of the problem being treated',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in 2004 as the first calcimimetic and generic since 2018, at about seventy-six cents a tablet',
+        'Widely used in dialysis units to reach a biochemical parathyroid hormone target, alongside or instead of a vitamin D sterol',
+        'Its intravenous successor etelcalcetide addressed the adherence and nausea problems without changing the hypocalcaemia limit',
+        'EVOLVE remains one of the most argued-over trials in nephrology, and it has not been repeated',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, taken with food',
+      description:
+        'Swallowed whole with a meal, because a high-fat meal raises exposure by roughly two-thirds against fasting. Nausea and vomiting are among the commonest reasons it is stopped, which is what motivated the development of an intravenous calcimimetic given by the dialysis unit.',
+      safetyProfile:
+        'No boxed warning. Hypocalcaemia is the defining risk and can cause paraesthesias, myalgias, muscle spasms, tetany, seizures, QT prolongation and ventricular arrhythmia; life-threatening events and fatal outcomes have been reported, including in children, and safety in children has not been established. Not indicated in chronic kidney disease without dialysis. Further labelled warnings cover upper gastrointestinal bleeding in patients with risk factors, postmarketing reports of hypotension, worsening heart failure and arrhythmia in impaired cardiac function, and adynamic bone disease if intact parathyroid hormone falls below 100 pg/mL. Cinacalcet is a strong CYP2D6 inhibitor.',
+    },
+    commonQuestions: [
+      {
+        q: 'Did the big trial work or not?',
+        a: 'It depends which analysis is quoted, and that is the honest answer rather than an evasion. EVOLVE randomised 3883 dialysis patients and followed them for up to 64 months. In the analysis it had committed to in advance — unadjusted, intention-to-treat — the composite of death and major cardiovascular events was 48.2% against 49.2%, a relative hazard of 0.93 with a P value of 0.11. That is a miss. The trial also had a problem it could not design away: people on placebo who stopped could get the drug commercially, and median exposure was 21.2 months on drug against 17.5 on placebo. Analyses correcting for that move the result toward benefit. Correcting for crossover is reasonable and it is no longer a randomised comparison.',
+        auditNote:
+          'This is the pattern to watch for anywhere: a declared analysis that is null, a set of adjusted analyses that are positive, and secondary literature that cites only the second kind.',
+      },
+      {
+        q: 'How is it different from a vitamin D drug for the same problem?',
+        a: 'By what it does to calcium. Both lower parathyroid hormone. A vitamin D sterol such as calcitriol does it by acting on the parathyroid hormone gene while simultaneously increasing calcium absorption from the gut, so calcium rises and that rise is what limits the dose. Cinacalcet does it by making the gland’s own calcium sensor more responsive, so the gland acts as though calcium were high and calcium actually falls. The limiting risk is therefore low calcium rather than high. That is also why the two are often used together: their calcium effects offset.',
+      },
+      {
+        q: 'Why can it not be used before dialysis?',
+        a: 'The label states it directly: not indicated in chronic kidney disease without dialysis, because of an increased risk of hypocalcaemia. In someone still making urine and not being dialysed, the calcium fall this drug produces is harder to correct and harder to monitor between clinic visits. Low calcium is not a minor laboratory finding here — it can prolong the QT interval, lower the seizure threshold and cause ventricular arrhythmia, and the label records life-threatening events and deaths.',
+      },
+      {
+        q: 'What is adynamic bone disease and why is it in the warnings?',
+        a: 'It is bone that has stopped turning over. Parathyroid hormone is a driver of bone remodelling, and suppressing it too far leaves bone that is neither being dismantled nor rebuilt, which is itself brittle and slow to repair. The label warns that this may develop if intact parathyroid hormone falls below 100 pg/mL. It is the mirror image of the problem the drug is given for, produced by the treatment, which is why the target is a range rather than a floor.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'EVOLVE Trial Investigators. Effect of cinacalcet on cardiovascular disease in patients undergoing dialysis. N Engl J Med 2012;367:2482-2494',
+        identifier: '10.1056/NEJMoa1205624',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Moe SM et al. Effects of cinacalcet on fracture events in patients receiving hemodialysis: the EVOLVE trial. J Am Soc Nephrol 2015;26:1466-1475',
+        identifier: '10.1681/ASN.2014040414',
+        kind: 'doi',
+      },
+      {
+        label: 'EVOLVE — Evaluation of Cinacalcet HCl Therapy to Lower Cardiovascular Events',
+        identifier: 'NCT00345839',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Cinacalcet United States prescribing information (openFDA label endpoint) — indications and limitations of use, warnings and precautions, clinical pharmacology',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22cinacalcet%22',
+        kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]
